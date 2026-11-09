@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeALocationRelativeToAReferencePoint_Skill_Data = buildSkillConfig({
+export const describeALocationRelativeToAReferencePoint_Skill_Data = defineSkill({
   slug: 'describeALocationRelativeToAReferencePoint',
   id: '358058fc-13d9-403e-a25a-f08cfd8d9a2d',
   name: {

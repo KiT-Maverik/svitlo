@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const womenInAncientSocieties_Skill_Data = buildSkillConfig({
+export const womenInAncientSocieties_Skill_Data = defineSkill({
   slug: 'womenInAncientSocieties',
   id: '8b6eb041-89b8-4513-bd33-521bdcf62014',
   name: {

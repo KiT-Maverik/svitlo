@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   citiesOfTheIndusCivilization_Skill_Data,
@@ -7,7 +7,7 @@ import {
   transformationOfIndusCities_Skill_Data,
 } from './skills';
 
-export const indusCivilization_SkillGroup_Data = buildSkillGroupConfig({
+export const indusCivilization_SkillGroup_Data = defineSkillGroup({
   slug: 'indusCivilization',
   id: '2fb73927-8f98-41e4-be76-9179ae3f9426',
   name: {
@@ -41,12 +41,12 @@ export const indusCivilization_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Инд өркениеті',
     qm: 'İnd medeniyeti',
   },
-  skills: {
-    citiesOfTheIndusCivilization: citiesOfTheIndusCivilization_Skill_Data,
-    indusEconomy: indusEconomy_Skill_Data,
-    indusSigns: indusSigns_Skill_Data,
-    transformationOfIndusCities: transformationOfIndusCities_Skill_Data,
-  },
+  skills: [
+    citiesOfTheIndusCivilization_Skill_Data,
+    indusEconomy_Skill_Data,
+    indusSigns_Skill_Data,
+    transformationOfIndusCities_Skill_Data,
+  ],
   description: {
     methodological:
       'Indus cities showed planning, crafts, and trade, while political and linguistic questions remain unresolved.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ray_Skill_Data = buildSkillConfig({
+export const ray_Skill_Data = defineSkill({
   slug: 'ray',
   id: '1f1740cd-914a-4945-b564-5124a982c735',
   name: {

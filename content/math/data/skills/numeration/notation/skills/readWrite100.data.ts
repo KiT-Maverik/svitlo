@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readWrite100_Skill_Data = buildSkillConfig({
+export const readWrite100_Skill_Data = defineSkill({
   slug: 'readWrite100',
   id: 'c9ff45cf-3fe7-4f2c-9380-ce1a5c463cf2',
   name: {

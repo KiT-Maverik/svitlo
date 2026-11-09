@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const descriptiveStatisticsInResearch_Skill_Data = buildSkillConfig({
+export const descriptiveStatisticsInResearch_Skill_Data = defineSkill({
   slug: 'descriptiveStatisticsInResearch',
   id: '6281b8d9-aaae-4a6f-90b1-99bb8dd66e4b',
   name: {

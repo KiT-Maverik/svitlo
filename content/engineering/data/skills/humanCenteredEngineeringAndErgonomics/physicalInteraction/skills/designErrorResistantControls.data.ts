@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designErrorResistantControls_Skill_Data = buildSkillConfig({
+export const designErrorResistantControls_Skill_Data = defineSkill({
   slug: 'designErrorResistantControls',
   id: '08833b76-bc86-4fa6-b3f6-3fbf1f5d35f1',
   name: {

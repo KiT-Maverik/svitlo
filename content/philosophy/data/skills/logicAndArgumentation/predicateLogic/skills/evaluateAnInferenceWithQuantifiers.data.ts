@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAnInferenceWithQuantifiers_Skill_Data = buildSkillConfig({
+export const evaluateAnInferenceWithQuantifiers_Skill_Data = defineSkill({
   slug: 'evaluateAnInferenceWithQuantifiers',
   id: '2b656dd4-44b4-448c-b106-d77f5f611ee7',
   name: {

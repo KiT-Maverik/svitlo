@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protectSecretsWhenUsingAI_Skill_Data = buildSkillConfig({
+export const protectSecretsWhenUsingAI_Skill_Data = defineSkill({
   slug: 'protectSecretsWhenUsingAI',
   id: 'ce8bc546-e3c4-4539-ad46-5666db8bfbb4',
   name: {

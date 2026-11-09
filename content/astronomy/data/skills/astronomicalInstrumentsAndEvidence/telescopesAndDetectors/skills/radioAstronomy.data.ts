@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const radioAstronomy_Skill_Data = buildSkillConfig({
+export const radioAstronomy_Skill_Data = defineSkill({
   slug: 'radioAstronomy',
   id: '936667e5-316d-4474-9140-2540cdb25712',
   name: {

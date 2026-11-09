@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyADependentVariable_Skill_Data = buildSkillConfig({
+export const identifyADependentVariable_Skill_Data = defineSkill({
   slug: 'identifyADependentVariable',
   id: 'c45c2c6f-10f5-4b6c-a901-66b44c29302b',
   name: {

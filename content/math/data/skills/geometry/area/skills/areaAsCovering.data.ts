@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const areaAsCovering_Skill_Data = buildSkillConfig({
+export const areaAsCovering_Skill_Data = defineSkill({
   slug: 'areaAsCovering',
   id: '6b0d5eb1-8d6f-448d-b1db-051779916e97',
   name: {

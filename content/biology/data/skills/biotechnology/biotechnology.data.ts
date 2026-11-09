@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import {
   evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,
@@ -8,10 +8,10 @@ import {
   recognizeHumanUsesOfMicroorganisms_Skill_Data,
 } from './skills';
 
-export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
+export const biotechnology_SkillDomain_Data = defineSkillDomain({
   slug: 'biotechnology',
   id: '6e041ba0-2fb9-48c6-a0eb-ee92ba9d03f1',
-  name: {
+  title: {
     en: 'Biotechnology',
     zh: '生物技术',
     hi: 'जैव प्रौद्योगिकी',
@@ -42,14 +42,14 @@ export const biotechnology_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Биотехнология',
     qm: 'Biotehnologiya',
   },
-  groups: {},
-  skills: {
-    evaluateEcologicalRisksOfBiotechnologyUse: evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,
-    explainThePrincipleOfGeneticModification: explainThePrincipleOfGeneticModification_Skill_Data,
-    explainThePrincipleOfSelectiveBreeding: explainThePrincipleOfSelectiveBreeding_Skill_Data,
-    explainThePurposeOfASimpleBiotechnologicalProcedure: explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data,
-    recognizeHumanUsesOfMicroorganisms: recognizeHumanUsesOfMicroorganisms_Skill_Data,
-  },
+  groups: [],
+  skills: [
+    evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,
+    explainThePrincipleOfGeneticModification_Skill_Data,
+    explainThePrincipleOfSelectiveBreeding_Skill_Data,
+    explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data,
+    recognizeHumanUsesOfMicroorganisms_Skill_Data,
+  ],
   description: {
     methodological:
       'Use of properties of organisms, cells, enzymes, and hereditary information to obtain products and intentionally change traits. Includes selective breeding, genetic modification, and analysis of potential ecological consequences of interventions; natural ecosystem interactions belong to Ecology, while engineering applications of biological principles belong to the separate subject Engineering.',

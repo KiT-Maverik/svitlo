@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const alcohols_Skill_Data = buildSkillConfig({
+export const alcohols_Skill_Data = defineSkill({
   slug: 'alcohols',
   id: 'fa006fc4-22c9-475d-a86d-fbcdee5afa44',
   name: {

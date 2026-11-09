@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   dissolving_Skill_Data,
@@ -9,7 +9,7 @@ import {
   temperatureAndSolubility_Skill_Data,
 } from './skills';
 
-export const dissolutionAndSolubility_SkillGroup_Data = buildSkillGroupConfig({
+export const dissolutionAndSolubility_SkillGroup_Data = defineSkillGroup({
   slug: 'dissolutionAndSolubility',
   id: '5dcc9f58-7421-4f6d-9520-d77096ed007f',
   name: {
@@ -43,14 +43,14 @@ export const dissolutionAndSolubility_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Еру және ерігіштік',
     qm: 'Erime ve eriyicilik',
   },
-  skills: {
-    dissolving: dissolving_Skill_Data,
-    gasSolubilityAndPressure: gasSolubilityAndPressure_Skill_Data,
-    saturation: saturation_Skill_Data,
-    solubility: solubility_Skill_Data,
-    solventSoluteCompatibility: solventSoluteCompatibility_Skill_Data,
-    temperatureAndSolubility: temperatureAndSolubility_Skill_Data,
-  },
+  skills: [
+    dissolving_Skill_Data,
+    gasSolubilityAndPressure_Skill_Data,
+    saturation_Skill_Data,
+    solubility_Skill_Data,
+    solventSoluteCompatibility_Skill_Data,
+    temperatureAndSolubility_Skill_Data,
+  ],
   description: {
     methodological: 'Dissolution reflects competing interactions and may depend strongly on substance and conditions.',
     frontend: {

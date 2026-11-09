@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessComputingsEnvironmentalImpact_Skill_Data = buildSkillConfig({
+export const assessComputingsEnvironmentalImpact_Skill_Data = defineSkill({
   slug: 'assessComputingsEnvironmentalImpact',
   id: '40d8ceff-cdaf-4995-8e06-2f904e450dcd',
   name: {

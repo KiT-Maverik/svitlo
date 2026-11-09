@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   equalSharing_Skill_Data,
@@ -26,7 +26,7 @@ import {
   checkQuotient_Skill_Data,
 } from './skills';
 
-export const divide_SkillGroup_Data = buildSkillGroupConfig({
+export const divide_SkillGroup_Data = defineSkillGroup({
   slug: 'divide',
   id: 'ddb45d35-6e28-4e55-b934-949c3f0a21b2',
   name: {
@@ -60,31 +60,31 @@ export const divide_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Dzielenie',
     uk: 'Ділення',
   },
-  skills: {
-    equalSharing: equalSharing_Skill_Data,
-    equalGrouping: equalGrouping_Skill_Data,
-    relationToMultiplication: relationToMultiplication_Skill_Data,
-    readExpression: readExpression_Skill_Data,
-    by2: by2_Skill_Data,
-    by3: by3_Skill_Data,
-    by4: by4_Skill_Data,
-    by5: by5_Skill_Data,
-    by6: by6_Skill_Data,
-    by7: by7_Skill_Data,
-    by8: by8_Skill_Data,
-    by9: by9_Skill_Data,
-    by1AndSelf: by1AndSelf_Skill_Data,
-    zeroDividend: zeroDividend_Skill_Data,
-    noDivisionByZero: noDivisionByZero_Skill_Data,
-    doubleHalf: doubleHalf_Skill_Data,
-    roundTens: roundTens_Skill_Data,
-    roundHundreds: roundHundreds_Skill_Data,
-    twoDigitByOne: twoDigitByOne_Skill_Data,
-    threeDigitByOne: threeDigitByOne_Skill_Data,
-    withRemainder: withRemainder_Skill_Data,
-    remainderLessDivisor: remainderLessDivisor_Skill_Data,
-    checkQuotient: checkQuotient_Skill_Data,
-  },
+  skills: [
+    equalSharing_Skill_Data,
+    equalGrouping_Skill_Data,
+    relationToMultiplication_Skill_Data,
+    readExpression_Skill_Data,
+    by2_Skill_Data,
+    by3_Skill_Data,
+    by4_Skill_Data,
+    by5_Skill_Data,
+    by6_Skill_Data,
+    by7_Skill_Data,
+    by8_Skill_Data,
+    by9_Skill_Data,
+    by1AndSelf_Skill_Data,
+    zeroDividend_Skill_Data,
+    noDivisionByZero_Skill_Data,
+    doubleHalf_Skill_Data,
+    roundTens_Skill_Data,
+    roundHundreds_Skill_Data,
+    twoDigitByOne_Skill_Data,
+    threeDigitByOne_Skill_Data,
+    withRemainder_Skill_Data,
+    remainderLessDivisor_Skill_Data,
+    checkQuotient_Skill_Data,
+  ],
   description: {
     methodological:
       'Quotients as equal sharing or finding the number of equal groups, basic division facts, remainders, limitations, and verification of division.',

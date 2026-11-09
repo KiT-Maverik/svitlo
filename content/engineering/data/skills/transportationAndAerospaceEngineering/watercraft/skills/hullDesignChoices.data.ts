@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hullDesignChoices_Skill_Data = buildSkillConfig({
+export const hullDesignChoices_Skill_Data = defineSkill({
   slug: 'hullDesignChoices',
   id: 'e4fd94bb-af14-41f2-95ee-d898e511609c',
   name: {

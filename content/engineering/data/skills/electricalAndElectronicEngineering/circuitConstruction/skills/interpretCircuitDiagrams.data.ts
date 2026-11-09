@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretCircuitDiagrams_Skill_Data = buildSkillConfig({
+export const interpretCircuitDiagrams_Skill_Data = defineSkill({
   slug: 'interpretCircuitDiagrams',
   id: '118862b4-e777-43b3-8cdd-be4f3428a12f',
   name: {

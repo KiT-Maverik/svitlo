@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const apparentBrightness_Skill_Data = buildSkillConfig({
+export const apparentBrightness_Skill_Data = defineSkill({
   slug: 'apparentBrightness',
   id: '87009192-1fa7-4c8b-8740-685be43f9477',
   name: {

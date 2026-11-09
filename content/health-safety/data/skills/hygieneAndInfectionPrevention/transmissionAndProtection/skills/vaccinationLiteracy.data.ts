@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const vaccinationLiteracy_Skill_Data = buildSkillConfig({
+export const vaccinationLiteracy_Skill_Data = defineSkill({
   slug: 'vaccinationLiteracy',
   id: 'b1214ba1-48cf-4ada-8da1-e6e33118f180',
   name: {

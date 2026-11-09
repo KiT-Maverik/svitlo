@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const publicDebtSustainability_Skill_Data = buildSkillConfig({
+export const publicDebtSustainability_Skill_Data = defineSkill({
   slug: 'publicDebtSustainability',
   id: 'a6cf3f47-cd81-4a1b-a72e-348775365c8b',
   name: {

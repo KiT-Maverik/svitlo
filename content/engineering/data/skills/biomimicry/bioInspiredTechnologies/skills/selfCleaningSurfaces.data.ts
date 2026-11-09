@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selfCleaningSurfaces_Skill_Data = buildSkillConfig({
+export const selfCleaningSurfaces_Skill_Data = defineSkill({
   slug: 'selfCleaningSurfaces',
   id: '154dde6b-36a2-4fd9-bbb0-38b16dbea7ba',
   name: {

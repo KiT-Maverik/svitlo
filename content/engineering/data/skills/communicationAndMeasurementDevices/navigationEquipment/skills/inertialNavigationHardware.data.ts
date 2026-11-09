@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inertialNavigationHardware_Skill_Data = buildSkillConfig({
+export const inertialNavigationHardware_Skill_Data = defineSkill({
   slug: 'inertialNavigationHardware',
   id: '8e46a326-8d85-4b6d-833a-f6786854253d',
   name: {

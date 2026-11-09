@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { geographicCoordinates_SkillGroup_Data } from './geographicCoordinates/geographicCoordinates.data';
 import { geospatialTechnologies_SkillGroup_Data } from './geospatialTechnologies/geospatialTechnologies.data';
@@ -6,10 +6,10 @@ import { globesMapsAndProjection_SkillGroup_Data } from './globesMapsAndProjecti
 import { mapDesignAndConventions_SkillGroup_Data } from './mapDesignAndConventions/mapDesignAndConventions.data';
 import { mapTypesAndThematicLayers_SkillGroup_Data } from './mapTypesAndThematicLayers/mapTypesAndThematicLayers.data';
 
-export const mapsAndGeospatialRepresentations_SkillDomain_Data = buildSkillDomainConfig({
+export const mapsAndGeospatialRepresentations_SkillDomain_Data = defineSkillDomain({
   slug: 'mapsAndGeospatialRepresentations',
   id: '9c37d2cf-fae3-4c84-afb1-59c049ab5bbe',
-  name: {
+  title: {
     en: 'Maps and Geospatial Representations',
     zh: '地图与地理空间表达',
     hi: 'मानचित्र और भूस्थानिक निरूपण',
@@ -40,13 +40,13 @@ export const mapsAndGeospatialRepresentations_SkillDomain_Data = buildSkillDomai
     kk: 'Карталар мен геокеңістіктік бейнелеулер',
     qm: 'Haritalar ve coğrafiy mekân tasvirleri',
   },
-  groups: {
-    geographicCoordinates: geographicCoordinates_SkillGroup_Data,
-    geospatialTechnologies: geospatialTechnologies_SkillGroup_Data,
-    globesMapsAndProjection: globesMapsAndProjection_SkillGroup_Data,
-    mapDesignAndConventions: mapDesignAndConventions_SkillGroup_Data,
-    mapTypesAndThematicLayers: mapTypesAndThematicLayers_SkillGroup_Data,
-  },
+  groups: [
+    geographicCoordinates_SkillGroup_Data,
+    geospatialTechnologies_SkillGroup_Data,
+    globesMapsAndProjection_SkillGroup_Data,
+    mapDesignAndConventions_SkillGroup_Data,
+    mapTypesAndThematicLayers_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Geographic representations convey selected positions, attributes and relationships through maps, globes, sketches, coordinates, imagery and spatial data. Competence includes interpretation and purposeful creation while acknowledging selection, measurement, projection and source limitations.',

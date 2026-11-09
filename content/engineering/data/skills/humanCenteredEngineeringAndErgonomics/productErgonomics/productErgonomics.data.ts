@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   adaptProductDimensions_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateOperatingPosture_Skill_Data,
 } from './skills';
 
-export const productErgonomics_SkillGroup_Data = buildSkillGroupConfig({
+export const productErgonomics_SkillGroup_Data = defineSkillGroup({
   slug: 'productErgonomics',
   id: '8139c128-a900-473e-98ce-af68bc8d9dab',
   name: {
@@ -41,12 +41,12 @@ export const productErgonomics_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бұйым эргономикасы',
     qm: 'Mahsul ergonomikası',
   },
-  skills: {
-    adaptProductDimensions: adaptProductDimensions_Skill_Data,
-    evaluateControlReachability: evaluateControlReachability_Skill_Data,
-    evaluateGripAndHandling: evaluateGripAndHandling_Skill_Data,
-    evaluateOperatingPosture: evaluateOperatingPosture_Skill_Data,
-  },
+  skills: [
+    adaptProductDimensions_Skill_Data,
+    evaluateControlReachability_Skill_Data,
+    evaluateGripAndHandling_Skill_Data,
+    evaluateOperatingPosture_Skill_Data,
+  ],
   description: {
     methodological:
       'Geometry, loads and posture influence whether a device can be operated comfortably and dependably.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   createAWovenStructure_Skill_Data,
@@ -7,7 +7,7 @@ import {
   designATextilePattern_Skill_Data,
 } from './skills';
 
-export const textilesAndDecorativeArts_SkillGroup_Data = buildSkillGroupConfig({
+export const textilesAndDecorativeArts_SkillGroup_Data = defineSkillGroup({
   slug: 'textilesAndDecorativeArts',
   id: '1ebf4d14-8b7d-4282-b54b-3bb933401a63',
   name: {
@@ -42,12 +42,12 @@ export const textilesAndDecorativeArts_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'ტექსტილი და დეკორატიული ხელოვნება',
     kk: 'Тоқыма және сәндік өнер',
   },
-  skills: {
-    createAWovenStructure: createAWovenStructure_Skill_Data,
-    createRepeatingOrnament: createRepeatingOrnament_Skill_Data,
-    createTextileEmbellishment: createTextileEmbellishment_Skill_Data,
-    designATextilePattern: designATextilePattern_Skill_Data,
-  },
+  skills: [
+    createAWovenStructure_Skill_Data,
+    createRepeatingOrnament_Skill_Data,
+    createTextileEmbellishment_Skill_Data,
+    designATextilePattern_Skill_Data,
+  ],
   description: {
     methodological:
       'Fabric structures, embellishments and motif repetition embody distinctive artistic design choices and cultural traditions.',

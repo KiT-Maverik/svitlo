@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyAndJustify_Skill_Data = buildSkillConfig({
+export const classifyAndJustify_Skill_Data = defineSkill({
   slug: 'classifyAndJustify',
   id: '1e440f3e-c2b3-4a1c-ba51-01ece6aea896',
   name: {

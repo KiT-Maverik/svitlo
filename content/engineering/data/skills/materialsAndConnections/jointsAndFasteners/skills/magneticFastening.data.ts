@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const magneticFastening_Skill_Data = buildSkillConfig({
+export const magneticFastening_Skill_Data = defineSkill({
   slug: 'magneticFastening',
   id: '70a0f1ed-5f4c-4b90-a742-1967d2de16de',
   name: {

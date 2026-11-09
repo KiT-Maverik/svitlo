@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const behavioralEconomicThought_Skill_Data = buildSkillConfig({
+export const behavioralEconomicThought_Skill_Data = defineSkill({
   slug: 'behavioralEconomicThought',
   id: 'fee87813-844b-4b88-ba78-000806633c78',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMicroorganismsFromDescriptions_Skill_Data = buildSkillConfig({
+export const recognizeMicroorganismsFromDescriptions_Skill_Data = defineSkill({
   slug: 'recognizeMicroorganismsFromDescriptions',
   id: 'dd035a02-2a2b-476e-8279-ddf59114fa52',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareAlgorithmsAgainstRequirements_Skill_Data = buildSkillConfig({
+export const compareAlgorithmsAgainstRequirements_Skill_Data = defineSkill({
   slug: 'compareAlgorithmsAgainstRequirements',
   id: 'b4444b39-3f9b-4405-be8c-85f9990aac8b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const solarInterior_Skill_Data = buildSkillConfig({
+export const solarInterior_Skill_Data = defineSkill({
   slug: 'solarInterior',
   id: 'ce465718-ec40-4a98-8e84-25d9d5e84865',
   name: {

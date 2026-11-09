@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHabitatFragmentationAsAGeographicProcess_Skill_Data = buildSkillConfig({
+export const explainHabitatFragmentationAsAGeographicProcess_Skill_Data = defineSkill({
   slug: 'explainHabitatFragmentationAsAGeographicProcess',
   id: '5ec418a8-2ce0-45dc-a4eb-59903c29d330',
   name: {

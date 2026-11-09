@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   establishACharacterObjective_Skill_Data,
@@ -8,7 +8,7 @@ import {
   useExpressiveStageVoice_Skill_Data,
 } from './skills';
 
-export const acting_SkillGroup_Data = buildSkillGroupConfig({
+export const acting_SkillGroup_Data = defineSkillGroup({
   slug: 'acting',
   id: 'deb011d1-5957-44ae-8009-02fd0369c66d',
   name: {
@@ -42,13 +42,13 @@ export const acting_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Актерлік өнер',
     qm: 'Aktrislik',
   },
-  skills: {
-    establishACharacterObjective: establishACharacterObjective_Skill_Data,
-    expressCharacterThroughGesture: expressCharacterThroughGesture_Skill_Data,
-    maintainStagePresence: maintainStagePresence_Skill_Data,
-    performDramaticInteraction: performDramaticInteraction_Skill_Data,
-    useExpressiveStageVoice: useExpressiveStageVoice_Skill_Data,
-  },
+  skills: [
+    establishACharacterObjective_Skill_Data,
+    expressCharacterThroughGesture_Skill_Data,
+    maintainStagePresence_Skill_Data,
+    performDramaticInteraction_Skill_Data,
+    useExpressiveStageVoice_Skill_Data,
+  ],
   description: {
     methodological:
       "A character's objectives and relationships are expressed through controlled physical, vocal and responsive choices.",

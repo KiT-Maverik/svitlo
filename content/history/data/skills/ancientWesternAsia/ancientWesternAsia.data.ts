@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { anatolia_SkillGroup_Data } from './anatolia/anatolia.data';
 import { ancientIranianStates_SkillGroup_Data } from './ancientIranianStates/ancientIranianStates.data';
@@ -6,10 +6,10 @@ import { ancientLevant_SkillGroup_Data } from './ancientLevant/ancientLevant.dat
 import { ancientSouthArabia_SkillGroup_Data } from './ancientSouthArabia/ancientSouthArabia.data';
 import { mesopotamia_SkillGroup_Data } from './mesopotamia/mesopotamia.data';
 
-export const ancientWesternAsia_SkillDomain_Data = buildSkillDomainConfig({
+export const ancientWesternAsia_SkillDomain_Data = defineSkillDomain({
   slug: 'ancientWesternAsia',
   id: 'ff530e6e-024d-4a8c-9a16-3d0436cc9036',
-  name: {
+  title: {
     en: 'Western Asia',
     zh: '古代西亚',
     hi: 'प्राचीन पश्चिमी एशिया',
@@ -40,13 +40,13 @@ export const ancientWesternAsia_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Ежелгі Батыс Азия',
     qm: 'Qadimiy Ğarbiy Asiya',
   },
-  groups: {
-    anatolia: anatolia_SkillGroup_Data,
-    ancientIranianStates: ancientIranianStates_SkillGroup_Data,
-    ancientLevant: ancientLevant_SkillGroup_Data,
-    ancientSouthArabia: ancientSouthArabia_SkillGroup_Data,
-    mesopotamia: mesopotamia_SkillGroup_Data,
-  },
+  groups: [
+    anatolia_SkillGroup_Data,
+    ancientIranianStates_SkillGroup_Data,
+    ancientLevant_SkillGroup_Data,
+    ancientSouthArabia_SkillGroup_Data,
+    mesopotamia_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Early cities and states in Mesopotamia, the Levant, Anatolia, Iran, and Arabia developed through local environments and enduring trade, political, and cultural contact.',

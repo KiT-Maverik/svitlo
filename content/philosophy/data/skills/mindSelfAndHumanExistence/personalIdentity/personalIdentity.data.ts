@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeAPersonhoodCriterion_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data,
 } from './skills';
 
-export const personalIdentity_SkillGroup_Data = buildSkillGroupConfig({
+export const personalIdentity_SkillGroup_Data = defineSkillGroup({
   slug: 'personalIdentity',
   id: '5ff765a3-fed4-4469-871d-5f77ee91f446',
   name: {
@@ -41,12 +41,12 @@ export const personalIdentity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жеке тұлғалық бірегейлік',
     qm: 'Şahsiy kimlik',
   },
-  skills: {
-    analyzeAPersonhoodCriterion: analyzeAPersonhoodCriterion_Skill_Data,
-    compareBodilyAndPsychologicalContinuityAccounts: compareBodilyAndPsychologicalContinuityAccounts_Skill_Data,
-    distinguishPersonalIdentityFromSimilarity: distinguishPersonalIdentityFromSimilarity_Skill_Data,
-    evaluateTheRoleOfMemoryInPersonalIdentity: evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data,
-  },
+  skills: [
+    analyzeAPersonhoodCriterion_Skill_Data,
+    compareBodilyAndPsychologicalContinuityAccounts_Skill_Data,
+    distinguishPersonalIdentityFromSimilarity_Skill_Data,
+    evaluateTheRoleOfMemoryInPersonalIdentity_Skill_Data,
+  ],
   description: {
     methodological:
       'The self may be characterized by bodily, psychological, narrative, or relational continuity. The question is what makes someone the same person, not how memory works empirically.',

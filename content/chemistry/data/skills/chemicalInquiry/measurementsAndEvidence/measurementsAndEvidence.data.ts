@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chemicalDataInterpretation_Skill_Data,
@@ -8,7 +8,7 @@ import {
   observingChemicalProperties_Skill_Data,
 } from './skills';
 
-export const measurementsAndEvidence_SkillGroup_Data = buildSkillGroupConfig({
+export const measurementsAndEvidence_SkillGroup_Data = defineSkillGroup({
   slug: 'measurementsAndEvidence',
   id: '3a4b2020-e385-431c-9120-e577693bc73b',
   name: {
@@ -42,13 +42,13 @@ export const measurementsAndEvidence_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Өлшеулер мен дәлелдер',
     qm: 'Ölçevler ve deliller',
   },
-  skills: {
-    chemicalDataInterpretation: chemicalDataInterpretation_Skill_Data,
-    measurementUncertainty: measurementUncertainty_Skill_Data,
-    measuringMass: measuringMass_Skill_Data,
-    measuringVolume: measuringVolume_Skill_Data,
-    observingChemicalProperties: observingChemicalProperties_Skill_Data,
-  },
+  skills: [
+    chemicalDataInterpretation_Skill_Data,
+    measurementUncertainty_Skill_Data,
+    measuringMass_Skill_Data,
+    measuringVolume_Skill_Data,
+    observingChemicalProperties_Skill_Data,
+  ],
   description: {
     methodological:
       'Chemical conclusions depend on measured quantities, recorded conditions and the distinction between observed patterns and explanatory claims.',

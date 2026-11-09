@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const groupthink_Skill_Data = buildSkillConfig({
+export const groupthink_Skill_Data = defineSkill({
   slug: 'groupthink',
   id: 'faa6e12a-50c2-4d5f-b2e6-a98361335683',
   name: {

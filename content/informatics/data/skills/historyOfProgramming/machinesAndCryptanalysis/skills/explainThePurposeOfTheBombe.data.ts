@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePurposeOfTheBombe_Skill_Data = buildSkillConfig({
+export const explainThePurposeOfTheBombe_Skill_Data = defineSkill({
   slug: 'explainThePurposeOfTheBombe',
   id: 'dc49a75c-c502-4a5b-b6c6-ea0189a1853b',
   name: {

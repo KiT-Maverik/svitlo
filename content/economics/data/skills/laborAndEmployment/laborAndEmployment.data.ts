@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { employmentAndMobility_SkillGroup_Data } from './employmentAndMobility/employmentAndMobility.data';
 import { laborInstitutions_SkillGroup_Data } from './laborInstitutions/laborInstitutions.data';
 import { laborSupplyAndDemand_SkillGroup_Data } from './laborSupplyAndDemand/laborSupplyAndDemand.data';
 
-export const laborAndEmployment_SkillDomain_Data = buildSkillDomainConfig({
+export const laborAndEmployment_SkillDomain_Data = defineSkillDomain({
   slug: 'laborAndEmployment',
   id: '4b9fa7b8-6993-4e94-8654-59396cae6193',
-  name: {
+  title: {
     en: 'Праця та зайнятість',
     zh: '劳动与就业',
     hi: 'श्रम और रोज़गार',
@@ -38,11 +38,11 @@ export const laborAndEmployment_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Еңбек және жұмыспен қамту',
     qm: 'Emek ve işnen temin',
   },
-  groups: {
-    employmentAndMobility: employmentAndMobility_SkillGroup_Data,
-    laborInstitutions: laborInstitutions_SkillGroup_Data,
-    laborSupplyAndDemand: laborSupplyAndDemand_SkillGroup_Data,
-  },
+  groups: [
+    employmentAndMobility_SkillGroup_Data,
+    laborInstitutions_SkillGroup_Data,
+    laborSupplyAndDemand_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Labor markets connect working time, qualifications, pay, vacancies, and hiring rules. This domain distinguishes individual work decisions from aggregate unemployment.',

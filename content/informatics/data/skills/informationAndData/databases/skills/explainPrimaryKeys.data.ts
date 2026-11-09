@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPrimaryKeys_Skill_Data = buildSkillConfig({
+export const explainPrimaryKeys_Skill_Data = defineSkill({
   slug: 'explainPrimaryKeys',
   id: '3ee1fbbd-57cb-4b0a-afed-70a992147fa9',
   name: {

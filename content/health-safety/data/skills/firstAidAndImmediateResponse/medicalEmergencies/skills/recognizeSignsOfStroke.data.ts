@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeSignsOfStroke_Skill_Data = buildSkillConfig({
+export const recognizeSignsOfStroke_Skill_Data = defineSkill({
   slug: 'recognizeSignsOfStroke',
   id: 'de6b59df-897a-4366-830e-3a00e9fd6ca6',
   name: {

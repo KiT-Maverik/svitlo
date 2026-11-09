@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   callAFunctionWithArguments_Skill_Data,
@@ -8,7 +8,7 @@ import {
   useAFunctionsReturnValue_Skill_Data,
 } from './skills';
 
-export const functionsAndReuse_SkillGroup_Data = buildSkillGroupConfig({
+export const functionsAndReuse_SkillGroup_Data = defineSkillGroup({
   slug: 'functionsAndReuse',
   id: 'b5b2b3f4-e49c-4296-a7d5-9347dddba11c',
   name: {
@@ -42,13 +42,13 @@ export const functionsAndReuse_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Функциялар және қайта пайдалану',
     qm: 'Funktsiyalar ve yañıdan qullanuv',
   },
-  skills: {
-    callAFunctionWithArguments: callAFunctionWithArguments_Skill_Data,
-    defineAFunctionWithParameters: defineAFunctionWithParameters_Skill_Data,
-    explainRecursion: explainRecursion_Skill_Data,
-    explainThePurposeOfAFunction: explainThePurposeOfAFunction_Skill_Data,
-    useAFunctionsReturnValue: useAFunctionsReturnValue_Skill_Data,
-  },
+  skills: [
+    callAFunctionWithArguments_Skill_Data,
+    defineAFunctionWithParameters_Skill_Data,
+    explainRecursion_Skill_Data,
+    explainThePurposeOfAFunction_Skill_Data,
+    useAFunctionsReturnValue_Skill_Data,
+  ],
   description: {
     methodological:
       'Named sections of programs with inputs, outputs, and defined responsibilities that help divide tasks and avoid repeating the same logic.',

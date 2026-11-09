@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const activeListening_Skill_Data = buildSkillConfig({
+export const activeListening_Skill_Data = defineSkill({
   slug: 'activeListening',
   id: '09659fa4-825c-4bfb-b3f6-1add5fc95dac',
   name: {

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { digitalMaterials_SkillGroup_Data } from './digitalMaterials/digitalMaterials.data';
 import { gameDesign_SkillGroup_Data } from './gameDesign/gameDesign.data';
 import { proceduralGeneration_SkillGroup_Data } from './proceduralGeneration/proceduralGeneration.data';
 
-export const digitalCreativityAndGames_SkillDomain_Data = buildSkillDomainConfig({
+export const digitalCreativityAndGames_SkillDomain_Data = defineSkillDomain({
   slug: 'digitalCreativityAndGames',
   id: '0858c7b1-018e-4f2c-91e4-05dd53a4fb4a',
-  name: {
+  title: {
     en: 'Digital Creativity and Games',
     zh: '数字创意与游戏',
     hi: 'डिजिटल रचनात्मकता और खेल',
@@ -38,11 +38,11 @@ export const digitalCreativityAndGames_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Цифрлық шығармашылық және ойындар',
     qm: 'Raqamlı yaratıcılıq ve oyunlar',
   },
-  groups: {
-    digitalMaterials: digitalMaterials_SkillGroup_Data,
-    gameDesign: gameDesign_SkillGroup_Data,
-    proceduralGeneration: proceduralGeneration_SkillGroup_Data,
-  },
+  groups: [
+    digitalMaterials_SkillGroup_Data,
+    gameDesign_SkillGroup_Data,
+    proceduralGeneration_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Creating and editing digital content, game mechanics and rules, and procedural generation of resources. Digital product UX has its own domain, while the use of musical or engineering learning tools does not in itself create Informatics skills.',

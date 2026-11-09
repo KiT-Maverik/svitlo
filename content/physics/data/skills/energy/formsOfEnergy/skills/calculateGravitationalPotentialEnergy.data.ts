@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const calculateGravitationalPotentialEnergy_Skill_Data = buildSkillConfig({
+export const calculateGravitationalPotentialEnergy_Skill_Data = defineSkill({
   slug: 'calculateGravitationalPotentialEnergy',
   id: '44abbee0-6cd7-4044-9a2b-47d9b1d9832e',
   name: {

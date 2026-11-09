@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { advertisingAndCommunications_SkillGroup_Data } from './advertisingAndCommunications/advertisingAndCommunications.data';
 import { marketResearch_SkillGroup_Data } from './marketResearch/marketResearch.data';
@@ -7,10 +7,10 @@ import { productAndValueProposition_SkillGroup_Data } from './productAndValuePro
 import { retailMerchandising_SkillGroup_Data } from './retailMerchandising/retailMerchandising.data';
 import { salesChannelsAndDistribution_SkillGroup_Data } from './salesChannelsAndDistribution/salesChannelsAndDistribution.data';
 
-export const marketingAndTrade_SkillDomain_Data = buildSkillDomainConfig({
+export const marketingAndTrade_SkillDomain_Data = defineSkillDomain({
   slug: 'marketingAndTrade',
   id: 'b4bbb2db-d764-4ee3-a188-8aa084ff9929',
-  name: {
+  title: {
     en: 'Маркетинг і торгівля',
     zh: '营销与贸易',
     hi: 'विपणन और व्यापार',
@@ -41,14 +41,14 @@ export const marketingAndTrade_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Маркетинг және сауда',
     qm: 'Marketing ve ticaret',
   },
-  groups: {
-    advertisingAndCommunications: advertisingAndCommunications_SkillGroup_Data,
-    marketResearch: marketResearch_SkillGroup_Data,
-    pricingPromotionsAndFairness: pricingPromotionsAndFairness_SkillGroup_Data,
-    productAndValueProposition: productAndValueProposition_SkillGroup_Data,
-    retailMerchandising: retailMerchandising_SkillGroup_Data,
-    salesChannelsAndDistribution: salesChannelsAndDistribution_SkillGroup_Data,
-  },
+  groups: [
+    advertisingAndCommunications_SkillGroup_Data,
+    marketResearch_SkillGroup_Data,
+    pricingPromotionsAndFairness_SkillGroup_Data,
+    productAndValueProposition_SkillGroup_Data,
+    retailMerchandising_SkillGroup_Data,
+    salesChannelsAndDistribution_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Marketing examines how firms identify needs, develop offers, and communicate their value. Retail environments, price incentives, and fair influence on buyers are analyzed separately.',

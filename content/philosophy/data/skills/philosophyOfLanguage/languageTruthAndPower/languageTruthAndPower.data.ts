@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeAFramingChoice_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateAClaimAboutLinguisticRepresentation_Skill_Data,
 } from './skills';
 
-export const languageTruthAndPower_SkillGroup_Data = buildSkillGroupConfig({
+export const languageTruthAndPower_SkillGroup_Data = defineSkillGroup({
   slug: 'languageTruthAndPower',
   id: 'c837574a-91d4-4909-9266-63a3f0511575',
   name: {
@@ -41,12 +41,12 @@ export const languageTruthAndPower_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тіл, ақиқат және билік',
     qm: 'Til, aqiqat ve akimiyet',
   },
-  skills: {
-    analyzeAFramingChoice: analyzeAFramingChoice_Skill_Data,
-    analyzeATruthConditionalClaim: analyzeATruthConditionalClaim_Skill_Data,
-    distinguishDescriptiveFromEvaluativeLanguage: distinguishDescriptiveFromEvaluativeLanguage_Skill_Data,
-    evaluateAClaimAboutLinguisticRepresentation: evaluateAClaimAboutLinguisticRepresentation_Skill_Data,
-  },
+  skills: [
+    analyzeAFramingChoice_Skill_Data,
+    analyzeATruthConditionalClaim_Skill_Data,
+    distinguishDescriptiveFromEvaluativeLanguage_Skill_Data,
+    evaluateAClaimAboutLinguisticRepresentation_Skill_Data,
+  ],
   description: {
     methodological:
       'Descriptive categories, framing, and public speech influence which interpretations appear available. Evaluating their justification differs from explaining psychological persuasion.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainAnOpenCircuit_Skill_Data = buildSkillConfig({
+export const explainAnOpenCircuit_Skill_Data = defineSkill({
   slug: 'explainAnOpenCircuit',
   id: 'ae81edf7-3910-4f39-aab6-7bc6eb077d94',
   name: {

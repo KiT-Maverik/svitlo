@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizePredation_Skill_Data = buildSkillConfig({
+export const recognizePredation_Skill_Data = defineSkill({
   slug: 'recognizePredation',
   id: '2aabf2b4-0952-4d81-b872-b1dbfd440fd8',
   name: {

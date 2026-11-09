@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const physiologicalStressResponses_Skill_Data = buildSkillConfig({
+export const physiologicalStressResponses_Skill_Data = defineSkill({
   slug: 'physiologicalStressResponses',
   id: 'd47b1e7d-95ce-4fe7-a2d8-c1a77ef752f8',
   name: {

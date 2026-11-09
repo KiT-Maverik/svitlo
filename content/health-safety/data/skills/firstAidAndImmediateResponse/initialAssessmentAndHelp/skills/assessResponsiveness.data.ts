@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessResponsiveness_Skill_Data = buildSkillConfig({
+export const assessResponsiveness_Skill_Data = defineSkill({
   slug: 'assessResponsiveness',
   id: '1528d30a-1844-416a-8831-15443ce146e5',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lifelongAdaptation_Skill_Data = buildSkillConfig({
+export const lifelongAdaptation_Skill_Data = defineSkill({
   slug: 'lifelongAdaptation',
   id: '24f53ddf-7ef1-4a3e-b98b-ecd60618a797',
   name: {

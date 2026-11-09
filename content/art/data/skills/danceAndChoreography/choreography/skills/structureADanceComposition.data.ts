@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const structureADanceComposition_Skill_Data = buildSkillConfig({
+export const structureADanceComposition_Skill_Data = defineSkill({
   slug: 'structureADanceComposition',
   id: '93746845-7d93-40b6-8934-8bd2c3b2f16e',
   name: {

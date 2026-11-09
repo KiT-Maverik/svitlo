@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reinforcementSchedules_Skill_Data = buildSkillConfig({
+export const reinforcementSchedules_Skill_Data = defineSkill({
   slug: 'reinforcementSchedules',
   id: '83cd7047-b589-49b9-9179-fac8dc3ac52a',
   name: {

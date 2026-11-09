@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   recognizeBehaviouralDependenceRisks_Skill_Data,
@@ -7,7 +7,7 @@ import {
   seekHelpForSubstanceRelatedProblems_Skill_Data,
 } from './skills';
 
-export const preventionAndAccessToHelp_SkillGroup_Data = buildSkillGroupConfig({
+export const preventionAndAccessToHelp_SkillGroup_Data = defineSkillGroup({
   slug: 'preventionAndAccessToHelp',
   id: 'b5f6b60d-c5c4-4e11-a2f3-85bd6dcf2810',
   name: {
@@ -41,12 +41,12 @@ export const preventionAndAccessToHelp_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Алдын алу және көмекке қол жеткізу',
     qm: 'Ögüni aluv ve yardımğa irişüv',
   },
-  skills: {
-    recognizeBehaviouralDependenceRisks: recognizeBehaviouralDependenceRisks_Skill_Data,
-    recognizeSignsOfProblematicUse: recognizeSignsOfProblematicUse_Skill_Data,
-    respondToOffersOfHarmfulSubstances: respondToOffersOfHarmfulSubstances_Skill_Data,
-    seekHelpForSubstanceRelatedProblems: seekHelpForSubstanceRelatedProblems_Skill_Data,
-  },
+  skills: [
+    recognizeBehaviouralDependenceRisks_Skill_Data,
+    recognizeSignsOfProblematicUse_Skill_Data,
+    respondToOffersOfHarmfulSubstances_Skill_Data,
+    seekHelpForSubstanceRelatedProblems_Skill_Data,
+  ],
   description: {
     methodological:
       'Dependence involves more than a single behaviour; early support and non-stigmatizing treatment pathways matter.',

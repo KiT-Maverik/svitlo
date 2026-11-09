@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAnExistenceClaim_Skill_Data = buildSkillConfig({
+export const evaluateAnExistenceClaim_Skill_Data = defineSkill({
   slug: 'evaluateAnExistenceClaim',
   id: '4ac36bbb-6d7a-41ac-868e-d250a40d4a80',
   name: {

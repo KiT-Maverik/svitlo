@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const measureCircuitVoltage_Skill_Data = buildSkillConfig({
+export const measureCircuitVoltage_Skill_Data = defineSkill({
   slug: 'measureCircuitVoltage',
   id: 'c063f468-8af5-4933-ae5d-c81ad318f4bd',
   name: {

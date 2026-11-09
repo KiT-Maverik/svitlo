@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const blockAStageScene_Skill_Data = buildSkillConfig({
+export const blockAStageScene_Skill_Data = defineSkill({
   slug: 'blockAStageScene',
   id: '6dcd5a9e-54be-4a7a-9871-e0eddfd88780',
   name: {

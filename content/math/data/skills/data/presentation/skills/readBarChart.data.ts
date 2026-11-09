@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readBarChart_Skill_Data = buildSkillConfig({
+export const readBarChart_Skill_Data = defineSkill({
   slug: 'readBarChart',
   id: '391638bc-6f41-49cf-b499-a35253bb0ef7',
   name: {

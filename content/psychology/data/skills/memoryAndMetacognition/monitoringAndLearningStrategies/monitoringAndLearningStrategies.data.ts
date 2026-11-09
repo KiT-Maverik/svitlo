@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   illusionsOfLearning_Skill_Data,
@@ -8,7 +8,7 @@ import {
   strategySelectionForLearning_Skill_Data,
 } from './skills';
 
-export const monitoringAndLearningStrategies_SkillGroup_Data = buildSkillGroupConfig({
+export const monitoringAndLearningStrategies_SkillGroup_Data = defineSkillGroup({
   slug: 'monitoringAndLearningStrategies',
   id: '65dfe854-60d7-4fda-a6b4-eaa44425fe68',
   name: {
@@ -42,13 +42,13 @@ export const monitoringAndLearningStrategies_SkillGroup_Data = buildSkillGroupCo
     kk: 'Оқуды бақылау және стратегиялар',
     qm: 'Ögrenüvni közetüv ve usullar',
   },
-  skills: {
-    illusionsOfLearning: illusionsOfLearning_Skill_Data,
-    interleavedPractice: interleavedPractice_Skill_Data,
-    retrievalPractice: retrievalPractice_Skill_Data,
-    selfTestingAndCalibration: selfTestingAndCalibration_Skill_Data,
-    strategySelectionForLearning: strategySelectionForLearning_Skill_Data,
-  },
+  skills: [
+    illusionsOfLearning_Skill_Data,
+    interleavedPractice_Skill_Data,
+    retrievalPractice_Skill_Data,
+    selfTestingAndCalibration_Skill_Data,
+    strategySelectionForLearning_Skill_Data,
+  ],
   description: {
     methodological:
       'Monitoring performance and choosing strategies require evidence beyond feelings of fluency or familiarity.',

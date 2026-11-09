@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const latches_Skill_Data = buildSkillConfig({
+export const latches_Skill_Data = defineSkill({
   slug: 'latches',
   id: 'bc5f91eb-e51f-4f64-8488-c877bb736d7f',
   name: {

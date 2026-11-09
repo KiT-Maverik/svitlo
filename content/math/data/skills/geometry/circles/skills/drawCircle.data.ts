@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const drawCircle_Skill_Data = buildSkillConfig({
+export const drawCircle_Skill_Data = defineSkill({
   slug: 'drawCircle',
   id: '66ec42c0-7450-4b2d-93b5-d5fd0ef0f02f',
   name: {

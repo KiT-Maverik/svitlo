@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const organizeFilesInDirectories_Skill_Data = buildSkillConfig({
+export const organizeFilesInDirectories_Skill_Data = defineSkill({
   slug: 'organizeFilesInDirectories',
   id: 'b07ce53a-51b9-40b3-b7ad-c1b580c3da22',
   name: {

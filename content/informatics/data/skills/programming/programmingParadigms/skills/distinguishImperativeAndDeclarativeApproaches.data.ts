@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishImperativeAndDeclarativeApproaches_Skill_Data = buildSkillConfig({
+export const distinguishImperativeAndDeclarativeApproaches_Skill_Data = defineSkill({
   slug: 'distinguishImperativeAndDeclarativeApproaches',
   id: '05e4a17d-74da-4fad-b4b5-3b12c0d62397',
   name: {

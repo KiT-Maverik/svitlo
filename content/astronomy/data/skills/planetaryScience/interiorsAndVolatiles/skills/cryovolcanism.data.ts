@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cryovolcanism_Skill_Data = buildSkillConfig({
+export const cryovolcanism_Skill_Data = defineSkill({
   slug: 'cryovolcanism',
   id: '30c28dc9-f69f-44d4-90c4-fe122ec9039e',
   name: {

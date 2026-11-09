@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateFrictionAtAnInterface_Skill_Data = buildSkillConfig({
+export const evaluateFrictionAtAnInterface_Skill_Data = defineSkill({
   slug: 'evaluateFrictionAtAnInterface',
   id: '4fd97aa7-9626-47dd-8f67-aa3f148cefe4',
   name: {

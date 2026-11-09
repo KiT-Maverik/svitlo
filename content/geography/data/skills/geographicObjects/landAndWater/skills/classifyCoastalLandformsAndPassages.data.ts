@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyCoastalLandformsAndPassages_Skill_Data = buildSkillConfig({
+export const classifyCoastalLandformsAndPassages_Skill_Data = defineSkill({
   slug: 'classifyCoastalLandformsAndPassages',
   id: '50fb7c45-3893-4980-bf9c-6e2abd2764c7',
   name: {

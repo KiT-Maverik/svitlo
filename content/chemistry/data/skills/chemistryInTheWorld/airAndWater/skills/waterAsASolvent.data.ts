@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const waterAsASolvent_Skill_Data = buildSkillConfig({
+export const waterAsASolvent_Skill_Data = defineSkill({
   slug: 'waterAsASolvent',
   id: '47de99fd-4ce3-4a39-8111-bc8a76e61ad9',
   name: {

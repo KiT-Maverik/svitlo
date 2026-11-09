@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarPopulations_Skill_Data = buildSkillConfig({
+export const stellarPopulations_Skill_Data = defineSkill({
   slug: 'stellarPopulations',
   id: '85bbbb8a-22fe-44ef-bc4a-3ec959a9d8e7',
   name: {

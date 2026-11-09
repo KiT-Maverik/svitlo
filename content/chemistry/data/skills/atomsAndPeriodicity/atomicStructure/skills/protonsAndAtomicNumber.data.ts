@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protonsAndAtomicNumber_Skill_Data = buildSkillConfig({
+export const protonsAndAtomicNumber_Skill_Data = defineSkill({
   slug: 'protonsAndAtomicNumber',
   id: '4a20ddb5-16bd-49d7-8f7b-809e279a9a70',
   name: {

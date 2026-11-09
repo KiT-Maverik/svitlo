@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzePublicArt_Skill_Data,
@@ -7,7 +7,7 @@ import {
   integrateArtWithArchitecture_Skill_Data,
 } from './skills';
 
-export const landscapeAndPublicArt_SkillGroup_Data = buildSkillGroupConfig({
+export const landscapeAndPublicArt_SkillGroup_Data = defineSkillGroup({
   slug: 'landscapeAndPublicArt',
   id: '118f4346-b897-418f-bcb7-02d754fc8df8',
   name: {
@@ -41,12 +41,12 @@ export const landscapeAndPublicArt_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ландшафт және қоғамдық өнер',
     qm: 'Manzara ve cemaat sanatı',
   },
-  skills: {
-    analyzePublicArt: analyzePublicArt_Skill_Data,
-    composeALandscapeView: composeALandscapeView_Skill_Data,
-    designSiteSpecificArt: designSiteSpecificArt_Skill_Data,
-    integrateArtWithArchitecture: integrateArtWithArchitecture_Skill_Data,
-  },
+  skills: [
+    analyzePublicArt_Skill_Data,
+    composeALandscapeView_Skill_Data,
+    designSiteSpecificArt_Skill_Data,
+    integrateArtWithArchitecture_Skill_Data,
+  ],
   description: {
     methodological:
       'Outdoor artworks and landscape compositions respond to specific sites and the people who use them.',

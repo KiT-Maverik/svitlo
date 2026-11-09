@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const commutative_Skill_Data = buildSkillConfig({
+export const commutative_Skill_Data = defineSkill({
   slug: 'commutative',
   id: '1750b60b-9e8d-4426-b307-1b6c7a4d641b',
   name: {

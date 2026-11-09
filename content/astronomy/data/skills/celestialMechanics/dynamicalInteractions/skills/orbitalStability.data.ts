@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const orbitalStability_Skill_Data = buildSkillConfig({
+export const orbitalStability_Skill_Data = defineSkill({
   slug: 'orbitalStability',
   id: 'ff5961e6-5ce4-426d-8770-b9e52d294bac',
   name: {

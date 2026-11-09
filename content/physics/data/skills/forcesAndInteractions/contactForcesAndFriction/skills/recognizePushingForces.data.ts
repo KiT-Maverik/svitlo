@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizePushingForces_Skill_Data = buildSkillConfig({
+export const recognizePushingForces_Skill_Data = defineSkill({
   slug: 'recognizePushingForces',
   id: 'e0ee3bb4-4cd1-4c1a-8e01-4a84084fd5df',
   name: {

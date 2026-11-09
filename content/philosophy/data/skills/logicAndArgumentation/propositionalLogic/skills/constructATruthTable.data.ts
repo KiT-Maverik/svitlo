@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructATruthTable_Skill_Data = buildSkillConfig({
+export const constructATruthTable_Skill_Data = defineSkill({
   slug: 'constructATruthTable',
   id: 'f4321517-f51f-41fa-bc24-a3829bdfb21c',
   name: {

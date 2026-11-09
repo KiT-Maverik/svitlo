@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const celticIronAgeCultures_Skill_Data = buildSkillConfig({
+export const celticIronAgeCultures_Skill_Data = defineSkill({
   slug: 'celticIronAgeCultures',
   id: '44b3d703-102b-4c58-86d1-721c346c287a',
   name: {

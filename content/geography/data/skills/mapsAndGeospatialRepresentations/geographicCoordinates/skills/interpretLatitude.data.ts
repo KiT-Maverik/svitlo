@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretLatitude_Skill_Data = buildSkillConfig({
+export const interpretLatitude_Skill_Data = defineSkill({
   slug: 'interpretLatitude',
   id: 'b7bfe83d-5dec-44cb-abc4-a52e29f84bcc',
   name: {

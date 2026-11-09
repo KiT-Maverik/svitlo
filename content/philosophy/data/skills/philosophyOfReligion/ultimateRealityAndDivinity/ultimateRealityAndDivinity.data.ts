@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeACosmologicalArgument_Skill_Data,
@@ -11,7 +11,7 @@ import {
   reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data,
 } from './skills';
 
-export const ultimateRealityAndDivinity_SkillGroup_Data = buildSkillGroupConfig({
+export const ultimateRealityAndDivinity_SkillGroup_Data = defineSkillGroup({
   slug: 'ultimateRealityAndDivinity',
   id: '3f82449f-d089-4c83-a1f7-0c375b86a18e',
   name: {
@@ -45,16 +45,16 @@ export const ultimateRealityAndDivinity_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Түпкі шындық және құдайлық',
     qm: 'Soñkiqi aqiqat ve ilâhiylik',
   },
-  skills: {
-    analyzeACosmologicalArgument: analyzeACosmologicalArgument_Skill_Data,
-    analyzeADesignArgument: analyzeADesignArgument_Skill_Data,
-    analyzeAnArgumentFromEvil: analyzeAnArgumentFromEvil_Skill_Data,
-    analyzeAnOntologicalArgument: analyzeAnOntologicalArgument_Skill_Data,
-    analyzeNontheisticReligiousAccountsOfReality: analyzeNontheisticReligiousAccountsOfReality_Skill_Data,
-    comparePhilosophicalConceptionsOfDivinity: comparePhilosophicalConceptionsOfDivinity_Skill_Data,
-    evaluateAProposedUltimateExplanation: evaluateAProposedUltimateExplanation_Skill_Data,
-    reconstructAPhilosophicalArgumentAboutDivinity: reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data,
-  },
+  skills: [
+    analyzeACosmologicalArgument_Skill_Data,
+    analyzeADesignArgument_Skill_Data,
+    analyzeAnArgumentFromEvil_Skill_Data,
+    analyzeAnOntologicalArgument_Skill_Data,
+    analyzeNontheisticReligiousAccountsOfReality_Skill_Data,
+    comparePhilosophicalConceptionsOfDivinity_Skill_Data,
+    evaluateAProposedUltimateExplanation_Skill_Data,
+    reconstructAPhilosophicalArgumentAboutDivinity_Skill_Data,
+  ],
   description: {
     methodological:
       'Religious and nonreligious accounts of ultimate reality include competing conceptions of divinity and nontheistic accounts of liberation or existence. Their arguments may invoke experience, explanation, definition, or objections, without settling a worldview by stipulation.',

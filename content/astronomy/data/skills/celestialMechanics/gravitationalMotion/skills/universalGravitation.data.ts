@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const universalGravitation_Skill_Data = buildSkillConfig({
+export const universalGravitation_Skill_Data = defineSkill({
   slug: 'universalGravitation',
   id: '9d342d91-27a6-4c64-9e4d-8b04a2b3dbcc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const transformationOfIndusCities_Skill_Data = buildSkillConfig({
+export const transformationOfIndusCities_Skill_Data = defineSkill({
   slug: 'transformationOfIndusCities',
   id: '94eb068e-c5b6-49c7-a355-da7d0d5307e0',
   name: {

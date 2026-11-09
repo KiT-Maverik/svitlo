@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   agglomerationEffects_Skill_Data,
@@ -6,7 +6,7 @@ import {
   regionalSpecialization_Skill_Data,
 } from './skills';
 
-export const urbanAndRegionalEconomics_SkillGroup_Data = buildSkillGroupConfig({
+export const urbanAndRegionalEconomics_SkillGroup_Data = defineSkillGroup({
   slug: 'urbanAndRegionalEconomics',
   id: '0b441c9b-b15b-4876-97f8-1b2ae64c9c5d',
   name: {
@@ -40,11 +40,11 @@ export const urbanAndRegionalEconomics_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қала және өңір экономикасы',
     qm: 'Şehir ve bölge iqtisadı',
   },
-  skills: {
-    agglomerationEffects: agglomerationEffects_Skill_Data,
-    regionalEconomicDisparities: regionalEconomicDisparities_Skill_Data,
-    regionalSpecialization: regionalSpecialization_Skill_Data,
-  },
+  skills: [
+    agglomerationEffects_Skill_Data,
+    regionalEconomicDisparities_Skill_Data,
+    regionalSpecialization_Skill_Data,
+  ],
   description: {
     methodological:
       'Concentrations of people and firms yield benefits from proximity, infrastructure constraints, and regional specialization.',

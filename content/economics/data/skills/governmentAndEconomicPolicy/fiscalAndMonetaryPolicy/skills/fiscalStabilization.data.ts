@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fiscalStabilization_Skill_Data = buildSkillConfig({
+export const fiscalStabilization_Skill_Data = defineSkill({
   slug: 'fiscalStabilization',
   id: '0d410760-001b-4433-a4c4-d450229a3f40',
   name: {

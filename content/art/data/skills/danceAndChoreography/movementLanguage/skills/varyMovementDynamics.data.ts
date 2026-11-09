@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const varyMovementDynamics_Skill_Data = buildSkillConfig({
+export const varyMovementDynamics_Skill_Data = defineSkill({
   slug: 'varyMovementDynamics',
   id: '8196c75b-c9a3-4f58-b825-59df9c80f199',
   name: {

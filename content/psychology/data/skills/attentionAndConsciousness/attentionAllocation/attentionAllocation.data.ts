@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   attentionalCapture_Skill_Data,
@@ -8,7 +8,7 @@ import {
   sustainedAttention_Skill_Data,
 } from './skills';
 
-export const attentionAllocation_SkillGroup_Data = buildSkillGroupConfig({
+export const attentionAllocation_SkillGroup_Data = defineSkillGroup({
   slug: 'attentionAllocation',
   id: '48a9aac7-c689-4749-b81b-80db948d3ae8',
   name: {
@@ -42,13 +42,13 @@ export const attentionAllocation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Зейінді бөлу',
     qm: 'Diqqatnı paylaştırma',
   },
-  skills: {
-    attentionalCapture: attentionalCapture_Skill_Data,
-    dividedAttention: dividedAttention_Skill_Data,
-    inattentionalBlindness: inattentionalBlindness_Skill_Data,
-    selectiveAttention: selectiveAttention_Skill_Data,
-    sustainedAttention: sustainedAttention_Skill_Data,
-  },
+  skills: [
+    attentionalCapture_Skill_Data,
+    dividedAttention_Skill_Data,
+    inattentionalBlindness_Skill_Data,
+    selectiveAttention_Skill_Data,
+    sustainedAttention_Skill_Data,
+  ],
   description: {
     methodological: 'Competing demands determine which inputs or tasks are prioritized and when performance degrades.',
     frontend: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeKongoNkisiFigures_Skill_Data = buildSkillConfig({
+export const analyzeKongoNkisiFigures_Skill_Data = defineSkill({
   slug: 'analyzeKongoNkisiFigures',
   id: 'd4bd7f1e-dbd5-40df-9873-831f8e0ecc26',
   name: {

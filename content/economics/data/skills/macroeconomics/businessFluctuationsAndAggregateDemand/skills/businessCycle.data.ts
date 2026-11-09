@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const businessCycle_Skill_Data = buildSkillConfig({
+export const businessCycle_Skill_Data = defineSkill({
   slug: 'businessCycle',
   id: '4bc2f9a1-d281-49f4-a6d1-d3b97790bb4a',
   name: {

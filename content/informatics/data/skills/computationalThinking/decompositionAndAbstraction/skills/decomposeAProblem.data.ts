@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const decomposeAProblem_Skill_Data = buildSkillConfig({
+export const decomposeAProblem_Skill_Data = defineSkill({
   slug: 'decomposeAProblem',
   id: 'e55d6094-24de-4bb5-89cd-38ab16451d9d',
   name: {

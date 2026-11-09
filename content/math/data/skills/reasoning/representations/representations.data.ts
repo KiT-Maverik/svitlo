@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { multipleRepresentations_Skill_Data } from './skills';
 
-export const representations_SkillGroup_Data = buildSkillGroupConfig({
+export const representations_SkillGroup_Data = defineSkillGroup({
   slug: 'representations',
   id: 'efaa3687-e789-421a-996b-78ac52d63f42',
   name: {
@@ -36,9 +36,9 @@ export const representations_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Reprezentacje matematyczne',
     uk: 'Математичні представлення',
   },
-  skills: {
-    multipleRepresentations: multipleRepresentations_Skill_Data,
-  },
+  skills: [
+    multipleRepresentations_Skill_Data,
+  ],
   description: {
     methodological:
       'Translating between concrete depictions, diagrams, verbal rules, and symbolic notation while preserving mathematical meaning.',

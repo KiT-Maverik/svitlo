@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createVectorArt_Skill_Data = buildSkillConfig({
+export const createVectorArt_Skill_Data = defineSkill({
   slug: 'createVectorArt',
   id: 'd12691a0-b50e-41b8-a8a7-fa1c67343b8d',
   name: {

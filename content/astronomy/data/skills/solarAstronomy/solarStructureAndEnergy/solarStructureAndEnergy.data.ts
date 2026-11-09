@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   solarAtmosphere_Skill_Data,
@@ -7,7 +7,7 @@ import {
   solarNuclearFusion_Skill_Data,
 } from './skills';
 
-export const solarStructureAndEnergy_SkillGroup_Data = buildSkillGroupConfig({
+export const solarStructureAndEnergy_SkillGroup_Data = defineSkillGroup({
   slug: 'solarStructureAndEnergy',
   id: 'd007c001-5fe3-42fd-951c-3e5507073f31',
   name: {
@@ -41,12 +41,12 @@ export const solarStructureAndEnergy_SkillGroup_Data = buildSkillGroupConfig({
     he: 'מבנה השמש והאנרגיה שלה',
     vi: 'Cấu trúc và năng lượng Mặt Trời',
   },
-  skills: {
-    solarAtmosphere: solarAtmosphere_Skill_Data,
-    solarInterior: solarInterior_Skill_Data,
-    solarLuminosity: solarLuminosity_Skill_Data,
-    solarNuclearFusion: solarNuclearFusion_Skill_Data,
-  },
+  skills: [
+    solarAtmosphere_Skill_Data,
+    solarInterior_Skill_Data,
+    solarLuminosity_Skill_Data,
+    solarNuclearFusion_Skill_Data,
+  ],
   description: {
     methodological:
       'Solar radiation originates from processes in the interior and travels outward through distinct plasma and atmospheric regions.',

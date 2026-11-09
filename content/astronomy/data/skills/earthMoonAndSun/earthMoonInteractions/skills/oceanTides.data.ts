@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const oceanTides_Skill_Data = buildSkillConfig({
+export const oceanTides_Skill_Data = defineSkill({
   slug: 'oceanTides',
   id: '08922c2a-346e-4bd5-9215-bdc8d2124635',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const measuringMass_Skill_Data = buildSkillConfig({
+export const measuringMass_Skill_Data = defineSkill({
   slug: 'measuringMass',
   id: '56a1465f-e0e1-4d6f-a256-aff755541fcf',
   name: {

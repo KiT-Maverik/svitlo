@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const thermalEnergyStorage_Skill_Data = buildSkillConfig({
+export const thermalEnergyStorage_Skill_Data = defineSkill({
   slug: 'thermalEnergyStorage',
   id: '180a5926-6bc4-474d-a270-48f9732c754d',
   name: {

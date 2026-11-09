@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const implementARecursiveAlgorithm_Skill_Data = buildSkillConfig({
+export const implementARecursiveAlgorithm_Skill_Data = defineSkill({
   slug: 'implementARecursiveAlgorithm',
   id: 'c98208a0-581d-4000-a9d4-a73b3dbb192a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectiveAttention_Skill_Data = buildSkillConfig({
+export const selectiveAttention_Skill_Data = defineSkill({
   slug: 'selectiveAttention',
   id: 'e1f2de02-ad66-4f43-b4dd-3181a9b12228',
   name: {

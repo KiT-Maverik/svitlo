@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createDigitalCollage_Skill_Data = buildSkillConfig({
+export const createDigitalCollage_Skill_Data = defineSkill({
   slug: 'createDigitalCollage',
   id: '05ee1906-55b6-4985-9810-be8d48200e2c',
   name: {

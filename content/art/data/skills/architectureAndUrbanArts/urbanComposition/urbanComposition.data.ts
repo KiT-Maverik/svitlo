@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeAStreetscape_Skill_Data,
@@ -7,7 +7,7 @@ import {
   interpretUrbanLandmarks_Skill_Data,
 } from './skills';
 
-export const urbanComposition_SkillGroup_Data = buildSkillGroupConfig({
+export const urbanComposition_SkillGroup_Data = defineSkillGroup({
   slug: 'urbanComposition',
   id: '347be040-a03c-4312-9fe0-2e8819bb3046',
   name: {
@@ -41,12 +41,12 @@ export const urbanComposition_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қалалық композиция',
     qm: 'Şeer kompozitsiyası',
   },
-  skills: {
-    analyzeAStreetscape: analyzeAStreetscape_Skill_Data,
-    compareUrbanSpatialPatterns: compareUrbanSpatialPatterns_Skill_Data,
-    designAPublicSquare: designAPublicSquare_Skill_Data,
-    interpretUrbanLandmarks: interpretUrbanLandmarks_Skill_Data,
-  },
+  skills: [
+    analyzeAStreetscape_Skill_Data,
+    compareUrbanSpatialPatterns_Skill_Data,
+    designAPublicSquare_Skill_Data,
+    interpretUrbanLandmarks_Skill_Data,
+  ],
   description: {
     methodological:
       'The arrangement of streets, building fronts and public gathering places contributes to city identity and experience.',

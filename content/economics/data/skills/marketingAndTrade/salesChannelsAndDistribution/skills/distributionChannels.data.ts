@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distributionChannels_Skill_Data = buildSkillConfig({
+export const distributionChannels_Skill_Data = defineSkill({
   slug: 'distributionChannels',
   id: '897a6489-4214-4f03-bfb6-b10e0824f105',
   name: {

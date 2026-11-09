@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const discountingFutureConsequences_Skill_Data = buildSkillConfig({
+export const discountingFutureConsequences_Skill_Data = defineSkill({
   slug: 'discountingFutureConsequences',
   id: 'dba7c7e2-ea21-43bf-a154-8c2fed674716',
   name: {

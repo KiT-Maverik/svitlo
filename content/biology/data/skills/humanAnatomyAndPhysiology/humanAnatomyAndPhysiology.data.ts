@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { bodyStructure_SkillGroup_Data } from './bodyStructure/bodyStructure.data';
 import { developmentAndProtectionOfTheOrganism_SkillGroup_Data } from './developmentAndProtectionOfTheOrganism/developmentAndProtectionOfTheOrganism.data';
@@ -7,10 +7,10 @@ import { regulationAndHomeostasis_SkillGroup_Data } from './regulationAndHomeost
 import { sensoryOrgansAndTheNervousSystem_SkillGroup_Data } from './sensoryOrgansAndTheNervousSystem/sensoryOrgansAndTheNervousSystem.data';
 import { supportAndMovement_SkillGroup_Data } from './supportAndMovement/supportAndMovement.data';
 
-export const humanAnatomyAndPhysiology_SkillDomain_Data = buildSkillDomainConfig({
+export const humanAnatomyAndPhysiology_SkillDomain_Data = defineSkillDomain({
   slug: 'humanAnatomyAndPhysiology',
   id: '6f1de3d1-a9bf-4f2f-a441-99ac5633bccf',
-  name: {
+  title: {
     en: 'Human Anatomy and Physiology',
     zh: '人体解剖学与生理学',
     hi: 'मानव शरीररचना और शरीरक्रिया विज्ञान',
@@ -41,14 +41,14 @@ export const humanAnatomyAndPhysiology_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Адам анатомиясы мен физиологиясы',
     qm: 'İnsannıñ anatomiyası ve fiziologiyası',
   },
-  groups: {
-    bodyStructure: bodyStructure_SkillGroup_Data,
-    developmentAndProtectionOfTheOrganism: developmentAndProtectionOfTheOrganism_SkillGroup_Data,
-    maintainingLifeProcesses: maintainingLifeProcesses_SkillGroup_Data,
-    regulationAndHomeostasis: regulationAndHomeostasis_SkillGroup_Data,
-    sensoryOrgansAndTheNervousSystem: sensoryOrgansAndTheNervousSystem_SkillGroup_Data,
-    supportAndMovement: supportAndMovement_SkillGroup_Data,
-  },
+  groups: [
+    bodyStructure_SkillGroup_Data,
+    developmentAndProtectionOfTheOrganism_SkillGroup_Data,
+    maintainingLifeProcesses_SkillGroup_Data,
+    regulationAndHomeostasis_SkillGroup_Data,
+    sensoryOrgansAndTheNervousSystem_SkillGroup_Data,
+    supportAndMovement_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'The structure of the body, organ functions, and interactions among systems that allow humans to move, perceive, breathe, and sustain life. Rules of hygiene, first aid, and safe behavior belong to a separate textbook.',

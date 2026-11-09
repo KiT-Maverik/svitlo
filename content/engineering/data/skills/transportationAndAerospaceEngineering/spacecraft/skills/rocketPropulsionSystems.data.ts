@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const rocketPropulsionSystems_Skill_Data = buildSkillConfig({
+export const rocketPropulsionSystems_Skill_Data = defineSkill({
   slug: 'rocketPropulsionSystems',
   id: '94733e64-37f4-4a90-9d5a-f312e914b75b',
   name: {

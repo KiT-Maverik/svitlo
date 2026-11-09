@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const voluntaryConsent_Skill_Data = buildSkillConfig({
+export const voluntaryConsent_Skill_Data = defineSkill({
   slug: 'voluntaryConsent',
   id: '9a9d642c-08d3-42d8-bcb3-88074992f420',
   name: {

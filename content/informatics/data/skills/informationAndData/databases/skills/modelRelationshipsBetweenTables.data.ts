@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const modelRelationshipsBetweenTables_Skill_Data = buildSkillConfig({
+export const modelRelationshipsBetweenTables_Skill_Data = defineSkill({
   slug: 'modelRelationshipsBetweenTables',
   id: 'c5a78cb5-08f9-4ca8-8c72-e8bfc889e7bc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const comparativeAdvantage_Skill_Data = buildSkillConfig({
+export const comparativeAdvantage_Skill_Data = defineSkill({
   slug: 'comparativeAdvantage',
   id: '36b6f06a-011e-4c7b-ae19-573c50338108',
   name: {

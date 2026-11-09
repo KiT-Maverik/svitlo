@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const antennaFunctions_Skill_Data = buildSkillConfig({
+export const antennaFunctions_Skill_Data = defineSkill({
   slug: 'antennaFunctions',
   id: 'ead44198-03b1-4e8d-88ee-c93e808a7a87',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const produceAStencilPrint_Skill_Data = buildSkillConfig({
+export const produceAStencilPrint_Skill_Data = defineSkill({
   slug: 'produceAStencilPrint',
   id: 'f3c09fb4-8f17-482d-a5c0-3daa974809d2',
   name: {

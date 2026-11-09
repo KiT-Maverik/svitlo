@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nonmetals_Skill_Data = buildSkillConfig({
+export const nonmetals_Skill_Data = defineSkill({
   slug: 'nonmetals',
   id: 'f0fb6bc5-f59c-4acb-92de-043d93830b8f',
   name: {

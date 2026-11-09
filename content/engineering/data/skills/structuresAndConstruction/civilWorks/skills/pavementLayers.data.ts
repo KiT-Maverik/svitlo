@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pavementLayers_Skill_Data = buildSkillConfig({
+export const pavementLayers_Skill_Data = defineSkill({
   slug: 'pavementLayers',
   id: '6c59bcb0-7992-4f63-9ad3-f3af44c1acc0',
   name: {

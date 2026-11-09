@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lipidChemistry_Skill_Data = buildSkillConfig({
+export const lipidChemistry_Skill_Data = defineSkill({
   slug: 'lipidChemistry',
   id: 'a3c5c5c5-b49e-40a8-aa06-d0b939ce312b',
   name: {

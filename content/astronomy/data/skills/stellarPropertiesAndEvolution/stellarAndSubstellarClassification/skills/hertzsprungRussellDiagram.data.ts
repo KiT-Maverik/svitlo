@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hertzsprungRussellDiagram_Skill_Data = buildSkillConfig({
+export const hertzsprungRussellDiagram_Skill_Data = defineSkill({
   slug: 'hertzsprungRussellDiagram',
   id: '06611619-f7bc-4472-9e8d-24befba4a5eb',
   name: {

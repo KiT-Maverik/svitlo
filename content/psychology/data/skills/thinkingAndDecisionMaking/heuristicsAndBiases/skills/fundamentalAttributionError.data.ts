@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fundamentalAttributionError_Skill_Data = buildSkillConfig({
+export const fundamentalAttributionError_Skill_Data = defineSkill({
   slug: 'fundamentalAttributionError',
   id: 'e2d90b4f-350b-4edd-aa75-244e7fc1adef',
   name: {

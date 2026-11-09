@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMaintenanceOfHomeostasis_Skill_Data = buildSkillConfig({
+export const explainMaintenanceOfHomeostasis_Skill_Data = defineSkill({
   slug: 'explainMaintenanceOfHomeostasis',
   id: '413155b3-2284-4d1b-bfd1-ed9f04c4f304',
   name: {

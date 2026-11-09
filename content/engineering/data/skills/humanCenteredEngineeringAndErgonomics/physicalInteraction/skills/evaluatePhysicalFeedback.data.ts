@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluatePhysicalFeedback_Skill_Data = buildSkillConfig({
+export const evaluatePhysicalFeedback_Skill_Data = defineSkill({
   slug: 'evaluatePhysicalFeedback',
   id: 'c766f1dc-f950-46b1-b0f4-02c0b2c7d393',
   name: {

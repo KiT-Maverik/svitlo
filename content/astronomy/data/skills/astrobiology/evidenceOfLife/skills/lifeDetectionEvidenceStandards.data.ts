@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lifeDetectionEvidenceStandards_Skill_Data = buildSkillConfig({
+export const lifeDetectionEvidenceStandards_Skill_Data = defineSkill({
   slug: 'lifeDetectionEvidenceStandards',
   id: '15e852cb-eac1-4bac-8e9f-6a0366b94ec9',
   name: {

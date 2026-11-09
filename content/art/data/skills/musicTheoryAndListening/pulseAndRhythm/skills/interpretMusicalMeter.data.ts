@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretMusicalMeter_Skill_Data = buildSkillConfig({
+export const interpretMusicalMeter_Skill_Data = defineSkill({
   slug: 'interpretMusicalMeter',
   id: '1b47357f-7db0-413a-b910-ee71068747b2',
   name: {

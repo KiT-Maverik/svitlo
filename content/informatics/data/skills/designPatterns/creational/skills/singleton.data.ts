@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const singleton_Skill_Data = buildSkillConfig({
+export const singleton_Skill_Data = defineSkill({
   slug: 'singleton',
   id: '75b52db2-e571-4fae-89ef-02bf9e4141c2',
   name: {

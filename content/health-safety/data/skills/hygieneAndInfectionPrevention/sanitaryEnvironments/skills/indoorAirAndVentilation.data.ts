@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const indoorAirAndVentilation_Skill_Data = buildSkillConfig({
+export const indoorAirAndVentilation_Skill_Data = defineSkill({
   slug: 'indoorAirAndVentilation',
   id: '8af94903-ecd2-401d-84bd-e790c667be27',
   name: {

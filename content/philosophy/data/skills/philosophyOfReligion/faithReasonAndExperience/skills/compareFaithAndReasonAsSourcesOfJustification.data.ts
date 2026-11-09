@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareFaithAndReasonAsSourcesOfJustification_Skill_Data = buildSkillConfig({
+export const compareFaithAndReasonAsSourcesOfJustification_Skill_Data = defineSkill({
   slug: 'compareFaithAndReasonAsSourcesOfJustification',
   id: '1b3fc443-23f9-4f1b-9e3b-ef8f92ce56f9',
   name: {

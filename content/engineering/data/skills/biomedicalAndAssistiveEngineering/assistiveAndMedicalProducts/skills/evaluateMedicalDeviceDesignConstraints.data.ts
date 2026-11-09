@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateMedicalDeviceDesignConstraints_Skill_Data = buildSkillConfig({
+export const evaluateMedicalDeviceDesignConstraints_Skill_Data = defineSkill({
   slug: 'evaluateMedicalDeviceDesignConstraints',
   id: 'f45bd107-6529-410b-85d9-bb6bfa442296',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const economicReturnsToEducation_Skill_Data = buildSkillConfig({
+export const economicReturnsToEducation_Skill_Data = defineSkill({
   slug: 'economicReturnsToEducation',
   id: '3f272801-44ff-4508-9e3b-10ba51945b2e',
   name: {

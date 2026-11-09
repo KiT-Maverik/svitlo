@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nonstandardLength_Skill_Data = buildSkillConfig({
+export const nonstandardLength_Skill_Data = defineSkill({
   slug: 'nonstandardLength',
   id: '8d0cccb9-f078-450a-af0a-b0ab6fbcbb26',
   name: {

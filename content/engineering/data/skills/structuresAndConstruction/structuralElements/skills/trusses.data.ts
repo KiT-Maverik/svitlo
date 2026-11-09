@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const trusses_Skill_Data = buildSkillConfig({
+export const trusses_Skill_Data = defineSkill({
   slug: 'trusses',
   id: 'a5041666-1d9b-4933-bc8c-de399ff60c87',
   name: {

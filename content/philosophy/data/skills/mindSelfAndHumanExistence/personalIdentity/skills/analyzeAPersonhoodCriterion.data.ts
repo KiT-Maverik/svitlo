@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAPersonhoodCriterion_Skill_Data = buildSkillConfig({
+export const analyzeAPersonhoodCriterion_Skill_Data = defineSkill({
   slug: 'analyzeAPersonhoodCriterion',
   id: 'bd45cdaf-b88e-4988-9307-72ca55deb4a3',
   name: {

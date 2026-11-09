@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeDramaticStructure_Skill_Data,
@@ -7,7 +7,7 @@ import {
   interpretStageDirections_Skill_Data,
 } from './skills';
 
-export const dramaturgyAndDirection_SkillGroup_Data = buildSkillGroupConfig({
+export const dramaturgyAndDirection_SkillGroup_Data = defineSkillGroup({
   slug: 'dramaturgyAndDirection',
   id: '0212aed3-fcc5-41e4-a42f-d5c3c4e8ec8d',
   name: {
@@ -41,12 +41,12 @@ export const dramaturgyAndDirection_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Драматургия және режиссура',
     qm: 'Dramaturgiya ve rejissurlıq',
   },
-  skills: {
-    analyzeDramaticStructure: analyzeDramaticStructure_Skill_Data,
-    blockAStageScene: blockAStageScene_Skill_Data,
-    directAScene: directAScene_Skill_Data,
-    interpretStageDirections: interpretStageDirections_Skill_Data,
-  },
+  skills: [
+    analyzeDramaticStructure_Skill_Data,
+    blockAStageScene_Skill_Data,
+    directAScene_Skill_Data,
+    interpretStageDirections_Skill_Data,
+  ],
   description: {
     methodological:
       'Interpreting dramatic structure and organizing performers in space makes a chosen reading performable.',

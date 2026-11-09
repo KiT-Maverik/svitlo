@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeChineseInkPainting_Skill_Data = buildSkillConfig({
+export const analyzeChineseInkPainting_Skill_Data = defineSkill({
   slug: 'analyzeChineseInkPainting',
   id: '739226a9-fa32-4e20-9cc7-491723f48edb',
   name: {

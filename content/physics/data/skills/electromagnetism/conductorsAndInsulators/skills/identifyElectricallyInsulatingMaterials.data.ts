@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyElectricallyInsulatingMaterials_Skill_Data = buildSkillConfig({
+export const identifyElectricallyInsulatingMaterials_Skill_Data = defineSkill({
   slug: 'identifyElectricallyInsulatingMaterials',
   id: '093fa5be-42e0-45c8-83b4-dc17b63cc586',
   name: {

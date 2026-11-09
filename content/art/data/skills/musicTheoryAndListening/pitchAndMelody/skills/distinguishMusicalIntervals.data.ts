@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMusicalIntervals_Skill_Data = buildSkillConfig({
+export const distinguishMusicalIntervals_Skill_Data = defineSkill({
   slug: 'distinguishMusicalIntervals',
   id: '123d1dd3-4f21-4329-b515-38f5bd325e9e',
   name: {

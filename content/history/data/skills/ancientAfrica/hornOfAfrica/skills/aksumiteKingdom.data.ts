@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const aksumiteKingdom_Skill_Data = buildSkillConfig({
+export const aksumiteKingdom_Skill_Data = defineSkill({
   slug: 'aksumiteKingdom',
   id: 'c57cf80a-f1c9-46ea-bcf2-229384afffe0',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const greekPhilosophy_Skill_Data = buildSkillConfig({
+export const greekPhilosophy_Skill_Data = defineSkill({
   slug: 'greekPhilosophy',
   id: '97f10304-8abf-49c0-bf85-74ee40cbc24f',
   name: {

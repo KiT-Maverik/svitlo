@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const spartanSystem_Skill_Data = buildSkillConfig({
+export const spartanSystem_Skill_Data = defineSkill({
   slug: 'spartanSystem',
   id: '4ad0d126-aaab-4b8b-b912-2a31e6a979b0',
   name: {

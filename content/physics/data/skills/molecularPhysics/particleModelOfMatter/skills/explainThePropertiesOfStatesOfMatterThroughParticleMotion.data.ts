@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Data = buildSkillConfig({
+export const explainThePropertiesOfStatesOfMatterThroughParticleMotion_Skill_Data = defineSkill({
   slug: 'explainThePropertiesOfStatesOfMatterThroughParticleMotion',
   id: 'ac81314a-0180-490b-8c6c-da0f0c2c8012',
   name: {

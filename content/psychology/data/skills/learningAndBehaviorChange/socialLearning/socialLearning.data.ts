@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   modelCharacteristics_Skill_Data,
@@ -6,7 +6,7 @@ import {
   vicariousReinforcement_Skill_Data,
 } from './skills';
 
-export const socialLearning_SkillGroup_Data = buildSkillGroupConfig({
+export const socialLearning_SkillGroup_Data = defineSkillGroup({
   slug: 'socialLearning',
   id: 'c939f4dc-93c6-4267-b92f-0fd84b56ef8e',
   name: {
@@ -40,11 +40,11 @@ export const socialLearning_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Әлеуметтік үйрену',
     qm: 'İçtimaiy ögrenüv',
   },
-  skills: {
-    modelCharacteristics: modelCharacteristics_Skill_Data,
-    observationalLearning: observationalLearning_Skill_Data,
-    vicariousReinforcement: vicariousReinforcement_Skill_Data,
-  },
+  skills: [
+    modelCharacteristics_Skill_Data,
+    observationalLearning_Skill_Data,
+    vicariousReinforcement_Skill_Data,
+  ],
   description: {
     methodological:
       'Observing models informs anticipated outcomes and possible actions even without immediate imitation.',

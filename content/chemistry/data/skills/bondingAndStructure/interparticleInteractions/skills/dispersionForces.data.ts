@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dispersionForces_Skill_Data = buildSkillConfig({
+export const dispersionForces_Skill_Data = defineSkill({
   slug: 'dispersionForces',
   id: 'e0f8f3e4-9194-44ff-8142-85a826287b59',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const solsticesAndEquinoxes_Skill_Data = buildSkillConfig({
+export const solsticesAndEquinoxes_Skill_Data = defineSkill({
   slug: 'solsticesAndEquinoxes',
   id: '26a9979c-b8ae-4617-984b-b4ab2827d077',
   name: {

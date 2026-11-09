@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishHardwareFromSoftware_Skill_Data = buildSkillConfig({
+export const distinguishHardwareFromSoftware_Skill_Data = defineSkill({
   slug: 'distinguishHardwareFromSoftware',
   id: 'd37f8131-8eb4-48c6-acbb-69552431c23f',
   name: {

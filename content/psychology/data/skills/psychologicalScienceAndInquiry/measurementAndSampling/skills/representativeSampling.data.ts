@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const representativeSampling_Skill_Data = buildSkillConfig({
+export const representativeSampling_Skill_Data = defineSkill({
   slug: 'representativeSampling',
   id: '25272b74-9670-4592-acd6-8b0f712775ad',
   name: {

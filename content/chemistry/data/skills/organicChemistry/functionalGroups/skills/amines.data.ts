@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const amines_Skill_Data = buildSkillConfig({
+export const amines_Skill_Data = defineSkill({
   slug: 'amines',
   id: '901cac73-ecae-4458-b1a4-6d8746606432',
   name: {

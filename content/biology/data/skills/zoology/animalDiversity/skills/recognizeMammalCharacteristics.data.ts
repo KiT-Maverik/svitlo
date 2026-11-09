@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMammalCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeMammalCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeMammalCharacteristics',
   id: '0392f183-e04a-430c-8d94-ec09f60e1838',
   name: {

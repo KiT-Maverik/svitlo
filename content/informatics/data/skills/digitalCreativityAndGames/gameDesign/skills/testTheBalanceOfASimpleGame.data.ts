@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const testTheBalanceOfASimpleGame_Skill_Data = buildSkillConfig({
+export const testTheBalanceOfASimpleGame_Skill_Data = defineSkill({
   slug: 'testTheBalanceOfASimpleGame',
   id: 'bbb9fc02-f6b5-4cfd-acb3-589509ee959d',
   name: {

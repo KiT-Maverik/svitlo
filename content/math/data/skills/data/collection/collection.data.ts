@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   formulateInvestigationQuestion_Skill_Data,
@@ -7,7 +7,7 @@ import {
   fillSimpleTable_Skill_Data,
 } from './skills';
 
-export const collection_SkillGroup_Data = buildSkillGroupConfig({
+export const collection_SkillGroup_Data = defineSkillGroup({
   slug: 'collection',
   id: 'fbff6de3-3855-4c1f-9ec6-025693e12adf',
   name: {
@@ -41,12 +41,12 @@ export const collection_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Zbieranie danych',
     uk: 'Збирання даних',
   },
-  skills: {
-    formulateInvestigationQuestion: formulateInvestigationQuestion_Skill_Data,
-    collectCounts: collectCounts_Skill_Data,
-    tallyMarks: tallyMarks_Skill_Data,
-    fillSimpleTable: fillSimpleTable_Skill_Data,
-  },
+  skills: [
+    formulateInvestigationQuestion_Skill_Data,
+    collectCounts_Skill_Data,
+    tallyMarks_Skill_Data,
+    fillSimpleTable_Skill_Data,
+  ],
   description: {
     methodological:
       'Formulating an investigation question, selecting classification attributes, counting occurrences, and recording observations.',

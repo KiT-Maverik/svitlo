@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compensation_Skill_Data = buildSkillConfig({
+export const compensation_Skill_Data = defineSkill({
   slug: 'compensation',
   id: 'b5de45e3-da6d-4bd7-914b-1ac679cc359a',
   name: {

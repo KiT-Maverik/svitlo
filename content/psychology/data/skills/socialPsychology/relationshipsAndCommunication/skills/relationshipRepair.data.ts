@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relationshipRepair_Skill_Data = buildSkillConfig({
+export const relationshipRepair_Skill_Data = defineSkill({
   slug: 'relationshipRepair',
   id: '68bf258e-0acf-466b-abdb-ac59dd12c783',
   name: {

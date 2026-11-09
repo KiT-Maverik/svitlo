@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheConceptOfAGroundwaterAquifer_Skill_Data = buildSkillConfig({
+export const explainTheConceptOfAGroundwaterAquifer_Skill_Data = defineSkill({
   slug: 'explainTheConceptOfAGroundwaterAquifer',
   id: '5c97bb72-56b3-4c05-acc8-7f6c3604ff5d',
   name: {

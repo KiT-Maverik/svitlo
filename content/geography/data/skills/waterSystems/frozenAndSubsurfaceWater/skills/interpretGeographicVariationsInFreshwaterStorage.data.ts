@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretGeographicVariationsInFreshwaterStorage_Skill_Data = buildSkillConfig({
+export const interpretGeographicVariationsInFreshwaterStorage_Skill_Data = defineSkill({
   slug: 'interpretGeographicVariationsInFreshwaterStorage',
   id: '0ef8aadb-cdf2-4426-aa9a-69a60f62635a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const comparePhilosophicalAccountsOfMeaningInLife_Skill_Data = buildSkillConfig({
+export const comparePhilosophicalAccountsOfMeaningInLife_Skill_Data = defineSkill({
   slug: 'comparePhilosophicalAccountsOfMeaningInLife',
   id: '43b8e7ab-a1c4-4afc-8875-14172346d91d',
   name: {

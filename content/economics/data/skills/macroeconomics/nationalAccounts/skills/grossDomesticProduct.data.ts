@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const grossDomesticProduct_Skill_Data = buildSkillConfig({
+export const grossDomesticProduct_Skill_Data = defineSkill({
   slug: 'grossDomesticProduct',
   id: 'e0d655dc-2fed-407a-9a83-349a6c9917cc',
   name: {

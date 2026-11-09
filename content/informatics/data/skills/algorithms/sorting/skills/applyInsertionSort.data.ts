@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyInsertionSort_Skill_Data = buildSkillConfig({
+export const applyInsertionSort_Skill_Data = defineSkill({
   slug: 'applyInsertionSort',
   id: '8f11d73e-cce9-48f6-a432-3dc5c2af3ef4',
   name: {

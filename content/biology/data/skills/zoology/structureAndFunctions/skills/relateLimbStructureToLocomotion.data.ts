@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateLimbStructureToLocomotion_Skill_Data = buildSkillConfig({
+export const relateLimbStructureToLocomotion_Skill_Data = defineSkill({
   slug: 'relateLimbStructureToLocomotion',
   id: '6f4ee2d9-cdd9-4512-8133-b1bf649f9d38',
   name: {

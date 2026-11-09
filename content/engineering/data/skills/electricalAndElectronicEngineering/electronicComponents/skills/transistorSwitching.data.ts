@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const transistorSwitching_Skill_Data = buildSkillConfig({
+export const transistorSwitching_Skill_Data = defineSkill({
   slug: 'transistorSwitching',
   id: '3b41d2c6-3ec6-4112-8a03-e1180d65a8a1',
   name: {

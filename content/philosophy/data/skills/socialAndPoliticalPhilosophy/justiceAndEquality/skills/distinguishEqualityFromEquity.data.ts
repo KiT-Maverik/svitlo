@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishEqualityFromEquity_Skill_Data = buildSkillConfig({
+export const distinguishEqualityFromEquity_Skill_Data = defineSkill({
   slug: 'distinguishEqualityFromEquity',
   id: 'd7acd870-6374-47fe-9c29-4391ed4fdf12',
   name: {

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { changesAndConservation_SkillGroup_Data } from './changesAndConservation/changesAndConservation.data';
 import { characteristicProperties_SkillGroup_Data } from './characteristicProperties/characteristicProperties.data';
 import { composition_SkillGroup_Data } from './composition/composition.data';
 
-export const substancesAndProperties_SkillDomain_Data = buildSkillDomainConfig({
+export const substancesAndProperties_SkillDomain_Data = defineSkillDomain({
   slug: 'substancesAndProperties',
   id: '030e5211-72db-4ad7-94c5-b52fc44c9bf5',
-  name: {
+  title: {
     en: 'Substances and Properties',
     zh: '物质及其性质',
     hi: 'पदार्थ और उनके गुण',
@@ -38,11 +38,11 @@ export const substancesAndProperties_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Заттар және олардың қасиеттері',
     qm: 'Maddeler ve olarnıñ hususiyetleri',
   },
-  groups: {
-    changesAndConservation: changesAndConservation_SkillGroup_Data,
-    characteristicProperties: characteristicProperties_SkillGroup_Data,
-    composition: composition_SkillGroup_Data,
-  },
+  groups: [
+    changesAndConservation_SkillGroup_Data,
+    characteristicProperties_SkillGroup_Data,
+    composition_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Chemists classify samples by composition and characterize them through reproducible properties. This domain focuses on observable and bulk descriptions before explaining them through atomic structure or bonding.',

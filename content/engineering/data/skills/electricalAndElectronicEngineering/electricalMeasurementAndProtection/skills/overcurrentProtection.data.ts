@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const overcurrentProtection_Skill_Data = buildSkillConfig({
+export const overcurrentProtection_Skill_Data = defineSkill({
   slug: 'overcurrentProtection',
   id: 'b9c511ba-ae70-42f9-a0b4-dfeadc65c520',
   name: {

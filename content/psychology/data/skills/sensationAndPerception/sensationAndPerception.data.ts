@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { bodyAndChemicalSenses_SkillGroup_Data } from './bodyAndChemicalSenses/bodyAndChemicalSenses.data';
 import { illusionsAndMultisensoryPerception_SkillGroup_Data } from './illusionsAndMultisensoryPerception/illusionsAndMultisensoryPerception.data';
@@ -6,10 +6,10 @@ import { perceptualOrganization_SkillGroup_Data } from './perceptualOrganization
 import { sensoryDetection_SkillGroup_Data } from './sensoryDetection/sensoryDetection.data';
 import { visualAndAuditoryExperience_SkillGroup_Data } from './visualAndAuditoryExperience/visualAndAuditoryExperience.data';
 
-export const sensationAndPerception_SkillDomain_Data = buildSkillDomainConfig({
+export const sensationAndPerception_SkillDomain_Data = defineSkillDomain({
   slug: 'sensationAndPerception',
   id: '763ba27f-79d7-419a-aa84-bc769903dd3a',
-  name: {
+  title: {
     en: 'Sensation and Perception',
     zh: '感觉与知觉',
     hi: 'संवेदना और प्रत्यक्षण',
@@ -40,13 +40,13 @@ export const sensationAndPerception_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Түйсік және қабылдау',
     qm: 'Duyğu ve qabul etüv',
   },
-  groups: {
-    bodyAndChemicalSenses: bodyAndChemicalSenses_SkillGroup_Data,
-    illusionsAndMultisensoryPerception: illusionsAndMultisensoryPerception_SkillGroup_Data,
-    perceptualOrganization: perceptualOrganization_SkillGroup_Data,
-    sensoryDetection: sensoryDetection_SkillGroup_Data,
-    visualAndAuditoryExperience: visualAndAuditoryExperience_SkillGroup_Data,
-  },
+  groups: [
+    bodyAndChemicalSenses_SkillGroup_Data,
+    illusionsAndMultisensoryPerception_SkillGroup_Data,
+    perceptualOrganization_SkillGroup_Data,
+    sensoryDetection_SkillGroup_Data,
+    visualAndAuditoryExperience_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Sensory information is detected, selected, organized, and interpreted into an experienced world. Psychological perception differs from simple measurement of physical stimuli or anatomy of sense organs.',

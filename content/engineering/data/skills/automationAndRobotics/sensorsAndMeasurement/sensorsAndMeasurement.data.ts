@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   calibrateASensor_Skill_Data,
@@ -7,7 +7,7 @@ import {
   sensorSuitability_Skill_Data,
 } from './skills';
 
-export const sensorsAndMeasurement_SkillGroup_Data = buildSkillGroupConfig({
+export const sensorsAndMeasurement_SkillGroup_Data = defineSkillGroup({
   slug: 'sensorsAndMeasurement',
   id: '09504f07-f584-422a-9da0-ff042c983fc9',
   name: {
@@ -41,12 +41,12 @@ export const sensorsAndMeasurement_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Датчиктер және өлшеу',
     qm: 'Sensorlar ve ölçüv',
   },
-  skills: {
-    calibrateASensor: calibrateASensor_Skill_Data,
-    interpretSensorError: interpretSensorError_Skill_Data,
-    sensorPlacement: sensorPlacement_Skill_Data,
-    sensorSuitability: sensorSuitability_Skill_Data,
-  },
+  skills: [
+    calibrateASensor_Skill_Data,
+    interpretSensorError_Skill_Data,
+    sensorPlacement_Skill_Data,
+    sensorSuitability_Skill_Data,
+  ],
   description: {
     methodological:
       'Reliable decisions depend on selecting an appropriate measured quantity and understanding how placement, calibration and uncertainty shape the signal.',

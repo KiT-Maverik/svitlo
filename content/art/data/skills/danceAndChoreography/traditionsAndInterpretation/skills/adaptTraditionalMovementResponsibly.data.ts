@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptTraditionalMovementResponsibly_Skill_Data = buildSkillConfig({
+export const adaptTraditionalMovementResponsibly_Skill_Data = defineSkill({
   slug: 'adaptTraditionalMovementResponsibly',
   id: '7cc89b16-2533-4821-bc31-858c7c8d9ed8',
   name: {

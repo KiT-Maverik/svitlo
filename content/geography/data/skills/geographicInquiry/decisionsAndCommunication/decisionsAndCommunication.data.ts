@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   communicateAGeographicConclusionWithEvidence_Skill_Data,
@@ -6,7 +6,7 @@ import {
   explainTradeOffsOfAProposedSpatialDecision_Skill_Data,
 } from './skills';
 
-export const decisionsAndCommunication_SkillGroup_Data = buildSkillGroupConfig({
+export const decisionsAndCommunication_SkillGroup_Data = defineSkillGroup({
   slug: 'decisionsAndCommunication',
   id: 'aee7c7e7-a27d-469c-b3d8-6b4962023e52',
   name: {
@@ -40,11 +40,11 @@ export const decisionsAndCommunication_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Шешімдер және байланыс',
     qm: 'Qararlar ve haberleşüv',
   },
-  skills: {
-    communicateAGeographicConclusionWithEvidence: communicateAGeographicConclusionWithEvidence_Skill_Data,
-    compareLocationsAgainstStatedGeographicCriteria: compareLocationsAgainstStatedGeographicCriteria_Skill_Data,
-    explainTradeOffsOfAProposedSpatialDecision: explainTradeOffsOfAProposedSpatialDecision_Skill_Data,
-  },
+  skills: [
+    communicateAGeographicConclusionWithEvidence_Skill_Data,
+    compareLocationsAgainstStatedGeographicCriteria_Skill_Data,
+    explainTradeOffsOfAProposedSpatialDecision_Skill_Data,
+  ],
   description: {
     methodological:
       'A geographic recommendation combines evidence about places with competing objectives and uncertainty. Maps can communicate reasoning, but they do not settle value judgments on their own.',

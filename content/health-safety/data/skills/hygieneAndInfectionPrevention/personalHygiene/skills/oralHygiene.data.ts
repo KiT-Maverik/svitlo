@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const oralHygiene_Skill_Data = buildSkillConfig({
+export const oralHygiene_Skill_Data = defineSkill({
   slug: 'oralHygiene',
   id: 'c3c6d9aa-5a0f-4357-b32b-5d72a7db0541',
   name: {

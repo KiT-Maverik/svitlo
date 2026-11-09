@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAPhilosopherInHistoricalContext_Skill_Data = buildSkillConfig({
+export const interpretAPhilosopherInHistoricalContext_Skill_Data = defineSkill({
   slug: 'interpretAPhilosopherInHistoricalContext',
   id: '5197a832-899d-4e10-8e89-56dfe8fa84df',
   name: {

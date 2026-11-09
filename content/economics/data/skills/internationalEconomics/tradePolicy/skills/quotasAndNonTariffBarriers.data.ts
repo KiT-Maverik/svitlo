@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const quotasAndNonTariffBarriers_Skill_Data = buildSkillConfig({
+export const quotasAndNonTariffBarriers_Skill_Data = defineSkill({
   slug: 'quotasAndNonTariffBarriers',
   id: 'df68dd40-76bd-42b0-ba8c-191e9fcac829',
   name: {

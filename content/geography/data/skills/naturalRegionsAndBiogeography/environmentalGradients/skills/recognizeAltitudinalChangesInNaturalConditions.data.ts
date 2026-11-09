@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAltitudinalChangesInNaturalConditions_Skill_Data = buildSkillConfig({
+export const recognizeAltitudinalChangesInNaturalConditions_Skill_Data = defineSkill({
   slug: 'recognizeAltitudinalChangesInNaturalConditions',
   id: '7658f34e-50bb-4a95-9397-b118991df1ea',
   name: {

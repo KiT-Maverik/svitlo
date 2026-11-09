@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSeizures_Skill_Data = buildSkillConfig({
+export const respondToSeizures_Skill_Data = defineSkill({
   slug: 'respondToSeizures',
   id: 'ec5c9c19-4b7e-4e66-bd6a-dcb7458e0ed2',
   name: {

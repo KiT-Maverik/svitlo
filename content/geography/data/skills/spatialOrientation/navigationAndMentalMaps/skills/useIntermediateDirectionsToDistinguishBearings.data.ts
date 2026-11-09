@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useIntermediateDirectionsToDistinguishBearings_Skill_Data = buildSkillConfig({
+export const useIntermediateDirectionsToDistinguishBearings_Skill_Data = defineSkill({
   slug: 'useIntermediateDirectionsToDistinguishBearings',
   id: '69fc5160-f60d-46bf-9c0c-ab7fa697ccd4',
   name: {

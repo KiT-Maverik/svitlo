@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createTextileEmbellishment_Skill_Data = buildSkillConfig({
+export const createTextileEmbellishment_Skill_Data = defineSkill({
   slug: 'createTextileEmbellishment',
   id: 'e47762cd-d7ad-4ba6-a95f-5cd174fc1524',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyMayaCities_Skill_Data = buildSkillConfig({
+export const earlyMayaCities_Skill_Data = defineSkill({
   slug: 'earlyMayaCities',
   id: '327f722b-bcde-4b13-be8b-5b90ed6f8ccc',
   name: {

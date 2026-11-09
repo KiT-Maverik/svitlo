@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const supportAnArtisticInterpretation_Skill_Data = buildSkillConfig({
+export const supportAnArtisticInterpretation_Skill_Data = defineSkill({
   slug: 'supportAnArtisticInterpretation',
   id: '6ccf1320-6283-4bcf-b757-30062f99bbd9',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ceterisParibusAssumption_Skill_Data = buildSkillConfig({
+export const ceterisParibusAssumption_Skill_Data = defineSkill({
   slug: 'ceterisParibusAssumption',
   id: '4065de45-f73c-42f2-a016-6e7e29f8183f',
   name: {

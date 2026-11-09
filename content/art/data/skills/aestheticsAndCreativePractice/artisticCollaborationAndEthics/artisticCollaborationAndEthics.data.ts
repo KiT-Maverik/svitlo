@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   assessCulturalAppropriation_Skill_Data,
@@ -9,7 +9,7 @@ import {
   respectCreativeRights_Skill_Data,
 } from './skills';
 
-export const artisticCollaborationAndEthics_SkillGroup_Data = buildSkillGroupConfig({
+export const artisticCollaborationAndEthics_SkillGroup_Data = defineSkillGroup({
   slug: 'artisticCollaborationAndEthics',
   id: 'd36c709b-bc41-442b-9841-b21ee379ff6d',
   name: {
@@ -43,14 +43,14 @@ export const artisticCollaborationAndEthics_SkillGroup_Data = buildSkillGroupCon
     kk: 'Өнердегі ынтымақтастық және этика',
     qm: 'Sanat işbirligi ve etika',
   },
-  skills: {
-    assessCulturalAppropriation: assessCulturalAppropriation_Skill_Data,
-    collaborateArtistically: collaborateArtistically_Skill_Data,
-    creditArtisticSources: creditArtisticSources_Skill_Data,
-    giveArtisticFeedback: giveArtisticFeedback_Skill_Data,
-    presentAnArtwork: presentAnArtwork_Skill_Data,
-    respectCreativeRights: respectCreativeRights_Skill_Data,
-  },
+  skills: [
+    assessCulturalAppropriation_Skill_Data,
+    collaborateArtistically_Skill_Data,
+    creditArtisticSources_Skill_Data,
+    giveArtisticFeedback_Skill_Data,
+    presentAnArtwork_Skill_Data,
+    respectCreativeRights_Skill_Data,
+  ],
   description: {
     methodological:
       "Making and sharing art also demands communication, credit and respect for the rights and meanings of others' creative work.",

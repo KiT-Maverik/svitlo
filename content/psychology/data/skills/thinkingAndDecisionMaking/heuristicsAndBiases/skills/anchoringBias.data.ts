@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const anchoringBias_Skill_Data = buildSkillConfig({
+export const anchoringBias_Skill_Data = defineSkill({
   slug: 'anchoringBias',
   id: '643e9557-0ccf-4881-9f61-a77246abe7cc',
   name: {

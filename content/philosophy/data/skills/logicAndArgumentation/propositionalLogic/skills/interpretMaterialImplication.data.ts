@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretMaterialImplication_Skill_Data = buildSkillConfig({
+export const interpretMaterialImplication_Skill_Data = defineSkill({
   slug: 'interpretMaterialImplication',
   id: 'e181747d-0f10-49b7-91f0-5f398290d2d8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neutronsAndIsotopes_Skill_Data = buildSkillConfig({
+export const neutronsAndIsotopes_Skill_Data = defineSkill({
   slug: 'neutronsAndIsotopes',
   id: '2446d557-cab8-4d22-a08d-4ac4f057431a',
   name: {

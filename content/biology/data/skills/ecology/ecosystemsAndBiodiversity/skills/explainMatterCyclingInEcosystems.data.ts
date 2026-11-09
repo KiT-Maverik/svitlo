@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMatterCyclingInEcosystems_Skill_Data = buildSkillConfig({
+export const explainMatterCyclingInEcosystems_Skill_Data = defineSkill({
   slug: 'explainMatterCyclingInEcosystems',
   id: '9e464e7a-6f16-4e07-b171-10188a24e7b9',
   name: {

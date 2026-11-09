@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = buildSkillConfig({
+export const identifyBreathingChangesDuringPhysicalActivity_Skill_Data = defineSkill({
   slug: 'identifyBreathingChangesDuringPhysicalActivity',
   id: '7704b6a9-1337-49cb-bb19-7e5fab73f96d',
   name: {

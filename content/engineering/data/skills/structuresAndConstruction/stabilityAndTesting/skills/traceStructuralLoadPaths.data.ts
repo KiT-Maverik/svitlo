@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceStructuralLoadPaths_Skill_Data = buildSkillConfig({
+export const traceStructuralLoadPaths_Skill_Data = defineSkill({
   slug: 'traceStructuralLoadPaths',
   id: 'acec7330-d1b5-4974-8745-2ef65d8f8d06',
   name: {

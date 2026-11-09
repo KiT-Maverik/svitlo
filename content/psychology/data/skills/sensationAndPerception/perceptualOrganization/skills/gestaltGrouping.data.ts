@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gestaltGrouping_Skill_Data = buildSkillConfig({
+export const gestaltGrouping_Skill_Data = defineSkill({
   slug: 'gestaltGrouping',
   id: 'c42b7b29-544b-46fd-b360-cf288e263608',
   name: {

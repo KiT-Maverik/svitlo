@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryMagneticFields_Skill_Data = buildSkillConfig({
+export const planetaryMagneticFields_Skill_Data = defineSkill({
   slug: 'planetaryMagneticFields',
   id: 'fdb77ddf-8d2e-439f-b396-f12a8e877b18',
   name: {

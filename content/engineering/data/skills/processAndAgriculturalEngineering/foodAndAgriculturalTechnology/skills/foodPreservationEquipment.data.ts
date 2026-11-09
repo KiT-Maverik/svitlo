@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const foodPreservationEquipment_Skill_Data = buildSkillConfig({
+export const foodPreservationEquipment_Skill_Data = defineSkill({
   slug: 'foodPreservationEquipment',
   id: 'e3cda56e-c623-4d7e-99f1-ebadfdc4ab0a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adultRoleTransitions_Skill_Data = buildSkillConfig({
+export const adultRoleTransitions_Skill_Data = defineSkill({
   slug: 'adultRoleTransitions',
   id: '79cb3036-953c-41a1-bcd3-1f7e899e7efc',
   name: {

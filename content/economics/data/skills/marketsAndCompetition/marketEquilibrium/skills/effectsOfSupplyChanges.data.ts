@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const effectsOfSupplyChanges_Skill_Data = buildSkillConfig({
+export const effectsOfSupplyChanges_Skill_Data = defineSkill({
   slug: 'effectsOfSupplyChanges',
   id: '11277020-a12a-4b23-b314-a504246cee7f',
   name: {

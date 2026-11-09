@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const policyEffectEvaluation_Skill_Data = buildSkillConfig({
+export const policyEffectEvaluation_Skill_Data = defineSkill({
   slug: 'policyEffectEvaluation',
   id: 'b3c0e066-7a3b-456b-add6-07e49e2ebbae',
   name: {

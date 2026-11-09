@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const placeValueMental_Skill_Data = buildSkillConfig({
+export const placeValueMental_Skill_Data = defineSkill({
   slug: 'placeValueMental',
   id: '00fd194d-e4c8-4703-b927-f1709cf23613',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ionicEquations_Skill_Data = buildSkillConfig({
+export const ionicEquations_Skill_Data = defineSkill({
   slug: 'ionicEquations',
   id: '39e1d86f-5440-4e08-a17d-0be82fa277ba',
   name: {

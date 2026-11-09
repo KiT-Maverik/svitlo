@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfTheKidneysInExcretion_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfTheKidneysInExcretion',
   id: '557e8dd0-795f-4baa-9e73-7f5a2edeb43d',
   name: {

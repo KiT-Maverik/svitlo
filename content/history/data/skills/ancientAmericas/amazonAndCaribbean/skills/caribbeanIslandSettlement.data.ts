@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const caribbeanIslandSettlement_Skill_Data = buildSkillConfig({
+export const caribbeanIslandSettlement_Skill_Data = defineSkill({
   slug: 'caribbeanIslandSettlement',
   id: 'ec1fad76-05aa-4bcd-b78f-0abc130f7531',
   name: {

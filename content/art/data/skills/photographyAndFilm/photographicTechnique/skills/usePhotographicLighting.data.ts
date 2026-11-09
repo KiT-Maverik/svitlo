@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const usePhotographicLighting_Skill_Data = buildSkillConfig({
+export const usePhotographicLighting_Skill_Data = defineSkill({
   slug: 'usePhotographicLighting',
   id: '5ec484f8-d892-45c4-bb23-ed6025822f2f',
   name: {

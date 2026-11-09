@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const unknownFactor_Skill_Data = buildSkillConfig({
+export const unknownFactor_Skill_Data = defineSkill({
   slug: 'unknownFactor',
   id: '86d61e77-3ad4-4d9c-bf1a-5646ffc15f24',
   name: {

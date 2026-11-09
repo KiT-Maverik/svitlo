@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMisleadingHealthClaims_Skill_Data = buildSkillConfig({
+export const recognizeMisleadingHealthClaims_Skill_Data = defineSkill({
   slug: 'recognizeMisleadingHealthClaims',
   id: '954ac807-b5f4-4508-8c1f-706aff271e52',
   name: {

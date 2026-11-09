@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const physicalChanges_Skill_Data = buildSkillConfig({
+export const physicalChanges_Skill_Data = defineSkill({
   slug: 'physicalChanges',
   id: '5ceeaf43-5f78-4d38-9ad4-dab91753da43',
   name: {

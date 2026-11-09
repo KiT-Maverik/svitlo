@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectAMapTypeForAGeographicQuestion_Skill_Data = buildSkillConfig({
+export const selectAMapTypeForAGeographicQuestion_Skill_Data = defineSkill({
   slug: 'selectAMapTypeForAGeographicQuestion',
   id: 'a4e4be2d-29d2-45e9-afa5-f83a8661248c',
   name: {

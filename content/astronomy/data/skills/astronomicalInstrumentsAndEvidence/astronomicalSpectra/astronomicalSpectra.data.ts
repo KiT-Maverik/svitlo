@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   absorptionSpectralLines_Skill_Data,
@@ -8,7 +8,7 @@ import {
   multiwavelengthObservation_Skill_Data,
 } from './skills';
 
-export const astronomicalSpectra_SkillGroup_Data = buildSkillGroupConfig({
+export const astronomicalSpectra_SkillGroup_Data = defineSkillGroup({
   slug: 'astronomicalSpectra',
   id: 'bc69d108-85c7-4661-98a3-123a87e011eb',
   name: {
@@ -42,13 +42,13 @@ export const astronomicalSpectra_SkillGroup_Data = buildSkillGroupConfig({
     uk: 'Астрономічні спектри',
     pl: 'Widma astronomiczne',
   },
-  skills: {
-    absorptionSpectralLines: absorptionSpectralLines_Skill_Data,
-    continuousSpectra: continuousSpectra_Skill_Data,
-    dopplerShift: dopplerShift_Skill_Data,
-    emissionSpectralLines: emissionSpectralLines_Skill_Data,
-    multiwavelengthObservation: multiwavelengthObservation_Skill_Data,
-  },
+  skills: [
+    absorptionSpectralLines_Skill_Data,
+    continuousSpectra_Skill_Data,
+    dopplerShift_Skill_Data,
+    emissionSpectralLines_Skill_Data,
+    multiwavelengthObservation_Skill_Data,
+  ],
   description: {
     methodological:
       'Light encodes information about temperature, composition and motion through its distribution across wavelength and the signatures imprinted by matter.',

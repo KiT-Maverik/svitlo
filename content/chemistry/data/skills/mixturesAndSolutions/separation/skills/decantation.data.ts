@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const decantation_Skill_Data = buildSkillConfig({
+export const decantation_Skill_Data = defineSkill({
   slug: 'decantation',
   id: '8f76aa2e-003c-4799-a7b1-b548a1ee7886',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compassion_Skill_Data,
@@ -9,7 +9,7 @@ import {
   stereotypeActivation_Skill_Data,
 } from './skills';
 
-export const socialPerception_SkillGroup_Data = buildSkillGroupConfig({
+export const socialPerception_SkillGroup_Data = defineSkillGroup({
   slug: 'socialPerception',
   id: '6d157f4e-e68d-44ed-ae37-eefc03f307c4',
   name: {
@@ -43,14 +43,14 @@ export const socialPerception_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Әлеуметтік қабылдау',
     qm: 'Cemaatni añlav',
   },
-  skills: {
-    compassion: compassion_Skill_Data,
-    empathy: empathy_Skill_Data,
-    firstImpressions: firstImpressions_Skill_Data,
-    perspectiveTaking: perspectiveTaking_Skill_Data,
-    socialAttribution: socialAttribution_Skill_Data,
-    stereotypeActivation: stereotypeActivation_Skill_Data,
-  },
+  skills: [
+    compassion_Skill_Data,
+    empathy_Skill_Data,
+    firstImpressions_Skill_Data,
+    perspectiveTaking_Skill_Data,
+    socialAttribution_Skill_Data,
+    stereotypeActivation_Skill_Data,
+  ],
   description: {
     methodological:
       'Judgments about other people are inferred from limited evidence and shaped by expectations, roles, and context.',

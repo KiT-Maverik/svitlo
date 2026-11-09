@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const limitsOfIntrospection_Skill_Data = buildSkillConfig({
+export const limitsOfIntrospection_Skill_Data = defineSkill({
   slug: 'limitsOfIntrospection',
   id: 'aa38156e-a59c-48c3-9c30-cf96bf533ee6',
   name: {

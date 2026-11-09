@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dividedAttention_Skill_Data = buildSkillConfig({
+export const dividedAttention_Skill_Data = defineSkill({
   slug: 'dividedAttention',
   id: '9c8c4df0-7298-439d-9fa9-bffbb6f792b8',
   name: {

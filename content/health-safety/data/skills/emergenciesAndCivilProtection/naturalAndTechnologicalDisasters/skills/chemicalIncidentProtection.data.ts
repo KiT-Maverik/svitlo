@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chemicalIncidentProtection_Skill_Data = buildSkillConfig({
+export const chemicalIncidentProtection_Skill_Data = defineSkill({
   slug: 'chemicalIncidentProtection',
   id: 'e4f7969b-0328-406a-85ee-b0decf750b79',
   name: {

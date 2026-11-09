@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useRuler_Skill_Data = buildSkillConfig({
+export const useRuler_Skill_Data = defineSkill({
   slug: 'useRuler',
   id: '02a916c0-937f-41b8-a2d4-c48593b8798a',
   name: {

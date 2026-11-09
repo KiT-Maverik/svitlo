@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sensoryTransduction_Skill_Data = buildSkillConfig({
+export const sensoryTransduction_Skill_Data = defineSkill({
   slug: 'sensoryTransduction',
   id: 'c632d266-0760-488c-8bd8-0c4ed2c52724',
   name: {

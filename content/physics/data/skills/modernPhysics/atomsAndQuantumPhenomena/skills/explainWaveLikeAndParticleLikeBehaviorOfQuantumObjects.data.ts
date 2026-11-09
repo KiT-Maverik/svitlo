@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data = buildSkillConfig({
+export const explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects_Skill_Data = defineSkill({
   slug: 'explainWaveLikeAndParticleLikeBehaviorOfQuantumObjects',
   id: 'bb9cb815-5829-40d7-b661-74427d4a5b8c',
   name: {

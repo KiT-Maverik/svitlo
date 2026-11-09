@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   animateGraphicElements_Skill_Data,
@@ -6,7 +6,7 @@ import {
   sequenceMotionGraphics_Skill_Data,
 } from './skills';
 
-export const motionGraphics_SkillGroup_Data = buildSkillGroupConfig({
+export const motionGraphics_SkillGroup_Data = defineSkillGroup({
   slug: 'motionGraphics',
   id: '2cedb7dd-a87d-4708-a506-b14cfe278bac',
   name: {
@@ -40,11 +40,11 @@ export const motionGraphics_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қозғалыс графикасы',
     qm: 'Hareketli grafik',
   },
-  skills: {
-    animateGraphicElements: animateGraphicElements_Skill_Data,
-    designKineticTypography: designKineticTypography_Skill_Data,
-    sequenceMotionGraphics: sequenceMotionGraphics_Skill_Data,
-  },
+  skills: [
+    animateGraphicElements_Skill_Data,
+    designKineticTypography_Skill_Data,
+    sequenceMotionGraphics_Skill_Data,
+  ],
   description: {
     methodological:
       'Moving designed graphics use visual change and pacing for expressive or communicative purposes; they differ from depicting characters in frame-by-frame or stop-motion cinema.',

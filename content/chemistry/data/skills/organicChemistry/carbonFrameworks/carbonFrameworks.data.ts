@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   alkanes_Skill_Data,
@@ -10,7 +10,7 @@ import {
   structuralIsomerism_Skill_Data,
 } from './skills';
 
-export const carbonFrameworks_SkillGroup_Data = buildSkillGroupConfig({
+export const carbonFrameworks_SkillGroup_Data = defineSkillGroup({
   slug: 'carbonFrameworks',
   id: '9af143a7-8353-4c3f-911d-5714cd3d84e1',
   name: {
@@ -44,15 +44,15 @@ export const carbonFrameworks_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Көміртек қаңқалары',
     qm: 'Karbon iskeletleri',
   },
-  skills: {
-    alkanes: alkanes_Skill_Data,
-    alkenes: alkenes_Skill_Data,
-    alkynes: alkynes_Skill_Data,
-    aromaticCompounds: aromaticCompounds_Skill_Data,
-    hydrocarbons: hydrocarbons_Skill_Data,
-    stereoisomerism: stereoisomerism_Skill_Data,
-    structuralIsomerism: structuralIsomerism_Skill_Data,
-  },
+  skills: [
+    alkanes_Skill_Data,
+    alkenes_Skill_Data,
+    alkynes_Skill_Data,
+    aromaticCompounds_Skill_Data,
+    hydrocarbons_Skill_Data,
+    stereoisomerism_Skill_Data,
+    structuralIsomerism_Skill_Data,
+  ],
   description: {
     methodological:
       "Carbon's bonding versatility permits chains, rings and varied structural representations for compounds containing carbon.",

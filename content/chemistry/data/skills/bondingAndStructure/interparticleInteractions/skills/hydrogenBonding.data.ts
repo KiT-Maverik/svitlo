@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hydrogenBonding_Skill_Data = buildSkillConfig({
+export const hydrogenBonding_Skill_Data = defineSkill({
   slug: 'hydrogenBonding',
   id: 'd71c7207-3548-4aa2-a833-6d9e804ffed9',
   name: {

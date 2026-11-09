@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const valenceElectrons_Skill_Data = buildSkillConfig({
+export const valenceElectrons_Skill_Data = defineSkill({
   slug: 'valenceElectrons',
   id: 'aedfffca-cacd-4bad-894c-768b02f29f0d',
   name: {

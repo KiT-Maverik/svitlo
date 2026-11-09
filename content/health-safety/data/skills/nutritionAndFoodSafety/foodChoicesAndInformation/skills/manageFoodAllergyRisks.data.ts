@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const manageFoodAllergyRisks_Skill_Data = buildSkillConfig({
+export const manageFoodAllergyRisks_Skill_Data = defineSkill({
   slug: 'manageFoodAllergyRisks',
   id: 'd8aba279-b0f8-4769-983f-6b7b6859bf1d',
   name: {

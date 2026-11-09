@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = buildSkillConfig({
+export const sequenceStagesOfAFloweringPlantsLifeCycle_Skill_Data = defineSkill({
   slug: 'sequenceStagesOfAFloweringPlantsLifeCycle',
   id: '9141011f-abf0-42fb-90f3-5da7a0802bf3',
   name: {

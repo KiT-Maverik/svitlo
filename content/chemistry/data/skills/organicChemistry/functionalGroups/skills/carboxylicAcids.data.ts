@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const carboxylicAcids_Skill_Data = buildSkillConfig({
+export const carboxylicAcids_Skill_Data = defineSkill({
   slug: 'carboxylicAcids',
   id: '156f06c4-4bcd-462e-816b-660e916d72bc',
   name: {

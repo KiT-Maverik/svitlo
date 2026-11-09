@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   ancientNorthernEuropeanEconomies_Skill_Data,
@@ -6,7 +6,7 @@ import {
   scandinavianIronAge_Skill_Data,
 } from './skills';
 
-export const northernAndBalticEurope_SkillGroup_Data = buildSkillGroupConfig({
+export const northernAndBalticEurope_SkillGroup_Data = defineSkillGroup({
   slug: 'northernAndBalticEurope',
   id: 'bf1a7561-91f6-4c82-8671-9ee2e2081088',
   name: {
@@ -40,11 +40,11 @@ export const northernAndBalticEurope_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Солтүстік және Балтық Еуропасы',
     qm: 'Şimaliy ve Baltıq Avropası',
   },
-  skills: {
-    ancientNorthernEuropeanEconomies: ancientNorthernEuropeanEconomies_Skill_Data,
-    balticAmberTrade: balticAmberTrade_Skill_Data,
-    scandinavianIronAge: scandinavianIronAge_Skill_Data,
-  },
+  skills: [
+    ancientNorthernEuropeanEconomies_Skill_Data,
+    balticAmberTrade_Skill_Data,
+    scandinavianIronAge_Skill_Data,
+  ],
   description: {
     methodological: 'Rivers and seas connected communities with differing farming, herding, and craft traditions.',
     frontend: {

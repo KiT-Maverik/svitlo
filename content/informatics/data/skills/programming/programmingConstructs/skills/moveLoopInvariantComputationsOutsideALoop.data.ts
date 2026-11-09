@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const moveLoopInvariantComputationsOutsideALoop_Skill_Data = buildSkillConfig({
+export const moveLoopInvariantComputationsOutsideALoop_Skill_Data = defineSkill({
   slug: 'moveLoopInvariantComputationsOutsideALoop',
   id: '0bc8deff-de57-478d-beab-37db128170c6',
   name: {

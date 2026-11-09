@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarMassBlackHoles_Skill_Data = buildSkillConfig({
+export const stellarMassBlackHoles_Skill_Data = defineSkill({
   slug: 'stellarMassBlackHoles',
   id: '3ed3c66f-5102-4dc3-9ee8-98f63a1b4131',
   name: {

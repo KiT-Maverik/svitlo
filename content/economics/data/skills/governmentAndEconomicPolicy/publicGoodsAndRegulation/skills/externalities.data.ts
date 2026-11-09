@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const externalities_Skill_Data = buildSkillConfig({
+export const externalities_Skill_Data = defineSkill({
   slug: 'externalities',
   id: '4a13810a-f8cb-41eb-a32b-0e700218a0ad',
   name: {

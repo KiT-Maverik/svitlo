@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const findCounterexample_Skill_Data = buildSkillConfig({
+export const findCounterexample_Skill_Data = defineSkill({
   slug: 'findCounterexample',
   id: 'dde55a58-c038-4375-9b1d-b9ecfb4a9219',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const discountsAndPromotions_Skill_Data = buildSkillConfig({
+export const discountsAndPromotions_Skill_Data = defineSkill({
   slug: 'discountsAndPromotions',
   id: '9081dd65-8482-4fff-b567-68d14a6e0068',
   name: {

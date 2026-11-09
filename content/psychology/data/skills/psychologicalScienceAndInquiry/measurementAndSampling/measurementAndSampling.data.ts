@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   constructValidity_Skill_Data,
@@ -8,7 +8,7 @@ import {
   representativeSampling_Skill_Data,
 } from './skills';
 
-export const measurementAndSampling_SkillGroup_Data = buildSkillGroupConfig({
+export const measurementAndSampling_SkillGroup_Data = defineSkillGroup({
   slug: 'measurementAndSampling',
   id: 'c1b0a767-00bf-4109-afa4-519074f43600',
   name: {
@@ -42,13 +42,13 @@ export const measurementAndSampling_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Өлшеу және іріктеу',
     qm: 'Ölçev ve saylav',
   },
-  skills: {
-    constructValidity: constructValidity_Skill_Data,
-    measurementBias: measurementBias_Skill_Data,
-    operationalDefinitions: operationalDefinitions_Skill_Data,
-    reliabilityOfMeasures: reliabilityOfMeasures_Skill_Data,
-    representativeSampling: representativeSampling_Skill_Data,
-  },
+  skills: [
+    constructValidity_Skill_Data,
+    measurementBias_Skill_Data,
+    operationalDefinitions_Skill_Data,
+    reliabilityOfMeasures_Skill_Data,
+    representativeSampling_Skill_Data,
+  ],
   description: {
     methodological:
       'Operational measures offer imperfect indicators of psychological constructs, and recruitment choices limit generalization.',

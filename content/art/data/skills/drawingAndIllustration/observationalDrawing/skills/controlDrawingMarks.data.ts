@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlDrawingMarks_Skill_Data = buildSkillConfig({
+export const controlDrawingMarks_Skill_Data = defineSkill({
   slug: 'controlDrawingMarks',
   id: '3fad59ea-ccb2-4fad-8c19-b2f06032dfdb',
   name: {

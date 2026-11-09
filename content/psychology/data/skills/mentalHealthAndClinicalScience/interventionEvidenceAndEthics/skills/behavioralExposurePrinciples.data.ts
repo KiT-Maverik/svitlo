@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const behavioralExposurePrinciples_Skill_Data = buildSkillConfig({
+export const behavioralExposurePrinciples_Skill_Data = defineSkill({
   slug: 'behavioralExposurePrinciples',
   id: '9496aa0c-8921-42d5-8f93-4a7b03790ae9',
   name: {

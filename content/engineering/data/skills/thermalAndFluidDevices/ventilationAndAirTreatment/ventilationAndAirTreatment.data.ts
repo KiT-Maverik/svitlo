@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   airConditioningSystems_Skill_Data,
@@ -6,7 +6,7 @@ import {
   ventilationSystems_Skill_Data,
 } from './skills';
 
-export const ventilationAndAirTreatment_SkillGroup_Data = buildSkillGroupConfig({
+export const ventilationAndAirTreatment_SkillGroup_Data = defineSkillGroup({
   slug: 'ventilationAndAirTreatment',
   id: 'd14e02d6-e0d0-4a43-a972-4af50a92d10c',
   name: {
@@ -40,11 +40,11 @@ export const ventilationAndAirTreatment_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Желдету және ауаны өңдеу',
     qm: 'Ava alıştırma ve temizleme',
   },
-  skills: {
-    airConditioningSystems: airConditioningSystems_Skill_Data,
-    diagnoseRestrictedFluidFlow: diagnoseRestrictedFluidFlow_Skill_Data,
-    ventilationSystems: ventilationSystems_Skill_Data,
-  },
+  skills: [
+    airConditioningSystems_Skill_Data,
+    diagnoseRestrictedFluidFlow_Skill_Data,
+    ventilationSystems_Skill_Data,
+  ],
   description: {
     methodological:
       'Indoor climate equipment needs functional air paths, treatment components and regulation appropriate to occupied spaces.',

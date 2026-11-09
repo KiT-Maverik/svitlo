@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const visualIllusions_Skill_Data = buildSkillConfig({
+export const visualIllusions_Skill_Data = defineSkill({
   slug: 'visualIllusions',
   id: '83151cd1-bb73-4004-9c01-9517fbf573cd',
   name: {

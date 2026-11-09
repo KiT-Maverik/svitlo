@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const astronomicalDistanceUnits_Skill_Data = buildSkillConfig({
+export const astronomicalDistanceUnits_Skill_Data = defineSkill({
   slug: 'astronomicalDistanceUnits',
   id: '44b45776-82b4-4ef3-ba99-e80a65cec906',
   name: {

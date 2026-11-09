@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyARobotController_Skill_Data = buildSkillConfig({
+export const identifyARobotController_Skill_Data = defineSkill({
   slug: 'identifyARobotController',
   id: 'a3167d48-7eae-40a8-8a98-649512347f92',
   name: {

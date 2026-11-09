@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSuspectedOpioidOverdose_Skill_Data = buildSkillConfig({
+export const respondToSuspectedOpioidOverdose_Skill_Data = defineSkill({
   slug: 'respondToSuspectedOpioidOverdose',
   id: '799bca40-f190-4b22-8af0-ca25138beb26',
   name: {

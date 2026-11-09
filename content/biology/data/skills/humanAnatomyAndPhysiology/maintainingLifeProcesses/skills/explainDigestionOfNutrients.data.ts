@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDigestionOfNutrients_Skill_Data = buildSkillConfig({
+export const explainDigestionOfNutrients_Skill_Data = defineSkill({
   slug: 'explainDigestionOfNutrients',
   id: 'f3e6fbe0-736a-45ab-a638-03ca178b3122',
   name: {

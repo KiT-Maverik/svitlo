@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const carthage_Skill_Data = buildSkillConfig({
+export const carthage_Skill_Data = defineSkill({
   slug: 'carthage',
   id: '8d5c6190-d1ac-436c-b9fd-645c4addd1b4',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishOperatingSystemFamilies_Skill_Data,
@@ -7,7 +7,7 @@ import {
   explainLinusTorvaldsRoleInLinux_Skill_Data,
 } from './skills';
 
-export const operatingSystems_SkillGroup_Data = buildSkillGroupConfig({
+export const operatingSystems_SkillGroup_Data = defineSkillGroup({
   slug: 'operatingSystems',
   id: '4c74a30d-a22a-4e9c-b5cd-01edc0e0d623',
   name: {
@@ -41,12 +41,12 @@ export const operatingSystems_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Операциялық жүйелер',
     qm: 'Operatsion sistemalar',
   },
-  skills: {
-    distinguishOperatingSystemFamilies: distinguishOperatingSystemFamilies_Skill_Data,
-    explainAnOperatingSystemsPurpose: explainAnOperatingSystemsPurpose_Skill_Data,
-    explainAnOSProcess: explainAnOSProcess_Skill_Data,
-    explainLinusTorvaldsRoleInLinux: explainLinusTorvaldsRoleInLinux_Skill_Data,
-  },
+  skills: [
+    distinguishOperatingSystemFamilies_Skill_Data,
+    explainAnOperatingSystemsPurpose_Skill_Data,
+    explainAnOSProcess_Skill_Data,
+    explainLinusTorvaldsRoleInLinux_Skill_Data,
+  ],
   description: {
     methodological:
       'An operating system manages programs, processes, files, and devices; it differs from applications running in its environment.',

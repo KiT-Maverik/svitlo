@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPolymorphism_Skill_Data = buildSkillConfig({
+export const explainPolymorphism_Skill_Data = defineSkill({
   slug: 'explainPolymorphism',
   id: '3b41f995-9c0d-4baa-99c2-0c18d97f9f29',
   name: {

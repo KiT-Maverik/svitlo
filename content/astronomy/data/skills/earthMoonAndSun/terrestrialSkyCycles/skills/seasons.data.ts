@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seasons_Skill_Data = buildSkillConfig({
+export const seasons_Skill_Data = defineSkill({
   slug: 'seasons',
   id: 'ece63508-55f9-4c1c-9c61-6027f5759a76',
   name: {

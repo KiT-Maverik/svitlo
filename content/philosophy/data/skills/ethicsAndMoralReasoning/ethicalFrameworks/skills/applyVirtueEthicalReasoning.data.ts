@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyVirtueEthicalReasoning_Skill_Data = buildSkillConfig({
+export const applyVirtueEthicalReasoning_Skill_Data = defineSkill({
   slug: 'applyVirtueEthicalReasoning',
   id: '0f47af1d-ef57-46d3-ae2f-ebc57868c44a',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishStagesOfHumanDevelopment_Skill_Data,
@@ -7,7 +7,7 @@ import {
   explainTheImportanceOfSleepForRecovery_Skill_Data,
 } from './skills';
 
-export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = buildSkillGroupConfig({
+export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = defineSkillGroup({
   slug: 'developmentAndProtectionOfTheOrganism',
   id: 'e64e4704-4951-4fa9-9fad-8f60a8c8f14f',
   name: {
@@ -41,12 +41,12 @@ export const developmentAndProtectionOfTheOrganism_SkillGroup_Data = buildSkillG
     kk: 'Ағзаның дамуы мен қорғанысы',
     qm: 'Organizmnıñ inkişafı ve qorunuvı',
   },
-  skills: {
-    distinguishStagesOfHumanDevelopment: distinguishStagesOfHumanDevelopment_Skill_Data,
-    explainFunctionsOfTheHumanReproductiveSystem: explainFunctionsOfTheHumanReproductiveSystem_Skill_Data,
-    explainTheImmuneSystemsProtectiveRole: explainTheImmuneSystemsProtectiveRole_Skill_Data,
-    explainTheImportanceOfSleepForRecovery: explainTheImportanceOfSleepForRecovery_Skill_Data,
-  },
+  skills: [
+    distinguishStagesOfHumanDevelopment_Skill_Data,
+    explainFunctionsOfTheHumanReproductiveSystem_Skill_Data,
+    explainTheImmuneSystemsProtectiveRole_Skill_Data,
+    explainTheImportanceOfSleepForRecovery_Skill_Data,
+  ],
   description: {
     methodological:
       'Changes from childhood to adulthood, immune mechanisms, and physiological recovery help maintain bodily functions over time.',

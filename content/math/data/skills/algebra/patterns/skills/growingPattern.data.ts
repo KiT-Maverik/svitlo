@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const growingPattern_Skill_Data = buildSkillConfig({
+export const growingPattern_Skill_Data = defineSkill({
   slug: 'growingPattern',
   id: 'ce88fbc1-1607-42c3-8d54-e87e9d368bf6',
   name: {

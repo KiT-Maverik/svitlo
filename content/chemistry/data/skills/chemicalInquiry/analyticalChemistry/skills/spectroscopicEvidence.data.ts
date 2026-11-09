@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const spectroscopicEvidence_Skill_Data = buildSkillConfig({
+export const spectroscopicEvidence_Skill_Data = defineSkill({
   slug: 'spectroscopicEvidence',
   id: 'a333c03f-a973-4f75-bb3e-34bf38289e86',
   name: {

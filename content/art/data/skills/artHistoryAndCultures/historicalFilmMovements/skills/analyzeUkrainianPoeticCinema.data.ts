@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeUkrainianPoeticCinema_Skill_Data = buildSkillConfig({
+export const analyzeUkrainianPoeticCinema_Skill_Data = defineSkill({
   slug: 'analyzeUkrainianPoeticCinema',
   id: '462de02b-cdad-471c-ad9b-43438205f1f2',
   name: {

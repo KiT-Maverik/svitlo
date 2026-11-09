@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   evaluateSafeRobotOperation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   robotLocalizationHardware_Skill_Data,
 } from './skills';
 
-export const robotSystems_SkillGroup_Data = buildSkillGroupConfig({
+export const robotSystems_SkillGroup_Data = defineSkillGroup({
   slug: 'robotSystems',
   id: '40388970-e98e-43c1-8dcc-cc192a8546bd',
   name: {
@@ -41,12 +41,12 @@ export const robotSystems_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Роботтық жүйелер',
     qm: 'Robot sistemaları',
   },
-  skills: {
-    evaluateSafeRobotOperation: evaluateSafeRobotOperation_Skill_Data,
-    identifyRobotSubsystems: identifyRobotSubsystems_Skill_Data,
-    robotDegreesOfFreedom: robotDegreesOfFreedom_Skill_Data,
-    robotLocalizationHardware: robotLocalizationHardware_Skill_Data,
-  },
+  skills: [
+    evaluateSafeRobotOperation_Skill_Data,
+    identifyRobotSubsystems_Skill_Data,
+    robotDegreesOfFreedom_Skill_Data,
+    robotLocalizationHardware_Skill_Data,
+  ],
   description: {
     methodological:
       'Robots combine mobile or articulated structure with localization, motion control, power and protection; not all robots operate autonomously.',

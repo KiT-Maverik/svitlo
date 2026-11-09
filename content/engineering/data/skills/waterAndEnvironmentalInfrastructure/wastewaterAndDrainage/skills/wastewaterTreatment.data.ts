@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const wastewaterTreatment_Skill_Data = buildSkillConfig({
+export const wastewaterTreatment_Skill_Data = defineSkill({
   slug: 'wastewaterTreatment',
   id: '0c78ca88-7a15-4ac2-ba82-ec9437c0f937',
   name: {

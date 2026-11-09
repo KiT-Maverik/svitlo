@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useCardinalDirectionsToOrientARoute_Skill_Data = buildSkillConfig({
+export const useCardinalDirectionsToOrientARoute_Skill_Data = defineSkill({
   slug: 'useCardinalDirectionsToOrientARoute',
   id: '3a7e6930-3de2-44eb-9bac-86f72630d700',
   name: {

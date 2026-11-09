@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareDenseAndMoEModels_Skill_Data = buildSkillConfig({
+export const compareDenseAndMoEModels_Skill_Data = defineSkill({
   slug: 'compareDenseAndMoEModels',
   id: 'bb75c08c-c9a6-4ab2-9f63-9a2e0caf6ca3',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyLogicalNOT_Skill_Data = buildSkillConfig({
+export const applyLogicalNOT_Skill_Data = defineSkill({
   slug: 'applyLogicalNOT',
   id: 'e6713661-58c2-496b-90d3-37c4a3b6c7ce',
   name: {

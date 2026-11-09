@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const alkenes_Skill_Data = buildSkillConfig({
+export const alkenes_Skill_Data = defineSkill({
   slug: 'alkenes',
   id: '8738e5cf-720d-4535-a56a-8f738867f868',
   name: {

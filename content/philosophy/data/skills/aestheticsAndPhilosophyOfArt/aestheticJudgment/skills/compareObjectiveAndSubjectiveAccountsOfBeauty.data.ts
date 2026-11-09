@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareObjectiveAndSubjectiveAccountsOfBeauty_Skill_Data = buildSkillConfig({
+export const compareObjectiveAndSubjectiveAccountsOfBeauty_Skill_Data = defineSkill({
   slug: 'compareObjectiveAndSubjectiveAccountsOfBeauty',
   id: 'a46a4aae-9054-4227-a21f-dbf54c7b8c60',
   name: {

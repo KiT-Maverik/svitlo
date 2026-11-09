@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const radiusDiameter_Skill_Data = buildSkillConfig({
+export const radiusDiameter_Skill_Data = defineSkill({
   slug: 'radiusDiameter',
   id: '200f6633-8027-4330-8218-b6e4c1cc1750',
   name: {

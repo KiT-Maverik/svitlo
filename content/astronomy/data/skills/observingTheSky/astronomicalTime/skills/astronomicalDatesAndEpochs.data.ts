@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const astronomicalDatesAndEpochs_Skill_Data = buildSkillConfig({
+export const astronomicalDatesAndEpochs_Skill_Data = defineSkill({
   slug: 'astronomicalDatesAndEpochs',
   id: 'c4d24d99-1372-4fe4-aad4-c6dfb5e8af4c',
   name: {

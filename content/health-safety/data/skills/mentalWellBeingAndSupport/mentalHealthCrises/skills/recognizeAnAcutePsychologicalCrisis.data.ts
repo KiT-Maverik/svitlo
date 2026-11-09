@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAnAcutePsychologicalCrisis_Skill_Data = buildSkillConfig({
+export const recognizeAnAcutePsychologicalCrisis_Skill_Data = defineSkill({
   slug: 'recognizeAnAcutePsychologicalCrisis',
   id: 'b8663aeb-4c1a-4335-a2fa-4f2622bc5f3f',
   name: {

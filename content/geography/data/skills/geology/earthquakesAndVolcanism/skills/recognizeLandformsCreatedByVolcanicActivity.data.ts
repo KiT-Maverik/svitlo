@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeLandformsCreatedByVolcanicActivity_Skill_Data = buildSkillConfig({
+export const recognizeLandformsCreatedByVolcanicActivity_Skill_Data = defineSkill({
   slug: 'recognizeLandformsCreatedByVolcanicActivity',
   id: '9b509d23-f275-43e6-b010-7c5ef341396e',
   name: {

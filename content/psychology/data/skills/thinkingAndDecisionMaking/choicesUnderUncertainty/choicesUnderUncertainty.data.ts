@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   baseRateNeglect_Skill_Data,
@@ -8,7 +8,7 @@ import {
   riskPerception_Skill_Data,
 } from './skills';
 
-export const choicesUnderUncertainty_SkillGroup_Data = buildSkillGroupConfig({
+export const choicesUnderUncertainty_SkillGroup_Data = defineSkillGroup({
   slug: 'choicesUnderUncertainty',
   id: '0659bda5-fcd2-4b35-be47-2e2d8bc65940',
   name: {
@@ -42,13 +42,13 @@ export const choicesUnderUncertainty_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Белгісіздік жағдайындағы таңдау',
     qm: 'Belgisizlikte saylav',
   },
-  skills: {
-    baseRateNeglect: baseRateNeglect_Skill_Data,
-    choiceArchitecture: choiceArchitecture_Skill_Data,
-    delayDiscounting: delayDiscounting_Skill_Data,
-    lossAversion: lossAversion_Skill_Data,
-    riskPerception: riskPerception_Skill_Data,
-  },
+  skills: [
+    baseRateNeglect_Skill_Data,
+    choiceArchitecture_Skill_Data,
+    delayDiscounting_Skill_Data,
+    lossAversion_Skill_Data,
+    riskPerception_Skill_Data,
+  ],
   description: {
     methodological:
       'Decisions depend on reference points, delayed consequences, uncertainty, and how alternatives are presented.',

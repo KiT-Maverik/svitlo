@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyStructuralSupportElements_Skill_Data = buildSkillConfig({
+export const identifyStructuralSupportElements_Skill_Data = defineSkill({
   slug: 'identifyStructuralSupportElements',
   id: '2b99e697-238e-49dd-bc45-11ba9e43d359',
   name: {

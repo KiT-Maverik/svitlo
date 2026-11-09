@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictConsequencesOfExecutionOrder_Skill_Data = buildSkillConfig({
+export const predictConsequencesOfExecutionOrder_Skill_Data = defineSkill({
   slug: 'predictConsequencesOfExecutionOrder',
   id: '69fe2aee-51a3-4129-a6ea-56b8042b7db7',
   name: {

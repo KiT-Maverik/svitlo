@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const liquidPumps_Skill_Data = buildSkillConfig({
+export const liquidPumps_Skill_Data = defineSkill({
   slug: 'liquidPumps',
   id: 'b25c886a-dbb4-4ede-9264-514c118fd49d',
   name: {

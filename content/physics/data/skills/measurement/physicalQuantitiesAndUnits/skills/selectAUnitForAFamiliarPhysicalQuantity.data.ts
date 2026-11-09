@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectAUnitForAFamiliarPhysicalQuantity_Skill_Data = buildSkillConfig({
+export const selectAUnitForAFamiliarPhysicalQuantity_Skill_Data = defineSkill({
   slug: 'selectAUnitForAFamiliarPhysicalQuantity',
   id: '8d55cdc8-7c97-4574-91e2-77e596b0db24',
   name: {

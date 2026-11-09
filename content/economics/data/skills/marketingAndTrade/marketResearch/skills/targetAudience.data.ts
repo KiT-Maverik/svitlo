@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const targetAudience_Skill_Data = buildSkillConfig({
+export const targetAudience_Skill_Data = defineSkill({
   slug: 'targetAudience',
   id: '302bfa49-584b-4c3d-b5be-fd817d811bd9',
   name: {

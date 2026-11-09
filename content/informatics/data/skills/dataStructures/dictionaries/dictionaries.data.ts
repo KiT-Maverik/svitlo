@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainDictionaryStructure_Skill_Data,
@@ -6,7 +6,7 @@ import {
   updateADictionaryValue_Skill_Data,
 } from './skills';
 
-export const dictionaries_SkillGroup_Data = buildSkillGroupConfig({
+export const dictionaries_SkillGroup_Data = defineSkillGroup({
   slug: 'dictionaries',
   id: 'e81d7460-8e28-4a77-bdce-86467b907bbb',
   name: {
@@ -40,11 +40,11 @@ export const dictionaries_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сөздіктер',
     qm: 'Lüğatlar',
   },
-  skills: {
-    explainDictionaryStructure: explainDictionaryStructure_Skill_Data,
-    retrieveADictionaryValueByKey: retrieveADictionaryValueByKey_Skill_Data,
-    updateADictionaryValue: updateADictionaryValue_Skill_Data,
-  },
+  skills: [
+    explainDictionaryStructure_Skill_Data,
+    retrieveADictionaryValueByKey_Skill_Data,
+    updateADictionaryValue_Skill_Data,
+  ],
   description: {
     methodological:
       'Key-to-value mappings supporting lookup, updates, and absent-key handling. A key need not be a positional sequence index.',

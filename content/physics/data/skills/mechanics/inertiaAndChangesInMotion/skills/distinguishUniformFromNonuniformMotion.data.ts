@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishUniformFromNonuniformMotion_Skill_Data = buildSkillConfig({
+export const distinguishUniformFromNonuniformMotion_Skill_Data = defineSkill({
   slug: 'distinguishUniformFromNonuniformMotion',
   id: 'fdbfcd59-7355-474e-8c8b-8802cd6a366f',
   name: {

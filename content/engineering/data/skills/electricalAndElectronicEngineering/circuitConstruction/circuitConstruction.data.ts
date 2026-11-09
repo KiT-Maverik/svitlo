@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   assembleALowVoltageCircuit_Skill_Data,
@@ -8,7 +8,7 @@ import {
   seriesCircuitArrangements_Skill_Data,
 } from './skills';
 
-export const circuitConstruction_SkillGroup_Data = buildSkillGroupConfig({
+export const circuitConstruction_SkillGroup_Data = defineSkillGroup({
   slug: 'circuitConstruction',
   id: 'ce9141c8-327c-4521-9e43-4d0d7a489c82',
   name: {
@@ -42,13 +42,13 @@ export const circuitConstruction_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Электр тізбектерін құрастыру',
     qm: 'Elektrik devrelerini qurmaq',
   },
-  skills: {
-    assembleALowVoltageCircuit: assembleALowVoltageCircuit_Skill_Data,
-    designASwitchingCircuit: designASwitchingCircuit_Skill_Data,
-    interpretCircuitDiagrams: interpretCircuitDiagrams_Skill_Data,
-    parallelCircuitArrangements: parallelCircuitArrangements_Skill_Data,
-    seriesCircuitArrangements: seriesCircuitArrangements_Skill_Data,
-  },
+  skills: [
+    assembleALowVoltageCircuit_Skill_Data,
+    designASwitchingCircuit_Skill_Data,
+    interpretCircuitDiagrams_Skill_Data,
+    parallelCircuitArrangements_Skill_Data,
+    seriesCircuitArrangements_Skill_Data,
+  ],
   description: {
     methodological:
       'A functioning assembly requires compatible sources, loads and connections, including means of switching and independent distribution.',

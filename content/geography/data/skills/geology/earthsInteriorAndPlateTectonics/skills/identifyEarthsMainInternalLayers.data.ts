@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyEarthsMainInternalLayers_Skill_Data = buildSkillConfig({
+export const identifyEarthsMainInternalLayers_Skill_Data = defineSkill({
   slug: 'identifyEarthsMainInternalLayers',
   id: 'c818d0dd-d4c2-4839-87a4-878190052dda',
   name: {

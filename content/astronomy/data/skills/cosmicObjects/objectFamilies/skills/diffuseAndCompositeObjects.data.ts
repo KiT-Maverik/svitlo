@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const diffuseAndCompositeObjects_Skill_Data = buildSkillConfig({
+export const diffuseAndCompositeObjects_Skill_Data = defineSkill({
   slug: 'diffuseAndCompositeObjects',
   id: '577347e4-68d4-467b-9157-8199140ad86a',
   name: {

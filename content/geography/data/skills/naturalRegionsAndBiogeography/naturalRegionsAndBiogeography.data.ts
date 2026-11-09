@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { biomesAndHabitats_SkillGroup_Data } from './biomesAndHabitats/biomesAndHabitats.data';
 import { ecosystems_SkillGroup_Data } from './ecosystems/ecosystems.data';
 import { environmentalGradients_SkillGroup_Data } from './environmentalGradients/environmentalGradients.data';
 
-export const naturalRegionsAndBiogeography_SkillDomain_Data = buildSkillDomainConfig({
+export const naturalRegionsAndBiogeography_SkillDomain_Data = defineSkillDomain({
   slug: 'naturalRegionsAndBiogeography',
   id: 'adaee0e9-03d2-4164-bbb0-55486ad73346',
-  name: {
+  title: {
     en: 'Natural Regions and Biogeography',
     zh: '自然区域与生物地理学',
     hi: 'प्राकृतिक क्षेत्र और जैवभूगोल',
@@ -38,11 +38,11 @@ export const naturalRegionsAndBiogeography_SkillDomain_Data = buildSkillDomainCo
     kk: 'Табиғи аймақтар және биогеография',
     qm: 'Tabiiy bölgeler ve biogeografiya',
   },
-  groups: {
-    biomesAndHabitats: biomesAndHabitats_SkillGroup_Data,
-    ecosystems: ecosystems_SkillGroup_Data,
-    environmentalGradients: environmentalGradients_SkillGroup_Data,
-  },
+  groups: [
+    biomesAndHabitats_SkillGroup_Data,
+    ecosystems_SkillGroup_Data,
+    environmentalGradients_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Natural conditions create geographic variation in ecosystems, biodiversity and habitat patterns on land and in water. This field describes where ecological regions occur, how their distributions vary and how landscape changes affect them; organism physiology and detailed food-web mechanisms belong primarily to Biology.',

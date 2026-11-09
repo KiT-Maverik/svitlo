@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainBroadEnvironmentalVariationWithLatitude_Skill_Data = buildSkillConfig({
+export const explainBroadEnvironmentalVariationWithLatitude_Skill_Data = defineSkill({
   slug: 'explainBroadEnvironmentalVariationWithLatitude',
   id: 'a97c94f0-ee94-4335-98e0-c81c8781f205',
   name: {

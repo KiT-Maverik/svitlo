@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const macroeconomicShocks_Skill_Data = buildSkillConfig({
+export const macroeconomicShocks_Skill_Data = defineSkill({
   slug: 'macroeconomicShocks',
   id: '3d55ce6d-34ca-4282-88e9-7fb9a890f00b',
   name: {

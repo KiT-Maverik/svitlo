@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const justifyResponsibleDesignDecisions_Skill_Data = buildSkillConfig({
+export const justifyResponsibleDesignDecisions_Skill_Data = defineSkill({
   slug: 'justifyResponsibleDesignDecisions',
   id: '46cd86ad-d0f8-41a0-af4b-e3f912a708c6',
   name: {

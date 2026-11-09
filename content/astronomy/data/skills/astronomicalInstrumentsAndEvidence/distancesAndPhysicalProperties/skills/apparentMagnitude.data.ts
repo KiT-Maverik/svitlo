@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const apparentMagnitude_Skill_Data = buildSkillConfig({
+export const apparentMagnitude_Skill_Data = defineSkill({
   slug: 'apparentMagnitude',
   id: 'f2259304-93e6-47e0-87cd-d3b5aa327765',
   name: {

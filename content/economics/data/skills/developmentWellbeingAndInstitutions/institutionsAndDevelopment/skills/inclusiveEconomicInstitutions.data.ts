@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inclusiveEconomicInstitutions_Skill_Data = buildSkillConfig({
+export const inclusiveEconomicInstitutions_Skill_Data = defineSkill({
   slug: 'inclusiveEconomicInstitutions',
   id: '230a0aa7-d30f-459c-adfa-7fd0a38165a1',
   name: {

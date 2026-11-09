@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryMigration_Skill_Data = buildSkillConfig({
+export const planetaryMigration_Skill_Data = defineSkill({
   slug: 'planetaryMigration',
   id: 'b93bad8b-69cb-48e9-b936-d567dd661e74',
   name: {

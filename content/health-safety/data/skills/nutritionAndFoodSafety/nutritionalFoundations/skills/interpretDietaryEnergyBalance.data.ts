@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretDietaryEnergyBalance_Skill_Data = buildSkillConfig({
+export const interpretDietaryEnergyBalance_Skill_Data = defineSkill({
   slug: 'interpretDietaryEnergyBalance',
   id: 'bfa53a47-652a-4922-958e-7e60837379b4',
   name: {

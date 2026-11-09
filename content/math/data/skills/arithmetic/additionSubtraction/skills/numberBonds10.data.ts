@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const numberBonds10_Skill_Data = buildSkillConfig({
+export const numberBonds10_Skill_Data = defineSkill({
   slug: 'numberBonds10',
   id: '43d5def4-faee-41d1-b9a8-b4e120120bb6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientNorthernEuropeanEconomies_Skill_Data = buildSkillConfig({
+export const ancientNorthernEuropeanEconomies_Skill_Data = defineSkill({
   slug: 'ancientNorthernEuropeanEconomies',
   id: '7a22b2d7-b5cc-4bdd-af62-1d5e72f663b8',
   name: {

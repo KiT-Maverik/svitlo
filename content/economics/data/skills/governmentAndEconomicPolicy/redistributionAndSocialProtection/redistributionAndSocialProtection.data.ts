@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   publicProgramEvaluation_Skill_Data,
@@ -6,7 +6,7 @@ import {
   targetedAndUniversalBenefits_Skill_Data,
 } from './skills';
 
-export const redistributionAndSocialProtection_SkillGroup_Data = buildSkillGroupConfig({
+export const redistributionAndSocialProtection_SkillGroup_Data = defineSkillGroup({
   slug: 'redistributionAndSocialProtection',
   id: '78be65cd-4f00-4b50-bea4-1982e00aafa9',
   name: {
@@ -40,11 +40,11 @@ export const redistributionAndSocialProtection_SkillGroup_Data = buildSkillGroup
     kk: 'Қайта бөлу және әлеуметтік қорғау',
     qm: 'Qayta paylaştıruv ve içtimaiy qorçalav',
   },
-  skills: {
-    publicProgramEvaluation: publicProgramEvaluation_Skill_Data,
-    socialTransfers: socialTransfers_Skill_Data,
-    targetedAndUniversalBenefits: targetedAndUniversalBenefits_Skill_Data,
-  },
+  skills: [
+    publicProgramEvaluation_Skill_Data,
+    socialTransfers_Skill_Data,
+    targetedAndUniversalBenefits_Skill_Data,
+  ],
   description: {
     methodological:
       'Transfers and public services change resource distribution and insure against specified social risks.',

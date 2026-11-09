@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { centralAndWesternEurope_SkillGroup_Data } from './centralAndWesternEurope/centralAndWesternEurope.data';
 import { earlyMedievalEasternEurope_SkillGroup_Data } from './earlyMedievalEasternEurope/earlyMedievalEasternEurope.data';
 import { northernAndBalticEurope_SkillGroup_Data } from './northernAndBalticEurope/northernAndBalticEurope.data';
 import { northernBlackSeaRegion_SkillGroup_Data } from './northernBlackSeaRegion/northernBlackSeaRegion.data';
 
-export const ancientEuropeBeyondMediterranean_SkillDomain_Data = buildSkillDomainConfig({
+export const ancientEuropeBeyondMediterranean_SkillDomain_Data = defineSkillDomain({
   slug: 'ancientEuropeBeyondMediterranean',
   id: '397058c6-6268-4a12-b3d3-35e8248f66c1',
-  name: {
+  title: {
     en: 'Europe Beyond the Mediterranean',
     zh: '地中海以外的古代欧洲',
     hi: 'भूमध्यसागर के बाहर का प्राचीन यूरोप',
@@ -39,12 +39,12 @@ export const ancientEuropeBeyondMediterranean_SkillDomain_Data = buildSkillDomai
     kk: 'Жерорта теңізінен тыс ежелгі Еуропа',
     qm: 'Aqdeñizden tış qadimiy Avropa',
   },
-  groups: {
-    centralAndWesternEurope: centralAndWesternEurope_SkillGroup_Data,
-    earlyMedievalEasternEurope: earlyMedievalEasternEurope_SkillGroup_Data,
-    northernAndBalticEurope: northernAndBalticEurope_SkillGroup_Data,
-    northernBlackSeaRegion: northernBlackSeaRegion_SkillGroup_Data,
-  },
+  groups: [
+    centralAndWesternEurope_SkillGroup_Data,
+    earlyMedievalEasternEurope_SkillGroup_Data,
+    northernAndBalticEurope_SkillGroup_Data,
+    northernBlackSeaRegion_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Most European communities existed beyond the political frameworks of Greek poleis and Rome while sustaining diverse local and distant connections.',

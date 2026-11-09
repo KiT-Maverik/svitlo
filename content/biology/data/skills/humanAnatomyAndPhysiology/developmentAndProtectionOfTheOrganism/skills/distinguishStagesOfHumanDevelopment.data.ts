@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishStagesOfHumanDevelopment_Skill_Data = buildSkillConfig({
+export const distinguishStagesOfHumanDevelopment_Skill_Data = defineSkill({
   slug: 'distinguishStagesOfHumanDevelopment',
   id: 'b5994fde-81c7-45cf-beb6-9992cb2a8bcc',
   name: {

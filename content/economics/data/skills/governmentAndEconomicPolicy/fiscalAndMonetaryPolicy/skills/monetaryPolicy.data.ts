@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const monetaryPolicy_Skill_Data = buildSkillConfig({
+export const monetaryPolicy_Skill_Data = defineSkill({
   slug: 'monetaryPolicy',
   id: '359be86f-3e1a-442f-ab93-9c730639f700',
   name: {

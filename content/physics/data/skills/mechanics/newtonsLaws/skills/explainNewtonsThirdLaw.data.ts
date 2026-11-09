@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainNewtonsThirdLaw_Skill_Data = buildSkillConfig({
+export const explainNewtonsThirdLaw_Skill_Data = defineSkill({
   slug: 'explainNewtonsThirdLaw',
   id: '8291351c-fce3-45eb-a974-7510844c484c',
   name: {

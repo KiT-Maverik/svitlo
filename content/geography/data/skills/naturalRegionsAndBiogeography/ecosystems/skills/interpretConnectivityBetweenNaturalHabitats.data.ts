@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretConnectivityBetweenNaturalHabitats_Skill_Data = buildSkillConfig({
+export const interpretConnectivityBetweenNaturalHabitats_Skill_Data = defineSkill({
   slug: 'interpretConnectivityBetweenNaturalHabitats',
   id: '98d54197-751e-463b-852f-315b1617a8dc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishPossibilityFromProbability_Skill_Data = buildSkillConfig({
+export const distinguishPossibilityFromProbability_Skill_Data = defineSkill({
   slug: 'distinguishPossibilityFromProbability',
   id: '9917649a-c868-41a3-aba2-00d45a3b750f',
   name: {

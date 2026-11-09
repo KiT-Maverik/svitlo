@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainStrategy_Skill_Data = buildSkillConfig({
+export const explainStrategy_Skill_Data = defineSkill({
   slug: 'explainStrategy',
   id: '195b4494-38ea-4ae0-a6c4-ab4ec583b5ee',
   name: {

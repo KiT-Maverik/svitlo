@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neuralExcitation_Skill_Data = buildSkillConfig({
+export const neuralExcitation_Skill_Data = defineSkill({
   slug: 'neuralExcitation',
   id: '688f6ec3-f631-4279-9b9d-6a1a2b755946',
   name: {

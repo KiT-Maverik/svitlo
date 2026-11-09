@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const carveSubtractiveSculpture_Skill_Data = buildSkillConfig({
+export const carveSubtractiveSculpture_Skill_Data = defineSkill({
   slug: 'carveSubtractiveSculpture',
   id: '50c6fa0f-52d0-4979-8d61-64daeca43068',
   name: {

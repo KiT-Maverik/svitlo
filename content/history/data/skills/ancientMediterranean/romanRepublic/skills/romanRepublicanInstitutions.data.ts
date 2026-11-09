@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const romanRepublicanInstitutions_Skill_Data = buildSkillConfig({
+export const romanRepublicanInstitutions_Skill_Data = defineSkill({
   slug: 'romanRepublicanInstitutions',
   id: 'cd77ac85-fc1f-4a17-91ea-347ee8c61f2e',
   name: {

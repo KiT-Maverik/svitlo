@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishReasonsForActionFromCausesOfBehavior_Skill_Data = buildSkillConfig({
+export const distinguishReasonsForActionFromCausesOfBehavior_Skill_Data = defineSkill({
   slug: 'distinguishReasonsForActionFromCausesOfBehavior',
   id: 'b0e4da87-0e24-49ee-8dc4-95c76d75ea99',
   name: {

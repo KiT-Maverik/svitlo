@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { evidenceAndCausalInference_SkillGroup_Data } from './evidenceAndCausalInference/evidenceAndCausalInference.data';
 import { experimentalDesign_SkillGroup_Data } from './experimentalDesign/experimentalDesign.data';
 import { questionsAndHypotheses_SkillGroup_Data } from './questionsAndHypotheses/questionsAndHypotheses.data';
 import { theoriesAndScientificPractice_SkillGroup_Data } from './theoriesAndScientificPractice/theoriesAndScientificPractice.data';
 
-export const philosophyOfScience_SkillDomain_Data = buildSkillDomainConfig({
+export const philosophyOfScience_SkillDomain_Data = defineSkillDomain({
   slug: 'philosophyOfScience',
   id: '29ba9791-95e1-4505-b0f1-b096af7107ef',
-  name: {
+  title: {
     en: 'Philosophy of Science',
     zh: '科学哲学',
     hi: 'विज्ञान का दर्शन',
@@ -39,12 +39,12 @@ export const philosophyOfScience_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Ғылым философиясы',
     qm: 'İlim felsefesi',
   },
-  groups: {
-    evidenceAndCausalInference: evidenceAndCausalInference_SkillGroup_Data,
-    experimentalDesign: experimentalDesign_SkillGroup_Data,
-    questionsAndHypotheses: questionsAndHypotheses_SkillGroup_Data,
-    theoriesAndScientificPractice: theoriesAndScientificPractice_SkillGroup_Data,
-  },
+  groups: [
+    evidenceAndCausalInference_SkillGroup_Data,
+    experimentalDesign_SkillGroup_Data,
+    questionsAndHypotheses_SkillGroup_Data,
+    theoriesAndScientificPractice_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Scientific inquiry is examined as a way of building, testing, and revising explanations. The focus is on general methodology and evidential justification; physics, biology, psychology, and other sciences own their domain-specific investigations.',

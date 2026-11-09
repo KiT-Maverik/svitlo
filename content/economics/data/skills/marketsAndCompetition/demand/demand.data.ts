@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { changeInQuantityDemanded_Skill_Data, lawOfDemand_Skill_Data, shiftInDemand_Skill_Data } from './skills';
 
-export const demand_SkillGroup_Data = buildSkillGroupConfig({
+export const demand_SkillGroup_Data = defineSkillGroup({
   slug: 'demand',
   id: '24d97ba4-0b71-46e0-822f-3de908c5517a',
   name: {
@@ -36,11 +36,11 @@ export const demand_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сұраныс',
     qm: 'Talap',
   },
-  skills: {
-    changeInQuantityDemanded: changeInQuantityDemanded_Skill_Data,
-    lawOfDemand: lawOfDemand_Skill_Data,
-    shiftInDemand: shiftInDemand_Skill_Data,
-  },
+  skills: [
+    changeInQuantityDemanded_Skill_Data,
+    lawOfDemand_Skill_Data,
+    shiftInDemand_Skill_Data,
+  ],
   description: {
     methodological:
       'Desired purchase quantities depend on price, income, preferences, expectations, and prices of related products.',

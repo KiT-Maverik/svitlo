@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   adaptGraphicsAcrossFormats_Skill_Data,
@@ -7,7 +7,7 @@ import {
   designAPoster_Skill_Data,
 } from './skills';
 
-export const graphicIdentity_SkillGroup_Data = buildSkillGroupConfig({
+export const graphicIdentity_SkillGroup_Data = defineSkillGroup({
   slug: 'graphicIdentity',
   id: 'ea36f58b-7263-4869-878e-4716f322976c',
   name: {
@@ -42,12 +42,12 @@ export const graphicIdentity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Графикалық сәйкестік',
     qm: 'Grafik kimlik',
   },
-  skills: {
-    adaptGraphicsAcrossFormats: adaptGraphicsAcrossFormats_Skill_Data,
-    buildAVisualIdentity: buildAVisualIdentity_Skill_Data,
-    designAGraphicSymbol: designAGraphicSymbol_Skill_Data,
-    designAPoster: designAPoster_Skill_Data,
-  },
+  skills: [
+    adaptGraphicsAcrossFormats_Skill_Data,
+    buildAVisualIdentity_Skill_Data,
+    designAGraphicSymbol_Skill_Data,
+    designAPoster_Skill_Data,
+  ],
   description: {
     methodological:
       'Distinctive visual signs and consistent combinations establish recognizable communication across formats.',

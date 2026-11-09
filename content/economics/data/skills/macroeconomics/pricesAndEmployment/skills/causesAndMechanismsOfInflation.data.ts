@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const causesAndMechanismsOfInflation_Skill_Data = buildSkillConfig({
+export const causesAndMechanismsOfInflation_Skill_Data = defineSkill({
   slug: 'causesAndMechanismsOfInflation',
   id: '34c55190-22b3-4ab8-9351-5cc77b12f4fb',
   name: {

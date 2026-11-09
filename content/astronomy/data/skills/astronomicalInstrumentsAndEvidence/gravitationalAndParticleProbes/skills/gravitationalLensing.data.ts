@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gravitationalLensing_Skill_Data = buildSkillConfig({
+export const gravitationalLensing_Skill_Data = defineSkill({
   slug: 'gravitationalLensing',
   id: '86e0f7d4-1237-450e-b4c6-ec9664ea84a9',
   name: {

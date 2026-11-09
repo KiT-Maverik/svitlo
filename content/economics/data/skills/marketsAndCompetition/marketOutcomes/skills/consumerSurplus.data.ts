@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const consumerSurplus_Skill_Data = buildSkillConfig({
+export const consumerSurplus_Skill_Data = defineSkill({
   slug: 'consumerSurplus',
   id: '753015e8-9635-46ca-b04a-9ac50d1ea1f2',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheConceptOfTectonicPlateMovement_Skill_Data = buildSkillConfig({
+export const explainTheConceptOfTectonicPlateMovement_Skill_Data = defineSkill({
   slug: 'explainTheConceptOfTectonicPlateMovement',
   id: 'a912b6e9-a63e-45bb-8538-5d11760082d5',
   name: {

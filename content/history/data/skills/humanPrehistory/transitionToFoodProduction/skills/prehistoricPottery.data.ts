@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prehistoricPottery_Skill_Data = buildSkillConfig({
+export const prehistoricPottery_Skill_Data = defineSkill({
   slug: 'prehistoricPottery',
   id: '0a267743-a56f-43ab-af54-c387b0c04bc0',
   name: {

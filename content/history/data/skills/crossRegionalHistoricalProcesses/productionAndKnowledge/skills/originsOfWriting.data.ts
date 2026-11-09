@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const originsOfWriting_Skill_Data = buildSkillConfig({
+export const originsOfWriting_Skill_Data = defineSkill({
   slug: 'originsOfWriting',
   id: 'b43d6075-29df-4a09-a83a-bca1050bf6b8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const wildlifeAndPlantSafety_Skill_Data = buildSkillConfig({
+export const wildlifeAndPlantSafety_Skill_Data = defineSkill({
   slug: 'wildlifeAndPlantSafety',
   id: '2ca5ba1e-941a-4689-a48a-aaf5e9bf11f6',
   name: {

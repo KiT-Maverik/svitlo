@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const temperatureEffects_Skill_Data = buildSkillConfig({
+export const temperatureEffects_Skill_Data = defineSkill({
   slug: 'temperatureEffects',
   id: '4cb029a8-9eed-43d7-841c-d9f82f02ff52',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hazardControlMeasures_Skill_Data = buildSkillConfig({
+export const hazardControlMeasures_Skill_Data = defineSkill({
   slug: 'hazardControlMeasures',
   id: 'aa73f24c-74ab-41f3-9997-fde6351ff6c1',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAnInductiveGeneralization_Skill_Data = buildSkillConfig({
+export const evaluateAnInductiveGeneralization_Skill_Data = defineSkill({
   slug: 'evaluateAnInductiveGeneralization',
   id: '008ce0dc-bb6c-4eca-a2de-3e97a8f23b65',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainProceduralProgramming_Skill_Data = buildSkillConfig({
+export const explainProceduralProgramming_Skill_Data = defineSkill({
   slug: 'explainProceduralProgramming',
   id: '3fd4659a-4676-4e98-95bb-69fd26370b5e',
   name: {

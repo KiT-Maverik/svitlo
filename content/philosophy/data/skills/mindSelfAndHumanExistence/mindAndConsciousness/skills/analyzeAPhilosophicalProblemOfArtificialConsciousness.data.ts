@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data = buildSkillConfig({
+export const analyzeAPhilosophicalProblemOfArtificialConsciousness_Skill_Data = defineSkill({
   slug: 'analyzeAPhilosophicalProblemOfArtificialConsciousness',
   id: '1f56dc50-909d-4301-9205-48bebc96380e',
   name: {

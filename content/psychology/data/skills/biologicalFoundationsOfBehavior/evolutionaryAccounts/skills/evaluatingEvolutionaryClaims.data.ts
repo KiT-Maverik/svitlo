@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluatingEvolutionaryClaims_Skill_Data = buildSkillConfig({
+export const evaluatingEvolutionaryClaims_Skill_Data = defineSkill({
   slug: 'evaluatingEvolutionaryClaims',
   id: 'dc625d49-a611-44d8-92ce-12ae989be8f6',
   name: {

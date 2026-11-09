@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeProceduralFairness_Skill_Data = buildSkillConfig({
+export const analyzeProceduralFairness_Skill_Data = defineSkill({
   slug: 'analyzeProceduralFairness',
   id: 'c7a245c5-d9ef-4f83-bad0-e739d6166bf8',
   name: {

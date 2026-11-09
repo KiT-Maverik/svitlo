@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const retroactiveInterference_Skill_Data = buildSkillConfig({
+export const retroactiveInterference_Skill_Data = defineSkill({
   slug: 'retroactiveInterference',
   id: 'ef315a66-ce3c-4d7e-9c0c-813c1dd2182d',
   name: {

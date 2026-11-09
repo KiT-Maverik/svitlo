@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const athenianDemocracy_Skill_Data = buildSkillConfig({
+export const athenianDemocracy_Skill_Data = defineSkill({
   slug: 'athenianDemocracy',
   id: '1ff65806-e699-4d38-854f-0efe97005c0b',
   name: {

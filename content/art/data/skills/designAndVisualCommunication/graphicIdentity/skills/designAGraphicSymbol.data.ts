@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAGraphicSymbol_Skill_Data = buildSkillConfig({
+export const designAGraphicSymbol_Skill_Data = defineSkill({
   slug: 'designAGraphicSymbol',
   id: '3c3aee5b-5c53-4370-ba9a-d9cc48b4a705',
   name: {

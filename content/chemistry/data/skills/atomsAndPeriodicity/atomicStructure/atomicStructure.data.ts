@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   atomicMass_Skill_Data,
@@ -7,7 +7,7 @@ import {
   protonsAndAtomicNumber_Skill_Data,
 } from './skills';
 
-export const atomicStructure_SkillGroup_Data = buildSkillGroupConfig({
+export const atomicStructure_SkillGroup_Data = defineSkillGroup({
   slug: 'atomicStructure',
   id: '1af2e5a2-0b7d-40b2-a822-b0aee201a4c5',
   name: {
@@ -41,12 +41,12 @@ export const atomicStructure_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Атом құрылысы',
     qm: 'Atomnıñ qurulışı',
   },
-  skills: {
-    atomicMass: atomicMass_Skill_Data,
-    electronsAndCharge: electronsAndCharge_Skill_Data,
-    neutronsAndIsotopes: neutronsAndIsotopes_Skill_Data,
-    protonsAndAtomicNumber: protonsAndAtomicNumber_Skill_Data,
-  },
+  skills: [
+    atomicMass_Skill_Data,
+    electronsAndCharge_Skill_Data,
+    neutronsAndIsotopes_Skill_Data,
+    protonsAndAtomicNumber_Skill_Data,
+  ],
   description: {
     methodological:
       'Chemical element identity is determined by proton number; other atomic characteristics vary independently.',

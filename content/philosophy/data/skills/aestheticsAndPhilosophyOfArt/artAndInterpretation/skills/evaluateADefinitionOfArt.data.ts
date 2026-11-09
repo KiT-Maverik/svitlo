@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateADefinitionOfArt_Skill_Data = buildSkillConfig({
+export const evaluateADefinitionOfArt_Skill_Data = defineSkill({
   slug: 'evaluateADefinitionOfArt',
   id: '3d8c85ff-b7c3-4ce3-bfef-fbb308200904',
   name: {

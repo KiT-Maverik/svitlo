@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretTechnicalSystemSchematics_Skill_Data = buildSkillConfig({
+export const interpretTechnicalSystemSchematics_Skill_Data = defineSkill({
   slug: 'interpretTechnicalSystemSchematics',
   id: '2bc0eb68-e340-4eb9-9a72-e41add5fe541',
   name: {

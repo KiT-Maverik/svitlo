@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const emergenceOfHomoSapiens_Skill_Data = buildSkillConfig({
+export const emergenceOfHomoSapiens_Skill_Data = defineSkill({
   slug: 'emergenceOfHomoSapiens',
   id: '8561684f-c7f8-404a-9aa3-8da9da9269bc',
   name: {

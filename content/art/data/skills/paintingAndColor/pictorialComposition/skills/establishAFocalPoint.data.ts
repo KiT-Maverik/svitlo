@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const establishAFocalPoint_Skill_Data = buildSkillConfig({
+export const establishAFocalPoint_Skill_Data = defineSkill({
   slug: 'establishAFocalPoint',
   id: 'b22beb31-5975-4a48-a1f0-7c076cde1667',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const typesOfMarketCompetition_Skill_Data = buildSkillConfig({
+export const typesOfMarketCompetition_Skill_Data = defineSkill({
   slug: 'typesOfMarketCompetition',
   id: 'a40fb322-7218-48d9-bfa6-901cbf75a10f',
   name: {

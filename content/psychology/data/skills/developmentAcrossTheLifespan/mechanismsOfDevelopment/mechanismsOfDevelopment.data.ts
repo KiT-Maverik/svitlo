@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   developmentalPlasticity_Skill_Data,
@@ -7,7 +7,7 @@ import {
   maturationAndExperience_Skill_Data,
 } from './skills';
 
-export const mechanismsOfDevelopment_SkillGroup_Data = buildSkillGroupConfig({
+export const mechanismsOfDevelopment_SkillGroup_Data = defineSkillGroup({
   slug: 'mechanismsOfDevelopment',
   id: 'b177bbfd-8b58-4c2b-9176-4d3967867187',
   name: {
@@ -41,12 +41,12 @@ export const mechanismsOfDevelopment_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Даму тетіктері',
     qm: 'İnkişaf mehanizmleri',
   },
-  skills: {
-    developmentalPlasticity: developmentalPlasticity_Skill_Data,
-    developmentalResearchDesigns: developmentalResearchDesigns_Skill_Data,
-    individualDevelopmentalVariation: individualDevelopmentalVariation_Skill_Data,
-    maturationAndExperience: maturationAndExperience_Skill_Data,
-  },
+  skills: [
+    developmentalPlasticity_Skill_Data,
+    developmentalResearchDesigns_Skill_Data,
+    individualDevelopmentalVariation_Skill_Data,
+    maturationAndExperience_Skill_Data,
+  ],
   description: {
     methodological:
       'Research examines change over time, developmental diversity, and how environments interact with biological processes.',

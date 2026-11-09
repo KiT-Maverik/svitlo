@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretSensorError_Skill_Data = buildSkillConfig({
+export const interpretSensorError_Skill_Data = defineSkill({
   slug: 'interpretSensorError',
   id: 'd9c78d44-c402-4f7c-bca4-ee2cd339efbd',
   name: {

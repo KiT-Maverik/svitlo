@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const configureARepeatedRobotAction_Skill_Data = buildSkillConfig({
+export const configureARepeatedRobotAction_Skill_Data = defineSkill({
   slug: 'configureARepeatedRobotAction',
   id: '80a463db-ee01-4900-a039-5a24f3711dda',
   name: {

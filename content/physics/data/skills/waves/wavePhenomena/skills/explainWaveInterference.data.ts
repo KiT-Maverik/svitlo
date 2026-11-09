@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWaveInterference_Skill_Data = buildSkillConfig({
+export const explainWaveInterference_Skill_Data = defineSkill({
   slug: 'explainWaveInterference',
   id: '43ac1661-d431-4c5b-9d57-b0bcea31e389',
   name: {

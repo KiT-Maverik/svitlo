@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const shangCulture_Skill_Data = buildSkillConfig({
+export const shangCulture_Skill_Data = defineSkill({
   slug: 'shangCulture',
   id: 'ffe80b18-849f-472b-b335-0545ce1fd08a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheGravitationalDeflectionOfLight_Skill_Data = buildSkillConfig({
+export const explainTheGravitationalDeflectionOfLight_Skill_Data = defineSkill({
   slug: 'explainTheGravitationalDeflectionOfLight',
   id: 'd37fc9be-0bf9-41c0-a7e0-6a74b8d6bb48',
   name: {

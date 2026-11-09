@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryInteriorStructure_Skill_Data = buildSkillConfig({
+export const planetaryInteriorStructure_Skill_Data = defineSkill({
   slug: 'planetaryInteriorStructure',
   id: '50cc2606-dfa0-47de-aa2d-304ea053ac42',
   name: {

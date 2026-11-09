@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishKeywordsFromIdentifiers_Skill_Data,
@@ -7,7 +7,7 @@ import {
   explainSyntaxHighlighting_Skill_Data,
 } from './skills';
 
-export const programStructureAndSyntax_SkillGroup_Data = buildSkillGroupConfig({
+export const programStructureAndSyntax_SkillGroup_Data = defineSkillGroup({
   slug: 'programStructureAndSyntax',
   id: '30fcb41c-3ae7-4294-870b-ac9b2507a304',
   name: {
@@ -41,12 +41,12 @@ export const programStructureAndSyntax_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бағдарлама құрылымы мен синтаксисі',
     qm: 'Programma qurulışı ve sintaksis',
   },
-  skills: {
-    distinguishKeywordsFromIdentifiers: distinguishKeywordsFromIdentifiers_Skill_Data,
-    distinguishOperatorsExpressionsAndStatements: distinguishOperatorsExpressionsAndStatements_Skill_Data,
-    explainStatementBlockBoundaries: explainStatementBlockBoundaries_Skill_Data,
-    explainSyntaxHighlighting: explainSyntaxHighlighting_Skill_Data,
-  },
+  skills: [
+    distinguishKeywordsFromIdentifiers_Skill_Data,
+    distinguishOperatorsExpressionsAndStatements_Skill_Data,
+    explainStatementBlockBoundaries_Skill_Data,
+    explainSyntaxHighlighting_Skill_Data,
+  ],
   description: {
     methodological:
       'The language units of executable code include keywords, operators, identifiers, expressions, statements, and blocks. Editor highlighting helps identify them but does not prove a program correct.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const comets_Skill_Data = buildSkillConfig({
+export const comets_Skill_Data = defineSkill({
   slug: 'comets',
   id: 'e5a1338a-14fc-4fdf-bdaf-55671d124335',
   name: {

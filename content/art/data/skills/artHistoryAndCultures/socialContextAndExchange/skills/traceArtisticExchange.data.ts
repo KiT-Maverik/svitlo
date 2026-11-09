@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceArtisticExchange_Skill_Data = buildSkillConfig({
+export const traceArtisticExchange_Skill_Data = defineSkill({
   slug: 'traceArtisticExchange',
   id: 'be5667ea-b2a5-41f1-863b-b2938da25c58',
   name: {

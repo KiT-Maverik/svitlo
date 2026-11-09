@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const wageDetermination_Skill_Data = buildSkillConfig({
+export const wageDetermination_Skill_Data = defineSkill({
   slug: 'wageDetermination',
   id: '1dbd3d70-9cfc-4636-89a6-410ac609ac5d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseAVisualEncoding_Skill_Data = buildSkillConfig({
+export const chooseAVisualEncoding_Skill_Data = defineSkill({
   slug: 'chooseAVisualEncoding',
   id: '4e13ce3e-5c6f-4376-8c4f-343b73014ba3',
   name: {

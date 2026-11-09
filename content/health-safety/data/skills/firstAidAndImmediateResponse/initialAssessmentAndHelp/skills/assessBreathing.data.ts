@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessBreathing_Skill_Data = buildSkillConfig({
+export const assessBreathing_Skill_Data = defineSkill({
   slug: 'assessBreathing',
   id: 'c70f51c3-a235-42f2-bfe7-0a6b3cba726f',
   name: {

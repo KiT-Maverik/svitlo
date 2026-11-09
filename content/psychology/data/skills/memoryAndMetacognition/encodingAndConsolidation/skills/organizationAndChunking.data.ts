@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const organizationAndChunking_Skill_Data = buildSkillConfig({
+export const organizationAndChunking_Skill_Data = defineSkill({
   slug: 'organizationAndChunking',
   id: '200dbc05-aa27-4e0c-9d3c-d5c50181b506',
   name: {

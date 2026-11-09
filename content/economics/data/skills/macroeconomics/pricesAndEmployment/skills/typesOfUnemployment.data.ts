@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const typesOfUnemployment_Skill_Data = buildSkillConfig({
+export const typesOfUnemployment_Skill_Data = defineSkill({
   slug: 'typesOfUnemployment',
   id: '94c9c582-27b8-4c1f-bf58-7bee0deda3ad',
   name: {

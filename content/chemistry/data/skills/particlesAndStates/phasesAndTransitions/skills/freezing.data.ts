@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const freezing_Skill_Data = buildSkillConfig({
+export const freezing_Skill_Data = defineSkill({
   slug: 'freezing',
   id: '302a5c9e-7fc4-4688-9f61-bb382fc6f69a',
   name: {

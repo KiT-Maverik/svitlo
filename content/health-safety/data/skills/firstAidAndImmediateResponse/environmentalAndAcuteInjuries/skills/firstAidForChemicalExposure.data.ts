@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const firstAidForChemicalExposure_Skill_Data = buildSkillConfig({
+export const firstAidForChemicalExposure_Skill_Data = defineSkill({
   slug: 'firstAidForChemicalExposure',
   id: '52229138-f718-4f74-84aa-655a0e75ab47',
   name: {

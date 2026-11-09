@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constellations_Skill_Data = buildSkillConfig({
+export const constellations_Skill_Data = defineSkill({
   slug: 'constellations',
   id: 'fa760e4a-df7a-4ebc-a0d6-5b913e1aacfe',
   name: {

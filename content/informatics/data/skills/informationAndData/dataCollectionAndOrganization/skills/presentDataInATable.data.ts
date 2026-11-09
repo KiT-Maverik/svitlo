@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const presentDataInATable_Skill_Data = buildSkillConfig({
+export const presentDataInATable_Skill_Data = defineSkill({
   slug: 'presentDataInATable',
   id: '7570c982-4419-4398-a10c-bff221e3380b',
   name: {

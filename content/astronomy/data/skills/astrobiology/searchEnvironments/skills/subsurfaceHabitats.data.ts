@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const subsurfaceHabitats_Skill_Data = buildSkillConfig({
+export const subsurfaceHabitats_Skill_Data = defineSkill({
   slug: 'subsurfaceHabitats',
   id: '8e905a02-c42b-4f1f-b804-3444d99bb7cb',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const entropy_Skill_Data = buildSkillConfig({
+export const entropy_Skill_Data = defineSkill({
   slug: 'entropy',
   id: '14cc2bc0-729e-4a43-a42c-49c13cd0ad3d',
   name: {

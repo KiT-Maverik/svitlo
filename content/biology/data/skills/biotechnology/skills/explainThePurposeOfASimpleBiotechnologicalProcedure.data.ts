@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = buildSkillConfig({
+export const explainThePurposeOfASimpleBiotechnologicalProcedure_Skill_Data = defineSkill({
   slug: 'explainThePurposeOfASimpleBiotechnologicalProcedure',
   id: 'daa3c9f3-2de4-4850-a467-349aecb9b3f6',
   name: {

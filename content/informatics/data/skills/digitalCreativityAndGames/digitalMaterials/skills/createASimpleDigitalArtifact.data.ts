@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createASimpleDigitalArtifact_Skill_Data = buildSkillConfig({
+export const createASimpleDigitalArtifact_Skill_Data = defineSkill({
   slug: 'createASimpleDigitalArtifact',
   id: '297e06ed-d39c-48bd-81eb-b4e5bf5c4d4f',
   name: {

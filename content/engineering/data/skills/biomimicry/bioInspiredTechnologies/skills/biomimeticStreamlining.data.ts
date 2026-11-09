@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const biomimeticStreamlining_Skill_Data = buildSkillConfig({
+export const biomimeticStreamlining_Skill_Data = defineSkill({
   slug: 'biomimeticStreamlining',
   id: '5df800c8-cee8-47b8-bf47-24a6424cacb1',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainPressureTransmissionInAnEnclosedLiquid_Skill_Data,
@@ -7,7 +7,7 @@ import {
   recognizeLiquidPressureActingInDifferentDirections_Skill_Data,
 } from './skills';
 
-export const pressureInLiquidsAndGases_SkillGroup_Data = buildSkillGroupConfig({
+export const pressureInLiquidsAndGases_SkillGroup_Data = defineSkillGroup({
   slug: 'pressureInLiquidsAndGases',
   id: 'd9f21356-a542-4937-8c0d-47906d0e042a',
   name: {
@@ -41,12 +41,12 @@ export const pressureInLiquidsAndGases_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сұйықтар мен газдардағы қысым',
     qm: 'Sıyıqlıqlar ve gazlarda basım',
   },
-  skills: {
-    explainPressureTransmissionInAnEnclosedLiquid: explainPressureTransmissionInAnEnclosedLiquid_Skill_Data,
-    explainWhyWaterPressureIncreasesWithDepth: explainWhyWaterPressureIncreasesWithDepth_Skill_Data,
-    identifyGasPressureInExamples: identifyGasPressureInExamples_Skill_Data,
-    recognizeLiquidPressureActingInDifferentDirections: recognizeLiquidPressureActingInDifferentDirections_Skill_Data,
-  },
+  skills: [
+    explainPressureTransmissionInAnEnclosedLiquid_Skill_Data,
+    explainWhyWaterPressureIncreasesWithDepth_Skill_Data,
+    identifyGasPressureInExamples_Skill_Data,
+    recognizeLiquidPressureActingInDifferentDirections_Skill_Data,
+  ],
   description: {
     methodological:
       'Pressure is transmitted through a medium and changes with depth in still water; container examples help distinguish pressure from the mere amount of water.',

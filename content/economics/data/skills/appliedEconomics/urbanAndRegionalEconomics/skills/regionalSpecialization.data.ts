@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const regionalSpecialization_Skill_Data = buildSkillConfig({
+export const regionalSpecialization_Skill_Data = defineSkill({
   slug: 'regionalSpecialization',
   id: 'b836e091-67ff-4adc-b44f-75283779669a',
   name: {

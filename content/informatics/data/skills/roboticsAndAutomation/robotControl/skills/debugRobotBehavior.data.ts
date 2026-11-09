@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const debugRobotBehavior_Skill_Data = buildSkillConfig({
+export const debugRobotBehavior_Skill_Data = defineSkill({
   slug: 'debugRobotBehavior',
   id: 'f63b004b-94f5-4422-9275-af6f6ba4263e',
   name: {

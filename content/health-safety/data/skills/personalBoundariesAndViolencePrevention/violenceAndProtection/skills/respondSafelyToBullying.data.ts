@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondSafelyToBullying_Skill_Data = buildSkillConfig({
+export const respondSafelyToBullying_Skill_Data = defineSkill({
   slug: 'respondSafelyToBullying',
   id: 'f99cd116-8f4e-4d08-97a2-8827cfacacff',
   name: {

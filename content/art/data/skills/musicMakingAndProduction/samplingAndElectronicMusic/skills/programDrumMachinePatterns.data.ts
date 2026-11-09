@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const programDrumMachinePatterns_Skill_Data = buildSkillConfig({
+export const programDrumMachinePatterns_Skill_Data = defineSkill({
   slug: 'programDrumMachinePatterns',
   id: 'fe97f868-5b14-477d-80a3-de6b8923827a',
   name: {

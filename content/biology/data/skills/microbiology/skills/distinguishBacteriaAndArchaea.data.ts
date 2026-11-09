@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishBacteriaAndArchaea_Skill_Data = buildSkillConfig({
+export const distinguishBacteriaAndArchaea_Skill_Data = defineSkill({
   slug: 'distinguishBacteriaAndArchaea',
   id: 'a3ec9c81-141b-4595-ad58-e3dc6ee9409c',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const transportDemand_Skill_Data = buildSkillConfig({
+export const transportDemand_Skill_Data = defineSkill({
   slug: 'transportDemand',
   id: '711b3bfd-4ce1-418d-ba51-d4145b3e6d7a',
   name: {

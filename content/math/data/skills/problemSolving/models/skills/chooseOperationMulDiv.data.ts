@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chooseOperationMulDiv_Skill_Data = buildSkillConfig({
+export const chooseOperationMulDiv_Skill_Data = defineSkill({
   slug: 'chooseOperationMulDiv',
   id: '8abaee79-c7a9-462f-9cd6-b9efaa9ed699',
   name: {

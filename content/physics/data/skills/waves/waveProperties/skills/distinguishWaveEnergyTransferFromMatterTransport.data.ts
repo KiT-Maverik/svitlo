@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishWaveEnergyTransferFromMatterTransport_Skill_Data = buildSkillConfig({
+export const distinguishWaveEnergyTransferFromMatterTransport_Skill_Data = defineSkill({
   slug: 'distinguishWaveEnergyTransferFromMatterTransport',
   id: 'c8a193cf-dbcf-40af-8249-3a69af7640e6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const refineAPromptBasedOnResults_Skill_Data = buildSkillConfig({
+export const refineAPromptBasedOnResults_Skill_Data = defineSkill({
   slug: 'refineAPromptBasedOnResults',
   id: '058e7465-1cff-43db-a856-613fa36df599',
   name: {

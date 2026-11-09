@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bankLending_Skill_Data = buildSkillConfig({
+export const bankLending_Skill_Data = defineSkill({
   slug: 'bankLending',
   id: '1d6692d5-3372-4eff-91f6-184fbe4fe064',
   name: {

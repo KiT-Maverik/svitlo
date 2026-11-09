@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDiscreteAtomicEnergyStates_Skill_Data = buildSkillConfig({
+export const explainDiscreteAtomicEnergyStates_Skill_Data = defineSkill({
   slug: 'explainDiscreteAtomicEnergyStates',
   id: '32d70ce4-b83f-403c-8771-41bb66f1f556',
   name: {

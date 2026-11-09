@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hellenisticKingdoms_Skill_Data = buildSkillConfig({
+export const hellenisticKingdoms_Skill_Data = defineSkill({
   slug: 'hellenisticKingdoms',
   id: 'cf536c38-8ab6-4cdd-8b20-543d85bc0fd8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const unitFractionModel_Skill_Data = buildSkillConfig({
+export const unitFractionModel_Skill_Data = defineSkill({
   slug: 'unitFractionModel',
   id: 'f2d8c7d5-68bd-4c23-8d6a-cc3c122ff0c3',
   name: {

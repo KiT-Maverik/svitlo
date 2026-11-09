@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chooseProtectiveMeasures_Skill_Data,
@@ -7,7 +7,7 @@ import {
   respondToUnsafeConditions_Skill_Data,
 } from './skills';
 
-export const hazardRecognitionAndPrevention_SkillGroup_Data = buildSkillGroupConfig({
+export const hazardRecognitionAndPrevention_SkillGroup_Data = defineSkillGroup({
   slug: 'hazardRecognitionAndPrevention',
   id: '6760472c-84fa-40a3-af0c-044476a1a3c4',
   name: {
@@ -41,12 +41,12 @@ export const hazardRecognitionAndPrevention_SkillGroup_Data = buildSkillGroupCon
     kk: 'Қауіпті анықтау және алдын алу',
     qm: 'Telükelerni tanımaq ve ögüni almaq',
   },
-  skills: {
-    chooseProtectiveMeasures: chooseProtectiveMeasures_Skill_Data,
-    evaluateInjuryRisk: evaluateInjuryRisk_Skill_Data,
-    identifyHazardsInAnEnvironment: identifyHazardsInAnEnvironment_Skill_Data,
-    respondToUnsafeConditions: respondToUnsafeConditions_Skill_Data,
-  },
+  skills: [
+    chooseProtectiveMeasures_Skill_Data,
+    evaluateInjuryRisk_Skill_Data,
+    identifyHazardsInAnEnvironment_Skill_Data,
+    respondToUnsafeConditions_Skill_Data,
+  ],
   description: {
     methodological:
       'Risk management involves identifying possible harm, checking exposure, and favouring elimination or protective controls over mere caution.',

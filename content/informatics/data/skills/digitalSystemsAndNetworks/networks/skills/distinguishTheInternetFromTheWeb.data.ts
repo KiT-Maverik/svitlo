@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTheInternetFromTheWeb_Skill_Data = buildSkillConfig({
+export const distinguishTheInternetFromTheWeb_Skill_Data = defineSkill({
   slug: 'distinguishTheInternetFromTheWeb',
   id: 'b99bbf74-3c53-4e83-b1c0-08322f1f7825',
   name: {

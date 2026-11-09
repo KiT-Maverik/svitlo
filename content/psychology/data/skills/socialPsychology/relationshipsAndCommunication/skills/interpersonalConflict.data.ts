@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpersonalConflict_Skill_Data = buildSkillConfig({
+export const interpersonalConflict_Skill_Data = defineSkill({
   slug: 'interpersonalConflict',
   id: '4e162461-447c-4463-ab88-69ddda3bf9f8',
   name: {

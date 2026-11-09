@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   halfLife_Skill_Data,
@@ -7,7 +7,7 @@ import {
   radioactiveDecay_Skill_Data,
 } from './skills';
 
-export const nuclearChemistry_SkillGroup_Data = buildSkillGroupConfig({
+export const nuclearChemistry_SkillGroup_Data = defineSkillGroup({
   slug: 'nuclearChemistry',
   id: 'e5b6cc5e-243a-4ec3-98b1-718ffde76688',
   name: {
@@ -41,12 +41,12 @@ export const nuclearChemistry_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ядролық химия',
     qm: 'Çekirdek kimyası',
   },
-  skills: {
-    halfLife: halfLife_Skill_Data,
-    isotopeTracers: isotopeTracers_Skill_Data,
-    nuclearTransmutation: nuclearTransmutation_Skill_Data,
-    radioactiveDecay: radioactiveDecay_Skill_Data,
-  },
+  skills: [
+    halfLife_Skill_Data,
+    isotopeTracers_Skill_Data,
+    nuclearTransmutation_Skill_Data,
+    radioactiveDecay_Skill_Data,
+  ],
   description: {
     methodological:
       'Changes within atomic nuclei alter nuclide identities rather than ordinary electron bonding. The chemical emphasis is isotopic substances, decay and analytical applications; general nuclear-force physics belongs to Physics.',

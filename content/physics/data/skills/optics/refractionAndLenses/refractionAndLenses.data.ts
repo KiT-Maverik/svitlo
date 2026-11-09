@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishConvergingAndDivergingLenses_Skill_Data,
   explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data,
 } from './skills';
 
-export const refractionAndLenses_SkillGroup_Data = buildSkillGroupConfig({
+export const refractionAndLenses_SkillGroup_Data = defineSkillGroup({
   slug: 'refractionAndLenses',
   id: 'c9296b9c-bb52-4cf4-82ef-1dbfa8d7883d',
   name: {
@@ -39,10 +39,10 @@ export const refractionAndLenses_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жарықтың сынуы және линзалар',
     qm: 'Yarıqnıñ sınuvı ve linzalar',
   },
-  skills: {
-    distinguishConvergingAndDivergingLenses: distinguishConvergingAndDivergingLenses_Skill_Data,
-    explainLightRefractionAtTheBoundaryBetweenMedia: explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data,
-  },
+  skills: [
+    distinguishConvergingAndDivergingLenses_Skill_Data,
+    explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data,
+  ],
   description: {
     methodological: 'Moving between media and the shape of a lens affect ray direction and image formation.',
     frontend: {

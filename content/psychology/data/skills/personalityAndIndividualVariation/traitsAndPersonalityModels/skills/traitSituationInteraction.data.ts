@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traitSituationInteraction_Skill_Data = buildSkillConfig({
+export const traitSituationInteraction_Skill_Data = defineSkill({
   slug: 'traitSituationInteraction',
   id: '10de8c02-70d2-420c-aad8-5deb7fa8cef9',
   name: {

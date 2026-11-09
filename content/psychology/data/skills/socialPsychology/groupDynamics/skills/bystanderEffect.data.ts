@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bystanderEffect_Skill_Data = buildSkillConfig({
+export const bystanderEffect_Skill_Data = defineSkill({
   slug: 'bystanderEffect',
   id: 'd7b677b8-a37c-4d7e-9ebd-f6148a8e83a6',
   name: {

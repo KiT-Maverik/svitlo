@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyLogicalOR_Skill_Data = buildSkillConfig({
+export const applyLogicalOR_Skill_Data = defineSkill({
   slug: 'applyLogicalOR',
   id: 'fb5630e7-fde7-4a97-8f21-97179a6c965e',
   name: {

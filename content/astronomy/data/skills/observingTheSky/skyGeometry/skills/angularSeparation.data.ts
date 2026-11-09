@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const angularSeparation_Skill_Data = buildSkillConfig({
+export const angularSeparation_Skill_Data = defineSkill({
   slug: 'angularSeparation',
   id: 'd277a73a-b194-4918-8a23-63467f267d20',
   name: {

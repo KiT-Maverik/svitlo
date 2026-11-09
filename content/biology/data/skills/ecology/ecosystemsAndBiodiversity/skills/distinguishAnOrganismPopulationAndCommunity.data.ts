@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = buildSkillConfig({
+export const distinguishAnOrganismPopulationAndCommunity_Skill_Data = defineSkill({
   slug: 'distinguishAnOrganismPopulationAndCommunity',
   id: 'eee87fb8-cddb-4857-be95-a3784e2a5178',
   name: {

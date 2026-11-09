@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compoundInterest_Skill_Data,
@@ -8,7 +8,7 @@ import {
   simpleInterest_Skill_Data,
 } from './skills';
 
-export const savingAndInvesting_SkillGroup_Data = buildSkillGroupConfig({
+export const savingAndInvesting_SkillGroup_Data = defineSkillGroup({
   slug: 'savingAndInvesting',
   id: 'ffbe5d73-9743-4bcd-8b75-ea58ff5e71d2',
   name: {
@@ -42,13 +42,13 @@ export const savingAndInvesting_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жинақтау және инвестициялау',
     qm: 'Aqça toplav ve yatırım',
   },
-  skills: {
-    compoundInterest: compoundInterest_Skill_Data,
-    emergencySavings: emergencySavings_Skill_Data,
-    investmentDiversification: investmentDiversification_Skill_Data,
-    realReturn: realReturn_Skill_Data,
-    simpleInterest: simpleInterest_Skill_Data,
-  },
+  skills: [
+    compoundInterest_Skill_Data,
+    emergencySavings_Skill_Data,
+    investmentDiversification_Skill_Data,
+    realReturn_Skill_Data,
+    simpleInterest_Skill_Data,
+  ],
   description: {
     methodological: 'Moving purchasing power into the future involves liquidity, returns, risk, and inflation.',
     frontend: {

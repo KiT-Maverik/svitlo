@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cameraHardware_Skill_Data = buildSkillConfig({
+export const cameraHardware_Skill_Data = defineSkill({
   slug: 'cameraHardware',
   id: '996b9ce3-2e0c-4f98-bfb4-d7e930267e24',
   name: {

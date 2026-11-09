@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretStandardWeatherSymbolsOnAMap_Skill_Data = buildSkillConfig({
+export const interpretStandardWeatherSymbolsOnAMap_Skill_Data = defineSkill({
   slug: 'interpretStandardWeatherSymbolsOnAMap',
   id: 'd0fbd9a0-ed51-41b8-afba-d78f3f746eb3',
   name: {

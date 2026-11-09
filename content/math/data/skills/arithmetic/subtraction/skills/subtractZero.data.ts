@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const subtractZero_Skill_Data = buildSkillConfig({
+export const subtractZero_Skill_Data = defineSkill({
   slug: 'subtractZero',
   id: '8481e65e-c9b4-4ac0-b336-03fe1a17cfcb',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyGeographicConsequencesOfMineralExtraction_Skill_Data = buildSkillConfig({
+export const identifyGeographicConsequencesOfMineralExtraction_Skill_Data = defineSkill({
   slug: 'identifyGeographicConsequencesOfMineralExtraction',
   id: 'c5b84516-6b14-478b-8171-b40e1f334f07',
   name: {

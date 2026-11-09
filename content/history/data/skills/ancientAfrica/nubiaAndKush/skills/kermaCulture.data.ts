@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const kermaCulture_Skill_Data = buildSkillConfig({
+export const kermaCulture_Skill_Data = defineSkill({
   slug: 'kermaCulture',
   id: '7f6280b7-46b8-46d5-afe7-c8ebe305c0c1',
   name: {

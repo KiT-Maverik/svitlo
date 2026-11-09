@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { dataTypesAndReferences_SkillGroup_Data } from './dataTypesAndReferences/dataTypesAndReferences.data';
 import { functionsAndReuse_SkillGroup_Data } from './functionsAndReuse/functionsAndReuse.data';
@@ -9,10 +9,10 @@ import { programStructureAndSyntax_SkillGroup_Data } from './programStructureAnd
 import { readingPrograms_SkillGroup_Data } from './readingPrograms/readingPrograms.data';
 import { testingAndDebugging_SkillGroup_Data } from './testingAndDebugging/testingAndDebugging.data';
 
-export const programming_SkillDomain_Data = buildSkillDomainConfig({
+export const programming_SkillDomain_Data = defineSkillDomain({
   slug: 'programming',
   id: '620ddff3-1b68-4866-9549-ec60a22209d2',
-  name: {
+  title: {
     en: 'Programming',
     zh: '程序设计',
     hi: 'प्रोग्रामिंग',
@@ -43,16 +43,16 @@ export const programming_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Бағдарламалау',
     qm: 'Programmalav',
   },
-  groups: {
-    dataTypesAndReferences: dataTypesAndReferences_SkillGroup_Data,
-    functionsAndReuse: functionsAndReuse_SkillGroup_Data,
-    programData: programData_SkillGroup_Data,
-    programmingConstructs: programmingConstructs_SkillGroup_Data,
-    programmingParadigms: programmingParadigms_SkillGroup_Data,
-    programStructureAndSyntax: programStructureAndSyntax_SkillGroup_Data,
-    readingPrograms: readingPrograms_SkillGroup_Data,
-    testingAndDebugging: testingAndDebugging_SkillGroup_Data,
-  },
+  groups: [
+    dataTypesAndReferences_SkillGroup_Data,
+    functionsAndReuse_SkillGroup_Data,
+    programData_SkillGroup_Data,
+    programmingConstructs_SkillGroup_Data,
+    programmingParadigms_SkillGroup_Data,
+    programStructureAndSyntax_SkillGroup_Data,
+    readingPrograms_SkillGroup_Data,
+    testingAndDebugging_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Reading, writing, running, and testing executable instructions that modify program state or produce results. Unlike abstract algorithm design, these competencies concern the behavior of an actual program.',

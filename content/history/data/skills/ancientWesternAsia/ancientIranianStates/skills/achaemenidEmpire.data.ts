@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const achaemenidEmpire_Skill_Data = buildSkillConfig({
+export const achaemenidEmpire_Skill_Data = defineSkill({
   slug: 'achaemenidEmpire',
   id: 'ec1fc96f-ce6c-401e-91bf-2c914ed23206',
   name: {

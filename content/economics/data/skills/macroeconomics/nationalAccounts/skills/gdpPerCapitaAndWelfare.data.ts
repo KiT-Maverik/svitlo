@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gdpPerCapitaAndWelfare_Skill_Data = buildSkillConfig({
+export const gdpPerCapitaAndWelfare_Skill_Data = defineSkill({
   slug: 'gdpPerCapitaAndWelfare',
   id: 'e0d150ed-20d3-43bd-b9dd-e050acf4970e',
   name: {

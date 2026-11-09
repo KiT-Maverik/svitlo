@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const multipleSolutionStrategies_Skill_Data = buildSkillConfig({
+export const multipleSolutionStrategies_Skill_Data = defineSkill({
   slug: 'multipleSolutionStrategies',
   id: '2be4fa3b-25b6-4c4d-95a3-61e1e1c160c2',
   name: {

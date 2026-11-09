@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const garamantes_Skill_Data = buildSkillConfig({
+export const garamantes_Skill_Data = defineSkill({
   slug: 'garamantes',
   id: '89b9c800-e3bb-4fe3-be9a-9e154f3fc120',
   name: {

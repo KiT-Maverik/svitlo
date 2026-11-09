@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const biodegradationAndPersistence_Skill_Data = buildSkillConfig({
+export const biodegradationAndPersistence_Skill_Data = defineSkill({
   slug: 'biodegradationAndPersistence',
   id: '97550704-df3a-40e1-a57d-c62d88699fa9',
   name: {

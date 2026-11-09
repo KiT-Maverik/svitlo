@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeTheRoleOfContextInAestheticExperience_Skill_Data = buildSkillConfig({
+export const analyzeTheRoleOfContextInAestheticExperience_Skill_Data = defineSkill({
   slug: 'analyzeTheRoleOfContextInAestheticExperience',
   id: 'd18d056e-5265-4059-be20-e90f55dab9ab',
   name: {

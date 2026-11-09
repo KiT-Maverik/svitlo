@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evenOdd_Skill_Data = buildSkillConfig({
+export const evenOdd_Skill_Data = defineSkill({
   slug: 'evenOdd',
   id: '1945f222-d833-4897-b9c1-71f16d81fd74',
   name: {

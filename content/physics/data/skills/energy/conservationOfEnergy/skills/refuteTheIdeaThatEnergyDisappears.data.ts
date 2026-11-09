@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const refuteTheIdeaThatEnergyDisappears_Skill_Data = buildSkillConfig({
+export const refuteTheIdeaThatEnergyDisappears_Skill_Data = defineSkill({
   slug: 'refuteTheIdeaThatEnergyDisappears',
   id: '7d53ef13-ba5f-4e7c-98a7-c0d2d5b46b11',
   name: {

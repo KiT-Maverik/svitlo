@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainStatementBlockBoundaries_Skill_Data = buildSkillConfig({
+export const explainStatementBlockBoundaries_Skill_Data = defineSkill({
   slug: 'explainStatementBlockBoundaries',
   id: '8e1df7cf-ed63-44f9-af83-05d0e564eb72',
   name: {

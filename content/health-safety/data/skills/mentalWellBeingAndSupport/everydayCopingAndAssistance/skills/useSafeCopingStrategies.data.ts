@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useSafeCopingStrategies_Skill_Data = buildSkillConfig({
+export const useSafeCopingStrategies_Skill_Data = defineSkill({
   slug: 'useSafeCopingStrategies',
   id: 'c6fdbda2-e0b3-4fea-9889-74e3e6ea27a9',
   name: {

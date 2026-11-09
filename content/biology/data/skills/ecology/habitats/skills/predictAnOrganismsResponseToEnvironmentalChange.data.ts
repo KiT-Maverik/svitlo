@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictAnOrganismsResponseToEnvironmentalChange_Skill_Data = buildSkillConfig({
+export const predictAnOrganismsResponseToEnvironmentalChange_Skill_Data = defineSkill({
   slug: 'predictAnOrganismsResponseToEnvironmentalChange',
   id: '3577b8bc-b60a-47e3-948b-2961f7267210',
   name: {

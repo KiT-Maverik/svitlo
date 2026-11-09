@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const usePositiveAndNegativeSpace_Skill_Data = buildSkillConfig({
+export const usePositiveAndNegativeSpace_Skill_Data = defineSkill({
   slug: 'usePositiveAndNegativeSpace',
   id: '01c0f64f-96bd-49e8-9ea6-8988fa70a839',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const clarifyAContestedConcept_Skill_Data = buildSkillConfig({
+export const clarifyAContestedConcept_Skill_Data = defineSkill({
   slug: 'clarifyAContestedConcept',
   id: 'f52e7b99-ac9b-45eb-84d8-13334c309ed1',
   name: {

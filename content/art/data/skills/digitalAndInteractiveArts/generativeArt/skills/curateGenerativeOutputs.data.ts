@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const curateGenerativeOutputs_Skill_Data = buildSkillConfig({
+export const curateGenerativeOutputs_Skill_Data = defineSkill({
   slug: 'curateGenerativeOutputs',
   id: '886757e1-e7ef-46e4-8d92-d7ef53c5a49e',
   name: {

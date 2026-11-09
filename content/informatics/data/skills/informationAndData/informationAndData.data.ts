@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { databases_SkillGroup_Data } from './databases/databases.data';
 import { dataCollectionAndOrganization_SkillGroup_Data } from './dataCollectionAndOrganization/dataCollectionAndOrganization.data';
@@ -6,10 +6,10 @@ import { informationSearchAndVerification_SkillGroup_Data } from './informationS
 import { probabilityAndUncertainty_SkillGroup_Data } from './probabilityAndUncertainty/probabilityAndUncertainty.data';
 import { statisticalInvestigation_SkillGroup_Data } from './statisticalInvestigation/statisticalInvestigation.data';
 
-export const informationAndData_SkillDomain_Data = buildSkillDomainConfig({
+export const informationAndData_SkillDomain_Data = defineSkillDomain({
   slug: 'informationAndData',
   id: 'a6147899-9aae-4981-988a-8f3562a72a47',
-  name: {
+  title: {
     en: 'Information and Data',
     zh: '信息与数据',
     hi: 'सूचना और डेटा',
@@ -40,13 +40,13 @@ export const informationAndData_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Ақпарат және деректер',
     qm: 'Malümat ve verilgenler',
   },
-  groups: {
-    databases: databases_SkillGroup_Data,
-    dataCollectionAndOrganization: dataCollectionAndOrganization_SkillGroup_Data,
-    informationSearchAndVerification: informationSearchAndVerification_SkillGroup_Data,
-    probabilityAndUncertainty: probabilityAndUncertainty_SkillGroup_Data,
-    statisticalInvestigation: statisticalInvestigation_SkillGroup_Data,
-  },
+  groups: [
+    databases_SkillGroup_Data,
+    dataCollectionAndOrganization_SkillGroup_Data,
+    informationSearchAndVerification_SkillGroup_Data,
+    probabilityAndUncertainty_SkillGroup_Data,
+    statisticalInvestigation_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Obtaining and verifying information, organizing datasets, finding patterns, and reasoning about uncertain events. A digital setting may overlap with mathematics, but these skills are classified locally within Informatics.',

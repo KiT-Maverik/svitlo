@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMetaethicalFromNormativeQuestions_Skill_Data = buildSkillConfig({
+export const distinguishMetaethicalFromNormativeQuestions_Skill_Data = defineSkill({
   slug: 'distinguishMetaethicalFromNormativeQuestions',
   id: 'c4df7235-9ce2-4fbb-b067-58a627ba4d2b',
   name: {

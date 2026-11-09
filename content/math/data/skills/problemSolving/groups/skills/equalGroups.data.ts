@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const equalGroups_Skill_Data = buildSkillConfig({
+export const equalGroups_Skill_Data = defineSkill({
   slug: 'equalGroups',
   id: '30aa7d28-187b-44e7-806b-06457d3a0970',
   name: {

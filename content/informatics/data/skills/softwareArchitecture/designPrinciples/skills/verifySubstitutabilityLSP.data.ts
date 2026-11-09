@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const verifySubstitutabilityLSP_Skill_Data = buildSkillConfig({
+export const verifySubstitutabilityLSP_Skill_Data = defineSkill({
   slug: 'verifySubstitutabilityLSP',
   id: '31afe799-ad12-4cfa-98a0-1ed99d1a1c1a',
   name: {

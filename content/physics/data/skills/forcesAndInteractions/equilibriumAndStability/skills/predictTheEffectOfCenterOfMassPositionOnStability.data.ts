@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheEffectOfCenterOfMassPositionOnStability_Skill_Data = buildSkillConfig({
+export const predictTheEffectOfCenterOfMassPositionOnStability_Skill_Data = defineSkill({
   slug: 'predictTheEffectOfCenterOfMassPositionOnStability',
   id: '6213d294-8d95-4def-85e7-2e29d9be0bda',
   name: {

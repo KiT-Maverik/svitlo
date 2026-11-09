@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const structuralTransformation_Skill_Data = buildSkillConfig({
+export const structuralTransformation_Skill_Data = defineSkill({
   slug: 'structuralTransformation',
   id: 'b2383b5f-5b7d-4b35-952e-1f775b4fd8b6',
   name: {

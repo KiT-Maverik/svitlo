@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { conquestsOfAlexander_Skill_Data, hellenisticKingdoms_Skill_Data, riseOfMacedonia_Skill_Data } from './skills';
 
-export const macedoniaAndHellenisticWorld_SkillGroup_Data = buildSkillGroupConfig({
+export const macedoniaAndHellenisticWorld_SkillGroup_Data = defineSkillGroup({
   slug: 'macedoniaAndHellenisticWorld',
   id: '78005c99-235d-4d1d-a852-bf5da04b7266',
   name: {
@@ -36,11 +36,11 @@ export const macedoniaAndHellenisticWorld_SkillGroup_Data = buildSkillGroupConfi
     kk: 'Македония және эллинистік әлем',
     qm: 'Makedoniya ve ellinistik dünya',
   },
-  skills: {
-    conquestsOfAlexander: conquestsOfAlexander_Skill_Data,
-    hellenisticKingdoms: hellenisticKingdoms_Skill_Data,
-    riseOfMacedonia: riseOfMacedonia_Skill_Data,
-  },
+  skills: [
+    conquestsOfAlexander_Skill_Data,
+    hellenisticKingdoms_Skill_Data,
+    riseOfMacedonia_Skill_Data,
+  ],
   description: {
     methodological:
       "Macedon's rise, Alexander's campaigns, and successor kingdoms transformed Balkan, Egyptian, and Asian politics and exchanges.",

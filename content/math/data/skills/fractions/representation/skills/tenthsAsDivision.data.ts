@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const tenthsAsDivision_Skill_Data = buildSkillConfig({
+export const tenthsAsDivision_Skill_Data = defineSkill({
   slug: 'tenthsAsDivision',
   id: '07f83714-554b-4dd3-8e1a-3abeb1c065b0',
   name: {

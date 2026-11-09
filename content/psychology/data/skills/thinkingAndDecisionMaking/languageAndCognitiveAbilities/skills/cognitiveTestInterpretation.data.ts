@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cognitiveTestInterpretation_Skill_Data = buildSkillConfig({
+export const cognitiveTestInterpretation_Skill_Data = defineSkill({
   slug: 'cognitiveTestInterpretation',
   id: '44898387-5f12-4ef3-9d8e-309bfde3e1b1',
   name: {

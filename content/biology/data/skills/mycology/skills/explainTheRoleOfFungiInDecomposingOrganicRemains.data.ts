@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfFungiInDecomposingOrganicRemains_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfFungiInDecomposingOrganicRemains',
   id: 'eb91a925-c334-4474-89ab-baed59f92038',
   name: {

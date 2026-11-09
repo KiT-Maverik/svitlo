@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   sectoralEconomicStructure_Skill_Data,
@@ -6,7 +6,7 @@ import {
   technologicalCatchUp_Skill_Data,
 } from './skills';
 
-export const structuralChange_SkillGroup_Data = buildSkillGroupConfig({
+export const structuralChange_SkillGroup_Data = defineSkillGroup({
   slug: 'structuralChange',
   id: '11c727a8-6902-463b-93ea-a62b9ebdb522',
   name: {
@@ -40,11 +40,11 @@ export const structuralChange_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Құрылымдық өзгерістер',
     qm: 'Quruluş deñişmeleri',
   },
-  skills: {
-    sectoralEconomicStructure: sectoralEconomicStructure_Skill_Data,
-    structuralTransformation: structuralTransformation_Skill_Data,
-    technologicalCatchUp: technologicalCatchUp_Skill_Data,
-  },
+  skills: [
+    sectoralEconomicStructure_Skill_Data,
+    structuralTransformation_Skill_Data,
+    technologicalCatchUp_Skill_Data,
+  ],
   description: {
     methodological:
       'As productivity increases, the shares of industries and occupations and the organization of work change.',

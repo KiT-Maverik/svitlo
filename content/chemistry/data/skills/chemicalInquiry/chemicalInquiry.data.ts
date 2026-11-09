@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { analyticalChemistry_SkillGroup_Data } from './analyticalChemistry/analyticalChemistry.data';
 import { laboratoryReasoning_SkillGroup_Data } from './laboratoryReasoning/laboratoryReasoning.data';
 import { measurementsAndEvidence_SkillGroup_Data } from './measurementsAndEvidence/measurementsAndEvidence.data';
 import { questionsAndModels_SkillGroup_Data } from './questionsAndModels/questionsAndModels.data';
 
-export const chemicalInquiry_SkillDomain_Data = buildSkillDomainConfig({
+export const chemicalInquiry_SkillDomain_Data = defineSkillDomain({
   slug: 'chemicalInquiry',
   id: 'f8ccde78-00a5-4247-a7c2-28021b0b40a4',
-  name: {
+  title: {
     en: 'Chemical Inquiry',
     zh: '化学探究',
     hi: 'रासायनिक अन्वेषण',
@@ -39,12 +39,12 @@ export const chemicalInquiry_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Химиялық зерттеу',
     qm: 'Himiyeviy tetqiqat',
   },
-  groups: {
-    analyticalChemistry: analyticalChemistry_SkillGroup_Data,
-    laboratoryReasoning: laboratoryReasoning_SkillGroup_Data,
-    measurementsAndEvidence: measurementsAndEvidence_SkillGroup_Data,
-    questionsAndModels: questionsAndModels_SkillGroup_Data,
-  },
+  groups: [
+    analyticalChemistry_SkillGroup_Data,
+    laboratoryReasoning_SkillGroup_Data,
+    measurementsAndEvidence_SkillGroup_Data,
+    questionsAndModels_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Chemical knowledge connects observations of substances with explanations, testable models and reliable evidence. This domain covers chemistry-specific investigation and communication; general research methodology remains a cross-disciplinary concern.',

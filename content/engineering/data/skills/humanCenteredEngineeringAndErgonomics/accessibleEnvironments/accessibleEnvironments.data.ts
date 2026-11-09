@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   accessibleFixtureDesign_Skill_Data,
@@ -6,7 +6,7 @@ import {
   evaluateContinuousAccessRoutes_Skill_Data,
 } from './skills';
 
-export const accessibleEnvironments_SkillGroup_Data = buildSkillGroupConfig({
+export const accessibleEnvironments_SkillGroup_Data = defineSkillGroup({
   slug: 'accessibleEnvironments',
   id: '00fc76cf-99b1-4732-adb4-3d9f962a484b',
   name: {
@@ -40,11 +40,11 @@ export const accessibleEnvironments_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қолжетімді орта',
     qm: 'İrişilebilir muhitler',
   },
-  skills: {
-    accessibleFixtureDesign: accessibleFixtureDesign_Skill_Data,
-    compareInclusiveDesignSolutions: compareInclusiveDesignSolutions_Skill_Data,
-    evaluateContinuousAccessRoutes: evaluateContinuousAccessRoutes_Skill_Data,
-  },
+  skills: [
+    accessibleFixtureDesign_Skill_Data,
+    compareInclusiveDesignSolutions_Skill_Data,
+    evaluateContinuousAccessRoutes_Skill_Data,
+  ],
   description: {
     methodological:
       'Inclusive infrastructure requires usable routes and fixtures as well as accessible individual devices.',

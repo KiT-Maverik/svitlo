@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const endothermicProcesses_Skill_Data = buildSkillConfig({
+export const endothermicProcesses_Skill_Data = defineSkill({
   slug: 'endothermicProcesses',
   id: '9e1b3d80-a2c9-494b-9f31-b4f20225129e',
   name: {

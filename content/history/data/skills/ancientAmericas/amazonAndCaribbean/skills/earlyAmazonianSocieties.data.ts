@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyAmazonianSocieties_Skill_Data = buildSkillConfig({
+export const earlyAmazonianSocieties_Skill_Data = defineSkill({
   slug: 'earlyAmazonianSocieties',
   id: 'de7648cd-4174-489e-8d09-17108d6f2ade',
   name: {

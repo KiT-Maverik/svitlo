@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheConceptOfAGeographicObject_Skill_Data = buildSkillConfig({
+export const explainTheConceptOfAGeographicObject_Skill_Data = defineSkill({
   slug: 'explainTheConceptOfAGeographicObject',
   id: 'f6024c5e-4b71-43ca-a6c5-2ed7afb29e74',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   cameraHardware_Skill_Data,
@@ -8,7 +8,7 @@ import {
   opticalComponentSuitability_Skill_Data,
 } from './skills';
 
-export const opticalDevices_SkillGroup_Data = buildSkillGroupConfig({
+export const opticalDevices_SkillGroup_Data = defineSkillGroup({
   slug: 'opticalDevices',
   id: '0fa1eeda-d99e-46e6-83d6-dee6fcd43014',
   name: {
@@ -42,13 +42,13 @@ export const opticalDevices_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Оптикалық құрылғылар',
     qm: 'Optik cihazlar',
   },
-  skills: {
-    cameraHardware: cameraHardware_Skill_Data,
-    fiberOpticCommunicationSystems: fiberOpticCommunicationSystems_Skill_Data,
-    identifyLaserDeviceHazards: identifyLaserDeviceHazards_Skill_Data,
-    laserDeviceArchitecture: laserDeviceArchitecture_Skill_Data,
-    opticalComponentSuitability: opticalComponentSuitability_Skill_Data,
-  },
+  skills: [
+    cameraHardware_Skill_Data,
+    fiberOpticCommunicationSystems_Skill_Data,
+    identifyLaserDeviceHazards_Skill_Data,
+    laserDeviceArchitecture_Skill_Data,
+    opticalComponentSuitability_Skill_Data,
+  ],
   description: {
     methodological:
       'Optical components manipulate or detect light for imaging, sensing and transmission; lasers require particular source and exposure precautions.',

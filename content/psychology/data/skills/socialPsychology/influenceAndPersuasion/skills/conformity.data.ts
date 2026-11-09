@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const conformity_Skill_Data = buildSkillConfig({
+export const conformity_Skill_Data = defineSkill({
   slug: 'conformity',
   id: 'ea92f870-0086-44f2-9e77-249916617795',
   name: {

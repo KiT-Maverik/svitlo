@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAestheticPluralism_Skill_Data = buildSkillConfig({
+export const analyzeAestheticPluralism_Skill_Data = defineSkill({
   slug: 'analyzeAestheticPluralism',
   id: '8109bd2c-0448-49f4-b4aa-d60a744171b9',
   name: {

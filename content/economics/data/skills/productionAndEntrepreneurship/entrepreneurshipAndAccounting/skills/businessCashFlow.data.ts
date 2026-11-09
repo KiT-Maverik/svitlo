@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const businessCashFlow_Skill_Data = buildSkillConfig({
+export const businessCashFlow_Skill_Data = defineSkill({
   slug: 'businessCashFlow',
   id: '0f8ff663-2fe5-42fb-a491-b99854d5d3a1',
   name: {

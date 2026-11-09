@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distributive_Skill_Data = buildSkillConfig({
+export const distributive_Skill_Data = defineSkill({
   slug: 'distributive',
   id: 'f8ebb2c5-d8e4-42d5-96ee-71e6ab32269e',
   name: {

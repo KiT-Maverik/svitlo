@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const zhouDynasty_Skill_Data = buildSkillConfig({
+export const zhouDynasty_Skill_Data = defineSkill({
   slug: 'zhouDynasty',
   id: 'cad57066-0756-41ad-ae58-f8c1b809dce5',
   name: {

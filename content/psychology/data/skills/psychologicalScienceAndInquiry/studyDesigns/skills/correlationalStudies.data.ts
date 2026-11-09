@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const correlationalStudies_Skill_Data = buildSkillConfig({
+export const correlationalStudies_Skill_Data = defineSkill({
   slug: 'correlationalStudies',
   id: '7c0f8e27-0692-4aff-9d76-990eb7a03b53',
   name: {

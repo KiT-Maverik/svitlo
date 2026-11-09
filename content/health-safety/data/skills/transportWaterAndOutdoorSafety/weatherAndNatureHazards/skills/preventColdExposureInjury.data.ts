@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const preventColdExposureInjury_Skill_Data = buildSkillConfig({
+export const preventColdExposureInjury_Skill_Data = defineSkill({
   slug: 'preventColdExposureInjury',
   id: '1322a701-0256-4f7c-915c-38fad6961146',
   name: {

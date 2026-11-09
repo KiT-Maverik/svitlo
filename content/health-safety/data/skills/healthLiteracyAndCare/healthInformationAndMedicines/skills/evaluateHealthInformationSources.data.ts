@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateHealthInformationSources_Skill_Data = buildSkillConfig({
+export const evaluateHealthInformationSources_Skill_Data = defineSkill({
   slug: 'evaluateHealthInformationSources',
   id: '8123783b-9415-4210-b01b-3b1206a2844c',
   name: {

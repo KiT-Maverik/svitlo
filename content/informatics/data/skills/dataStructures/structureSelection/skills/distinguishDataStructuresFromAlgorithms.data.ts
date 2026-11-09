@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDataStructuresFromAlgorithms_Skill_Data = buildSkillConfig({
+export const distinguishDataStructuresFromAlgorithms_Skill_Data = defineSkill({
   slug: 'distinguishDataStructuresFromAlgorithms',
   id: 'f7738678-8150-409c-bb0d-d8192aebdac7',
   name: {

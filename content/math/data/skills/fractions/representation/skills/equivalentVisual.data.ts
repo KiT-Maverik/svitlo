@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const equivalentVisual_Skill_Data = buildSkillConfig({
+export const equivalentVisual_Skill_Data = defineSkill({
   slug: 'equivalentVisual',
   id: 'fbe8f4a0-92e8-4c98-83c0-3a0d6888bd38',
   name: {

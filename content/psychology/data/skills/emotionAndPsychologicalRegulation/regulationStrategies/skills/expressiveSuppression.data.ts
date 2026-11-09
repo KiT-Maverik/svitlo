@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const expressiveSuppression_Skill_Data = buildSkillConfig({
+export const expressiveSuppression_Skill_Data = defineSkill({
   slug: 'expressiveSuppression',
   id: 'ace8a6fd-95df-44cd-a4c7-164115e6a3b6',
   name: {

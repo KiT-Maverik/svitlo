@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { explainSearlesChineseRoom_Skill_Data, explainTheTuringTest_Skill_Data } from './skills';
 
-export const imitationAndUnderstanding_SkillGroup_Data = buildSkillGroupConfig({
+export const imitationAndUnderstanding_SkillGroup_Data = defineSkillGroup({
   slug: 'imitationAndUnderstanding',
   id: '1a62b00f-132b-4dc7-bb7e-e5def980ca92',
   name: {
@@ -36,10 +36,10 @@ export const imitationAndUnderstanding_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Еліктеу және түсіну',
     qm: 'Taqlit ve añlav',
   },
-  skills: {
-    explainSearlesChineseRoom: explainSearlesChineseRoom_Skill_Data,
-    explainTheTuringTest: explainTheTuringTest_Skill_Data,
-  },
+  skills: [
+    explainSearlesChineseRoom_Skill_Data,
+    explainTheTuringTest_Skill_Data,
+  ],
   description: {
     methodological:
       'Discussions of machine intelligence distinguish outward similarity of responses from claims of internal understanding. A behavioral criterion and a philosophical thought experiment ask different questions; neither alone proves or disproves consciousness.',

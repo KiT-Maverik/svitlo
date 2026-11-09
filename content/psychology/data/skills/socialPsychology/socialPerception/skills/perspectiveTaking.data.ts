@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const perspectiveTaking_Skill_Data = buildSkillConfig({
+export const perspectiveTaking_Skill_Data = defineSkill({
   slug: 'perspectiveTaking',
   id: '78ad86a1-1033-4f48-8ceb-e6cfe51dce10',
   name: {

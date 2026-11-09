@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeAndeanWeavingTraditions_Skill_Data,
@@ -6,7 +6,7 @@ import {
   analyzeHaidaFormlineArt_Skill_Data,
 } from './skills';
 
-export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = buildSkillGroupConfig({
+export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = defineSkillGroup({
   slug: 'indigenousArtisticTraditionsOfTheAmericas',
   id: '2b97c500-ae52-427f-9083-4152fa878e9d',
   name: {
@@ -40,11 +40,11 @@ export const indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data = buildSk
     kk: 'Америка байырғы халықтарының көркемдік дәстүрлері',
     qm: 'Amerika yerli halklarınıñ sanat adetleri',
   },
-  skills: {
-    analyzeAndeanWeavingTraditions: analyzeAndeanWeavingTraditions_Skill_Data,
-    analyzeClassicMayaReliefSculpture: analyzeClassicMayaReliefSculpture_Skill_Data,
-    analyzeHaidaFormlineArt: analyzeHaidaFormlineArt_Skill_Data,
-  },
+  skills: [
+    analyzeAndeanWeavingTraditions_Skill_Data,
+    analyzeClassicMayaReliefSculpture_Skill_Data,
+    analyzeHaidaFormlineArt_Skill_Data,
+  ],
   description: {
     methodological:
       "Works are understood within named peoples' histories and living cultural continuities, with attention to provenance and the limits of outsider interpretation.",

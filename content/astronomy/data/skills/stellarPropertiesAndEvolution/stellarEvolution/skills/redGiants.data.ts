@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const redGiants_Skill_Data = buildSkillConfig({
+export const redGiants_Skill_Data = defineSkill({
   slug: 'redGiants',
   id: '5ccd0361-375d-4131-83bf-ee8425a7b06d',
   name: {

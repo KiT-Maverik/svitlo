@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const metalsInUse_Skill_Data = buildSkillConfig({
+export const metalsInUse_Skill_Data = defineSkill({
   slug: 'metalsInUse',
   id: '78e26042-8487-4c5f-a46e-085f6bbe62f3',
   name: {

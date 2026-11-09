@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const calorimetry_Skill_Data = buildSkillConfig({
+export const calorimetry_Skill_Data = defineSkill({
   slug: 'calorimetry',
   id: '24c3b3eb-a76b-4308-8cf6-3b5761909bf9',
   name: {

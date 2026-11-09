@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interleavedPractice_Skill_Data = buildSkillConfig({
+export const interleavedPractice_Skill_Data = defineSkill({
   slug: 'interleavedPractice',
   id: 'ab9e259d-6da5-42e4-bd4f-bee322b40529',
   name: {

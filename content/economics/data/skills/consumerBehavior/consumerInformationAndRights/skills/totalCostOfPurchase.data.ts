@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const totalCostOfPurchase_Skill_Data = buildSkillConfig({
+export const totalCostOfPurchase_Skill_Data = defineSkill({
   slug: 'totalCostOfPurchase',
   id: '9e19ecb1-2986-4e3d-b34b-e60313b48cd0',
   name: {

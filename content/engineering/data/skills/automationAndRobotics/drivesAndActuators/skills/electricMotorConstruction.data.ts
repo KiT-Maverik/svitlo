@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const electricMotorConstruction_Skill_Data = buildSkillConfig({
+export const electricMotorConstruction_Skill_Data = defineSkill({
   slug: 'electricMotorConstruction',
   id: '82e13252-c0ab-4621-bb10-8665c02c9dae',
   name: {

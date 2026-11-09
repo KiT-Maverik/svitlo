@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAestheticFromInstrumentalValue_Skill_Data = buildSkillConfig({
+export const distinguishAestheticFromInstrumentalValue_Skill_Data = defineSkill({
   slug: 'distinguishAestheticFromInstrumentalValue',
   id: '60d6ba94-fddf-4c57-8417-ca69fb6fc227',
   name: {

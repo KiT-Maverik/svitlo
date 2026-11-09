@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAGameMechanic_Skill_Data = buildSkillConfig({
+export const designAGameMechanic_Skill_Data = defineSkill({
   slug: 'designAGameMechanic',
   id: 'd547e4c6-7fee-4c61-b649-3449d56a3bf6',
   name: {

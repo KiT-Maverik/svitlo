@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMarineAndFreshwaterEcosystems_Skill_Data = buildSkillConfig({
+export const distinguishMarineAndFreshwaterEcosystems_Skill_Data = defineSkill({
   slug: 'distinguishMarineAndFreshwaterEcosystems',
   id: 'b687ad1f-4242-4f52-9c8a-28c4c625bef5',
   name: {

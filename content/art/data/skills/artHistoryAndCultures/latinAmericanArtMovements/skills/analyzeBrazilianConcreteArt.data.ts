@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeBrazilianConcreteArt_Skill_Data = buildSkillConfig({
+export const analyzeBrazilianConcreteArt_Skill_Data = defineSkill({
   slug: 'analyzeBrazilianConcreteArt',
   id: 'f796f172-b23f-4e7a-9c9b-116b2c7a54f4',
   name: {

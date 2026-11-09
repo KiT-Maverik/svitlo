@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   cognitiveTestInterpretation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   theoriesOfIntelligence_Skill_Data,
 } from './skills';
 
-export const languageAndCognitiveAbilities_SkillGroup_Data = buildSkillGroupConfig({
+export const languageAndCognitiveAbilities_SkillGroup_Data = defineSkillGroup({
   slug: 'languageAndCognitiveAbilities',
   id: '6b3cbfeb-e4d6-42e6-bc88-e3d6325bf183',
   name: {
@@ -41,12 +41,12 @@ export const languageAndCognitiveAbilities_SkillGroup_Data = buildSkillGroupConf
     kk: 'Тіл және когнитивтік қабілеттер',
     qm: 'Til ve idrak qabiliyetleri',
   },
-  skills: {
-    cognitiveTestInterpretation: cognitiveTestInterpretation_Skill_Data,
-    languageComprehension: languageComprehension_Skill_Data,
-    languageProduction: languageProduction_Skill_Data,
-    theoriesOfIntelligence: theoriesOfIntelligence_Skill_Data,
-  },
+  skills: [
+    cognitiveTestInterpretation_Skill_Data,
+    languageComprehension_Skill_Data,
+    languageProduction_Skill_Data,
+    theoriesOfIntelligence_Skill_Data,
+  ],
   description: {
     methodological:
       'Psychological research investigates language processing and performance differences rather than literary quality or innate worth.',

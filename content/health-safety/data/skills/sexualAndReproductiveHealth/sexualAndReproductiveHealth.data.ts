@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { developmentAndBodilyCare_SkillGroup_Data } from './developmentAndBodilyCare/developmentAndBodilyCare.data';
 import { sexualAndReproductiveHealthcare_SkillGroup_Data } from './sexualAndReproductiveHealthcare/sexualAndReproductiveHealthcare.data';
 
-export const sexualAndReproductiveHealth_SkillDomain_Data = buildSkillDomainConfig({
+export const sexualAndReproductiveHealth_SkillDomain_Data = defineSkillDomain({
   slug: 'sexualAndReproductiveHealth',
   id: 'a994dfe0-00f2-470e-b070-53b6ef18338e',
-  name: {
+  title: {
     en: 'Sexual and Reproductive Health',
     zh: '性与生殖健康',
     hi: 'यौन और प्रजनन स्वास्थ्य',
@@ -37,10 +37,10 @@ export const sexualAndReproductiveHealth_SkillDomain_Data = buildSkillDomainConf
     kk: 'Жыныстық және репродуктивтік денсаулық',
     qm: 'Cinsiy ve nesil artırma sağlamlığı',
   },
-  groups: {
-    developmentAndBodilyCare: developmentAndBodilyCare_SkillGroup_Data,
-    sexualAndReproductiveHealthcare: sexualAndReproductiveHealthcare_SkillGroup_Data,
-  },
+  groups: [
+    developmentAndBodilyCare_SkillGroup_Data,
+    sexualAndReproductiveHealthcare_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Practical knowledge about bodily development, sexual health, prevention, and access to services supports informed and safe choices. Anatomy and reproductive mechanisms are mainly Biology; moral evaluation is not substituted for factual health information.',

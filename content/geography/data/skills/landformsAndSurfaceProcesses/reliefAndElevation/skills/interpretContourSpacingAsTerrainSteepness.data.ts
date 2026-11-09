@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretContourSpacingAsTerrainSteepness_Skill_Data = buildSkillConfig({
+export const interpretContourSpacingAsTerrainSteepness_Skill_Data = defineSkill({
   slug: 'interpretContourSpacingAsTerrainSteepness',
   id: 'e2bf9045-9b91-4446-bf20-935a2ea9eed2',
   name: {

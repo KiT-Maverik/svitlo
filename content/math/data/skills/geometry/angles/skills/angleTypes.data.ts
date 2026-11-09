@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const angleTypes_Skill_Data = buildSkillConfig({
+export const angleTypes_Skill_Data = defineSkill({
   slug: 'angleTypes',
   id: '3b0bc126-23d9-4350-82f3-11df0c34b571',
   name: {

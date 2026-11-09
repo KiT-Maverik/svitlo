@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener_Skill_Data = buildSkillConfig({
+export const explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener_Skill_Data = defineSkill({
   slug: 'explainTheChangeInPerceivedPitchDuringRelativeMotionOfSourceAndListener',
   id: '4907a198-b1ee-4f08-aac3-f2af8443be7a',
   name: {

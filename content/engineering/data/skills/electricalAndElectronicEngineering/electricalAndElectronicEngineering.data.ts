@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { circuitConstruction_SkillGroup_Data } from './circuitConstruction/circuitConstruction.data';
 import { computingHardware_SkillGroup_Data } from './computingHardware/computingHardware.data';
@@ -6,10 +6,10 @@ import { electricalMeasurementAndProtection_SkillGroup_Data } from './electrical
 import { electronicComponents_SkillGroup_Data } from './electronicComponents/electronicComponents.data';
 import { embeddedHardware_SkillGroup_Data } from './embeddedHardware/embeddedHardware.data';
 
-export const electricalAndElectronicEngineering_SkillDomain_Data = buildSkillDomainConfig({
+export const electricalAndElectronicEngineering_SkillDomain_Data = defineSkillDomain({
   slug: 'electricalAndElectronicEngineering',
   id: '797f3dc0-f168-4e96-9322-cb552a2a868b',
-  name: {
+  title: {
     en: 'Electrical and Electronic Engineering',
     zh: '电气与电子工程',
     hi: 'विद्युत और इलेक्ट्रॉनिकी अभियांत्रिकी',
@@ -40,13 +40,13 @@ export const electricalAndElectronicEngineering_SkillDomain_Data = buildSkillDom
     kk: 'Электр және электроника инженериясы',
     qm: 'Elektrik ve elektronika müendisligi',
   },
-  groups: {
-    circuitConstruction: circuitConstruction_SkillGroup_Data,
-    computingHardware: computingHardware_SkillGroup_Data,
-    electricalMeasurementAndProtection: electricalMeasurementAndProtection_SkillGroup_Data,
-    electronicComponents: electronicComponents_SkillGroup_Data,
-    embeddedHardware: embeddedHardware_SkillGroup_Data,
-  },
+  groups: [
+    circuitConstruction_SkillGroup_Data,
+    computingHardware_SkillGroup_Data,
+    electricalMeasurementAndProtection_SkillGroup_Data,
+    electronicComponents_SkillGroup_Data,
+    embeddedHardware_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Circuits and electronic hardware distribute power, process signals and connect physical controls to useful outputs. The subject here is device architecture and correct component integration, not the scientific derivation of electromagnetic laws.',

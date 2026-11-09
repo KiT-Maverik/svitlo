@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishPersonalIdentityFromSimilarity_Skill_Data = buildSkillConfig({
+export const distinguishPersonalIdentityFromSimilarity_Skill_Data = defineSkill({
   slug: 'distinguishPersonalIdentityFromSimilarity',
   id: '0e6e491f-28ff-4a4d-a842-42c8e501365a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const meroe_Skill_Data = buildSkillConfig({
+export const meroe_Skill_Data = defineSkill({
   slug: 'meroe',
   id: '708fcbb0-8846-41eb-b81d-5e10c7026132',
   name: {

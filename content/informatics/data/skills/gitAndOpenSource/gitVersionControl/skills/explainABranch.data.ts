@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainABranch_Skill_Data = buildSkillConfig({
+export const explainABranch_Skill_Data = defineSkill({
   slug: 'explainABranch',
   id: 'ab492aa2-5a99-48e2-a444-47a15abb3ccd',
   name: {

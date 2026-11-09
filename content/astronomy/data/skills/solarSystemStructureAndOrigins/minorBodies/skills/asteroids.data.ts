@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const asteroids_Skill_Data = buildSkillConfig({
+export const asteroids_Skill_Data = defineSkill({
   slug: 'asteroids',
   id: '4c0e7f06-9295-4c13-a1fe-c331623541ec',
   name: {

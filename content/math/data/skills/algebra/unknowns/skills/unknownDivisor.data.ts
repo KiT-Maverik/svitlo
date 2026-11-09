@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const unknownDivisor_Skill_Data = buildSkillConfig({
+export const unknownDivisor_Skill_Data = defineSkill({
   slug: 'unknownDivisor',
   id: 'c820dfa2-a186-4d00-8a53-4b6b4993a76b',
   name: {

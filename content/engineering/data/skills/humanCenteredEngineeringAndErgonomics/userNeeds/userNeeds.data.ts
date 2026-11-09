@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   identifyAccessibilityBarriers_Skill_Data,
@@ -7,7 +7,7 @@ import {
   translateUseObservationsIntoRequirements_Skill_Data,
 } from './skills';
 
-export const userNeeds_SkillGroup_Data = buildSkillGroupConfig({
+export const userNeeds_SkillGroup_Data = defineSkillGroup({
   slug: 'userNeeds',
   id: '3eff673a-1572-4c17-9e2a-de32d4fc1209',
   name: {
@@ -41,12 +41,12 @@ export const userNeeds_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Пайдаланушы қажеттіліктері',
     qm: 'Qullanıcılarnıñ ihtiyaçları',
   },
-  skills: {
-    identifyAccessibilityBarriers: identifyAccessibilityBarriers_Skill_Data,
-    identifyPhysicalUserScenarios: identifyPhysicalUserScenarios_Skill_Data,
-    observePhysicalUsabilityProblems: observePhysicalUsabilityProblems_Skill_Data,
-    translateUseObservationsIntoRequirements: translateUseObservationsIntoRequirements_Skill_Data,
-  },
+  skills: [
+    identifyAccessibilityBarriers_Skill_Data,
+    identifyPhysicalUserScenarios_Skill_Data,
+    observePhysicalUsabilityProblems_Skill_Data,
+    translateUseObservationsIntoRequirements_Skill_Data,
+  ],
   description: {
     methodological:
       "Design briefs must address users with differing abilities and usage contexts rather than projecting the designer's own preferences.",

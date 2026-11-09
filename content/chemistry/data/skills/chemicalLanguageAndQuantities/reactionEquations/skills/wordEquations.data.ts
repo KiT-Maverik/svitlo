@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const wordEquations_Skill_Data = buildSkillConfig({
+export const wordEquations_Skill_Data = defineSkill({
   slug: 'wordEquations',
   id: '35476b4c-cf5e-485c-ad15-8cf957824f93',
   name: {

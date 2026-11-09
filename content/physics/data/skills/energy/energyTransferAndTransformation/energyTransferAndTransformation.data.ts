@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainEnergyTransformationInAPhysicalProcess_Skill_Data,
   identifyEnergyTransferBetweenBodies_Skill_Data,
 } from './skills';
 
-export const energyTransferAndTransformation_SkillGroup_Data = buildSkillGroupConfig({
+export const energyTransferAndTransformation_SkillGroup_Data = defineSkillGroup({
   slug: 'energyTransferAndTransformation',
   id: 'b72e75f7-9188-4cc3-a5d7-caf2062217e5',
   name: {
@@ -39,10 +39,10 @@ export const energyTransferAndTransformation_SkillGroup_Data = buildSkillGroupCo
     kk: 'Энергияның берілуі мен түрленуі',
     qm: 'Energiyanı keçirüv ve deñiştirüv',
   },
-  skills: {
-    explainEnergyTransformationInAPhysicalProcess: explainEnergyTransformationInAPhysicalProcess_Skill_Data,
-    identifyEnergyTransferBetweenBodies: identifyEnergyTransferBetweenBodies_Skill_Data,
-  },
+  skills: [
+    explainEnergyTransformationInAPhysicalProcess_Skill_Data,
+    identifyEnergyTransferBetweenBodies_Skill_Data,
+  ],
   description: {
     methodological:
       'Energy can pass between objects and change form; the sequence of events matters more than the name of a particular device.',

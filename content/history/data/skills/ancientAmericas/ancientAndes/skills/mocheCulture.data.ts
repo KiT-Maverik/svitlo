@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mocheCulture_Skill_Data = buildSkillConfig({
+export const mocheCulture_Skill_Data = defineSkill({
   slug: 'mocheCulture',
   id: '83373e1c-d143-447a-bec8-aa1612d8de04',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { businessFluctuationsAndAggregateDemand_SkillGroup_Data } from './businessFluctuationsAndAggregateDemand/businessFluctuationsAndAggregateDemand.data';
 import { growthAndProductivity_SkillGroup_Data } from './growthAndProductivity/growthAndProductivity.data';
 import { nationalAccounts_SkillGroup_Data } from './nationalAccounts/nationalAccounts.data';
 import { pricesAndEmployment_SkillGroup_Data } from './pricesAndEmployment/pricesAndEmployment.data';
 
-export const macroeconomics_SkillDomain_Data = buildSkillDomainConfig({
+export const macroeconomics_SkillDomain_Data = defineSkillDomain({
   slug: 'macroeconomics',
   id: '572a8336-64b9-4c0e-9636-0f10cd4ab653',
-  name: {
+  title: {
     en: 'Макроекономіка',
     zh: '宏观经济学',
     hi: 'समष्टि अर्थशास्त्र',
@@ -39,12 +39,12 @@ export const macroeconomics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Макроэкономика',
     qm: 'Makroiqtisat',
   },
-  groups: {
-    businessFluctuationsAndAggregateDemand: businessFluctuationsAndAggregateDemand_SkillGroup_Data,
-    growthAndProductivity: growthAndProductivity_SkillGroup_Data,
-    nationalAccounts: nationalAccounts_SkillGroup_Data,
-    pricesAndEmployment: pricesAndEmployment_SkillGroup_Data,
-  },
+  groups: [
+    businessFluctuationsAndAggregateDemand_SkillGroup_Data,
+    growthAndProductivity_SkillGroup_Data,
+    nationalAccounts_SkillGroup_Data,
+    pricesAndEmployment_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Aggregate production, employment, inflation, and economic change describe economy-wide relationships; their measures and models are not the same as each individual's wellbeing.",

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reactionReversibility_Skill_Data = buildSkillConfig({
+export const reactionReversibility_Skill_Data = defineSkill({
   slug: 'reactionReversibility',
   id: 'e56e1543-4fb1-49f1-8922-398a4240f9fd',
   name: {

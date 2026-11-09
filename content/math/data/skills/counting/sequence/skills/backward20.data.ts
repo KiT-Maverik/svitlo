@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const backward20_Skill_Data = buildSkillConfig({
+export const backward20_Skill_Data = defineSkill({
   slug: 'backward20',
   id: '6942872f-bd64-47a6-ac8d-3531f3d56668',
   name: {

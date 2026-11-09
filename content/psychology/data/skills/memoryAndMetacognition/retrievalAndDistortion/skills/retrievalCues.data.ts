@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const retrievalCues_Skill_Data = buildSkillConfig({
+export const retrievalCues_Skill_Data = defineSkill({
   slug: 'retrievalCues',
   id: '68c14748-0ff2-46cc-a359-6c0f08c58aef',
   name: {

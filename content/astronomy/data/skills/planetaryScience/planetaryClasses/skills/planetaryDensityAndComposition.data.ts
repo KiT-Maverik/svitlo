@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryDensityAndComposition_Skill_Data = buildSkillConfig({
+export const planetaryDensityAndComposition_Skill_Data = defineSkill({
   slug: 'planetaryDensityAndComposition',
   id: '53bffe0e-2822-4ca4-8bc1-c9781059edce',
   name: {

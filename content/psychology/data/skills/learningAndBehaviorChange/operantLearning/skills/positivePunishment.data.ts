@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const positivePunishment_Skill_Data = buildSkillConfig({
+export const positivePunishment_Skill_Data = defineSkill({
   slug: 'positivePunishment',
   id: '48e29b60-24a6-4de1-9b9a-93e55b18afc0',
   name: {

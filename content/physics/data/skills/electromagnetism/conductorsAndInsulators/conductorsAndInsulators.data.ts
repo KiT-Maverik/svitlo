@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   identifyElectricallyConductiveMaterials_Skill_Data,
   identifyElectricallyInsulatingMaterials_Skill_Data,
 } from './skills';
 
-export const conductorsAndInsulators_SkillGroup_Data = buildSkillGroupConfig({
+export const conductorsAndInsulators_SkillGroup_Data = defineSkillGroup({
   slug: 'conductorsAndInsulators',
   id: '2e1318e6-5678-474c-925b-967e0cad957f',
   name: {
@@ -39,10 +39,10 @@ export const conductorsAndInsulators_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'გამტარები და იზოლატორები',
     kk: 'Өткізгіштер мен оқшаулағыштар',
   },
-  skills: {
-    identifyElectricallyConductiveMaterials: identifyElectricallyConductiveMaterials_Skill_Data,
-    identifyElectricallyInsulatingMaterials: identifyElectricallyInsulatingMaterials_Skill_Data,
-  },
+  skills: [
+    identifyElectricallyConductiveMaterials_Skill_Data,
+    identifyElectricallyInsulatingMaterials_Skill_Data,
+  ],
   description: {
     methodological:
       "Materials differ in how readily they permit electric charge to move; distinguish an electrical property of a material from a device's purpose.",

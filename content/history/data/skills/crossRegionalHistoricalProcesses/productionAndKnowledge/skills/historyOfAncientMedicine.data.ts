@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historyOfAncientMedicine_Skill_Data = buildSkillConfig({
+export const historyOfAncientMedicine_Skill_Data = defineSkill({
   slug: 'historyOfAncientMedicine',
   id: 'a038d659-92d3-4399-b56f-72c701f98203',
   name: {

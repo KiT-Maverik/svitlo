@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { driversOfLongTermGrowth_Skill_Data, economicGrowth_Skill_Data, potentialOutput_Skill_Data } from './skills';
 
-export const growthAndProductivity_SkillGroup_Data = buildSkillGroupConfig({
+export const growthAndProductivity_SkillGroup_Data = defineSkillGroup({
   slug: 'growthAndProductivity',
   id: '970fc3fa-33f3-43fe-80d0-b4e95a6c0132',
   name: {
@@ -36,11 +36,11 @@ export const growthAndProductivity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Өсім және өнімділік',
     qm: 'Ösüv ve mahsuldarlıq',
   },
-  skills: {
-    driversOfLongTermGrowth: driversOfLongTermGrowth_Skill_Data,
-    economicGrowth: economicGrowth_Skill_Data,
-    potentialOutput: potentialOutput_Skill_Data,
-  },
+  skills: [
+    driversOfLongTermGrowth_Skill_Data,
+    economicGrowth_Skill_Data,
+    potentialOutput_Skill_Data,
+  ],
   description: {
     methodological: 'Long-run aggregate output depends on technology, capital, labor, and institutional quality.',
     frontend: {

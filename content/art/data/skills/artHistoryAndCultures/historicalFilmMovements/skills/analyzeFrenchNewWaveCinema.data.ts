@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeFrenchNewWaveCinema_Skill_Data = buildSkillConfig({
+export const analyzeFrenchNewWaveCinema_Skill_Data = defineSkill({
   slug: 'analyzeFrenchNewWaveCinema',
   id: '2fbec023-776d-4232-b68f-df1ae8c98141',
   name: {

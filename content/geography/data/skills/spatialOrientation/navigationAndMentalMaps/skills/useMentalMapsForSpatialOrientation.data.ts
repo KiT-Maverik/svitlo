@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useMentalMapsForSpatialOrientation_Skill_Data = buildSkillConfig({
+export const useMentalMapsForSpatialOrientation_Skill_Data = defineSkill({
   slug: 'useMentalMapsForSpatialOrientation',
   id: '05df61aa-f788-4603-8400-2f6140b426c6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateMuseumRepresentation_Skill_Data = buildSkillConfig({
+export const evaluateMuseumRepresentation_Skill_Data = defineSkill({
   slug: 'evaluateMuseumRepresentation',
   id: '0b87b153-500f-4a67-9817-cbe08d6af07b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const firmProfitMaximization_Skill_Data = buildSkillConfig({
+export const firmProfitMaximization_Skill_Data = defineSkill({
   slug: 'firmProfitMaximization',
   id: '26acb5c2-2a9a-4a12-847c-9c7fdf0da6b6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const minimumWage_Skill_Data = buildSkillConfig({
+export const minimumWage_Skill_Data = defineSkill({
   slug: 'minimumWage',
   id: '2ab249c1-6019-4ab2-934a-a060fd1d379f',
   name: {

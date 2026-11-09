@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const buildALimitedPalette_Skill_Data = buildSkillConfig({
+export const buildALimitedPalette_Skill_Data = defineSkill({
   slug: 'buildALimitedPalette',
   id: '7eda21d1-da96-49bc-9b18-8fe338cf8216',
   name: {

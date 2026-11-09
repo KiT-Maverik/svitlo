@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeDisplayContext_Skill_Data,
@@ -7,7 +7,7 @@ import {
   writeExhibitionInterpretationText_Skill_Data,
 } from './skills';
 
-export const curationAndPresentation_SkillGroup_Data = buildSkillGroupConfig({
+export const curationAndPresentation_SkillGroup_Data = defineSkillGroup({
   slug: 'curationAndPresentation',
   id: '17fba333-c8a4-48c7-b81a-31d7f7c3b0de',
   name: {
@@ -41,12 +41,12 @@ export const curationAndPresentation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Кураторлық және таныстыру',
     qm: 'Kuratorlıq ve taqdim etüv',
   },
-  skills: {
-    analyzeDisplayContext: analyzeDisplayContext_Skill_Data,
-    selectWorksForAnExhibition: selectWorksForAnExhibition_Skill_Data,
-    sequenceAnExhibition: sequenceAnExhibition_Skill_Data,
-    writeExhibitionInterpretationText: writeExhibitionInterpretationText_Skill_Data,
-  },
+  skills: [
+    analyzeDisplayContext_Skill_Data,
+    selectWorksForAnExhibition_Skill_Data,
+    sequenceAnExhibition_Skill_Data,
+    writeExhibitionInterpretationText_Skill_Data,
+  ],
   description: {
     methodological:
       'Exhibiting work creates new relationships between artworks, their physical arrangement and audience access, independent of authoring the artworks.',

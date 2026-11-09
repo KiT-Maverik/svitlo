@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishUniformFromNonuniformMotion_Skill_Data,
   recognizeManifestationsOfInertiaInMotion_Skill_Data,
 } from './skills';
 
-export const inertiaAndChangesInMotion_SkillGroup_Data = buildSkillGroupConfig({
+export const inertiaAndChangesInMotion_SkillGroup_Data = defineSkillGroup({
   slug: 'inertiaAndChangesInMotion',
   id: '792cf094-e170-4767-ba9c-8dae2abf47f2',
   name: {
@@ -39,10 +39,10 @@ export const inertiaAndChangesInMotion_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Инерция және қозғалыстың өзгерістері',
     qm: 'İnertsiya ve areketniñ deñişmeleri',
   },
-  skills: {
-    distinguishUniformFromNonuniformMotion: distinguishUniformFromNonuniformMotion_Skill_Data,
-    recognizeManifestationsOfInertiaInMotion: recognizeManifestationsOfInertiaInMotion_Skill_Data,
-  },
+  skills: [
+    distinguishUniformFromNonuniformMotion_Skill_Data,
+    recognizeManifestationsOfInertiaInMotion_Skill_Data,
+  ],
   description: {
     methodological:
       'A body may continue moving after an applied action ceases, while changes in motion are associated with interaction; accessible models do not require equations of motion.',

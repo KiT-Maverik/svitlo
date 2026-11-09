@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishEvaporationFromBoiling_Skill_Data = buildSkillConfig({
+export const distinguishEvaporationFromBoiling_Skill_Data = defineSkill({
   slug: 'distinguishEvaporationFromBoiling',
   id: '06f53641-deed-48d2-a42d-7a30d3799491',
   name: {

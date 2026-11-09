@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const eyewitnessPerception_Skill_Data = buildSkillConfig({
+export const eyewitnessPerception_Skill_Data = defineSkill({
   slug: 'eyewitnessPerception',
   id: '2367ffd8-e9d3-4641-87c0-fc971b05212c',
   name: {

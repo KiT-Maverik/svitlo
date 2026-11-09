@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   designDigitalInterfaceFeedback_Skill_Data,
@@ -7,7 +7,7 @@ import {
   preventCommonDigitalInteractionErrors_Skill_Data,
 } from './skills';
 
-export const digitalInteractionDesign_SkillGroup_Data = buildSkillGroupConfig({
+export const digitalInteractionDesign_SkillGroup_Data = defineSkillGroup({
   slug: 'digitalInteractionDesign',
   id: '74767923-3b47-4431-94cc-3168ccd2e73c',
   name: {
@@ -41,12 +41,12 @@ export const digitalInteractionDesign_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Цифрлық өзара әрекеттесу дизайны',
     qm: 'Raqamlı tesirleşüv dizaynı',
   },
-  skills: {
-    designDigitalInterfaceFeedback: designDigitalInterfaceFeedback_Skill_Data,
-    designDigitalInterfaceNavigation: designDigitalInterfaceNavigation_Skill_Data,
-    identifyADigitalProductUsersGoal: identifyADigitalProductUsersGoal_Skill_Data,
-    preventCommonDigitalInteractionErrors: preventCommonDigitalInteractionErrors_Skill_Data,
-  },
+  skills: [
+    designDigitalInterfaceFeedback_Skill_Data,
+    designDigitalInterfaceNavigation_Skill_Data,
+    identifyADigitalProductUsersGoal_Skill_Data,
+    preventCommonDigitalInteractionErrors_Skill_Data,
+  ],
   description: {
     methodological:
       'Designing user action flows in applications and digital devices, understandable transitions, status feedback, and safeguards against common errors.',

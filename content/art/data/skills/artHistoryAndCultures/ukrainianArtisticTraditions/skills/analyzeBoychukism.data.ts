@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeBoychukism_Skill_Data = buildSkillConfig({
+export const analyzeBoychukism_Skill_Data = defineSkill({
   slug: 'analyzeBoychukism',
   id: '1a9e1d25-aad2-4d56-949f-aea5227a7f29',
   name: {

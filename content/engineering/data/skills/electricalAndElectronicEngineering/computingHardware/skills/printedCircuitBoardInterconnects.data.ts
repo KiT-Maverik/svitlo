@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const printedCircuitBoardInterconnects_Skill_Data = buildSkillConfig({
+export const printedCircuitBoardInterconnects_Skill_Data = defineSkill({
   slug: 'printedCircuitBoardInterconnects',
   id: '7f89e18e-57f5-4c64-9880-866bba1784e4',
   name: {

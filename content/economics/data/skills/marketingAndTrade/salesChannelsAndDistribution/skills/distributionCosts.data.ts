@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distributionCosts_Skill_Data = buildSkillConfig({
+export const distributionCosts_Skill_Data = defineSkill({
   slug: 'distributionCosts',
   id: '85dfea93-1c24-40c1-a37c-7f72918e1bb8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const smallBodyReservoirs_Skill_Data = buildSkillConfig({
+export const smallBodyReservoirs_Skill_Data = defineSkill({
   slug: 'smallBodyReservoirs',
   id: 'a695574f-62d8-4cf1-be70-2f36b41a73ea',
   name: {

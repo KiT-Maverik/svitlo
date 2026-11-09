@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bridge_Skill_Data = buildSkillConfig({
+export const bridge_Skill_Data = defineSkill({
   slug: 'bridge',
   id: 'bd54e532-c277-4768-99af-996bbb4d0fe1',
   name: {

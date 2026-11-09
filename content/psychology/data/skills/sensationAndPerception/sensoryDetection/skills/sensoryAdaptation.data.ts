@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sensoryAdaptation_Skill_Data = buildSkillConfig({
+export const sensoryAdaptation_Skill_Data = defineSkill({
   slug: 'sensoryAdaptation',
   id: '654e0898-f8ef-4e5a-b96e-e16825fa9dd7',
   name: {

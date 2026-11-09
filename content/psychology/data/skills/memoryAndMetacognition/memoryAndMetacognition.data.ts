@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { encodingAndConsolidation_SkillGroup_Data } from './encodingAndConsolidation/encodingAndConsolidation.data';
 import { memorySystems_SkillGroup_Data } from './memorySystems/memorySystems.data';
 import { monitoringAndLearningStrategies_SkillGroup_Data } from './monitoringAndLearningStrategies/monitoringAndLearningStrategies.data';
 import { retrievalAndDistortion_SkillGroup_Data } from './retrievalAndDistortion/retrievalAndDistortion.data';
 
-export const memoryAndMetacognition_SkillDomain_Data = buildSkillDomainConfig({
+export const memoryAndMetacognition_SkillDomain_Data = defineSkillDomain({
   slug: 'memoryAndMetacognition',
   id: 'c8e7be39-97ef-4f96-9577-4525e5bc6659',
-  name: {
+  title: {
     en: 'Memory and Metacognition',
     zh: '记忆与元认知',
     hi: 'स्मृति और अधिसंज्ञान',
@@ -39,12 +39,12 @@ export const memoryAndMetacognition_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Жады және метатаным',
     qm: 'Hafıza ve metakognitsiya',
   },
-  groups: {
-    encodingAndConsolidation: encodingAndConsolidation_SkillGroup_Data,
-    memorySystems: memorySystems_SkillGroup_Data,
-    monitoringAndLearningStrategies: monitoringAndLearningStrategies_SkillGroup_Data,
-    retrievalAndDistortion: retrievalAndDistortion_SkillGroup_Data,
-  },
+  groups: [
+    encodingAndConsolidation_SkillGroup_Data,
+    memorySystems_SkillGroup_Data,
+    monitoringAndLearningStrategies_SkillGroup_Data,
+    retrievalAndDistortion_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Remembering involves encoding, retention, retrieval, reconstruction, and monitoring. Memory science explains why familiar material can be difficult to recall and why subjective confidence may mislead.',

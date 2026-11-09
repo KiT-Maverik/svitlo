@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { basicLifeSupport_SkillGroup_Data } from './basicLifeSupport/basicLifeSupport.data';
 import { bleedingAndInjuries_SkillGroup_Data } from './bleedingAndInjuries/bleedingAndInjuries.data';
@@ -6,10 +6,10 @@ import { environmentalAndAcuteInjuries_SkillGroup_Data } from './environmentalAn
 import { initialAssessmentAndHelp_SkillGroup_Data } from './initialAssessmentAndHelp/initialAssessmentAndHelp.data';
 import { medicalEmergencies_SkillGroup_Data } from './medicalEmergencies/medicalEmergencies.data';
 
-export const firstAidAndImmediateResponse_SkillDomain_Data = buildSkillDomainConfig({
+export const firstAidAndImmediateResponse_SkillDomain_Data = defineSkillDomain({
   slug: 'firstAidAndImmediateResponse',
   id: 'd5869e78-d660-4634-99a8-a7b05e8ce81b',
-  name: {
+  title: {
     en: 'First Aid and Immediate Response',
     zh: '急救与即时应对',
     hi: 'प्राथमिक उपचार और त्वरित प्रतिक्रिया',
@@ -40,13 +40,13 @@ export const firstAidAndImmediateResponse_SkillDomain_Data = buildSkillDomainCon
     kk: 'Алғашқы көмек және шұғыл әрекет',
     qm: 'İlk yardım ve acele cevap',
   },
-  groups: {
-    basicLifeSupport: basicLifeSupport_SkillGroup_Data,
-    bleedingAndInjuries: bleedingAndInjuries_SkillGroup_Data,
-    environmentalAndAcuteInjuries: environmentalAndAcuteInjuries_SkillGroup_Data,
-    initialAssessmentAndHelp: initialAssessmentAndHelp_SkillGroup_Data,
-    medicalEmergencies: medicalEmergencies_SkillGroup_Data,
-  },
+  groups: [
+    basicLifeSupport_SkillGroup_Data,
+    bleedingAndInjuries_SkillGroup_Data,
+    environmentalAndAcuteInjuries_SkillGroup_Data,
+    initialAssessmentAndHelp_SkillGroup_Data,
+    medicalEmergencies_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Immediate assistance aims to recognize danger, activate professional help, and provide appropriate basic interventions within training and scene safety. Clinical treatment and invasive procedures are not implied by inclusion in the taxonomy.',

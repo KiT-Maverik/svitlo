@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyTheCentralProblemInAPhilosophicalText_Skill_Data = buildSkillConfig({
+export const identifyTheCentralProblemInAPhilosophicalText_Skill_Data = defineSkill({
   slug: 'identifyTheCentralProblemInAPhilosophicalText',
   id: '038cacd3-c1d9-4f42-8fea-faadde6acec6',
   name: {

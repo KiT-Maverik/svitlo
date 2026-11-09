@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { alloys_Skill_Data, colloids_Skill_Data, solutions_Skill_Data, suspensions_Skill_Data } from './skills';
 
-export const mixtureSystems_SkillGroup_Data = buildSkillGroupConfig({
+export const mixtureSystems_SkillGroup_Data = defineSkillGroup({
   slug: 'mixtureSystems',
   id: '00bdfb4d-243a-4e7a-8983-155ffe616764',
   name: {
@@ -36,12 +36,12 @@ export const mixtureSystems_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қоспалар жүйелері',
     qm: 'Qarışıq sistemaları',
   },
-  skills: {
-    alloys: alloys_Skill_Data,
-    colloids: colloids_Skill_Data,
-    solutions: solutions_Skill_Data,
-    suspensions: suspensions_Skill_Data,
-  },
+  skills: [
+    alloys_Skill_Data,
+    colloids_Skill_Data,
+    solutions_Skill_Data,
+    suspensions_Skill_Data,
+  ],
   description: {
     methodological:
       'Mixtures may contain more than one phase or dispersed material with properties depending on particle size and composition.',

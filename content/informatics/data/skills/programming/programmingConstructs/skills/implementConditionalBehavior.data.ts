@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const implementConditionalBehavior_Skill_Data = buildSkillConfig({
+export const implementConditionalBehavior_Skill_Data = defineSkill({
   slug: 'implementConditionalBehavior',
   id: '4d553e9f-3606-4baf-8b5b-9cbe34952a94',
   name: {

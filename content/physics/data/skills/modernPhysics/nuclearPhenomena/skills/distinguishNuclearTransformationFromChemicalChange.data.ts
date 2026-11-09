@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishNuclearTransformationFromChemicalChange_Skill_Data = buildSkillConfig({
+export const distinguishNuclearTransformationFromChemicalChange_Skill_Data = defineSkill({
   slug: 'distinguishNuclearTransformationFromChemicalChange',
   id: '8ace200a-0e8f-47f8-a047-4318659cbf3b',
   name: {

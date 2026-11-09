@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readHalfQuarter_Skill_Data = buildSkillConfig({
+export const readHalfQuarter_Skill_Data = defineSkill({
   slug: 'readHalfQuarter',
   id: '1b6415de-16f7-4e65-9f82-871d0bdb8b2d',
   name: {

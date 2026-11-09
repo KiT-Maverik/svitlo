@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const physiologicalMonitoringDevices_Skill_Data = buildSkillConfig({
+export const physiologicalMonitoringDevices_Skill_Data = defineSkill({
   slug: 'physiologicalMonitoringDevices',
   id: '76779ba3-19ac-44c9-b79e-0e771f4d833f',
   name: {

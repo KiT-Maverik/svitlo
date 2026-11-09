@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretLongitude_Skill_Data = buildSkillConfig({
+export const interpretLongitude_Skill_Data = defineSkill({
   slug: 'interpretLongitude',
   id: 'a61c153c-aba9-47c0-87c7-4e48ba54c14d',
   name: {

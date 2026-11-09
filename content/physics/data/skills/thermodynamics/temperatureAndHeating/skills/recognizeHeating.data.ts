@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeHeating_Skill_Data = buildSkillConfig({
+export const recognizeHeating_Skill_Data = defineSkill({
   slug: 'recognizeHeating',
   id: '2450cde5-4854-40ac-96e8-7138f35bdaa5',
   name: {

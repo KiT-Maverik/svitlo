@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const tunnelConstructionConstraints_Skill_Data = buildSkillConfig({
+export const tunnelConstructionConstraints_Skill_Data = defineSkill({
   slug: 'tunnelConstructionConstraints',
   id: '81ffec97-e008-4f94-8622-98cad2feb6f4',
   name: {

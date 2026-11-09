@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   basicRegressionModel_Skill_Data,
@@ -6,7 +6,7 @@ import {
   policyEffectEvaluation_Skill_Data,
 } from './skills';
 
-export const empiricalConclusionsAndForecasts_SkillGroup_Data = buildSkillGroupConfig({
+export const empiricalConclusionsAndForecasts_SkillGroup_Data = defineSkillGroup({
   slug: 'empiricalConclusionsAndForecasts',
   id: '974326e9-0747-41a5-af31-2f2fc4b93eeb',
   name: {
@@ -40,11 +40,11 @@ export const empiricalConclusionsAndForecasts_SkillGroup_Data = buildSkillGroupC
     kk: 'Эмпирикалық қорытындылар мен болжамдар',
     qm: 'Tecribiy neticeler ve tahminler',
   },
-  skills: {
-    basicRegressionModel: basicRegressionModel_Skill_Data,
-    economicForecastUncertainty: economicForecastUncertainty_Skill_Data,
-    policyEffectEvaluation: policyEffectEvaluation_Skill_Data,
-  },
+  skills: [
+    basicRegressionModel_Skill_Data,
+    economicForecastUncertainty_Skill_Data,
+    policyEffectEvaluation_Skill_Data,
+  ],
   description: {
     methodological:
       'Policy evaluation and forecasting rely on evidence, explicit assumptions, and uncertainty assessment.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chavinCulture_Skill_Data = buildSkillConfig({
+export const chavinCulture_Skill_Data = defineSkill({
   slug: 'chavinCulture',
   id: 'cebcc3f8-288f-4544-a173-ab78a14f0865',
   name: {

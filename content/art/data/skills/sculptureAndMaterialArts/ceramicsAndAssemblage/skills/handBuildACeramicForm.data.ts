@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const handBuildACeramicForm_Skill_Data = buildSkillConfig({
+export const handBuildACeramicForm_Skill_Data = defineSkill({
   slug: 'handBuildACeramicForm',
   id: 'a07a0913-cf71-4945-ba22-aa2bffd59baa',
   name: {

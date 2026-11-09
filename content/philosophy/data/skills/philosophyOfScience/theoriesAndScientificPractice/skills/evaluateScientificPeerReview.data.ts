@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateScientificPeerReview_Skill_Data = buildSkillConfig({
+export const evaluateScientificPeerReview_Skill_Data = defineSkill({
   slug: 'evaluateScientificPeerReview',
   id: 'e0c24a71-dea5-449e-97c0-51b72c0c8726',
   name: {

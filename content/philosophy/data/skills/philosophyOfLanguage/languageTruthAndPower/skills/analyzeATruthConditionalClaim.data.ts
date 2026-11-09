@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeATruthConditionalClaim_Skill_Data = buildSkillConfig({
+export const analyzeATruthConditionalClaim_Skill_Data = defineSkill({
   slug: 'analyzeATruthConditionalClaim',
   id: '437013ab-c15c-495a-a45c-9456e0163186',
   name: {

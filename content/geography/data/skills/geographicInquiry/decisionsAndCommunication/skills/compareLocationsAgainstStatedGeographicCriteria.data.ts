@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareLocationsAgainstStatedGeographicCriteria_Skill_Data = buildSkillConfig({
+export const compareLocationsAgainstStatedGeographicCriteria_Skill_Data = defineSkill({
   slug: 'compareLocationsAgainstStatedGeographicCriteria',
   id: '302df78f-c792-481b-98d8-062c38913e39',
   name: {

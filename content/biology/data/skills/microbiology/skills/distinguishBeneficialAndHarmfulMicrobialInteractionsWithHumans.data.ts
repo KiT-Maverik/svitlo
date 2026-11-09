@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data = buildSkillConfig({
+export const distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans_Skill_Data = defineSkill({
   slug: 'distinguishBeneficialAndHarmfulMicrobialInteractionsWithHumans',
   id: '976ad88d-e78d-40c9-961e-96e7be1fc617',
   name: {

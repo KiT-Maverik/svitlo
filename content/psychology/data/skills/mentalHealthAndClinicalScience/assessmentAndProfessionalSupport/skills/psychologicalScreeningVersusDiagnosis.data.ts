@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const psychologicalScreeningVersusDiagnosis_Skill_Data = buildSkillConfig({
+export const psychologicalScreeningVersusDiagnosis_Skill_Data = defineSkill({
   slug: 'psychologicalScreeningVersusDiagnosis',
   id: '40765758-0e2a-4376-808c-342cd77b5445',
   name: {

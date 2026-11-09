@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLinearMomentum_Skill_Data = buildSkillConfig({
+export const explainLinearMomentum_Skill_Data = defineSkill({
   slug: 'explainLinearMomentum',
   id: '2ab0c397-0d29-4478-af28-adfe70b7a752',
   name: {

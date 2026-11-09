@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { asianArtisticTraditions_SkillGroup_Data } from './asianArtisticTraditions/asianArtisticTraditions.data';
 import { culturalHeritage_SkillGroup_Data } from './culturalHeritage/culturalHeritage.data';
@@ -15,10 +15,10 @@ import { socialContextAndExchange_SkillGroup_Data } from './socialContextAndExch
 import { ukrainianArtisticTraditions_SkillGroup_Data } from './ukrainianArtisticTraditions/ukrainianArtisticTraditions.data';
 import { westAndCentralAfricanTraditions_SkillGroup_Data } from './westAndCentralAfricanTraditions/westAndCentralAfricanTraditions.data';
 
-export const artHistoryAndCultures_SkillDomain_Data = buildSkillDomainConfig({
+export const artHistoryAndCultures_SkillDomain_Data = defineSkillDomain({
   slug: 'artHistoryAndCultures',
   id: '08efb56e-fef3-43ba-8661-d47866a92834',
-  name: {
+  title: {
     en: 'Art History and Cultures',
     zh: '艺术史与文化',
     hi: 'कला इतिहास और संस्कृतियाँ',
@@ -49,22 +49,22 @@ export const artHistoryAndCultures_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Өнер тарихы мен мәдениеттер',
     qm: 'Sanat tarihı ve medeniyetler',
   },
-  groups: {
-    asianArtisticTraditions: asianArtisticTraditions_SkillGroup_Data,
-    culturalHeritage: culturalHeritage_SkillGroup_Data,
-    earlyImagesAndAntiquity: earlyImagesAndAntiquity_SkillGroup_Data,
-    historicalFilmMovements: historicalFilmMovements_SkillGroup_Data,
-    indigenousArtisticTraditionsOfTheAmericas: indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data,
-    lateModernAndContemporaryPractices: lateModernAndContemporaryPractices_SkillGroup_Data,
-    latinAmericanArtMovements: latinAmericanArtMovements_SkillGroup_Data,
-    medievalAndEarlyModernArts: medievalAndEarlyModernArts_SkillGroup_Data,
-    modernArtMovements: modernArtMovements_SkillGroup_Data,
-    oceaniaArtisticTraditions: oceaniaArtisticTraditions_SkillGroup_Data,
-    performingArtTraditions: performingArtTraditions_SkillGroup_Data,
-    socialContextAndExchange: socialContextAndExchange_SkillGroup_Data,
-    ukrainianArtisticTraditions: ukrainianArtisticTraditions_SkillGroup_Data,
-    westAndCentralAfricanTraditions: westAndCentralAfricanTraditions_SkillGroup_Data,
-  },
+  groups: [
+    asianArtisticTraditions_SkillGroup_Data,
+    culturalHeritage_SkillGroup_Data,
+    earlyImagesAndAntiquity_SkillGroup_Data,
+    historicalFilmMovements_SkillGroup_Data,
+    indigenousArtisticTraditionsOfTheAmericas_SkillGroup_Data,
+    lateModernAndContemporaryPractices_SkillGroup_Data,
+    latinAmericanArtMovements_SkillGroup_Data,
+    medievalAndEarlyModernArts_SkillGroup_Data,
+    modernArtMovements_SkillGroup_Data,
+    oceaniaArtisticTraditions_SkillGroup_Data,
+    performingArtTraditions_SkillGroup_Data,
+    socialContextAndExchange_SkillGroup_Data,
+    ukrainianArtisticTraditions_SkillGroup_Data,
+    westAndCentralAfricanTraditions_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Artworks and artistic practices develop within particular communities, historical debates, patrons and material technologies. Study of art history distinguishes movements and named traditions through their own works and contexts rather than treating an entire continent or historical era as a single skill. This domain examines art-historical interpretation, not general political chronology.',

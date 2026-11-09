@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const findExtraneousData_Skill_Data = buildSkillConfig({
+export const findExtraneousData_Skill_Data = defineSkill({
   slug: 'findExtraneousData',
   id: 'e77dd73e-0505-41d6-9a38-880f63009084',
   name: {

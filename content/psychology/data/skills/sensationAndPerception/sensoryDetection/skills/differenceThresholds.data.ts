@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const differenceThresholds_Skill_Data = buildSkillConfig({
+export const differenceThresholds_Skill_Data = defineSkill({
   slug: 'differenceThresholds',
   id: 'cf68cc37-d3a0-4a8d-a522-533be3994bc7',
   name: {

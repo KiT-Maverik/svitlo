@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   linesAndPoints_Skill_Data,
@@ -8,7 +8,7 @@ import {
   parallelPerpendicular_Skill_Data,
 } from './skills';
 
-export const lines_SkillGroup_Data = buildSkillGroupConfig({
+export const lines_SkillGroup_Data = defineSkillGroup({
   slug: 'lines',
   id: 'a79b4663-5dd1-4d85-9500-aacd06128d88',
   name: {
@@ -42,13 +42,13 @@ export const lines_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Linie',
     uk: 'Лінії',
   },
-  skills: {
-    linesAndPoints: linesAndPoints_Skill_Data,
-    segment: segment_Skill_Data,
-    ray: ray_Skill_Data,
-    closedOpenLines: closedOpenLines_Skill_Data,
-    parallelPerpendicular: parallelPerpendicular_Skill_Data,
-  },
+  skills: [
+    linesAndPoints_Skill_Data,
+    segment_Skill_Data,
+    ray_Skill_Data,
+    closedOpenLines_Skill_Data,
+    parallelPerpendicular_Skill_Data,
+  ],
   description: {
     methodological:
       'Points, lines, rays, segments, other line types, their components, relative positions, and graphical representations.',

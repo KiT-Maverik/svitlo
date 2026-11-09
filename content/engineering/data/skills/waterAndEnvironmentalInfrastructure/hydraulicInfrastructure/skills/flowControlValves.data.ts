@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const flowControlValves_Skill_Data = buildSkillConfig({
+export const flowControlValves_Skill_Data = defineSkill({
   slug: 'flowControlValves',
   id: '79f6df33-300d-453f-a04c-0726940dbbfd',
   name: {

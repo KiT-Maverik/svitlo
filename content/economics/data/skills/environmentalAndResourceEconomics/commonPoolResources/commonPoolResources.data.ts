@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   commonPoolResourceCharacteristics_Skill_Data,
@@ -6,7 +6,7 @@ import {
   renewableResourceDepletion_Skill_Data,
 } from './skills';
 
-export const commonPoolResources_SkillGroup_Data = buildSkillGroupConfig({
+export const commonPoolResources_SkillGroup_Data = defineSkillGroup({
   slug: 'commonPoolResources',
   id: 'fde81938-6b51-4c84-ab2a-564dcb36a018',
   name: {
@@ -40,11 +40,11 @@ export const commonPoolResources_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ортақ пайдаланылатын ресурстар',
     qm: 'Umumiy qullanılğan resurslar',
   },
-  skills: {
-    commonPoolResourceCharacteristics: commonPoolResourceCharacteristics_Skill_Data,
-    commonResourceGovernance: commonResourceGovernance_Skill_Data,
-    renewableResourceDepletion: renewableResourceDepletion_Skill_Data,
-  },
+  skills: [
+    commonPoolResourceCharacteristics_Skill_Data,
+    commonResourceGovernance_Skill_Data,
+    renewableResourceDepletion_Skill_Data,
+  ],
   description: {
     methodological:
       'Competition for use and difficulty excluding access create the risk of extracting too much from shared resources.',

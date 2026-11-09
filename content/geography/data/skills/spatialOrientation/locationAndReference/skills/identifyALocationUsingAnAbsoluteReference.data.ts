@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyALocationUsingAnAbsoluteReference_Skill_Data = buildSkillConfig({
+export const identifyALocationUsingAnAbsoluteReference_Skill_Data = defineSkill({
   slug: 'identifyALocationUsingAnAbsoluteReference',
   id: 'fd9370d5-f116-45b4-87c0-42235599551b',
   name: {

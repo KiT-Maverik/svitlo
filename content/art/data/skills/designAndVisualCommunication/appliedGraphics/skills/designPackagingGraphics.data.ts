@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designPackagingGraphics_Skill_Data = buildSkillConfig({
+export const designPackagingGraphics_Skill_Data = defineSkill({
   slug: 'designPackagingGraphics',
   id: '2c3fd650-740d-4f4f-ab81-9579ce95f26b',
   name: {

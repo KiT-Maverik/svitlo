@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const leapYearDays_Skill_Data = buildSkillConfig({
+export const leapYearDays_Skill_Data = defineSkill({
   slug: 'leapYearDays',
   id: '653b69ae-2576-4b9c-a2af-959bb675b8d1',
   name: {

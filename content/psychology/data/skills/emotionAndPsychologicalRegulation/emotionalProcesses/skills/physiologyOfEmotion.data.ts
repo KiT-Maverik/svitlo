@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const physiologyOfEmotion_Skill_Data = buildSkillConfig({
+export const physiologyOfEmotion_Skill_Data = defineSkill({
   slug: 'physiologyOfEmotion',
   id: 'ac18cf4a-fbfb-46f5-87a9-14abde266b23',
   name: {

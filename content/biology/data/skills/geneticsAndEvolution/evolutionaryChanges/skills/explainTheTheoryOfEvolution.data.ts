@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheTheoryOfEvolution_Skill_Data = buildSkillConfig({
+export const explainTheTheoryOfEvolution_Skill_Data = defineSkill({
   slug: 'explainTheTheoryOfEvolution',
   id: '23d06ebe-0c84-4819-93bd-89b8ead37e72',
   name: {

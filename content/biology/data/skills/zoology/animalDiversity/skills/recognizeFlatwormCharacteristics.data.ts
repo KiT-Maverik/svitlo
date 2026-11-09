@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeFlatwormCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeFlatwormCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeFlatwormCharacteristics',
   id: 'e0ef059a-68ef-4b0d-a27c-3be16ef25ff0',
   name: {

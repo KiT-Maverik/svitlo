@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishRecordsAndFields_Skill_Data = buildSkillConfig({
+export const distinguishRecordsAndFields_Skill_Data = defineSkill({
   slug: 'distinguishRecordsAndFields',
   id: '9a87da4e-6ba1-4bb8-9dbb-da5cdccac9ef',
   name: {

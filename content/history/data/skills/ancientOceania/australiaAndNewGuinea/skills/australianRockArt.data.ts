@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const australianRockArt_Skill_Data = buildSkillConfig({
+export const australianRockArt_Skill_Data = defineSkill({
   slug: 'australianRockArt',
   id: 'b2942714-ec04-42a7-a0c0-c132fd798e96',
   name: {

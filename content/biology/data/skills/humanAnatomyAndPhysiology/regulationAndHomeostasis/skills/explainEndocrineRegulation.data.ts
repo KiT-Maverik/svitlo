@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainEndocrineRegulation_Skill_Data = buildSkillConfig({
+export const explainEndocrineRegulation_Skill_Data = defineSkill({
   slug: 'explainEndocrineRegulation',
   id: '8a171e67-c25f-4c83-9457-11e315d0b961',
   name: {

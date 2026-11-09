@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const vehicleDrivetrains_Skill_Data = buildSkillConfig({
+export const vehicleDrivetrains_Skill_Data = defineSkill({
   slug: 'vehicleDrivetrains',
   id: 'efc24286-bc34-4561-b5b8-98426bfead54',
   name: {

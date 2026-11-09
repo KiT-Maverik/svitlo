@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceACommunicationSignalChain_Skill_Data = buildSkillConfig({
+export const traceACommunicationSignalChain_Skill_Data = defineSkill({
   slug: 'traceACommunicationSignalChain',
   id: '1d72bd09-d84d-4222-85bc-f59467e84cb9',
   name: {

@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { acidBaseFundamentals_SkillGroup_Data } from './acidBaseFundamentals/acidBaseFundamentals.data';
 import { acidBaseSystems_SkillGroup_Data } from './acidBaseSystems/acidBaseSystems.data';
 
-export const acidBaseChemistry_SkillDomain_Data = buildSkillDomainConfig({
+export const acidBaseChemistry_SkillDomain_Data = defineSkillDomain({
   slug: 'acidBaseChemistry',
   id: 'a526a484-6c73-4807-a92e-7a2c0446081e',
-  name: {
+  title: {
     en: 'Acid–Base Chemistry',
     zh: '酸碱化学',
     hi: 'अम्ल–क्षार रसायन',
@@ -37,10 +37,10 @@ export const acidBaseChemistry_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Қышқылдар мен негіздер химиясы',
     qm: 'Asit ve bazalar kimiyası',
   },
-  groups: {
-    acidBaseFundamentals: acidBaseFundamentals_SkillGroup_Data,
-    acidBaseSystems: acidBaseSystems_SkillGroup_Data,
-  },
+  groups: [
+    acidBaseFundamentals_SkillGroup_Data,
+    acidBaseSystems_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Acid–base chemistry concerns proton transfer, electron-pair interactions, acidity, and the behavior of chemical systems under relevant conditions. Its models, solution properties, transformations and analytical methods are broader than reaction-pattern classification alone.',

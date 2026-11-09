@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyComponentInterfaces_Skill_Data = buildSkillConfig({
+export const identifyComponentInterfaces_Skill_Data = defineSkill({
   slug: 'identifyComponentInterfaces',
   id: 'a7cdfc15-dfe2-4f74-a317-5718547496bc',
   name: {

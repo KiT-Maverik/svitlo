@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { baekje_Skill_Data, goguryeo_Skill_Data, gojoseon_Skill_Data, silla_Skill_Data } from './skills';
 
-export const ancientKorea_SkillGroup_Data = buildSkillGroupConfig({
+export const ancientKorea_SkillGroup_Data = defineSkillGroup({
   slug: 'ancientKorea',
   id: '84333876-0c5b-4758-94f2-5c28e374ec9c',
   name: {
@@ -36,12 +36,12 @@ export const ancientKorea_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ежелгі Корея',
     qm: 'Qadimiy Koreya',
   },
-  skills: {
-    baekje: baekje_Skill_Data,
-    goguryeo: goguryeo_Skill_Data,
-    gojoseon: gojoseon_Skill_Data,
-    silla: silla_Skill_Data,
-  },
+  skills: [
+    baekje_Skill_Data,
+    goguryeo_Skill_Data,
+    gojoseon_Skill_Data,
+    silla_Skill_Data,
+  ],
   description: {
     methodological:
       'Study early Korean and Manchurian polities through texts and archaeology that do not always corroborate traditional founding dates.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const specifyARoleInAPrompt_Skill_Data = buildSkillConfig({
+export const specifyARoleInAPrompt_Skill_Data = defineSkill({
   slug: 'specifyARoleInAPrompt',
   id: '2c8f162e-6d4e-4967-82e1-f7317c339d86',
   name: {

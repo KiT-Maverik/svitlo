@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relationToMultiplication_Skill_Data = buildSkillConfig({
+export const relationToMultiplication_Skill_Data = defineSkill({
   slug: 'relationToMultiplication',
   id: 'aeda65fb-0667-443b-8842-73cee12965a4',
   name: {

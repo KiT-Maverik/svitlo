@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeTextureAndSurface_Skill_Data = buildSkillConfig({
+export const analyzeTextureAndSurface_Skill_Data = defineSkill({
   slug: 'analyzeTextureAndSurface',
   id: 'd3ab05e8-4344-473d-a0b8-abbc0411b1d4',
   name: {

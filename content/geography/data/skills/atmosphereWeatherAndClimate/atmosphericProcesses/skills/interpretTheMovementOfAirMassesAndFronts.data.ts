@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretTheMovementOfAirMassesAndFronts_Skill_Data = buildSkillConfig({
+export const interpretTheMovementOfAirMassesAndFronts_Skill_Data = defineSkill({
   slug: 'interpretTheMovementOfAirMassesAndFronts',
   id: 'bffaf95e-0987-4022-9c6d-204bccfc9489',
   name: {

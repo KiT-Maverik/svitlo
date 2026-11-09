@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const financialFraudWarningSigns_Skill_Data = buildSkillConfig({
+export const financialFraudWarningSigns_Skill_Data = defineSkill({
   slug: 'financialFraudWarningSigns',
   id: 'af76cb6c-d23c-40d4-8b6c-174ce461436f',
   name: {

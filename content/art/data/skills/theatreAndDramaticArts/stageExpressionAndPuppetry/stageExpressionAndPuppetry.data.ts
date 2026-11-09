@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   animateAPuppet_Skill_Data,
@@ -7,7 +7,7 @@ import {
   designStageLighting_Skill_Data,
 } from './skills';
 
-export const stageExpressionAndPuppetry_SkillGroup_Data = buildSkillGroupConfig({
+export const stageExpressionAndPuppetry_SkillGroup_Data = defineSkillGroup({
   slug: 'stageExpressionAndPuppetry',
   id: '9b487da8-357b-4b65-944d-c8ef50ae19d8',
   name: {
@@ -41,12 +41,12 @@ export const stageExpressionAndPuppetry_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Сахналық мәнер және қуыршақ театры',
     qm: 'Sahne ifadesi ve qurçaq tiyatrosı',
   },
-  skills: {
-    animateAPuppet: animateAPuppet_Skill_Data,
-    designCharacterCostume: designCharacterCostume_Skill_Data,
-    designScenicAtmosphere: designScenicAtmosphere_Skill_Data,
-    designStageLighting: designStageLighting_Skill_Data,
-  },
+  skills: [
+    animateAPuppet_Skill_Data,
+    designCharacterCostume_Skill_Data,
+    designScenicAtmosphere_Skill_Data,
+    designStageLighting_Skill_Data,
+  ],
   description: {
     methodological:
       'Scenery, costumes, light and animated objects carry expressive functions in a performance beyond decoration.',

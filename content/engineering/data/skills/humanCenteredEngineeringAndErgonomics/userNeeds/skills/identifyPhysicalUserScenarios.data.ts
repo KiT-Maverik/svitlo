@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyPhysicalUserScenarios_Skill_Data = buildSkillConfig({
+export const identifyPhysicalUserScenarios_Skill_Data = defineSkill({
   slug: 'identifyPhysicalUserScenarios',
   id: 'fbe4abda-186d-4ce6-882c-2896bf6bb44d',
   name: {

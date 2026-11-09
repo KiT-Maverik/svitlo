@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   automatedExternalDefibrillatorUse_Skill_Data,
@@ -6,7 +6,7 @@ import {
   firstAidForChoking_Skill_Data,
 } from './skills';
 
-export const basicLifeSupport_SkillGroup_Data = buildSkillGroupConfig({
+export const basicLifeSupport_SkillGroup_Data = defineSkillGroup({
   slug: 'basicLifeSupport',
   id: '64beb776-f80c-4418-a58c-f20d1ba281e3',
   name: {
@@ -40,11 +40,11 @@ export const basicLifeSupport_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Негізгі тіршілік қолдауы',
     qm: 'Ayatnıñ esas qoltutuvı',
   },
-  skills: {
-    automatedExternalDefibrillatorUse: automatedExternalDefibrillatorUse_Skill_Data,
-    cardiopulmonaryResuscitation: cardiopulmonaryResuscitation_Skill_Data,
-    firstAidForChoking: firstAidForChoking_Skill_Data,
-  },
+  skills: [
+    automatedExternalDefibrillatorUse_Skill_Data,
+    cardiopulmonaryResuscitation_Skill_Data,
+    firstAidForChoking_Skill_Data,
+  ],
   description: {
     methodological:
       "Resuscitation competencies require validated techniques and updated guidance appropriate to the person's age, circumstances, and responder training.",

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHereditaryVariationAmongIndividuals_Skill_Data = buildSkillConfig({
+export const explainHereditaryVariationAmongIndividuals_Skill_Data = defineSkill({
   slug: 'explainHereditaryVariationAmongIndividuals',
   id: '18f52f10-e079-459e-ac5e-0fe425dec00f',
   name: {

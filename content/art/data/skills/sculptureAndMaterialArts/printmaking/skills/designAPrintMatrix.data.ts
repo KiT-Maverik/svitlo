@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAPrintMatrix_Skill_Data = buildSkillConfig({
+export const designAPrintMatrix_Skill_Data = defineSkill({
   slug: 'designAPrintMatrix',
   id: '402d615b-9256-4a72-9e06-6060c8eeb259',
   name: {

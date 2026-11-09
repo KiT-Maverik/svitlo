@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exoplanetOrbitalProperties_Skill_Data = buildSkillConfig({
+export const exoplanetOrbitalProperties_Skill_Data = defineSkill({
   slug: 'exoplanetOrbitalProperties',
   id: 'e3a012cd-914d-4058-8beb-d518ba4831c3',
   name: {

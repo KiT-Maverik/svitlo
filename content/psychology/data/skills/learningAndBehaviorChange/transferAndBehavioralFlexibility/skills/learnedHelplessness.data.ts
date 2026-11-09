@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const learnedHelplessness_Skill_Data = buildSkillConfig({
+export const learnedHelplessness_Skill_Data = defineSkill({
   slug: 'learnedHelplessness',
   id: 'df34f675-b143-4330-9912-6eaf57e42ed5',
   name: {

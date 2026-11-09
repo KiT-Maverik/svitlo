@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const checkQuotient_Skill_Data = buildSkillConfig({
+export const checkQuotient_Skill_Data = defineSkill({
   slug: 'checkQuotient',
   id: '5daba1b4-4221-4349-a1a7-c12e209051b1',
   name: {

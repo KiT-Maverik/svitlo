@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const addMeaning_Skill_Data = buildSkillConfig({
+export const addMeaning_Skill_Data = defineSkill({
   slug: 'addMeaning',
   id: '00b48cb0-13c2-4531-84ac-1b8d44f11055',
   name: {

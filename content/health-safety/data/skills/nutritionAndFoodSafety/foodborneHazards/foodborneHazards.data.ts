@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   maintainHygieneDuringFoodPreparation_Skill_Data,
@@ -8,7 +8,7 @@ import {
   safeFoodStorage_Skill_Data,
 } from './skills';
 
-export const foodborneHazards_SkillGroup_Data = buildSkillGroupConfig({
+export const foodborneHazards_SkillGroup_Data = defineSkillGroup({
   slug: 'foodborneHazards',
   id: 'c278cf38-29cb-451a-b710-7c325d81568d',
   name: {
@@ -42,13 +42,13 @@ export const foodborneHazards_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тағам арқылы таралатын қауіптер',
     qm: 'Aş vastasınen kelgen telükeler',
   },
-  skills: {
-    maintainHygieneDuringFoodPreparation: maintainHygieneDuringFoodPreparation_Skill_Data,
-    preventRawToReadyFoodCrossContamination: preventRawToReadyFoodCrossContamination_Skill_Data,
-    recognizeUnsafeFoodSituations: recognizeUnsafeFoodSituations_Skill_Data,
-    safeCookingAndReheating: safeCookingAndReheating_Skill_Data,
-    safeFoodStorage: safeFoodStorage_Skill_Data,
-  },
+  skills: [
+    maintainHygieneDuringFoodPreparation_Skill_Data,
+    preventRawToReadyFoodCrossContamination_Skill_Data,
+    recognizeUnsafeFoodSituations_Skill_Data,
+    safeCookingAndReheating_Skill_Data,
+    safeFoodStorage_Skill_Data,
+  ],
   description: {
     methodological:
       'Food safety depends on separation, temperature, handling, and storage; appearance or smell alone cannot always establish whether food is safe.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dayAndNight_Skill_Data = buildSkillConfig({
+export const dayAndNight_Skill_Data = defineSkill({
   slug: 'dayAndNight',
   id: 'faa8f11a-cc06-42c9-8864-8151732e690a',
   name: {

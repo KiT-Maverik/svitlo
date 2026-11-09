@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessProportionalityInMoralDecisions_Skill_Data = buildSkillConfig({
+export const assessProportionalityInMoralDecisions_Skill_Data = defineSkill({
   slug: 'assessProportionalityInMoralDecisions',
   id: '28c0ba90-73da-4e0d-9d37-5c6e80f51ab9',
   name: {

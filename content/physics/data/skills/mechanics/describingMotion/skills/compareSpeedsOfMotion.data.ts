@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareSpeedsOfMotion_Skill_Data = buildSkillConfig({
+export const compareSpeedsOfMotion_Skill_Data = defineSkill({
   slug: 'compareSpeedsOfMotion',
   id: '4bf09cc0-ca22-4a2f-a00f-08befa0aca19',
   name: {

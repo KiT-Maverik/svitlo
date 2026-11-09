@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chromatography_Skill_Data = buildSkillConfig({
+export const chromatography_Skill_Data = defineSkill({
   slug: 'chromatography',
   id: 'bdd051bf-da8e-449e-b681-6eebbd9034d7',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeCuscoSchoolPainting_Skill_Data = buildSkillConfig({
+export const analyzeCuscoSchoolPainting_Skill_Data = defineSkill({
   slug: 'analyzeCuscoSchoolPainting',
   id: 'f139b231-dfea-4698-9a45-9aee30aacc87',
   name: {

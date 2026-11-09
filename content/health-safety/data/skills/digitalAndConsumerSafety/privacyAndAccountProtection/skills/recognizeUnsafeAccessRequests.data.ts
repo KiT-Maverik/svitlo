@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeUnsafeAccessRequests_Skill_Data = buildSkillConfig({
+export const recognizeUnsafeAccessRequests_Skill_Data = defineSkill({
   slug: 'recognizeUnsafeAccessRequests',
   id: '8c964d6c-4cc1-4029-9550-f8649ef101dc',
   name: {

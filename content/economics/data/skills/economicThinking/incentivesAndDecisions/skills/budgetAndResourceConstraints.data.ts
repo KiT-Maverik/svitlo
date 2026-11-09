@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const budgetAndResourceConstraints_Skill_Data = buildSkillConfig({
+export const budgetAndResourceConstraints_Skill_Data = defineSkill({
   slug: 'budgetAndResourceConstraints',
   id: '106da766-965c-4e4b-8e58-fb82115b0bd3',
   name: {

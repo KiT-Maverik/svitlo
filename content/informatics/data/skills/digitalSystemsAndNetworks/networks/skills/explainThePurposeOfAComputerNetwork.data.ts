@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePurposeOfAComputerNetwork_Skill_Data = buildSkillConfig({
+export const explainThePurposeOfAComputerNetwork_Skill_Data = defineSkill({
   slug: 'explainThePurposeOfAComputerNetwork',
   id: '7a70b05e-7ca2-4bb5-a95b-7b24fd316434',
   name: {

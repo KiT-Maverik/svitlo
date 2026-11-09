@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const understandContraception_Skill_Data = buildSkillConfig({
+export const understandContraception_Skill_Data = defineSkill({
   slug: 'understandContraception',
   id: '40d1e888-f932-4bfd-be1b-d288c104c87d',
   name: {

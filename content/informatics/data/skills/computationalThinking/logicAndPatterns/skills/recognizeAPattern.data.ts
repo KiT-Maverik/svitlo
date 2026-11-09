@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAPattern_Skill_Data = buildSkillConfig({
+export const recognizeAPattern_Skill_Data = defineSkill({
   slug: 'recognizeAPattern',
   id: '19dbf903-354a-41cb-90a1-07633df5f480',
   name: {

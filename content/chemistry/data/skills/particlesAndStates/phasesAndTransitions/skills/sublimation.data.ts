@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sublimation_Skill_Data = buildSkillConfig({
+export const sublimation_Skill_Data = defineSkill({
   slug: 'sublimation',
   id: '2fed2c03-1117-465a-a66f-773c1ce95a43',
   name: {

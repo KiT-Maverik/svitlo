@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishSexualAndAsexualReproduction_Skill_Data = buildSkillConfig({
+export const distinguishSexualAndAsexualReproduction_Skill_Data = defineSkill({
   slug: 'distinguishSexualAndAsexualReproduction',
   id: '15ee1731-bf7b-4a88-90fd-e751cf94f679',
   name: {

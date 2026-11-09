@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const yayoiCulture_Skill_Data = buildSkillConfig({
+export const yayoiCulture_Skill_Data = defineSkill({
   slug: 'yayoiCulture',
   id: '9a7aee8a-863a-463c-b81a-f3aec307863f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainFoodWebs_Skill_Data = buildSkillConfig({
+export const explainFoodWebs_Skill_Data = defineSkill({
   slug: 'explainFoodWebs',
   id: 'd789c38d-bd56-40c5-ba8a-4a2c0d4e9106',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheEffectOfShapeOnMotionThroughAir_Skill_Data = buildSkillConfig({
+export const predictTheEffectOfShapeOnMotionThroughAir_Skill_Data = defineSkill({
   slug: 'predictTheEffectOfShapeOnMotionThroughAir',
   id: 'aef772dc-291b-47ef-a4eb-fbd4c350c27c',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const anticipateFailureModes_Skill_Data = buildSkillConfig({
+export const anticipateFailureModes_Skill_Data = defineSkill({
   slug: 'anticipateFailureModes',
   id: '128c362f-db2f-4d46-b60d-51fb69a558e5',
   name: {

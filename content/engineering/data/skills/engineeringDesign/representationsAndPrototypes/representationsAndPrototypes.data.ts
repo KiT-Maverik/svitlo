@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   buildAFunctionalPrototype_Skill_Data,
@@ -8,7 +8,7 @@ import {
   interpretTechnicalSystemSchematics_Skill_Data,
 } from './skills';
 
-export const representationsAndPrototypes_SkillGroup_Data = buildSkillGroupConfig({
+export const representationsAndPrototypes_SkillGroup_Data = defineSkillGroup({
   slug: 'representationsAndPrototypes',
   id: '97e9e61b-3066-4efa-a68f-fafcbcc59b39',
   name: {
@@ -42,13 +42,13 @@ export const representationsAndPrototypes_SkillGroup_Data = buildSkillGroupConfi
     kk: 'Көрнекі үлгілер мен прототиптер',
     qm: 'Tasvirler ve prototipler',
   },
-  skills: {
-    buildAFunctionalPrototype: buildAFunctionalPrototype_Skill_Data,
-    createADimensionedDrawing: createADimensionedDrawing_Skill_Data,
-    createAFunctionalBlockDiagram: createAFunctionalBlockDiagram_Skill_Data,
-    designRationale: designRationale_Skill_Data,
-    interpretTechnicalSystemSchematics: interpretTechnicalSystemSchematics_Skill_Data,
-  },
+  skills: [
+    buildAFunctionalPrototype_Skill_Data,
+    createADimensionedDrawing_Skill_Data,
+    createAFunctionalBlockDiagram_Skill_Data,
+    designRationale_Skill_Data,
+    interpretTechnicalSystemSchematics_Skill_Data,
+  ],
   description: {
     methodological:
       'Technical representations communicate geometry, operation and interfaces. A model is useful when it preserves properties that matter to the question being investigated.',

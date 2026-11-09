@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectAStrawManArgument_Skill_Data = buildSkillConfig({
+export const detectAStrawManArgument_Skill_Data = defineSkill({
   slug: 'detectAStrawManArgument',
   id: '9ffb1b1c-5d0e-48bc-a6bd-3581025cf6a7',
   name: {

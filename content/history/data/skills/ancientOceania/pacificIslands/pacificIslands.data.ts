@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   austronesianExpansion_Skill_Data,
@@ -7,7 +7,7 @@ import {
   oceanicNavigation_Skill_Data,
 } from './skills';
 
-export const pacificIslands_SkillGroup_Data = buildSkillGroupConfig({
+export const pacificIslands_SkillGroup_Data = defineSkillGroup({
   slug: 'pacificIslands',
   id: '5c26ca3e-28b8-435c-abc0-8959cf1af92f',
   name: {
@@ -41,12 +41,12 @@ export const pacificIslands_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тынық мұхит аралдары',
     qm: 'Pasifik adaları',
   },
-  skills: {
-    austronesianExpansion: austronesianExpansion_Skill_Data,
-    earlyWesternPolynesianSettlement: earlyWesternPolynesianSettlement_Skill_Data,
-    lapitaCulture: lapitaCulture_Skill_Data,
-    oceanicNavigation: oceanicNavigation_Skill_Data,
-  },
+  skills: [
+    austronesianExpansion_Skill_Data,
+    earlyWesternPolynesianSettlement_Skill_Data,
+    lapitaCulture_Skill_Data,
+    oceanicNavigation_Skill_Data,
+  ],
   description: {
     methodological:
       'Seafaring societies progressively settled distant archipelagos, transporting languages, crops, animals, and navigation knowledge.',

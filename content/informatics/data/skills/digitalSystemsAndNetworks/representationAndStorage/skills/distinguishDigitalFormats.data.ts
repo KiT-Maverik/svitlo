@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDigitalFormats_Skill_Data = buildSkillConfig({
+export const distinguishDigitalFormats_Skill_Data = defineSkill({
   slug: 'distinguishDigitalFormats',
   id: 'a788abec-eaf2-4796-a2c3-849a55bddc49',
   name: {

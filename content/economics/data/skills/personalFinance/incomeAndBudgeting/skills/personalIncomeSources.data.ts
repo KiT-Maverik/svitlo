@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const personalIncomeSources_Skill_Data = buildSkillConfig({
+export const personalIncomeSources_Skill_Data = defineSkill({
   slug: 'personalIncomeSources',
   id: '1790c0d0-ea40-4b6a-8221-14f6b7c6072d',
   name: {

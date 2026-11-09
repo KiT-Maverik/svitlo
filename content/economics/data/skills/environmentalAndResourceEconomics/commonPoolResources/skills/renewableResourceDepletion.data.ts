@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const renewableResourceDepletion_Skill_Data = buildSkillConfig({
+export const renewableResourceDepletion_Skill_Data = defineSkill({
   slug: 'renewableResourceDepletion',
   id: 'c4403ac4-ec37-4aec-8071-74d69736a954',
   name: {

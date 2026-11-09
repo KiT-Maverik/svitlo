@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const emergenceOfUrbanCenters_Skill_Data = buildSkillConfig({
+export const emergenceOfUrbanCenters_Skill_Data = defineSkill({
   slug: 'emergenceOfUrbanCenters',
   id: '4dad3ccf-d73a-4f94-a89d-15857aa8584a',
   name: {

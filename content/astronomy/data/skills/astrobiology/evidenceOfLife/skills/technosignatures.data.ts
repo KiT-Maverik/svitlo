@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const technosignatures_Skill_Data = buildSkillConfig({
+export const technosignatures_Skill_Data = defineSkill({
   slug: 'technosignatures',
   id: '586a73a0-713c-4a4c-9349-b735a6221945',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const convertHoursMinutes_Skill_Data = buildSkillConfig({
+export const convertHoursMinutes_Skill_Data = defineSkill({
   slug: 'convertHoursMinutes',
   id: '131741ec-c4d9-4f98-9c52-208326de7cd0',
   name: {

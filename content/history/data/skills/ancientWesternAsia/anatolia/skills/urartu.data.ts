@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const urartu_Skill_Data = buildSkillConfig({
+export const urartu_Skill_Data = defineSkill({
   slug: 'urartu',
   id: 'ae591195-0752-4242-a58a-ad45ddd2366b',
   name: {

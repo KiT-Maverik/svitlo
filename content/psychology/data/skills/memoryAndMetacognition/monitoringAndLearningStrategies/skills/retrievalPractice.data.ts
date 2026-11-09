@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const retrievalPractice_Skill_Data = buildSkillConfig({
+export const retrievalPractice_Skill_Data = defineSkill({
   slug: 'retrievalPractice',
   id: '747bde95-c49e-4f34-b9df-8bc12b7fe822',
   name: {

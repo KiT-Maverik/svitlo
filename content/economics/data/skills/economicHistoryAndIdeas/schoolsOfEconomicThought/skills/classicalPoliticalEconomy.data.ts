@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classicalPoliticalEconomy_Skill_Data = buildSkillConfig({
+export const classicalPoliticalEconomy_Skill_Data = defineSkill({
   slug: 'classicalPoliticalEconomy',
   id: 'c85a9bab-8c52-4e03-bc68-8eea56f84e33',
   name: {

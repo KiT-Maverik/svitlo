@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishHTTPFromHTTPS_Skill_Data = buildSkillConfig({
+export const distinguishHTTPFromHTTPS_Skill_Data = defineSkill({
   slug: 'distinguishHTTPFromHTTPS',
   id: '381e201f-294c-407e-beb5-b2a28fd39c3c',
   name: {

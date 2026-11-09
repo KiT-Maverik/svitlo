@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const renderDrawnTexture_Skill_Data = buildSkillConfig({
+export const renderDrawnTexture_Skill_Data = defineSkill({
   slug: 'renderDrawnTexture',
   id: '32e1e308-127c-4926-b776-8e2025bd6a70',
   name: {

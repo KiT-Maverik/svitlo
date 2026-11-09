@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateOperatingPosture_Skill_Data = buildSkillConfig({
+export const evaluateOperatingPosture_Skill_Data = defineSkill({
   slug: 'evaluateOperatingPosture',
   id: '16b12b57-49be-455c-8b88-4ea46a9241fc',
   name: {

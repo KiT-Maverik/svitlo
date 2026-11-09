@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMessagesFromData_Skill_Data = buildSkillConfig({
+export const distinguishMessagesFromData_Skill_Data = defineSkill({
   slug: 'distinguishMessagesFromData',
   id: '46aeedfa-5976-449d-89c3-97901d99b779',
   name: {

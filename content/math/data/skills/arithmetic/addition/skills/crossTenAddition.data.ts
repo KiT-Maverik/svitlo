@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const crossTenAddition_Skill_Data = buildSkillConfig({
+export const crossTenAddition_Skill_Data = defineSkill({
   slug: 'crossTenAddition',
   id: 'e2d79a7d-611e-4c74-b344-aba08db29c38',
   name: {

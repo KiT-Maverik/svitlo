@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateASkepticalChallenge_Skill_Data = buildSkillConfig({
+export const evaluateASkepticalChallenge_Skill_Data = defineSkill({
   slug: 'evaluateASkepticalChallenge',
   id: 'a479551f-fd1b-4bbc-ab19-8062d727200f',
   name: {

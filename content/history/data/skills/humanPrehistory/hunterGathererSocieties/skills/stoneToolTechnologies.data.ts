@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stoneToolTechnologies_Skill_Data = buildSkillConfig({
+export const stoneToolTechnologies_Skill_Data = defineSkill({
   slug: 'stoneToolTechnologies',
   id: '8e60a62f-fcb2-4bd7-84fc-9ff2d7367c23',
   name: {

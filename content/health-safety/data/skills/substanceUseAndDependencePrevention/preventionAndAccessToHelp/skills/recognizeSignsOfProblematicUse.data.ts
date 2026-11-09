@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeSignsOfProblematicUse_Skill_Data = buildSkillConfig({
+export const recognizeSignsOfProblematicUse_Skill_Data = defineSkill({
   slug: 'recognizeSignsOfProblematicUse',
   id: '8ae184f8-a742-4053-8a56-43af7158981e',
   name: {

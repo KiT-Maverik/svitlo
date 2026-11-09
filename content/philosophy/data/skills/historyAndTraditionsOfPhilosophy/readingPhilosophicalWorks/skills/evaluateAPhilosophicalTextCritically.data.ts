@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAPhilosophicalTextCritically_Skill_Data = buildSkillConfig({
+export const evaluateAPhilosophicalTextCritically_Skill_Data = defineSkill({
   slug: 'evaluateAPhilosophicalTextCritically',
   id: 'e907aa0e-9b06-4e68-97e0-ce0c2541f163',
   name: {

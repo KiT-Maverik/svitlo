@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const setBoundariesInUnequalRelationships_Skill_Data = buildSkillConfig({
+export const setBoundariesInUnequalRelationships_Skill_Data = defineSkill({
   slug: 'setBoundariesInUnequalRelationships',
   id: '425da2c9-7fa8-4760-8135-168c9b11f97f',
   name: {

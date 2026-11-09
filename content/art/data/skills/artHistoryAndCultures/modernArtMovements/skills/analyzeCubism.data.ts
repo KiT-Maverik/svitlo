@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeCubism_Skill_Data = buildSkillConfig({
+export const analyzeCubism_Skill_Data = defineSkill({
   slug: 'analyzeCubism',
   id: '2deccfdd-3106-4611-897f-7abfebcfc453',
   name: {

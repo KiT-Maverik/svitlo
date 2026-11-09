@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeTheScopeOfAQuantifier_Skill_Data,
@@ -9,7 +9,7 @@ import {
   negateAQuantifiedProposition_Skill_Data,
 } from './skills';
 
-export const predicateLogic_SkillGroup_Data = buildSkillGroupConfig({
+export const predicateLogic_SkillGroup_Data = defineSkillGroup({
   slug: 'predicateLogic',
   id: '4f6a7013-0bd1-4923-8061-987248079eb3',
   name: {
@@ -43,14 +43,14 @@ export const predicateLogic_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Предикаттар логикасы',
     qm: 'Predikatlar mantığı',
   },
-  skills: {
-    analyzeTheScopeOfAQuantifier: analyzeTheScopeOfAQuantifier_Skill_Data,
-    distinguishPredicatesFromPropositions: distinguishPredicatesFromPropositions_Skill_Data,
-    evaluateAnInferenceWithQuantifiers: evaluateAnInferenceWithQuantifiers_Skill_Data,
-    interpretExistentialQuantification: interpretExistentialQuantification_Skill_Data,
-    interpretUniversalQuantification: interpretUniversalQuantification_Skill_Data,
-    negateAQuantifiedProposition: negateAQuantifiedProposition_Skill_Data,
-  },
+  skills: [
+    analyzeTheScopeOfAQuantifier_Skill_Data,
+    distinguishPredicatesFromPropositions_Skill_Data,
+    evaluateAnInferenceWithQuantifiers_Skill_Data,
+    interpretExistentialQuantification_Skill_Data,
+    interpretUniversalQuantification_Skill_Data,
+    negateAQuantifiedProposition_Skill_Data,
+  ],
   description: {
     methodological:
       'Variables and quantifiers permit reasoning about individuals and collections. The relevant universe and scope of each quantifier must be made explicit to evaluate meaning and inference.',

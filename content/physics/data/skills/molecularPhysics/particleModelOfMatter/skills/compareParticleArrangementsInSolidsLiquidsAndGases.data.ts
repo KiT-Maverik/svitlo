@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data = buildSkillConfig({
+export const compareParticleArrangementsInSolidsLiquidsAndGases_Skill_Data = defineSkill({
   slug: 'compareParticleArrangementsInSolidsLiquidsAndGases',
   id: '06aff371-2810-4a69-8a56-bec8d4fc4c8f',
   name: {

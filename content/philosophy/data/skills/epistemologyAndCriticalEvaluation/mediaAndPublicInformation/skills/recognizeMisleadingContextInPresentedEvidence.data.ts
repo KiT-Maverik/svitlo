@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMisleadingContextInPresentedEvidence_Skill_Data = buildSkillConfig({
+export const recognizeMisleadingContextInPresentedEvidence_Skill_Data = defineSkill({
   slug: 'recognizeMisleadingContextInPresentedEvidence',
   id: 'beba5f09-6641-4e77-bf42-e400297ce341',
   name: {

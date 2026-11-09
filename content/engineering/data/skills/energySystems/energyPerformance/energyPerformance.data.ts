@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   estimateEnergyDemand_Skill_Data,
@@ -6,7 +6,7 @@ import {
   loadBalancing_Skill_Data,
 } from './skills';
 
-export const energyPerformance_SkillGroup_Data = buildSkillGroupConfig({
+export const energyPerformance_SkillGroup_Data = defineSkillGroup({
   slug: 'energyPerformance',
   id: '00389c0e-1067-4c9e-9d0a-ec3cc596d08d',
   name: {
@@ -40,11 +40,11 @@ export const energyPerformance_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Энергия тиімділігі',
     qm: 'Energiya faydalılığı',
   },
-  skills: {
-    estimateEnergyDemand: estimateEnergyDemand_Skill_Data,
-    evaluateEnergyEfficiency: evaluateEnergyEfficiency_Skill_Data,
-    loadBalancing: loadBalancing_Skill_Data,
-  },
+  skills: [
+    estimateEnergyDemand_Skill_Data,
+    evaluateEnergyEfficiency_Skill_Data,
+    loadBalancing_Skill_Data,
+  ],
   description: {
     methodological:
       'Consumption varies over time, and practical output is less than input when converters or networks lose energy.',

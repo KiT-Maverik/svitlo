@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const participateInInformedHealthcareDecisions_Skill_Data = buildSkillConfig({
+export const participateInInformedHealthcareDecisions_Skill_Data = defineSkill({
   slug: 'participateInInformedHealthcareDecisions',
   id: 'ab1238a7-77fc-497b-be07-ba1f96aa1d13',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheLossOfUsefulEnergy_Skill_Data = buildSkillConfig({
+export const explainTheLossOfUsefulEnergy_Skill_Data = defineSkill({
   slug: 'explainTheLossOfUsefulEnergy',
   id: 'e8deae94-2616-4545-9346-28f8df3b5e3c',
   name: {

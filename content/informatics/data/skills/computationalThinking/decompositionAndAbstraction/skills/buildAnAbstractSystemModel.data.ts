@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const buildAnAbstractSystemModel_Skill_Data = buildSkillConfig({
+export const buildAnAbstractSystemModel_Skill_Data = defineSkill({
   slug: 'buildAnAbstractSystemModel',
   id: '900a77db-3740-4ba1-bd0d-085e82f9bde6',
   name: {

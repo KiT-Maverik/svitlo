@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { roadAndTransportSafety_SkillGroup_Data } from './roadAndTransportSafety/roadAndTransportSafety.data';
 import { waterSafety_SkillGroup_Data } from './waterSafety/waterSafety.data';
 import { weatherAndNatureHazards_SkillGroup_Data } from './weatherAndNatureHazards/weatherAndNatureHazards.data';
 
-export const transportWaterAndOutdoorSafety_SkillDomain_Data = buildSkillDomainConfig({
+export const transportWaterAndOutdoorSafety_SkillDomain_Data = defineSkillDomain({
   slug: 'transportWaterAndOutdoorSafety',
   id: 'f3c8bf08-9e87-49bb-85e2-bcf4006b6f8f',
-  name: {
+  title: {
     en: 'Transport, Water and Outdoor Safety',
     zh: '交通、水域与户外安全',
     hi: 'यातायात, जल और बाहरी सुरक्षा',
@@ -38,11 +38,11 @@ export const transportWaterAndOutdoorSafety_SkillDomain_Data = buildSkillDomainC
     kk: 'Көлік, су және дала қауіпсіздігі',
     qm: 'Ulaşım, suv ve tışarıda havfsızlıq',
   },
-  groups: {
-    roadAndTransportSafety: roadAndTransportSafety_SkillGroup_Data,
-    waterSafety: waterSafety_SkillGroup_Data,
-    weatherAndNatureHazards: weatherAndNatureHazards_SkillGroup_Data,
-  },
+  groups: [
+    roadAndTransportSafety_SkillGroup_Data,
+    waterSafety_SkillGroup_Data,
+    weatherAndNatureHazards_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Movement outside controlled environments combines traffic rules, environmental conditions, and limited opportunities for immediate rescue. This domain addresses safe decisions rather than vehicle engineering.',

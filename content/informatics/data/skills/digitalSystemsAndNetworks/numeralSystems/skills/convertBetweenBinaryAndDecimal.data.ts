@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const convertBetweenBinaryAndDecimal_Skill_Data = buildSkillConfig({
+export const convertBetweenBinaryAndDecimal_Skill_Data = defineSkill({
   slug: 'convertBetweenBinaryAndDecimal',
   id: '01f66f87-337b-40b9-b193-b22da9dda836',
   name: {

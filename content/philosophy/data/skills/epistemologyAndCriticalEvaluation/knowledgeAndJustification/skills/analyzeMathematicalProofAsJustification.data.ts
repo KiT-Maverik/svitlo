@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMathematicalProofAsJustification_Skill_Data = buildSkillConfig({
+export const analyzeMathematicalProofAsJustification_Skill_Data = defineSkill({
   slug: 'analyzeMathematicalProofAsJustification',
   id: 'a1842a3f-58a0-43c9-8f30-ad2d104c050a',
   name: {

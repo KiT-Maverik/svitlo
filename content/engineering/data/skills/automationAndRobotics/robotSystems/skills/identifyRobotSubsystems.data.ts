@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyRobotSubsystems_Skill_Data = buildSkillConfig({
+export const identifyRobotSubsystems_Skill_Data = defineSkill({
   slug: 'identifyRobotSubsystems',
   id: 'ef410372-ea72-4e5b-ac98-ae91a4a0091f',
   name: {

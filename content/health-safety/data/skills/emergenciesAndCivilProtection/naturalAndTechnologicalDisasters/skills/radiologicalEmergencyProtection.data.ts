@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const radiologicalEmergencyProtection_Skill_Data = buildSkillConfig({
+export const radiologicalEmergencyProtection_Skill_Data = defineSkill({
   slug: 'radiologicalEmergencyProtection',
   id: '2c71f2cc-1d6c-4cd8-9cc9-de6cea302cc2',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lapitaCulture_Skill_Data = buildSkillConfig({
+export const lapitaCulture_Skill_Data = defineSkill({
   slug: 'lapitaCulture',
   id: 'd88e29f1-1ab8-4dc0-bb85-f72cbe3e3d7c',
   name: {

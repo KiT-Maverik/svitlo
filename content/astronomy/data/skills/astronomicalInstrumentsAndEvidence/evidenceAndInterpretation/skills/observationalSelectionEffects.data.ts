@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const observationalSelectionEffects_Skill_Data = buildSkillConfig({
+export const observationalSelectionEffects_Skill_Data = defineSkill({
   slug: 'observationalSelectionEffects',
   id: 'ece5cc9f-a000-4a4c-9a60-a37cef48807b',
   name: {

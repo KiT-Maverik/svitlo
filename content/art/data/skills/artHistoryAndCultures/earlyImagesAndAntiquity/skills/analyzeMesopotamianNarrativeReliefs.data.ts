@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMesopotamianNarrativeReliefs_Skill_Data = buildSkillConfig({
+export const analyzeMesopotamianNarrativeReliefs_Skill_Data = defineSkill({
   slug: 'analyzeMesopotamianNarrativeReliefs',
   id: '185ce9df-229a-4639-a5d3-13133af7dadd',
   name: {

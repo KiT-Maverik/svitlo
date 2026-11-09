@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   describeClusteredAndDispersedArrangements_Skill_Data,
@@ -6,7 +6,7 @@ import {
   identifyBarriersAndCorridorsBetweenPlaces_Skill_Data,
 } from './skills';
 
-export const spatialRelationships_SkillGroup_Data = buildSkillGroupConfig({
+export const spatialRelationships_SkillGroup_Data = defineSkillGroup({
   slug: 'spatialRelationships',
   id: '1db7b4a5-aab8-4156-87ff-5af75b133eed',
   name: {
@@ -40,11 +40,11 @@ export const spatialRelationships_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Кеңістіктік байланыстар',
     qm: 'Mekâniy bağlar',
   },
-  skills: {
-    describeClusteredAndDispersedArrangements: describeClusteredAndDispersedArrangements_Skill_Data,
-    distinguishAdjacencyFromProximity: distinguishAdjacencyFromProximity_Skill_Data,
-    identifyBarriersAndCorridorsBetweenPlaces: identifyBarriersAndCorridorsBetweenPlaces_Skill_Data,
-  },
+  skills: [
+    describeClusteredAndDispersedArrangements_Skill_Data,
+    distinguishAdjacencyFromProximity_Skill_Data,
+    identifyBarriersAndCorridorsBetweenPlaces_Skill_Data,
+  ],
   description: {
     methodological:
       'Places and features form patterns of nearness, containment, connection, concentration, and separation. These relationships matter even when the exact names of the locations change.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prehistoricSymbolicCulture_Skill_Data = buildSkillConfig({
+export const prehistoricSymbolicCulture_Skill_Data = defineSkill({
   slug: 'prehistoricSymbolicCulture',
   id: '7a6701aa-647b-413e-8517-31f253bfb0fd',
   name: {

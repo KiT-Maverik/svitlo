@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const socialHierarchies_Skill_Data = buildSkillConfig({
+export const socialHierarchies_Skill_Data = defineSkill({
   slug: 'socialHierarchies',
   id: '4485a1d7-f66d-467b-996e-1986c2ca6aa2',
   name: {

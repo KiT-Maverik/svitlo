@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const southArabianKingdoms_Skill_Data = buildSkillConfig({
+export const southArabianKingdoms_Skill_Data = defineSkill({
   slug: 'southArabianKingdoms',
   id: 'be1342dd-4427-4001-807b-b84b9ec96135',
   name: {

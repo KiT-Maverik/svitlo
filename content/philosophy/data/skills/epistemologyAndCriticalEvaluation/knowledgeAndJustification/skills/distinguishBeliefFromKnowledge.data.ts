@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishBeliefFromKnowledge_Skill_Data = buildSkillConfig({
+export const distinguishBeliefFromKnowledge_Skill_Data = defineSkill({
   slug: 'distinguishBeliefFromKnowledge',
   id: 'a46fc6b0-dd8b-4953-9820-324439da7b80',
   name: {

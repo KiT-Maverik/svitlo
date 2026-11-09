@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useAThoughtExperimentToExamineAConcept_Skill_Data = buildSkillConfig({
+export const useAThoughtExperimentToExamineAConcept_Skill_Data = defineSkill({
   slug: 'useAThoughtExperimentToExamineAConcept',
   id: 'b5ab14d3-4b5f-4059-80ea-9be45032b6f1',
   name: {

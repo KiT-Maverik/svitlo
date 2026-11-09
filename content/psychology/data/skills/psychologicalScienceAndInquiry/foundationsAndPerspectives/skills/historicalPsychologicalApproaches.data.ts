@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalPsychologicalApproaches_Skill_Data = buildSkillConfig({
+export const historicalPsychologicalApproaches_Skill_Data = defineSkill({
   slug: 'historicalPsychologicalApproaches',
   id: '1e24a222-a42b-4093-a16a-2ac70050b743',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const centnerKilogram_Skill_Data = buildSkillConfig({
+export const centnerKilogram_Skill_Data = defineSkill({
   slug: 'centnerKilogram',
   id: '3eb50b43-90c3-4a4a-ae8b-1cfa460fab1d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishALightSourceFromAnIlluminatedBody_Skill_Data = buildSkillConfig({
+export const distinguishALightSourceFromAnIlluminatedBody_Skill_Data = defineSkill({
   slug: 'distinguishALightSourceFromAnIlluminatedBody',
   id: '1a086eaa-546b-4cbb-9644-73cae752f540',
   name: {

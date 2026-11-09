@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const laborSupply_Skill_Data = buildSkillConfig({
+export const laborSupply_Skill_Data = defineSkill({
   slug: 'laborSupply',
   id: 'e082c807-ae2b-4300-bac9-ab018b0fc1dc',
   name: {

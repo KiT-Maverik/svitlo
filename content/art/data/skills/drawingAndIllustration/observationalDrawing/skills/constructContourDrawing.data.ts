@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructContourDrawing_Skill_Data = buildSkillConfig({
+export const constructContourDrawing_Skill_Data = defineSkill({
   slug: 'constructContourDrawing',
   id: '1674ebd2-682a-4177-859e-ed04d591e4c5',
   name: {

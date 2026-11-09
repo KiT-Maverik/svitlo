@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nominalExchangeRate_Skill_Data = buildSkillConfig({
+export const nominalExchangeRate_Skill_Data = defineSkill({
   slug: 'nominalExchangeRate',
   id: '3bfc67bd-8972-4ada-bf78-ba1dacb5abd7',
   name: {

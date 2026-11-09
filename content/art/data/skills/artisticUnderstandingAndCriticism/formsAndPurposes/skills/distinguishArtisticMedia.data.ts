@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishArtisticMedia_Skill_Data = buildSkillConfig({
+export const distinguishArtisticMedia_Skill_Data = defineSkill({
   slug: 'distinguishArtisticMedia',
   id: 'e9476587-f315-4eaa-9c35-acf0f07d64ca',
   name: {

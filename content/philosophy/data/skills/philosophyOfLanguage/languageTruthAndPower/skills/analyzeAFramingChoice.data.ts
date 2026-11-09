@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAFramingChoice_Skill_Data = buildSkillConfig({
+export const analyzeAFramingChoice_Skill_Data = defineSkill({
   slug: 'analyzeAFramingChoice',
   id: '0a59bbb2-7839-4ef6-a6b8-15ce24292f3d',
   name: {

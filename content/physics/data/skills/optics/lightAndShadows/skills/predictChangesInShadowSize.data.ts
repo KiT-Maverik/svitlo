@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictChangesInShadowSize_Skill_Data = buildSkillConfig({
+export const predictChangesInShadowSize_Skill_Data = defineSkill({
   slug: 'predictChangesInShadowSize',
   id: '4c5e3985-c783-4884-9036-df82ddc5ce9a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToUnsafeConditions_Skill_Data = buildSkillConfig({
+export const respondToUnsafeConditions_Skill_Data = defineSkill({
   slug: 'respondToUnsafeConditions',
   id: '7698247b-20c4-4b25-80a9-f8b854883a0e',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inGroupAndOutGroupBias_Skill_Data = buildSkillConfig({
+export const inGroupAndOutGroupBias_Skill_Data = defineSkill({
   slug: 'inGroupAndOutGroupBias',
   id: '5093dc6d-1357-4b93-bc7b-93c57dea1573',
   name: {

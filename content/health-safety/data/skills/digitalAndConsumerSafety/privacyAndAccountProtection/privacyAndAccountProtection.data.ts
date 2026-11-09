@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   protectPersonalInformationOnline_Skill_Data,
@@ -6,7 +6,7 @@ import {
   secureEverydayAccounts_Skill_Data,
 } from './skills';
 
-export const privacyAndAccountProtection_SkillGroup_Data = buildSkillGroupConfig({
+export const privacyAndAccountProtection_SkillGroup_Data = defineSkillGroup({
   slug: 'privacyAndAccountProtection',
   id: '4fb6f8ce-75ee-4884-8a7e-3561c6250d6a',
   name: {
@@ -40,11 +40,11 @@ export const privacyAndAccountProtection_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Құпиялық және аккаунттарды қорғау',
     qm: 'Şahsiylik ve hesaplarnı qorçav',
   },
-  skills: {
-    protectPersonalInformationOnline: protectPersonalInformationOnline_Skill_Data,
-    recognizeUnsafeAccessRequests: recognizeUnsafeAccessRequests_Skill_Data,
-    secureEverydayAccounts: secureEverydayAccounts_Skill_Data,
-  },
+  skills: [
+    protectPersonalInformationOnline_Skill_Data,
+    recognizeUnsafeAccessRequests_Skill_Data,
+    secureEverydayAccounts_Skill_Data,
+  ],
   description: {
     methodological:
       'Limiting disclosure and protecting access reduces vulnerabilities even when platforms or other people behave unpredictably.',

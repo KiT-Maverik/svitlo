@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTransmissionOfHereditaryInformation_Skill_Data = buildSkillConfig({
+export const explainTransmissionOfHereditaryInformation_Skill_Data = defineSkill({
   slug: 'explainTransmissionOfHereditaryInformation',
   id: '415e75b4-2c99-4f0b-a631-b98a440b4bde',
   name: {

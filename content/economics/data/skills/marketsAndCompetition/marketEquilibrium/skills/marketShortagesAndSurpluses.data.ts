@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const marketShortagesAndSurpluses_Skill_Data = buildSkillConfig({
+export const marketShortagesAndSurpluses_Skill_Data = defineSkill({
   slug: 'marketShortagesAndSurpluses',
   id: 'b25ac561-dd31-4136-99d3-cc751559a37d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const processHeatingSystems_Skill_Data = buildSkillConfig({
+export const processHeatingSystems_Skill_Data = defineSkill({
   slug: 'processHeatingSystems',
   id: '0771fce1-c22f-4ea3-91ee-c5a294e4284c',
   name: {

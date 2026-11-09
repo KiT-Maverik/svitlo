@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const continuousSpectra_Skill_Data = buildSkillConfig({
+export const continuousSpectra_Skill_Data = defineSkill({
   slug: 'continuousSpectra',
   id: 'e5572740-41a8-4414-b212-e92fc2323dd0',
   name: {

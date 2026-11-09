@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const economicsOfPersonalData_Skill_Data = buildSkillConfig({
+export const economicsOfPersonalData_Skill_Data = defineSkill({
   slug: 'economicsOfPersonalData',
   id: '3c84baef-7753-491e-aa48-1248e473bf7d',
   name: {

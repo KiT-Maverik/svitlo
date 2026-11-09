@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planAShotSequence_Skill_Data = buildSkillConfig({
+export const planAShotSequence_Skill_Data = defineSkill({
   slug: 'planAShotSequence',
   id: '3b5c2162-ab35-48da-a080-181c88d0f9d3',
   name: {

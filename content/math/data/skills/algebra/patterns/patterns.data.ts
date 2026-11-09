@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { arithmeticPattern_Skill_Data, growingPattern_Skill_Data } from './skills';
 
-export const patterns_SkillGroup_Data = buildSkillGroupConfig({
+export const patterns_SkillGroup_Data = defineSkillGroup({
   slug: 'patterns',
   id: '391a608f-ebba-4587-9c15-39437e736e36',
   name: {
@@ -36,10 +36,10 @@ export const patterns_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Prawidłowości',
     uk: 'Закономірності',
   },
-  skills: {
-    arithmeticPattern: arithmeticPattern_Skill_Data,
-    growingPattern: growingPattern_Skill_Data,
-  },
+  skills: [
+    arithmeticPattern_Skill_Data,
+    growingPattern_Skill_Data,
+  ],
   description: {
     methodological:
       "Regular numerical changes following a rule and recognizing a sequence's structure from several terms.",

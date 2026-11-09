@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const beams_Skill_Data = buildSkillConfig({
+export const beams_Skill_Data = defineSkill({
   slug: 'beams',
   id: 'f95c60dc-7c3a-4512-a7da-0ad3d85ef6f0',
   name: {

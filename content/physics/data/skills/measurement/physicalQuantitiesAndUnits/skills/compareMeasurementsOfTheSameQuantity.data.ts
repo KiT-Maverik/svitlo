@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareMeasurementsOfTheSameQuantity_Skill_Data = buildSkillConfig({
+export const compareMeasurementsOfTheSameQuantity_Skill_Data = defineSkill({
   slug: 'compareMeasurementsOfTheSameQuantity',
   id: 'db888803-d934-466f-bddb-318bf7201fc2',
   name: {

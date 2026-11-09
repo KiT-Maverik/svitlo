@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   accessToFinanceAndBasicServices_Skill_Data,
@@ -6,7 +6,7 @@ import {
   inclusiveEconomicInstitutions_Skill_Data,
 } from './skills';
 
-export const institutionsAndDevelopment_SkillGroup_Data = buildSkillGroupConfig({
+export const institutionsAndDevelopment_SkillGroup_Data = defineSkillGroup({
   slug: 'institutionsAndDevelopment',
   id: 'fa842ffe-51ee-44f4-afb0-5d10d36f149f',
   name: {
@@ -40,11 +40,11 @@ export const institutionsAndDevelopment_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Институттар және даму',
     qm: 'Müesseseler ve inkişaf',
   },
-  skills: {
-    accessToFinanceAndBasicServices: accessToFinanceAndBasicServices_Skill_Data,
-    corruptionAndEconomicIncentives: corruptionAndEconomicIncentives_Skill_Data,
-    inclusiveEconomicInstitutions: inclusiveEconomicInstitutions_Skill_Data,
-  },
+  skills: [
+    accessToFinanceAndBasicServices_Skill_Data,
+    corruptionAndEconomicIncentives_Skill_Data,
+    inclusiveEconomicInstitutions_Skill_Data,
+  ],
   description: {
     methodological:
       'Rules, trust, state capacity, and access to resources influence investment and economic opportunity.',

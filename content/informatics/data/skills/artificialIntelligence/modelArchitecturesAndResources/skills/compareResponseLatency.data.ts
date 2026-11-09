@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareResponseLatency_Skill_Data = buildSkillConfig({
+export const compareResponseLatency_Skill_Data = defineSkill({
   slug: 'compareResponseLatency',
   id: '9b2f8f6c-617a-4f84-b6e3-7a659a211f7c',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyBarriersAndCorridorsBetweenPlaces_Skill_Data = buildSkillConfig({
+export const identifyBarriersAndCorridorsBetweenPlaces_Skill_Data = defineSkill({
   slug: 'identifyBarriersAndCorridorsBetweenPlaces',
   id: 'e11669f1-784e-44de-83c8-88e07b1a44e6',
   name: {

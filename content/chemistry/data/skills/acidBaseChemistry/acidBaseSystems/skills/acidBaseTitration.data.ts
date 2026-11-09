@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const acidBaseTitration_Skill_Data = buildSkillConfig({
+export const acidBaseTitration_Skill_Data = defineSkill({
   slug: 'acidBaseTitration',
   id: 'b73628cd-5a8b-4941-a160-b9d128105bf3',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const technologicalCatchUp_Skill_Data = buildSkillConfig({
+export const technologicalCatchUp_Skill_Data = defineSkill({
   slug: 'technologicalCatchUp',
   id: '16ce4fc4-2c65-41f1-b115-893ff35719c8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhyRegionalBoundariesMayDifferBetweenMaps_Skill_Data = buildSkillConfig({
+export const explainWhyRegionalBoundariesMayDifferBetweenMaps_Skill_Data = defineSkill({
   slug: 'explainWhyRegionalBoundariesMayDifferBetweenMaps',
   id: '8f52d85b-153e-4525-be83-6f3bb2e28967',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const testAProgramWithDifferentInputs_Skill_Data = buildSkillConfig({
+export const testAProgramWithDifferentInputs_Skill_Data = defineSkill({
   slug: 'testAProgramWithDifferentInputs',
   id: '3f81b086-fa88-4f90-bde2-d5245a529ac3',
   name: {

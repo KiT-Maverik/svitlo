@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeBehaviouralDependenceRisks_Skill_Data = buildSkillConfig({
+export const recognizeBehaviouralDependenceRisks_Skill_Data = defineSkill({
   slug: 'recognizeBehaviouralDependenceRisks',
   id: '535bd187-d1f8-43d4-a407-e4d1909c1063',
   name: {

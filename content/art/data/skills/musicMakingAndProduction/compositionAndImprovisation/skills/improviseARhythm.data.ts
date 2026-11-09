@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const improviseARhythm_Skill_Data = buildSkillConfig({
+export const improviseARhythm_Skill_Data = defineSkill({
   slug: 'improviseARhythm',
   id: '227369e5-3533-478c-8eb6-52b87ead0588',
   name: {

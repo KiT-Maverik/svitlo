@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLIFO_Skill_Data = buildSkillConfig({
+export const explainLIFO_Skill_Data = defineSkill({
   slug: 'explainLIFO',
   id: '977eed9c-94bd-46ca-a759-1fb3b1114bf1',
   name: {

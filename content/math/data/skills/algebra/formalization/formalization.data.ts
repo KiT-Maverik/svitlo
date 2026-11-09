@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { translateSituation_Skill_Data } from './skills';
 
-export const formalization_SkillGroup_Data = buildSkillGroupConfig({
+export const formalization_SkillGroup_Data = defineSkillGroup({
   slug: 'formalization',
   id: 'b0e684f5-3064-41ab-9bca-f7e2fce2514f',
   name: {
@@ -36,9 +36,9 @@ export const formalization_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Modelowanie symboliczne',
     uk: 'Символьне моделювання',
   },
-  skills: {
-    translateSituation: translateSituation_Skill_Data,
-  },
+  skills: [
+    translateSituation_Skill_Data,
+  ],
   description: {
     methodological: 'Representing relationships in a short situation using arithmetic or simple algebraic notation.',
     frontend: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainAnOperatingSystemsPurpose_Skill_Data = buildSkillConfig({
+export const explainAnOperatingSystemsPurpose_Skill_Data = defineSkill({
   slug: 'explainAnOperatingSystemsPurpose',
   id: '5f5c1649-de2a-4829-8efe-22c139921352',
   name: {

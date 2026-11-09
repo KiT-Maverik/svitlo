@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishRAMROMAndStorage_Skill_Data = buildSkillConfig({
+export const distinguishRAMROMAndStorage_Skill_Data = defineSkill({
   slug: 'distinguishRAMROMAndStorage',
   id: 'ed6e27d5-70d8-4241-9b74-10f093ac2ed3',
   name: {

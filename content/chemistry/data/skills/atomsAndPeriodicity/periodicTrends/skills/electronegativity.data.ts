@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const electronegativity_Skill_Data = buildSkillConfig({
+export const electronegativity_Skill_Data = defineSkill({
   slug: 'electronegativity',
   id: '4acf4838-b8d4-4302-9381-34db845efa03',
   name: {

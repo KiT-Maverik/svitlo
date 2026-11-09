@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainADatabaseTable_Skill_Data = buildSkillConfig({
+export const explainADatabaseTable_Skill_Data = defineSkill({
   slug: 'explainADatabaseTable',
   id: '496da37a-d415-4646-a8d2-9f0018435cf5',
   name: {

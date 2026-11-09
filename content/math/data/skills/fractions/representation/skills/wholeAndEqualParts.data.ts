@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const wholeAndEqualParts_Skill_Data = buildSkillConfig({
+export const wholeAndEqualParts_Skill_Data = defineSkill({
   slug: 'wholeAndEqualParts',
   id: '3b27b894-46e8-4a2a-b151-43b52224ba4c',
   name: {

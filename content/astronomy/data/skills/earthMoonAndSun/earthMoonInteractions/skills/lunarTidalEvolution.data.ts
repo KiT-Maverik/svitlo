@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lunarTidalEvolution_Skill_Data = buildSkillConfig({
+export const lunarTidalEvolution_Skill_Data = defineSkill({
   slug: 'lunarTidalEvolution',
   id: '9765ed5b-6c61-4d7e-8fca-ae6fbff52065',
   name: {

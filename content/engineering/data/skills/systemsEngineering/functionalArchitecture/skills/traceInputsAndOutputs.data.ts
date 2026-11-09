@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceInputsAndOutputs_Skill_Data = buildSkillConfig({
+export const traceInputsAndOutputs_Skill_Data = defineSkill({
   slug: 'traceInputsAndOutputs',
   id: '3f4da01a-1762-4564-86b8-c7ffb7e0b0b5',
   name: {

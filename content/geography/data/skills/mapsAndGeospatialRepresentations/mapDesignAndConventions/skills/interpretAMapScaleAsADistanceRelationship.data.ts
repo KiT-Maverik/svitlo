@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretAMapScaleAsADistanceRelationship_Skill_Data = buildSkillConfig({
+export const interpretAMapScaleAsADistanceRelationship_Skill_Data = defineSkill({
   slug: 'interpretAMapScaleAsADistanceRelationship',
   id: 'e3f6966a-f524-40a5-98d3-1a021d69f6f9',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyThreatsToLocalSpecies_Skill_Data = buildSkillConfig({
+export const identifyThreatsToLocalSpecies_Skill_Data = defineSkill({
   slug: 'identifyThreatsToLocalSpecies',
   id: 'cdd2fab0-ebdc-4e3c-9741-bc5a394ef19f',
   name: {

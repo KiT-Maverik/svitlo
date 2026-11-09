@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createAWovenStructure_Skill_Data = buildSkillConfig({
+export const createAWovenStructure_Skill_Data = defineSkill({
   slug: 'createAWovenStructure',
   id: '98dc630d-c096-4a76-a1e7-db11aa6fe57a',
   name: {

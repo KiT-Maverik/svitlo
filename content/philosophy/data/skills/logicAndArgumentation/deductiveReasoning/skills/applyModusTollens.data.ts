@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyModusTollens_Skill_Data = buildSkillConfig({
+export const applyModusTollens_Skill_Data = defineSkill({
   slug: 'applyModusTollens',
   id: 'fb1822ac-5ac9-4d3e-89f0-c733ecff4d4c',
   name: {

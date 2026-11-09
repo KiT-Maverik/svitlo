@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const crossCulturalResearchComparability_Skill_Data = buildSkillConfig({
+export const crossCulturalResearchComparability_Skill_Data = defineSkill({
   slug: 'crossCulturalResearchComparability',
   id: 'e329b8fb-ba1e-4d64-908e-9f85f5550ed0',
   name: {

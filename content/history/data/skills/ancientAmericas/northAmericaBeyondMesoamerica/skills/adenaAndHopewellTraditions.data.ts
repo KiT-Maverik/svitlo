@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adenaAndHopewellTraditions_Skill_Data = buildSkillConfig({
+export const adenaAndHopewellTraditions_Skill_Data = defineSkill({
   slug: 'adenaAndHopewellTraditions',
   id: '6d3a03ef-5ca8-42cd-a4cc-43a50c68dec6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyTheFunctionOfASwitch_Skill_Data = buildSkillConfig({
+export const identifyTheFunctionOfASwitch_Skill_Data = defineSkill({
   slug: 'identifyTheFunctionOfASwitch',
   id: '30bd7eaa-eab5-49f5-94aa-a21293c53288',
   name: {

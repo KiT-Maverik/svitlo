@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const locateHumanMadeGeographicObjectsOnAMap_Skill_Data = buildSkillConfig({
+export const locateHumanMadeGeographicObjectsOnAMap_Skill_Data = defineSkill({
   slug: 'locateHumanMadeGeographicObjectsOnAMap',
   id: '117274cb-f401-4cba-a17b-7b115cb3e8ff',
   name: {

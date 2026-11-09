@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeEpistemicInjustice_Skill_Data = buildSkillConfig({
+export const analyzeEpistemicInjustice_Skill_Data = defineSkill({
   slug: 'analyzeEpistemicInjustice',
   id: '2b43e1c8-3ef0-487c-b232-c60a4ea75fc0',
   name: {

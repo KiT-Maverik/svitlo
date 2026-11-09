@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyAPropositionUsingATruthTable_Skill_Data = buildSkillConfig({
+export const classifyAPropositionUsingATruthTable_Skill_Data = defineSkill({
   slug: 'classifyAPropositionUsingATruthTable',
   id: 'f0ac214e-9523-48f7-8831-5fe92f07a197',
   name: {

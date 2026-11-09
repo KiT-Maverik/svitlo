@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const healthcareServiceMarkets_Skill_Data = buildSkillConfig({
+export const healthcareServiceMarkets_Skill_Data = defineSkill({
   slug: 'healthcareServiceMarkets',
   id: 'bb08f857-5d3e-48bc-9358-d13a7d82ca20',
   name: {

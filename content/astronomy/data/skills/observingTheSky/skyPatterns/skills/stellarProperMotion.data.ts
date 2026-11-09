@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarProperMotion_Skill_Data = buildSkillConfig({
+export const stellarProperMotion_Skill_Data = defineSkill({
   slug: 'stellarProperMotion',
   id: '71ca7ffc-0453-4e24-8935-785c977b708c',
   name: {

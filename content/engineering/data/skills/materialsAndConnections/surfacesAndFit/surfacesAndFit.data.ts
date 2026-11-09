@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   evaluateFrictionAtAnInterface_Skill_Data,
@@ -6,7 +6,7 @@ import {
   protectiveSurfaceTreatments_Skill_Data,
 } from './skills';
 
-export const surfacesAndFit_SkillGroup_Data = buildSkillGroupConfig({
+export const surfacesAndFit_SkillGroup_Data = defineSkillGroup({
   slug: 'surfacesAndFit',
   id: '435296b5-31e9-46f8-a590-ccc538eba4ab',
   name: {
@@ -40,11 +40,11 @@ export const surfacesAndFit_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Беттер мен қондырулар',
     qm: 'Yüzler ve uyğun keçmeler',
   },
-  skills: {
-    evaluateFrictionAtAnInterface: evaluateFrictionAtAnInterface_Skill_Data,
-    fitsAndClearances: fitsAndClearances_Skill_Data,
-    protectiveSurfaceTreatments: protectiveSurfaceTreatments_Skill_Data,
-  },
+  skills: [
+    evaluateFrictionAtAnInterface_Skill_Data,
+    fitsAndClearances_Skill_Data,
+    protectiveSurfaceTreatments_Skill_Data,
+  ],
   description: {
     methodological: 'Small variations at contacting surfaces affect motion, grip, sealing, protection and assembly.',
     frontend: {

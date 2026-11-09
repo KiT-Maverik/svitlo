@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const standardCandles_Skill_Data = buildSkillConfig({
+export const standardCandles_Skill_Data = defineSkill({
   slug: 'standardCandles',
   id: 'a2c155f8-e6d3-4991-8ba2-ba5ddfc067e0',
   name: {

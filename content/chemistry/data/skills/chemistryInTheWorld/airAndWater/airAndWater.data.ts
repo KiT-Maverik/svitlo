@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   atmosphericChemicalChanges_Skill_Data,
@@ -8,7 +8,7 @@ import {
   waterContaminants_Skill_Data,
 } from './skills';
 
-export const airAndWater_SkillGroup_Data = buildSkillGroupConfig({
+export const airAndWater_SkillGroup_Data = defineSkillGroup({
   slug: 'airAndWater',
   id: '10df20fa-e7a4-4b8f-9509-35ed6266c32f',
   name: {
@@ -42,13 +42,13 @@ export const airAndWater_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ауа және су',
     qm: 'Ava ve suv',
   },
-  skills: {
-    atmosphericChemicalChanges: atmosphericChemicalChanges_Skill_Data,
-    carbonChemistryInTheEnvironment: carbonChemistryInTheEnvironment_Skill_Data,
-    compositionOfAir: compositionOfAir_Skill_Data,
-    waterAsASolvent: waterAsASolvent_Skill_Data,
-    waterContaminants: waterContaminants_Skill_Data,
-  },
+  skills: [
+    atmosphericChemicalChanges_Skill_Data,
+    carbonChemistryInTheEnvironment_Skill_Data,
+    compositionOfAir_Skill_Data,
+    waterAsASolvent_Skill_Data,
+    waterContaminants_Skill_Data,
+  ],
   description: {
     methodological:
       'Environmental samples contain reacting or partitioning chemical species whose measurements require attention to concentration and chemical form.',

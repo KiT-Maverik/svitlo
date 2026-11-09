@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const balancedDietaryPatterns_Skill_Data = buildSkillConfig({
+export const balancedDietaryPatterns_Skill_Data = defineSkill({
   slug: 'balancedDietaryPatterns',
   id: '0c739f02-6ef6-44d1-a924-3bd791ca7ecb',
   name: {

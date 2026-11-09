@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishEvaporationFromBoiling_Skill_Data,
@@ -7,7 +7,7 @@ import {
   explainEvaporation_Skill_Data,
 } from './skills';
 
-export const phaseTransitions_SkillGroup_Data = buildSkillGroupConfig({
+export const phaseTransitions_SkillGroup_Data = defineSkillGroup({
   slug: 'phaseTransitions',
   id: '6e5335c6-28af-4958-87e1-b07daac7e529',
   name: {
@@ -41,12 +41,12 @@ export const phaseTransitions_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'ფაზური გადასვლები',
     kk: 'Фазалық ауысулар',
   },
-  skills: {
-    distinguishEvaporationFromBoiling: distinguishEvaporationFromBoiling_Skill_Data,
-    distinguishMeltingFromFreezingOfWater: distinguishMeltingFromFreezingOfWater_Skill_Data,
-    explainCondensation: explainCondensation_Skill_Data,
-    explainEvaporation: explainEvaporation_Skill_Data,
-  },
+  skills: [
+    distinguishEvaporationFromBoiling_Skill_Data,
+    distinguishMeltingFromFreezingOfWater_Skill_Data,
+    explainCondensation_Skill_Data,
+    explainEvaporation_Skill_Data,
+  ],
   description: {
     methodological:
       'Melting, freezing, evaporation, and condensation link thermal conditions to changes of state of the same substance.',

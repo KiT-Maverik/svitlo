@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   designASimpleDatabaseSchema_Skill_Data,
@@ -8,7 +8,7 @@ import {
   modelRelationshipsBetweenTables_Skill_Data,
 } from './skills';
 
-export const databases_SkillGroup_Data = buildSkillGroupConfig({
+export const databases_SkillGroup_Data = defineSkillGroup({
   slug: 'databases',
   id: '981dcc4c-1344-44b6-af1c-18d8a4d3f391',
   name: {
@@ -42,13 +42,13 @@ export const databases_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Деректер базалары',
     qm: 'Verilgenler bazaları',
   },
-  skills: {
-    designASimpleDatabaseSchema: designASimpleDatabaseSchema_Skill_Data,
-    distinguishRecordsAndFields: distinguishRecordsAndFields_Skill_Data,
-    explainADatabaseTable: explainADatabaseTable_Skill_Data,
-    explainPrimaryKeys: explainPrimaryKeys_Skill_Data,
-    modelRelationshipsBetweenTables: modelRelationshipsBetweenTables_Skill_Data,
-  },
+  skills: [
+    designASimpleDatabaseSchema_Skill_Data,
+    distinguishRecordsAndFields_Skill_Data,
+    explainADatabaseTable_Skill_Data,
+    explainPrimaryKeys_Skill_Data,
+    modelRelationshipsBetweenTables_Skill_Data,
+  ],
   description: {
     methodological:
       'Structured storage of interrelated information differs from a table laid out only for human reading. Records and fields define the structure, keys identify records, and relationships connect information across tables.',

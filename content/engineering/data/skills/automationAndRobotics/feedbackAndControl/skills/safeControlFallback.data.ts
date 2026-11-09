@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeControlFallback_Skill_Data = buildSkillConfig({
+export const safeControlFallback_Skill_Data = defineSkill({
   slug: 'safeControlFallback',
   id: 'b8a25003-e4e7-45e1-a7f8-b9c23f1cbbe6',
   name: {

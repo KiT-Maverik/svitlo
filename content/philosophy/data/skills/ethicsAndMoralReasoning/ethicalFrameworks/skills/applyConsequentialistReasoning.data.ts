@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyConsequentialistReasoning_Skill_Data = buildSkillConfig({
+export const applyConsequentialistReasoning_Skill_Data = defineSkill({
   slug: 'applyConsequentialistReasoning',
   id: '713223b5-cc2a-4b25-a199-5ca225d92de1',
   name: {

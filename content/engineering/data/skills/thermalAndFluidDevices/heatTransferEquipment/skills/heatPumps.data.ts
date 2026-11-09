@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const heatPumps_Skill_Data = buildSkillConfig({
+export const heatPumps_Skill_Data = defineSkill({
   slug: 'heatPumps',
   id: '5175d1f0-2518-4025-9210-c67772d8b371',
   name: {

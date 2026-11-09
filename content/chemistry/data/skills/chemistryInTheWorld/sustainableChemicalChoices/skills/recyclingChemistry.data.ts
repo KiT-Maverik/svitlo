@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recyclingChemistry_Skill_Data = buildSkillConfig({
+export const recyclingChemistry_Skill_Data = defineSkill({
   slug: 'recyclingChemistry',
   id: '16a40829-d6f3-4674-98c6-a49962ca1b2d',
   name: {

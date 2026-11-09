@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhyWaterPressureIncreasesWithDepth_Skill_Data = buildSkillConfig({
+export const explainWhyWaterPressureIncreasesWithDepth_Skill_Data = defineSkill({
   slug: 'explainWhyWaterPressureIncreasesWithDepth',
   id: 'd77de91c-05fa-4590-8b27-49704dfdc385',
   name: {

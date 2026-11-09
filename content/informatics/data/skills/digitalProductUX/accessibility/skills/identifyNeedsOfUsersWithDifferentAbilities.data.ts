@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyNeedsOfUsersWithDifferentAbilities_Skill_Data = buildSkillConfig({
+export const identifyNeedsOfUsersWithDifferentAbilities_Skill_Data = defineSkill({
   slug: 'identifyNeedsOfUsersWithDifferentAbilities',
   id: '3fa9aa5f-9965-49c2-a9ab-fa9baf466491',
   name: {

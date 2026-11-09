@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const handleAnEvent_Skill_Data = buildSkillConfig({
+export const handleAnEvent_Skill_Data = defineSkill({
   slug: 'handleAnEvent',
   id: '743d70ec-ac08-4f97-aac9-5845e1c2f346',
   name: {

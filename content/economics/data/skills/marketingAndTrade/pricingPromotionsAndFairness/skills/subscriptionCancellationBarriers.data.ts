@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const subscriptionCancellationBarriers_Skill_Data = buildSkillConfig({
+export const subscriptionCancellationBarriers_Skill_Data = defineSkill({
   slug: 'subscriptionCancellationBarriers',
   id: 'fea8e895-0132-44c7-85d3-da7ab9973180',
   name: {

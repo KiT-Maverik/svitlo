@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const abstractABiologicalPrinciple_Skill_Data = buildSkillConfig({
+export const abstractABiologicalPrinciple_Skill_Data = defineSkill({
   slug: 'abstractABiologicalPrinciple',
   id: 'ccdf6900-e82c-4fe2-8039-9d3a0acca976',
   name: {

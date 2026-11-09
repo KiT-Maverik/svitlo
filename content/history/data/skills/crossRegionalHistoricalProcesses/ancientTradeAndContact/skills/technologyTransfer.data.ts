@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const technologyTransfer_Skill_Data = buildSkillConfig({
+export const technologyTransfer_Skill_Data = defineSkill({
   slug: 'technologyTransfer',
   id: '2a047815-6d19-4840-8e31-4e17e5163e8a',
   name: {

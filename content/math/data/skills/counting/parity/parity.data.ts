@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { evenOdd_Skill_Data } from './skills';
 
-export const parity_SkillGroup_Data = buildSkillGroupConfig({
+export const parity_SkillGroup_Data = defineSkillGroup({
   slug: 'parity',
   id: '77e6c4eb-a1ee-4cfd-a286-7180e3b51e9f',
   name: {
@@ -36,9 +36,9 @@ export const parity_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Liczby parzyste i nieparzyste',
     uk: 'Парність',
   },
-  skills: {
-    evenOdd: evenOdd_Skill_Data,
-  },
+  skills: [
+    evenOdd_Skill_Data,
+  ],
   description: {
     methodological:
       'Classifying natural numbers by whether a corresponding collection can be divided into pairs with no remainder.',

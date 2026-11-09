@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishABodysMassFromEarthsGravitationalForce_Skill_Data,
@@ -6,7 +6,7 @@ import {
   predictTheDirectionOfFalling_Skill_Data,
 } from './skills';
 
-export const gravity_SkillGroup_Data = buildSkillGroupConfig({
+export const gravity_SkillGroup_Data = defineSkillGroup({
   slug: 'gravity',
   id: 'e150b34d-82de-4a8c-bf5e-3b3ef92cdc16',
   name: {
@@ -40,11 +40,11 @@ export const gravity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Гравитация',
     qm: 'Gravitatsiya',
   },
-  skills: {
-    distinguishABodysMassFromEarthsGravitationalForce: distinguishABodysMassFromEarthsGravitationalForce_Skill_Data,
-    explainEarthsGravitationalForceOnABody: explainEarthsGravitationalForceOnABody_Skill_Data,
-    predictTheDirectionOfFalling: predictTheDirectionOfFalling_Skill_Data,
-  },
+  skills: [
+    distinguishABodysMassFromEarthsGravitationalForce_Skill_Data,
+    explainEarthsGravitationalForceOnABody_Skill_Data,
+    predictTheDirectionOfFalling_Skill_Data,
+  ],
   description: {
     methodological:
       "Bodies with mass interact gravitationally even without touching. Earth's gravity governs falling near its surface, and other celestial bodies also exert gravitational influence.",

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptIllustrationToAnAudience_Skill_Data = buildSkillConfig({
+export const adaptIllustrationToAnAudience_Skill_Data = defineSkill({
   slug: 'adaptIllustrationToAnAudience',
   id: '52e08235-f3ac-47c3-a6b1-e22aa831cc7f',
   name: {

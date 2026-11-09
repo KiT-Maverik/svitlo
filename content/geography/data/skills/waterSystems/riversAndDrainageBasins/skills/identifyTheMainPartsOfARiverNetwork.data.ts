@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyTheMainPartsOfARiverNetwork_Skill_Data = buildSkillConfig({
+export const identifyTheMainPartsOfARiverNetwork_Skill_Data = defineSkill({
   slug: 'identifyTheMainPartsOfARiverNetwork',
   id: 'e17dec2a-30e1-4ff4-bcec-3e672d16bd18',
   name: {

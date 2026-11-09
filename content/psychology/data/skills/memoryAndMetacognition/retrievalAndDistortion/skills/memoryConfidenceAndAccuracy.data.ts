@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const memoryConfidenceAndAccuracy_Skill_Data = buildSkillConfig({
+export const memoryConfidenceAndAccuracy_Skill_Data = defineSkill({
   slug: 'memoryConfidenceAndAccuracy',
   id: '652eaa8a-dfe0-49b1-baa3-580319ea213f',
   name: {

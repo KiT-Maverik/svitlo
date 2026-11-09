@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const diagnoseManufacturingDefects_Skill_Data = buildSkillConfig({
+export const diagnoseManufacturingDefects_Skill_Data = defineSkill({
   slug: 'diagnoseManufacturingDefects',
   id: 'a9bbc822-047d-4a3b-a89b-f20fbe8fea79',
   name: {

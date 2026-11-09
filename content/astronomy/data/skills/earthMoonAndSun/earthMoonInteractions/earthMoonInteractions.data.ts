@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { lunarOrbitAndMonth_Skill_Data, lunarTidalEvolution_Skill_Data, oceanTides_Skill_Data } from './skills';
 
-export const earthMoonInteractions_SkillGroup_Data = buildSkillGroupConfig({
+export const earthMoonInteractions_SkillGroup_Data = defineSkillGroup({
   slug: 'earthMoonInteractions',
   id: 'b9f1d7ef-6fe1-4117-9cad-ca18730737af',
   name: {
@@ -36,11 +36,11 @@ export const earthMoonInteractions_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жер мен Айдың өзара әрекеттесуі',
     qm: 'Yer ile Ay arasındaki qarşılıqlı tesir',
   },
-  skills: {
-    lunarOrbitAndMonth: lunarOrbitAndMonth_Skill_Data,
-    lunarTidalEvolution: lunarTidalEvolution_Skill_Data,
-    oceanTides: oceanTides_Skill_Data,
-  },
+  skills: [
+    lunarOrbitAndMonth_Skill_Data,
+    lunarTidalEvolution_Skill_Data,
+    oceanTides_Skill_Data,
+  ],
   description: {
     methodological:
       'The Earth–Moon system is a long-term dynamical pair whose interactions create measurable effects on Earth and its satellite.',

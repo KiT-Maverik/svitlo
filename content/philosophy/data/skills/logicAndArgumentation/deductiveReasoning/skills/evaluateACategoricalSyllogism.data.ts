@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateACategoricalSyllogism_Skill_Data = buildSkillConfig({
+export const evaluateACategoricalSyllogism_Skill_Data = defineSkill({
   slug: 'evaluateACategoricalSyllogism',
   id: 'beab0d9a-3e61-41c2-8d74-77bb0c0d9bff',
   name: {

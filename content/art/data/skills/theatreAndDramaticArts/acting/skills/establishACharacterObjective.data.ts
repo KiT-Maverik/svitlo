@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const establishACharacterObjective_Skill_Data = buildSkillConfig({
+export const establishACharacterObjective_Skill_Data = defineSkill({
   slug: 'establishACharacterObjective',
   id: 'd146aff5-0b04-4b95-a7d5-7f8501b7661d',
   name: {

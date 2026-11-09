@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { digitalProducts_SkillGroup_Data } from './digitalProducts/digitalProducts.data';
 import { financialTechnology_SkillGroup_Data } from './financialTechnology/financialTechnology.data';
 import { platformsAndNetworkEffects_SkillGroup_Data } from './platformsAndNetworkEffects/platformsAndNetworkEffects.data';
 
-export const digitalEconomy_SkillDomain_Data = buildSkillDomainConfig({
+export const digitalEconomy_SkillDomain_Data = defineSkillDomain({
   slug: 'digitalEconomy',
   id: 'dc2cecdf-3aa0-48e5-82ff-f53bb7642345',
-  name: {
+  title: {
     en: 'Цифрова економіка',
     zh: '数字经济',
     hi: 'डिजिटल अर्थव्यवस्था',
@@ -38,11 +38,11 @@ export const digitalEconomy_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Цифрлық экономика',
     qm: 'Raqamlı iqtisat',
   },
-  groups: {
-    digitalProducts: digitalProducts_SkillGroup_Data,
-    financialTechnology: financialTechnology_SkillGroup_Data,
-    platformsAndNetworkEffects: platformsAndNetworkEffects_SkillGroup_Data,
-  },
+  groups: [
+    digitalProducts_SkillGroup_Data,
+    financialTechnology_SkillGroup_Data,
+    platformsAndNetworkEffects_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Digital products and platforms change reproduction costs, market access, competition, and demand for labor. The focus is their economic mechanisms, not software implementation.',

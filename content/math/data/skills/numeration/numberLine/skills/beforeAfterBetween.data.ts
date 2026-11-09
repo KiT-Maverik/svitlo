@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const beforeAfterBetween_Skill_Data = buildSkillConfig({
+export const beforeAfterBetween_Skill_Data = defineSkill({
   slug: 'beforeAfterBetween',
   id: 'f1f3fcb5-c6ce-4542-817a-a9eca6b79453',
   name: {

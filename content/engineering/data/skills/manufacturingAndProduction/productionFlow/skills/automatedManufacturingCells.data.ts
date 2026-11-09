@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const automatedManufacturingCells_Skill_Data = buildSkillConfig({
+export const automatedManufacturingCells_Skill_Data = defineSkill({
   slug: 'automatedManufacturingCells',
   id: '9b32d811-67fe-496c-9a9b-1ade7552b5a6',
   name: {

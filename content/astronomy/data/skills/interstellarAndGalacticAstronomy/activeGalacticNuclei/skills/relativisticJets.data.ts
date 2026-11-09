@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relativisticJets_Skill_Data = buildSkillConfig({
+export const relativisticJets_Skill_Data = defineSkill({
   slug: 'relativisticJets',
   id: 'c3da4ef3-ebca-42a6-b9a0-d2f3a3be061a',
   name: {

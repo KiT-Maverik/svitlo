@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createADimensionedDrawing_Skill_Data = buildSkillConfig({
+export const createADimensionedDrawing_Skill_Data = defineSkill({
   slug: 'createADimensionedDrawing',
   id: '9f211857-0a0e-4347-8b45-15b317ec9419',
   name: {

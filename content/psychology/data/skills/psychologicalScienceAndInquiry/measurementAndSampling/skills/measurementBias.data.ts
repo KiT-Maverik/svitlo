@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const measurementBias_Skill_Data = buildSkillConfig({
+export const measurementBias_Skill_Data = defineSkill({
   slug: 'measurementBias',
   id: '80a13c1e-8f2b-4417-93bf-4cbf59dd79b9',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainBacterialCellDivision_Skill_Data = buildSkillConfig({
+export const explainBacterialCellDivision_Skill_Data = defineSkill({
   slug: 'explainBacterialCellDivision',
   id: 'abe1fd36-849a-44b3-b907-a99ce7c84b34',
   name: {

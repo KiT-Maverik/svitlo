@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeControlResponse_Skill_Data,
@@ -8,7 +8,7 @@ import {
   safeControlFallback_Skill_Data,
 } from './skills';
 
-export const feedbackAndControl_SkillGroup_Data = buildSkillGroupConfig({
+export const feedbackAndControl_SkillGroup_Data = defineSkillGroup({
   slug: 'feedbackAndControl',
   id: '28ec73c0-7da7-4e04-b15d-9916a293cda1',
   name: {
@@ -42,13 +42,13 @@ export const feedbackAndControl_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Кері байланыс және басқару',
     qm: 'Keri bağ ve kontrol',
   },
-  skills: {
-    analyzeControlResponse: analyzeControlResponse_Skill_Data,
-    controlArchitectureTradeOffs: controlArchitectureTradeOffs_Skill_Data,
-    feedbackControlLoops: feedbackControlLoops_Skill_Data,
-    openLoopControl: openLoopControl_Skill_Data,
-    safeControlFallback: safeControlFallback_Skill_Data,
-  },
+  skills: [
+    analyzeControlResponse_Skill_Data,
+    controlArchitectureTradeOffs_Skill_Data,
+    feedbackControlLoops_Skill_Data,
+    openLoopControl_Skill_Data,
+    safeControlFallback_Skill_Data,
+  ],
   description: {
     methodological:
       'A controlled process needs commands, observations and actuation; feedback can improve regulation but also create delay or oscillation.',

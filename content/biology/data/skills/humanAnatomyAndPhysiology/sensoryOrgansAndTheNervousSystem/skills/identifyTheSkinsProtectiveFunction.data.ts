@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyTheSkinsProtectiveFunction_Skill_Data = buildSkillConfig({
+export const identifyTheSkinsProtectiveFunction_Skill_Data = defineSkill({
   slug: 'identifyTheSkinsProtectiveFunction',
   id: '86def35e-2241-4a18-b3a3-6784a8ead613',
   name: {

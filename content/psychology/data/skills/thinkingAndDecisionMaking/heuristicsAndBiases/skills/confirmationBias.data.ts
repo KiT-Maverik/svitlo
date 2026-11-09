@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const confirmationBias_Skill_Data = buildSkillConfig({
+export const confirmationBias_Skill_Data = defineSkill({
   slug: 'confirmationBias',
   id: '02e8b562-f223-4201-9a7f-f4dbb9f6d345',
   name: {

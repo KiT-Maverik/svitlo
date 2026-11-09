@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const modelADomainEntityAsASoftwareObject_Skill_Data = buildSkillConfig({
+export const modelADomainEntityAsASoftwareObject_Skill_Data = defineSkill({
   slug: 'modelADomainEntityAsASoftwareObject',
   id: '4d0b43d9-6d0f-4806-a792-a0c54f29e6fd',
   name: {

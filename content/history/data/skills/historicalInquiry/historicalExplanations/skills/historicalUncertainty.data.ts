@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalUncertainty_Skill_Data = buildSkillConfig({
+export const historicalUncertainty_Skill_Data = defineSkill({
   slug: 'historicalUncertainty',
   id: '6c9ed840-5814-44b8-b841-45690e997ebb',
   name: {

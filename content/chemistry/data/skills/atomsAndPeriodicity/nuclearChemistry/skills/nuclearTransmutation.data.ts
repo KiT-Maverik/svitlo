@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nuclearTransmutation_Skill_Data = buildSkillConfig({
+export const nuclearTransmutation_Skill_Data = defineSkill({
   slug: 'nuclearTransmutation',
   id: '4930cc7e-d278-4f5b-9277-8a686c230632',
   name: {

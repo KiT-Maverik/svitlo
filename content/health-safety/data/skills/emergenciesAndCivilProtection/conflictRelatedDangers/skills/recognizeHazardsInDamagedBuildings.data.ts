@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeHazardsInDamagedBuildings_Skill_Data = buildSkillConfig({
+export const recognizeHazardsInDamagedBuildings_Skill_Data = defineSkill({
   slug: 'recognizeHazardsInDamagedBuildings',
   id: '592ac848-6c5f-499f-b80f-100338b4ad83',
   name: {

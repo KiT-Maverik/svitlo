@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlAnimationTiming_Skill_Data = buildSkillConfig({
+export const controlAnimationTiming_Skill_Data = defineSkill({
   slug: 'controlAnimationTiming',
   id: '1b95fe44-dfa9-4a83-9a10-ddd8b8969496',
   name: {

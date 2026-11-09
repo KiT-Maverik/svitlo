@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { preventionAndAccessToHelp_SkillGroup_Data } from './preventionAndAccessToHelp/preventionAndAccessToHelp.data';
 import { substanceRelatedRisks_SkillGroup_Data } from './substanceRelatedRisks/substanceRelatedRisks.data';
 
-export const substanceUseAndDependencePrevention_SkillDomain_Data = buildSkillDomainConfig({
+export const substanceUseAndDependencePrevention_SkillDomain_Data = defineSkillDomain({
   slug: 'substanceUseAndDependencePrevention',
   id: '97980369-7459-4e14-b975-7a56bdc6e208',
-  name: {
+  title: {
     en: 'Substance Use and Dependence Prevention',
     zh: '物质使用与依赖预防',
     hi: 'नशीले पदार्थों के उपयोग और निर्भरता की रोकथाम',
@@ -37,10 +37,10 @@ export const substanceUseAndDependencePrevention_SkillDomain_Data = buildSkillDo
     kk: 'Заттарды қолдану және тәуелділіктің алдын алу',
     qm: 'Maddelerni qullanmaq ve bağlılıqnıñ ögüni almaq',
   },
-  groups: {
-    preventionAndAccessToHelp: preventionAndAccessToHelp_SkillGroup_Data,
-    substanceRelatedRisks: substanceRelatedRisks_SkillGroup_Data,
-  },
+  groups: [
+    preventionAndAccessToHelp_SkillGroup_Data,
+    substanceRelatedRisks_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Tobacco, alcohol, drugs, and other dependence-forming patterns can affect health and safety. The focus is recognizing hazards, resisting coercion, and seeking care rather than pharmacological synthesis or moral judgment.',

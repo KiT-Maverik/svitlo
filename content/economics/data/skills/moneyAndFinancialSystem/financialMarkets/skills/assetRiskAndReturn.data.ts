@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assetRiskAndReturn_Skill_Data = buildSkillConfig({
+export const assetRiskAndReturn_Skill_Data = defineSkill({
   slug: 'assetRiskAndReturn',
   id: '3fcd8e4c-9ca0-4db5-9bf7-520b253dedb4',
   name: {

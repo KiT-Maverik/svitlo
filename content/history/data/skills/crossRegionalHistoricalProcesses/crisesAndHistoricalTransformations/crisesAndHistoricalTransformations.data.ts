@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   ancientEnvironmentalChallenges_Skill_Data,
@@ -7,7 +7,7 @@ import {
   politicalDeclineAndContinuity_Skill_Data,
 } from './skills';
 
-export const crisesAndHistoricalTransformations_SkillGroup_Data = buildSkillGroupConfig({
+export const crisesAndHistoricalTransformations_SkillGroup_Data = defineSkillGroup({
   slug: 'crisesAndHistoricalTransformations',
   id: '8690c916-53b3-4bed-b5fb-066b597625cf',
   name: {
@@ -41,12 +41,12 @@ export const crisesAndHistoricalTransformations_SkillGroup_Data = buildSkillGrou
     kk: 'Дағдарыстар мен тарихи өзгерістер',
     qm: 'Buhranlar ve tarihiy deñişiklikler',
   },
-  skills: {
-    ancientEnvironmentalChallenges: ancientEnvironmentalChallenges_Skill_Data,
-    ancientEpidemicsAndDemography: ancientEpidemicsAndDemography_Skill_Data,
-    comparativeHistoricalTransformations: comparativeHistoricalTransformations_Skill_Data,
-    politicalDeclineAndContinuity: politicalDeclineAndContinuity_Skill_Data,
-  },
+  skills: [
+    ancientEnvironmentalChallenges_Skill_Data,
+    ancientEpidemicsAndDemography_Skill_Data,
+    comparativeHistoricalTransformations_Skill_Data,
+    politicalDeclineAndContinuity_Skill_Data,
+  ],
   description: {
     methodological:
       'Climate shifts, wars, disease, and economic reorganization interacted but produced different outcomes across regions.',

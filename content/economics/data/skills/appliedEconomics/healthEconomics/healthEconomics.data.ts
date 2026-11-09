@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   healthcareFinancing_Skill_Data,
@@ -6,7 +6,7 @@ import {
   healthInsuranceAndMoralHazard_Skill_Data,
 } from './skills';
 
-export const healthEconomics_SkillGroup_Data = buildSkillGroupConfig({
+export const healthEconomics_SkillGroup_Data = defineSkillGroup({
   slug: 'healthEconomics',
   id: '20672d2a-fe53-466d-895f-9fc44aed5d2f',
   name: {
@@ -40,11 +40,11 @@ export const healthEconomics_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Денсаулық сақтау экономикасы',
     qm: 'Sağlıq iqtisadı',
   },
-  skills: {
-    healthcareFinancing: healthcareFinancing_Skill_Data,
-    healthcareServiceMarkets: healthcareServiceMarkets_Skill_Data,
-    healthInsuranceAndMoralHazard: healthInsuranceAndMoralHazard_Skill_Data,
-  },
+  skills: [
+    healthcareFinancing_Skill_Data,
+    healthcareServiceMarkets_Skill_Data,
+    healthInsuranceAndMoralHazard_Skill_Data,
+  ],
   description: {
     methodological:
       'Healthcare markets involve substantial information asymmetry, insurance arrangements, and external effects of population health.',

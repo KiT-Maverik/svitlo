@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretUniversalQuantification_Skill_Data = buildSkillConfig({
+export const interpretUniversalQuantification_Skill_Data = defineSkill({
   slug: 'interpretUniversalQuantification',
   id: '111aca7c-22d7-44ac-a5b5-1aa500711288',
   name: {

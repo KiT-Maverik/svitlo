@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareGeographicWaterAvailabilityAcrossRegions_Skill_Data = buildSkillConfig({
+export const compareGeographicWaterAvailabilityAcrossRegions_Skill_Data = defineSkill({
   slug: 'compareGeographicWaterAvailabilityAcrossRegions',
   id: '01e72fb2-d2c9-413e-ab2f-5ecdaa9125d8',
   name: {

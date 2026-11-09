@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   careForMinorWounds_Skill_Data,
@@ -8,7 +8,7 @@ import {
   useATourniquetWhenIndicated_Skill_Data,
 } from './skills';
 
-export const bleedingAndInjuries_SkillGroup_Data = buildSkillGroupConfig({
+export const bleedingAndInjuries_SkillGroup_Data = defineSkillGroup({
   slug: 'bleedingAndInjuries',
   id: 'ff7d232f-f7fc-4e88-b254-f5474e11e8f4',
   name: {
@@ -42,13 +42,13 @@ export const bleedingAndInjuries_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қан кету және жарақаттар',
     qm: 'Qan aqması ve yaralanmalar',
   },
-  skills: {
-    careForMinorWounds: careForMinorWounds_Skill_Data,
-    controlExternalBleeding: controlExternalBleeding_Skill_Data,
-    immobilizeSuspectedFractures: immobilizeSuspectedFractures_Skill_Data,
-    recognizeHeadAndSpinalInjuryDanger: recognizeHeadAndSpinalInjuryDanger_Skill_Data,
-    useATourniquetWhenIndicated: useATourniquetWhenIndicated_Skill_Data,
-  },
+  skills: [
+    careForMinorWounds_Skill_Data,
+    controlExternalBleeding_Skill_Data,
+    immobilizeSuspectedFractures_Skill_Data,
+    recognizeHeadAndSpinalInjuryDanger_Skill_Data,
+    useATourniquetWhenIndicated_Skill_Data,
+  ],
   description: {
     methodological:
       'First aid aims to prevent immediate deterioration while avoiding unnecessary manipulation or delay in definitive medical care.',

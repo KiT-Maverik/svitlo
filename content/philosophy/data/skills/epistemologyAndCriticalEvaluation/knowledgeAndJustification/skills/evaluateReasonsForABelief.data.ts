@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateReasonsForABelief_Skill_Data = buildSkillConfig({
+export const evaluateReasonsForABelief_Skill_Data = defineSkill({
   slug: 'evaluateReasonsForABelief',
   id: '2ddc3efc-52c3-4f65-9b54-e57d1d2cb49f',
   name: {

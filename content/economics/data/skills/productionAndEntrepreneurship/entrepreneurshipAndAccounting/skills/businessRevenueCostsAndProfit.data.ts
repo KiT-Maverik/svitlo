@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const businessRevenueCostsAndProfit_Skill_Data = buildSkillConfig({
+export const businessRevenueCostsAndProfit_Skill_Data = defineSkill({
   slug: 'businessRevenueCostsAndProfit',
   id: 'e88ecb49-8d9d-468e-a6d8-a48c89644f38',
   name: {

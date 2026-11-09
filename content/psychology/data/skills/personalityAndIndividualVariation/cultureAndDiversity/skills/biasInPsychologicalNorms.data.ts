@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const biasInPsychologicalNorms_Skill_Data = buildSkillConfig({
+export const biasInPsychologicalNorms_Skill_Data = defineSkill({
   slug: 'biasInPsychologicalNorms',
   id: '037d82f3-35be-4574-9b86-8af6e7ace5b7',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const refrigerationEquipment_Skill_Data = buildSkillConfig({
+export const refrigerationEquipment_Skill_Data = defineSkill({
   slug: 'refrigerationEquipment',
   id: 'f8e7fae3-243b-446e-950f-559d9c23008e',
   name: {

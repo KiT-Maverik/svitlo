@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeMoralDisagreement_Skill_Data = buildSkillConfig({
+export const analyzeMoralDisagreement_Skill_Data = defineSkill({
   slug: 'analyzeMoralDisagreement',
   id: 'c398f21a-1a8e-478f-bcc9-37fc13b88875',
   name: {

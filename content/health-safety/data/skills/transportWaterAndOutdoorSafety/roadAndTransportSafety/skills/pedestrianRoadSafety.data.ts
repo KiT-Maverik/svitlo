@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pedestrianRoadSafety_Skill_Data = buildSkillConfig({
+export const pedestrianRoadSafety_Skill_Data = defineSkill({
   slug: 'pedestrianRoadSafety',
   id: '58155722-2a34-4f66-af11-c951908c6674',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const manipulativeCommercialTactics_Skill_Data = buildSkillConfig({
+export const manipulativeCommercialTactics_Skill_Data = defineSkill({
   slug: 'manipulativeCommercialTactics',
   id: '4e8ee056-f610-4dd6-8ec3-e7efeb8e29da',
   name: {

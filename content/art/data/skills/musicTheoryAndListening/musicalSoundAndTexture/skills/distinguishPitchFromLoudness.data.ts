@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishPitchFromLoudness_Skill_Data = buildSkillConfig({
+export const distinguishPitchFromLoudness_Skill_Data = defineSkill({
   slug: 'distinguishPitchFromLoudness',
   id: '3984a4ae-4fd1-49c2-b66e-2347e714e433',
   name: {

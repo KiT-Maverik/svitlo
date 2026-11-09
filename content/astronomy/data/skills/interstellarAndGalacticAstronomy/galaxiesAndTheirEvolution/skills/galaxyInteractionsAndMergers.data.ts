@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const galaxyInteractionsAndMergers_Skill_Data = buildSkillConfig({
+export const galaxyInteractionsAndMergers_Skill_Data = defineSkill({
   slug: 'galaxyInteractionsAndMergers',
   id: 'bc5ff698-868f-4254-a089-a473f83c8f69',
   name: {

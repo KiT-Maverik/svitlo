@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { contactForcesAndFriction_SkillGroup_Data } from './contactForcesAndFriction/contactForcesAndFriction.data';
 import { equilibriumAndStability_SkillGroup_Data } from './equilibriumAndStability/equilibriumAndStability.data';
 import { gravity_SkillGroup_Data } from './gravity/gravity.data';
 
-export const forcesAndInteractions_SkillDomain_Data = buildSkillDomainConfig({
+export const forcesAndInteractions_SkillDomain_Data = defineSkillDomain({
   slug: 'forcesAndInteractions',
   id: '1af49c02-4fe8-455a-9e1e-2a83c3b08353',
-  name: {
+  title: {
     en: 'Forces and Interactions',
     zh: '力与相互作用',
     hi: 'बल और अंतःक्रियाएँ',
@@ -38,11 +38,11 @@ export const forcesAndInteractions_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Күштер және өзара әсерлесулер',
     qm: 'Quvetler ve tesirleşüvler',
   },
-  groups: {
-    contactForcesAndFriction: contactForcesAndFriction_SkillGroup_Data,
-    equilibriumAndStability: equilibriumAndStability_SkillGroup_Data,
-    gravity: gravity_SkillGroup_Data,
-  },
+  groups: [
+    contactForcesAndFriction_SkillGroup_Data,
+    equilibriumAndStability_SkillGroup_Data,
+    gravity_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'When bodies touch or affect one another at a distance, their motion, shape, or state of equilibrium may change. This Domain covers general concepts of force, contact, gravity, and stability; specifically magnetic and electric phenomena belong to Electromagnetism.',

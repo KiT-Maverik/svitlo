@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyMusicalInstruments_Skill_Data = buildSkillConfig({
+export const classifyMusicalInstruments_Skill_Data = defineSkill({
   slug: 'classifyMusicalInstruments',
   id: '92022335-969c-4461-acb6-5f76aac6d8a7',
   name: {

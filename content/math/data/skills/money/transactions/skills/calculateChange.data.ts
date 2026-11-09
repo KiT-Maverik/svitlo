@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const calculateChange_Skill_Data = buildSkillConfig({
+export const calculateChange_Skill_Data = defineSkill({
   slug: 'calculateChange',
   id: '56a4bd47-1221-489d-a11a-577d07bcb9af',
   name: {

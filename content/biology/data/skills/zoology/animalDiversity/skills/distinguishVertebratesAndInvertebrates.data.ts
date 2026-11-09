@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishVertebratesAndInvertebrates_Skill_Data = buildSkillConfig({
+export const distinguishVertebratesAndInvertebrates_Skill_Data = defineSkill({
   slug: 'distinguishVertebratesAndInvertebrates',
   id: '13808999-8f3d-4959-b221-6e501005d489',
   name: {

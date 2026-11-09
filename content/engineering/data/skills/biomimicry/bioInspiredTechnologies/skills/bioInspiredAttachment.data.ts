@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bioInspiredAttachment_Skill_Data = buildSkillConfig({
+export const bioInspiredAttachment_Skill_Data = defineSkill({
   slug: 'bioInspiredAttachment',
   id: 'aad7e3e1-a31e-4cdf-bab2-3e5799c219f6',
   name: {

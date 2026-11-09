@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretGeographicExposureToGeologicalHazards_Skill_Data = buildSkillConfig({
+export const interpretGeographicExposureToGeologicalHazards_Skill_Data = defineSkill({
   slug: 'interpretGeographicExposureToGeologicalHazards',
   id: '8dfcf52e-b5e4-4203-995f-27b73abd7599',
   name: {

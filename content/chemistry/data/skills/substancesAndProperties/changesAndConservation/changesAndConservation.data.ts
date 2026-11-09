@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { chemicalChanges_Skill_Data, massConservation_Skill_Data, physicalChanges_Skill_Data } from './skills';
 
-export const changesAndConservation_SkillGroup_Data = buildSkillGroupConfig({
+export const changesAndConservation_SkillGroup_Data = defineSkillGroup({
   slug: 'changesAndConservation',
   id: '6e21b5f4-a7d4-48b3-9124-1de198f9e6ff',
   name: {
@@ -36,11 +36,11 @@ export const changesAndConservation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Өзгерістер және сақталу',
     qm: 'Deñişüvler ve saqlanuv',
   },
-  skills: {
-    chemicalChanges: chemicalChanges_Skill_Data,
-    massConservation: massConservation_Skill_Data,
-    physicalChanges: physicalChanges_Skill_Data,
-  },
+  skills: [
+    chemicalChanges_Skill_Data,
+    massConservation_Skill_Data,
+    physicalChanges_Skill_Data,
+  ],
   description: {
     methodological:
       'Changes in form and changes in composition are distinct, while matter is conserved in appropriately defined systems.',

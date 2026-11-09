@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const findStartOrEnd_Skill_Data = buildSkillConfig({
+export const findStartOrEnd_Skill_Data = defineSkill({
   slug: 'findStartOrEnd',
   id: 'f98b80c1-0692-4ac2-a254-95a20ab13686',
   name: {

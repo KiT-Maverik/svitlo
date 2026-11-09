@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateSystemLevelCompromises_Skill_Data = buildSkillConfig({
+export const evaluateSystemLevelCompromises_Skill_Data = defineSkill({
   slug: 'evaluateSystemLevelCompromises',
   id: 'd4b6ce17-2b70-4b59-9d6c-78f79adfec51',
   name: {

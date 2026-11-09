@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeResponsesToStimuli_Skill_Data = buildSkillConfig({
+export const recognizeResponsesToStimuli_Skill_Data = defineSkill({
   slug: 'recognizeResponsesToStimuli',
   id: 'c5917777-664d-4800-8efc-7d2db2d4052f',
   name: {

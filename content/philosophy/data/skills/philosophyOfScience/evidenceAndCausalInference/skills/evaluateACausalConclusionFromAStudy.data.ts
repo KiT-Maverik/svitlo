@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateACausalConclusionFromAStudy_Skill_Data = buildSkillConfig({
+export const evaluateACausalConclusionFromAStudy_Skill_Data = defineSkill({
   slug: 'evaluateACausalConclusionFromAStudy',
   id: '009bf97c-e39f-4b47-9200-2e5aa33eb084',
   name: {

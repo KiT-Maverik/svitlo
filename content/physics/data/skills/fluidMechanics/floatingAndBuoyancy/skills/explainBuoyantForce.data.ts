@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainBuoyantForce_Skill_Data = buildSkillConfig({
+export const explainBuoyantForce_Skill_Data = defineSkill({
   slug: 'explainBuoyantForce',
   id: 'f7b9f3db-8bb0-4f67-86ec-0c436a38ce40',
   name: {

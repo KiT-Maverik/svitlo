@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateMaterialDurability_Skill_Data = buildSkillConfig({
+export const evaluateMaterialDurability_Skill_Data = defineSkill({
   slug: 'evaluateMaterialDurability',
   id: '3066e5ef-3cb2-4d86-9d70-f2a77274b94e',
   name: {

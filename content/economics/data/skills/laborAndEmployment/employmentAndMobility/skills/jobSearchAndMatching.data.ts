@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const jobSearchAndMatching_Skill_Data = buildSkillConfig({
+export const jobSearchAndMatching_Skill_Data = defineSkill({
   slug: 'jobSearchAndMatching',
   id: 'f1a1c11b-b5ff-4362-9496-ab26c34d0eea',
   name: {

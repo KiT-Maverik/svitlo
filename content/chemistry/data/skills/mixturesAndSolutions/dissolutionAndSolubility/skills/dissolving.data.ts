@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dissolving_Skill_Data = buildSkillConfig({
+export const dissolving_Skill_Data = defineSkill({
   slug: 'dissolving',
   id: '3751b241-d27b-4435-95b9-fc1a65e98ec7',
   name: {

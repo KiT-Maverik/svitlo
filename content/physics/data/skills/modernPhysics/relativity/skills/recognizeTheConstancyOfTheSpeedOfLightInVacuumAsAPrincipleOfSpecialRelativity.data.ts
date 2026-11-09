@@ -1,7 +1,7 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
 export const recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity_Skill_Data =
-  buildSkillConfig({
+  defineSkill({
     slug: 'recognizeTheConstancyOfTheSpeedOfLightInVacuumAsAPrincipleOfSpecialRelativity',
     id: 'c1fb76fa-f2a0-425d-94ba-8a19af65444e',
     name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   geographicLaborMobility_Skill_Data,
@@ -7,7 +7,7 @@ import {
   occupationalMobility_Skill_Data,
 } from './skills';
 
-export const employmentAndMobility_SkillGroup_Data = buildSkillGroupConfig({
+export const employmentAndMobility_SkillGroup_Data = defineSkillGroup({
   slug: 'employmentAndMobility',
   id: 'b02d11b1-e6df-413d-ac0b-337df2f8a497',
   name: {
@@ -41,12 +41,12 @@ export const employmentAndMobility_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жұмыспен қамту және мобильдік',
     qm: 'İşnen temin ve areketlilik',
   },
-  skills: {
-    geographicLaborMobility: geographicLaborMobility_Skill_Data,
-    jobSearchAndMatching: jobSearchAndMatching_Skill_Data,
-    laborMarketDiscrimination: laborMarketDiscrimination_Skill_Data,
-    occupationalMobility: occupationalMobility_Skill_Data,
-  },
+  skills: [
+    geographicLaborMobility_Skill_Data,
+    jobSearchAndMatching_Skill_Data,
+    laborMarketDiscrimination_Skill_Data,
+    occupationalMobility_Skill_Data,
+  ],
   description: {
     methodological:
       'Job searches and occupational changes are constrained by information, location, and qualifications.',

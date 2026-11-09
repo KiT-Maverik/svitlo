@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMitosis_Skill_Data = buildSkillConfig({
+export const explainMitosis_Skill_Data = defineSkill({
   slug: 'explainMitosis',
   id: '2e0f52c6-8c66-46dc-b282-c7a9da886626',
   name: {

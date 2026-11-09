@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { cosmicComponentsAndConstraints_SkillGroup_Data } from './cosmicComponentsAndConstraints/cosmicComponentsAndConstraints.data';
 import { cosmicExpansion_SkillGroup_Data } from './cosmicExpansion/cosmicExpansion.data';
@@ -6,10 +6,10 @@ import { cosmicScales_SkillGroup_Data } from './cosmicScales/cosmicScales.data';
 import { cosmicStructureAndEvolution_SkillGroup_Data } from './cosmicStructureAndEvolution/cosmicStructureAndEvolution.data';
 import { earlyUniverseModelsAndEvidence_SkillGroup_Data } from './earlyUniverseModelsAndEvidence/earlyUniverseModelsAndEvidence.data';
 
-export const cosmology_SkillDomain_Data = buildSkillDomainConfig({
+export const cosmology_SkillDomain_Data = defineSkillDomain({
   slug: 'cosmology',
   id: '7952ac93-5a92-4cc1-951b-e39b38b3708d',
-  name: {
+  title: {
     en: 'Cosmology',
     qm: 'Kosmologiya',
     zh: '宇宙学',
@@ -40,13 +40,13 @@ export const cosmology_SkillDomain_Data = buildSkillDomainConfig({
     ka: 'კოსმოლოგია',
     kk: 'Космология',
   },
-  groups: {
-    cosmicComponentsAndConstraints: cosmicComponentsAndConstraints_SkillGroup_Data,
-    cosmicExpansion: cosmicExpansion_SkillGroup_Data,
-    cosmicScales: cosmicScales_SkillGroup_Data,
-    cosmicStructureAndEvolution: cosmicStructureAndEvolution_SkillGroup_Data,
-    earlyUniverseModelsAndEvidence: earlyUniverseModelsAndEvidence_SkillGroup_Data,
-  },
+  groups: [
+    cosmicComponentsAndConstraints_SkillGroup_Data,
+    cosmicExpansion_SkillGroup_Data,
+    cosmicScales_SkillGroup_Data,
+    cosmicStructureAndEvolution_SkillGroup_Data,
+    earlyUniverseModelsAndEvidence_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Cosmology tests models for the Universe's large-scale composition, history and expansion using observations with known horizons and uncertainties. Unresolved questions must remain distinguishable from established evidence.",

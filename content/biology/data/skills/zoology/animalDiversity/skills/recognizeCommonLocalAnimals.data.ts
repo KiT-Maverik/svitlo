@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeCommonLocalAnimals_Skill_Data = buildSkillConfig({
+export const recognizeCommonLocalAnimals_Skill_Data = defineSkill({
   slug: 'recognizeCommonLocalAnimals',
   id: '7f014a54-5825-46f8-88b5-6df5d5969ce5',
   name: {

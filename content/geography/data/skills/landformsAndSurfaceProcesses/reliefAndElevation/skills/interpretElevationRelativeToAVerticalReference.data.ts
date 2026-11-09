@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretElevationRelativeToAVerticalReference_Skill_Data = buildSkillConfig({
+export const interpretElevationRelativeToAVerticalReference_Skill_Data = defineSkill({
   slug: 'interpretElevationRelativeToAVerticalReference',
   id: '74520e81-0ca1-4359-a78b-312e41029905',
   name: {

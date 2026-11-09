@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePurposeOfAFunction_Skill_Data = buildSkillConfig({
+export const explainThePurposeOfAFunction_Skill_Data = defineSkill({
   slug: 'explainThePurposeOfAFunction',
   id: '464b1599-14b9-4080-864f-2811c189a66c',
   name: {

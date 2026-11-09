@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictTheDirectionOfHeatTransfer_Skill_Data = buildSkillConfig({
+export const predictTheDirectionOfHeatTransfer_Skill_Data = defineSkill({
   slug: 'predictTheDirectionOfHeatTransfer',
   id: 'f256429d-bbdd-42e3-adf2-600c0a375361',
   name: {

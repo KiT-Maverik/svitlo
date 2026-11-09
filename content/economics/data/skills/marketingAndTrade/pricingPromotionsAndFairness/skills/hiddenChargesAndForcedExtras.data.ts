@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hiddenChargesAndForcedExtras_Skill_Data = buildSkillConfig({
+export const hiddenChargesAndForcedExtras_Skill_Data = defineSkill({
   slug: 'hiddenChargesAndForcedExtras',
   id: '66aa7e7e-76d2-4b38-a2cf-db123c135aff',
   name: {

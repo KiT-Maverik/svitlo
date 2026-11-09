@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const daoistTraditions_Skill_Data = buildSkillConfig({
+export const daoistTraditions_Skill_Data = defineSkill({
   slug: 'daoistTraditions',
   id: 'b3bc5a46-565a-4687-840d-e08277e2e2d9',
   name: {

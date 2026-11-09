@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectAnInfiniteLoop_Skill_Data = buildSkillConfig({
+export const detectAnInfiniteLoop_Skill_Data = defineSkill({
   slug: 'detectAnInfiniteLoop',
   id: '8324d7cb-d042-4280-9258-cd39f659597d',
   name: {

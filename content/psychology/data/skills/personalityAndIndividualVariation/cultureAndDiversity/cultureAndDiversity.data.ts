@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   avoidingPsychologicalEssentialism_Skill_Data,
@@ -7,7 +7,7 @@ import {
   culturalVariationInBehavior_Skill_Data,
 } from './skills';
 
-export const cultureAndDiversity_SkillGroup_Data = buildSkillGroupConfig({
+export const cultureAndDiversity_SkillGroup_Data = defineSkillGroup({
   slug: 'cultureAndDiversity',
   id: '344b7dfb-067a-425a-afcb-3e9d60ddc72b',
   name: {
@@ -41,12 +41,12 @@ export const cultureAndDiversity_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Мәдениет және алуан түрлілік',
     qm: 'Medeniyet ve çeşitlilik',
   },
-  skills: {
-    avoidingPsychologicalEssentialism: avoidingPsychologicalEssentialism_Skill_Data,
-    biasInPsychologicalNorms: biasInPsychologicalNorms_Skill_Data,
-    crossCulturalResearchComparability: crossCulturalResearchComparability_Skill_Data,
-    culturalVariationInBehavior: culturalVariationInBehavior_Skill_Data,
-  },
+  skills: [
+    avoidingPsychologicalEssentialism_Skill_Data,
+    biasInPsychologicalNorms_Skill_Data,
+    crossCulturalResearchComparability_Skill_Data,
+    culturalVariationInBehavior_Skill_Data,
+  ],
   description: {
     methodological:
       'Human psychological patterns must be examined against differences in context, institutions, and ways of interpreting experience.',

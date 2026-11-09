@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   electricalGridDistribution_Skill_Data,
@@ -7,7 +7,7 @@ import {
   transformerUse_Skill_Data,
 } from './skills';
 
-export const storageAndDelivery_SkillGroup_Data = buildSkillGroupConfig({
+export const storageAndDelivery_SkillGroup_Data = defineSkillGroup({
   slug: 'storageAndDelivery',
   id: '0ffe7c1b-b28d-4733-b45f-4f4d2ec9bd6b',
   name: {
@@ -41,12 +41,12 @@ export const storageAndDelivery_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Энергияны сақтау және жеткізу',
     qm: 'Energiya saqlav ve yetkizüv',
   },
-  skills: {
-    electricalGridDistribution: electricalGridDistribution_Skill_Data,
-    rechargeableBatterySystems: rechargeableBatterySystems_Skill_Data,
-    thermalEnergyStorage: thermalEnergyStorage_Skill_Data,
-    transformerUse: transformerUse_Skill_Data,
-  },
+  skills: [
+    electricalGridDistribution_Skill_Data,
+    rechargeableBatterySystems_Skill_Data,
+    thermalEnergyStorage_Skill_Data,
+    transformerUse_Skill_Data,
+  ],
   description: {
     methodological: 'Reliable supply requires matching time, location and suitable electrical or thermal interfaces.',
     frontend: {

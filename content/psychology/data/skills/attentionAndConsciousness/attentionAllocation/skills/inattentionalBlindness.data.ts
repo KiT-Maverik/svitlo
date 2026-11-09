@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const inattentionalBlindness_Skill_Data = buildSkillConfig({
+export const inattentionalBlindness_Skill_Data = defineSkill({
   slug: 'inattentionalBlindness',
   id: '504c106d-ce31-42a4-abff-21b167681716',
   name: {

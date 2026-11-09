@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzePostImpressionism_Skill_Data = buildSkillConfig({
+export const analyzePostImpressionism_Skill_Data = defineSkill({
   slug: 'analyzePostImpressionism',
   id: '1bc4a7b5-2d20-48fd-bb7d-08fd51c39789',
   name: {

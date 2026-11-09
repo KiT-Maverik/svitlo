@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ionicBonding_Skill_Data = buildSkillConfig({
+export const ionicBonding_Skill_Data = defineSkill({
   slug: 'ionicBonding',
   id: 'a71de25f-4159-4c32-a67c-42442ad9cc3b',
   name: {

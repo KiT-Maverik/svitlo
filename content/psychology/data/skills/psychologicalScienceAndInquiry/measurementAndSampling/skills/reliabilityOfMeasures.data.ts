@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reliabilityOfMeasures_Skill_Data = buildSkillConfig({
+export const reliabilityOfMeasures_Skill_Data = defineSkill({
   slug: 'reliabilityOfMeasures',
   id: 'd2bf1696-3d72-4569-b0dc-da7181135d42',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reconstructWhole_Skill_Data = buildSkillConfig({
+export const reconstructWhole_Skill_Data = defineSkill({
   slug: 'reconstructWhole',
   id: '187884f4-b528-4f66-aed8-ccd4b5fe5b74',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToHarmfulOnlineContact_Skill_Data = buildSkillConfig({
+export const respondToHarmfulOnlineContact_Skill_Data = defineSkill({
   slug: 'respondToHarmfulOnlineContact',
   id: '4cd14c4a-88c7-4208-89ea-14e1c089df38',
   name: {

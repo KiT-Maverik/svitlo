@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const verifyWithSecondMethod_Skill_Data = buildSkillConfig({
+export const verifyWithSecondMethod_Skill_Data = defineSkill({
   slug: 'verifyWithSecondMethod',
   id: 'b99c90cc-815d-4944-851a-e33ecb43e5b0',
   name: {

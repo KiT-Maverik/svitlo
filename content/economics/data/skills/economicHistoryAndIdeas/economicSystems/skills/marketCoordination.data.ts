@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const marketCoordination_Skill_Data = buildSkillConfig({
+export const marketCoordination_Skill_Data = defineSkill({
   slug: 'marketCoordination',
   id: '90ca6a5c-1ee8-4df6-8d42-51abdc0253bd',
   name: {

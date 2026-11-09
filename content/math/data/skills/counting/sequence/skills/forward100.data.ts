@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const forward100_Skill_Data = buildSkillConfig({
+export const forward100_Skill_Data = defineSkill({
   slug: 'forward100',
   id: '64ecb242-b1d9-4967-a020-5f6fc711aa93',
   name: {

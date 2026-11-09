@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prebioticChemistry_Skill_Data = buildSkillConfig({
+export const prebioticChemistry_Skill_Data = defineSkill({
   slug: 'prebioticChemistry',
   id: '3b16b753-608f-40a7-84b5-3cc810b906ce',
   name: {

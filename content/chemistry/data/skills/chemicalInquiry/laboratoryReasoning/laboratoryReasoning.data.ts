@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chemicalHandlingDecisions_Skill_Data,
@@ -7,7 +7,7 @@ import {
   experimentalVariables_Skill_Data,
 } from './skills';
 
-export const laboratoryReasoning_SkillGroup_Data = buildSkillGroupConfig({
+export const laboratoryReasoning_SkillGroup_Data = defineSkillGroup({
   slug: 'laboratoryReasoning',
   id: 'e5cbb556-153e-4068-91b4-4812f46f4de7',
   name: {
@@ -41,12 +41,12 @@ export const laboratoryReasoning_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Зертханалық пайымдау',
     qm: 'Laboratoriyada fikir yürsetüv',
   },
-  skills: {
-    chemicalHandlingDecisions: chemicalHandlingDecisions_Skill_Data,
-    chemicalHazardSymbols: chemicalHazardSymbols_Skill_Data,
-    evidenceBasedChemicalConclusions: evidenceBasedChemicalConclusions_Skill_Data,
-    experimentalVariables: experimentalVariables_Skill_Data,
-  },
+  skills: [
+    chemicalHandlingDecisions_Skill_Data,
+    chemicalHazardSymbols_Skill_Data,
+    evidenceBasedChemicalConclusions_Skill_Data,
+    experimentalVariables_Skill_Data,
+  ],
   description: {
     methodological:
       'Working with substances involves controlling exposure, maintaining traceability of samples and drawing conclusions that do not exceed the evidence.',

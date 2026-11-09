@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const translationsReflections_Skill_Data = buildSkillConfig({
+export const translationsReflections_Skill_Data = defineSkill({
   slug: 'translationsReflections',
   id: 'd93e1819-5d86-4cfe-b200-44ad0cc8478c',
   name: {

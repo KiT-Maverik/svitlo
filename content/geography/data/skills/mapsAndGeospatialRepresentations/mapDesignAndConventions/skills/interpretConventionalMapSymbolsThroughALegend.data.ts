@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretConventionalMapSymbolsThroughALegend_Skill_Data = buildSkillConfig({
+export const interpretConventionalMapSymbolsThroughALegend_Skill_Data = defineSkill({
   slug: 'interpretConventionalMapSymbolsThroughALegend',
   id: '4ee964ee-61b0-470b-a66e-46957d83e30b',
   name: {

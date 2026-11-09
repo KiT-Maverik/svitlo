@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const storyboardAFilmSequence_Skill_Data = buildSkillConfig({
+export const storyboardAFilmSequence_Skill_Data = defineSkill({
   slug: 'storyboardAFilmSequence',
   id: 'b0e967bf-0b98-46ab-8193-7a187a42b31b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const servoPositioning_Skill_Data = buildSkillConfig({
+export const servoPositioning_Skill_Data = defineSkill({
   slug: 'servoPositioning',
   id: '6d6cddc0-cddd-4ecd-9a30-0c32b692908f',
   name: {

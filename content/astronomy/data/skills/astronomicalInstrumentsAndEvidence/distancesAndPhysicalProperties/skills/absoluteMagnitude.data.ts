@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const absoluteMagnitude_Skill_Data = buildSkillConfig({
+export const absoluteMagnitude_Skill_Data = defineSkill({
   slug: 'absoluteMagnitude',
   id: 'b1c508d6-634c-48b1-87ba-2cdf164d95ed',
   name: {

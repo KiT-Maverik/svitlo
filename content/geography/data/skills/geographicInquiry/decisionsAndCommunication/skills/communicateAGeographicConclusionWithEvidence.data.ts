@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const communicateAGeographicConclusionWithEvidence_Skill_Data = buildSkillConfig({
+export const communicateAGeographicConclusionWithEvidence_Skill_Data = defineSkill({
   slug: 'communicateAGeographicConclusionWithEvidence',
   id: 'eb29f8ed-ce90-4ab4-a0d1-d72050df1a37',
   name: {

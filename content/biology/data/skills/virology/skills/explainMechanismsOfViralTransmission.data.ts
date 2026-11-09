@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMechanismsOfViralTransmission_Skill_Data = buildSkillConfig({
+export const explainMechanismsOfViralTransmission_Skill_Data = defineSkill({
   slug: 'explainMechanismsOfViralTransmission',
   id: '60720f83-fa5f-48af-b434-a42142e04d3f',
   name: {

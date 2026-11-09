@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const understandSleepNeeds_Skill_Data = buildSkillConfig({
+export const understandSleepNeeds_Skill_Data = defineSkill({
   slug: 'understandSleepNeeds',
   id: '14c011e8-c867-438f-a4a0-64b3c3a27af2',
   name: {

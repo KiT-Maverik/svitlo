@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const contextDependentLearning_Skill_Data = buildSkillConfig({
+export const contextDependentLearning_Skill_Data = defineSkill({
   slug: 'contextDependentLearning',
   id: '0e82cf43-0713-48f7-a1e6-f0216aba9b0a',
   name: {

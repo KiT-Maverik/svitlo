@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selfEfficacy_Skill_Data = buildSkillConfig({
+export const selfEfficacy_Skill_Data = defineSkill({
   slug: 'selfEfficacy',
   id: '50ccf5b8-d119-42bd-a661-1605e994d84b',
   name: {

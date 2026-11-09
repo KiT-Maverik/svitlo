@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictThePositionOfAShadow_Skill_Data = buildSkillConfig({
+export const predictThePositionOfAShadow_Skill_Data = defineSkill({
   slug: 'predictThePositionOfAShadow',
   id: '4d683f07-929e-484b-8382-11636191a431',
   name: {

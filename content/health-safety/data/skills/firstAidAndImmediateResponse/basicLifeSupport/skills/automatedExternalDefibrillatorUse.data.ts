@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const automatedExternalDefibrillatorUse_Skill_Data = buildSkillConfig({
+export const automatedExternalDefibrillatorUse_Skill_Data = defineSkill({
   slug: 'automatedExternalDefibrillatorUse',
   id: '126b740d-5ab9-4288-b0d5-2302fe1c7e5b',
   name: {

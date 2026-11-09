@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { findUnitPart_Skill_Data, reconstructWhole_Skill_Data } from './skills';
 
-export const portions_SkillGroup_Data = buildSkillGroupConfig({
+export const portions_SkillGroup_Data = defineSkillGroup({
   slug: 'portions',
   id: '8e117fee-fc09-41e2-bf8a-fed07ffbd065',
   name: {
@@ -36,10 +36,10 @@ export const portions_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Ułamkowe części wielkości',
     uk: 'Частини величини',
   },
-  skills: {
-    findUnitPart: findUnitPart_Skill_Data,
-    reconstructWhole: reconstructWhole_Skill_Data,
-  },
+  skills: [
+    findUnitPart_Skill_Data,
+    reconstructWhole_Skill_Data,
+  ],
   description: {
     methodological:
       'Moving between a whole quantity and its unit fractional part through division and the inverse operation.',

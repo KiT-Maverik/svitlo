@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const agrarianEconomies_Skill_Data = buildSkillConfig({
+export const agrarianEconomies_Skill_Data = defineSkill({
   slug: 'agrarianEconomies',
   id: 'fddde121-f84f-4a2c-9f52-c4a9d0297a3e',
   name: {

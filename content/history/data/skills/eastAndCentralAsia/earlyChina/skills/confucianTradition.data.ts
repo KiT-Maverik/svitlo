@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const confucianTradition_Skill_Data = buildSkillConfig({
+export const confucianTradition_Skill_Data = defineSkill({
   slug: 'confucianTradition',
   id: '41d45a2e-3b1a-4bca-820b-e96a5789a86b',
   name: {

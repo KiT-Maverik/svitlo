@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeDrivingDecisions_Skill_Data = buildSkillConfig({
+export const safeDrivingDecisions_Skill_Data = defineSkill({
   slug: 'safeDrivingDecisions',
   id: '4a68b2ab-4e14-40b8-9940-1950ffbe25fe',
   name: {

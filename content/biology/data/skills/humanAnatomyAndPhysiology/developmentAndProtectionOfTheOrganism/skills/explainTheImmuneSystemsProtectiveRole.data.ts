@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheImmuneSystemsProtectiveRole_Skill_Data = buildSkillConfig({
+export const explainTheImmuneSystemsProtectiveRole_Skill_Data = defineSkill({
   slug: 'explainTheImmuneSystemsProtectiveRole',
   id: 'b5d1648c-cd91-4d57-85e6-90a757216ca0',
   name: {

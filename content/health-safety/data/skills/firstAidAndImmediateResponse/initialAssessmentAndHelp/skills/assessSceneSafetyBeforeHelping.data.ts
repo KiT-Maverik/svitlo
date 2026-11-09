@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessSceneSafetyBeforeHelping_Skill_Data = buildSkillConfig({
+export const assessSceneSafetyBeforeHelping_Skill_Data = defineSkill({
   slug: 'assessSceneSafetyBeforeHelping',
   id: 'fbd55cb1-84bd-42fc-9f96-4e5769cdd9b1',
   name: {

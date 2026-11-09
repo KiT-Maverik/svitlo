@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyDutyBasedReasoning_Skill_Data = buildSkillConfig({
+export const applyDutyBasedReasoning_Skill_Data = defineSkill({
   slug: 'applyDutyBasedReasoning',
   id: 'd66874fd-6498-41f0-83be-90509a11a853',
   name: {

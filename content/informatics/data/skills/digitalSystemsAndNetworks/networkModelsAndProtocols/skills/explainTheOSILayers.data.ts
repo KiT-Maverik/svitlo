@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheOSILayers_Skill_Data = buildSkillConfig({
+export const explainTheOSILayers_Skill_Data = defineSkill({
   slug: 'explainTheOSILayers',
   id: 'd5d6f227-7cfc-421b-90ca-8f7861035048',
   name: {

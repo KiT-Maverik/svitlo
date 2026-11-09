@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   confoundingFactors_Skill_Data,
@@ -6,7 +6,7 @@ import {
   correlationAndCausation_Skill_Data,
 } from './skills';
 
-export const causalityAndExperiments_SkillGroup_Data = buildSkillGroupConfig({
+export const causalityAndExperiments_SkillGroup_Data = defineSkillGroup({
   slug: 'causalityAndExperiments',
   id: '5fd2d55d-2a2a-4050-87c3-4480f191f878',
   name: {
@@ -40,11 +40,11 @@ export const causalityAndExperiments_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Себептілік және эксперименттер',
     qm: 'Sebep-netice bağı ve tecribeler',
   },
-  skills: {
-    confoundingFactors: confoundingFactors_Skill_Data,
-    controlAndExperimentalGroups: controlAndExperimentalGroups_Skill_Data,
-    correlationAndCausation: correlationAndCausation_Skill_Data,
-  },
+  skills: [
+    confoundingFactors_Skill_Data,
+    controlAndExperimentalGroups_Skill_Data,
+    correlationAndCausation_Skill_Data,
+  ],
   description: {
     methodological:
       'Correlation does not necessarily demonstrate a causal effect; research design must account for alternative explanations.',

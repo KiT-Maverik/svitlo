@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaporativeSeparation_Skill_Data = buildSkillConfig({
+export const evaporativeSeparation_Skill_Data = defineSkill({
   slug: 'evaporativeSeparation',
   id: 'bad25d40-8d5a-4f63-a9d2-48f7a62f3392',
   name: {

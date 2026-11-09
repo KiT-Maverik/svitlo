@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const openLoopControl_Skill_Data = buildSkillConfig({
+export const openLoopControl_Skill_Data = defineSkill({
   slug: 'openLoopControl',
   id: '2a02a615-0b4d-4abb-a217-93440de78fa2',
   name: {

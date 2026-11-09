@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeArtworksPrecisely_Skill_Data = buildSkillConfig({
+export const describeArtworksPrecisely_Skill_Data = defineSkill({
   slug: 'describeArtworksPrecisely',
   id: '76e88082-1d5a-4296-a505-329f45e84524',
   name: {

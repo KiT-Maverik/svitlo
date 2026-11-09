@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const functionalFixedness_Skill_Data = buildSkillConfig({
+export const functionalFixedness_Skill_Data = defineSkill({
   slug: 'functionalFixedness',
   id: '019df81c-1bb3-482e-b628-0df691f1e2a3',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyProtectiveAdaptationsInAnimals_Skill_Data = buildSkillConfig({
+export const identifyProtectiveAdaptationsInAnimals_Skill_Data = defineSkill({
   slug: 'identifyProtectiveAdaptationsInAnimals',
   id: '87773289-a8e1-4152-bc93-7ba6bc1594d9',
   name: {

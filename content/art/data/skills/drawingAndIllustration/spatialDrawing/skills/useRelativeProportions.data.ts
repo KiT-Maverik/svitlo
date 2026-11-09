@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useRelativeProportions_Skill_Data = buildSkillConfig({
+export const useRelativeProportions_Skill_Data = defineSkill({
   slug: 'useRelativeProportions',
   id: '1a266f16-e8c9-4033-baa0-d2260568223c',
   name: {

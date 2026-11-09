@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sensorInterfaceCompatibility_Skill_Data = buildSkillConfig({
+export const sensorInterfaceCompatibility_Skill_Data = defineSkill({
   slug: 'sensorInterfaceCompatibility',
   id: 'b901921d-8e5a-487f-8e84-85d5a475cf9f',
   name: {

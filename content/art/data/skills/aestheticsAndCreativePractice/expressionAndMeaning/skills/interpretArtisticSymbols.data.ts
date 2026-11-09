@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretArtisticSymbols_Skill_Data = buildSkillConfig({
+export const interpretArtisticSymbols_Skill_Data = defineSkill({
   slug: 'interpretArtisticSymbols',
   id: 'f8be8696-5278-4f15-b025-49cc3c1b17cf',
   name: {

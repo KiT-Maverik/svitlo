@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyUrbanInfrastructure_Skill_Data = buildSkillConfig({
+export const earlyUrbanInfrastructure_Skill_Data = defineSkill({
   slug: 'earlyUrbanInfrastructure',
   id: 'b26c85b5-0119-4318-874d-5031bfe8e5c7',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeAMetaphysicalParadox_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluatePersistenceThroughChange_Skill_Data,
 } from './skills';
 
-export const identityAndPersistence_SkillGroup_Data = buildSkillGroupConfig({
+export const identityAndPersistence_SkillGroup_Data = defineSkillGroup({
   slug: 'identityAndPersistence',
   id: '4d374e80-7388-41a9-9cc7-31e3177e554a',
   name: {
@@ -41,12 +41,12 @@ export const identityAndPersistence_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бірегейлік және уақыт бойы сақталу',
     qm: 'Ayniyet ve devamlılıq',
   },
-  skills: {
-    analyzeAMetaphysicalParadox: analyzeAMetaphysicalParadox_Skill_Data,
-    analyzeAPartWholeRelation: analyzeAPartWholeRelation_Skill_Data,
-    distinguishNumericalFromQualitativeIdentity: distinguishNumericalFromQualitativeIdentity_Skill_Data,
-    evaluatePersistenceThroughChange: evaluatePersistenceThroughChange_Skill_Data,
-  },
+  skills: [
+    analyzeAMetaphysicalParadox_Skill_Data,
+    analyzeAPartWholeRelation_Skill_Data,
+    distinguishNumericalFromQualitativeIdentity_Skill_Data,
+    evaluatePersistenceThroughChange_Skill_Data,
+  ],
   description: {
     methodological:
       'Questions about sameness arise when material, properties, or relations change over time. Numerical identity is different from merely sharing characteristics.',

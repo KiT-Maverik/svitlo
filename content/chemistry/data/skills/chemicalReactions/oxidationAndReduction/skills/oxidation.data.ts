@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const oxidation_Skill_Data = buildSkillConfig({
+export const oxidation_Skill_Data = defineSkill({
   slug: 'oxidation',
   id: 'd48e61de-49bb-45ca-8880-b2c9c58f3543',
   name: {

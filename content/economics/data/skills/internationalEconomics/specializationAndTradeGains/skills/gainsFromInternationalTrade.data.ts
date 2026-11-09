@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gainsFromInternationalTrade_Skill_Data = buildSkillConfig({
+export const gainsFromInternationalTrade_Skill_Data = defineSkill({
   slug: 'gainsFromInternationalTrade',
   id: '97295a00-9159-49b7-8123-5eac24863de0',
   name: {

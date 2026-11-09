@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const draftGarmentPatterns_Skill_Data = buildSkillConfig({
+export const draftGarmentPatterns_Skill_Data = defineSkill({
   slug: 'draftGarmentPatterns',
   id: 'a112c0da-49bb-4add-a5ec-8e4ad9753b6f',
   name: {

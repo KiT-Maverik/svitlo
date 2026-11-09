@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const horizonCoordinates_Skill_Data = buildSkillConfig({
+export const horizonCoordinates_Skill_Data = defineSkill({
   slug: 'horizonCoordinates',
   id: '70f45d89-bf5b-42e2-9b00-7b04a7a48c0a',
   name: {

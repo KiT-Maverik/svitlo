@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const verifyDesignRequirements_Skill_Data = buildSkillConfig({
+export const verifyDesignRequirements_Skill_Data = defineSkill({
   slug: 'verifyDesignRequirements',
   id: '0e1060e6-ff19-4133-808e-0cfb2f703927',
   name: {

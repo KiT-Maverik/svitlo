@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data,
@@ -7,7 +7,7 @@ import {
   recognizePredation_Skill_Data,
 } from './skills';
 
-export const interactionsAmongOrganisms_SkillGroup_Data = buildSkillGroupConfig({
+export const interactionsAmongOrganisms_SkillGroup_Data = defineSkillGroup({
   slug: 'interactionsAmongOrganisms',
   id: 'b6747083-f25f-4e46-91e9-2e8cf655f084',
   name: {
@@ -41,12 +41,12 @@ export const interactionsAmongOrganisms_SkillGroup_Data = buildSkillGroupConfig(
     ka: 'ორგანიზმებს შორის ურთიერთქმედებები',
     kk: 'Ағзалардың өзара әрекеттесуі',
   },
-  skills: {
-    explainTheRoleOfPollinatorsInSpeciesInteractions: explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data,
-    recognizeCompetition: recognizeCompetition_Skill_Data,
-    recognizeMutuallyBeneficialRelationships: recognizeMutuallyBeneficialRelationships_Skill_Data,
-    recognizePredation: recognizePredation_Skill_Data,
-  },
+  skills: [
+    explainTheRoleOfPollinatorsInSpeciesInteractions_Skill_Data,
+    recognizeCompetition_Skill_Data,
+    recognizeMutuallyBeneficialRelationships_Skill_Data,
+    recognizePredation_Skill_Data,
+  ],
   description: {
     methodological:
       'Organisms may use one another as resources, compete, or benefit one another; the nature of an interaction is determined by its consequences for those involved.',

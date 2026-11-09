@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const giveArtisticFeedback_Skill_Data = buildSkillConfig({
+export const giveArtisticFeedback_Skill_Data = defineSkill({
   slug: 'giveArtisticFeedback',
   id: 'b1723767-0061-4f30-98c5-e6148c5ec3f0',
   name: {

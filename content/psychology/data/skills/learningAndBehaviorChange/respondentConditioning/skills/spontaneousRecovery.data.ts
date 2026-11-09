@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const spontaneousRecovery_Skill_Data = buildSkillConfig({
+export const spontaneousRecovery_Skill_Data = defineSkill({
   slug: 'spontaneousRecovery',
   id: '87592b6d-3f42-466b-9dc1-e23de6fe9d36',
   name: {

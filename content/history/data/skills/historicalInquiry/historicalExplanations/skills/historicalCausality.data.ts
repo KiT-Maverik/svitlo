@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalCausality_Skill_Data = buildSkillConfig({
+export const historicalCausality_Skill_Data = defineSkill({
   slug: 'historicalCausality',
   id: '9a10ab0f-d3dc-44cf-ad58-3e449b80293d',
   name: {

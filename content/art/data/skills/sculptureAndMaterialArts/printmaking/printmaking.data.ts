@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   designAPrintMatrix_Skill_Data,
@@ -7,7 +7,7 @@ import {
   registerMultiplePrintLayers_Skill_Data,
 } from './skills';
 
-export const printmaking_SkillGroup_Data = buildSkillGroupConfig({
+export const printmaking_SkillGroup_Data = defineSkillGroup({
   slug: 'printmaking',
   id: '1da9e005-d5bc-48bc-bda1-3313c80dcb0c',
   name: {
@@ -41,12 +41,12 @@ export const printmaking_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Баспа графикасы',
     qm: 'Baskı sanatı',
   },
-  skills: {
-    designAPrintMatrix: designAPrintMatrix_Skill_Data,
-    produceAReliefPrint: produceAReliefPrint_Skill_Data,
-    produceAStencilPrint: produceAStencilPrint_Skill_Data,
-    registerMultiplePrintLayers: registerMultiplePrintLayers_Skill_Data,
-  },
+  skills: [
+    designAPrintMatrix_Skill_Data,
+    produceAReliefPrint_Skill_Data,
+    produceAStencilPrint_Skill_Data,
+    registerMultiplePrintLayers_Skill_Data,
+  ],
   description: {
     methodological:
       'A designed matrix, stencil or transferable surface generates impressions that can be repeated with deliberate differences.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const askAProbingPhilosophicalQuestion_Skill_Data = buildSkillConfig({
+export const askAProbingPhilosophicalQuestion_Skill_Data = defineSkill({
   slug: 'askAProbingPhilosophicalQuestion',
   id: '6e2d6e1f-f9cb-4eac-b6b7-0e5e5b08326a',
   name: {

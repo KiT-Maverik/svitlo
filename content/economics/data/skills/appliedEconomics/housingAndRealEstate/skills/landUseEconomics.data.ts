@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const landUseEconomics_Skill_Data = buildSkillConfig({
+export const landUseEconomics_Skill_Data = defineSkill({
   slug: 'landUseEconomics',
   id: 'ac43a260-4015-41b3-9142-ce599d9961b6',
   name: {

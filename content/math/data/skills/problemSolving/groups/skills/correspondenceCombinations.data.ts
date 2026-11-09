@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const correspondenceCombinations_Skill_Data = buildSkillConfig({
+export const correspondenceCombinations_Skill_Data = defineSkill({
   slug: 'correspondenceCombinations',
   id: 'e2a50956-57c9-44c5-a871-6ce071a147be',
   name: {

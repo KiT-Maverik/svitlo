@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { energyPerformance_SkillGroup_Data } from './energyPerformance/energyPerformance.data';
 import { generation_SkillGroup_Data } from './generation/generation.data';
 import { storageAndDelivery_SkillGroup_Data } from './storageAndDelivery/storageAndDelivery.data';
 
-export const energySystems_SkillDomain_Data = buildSkillDomainConfig({
+export const energySystems_SkillDomain_Data = defineSkillDomain({
   slug: 'energySystems',
   id: '765547fa-7745-41a4-bf42-bb02bd5c86c8',
-  name: {
+  title: {
     en: 'Energy Systems',
     zh: '能源系统',
     hi: 'ऊर्जा प्रणालियाँ',
@@ -38,11 +38,11 @@ export const energySystems_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Энергетикалық жүйелер',
     qm: 'Energiya sistemaları',
   },
-  groups: {
-    energyPerformance: energyPerformance_SkillGroup_Data,
-    generation: generation_SkillGroup_Data,
-    storageAndDelivery: storageAndDelivery_SkillGroup_Data,
-  },
+  groups: [
+    energyPerformance_SkillGroup_Data,
+    generation_SkillGroup_Data,
+    storageAndDelivery_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Useful energy services depend on conversion, storage, power delivery and load management. The engineering emphasis is on connected equipment and operational limitations, while the principles of energy conservation belong to Physics.',

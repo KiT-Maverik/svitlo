@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyGeographicConsequencesOfLandUseChange_Skill_Data = buildSkillConfig({
+export const identifyGeographicConsequencesOfLandUseChange_Skill_Data = defineSkill({
   slug: 'identifyGeographicConsequencesOfLandUseChange',
   id: '3ad5b492-16a3-4fd6-9b7b-97e4f84a388f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const therapeuticAlliance_Skill_Data = buildSkillConfig({
+export const therapeuticAlliance_Skill_Data = defineSkill({
   slug: 'therapeuticAlliance',
   id: '0e85347e-a80e-408d-9a7c-33f1db375bef',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   createFoundObjectAssemblage_Skill_Data,
@@ -7,7 +7,7 @@ import {
   joinClayComponents_Skill_Data,
 } from './skills';
 
-export const ceramicsAndAssemblage_SkillGroup_Data = buildSkillGroupConfig({
+export const ceramicsAndAssemblage_SkillGroup_Data = defineSkillGroup({
   slug: 'ceramicsAndAssemblage',
   id: 'c8f3c426-c0a1-49c3-b68c-e7253f6c7466',
   name: {
@@ -41,12 +41,12 @@ export const ceramicsAndAssemblage_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Керамика және ассамбляж',
     qm: 'Keramika ve hazır eşyalardan kompozitsiya',
   },
-  skills: {
-    createFoundObjectAssemblage: createFoundObjectAssemblage_Skill_Data,
-    decorateACeramicSurface: decorateACeramicSurface_Skill_Data,
-    handBuildACeramicForm: handBuildACeramicForm_Skill_Data,
-    joinClayComponents: joinClayComponents_Skill_Data,
-  },
+  skills: [
+    createFoundObjectAssemblage_Skill_Data,
+    decorateACeramicSurface_Skill_Data,
+    handBuildACeramicForm_Skill_Data,
+    joinClayComponents_Skill_Data,
+  ],
   description: {
     methodological:
       'Clay manipulation and found-object combination produce expressive material choices not reducible to sculptural mass alone.',

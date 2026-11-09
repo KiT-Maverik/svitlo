@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const accessibleInteractionPsychology_Skill_Data = buildSkillConfig({
+export const accessibleInteractionPsychology_Skill_Data = defineSkill({
   slug: 'accessibleInteractionPsychology',
   id: 'f6e021dc-5b16-49c2-8119-1a402536510f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const basicRegressionModel_Skill_Data = buildSkillConfig({
+export const basicRegressionModel_Skill_Data = defineSkill({
   slug: 'basicRegressionModel',
   id: 'af2aa3be-a5bb-4c32-a323-c92c292dd76f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheOriginsOfProgramming_Skill_Data = buildSkillConfig({
+export const explainTheOriginsOfProgramming_Skill_Data = defineSkill({
   slug: 'explainTheOriginsOfProgramming',
   id: '2dffbde9-f974-48ba-88cd-b50f249693cf',
   name: {

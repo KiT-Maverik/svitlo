@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const aldehydes_Skill_Data = buildSkillConfig({
+export const aldehydes_Skill_Data = defineSkill({
   slug: 'aldehydes',
   id: 'afafd409-7fe5-46de-85da-b057936a5458',
   name: {

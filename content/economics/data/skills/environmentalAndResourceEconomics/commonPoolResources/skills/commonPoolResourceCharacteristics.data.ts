@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const commonPoolResourceCharacteristics_Skill_Data = buildSkillConfig({
+export const commonPoolResourceCharacteristics_Skill_Data = defineSkill({
   slug: 'commonPoolResourceCharacteristics',
   id: '5109775f-ea3f-4c86-a8a9-eed76e5d559a',
   name: {

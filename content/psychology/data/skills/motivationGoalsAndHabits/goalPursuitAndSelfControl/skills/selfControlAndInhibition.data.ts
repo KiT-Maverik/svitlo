@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selfControlAndInhibition_Skill_Data = buildSkillConfig({
+export const selfControlAndInhibition_Skill_Data = defineSkill({
   slug: 'selfControlAndInhibition',
   id: '2deedead-6499-4095-8eac-47df33a991f7',
   name: {

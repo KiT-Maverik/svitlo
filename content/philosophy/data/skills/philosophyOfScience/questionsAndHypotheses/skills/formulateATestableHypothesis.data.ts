@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const formulateATestableHypothesis_Skill_Data = buildSkillConfig({
+export const formulateATestableHypothesis_Skill_Data = defineSkill({
   slug: 'formulateATestableHypothesis',
   id: '3c558899-7d5b-45eb-a0e8-bfa02feb479f',
   name: {

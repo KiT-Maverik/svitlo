@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pH_Skill_Data = buildSkillConfig({
+export const pH_Skill_Data = defineSkill({
   slug: 'pH',
   id: '002fd049-95b6-4798-998e-9b647d0d8667',
   name: {

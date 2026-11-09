@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seriesCircuitArrangements_Skill_Data = buildSkillConfig({
+export const seriesCircuitArrangements_Skill_Data = defineSkill({
   slug: 'seriesCircuitArrangements',
   id: 'ed211a16-75bb-4251-b4e5-92b22f0207d6',
   name: {

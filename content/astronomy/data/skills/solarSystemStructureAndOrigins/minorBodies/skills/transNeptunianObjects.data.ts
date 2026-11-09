@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const transNeptunianObjects_Skill_Data = buildSkillConfig({
+export const transNeptunianObjects_Skill_Data = defineSkill({
   slug: 'transNeptunianObjects',
   id: 'ecbfddf7-50e6-404e-84f6-dd247737169d',
   name: {

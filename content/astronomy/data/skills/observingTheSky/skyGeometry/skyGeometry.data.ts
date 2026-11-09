@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   angularSeparation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   horizonCoordinates_Skill_Data,
 } from './skills';
 
-export const skyGeometry_SkillGroup_Data = buildSkillGroupConfig({
+export const skyGeometry_SkillGroup_Data = defineSkillGroup({
   slug: 'skyGeometry',
   id: '25ee1c2b-6a51-42f5-a148-643490c7db5c',
   name: {
@@ -41,12 +41,12 @@ export const skyGeometry_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'ცის გეომეტრია',
     kk: 'Аспан геометриясы',
   },
-  skills: {
-    angularSeparation: angularSeparation_Skill_Data,
-    celestialSphere: celestialSphere_Skill_Data,
-    equatorialCoordinates: equatorialCoordinates_Skill_Data,
-    horizonCoordinates: horizonCoordinates_Skill_Data,
-  },
+  skills: [
+    angularSeparation_Skill_Data,
+    celestialSphere_Skill_Data,
+    equatorialCoordinates_Skill_Data,
+    horizonCoordinates_Skill_Data,
+  ],
   description: {
     methodological:
       'Positions and separations in the visible sky can be communicated through directional frames and angular quantities rather than terrestrial distance alone.',

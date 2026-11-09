@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const controlSungPitch_Skill_Data = buildSkillConfig({
+export const controlSungPitch_Skill_Data = defineSkill({
   slug: 'controlSungPitch',
   id: 'ce723ce1-bb71-4645-ab5a-2749eecb9f52',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheConceptOfLocalCivilTime_Skill_Data = buildSkillConfig({
+export const explainTheConceptOfLocalCivilTime_Skill_Data = defineSkill({
   slug: 'explainTheConceptOfLocalCivilTime',
   id: 'ec337379-c7e6-495b-9c54-8355bea6d35a',
   name: {

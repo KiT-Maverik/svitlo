@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const usePolyrhythm_Skill_Data = buildSkillConfig({
+export const usePolyrhythm_Skill_Data = defineSkill({
   slug: 'usePolyrhythm',
   id: 'e6d94310-4988-40b8-9596-c376ac96ad27',
   name: {

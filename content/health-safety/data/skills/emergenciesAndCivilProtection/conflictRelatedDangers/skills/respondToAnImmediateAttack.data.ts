@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToAnImmediateAttack_Skill_Data = buildSkillConfig({
+export const respondToAnImmediateAttack_Skill_Data = defineSkill({
   slug: 'respondToAnImmediateAttack',
   id: '271cbe81-d0d8-43e2-a6a7-cad58b824d76',
   name: {

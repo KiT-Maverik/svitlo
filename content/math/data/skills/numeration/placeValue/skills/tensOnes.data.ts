@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const tensOnes_Skill_Data = buildSkillConfig({
+export const tensOnes_Skill_Data = defineSkill({
   slug: 'tensOnes',
   id: 'cbe7c10a-de6d-42cc-9526-f4019d797727',
   name: {

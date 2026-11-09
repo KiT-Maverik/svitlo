@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reconstructAnotherPersonsPositionFairly_Skill_Data = buildSkillConfig({
+export const reconstructAnotherPersonsPositionFairly_Skill_Data = defineSkill({
   slug: 'reconstructAnotherPersonsPositionFairly',
   id: '1e579ada-dc74-44d8-98cc-e9092a9b375c',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cryptoassetsAndDigitalCurrencies_Skill_Data = buildSkillConfig({
+export const cryptoassetsAndDigitalCurrencies_Skill_Data = defineSkill({
   slug: 'cryptoassetsAndDigitalCurrencies',
   id: '5f2cbb74-b282-4b1c-904c-cada0b470f18',
   name: {

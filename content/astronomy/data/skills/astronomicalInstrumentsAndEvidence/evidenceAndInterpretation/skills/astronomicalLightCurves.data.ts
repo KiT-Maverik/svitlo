@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const astronomicalLightCurves_Skill_Data = buildSkillConfig({
+export const astronomicalLightCurves_Skill_Data = defineSkill({
   slug: 'astronomicalLightCurves',
   id: '6a45ace0-a769-4235-85fd-948dcd7361aa',
   name: {

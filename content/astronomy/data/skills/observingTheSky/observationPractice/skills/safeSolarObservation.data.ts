@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const safeSolarObservation_Skill_Data = buildSkillConfig({
+export const safeSolarObservation_Skill_Data = defineSkill({
   slug: 'safeSolarObservation',
   id: 'b4b9b469-391d-40f8-b11d-6884c76ed106',
   name: {

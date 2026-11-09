@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compositeMaterialApplications_Skill_Data = buildSkillConfig({
+export const compositeMaterialApplications_Skill_Data = defineSkill({
   slug: 'compositeMaterialApplications',
   id: '51facdcb-f153-412e-b22c-b98ea7c68eb8',
   name: {

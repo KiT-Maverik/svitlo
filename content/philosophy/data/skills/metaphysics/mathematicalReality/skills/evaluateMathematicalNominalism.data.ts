@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateMathematicalNominalism_Skill_Data = buildSkillConfig({
+export const evaluateMathematicalNominalism_Skill_Data = defineSkill({
   slug: 'evaluateMathematicalNominalism',
   id: '7be1206a-331d-4fca-b0a5-f41c3632969a',
   name: {

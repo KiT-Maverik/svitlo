@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designDanceFormations_Skill_Data = buildSkillConfig({
+export const designDanceFormations_Skill_Data = defineSkill({
   slug: 'designDanceFormations',
   id: 'db1fb988-03e1-4fe8-a423-9b3e9f989cf5',
   name: {

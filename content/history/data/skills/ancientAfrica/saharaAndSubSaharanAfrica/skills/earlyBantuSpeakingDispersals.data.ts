@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyBantuSpeakingDispersals_Skill_Data = buildSkillConfig({
+export const earlyBantuSpeakingDispersals_Skill_Data = defineSkill({
   slug: 'earlyBantuSpeakingDispersals',
   id: 'd3a37314-64c0-4cf3-acb4-c5bbd5f81c9f',
   name: {

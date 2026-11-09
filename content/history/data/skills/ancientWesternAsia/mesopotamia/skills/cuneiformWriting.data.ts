@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cuneiformWriting_Skill_Data = buildSkillConfig({
+export const cuneiformWriting_Skill_Data = defineSkill({
   slug: 'cuneiformWriting',
   id: '628bd56b-f348-4fbc-bb30-cefe90a9e857',
   name: {

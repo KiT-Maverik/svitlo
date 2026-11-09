@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToSuspiciousDigitalContact_Skill_Data = buildSkillConfig({
+export const respondToSuspiciousDigitalContact_Skill_Data = defineSkill({
   slug: 'respondToSuspiciousDigitalContact',
   id: 'cc1a4d92-ff93-4b1f-a32c-edbf5e4a34f6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainConservationOfAngularMomentum_Skill_Data = buildSkillConfig({
+export const explainConservationOfAngularMomentum_Skill_Data = defineSkill({
   slug: 'explainConservationOfAngularMomentum',
   id: 'da9897f4-6a9f-4508-8ffe-00d786cd0662',
   name: {

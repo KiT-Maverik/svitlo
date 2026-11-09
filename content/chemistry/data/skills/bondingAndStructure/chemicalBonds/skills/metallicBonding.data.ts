@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const metallicBonding_Skill_Data = buildSkillConfig({
+export const metallicBonding_Skill_Data = defineSkill({
   slug: 'metallicBonding',
   id: '79ef19d6-c8aa-46d1-ad2b-d7387cd893f3',
   name: {

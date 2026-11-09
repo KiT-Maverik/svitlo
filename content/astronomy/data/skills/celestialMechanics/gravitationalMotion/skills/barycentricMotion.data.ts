@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const barycentricMotion_Skill_Data = buildSkillConfig({
+export const barycentricMotion_Skill_Data = defineSkill({
   slug: 'barycentricMotion',
   id: '9b0e19d9-848c-4f09-8985-17588e9748cc',
   name: {

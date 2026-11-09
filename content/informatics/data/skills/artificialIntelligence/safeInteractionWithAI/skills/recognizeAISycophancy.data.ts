@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAISycophancy_Skill_Data = buildSkillConfig({
+export const recognizeAISycophancy_Skill_Data = defineSkill({
   slug: 'recognizeAISycophancy',
   id: 'ef1a569e-5f00-41ca-9055-8a2673cdb8a5',
   name: {

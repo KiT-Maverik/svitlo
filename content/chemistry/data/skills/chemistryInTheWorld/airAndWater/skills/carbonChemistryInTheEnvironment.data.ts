@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const carbonChemistryInTheEnvironment_Skill_Data = buildSkillConfig({
+export const carbonChemistryInTheEnvironment_Skill_Data = defineSkill({
   slug: 'carbonChemistryInTheEnvironment',
   id: 'd5092e09-2f6e-4dc1-8db1-902358b82f9a',
   name: {

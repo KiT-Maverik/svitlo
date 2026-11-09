@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const memoryConsolidation_Skill_Data = buildSkillConfig({
+export const memoryConsolidation_Skill_Data = defineSkill({
   slug: 'memoryConsolidation',
   id: '982227cb-ac8f-4cbc-8b56-0984e44f6cd8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretEarthquakeDistributionsOnAMap_Skill_Data = buildSkillConfig({
+export const interpretEarthquakeDistributionsOnAMap_Skill_Data = defineSkill({
   slug: 'interpretEarthquakeDistributionsOnAMap',
   id: '92182743-4ce7-44df-8eff-3cf242d160f8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protectHearingFromNoise_Skill_Data = buildSkillConfig({
+export const protectHearingFromNoise_Skill_Data = defineSkill({
   slug: 'protectHearingFromNoise',
   id: 'f1dcfadd-48e1-4acb-872b-3a3432545928',
   name: {

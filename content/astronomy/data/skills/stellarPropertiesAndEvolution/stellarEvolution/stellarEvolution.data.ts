@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   advancedStellarFusion_Skill_Data,
@@ -8,7 +8,7 @@ import {
   supergiants_Skill_Data,
 } from './skills';
 
-export const stellarEvolution_SkillGroup_Data = buildSkillGroupConfig({
+export const stellarEvolution_SkillGroup_Data = defineSkillGroup({
   slug: 'stellarEvolution',
   id: '33289610-df9f-42ed-badd-631ab7731a51',
   name: {
@@ -42,13 +42,13 @@ export const stellarEvolution_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жұлдыздардың эволюциясы',
     qm: 'Yıldızlarnıñ evolyutsiyası',
   },
-  skills: {
-    advancedStellarFusion: advancedStellarFusion_Skill_Data,
-    mainSequence: mainSequence_Skill_Data,
-    redGiants: redGiants_Skill_Data,
-    stellarLifetimes: stellarLifetimes_Skill_Data,
-    supergiants: supergiants_Skill_Data,
-  },
+  skills: [
+    advancedStellarFusion_Skill_Data,
+    mainSequence_Skill_Data,
+    redGiants_Skill_Data,
+    stellarLifetimes_Skill_Data,
+    supergiants_Skill_Data,
+  ],
   description: {
     methodological:
       "Mass and composition strongly constrain the duration and physical stages of a star's nuclear-burning lifetime.",

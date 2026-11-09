@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planPreventiveMaintenance_Skill_Data = buildSkillConfig({
+export const planPreventiveMaintenance_Skill_Data = defineSkill({
   slug: 'planPreventiveMaintenance',
   id: '4b23838e-ae7a-4c6f-9a99-f63ad1352910',
   name: {

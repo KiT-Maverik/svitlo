@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretLogicalConjunction_Skill_Data = buildSkillConfig({
+export const interpretLogicalConjunction_Skill_Data = defineSkill({
   slug: 'interpretLogicalConjunction',
   id: '080118d9-8de9-4f35-8b49-b15ae442e91e',
   name: {

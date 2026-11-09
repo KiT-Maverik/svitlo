@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adolescentRiskTaking_Skill_Data = buildSkillConfig({
+export const adolescentRiskTaking_Skill_Data = defineSkill({
   slug: 'adolescentRiskTaking',
   id: '808db5af-31be-47b1-97cc-efdd0cfacacc',
   name: {

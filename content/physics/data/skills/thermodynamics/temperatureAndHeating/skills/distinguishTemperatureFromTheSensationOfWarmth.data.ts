@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTemperatureFromTheSensationOfWarmth_Skill_Data = buildSkillConfig({
+export const distinguishTemperatureFromTheSensationOfWarmth_Skill_Data = defineSkill({
   slug: 'distinguishTemperatureFromTheSensationOfWarmth',
   id: 'd38935af-72be-4728-bd55-dae223d738ff',
   name: {

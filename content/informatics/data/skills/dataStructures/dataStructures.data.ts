@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { dictionaries_SkillGroup_Data } from './dictionaries/dictionaries.data';
 import { graphs_SkillGroup_Data } from './graphs/graphs.data';
@@ -9,10 +9,10 @@ import { stack_SkillGroup_Data } from './stack/stack.data';
 import { structureSelection_SkillGroup_Data } from './structureSelection/structureSelection.data';
 import { trees_SkillGroup_Data } from './trees/trees.data';
 
-export const dataStructures_SkillDomain_Data = buildSkillDomainConfig({
+export const dataStructures_SkillDomain_Data = defineSkillDomain({
   slug: 'dataStructures',
   id: '5babb94d-b2d6-45b8-9ccf-c81e976de325',
-  name: {
+  title: {
     en: 'Data Structures',
     zh: '数据结构',
     hi: 'डेटा संरचनाएँ',
@@ -43,16 +43,16 @@ export const dataStructures_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Деректер құрылымдары',
     qm: 'Malümat yapıları',
   },
-  groups: {
-    dictionaries: dictionaries_SkillGroup_Data,
-    graphs: graphs_SkillGroup_Data,
-    queue: queue_SkillGroup_Data,
-    sequences: sequences_SkillGroup_Data,
-    sets: sets_SkillGroup_Data,
-    stack: stack_SkillGroup_Data,
-    structureSelection: structureSelection_SkillGroup_Data,
-    trees: trees_SkillGroup_Data,
-  },
+  groups: [
+    dictionaries_SkillGroup_Data,
+    graphs_SkillGroup_Data,
+    queue_SkillGroup_Data,
+    sequences_SkillGroup_Data,
+    sets_SkillGroup_Data,
+    stack_SkillGroup_Data,
+    structureSelection_SkillGroup_Data,
+    trees_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Organization of values in sequences, stacks, queues, dictionaries, sets, trees, and graphs, including access, modification, and selection of appropriate structures. A structure is not an algorithm for processing it.',

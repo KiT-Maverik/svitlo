@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const processorHardware_Skill_Data = buildSkillConfig({
+export const processorHardware_Skill_Data = defineSkill({
   slug: 'processorHardware',
   id: '79b27f78-1818-4403-baa8-46f233c3f936',
   name: {

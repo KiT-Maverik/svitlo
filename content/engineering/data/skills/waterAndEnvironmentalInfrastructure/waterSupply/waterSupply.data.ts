@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   drinkingWaterTreatment_Skill_Data,
@@ -7,7 +7,7 @@ import {
   traceDrinkingWaterSupply_Skill_Data,
 } from './skills';
 
-export const waterSupply_SkillGroup_Data = buildSkillGroupConfig({
+export const waterSupply_SkillGroup_Data = defineSkillGroup({
   slug: 'waterSupply',
   id: '535ed8e3-ba53-473c-9c60-c368167e5b9b',
   name: {
@@ -41,12 +41,12 @@ export const waterSupply_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сумен жабдықтау',
     qm: 'Suv teminatı',
   },
-  skills: {
-    drinkingWaterTreatment: drinkingWaterTreatment_Skill_Data,
-    identifyDistributionLeakage: identifyDistributionLeakage_Skill_Data,
-    pressureManagement: pressureManagement_Skill_Data,
-    traceDrinkingWaterSupply: traceDrinkingWaterSupply_Skill_Data,
-  },
+  skills: [
+    drinkingWaterTreatment_Skill_Data,
+    identifyDistributionLeakage_Skill_Data,
+    pressureManagement_Skill_Data,
+    traceDrinkingWaterSupply_Skill_Data,
+  ],
   description: {
     methodological:
       'Safe, reliable distribution requires treatment and controlled hydraulic delivery from sources to users.',

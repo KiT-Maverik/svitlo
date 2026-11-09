@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const regionalEconomicDisparities_Skill_Data = buildSkillConfig({
+export const regionalEconomicDisparities_Skill_Data = defineSkill({
   slug: 'regionalEconomicDisparities',
   id: 'ec5a67cc-f50b-440b-b88a-85cc9111e4e5',
   name: {

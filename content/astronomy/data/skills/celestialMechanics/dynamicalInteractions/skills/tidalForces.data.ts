@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const tidalForces_Skill_Data = buildSkillConfig({
+export const tidalForces_Skill_Data = defineSkill({
   slug: 'tidalForces',
   id: '8f33442d-70ec-473f-9a25-b71d236cd946',
   name: {

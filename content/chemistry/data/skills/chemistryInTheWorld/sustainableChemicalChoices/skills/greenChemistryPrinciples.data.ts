@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const greenChemistryPrinciples_Skill_Data = buildSkillConfig({
+export const greenChemistryPrinciples_Skill_Data = defineSkill({
   slug: 'greenChemistryPrinciples',
   id: 'c9265b7c-91f0-4908-b068-9f4aa8de6e03',
   name: {

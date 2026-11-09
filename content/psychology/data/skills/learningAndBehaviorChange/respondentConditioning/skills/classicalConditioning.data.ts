@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classicalConditioning_Skill_Data = buildSkillConfig({
+export const classicalConditioning_Skill_Data = defineSkill({
   slug: 'classicalConditioning',
   id: 'fb781680-4ca2-4c0a-aa82-79ab36c0f85e',
   name: {

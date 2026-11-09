@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   lateBronzeAgeCollapse_Skill_Data,
@@ -6,7 +6,7 @@ import {
   mycenaeanCivilization_Skill_Data,
 } from './skills';
 
-export const aegeanBronzeAge_SkillGroup_Data = buildSkillGroupConfig({
+export const aegeanBronzeAge_SkillGroup_Data = defineSkillGroup({
   slug: 'aegeanBronzeAge',
   id: 'ae48e3b7-4b07-423a-868c-6cd00f5d56b5',
   name: {
@@ -40,11 +40,11 @@ export const aegeanBronzeAge_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Эгей қола дәуірі',
     qm: 'Egey bronza devri',
   },
-  skills: {
-    lateBronzeAgeCollapse: lateBronzeAgeCollapse_Skill_Data,
-    minoanCivilization: minoanCivilization_Skill_Data,
-    mycenaeanCivilization: mycenaeanCivilization_Skill_Data,
-  },
+  skills: [
+    lateBronzeAgeCollapse_Skill_Data,
+    minoanCivilization_Skill_Data,
+    mycenaeanCivilization_Skill_Data,
+  ],
   description: {
     methodological:
       'Island and mainland palace centers are known through archaeology, material exchange, and surviving writing systems.',

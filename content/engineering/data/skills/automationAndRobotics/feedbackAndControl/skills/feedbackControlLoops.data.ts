@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const feedbackControlLoops_Skill_Data = buildSkillConfig({
+export const feedbackControlLoops_Skill_Data = defineSkill({
   slug: 'feedbackControlLoops',
   id: '23352aed-01cf-4cd2-9ca3-97596254ae14',
   name: {

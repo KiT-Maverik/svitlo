@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data,
@@ -6,7 +6,7 @@ import {
   identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data,
 } from './skills';
 
-export const mineralsAndTheirProperties_SkillGroup_Data = buildSkillGroupConfig({
+export const mineralsAndTheirProperties_SkillGroup_Data = defineSkillGroup({
   slug: 'mineralsAndTheirProperties',
   id: 'eb59662a-1d88-4418-92e3-73f5dbb93ddb',
   name: {
@@ -40,12 +40,11 @@ export const mineralsAndTheirProperties_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Минералдар және олардың қасиеттері',
     qm: 'Minerallar ve olarnıñ hususiyetleri',
   },
-  skills: {
-    characterizeMineralsUsingDiagnosticPhysicalProperties:
-      characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data,
-    explainWhatMakesANaturalSolidAMineral: explainWhatMakesANaturalSolidAMineral_Skill_Data,
-    identifyMineralsUsingMultipleDiagnosticProperties: identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data,
-  },
+  skills: [
+    characterizeMineralsUsingDiagnosticPhysicalProperties_Skill_Data,
+    explainWhatMakesANaturalSolidAMineral_Skill_Data,
+    identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data,
+  ],
   description: {
     methodological:
       'A mineral is a naturally occurring crystalline substance with characteristic structure and material properties. Its identity is inferred using complementary evidence such as scratch resistance, streak, luster and cleavage rather than relying on color or one test in isolation.',

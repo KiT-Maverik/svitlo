@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeDomesticAndSexualViolence_Skill_Data = buildSkillConfig({
+export const recognizeDomesticAndSexualViolence_Skill_Data = defineSkill({
   slug: 'recognizeDomesticAndSexualViolence',
   id: 'cd9f4079-2397-45f1-8713-9b7d9eacdfe2',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const editPhotographyExpressively_Skill_Data = buildSkillConfig({
+export const editPhotographyExpressively_Skill_Data = defineSkill({
   slug: 'editPhotographyExpressively',
   id: 'b05b2798-8c30-40e0-82a3-d249946bbc51',
   name: {

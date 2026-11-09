@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const molecularGeometry_Skill_Data = buildSkillConfig({
+export const molecularGeometry_Skill_Data = defineSkill({
   slug: 'molecularGeometry',
   id: '5185a6a7-14da-4f58-9e4e-39f738989b79',
   name: {

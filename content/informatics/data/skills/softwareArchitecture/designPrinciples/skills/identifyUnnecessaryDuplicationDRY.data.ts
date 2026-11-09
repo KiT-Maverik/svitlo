@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyUnnecessaryDuplicationDRY_Skill_Data = buildSkillConfig({
+export const identifyUnnecessaryDuplicationDRY_Skill_Data = defineSkill({
   slug: 'identifyUnnecessaryDuplicationDRY',
   id: '45dffed7-6d1b-428a-82c9-37f3196b3696',
   name: {

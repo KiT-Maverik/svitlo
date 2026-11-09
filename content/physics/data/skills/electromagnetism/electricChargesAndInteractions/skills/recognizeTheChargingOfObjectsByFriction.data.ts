@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeTheChargingOfObjectsByFriction_Skill_Data = buildSkillConfig({
+export const recognizeTheChargingOfObjectsByFriction_Skill_Data = defineSkill({
   slug: 'recognizeTheChargingOfObjectsByFriction',
   id: 'c7613716-b41a-4512-a9ef-8133de8fab9e',
   name: {

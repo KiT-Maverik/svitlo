@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const massMoleConversion_Skill_Data = buildSkillConfig({
+export const massMoleConversion_Skill_Data = defineSkill({
   slug: 'massMoleConversion',
   id: 'ac269a6d-7b25-4506-a6e7-0f1b805ff2ae',
   name: {

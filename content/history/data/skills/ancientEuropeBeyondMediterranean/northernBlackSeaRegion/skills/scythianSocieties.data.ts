@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const scythianSocieties_Skill_Data = buildSkillConfig({
+export const scythianSocieties_Skill_Data = defineSkill({
   slug: 'scythianSocieties',
   id: '756a7dd6-6463-4b0d-83bd-5bc6acc85e0b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluatingTreatmentClaims_Skill_Data = buildSkillConfig({
+export const evaluatingTreatmentClaims_Skill_Data = defineSkill({
   slug: 'evaluatingTreatmentClaims',
   id: '50269daa-7c88-43b3-9c8f-ea50b94ae7de',
   name: {

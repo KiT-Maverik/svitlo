@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respectCreativeRights_Skill_Data = buildSkillConfig({
+export const respectCreativeRights_Skill_Data = defineSkill({
   slug: 'respectCreativeRights',
   id: 'cecf4513-eb92-4159-bae8-bdbec53c9960',
   name: {

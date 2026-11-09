@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   bridgeConstructionApproaches_Skill_Data,
@@ -7,7 +7,7 @@ import {
   tunnelConstructionConstraints_Skill_Data,
 } from './skills';
 
-export const civilWorks_SkillGroup_Data = buildSkillGroupConfig({
+export const civilWorks_SkillGroup_Data = defineSkillGroup({
   slug: 'civilWorks',
   id: 'e4b57c5b-354d-443a-8205-3f3673b29a4a',
   name: {
@@ -41,12 +41,12 @@ export const civilWorks_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Азаматтық құрылыс жұмыстары',
     qm: 'İnşaat mühendisligi işleri',
   },
-  skills: {
-    bridgeConstructionApproaches: bridgeConstructionApproaches_Skill_Data,
-    pavementLayers: pavementLayers_Skill_Data,
-    planConstructionStages: planConstructionStages_Skill_Data,
-    tunnelConstructionConstraints: tunnelConstructionConstraints_Skill_Data,
-  },
+  skills: [
+    bridgeConstructionApproaches_Skill_Data,
+    pavementLayers_Skill_Data,
+    planConstructionStages_Skill_Data,
+    tunnelConstructionConstraints_Skill_Data,
+  ],
   description: {
     methodological:
       'Large built assets require sequential construction and coordination with the ground and existing infrastructure.',

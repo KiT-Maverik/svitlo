@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const peerInfluenceInAdolescence_Skill_Data = buildSkillConfig({
+export const peerInfluenceInAdolescence_Skill_Data = defineSkill({
   slug: 'peerInfluenceInAdolescence',
   id: '0e13e8c9-36c4-4dfb-9543-4f6a032086da',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowGlaciersFormAndMove_Skill_Data = buildSkillConfig({
+export const explainHowGlaciersFormAndMove_Skill_Data = defineSkill({
   slug: 'explainHowGlaciersFormAndMove',
   id: '6f6d5f30-cb20-4d82-96e6-c877503bb990',
   name: {

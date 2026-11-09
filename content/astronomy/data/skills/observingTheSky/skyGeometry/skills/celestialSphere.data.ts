@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const celestialSphere_Skill_Data = buildSkillConfig({
+export const celestialSphere_Skill_Data = defineSkill({
   slug: 'celestialSphere',
   id: 'b2fefba3-1633-4613-a31a-0bc6077c3251',
   name: {

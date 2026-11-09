@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeIndianParallelCinema_Skill_Data = buildSkillConfig({
+export const analyzeIndianParallelCinema_Skill_Data = defineSkill({
   slug: 'analyzeIndianParallelCinema',
   id: 'c229f4de-b669-4554-9cf2-42b09f118bbd',
   name: {

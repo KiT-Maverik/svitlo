@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const goguryeo_Skill_Data = buildSkillConfig({
+export const goguryeo_Skill_Data = defineSkill({
   slug: 'goguryeo',
   id: 'c0248f1b-2d4b-4426-bdde-d21623d45b58',
   name: {

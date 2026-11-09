@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainInheritance_Skill_Data = buildSkillConfig({
+export const explainInheritance_Skill_Data = defineSkill({
   slug: 'explainInheritance',
   id: '4ab219a6-3b8f-4d43-912d-96faa16016b2',
   name: {

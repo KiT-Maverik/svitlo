@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const flybyMeasurements_Skill_Data = buildSkillConfig({
+export const flybyMeasurements_Skill_Data = defineSkill({
   slug: 'flybyMeasurements',
   id: '84d48274-98a0-44d1-9876-f7e57bd5da60',
   name: {

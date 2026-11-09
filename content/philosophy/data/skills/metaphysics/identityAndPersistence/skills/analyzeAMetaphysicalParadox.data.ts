@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAMetaphysicalParadox_Skill_Data = buildSkillConfig({
+export const analyzeAMetaphysicalParadox_Skill_Data = defineSkill({
   slug: 'analyzeAMetaphysicalParadox',
   id: '549767ca-09f5-4f1b-a58f-e19070b25b6f',
   name: {

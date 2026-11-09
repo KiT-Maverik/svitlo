@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   delineateADrainageBasinFromTerrain_Skill_Data,
   identifyTheMainPartsOfARiverNetwork_Skill_Data,
 } from './skills';
 
-export const riversAndDrainageBasins_SkillGroup_Data = buildSkillGroupConfig({
+export const riversAndDrainageBasins_SkillGroup_Data = defineSkillGroup({
   slug: 'riversAndDrainageBasins',
   id: 'da7661ab-8f47-4f14-ae2f-cb1793b3c081',
   name: {
@@ -39,10 +39,10 @@ export const riversAndDrainageBasins_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Өзендер мен су жиналу алаптары',
     qm: 'Özenler ve suv toplanğan havzalar',
   },
-  skills: {
-    delineateADrainageBasinFromTerrain: delineateADrainageBasinFromTerrain_Skill_Data,
-    identifyTheMainPartsOfARiverNetwork: identifyTheMainPartsOfARiverNetwork_Skill_Data,
-  },
+  skills: [
+    delineateADrainageBasinFromTerrain_Skill_Data,
+    identifyTheMainPartsOfARiverNetwork_Skill_Data,
+  ],
   description: {
     methodological:
       'Flowing water links sources, tributaries and outlets into networks, while topography governs the surface catchment of a river. Describing different types of water bodies as objects belongs to Geographic Objects.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   assessHealthRelatedRisk_Skill_Data,
@@ -8,7 +8,7 @@ import {
   recognizeChangesInHealthStatus_Skill_Data,
 } from './skills';
 
-export const healthAndRisk_SkillGroup_Data = buildSkillGroupConfig({
+export const healthAndRisk_SkillGroup_Data = defineSkillGroup({
   slug: 'healthAndRisk',
   id: 'f314106d-d5d8-4fb5-b8ae-562458c9bd31',
   name: {
@@ -42,13 +42,13 @@ export const healthAndRisk_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Денсаулық және тәуекелдер',
     qm: 'Sağlıq ve havflar',
   },
-  skills: {
-    assessHealthRelatedRisk: assessHealthRelatedRisk_Skill_Data,
-    choosePreventiveHealthMeasures: choosePreventiveHealthMeasures_Skill_Data,
-    identifyFactorsAffectingHealth: identifyFactorsAffectingHealth_Skill_Data,
-    interpretBasicHealthMeasurements: interpretBasicHealthMeasurements_Skill_Data,
-    recognizeChangesInHealthStatus: recognizeChangesInHealthStatus_Skill_Data,
-  },
+  skills: [
+    assessHealthRelatedRisk_Skill_Data,
+    choosePreventiveHealthMeasures_Skill_Data,
+    identifyFactorsAffectingHealth_Skill_Data,
+    interpretBasicHealthMeasurements_Skill_Data,
+    recognizeChangesInHealthStatus_Skill_Data,
+  ],
   description: {
     methodological:
       "Health depends on interacting physical, psychological, social, and environmental conditions. Risk factors affect probability rather than determining an individual's diagnosis.",

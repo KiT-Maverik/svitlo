@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cyclingAndMicromobilitySafety_Skill_Data = buildSkillConfig({
+export const cyclingAndMicromobilitySafety_Skill_Data = defineSkill({
   slug: 'cyclingAndMicromobilitySafety',
   id: 'e18ffe7a-9700-4dd0-bf6d-72416b598e9d',
   name: {

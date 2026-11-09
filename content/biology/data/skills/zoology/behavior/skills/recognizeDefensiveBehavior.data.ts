@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeDefensiveBehavior_Skill_Data = buildSkillConfig({
+export const recognizeDefensiveBehavior_Skill_Data = defineSkill({
   slug: 'recognizeDefensiveBehavior',
   id: 'f0b5a1bb-a72b-4b0e-85de-aed764100045',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { buildings_SkillGroup_Data } from './buildings/buildings.data';
 import { civilWorks_SkillGroup_Data } from './civilWorks/civilWorks.data';
 import { stabilityAndTesting_SkillGroup_Data } from './stabilityAndTesting/stabilityAndTesting.data';
 import { structuralElements_SkillGroup_Data } from './structuralElements/structuralElements.data';
 
-export const structuresAndConstruction_SkillDomain_Data = buildSkillDomainConfig({
+export const structuresAndConstruction_SkillDomain_Data = defineSkillDomain({
   slug: 'structuresAndConstruction',
   id: '80389a13-4d86-40a2-b177-43a2b21c4741',
-  name: {
+  title: {
     en: 'Structures and Construction',
     zh: '结构与建筑工程',
     hi: 'संरचनाएँ और निर्माण',
@@ -39,12 +39,12 @@ export const structuresAndConstruction_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Құрылымдар және құрылыс',
     qm: 'Qurulışlar ve bina yapuvı',
   },
-  groups: {
-    buildings: buildings_SkillGroup_Data,
-    civilWorks: civilWorks_SkillGroup_Data,
-    stabilityAndTesting: stabilityAndTesting_SkillGroup_Data,
-    structuralElements: structuralElements_SkillGroup_Data,
-  },
+  groups: [
+    buildings_SkillGroup_Data,
+    civilWorks_SkillGroup_Data,
+    stabilityAndTesting_SkillGroup_Data,
+    structuralElements_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Load-bearing works transfer applied actions into suitable supports while satisfying functional, environmental and construction constraints. This domain treats the built solution rather than architectural style.',

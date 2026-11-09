@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateMajorCellStructuresToTheirFunctions_Skill_Data = buildSkillConfig({
+export const relateMajorCellStructuresToTheirFunctions_Skill_Data = defineSkill({
   slug: 'relateMajorCellStructuresToTheirFunctions',
   id: '7f753ce7-ba78-4861-880d-61f527010540',
   name: {

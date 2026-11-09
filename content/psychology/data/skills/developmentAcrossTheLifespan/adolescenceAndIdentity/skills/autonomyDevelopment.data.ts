@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const autonomyDevelopment_Skill_Data = buildSkillConfig({
+export const autonomyDevelopment_Skill_Data = defineSkill({
   slug: 'autonomyDevelopment',
   id: '18ca82bf-1fc2-4aa9-b106-19cd4094405e',
   name: {

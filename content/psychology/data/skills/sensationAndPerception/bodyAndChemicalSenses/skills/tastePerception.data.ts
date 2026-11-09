@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const tastePerception_Skill_Data = buildSkillConfig({
+export const tastePerception_Skill_Data = defineSkill({
   slug: 'tastePerception',
   id: '247c6a33-39e5-4a1e-aabc-d8e38de526be',
   name: {

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { assemblyAndQuality_SkillGroup_Data } from './assemblyAndQuality/assemblyAndQuality.data';
 import { materialShaping_SkillGroup_Data } from './materialShaping/materialShaping.data';
 import { productionFlow_SkillGroup_Data } from './productionFlow/productionFlow.data';
 
-export const manufacturingAndProduction_SkillDomain_Data = buildSkillDomainConfig({
+export const manufacturingAndProduction_SkillDomain_Data = defineSkillDomain({
   slug: 'manufacturingAndProduction',
   id: 'f7851bd5-c6a1-4715-9e3b-00d856f9e215',
-  name: {
+  title: {
     en: 'Manufacturing and Production',
     zh: '制造与生产',
     hi: 'विनिर्माण और उत्पादन',
@@ -38,11 +38,11 @@ export const manufacturingAndProduction_SkillDomain_Data = buildSkillDomainConfi
     kk: 'Дайындау және өндіріс',
     qm: 'İmal ve istisal',
   },
-  groups: {
-    assemblyAndQuality: assemblyAndQuality_SkillGroup_Data,
-    materialShaping: materialShaping_SkillGroup_Data,
-    productionFlow: productionFlow_SkillGroup_Data,
-  },
+  groups: [
+    assemblyAndQuality_SkillGroup_Data,
+    materialShaping_SkillGroup_Data,
+    productionFlow_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Finished products require suitable forming processes, assembly, tolerances and inspection. Production engineering addresses repeatable manufacture under resource, quality and throughput limits.',

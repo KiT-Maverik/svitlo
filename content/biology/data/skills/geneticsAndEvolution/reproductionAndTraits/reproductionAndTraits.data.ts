@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishHereditaryAndAcquiredTraits_Skill_Data,
@@ -7,7 +7,7 @@ import {
   identifyHereditaryTraitsInExamples_Skill_Data,
 } from './skills';
 
-export const reproductionAndTraits_SkillGroup_Data = buildSkillGroupConfig({
+export const reproductionAndTraits_SkillGroup_Data = defineSkillGroup({
   slug: 'reproductionAndTraits',
   id: 'ce59653f-c5dc-4275-8ebe-1c46e4774fe0',
   name: {
@@ -41,12 +41,12 @@ export const reproductionAndTraits_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'გამრავლება და ნიშან-თვისებები',
     kk: 'Көбею және белгілер',
   },
-  skills: {
-    distinguishHereditaryAndAcquiredTraits: distinguishHereditaryAndAcquiredTraits_Skill_Data,
-    distinguishSexualAndAsexualReproduction: distinguishSexualAndAsexualReproduction_Skill_Data,
-    explainDifferencesAmongOffspringOfTheSameSpecies: explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data,
-    identifyHereditaryTraitsInExamples: identifyHereditaryTraitsInExamples_Skill_Data,
-  },
+  skills: [
+    distinguishHereditaryAndAcquiredTraits_Skill_Data,
+    distinguishSexualAndAsexualReproduction_Skill_Data,
+    explainDifferencesAmongOffspringOfTheSameSpecies_Skill_Data,
+    identifyHereditaryTraitsInExamples_Skill_Data,
+  ],
   description: {
     methodological:
       'Inherited characteristics can recur in offspring, but individuals of one species are not exact copies; reproductive mode affects variation.',

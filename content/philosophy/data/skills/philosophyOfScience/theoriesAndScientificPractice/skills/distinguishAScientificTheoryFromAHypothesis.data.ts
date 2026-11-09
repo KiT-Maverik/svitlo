@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAScientificTheoryFromAHypothesis_Skill_Data = buildSkillConfig({
+export const distinguishAScientificTheoryFromAHypothesis_Skill_Data = defineSkill({
   slug: 'distinguishAScientificTheoryFromAHypothesis',
   id: 'b0f65d78-4c09-4db4-a1ce-3d58b278436f',
   name: {

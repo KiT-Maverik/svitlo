@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { designPrinciples_SkillGroup_Data } from './designPrinciples/designPrinciples.data';
 import { objectModel_SkillGroup_Data } from './objectModel/objectModel.data';
 
-export const softwareArchitecture_SkillDomain_Data = buildSkillDomainConfig({
+export const softwareArchitecture_SkillDomain_Data = defineSkillDomain({
   slug: 'softwareArchitecture',
   id: '8a0f1f02-6865-4cfd-b524-13d48e4f3177',
-  name: {
+  title: {
     en: 'Software Architecture',
     zh: '软件架构',
     hi: 'सॉफ़्टवेयर आर्किटेक्चर',
@@ -37,10 +37,10 @@ export const softwareArchitecture_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Бағдарламалық жасақтама архитектурасы',
     qm: 'Programma teminatınıñ arhitekturası',
   },
-  groups: {
-    designPrinciples: designPrinciples_SkillGroup_Data,
-    objectModel: objectModel_SkillGroup_Data,
-  },
+  groups: [
+    designPrinciples_SkillGroup_Data,
+    objectModel_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Explains program structure through objects, contracts, responsibilities, and dependencies. Design patterns form a separate domain of reusable solutions to object creation, composition, and behavior.',

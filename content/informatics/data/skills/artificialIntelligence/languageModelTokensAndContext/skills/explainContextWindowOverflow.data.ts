@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainContextWindowOverflow_Skill_Data = buildSkillConfig({
+export const explainContextWindowOverflow_Skill_Data = defineSkill({
   slug: 'explainContextWindowOverflow',
   id: '27c90d7d-a28f-477f-bca4-8e8d8038113f',
   name: {

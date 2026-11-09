@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   calibrateConfidenceToEvidence_Skill_Data,
@@ -7,7 +7,7 @@ import {
   recognizeTheLimitsOfPersonalKnowledge_Skill_Data,
 } from './skills';
 
-export const uncertaintyAndSkepticism_SkillGroup_Data = buildSkillGroupConfig({
+export const uncertaintyAndSkepticism_SkillGroup_Data = defineSkillGroup({
   slug: 'uncertaintyAndSkepticism',
   id: 'dd6f875c-0aeb-4987-addc-9f860327a0a2',
   name: {
@@ -41,12 +41,12 @@ export const uncertaintyAndSkepticism_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Белгісіздік және скептицизм',
     qm: 'Belgisizlik ve şübecilik',
   },
-  skills: {
-    calibrateConfidenceToEvidence: calibrateConfidenceToEvidence_Skill_Data,
-    evaluateASkepticalChallenge: evaluateASkepticalChallenge_Skill_Data,
-    identifyADisagreementAboutEvidenceStandards: identifyADisagreementAboutEvidenceStandards_Skill_Data,
-    recognizeTheLimitsOfPersonalKnowledge: recognizeTheLimitsOfPersonalKnowledge_Skill_Data,
-  },
+  skills: [
+    calibrateConfidenceToEvidence_Skill_Data,
+    evaluateASkepticalChallenge_Skill_Data,
+    identifyADisagreementAboutEvidenceStandards_Skill_Data,
+    recognizeTheLimitsOfPersonalKnowledge_Skill_Data,
+  ],
   description: {
     methodological:
       'Rational inquiry must accommodate incomplete evidence and the possibility of error without collapsing into indiscriminate doubt.',

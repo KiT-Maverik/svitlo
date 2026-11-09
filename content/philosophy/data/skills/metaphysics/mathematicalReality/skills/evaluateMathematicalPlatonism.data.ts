@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateMathematicalPlatonism_Skill_Data = buildSkillConfig({
+export const evaluateMathematicalPlatonism_Skill_Data = defineSkill({
   slug: 'evaluateMathematicalPlatonism',
   id: '9444eca7-f05e-4fb3-83df-70253527876b',
   name: {

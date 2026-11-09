@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientGermanicCommunities_Skill_Data = buildSkillConfig({
+export const ancientGermanicCommunities_Skill_Data = defineSkill({
   slug: 'ancientGermanicCommunities',
   id: '531a83f6-9f27-4cf9-a8fb-edaf985e127d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const migrationAndSettlement_Skill_Data = buildSkillConfig({
+export const migrationAndSettlement_Skill_Data = defineSkill({
   slug: 'migrationAndSettlement',
   id: 'febba0ca-7258-4818-b573-b548fa15b027',
   name: {

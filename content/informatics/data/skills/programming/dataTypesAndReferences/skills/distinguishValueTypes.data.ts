@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishValueTypes_Skill_Data = buildSkillConfig({
+export const distinguishValueTypes_Skill_Data = defineSkill({
   slug: 'distinguishValueTypes',
   id: '3d273538-7d5f-4cc4-b011-ea5bd9352003',
   name: {

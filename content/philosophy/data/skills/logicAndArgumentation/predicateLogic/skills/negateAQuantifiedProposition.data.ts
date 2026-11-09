@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const negateAQuantifiedProposition_Skill_Data = buildSkillConfig({
+export const negateAQuantifiedProposition_Skill_Data = defineSkill({
   slug: 'negateAQuantifiedProposition',
   id: '6354dfd6-2d56-4952-adee-f562d5f81118',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readAChart_Skill_Data = buildSkillConfig({
+export const readAChart_Skill_Data = defineSkill({
   slug: 'readAChart',
   id: '2bd4c20c-514a-4596-a651-1ff8d999811b',
   name: {

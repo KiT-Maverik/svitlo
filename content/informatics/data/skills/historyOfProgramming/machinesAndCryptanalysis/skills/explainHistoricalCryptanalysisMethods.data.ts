@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHistoricalCryptanalysisMethods_Skill_Data = buildSkillConfig({
+export const explainHistoricalCryptanalysisMethods_Skill_Data = defineSkill({
   slug: 'explainHistoricalCryptanalysisMethods',
   id: 'a759f993-7f18-4c6a-9639-e894ed77bbd4',
   name: {

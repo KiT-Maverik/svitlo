@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chooseAModelForATask_Skill_Data,
@@ -8,7 +8,7 @@ import {
   explainQuantization_Skill_Data,
 } from './skills';
 
-export const modelArchitecturesAndResources_SkillGroup_Data = buildSkillGroupConfig({
+export const modelArchitecturesAndResources_SkillGroup_Data = defineSkillGroup({
   slug: 'modelArchitecturesAndResources',
   id: '40fb9d60-473d-49d7-a515-11a07e4944b3',
   name: {
@@ -42,13 +42,13 @@ export const modelArchitecturesAndResources_SkillGroup_Data = buildSkillGroupCon
     kk: 'Модель архитектуралары және ресурстар',
     qm: 'Model arhitekturaları ve resurslar',
   },
-  skills: {
-    chooseAModelForATask: chooseAModelForATask_Skill_Data,
-    compareDenseAndMoEModels: compareDenseAndMoEModels_Skill_Data,
-    compareModelMemoryRequirements: compareModelMemoryRequirements_Skill_Data,
-    compareResponseLatency: compareResponseLatency_Skill_Data,
-    explainQuantization: explainQuantization_Skill_Data,
-  },
+  skills: [
+    chooseAModelForATask_Skill_Data,
+    compareDenseAndMoEModels_Skill_Data,
+    compareModelMemoryRequirements_Skill_Data,
+    compareResponseLatency_Skill_Data,
+    explainQuantization_Skill_Data,
+  ],
   description: {
     methodological:
       'Compare AI model characteristics: activation of components, numerical precision, latency, memory requirements, and fit for a task. These depend on the model and execution conditions, not on a universal AI ranking.',

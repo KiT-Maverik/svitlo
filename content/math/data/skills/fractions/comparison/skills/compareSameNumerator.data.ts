@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareSameNumerator_Skill_Data = buildSkillConfig({
+export const compareSameNumerator_Skill_Data = defineSkill({
   slug: 'compareSameNumerator',
   id: '17d8eb21-df92-4074-a1d2-5a3bded8fea8',
   name: {

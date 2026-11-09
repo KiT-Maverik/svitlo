@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeGeographicEvidenceOfPlateMotion_Skill_Data = buildSkillConfig({
+export const recognizeGeographicEvidenceOfPlateMotion_Skill_Data = defineSkill({
   slug: 'recognizeGeographicEvidenceOfPlateMotion',
   id: 'b5fccb55-1434-4732-8e92-0b97183e0acc',
   name: {

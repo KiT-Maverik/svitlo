@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeHaidaFormlineArt_Skill_Data = buildSkillConfig({
+export const analyzeHaidaFormlineArt_Skill_Data = defineSkill({
   slug: 'analyzeHaidaFormlineArt',
   id: '2e85b04d-dc13-4e80-9154-acd030dc4c04',
   name: {

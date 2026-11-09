@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAreasExposedToWeatherRelatedHazards_Skill_Data = buildSkillConfig({
+export const recognizeAreasExposedToWeatherRelatedHazards_Skill_Data = defineSkill({
   slug: 'recognizeAreasExposedToWeatherRelatedHazards',
   id: 'cdfba8b1-d220-44b5-a14a-738ee3a6694f',
   name: {

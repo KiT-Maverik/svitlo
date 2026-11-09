@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adhesiveJoints_Skill_Data = buildSkillConfig({
+export const adhesiveJoints_Skill_Data = defineSkill({
   slug: 'adhesiveJoints',
   id: 'b69ce746-077b-4e3b-9602-19c8cb8406ab',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const describeClusteredAndDispersedArrangements_Skill_Data = buildSkillConfig({
+export const describeClusteredAndDispersedArrangements_Skill_Data = defineSkill({
   slug: 'describeClusteredAndDispersedArrangements',
   id: '0d811075-f2d9-4d15-9ee5-315c1d545d69',
   name: {

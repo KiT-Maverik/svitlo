@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const impactCratering_Skill_Data = buildSkillConfig({
+export const impactCratering_Skill_Data = defineSkill({
   slug: 'impactCratering',
   id: '4c274b29-274d-45fe-9d2e-3a01a8a6354d',
   name: {

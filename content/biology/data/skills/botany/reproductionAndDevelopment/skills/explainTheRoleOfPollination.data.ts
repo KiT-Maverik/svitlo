@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfPollination_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfPollination_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfPollination',
   id: '4181ef8b-cdc8-4fd7-9a46-bc2e1bed6631',
   name: {

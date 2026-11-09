@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const kingdomOfKush_Skill_Data = buildSkillConfig({
+export const kingdomOfKush_Skill_Data = defineSkill({
   slug: 'kingdomOfKush',
   id: 'e8f95e20-080b-4e90-a409-48052aa78cf8',
   name: {

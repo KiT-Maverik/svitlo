@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data = buildSkillConfig({
+export const explainLightRefractionAtTheBoundaryBetweenMedia_Skill_Data = defineSkill({
   slug: 'explainLightRefractionAtTheBoundaryBetweenMedia',
   id: '86f7cb9b-ae43-4cd8-91cf-f6d962b95039',
   name: {

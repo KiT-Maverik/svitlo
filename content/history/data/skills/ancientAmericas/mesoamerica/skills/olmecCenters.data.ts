@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const olmecCenters_Skill_Data = buildSkillConfig({
+export const olmecCenters_Skill_Data = defineSkill({
   slug: 'olmecCenters',
   id: 'a8381be5-b3f9-4ca1-ab34-bed9eab81d9a',
   name: {

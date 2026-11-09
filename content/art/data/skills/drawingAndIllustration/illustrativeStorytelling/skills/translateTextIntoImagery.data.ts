@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const translateTextIntoImagery_Skill_Data = buildSkillConfig({
+export const translateTextIntoImagery_Skill_Data = defineSkill({
   slug: 'translateTextIntoImagery',
   id: '550600aa-68a0-4de6-ac03-e9ceae63b9d4',
   name: {

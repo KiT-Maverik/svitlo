@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyDesignConstraints_Skill_Data = buildSkillConfig({
+export const identifyDesignConstraints_Skill_Data = defineSkill({
   slug: 'identifyDesignConstraints',
   id: '6ce0de4c-1a05-466f-83d9-ecfb3037ec2c',
   name: {

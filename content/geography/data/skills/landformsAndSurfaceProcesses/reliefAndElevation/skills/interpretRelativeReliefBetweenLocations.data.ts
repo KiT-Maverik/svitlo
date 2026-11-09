@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretRelativeReliefBetweenLocations_Skill_Data = buildSkillConfig({
+export const interpretRelativeReliefBetweenLocations_Skill_Data = defineSkill({
   slug: 'interpretRelativeReliefBetweenLocations',
   id: '014c40ec-7723-457d-8d99-bd1c377cdab8',
   name: {

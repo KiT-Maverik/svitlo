@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const usePersonalProtectiveEquipment_Skill_Data = buildSkillConfig({
+export const usePersonalProtectiveEquipment_Skill_Data = defineSkill({
   slug: 'usePersonalProtectiveEquipment',
   id: 'ba87649c-9373-40d8-8925-1f1731366f98',
   name: {

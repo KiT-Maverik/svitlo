@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateBodyCoveringsToTheirFunctions_Skill_Data = buildSkillConfig({
+export const relateBodyCoveringsToTheirFunctions_Skill_Data = defineSkill({
   slug: 'relateBodyCoveringsToTheirFunctions',
   id: '4168cd90-7916-4e8f-9126-917525761ae6',
   name: {

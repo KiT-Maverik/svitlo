@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const actuatorDriverCompatibility_Skill_Data = buildSkillConfig({
+export const actuatorDriverCompatibility_Skill_Data = defineSkill({
   slug: 'actuatorDriverCompatibility',
   id: '096f69e5-265e-4448-b444-40a99825cd04',
   name: {

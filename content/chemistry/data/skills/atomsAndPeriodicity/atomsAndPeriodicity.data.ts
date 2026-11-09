@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { atomicStructure_SkillGroup_Data } from './atomicStructure/atomicStructure.data';
 import { electronicStructure_SkillGroup_Data } from './electronicStructure/electronicStructure.data';
@@ -6,10 +6,10 @@ import { nuclearChemistry_SkillGroup_Data } from './nuclearChemistry/nuclearChem
 import { periodicOrganization_SkillGroup_Data } from './periodicOrganization/periodicOrganization.data';
 import { periodicTrends_SkillGroup_Data } from './periodicTrends/periodicTrends.data';
 
-export const atomsAndPeriodicity_SkillDomain_Data = buildSkillDomainConfig({
+export const atomsAndPeriodicity_SkillDomain_Data = defineSkillDomain({
   slug: 'atomsAndPeriodicity',
   id: '21257e92-4a8b-4ca2-a38a-ec1d1ff31110',
-  name: {
+  title: {
     en: 'Atoms and Periodicity',
     zh: '原子与周期性',
     hi: 'परमाणु और आवर्तिता',
@@ -40,13 +40,13 @@ export const atomsAndPeriodicity_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Атомдар және периодтылық',
     qm: 'Atomlar ve devirlilik',
   },
-  groups: {
-    atomicStructure: atomicStructure_SkillGroup_Data,
-    electronicStructure: electronicStructure_SkillGroup_Data,
-    nuclearChemistry: nuclearChemistry_SkillGroup_Data,
-    periodicOrganization: periodicOrganization_SkillGroup_Data,
-    periodicTrends: periodicTrends_SkillGroup_Data,
-  },
+  groups: [
+    atomicStructure_SkillGroup_Data,
+    electronicStructure_SkillGroup_Data,
+    nuclearChemistry_SkillGroup_Data,
+    periodicOrganization_SkillGroup_Data,
+    periodicTrends_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'The organization and electronic structure of atoms underpin elemental identity, isotopes, ions and recurring chemical behavior. This domain describes atomic constituents and trends; bond formation is treated separately.',

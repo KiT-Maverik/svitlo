@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { carbonFrameworks_SkillGroup_Data } from './carbonFrameworks/carbonFrameworks.data';
 import { functionalGroups_SkillGroup_Data } from './functionalGroups/functionalGroups.data';
 import { macromolecules_SkillGroup_Data } from './macromolecules/macromolecules.data';
 import { organicTransformations_SkillGroup_Data } from './organicTransformations/organicTransformations.data';
 
-export const organicChemistry_SkillDomain_Data = buildSkillDomainConfig({
+export const organicChemistry_SkillDomain_Data = defineSkillDomain({
   slug: 'organicChemistry',
   id: 'cffb6d73-9d15-4add-85f2-ce68a70cd249',
-  name: {
+  title: {
     en: 'Organic Chemistry',
     zh: '有机化学',
     hi: 'कार्बनिक रसायन विज्ञान',
@@ -39,12 +39,12 @@ export const organicChemistry_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Органикалық химия',
     qm: 'Organik kimya',
   },
-  groups: {
-    carbonFrameworks: carbonFrameworks_SkillGroup_Data,
-    functionalGroups: functionalGroups_SkillGroup_Data,
-    macromolecules: macromolecules_SkillGroup_Data,
-    organicTransformations: organicTransformations_SkillGroup_Data,
-  },
+  groups: [
+    carbonFrameworks_SkillGroup_Data,
+    functionalGroups_SkillGroup_Data,
+    macromolecules_SkillGroup_Data,
+    organicTransformations_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Carbon compounds are organized by connectivity, functional groups and reaction pathways. This domain focuses on chemical structure and transformations, distinct from physiological roles discussed in biology.',

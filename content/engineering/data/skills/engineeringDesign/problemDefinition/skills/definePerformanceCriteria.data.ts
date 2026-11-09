@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const definePerformanceCriteria_Skill_Data = buildSkillConfig({
+export const definePerformanceCriteria_Skill_Data = defineSkill({
   slug: 'definePerformanceCriteria',
   id: '51a6729a-bfa8-4917-bb3c-1744f36db8b4',
   name: {

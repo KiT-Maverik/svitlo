@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { explainEndocrineRegulation_Skill_Data, explainMaintenanceOfHomeostasis_Skill_Data } from './skills';
 
-export const regulationAndHomeostasis_SkillGroup_Data = buildSkillGroupConfig({
+export const regulationAndHomeostasis_SkillGroup_Data = defineSkillGroup({
   slug: 'regulationAndHomeostasis',
   id: 'dd9f31e0-6af3-43cc-a4c2-9887ceea1b07',
   name: {
@@ -36,10 +36,10 @@ export const regulationAndHomeostasis_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Реттелу және гомеостаз',
     qm: 'İdare etüv ve gomeostaz',
   },
-  skills: {
-    explainEndocrineRegulation: explainEndocrineRegulation_Skill_Data,
-    explainMaintenanceOfHomeostasis: explainMaintenanceOfHomeostasis_Skill_Data,
-  },
+  skills: [
+    explainEndocrineRegulation_Skill_Data,
+    explainMaintenanceOfHomeostasis_Skill_Data,
+  ],
   description: {
     methodological:
       'Nervous and hormonal signals coordinate organ functions, while feedback mechanisms maintain key internal conditions within viable ranges.',

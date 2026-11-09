@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bceAndCeDating_Skill_Data = buildSkillConfig({
+export const bceAndCeDating_Skill_Data = defineSkill({
   slug: 'bceAndCeDating',
   id: '35ba8e99-cbb8-4c15-865a-343f2c740145',
   name: {

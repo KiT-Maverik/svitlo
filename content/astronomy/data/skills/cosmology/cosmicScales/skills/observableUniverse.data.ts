@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const observableUniverse_Skill_Data = buildSkillConfig({
+export const observableUniverse_Skill_Data = defineSkill({
   slug: 'observableUniverse',
   id: 'a11a495e-93c5-44ed-8201-6a5258deb8f2',
   name: {

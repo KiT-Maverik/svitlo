@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareResourceStorageAndGeneration_Skill_Data = buildSkillConfig({
+export const compareResourceStorageAndGeneration_Skill_Data = defineSkill({
   slug: 'compareResourceStorageAndGeneration',
   id: '99f4d5fd-2c5c-46c6-b9da-c8c27a563c2b',
   name: {

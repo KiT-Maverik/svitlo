@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainBenefitsOfGroupBehavior_Skill_Data,
@@ -6,7 +6,7 @@ import {
   recognizeDefensiveBehavior_Skill_Data,
 } from './skills';
 
-export const behavior_SkillGroup_Data = buildSkillGroupConfig({
+export const behavior_SkillGroup_Data = defineSkillGroup({
   slug: 'behavior',
   id: '59114693-ede5-4e1f-af01-366f42656347',
   name: {
@@ -40,11 +40,11 @@ export const behavior_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жануарлардың мінез-құлқы',
     qm: 'Ayvanlarnıñ areketleri ve davranışı',
   },
-  skills: {
-    explainBenefitsOfGroupBehavior: explainBenefitsOfGroupBehavior_Skill_Data,
-    explainTheRoleOfSignalsInAnimalCommunication: explainTheRoleOfSignalsInAnimalCommunication_Skill_Data,
-    recognizeDefensiveBehavior: recognizeDefensiveBehavior_Skill_Data,
-  },
+  skills: [
+    explainBenefitsOfGroupBehavior_Skill_Data,
+    explainTheRoleOfSignalsInAnimalCommunication_Skill_Data,
+    recognizeDefensiveBehavior_Skill_Data,
+  ],
   description: {
     methodological:
       'Animal actions arise in response to signals and needs; observation makes it possible to identify defense, communication, and benefits of living in groups.',

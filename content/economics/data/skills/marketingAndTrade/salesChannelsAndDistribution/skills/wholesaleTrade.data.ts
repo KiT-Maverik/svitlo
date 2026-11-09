@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const wholesaleTrade_Skill_Data = buildSkillConfig({
+export const wholesaleTrade_Skill_Data = defineSkill({
   slug: 'wholesaleTrade',
   id: 'd480881d-ac5d-4ae7-9271-aa475116a467',
   name: {

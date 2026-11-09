@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { checkReasonableness_Skill_Data, verifyWithSecondMethod_Skill_Data } from './skills';
 
-export const verification_SkillGroup_Data = buildSkillGroupConfig({
+export const verification_SkillGroup_Data = defineSkillGroup({
   slug: 'verification',
   id: 'a40b2d58-257b-4517-a48d-8e839b9687bf',
   name: {
@@ -36,10 +36,10 @@ export const verification_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Sprawdzanie rozwiązań',
     uk: 'Перевірка розв’язань',
   },
-  skills: {
-    checkReasonableness: checkReasonableness_Skill_Data,
-    verifyWithSecondMethod: verifyWithSecondMethod_Skill_Data,
-  },
+  skills: [
+    checkReasonableness_Skill_Data,
+    verifyWithSecondMethod_Skill_Data,
+  ],
   description: {
     methodological:
       'Critically comparing a calculated result with the problem conditions, identifying mistakes, and using independent methods of verification.',

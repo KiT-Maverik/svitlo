@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheInterdependenceOfOrgans_Skill_Data = buildSkillConfig({
+export const explainTheInterdependenceOfOrgans_Skill_Data = defineSkill({
   slug: 'explainTheInterdependenceOfOrgans',
   id: '26e91acf-d978-4093-90e0-f9eca123e589',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheParticulateStructureOfMatter_Skill_Data = buildSkillConfig({
+export const explainTheParticulateStructureOfMatter_Skill_Data = defineSkill({
   slug: 'explainTheParticulateStructureOfMatter',
   id: 'b72aa0c8-ae85-4516-b426-0a734b1204bc',
   name: {

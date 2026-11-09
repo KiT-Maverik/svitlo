@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfMusclesInMovement_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfMusclesInMovement_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfMusclesInMovement',
   id: '2c2472d9-f288-4e66-8f13-a37b5ba1a58d',
   name: {

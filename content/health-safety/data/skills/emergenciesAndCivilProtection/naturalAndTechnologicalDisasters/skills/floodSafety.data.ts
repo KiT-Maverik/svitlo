@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const floodSafety_Skill_Data = buildSkillConfig({
+export const floodSafety_Skill_Data = defineSkill({
   slug: 'floodSafety',
   id: 'c3642cfc-6b35-41bd-9d5d-6a94afd0567d',
   name: {

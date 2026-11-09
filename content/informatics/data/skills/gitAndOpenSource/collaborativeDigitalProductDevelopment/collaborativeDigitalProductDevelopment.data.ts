@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   coordinateChangesInASharedDigitalProject_Skill_Data,
@@ -6,7 +6,7 @@ import {
   trackDigitalProductVersions_Skill_Data,
 } from './skills';
 
-export const collaborativeDigitalProductDevelopment_SkillGroup_Data = buildSkillGroupConfig({
+export const collaborativeDigitalProductDevelopment_SkillGroup_Data = defineSkillGroup({
   slug: 'collaborativeDigitalProductDevelopment',
   id: 'e7f67d8b-7f3a-4a06-b69e-319330212afe',
   name: {
@@ -40,11 +40,11 @@ export const collaborativeDigitalProductDevelopment_SkillGroup_Data = buildSkill
     kk: 'Цифрлық өнімдерді бірлесіп әзірлеу',
     qm: 'Raqamlı mahsulatnı beraber işlep çıqarmaq',
   },
-  skills: {
-    coordinateChangesInASharedDigitalProject: coordinateChangesInASharedDigitalProject_Skill_Data,
-    explainContributionGuidelines: explainContributionGuidelines_Skill_Data,
-    trackDigitalProductVersions: trackDigitalProductVersions_Skill_Data,
-  },
+  skills: [
+    coordinateChangesInASharedDigitalProject_Skill_Data,
+    explainContributionGuidelines_Skill_Data,
+    trackDigitalProductVersions_Skill_Data,
+  ],
   description: {
     methodological:
       'Joint development requires agreed contribution and review rules, coordination among contributors, and tracking versions. Collaboration applies to public and private repositories and does not itself determine licensing.',

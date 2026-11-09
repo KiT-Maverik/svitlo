@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const financialGoals_Skill_Data = buildSkillConfig({
+export const financialGoals_Skill_Data = defineSkill({
   slug: 'financialGoals',
   id: '38a695fa-8d21-4aa4-ace2-84c4611ed8ae',
   name: {

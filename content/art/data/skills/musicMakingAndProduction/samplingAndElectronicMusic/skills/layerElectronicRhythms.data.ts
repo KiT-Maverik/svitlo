@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const layerElectronicRhythms_Skill_Data = buildSkillConfig({
+export const layerElectronicRhythms_Skill_Data = defineSkill({
   slug: 'layerElectronicRhythms',
   id: 'bb8cf848-a26b-428a-996d-135953b53f5f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const modelTheSensorToActionRelationship_Skill_Data = buildSkillConfig({
+export const modelTheSensorToActionRelationship_Skill_Data = defineSkill({
   slug: 'modelTheSensorToActionRelationship',
   id: '6c5356a3-c0fb-4f30-b08a-84b04410822d',
   name: {

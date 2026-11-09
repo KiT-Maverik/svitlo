@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const translateSituation_Skill_Data = buildSkillConfig({
+export const translateSituation_Skill_Data = defineSkill({
   slug: 'translateSituation',
   id: '616323a8-423c-4ff8-9d1a-f19435a0dd26',
   name: {

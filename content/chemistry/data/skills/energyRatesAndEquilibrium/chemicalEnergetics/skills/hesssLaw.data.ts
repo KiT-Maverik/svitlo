@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hesssLaw_Skill_Data = buildSkillConfig({
+export const hesssLaw_Skill_Data = defineSkill({
   slug: 'hesssLaw',
   id: '5e7d3cd2-39fe-4dca-a76a-335aff7cbb85',
   name: {

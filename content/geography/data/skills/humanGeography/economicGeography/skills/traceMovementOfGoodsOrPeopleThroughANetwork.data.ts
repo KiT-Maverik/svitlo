@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const traceMovementOfGoodsOrPeopleThroughANetwork_Skill_Data = buildSkillConfig({
+export const traceMovementOfGoodsOrPeopleThroughANetwork_Skill_Data = defineSkill({
   slug: 'traceMovementOfGoodsOrPeopleThroughANetwork',
   id: 'a8b8d107-e930-4b9a-8b48-c7d3984a1849',
   name: {

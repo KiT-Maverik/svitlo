@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainSoundAttenuationWithDistance_Skill_Data = buildSkillConfig({
+export const explainSoundAttenuationWithDistance_Skill_Data = defineSkill({
   slug: 'explainSoundAttenuationWithDistance',
   id: '1bc9b549-4b42-45a5-a5cc-b7e6431165f6',
   name: {

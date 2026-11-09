@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const motorDrivenActuation_Skill_Data = buildSkillConfig({
+export const motorDrivenActuation_Skill_Data = defineSkill({
   slug: 'motorDrivenActuation',
   id: '1bde93c7-443a-4721-a086-b42b3457a7f9',
   name: {

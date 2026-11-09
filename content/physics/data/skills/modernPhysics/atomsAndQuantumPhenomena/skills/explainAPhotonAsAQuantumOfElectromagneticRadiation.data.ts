@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data = buildSkillConfig({
+export const explainAPhotonAsAQuantumOfElectromagneticRadiation_Skill_Data = defineSkill({
   slug: 'explainAPhotonAsAQuantumOfElectromagneticRadiation',
   id: '5cece8a1-d4c7-4af9-b760-72e4b7cf50ff',
   name: {

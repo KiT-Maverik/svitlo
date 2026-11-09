@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const anatolianTradeNetworks_Skill_Data = buildSkillConfig({
+export const anatolianTradeNetworks_Skill_Data = defineSkill({
   slug: 'anatolianTradeNetworks',
   id: 'e062e14b-4414-498c-a104-2189de617167',
   name: {

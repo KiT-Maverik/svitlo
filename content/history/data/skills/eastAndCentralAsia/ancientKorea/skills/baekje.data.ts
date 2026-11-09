@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const baekje_Skill_Data = buildSkillConfig({
+export const baekje_Skill_Data = defineSkill({
   slug: 'baekje',
   id: '0e98481f-0d8d-48f9-bddd-3b9f9eebef77',
   name: {

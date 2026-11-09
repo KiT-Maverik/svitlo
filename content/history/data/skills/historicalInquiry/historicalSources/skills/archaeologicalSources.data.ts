@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const archaeologicalSources_Skill_Data = buildSkillConfig({
+export const archaeologicalSources_Skill_Data = defineSkill({
   slug: 'archaeologicalSources',
   id: 'c64342ba-ac05-4335-abb6-1765d39b261a',
   name: {

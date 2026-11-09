@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cosmicMicrowaveBackground_Skill_Data = buildSkillConfig({
+export const cosmicMicrowaveBackground_Skill_Data = defineSkill({
   slug: 'cosmicMicrowaveBackground',
   id: '0e1b126f-d5f2-45e3-bb10-be82635ba9cc',
   name: {

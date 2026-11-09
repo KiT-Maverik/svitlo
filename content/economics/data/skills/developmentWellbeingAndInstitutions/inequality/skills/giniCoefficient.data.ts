@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const giniCoefficient_Skill_Data = buildSkillConfig({
+export const giniCoefficient_Skill_Data = defineSkill({
   slug: 'giniCoefficient',
   id: '548e864e-980f-4d9a-9f9c-f6d4f4fe6f78',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyPersonalData_Skill_Data = buildSkillConfig({
+export const identifyPersonalData_Skill_Data = defineSkill({
   slug: 'identifyPersonalData',
   id: 'cadaea6e-bd81-441e-82f3-73389d1373bf',
   name: {

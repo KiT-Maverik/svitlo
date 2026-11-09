@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { compositionAndImprovisation_SkillGroup_Data } from './compositionAndImprovisation/compositionAndImprovisation.data';
 import { instrumentAndEnsemblePerformance_SkillGroup_Data } from './instrumentAndEnsemblePerformance/instrumentAndEnsemblePerformance.data';
 import { samplingAndElectronicMusic_SkillGroup_Data } from './samplingAndElectronicMusic/samplingAndElectronicMusic.data';
 import { voiceAndBodyPercussion_SkillGroup_Data } from './voiceAndBodyPercussion/voiceAndBodyPercussion.data';
 
-export const musicMakingAndProduction_SkillDomain_Data = buildSkillDomainConfig({
+export const musicMakingAndProduction_SkillDomain_Data = defineSkillDomain({
   slug: 'musicMakingAndProduction',
   id: '5c2d14b3-68e5-4a53-9aab-f419c1cccaae',
-  name: {
+  title: {
     en: 'Music Making and Production',
     zh: '音乐创作与制作',
     hi: 'संगीत निर्माण और उत्पादन',
@@ -39,12 +39,12 @@ export const musicMakingAndProduction_SkillDomain_Data = buildSkillDomainConfig(
     kk: 'Музыка жасау және продюсерлік',
     qm: 'Muzika yaratması ve prodüserligi',
   },
-  groups: {
-    compositionAndImprovisation: compositionAndImprovisation_SkillGroup_Data,
-    instrumentAndEnsemblePerformance: instrumentAndEnsemblePerformance_SkillGroup_Data,
-    samplingAndElectronicMusic: samplingAndElectronicMusic_SkillGroup_Data,
-    voiceAndBodyPercussion: voiceAndBodyPercussion_SkillGroup_Data,
-  },
+  groups: [
+    compositionAndImprovisation_SkillGroup_Data,
+    instrumentAndEnsemblePerformance_SkillGroup_Data,
+    samplingAndElectronicMusic_SkillGroup_Data,
+    voiceAndBodyPercussion_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Expressive music-making includes voice, instruments, improvisation, arrangement, and manipulation of recorded sounds. The use of electronic tools does not convert a musical outcome into an Informatics Skill.',

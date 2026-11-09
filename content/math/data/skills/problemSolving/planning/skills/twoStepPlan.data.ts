@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const twoStepPlan_Skill_Data = buildSkillConfig({
+export const twoStepPlan_Skill_Data = defineSkill({
   slug: 'twoStepPlan',
   id: '126e3b5b-fa90-4f68-8efc-05b0117611c3',
   name: {

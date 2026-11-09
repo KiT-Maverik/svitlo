@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareHabitatConditionsBetweenGeographicLocations_Skill_Data = buildSkillConfig({
+export const compareHabitatConditionsBetweenGeographicLocations_Skill_Data = defineSkill({
   slug: 'compareHabitatConditionsBetweenGeographicLocations',
   id: '9b77ecf2-7ca3-404d-872d-d6802e80bf0c',
   name: {

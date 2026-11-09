@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainNewtonsFirstLaw_Skill_Data,
@@ -6,7 +6,7 @@ import {
   explainNewtonsThirdLaw_Skill_Data,
 } from './skills';
 
-export const newtonsLaws_SkillGroup_Data = buildSkillGroupConfig({
+export const newtonsLaws_SkillGroup_Data = defineSkillGroup({
   slug: 'newtonsLaws',
   id: '665f18c6-b5fe-4777-85fc-8d3b880b6a61',
   name: {
@@ -40,11 +40,11 @@ export const newtonsLaws_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ньютон заңдары',
     qm: 'Nyutonnıñ qanunları',
   },
-  skills: {
-    explainNewtonsFirstLaw: explainNewtonsFirstLaw_Skill_Data,
-    explainNewtonsSecondLaw: explainNewtonsSecondLaw_Skill_Data,
-    explainNewtonsThirdLaw: explainNewtonsThirdLaw_Skill_Data,
-  },
+  skills: [
+    explainNewtonsFirstLaw_Skill_Data,
+    explainNewtonsSecondLaw_Skill_Data,
+    explainNewtonsThirdLaw_Skill_Data,
+  ],
   description: {
     methodological:
       "Newton's laws establish the relationships among forces, inertia, and changes in bodies' motion in the appropriate reference frames.",

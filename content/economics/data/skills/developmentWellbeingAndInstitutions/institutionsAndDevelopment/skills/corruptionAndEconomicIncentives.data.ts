@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const corruptionAndEconomicIncentives_Skill_Data = buildSkillConfig({
+export const corruptionAndEconomicIncentives_Skill_Data = defineSkill({
   slug: 'corruptionAndEconomicIncentives',
   id: '7986fdd5-ebc3-4f9d-a161-d61ae154e116',
   name: {

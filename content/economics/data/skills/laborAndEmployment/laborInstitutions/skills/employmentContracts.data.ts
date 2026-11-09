@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const employmentContracts_Skill_Data = buildSkillConfig({
+export const employmentContracts_Skill_Data = defineSkill({
   slug: 'employmentContracts',
   id: '2c5b4220-4096-4816-9793-e0442d849bcd',
   name: {

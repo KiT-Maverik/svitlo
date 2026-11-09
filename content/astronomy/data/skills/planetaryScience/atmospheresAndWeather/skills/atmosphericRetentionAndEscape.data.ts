@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const atmosphericRetentionAndEscape_Skill_Data = buildSkillConfig({
+export const atmosphericRetentionAndEscape_Skill_Data = defineSkill({
   slug: 'atmosphericRetentionAndEscape',
   id: '996cc8b5-8061-403b-98c1-31a5bd2bec6d',
   name: {

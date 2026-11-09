@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareCollectionInsertionCosts_Skill_Data = buildSkillConfig({
+export const compareCollectionInsertionCosts_Skill_Data = defineSkill({
   slug: 'compareCollectionInsertionCosts',
   id: '8cd40212-cd6f-436b-824b-01d8fc5df9a7',
   name: {

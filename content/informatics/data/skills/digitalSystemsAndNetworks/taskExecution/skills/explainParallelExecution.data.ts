@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainParallelExecution_Skill_Data = buildSkillConfig({
+export const explainParallelExecution_Skill_Data = defineSkill({
   slug: 'explainParallelExecution',
   id: '376c030a-d13f-43cf-b57a-74b1c8b3e756',
   name: {

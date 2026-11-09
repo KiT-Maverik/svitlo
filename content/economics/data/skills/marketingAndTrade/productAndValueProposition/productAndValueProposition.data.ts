@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   commercialRoleOfPackaging_Skill_Data,
@@ -7,7 +7,7 @@ import {
   valueProposition_Skill_Data,
 } from './skills';
 
-export const productAndValueProposition_SkillGroup_Data = buildSkillGroupConfig({
+export const productAndValueProposition_SkillGroup_Data = defineSkillGroup({
   slug: 'productAndValueProposition',
   id: 'ee25f845-9931-474d-89d0-16c86a4579da',
   name: {
@@ -41,12 +41,12 @@ export const productAndValueProposition_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Өнім және құндылық ұсынысы',
     qm: 'Mal ve qıymet teklifi',
   },
-  skills: {
-    commercialRoleOfPackaging: commercialRoleOfPackaging_Skill_Data,
-    productLifeCycle: productLifeCycle_Skill_Data,
-    productPositioning: productPositioning_Skill_Data,
-    valueProposition: valueProposition_Skill_Data,
-  },
+  skills: [
+    commercialRoleOfPackaging_Skill_Data,
+    productLifeCycle_Skill_Data,
+    productPositioning_Skill_Data,
+    valueProposition_Skill_Data,
+  ],
   description: {
     methodological:
       'A commercial offering combines benefits, quality, service, and differences from alternatives, not just physical features.',

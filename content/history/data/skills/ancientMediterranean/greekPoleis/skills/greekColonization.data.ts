@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const greekColonization_Skill_Data = buildSkillConfig({
+export const greekColonization_Skill_Data = defineSkill({
   slug: 'greekColonization',
   id: '1b0af8dc-09c9-4abc-83fc-f9047f33e5ce',
   name: {

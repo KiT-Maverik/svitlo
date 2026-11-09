@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyAITasks_Skill_Data = buildSkillConfig({
+export const classifyAITasks_Skill_Data = defineSkill({
   slug: 'classifyAITasks',
   id: '573cc148-e6f3-4f3f-871c-a5b1f733f2b0',
   name: {

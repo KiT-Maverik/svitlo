@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bigFiveTraitModel_Skill_Data = buildSkillConfig({
+export const bigFiveTraitModel_Skill_Data = defineSkill({
   slug: 'bigFiveTraitModel',
   id: 'de8e3224-d8ac-4ccc-8cc3-4a31d74f883e',
   name: {

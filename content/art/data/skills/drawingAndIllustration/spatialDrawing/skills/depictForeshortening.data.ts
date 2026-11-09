@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const depictForeshortening_Skill_Data = buildSkillConfig({
+export const depictForeshortening_Skill_Data = defineSkill({
   slug: 'depictForeshortening',
   id: '7728ce52-cdf9-46a4-a932-207461b91433',
   name: {

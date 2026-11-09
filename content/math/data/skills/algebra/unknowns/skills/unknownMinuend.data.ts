@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const unknownMinuend_Skill_Data = buildSkillConfig({
+export const unknownMinuend_Skill_Data = defineSkill({
   slug: 'unknownMinuend',
   id: '9b035dee-91cf-4e5a-ad29-c64100da3964',
   name: {

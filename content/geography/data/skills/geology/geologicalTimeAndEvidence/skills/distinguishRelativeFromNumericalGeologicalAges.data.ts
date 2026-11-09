@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishRelativeFromNumericalGeologicalAges_Skill_Data = buildSkillConfig({
+export const distinguishRelativeFromNumericalGeologicalAges_Skill_Data = defineSkill({
   slug: 'distinguishRelativeFromNumericalGeologicalAges',
   id: 'fa7ae4ae-9a83-47e8-a091-57119ce1a62b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const qinEmpire_Skill_Data = buildSkillConfig({
+export const qinEmpire_Skill_Data = defineSkill({
   slug: 'qinEmpire',
   id: '5107d995-4332-464a-aa5d-f08115ab63af',
   name: {

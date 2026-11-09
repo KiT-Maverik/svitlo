@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareAircraftPropulsionTechnologies_Skill_Data = buildSkillConfig({
+export const compareAircraftPropulsionTechnologies_Skill_Data = defineSkill({
   slug: 'compareAircraftPropulsionTechnologies',
   id: '5d8151f5-ab35-49b2-8186-b62e9896b7c4',
   name: {

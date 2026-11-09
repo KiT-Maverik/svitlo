@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowASoilProfileDevelopsAtTheSurface_Skill_Data = buildSkillConfig({
+export const explainHowASoilProfileDevelopsAtTheSurface_Skill_Data = defineSkill({
   slug: 'explainHowASoilProfileDevelopsAtTheSurface',
   id: 'a61ea24c-159a-4539-b8ae-67776d3f0f21',
   name: {

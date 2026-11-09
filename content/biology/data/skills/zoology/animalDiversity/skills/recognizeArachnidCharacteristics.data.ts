@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeArachnidCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeArachnidCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeArachnidCharacteristics',
   id: '89e9d745-c31d-44a0-9988-5f10c2057abe',
   name: {

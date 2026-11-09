@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mentalHealthStigma_Skill_Data = buildSkillConfig({
+export const mentalHealthStigma_Skill_Data = defineSkill({
   slug: 'mentalHealthStigma',
   id: '8c897f6e-791f-47f6-b5f9-1b8cefd32d9a',
   name: {

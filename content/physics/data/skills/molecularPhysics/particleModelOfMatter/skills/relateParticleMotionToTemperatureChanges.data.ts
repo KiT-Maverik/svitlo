@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateParticleMotionToTemperatureChanges_Skill_Data = buildSkillConfig({
+export const relateParticleMotionToTemperatureChanges_Skill_Data = defineSkill({
   slug: 'relateParticleMotionToTemperatureChanges',
   id: 'c0a99d0c-bafd-4a2e-bd5d-1563c0c12ecc',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const chemistryAsADiscipline_Skill_Data = buildSkillConfig({
+export const chemistryAsADiscipline_Skill_Data = defineSkill({
   slug: 'chemistryAsADiscipline',
   id: '299dea1b-8847-43b0-a306-a4284ca2606a',
   name: {

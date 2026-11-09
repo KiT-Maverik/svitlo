@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useComplementaryColors_Skill_Data = buildSkillConfig({
+export const useComplementaryColors_Skill_Data = defineSkill({
   slug: 'useComplementaryColors',
   id: '75432a57-2258-4908-b0bd-4872e0dc1d88',
   name: {

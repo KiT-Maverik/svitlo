@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareTheLoudnessOfSounds_Skill_Data = buildSkillConfig({
+export const compareTheLoudnessOfSounds_Skill_Data = defineSkill({
   slug: 'compareTheLoudnessOfSounds',
   id: '04932a66-6008-472f-aee7-089f1ac64f77',
   name: {

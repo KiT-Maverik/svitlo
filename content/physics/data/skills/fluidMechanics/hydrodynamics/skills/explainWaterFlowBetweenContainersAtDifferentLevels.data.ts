@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data = buildSkillConfig({
+export const explainWaterFlowBetweenContainersAtDifferentLevels_Skill_Data = defineSkill({
   slug: 'explainWaterFlowBetweenContainersAtDifferentLevels',
   id: 'd9059629-3197-4323-8b61-789e1a997af6',
   name: {

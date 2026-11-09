@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainANetworkProtocol_Skill_Data = buildSkillConfig({
+export const explainANetworkProtocol_Skill_Data = defineSkill({
   slug: 'explainANetworkProtocol',
   id: '17c3abed-83d1-436d-b85d-cce1acacf947',
   name: {

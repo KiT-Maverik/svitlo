@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainCompleteMetamorphosisInInsects_Skill_Data = buildSkillConfig({
+export const explainCompleteMetamorphosisInInsects_Skill_Data = defineSkill({
   slug: 'explainCompleteMetamorphosisInInsects',
   id: '4fc41bc2-a024-4702-9446-842305bdef5d',
   name: {

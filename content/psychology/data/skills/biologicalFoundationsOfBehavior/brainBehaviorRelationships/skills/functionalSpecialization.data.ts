@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const functionalSpecialization_Skill_Data = buildSkillConfig({
+export const functionalSpecialization_Skill_Data = defineSkill({
   slug: 'functionalSpecialization',
   id: '1c1bcb20-afb0-485d-b24b-da1b7e933142',
   name: {

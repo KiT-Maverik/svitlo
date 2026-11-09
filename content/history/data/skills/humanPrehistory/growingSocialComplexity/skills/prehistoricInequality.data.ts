@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prehistoricInequality_Skill_Data = buildSkillConfig({
+export const prehistoricInequality_Skill_Data = defineSkill({
   slug: 'prehistoricInequality',
   id: '0eb52a18-8fc5-4a40-bb32-7ff04bab41d5',
   name: {

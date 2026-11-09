@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { kyivanRus_Skill_Data } from './skills';
 
-export const earlyMedievalEasternEurope_SkillGroup_Data = buildSkillGroupConfig({
+export const earlyMedievalEasternEurope_SkillGroup_Data = defineSkillGroup({
   slug: 'earlyMedievalEasternEurope',
   id: 'f763fd64-839e-4349-a597-e4e980ea588e',
   name: {
@@ -36,9 +36,9 @@ export const earlyMedievalEasternEurope_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Ерте орта ғасырлардағы Шығыс Еуропа',
     qm: 'Erte orta asırlardaki Şarqiy Avropa',
   },
-  skills: {
-    kyivanRus: kyivanRus_Skill_Data,
-  },
+  skills: [
+    kyivanRus_Skill_Data,
+  ],
   description: {
     methodological:
       'Study early medieval Eastern European polities and links with the Baltic, Black Sea, and Byzantine worlds as a limited chronological exception to the ancient focus.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const conditionedResponseExtinction_Skill_Data = buildSkillConfig({
+export const conditionedResponseExtinction_Skill_Data = defineSkill({
   slug: 'conditionedResponseExtinction',
   id: '1518cba9-64d7-4a50-82bc-bd68d1d6ad90',
   name: {

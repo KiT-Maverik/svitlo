@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const electricalGenerators_Skill_Data = buildSkillConfig({
+export const electricalGenerators_Skill_Data = defineSkill({
   slug: 'electricalGenerators',
   id: '545c6004-8799-4ac1-a2fe-cc0e10b41ad1',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const perceptualExpectations_Skill_Data = buildSkillConfig({
+export const perceptualExpectations_Skill_Data = defineSkill({
   slug: 'perceptualExpectations',
   id: '58a2eaf6-03bc-4fa1-b142-c6057e890002',
   name: {

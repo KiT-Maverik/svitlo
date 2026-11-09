@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareArtisticInterpretations_Skill_Data,
@@ -8,7 +8,7 @@ import {
   supportAnArtisticInterpretation_Skill_Data,
 } from './skills';
 
-export const interpretationAndEvaluation_SkillGroup_Data = buildSkillGroupConfig({
+export const interpretationAndEvaluation_SkillGroup_Data = defineSkillGroup({
   slug: 'interpretationAndEvaluation',
   id: '4dd3052d-eefd-4b00-b051-abc1c585973f',
   name: {
@@ -42,13 +42,13 @@ export const interpretationAndEvaluation_SkillGroup_Data = buildSkillGroupConfig
     kk: 'Түсіндіру және бағалау',
     qm: 'Añlatma ve baalav',
   },
-  skills: {
-    compareArtisticInterpretations: compareArtisticInterpretations_Skill_Data,
-    describeArtworksPrecisely: describeArtworksPrecisely_Skill_Data,
-    distinguishObservationFromInterpretation: distinguishObservationFromInterpretation_Skill_Data,
-    evaluateArtUsingCriteria: evaluateArtUsingCriteria_Skill_Data,
-    supportAnArtisticInterpretation: supportAnArtisticInterpretation_Skill_Data,
-  },
+  skills: [
+    compareArtisticInterpretations_Skill_Data,
+    describeArtworksPrecisely_Skill_Data,
+    distinguishObservationFromInterpretation_Skill_Data,
+    evaluateArtUsingCriteria_Skill_Data,
+    supportAnArtisticInterpretation_Skill_Data,
+  ],
   description: {
     methodological:
       'Judgments about art become more useful when observable evidence, contextual claims and chosen evaluative criteria are stated separately.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data = buildSkillConfig({
+export const distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data = defineSkill({
   slug: 'distinguishMisinformationFromDeliberateDeceptionClaims',
   id: 'a26c8161-2d35-4776-ae77-f89c00431348',
   name: {

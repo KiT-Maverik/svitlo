@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareDeterminismAndIndeterminism_Skill_Data = buildSkillConfig({
+export const compareDeterminismAndIndeterminism_Skill_Data = defineSkill({
   slug: 'compareDeterminismAndIndeterminism',
   id: 'f5d50e7e-7faa-414b-b22f-e51b5f3632b8',
   name: {

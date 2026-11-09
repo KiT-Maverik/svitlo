@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyConflictsOfInterestInResearch_Skill_Data = buildSkillConfig({
+export const identifyConflictsOfInterestInResearch_Skill_Data = defineSkill({
   slug: 'identifyConflictsOfInterestInResearch',
   id: 'ad0bd056-1366-4701-a5eb-4566e4d7a9a4',
   name: {

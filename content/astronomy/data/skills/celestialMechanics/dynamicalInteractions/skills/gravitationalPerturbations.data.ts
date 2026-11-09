@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gravitationalPerturbations_Skill_Data = buildSkillConfig({
+export const gravitationalPerturbations_Skill_Data = defineSkill({
   slug: 'gravitationalPerturbations',
   id: 'ae6f25cb-9bf5-4dad-bbc4-ac747aec9f09',
   name: {

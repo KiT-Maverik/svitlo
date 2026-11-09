@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createFoundObjectAssemblage_Skill_Data = buildSkillConfig({
+export const createFoundObjectAssemblage_Skill_Data = defineSkill({
   slug: 'createFoundObjectAssemblage',
   id: '2410762a-76d1-4a20-8aaa-d3eab0091764',
   name: {

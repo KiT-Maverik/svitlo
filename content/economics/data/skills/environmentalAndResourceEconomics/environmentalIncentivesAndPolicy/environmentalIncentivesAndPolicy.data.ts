@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   economicAppraisalOfEnvironmentalProjects_Skill_Data,
@@ -7,7 +7,7 @@ import {
   socialCostOfPollution_Skill_Data,
 } from './skills';
 
-export const environmentalIncentivesAndPolicy_SkillGroup_Data = buildSkillGroupConfig({
+export const environmentalIncentivesAndPolicy_SkillGroup_Data = defineSkillGroup({
   slug: 'environmentalIncentivesAndPolicy',
   id: 'cce0af3f-fb6a-4402-96db-9571ff15337c',
   name: {
@@ -41,12 +41,12 @@ export const environmentalIncentivesAndPolicy_SkillGroup_Data = buildSkillGroupC
     kk: 'Экологиялық ынталандыру мен саясат',
     qm: 'Çevre teşviqleri ve siyaseti',
   },
-  skills: {
-    economicAppraisalOfEnvironmentalProjects: economicAppraisalOfEnvironmentalProjects_Skill_Data,
-    emissionsPermitTrading: emissionsPermitTrading_Skill_Data,
-    environmentalTaxes: environmentalTaxes_Skill_Data,
-    socialCostOfPollution: socialCostOfPollution_Skill_Data,
-  },
+  skills: [
+    economicAppraisalOfEnvironmentalProjects_Skill_Data,
+    emissionsPermitTrading_Skill_Data,
+    environmentalTaxes_Skill_Data,
+    socialCostOfPollution_Skill_Data,
+  ],
   description: {
     methodological:
       'Pollution and other externalities can be addressed with instruments that have differing costs and consequences.',

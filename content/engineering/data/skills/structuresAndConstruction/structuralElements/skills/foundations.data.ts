@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const foundations_Skill_Data = buildSkillConfig({
+export const foundations_Skill_Data = defineSkill({
   slug: 'foundations',
   id: '4a22a35c-bf94-44c7-851b-2829ee711836',
   name: {

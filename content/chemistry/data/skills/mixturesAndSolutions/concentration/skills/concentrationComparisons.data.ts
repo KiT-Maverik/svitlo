@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const concentrationComparisons_Skill_Data = buildSkillConfig({
+export const concentrationComparisons_Skill_Data = defineSkill({
   slug: 'concentrationComparisons',
   id: 'f1f8bba5-0a4d-47d8-ab21-4f7aaa777480',
   name: {

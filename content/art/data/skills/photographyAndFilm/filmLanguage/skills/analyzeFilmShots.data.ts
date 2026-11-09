@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeFilmShots_Skill_Data = buildSkillConfig({
+export const analyzeFilmShots_Skill_Data = defineSkill({
   slug: 'analyzeFilmShots',
   id: '0d849731-c87a-475a-abce-07872ef88044',
   name: {

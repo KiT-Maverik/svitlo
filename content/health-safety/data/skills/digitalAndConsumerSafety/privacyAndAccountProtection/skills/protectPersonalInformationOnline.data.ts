@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protectPersonalInformationOnline_Skill_Data = buildSkillConfig({
+export const protectPersonalInformationOnline_Skill_Data = defineSkill({
   slug: 'protectPersonalInformationOnline',
   id: '767d243f-3d71-4ac5-980d-1900dde8746b',
   name: {

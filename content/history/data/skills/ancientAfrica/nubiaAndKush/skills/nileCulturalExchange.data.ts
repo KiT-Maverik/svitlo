@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nileCulturalExchange_Skill_Data = buildSkillConfig({
+export const nileCulturalExchange_Skill_Data = defineSkill({
   slug: 'nileCulturalExchange',
   id: 'a4ab7d39-0567-444e-9946-46e7d113aa8f',
   name: {

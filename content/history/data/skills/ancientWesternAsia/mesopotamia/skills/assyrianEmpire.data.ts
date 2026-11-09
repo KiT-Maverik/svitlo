@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assyrianEmpire_Skill_Data = buildSkillConfig({
+export const assyrianEmpire_Skill_Data = defineSkill({
   slug: 'assyrianEmpire',
   id: 'bff9103d-75de-4d10-b870-7ce10a6c1e45',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const groupDataByAttribute_Skill_Data = buildSkillConfig({
+export const groupDataByAttribute_Skill_Data = defineSkill({
   slug: 'groupDataByAttribute',
   id: '6ecd4fd6-27e8-470a-8003-6f5819e59078',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareAestheticCriteria_Skill_Data = buildSkillConfig({
+export const compareAestheticCriteria_Skill_Data = defineSkill({
   slug: 'compareAestheticCriteria',
   id: 'd32b867b-413e-4b9d-80ac-f5de4c15ab3c',
   name: {

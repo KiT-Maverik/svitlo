@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   creatorEconomy_Skill_Data,
@@ -7,7 +7,7 @@ import {
   twoSidedMarkets_Skill_Data,
 } from './skills';
 
-export const platformsAndNetworkEffects_SkillGroup_Data = buildSkillGroupConfig({
+export const platformsAndNetworkEffects_SkillGroup_Data = defineSkillGroup({
   slug: 'platformsAndNetworkEffects',
   id: '402981d5-9eae-4abe-8b17-630965f4cf7f',
   name: {
@@ -41,12 +41,12 @@ export const platformsAndNetworkEffects_SkillGroup_Data = buildSkillGroupConfig(
     kk: 'Платформалар мен желілік әсерлер',
     qm: 'Platformalar ve şebeke tesirleri',
   },
-  skills: {
-    creatorEconomy: creatorEconomy_Skill_Data,
-    digitalPlatformCompetition: digitalPlatformCompetition_Skill_Data,
-    directAndIndirectNetworkEffects: directAndIndirectNetworkEffects_Skill_Data,
-    twoSidedMarkets: twoSidedMarkets_Skill_Data,
-  },
+  skills: [
+    creatorEconomy_Skill_Data,
+    digitalPlatformCompetition_Skill_Data,
+    directAndIndirectNetworkEffects_Skill_Data,
+    twoSidedMarkets_Skill_Data,
+  ],
   description: {
     methodological:
       "A service's value may depend on participant numbers on each side of the market, access rules, and economies of scale.",

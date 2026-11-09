@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nonverbalCommunication_Skill_Data = buildSkillConfig({
+export const nonverbalCommunication_Skill_Data = defineSkill({
   slug: 'nonverbalCommunication',
   id: '70b2d240-1dd9-4ab7-b828-b0ee7cfa763c',
   name: {

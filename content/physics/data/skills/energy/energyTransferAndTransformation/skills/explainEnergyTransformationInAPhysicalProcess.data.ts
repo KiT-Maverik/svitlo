@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainEnergyTransformationInAPhysicalProcess_Skill_Data = buildSkillConfig({
+export const explainEnergyTransformationInAPhysicalProcess_Skill_Data = defineSkill({
   slug: 'explainEnergyTransformationInAPhysicalProcess',
   id: 'b2b12218-243e-46ad-be8a-c1a4cbcb628a',
   name: {

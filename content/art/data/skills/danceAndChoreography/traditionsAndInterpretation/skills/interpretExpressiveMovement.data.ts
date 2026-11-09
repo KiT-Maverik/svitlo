@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretExpressiveMovement_Skill_Data = buildSkillConfig({
+export const interpretExpressiveMovement_Skill_Data = defineSkill({
   slug: 'interpretExpressiveMovement',
   id: '1fbb8427-2a54-4655-afa5-fbc06e713f25',
   name: {

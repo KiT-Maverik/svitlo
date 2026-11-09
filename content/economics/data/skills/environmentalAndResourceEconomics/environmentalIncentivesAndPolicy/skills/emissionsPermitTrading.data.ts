@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const emissionsPermitTrading_Skill_Data = buildSkillConfig({
+export const emissionsPermitTrading_Skill_Data = defineSkill({
   slug: 'emissionsPermitTrading',
   id: '5991a2da-2797-400d-8bcd-21f5635320a4',
   name: {

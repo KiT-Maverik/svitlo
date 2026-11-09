@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   organizationalStressors_Skill_Data,
@@ -7,7 +7,7 @@ import {
   workMotivation_Skill_Data,
 } from './skills';
 
-export const workAndOrganizations_SkillGroup_Data = buildSkillGroupConfig({
+export const workAndOrganizations_SkillGroup_Data = defineSkillGroup({
   slug: 'workAndOrganizations',
   id: 'f03960a9-616f-4671-9cb9-dff1e7a7f208',
   name: {
@@ -41,12 +41,12 @@ export const workAndOrganizations_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жұмыс және ұйымдар',
     qm: 'İş ve teşkilâtlar',
   },
-  skills: {
-    organizationalStressors: organizationalStressors_Skill_Data,
-    personnelAssessmentFairness: personnelAssessmentFairness_Skill_Data,
-    teamCoordination: teamCoordination_Skill_Data,
-    workMotivation: workMotivation_Skill_Data,
-  },
+  skills: [
+    organizationalStressors_Skill_Data,
+    personnelAssessmentFairness_Skill_Data,
+    teamCoordination_Skill_Data,
+    workMotivation_Skill_Data,
+  ],
   description: {
     methodological:
       'Individual motivation, coordination, organizational culture, and workplace design shape performance and wellbeing at work.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishAGeneFromATrait_Skill_Data,
@@ -8,7 +8,7 @@ import {
   recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data,
 } from './skills';
 
-export const genetics_SkillGroup_Data = buildSkillGroupConfig({
+export const genetics_SkillGroup_Data = defineSkillGroup({
   slug: 'genetics',
   id: '892fece4-898f-42d7-bf04-7b965d5d82a8',
   name: {
@@ -42,13 +42,13 @@ export const genetics_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'გენეტიკა',
     kk: 'Генетика',
   },
-  skills: {
-    distinguishAGeneFromATrait: distinguishAGeneFromATrait_Skill_Data,
-    explainExpressionOfGeneticInformation: explainExpressionOfGeneticInformation_Skill_Data,
-    explainMechanismsOfTraitInheritance: explainMechanismsOfTraitInheritance_Skill_Data,
-    explainTransmissionOfHereditaryInformation: explainTransmissionOfHereditaryInformation_Skill_Data,
-    recognizeDNAsRoleInStoringHereditaryInformation: recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data,
-  },
+  skills: [
+    distinguishAGeneFromATrait_Skill_Data,
+    explainExpressionOfGeneticInformation_Skill_Data,
+    explainMechanismsOfTraitInheritance_Skill_Data,
+    explainTransmissionOfHereditaryInformation_Skill_Data,
+    recognizeDNAsRoleInStoringHereditaryInformation_Skill_Data,
+  ],
   description: {
     methodological:
       'Genes, as segments of hereditary information, help explain relatedness and differences; how a trait is expressed also depends on regulation and the environment.',

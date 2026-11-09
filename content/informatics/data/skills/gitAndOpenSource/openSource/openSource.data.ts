@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data, explainOpenSource_Skill_Data } from './skills';
 
-export const openSource_SkillGroup_Data = buildSkillGroupConfig({
+export const openSource_SkillGroup_Data = defineSkillGroup({
   slug: 'openSource',
   id: '38319e39-b1af-439e-b6cf-15e209470aff',
   name: {
@@ -36,10 +36,10 @@ export const openSource_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ашық бастапқы код',
     qm: 'Açıq menba',
   },
-  skills: {
-    distinguishOpenSourceFromPubliclyVisibleCode: distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data,
-    explainOpenSource: explainOpenSource_Skill_Data,
-  },
+  skills: [
+    distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data,
+    explainOpenSource_Skill_Data,
+  ],
   description: {
     methodological:
       'Software openness depends not only on visibility of source code but also on rights to use, modify, and distribute it.',

@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { cosmicStructureFormation_Skill_Data, cosmicWeb_Skill_Data } from './skills';
 
-export const cosmicStructureAndEvolution_SkillGroup_Data = buildSkillGroupConfig({
+export const cosmicStructureAndEvolution_SkillGroup_Data = defineSkillGroup({
   slug: 'cosmicStructureAndEvolution',
   id: '1ce2a9e1-43b6-4f49-aaad-0816c74d5916',
   name: {
@@ -36,10 +36,10 @@ export const cosmicStructureAndEvolution_SkillGroup_Data = buildSkillGroupConfig
     ka: 'კოსმოსური სტრუქტურა და ევოლუცია',
     kk: 'Ғарыштық құрылым және эволюция',
   },
-  skills: {
-    cosmicStructureFormation: cosmicStructureFormation_Skill_Data,
-    cosmicWeb: cosmicWeb_Skill_Data,
-  },
+  skills: [
+    cosmicStructureFormation_Skill_Data,
+    cosmicWeb_Skill_Data,
+  ],
   description: {
     methodological:
       "Density perturbations, gravity and cosmic expansion shape the cosmic web over time. This branch focuses on spatial organization and dynamical evolution, as distinct from the initial hot state or the physical nature of the Universe's dark components.",

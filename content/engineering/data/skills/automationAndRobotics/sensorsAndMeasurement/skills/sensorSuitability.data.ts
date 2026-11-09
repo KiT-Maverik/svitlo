@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sensorSuitability_Skill_Data = buildSkillConfig({
+export const sensorSuitability_Skill_Data = defineSkill({
   slug: 'sensorSuitability',
   id: '098eff63-53c5-4236-8144-01be410ef93a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalMaps_Skill_Data = buildSkillConfig({
+export const historicalMaps_Skill_Data = defineSkill({
   slug: 'historicalMaps',
   id: '998413be-fe59-4ffd-a154-649de752df36',
   name: {

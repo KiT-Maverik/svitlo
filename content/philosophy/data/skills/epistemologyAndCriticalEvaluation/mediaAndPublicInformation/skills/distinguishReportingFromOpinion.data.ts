@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishReportingFromOpinion_Skill_Data = buildSkillConfig({
+export const distinguishReportingFromOpinion_Skill_Data = defineSkill({
   slug: 'distinguishReportingFromOpinion',
   id: 'adf2266d-3671-47eb-ab9e-e46552d950cf',
   name: {

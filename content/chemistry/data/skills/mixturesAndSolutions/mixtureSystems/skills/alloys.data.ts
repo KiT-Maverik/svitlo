@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const alloys_Skill_Data = buildSkillConfig({
+export const alloys_Skill_Data = defineSkill({
   slug: 'alloys',
   id: 'c5620ed3-0777-4da4-8da2-5df379d6789d',
   name: {

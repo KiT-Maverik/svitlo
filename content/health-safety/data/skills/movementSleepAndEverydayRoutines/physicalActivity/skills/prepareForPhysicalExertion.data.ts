@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prepareForPhysicalExertion_Skill_Data = buildSkillConfig({
+export const prepareForPhysicalExertion_Skill_Data = defineSkill({
   slug: 'prepareForPhysicalExertion',
   id: '12aa3c89-1416-469f-acf2-c87a01e1b1b7',
   name: {

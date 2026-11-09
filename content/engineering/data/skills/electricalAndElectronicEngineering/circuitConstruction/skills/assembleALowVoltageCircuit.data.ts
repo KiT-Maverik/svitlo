@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assembleALowVoltageCircuit_Skill_Data = buildSkillConfig({
+export const assembleALowVoltageCircuit_Skill_Data = defineSkill({
   slug: 'assembleALowVoltageCircuit',
   id: '44e7b497-b136-4ba3-907d-fd0f4ce61ec1',
   name: {

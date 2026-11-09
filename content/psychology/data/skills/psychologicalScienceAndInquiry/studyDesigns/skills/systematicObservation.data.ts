@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const systematicObservation_Skill_Data = buildSkillConfig({
+export const systematicObservation_Skill_Data = defineSkill({
   slug: 'systematicObservation',
   id: '562e1f23-7745-45db-8cf5-5c8bae50f07b',
   name: {

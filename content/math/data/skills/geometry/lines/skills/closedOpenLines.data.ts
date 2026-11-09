@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const closedOpenLines_Skill_Data = buildSkillConfig({
+export const closedOpenLines_Skill_Data = defineSkill({
   slug: 'closedOpenLines',
   id: 'd52a91eb-a4b7-48c7-8d2c-97aceb88b146',
   name: {

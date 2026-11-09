@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const condensationPolymers_Skill_Data = buildSkillConfig({
+export const condensationPolymers_Skill_Data = defineSkill({
   slug: 'condensationPolymers',
   id: '936426a1-8c5c-4456-8c6d-e87973fb7356',
   name: {

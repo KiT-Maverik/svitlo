@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDeciduousAndEvergreenPlants_Skill_Data = buildSkillConfig({
+export const distinguishDeciduousAndEvergreenPlants_Skill_Data = defineSkill({
   slug: 'distinguishDeciduousAndEvergreenPlants',
   id: '13ed897f-a7ae-44dc-bd0e-ba0846381fc5',
   name: {

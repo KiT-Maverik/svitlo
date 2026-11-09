@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   buildingEnvelopes_Skill_Data,
@@ -7,7 +7,7 @@ import {
   relateBuildingDesignToASite_Skill_Data,
 } from './skills';
 
-export const buildings_SkillGroup_Data = buildSkillGroupConfig({
+export const buildings_SkillGroup_Data = defineSkillGroup({
   slug: 'buildings',
   id: '356dd08c-bff1-4177-8264-a0db71f5e130',
   name: {
@@ -41,12 +41,12 @@ export const buildings_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ғимараттар',
     qm: 'Binalar',
   },
-  skills: {
-    buildingEnvelopes: buildingEnvelopes_Skill_Data,
-    designAccessibleBuildingCirculation: designAccessibleBuildingCirculation_Skill_Data,
-    identifyStructuralBuildingSystems: identifyStructuralBuildingSystems_Skill_Data,
-    relateBuildingDesignToASite: relateBuildingDesignToASite_Skill_Data,
-  },
+  skills: [
+    buildingEnvelopes_Skill_Data,
+    designAccessibleBuildingCirculation_Skill_Data,
+    identifyStructuralBuildingSystems_Skill_Data,
+    relateBuildingDesignToASite_Skill_Data,
+  ],
   description: {
     methodological:
       'A complete building combines its main structure with weather protection, spatial access and environmental adaptation.',

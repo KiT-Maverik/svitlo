@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainThePhysicalMeaningOfABodysMass_Skill_Data = buildSkillConfig({
+export const explainThePhysicalMeaningOfABodysMass_Skill_Data = defineSkill({
   slug: 'explainThePhysicalMeaningOfABodysMass',
   id: '964dbe75-6bbb-4bb7-86c0-92d5b06a8753',
   name: {

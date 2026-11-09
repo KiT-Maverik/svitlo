@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeAPartWholeRelation_Skill_Data = buildSkillConfig({
+export const analyzeAPartWholeRelation_Skill_Data = defineSkill({
   slug: 'analyzeAPartWholeRelation',
   id: '59a7900a-06d5-4d86-8c46-0afe02a18897',
   name: {

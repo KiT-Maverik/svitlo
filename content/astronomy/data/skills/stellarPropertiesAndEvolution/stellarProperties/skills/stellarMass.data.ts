@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarMass_Skill_Data = buildSkillConfig({
+export const stellarMass_Skill_Data = defineSkill({
   slug: 'stellarMass',
   id: 'bb53a6db-367e-4b9a-9b77-e406a5733911',
   name: {

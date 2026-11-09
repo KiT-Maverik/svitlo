@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const isolateASingleResponsibilitySRP_Skill_Data = buildSkillConfig({
+export const isolateASingleResponsibilitySRP_Skill_Data = defineSkill({
   slug: 'isolateASingleResponsibilitySRP',
   id: '3da073e9-ec55-4ab5-94c7-20664d21e94d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessAnAlgorithmsImpactOnUserGroups_Skill_Data = buildSkillConfig({
+export const assessAnAlgorithmsImpactOnUserGroups_Skill_Data = defineSkill({
   slug: 'assessAnAlgorithmsImpactOnUserGroups',
   id: '0dc61117-ff0c-4434-92db-942f95611079',
   name: {

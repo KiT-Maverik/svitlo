@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seekConfidentialSexualHealthAdvice_Skill_Data = buildSkillConfig({
+export const seekConfidentialSexualHealthAdvice_Skill_Data = defineSkill({
   slug: 'seekConfidentialSexualHealthAdvice',
   id: 'b211063c-9fb0-48ec-b8eb-07c63f4327c8',
   name: {

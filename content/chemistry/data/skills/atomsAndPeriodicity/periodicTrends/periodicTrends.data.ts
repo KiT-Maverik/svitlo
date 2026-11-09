@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   atomicRadiusTrends_Skill_Data,
@@ -7,7 +7,7 @@ import {
   ionizationEnergy_Skill_Data,
 } from './skills';
 
-export const periodicTrends_SkillGroup_Data = buildSkillGroupConfig({
+export const periodicTrends_SkillGroup_Data = defineSkillGroup({
   slug: 'periodicTrends',
   id: '83b84a45-c52f-45b3-bec0-76dec24f3599',
   name: {
@@ -41,12 +41,12 @@ export const periodicTrends_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Периодтық үрдістер',
     qm: 'Devirli mayiller',
   },
-  skills: {
-    atomicRadiusTrends: atomicRadiusTrends_Skill_Data,
-    electronAffinity: electronAffinity_Skill_Data,
-    electronegativity: electronegativity_Skill_Data,
-    ionizationEnergy: ionizationEnergy_Skill_Data,
-  },
+  skills: [
+    atomicRadiusTrends_Skill_Data,
+    electronAffinity_Skill_Data,
+    electronegativity_Skill_Data,
+    ionizationEnergy_Skill_Data,
+  ],
   description: {
     methodological:
       'Atomic size and electrostatic attraction influence recurring patterns and their important exceptions.',

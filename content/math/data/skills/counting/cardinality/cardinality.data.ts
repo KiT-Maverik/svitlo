@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   basicCardinality_Skill_Data,
@@ -7,7 +7,7 @@ import {
   zero_Skill_Data,
 } from './skills';
 
-export const cardinality_SkillGroup_Data = buildSkillGroupConfig({
+export const cardinality_SkillGroup_Data = defineSkillGroup({
   slug: 'cardinality',
   id: '0a3584de-bb32-4932-8f8d-c0fe908ce71d',
   name: {
@@ -41,12 +41,12 @@ export const cardinality_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Liczebność',
     uk: 'Кількість',
   },
-  skills: {
-    basicCardinality: basicCardinality_Skill_Data,
-    compareSets: compareSets_Skill_Data,
-    groupAndCount: groupAndCount_Skill_Data,
-    zero: zero_Skill_Data,
-  },
+  skills: [
+    basicCardinality_Skill_Data,
+    compareSets_Skill_Data,
+    groupAndCount_Skill_Data,
+    zero_Skill_Data,
+  ],
   description: {
     methodological:
       'Understanding number as the cardinality of a set, including the empty set, and methods for determining and comparing the sizes of sets.',

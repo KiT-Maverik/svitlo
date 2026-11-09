@@ -1,11 +1,11 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   identifyNeedsOfUsersWithDifferentAbilities_Skill_Data,
   testDigitalInteractionAccessibility_Skill_Data,
 } from './skills';
 
-export const accessibility_SkillGroup_Data = buildSkillGroupConfig({
+export const accessibility_SkillGroup_Data = defineSkillGroup({
   slug: 'accessibility',
   id: '98e9e953-df14-4baf-b160-12e39c535737',
   name: {
@@ -39,10 +39,10 @@ export const accessibility_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қолжетімділік',
     qm: 'İrişimlilik',
   },
-  skills: {
-    identifyNeedsOfUsersWithDifferentAbilities: identifyNeedsOfUsersWithDifferentAbilities_Skill_Data,
-    testDigitalInteractionAccessibility: testDigitalInteractionAccessibility_Skill_Data,
-  },
+  skills: [
+    identifyNeedsOfUsersWithDifferentAbilities_Skill_Data,
+    testDigitalInteractionAccessibility_Skill_Data,
+  ],
   description: {
     methodological:
       'Address different ways people perceive and operate interfaces and verify actual usability rather than judging only visual appeal.',

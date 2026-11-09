@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDictionaryStructure_Skill_Data = buildSkillConfig({
+export const explainDictionaryStructure_Skill_Data = defineSkill({
   slug: 'explainDictionaryStructure',
   id: 'b6e8bf86-54ec-4a63-bae9-643a63bacf1c',
   name: {

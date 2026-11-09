@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishNecessaryFromSufficientConditions_Skill_Data = buildSkillConfig({
+export const distinguishNecessaryFromSufficientConditions_Skill_Data = defineSkill({
   slug: 'distinguishNecessaryFromSufficientConditions',
   id: 'fa7a23aa-5680-4edc-ac28-c1fd48bdfa46',
   name: {

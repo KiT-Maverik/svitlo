@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientCalendarSystems_Skill_Data = buildSkillConfig({
+export const ancientCalendarSystems_Skill_Data = defineSkill({
   slug: 'ancientCalendarSystems',
   id: 'e2786627-cbf9-4b59-aac7-da9cbf4de1ee',
   name: {

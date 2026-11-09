@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAnnelidCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeAnnelidCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeAnnelidCharacteristics',
   id: '8c313e97-8e10-43c6-b263-fcc626355e81',
   name: {

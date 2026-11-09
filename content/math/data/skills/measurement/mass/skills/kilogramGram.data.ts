@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const kilogramGram_Skill_Data = buildSkillConfig({
+export const kilogramGram_Skill_Data = defineSkill({
   slug: 'kilogramGram',
   id: '2d6e3dbf-3b0e-4368-92aa-6853332f20d0',
   name: {

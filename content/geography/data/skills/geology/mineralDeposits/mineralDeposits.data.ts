@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainWhatConstitutesAMineralDeposit_Skill_Data,
@@ -8,7 +8,7 @@ import {
   recognizeGeologicalControlsOnMineralOccurrence_Skill_Data,
 } from './skills';
 
-export const mineralDeposits_SkillGroup_Data = buildSkillGroupConfig({
+export const mineralDeposits_SkillGroup_Data = defineSkillGroup({
   slug: 'mineralDeposits',
   id: '6f0f106a-e902-496f-ac21-9139a97683fa',
   name: {
@@ -42,13 +42,13 @@ export const mineralDeposits_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Пайдалы қазбалар кен орындары',
     qm: 'Mineral yataqları',
   },
-  skills: {
-    explainWhatConstitutesAMineralDeposit: explainWhatConstitutesAMineralDeposit_Skill_Data,
-    explainWhyAMineralDepositMayOrMayNotBeAnOre: explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data,
-    identifyGeographicConsequencesOfMineralExtraction: identifyGeographicConsequencesOfMineralExtraction_Skill_Data,
-    interpretMineralResourceDistributionOnAMap: interpretMineralResourceDistributionOnAMap_Skill_Data,
-    recognizeGeologicalControlsOnMineralOccurrence: recognizeGeologicalControlsOnMineralOccurrence_Skill_Data,
-  },
+  skills: [
+    explainWhatConstitutesAMineralDeposit_Skill_Data,
+    explainWhyAMineralDepositMayOrMayNotBeAnOre_Skill_Data,
+    identifyGeographicConsequencesOfMineralExtraction_Skill_Data,
+    interpretMineralResourceDistributionOnAMap_Skill_Data,
+    recognizeGeologicalControlsOnMineralOccurrence_Skill_Data,
+  ],
   description: {
     methodological:
       'The geological distribution of useful concentrations of minerals is uneven and influenced by rock-forming processes, access and extraction decisions. A deposit is a natural concentration, while whether it can be worked as an ore is partly an economic and technical judgment.',

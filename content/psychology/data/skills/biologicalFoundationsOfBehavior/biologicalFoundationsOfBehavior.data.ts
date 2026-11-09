@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { biologicalDifferencesAndContext_SkillGroup_Data } from './biologicalDifferencesAndContext/biologicalDifferencesAndContext.data';
 import { brainBehaviorRelationships_SkillGroup_Data } from './brainBehaviorRelationships/brainBehaviorRelationships.data';
 import { evolutionaryAccounts_SkillGroup_Data } from './evolutionaryAccounts/evolutionaryAccounts.data';
 import { neuralCommunication_SkillGroup_Data } from './neuralCommunication/neuralCommunication.data';
 
-export const biologicalFoundationsOfBehavior_SkillDomain_Data = buildSkillDomainConfig({
+export const biologicalFoundationsOfBehavior_SkillDomain_Data = defineSkillDomain({
   slug: 'biologicalFoundationsOfBehavior',
   id: 'af39e6eb-3289-4411-bd44-077f8169ecba',
-  name: {
+  title: {
     en: 'Biological Foundations of Behavior',
     zh: '行为的生物学基础',
     hi: 'व्यवहार के जैविक आधार',
@@ -39,12 +39,12 @@ export const biologicalFoundationsOfBehavior_SkillDomain_Data = buildSkillDomain
     kk: 'Мінез-құлықтың биологиялық негіздері',
     qm: 'Davranışnıñ biologik esasları',
   },
-  groups: {
-    biologicalDifferencesAndContext: biologicalDifferencesAndContext_SkillGroup_Data,
-    brainBehaviorRelationships: brainBehaviorRelationships_SkillGroup_Data,
-    evolutionaryAccounts: evolutionaryAccounts_SkillGroup_Data,
-    neuralCommunication: neuralCommunication_SkillGroup_Data,
-  },
+  groups: [
+    biologicalDifferencesAndContext_SkillGroup_Data,
+    brainBehaviorRelationships_SkillGroup_Data,
+    evolutionaryAccounts_SkillGroup_Data,
+    neuralCommunication_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Neural, endocrine, genetic, and evolved processes influence experience and action through interaction with environments. This field emphasizes explanatory mechanisms rather than rote anatomical detail or biological determinism.',

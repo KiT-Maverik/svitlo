@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { atomsAndQuantumPhenomena_SkillGroup_Data } from './atomsAndQuantumPhenomena/atomsAndQuantumPhenomena.data';
 import { nuclearPhenomena_SkillGroup_Data } from './nuclearPhenomena/nuclearPhenomena.data';
 import { relativity_SkillGroup_Data } from './relativity/relativity.data';
 
-export const modernPhysics_SkillDomain_Data = buildSkillDomainConfig({
+export const modernPhysics_SkillDomain_Data = defineSkillDomain({
   slug: 'modernPhysics',
   id: '36e539f1-2f2a-4874-b918-49cefddd6bac',
-  name: {
+  title: {
     en: 'Modern Physics',
     zh: '现代物理学',
     hi: 'आधुनिक भौतिकी',
@@ -38,11 +38,11 @@ export const modernPhysics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Қазіргі физика',
     qm: 'Zemaneviy fizika',
   },
-  groups: {
-    atomsAndQuantumPhenomena: atomsAndQuantumPhenomena_SkillGroup_Data,
-    nuclearPhenomena: nuclearPhenomena_SkillGroup_Data,
-    relativity: relativity_SkillGroup_Data,
-  },
+  groups: [
+    atomsAndQuantumPhenomena_SkillGroup_Data,
+    nuclearPhenomena_SkillGroup_Data,
+    relativity_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Models of atoms, quantum and nuclear phenomena, and spacetime explain observations not covered by classical physics alone. Younger children can encounter the concepts without mathematical formalism.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const galacticRotation_Skill_Data = buildSkillConfig({
+export const galacticRotation_Skill_Data = defineSkill({
   slug: 'galacticRotation',
   id: '9beaa8ae-e933-46e9-b99c-d9bc3621c3ab',
   name: {

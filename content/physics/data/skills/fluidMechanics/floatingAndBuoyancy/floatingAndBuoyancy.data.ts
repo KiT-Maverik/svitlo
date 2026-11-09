@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishRisingFloatingAndSinking_Skill_Data,
@@ -8,7 +8,7 @@ import {
   predictHowALoadAffectsFloating_Skill_Data,
 } from './skills';
 
-export const floatingAndBuoyancy_SkillGroup_Data = buildSkillGroupConfig({
+export const floatingAndBuoyancy_SkillGroup_Data = defineSkillGroup({
   slug: 'floatingAndBuoyancy',
   id: 'ec35cc92-8e33-4a04-a19a-bf1071ff8db7',
   name: {
@@ -42,13 +42,13 @@ export const floatingAndBuoyancy_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жүзу және кері итеруші күш',
     qm: 'Suvda qalmaq ve köterici quvet',
   },
-  skills: {
-    distinguishRisingFloatingAndSinking: distinguishRisingFloatingAndSinking_Skill_Data,
-    explainArchimedesPrinciple: explainArchimedesPrinciple_Skill_Data,
-    explainBuoyantForce: explainBuoyantForce_Skill_Data,
-    explainDensity: explainDensity_Skill_Data,
-    predictHowALoadAffectsFloating: predictHowALoadAffectsFloating_Skill_Data,
-  },
+  skills: [
+    distinguishRisingFloatingAndSinking_Skill_Data,
+    explainArchimedesPrinciple_Skill_Data,
+    explainBuoyantForce_Skill_Data,
+    explainDensity_Skill_Data,
+    predictHowALoadAffectsFloating_Skill_Data,
+  ],
   description: {
     methodological:
       "A body's behavior in water is determined by gravity together with forces exerted by the liquid; material and shape may affect the outcome through average density.",

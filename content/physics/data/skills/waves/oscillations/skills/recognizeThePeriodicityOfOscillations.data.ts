@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeThePeriodicityOfOscillations_Skill_Data = buildSkillConfig({
+export const recognizeThePeriodicityOfOscillations_Skill_Data = defineSkill({
   slug: 'recognizeThePeriodicityOfOscillations',
   id: '7a925ad2-27cb-48a2-b0ac-d470be36976f',
   name: {

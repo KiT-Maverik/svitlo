@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const circumstellarHabitableZones_Skill_Data = buildSkillConfig({
+export const circumstellarHabitableZones_Skill_Data = defineSkill({
   slug: 'circumstellarHabitableZones',
   id: '940cd87e-fab3-424d-aac6-bcd20b36b236',
   name: {

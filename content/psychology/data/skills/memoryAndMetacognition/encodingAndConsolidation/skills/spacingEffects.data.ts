@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const spacingEffects_Skill_Data = buildSkillConfig({
+export const spacingEffects_Skill_Data = defineSkill({
   slug: 'spacingEffects',
   id: 'c23c49e3-dc52-41e9-b8ba-fcaa6c50b8a4',
   name: {

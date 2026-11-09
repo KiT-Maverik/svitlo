@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protoplanetaryDisks_Skill_Data = buildSkillConfig({
+export const protoplanetaryDisks_Skill_Data = defineSkill({
   slug: 'protoplanetaryDisks',
   id: '904fbbbd-cf0b-4ff1-87f9-bae6e40a034b',
   name: {

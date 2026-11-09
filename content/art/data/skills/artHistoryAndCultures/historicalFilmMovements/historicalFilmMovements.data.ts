@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeFrenchNewWaveCinema_Skill_Data,
@@ -7,7 +7,7 @@ import {
   analyzeUkrainianPoeticCinema_Skill_Data,
 } from './skills';
 
-export const historicalFilmMovements_SkillGroup_Data = buildSkillGroupConfig({
+export const historicalFilmMovements_SkillGroup_Data = defineSkillGroup({
   slug: 'historicalFilmMovements',
   id: '6b41f816-853c-4a09-85a8-694b724971cf',
   name: {
@@ -41,12 +41,12 @@ export const historicalFilmMovements_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тарихи кино қозғалыстары',
     qm: 'Tarihiy film aqımları',
   },
-  skills: {
-    analyzeFrenchNewWaveCinema: analyzeFrenchNewWaveCinema_Skill_Data,
-    analyzeGermanExpressionistCinema: analyzeGermanExpressionistCinema_Skill_Data,
-    analyzeIndianParallelCinema: analyzeIndianParallelCinema_Skill_Data,
-    analyzeUkrainianPoeticCinema: analyzeUkrainianPoeticCinema_Skill_Data,
-  },
+  skills: [
+    analyzeFrenchNewWaveCinema_Skill_Data,
+    analyzeGermanExpressionistCinema_Skill_Data,
+    analyzeIndianParallelCinema_Skill_Data,
+    analyzeUkrainianPoeticCinema_Skill_Data,
+  ],
   description: {
     methodological:
       'Movements in film history can be distinguished through camera, staging, editing, narrative and culturally situated aesthetic choices.',

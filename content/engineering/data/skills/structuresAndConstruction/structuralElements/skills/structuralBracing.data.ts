@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const structuralBracing_Skill_Data = buildSkillConfig({
+export const structuralBracing_Skill_Data = defineSkill({
   slug: 'structuralBracing',
   id: '776b5cbf-81d8-4f9e-a5a9-40bb93b20a8a',
   name: {

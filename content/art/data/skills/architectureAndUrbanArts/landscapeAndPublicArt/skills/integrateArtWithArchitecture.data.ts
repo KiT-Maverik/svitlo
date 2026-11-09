@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const integrateArtWithArchitecture_Skill_Data = buildSkillConfig({
+export const integrateArtWithArchitecture_Skill_Data = defineSkill({
   slug: 'integrateArtWithArchitecture',
   id: '7bc80a38-f97f-434b-aeef-df503785e6c2',
   name: {

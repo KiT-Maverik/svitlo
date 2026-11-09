@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const blendWetPaint_Skill_Data = buildSkillConfig({
+export const blendWetPaint_Skill_Data = defineSkill({
   slug: 'blendWetPaint',
   id: '5df43782-88b7-4714-b794-aa780ef4a4ba',
   name: {

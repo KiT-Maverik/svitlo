@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applySumAccumulation_Skill_Data = buildSkillConfig({
+export const applySumAccumulation_Skill_Data = defineSkill({
   slug: 'applySumAccumulation',
   id: 'c9b0d468-57c3-4e48-90ce-f1aacc8a2536',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeMutuallyBeneficialRelationships_Skill_Data = buildSkillConfig({
+export const recognizeMutuallyBeneficialRelationships_Skill_Data = defineSkill({
   slug: 'recognizeMutuallyBeneficialRelationships',
   id: '0cf1b018-c59b-4778-9431-e6adc564538a',
   name: {

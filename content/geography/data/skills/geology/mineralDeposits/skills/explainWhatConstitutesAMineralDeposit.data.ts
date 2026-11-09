@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhatConstitutesAMineralDeposit_Skill_Data = buildSkillConfig({
+export const explainWhatConstitutesAMineralDeposit_Skill_Data = defineSkill({
   slug: 'explainWhatConstitutesAMineralDeposit',
   id: 'a9757c38-e3a1-4ec8-b309-170e2851c5da',
   name: {

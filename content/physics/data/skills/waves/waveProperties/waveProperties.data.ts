@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compareWaveFrequenciesByObservableRhythm_Skill_Data,
@@ -9,7 +9,7 @@ import {
   explainWaveSpeed_Skill_Data,
 } from './skills';
 
-export const waveProperties_SkillGroup_Data = buildSkillGroupConfig({
+export const waveProperties_SkillGroup_Data = defineSkillGroup({
   slug: 'waveProperties',
   id: 'c4d818f6-530c-452d-b3ee-8c6614c4ba70',
   name: {
@@ -43,14 +43,14 @@ export const waveProperties_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Толқын қасиеттері',
     qm: 'Dalğa hususiyetleri',
   },
-  skills: {
-    compareWaveFrequenciesByObservableRhythm: compareWaveFrequenciesByObservableRhythm_Skill_Data,
-    distinguishSourceOscillationFromWavePropagation: distinguishSourceOscillationFromWavePropagation_Skill_Data,
-    distinguishWaveEnergyTransferFromMatterTransport: distinguishWaveEnergyTransferFromMatterTransport_Skill_Data,
-    explainWaveAmplitude: explainWaveAmplitude_Skill_Data,
-    explainWavelength: explainWavelength_Skill_Data,
-    explainWaveSpeed: explainWaveSpeed_Skill_Data,
-  },
+  skills: [
+    compareWaveFrequenciesByObservableRhythm_Skill_Data,
+    distinguishSourceOscillationFromWavePropagation_Skill_Data,
+    distinguishWaveEnergyTransferFromMatterTransport_Skill_Data,
+    explainWaveAmplitude_Skill_Data,
+    explainWavelength_Skill_Data,
+    explainWaveSpeed_Skill_Data,
+  ],
   description: {
     methodological:
       'Waves have a direction of propagation, a characteristic rhythm, and a disturbance magnitude; observing water waves distinguishes wave propagation from transport of all the water.',

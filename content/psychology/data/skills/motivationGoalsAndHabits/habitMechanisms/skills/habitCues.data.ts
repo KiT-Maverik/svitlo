@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const habitCues_Skill_Data = buildSkillConfig({
+export const habitCues_Skill_Data = defineSkill({
   slug: 'habitCues',
   id: 'f9ebd02e-eed2-4f4b-9794-f60c99fb1bcb',
   name: {

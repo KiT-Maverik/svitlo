@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const expandedForm_Skill_Data = buildSkillConfig({
+export const expandedForm_Skill_Data = defineSkill({
   slug: 'expandedForm',
   id: 'f78fce9f-6e79-4378-9448-39fcdbc42d0d',
   name: {

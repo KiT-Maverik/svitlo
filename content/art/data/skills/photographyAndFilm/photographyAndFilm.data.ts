@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { animation_SkillGroup_Data } from './animation/animation.data';
 import { filmLanguage_SkillGroup_Data } from './filmLanguage/filmLanguage.data';
 import { photographicCommunication_SkillGroup_Data } from './photographicCommunication/photographicCommunication.data';
 import { photographicTechnique_SkillGroup_Data } from './photographicTechnique/photographicTechnique.data';
 
-export const photographyAndFilm_SkillDomain_Data = buildSkillDomainConfig({
+export const photographyAndFilm_SkillDomain_Data = defineSkillDomain({
   slug: 'photographyAndFilm',
   id: '13d7eab9-4206-48c8-900e-044a0f39b9ea',
-  name: {
+  title: {
     en: 'Photography and Film',
 
     zh: '摄影与电影',
@@ -40,12 +40,12 @@ export const photographyAndFilm_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Фотография және кино',
     qm: 'Fotoğrafçılıq ve film',
   },
-  groups: {
-    animation: animation_SkillGroup_Data,
-    filmLanguage: filmLanguage_SkillGroup_Data,
-    photographicCommunication: photographicCommunication_SkillGroup_Data,
-    photographicTechnique: photographicTechnique_SkillGroup_Data,
-  },
+  groups: [
+    animation_SkillGroup_Data,
+    filmLanguage_SkillGroup_Data,
+    photographicCommunication_SkillGroup_Data,
+    photographicTechnique_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Camera-based arts shape views of reality through frame, light and editing; moving-image forms add duration, sound and sequential meaning.',

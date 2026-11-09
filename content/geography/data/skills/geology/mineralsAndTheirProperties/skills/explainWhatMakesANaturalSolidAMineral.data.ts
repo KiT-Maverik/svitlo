@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhatMakesANaturalSolidAMineral_Skill_Data = buildSkillConfig({
+export const explainWhatMakesANaturalSolidAMineral_Skill_Data = defineSkill({
   slug: 'explainWhatMakesANaturalSolidAMineral',
   id: '2ccea790-4e8f-475a-8d7e-816e3ef7898f',
   name: {

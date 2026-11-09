@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const irrigationEngineering_Skill_Data = buildSkillConfig({
+export const irrigationEngineering_Skill_Data = defineSkill({
   slug: 'irrigationEngineering',
   id: '25e625a3-4b72-4d61-931e-32128feedaed',
   name: {

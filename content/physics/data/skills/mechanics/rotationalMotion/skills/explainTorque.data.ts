@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTorque_Skill_Data = buildSkillConfig({
+export const explainTorque_Skill_Data = defineSkill({
   slug: 'explainTorque',
   id: '29bc63d7-6fcb-40f0-be0e-fca4c67aa4df',
   name: {

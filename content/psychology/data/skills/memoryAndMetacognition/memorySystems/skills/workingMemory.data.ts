@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const workingMemory_Skill_Data = buildSkillConfig({
+export const workingMemory_Skill_Data = defineSkill({
   slug: 'workingMemory',
   id: '5279d579-50a7-459f-a088-562854c4de85',
   name: {

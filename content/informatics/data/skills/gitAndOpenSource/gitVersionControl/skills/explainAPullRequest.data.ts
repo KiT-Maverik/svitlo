@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainAPullRequest_Skill_Data = buildSkillConfig({
+export const explainAPullRequest_Skill_Data = defineSkill({
   slug: 'explainAPullRequest',
   id: '290254f4-b565-411d-afa8-39ca433f5430',
   name: {

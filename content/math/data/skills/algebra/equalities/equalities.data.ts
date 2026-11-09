@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { completeEquality_Skill_Data, equalityMeaning_Skill_Data, trueFalseEquality_Skill_Data } from './skills';
 
-export const equalities_SkillGroup_Data = buildSkillGroupConfig({
+export const equalities_SkillGroup_Data = defineSkillGroup({
   slug: 'equalities',
   id: 'b5bc6d15-c8cb-41ad-8227-54a473c1dc38',
   name: {
@@ -36,11 +36,11 @@ export const equalities_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Równości',
     uk: 'Рівності',
   },
-  skills: {
-    completeEquality: completeEquality_Skill_Data,
-    equalityMeaning: equalityMeaning_Skill_Data,
-    trueFalseEquality: trueFalseEquality_Skill_Data,
-  },
+  skills: [
+    completeEquality_Skill_Data,
+    equalityMeaning_Skill_Data,
+    trueFalseEquality_Skill_Data,
+  ],
   description: {
     methodological:
       'Equality as equal values of two expressions, the truth of equalities, and completing missing components.',

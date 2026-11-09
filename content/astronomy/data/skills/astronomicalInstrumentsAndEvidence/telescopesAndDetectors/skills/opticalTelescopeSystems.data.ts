@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const opticalTelescopeSystems_Skill_Data = buildSkillConfig({
+export const opticalTelescopeSystems_Skill_Data = defineSkill({
   slug: 'opticalTelescopeSystems',
   id: 'b14e2df7-c6e3-4503-aa9d-33e0c858d39b',
   name: {

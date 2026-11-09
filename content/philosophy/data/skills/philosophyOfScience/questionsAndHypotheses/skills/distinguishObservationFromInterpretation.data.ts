@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishObservationFromInterpretation_Skill_Data = buildSkillConfig({
+export const distinguishObservationFromInterpretation_Skill_Data = defineSkill({
   slug: 'distinguishObservationFromInterpretation',
   id: '4f26ba31-bbac-489b-a45f-087b34efe21a',
   name: {

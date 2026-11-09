@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   detectIncorrectProgramBehavior_Skill_Data,
@@ -7,7 +7,7 @@ import {
   testAProgramWithDifferentInputs_Skill_Data,
 } from './skills';
 
-export const testingAndDebugging_SkillGroup_Data = buildSkillGroupConfig({
+export const testingAndDebugging_SkillGroup_Data = defineSkillGroup({
   slug: 'testingAndDebugging',
   id: '76829708-e899-494d-bb99-65cd18b04a4c',
   name: {
@@ -41,12 +41,12 @@ export const testingAndDebugging_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тестілеу және қателерді түзету',
     qm: 'Sınav ve hatalarnı tüzetüv',
   },
-  skills: {
-    detectIncorrectProgramBehavior: detectIncorrectProgramBehavior_Skill_Data,
-    fixAProgramDefect: fixAProgramDefect_Skill_Data,
-    locateTheCauseOfAnError: locateTheCauseOfAnError_Skill_Data,
-    testAProgramWithDifferentInputs: testAProgramWithDifferentInputs_Skill_Data,
-  },
+  skills: [
+    detectIncorrectProgramBehavior_Skill_Data,
+    fixAProgramDefect_Skill_Data,
+    locateTheCauseOfAnError_Skill_Data,
+    testAProgramWithDifferentInputs_Skill_Data,
+  ],
   description: {
     methodological:
       'Compare actual program behavior with requirements, find the cause of deviations, correct them, and test again. Detecting a defect, diagnosing it, changing code, and testing multiple cases are distinct abilities.',

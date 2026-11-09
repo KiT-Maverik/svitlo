@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   electricalGenerators_Skill_Data,
@@ -8,7 +8,7 @@ import {
   windTurbines_Skill_Data,
 } from './skills';
 
-export const generation_SkillGroup_Data = buildSkillGroupConfig({
+export const generation_SkillGroup_Data = defineSkillGroup({
   slug: 'generation',
   id: '0a132a12-8f66-47a2-bbe0-3bb6c20f2b00',
   name: {
@@ -42,13 +42,13 @@ export const generation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Электр энергиясын өндіру',
     qm: 'Elektrik istisalı',
   },
-  skills: {
-    electricalGenerators: electricalGenerators_Skill_Data,
-    hydropowerInstallations: hydropowerInstallations_Skill_Data,
-    photovoltaicSystems: photovoltaicSystems_Skill_Data,
-    thermalPowerStations: thermalPowerStations_Skill_Data,
-    windTurbines: windTurbines_Skill_Data,
-  },
+  skills: [
+    electricalGenerators_Skill_Data,
+    hydropowerInstallations_Skill_Data,
+    photovoltaicSystems_Skill_Data,
+    thermalPowerStations_Skill_Data,
+    windTurbines_Skill_Data,
+  ],
   description: {
     methodological:
       'Electricity and heat can be produced through different converter chains with distinct resource and operating constraints.',

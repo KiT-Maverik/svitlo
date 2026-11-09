@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const findTheMostFrequentValue_Skill_Data = buildSkillConfig({
+export const findTheMostFrequentValue_Skill_Data = defineSkill({
   slug: 'findTheMostFrequentValue',
   id: '61f9ebb6-4b27-4e14-974a-92927cf57769',
   name: {

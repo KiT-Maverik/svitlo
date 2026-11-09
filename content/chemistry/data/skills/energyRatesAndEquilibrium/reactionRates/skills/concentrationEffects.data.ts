@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const concentrationEffects_Skill_Data = buildSkillConfig({
+export const concentrationEffects_Skill_Data = defineSkill({
   slug: 'concentrationEffects',
   id: '6028897b-16e3-4a11-95f1-e98ff9a8d2c0',
   name: {

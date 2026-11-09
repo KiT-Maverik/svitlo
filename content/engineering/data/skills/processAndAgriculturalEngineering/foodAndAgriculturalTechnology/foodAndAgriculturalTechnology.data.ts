@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   fermentationProductionEquipment_Skill_Data,
@@ -7,7 +7,7 @@ import {
   precisionAgriculturalEquipment_Skill_Data,
 } from './skills';
 
-export const foodAndAgriculturalTechnology_SkillGroup_Data = buildSkillGroupConfig({
+export const foodAndAgriculturalTechnology_SkillGroup_Data = defineSkillGroup({
   slug: 'foodAndAgriculturalTechnology',
   id: '417ce3ed-fa39-4a56-a791-951228eb78b0',
   name: {
@@ -41,12 +41,12 @@ export const foodAndAgriculturalTechnology_SkillGroup_Data = buildSkillGroupConf
     kk: 'Азық-түлік және ауыл шаруашылығы технологиялары',
     qm: 'Aşlıq ve ziraat tehnologiyası',
   },
-  skills: {
-    fermentationProductionEquipment: fermentationProductionEquipment_Skill_Data,
-    foodPreservationEquipment: foodPreservationEquipment_Skill_Data,
-    irrigationEngineering: irrigationEngineering_Skill_Data,
-    precisionAgriculturalEquipment: precisionAgriculturalEquipment_Skill_Data,
-  },
+  skills: [
+    fermentationProductionEquipment_Skill_Data,
+    foodPreservationEquipment_Skill_Data,
+    irrigationEngineering_Skill_Data,
+    precisionAgriculturalEquipment_Skill_Data,
+  ],
   description: {
     methodological:
       'Food and field equipment must handle biological materials with variable properties and constraints involving spoilage, hygiene, water use and environmental conditions.',

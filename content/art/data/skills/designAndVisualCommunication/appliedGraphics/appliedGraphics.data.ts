@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   checkVisualAccessibility_Skill_Data,
@@ -7,7 +7,7 @@ import {
   designPackagingGraphics_Skill_Data,
 } from './skills';
 
-export const appliedGraphics_SkillGroup_Data = buildSkillGroupConfig({
+export const appliedGraphics_SkillGroup_Data = defineSkillGroup({
   slug: 'appliedGraphics',
   id: 'f80539fa-6eed-494b-8834-f80c16a4a026',
   name: {
@@ -42,12 +42,12 @@ export const appliedGraphics_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қолданбалы графика',
     qm: 'Tatbiqiy grafika',
   },
-  skills: {
-    checkVisualAccessibility: checkVisualAccessibility_Skill_Data,
-    designAnEditorialSpread: designAnEditorialSpread_Skill_Data,
-    designAPictogramFamily: designAPictogramFamily_Skill_Data,
-    designPackagingGraphics: designPackagingGraphics_Skill_Data,
-  },
+  skills: [
+    checkVisualAccessibility_Skill_Data,
+    designAnEditorialSpread_Skill_Data,
+    designAPictogramFamily_Skill_Data,
+    designPackagingGraphics_Skill_Data,
+  ],
   description: {
     methodological:
       'Packaging, editorial designs and pictograms require visual decisions constrained by surfaces or public information.',

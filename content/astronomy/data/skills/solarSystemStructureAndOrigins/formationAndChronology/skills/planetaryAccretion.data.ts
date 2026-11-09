@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const planetaryAccretion_Skill_Data = buildSkillConfig({
+export const planetaryAccretion_Skill_Data = defineSkill({
   slug: 'planetaryAccretion',
   id: '5283487f-f82a-4c87-9a7b-8ebe905058aa',
   name: {

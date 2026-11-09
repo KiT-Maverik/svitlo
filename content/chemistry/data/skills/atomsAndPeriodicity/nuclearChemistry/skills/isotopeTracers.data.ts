@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const isotopeTracers_Skill_Data = buildSkillConfig({
+export const isotopeTracers_Skill_Data = defineSkill({
   slug: 'isotopeTracers',
   id: '4efef25f-e181-4103-ba83-1226c37e3cc5',
   name: {

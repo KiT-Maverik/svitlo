@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   choreographToMusic_Skill_Data,
@@ -8,7 +8,7 @@ import {
   varyAMovementMotif_Skill_Data,
 } from './skills';
 
-export const choreography_SkillGroup_Data = buildSkillGroupConfig({
+export const choreography_SkillGroup_Data = defineSkillGroup({
   slug: 'choreography',
   id: '6318e49f-0253-4a32-a0f5-24cba3bec330',
   name: {
@@ -42,13 +42,13 @@ export const choreography_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Хореография',
     qm: 'Koreografiya',
   },
-  skills: {
-    choreographToMusic: choreographToMusic_Skill_Data,
-    createAMovementMotif: createAMovementMotif_Skill_Data,
-    designDanceFormations: designDanceFormations_Skill_Data,
-    structureADanceComposition: structureADanceComposition_Skill_Data,
-    varyAMovementMotif: varyAMovementMotif_Skill_Data,
-  },
+  skills: [
+    choreographToMusic_Skill_Data,
+    createAMovementMotif_Skill_Data,
+    designDanceFormations_Skill_Data,
+    structureADanceComposition_Skill_Data,
+    varyAMovementMotif_Skill_Data,
+  ],
   description: {
     methodological:
       'Movement motifs and their transformations create deliberate time-space relationships among dancers.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishImperativeAndDeclarativeApproaches_Skill_Data,
@@ -7,7 +7,7 @@ import {
   explainProceduralProgramming_Skill_Data,
 } from './skills';
 
-export const programmingParadigms_SkillGroup_Data = buildSkillGroupConfig({
+export const programmingParadigms_SkillGroup_Data = defineSkillGroup({
   slug: 'programmingParadigms',
   id: '70ac02c5-1133-4653-839f-8d8e1ebc906e',
   name: {
@@ -41,12 +41,12 @@ export const programmingParadigms_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бағдарламалау парадигмалары',
     qm: 'Programmalav paradigmaları',
   },
-  skills: {
-    distinguishImperativeAndDeclarativeApproaches: distinguishImperativeAndDeclarativeApproaches_Skill_Data,
-    explainFunctionalProgramming: explainFunctionalProgramming_Skill_Data,
-    explainObjectOrientedProgramming: explainObjectOrientedProgramming_Skill_Data,
-    explainProceduralProgramming: explainProceduralProgramming_Skill_Data,
-  },
+  skills: [
+    distinguishImperativeAndDeclarativeApproaches_Skill_Data,
+    explainFunctionalProgramming_Skill_Data,
+    explainObjectOrientedProgramming_Skill_Data,
+    explainProceduralProgramming_Skill_Data,
+  ],
   description: {
     methodological:
       'Compare code organization through stepwise state changes, functional transformation of values, object modeling, and description of desired results. A language may support several paradigms.',

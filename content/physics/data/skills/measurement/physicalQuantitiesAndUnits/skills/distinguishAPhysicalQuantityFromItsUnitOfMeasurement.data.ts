@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data = buildSkillConfig({
+export const distinguishAPhysicalQuantityFromItsUnitOfMeasurement_Skill_Data = defineSkill({
   slug: 'distinguishAPhysicalQuantityFromItsUnitOfMeasurement',
   id: 'edafd70f-57d0-427c-8adf-5ff7ab8773fd',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyFormsOfEnergy_Skill_Data = buildSkillConfig({
+export const classifyFormsOfEnergy_Skill_Data = defineSkill({
   slug: 'classifyFormsOfEnergy',
   id: '3b6ddc35-5343-4cc0-bd41-8c3877bacab2',
   name: {

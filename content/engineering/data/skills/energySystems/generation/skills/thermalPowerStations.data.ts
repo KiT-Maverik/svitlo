@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const thermalPowerStations_Skill_Data = buildSkillConfig({
+export const thermalPowerStations_Skill_Data = defineSkill({
   slug: 'thermalPowerStations',
   id: 'e3723d07-d449-4dcf-9a6d-7b52c85021fe',
   name: {

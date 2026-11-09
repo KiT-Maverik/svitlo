@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMajorBodyParts_Skill_Data = buildSkillConfig({
+export const identifyMajorBodyParts_Skill_Data = defineSkill({
   slug: 'identifyMajorBodyParts',
   id: 'f7127c29-2cc2-40a6-bcd3-6a76ada392eb',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const capacitorApplications_Skill_Data = buildSkillConfig({
+export const capacitorApplications_Skill_Data = defineSkill({
   slug: 'capacitorApplications',
   id: 'bc55cfc4-b133-4628-acdf-0a8917afd21d',
   name: {

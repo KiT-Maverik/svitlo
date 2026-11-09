@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const pulsars_Skill_Data = buildSkillConfig({
+export const pulsars_Skill_Data = defineSkill({
   slug: 'pulsars',
   id: 'd63ac5a4-7e80-49e0-8224-47c57cb4b9cf',
   name: {

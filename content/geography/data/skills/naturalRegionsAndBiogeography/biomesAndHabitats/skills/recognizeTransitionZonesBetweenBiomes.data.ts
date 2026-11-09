@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeTransitionZonesBetweenBiomes_Skill_Data = buildSkillConfig({
+export const recognizeTransitionZonesBetweenBiomes_Skill_Data = defineSkill({
   slug: 'recognizeTransitionZonesBetweenBiomes',
   id: '8a932dc6-ba67-4e40-87ae-a70fe167a6aa',
   name: {

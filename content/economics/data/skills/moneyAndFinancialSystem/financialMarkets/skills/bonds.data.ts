@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const bonds_Skill_Data = buildSkillConfig({
+export const bonds_Skill_Data = defineSkill({
   slug: 'bonds',
   id: 'f4c66844-1caa-4bb9-abbc-13810c9bb22f',
   name: {

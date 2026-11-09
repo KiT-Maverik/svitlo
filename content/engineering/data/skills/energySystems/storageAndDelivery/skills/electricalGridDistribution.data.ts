@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const electricalGridDistribution_Skill_Data = buildSkillConfig({
+export const electricalGridDistribution_Skill_Data = defineSkill({
   slug: 'electricalGridDistribution',
   id: 'acc2ef4a-7f21-4601-9718-93553fba31cf',
   name: {

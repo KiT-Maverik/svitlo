@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   elementFamilies_Skill_Data,
@@ -7,7 +7,7 @@ import {
   periodicTableStructure_Skill_Data,
 } from './skills';
 
-export const periodicOrganization_SkillGroup_Data = buildSkillGroupConfig({
+export const periodicOrganization_SkillGroup_Data = defineSkillGroup({
   slug: 'periodicOrganization',
   id: '361850a5-27c3-4f80-b35b-0491f0986100',
   name: {
@@ -41,12 +41,12 @@ export const periodicOrganization_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Периодтық жүйелеу',
     qm: 'Devirli tertip',
   },
-  skills: {
-    elementFamilies: elementFamilies_Skill_Data,
-    metalsNonmetalsAndMetalloids: metalsNonmetalsAndMetalloids_Skill_Data,
-    periodicity: periodicity_Skill_Data,
-    periodicTableStructure: periodicTableStructure_Skill_Data,
-  },
+  skills: [
+    elementFamilies_Skill_Data,
+    metalsNonmetalsAndMetalloids_Skill_Data,
+    periodicity_Skill_Data,
+    periodicTableStructure_Skill_Data,
+  ],
   description: {
     methodological:
       'The periodic table encodes repeating patterns in electron configurations and useful chemical categories.',

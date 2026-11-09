@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const choosePreventiveHealthMeasures_Skill_Data = buildSkillConfig({
+export const choosePreventiveHealthMeasures_Skill_Data = defineSkill({
   slug: 'choosePreventiveHealthMeasures',
   id: 'eb053c16-d41c-4e18-9c92-d87a841746f7',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzePublicArt_Skill_Data = buildSkillConfig({
+export const analyzePublicArt_Skill_Data = defineSkill({
   slug: 'analyzePublicArt',
   id: '08d19e7d-ddf7-4ed0-a561-4f549de7196e',
   name: {

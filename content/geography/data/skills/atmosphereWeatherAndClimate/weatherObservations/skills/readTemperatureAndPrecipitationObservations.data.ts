@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readTemperatureAndPrecipitationObservations_Skill_Data = buildSkillConfig({
+export const readTemperatureAndPrecipitationObservations_Skill_Data = defineSkill({
   slug: 'readTemperatureAndPrecipitationObservations',
   id: 'e9c29ab1-fbca-4068-951f-4e86ac1d9550',
   name: {

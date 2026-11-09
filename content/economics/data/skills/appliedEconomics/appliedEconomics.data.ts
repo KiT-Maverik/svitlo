@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { agriculturalEconomics_SkillGroup_Data } from './agriculturalEconomics/agriculturalEconomics.data';
 import { economicsOfEducation_SkillGroup_Data } from './economicsOfEducation/economicsOfEducation.data';
@@ -7,10 +7,10 @@ import { housingAndRealEstate_SkillGroup_Data } from './housingAndRealEstate/hou
 import { transportAndInfrastructure_SkillGroup_Data } from './transportAndInfrastructure/transportAndInfrastructure.data';
 import { urbanAndRegionalEconomics_SkillGroup_Data } from './urbanAndRegionalEconomics/urbanAndRegionalEconomics.data';
 
-export const appliedEconomics_SkillDomain_Data = buildSkillDomainConfig({
+export const appliedEconomics_SkillDomain_Data = defineSkillDomain({
   slug: 'appliedEconomics',
   id: '260ae4e0-2cb0-473c-b241-bf6b0a1ca7a3',
-  name: {
+  title: {
     en: 'Прикладна економіка',
     zh: '应用经济学',
     hi: 'अनुप्रयुक्त अर्थशास्त्र',
@@ -41,14 +41,14 @@ export const appliedEconomics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Қолданбалы экономика',
     qm: 'Ameliy iqtisat',
   },
-  groups: {
-    agriculturalEconomics: agriculturalEconomics_SkillGroup_Data,
-    economicsOfEducation: economicsOfEducation_SkillGroup_Data,
-    healthEconomics: healthEconomics_SkillGroup_Data,
-    housingAndRealEstate: housingAndRealEstate_SkillGroup_Data,
-    transportAndInfrastructure: transportAndInfrastructure_SkillGroup_Data,
-    urbanAndRegionalEconomics: urbanAndRegionalEconomics_SkillGroup_Data,
-  },
+  groups: [
+    agriculturalEconomics_SkillGroup_Data,
+    economicsOfEducation_SkillGroup_Data,
+    healthEconomics_SkillGroup_Data,
+    housingAndRealEstate_SkillGroup_Data,
+    transportAndInfrastructure_SkillGroup_Data,
+    urbanAndRegionalEconomics_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Specialized markets and institutional conditions in cities, housing, transport, education, healthcare, and agriculture create distinct economic mechanisms. This domain examines sector-specific choices and consequences without duplicating geographic, medical, educational, or agricultural competencies.',

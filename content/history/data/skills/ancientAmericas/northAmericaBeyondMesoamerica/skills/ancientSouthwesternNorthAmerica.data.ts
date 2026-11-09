@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientSouthwesternNorthAmerica_Skill_Data = buildSkillConfig({
+export const ancientSouthwesternNorthAmerica_Skill_Data = defineSkill({
   slug: 'ancientSouthwesternNorthAmerica',
   id: 'f7a1b0ab-03c6-444c-ae42-aa883de05a9b',
   name: {

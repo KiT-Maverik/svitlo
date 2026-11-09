@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data,
@@ -7,7 +7,7 @@ import {
   distinguishALifePurposeFromAPassingPreference_Skill_Data,
 } from './skills';
 
-export const humanExistenceAndMeaning_SkillGroup_Data = buildSkillGroupConfig({
+export const humanExistenceAndMeaning_SkillGroup_Data = defineSkillGroup({
   slug: 'humanExistenceAndMeaning',
   id: '90504c2d-cce8-4feb-93fa-34689676c527',
   name: {
@@ -41,12 +41,12 @@ export const humanExistenceAndMeaning_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Адам болмысы және мән',
     qm: 'İnsan yaşayışı ve mana',
   },
-  skills: {
-    analyzeAuthenticityAsAPhilosophicalConcept: analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data,
-    analyzeThePhilosophicalSignificanceOfMortality: analyzeThePhilosophicalSignificanceOfMortality_Skill_Data,
-    comparePhilosophicalAccountsOfMeaningInLife: comparePhilosophicalAccountsOfMeaningInLife_Skill_Data,
-    distinguishALifePurposeFromAPassingPreference: distinguishALifePurposeFromAPassingPreference_Skill_Data,
-  },
+  skills: [
+    analyzeAuthenticityAsAPhilosophicalConcept_Skill_Data,
+    analyzeThePhilosophicalSignificanceOfMortality_Skill_Data,
+    comparePhilosophicalAccountsOfMeaningInLife_Skill_Data,
+    distinguishALifePurposeFromAPassingPreference_Skill_Data,
+  ],
   description: {
     methodological:
       'Existential reflection examines how people understand purpose, authenticity, finitude, and commitments, without prescribing a single life ideal or substituting for mental-health care.',

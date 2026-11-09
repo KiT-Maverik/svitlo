@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reactionOrder_Skill_Data = buildSkillConfig({
+export const reactionOrder_Skill_Data = defineSkill({
   slug: 'reactionOrder',
   id: '8575dfa6-ee26-41ae-ae03-274757824129',
   name: {

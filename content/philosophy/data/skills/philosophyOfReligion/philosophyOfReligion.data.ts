@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { diversityAndMeaning_SkillGroup_Data } from './diversityAndMeaning/diversityAndMeaning.data';
 import { faithReasonAndExperience_SkillGroup_Data } from './faithReasonAndExperience/faithReasonAndExperience.data';
 import { ultimateRealityAndDivinity_SkillGroup_Data } from './ultimateRealityAndDivinity/ultimateRealityAndDivinity.data';
 
-export const philosophyOfReligion_SkillDomain_Data = buildSkillDomainConfig({
+export const philosophyOfReligion_SkillDomain_Data = defineSkillDomain({
   slug: 'philosophyOfReligion',
   id: '17d7f442-f9b6-455b-88b1-4a6cdc54398c',
-  name: {
+  title: {
     en: 'Philosophy of Religion',
     zh: '宗教哲学',
     hi: 'धर्म का दर्शन',
@@ -38,11 +38,11 @@ export const philosophyOfReligion_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Дін философиясы',
     qm: 'Din felsefesi',
   },
-  groups: {
-    diversityAndMeaning: diversityAndMeaning_SkillGroup_Data,
-    faithReasonAndExperience: faithReasonAndExperience_SkillGroup_Data,
-    ultimateRealityAndDivinity: ultimateRealityAndDivinity_SkillGroup_Data,
-  },
+  groups: [
+    diversityAndMeaning_SkillGroup_Data,
+    faithReasonAndExperience_SkillGroup_Data,
+    ultimateRealityAndDivinity_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Reasoned inquiry into religious and nonreligious worldviews considers ultimate explanations, sources of belief, conceptions of divinity, and coexistence under pluralism. This domain evaluates arguments without prescribing worship, faith, atheism, or other personal commitments.',

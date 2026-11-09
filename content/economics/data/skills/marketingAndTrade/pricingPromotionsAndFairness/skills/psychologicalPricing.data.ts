@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const psychologicalPricing_Skill_Data = buildSkillConfig({
+export const psychologicalPricing_Skill_Data = defineSkill({
   slug: 'psychologicalPricing',
   id: '8a4f213d-742e-4d5f-8e78-8d4ae1eced11',
   name: {

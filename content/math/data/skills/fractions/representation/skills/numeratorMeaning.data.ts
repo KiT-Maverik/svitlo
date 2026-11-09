@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const numeratorMeaning_Skill_Data = buildSkillConfig({
+export const numeratorMeaning_Skill_Data = defineSkill({
   slug: 'numeratorMeaning',
   id: 'a0eac2ec-b5d3-4042-8ebc-f8fb28089999',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cosmicHorizons_Skill_Data = buildSkillConfig({
+export const cosmicHorizons_Skill_Data = defineSkill({
   slug: 'cosmicHorizons',
   id: 'b30d80f3-0a46-48dc-be1e-1801a00a8b44',
   name: {

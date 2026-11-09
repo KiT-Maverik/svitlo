@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   evaluateAPhilosophicalTextCritically_Skill_Data,
@@ -7,7 +7,7 @@ import {
   reconstructAHistoricalPhilosophicalArgument_Skill_Data,
 } from './skills';
 
-export const readingPhilosophicalWorks_SkillGroup_Data = buildSkillGroupConfig({
+export const readingPhilosophicalWorks_SkillGroup_Data = defineSkillGroup({
   slug: 'readingPhilosophicalWorks',
   id: '89ad430b-07d6-4e89-80ca-00b65dbb6696',
   name: {
@@ -41,12 +41,12 @@ export const readingPhilosophicalWorks_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Философиялық еңбектерді оқу',
     qm: 'Felsefiy eserlerni oqumaq',
   },
-  skills: {
-    evaluateAPhilosophicalTextCritically: evaluateAPhilosophicalTextCritically_Skill_Data,
-    identifyTheCentralProblemInAPhilosophicalText: identifyTheCentralProblemInAPhilosophicalText_Skill_Data,
-    interpretAPhilosopherInHistoricalContext: interpretAPhilosopherInHistoricalContext_Skill_Data,
-    reconstructAHistoricalPhilosophicalArgument: reconstructAHistoricalPhilosophicalArgument_Skill_Data,
-  },
+  skills: [
+    evaluateAPhilosophicalTextCritically_Skill_Data,
+    identifyTheCentralProblemInAPhilosophicalText_Skill_Data,
+    interpretAPhilosopherInHistoricalContext_Skill_Data,
+    reconstructAHistoricalPhilosophicalArgument_Skill_Data,
+  ],
   description: {
     methodological:
       'Texts require interpreting claims, their argumentative context, and the questions the author sought to answer; historical wording cannot always be mapped directly to modern categories.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const humanDevelopmentIndicators_Skill_Data = buildSkillConfig({
+export const humanDevelopmentIndicators_Skill_Data = defineSkill({
   slug: 'humanDevelopmentIndicators',
   id: '42e428b3-f59b-46bb-86e6-e5659aaa9bb8',
   name: {

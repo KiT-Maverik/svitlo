@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { compareSameNumerator_Skill_Data, compareUnit_Skill_Data, sameDenominatorModel_Skill_Data } from './skills';
 
-export const comparison_SkillGroup_Data = buildSkillGroupConfig({
+export const comparison_SkillGroup_Data = defineSkillGroup({
   slug: 'comparison',
   id: 'c1e510c8-1bd0-475a-a977-e2aac0b0bed7',
   name: {
@@ -36,11 +36,11 @@ export const comparison_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Porównywanie ułamków',
     uk: 'Порівняння дробів',
   },
-  skills: {
-    compareSameNumerator: compareSameNumerator_Skill_Data,
-    compareUnit: compareUnit_Skill_Data,
-    sameDenominatorModel: sameDenominatorModel_Skill_Data,
-  },
+  skills: [
+    compareSameNumerator_Skill_Data,
+    compareUnit_Skill_Data,
+    sameDenominatorModel_Skill_Data,
+  ],
   description: {
     methodological:
       'Comparing the magnitudes of fractional parts relative to the same whole while holding either the numerator or denominator fixed.',

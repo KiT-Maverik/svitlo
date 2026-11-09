@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const certainImpossible_Skill_Data = buildSkillConfig({
+export const certainImpossible_Skill_Data = defineSkill({
   slug: 'certainImpossible',
   id: '96ed02b9-b56e-4498-8e3e-195e76eceaf0',
   name: {

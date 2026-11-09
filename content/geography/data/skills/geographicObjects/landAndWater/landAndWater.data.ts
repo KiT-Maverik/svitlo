@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   classifyCoastalLandformsAndPassages_Skill_Data,
@@ -7,7 +7,7 @@ import {
   distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data,
 } from './skills';
 
-export const landAndWater_SkillGroup_Data = buildSkillGroupConfig({
+export const landAndWater_SkillGroup_Data = defineSkillGroup({
   slug: 'landAndWater',
   id: 'b296f364-8d09-4c52-b906-7e4d21ca36d7',
   name: {
@@ -41,12 +41,12 @@ export const landAndWater_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Құрлық пен су',
     qm: 'Quru yer ve suv',
   },
-  skills: {
-    classifyCoastalLandformsAndPassages: classifyCoastalLandformsAndPassages_Skill_Data,
-    classifyCommonLandformsByObservableCharacteristics: classifyCommonLandformsByObservableCharacteristics_Skill_Data,
-    distinguishLakesRiversAndWetlandsByWaterBehavior: distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data,
-    distinguishOceanSeaGulfAndBayInGeographicContext: distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data,
-  },
+  skills: [
+    classifyCoastalLandformsAndPassages_Skill_Data,
+    classifyCommonLandformsByObservableCharacteristics_Skill_Data,
+    distinguishLakesRiversAndWetlandsByWaterBehavior_Skill_Data,
+    distinguishOceanSeaGulfAndBayInGeographicContext_Skill_Data,
+  ],
   description: {
     methodological:
       'Natural geographic features are differentiated by relief, water movement, enclosure and spatial relationships to neighboring land or water. Object identification is separate from the physical processes that formed a coastline, mountain or river valley.',

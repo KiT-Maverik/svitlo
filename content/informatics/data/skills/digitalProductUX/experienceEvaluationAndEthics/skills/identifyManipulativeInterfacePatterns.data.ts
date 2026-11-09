@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyManipulativeInterfacePatterns_Skill_Data = buildSkillConfig({
+export const identifyManipulativeInterfacePatterns_Skill_Data = defineSkill({
   slug: 'identifyManipulativeInterfacePatterns',
   id: '1b725956-d440-4b52-84b2-8c21fe590797',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeTheEthicalEvaluationOfArt_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateADefinitionOfArt_Skill_Data,
 } from './skills';
 
-export const artAndInterpretation_SkillGroup_Data = buildSkillGroupConfig({
+export const artAndInterpretation_SkillGroup_Data = defineSkillGroup({
   slug: 'artAndInterpretation',
   id: 'd168025b-cf7a-4342-a847-e58af2d574cd',
   name: {
@@ -41,12 +41,12 @@ export const artAndInterpretation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Өнер және түсіндіру',
     qm: 'Sanat ve izaat',
   },
-  skills: {
-    analyzeTheEthicalEvaluationOfArt: analyzeTheEthicalEvaluationOfArt_Skill_Data,
-    compareInterpretationsOfAnArtwork: compareInterpretationsOfAnArtwork_Skill_Data,
-    distinguishArtisticIntentionFromInterpretation: distinguishArtisticIntentionFromInterpretation_Skill_Data,
-    evaluateADefinitionOfArt: evaluateADefinitionOfArt_Skill_Data,
-  },
+  skills: [
+    analyzeTheEthicalEvaluationOfArt_Skill_Data,
+    compareInterpretationsOfAnArtwork_Skill_Data,
+    distinguishArtisticIntentionFromInterpretation_Skill_Data,
+    evaluateADefinitionOfArt_Skill_Data,
+  ],
   description: {
     methodological:
       "A work can bear meanings and values that are not reducible to the creator's stated intent or a viewer's immediate reaction.",

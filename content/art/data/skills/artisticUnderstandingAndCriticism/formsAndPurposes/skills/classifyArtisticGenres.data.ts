@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyArtisticGenres_Skill_Data = buildSkillConfig({
+export const classifyArtisticGenres_Skill_Data = defineSkill({
   slug: 'classifyArtisticGenres',
   id: '4bd0e896-7a2b-4431-bddf-eb76b7c9b7f0',
   name: {

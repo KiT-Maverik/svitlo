@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const empathy_Skill_Data = buildSkillConfig({
+export const empathy_Skill_Data = defineSkill({
   slug: 'empathy',
   id: '708d6886-eb2f-43d0-8537-379ba56d0e71',
   name: {

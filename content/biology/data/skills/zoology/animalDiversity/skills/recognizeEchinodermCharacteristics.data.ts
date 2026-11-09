@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeEchinodermCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeEchinodermCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeEchinodermCharacteristics',
   id: '1cefe1e9-e3f7-4803-bba1-dc5435afe41e',
   name: {

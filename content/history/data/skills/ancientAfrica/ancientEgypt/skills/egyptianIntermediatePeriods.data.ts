@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const egyptianIntermediatePeriods_Skill_Data = buildSkillConfig({
+export const egyptianIntermediatePeriods_Skill_Data = defineSkill({
   slug: 'egyptianIntermediatePeriods',
   id: '1d5fde05-c710-40bf-b3e5-4ed57fe8132d',
   name: {

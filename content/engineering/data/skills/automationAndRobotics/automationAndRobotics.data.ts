@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { drivesAndActuators_SkillGroup_Data } from './drivesAndActuators/drivesAndActuators.data';
 import { feedbackAndControl_SkillGroup_Data } from './feedbackAndControl/feedbackAndControl.data';
 import { robotSystems_SkillGroup_Data } from './robotSystems/robotSystems.data';
 import { sensorsAndMeasurement_SkillGroup_Data } from './sensorsAndMeasurement/sensorsAndMeasurement.data';
 
-export const automationAndRobotics_SkillDomain_Data = buildSkillDomainConfig({
+export const automationAndRobotics_SkillDomain_Data = defineSkillDomain({
   slug: 'automationAndRobotics',
   id: 'c32e04b7-c5a4-4ac8-9d12-0fdcd8ab6248',
-  name: {
+  title: {
     en: 'Automation and Robotics',
     zh: '自动化与机器人技术',
     hi: 'स्वचालन और रोबोटिकी',
@@ -39,12 +39,12 @@ export const automationAndRobotics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Автоматтандыру және робототехника',
     qm: 'Avtomatlaştırma ve robot tehnıkası',
   },
-  groups: {
-    drivesAndActuators: drivesAndActuators_SkillGroup_Data,
-    feedbackAndControl: feedbackAndControl_SkillGroup_Data,
-    robotSystems: robotSystems_SkillGroup_Data,
-    sensorsAndMeasurement: sensorsAndMeasurement_SkillGroup_Data,
-  },
+  groups: [
+    drivesAndActuators_SkillGroup_Data,
+    feedbackAndControl_SkillGroup_Data,
+    robotSystems_SkillGroup_Data,
+    sensorsAndMeasurement_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Robotic and automated machinery converts physical observations into controlled actions. Engineering competencies concern sensors, actuators, feedback, mechanism geometry and dependable operation; general algorithms and software authoring remain in Informatics.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyHumanCooperation_Skill_Data = buildSkillConfig({
+export const earlyHumanCooperation_Skill_Data = defineSkill({
   slug: 'earlyHumanCooperation',
   id: '886602b5-0251-4e5e-9fd3-31483c8dec1b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretLogicalBiconditional_Skill_Data = buildSkillConfig({
+export const interpretLogicalBiconditional_Skill_Data = defineSkill({
   slug: 'interpretLogicalBiconditional',
   id: 'c419c18f-e9be-4a9b-82e7-2d50ba4f2a7c',
   name: {

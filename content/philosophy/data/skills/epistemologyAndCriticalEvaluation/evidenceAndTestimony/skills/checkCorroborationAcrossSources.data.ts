@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const checkCorroborationAcrossSources_Skill_Data = buildSkillConfig({
+export const checkCorroborationAcrossSources_Skill_Data = defineSkill({
   slug: 'checkCorroborationAcrossSources',
   id: '28d6a919-6caf-4e52-a016-2a363a666a99',
   name: {

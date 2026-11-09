@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const oneAsFraction_Skill_Data = buildSkillConfig({
+export const oneAsFraction_Skill_Data = defineSkill({
   slug: 'oneAsFraction',
   id: '24ae675d-82dc-4eb4-94fe-adc96f15e452',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { conservationOfEnergy_SkillGroup_Data } from './conservationOfEnergy/conservationOfEnergy.data';
 import { energyTransferAndTransformation_SkillGroup_Data } from './energyTransferAndTransformation/energyTransferAndTransformation.data';
 import { formsOfEnergy_SkillGroup_Data } from './formsOfEnergy/formsOfEnergy.data';
 import { workAndPower_SkillGroup_Data } from './workAndPower/workAndPower.data';
 
-export const energy_SkillDomain_Data = buildSkillDomainConfig({
+export const energy_SkillDomain_Data = defineSkillDomain({
   slug: 'energy',
   id: '76805f1f-0b1c-43fc-9f9c-e52f7441626c',
-  name: {
+  title: {
     en: 'Energy',
     zh: '能量',
     hi: 'ऊर्जा',
@@ -39,12 +39,12 @@ export const energy_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Энергия',
     qm: 'Energiya',
   },
-  groups: {
-    conservationOfEnergy: conservationOfEnergy_SkillGroup_Data,
-    energyTransferAndTransformation: energyTransferAndTransformation_SkillGroup_Data,
-    formsOfEnergy: formsOfEnergy_SkillGroup_Data,
-    workAndPower: workAndPower_SkillGroup_Data,
-  },
+  groups: [
+    conservationOfEnergy_SkillGroup_Data,
+    energyTransferAndTransformation_SkillGroup_Data,
+    formsOfEnergy_SkillGroup_Data,
+    workAndPower_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Energy is a quantity that helps describe physical changes and connect phenomena involving motion, heating, light, and electricity. The emphasis is on energy transfer, transformation, and conservation rather than arithmetic formulas.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   anticipateFailureModes_Skill_Data,
@@ -8,7 +8,7 @@ import {
   justifyADesignTradeOff_Skill_Data,
 } from './skills';
 
-export const conceptSelection_SkillGroup_Data = buildSkillGroupConfig({
+export const conceptSelection_SkillGroup_Data = defineSkillGroup({
   slug: 'conceptSelection',
   id: '1bf1f831-a448-4f02-a8f5-2e2ab554b5fb',
   name: {
@@ -42,13 +42,13 @@ export const conceptSelection_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Тұжырымдаманы таңдау',
     qm: 'Layiha fikrini saylav',
   },
-  skills: {
-    anticipateFailureModes: anticipateFailureModes_Skill_Data,
-    compareDesignAlternatives: compareDesignAlternatives_Skill_Data,
-    decomposeADesignProblem: decomposeADesignProblem_Skill_Data,
-    generateAlternativeDesignConcepts: generateAlternativeDesignConcepts_Skill_Data,
-    justifyADesignTradeOff: justifyADesignTradeOff_Skill_Data,
-  },
+  skills: [
+    anticipateFailureModes_Skill_Data,
+    compareDesignAlternatives_Skill_Data,
+    decomposeADesignProblem_Skill_Data,
+    generateAlternativeDesignConcepts_Skill_Data,
+    justifyADesignTradeOff_Skill_Data,
+  ],
   description: {
     methodological:
       'Competing technical arrangements can meet the same need in different ways; choosing responsibly requires functional comparison and defensible compromises.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seekProtectionAfterViolence_Skill_Data = buildSkillConfig({
+export const seekProtectionAfterViolence_Skill_Data = defineSkill({
   slug: 'seekProtectionAfterViolence',
   id: 'de54526c-b861-4cd7-a223-02db43cf018c',
   name: {

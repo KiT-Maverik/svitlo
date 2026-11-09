@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishProducersAndConsumers_Skill_Data = buildSkillConfig({
+export const distinguishProducersAndConsumers_Skill_Data = defineSkill({
   slug: 'distinguishProducersAndConsumers',
   id: '64b11b65-e588-4dbd-ac10-3b0345421006',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   assessCulturalRepatriation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   investigateArtworkProvenance_Skill_Data,
 } from './skills';
 
-export const culturalHeritage_SkillGroup_Data = buildSkillGroupConfig({
+export const culturalHeritage_SkillGroup_Data = defineSkillGroup({
   slug: 'culturalHeritage',
   id: '286a3455-8dc6-4593-937c-8ccfd09c7605',
   name: {
@@ -41,12 +41,12 @@ export const culturalHeritage_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Мәдени мұра',
     qm: 'Medeniy miras',
   },
-  skills: {
-    assessCulturalRepatriation: assessCulturalRepatriation_Skill_Data,
-    distinguishConservationAndRestoration: distinguishConservationAndRestoration_Skill_Data,
-    evaluateMuseumRepresentation: evaluateMuseumRepresentation_Skill_Data,
-    investigateArtworkProvenance: investigateArtworkProvenance_Skill_Data,
-  },
+  skills: [
+    assessCulturalRepatriation_Skill_Data,
+    distinguishConservationAndRestoration_Skill_Data,
+    evaluateMuseumRepresentation_Skill_Data,
+    investigateArtworkProvenance_Skill_Data,
+  ],
   description: {
     methodological:
       'Art-historical stewardship requires attention to provenance, preservation and representation of communities.',

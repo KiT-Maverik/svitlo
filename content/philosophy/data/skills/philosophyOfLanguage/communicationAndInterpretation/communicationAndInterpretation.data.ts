@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishLiteralMeaningFromImplication_Skill_Data,
@@ -6,7 +6,7 @@ import {
   identifyASpeechAct_Skill_Data,
 } from './skills';
 
-export const communicationAndInterpretation_SkillGroup_Data = buildSkillGroupConfig({
+export const communicationAndInterpretation_SkillGroup_Data = defineSkillGroup({
   slug: 'communicationAndInterpretation',
   id: 'c0c167ff-700f-4f23-97a7-f9dfe9fac1a6',
   name: {
@@ -40,11 +40,11 @@ export const communicationAndInterpretation_SkillGroup_Data = buildSkillGroupCon
     kk: 'Қарым-қатынас және түсіндіру',
     qm: 'Alâqalaşuv ve izaat',
   },
-  skills: {
-    distinguishLiteralMeaningFromImplication: distinguishLiteralMeaningFromImplication_Skill_Data,
-    evaluateContextualInterpretations: evaluateContextualInterpretations_Skill_Data,
-    identifyASpeechAct: identifyASpeechAct_Skill_Data,
-  },
+  skills: [
+    distinguishLiteralMeaningFromImplication_Skill_Data,
+    evaluateContextualInterpretations_Skill_Data,
+    identifyASpeechAct_Skill_Data,
+  ],
   description: {
     methodological:
       'What a speaker says can differ from what a speaker conveys or does by saying it. Interpretation must take context and plausible alternatives into account.',

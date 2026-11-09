@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   achaemenidEmpire_Skill_Data,
@@ -7,7 +7,7 @@ import {
   medianConfederations_Skill_Data,
 } from './skills';
 
-export const ancientIranianStates_SkillGroup_Data = buildSkillGroupConfig({
+export const ancientIranianStates_SkillGroup_Data = defineSkillGroup({
   slug: 'ancientIranianStates',
   id: '4694dad0-424a-4770-b50f-81694bb1a79d',
   name: {
@@ -41,12 +41,12 @@ export const ancientIranianStates_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ежелгі Иран мемлекеттері',
     qm: 'Qadimiy İran devletleri',
   },
-  skills: {
-    achaemenidEmpire: achaemenidEmpire_Skill_Data,
-    achaemenidExpansion: achaemenidExpansion_Skill_Data,
-    ancientIranianReligions: ancientIranianReligions_Skill_Data,
-    medianConfederations: medianConfederations_Skill_Data,
-  },
+  skills: [
+    achaemenidEmpire_Skill_Data,
+    achaemenidExpansion_Skill_Data,
+    ancientIranianReligions_Skill_Data,
+    medianConfederations_Skill_Data,
+  ],
   description: {
     methodological:
       'States on the Iranian plateau and nearby territories governed diverse populations through administrative systems.',

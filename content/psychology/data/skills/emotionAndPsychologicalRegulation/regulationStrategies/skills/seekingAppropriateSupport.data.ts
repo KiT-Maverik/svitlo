@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const seekingAppropriateSupport_Skill_Data = buildSkillConfig({
+export const seekingAppropriateSupport_Skill_Data = defineSkill({
   slug: 'seekingAppropriateSupport',
   id: '1167bba9-f229-4d3a-b7d8-699366fc87c0',
   name: {

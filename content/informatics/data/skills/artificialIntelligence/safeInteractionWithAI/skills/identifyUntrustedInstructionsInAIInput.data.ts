@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyUntrustedInstructionsInAIInput_Skill_Data = buildSkillConfig({
+export const identifyUntrustedInstructionsInAIInput_Skill_Data = defineSkill({
   slug: 'identifyUntrustedInstructionsInAIInput',
   id: 'fe0b7a24-27f7-407c-b56f-d69a0fa24192',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainEarthsGravitationalForceOnABody_Skill_Data = buildSkillConfig({
+export const explainEarthsGravitationalForceOnABody_Skill_Data = defineSkill({
   slug: 'explainEarthsGravitationalForceOnABody',
   id: 'ca41a8cf-2ab8-43ce-985f-467ca46930cd',
   name: {

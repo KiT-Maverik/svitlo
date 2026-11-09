@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAnInferenceToTheBestExplanation_Skill_Data = buildSkillConfig({
+export const evaluateAnInferenceToTheBestExplanation_Skill_Data = defineSkill({
   slug: 'evaluateAnInferenceToTheBestExplanation',
   id: 'f5072be7-5672-40e9-815f-6c5fa8654a6a',
   name: {

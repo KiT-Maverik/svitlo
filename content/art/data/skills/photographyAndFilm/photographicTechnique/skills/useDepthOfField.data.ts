@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useDepthOfField_Skill_Data = buildSkillConfig({
+export const useDepthOfField_Skill_Data = defineSkill({
   slug: 'useDepthOfField',
   id: 'cb4e73ad-72ea-4b1e-b360-0799a4aedec2',
   name: {

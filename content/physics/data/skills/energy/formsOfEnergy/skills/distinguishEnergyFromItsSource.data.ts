@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishEnergyFromItsSource_Skill_Data = buildSkillConfig({
+export const distinguishEnergyFromItsSource_Skill_Data = defineSkill({
   slug: 'distinguishEnergyFromItsSource',
   id: '314f7d31-aef5-49bf-970e-b536aa41d19f',
   name: {

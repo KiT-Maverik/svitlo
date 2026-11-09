@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainConductionAsEnergyTransferThroughMatter_Skill_Data = buildSkillConfig({
+export const explainConductionAsEnergyTransferThroughMatter_Skill_Data = defineSkill({
   slug: 'explainConductionAsEnergyTransferThroughMatter',
   id: '33c36db2-6531-4858-a26b-d93793a16ee5',
   name: {

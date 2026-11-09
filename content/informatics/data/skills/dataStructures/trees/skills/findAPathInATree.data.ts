@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const findAPathInATree_Skill_Data = buildSkillConfig({
+export const findAPathInATree_Skill_Data = defineSkill({
   slug: 'findAPathInATree',
   id: '90e25d5f-4911-4c9b-ae07-5b0e4f469b5c',
   name: {

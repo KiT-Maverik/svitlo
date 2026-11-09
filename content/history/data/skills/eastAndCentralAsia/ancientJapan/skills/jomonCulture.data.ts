@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const jomonCulture_Skill_Data = buildSkillConfig({
+export const jomonCulture_Skill_Data = defineSkill({
   slug: 'jomonCulture',
   id: '35ab583a-3a28-4d12-8b22-4f5638bfc6f1',
   name: {

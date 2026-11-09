@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { ancientJapan_SkillGroup_Data } from './ancientJapan/ancientJapan.data';
 import { ancientKorea_SkillGroup_Data } from './ancientKorea/ancientKorea.data';
@@ -6,10 +6,10 @@ import { earlyChina_SkillGroup_Data } from './earlyChina/earlyChina.data';
 import { imperialChina_SkillGroup_Data } from './imperialChina/imperialChina.data';
 import { innerAsia_SkillGroup_Data } from './innerAsia/innerAsia.data';
 
-export const eastAndCentralAsia_SkillDomain_Data = buildSkillDomainConfig({
+export const eastAndCentralAsia_SkillDomain_Data = defineSkillDomain({
   slug: 'eastAndCentralAsia',
   id: 'c151bf39-0aba-4a40-b75f-40788f187631',
-  name: {
+  title: {
     en: 'East and Central Asia',
     zh: '东亚与中亚',
     hi: 'पूर्वी और मध्य एशिया',
@@ -40,13 +40,13 @@ export const eastAndCentralAsia_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Шығыс және Орталық Азия',
     qm: 'Şarqiy ve Merkezi Asiya',
   },
-  groups: {
-    ancientJapan: ancientJapan_SkillGroup_Data,
-    ancientKorea: ancientKorea_SkillGroup_Data,
-    earlyChina: earlyChina_SkillGroup_Data,
-    imperialChina: imperialChina_SkillGroup_Data,
-    innerAsia: innerAsia_SkillGroup_Data,
-  },
+  groups: [
+    ancientJapan_SkillGroup_Data,
+    ancientKorea_SkillGroup_Data,
+    earlyChina_SkillGroup_Data,
+    imperialChina_SkillGroup_Data,
+    innerAsia_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'China, Korea, Japan, and Inner Asian steppe regions show coexistence and interaction between settled and mobile societies.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const subtractLikeDenominators_Skill_Data = buildSkillConfig({
+export const subtractLikeDenominators_Skill_Data = defineSkill({
   slug: 'subtractLikeDenominators',
   id: '80d0e1fc-eda0-4b6f-8aad-a27971ba7650',
   name: {

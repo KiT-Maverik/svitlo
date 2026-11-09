@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const popAnElementFromAStack_Skill_Data = buildSkillConfig({
+export const popAnElementFromAStack_Skill_Data = defineSkill({
   slug: 'popAnElementFromAStack',
   id: '6ceb4b87-a744-4a52-98fe-c2b3e13b7404',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const equatorialCoordinates_Skill_Data = buildSkillConfig({
+export const equatorialCoordinates_Skill_Data = defineSkill({
   slug: 'equatorialCoordinates',
   id: 'fe335c55-c2a9-4818-8693-bf731a20ba57',
   name: {

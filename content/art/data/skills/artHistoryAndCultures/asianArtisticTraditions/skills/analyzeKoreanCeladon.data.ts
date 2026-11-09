@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeKoreanCeladon_Skill_Data = buildSkillConfig({
+export const analyzeKoreanCeladon_Skill_Data = defineSkill({
   slug: 'analyzeKoreanCeladon',
   id: 'eafea3b4-c39e-465b-a60f-0c76a649ac21',
   name: {

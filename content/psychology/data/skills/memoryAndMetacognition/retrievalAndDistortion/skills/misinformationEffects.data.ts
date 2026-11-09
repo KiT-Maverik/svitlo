@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const misinformationEffects_Skill_Data = buildSkillConfig({
+export const misinformationEffects_Skill_Data = defineSkill({
   slug: 'misinformationEffects',
   id: 'be41d3ed-d0b9-4a25-90df-7e97ecd1b507',
   name: {

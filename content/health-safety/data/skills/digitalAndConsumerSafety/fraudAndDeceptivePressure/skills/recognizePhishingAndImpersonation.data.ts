@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizePhishingAndImpersonation_Skill_Data = buildSkillConfig({
+export const recognizePhishingAndImpersonation_Skill_Data = defineSkill({
   slug: 'recognizePhishingAndImpersonation',
   id: 'cb5a3fcf-85a6-4a72-9277-f3e4608c71ec',
   name: {

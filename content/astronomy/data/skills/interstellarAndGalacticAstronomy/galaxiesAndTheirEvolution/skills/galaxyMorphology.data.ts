@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const galaxyMorphology_Skill_Data = buildSkillConfig({
+export const galaxyMorphology_Skill_Data = defineSkill({
   slug: 'galaxyMorphology',
   id: '73b44801-2b4b-4da3-98c3-c874cca5532c',
   name: {

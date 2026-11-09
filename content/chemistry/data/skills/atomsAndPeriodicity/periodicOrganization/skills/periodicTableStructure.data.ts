@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const periodicTableStructure_Skill_Data = buildSkillConfig({
+export const periodicTableStructure_Skill_Data = defineSkill({
   slug: 'periodicTableStructure',
   id: '59616b96-9c8d-41e9-94eb-126d6afb3485',
   name: {

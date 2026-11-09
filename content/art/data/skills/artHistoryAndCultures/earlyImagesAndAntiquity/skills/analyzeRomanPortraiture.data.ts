@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeRomanPortraiture_Skill_Data = buildSkillConfig({
+export const analyzeRomanPortraiture_Skill_Data = defineSkill({
   slug: 'analyzeRomanPortraiture',
   id: 'e312357a-8f73-4dae-a7d7-ce571044e321',
   name: {

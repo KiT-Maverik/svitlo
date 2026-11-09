@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheStructureOfASoftwareObject_Skill_Data = buildSkillConfig({
+export const explainTheStructureOfASoftwareObject_Skill_Data = defineSkill({
   slug: 'explainTheStructureOfASoftwareObject',
   id: 'a827a8b7-36b9-48f5-8295-32019503251d',
   name: {

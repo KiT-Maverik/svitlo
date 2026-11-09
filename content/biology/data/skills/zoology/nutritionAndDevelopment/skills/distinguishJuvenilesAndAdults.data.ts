@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishJuvenilesAndAdults_Skill_Data = buildSkillConfig({
+export const distinguishJuvenilesAndAdults_Skill_Data = defineSkill({
   slug: 'distinguishJuvenilesAndAdults',
   id: '33455386-fd04-4175-887a-4422c41ec4b0',
   name: {

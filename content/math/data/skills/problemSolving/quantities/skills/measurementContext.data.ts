@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const measurementContext_Skill_Data = buildSkillConfig({
+export const measurementContext_Skill_Data = defineSkill({
   slug: 'measurementContext',
   id: '62d74e18-5c86-4038-b3c0-59f30a201da3',
   name: {

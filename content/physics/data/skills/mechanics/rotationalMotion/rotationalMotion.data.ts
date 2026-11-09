@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,
@@ -7,7 +7,7 @@ import {
   explainTorque_Skill_Data,
 } from './skills';
 
-export const rotationalMotion_SkillGroup_Data = buildSkillGroupConfig({
+export const rotationalMotion_SkillGroup_Data = defineSkillGroup({
   slug: 'rotationalMotion',
   id: 'a5d66a29-ba09-4f21-99af-091fee972aa9',
   name: {
@@ -41,13 +41,12 @@ export const rotationalMotion_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Айналмалы қозғалыс',
     qm: 'Aylanma areket',
   },
-  skills: {
-    distinguishRotationAboutAnAxisFromMotionAlongACircle:
-      distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,
-    explainConservationOfAngularMomentum: explainConservationOfAngularMomentum_Skill_Data,
-    explainRotationalInertia: explainRotationalInertia_Skill_Data,
-    explainTorque: explainTorque_Skill_Data,
-  },
+  skills: [
+    distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,
+    explainConservationOfAngularMomentum_Skill_Data,
+    explainRotationalInertia_Skill_Data,
+    explainTorque_Skill_Data,
+  ],
   description: {
     methodological:
       "Rotation involves torque, mass distribution, and inertial properties. Conservation of angular momentum describes a system's motion when there is no net external torque.",

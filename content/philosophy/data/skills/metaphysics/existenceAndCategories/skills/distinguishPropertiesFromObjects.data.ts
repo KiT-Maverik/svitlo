@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishPropertiesFromObjects_Skill_Data = buildSkillConfig({
+export const distinguishPropertiesFromObjects_Skill_Data = defineSkill({
   slug: 'distinguishPropertiesFromObjects',
   id: '548cff5b-2644-450d-8432-a23907bd8741',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hotBigBangModel_Skill_Data = buildSkillConfig({
+export const hotBigBangModel_Skill_Data = defineSkill({
   slug: 'hotBigBangModel',
   id: '7c7c9caf-ee8f-4064-b704-1f890b97a7b1',
   name: {

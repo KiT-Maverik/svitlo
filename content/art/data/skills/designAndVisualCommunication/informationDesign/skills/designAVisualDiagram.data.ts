@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const designAVisualDiagram_Skill_Data = buildSkillConfig({
+export const designAVisualDiagram_Skill_Data = defineSkill({
   slug: 'designAVisualDiagram',
   id: '34488c4e-d90e-4540-90f6-ca6576840a75',
   name: {

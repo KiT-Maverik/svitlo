@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const cardiopulmonaryResuscitation_Skill_Data = buildSkillConfig({
+export const cardiopulmonaryResuscitation_Skill_Data = defineSkill({
   slug: 'cardiopulmonaryResuscitation',
   id: 'a4256aa9-3595-4c24-ba2c-048235fe5874',
   name: {

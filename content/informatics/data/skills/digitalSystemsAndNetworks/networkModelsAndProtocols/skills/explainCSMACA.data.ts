@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainCSMACA_Skill_Data = buildSkillConfig({
+export const explainCSMACA_Skill_Data = defineSkill({
   slug: 'explainCSMACA',
   id: '6525705d-4238-434e-bdec-11698781e0b6',
   name: {

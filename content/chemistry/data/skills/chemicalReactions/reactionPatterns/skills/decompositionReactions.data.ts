@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const decompositionReactions_Skill_Data = buildSkillConfig({
+export const decompositionReactions_Skill_Data = defineSkill({
   slug: 'decompositionReactions',
   id: '37417f58-dc4a-4800-b078-29f322327f52',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishNumericalFromQualitativeIdentity_Skill_Data = buildSkillConfig({
+export const distinguishNumericalFromQualitativeIdentity_Skill_Data = defineSkill({
   slug: 'distinguishNumericalFromQualitativeIdentity',
   id: '5d3a0848-c459-4b0a-b10d-deeafd965632',
   name: {

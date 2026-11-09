@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const originOfTheMoon_Skill_Data = buildSkillConfig({
+export const originOfTheMoon_Skill_Data = defineSkill({
   slug: 'originOfTheMoon',
   id: '011a8a09-cde6-4b21-a5b6-1cbd8dc8d74f',
   name: {

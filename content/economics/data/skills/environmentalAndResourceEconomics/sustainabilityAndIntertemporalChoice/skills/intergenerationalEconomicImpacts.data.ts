@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const intergenerationalEconomicImpacts_Skill_Data = buildSkillConfig({
+export const intergenerationalEconomicImpacts_Skill_Data = defineSkill({
   slug: 'intergenerationalEconomicImpacts',
   id: '09226778-fe37-4dc9-8a1d-3806a0c1fb8b',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { currenciesAndExternalBalances_SkillGroup_Data } from './currenciesAndExternalBalances/currenciesAndExternalBalances.data';
 import { internationalFinance_SkillGroup_Data } from './internationalFinance/internationalFinance.data';
 import { specializationAndTradeGains_SkillGroup_Data } from './specializationAndTradeGains/specializationAndTradeGains.data';
 import { tradePolicy_SkillGroup_Data } from './tradePolicy/tradePolicy.data';
 
-export const internationalEconomics_SkillDomain_Data = buildSkillDomainConfig({
+export const internationalEconomics_SkillDomain_Data = defineSkillDomain({
   slug: 'internationalEconomics',
   id: '0d701503-d2d5-4d69-8d8c-d8aebc5bff50',
-  name: {
+  title: {
     en: 'Міжнародна економіка',
     zh: '国际经济学',
     hi: 'अंतरराष्ट्रीय अर्थशास्त्र',
@@ -39,12 +39,12 @@ export const internationalEconomics_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Халықаралық экономика',
     qm: 'Halqlarara iqtisat',
   },
-  groups: {
-    currenciesAndExternalBalances: currenciesAndExternalBalances_SkillGroup_Data,
-    internationalFinance: internationalFinance_SkillGroup_Data,
-    specializationAndTradeGains: specializationAndTradeGains_SkillGroup_Data,
-    tradePolicy: tradePolicy_SkillGroup_Data,
-  },
+  groups: [
+    currenciesAndExternalBalances_SkillGroup_Data,
+    internationalFinance_SkillGroup_Data,
+    specializationAndTradeGains_SkillGroup_Data,
+    tradePolicy_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Countries are connected by flows of goods, services, capital, and foreign-currency payments. International economic effects cannot be reduced to the geography of trade routes.',

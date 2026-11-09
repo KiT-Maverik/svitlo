@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   dayAndNight_Skill_Data,
@@ -7,7 +7,7 @@ import {
   solsticesAndEquinoxes_Skill_Data,
 } from './skills';
 
-export const terrestrialSkyCycles_SkillGroup_Data = buildSkillGroupConfig({
+export const terrestrialSkyCycles_SkillGroup_Data = defineSkillGroup({
   slug: 'terrestrialSkyCycles',
   id: 'c8f35ba8-a7b9-4e99-83bc-1f21326aafc7',
   name: {
@@ -41,12 +41,12 @@ export const terrestrialSkyCycles_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жерден байқалатын аспан циклдері',
     qm: 'Yerden körülgen kök devirleri',
   },
-  skills: {
-    dayAndNight: dayAndNight_Skill_Data,
-    seasons: seasons_Skill_Data,
-    solarAltitudeAndDaylight: solarAltitudeAndDaylight_Skill_Data,
-    solsticesAndEquinoxes: solsticesAndEquinoxes_Skill_Data,
-  },
+  skills: [
+    dayAndNight_Skill_Data,
+    seasons_Skill_Data,
+    solarAltitudeAndDaylight_Skill_Data,
+    solsticesAndEquinoxes_Skill_Data,
+  ],
   description: {
     methodological:
       "Earth's orientation with respect to sunlight generates daily and annual changes in the visible sky and the duration of daylight.",

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientSaharanPastoralists_Skill_Data = buildSkillConfig({
+export const ancientSaharanPastoralists_Skill_Data = defineSkill({
   slug: 'ancientSaharanPastoralists',
   id: '89c98f7f-10cd-4622-bb8a-18eb8c688ad8',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   recognizeExplosiveOrdnanceRisk_Skill_Data,
@@ -8,7 +8,7 @@ import {
   respondToAttackWarnings_Skill_Data,
 } from './skills';
 
-export const conflictRelatedDangers_SkillGroup_Data = buildSkillGroupConfig({
+export const conflictRelatedDangers_SkillGroup_Data = defineSkillGroup({
   slug: 'conflictRelatedDangers',
   id: '82adb658-f786-4948-ae59-6e7a333a0ffe',
   name: {
@@ -42,13 +42,13 @@ export const conflictRelatedDangers_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қақтығысқа байланысты қауіптер',
     qm: 'Çatışmalarğa bağlı telükeler',
   },
-  skills: {
-    recognizeExplosiveOrdnanceRisk: recognizeExplosiveOrdnanceRisk_Skill_Data,
-    recognizeHazardsInDamagedBuildings: recognizeHazardsInDamagedBuildings_Skill_Data,
-    respondToAnImmediateAttack: respondToAnImmediateAttack_Skill_Data,
-    respondToASuspectedExplosiveObject: respondToASuspectedExplosiveObject_Skill_Data,
-    respondToAttackWarnings: respondToAttackWarnings_Skill_Data,
-  },
+  skills: [
+    recognizeExplosiveOrdnanceRisk_Skill_Data,
+    recognizeHazardsInDamagedBuildings_Skill_Data,
+    respondToAnImmediateAttack_Skill_Data,
+    respondToASuspectedExplosiveObject_Skill_Data,
+    respondToAttackWarnings_Skill_Data,
+  ],
   description: {
     methodological:
       'Armed conflict can produce immediate threats and leave dangerous remnants; civil protection centres on avoidance, shelter, and reporting rather than handling weapons.',

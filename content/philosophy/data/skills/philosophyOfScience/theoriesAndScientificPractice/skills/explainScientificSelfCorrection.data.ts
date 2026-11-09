@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainScientificSelfCorrection_Skill_Data = buildSkillConfig({
+export const explainScientificSelfCorrection_Skill_Data = defineSkill({
   slug: 'explainScientificSelfCorrection',
   id: 'd22d7e13-e9d7-41c3-a8e6-5d9befd0fa15',
   name: {

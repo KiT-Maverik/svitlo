@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const industrialization_Skill_Data = buildSkillConfig({
+export const industrialization_Skill_Data = defineSkill({
   slug: 'industrialization',
   id: '0c78c153-0b93-48c7-9218-7f9d3d7c0fc3',
   name: {

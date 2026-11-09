@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { jointsAndFasteners_SkillGroup_Data } from './jointsAndFasteners/jointsAndFasteners.data';
 import { materialSelection_SkillGroup_Data } from './materialSelection/materialSelection.data';
 import { surfacesAndFit_SkillGroup_Data } from './surfacesAndFit/surfacesAndFit.data';
 
-export const materialsAndConnections_SkillDomain_Data = buildSkillDomainConfig({
+export const materialsAndConnections_SkillDomain_Data = defineSkillDomain({
   slug: 'materialsAndConnections',
   id: '8a847ef2-5004-4773-b074-50146f9d1b34',
-  name: {
+  title: {
     en: 'Materials and Connections',
     zh: '材料与连接',
     hi: 'सामग्री और जोड़',
@@ -38,11 +38,11 @@ export const materialsAndConnections_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Материалдар мен қосылыстар',
     qm: 'Malzemeler ve bağlanışlar',
   },
-  groups: {
-    jointsAndFasteners: jointsAndFasteners_SkillGroup_Data,
-    materialSelection: materialSelection_SkillGroup_Data,
-    surfacesAndFit: surfacesAndFit_SkillGroup_Data,
-  },
+  groups: [
+    jointsAndFasteners_SkillGroup_Data,
+    materialSelection_SkillGroup_Data,
+    surfacesAndFit_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Material choice and the quality of interfaces determine whether parts carry loads, resist their environment, assemble correctly and remain usable. This domain focuses on technical suitability rather than the chemistry of substances.',

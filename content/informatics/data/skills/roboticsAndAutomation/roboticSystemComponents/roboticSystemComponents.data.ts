@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   identifyAnActuatorsPurpose_Skill_Data,
@@ -7,7 +7,7 @@ import {
   modelTheSensorToActionRelationship_Skill_Data,
 } from './skills';
 
-export const roboticSystemComponents_SkillGroup_Data = buildSkillGroupConfig({
+export const roboticSystemComponents_SkillGroup_Data = defineSkillGroup({
   slug: 'roboticSystemComponents',
   id: '9f96ada8-9d7a-4879-bd0d-25bb482d107d',
   name: {
@@ -41,12 +41,12 @@ export const roboticSystemComponents_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Робот жүйесінің компоненттері',
     qm: 'Robot sistemasınıñ qisımları',
   },
-  skills: {
-    identifyAnActuatorsPurpose: identifyAnActuatorsPurpose_Skill_Data,
-    identifyARobotController: identifyARobotController_Skill_Data,
-    identifyASensorsPurpose: identifyASensorsPurpose_Skill_Data,
-    modelTheSensorToActionRelationship: modelTheSensorToActionRelationship_Skill_Data,
-  },
+  skills: [
+    identifyAnActuatorsPurpose_Skill_Data,
+    identifyARobotController_Skill_Data,
+    identifyASensorsPurpose_Skill_Data,
+    modelTheSensorToActionRelationship_Skill_Data,
+  ],
   description: {
     methodological:
       'Information-processing roles of sensors, controllers, and actuators: receive a reading, apply a control rule, and change a state. This examines functional relationships rather than mechanical component design.',

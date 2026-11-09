@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const prioritizeRequirements_Skill_Data = buildSkillConfig({
+export const prioritizeRequirements_Skill_Data = defineSkill({
   slug: 'prioritizeRequirements',
   id: 'd8cdab54-3ea8-465e-9dd7-7c35de5b584f',
   name: {

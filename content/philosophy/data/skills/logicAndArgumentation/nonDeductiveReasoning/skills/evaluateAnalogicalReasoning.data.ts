@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAnalogicalReasoning_Skill_Data = buildSkillConfig({
+export const evaluateAnalogicalReasoning_Skill_Data = defineSkill({
   slug: 'evaluateAnalogicalReasoning',
   id: '68c45c5a-fd68-4468-8172-f4be74972d4b',
   name: {

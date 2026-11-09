@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainGeographicSpecializationOfEconomicActivities_Skill_Data = buildSkillConfig({
+export const explainGeographicSpecializationOfEconomicActivities_Skill_Data = defineSkill({
   slug: 'explainGeographicSpecializationOfEconomicActivities',
   id: '9a952782-450b-46a4-b00f-1fe433b67310',
   name: {

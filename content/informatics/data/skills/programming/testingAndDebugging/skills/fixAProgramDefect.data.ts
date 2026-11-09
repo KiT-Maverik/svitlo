@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fixAProgramDefect_Skill_Data = buildSkillConfig({
+export const fixAProgramDefect_Skill_Data = defineSkill({
   slug: 'fixAProgramDefect',
   id: '019afb04-e61e-42de-a593-f3cbbd99a849',
   name: {

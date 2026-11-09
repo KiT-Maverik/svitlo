@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const addSubtractTens_Skill_Data = buildSkillConfig({
+export const addSubtractTens_Skill_Data = defineSkill({
   slug: 'addSubtractTens',
   id: '7f04c06b-e844-4dff-8417-d7a9b6fadaca',
   name: {

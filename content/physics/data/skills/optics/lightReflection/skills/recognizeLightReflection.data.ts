@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeLightReflection_Skill_Data = buildSkillConfig({
+export const recognizeLightReflection_Skill_Data = defineSkill({
   slug: 'recognizeLightReflection',
   id: '0f51028e-3eb5-4310-8e8c-d2b7c60e8f1f',
   name: {

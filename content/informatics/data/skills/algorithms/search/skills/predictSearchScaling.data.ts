@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictSearchScaling_Skill_Data = buildSkillConfig({
+export const predictSearchScaling_Skill_Data = defineSkill({
   slug: 'predictSearchScaling',
   id: 'e1e1e2ea-7772-46ba-95f8-8edd0544b5ca',
   name: {

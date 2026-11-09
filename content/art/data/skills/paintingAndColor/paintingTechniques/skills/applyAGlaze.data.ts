@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyAGlaze_Skill_Data = buildSkillConfig({
+export const applyAGlaze_Skill_Data = defineSkill({
   slug: 'applyAGlaze',
   id: 'd358591e-6790-4617-84f1-394415a36252',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   contactEmergencyServices_Skill_Data,
@@ -7,7 +7,7 @@ import {
   understandEmergencyAlerts_Skill_Data,
 } from './skills';
 
-export const preparednessAndAlerts_SkillGroup_Data = buildSkillGroupConfig({
+export const preparednessAndAlerts_SkillGroup_Data = defineSkillGroup({
   slug: 'preparednessAndAlerts',
   id: '46337d52-efc7-4dff-bab7-e7ed47375763',
   name: {
@@ -41,12 +41,12 @@ export const preparednessAndAlerts_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дайындық және ескертулер',
     qm: 'Azırlıq ve tenbiler',
   },
-  skills: {
-    contactEmergencyServices: contactEmergencyServices_Skill_Data,
-    developAnEmergencyPlan: developAnEmergencyPlan_Skill_Data,
-    prepareEssentialEmergencySupplies: prepareEssentialEmergencySupplies_Skill_Data,
-    understandEmergencyAlerts: understandEmergencyAlerts_Skill_Data,
-  },
+  skills: [
+    contactEmergencyServices_Skill_Data,
+    developAnEmergencyPlan_Skill_Data,
+    prepareEssentialEmergencySupplies_Skill_Data,
+    understandEmergencyAlerts_Skill_Data,
+  ],
   description: {
     methodological:
       'Effective readiness considers local hazards, people requiring assistance, communication failures, and the difference between a warning and an instruction.',

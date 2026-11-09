@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   budgetDeficitAndSurplus_Skill_Data,
@@ -6,7 +6,7 @@ import {
   publicDebtSustainability_Skill_Data,
 } from './skills';
 
-export const publicBudgetAndDebt_SkillGroup_Data = buildSkillGroupConfig({
+export const publicBudgetAndDebt_SkillGroup_Data = defineSkillGroup({
   slug: 'publicBudgetAndDebt',
   id: '8a0568e7-420a-4ae1-a410-64489d73faf6',
   name: {
@@ -40,11 +40,11 @@ export const publicBudgetAndDebt_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Мемлекеттік бюджет және қарыз',
     qm: 'Devlet bütçesi ve borcu',
   },
-  skills: {
-    budgetDeficitAndSurplus: budgetDeficitAndSurplus_Skill_Data,
-    governmentRevenuesAndExpenditures: governmentRevenuesAndExpenditures_Skill_Data,
-    publicDebtSustainability: publicDebtSustainability_Skill_Data,
-  },
+  skills: [
+    budgetDeficitAndSurplus_Skill_Data,
+    governmentRevenuesAndExpenditures_Skill_Data,
+    publicDebtSustainability_Skill_Data,
+  ],
   description: {
     methodological:
       'Government revenue and spending occur over time; deficits create future obligations and opportunity costs.',

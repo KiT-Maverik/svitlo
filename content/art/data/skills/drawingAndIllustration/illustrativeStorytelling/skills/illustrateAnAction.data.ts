@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const illustrateAnAction_Skill_Data = buildSkillConfig({
+export const illustrateAnAction_Skill_Data = defineSkill({
   slug: 'illustrateAnAction',
   id: '6927891f-e744-49f2-b5f1-58522e96f8e6',
   name: {

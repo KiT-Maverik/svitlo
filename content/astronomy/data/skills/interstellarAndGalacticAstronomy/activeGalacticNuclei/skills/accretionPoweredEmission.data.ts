@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const accretionPoweredEmission_Skill_Data = buildSkillConfig({
+export const accretionPoweredEmission_Skill_Data = defineSkill({
   slug: 'accretionPoweredEmission',
   id: '9c5e3fce-a8a8-4d6f-b111-0b9bbeb3fed2',
   name: {

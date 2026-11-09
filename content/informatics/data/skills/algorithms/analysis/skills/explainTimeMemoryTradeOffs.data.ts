@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTimeMemoryTradeOffs_Skill_Data = buildSkillConfig({
+export const explainTimeMemoryTradeOffs_Skill_Data = defineSkill({
   slug: 'explainTimeMemoryTradeOffs',
   id: 'dbfd2d28-4781-4da5-901d-7b4188bc3dcc',
   name: {

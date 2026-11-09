@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretArchitecturalOrnament_Skill_Data = buildSkillConfig({
+export const interpretArchitecturalOrnament_Skill_Data = defineSkill({
   slug: 'interpretArchitecturalOrnament',
   id: '6dda5530-d26b-416e-8a15-f5c391e4b1c0',
   name: {

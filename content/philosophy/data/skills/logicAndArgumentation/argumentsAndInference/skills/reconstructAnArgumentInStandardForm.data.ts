@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reconstructAnArgumentInStandardForm_Skill_Data = buildSkillConfig({
+export const reconstructAnArgumentInStandardForm_Skill_Data = defineSkill({
   slug: 'reconstructAnArgumentInStandardForm',
   id: '5f586fce-6c27-435c-96a3-9a58e023a37b',
   name: {

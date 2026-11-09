@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareBodilyAndPsychologicalContinuityAccounts_Skill_Data = buildSkillConfig({
+export const compareBodilyAndPsychologicalContinuityAccounts_Skill_Data = defineSkill({
   slug: 'compareBodilyAndPsychologicalContinuityAccounts',
   id: '372796d1-3e4c-47d9-9a9f-f950f5323104',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const diodeApplications_Skill_Data = buildSkillConfig({
+export const diodeApplications_Skill_Data = defineSkill({
   slug: 'diodeApplications',
   id: '2b05a1a8-48e6-470f-93e1-a7eb0c58d971',
   name: {

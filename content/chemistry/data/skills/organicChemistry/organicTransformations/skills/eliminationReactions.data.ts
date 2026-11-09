@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const eliminationReactions_Skill_Data = buildSkillConfig({
+export const eliminationReactions_Skill_Data = defineSkill({
   slug: 'eliminationReactions',
   id: '02399136-ad33-48aa-b575-775a1e636706',
   name: {

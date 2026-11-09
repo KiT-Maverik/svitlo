@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const environmentalTaxes_Skill_Data = buildSkillConfig({
+export const environmentalTaxes_Skill_Data = defineSkill({
   slug: 'environmentalTaxes',
   id: 'fe2e4d20-5a9c-487f-84e2-f1881b3fd045',
   name: {

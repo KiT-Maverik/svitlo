@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const coordinateChangesInASharedDigitalProject_Skill_Data = buildSkillConfig({
+export const coordinateChangesInASharedDigitalProject_Skill_Data = defineSkill({
   slug: 'coordinateChangesInASharedDigitalProject',
   id: 'b9ca0419-8047-43a7-889b-4bd7d12e9e3e',
   name: {

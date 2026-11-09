@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessLimitationsOfGeographicDataSources_Skill_Data = buildSkillConfig({
+export const assessLimitationsOfGeographicDataSources_Skill_Data = defineSkill({
   slug: 'assessLimitationsOfGeographicDataSources',
   id: 'c6769bab-2816-494b-889c-1349e8f03183',
   name: {

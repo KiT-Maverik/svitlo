@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareBatchAndContinuousProduction_Skill_Data = buildSkillConfig({
+export const compareBatchAndContinuousProduction_Skill_Data = defineSkill({
   slug: 'compareBatchAndContinuousProduction',
   id: '11b2af66-42c3-49a4-ab43-628ad5b06c75',
   name: {

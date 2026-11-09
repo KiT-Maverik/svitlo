@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const composeAmount_Skill_Data = buildSkillConfig({
+export const composeAmount_Skill_Data = defineSkill({
   slug: 'composeAmount',
   id: 'bb0e7ba7-3325-4dac-80cc-0070988cc5ef',
   name: {

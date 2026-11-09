@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { directAndIndirectTaxes_Skill_Data, taxIncidence_Skill_Data, taxProgressivity_Skill_Data } from './skills';
 
-export const taxes_SkillGroup_Data = buildSkillGroupConfig({
+export const taxes_SkillGroup_Data = defineSkillGroup({
   slug: 'taxes',
   id: '9cf49796-f5b6-4d6d-b3da-9c297159ed0a',
   name: {
@@ -36,11 +36,11 @@ export const taxes_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Салықтар',
     qm: 'Vergiler',
   },
-  skills: {
-    directAndIndirectTaxes: directAndIndirectTaxes_Skill_Data,
-    taxIncidence: taxIncidence_Skill_Data,
-    taxProgressivity: taxProgressivity_Skill_Data,
-  },
+  skills: [
+    directAndIndirectTaxes_Skill_Data,
+    taxIncidence_Skill_Data,
+    taxProgressivity_Skill_Data,
+  ],
   description: {
     methodological:
       'Mandatory payments finance public revenue and can change the behavior of buyers, workers, and firms.',

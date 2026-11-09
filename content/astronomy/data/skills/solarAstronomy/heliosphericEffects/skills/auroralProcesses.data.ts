@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const auroralProcesses_Skill_Data = buildSkillConfig({
+export const auroralProcesses_Skill_Data = defineSkill({
   slug: 'auroralProcesses',
   id: 'b312d955-8ecf-4a11-b641-32987159bab8',
   name: {

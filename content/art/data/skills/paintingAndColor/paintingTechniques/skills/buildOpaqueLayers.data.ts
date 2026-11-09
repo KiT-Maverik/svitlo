@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const buildOpaqueLayers_Skill_Data = buildSkillConfig({
+export const buildOpaqueLayers_Skill_Data = defineSkill({
   slug: 'buildOpaqueLayers',
   id: 'e728ce66-f153-4af0-84a1-3ff2e2148be8',
   name: {

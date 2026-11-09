@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientIndianOceanTrade_Skill_Data = buildSkillConfig({
+export const ancientIndianOceanTrade_Skill_Data = defineSkill({
   slug: 'ancientIndianOceanTrade',
   id: '0727b9ee-9e76-4a8d-9159-29f8a79c9628',
   name: {

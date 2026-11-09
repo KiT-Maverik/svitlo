@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   constructInverseProblem_Skill_Data,
@@ -8,7 +8,7 @@ import {
   twoStepPlan_Skill_Data,
 } from './skills';
 
-export const planning_SkillGroup_Data = buildSkillGroupConfig({
+export const planning_SkillGroup_Data = defineSkillGroup({
   slug: 'planning',
   id: 'e6efe33e-ba9c-44c1-85c9-92ac9f83a74e',
   name: {
@@ -42,13 +42,13 @@ export const planning_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Planowanie rozwiązania',
     uk: 'Планування розв’язання',
   },
-  skills: {
-    twoStepPlan: twoStepPlan_Skill_Data,
-    threeStepPlan: threeStepPlan_Skill_Data,
-    constructInverseProblem: constructInverseProblem_Skill_Data,
-    explainAnswerUnits: explainAnswerUnits_Skill_Data,
-    multipleSolutionStrategies: multipleSolutionStrategies_Skill_Data,
-  },
+  skills: [
+    twoStepPlan_Skill_Data,
+    threeStepPlan_Skill_Data,
+    constructInverseProblem_Skill_Data,
+    explainAnswerUnits_Skill_Data,
+    multipleSolutionStrategies_Skill_Data,
+  ],
   description: {
     methodological:
       'Constructing and justifying a sequence of solution steps, checking units and answers, and considering alternative methods.',

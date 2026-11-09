@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const communicateDesignLimitations_Skill_Data = buildSkillConfig({
+export const communicateDesignLimitations_Skill_Data = defineSkill({
   slug: 'communicateDesignLimitations',
   id: '3807f9fd-f470-4d89-825e-bece47dad37c',
   name: {

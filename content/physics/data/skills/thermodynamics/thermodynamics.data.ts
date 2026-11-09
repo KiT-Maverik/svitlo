@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { heatTransferMechanisms_SkillGroup_Data } from './heatTransferMechanisms/heatTransferMechanisms.data';
 import { phaseTransitions_SkillGroup_Data } from './phaseTransitions/phaseTransitions.data';
 import { temperatureAndHeating_SkillGroup_Data } from './temperatureAndHeating/temperatureAndHeating.data';
 import { thermalInsulation_SkillGroup_Data } from './thermalInsulation/thermalInsulation.data';
 
-export const thermodynamics_SkillDomain_Data = buildSkillDomainConfig({
+export const thermodynamics_SkillDomain_Data = defineSkillDomain({
   slug: 'thermodynamics',
   id: '6cfe5648-73f4-4db4-a52b-f070d7f11430',
-  name: {
+  title: {
     en: 'Thermodynamics',
     qm: 'Termodinamika',
     zh: '热力学',
@@ -39,12 +39,12 @@ export const thermodynamics_SkillDomain_Data = buildSkillDomainConfig({
     ka: 'თერმოდინამიკა',
     kk: 'Термодинамика',
   },
-  groups: {
-    heatTransferMechanisms: heatTransferMechanisms_SkillGroup_Data,
-    phaseTransitions: phaseTransitions_SkillGroup_Data,
-    temperatureAndHeating: temperatureAndHeating_SkillGroup_Data,
-    thermalInsulation: thermalInsulation_SkillGroup_Data,
-  },
+  groups: [
+    heatTransferMechanisms_SkillGroup_Data,
+    phaseTransitions_SkillGroup_Data,
+    temperatureAndHeating_SkillGroup_Data,
+    thermalInsulation_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Thermal processes describe changes in temperature, energy transfer, and transitions between states of matter. Macroscopic observations are distinguished from particle-level explanations in the neighboring Domain.',

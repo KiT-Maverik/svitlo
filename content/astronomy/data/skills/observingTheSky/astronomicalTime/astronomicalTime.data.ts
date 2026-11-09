@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   astronomicalDatesAndEpochs_Skill_Data,
@@ -8,7 +8,7 @@ import {
   solarTime_Skill_Data,
 } from './skills';
 
-export const astronomicalTime_SkillGroup_Data = buildSkillGroupConfig({
+export const astronomicalTime_SkillGroup_Data = defineSkillGroup({
   slug: 'astronomicalTime',
   id: '40fbde37-c257-44a2-b82b-d38724a086ab',
   name: {
@@ -42,13 +42,13 @@ export const astronomicalTime_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'ასტრონომიული დრო',
     kk: 'Астрономиялық уақыт',
   },
-  skills: {
-    astronomicalDatesAndEpochs: astronomicalDatesAndEpochs_Skill_Data,
-    lunarCalendarCycles: lunarCalendarCycles_Skill_Data,
-    siderealTime: siderealTime_Skill_Data,
-    solarCalendarCycles: solarCalendarCycles_Skill_Data,
-    solarTime: solarTime_Skill_Data,
-  },
+  skills: [
+    astronomicalDatesAndEpochs_Skill_Data,
+    lunarCalendarCycles_Skill_Data,
+    siderealTime_Skill_Data,
+    solarCalendarCycles_Skill_Data,
+    solarTime_Skill_Data,
+  ],
   description: {
     methodological:
       'Timekeeping conventions derived from repeated celestial cycles support observation and comparison across dates, without constituting a curriculum in civil time zones.',

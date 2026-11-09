@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data = buildSkillConfig({
+export const distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data = defineSkill({
   slug: 'distinguishOpenSourceFromPubliclyVisibleCode',
   id: '6e39f271-6cb5-4a40-97fa-1d3d688e9ee7',
   name: {

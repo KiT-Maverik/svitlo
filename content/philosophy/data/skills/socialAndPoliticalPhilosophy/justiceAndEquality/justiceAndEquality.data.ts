@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeProceduralFairness_Skill_Data,
@@ -7,7 +7,7 @@ import {
   evaluateAClaimAboutDiscrimination_Skill_Data,
 } from './skills';
 
-export const justiceAndEquality_SkillGroup_Data = buildSkillGroupConfig({
+export const justiceAndEquality_SkillGroup_Data = defineSkillGroup({
   slug: 'justiceAndEquality',
   id: '8c4b6686-1f29-4c7e-a291-3562b147fc87',
   name: {
@@ -41,12 +41,12 @@ export const justiceAndEquality_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Әділеттілік пен теңдік',
     qm: 'Adalet ve teñlik',
   },
-  skills: {
-    analyzeProceduralFairness: analyzeProceduralFairness_Skill_Data,
-    compareDistributivePrinciples: compareDistributivePrinciples_Skill_Data,
-    distinguishEqualityFromEquity: distinguishEqualityFromEquity_Skill_Data,
-    evaluateAClaimAboutDiscrimination: evaluateAClaimAboutDiscrimination_Skill_Data,
-  },
+  skills: [
+    analyzeProceduralFairness_Skill_Data,
+    compareDistributivePrinciples_Skill_Data,
+    distinguishEqualityFromEquity_Skill_Data,
+    evaluateAClaimAboutDiscrimination_Skill_Data,
+  ],
   description: {
     methodological:
       'Claims of fairness depend on what is distributed, who qualifies for consideration, and which differences are morally relevant.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectAnEquivocationFallacy_Skill_Data = buildSkillConfig({
+export const detectAnEquivocationFallacy_Skill_Data = defineSkill({
   slug: 'detectAnEquivocationFallacy',
   id: '14c8c084-88e7-4874-8e69-7e693dc5c367',
   name: {

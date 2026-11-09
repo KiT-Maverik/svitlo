@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   communicateRefusalAndLimits_Skill_Data,
@@ -6,7 +6,7 @@ import {
   recognizeValidConsent_Skill_Data,
 } from './skills';
 
-export const bodilyAutonomyAndConsent_SkillGroup_Data = buildSkillGroupConfig({
+export const bodilyAutonomyAndConsent_SkillGroup_Data = defineSkillGroup({
   slug: 'bodilyAutonomyAndConsent',
   id: '4fc1be80-606f-4c0b-8e7f-17f01a6c8d52',
   name: {
@@ -40,11 +40,11 @@ export const bodilyAutonomyAndConsent_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дене дербестігі және келісім',
     qm: 'Beden müstakilligi ve rıza',
   },
-  skills: {
-    communicateRefusalAndLimits: communicateRefusalAndLimits_Skill_Data,
-    recognizePersonalBoundaries: recognizePersonalBoundaries_Skill_Data,
-    recognizeValidConsent: recognizeValidConsent_Skill_Data,
-  },
+  skills: [
+    communicateRefusalAndLimits_Skill_Data,
+    recognizePersonalBoundaries_Skill_Data,
+    recognizeValidConsent_Skill_Data,
+  ],
   description: {
     methodological:
       'Personal space, privacy, and permission govern respectful contact; consent must not be inferred from silence, fear, or power imbalance.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const digitPlaceValue_Skill_Data = buildSkillConfig({
+export const digitPlaceValue_Skill_Data = defineSkill({
   slug: 'digitPlaceValue',
   id: 'bfa629a1-292a-4a80-8305-001a2506e4bb',
   name: {

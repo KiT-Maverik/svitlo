@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishAtomicFromCompoundPropositions_Skill_Data = buildSkillConfig({
+export const distinguishAtomicFromCompoundPropositions_Skill_Data = defineSkill({
   slug: 'distinguishAtomicFromCompoundPropositions',
   id: '6b4056de-d47a-4c5f-a931-226f4780f8eb',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const advertisingClaims_Skill_Data = buildSkillConfig({
+export const advertisingClaims_Skill_Data = defineSkill({
   slug: 'advertisingClaims',
   id: 'c9261d70-a201-4426-8115-27743229b721',
   name: {

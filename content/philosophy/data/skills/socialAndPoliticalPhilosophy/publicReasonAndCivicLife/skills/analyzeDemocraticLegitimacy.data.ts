@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeDemocraticLegitimacy_Skill_Data = buildSkillConfig({
+export const analyzeDemocraticLegitimacy_Skill_Data = defineSkill({
   slug: 'analyzeDemocraticLegitimacy',
   id: '21de2823-4d94-406e-9f76-db10e087994f',
   name: {

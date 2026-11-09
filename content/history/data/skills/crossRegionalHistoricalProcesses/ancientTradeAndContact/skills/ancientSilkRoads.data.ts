@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientSilkRoads_Skill_Data = buildSkillConfig({
+export const ancientSilkRoads_Skill_Data = defineSkill({
   slug: 'ancientSilkRoads',
   id: 'd0f45514-bb04-44ec-a47a-5a3238038ae4',
   name: {

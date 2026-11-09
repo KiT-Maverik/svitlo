@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   constructContourDrawing_Skill_Data,
@@ -8,7 +8,7 @@ import {
   renderLightAndShadow_Skill_Data,
 } from './skills';
 
-export const observationalDrawing_SkillGroup_Data = buildSkillGroupConfig({
+export const observationalDrawing_SkillGroup_Data = defineSkillGroup({
   slug: 'observationalDrawing',
   id: '8c0aaf8a-035b-416c-bc06-7639233dde43',
   name: {
@@ -42,13 +42,13 @@ export const observationalDrawing_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бақылау арқылы сурет салу',
     qm: 'Müşahedeye dayalı çizim',
   },
-  skills: {
-    constructContourDrawing: constructContourDrawing_Skill_Data,
-    controlDrawingMarks: controlDrawingMarks_Skill_Data,
-    drawFromObservation: drawFromObservation_Skill_Data,
-    renderDrawnTexture: renderDrawnTexture_Skill_Data,
-    renderLightAndShadow: renderLightAndShadow_Skill_Data,
-  },
+  skills: [
+    constructContourDrawing_Skill_Data,
+    controlDrawingMarks_Skill_Data,
+    drawFromObservation_Skill_Data,
+    renderDrawnTexture_Skill_Data,
+    renderLightAndShadow_Skill_Data,
+  ],
   description: {
     methodological:
       'Close observation of proportions, edges, tonal values and surfaces offers a foundation for describing visible subjects rather than relying on schematic symbols.',

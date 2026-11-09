@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const specifyPromptConstraints_Skill_Data = buildSkillConfig({
+export const specifyPromptConstraints_Skill_Data = defineSkill({
   slug: 'specifyPromptConstraints',
   id: 'c3fe58c1-9d38-4457-9f4b-0238f2bf5918',
   name: {

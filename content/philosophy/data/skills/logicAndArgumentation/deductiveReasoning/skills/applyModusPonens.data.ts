@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyModusPonens_Skill_Data = buildSkillConfig({
+export const applyModusPonens_Skill_Data = defineSkill({
   slug: 'applyModusPonens',
   id: 'ad886630-f7ee-456d-a8a8-db01f9caaa80',
   name: {

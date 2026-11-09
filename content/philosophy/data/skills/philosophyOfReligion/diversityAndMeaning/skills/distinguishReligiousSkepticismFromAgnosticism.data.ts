@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishReligiousSkepticismFromAgnosticism_Skill_Data = buildSkillConfig({
+export const distinguishReligiousSkepticismFromAgnosticism_Skill_Data = defineSkill({
   slug: 'distinguishReligiousSkepticismFromAgnosticism',
   id: 'b53dab92-01a0-461c-812f-1df2f2c21523',
   name: {

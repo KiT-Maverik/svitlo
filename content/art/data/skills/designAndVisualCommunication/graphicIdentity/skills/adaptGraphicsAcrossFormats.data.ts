@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const adaptGraphicsAcrossFormats_Skill_Data = buildSkillConfig({
+export const adaptGraphicsAcrossFormats_Skill_Data = defineSkill({
   slug: 'adaptGraphicsAcrossFormats',
   id: 'db056a85-53f1-4723-933b-52a83699554b',
   name: {

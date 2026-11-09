@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyObjectAbstraction_Skill_Data = buildSkillConfig({
+export const applyObjectAbstraction_Skill_Data = defineSkill({
   slug: 'applyObjectAbstraction',
   id: '13839a46-aec2-4764-bf85-88e7ebbd35de',
   name: {

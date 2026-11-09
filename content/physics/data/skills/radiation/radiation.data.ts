@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { electromagneticRadiation_SkillGroup_Data } from './electromagneticRadiation/electromagneticRadiation.data';
 import { radiationAndMatter_SkillGroup_Data } from './radiationAndMatter/radiationAndMatter.data';
 
-export const radiation_SkillDomain_Data = buildSkillDomainConfig({
+export const radiation_SkillDomain_Data = defineSkillDomain({
   slug: 'radiation',
   id: 'd6520f72-342a-4286-9f2e-5e45b70a3971',
-  name: {
+  title: {
     en: 'Radiation',
     zh: '辐射',
     hi: 'विकिरण',
@@ -37,10 +37,10 @@ export const radiation_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Сәулелену',
     qm: 'Nurlanuv',
   },
-  groups: {
-    electromagneticRadiation: electromagneticRadiation_SkillGroup_Data,
-    radiationAndMatter: radiationAndMatter_SkillGroup_Data,
-  },
+  groups: [
+    electromagneticRadiation_SkillGroup_Data,
+    radiationAndMatter_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Radiation describes energy transfer from a source through space, including invisible parts of the electromagnetic spectrum and their interaction with matter. Geometric image formation with light belongs to Optics.',

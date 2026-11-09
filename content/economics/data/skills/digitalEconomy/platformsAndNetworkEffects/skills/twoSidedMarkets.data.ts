@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const twoSidedMarkets_Skill_Data = buildSkillConfig({
+export const twoSidedMarkets_Skill_Data = defineSkill({
   slug: 'twoSidedMarkets',
   id: '0b950209-d739-4539-b243-0546871f529e',
   name: {

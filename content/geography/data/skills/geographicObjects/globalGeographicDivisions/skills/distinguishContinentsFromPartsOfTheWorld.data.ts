@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishContinentsFromPartsOfTheWorld_Skill_Data = buildSkillConfig({
+export const distinguishContinentsFromPartsOfTheWorld_Skill_Data = defineSkill({
   slug: 'distinguishContinentsFromPartsOfTheWorld',
   id: 'd7e8a715-4407-414f-b7f5-081ade12ea06',
   name: {

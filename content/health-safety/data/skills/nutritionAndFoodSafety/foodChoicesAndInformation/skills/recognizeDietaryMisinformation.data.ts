@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeDietaryMisinformation_Skill_Data = buildSkillConfig({
+export const recognizeDietaryMisinformation_Skill_Data = defineSkill({
   slug: 'recognizeDietaryMisinformation',
   id: '6f324622-539c-40d6-964c-d4cd82d6e6db',
   name: {

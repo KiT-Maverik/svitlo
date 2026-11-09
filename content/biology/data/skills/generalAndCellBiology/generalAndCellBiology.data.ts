@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { cellDivision_SkillGroup_Data } from './cellDivision/cellDivision.data';
 import { cellularStructure_SkillGroup_Data } from './cellularStructure/cellularStructure.data';
 import { levelsOfOrganization_SkillGroup_Data } from './levelsOfOrganization/levelsOfOrganization.data';
 import { lifeProcesses_SkillGroup_Data } from './lifeProcesses/lifeProcesses.data';
 
-export const generalAndCellBiology_SkillDomain_Data = buildSkillDomainConfig({
+export const generalAndCellBiology_SkillDomain_Data = defineSkillDomain({
   slug: 'generalAndCellBiology',
   id: '189cda52-8721-4261-8731-544cc613aadb',
-  name: {
+  title: {
     en: 'General and Cell Biology',
     zh: '普通生物学与细胞生物学',
     hi: 'सामान्य एवं कोशिका जीवविज्ञान',
@@ -39,12 +39,12 @@ export const generalAndCellBiology_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Жалпы және жасуша биологиясы',
     qm: 'Umumiy ve üceyre biologiyası',
   },
-  groups: {
-    cellDivision: cellDivision_SkillGroup_Data,
-    cellularStructure: cellularStructure_SkillGroup_Data,
-    levelsOfOrganization: levelsOfOrganization_SkillGroup_Data,
-    lifeProcesses: lifeProcesses_SkillGroup_Data,
-  },
+  groups: [
+    cellDivision_SkillGroup_Data,
+    cellularStructure_SkillGroup_Data,
+    levelsOfOrganization_SkillGroup_Data,
+    lifeProcesses_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Shared principles of cellular organism organization, from the cell to interactions among organs, as well as metabolism, growth, and responses. Specific human systems and particular taxa are addressed in their respective Domains.',

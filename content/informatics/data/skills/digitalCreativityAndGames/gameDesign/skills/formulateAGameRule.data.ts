@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const formulateAGameRule_Skill_Data = buildSkillConfig({
+export const formulateAGameRule_Skill_Data = defineSkill({
   slug: 'formulateAGameRule',
   id: 'a0f1bf7b-0343-40cd-aad5-72e3dca3e26a',
   name: {

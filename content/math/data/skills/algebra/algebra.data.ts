@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { equalities_SkillGroup_Data } from './equalities/equalities.data';
 import { expressions_SkillGroup_Data } from './expressions/expressions.data';
@@ -6,10 +6,10 @@ import { formalization_SkillGroup_Data } from './formalization/formalization.dat
 import { patterns_SkillGroup_Data } from './patterns/patterns.data';
 import { unknowns_SkillGroup_Data } from './unknowns/unknowns.data';
 
-export const algebra_SkillDomain_Data = buildSkillDomainConfig({
+export const algebra_SkillDomain_Data = defineSkillDomain({
   slug: 'algebra',
   id: '5b1cb581-be28-4de4-a854-b32fbfea95d7',
-  name: {
+  title: {
     en: 'Algebra',
     qm: 'Algebra',
     lt: 'Algebra',
@@ -40,13 +40,13 @@ export const algebra_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Algebra',
     uk: 'Алгебра',
   },
-  groups: {
-    equalities: equalities_SkillGroup_Data,
-    expressions: expressions_SkillGroup_Data,
-    formalization: formalization_SkillGroup_Data,
-    patterns: patterns_SkillGroup_Data,
-    unknowns: unknowns_SkillGroup_Data,
-  },
+  groups: [
+    equalities_SkillGroup_Data,
+    expressions_SkillGroup_Data,
+    formalization_SkillGroup_Data,
+    patterns_SkillGroup_Data,
+    unknowns_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Mathematical expressions, equalities, inequalities, variables and unknowns, patterns, generalizations, and symbolic descriptions of relationships. The scope is not constrained to a particular age, numerical range, or notation.',

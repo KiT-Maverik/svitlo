@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifyGeographicObjectsByNaturalOrHumanMadeOrigin_Skill_Data = buildSkillConfig({
+export const classifyGeographicObjectsByNaturalOrHumanMadeOrigin_Skill_Data = defineSkill({
   slug: 'classifyGeographicObjectsByNaturalOrHumanMadeOrigin',
   id: '5bb7c6fb-fb9a-4531-b2b2-a6b53dfca33f',
   name: {

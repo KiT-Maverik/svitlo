@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exoplanetRadius_Skill_Data = buildSkillConfig({
+export const exoplanetRadius_Skill_Data = defineSkill({
   slug: 'exoplanetRadius',
   id: '08ee542d-9df0-41ab-b5ae-cb7d8d81dc3a',
   name: {

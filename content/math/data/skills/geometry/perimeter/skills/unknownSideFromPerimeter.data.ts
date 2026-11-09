@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const unknownSideFromPerimeter_Skill_Data = buildSkillConfig({
+export const unknownSideFromPerimeter_Skill_Data = defineSkill({
   slug: 'unknownSideFromPerimeter',
   id: '41da7699-fdbd-4872-bb37-615a456a92c3',
   name: {

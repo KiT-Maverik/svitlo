@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const predictHowALoadAffectsFloating_Skill_Data = buildSkillConfig({
+export const predictHowALoadAffectsFloating_Skill_Data = defineSkill({
   slug: 'predictHowALoadAffectsFloating',
   id: 'd09491e9-fca8-4cac-952d-4794e4e2372c',
   name: {

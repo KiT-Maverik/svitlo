@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretRemoteSensingImagery_Skill_Data = buildSkillConfig({
+export const interpretRemoteSensingImagery_Skill_Data = defineSkill({
   slug: 'interpretRemoteSensingImagery',
   id: 'e55f4186-858c-462d-91f7-adb25f70eab1',
   name: {

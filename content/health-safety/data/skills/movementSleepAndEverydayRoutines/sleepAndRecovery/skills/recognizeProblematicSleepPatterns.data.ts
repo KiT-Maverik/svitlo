@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeProblematicSleepPatterns_Skill_Data = buildSkillConfig({
+export const recognizeProblematicSleepPatterns_Skill_Data = defineSkill({
   slug: 'recognizeProblematicSleepPatterns',
   id: 'e4c6eb2e-feb3-457e-9ec2-83bfa46ea982',
   name: {

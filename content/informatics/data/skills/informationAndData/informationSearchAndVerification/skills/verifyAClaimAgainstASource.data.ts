@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const verifyAClaimAgainstASource_Skill_Data = buildSkillConfig({
+export const verifyAClaimAgainstASource_Skill_Data = defineSkill({
   slug: 'verifyAClaimAgainstASource',
   id: '08802b0f-6fb7-4daf-8a08-c05a883ac11a',
   name: {

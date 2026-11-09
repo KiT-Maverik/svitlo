@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useATourniquetWhenIndicated_Skill_Data = buildSkillConfig({
+export const useATourniquetWhenIndicated_Skill_Data = defineSkill({
   slug: 'useATourniquetWhenIndicated',
   id: '3a377396-32e6-441e-bb20-06b79b72a7ff',
   name: {

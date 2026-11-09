@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neutralization_Skill_Data = buildSkillConfig({
+export const neutralization_Skill_Data = defineSkill({
   slug: 'neutralization',
   id: '3d83eda6-1f45-4b5c-9938-5a6bc0906625',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAlcoholRelatedRisks_Skill_Data = buildSkillConfig({
+export const recognizeAlcoholRelatedRisks_Skill_Data = defineSkill({
   slug: 'recognizeAlcoholRelatedRisks',
   id: '0401fa95-4368-4ac0-90bf-942d26a713e9',
   name: {

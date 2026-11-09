@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalComparison_Skill_Data = buildSkillConfig({
+export const historicalComparison_Skill_Data = defineSkill({
   slug: 'historicalComparison',
   id: '2e244706-ed4d-4c26-a6c6-7faf00c15442',
   name: {

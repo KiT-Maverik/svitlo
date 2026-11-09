@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const humanErrorAndSystemDesign_Skill_Data = buildSkillConfig({
+export const humanErrorAndSystemDesign_Skill_Data = defineSkill({
   slug: 'humanErrorAndSystemDesign',
   id: '194789ec-e811-4da1-b18e-47683141baf5',
   name: {

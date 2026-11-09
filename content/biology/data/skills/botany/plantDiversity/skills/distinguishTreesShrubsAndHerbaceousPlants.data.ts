@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = buildSkillConfig({
+export const distinguishTreesShrubsAndHerbaceousPlants_Skill_Data = defineSkill({
   slug: 'distinguishTreesShrubsAndHerbaceousPlants',
   id: 'ab0fe3e7-2bd8-4550-a4c6-df4133fff2d9',
   name: {

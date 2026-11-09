@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const determineMapOrientationFromItsNorthIndicator_Skill_Data = buildSkillConfig({
+export const determineMapOrientationFromItsNorthIndicator_Skill_Data = defineSkill({
   slug: 'determineMapOrientationFromItsNorthIndicator',
   id: '8e13e949-45d2-43a1-bb40-05a613681569',
   name: {

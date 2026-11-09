@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createAFunctionalBlockDiagram_Skill_Data = buildSkillConfig({
+export const createAFunctionalBlockDiagram_Skill_Data = defineSkill({
   slug: 'createAFunctionalBlockDiagram',
   id: '5d8f52ac-fc8c-45e1-bbb1-f4f1327d7cfd',
   name: {

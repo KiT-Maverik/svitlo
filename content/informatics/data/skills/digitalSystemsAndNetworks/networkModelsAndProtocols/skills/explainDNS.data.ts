@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDNS_Skill_Data = buildSkillConfig({
+export const explainDNS_Skill_Data = defineSkill({
   slug: 'explainDNS',
   id: 'c74ae7d0-025f-4abb-b8f2-282166c52a98',
   name: {

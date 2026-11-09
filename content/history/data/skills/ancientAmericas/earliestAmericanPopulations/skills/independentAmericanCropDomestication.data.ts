@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const independentAmericanCropDomestication_Skill_Data = buildSkillConfig({
+export const independentAmericanCropDomestication_Skill_Data = defineSkill({
   slug: 'independentAmericanCropDomestication',
   id: 'e3d33281-cd81-41ed-9313-ddfbae69e388',
   name: {

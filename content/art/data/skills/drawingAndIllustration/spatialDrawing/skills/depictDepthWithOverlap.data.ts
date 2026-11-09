@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const depictDepthWithOverlap_Skill_Data = buildSkillConfig({
+export const depictDepthWithOverlap_Skill_Data = defineSkill({
   slug: 'depictDepthWithOverlap',
   id: '01852e61-4242-41b4-9aeb-cd952a71735e',
   name: {

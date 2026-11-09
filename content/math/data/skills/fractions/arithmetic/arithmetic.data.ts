@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { addLikeDenominators_Skill_Data, subtractLikeDenominators_Skill_Data } from './skills';
 
-export const arithmetic_SkillGroup_Data = buildSkillGroupConfig({
+export const arithmetic_SkillGroup_Data = defineSkillGroup({
   slug: 'arithmetic',
   id: 'dc20987a-2239-43c6-9e2c-e14d6baeda8b',
   name: {
@@ -36,10 +36,10 @@ export const arithmetic_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Działania na ułamkach',
     uk: 'Обчислення з дробами',
   },
-  skills: {
-    addLikeDenominators: addLikeDenominators_Skill_Data,
-    subtractLikeDenominators: subtractLikeDenominators_Skill_Data,
-  },
+  skills: [
+    addLikeDenominators_Skill_Data,
+    subtractLikeDenominators_Skill_Data,
+  ],
   description: {
     methodological:
       'Changing the number of equal parts of the same whole through addition or subtraction with a common denominator.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPredictiveAI_Skill_Data = buildSkillConfig({
+export const explainPredictiveAI_Skill_Data = defineSkill({
   slug: 'explainPredictiveAI',
   id: 'c046a92d-b0b3-4d73-b3b8-d1a8810bd7a1',
   name: {

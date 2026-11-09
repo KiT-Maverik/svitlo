@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectAGeographicRepresentationForAPurpose_Skill_Data = buildSkillConfig({
+export const selectAGeographicRepresentationForAPurpose_Skill_Data = defineSkill({
   slug: 'selectAGeographicRepresentationForAPurpose',
   id: '3a1cb473-69f6-4eeb-b7e9-8044cf40e73a',
   name: {

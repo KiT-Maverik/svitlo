@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const computeSetUnion_Skill_Data = buildSkillConfig({
+export const computeSetUnion_Skill_Data = defineSkill({
   slug: 'computeSetUnion',
   id: '21ce9513-77c6-4c04-ae9e-bc38606ccb79',
   name: {

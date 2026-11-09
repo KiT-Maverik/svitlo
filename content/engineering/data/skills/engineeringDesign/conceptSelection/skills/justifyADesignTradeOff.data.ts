@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const justifyADesignTradeOff_Skill_Data = buildSkillConfig({
+export const justifyADesignTradeOff_Skill_Data = defineSkill({
   slug: 'justifyADesignTradeOff',
   id: 'fe014cfb-5e27-4497-8424-c5d62170daea',
   name: {

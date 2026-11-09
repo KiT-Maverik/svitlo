@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeABuildingFacade_Skill_Data,
@@ -7,7 +7,7 @@ import {
   interpretArchitecturalOrnament_Skill_Data,
 } from './skills';
 
-export const architecturalFormAndStyle_SkillGroup_Data = buildSkillGroupConfig({
+export const architecturalFormAndStyle_SkillGroup_Data = defineSkillGroup({
   slug: 'architecturalFormAndStyle',
   id: '030e3145-f301-4171-a563-fea55b0586ff',
   name: {
@@ -41,12 +41,12 @@ export const architecturalFormAndStyle_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Сәулеттік пішін мен стиль',
     qm: 'Mimari şekil ve üslüp',
   },
-  skills: {
-    analyzeABuildingFacade: analyzeABuildingFacade_Skill_Data,
-    compareArchitecturalStyles: compareArchitecturalStyles_Skill_Data,
-    composeArchitecturalMassing: composeArchitecturalMassing_Skill_Data,
-    interpretArchitecturalOrnament: interpretArchitecturalOrnament_Skill_Data,
-  },
+  skills: [
+    analyzeABuildingFacade_Skill_Data,
+    compareArchitecturalStyles_Skill_Data,
+    composeArchitecturalMassing_Skill_Data,
+    interpretArchitecturalOrnament_Skill_Data,
+  ],
   description: {
     methodological:
       'Building volumes, facade rhythms and ornament carry expressive meaning independently of engineering feasibility.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const triangleRectangleSquare_Skill_Data = buildSkillConfig({
+export const triangleRectangleSquare_Skill_Data = defineSkill({
   slug: 'triangleRectangleSquare',
   id: 'c4186c89-f443-4eb0-8226-e1774c2e76d7',
   name: {

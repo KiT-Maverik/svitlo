@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const parentheses_Skill_Data = buildSkillConfig({
+export const parentheses_Skill_Data = defineSkill({
   slug: 'parentheses',
   id: '18f96b1d-39bc-46fa-a0fc-2c7a5fee8d5c',
   name: {

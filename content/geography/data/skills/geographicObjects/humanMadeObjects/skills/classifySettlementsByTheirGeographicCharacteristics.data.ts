@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const classifySettlementsByTheirGeographicCharacteristics_Skill_Data = buildSkillConfig({
+export const classifySettlementsByTheirGeographicCharacteristics_Skill_Data = defineSkill({
   slug: 'classifySettlementsByTheirGeographicCharacteristics',
   id: 'c7a4b04b-29ed-4a90-886a-40937cce844e',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   freeFloatingPlanets_Skill_Data,
@@ -6,7 +6,7 @@ import {
   objectMembershipAndIsolation_Skill_Data,
 } from './skills';
 
-export const organizationAndMembership_SkillGroup_Data = buildSkillGroupConfig({
+export const organizationAndMembership_SkillGroup_Data = defineSkillGroup({
   slug: 'organizationAndMembership',
   id: 'e0ceb758-1b5a-4dd2-849e-aefca4bab31d',
   name: {
@@ -40,11 +40,11 @@ export const organizationAndMembership_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Ұйымдасу және жүйеге жату',
     qm: 'Tertip ve sistemalarğa aitlik',
   },
-  skills: {
-    freeFloatingPlanets: freeFloatingPlanets_Skill_Data,
-    gravitationallyBoundSystems: gravitationallyBoundSystems_Skill_Data,
-    objectMembershipAndIsolation: objectMembershipAndIsolation_Skill_Data,
-  },
+  skills: [
+    freeFloatingPlanets_Skill_Data,
+    gravitationallyBoundSystems_Skill_Data,
+    objectMembershipAndIsolation_Skill_Data,
+  ],
   description: {
     methodological:
       "A body's membership in a system is a different property from its type; the same class of object can be gravitationally bound, ejected or found in a sparse galactic environment.",

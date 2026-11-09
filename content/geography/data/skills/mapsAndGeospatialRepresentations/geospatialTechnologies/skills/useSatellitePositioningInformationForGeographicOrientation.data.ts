@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useSatellitePositioningInformationForGeographicOrientation_Skill_Data = buildSkillConfig({
+export const useSatellitePositioningInformationForGeographicOrientation_Skill_Data = defineSkill({
   slug: 'useSatellitePositioningInformationForGeographicOrientation',
   id: 'ab9450c2-60c3-4101-afb8-dcf845252479',
   name: {

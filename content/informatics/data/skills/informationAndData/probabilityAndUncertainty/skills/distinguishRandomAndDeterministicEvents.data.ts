@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishRandomAndDeterministicEvents_Skill_Data = buildSkillConfig({
+export const distinguishRandomAndDeterministicEvents_Skill_Data = defineSkill({
   slug: 'distinguishRandomAndDeterministicEvents',
   id: '40612c6f-e017-4758-b0b5-abd3171df718',
   name: {

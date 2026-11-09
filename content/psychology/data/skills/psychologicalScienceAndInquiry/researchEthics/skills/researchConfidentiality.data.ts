@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const researchConfidentiality_Skill_Data = buildSkillConfig({
+export const researchConfidentiality_Skill_Data = defineSkill({
   slug: 'researchConfidentiality',
   id: 'f75a05f6-3a17-4b3b-aef5-dbb34fab4669',
   name: {

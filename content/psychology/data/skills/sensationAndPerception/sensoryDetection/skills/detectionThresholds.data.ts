@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectionThresholds_Skill_Data = buildSkillConfig({
+export const detectionThresholds_Skill_Data = defineSkill({
   slug: 'detectionThresholds',
   id: '319512be-6e2b-4fda-b96d-6a1bdc951f0c',
   name: {

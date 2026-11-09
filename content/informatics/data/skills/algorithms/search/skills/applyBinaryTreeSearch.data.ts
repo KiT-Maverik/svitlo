@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyBinaryTreeSearch_Skill_Data = buildSkillConfig({
+export const applyBinaryTreeSearch_Skill_Data = defineSkill({
   slug: 'applyBinaryTreeSearch',
   id: '41a94067-8e05-4337-9c9d-8390c291d439',
   name: {

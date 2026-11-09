@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeAdaptationsToTheEnvironment_Skill_Data = buildSkillConfig({
+export const recognizeAdaptationsToTheEnvironment_Skill_Data = defineSkill({
   slug: 'recognizeAdaptationsToTheEnvironment',
   id: '1d45b370-a757-43cf-9429-0aefcccff499',
   name: {

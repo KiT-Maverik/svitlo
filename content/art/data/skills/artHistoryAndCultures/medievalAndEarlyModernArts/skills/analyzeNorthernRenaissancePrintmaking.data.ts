@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeNorthernRenaissancePrintmaking_Skill_Data = buildSkillConfig({
+export const analyzeNorthernRenaissancePrintmaking_Skill_Data = defineSkill({
   slug: 'analyzeNorthernRenaissancePrintmaking',
   id: '85510737-8409-4e50-8519-0c4e253cd4f3',
   name: {

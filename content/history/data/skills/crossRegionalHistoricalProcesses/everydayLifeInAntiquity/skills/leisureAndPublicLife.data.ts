@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const leisureAndPublicLife_Skill_Data = buildSkillConfig({
+export const leisureAndPublicLife_Skill_Data = defineSkill({
   slug: 'leisureAndPublicLife',
   id: 'dfe0c934-4149-4d55-b611-754da4545cdb',
   name: {

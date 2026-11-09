@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const lightADigitalThreeDimensionalScene_Skill_Data = buildSkillConfig({
+export const lightADigitalThreeDimensionalScene_Skill_Data = defineSkill({
   slug: 'lightADigitalThreeDimensionalScene',
   id: '3e861a92-d8a9-4cf7-94d0-9e8ac34c0d3f',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   aksumiteKingdom_Skill_Data,
@@ -6,7 +6,7 @@ import {
   earlyEthiopianHighlandStates_Skill_Data,
 } from './skills';
 
-export const hornOfAfrica_SkillGroup_Data = buildSkillGroupConfig({
+export const hornOfAfrica_SkillGroup_Data = defineSkillGroup({
   slug: 'hornOfAfrica',
   id: 'dd64dd81-5094-4eb5-9ee0-28d02a5498ec',
   name: {
@@ -40,11 +40,11 @@ export const hornOfAfrica_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Африка мүйісі',
     qm: 'Afrika Boynuzu',
   },
-  skills: {
-    aksumiteKingdom: aksumiteKingdom_Skill_Data,
-    christianizationOfAksum: christianizationOfAksum_Skill_Data,
-    earlyEthiopianHighlandStates: earlyEthiopianHighlandStates_Skill_Data,
-  },
+  skills: [
+    aksumiteKingdom_Skill_Data,
+    christianizationOfAksum_Skill_Data,
+    earlyEthiopianHighlandStates_Skill_Data,
+  ],
   description: {
     methodological:
       'Red Sea connections linked highland farming societies with maritime exchanges between Africa and Arabia.',

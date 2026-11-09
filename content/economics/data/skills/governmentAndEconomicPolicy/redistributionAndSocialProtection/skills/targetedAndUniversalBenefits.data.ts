@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const targetedAndUniversalBenefits_Skill_Data = buildSkillConfig({
+export const targetedAndUniversalBenefits_Skill_Data = defineSkill({
   slug: 'targetedAndUniversalBenefits',
   id: 'f0d72a67-c333-415e-b60a-c6078748686e',
   name: {

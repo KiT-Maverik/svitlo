@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const locateAPointFromALatitudeLongitudePair_Skill_Data = buildSkillConfig({
+export const locateAPointFromALatitudeLongitudePair_Skill_Data = defineSkill({
   slug: 'locateAPointFromALatitudeLongitudePair',
   id: 'c9053fd9-cf5d-4dd1-82bb-0e256469c892',
   name: {

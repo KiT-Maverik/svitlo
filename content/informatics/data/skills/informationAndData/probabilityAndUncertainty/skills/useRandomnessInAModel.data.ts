@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const useRandomnessInAModel_Skill_Data = buildSkillConfig({
+export const useRandomnessInAModel_Skill_Data = defineSkill({
   slug: 'useRandomnessInAModel',
   id: '1001292a-eb4b-4cfa-a344-550818b82fdb',
   name: {

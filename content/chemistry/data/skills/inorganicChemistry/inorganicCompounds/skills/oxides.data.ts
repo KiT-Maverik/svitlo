@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const oxides_Skill_Data = buildSkillConfig({
+export const oxides_Skill_Data = defineSkill({
   slug: 'oxides',
   id: 'bd5676b5-6131-48fa-8d4d-513f9e60b8f6',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const measureCentimeters_Skill_Data = buildSkillConfig({
+export const measureCentimeters_Skill_Data = defineSkill({
   slug: 'measureCentimeters',
   id: 'abb9261a-793e-48fd-8262-7cd2ca8df3d3',
   name: {

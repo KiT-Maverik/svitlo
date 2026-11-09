@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const reduction_Skill_Data = buildSkillConfig({
+export const reduction_Skill_Data = defineSkill({
   slug: 'reduction',
   id: '03368a7e-bfb8-4ff7-8ac4-65f6fe424cfe',
   name: {

@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { activeGalacticNuclei_SkillGroup_Data } from './activeGalacticNuclei/activeGalacticNuclei.data';
 import { galaxiesAndTheirEvolution_SkillGroup_Data } from './galaxiesAndTheirEvolution/galaxiesAndTheirEvolution.data';
 import { interstellarMatter_SkillGroup_Data } from './interstellarMatter/interstellarMatter.data';
 import { theMilkyWay_SkillGroup_Data } from './theMilkyWay/theMilkyWay.data';
 
-export const interstellarAndGalacticAstronomy_SkillDomain_Data = buildSkillDomainConfig({
+export const interstellarAndGalacticAstronomy_SkillDomain_Data = defineSkillDomain({
   slug: 'interstellarAndGalacticAstronomy',
   id: '5d195196-4e99-4b09-85e4-b6119f97ec99',
-  name: {
+  title: {
     en: 'Interstellar and Galactic Astronomy',
     qm: 'Yıldızlararası ve galaktik astronomiya',
     zh: '星际与星系天文学',
@@ -39,12 +39,12 @@ export const interstellarAndGalacticAstronomy_SkillDomain_Data = buildSkillDomai
     ka: 'ვარსკვლავთშორისი და გალაქტიკური ასტრონომია',
     kk: 'Жұлдызаралық және галактикалық астрономия',
   },
-  groups: {
-    activeGalacticNuclei: activeGalacticNuclei_SkillGroup_Data,
-    galaxiesAndTheirEvolution: galaxiesAndTheirEvolution_SkillGroup_Data,
-    interstellarMatter: interstellarMatter_SkillGroup_Data,
-    theMilkyWay: theMilkyWay_SkillGroup_Data,
-  },
+  groups: [
+    activeGalacticNuclei_SkillGroup_Data,
+    galaxiesAndTheirEvolution_SkillGroup_Data,
+    interstellarMatter_SkillGroup_Data,
+    theMilkyWay_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'This domain investigates matter between stars and the structure, dynamics and transformations of galaxies. The Milky Way is one case, while distant galaxies reveal different environments and stages of evolution.',

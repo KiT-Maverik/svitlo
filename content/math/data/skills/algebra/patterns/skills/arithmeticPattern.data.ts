@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const arithmeticPattern_Skill_Data = buildSkillConfig({
+export const arithmeticPattern_Skill_Data = defineSkill({
   slug: 'arithmeticPattern',
   id: '80600511-51d8-411c-a132-4a17836d680d',
   name: {

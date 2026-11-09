@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainLoadTransfer_Skill_Data = buildSkillConfig({
+export const explainLoadTransfer_Skill_Data = defineSkill({
   slug: 'explainLoadTransfer',
   id: '28d6c100-8718-4daf-8d91-471971f3da15',
   name: {

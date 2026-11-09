@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluatePersistenceThroughChange_Skill_Data = buildSkillConfig({
+export const evaluatePersistenceThroughChange_Skill_Data = defineSkill({
   slug: 'evaluatePersistenceThroughChange',
   id: 'c6ac857e-0267-4ffd-8de3-c11c598b7fb1',
   name: {

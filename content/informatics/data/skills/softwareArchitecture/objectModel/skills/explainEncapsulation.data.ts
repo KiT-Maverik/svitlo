@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainEncapsulation_Skill_Data = buildSkillConfig({
+export const explainEncapsulation_Skill_Data = defineSkill({
   slug: 'explainEncapsulation',
   id: '385f0a36-2341-49d1-b126-6ade78679eed',
   name: {

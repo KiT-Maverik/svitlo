@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { inequality_SkillGroup_Data } from './inequality/inequality.data';
 import { institutionsAndDevelopment_SkillGroup_Data } from './institutionsAndDevelopment/institutionsAndDevelopment.data';
 import { povertyAndWellbeing_SkillGroup_Data } from './povertyAndWellbeing/povertyAndWellbeing.data';
 import { structuralChange_SkillGroup_Data } from './structuralChange/structuralChange.data';
 
-export const developmentWellbeingAndInstitutions_SkillDomain_Data = buildSkillDomainConfig({
+export const developmentWellbeingAndInstitutions_SkillDomain_Data = defineSkillDomain({
   slug: 'developmentWellbeingAndInstitutions',
   id: '059fa85a-a9f1-4b2b-9c90-9ed6280133c5',
-  name: {
+  title: {
     en: 'Розвиток, добробут та інституції',
     zh: '发展、福祉与制度',
     hi: 'विकास, कल्याण और संस्थाएँ',
@@ -39,12 +39,12 @@ export const developmentWellbeingAndInstitutions_SkillDomain_Data = buildSkillDo
     kk: 'Даму, әл-ауқат және институттар',
     qm: 'İnkişaf, refah ve müesseseler',
   },
-  groups: {
-    inequality: inequality_SkillGroup_Data,
-    institutionsAndDevelopment: institutionsAndDevelopment_SkillGroup_Data,
-    povertyAndWellbeing: povertyAndWellbeing_SkillGroup_Data,
-    structuralChange: structuralChange_SkillGroup_Data,
-  },
+  groups: [
+    inequality_SkillGroup_Data,
+    institutionsAndDevelopment_SkillGroup_Data,
+    povertyAndWellbeing_SkillGroup_Data,
+    structuralChange_SkillGroup_Data,
+  ],
   description: {
     methodological:
       "Long-term differences between countries and population groups arise from productivity, distribution of resources, and rules of social interaction. Growth does not necessarily improve everyone's living conditions equally.",

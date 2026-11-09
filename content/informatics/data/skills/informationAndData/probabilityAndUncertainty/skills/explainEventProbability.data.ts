@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainEventProbability_Skill_Data = buildSkillConfig({
+export const explainEventProbability_Skill_Data = defineSkill({
   slug: 'explainEventProbability',
   id: 'ab964120-109e-44f8-8af2-9404aa3cebdb',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const flexiblePartition_Skill_Data = buildSkillConfig({
+export const flexiblePartition_Skill_Data = defineSkill({
   slug: 'flexiblePartition',
   id: '24a8feb2-e464-4b74-b807-600103edd59e',
   name: {

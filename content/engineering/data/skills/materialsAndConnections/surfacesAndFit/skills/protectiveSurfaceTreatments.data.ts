@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const protectiveSurfaceTreatments_Skill_Data = buildSkillConfig({
+export const protectiveSurfaceTreatments_Skill_Data = defineSkill({
   slug: 'protectiveSurfaceTreatments',
   id: '12c4550c-d921-4889-82e3-ef2fd6b50fc9',
   name: {

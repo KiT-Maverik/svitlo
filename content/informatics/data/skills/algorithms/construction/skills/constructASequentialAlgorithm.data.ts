@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const constructASequentialAlgorithm_Skill_Data = buildSkillConfig({
+export const constructASequentialAlgorithm_Skill_Data = defineSkill({
   slug: 'constructASequentialAlgorithm',
   id: '1ab60caa-36e7-4cc8-9e2e-64f13352717c',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareNetworkAccessMethods_Skill_Data = buildSkillConfig({
+export const compareNetworkAccessMethods_Skill_Data = defineSkill({
   slug: 'compareNetworkAccessMethods',
   id: '077fb5a7-d5cc-4dbb-8d7c-54f6f5a2e300',
   name: {

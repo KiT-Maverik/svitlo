@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const negativeReinforcement_Skill_Data = buildSkillConfig({
+export const negativeReinforcement_Skill_Data = defineSkill({
   slug: 'negativeReinforcement',
   id: 'aa339eeb-7080-431b-bff0-4a885f5e5834',
   name: {

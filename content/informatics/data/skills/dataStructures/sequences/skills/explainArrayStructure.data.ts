@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainArrayStructure_Skill_Data = buildSkillConfig({
+export const explainArrayStructure_Skill_Data = defineSkill({
   slug: 'explainArrayStructure',
   id: '4da4f86c-c32d-4290-ad2a-45259e12a7d7',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ionFormation_Skill_Data = buildSkillConfig({
+export const ionFormation_Skill_Data = defineSkill({
   slug: 'ionFormation',
   id: '94e3a7e4-efe5-4c4f-ac47-7779435b25f1',
   name: {

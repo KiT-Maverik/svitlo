@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeArtisticMetaphor_Skill_Data,
@@ -7,7 +7,7 @@ import {
   relateArtisticFormToContent_Skill_Data,
 } from './skills';
 
-export const expressionAndMeaning_SkillGroup_Data = buildSkillGroupConfig({
+export const expressionAndMeaning_SkillGroup_Data = defineSkillGroup({
   slug: 'expressionAndMeaning',
   id: '433ef00c-63d4-43d7-9d6f-764d0ba50c2b',
   name: {
@@ -41,12 +41,12 @@ export const expressionAndMeaning_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Бейнелеу және мағына',
     qm: 'İfade ve mana',
   },
-  skills: {
-    analyzeArtisticMetaphor: analyzeArtisticMetaphor_Skill_Data,
-    analyzeEmotionalExpression: analyzeEmotionalExpression_Skill_Data,
-    interpretArtisticSymbols: interpretArtisticSymbols_Skill_Data,
-    relateArtisticFormToContent: relateArtisticFormToContent_Skill_Data,
-  },
+  skills: [
+    analyzeArtisticMetaphor_Skill_Data,
+    analyzeEmotionalExpression_Skill_Data,
+    interpretArtisticSymbols_Skill_Data,
+    relateArtisticFormToContent_Skill_Data,
+  ],
   description: {
     methodological:
       'Symbolism and emotional character require interpretations anchored in artistic choices and context.',

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { chemicalEnergetics_SkillGroup_Data } from './chemicalEnergetics/chemicalEnergetics.data';
 import { chemicalEquilibrium_SkillGroup_Data } from './chemicalEquilibrium/chemicalEquilibrium.data';
 import { reactionRates_SkillGroup_Data } from './reactionRates/reactionRates.data';
 
-export const energyRatesAndEquilibrium_SkillDomain_Data = buildSkillDomainConfig({
+export const energyRatesAndEquilibrium_SkillDomain_Data = defineSkillDomain({
   slug: 'energyRatesAndEquilibrium',
   id: '9a267d93-82af-48cb-a1f7-1c9637c04826',
-  name: {
+  title: {
     en: 'Energy, Rates and Equilibrium',
     zh: '能量、反应速率与平衡',
     hi: 'ऊर्जा, अभिक्रिया दर और साम्य',
@@ -38,11 +38,11 @@ export const energyRatesAndEquilibrium_SkillDomain_Data = buildSkillDomainConfig
     kk: 'Энергия, жылдамдық және тепе-теңдік',
     qm: 'Energiya, reaktsiya tezligi ve muvazenet',
   },
-  groups: {
-    chemicalEnergetics: chemicalEnergetics_SkillGroup_Data,
-    chemicalEquilibrium: chemicalEquilibrium_SkillGroup_Data,
-    reactionRates: reactionRates_SkillGroup_Data,
-  },
+  groups: [
+    chemicalEnergetics_SkillGroup_Data,
+    chemicalEquilibrium_SkillGroup_Data,
+    reactionRates_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Chemical systems exchange energy, evolve at finite rates and may approach dynamic equilibrium. These are related but distinct questions: whether change is favorable, how quickly it occurs and what composition persists.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data = buildSkillConfig({
+export const explainHowEnvironmentalConditionsInfluenceHumanActivities_Skill_Data = defineSkill({
   slug: 'explainHowEnvironmentalConditionsInfluenceHumanActivities',
   id: 'a40a0964-eddd-4bc8-9dd1-080f189cba89',
   name: {

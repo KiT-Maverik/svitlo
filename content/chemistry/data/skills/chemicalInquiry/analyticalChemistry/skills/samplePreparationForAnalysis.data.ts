@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const samplePreparationForAnalysis_Skill_Data = buildSkillConfig({
+export const samplePreparationForAnalysis_Skill_Data = defineSkill({
   slug: 'samplePreparationForAnalysis',
   id: '5b155555-02b4-4dee-81aa-fe56824b7e44',
   name: {

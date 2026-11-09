@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishMentalFromPhysicalDescriptions_Skill_Data = buildSkillConfig({
+export const distinguishMentalFromPhysicalDescriptions_Skill_Data = defineSkill({
   slug: 'distinguishMentalFromPhysicalDescriptions',
   id: '543e842f-a14e-4af4-8620-b69db56ad2f5',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainMechanismsOfEvolutionaryChange_Skill_Data = buildSkillConfig({
+export const explainMechanismsOfEvolutionaryChange_Skill_Data = defineSkill({
   slug: 'explainMechanismsOfEvolutionaryChange',
   id: 'fc704e69-99f2-40a4-865d-8309f9df951b',
   name: {

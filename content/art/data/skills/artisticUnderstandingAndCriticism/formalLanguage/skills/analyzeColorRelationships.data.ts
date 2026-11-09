@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeColorRelationships_Skill_Data = buildSkillConfig({
+export const analyzeColorRelationships_Skill_Data = defineSkill({
   slug: 'analyzeColorRelationships',
   id: '6ff4fe86-e694-4952-a32f-4780e999b530',
   name: {

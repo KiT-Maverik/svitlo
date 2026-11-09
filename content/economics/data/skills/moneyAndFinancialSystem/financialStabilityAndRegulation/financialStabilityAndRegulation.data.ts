@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   depositInsurance_Skill_Data,
@@ -6,7 +6,7 @@ import {
   systemicFinancialRisk_Skill_Data,
 } from './skills';
 
-export const financialStabilityAndRegulation_SkillGroup_Data = buildSkillGroupConfig({
+export const financialStabilityAndRegulation_SkillGroup_Data = defineSkillGroup({
   slug: 'financialStabilityAndRegulation',
   id: 'f1c7d81b-c126-418f-ab87-cb4dd190e2a6',
   name: {
@@ -40,11 +40,11 @@ export const financialStabilityAndRegulation_SkillGroup_Data = buildSkillGroupCo
     kk: 'Қаржылық тұрақтылық және реттеу',
     qm: 'Maliy sabitlik ve tertipleme',
   },
-  skills: {
-    depositInsurance: depositInsurance_Skill_Data,
-    financialSupervision: financialSupervision_Skill_Data,
-    systemicFinancialRisk: systemicFinancialRisk_Skill_Data,
-  },
+  skills: [
+    depositInsurance_Skill_Data,
+    financialSupervision_Skill_Data,
+    systemicFinancialRisk_Skill_Data,
+  ],
   description: {
     methodological:
       'Problems at individual intermediaries can spread through debt and confidence to the broader economy.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   molecularCloudCollapse_Skill_Data,
@@ -7,7 +7,7 @@ import {
   protostellarJets_Skill_Data,
 } from './skills';
 
-export const starFormation_SkillGroup_Data = buildSkillGroupConfig({
+export const starFormation_SkillGroup_Data = defineSkillGroup({
   slug: 'starFormation',
   id: '08051b26-3082-4414-a63f-d7efe37c70de',
   name: {
@@ -41,12 +41,12 @@ export const starFormation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Жұлдыздардың түзілуі',
     qm: 'Yıldızlarnıñ peyda oluvı',
   },
-  skills: {
-    molecularCloudCollapse: molecularCloudCollapse_Skill_Data,
-    protostars: protostars_Skill_Data,
-    protostellarDisks: protostellarDisks_Skill_Data,
-    protostellarJets: protostellarJets_Skill_Data,
-  },
+  skills: [
+    molecularCloudCollapse_Skill_Data,
+    protostars_Skill_Data,
+    protostellarDisks_Skill_Data,
+    protostellarJets_Skill_Data,
+  ],
   description: {
     methodological:
       'Star birth occurs inside interstellar gas and dust and progresses through distinct gravitational and thermal stages.',

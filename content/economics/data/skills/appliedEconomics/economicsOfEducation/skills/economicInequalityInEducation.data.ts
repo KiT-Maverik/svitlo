@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const economicInequalityInEducation_Skill_Data = buildSkillConfig({
+export const economicInequalityInEducation_Skill_Data = defineSkill({
   slug: 'economicInequalityInEducation',
   id: '0cff9ad0-fd4f-46b0-a3ba-f7841bfa5fc5',
   name: {

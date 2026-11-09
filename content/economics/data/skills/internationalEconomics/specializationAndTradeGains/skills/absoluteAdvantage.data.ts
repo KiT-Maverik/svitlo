@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const absoluteAdvantage_Skill_Data = buildSkillConfig({
+export const absoluteAdvantage_Skill_Data = defineSkill({
   slug: 'absoluteAdvantage',
   id: '2157554a-25f3-4f30-8d52-06f49de6ba63',
   name: {

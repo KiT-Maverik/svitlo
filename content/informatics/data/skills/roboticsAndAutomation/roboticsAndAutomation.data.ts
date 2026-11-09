@@ -1,12 +1,12 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { robotControl_SkillGroup_Data } from './robotControl/robotControl.data';
 import { roboticSystemComponents_SkillGroup_Data } from './roboticSystemComponents/roboticSystemComponents.data';
 
-export const roboticsAndAutomation_SkillDomain_Data = buildSkillDomainConfig({
+export const roboticsAndAutomation_SkillDomain_Data = defineSkillDomain({
   slug: 'roboticsAndAutomation',
   id: 'ed451cc0-6d3a-44d2-8dba-ad0b89441519',
-  name: {
+  title: {
     en: 'Robotics and Automation',
     zh: '机器人技术与自动化',
     hi: 'रोबोटिक्स और स्वचालन',
@@ -37,10 +37,10 @@ export const roboticsAndAutomation_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Робототехника және автоматтандыру',
     qm: 'Robototehnika ve avtomatlaştırma',
   },
-  groups: {
-    robotControl: robotControl_SkillGroup_Data,
-    roboticSystemComponents: roboticSystemComponents_SkillGroup_Data,
-  },
+  groups: [
+    robotControl_SkillGroup_Data,
+    roboticSystemComponents_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Programming the control logic of physical or simulated actuators in response to sensor readings. Engineering may also study mechanical design; this taxonomy emphasizes the relationship among information, rules, and actions.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const behaviorChangeInterventions_Skill_Data = buildSkillConfig({
+export const behaviorChangeInterventions_Skill_Data = defineSkill({
   slug: 'behaviorChangeInterventions',
   id: 'f7575ea5-8317-4b84-9901-e930d9fca620',
   name: {

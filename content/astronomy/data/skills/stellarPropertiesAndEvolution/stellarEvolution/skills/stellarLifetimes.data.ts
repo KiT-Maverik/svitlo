@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarLifetimes_Skill_Data = buildSkillConfig({
+export const stellarLifetimes_Skill_Data = defineSkill({
   slug: 'stellarLifetimes',
   id: '9707419e-d71f-4a9f-9465-151641001fbb',
   name: {

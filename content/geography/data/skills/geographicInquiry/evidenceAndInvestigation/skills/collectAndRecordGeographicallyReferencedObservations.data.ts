@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const collectAndRecordGeographicallyReferencedObservations_Skill_Data = buildSkillConfig({
+export const collectAndRecordGeographicallyReferencedObservations_Skill_Data = defineSkill({
   slug: 'collectAndRecordGeographicallyReferencedObservations',
   id: '338c4be2-52af-4808-9b6a-243ff6b22ff1',
   name: {

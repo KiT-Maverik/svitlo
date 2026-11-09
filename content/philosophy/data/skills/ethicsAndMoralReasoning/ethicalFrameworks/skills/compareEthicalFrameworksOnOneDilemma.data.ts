@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareEthicalFrameworksOnOneDilemma_Skill_Data = buildSkillConfig({
+export const compareEthicalFrameworksOnOneDilemma_Skill_Data = defineSkill({
   slug: 'compareEthicalFrameworksOnOneDilemma',
   id: 'cee5d5db-7381-48f0-824e-4ac3f4e40e01',
   name: {

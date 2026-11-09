@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const giantPlanets_Skill_Data = buildSkillConfig({
+export const giantPlanets_Skill_Data = defineSkill({
   slug: 'giantPlanets',
   id: '567f6eb6-89db-4bd0-b898-4b2eab564848',
   name: {

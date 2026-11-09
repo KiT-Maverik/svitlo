@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   beforeAfterBetween_Skill_Data,
@@ -7,7 +7,7 @@ import {
   distanceOnLine_Skill_Data,
 } from './skills';
 
-export const numberLine_SkillGroup_Data = buildSkillGroupConfig({
+export const numberLine_SkillGroup_Data = defineSkillGroup({
   slug: 'numberLine',
   id: '4b431caf-b720-4669-8d48-f329c858bf94',
   name: {
@@ -41,12 +41,12 @@ export const numberLine_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Oś liczbowa',
     uk: 'Числова пряма',
   },
-  skills: {
-    beforeAfterBetween: beforeAfterBetween_Skill_Data,
-    numberLine20: numberLine20_Skill_Data,
-    numberLine1000: numberLine1000_Skill_Data,
-    distanceOnLine: distanceOnLine_Skill_Data,
-  },
+  skills: [
+    beforeAfterBetween_Skill_Data,
+    numberLine20_Skill_Data,
+    numberLine1000_Skill_Data,
+    distanceOnLine_Skill_Data,
+  ],
   description: {
     methodological:
       'Numbers as points on an ordered scale with equal intervals; location, adjacency, and distance depend on the scale used.',

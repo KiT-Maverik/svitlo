@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const particleNatureOfMatter_Skill_Data = buildSkillConfig({
+export const particleNatureOfMatter_Skill_Data = defineSkill({
   slug: 'particleNatureOfMatter',
   id: 'ef1cf2d0-1bb8-41b9-8bb6-7a1e09f13e04',
   name: {

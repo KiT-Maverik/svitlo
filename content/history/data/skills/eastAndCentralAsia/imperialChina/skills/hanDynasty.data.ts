@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hanDynasty_Skill_Data = buildSkillConfig({
+export const hanDynasty_Skill_Data = defineSkill({
   slug: 'hanDynasty',
   id: '9707c11a-9878-461b-91ac-13bb1038d684',
   name: {

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   recognizeGroomingAndExploitation_Skill_Data,
@@ -7,7 +7,7 @@ import {
   setBoundariesInUnequalRelationships_Skill_Data,
 } from './skills';
 
-export const pressureAndManipulation_SkillGroup_Data = buildSkillGroupConfig({
+export const pressureAndManipulation_SkillGroup_Data = defineSkillGroup({
   slug: 'pressureAndManipulation',
   id: 'cb387d75-231c-49d7-a416-ce0009a08306',
   name: {
@@ -41,12 +41,12 @@ export const pressureAndManipulation_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Қысым және айла-шарғы',
     qm: 'Basqı ve aldatıcı tesir',
   },
-  skills: {
-    recognizeGroomingAndExploitation: recognizeGroomingAndExploitation_Skill_Data,
-    recognizePsychologicalPressure: recognizePsychologicalPressure_Skill_Data,
-    resistUnsafePeerPressure: resistUnsafePeerPressure_Skill_Data,
-    setBoundariesInUnequalRelationships: setBoundariesInUnequalRelationships_Skill_Data,
-  },
+  skills: [
+    recognizeGroomingAndExploitation_Skill_Data,
+    recognizePsychologicalPressure_Skill_Data,
+    resistUnsafePeerPressure_Skill_Data,
+    setBoundariesInUnequalRelationships_Skill_Data,
+  ],
   description: {
     methodological:
       'Coercion can use threats, secrecy, guilt, status, dependency, or urgency; a protective response need not persuade the aggressor.',

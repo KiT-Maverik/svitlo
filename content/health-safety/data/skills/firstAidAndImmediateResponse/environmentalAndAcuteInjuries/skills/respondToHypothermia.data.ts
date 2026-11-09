@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToHypothermia_Skill_Data = buildSkillConfig({
+export const respondToHypothermia_Skill_Data = defineSkill({
   slug: 'respondToHypothermia',
   id: '49b1fe87-f90b-4746-a7fc-93c62102d0c6',
   name: {

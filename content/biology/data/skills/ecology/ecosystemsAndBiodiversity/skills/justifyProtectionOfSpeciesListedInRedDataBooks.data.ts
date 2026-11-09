@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = buildSkillConfig({
+export const justifyProtectionOfSpeciesListedInRedDataBooks_Skill_Data = defineSkill({
   slug: 'justifyProtectionOfSpeciesListedInRedDataBooks',
   id: 'd5d161e2-3235-40cf-ab3a-a65a3a4b6a2e',
   name: {

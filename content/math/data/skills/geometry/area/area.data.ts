@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   compositeArea_Skill_Data,
@@ -7,7 +7,7 @@ import {
   rectangleAreaModel_Skill_Data,
 } from './skills';
 
-export const area_SkillGroup_Data = buildSkillGroupConfig({
+export const area_SkillGroup_Data = defineSkillGroup({
   slug: 'area',
   id: 'c7516022-048d-4c97-92ed-c4f10d254070',
   name: {
@@ -41,12 +41,12 @@ export const area_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Pole powierzchni',
     uk: 'Площа',
   },
-  skills: {
-    compositeArea: compositeArea_Skill_Data,
-    areaAsCovering: areaAsCovering_Skill_Data,
-    countUnitSquares: countUnitSquares_Skill_Data,
-    rectangleAreaModel: rectangleAreaModel_Skill_Data,
-  },
+  skills: [
+    compositeArea_Skill_Data,
+    areaAsCovering_Skill_Data,
+    countUnitSquares_Skill_Data,
+    rectangleAreaModel_Skill_Data,
+  ],
   description: {
     methodological:
       'The extent of a planar region occupied by a figure, modeled using unit squares, rectangles, and decomposition of composite shapes.',

@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { positionWords_Skill_Data, gridMapNavigation_Skill_Data, spatialOrientationPath_Skill_Data } from './skills';
 
-export const orientation_SkillGroup_Data = buildSkillGroupConfig({
+export const orientation_SkillGroup_Data = defineSkillGroup({
   slug: 'orientation',
   id: 'f4986b8c-60ea-4f06-aed5-0458fa8d3e08',
   name: {
@@ -36,11 +36,11 @@ export const orientation_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Orientacja przestrzenna',
     uk: 'Просторова орієнтація',
   },
-  skills: {
-    positionWords: positionWords_Skill_Data,
-    gridMapNavigation: gridMapNavigation_Skill_Data,
-    spatialOrientationPath: spatialOrientationPath_Skill_Data,
-  },
+  skills: [
+    positionWords_Skill_Data,
+    gridMapNavigation_Skill_Data,
+    spatialOrientationPath_Skill_Data,
+  ],
   description: {
     methodological:
       'Verbal descriptions of relative positions and movements, following and giving route instructions, and navigating a simple grid.',

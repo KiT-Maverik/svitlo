@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheTuringTest_Skill_Data = buildSkillConfig({
+export const explainTheTuringTest_Skill_Data = defineSkill({
   slug: 'explainTheTuringTest',
   id: 'f2ecc296-cf43-45d6-827f-0375b4f93b64',
   name: {

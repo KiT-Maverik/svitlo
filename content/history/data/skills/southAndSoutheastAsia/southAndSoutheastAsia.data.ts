@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { ancientSoutheastAsia_SkillGroup_Data } from './ancientSoutheastAsia/ancientSoutheastAsia.data';
 import { indusCivilization_SkillGroup_Data } from './indusCivilization/indusCivilization.data';
 import { religiousAndIntellectualTraditions_SkillGroup_Data } from './religiousAndIntellectualTraditions/religiousAndIntellectualTraditions.data';
 import { societiesAndStatesOfAncientIndia_SkillGroup_Data } from './societiesAndStatesOfAncientIndia/societiesAndStatesOfAncientIndia.data';
 
-export const southAndSoutheastAsia_SkillDomain_Data = buildSkillDomainConfig({
+export const southAndSoutheastAsia_SkillDomain_Data = defineSkillDomain({
   slug: 'southAndSoutheastAsia',
   id: '7cae92ab-143d-4cc9-9389-f5e1d9d659e9',
-  name: {
+  title: {
     en: 'South and Southeast Asia',
     zh: '南亚与东南亚',
     hi: 'दक्षिण और दक्षिण-पूर्व एशिया',
@@ -39,12 +39,12 @@ export const southAndSoutheastAsia_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Оңтүстік және Оңтүстік-Шығыс Азия',
     qm: 'Cenübiy ve Cenübiy-Şarqiy Asiya',
   },
-  groups: {
-    ancientSoutheastAsia: ancientSoutheastAsia_SkillGroup_Data,
-    indusCivilization: indusCivilization_SkillGroup_Data,
-    religiousAndIntellectualTraditions: religiousAndIntellectualTraditions_SkillGroup_Data,
-    societiesAndStatesOfAncientIndia: societiesAndStatesOfAncientIndia_SkillGroup_Data,
-  },
+  groups: [
+    ancientSoutheastAsia_SkillGroup_Data,
+    indusCivilization_SkillGroup_Data,
+    religiousAndIntellectualTraditions_SkillGroup_Data,
+    societiesAndStatesOfAncientIndia_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'From Indus cities to South Asian empires and early Southeast Asian states, the region followed diverse urban, religious, and commercial trajectories.',

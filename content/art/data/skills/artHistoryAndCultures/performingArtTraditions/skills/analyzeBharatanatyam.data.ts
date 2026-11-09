@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeBharatanatyam_Skill_Data = buildSkillConfig({
+export const analyzeBharatanatyam_Skill_Data = defineSkill({
   slug: 'analyzeBharatanatyam',
   id: '6ba2fb84-e907-469b-ae0f-79b7ae626533',
   name: {

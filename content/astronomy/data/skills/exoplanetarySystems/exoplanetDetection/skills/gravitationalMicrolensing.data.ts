@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gravitationalMicrolensing_Skill_Data = buildSkillConfig({
+export const gravitationalMicrolensing_Skill_Data = defineSkill({
   slug: 'gravitationalMicrolensing',
   id: 'ce90c91a-cfbe-469c-85eb-d10aa16bc36a',
   name: {

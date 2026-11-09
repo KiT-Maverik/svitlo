@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const testDigitalInteractionAccessibility_Skill_Data = buildSkillConfig({
+export const testDigitalInteractionAccessibility_Skill_Data = defineSkill({
   slug: 'testDigitalInteractionAccessibility',
   id: '67fa1703-ab8d-4166-a6db-4549a5bcce56',
   name: {

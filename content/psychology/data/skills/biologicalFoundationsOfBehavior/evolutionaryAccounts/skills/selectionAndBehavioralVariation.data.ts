@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectionAndBehavioralVariation_Skill_Data = buildSkillConfig({
+export const selectionAndBehavioralVariation_Skill_Data = defineSkill({
   slug: 'selectionAndBehavioralVariation',
   id: 'dcd44bd0-eda2-4374-b517-964d3dedcf0a',
   name: {

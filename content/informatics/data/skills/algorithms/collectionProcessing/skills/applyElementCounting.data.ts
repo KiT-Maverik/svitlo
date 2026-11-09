@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const applyElementCounting_Skill_Data = buildSkillConfig({
+export const applyElementCounting_Skill_Data = defineSkill({
   slug: 'applyElementCounting',
   id: '11a9fb37-9afc-43f6-af92-d48fc7eaa39f',
   name: {

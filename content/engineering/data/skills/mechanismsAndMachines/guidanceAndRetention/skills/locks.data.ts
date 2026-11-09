@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const locks_Skill_Data = buildSkillConfig({
+export const locks_Skill_Data = defineSkill({
   slug: 'locks',
   id: 'eb87ce34-d9a6-403c-9cba-1f785d167dac',
   name: {

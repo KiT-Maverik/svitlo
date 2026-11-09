@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishRepresentationAndAbstraction_Skill_Data = buildSkillConfig({
+export const distinguishRepresentationAndAbstraction_Skill_Data = defineSkill({
   slug: 'distinguishRepresentationAndAbstraction',
   id: '58784e45-fa84-44ee-beb6-4feff017fb80',
   name: {

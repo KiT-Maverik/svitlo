@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const historicalChronology_Skill_Data = buildSkillConfig({
+export const historicalChronology_Skill_Data = defineSkill({
   slug: 'historicalChronology',
   id: '731b09d8-2c26-4b6b-b7a5-234dd9908b35',
   name: {

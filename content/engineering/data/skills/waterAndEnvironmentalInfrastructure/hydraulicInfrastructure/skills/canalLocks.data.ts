@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const canalLocks_Skill_Data = buildSkillConfig({
+export const canalLocks_Skill_Data = defineSkill({
   slug: 'canalLocks',
   id: '45bcc88b-2136-4556-b691-cc9da2996d6f',
   name: {

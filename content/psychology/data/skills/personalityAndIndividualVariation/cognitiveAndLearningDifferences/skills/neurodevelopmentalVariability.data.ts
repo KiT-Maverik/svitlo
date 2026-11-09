@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neurodevelopmentalVariability_Skill_Data = buildSkillConfig({
+export const neurodevelopmentalVariability_Skill_Data = defineSkill({
   slug: 'neurodevelopmentalVariability',
   id: '88fba4ed-51bb-4932-b7cb-fb91cfd0d2ed',
   name: {

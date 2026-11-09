@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const columns_Skill_Data = buildSkillConfig({
+export const columns_Skill_Data = defineSkill({
   slug: 'columns',
   id: '00c507ae-1169-415b-88f9-6b03f17a2198',
   name: {

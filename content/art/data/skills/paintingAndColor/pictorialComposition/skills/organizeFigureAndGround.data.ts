@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const organizeFigureAndGround_Skill_Data = buildSkillConfig({
+export const organizeFigureAndGround_Skill_Data = defineSkill({
   slug: 'organizeFigureAndGround',
   id: '495f20e2-5b31-4e90-ab6e-29e38ac0bb1f',
   name: {

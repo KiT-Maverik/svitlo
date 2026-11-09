@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareUrbanSpatialPatterns_Skill_Data = buildSkillConfig({
+export const compareUrbanSpatialPatterns_Skill_Data = defineSkill({
   slug: 'compareUrbanSpatialPatterns',
   id: '88aa2d8e-a872-48ac-af85-3bd58cbaab20',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyBacterialHabitats_Skill_Data = buildSkillConfig({
+export const identifyBacterialHabitats_Skill_Data = defineSkill({
   slug: 'identifyBacterialHabitats',
   id: '7fb1345b-0618-4b4a-ab59-7ecda42fd6ae',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hundredsAndTens_Skill_Data = buildSkillConfig({
+export const hundredsAndTens_Skill_Data = defineSkill({
   slug: 'hundredsAndTens',
   id: '8e0dda78-413c-4120-8d68-ea185bd1a1b6',
   name: {

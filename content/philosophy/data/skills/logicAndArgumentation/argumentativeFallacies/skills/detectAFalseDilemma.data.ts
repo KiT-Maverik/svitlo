@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectAFalseDilemma_Skill_Data = buildSkillConfig({
+export const detectAFalseDilemma_Skill_Data = defineSkill({
   slug: 'detectAFalseDilemma',
   id: '06f0eb6f-29e7-49a6-aba1-9a7e654f4670',
   name: {

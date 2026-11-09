@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stellarSpectralTypes_Skill_Data = buildSkillConfig({
+export const stellarSpectralTypes_Skill_Data = defineSkill({
   slug: 'stellarSpectralTypes',
   id: '200ba789-22b7-43cb-a334-68db0487f804',
   name: {

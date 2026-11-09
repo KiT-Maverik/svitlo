@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientMeasurementSystems_Skill_Data = buildSkillConfig({
+export const ancientMeasurementSystems_Skill_Data = defineSkill({
   slug: 'ancientMeasurementSystems',
   id: '629b6996-0468-4991-879f-b6cc1e27ce39',
   name: {

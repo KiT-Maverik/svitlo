@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const supergiants_Skill_Data = buildSkillConfig({
+export const supergiants_Skill_Data = defineSkill({
   slug: 'supergiants',
   id: '676db779-d765-4ce6-8c57-58de4a6f0e31',
   name: {

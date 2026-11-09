@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlySteppeCultures_Skill_Data = buildSkillConfig({
+export const earlySteppeCultures_Skill_Data = defineSkill({
   slug: 'earlySteppeCultures',
   id: '661cde76-368e-4c59-857d-d6fe05b9f635',
   name: {

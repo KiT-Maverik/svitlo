@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const humanCapital_Skill_Data = buildSkillConfig({
+export const humanCapital_Skill_Data = defineSkill({
   slug: 'humanCapital',
   id: '9a3e7fff-82f5-4468-9ae8-36dbfd62f09b',
   name: {

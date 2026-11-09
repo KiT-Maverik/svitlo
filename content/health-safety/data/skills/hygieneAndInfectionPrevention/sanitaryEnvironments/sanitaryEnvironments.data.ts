@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   cleaningAndDisinfection_Skill_Data,
@@ -6,7 +6,7 @@ import {
   safeDrinkingWater_Skill_Data,
 } from './skills';
 
-export const sanitaryEnvironments_SkillGroup_Data = buildSkillGroupConfig({
+export const sanitaryEnvironments_SkillGroup_Data = defineSkillGroup({
   slug: 'sanitaryEnvironments',
   id: '586f5efd-49e8-495f-945c-14fc1bfcd5a0',
   name: {
@@ -40,11 +40,11 @@ export const sanitaryEnvironments_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Санитарлық орта',
     qm: 'Temiz ve sıhhatlı çevre',
   },
-  skills: {
-    cleaningAndDisinfection: cleaningAndDisinfection_Skill_Data,
-    indoorAirAndVentilation: indoorAirAndVentilation_Skill_Data,
-    safeDrinkingWater: safeDrinkingWater_Skill_Data,
-  },
+  skills: [
+    cleaningAndDisinfection_Skill_Data,
+    indoorAirAndVentilation_Skill_Data,
+    safeDrinkingWater_Skill_Data,
+  ],
   description: {
     methodological:
       'Water, indoor air, surfaces, and sanitation infrastructure influence exposure and should be managed according to actual contamination pathways.',

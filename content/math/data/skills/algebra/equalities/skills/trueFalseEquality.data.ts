@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const trueFalseEquality_Skill_Data = buildSkillConfig({
+export const trueFalseEquality_Skill_Data = defineSkill({
   slug: 'trueFalseEquality',
   id: '7dca0048-581a-4cff-9fa4-670cb7655505',
   name: {

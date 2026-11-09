@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = buildSkillConfig({
+export const explainTheRoleOfMicroorganismsInFermentation_Skill_Data = defineSkill({
   slug: 'explainTheRoleOfMicroorganismsInFermentation',
   id: '6f3ae271-f262-4af5-9239-3a00c348f271',
   name: {

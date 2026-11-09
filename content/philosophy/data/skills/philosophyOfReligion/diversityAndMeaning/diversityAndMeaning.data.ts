@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data,
@@ -6,7 +6,7 @@ import {
   distinguishReligiousSkepticismFromAgnosticism_Skill_Data,
 } from './skills';
 
-export const diversityAndMeaning_SkillGroup_Data = buildSkillGroupConfig({
+export const diversityAndMeaning_SkillGroup_Data = defineSkillGroup({
   slug: 'diversityAndMeaning',
   id: 'c41e8ecd-cd05-4614-93a5-95b3ecfee6e7',
   name: {
@@ -40,11 +40,11 @@ export const diversityAndMeaning_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Әртүрлілік және мән',
     qm: 'Çeşitlilik ve mana',
   },
-  skills: {
-    analyzeReligiousPluralismAsAPhilosophicalProblem: analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data,
-    analyzeReligiousToleranceAsAnEthicalPrinciple: analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data,
-    distinguishReligiousSkepticismFromAgnosticism: distinguishReligiousSkepticismFromAgnosticism_Skill_Data,
-  },
+  skills: [
+    analyzeReligiousPluralismAsAPhilosophicalProblem_Skill_Data,
+    analyzeReligiousToleranceAsAnEthicalPrinciple_Skill_Data,
+    distinguishReligiousSkepticismFromAgnosticism_Skill_Data,
+  ],
   description: {
     methodological:
       "Competing outlooks on religion, nonbelief, and life purpose raise interpretive and normative problems. Dialogue must distinguish a disagreement about truth from respect for people's freedom of conscience.",

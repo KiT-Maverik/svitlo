@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const ancientShipbuilding_Skill_Data = buildSkillConfig({
+export const ancientShipbuilding_Skill_Data = defineSkill({
   slug: 'ancientShipbuilding',
   id: 'b73816d8-fb54-46df-acc3-3212c7da6e9c',
   name: {

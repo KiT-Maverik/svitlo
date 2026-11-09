@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data = buildSkillConfig({
+export const analyzeGeographicRelationshipsUsingSpatialDataLayers_Skill_Data = defineSkill({
   slug: 'analyzeGeographicRelationshipsUsingSpatialDataLayers',
   id: '44c8f87f-e148-446f-bf90-29775f1c042c',
   name: {

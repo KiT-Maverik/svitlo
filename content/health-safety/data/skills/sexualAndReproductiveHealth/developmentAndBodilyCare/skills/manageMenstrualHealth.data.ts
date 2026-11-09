@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const manageMenstrualHealth_Skill_Data = buildSkillConfig({
+export const manageMenstrualHealth_Skill_Data = defineSkill({
   slug: 'manageMenstrualHealth',
   id: 'e9184422-5428-43a0-a8ac-53a380c10157',
   name: {

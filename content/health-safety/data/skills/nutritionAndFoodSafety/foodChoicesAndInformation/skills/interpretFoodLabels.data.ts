@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretFoodLabels_Skill_Data = buildSkillConfig({
+export const interpretFoodLabels_Skill_Data = defineSkill({
   slug: 'interpretFoodLabels',
   id: 'fc2251e9-a092-41a0-ac0f-d7696026cbba',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishOSIFromTCPIP_Skill_Data = buildSkillConfig({
+export const distinguishOSIFromTCPIP_Skill_Data = defineSkill({
   slug: 'distinguishOSIFromTCPIP',
   id: '453c8f7e-3d89-4cf9-aae3-7a70180443cb',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishRightsFromPrivileges_Skill_Data = buildSkillConfig({
+export const distinguishRightsFromPrivileges_Skill_Data = defineSkill({
   slug: 'distinguishRightsFromPrivileges',
   id: 'b55cdb38-8ce5-4321-866f-313666c39108',
   name: {

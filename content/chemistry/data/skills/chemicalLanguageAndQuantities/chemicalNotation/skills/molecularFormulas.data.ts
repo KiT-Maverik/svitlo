@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const molecularFormulas_Skill_Data = buildSkillConfig({
+export const molecularFormulas_Skill_Data = defineSkill({
   slug: 'molecularFormulas',
   id: '26090a64-c55f-44c2-989d-154c5c884e4b',
   name: {

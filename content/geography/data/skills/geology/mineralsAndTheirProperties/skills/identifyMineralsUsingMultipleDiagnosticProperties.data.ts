@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data = buildSkillConfig({
+export const identifyMineralsUsingMultipleDiagnosticProperties_Skill_Data = defineSkill({
   slug: 'identifyMineralsUsingMultipleDiagnosticProperties',
   id: '8b9d2c38-e561-4696-aec6-c13fd82c50ee',
   name: {

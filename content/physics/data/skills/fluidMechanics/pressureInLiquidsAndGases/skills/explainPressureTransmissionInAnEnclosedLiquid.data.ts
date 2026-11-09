@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainPressureTransmissionInAnEnclosedLiquid_Skill_Data = buildSkillConfig({
+export const explainPressureTransmissionInAnEnclosedLiquid_Skill_Data = defineSkill({
   slug: 'explainPressureTransmissionInAnEnclosedLiquid',
   id: '5fdbc80d-87de-4f69-90bd-5b4392e5b17c',
   name: {

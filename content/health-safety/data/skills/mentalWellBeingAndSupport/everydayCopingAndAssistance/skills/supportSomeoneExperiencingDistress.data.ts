@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const supportSomeoneExperiencingDistress_Skill_Data = buildSkillConfig({
+export const supportSomeoneExperiencingDistress_Skill_Data = defineSkill({
   slug: 'supportSomeoneExperiencingDistress',
   id: 'c5550b53-53e8-4823-b5f9-c034d021734c',
   name: {

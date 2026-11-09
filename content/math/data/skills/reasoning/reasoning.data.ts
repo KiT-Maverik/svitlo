@@ -1,14 +1,14 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { argumentation_SkillGroup_Data } from './argumentation/argumentation.data';
 import { verification_SkillGroup_Data } from './verification/verification.data';
 import { logic_SkillGroup_Data } from './logic/logic.data';
 import { representations_SkillGroup_Data } from './representations/representations.data';
 
-export const reasoning_SkillDomain_Data = buildSkillDomainConfig({
+export const reasoning_SkillDomain_Data = defineSkillDomain({
   slug: 'reasoning',
   id: '91e2d845-0c04-4a81-b126-8bad16300cad',
-  name: {
+  title: {
     en: 'Reasoning',
     qm: 'Fikir yürsetüv',
     lt: 'Samprotavimas',
@@ -39,12 +39,12 @@ export const reasoning_SkillDomain_Data = buildSkillDomainConfig({
     pl: 'Rozumowanie',
     uk: 'Міркування',
   },
-  groups: {
-    argumentation: argumentation_SkillGroup_Data,
-    verification: verification_SkillGroup_Data,
-    logic: logic_SkillGroup_Data,
-    representations: representations_SkillGroup_Data,
-  },
+  groups: [
+    argumentation_SkillGroup_Data,
+    verification_SkillGroup_Data,
+    logic_SkillGroup_Data,
+    representations_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Justifying mathematical statements, finding counterexamples, drawing logical conclusions, checking solutions, and translating between representations.',

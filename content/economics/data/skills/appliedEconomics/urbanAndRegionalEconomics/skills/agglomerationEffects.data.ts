@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const agglomerationEffects_Skill_Data = buildSkillConfig({
+export const agglomerationEffects_Skill_Data = defineSkill({
   slug: 'agglomerationEffects',
   id: 'bf60be05-668a-4c27-bf62-b36a40a7f09f',
   name: {

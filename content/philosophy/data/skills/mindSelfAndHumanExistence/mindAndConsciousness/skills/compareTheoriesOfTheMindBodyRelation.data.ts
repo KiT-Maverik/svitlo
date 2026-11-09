@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareTheoriesOfTheMindBodyRelation_Skill_Data = buildSkillConfig({
+export const compareTheoriesOfTheMindBodyRelation_Skill_Data = defineSkill({
   slug: 'compareTheoriesOfTheMindBodyRelation',
   id: '44339755-c492-4dd3-b6e2-fd53e763b8dd',
   name: {

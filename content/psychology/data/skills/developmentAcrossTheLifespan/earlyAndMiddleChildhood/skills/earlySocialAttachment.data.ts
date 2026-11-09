@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlySocialAttachment_Skill_Data = buildSkillConfig({
+export const earlySocialAttachment_Skill_Data = defineSkill({
   slug: 'earlySocialAttachment',
   id: 'f9302107-9773-4abe-b228-9c416c48ae42',
   name: {

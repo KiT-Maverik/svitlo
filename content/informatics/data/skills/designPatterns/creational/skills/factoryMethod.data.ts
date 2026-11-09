@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const factoryMethod_Skill_Data = buildSkillConfig({
+export const factoryMethod_Skill_Data = defineSkill({
   slug: 'factoryMethod',
   id: '04ab1ac5-582e-451e-9c71-0000946454fc',
   name: {

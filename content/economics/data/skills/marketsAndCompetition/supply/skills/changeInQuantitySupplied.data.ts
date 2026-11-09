@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const changeInQuantitySupplied_Skill_Data = buildSkillConfig({
+export const changeInQuantitySupplied_Skill_Data = defineSkill({
   slug: 'changeInQuantitySupplied',
   id: 'c31d2b2a-f83c-4434-972a-4cec905c4506',
   name: {

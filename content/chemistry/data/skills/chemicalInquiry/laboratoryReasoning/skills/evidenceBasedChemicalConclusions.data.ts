@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evidenceBasedChemicalConclusions_Skill_Data = buildSkillConfig({
+export const evidenceBasedChemicalConclusions_Skill_Data = defineSkill({
   slug: 'evidenceBasedChemicalConclusions',
   id: 'b85b22fc-a1cb-45ad-8b6b-cb4d9b2e42f8',
   name: {

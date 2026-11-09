@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainCurrentBalanceAtACircuitNode_Skill_Data = buildSkillConfig({
+export const explainCurrentBalanceAtACircuitNode_Skill_Data = defineSkill({
   slug: 'explainCurrentBalanceAtACircuitNode',
   id: 'a726f77b-a9cc-4223-b567-ea73eb169b2a',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const electronShells_Skill_Data = buildSkillConfig({
+export const electronShells_Skill_Data = defineSkill({
   slug: 'electronShells',
   id: 'ac347b3b-8f4f-4ecf-8103-fcb36b7b14ab',
   name: {

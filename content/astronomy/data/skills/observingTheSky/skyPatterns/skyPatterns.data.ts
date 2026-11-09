@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   apparentBrightness_Skill_Data,
@@ -9,7 +9,7 @@ import {
   stellarProperMotion_Skill_Data,
 } from './skills';
 
-export const skyPatterns_SkillGroup_Data = buildSkillGroupConfig({
+export const skyPatterns_SkillGroup_Data = defineSkillGroup({
   slug: 'skyPatterns',
   id: 'd148c95a-dce1-468f-9068-bd96247909d2',
   name: {
@@ -43,14 +43,14 @@ export const skyPatterns_SkillGroup_Data = buildSkillGroupConfig({
     ka: 'ცის მოხაზულობები',
     kk: 'Аспандағы өрнектер',
   },
-  skills: {
-    apparentBrightness: apparentBrightness_Skill_Data,
-    asterisms: asterisms_Skill_Data,
-    constellations: constellations_Skill_Data,
-    dailySkyMotion: dailySkyMotion_Skill_Data,
-    seasonalSkyVisibility: seasonalSkyVisibility_Skill_Data,
-    stellarProperMotion: stellarProperMotion_Skill_Data,
-  },
+  skills: [
+    apparentBrightness_Skill_Data,
+    asterisms_Skill_Data,
+    constellations_Skill_Data,
+    dailySkyMotion_Skill_Data,
+    seasonalSkyVisibility_Skill_Data,
+    stellarProperMotion_Skill_Data,
+  ],
   description: {
     methodological:
       'Recognizable configurations make celestial scenes navigable, but their visibility and apparent arrangement depend on viewpoint and date.',

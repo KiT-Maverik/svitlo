@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const extraterrestrialVolcanism_Skill_Data = buildSkillConfig({
+export const extraterrestrialVolcanism_Skill_Data = defineSkill({
   slug: 'extraterrestrialVolcanism',
   id: '0477f914-d36b-413e-8605-4bfbfd15689e',
   name: {

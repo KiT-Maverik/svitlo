@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   analyzeBebopJazz_Skill_Data,
@@ -8,7 +8,7 @@ import {
   analyzeNohTheatre_Skill_Data,
 } from './skills';
 
-export const performingArtTraditions_SkillGroup_Data = buildSkillGroupConfig({
+export const performingArtTraditions_SkillGroup_Data = defineSkillGroup({
   slug: 'performingArtTraditions',
   id: '2503890a-e64f-476c-aa0d-80f18d4e91b8',
   name: {
@@ -42,13 +42,13 @@ export const performingArtTraditions_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Орындаушылық өнер дәстүрлері',
     qm: 'İcra sanatları adetleri',
   },
-  skills: {
-    analyzeBebopJazz: analyzeBebopJazz_Skill_Data,
-    analyzeBharatanatyam: analyzeBharatanatyam_Skill_Data,
-    analyzeClassicalBalletTraditions: analyzeClassicalBalletTraditions_Skill_Data,
-    analyzeHipHopDJCulture: analyzeHipHopDJCulture_Skill_Data,
-    analyzeNohTheatre: analyzeNohTheatre_Skill_Data,
-  },
+  skills: [
+    analyzeBebopJazz_Skill_Data,
+    analyzeBharatanatyam_Skill_Data,
+    analyzeClassicalBalletTraditions_Skill_Data,
+    analyzeHipHopDJCulture_Skill_Data,
+    analyzeNohTheatre_Skill_Data,
+  ],
   description: {
     methodological:
       'Historical traditions in theatre, dance and music are interpreted through the characteristics and cultural roles of their performances, not by requiring a pupil to reproduce their techniques.',

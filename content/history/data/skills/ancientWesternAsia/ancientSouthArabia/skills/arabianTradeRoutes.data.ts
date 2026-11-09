@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const arabianTradeRoutes_Skill_Data = buildSkillConfig({
+export const arabianTradeRoutes_Skill_Data = defineSkill({
   slug: 'arabianTradeRoutes',
   id: '712b06da-067a-44c2-832a-ab908c8d3d66',
   name: {

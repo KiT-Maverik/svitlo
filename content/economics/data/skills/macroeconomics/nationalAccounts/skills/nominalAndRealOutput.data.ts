@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const nominalAndRealOutput_Skill_Data = buildSkillConfig({
+export const nominalAndRealOutput_Skill_Data = defineSkill({
   slug: 'nominalAndRealOutput',
   id: '7f5b9682-cf3b-4147-8a47-d2db01dfbdd5',
   name: {

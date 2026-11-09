@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exoplanetAtmosphericSpectra_Skill_Data = buildSkillConfig({
+export const exoplanetAtmosphericSpectra_Skill_Data = defineSkill({
   slug: 'exoplanetAtmosphericSpectra',
   id: '6309e32a-3465-4b66-981f-07c9e46792e8',
   name: {

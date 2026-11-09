@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createBranchingArtNarratives_Skill_Data = buildSkillConfig({
+export const createBranchingArtNarratives_Skill_Data = defineSkill({
   slug: 'createBranchingArtNarratives',
   id: '1d8b812c-3632-4d3f-a6d3-40fbc947d8a8',
   name: {

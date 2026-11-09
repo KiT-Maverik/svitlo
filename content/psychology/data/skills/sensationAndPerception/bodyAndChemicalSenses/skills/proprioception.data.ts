@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const proprioception_Skill_Data = buildSkillConfig({
+export const proprioception_Skill_Data = defineSkill({
   slug: 'proprioception',
   id: '5c8f5a24-35bc-4076-826d-bb49a0656a6b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const shapeOnSolidSurface_Skill_Data = buildSkillConfig({
+export const shapeOnSolidSurface_Skill_Data = defineSkill({
   slug: 'shapeOnSolidSurface',
   id: 'a9355c95-a65a-472e-bb7d-f11c7a23fe49',
   name: {

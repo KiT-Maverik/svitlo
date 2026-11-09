@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const foragingEconomies_Skill_Data = buildSkillConfig({
+export const foragingEconomies_Skill_Data = defineSkill({
   slug: 'foragingEconomies',
   id: '1c43f4c0-73f3-41ab-bb8e-f4c2f2980106',
   name: {

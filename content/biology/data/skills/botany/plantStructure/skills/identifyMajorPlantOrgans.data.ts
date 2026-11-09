@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyMajorPlantOrgans_Skill_Data = buildSkillConfig({
+export const identifyMajorPlantOrgans_Skill_Data = defineSkill({
   slug: 'identifyMajorPlantOrgans',
   id: '05903430-3ad0-4905-aec1-57d0e994b356',
   name: {

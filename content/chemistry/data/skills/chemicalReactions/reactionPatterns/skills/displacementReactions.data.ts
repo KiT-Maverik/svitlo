@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const displacementReactions_Skill_Data = buildSkillConfig({
+export const displacementReactions_Skill_Data = defineSkill({
   slug: 'displacementReactions',
   id: '6799e039-0352-446e-84b0-187f6b347e69',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const relateContrastToAttention_Skill_Data = buildSkillConfig({
+export const relateContrastToAttention_Skill_Data = defineSkill({
   slug: 'relateContrastToAttention',
   id: '5c9fc599-02a5-4516-aeba-39119c1e5c64',
   name: {

@@ -1,13 +1,13 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { aestheticJudgment_SkillGroup_Data } from './aestheticJudgment/aestheticJudgment.data';
 import { artAndInterpretation_SkillGroup_Data } from './artAndInterpretation/artAndInterpretation.data';
 import { valueAndTaste_SkillGroup_Data } from './valueAndTaste/valueAndTaste.data';
 
-export const aestheticsAndPhilosophyOfArt_SkillDomain_Data = buildSkillDomainConfig({
+export const aestheticsAndPhilosophyOfArt_SkillDomain_Data = defineSkillDomain({
   slug: 'aestheticsAndPhilosophyOfArt',
   id: 'a97ffcb1-ce72-44dc-b05b-3f6e7156fb19',
-  name: {
+  title: {
     en: 'Aesthetics and Philosophy of Art',
     zh: '美学与艺术哲学',
     hi: 'सौंदर्यशास्त्र और कला दर्शन',
@@ -38,11 +38,11 @@ export const aestheticsAndPhilosophyOfArt_SkillDomain_Data = buildSkillDomainCon
     kk: 'Эстетика және өнер философиясы',
     qm: 'Estetika ve sanat felsefesi',
   },
-  groups: {
-    aestheticJudgment: aestheticJudgment_SkillGroup_Data,
-    artAndInterpretation: artAndInterpretation_SkillGroup_Data,
-    valueAndTaste: valueAndTaste_SkillGroup_Data,
-  },
+  groups: [
+    aestheticJudgment_SkillGroup_Data,
+    artAndInterpretation_SkillGroup_Data,
+    valueAndTaste_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Aesthetic inquiry asks why experiences, works, and environments are judged beautiful, expressive, meaningful, or artistically valuable. Its focus is justification and concepts of value, not techniques of making art.',

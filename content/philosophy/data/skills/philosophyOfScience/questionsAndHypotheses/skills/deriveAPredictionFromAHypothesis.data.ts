@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const deriveAPredictionFromAHypothesis_Skill_Data = buildSkillConfig({
+export const deriveAPredictionFromAHypothesis_Skill_Data = defineSkill({
   slug: 'deriveAPredictionFromAHypothesis',
   id: '74f84cb0-893a-4c34-8006-5733c2338011',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const handHygiene_Skill_Data = buildSkillConfig({
+export const handHygiene_Skill_Data = defineSkill({
   slug: 'handHygiene',
   id: '456a5d69-5a03-44b3-acff-eb9d42afea7f',
   name: {

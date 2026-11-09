@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainHowCloudsForm_Skill_Data,
@@ -7,7 +7,7 @@ import {
   interpretTheMovementOfAirMassesAndFronts_Skill_Data,
 } from './skills';
 
-export const atmosphericProcesses_SkillGroup_Data = buildSkillGroupConfig({
+export const atmosphericProcesses_SkillGroup_Data = defineSkillGroup({
   slug: 'atmosphericProcesses',
   id: 'b9903371-5457-474d-bfc1-6d2d020aff6a',
   name: {
@@ -41,12 +41,12 @@ export const atmosphericProcesses_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Атмосфералық үдерістер',
     qm: 'Atmosfera adiseleri',
   },
-  skills: {
-    explainHowCloudsForm: explainHowCloudsForm_Skill_Data,
-    explainHowPrecipitationForms: explainHowPrecipitationForms_Skill_Data,
-    explainTheFormationOfWind: explainTheFormationOfWind_Skill_Data,
-    interpretTheMovementOfAirMassesAndFronts: interpretTheMovementOfAirMassesAndFronts_Skill_Data,
-  },
+  skills: [
+    explainHowCloudsForm_Skill_Data,
+    explainHowPrecipitationForms_Skill_Data,
+    explainTheFormationOfWind_Skill_Data,
+    interpretTheMovementOfAirMassesAndFronts_Skill_Data,
+  ],
   description: {
     methodological:
       'Water vapor, atmospheric pressure differences, moving air masses and energy exchanges explain the geographic formation and movement of weather systems. The focus is observable and spatially significant processes rather than equations of fluid mechanics.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainARepository_Skill_Data = buildSkillConfig({
+export const explainARepository_Skill_Data = defineSkill({
   slug: 'explainARepository',
   id: '66968b3c-3bb2-4e2f-b4c8-d75d1e2c1f22',
   name: {

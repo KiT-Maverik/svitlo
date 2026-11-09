@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainNewtonsFirstLaw_Skill_Data = buildSkillConfig({
+export const explainNewtonsFirstLaw_Skill_Data = defineSkill({
   slug: 'explainNewtonsFirstLaw',
   id: 'aee7273b-bd77-4bcb-a5ff-5bb34ce10fc9',
   name: {

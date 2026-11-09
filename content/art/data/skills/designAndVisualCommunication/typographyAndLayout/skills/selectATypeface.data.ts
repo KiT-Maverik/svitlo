@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selectATypeface_Skill_Data = buildSkillConfig({
+export const selectATypeface_Skill_Data = defineSkill({
   slug: 'selectATypeface',
   id: '357725bc-4ae9-4b71-8ee2-87dae0d95bd6',
   name: {

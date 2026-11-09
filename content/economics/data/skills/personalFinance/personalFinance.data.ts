@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { financialRisksAndProtection_SkillGroup_Data } from './financialRisksAndProtection/financialRisksAndProtection.data';
 import { incomeAndBudgeting_SkillGroup_Data } from './incomeAndBudgeting/incomeAndBudgeting.data';
@@ -6,10 +6,10 @@ import { loansAndDebt_SkillGroup_Data } from './loansAndDebt/loansAndDebt.data';
 import { paymentsAndTransactions_SkillGroup_Data } from './paymentsAndTransactions/paymentsAndTransactions.data';
 import { savingAndInvesting_SkillGroup_Data } from './savingAndInvesting/savingAndInvesting.data';
 
-export const personalFinance_SkillDomain_Data = buildSkillDomainConfig({
+export const personalFinance_SkillDomain_Data = defineSkillDomain({
   slug: 'personalFinance',
   id: '9e8a24f0-4fc5-40a4-9cf9-a259981fc157',
-  name: {
+  title: {
     en: 'Особисті фінанси',
     zh: '个人理财',
     hi: 'व्यक्तिगत वित्त',
@@ -40,13 +40,13 @@ export const personalFinance_SkillDomain_Data = buildSkillDomainConfig({
     kk: 'Жеке қаржы',
     qm: 'Şahsiy maliye',
   },
-  groups: {
-    financialRisksAndProtection: financialRisksAndProtection_SkillGroup_Data,
-    incomeAndBudgeting: incomeAndBudgeting_SkillGroup_Data,
-    loansAndDebt: loansAndDebt_SkillGroup_Data,
-    paymentsAndTransactions: paymentsAndTransactions_SkillGroup_Data,
-    savingAndInvesting: savingAndInvesting_SkillGroup_Data,
-  },
+  groups: [
+    financialRisksAndProtection_SkillGroup_Data,
+    incomeAndBudgeting_SkillGroup_Data,
+    loansAndDebt_SkillGroup_Data,
+    paymentsAndTransactions_SkillGroup_Data,
+    savingAndInvesting_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Households receive income, make payments, and decide how to save, borrow, and manage risks. This domain develops practical literacy rather than personalized investment advice.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const respondToAttackWarnings_Skill_Data = buildSkillConfig({
+export const respondToAttackWarnings_Skill_Data = defineSkill({
   slug: 'respondToAttackWarnings',
   id: '6c36a614-b152-4f62-81be-8d4e93c5113c',
   name: {

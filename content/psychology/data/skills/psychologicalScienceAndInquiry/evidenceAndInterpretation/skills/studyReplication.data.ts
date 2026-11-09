@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const studyReplication_Skill_Data = buildSkillConfig({
+export const studyReplication_Skill_Data = defineSkill({
   slug: 'studyReplication',
   id: 'eedb03e6-836f-4989-8a7c-36cb025b670b',
   name: {

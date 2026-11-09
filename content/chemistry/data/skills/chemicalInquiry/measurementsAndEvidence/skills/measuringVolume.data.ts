@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const measuringVolume_Skill_Data = buildSkillConfig({
+export const measuringVolume_Skill_Data = defineSkill({
   slug: 'measuringVolume',
   id: '5ac0f153-c62e-483f-b37c-04b6c63329ce',
   name: {

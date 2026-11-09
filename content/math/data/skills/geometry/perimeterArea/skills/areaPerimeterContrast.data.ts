@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const areaPerimeterContrast_Skill_Data = buildSkillConfig({
+export const areaPerimeterContrast_Skill_Data = defineSkill({
   slug: 'areaPerimeterContrast',
   id: '1c1b7595-df14-4cb6-aa67-0831d6c4425d',
   name: {

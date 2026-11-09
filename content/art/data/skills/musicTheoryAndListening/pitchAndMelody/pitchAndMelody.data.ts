@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   composeAMelody_Skill_Data,
@@ -8,7 +8,7 @@ import {
   useMusicalScales_Skill_Data,
 } from './skills';
 
-export const pitchAndMelody_SkillGroup_Data = buildSkillGroupConfig({
+export const pitchAndMelody_SkillGroup_Data = defineSkillGroup({
   slug: 'pitchAndMelody',
   id: 'a4e0bd90-0a3d-40c6-9f77-52bc073fa2b6',
   name: {
@@ -42,13 +42,13 @@ export const pitchAndMelody_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Дыбыс биіктігі мен әуен',
     qm: 'Ses yüksekliği ve ezgi',
   },
-  skills: {
-    composeAMelody: composeAMelody_Skill_Data,
-    distinguishMusicalIntervals: distinguishMusicalIntervals_Skill_Data,
-    readPitchNotation: readPitchNotation_Skill_Data,
-    recognizeMelodicContour: recognizeMelodicContour_Skill_Data,
-    useMusicalScales: useMusicalScales_Skill_Data,
-  },
+  skills: [
+    composeAMelody_Skill_Data,
+    distinguishMusicalIntervals_Skill_Data,
+    readPitchNotation_Skill_Data,
+    recognizeMelodicContour_Skill_Data,
+    useMusicalScales_Skill_Data,
+  ],
   description: {
     methodological: 'Melodic patterns rely on relative pitch motion, intervals and a selected pitch collection.',
     frontend: {

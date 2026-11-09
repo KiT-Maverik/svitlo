@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyRomanCommunities_Skill_Data = buildSkillConfig({
+export const earlyRomanCommunities_Skill_Data = defineSkill({
   slug: 'earlyRomanCommunities',
   id: 'adf1adab-16d8-4020-94d4-0ac8abdb2d48',
   name: {

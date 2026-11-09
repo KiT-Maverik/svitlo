@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const povertyPoint_Skill_Data = buildSkillConfig({
+export const povertyPoint_Skill_Data = defineSkill({
   slug: 'povertyPoint',
   id: '304d36df-4a14-48a8-a946-742b50b6378d',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeCnidarianCharacteristics_Skill_Data = buildSkillConfig({
+export const recognizeCnidarianCharacteristics_Skill_Data = defineSkill({
   slug: 'recognizeCnidarianCharacteristics',
   id: 'f65cc35d-8e08-4b0e-b99f-90fc40da1321',
   name: {

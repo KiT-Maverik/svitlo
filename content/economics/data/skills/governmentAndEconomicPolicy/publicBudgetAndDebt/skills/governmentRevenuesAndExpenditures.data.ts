@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const governmentRevenuesAndExpenditures_Skill_Data = buildSkillConfig({
+export const governmentRevenuesAndExpenditures_Skill_Data = defineSkill({
   slug: 'governmentRevenuesAndExpenditures',
   id: '79cb3135-c2ae-4c95-a342-a013d99dc006',
   name: {

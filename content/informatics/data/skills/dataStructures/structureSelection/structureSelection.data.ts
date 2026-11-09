@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   chooseAStructureForRequiredOperations_Skill_Data,
@@ -7,7 +7,7 @@ import {
   distinguishDataStructuresFromAlgorithms_Skill_Data,
 } from './skills';
 
-export const structureSelection_SkillGroup_Data = buildSkillGroupConfig({
+export const structureSelection_SkillGroup_Data = defineSkillGroup({
   slug: 'structureSelection',
   id: 'b609551b-57f5-4188-8083-39cc8e116420',
   name: {
@@ -41,12 +41,12 @@ export const structureSelection_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Деректер құрылымын таңдау',
     qm: 'Malümat yapısını saylamaq',
   },
-  skills: {
-    chooseAStructureForRequiredOperations: chooseAStructureForRequiredOperations_Skill_Data,
-    compareCollectionInsertionCosts: compareCollectionInsertionCosts_Skill_Data,
-    compareElementAccessCosts: compareElementAccessCosts_Skill_Data,
-    distinguishDataStructuresFromAlgorithms: distinguishDataStructuresFromAlgorithms_Skill_Data,
-  },
+  skills: [
+    chooseAStructureForRequiredOperations_Skill_Data,
+    compareCollectionInsertionCosts_Skill_Data,
+    compareElementAccessCosts_Skill_Data,
+    distinguishDataStructuresFromAlgorithms_Skill_Data,
+  ],
   description: {
     methodological:
       'Select data structures based on required operations and evaluate access, insertion, and storage costs. The comparison concerns data organization rather than only algorithms that process it.',

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const determineAGearRatio_Skill_Data = buildSkillConfig({
+export const determineAGearRatio_Skill_Data = defineSkill({
   slug: 'determineAGearRatio',
   id: '076cb2f5-42f5-4bed-bc10-f9fdead82eb8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const stereoisomerism_Skill_Data = buildSkillConfig({
+export const stereoisomerism_Skill_Data = defineSkill({
   slug: 'stereoisomerism',
   id: '4cc113ad-6174-4587-be76-8b18b75fc015',
   name: {

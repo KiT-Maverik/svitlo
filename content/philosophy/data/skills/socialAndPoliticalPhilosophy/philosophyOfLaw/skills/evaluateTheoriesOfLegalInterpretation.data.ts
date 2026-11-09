@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateTheoriesOfLegalInterpretation_Skill_Data = buildSkillConfig({
+export const evaluateTheoriesOfLegalInterpretation_Skill_Data = defineSkill({
   slug: 'evaluateTheoriesOfLegalInterpretation',
   id: '3e893fb8-15d1-42a7-8ca3-a320536da219',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareObjectsTemperatures_Skill_Data = buildSkillConfig({
+export const compareObjectsTemperatures_Skill_Data = defineSkill({
   slug: 'compareObjectsTemperatures',
   id: '0f293019-3a56-42f0-b638-f9b3d65e8135',
   name: {

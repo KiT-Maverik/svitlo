@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const northAfricanCulturalInteractions_Skill_Data = buildSkillConfig({
+export const northAfricanCulturalInteractions_Skill_Data = defineSkill({
   slug: 'northAfricanCulturalInteractions',
   id: '9c42ea37-d538-46f1-97ae-f1c329392d8f',
   name: {

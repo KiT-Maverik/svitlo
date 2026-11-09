@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const sourceCriticism_Skill_Data = buildSkillConfig({
+export const sourceCriticism_Skill_Data = defineSkill({
   slug: 'sourceCriticism',
   id: 'a2588901-2159-428e-bf5a-0ba5fc3aebd0',
   name: {

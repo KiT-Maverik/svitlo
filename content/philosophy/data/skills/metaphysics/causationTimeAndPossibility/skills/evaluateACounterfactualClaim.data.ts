@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateACounterfactualClaim_Skill_Data = buildSkillConfig({
+export const evaluateACounterfactualClaim_Skill_Data = defineSkill({
   slug: 'evaluateACounterfactualClaim',
   id: '06b88a4b-f514-4fbc-9bba-80c1feb82b81',
   name: {

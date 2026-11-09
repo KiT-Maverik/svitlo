@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { astronomicalSpectra_SkillGroup_Data } from './astronomicalSpectra/astronomicalSpectra.data';
 import { distancesAndPhysicalProperties_SkillGroup_Data } from './distancesAndPhysicalProperties/distancesAndPhysicalProperties.data';
@@ -7,10 +7,10 @@ import { gravitationalAndParticleProbes_SkillGroup_Data } from './gravitationalA
 import { spacecraftObservations_SkillGroup_Data } from './spacecraftObservations/spacecraftObservations.data';
 import { telescopesAndDetectors_SkillGroup_Data } from './telescopesAndDetectors/telescopesAndDetectors.data';
 
-export const astronomicalInstrumentsAndEvidence_SkillDomain_Data = buildSkillDomainConfig({
+export const astronomicalInstrumentsAndEvidence_SkillDomain_Data = defineSkillDomain({
   slug: 'astronomicalInstrumentsAndEvidence',
   id: 'bf04eb18-9dd9-462c-8c83-7269bdc4d17d',
-  name: {
+  title: {
     en: 'Astronomical Instruments and Evidence',
     qm: 'Astronomik aletler ve ilmiy deliller',
     bn: 'জ্যোতির্বৈজ্ঞানিক যন্ত্র ও প্রমাণ',
@@ -41,14 +41,14 @@ export const astronomicalInstrumentsAndEvidence_SkillDomain_Data = buildSkillDom
     uk: 'Астрономічні інструменти та наукові свідчення',
     pl: 'Instrumenty astronomiczne i dowody obserwacyjne',
   },
-  groups: {
-    astronomicalSpectra: astronomicalSpectra_SkillGroup_Data,
-    distancesAndPhysicalProperties: distancesAndPhysicalProperties_SkillGroup_Data,
-    evidenceAndInterpretation: evidenceAndInterpretation_SkillGroup_Data,
-    gravitationalAndParticleProbes: gravitationalAndParticleProbes_SkillGroup_Data,
-    spacecraftObservations: spacecraftObservations_SkillGroup_Data,
-    telescopesAndDetectors: telescopesAndDetectors_SkillGroup_Data,
-  },
+  groups: [
+    astronomicalSpectra_SkillGroup_Data,
+    distancesAndPhysicalProperties_SkillGroup_Data,
+    evidenceAndInterpretation_SkillGroup_Data,
+    gravitationalAndParticleProbes_SkillGroup_Data,
+    spacecraftObservations_SkillGroup_Data,
+    telescopesAndDetectors_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Astronomy infers properties of remote objects from electromagnetic radiation, gravitational effects, particles and spacecraft observations. This domain covers what an observation can reveal, how instruments and methods constrain the evidence, and how competing interpretations are evaluated, not the engineering construction of observatories and spacecraft.',

@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   standardUnitPurpose_Skill_Data,
@@ -6,7 +6,7 @@ import {
   wordProblemsMeasures_Skill_Data,
 } from './skills';
 
-export const general_SkillGroup_Data = buildSkillGroupConfig({
+export const general_SkillGroup_Data = defineSkillGroup({
   slug: 'general',
   id: '44154798-a292-4ff4-8f64-5093114af194',
   name: {
@@ -40,11 +40,11 @@ export const general_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Ogólne umiejętności mierzenia',
     uk: 'Загальні вимірювальні навички',
   },
-  skills: {
-    standardUnitPurpose: standardUnitPurpose_Skill_Data,
-    chooseAppropriateUnit: chooseAppropriateUnit_Skill_Data,
-    wordProblemsMeasures: wordProblemsMeasures_Skill_Data,
-  },
+  skills: [
+    standardUnitPurpose_Skill_Data,
+    chooseAppropriateUnit_Skill_Data,
+    wordProblemsMeasures_Skill_Data,
+  ],
   description: {
     methodological:
       'General principles for choosing units, reconciling measurements, and calculating with comparable quantities.',

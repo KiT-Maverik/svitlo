@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const economicIncentives_Skill_Data = buildSkillConfig({
+export const economicIncentives_Skill_Data = defineSkill({
   slug: 'economicIncentives',
   id: 'c2add03a-ab5d-4c01-9c70-ac1be1a3349b',
   name: {

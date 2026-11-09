@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createReliefSculpture_Skill_Data = buildSkillConfig({
+export const createReliefSculpture_Skill_Data = defineSkill({
   slug: 'createReliefSculpture',
   id: '568f9897-f270-47df-b89a-9af8989d6867',
   name: {

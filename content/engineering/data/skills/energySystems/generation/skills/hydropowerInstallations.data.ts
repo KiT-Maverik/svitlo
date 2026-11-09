@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const hydropowerInstallations_Skill_Data = buildSkillConfig({
+export const hydropowerInstallations_Skill_Data = defineSkill({
   slug: 'hydropowerInstallations',
   id: '7b240546-e73f-4e42-b696-9703fe326322',
   name: {

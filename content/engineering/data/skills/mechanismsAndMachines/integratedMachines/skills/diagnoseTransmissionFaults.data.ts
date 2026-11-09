@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const diagnoseTransmissionFaults_Skill_Data = buildSkillConfig({
+export const diagnoseTransmissionFaults_Skill_Data = defineSkill({
   slug: 'diagnoseTransmissionFaults',
   id: 'dc8453f8-46fa-44ec-a641-2bf31effafd4',
   name: {

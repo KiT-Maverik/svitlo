@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const zeroDividend_Skill_Data = buildSkillConfig({
+export const zeroDividend_Skill_Data = defineSkill({
   slug: 'zeroDividend',
   id: '656c998e-5fd5-412c-b6ba-7ae3f4a38cad',
   name: {

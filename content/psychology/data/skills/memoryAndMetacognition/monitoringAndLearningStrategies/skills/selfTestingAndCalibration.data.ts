@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const selfTestingAndCalibration_Skill_Data = buildSkillConfig({
+export const selfTestingAndCalibration_Skill_Data = defineSkill({
   slug: 'selfTestingAndCalibration',
   id: '238a8808-07fe-4f06-8fd6-e799cbb49698',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainWhatAVirusIs_Skill_Data = buildSkillConfig({
+export const explainWhatAVirusIs_Skill_Data = defineSkill({
   slug: 'explainWhatAVirusIs',
   id: '7ca389ef-0006-4ae3-b7c2-dbddcf7e9907',
   name: {

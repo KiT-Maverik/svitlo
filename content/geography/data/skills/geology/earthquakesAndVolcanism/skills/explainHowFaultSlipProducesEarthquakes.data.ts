@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainHowFaultSlipProducesEarthquakes_Skill_Data = buildSkillConfig({
+export const explainHowFaultSlipProducesEarthquakes_Skill_Data = defineSkill({
   slug: 'explainHowFaultSlipProducesEarthquakes',
   id: 'dfa2cf13-52b3-4e3c-8d29-401430b1b936',
   name: {

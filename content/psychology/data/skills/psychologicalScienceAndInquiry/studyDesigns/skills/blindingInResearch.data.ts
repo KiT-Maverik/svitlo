@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const blindingInResearch_Skill_Data = buildSkillConfig({
+export const blindingInResearch_Skill_Data = defineSkill({
   slug: 'blindingInResearch',
   id: '92b16089-6ac5-4ec8-aa8e-0ae5c77920ab',
   name: {

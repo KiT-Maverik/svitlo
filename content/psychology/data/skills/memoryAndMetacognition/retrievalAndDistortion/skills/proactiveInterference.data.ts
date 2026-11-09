@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const proactiveInterference_Skill_Data = buildSkillConfig({
+export const proactiveInterference_Skill_Data = defineSkill({
   slug: 'proactiveInterference',
   id: '649681b7-5fc4-4e59-8e40-d9d603e3706a',
   name: {

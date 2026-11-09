@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainFunctionsOfTheHumanReproductiveSystem_Skill_Data = buildSkillConfig({
+export const explainFunctionsOfTheHumanReproductiveSystem_Skill_Data = defineSkill({
   slug: 'explainFunctionsOfTheHumanReproductiveSystem',
   id: 'c67cc462-d90b-480d-9934-2571a7379cc6',
   name: {

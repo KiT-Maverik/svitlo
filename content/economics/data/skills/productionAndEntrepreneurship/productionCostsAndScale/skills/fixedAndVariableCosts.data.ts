@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fixedAndVariableCosts_Skill_Data = buildSkillConfig({
+export const fixedAndVariableCosts_Skill_Data = defineSkill({
   slug: 'fixedAndVariableCosts',
   id: '618c4c43-306e-48bd-b444-0ddc2412be9c',
   name: {

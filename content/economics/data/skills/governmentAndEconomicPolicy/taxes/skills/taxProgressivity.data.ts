@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const taxProgressivity_Skill_Data = buildSkillConfig({
+export const taxProgressivity_Skill_Data = defineSkill({
   slug: 'taxProgressivity',
   id: '4096e36b-d4b9-40ea-83ef-68b7ba1c75fe',
   name: {

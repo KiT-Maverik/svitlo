@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const electrolytes_Skill_Data = buildSkillConfig({
+export const electrolytes_Skill_Data = defineSkill({
   slug: 'electrolytes',
   id: 'a9213658-6b18-4da9-af8e-ba806a95a44b',
   name: {

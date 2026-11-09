@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const heliosphere_Skill_Data = buildSkillConfig({
+export const heliosphere_Skill_Data = defineSkill({
   slug: 'heliosphere',
   id: 'f96503ab-0e0d-4971-a5f8-7fd4e8094cfd',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainTheLawOfConservationOfEnergy_Skill_Data = buildSkillConfig({
+export const explainTheLawOfConservationOfEnergy_Skill_Data = defineSkill({
   slug: 'explainTheLawOfConservationOfEnergy',
   id: 'a3b58cfc-580f-4be9-b6c1-343839f01488',
   name: {

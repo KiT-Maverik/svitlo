@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishOperatorsExpressionsAndStatements_Skill_Data = buildSkillConfig({
+export const distinguishOperatorsExpressionsAndStatements_Skill_Data = defineSkill({
   slug: 'distinguishOperatorsExpressionsAndStatements',
   id: 'b544af6d-2d85-4f4a-ad3d-a41352ce10c6',
   name: {

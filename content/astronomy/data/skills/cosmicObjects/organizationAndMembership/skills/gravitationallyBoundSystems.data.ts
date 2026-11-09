@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const gravitationallyBoundSystems_Skill_Data = buildSkillConfig({
+export const gravitationallyBoundSystems_Skill_Data = defineSkill({
   slug: 'gravitationallyBoundSystems',
   id: 'ebd660c6-6401-42b3-a604-2766b56cdd69',
   name: {

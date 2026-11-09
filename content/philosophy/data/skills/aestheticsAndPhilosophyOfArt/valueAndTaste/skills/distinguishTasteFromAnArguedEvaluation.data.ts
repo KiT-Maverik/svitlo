@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishTasteFromAnArguedEvaluation_Skill_Data = buildSkillConfig({
+export const distinguishTasteFromAnArguedEvaluation_Skill_Data = defineSkill({
   slug: 'distinguishTasteFromAnArguedEvaluation',
   id: 'c5ff19ee-99f5-438b-89c7-b77168ddf33b',
   name: {

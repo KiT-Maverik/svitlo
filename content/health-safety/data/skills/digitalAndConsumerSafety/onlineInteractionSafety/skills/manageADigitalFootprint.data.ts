@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const manageADigitalFootprint_Skill_Data = buildSkillConfig({
+export const manageADigitalFootprint_Skill_Data = defineSkill({
   slug: 'manageADigitalFootprint',
   id: '3105f993-ce8d-4254-8859-922296c23017',
   name: {

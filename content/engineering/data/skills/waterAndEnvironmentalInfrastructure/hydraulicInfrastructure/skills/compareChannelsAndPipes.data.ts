@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareChannelsAndPipes_Skill_Data = buildSkillConfig({
+export const compareChannelsAndPipes_Skill_Data = defineSkill({
   slug: 'compareChannelsAndPipes',
   id: '90be9be1-e1ef-4e57-90ba-9bb73b4f79f9',
   name: {

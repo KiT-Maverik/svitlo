@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const romanLaw_Skill_Data = buildSkillConfig({
+export const romanLaw_Skill_Data = defineSkill({
   slug: 'romanLaw',
   id: '2a1215ab-2132-4e89-968d-f5e84d5bd987',
   name: {

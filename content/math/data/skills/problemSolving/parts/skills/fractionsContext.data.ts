@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fractionsContext_Skill_Data = buildSkillConfig({
+export const fractionsContext_Skill_Data = defineSkill({
   slug: 'fractionsContext',
   id: '44334f70-1eba-4175-8396-dfe9a735b9d2',
   name: {

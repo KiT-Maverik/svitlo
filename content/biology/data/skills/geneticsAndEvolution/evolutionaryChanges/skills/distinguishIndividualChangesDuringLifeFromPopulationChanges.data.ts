@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data = buildSkillConfig({
+export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data = defineSkill({
   slug: 'distinguishIndividualChangesDuringLifeFromPopulationChanges',
   id: 'a668c824-1686-4077-a867-6424734363e8',
   name: {

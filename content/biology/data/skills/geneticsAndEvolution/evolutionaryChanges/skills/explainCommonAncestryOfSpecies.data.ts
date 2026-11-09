@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainCommonAncestryOfSpecies_Skill_Data = buildSkillConfig({
+export const explainCommonAncestryOfSpecies_Skill_Data = defineSkill({
   slug: 'explainCommonAncestryOfSpecies',
   id: '1bea58bb-ae36-4d03-ae87-4953590b135f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const painPerception_Skill_Data = buildSkillConfig({
+export const painPerception_Skill_Data = defineSkill({
   slug: 'painPerception',
   id: '85236b62-a973-4292-bc75-45daa2983fac',
   name: {

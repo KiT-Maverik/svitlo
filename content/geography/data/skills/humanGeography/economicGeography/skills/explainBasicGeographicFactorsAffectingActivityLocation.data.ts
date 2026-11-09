@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data = buildSkillConfig({
+export const explainBasicGeographicFactorsAffectingActivityLocation_Skill_Data = defineSkill({
   slug: 'explainBasicGeographicFactorsAffectingActivityLocation',
   id: '22308655-e0ef-459e-acd3-f38304d843ed',
   name: {

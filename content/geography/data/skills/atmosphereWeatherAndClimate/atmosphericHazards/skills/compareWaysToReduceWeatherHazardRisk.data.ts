@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const compareWaysToReduceWeatherHazardRisk_Skill_Data = buildSkillConfig({
+export const compareWaysToReduceWeatherHazardRisk_Skill_Data = defineSkill({
   slug: 'compareWaysToReduceWeatherHazardRisk',
   id: '632463aa-6a3a-466c-9b5f-f78a286c50ee',
   name: {

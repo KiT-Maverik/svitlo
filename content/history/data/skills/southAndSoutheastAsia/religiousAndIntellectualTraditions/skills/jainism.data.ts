@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const jainism_Skill_Data = buildSkillConfig({
+export const jainism_Skill_Data = defineSkill({
   slug: 'jainism',
   id: 'd1ae509f-a14d-43fc-9eb0-4b40100eb7d5',
   name: {

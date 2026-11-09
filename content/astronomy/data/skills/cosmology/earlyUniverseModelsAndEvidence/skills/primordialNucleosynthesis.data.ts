@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const primordialNucleosynthesis_Skill_Data = buildSkillConfig({
+export const primordialNucleosynthesis_Skill_Data = defineSkill({
   slug: 'primordialNucleosynthesis',
   id: '55cc73e8-b19d-4a87-9bd1-7ae46d03b6f4',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const writeAScreenplay_Skill_Data = buildSkillConfig({
+export const writeAScreenplay_Skill_Data = defineSkill({
   slug: 'writeAScreenplay',
   id: 'e2f2e396-bad8-4d34-b9a8-fccea3bd096a',
   name: {

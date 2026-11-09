@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const attributeDigitalMaterials_Skill_Data = buildSkillConfig({
+export const attributeDigitalMaterials_Skill_Data = defineSkill({
   slug: 'attributeDigitalMaterials',
   id: '5461db5b-a384-4bfa-b0c1-27c3d32317a6',
   name: {

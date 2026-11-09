@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const recognizeLiquidPressureActingInDifferentDirections_Skill_Data = buildSkillConfig({
+export const recognizeLiquidPressureActingInDifferentDirections_Skill_Data = defineSkill({
   slug: 'recognizeLiquidPressureActingInDifferentDirections',
   id: 'a4874baa-8a7b-4ce6-9a7f-012009758994',
   name: {

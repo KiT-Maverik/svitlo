@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const proceduralMemory_Skill_Data = buildSkillConfig({
+export const proceduralMemory_Skill_Data = defineSkill({
   slug: 'proceduralMemory',
   id: '6eeff574-c7d0-4bf9-8ad3-a176fdd11085',
   name: {

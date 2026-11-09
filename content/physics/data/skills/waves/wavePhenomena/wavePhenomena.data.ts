@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   explainResonance_Skill_Data,
@@ -8,7 +8,7 @@ import {
   explainWaveRefraction_Skill_Data,
 } from './skills';
 
-export const wavePhenomena_SkillGroup_Data = buildSkillGroupConfig({
+export const wavePhenomena_SkillGroup_Data = defineSkillGroup({
   slug: 'wavePhenomena',
   id: '8a9c2e30-5221-42e2-9adf-84085ee72d7f',
   name: {
@@ -42,13 +42,13 @@ export const wavePhenomena_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Толқындық құбылыстар',
     qm: 'Dalğa adiseleri',
   },
-  skills: {
-    explainResonance: explainResonance_Skill_Data,
-    explainWaveDiffraction: explainWaveDiffraction_Skill_Data,
-    explainWaveInterference: explainWaveInterference_Skill_Data,
-    explainWaveReflection: explainWaveReflection_Skill_Data,
-    explainWaveRefraction: explainWaveRefraction_Skill_Data,
-  },
+  skills: [
+    explainResonance_Skill_Data,
+    explainWaveDiffraction_Skill_Data,
+    explainWaveInterference_Skill_Data,
+    explainWaveReflection_Skill_Data,
+    explainWaveRefraction_Skill_Data,
+  ],
   description: {
     methodological:
       'Reflection, refraction, interference, diffraction, and resonance can occur in different kinds of physical waves.',

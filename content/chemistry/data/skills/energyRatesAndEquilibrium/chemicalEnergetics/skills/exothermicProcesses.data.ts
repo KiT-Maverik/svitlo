@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exothermicProcesses_Skill_Data = buildSkillConfig({
+export const exothermicProcesses_Skill_Data = defineSkill({
   slug: 'exothermicProcesses',
   id: '4f3130c7-4fcf-483d-99ed-30635d83b697',
   name: {

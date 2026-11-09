@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const leverMechanisms_Skill_Data = buildSkillConfig({
+export const leverMechanisms_Skill_Data = defineSkill({
   slug: 'leverMechanisms',
   id: '36fa9401-c05a-46b9-a3b8-e6c8a80ba16f',
   name: {

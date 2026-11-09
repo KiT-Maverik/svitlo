@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const randomAssignment_Skill_Data = buildSkillConfig({
+export const randomAssignment_Skill_Data = defineSkill({
   slug: 'randomAssignment',
   id: '1f801f05-e175-4bfc-ac67-bb23ef3e8055',
   name: {

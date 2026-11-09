@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   adenaAndHopewellTraditions_Skill_Data,
@@ -6,7 +6,7 @@ import {
   povertyPoint_Skill_Data,
 } from './skills';
 
-export const northAmericaBeyondMesoamerica_SkillGroup_Data = buildSkillGroupConfig({
+export const northAmericaBeyondMesoamerica_SkillGroup_Data = defineSkillGroup({
   slug: 'northAmericaBeyondMesoamerica',
   id: '7594459d-1887-477f-9659-f02a0bd82e1a',
   name: {
@@ -40,11 +40,11 @@ export const northAmericaBeyondMesoamerica_SkillGroup_Data = buildSkillGroupConf
     kk: 'Мезоамерикадан тыс Солтүстік Америка',
     qm: 'Mezoamerika tışındaki Şimaliy Amerika',
   },
-  skills: {
-    adenaAndHopewellTraditions: adenaAndHopewellTraditions_Skill_Data,
-    ancientSouthwesternNorthAmerica: ancientSouthwesternNorthAmerica_Skill_Data,
-    povertyPoint: povertyPoint_Skill_Data,
-  },
+  skills: [
+    adenaAndHopewellTraditions_Skill_Data,
+    ancientSouthwesternNorthAmerica_Skill_Data,
+    povertyPoint_Skill_Data,
+  ],
   description: {
     methodological:
       'River basins and arid regions had independent exchange networks, ritual spaces, and collective works.',

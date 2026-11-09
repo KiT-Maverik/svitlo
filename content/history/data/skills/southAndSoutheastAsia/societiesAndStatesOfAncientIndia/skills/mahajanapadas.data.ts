@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const mahajanapadas_Skill_Data = buildSkillConfig({
+export const mahajanapadas_Skill_Data = defineSkill({
   slug: 'mahajanapadas',
   id: 'f1bc9555-0e94-43a0-b7c5-754c36ab66e1',
   name: {

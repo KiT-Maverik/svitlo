@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { experimentVariation_Skill_Data } from './skills';
 
-export const experiments_SkillGroup_Data = buildSkillGroupConfig({
+export const experiments_SkillGroup_Data = defineSkillGroup({
   slug: 'experiments',
   id: 'cbaceeaf-fdb7-44c1-8c11-8b10c20f80ea',
   name: {
@@ -36,9 +36,9 @@ export const experiments_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Doświadczenia losowe',
     uk: 'Експерименти',
   },
-  skills: {
-    experimentVariation: experimentVariation_Skill_Data,
-  },
+  skills: [
+    experimentVariation_Skill_Data,
+  ],
   description: {
     methodological:
       'Variation in observed outcome frequencies across repeated series of random trials even when their conditions remain the same.',

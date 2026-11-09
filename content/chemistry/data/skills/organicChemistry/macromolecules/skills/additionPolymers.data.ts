@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const additionPolymers_Skill_Data = buildSkillConfig({
+export const additionPolymers_Skill_Data = defineSkill({
   slug: 'additionPolymers',
   id: '8db806be-f79f-456e-875d-c1e29e784e13',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessMeasurementValidity_Skill_Data = buildSkillConfig({
+export const assessMeasurementValidity_Skill_Data = defineSkill({
   slug: 'assessMeasurementValidity',
   id: '8de97533-fd66-489c-b609-b4dee996e766',
   name: {

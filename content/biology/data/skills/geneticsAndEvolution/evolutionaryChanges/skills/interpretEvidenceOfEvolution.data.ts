@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const interpretEvidenceOfEvolution_Skill_Data = buildSkillConfig({
+export const interpretEvidenceOfEvolution_Skill_Data = defineSkill({
   slug: 'interpretEvidenceOfEvolution',
   id: '6c94e310-5d8b-4abd-9352-8350e98390f8',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const deferUnnecessaryFeaturesYAGNI_Skill_Data = buildSkillConfig({
+export const deferUnnecessaryFeaturesYAGNI_Skill_Data = defineSkill({
   slug: 'deferUnnecessaryFeaturesYAGNI',
   id: 'a2bf67f0-ca2c-40d4-b3a7-6286b3d00147',
   name: {

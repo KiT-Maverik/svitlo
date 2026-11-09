@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const evaluateAReportedMiracleClaim_Skill_Data = buildSkillConfig({
+export const evaluateAReportedMiracleClaim_Skill_Data = defineSkill({
   slug: 'evaluateAReportedMiracleClaim',
   id: '90b2d56d-617b-447f-8fb6-40873be6ed28',
   name: {

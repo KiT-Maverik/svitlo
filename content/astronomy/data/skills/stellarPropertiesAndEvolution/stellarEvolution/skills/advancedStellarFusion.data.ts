@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const advancedStellarFusion_Skill_Data = buildSkillConfig({
+export const advancedStellarFusion_Skill_Data = defineSkill({
   slug: 'advancedStellarFusion',
   id: 'af51c535-5c82-433c-ad18-8bd814100494',
   name: {

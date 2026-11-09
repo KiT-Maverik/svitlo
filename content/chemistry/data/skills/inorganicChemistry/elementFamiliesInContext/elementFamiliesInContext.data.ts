@@ -1,4 +1,4 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import {
   allotropes_Skill_Data,
@@ -7,7 +7,7 @@ import {
   nonmetals_Skill_Data,
 } from './skills';
 
-export const elementFamiliesInContext_SkillGroup_Data = buildSkillGroupConfig({
+export const elementFamiliesInContext_SkillGroup_Data = defineSkillGroup({
   slug: 'elementFamiliesInContext',
   id: '4f2c1be2-a355-4fb2-a454-d90ab013c2f4',
   name: {
@@ -41,12 +41,12 @@ export const elementFamiliesInContext_SkillGroup_Data = buildSkillGroupConfig({
     kk: 'Элементтер отбасылары',
     qm: 'Elementlerniñ aileleri',
   },
-  skills: {
-    allotropes: allotropes_Skill_Data,
-    metalReactivity: metalReactivity_Skill_Data,
-    nobleGases: nobleGases_Skill_Data,
-    nonmetals: nonmetals_Skill_Data,
-  },
+  skills: [
+    allotropes_Skill_Data,
+    metalReactivity_Skill_Data,
+    nobleGases_Skill_Data,
+    nonmetals_Skill_Data,
+  ],
   description: {
     methodological:
       'Elemental forms can vary in structure, oxidation state and behavior despite shared periodic classification.',

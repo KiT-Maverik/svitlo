@@ -1,8 +1,8 @@
-import { buildSkillGroupConfig } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine';
 
 import { fractionsContext_Skill_Data, partWholeAddsub_Skill_Data } from './skills';
 
-export const parts_SkillGroup_Data = buildSkillGroupConfig({
+export const parts_SkillGroup_Data = defineSkillGroup({
   slug: 'parts',
   id: '9e77f69d-5ecb-42df-85b0-e8d19ca27c1b',
   name: {
@@ -36,10 +36,10 @@ export const parts_SkillGroup_Data = buildSkillGroupConfig({
     pl: 'Zadania o części i całości',
     uk: 'Задачі на частини й ціле',
   },
-  skills: {
-    partWholeAddsub: partWholeAddsub_Skill_Data,
-    fractionsContext: fractionsContext_Skill_Data,
-  },
+  skills: [
+    partWholeAddsub_Skill_Data,
+    fractionsContext_Skill_Data,
+  ],
   description: {
     methodological:
       'Relationships between a whole and its parts in contextual problems, including unit fractional parts.',

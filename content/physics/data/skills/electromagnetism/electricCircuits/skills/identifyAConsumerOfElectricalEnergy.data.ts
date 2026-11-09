@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyAConsumerOfElectricalEnergy_Skill_Data = buildSkillConfig({
+export const identifyAConsumerOfElectricalEnergy_Skill_Data = defineSkill({
   slug: 'identifyAConsumerOfElectricalEnergy',
   id: '122d4818-851e-4126-b9dc-cd59a07dbaf0',
   name: {

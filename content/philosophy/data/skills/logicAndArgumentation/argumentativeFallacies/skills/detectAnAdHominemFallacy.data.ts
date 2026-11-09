@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const detectAnAdHominemFallacy_Skill_Data = buildSkillConfig({
+export const detectAnAdHominemFallacy_Skill_Data = defineSkill({
   slug: 'detectAnAdHominemFallacy',
   id: 'cb327ba8-2a2a-4411-8b3b-bcc5bc51f37c',
   name: {

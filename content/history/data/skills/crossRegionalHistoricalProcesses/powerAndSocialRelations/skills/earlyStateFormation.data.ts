@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const earlyStateFormation_Skill_Data = buildSkillConfig({
+export const earlyStateFormation_Skill_Data = defineSkill({
   slug: 'earlyStateFormation',
   id: '5a42bc6f-f945-40f5-9b86-fe6fd7bc9f8c',
   name: {

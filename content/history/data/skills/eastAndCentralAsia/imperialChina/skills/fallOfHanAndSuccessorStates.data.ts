@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const fallOfHanAndSuccessorStates_Skill_Data = buildSkillConfig({
+export const fallOfHanAndSuccessorStates_Skill_Data = defineSkill({
   slug: 'fallOfHanAndSuccessorStates',
   id: 'b6ef2317-4aba-4c54-936f-aca7b544cdd7',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const analyzeClassicalBalletTraditions_Skill_Data = buildSkillConfig({
+export const analyzeClassicalBalletTraditions_Skill_Data = defineSkill({
   slug: 'analyzeClassicalBalletTraditions',
   id: 'd8c1a788-c93e-48e1-9321-4223ad6c596a',
   name: {

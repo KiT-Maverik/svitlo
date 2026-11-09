@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const exoplanetBulkComposition_Skill_Data = buildSkillConfig({
+export const exoplanetBulkComposition_Skill_Data = defineSkill({
   slug: 'exoplanetBulkComposition',
   id: '3cae1ddc-a535-4230-a8ac-0dde170d289f',
   name: {

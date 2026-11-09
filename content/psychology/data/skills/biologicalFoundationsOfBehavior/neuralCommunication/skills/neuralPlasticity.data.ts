@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neuralPlasticity_Skill_Data = buildSkillConfig({
+export const neuralPlasticity_Skill_Data = defineSkill({
   slug: 'neuralPlasticity',
   id: 'f3c8f8a3-e6ef-45eb-89d0-31ec7da1bfa1',
   name: {

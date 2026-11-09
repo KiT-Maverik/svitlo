@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const dailySkyMotion_Skill_Data = buildSkillConfig({
+export const dailySkyMotion_Skill_Data = defineSkill({
   slug: 'dailySkyMotion',
   id: '4be01b8b-7f4c-4a43-a45b-1df88ecc6eb9',
   name: {

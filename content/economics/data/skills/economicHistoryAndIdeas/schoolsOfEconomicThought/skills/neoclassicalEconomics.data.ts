@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const neoclassicalEconomics_Skill_Data = buildSkillConfig({
+export const neoclassicalEconomics_Skill_Data = defineSkill({
   slug: 'neoclassicalEconomics',
   id: 'bee62bd6-c215-43af-a2da-c01faff0618d',
   name: {

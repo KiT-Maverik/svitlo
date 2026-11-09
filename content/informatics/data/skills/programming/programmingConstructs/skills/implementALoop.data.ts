@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const implementALoop_Skill_Data = buildSkillConfig({
+export const implementALoop_Skill_Data = defineSkill({
   slug: 'implementALoop',
   id: '6751a06e-4504-4c0d-8f05-95656ab4b8c3',
   name: {

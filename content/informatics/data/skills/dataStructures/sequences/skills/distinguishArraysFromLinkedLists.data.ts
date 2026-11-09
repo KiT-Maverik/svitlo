@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishArraysFromLinkedLists_Skill_Data = buildSkillConfig({
+export const distinguishArraysFromLinkedLists_Skill_Data = defineSkill({
   slug: 'distinguishArraysFromLinkedLists',
   id: '853cb518-e5e5-4334-8b2b-d5cb56838b4b',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const scopeOfPsychologicalScience_Skill_Data = buildSkillConfig({
+export const scopeOfPsychologicalScience_Skill_Data = defineSkill({
   slug: 'scopeOfPsychologicalScience',
   id: '44856b37-47e0-4e1c-be21-08446a68330a',
   name: {

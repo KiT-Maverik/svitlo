@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const doubleTwice_Skill_Data = buildSkillConfig({
+export const doubleTwice_Skill_Data = defineSkill({
   slug: 'doubleTwice',
   id: 'dcaa33ea-4bd8-42d5-8b22-27dd75d13c53',
   name: {

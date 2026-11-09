@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const propertyBasedIdentification_Skill_Data = buildSkillConfig({
+export const propertyBasedIdentification_Skill_Data = defineSkill({
   slug: 'propertyBasedIdentification',
   id: '505b5ffb-f22d-40f3-b526-3da7185a8c0f',
   name: {

@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const readPitchNotation_Skill_Data = buildSkillConfig({
+export const readPitchNotation_Skill_Data = defineSkill({
   slug: 'readPitchNotation',
   id: '95438eca-f890-4c28-8c76-a97ba583c1fc',
   name: {

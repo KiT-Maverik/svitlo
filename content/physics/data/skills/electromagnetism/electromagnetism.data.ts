@@ -1,4 +1,4 @@
-import { buildSkillDomainConfig } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine';
 
 import { conductorsAndInsulators_SkillGroup_Data } from './conductorsAndInsulators/conductorsAndInsulators.data';
 import { currentVoltageAndResistance_SkillGroup_Data } from './currentVoltageAndResistance/currentVoltageAndResistance.data';
@@ -9,10 +9,10 @@ import { electromagnetsAndInduction_SkillGroup_Data } from './electromagnetsAndI
 import { magneticEffectsInPhysicalSystems_SkillGroup_Data } from './magneticEffectsInPhysicalSystems/magneticEffectsInPhysicalSystems.data';
 import { magneticPropertiesAndInteractions_SkillGroup_Data } from './magneticPropertiesAndInteractions/magneticPropertiesAndInteractions.data';
 
-export const electromagnetism_SkillDomain_Data = buildSkillDomainConfig({
+export const electromagnetism_SkillDomain_Data = defineSkillDomain({
   slug: 'electromagnetism',
   id: '5ca8345e-cfc6-4753-afd0-0143ba112479',
-  name: {
+  title: {
     en: 'Electromagnetism',
     qm: 'Elektromagnetizm',
     zh: '电磁学',
@@ -43,16 +43,16 @@ export const electromagnetism_SkillDomain_Data = buildSkillDomainConfig({
     ka: 'ელექტრომაგნეტიზმი',
     kk: 'Электромагнетизм',
   },
-  groups: {
-    conductorsAndInsulators: conductorsAndInsulators_SkillGroup_Data,
-    currentVoltageAndResistance: currentVoltageAndResistance_SkillGroup_Data,
-    electricAndMagneticFields: electricAndMagneticFields_SkillGroup_Data,
-    electricChargesAndInteractions: electricChargesAndInteractions_SkillGroup_Data,
-    electricCircuits: electricCircuits_SkillGroup_Data,
-    electromagnetsAndInduction: electromagnetsAndInduction_SkillGroup_Data,
-    magneticEffectsInPhysicalSystems: magneticEffectsInPhysicalSystems_SkillGroup_Data,
-    magneticPropertiesAndInteractions: magneticPropertiesAndInteractions_SkillGroup_Data,
-  },
+  groups: [
+    conductorsAndInsulators_SkillGroup_Data,
+    currentVoltageAndResistance_SkillGroup_Data,
+    electricAndMagneticFields_SkillGroup_Data,
+    electricChargesAndInteractions_SkillGroup_Data,
+    electricCircuits_SkillGroup_Data,
+    electromagnetsAndInduction_SkillGroup_Data,
+    magneticEffectsInPhysicalSystems_SkillGroup_Data,
+    magneticPropertiesAndInteractions_SkillGroup_Data,
+  ],
   description: {
     methodological:
       'Electric charges, currents, and magnetic fields describe related interactions; electricity and magnetism share underlying principles but begin with different observations.',

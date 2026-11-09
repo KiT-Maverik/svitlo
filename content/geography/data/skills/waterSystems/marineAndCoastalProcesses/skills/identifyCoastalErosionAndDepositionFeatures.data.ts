@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const identifyCoastalErosionAndDepositionFeatures_Skill_Data = buildSkillConfig({
+export const identifyCoastalErosionAndDepositionFeatures_Skill_Data = defineSkill({
   slug: 'identifyCoastalErosionAndDepositionFeatures',
   id: '9accfd4b-7854-4f3c-8c69-ee169ea0375d',
   name: {

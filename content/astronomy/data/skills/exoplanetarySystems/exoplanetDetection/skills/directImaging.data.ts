@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const directImaging_Skill_Data = buildSkillConfig({
+export const directImaging_Skill_Data = defineSkill({
   slug: 'directImaging',
   id: 'efc5c6f9-3591-4c20-a199-4f573e335d69',
   name: {

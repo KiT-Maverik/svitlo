@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const coordinateDanceWithPulse_Skill_Data = buildSkillConfig({
+export const coordinateDanceWithPulse_Skill_Data = defineSkill({
   slug: 'coordinateDanceWithPulse',
   id: 'c716f197-9189-4f6a-a22d-d641e0be25e7',
   name: {

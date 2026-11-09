@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const createAStrongPassphrase_Skill_Data = buildSkillConfig({
+export const createAStrongPassphrase_Skill_Data = defineSkill({
   slug: 'createAStrongPassphrase',
   id: 'a6c3728d-8d3d-4cf1-a5d9-d5494d64706a',
   name: {

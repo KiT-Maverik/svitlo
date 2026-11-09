@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const electronAffinity_Skill_Data = buildSkillConfig({
+export const electronAffinity_Skill_Data = defineSkill({
   slug: 'electronAffinity',
   id: '8dc70854-2343-4d99-b1bb-a93cc39b6de6',
   name: {

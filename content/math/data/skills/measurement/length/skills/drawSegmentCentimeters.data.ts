@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const drawSegmentCentimeters_Skill_Data = buildSkillConfig({
+export const drawSegmentCentimeters_Skill_Data = defineSkill({
   slug: 'drawSegmentCentimeters',
   id: 'b86b08f1-e24c-4d95-a98c-8d6c664ea915',
   name: {

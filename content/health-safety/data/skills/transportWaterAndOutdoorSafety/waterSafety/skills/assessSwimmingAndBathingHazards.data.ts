@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const assessSwimmingAndBathingHazards_Skill_Data = buildSkillConfig({
+export const assessSwimmingAndBathingHazards_Skill_Data = defineSkill({
   slug: 'assessSwimmingAndBathingHazards',
   id: '9a781223-1124-401e-8711-2827d03d717a',
   name: {

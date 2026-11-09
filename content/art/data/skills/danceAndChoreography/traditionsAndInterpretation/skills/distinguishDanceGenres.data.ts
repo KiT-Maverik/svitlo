@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const distinguishDanceGenres_Skill_Data = buildSkillConfig({
+export const distinguishDanceGenres_Skill_Data = defineSkill({
   slug: 'distinguishDanceGenres',
   id: 'edfda0e0-699e-4dc1-b60d-960c80f9d894',
   name: {

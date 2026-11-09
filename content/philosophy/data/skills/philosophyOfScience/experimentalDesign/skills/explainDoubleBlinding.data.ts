@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const explainDoubleBlinding_Skill_Data = buildSkillConfig({
+export const explainDoubleBlinding_Skill_Data = defineSkill({
   slug: 'explainDoubleBlinding',
   id: 'f42fcf85-ae99-4495-8977-8d10cd57e74c',
   name: {

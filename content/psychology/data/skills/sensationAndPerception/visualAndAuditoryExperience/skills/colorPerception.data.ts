@@ -1,6 +1,6 @@
-import { buildSkillConfig } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine';
 
-export const colorPerception_Skill_Data = buildSkillConfig({
+export const colorPerception_Skill_Data = defineSkill({
   slug: 'colorPerception',
   id: 'e57786e9-8809-4864-8835-b26687723fa0',
   name: {
