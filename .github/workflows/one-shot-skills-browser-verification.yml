@@ -1,4 +1,4 @@
-name: One-shot Skills browser and mobile verification (retest)
+name: One-shot Skills browser and mobile verification (server props)
 on:
   push:
     paths:
@@ -17,6 +17,7 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - run: npm run app:build --workspace @svitlo/web
+      - run: npm run test:components --workspace @svitlo/web
       - run: npm exec --workspace @svitlo/web -- playwright install chromium --with-deps
       - run: npm run test:e2e --workspace @svitlo/web -- src/app/skillAnalytics.e2e.spec.ts --project=desktop
   mobile:
