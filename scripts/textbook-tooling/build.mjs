@@ -156,6 +156,7 @@ rmSync(join(dist, '.declarations'), { recursive: true, force: true });
 for (const [source, generator, target] of [
   ['data/lessons', 'scripts/generators/pages/lessons/generate-lessons.mjs', 'data/pages/lessons'],
   ['data/skills', 'scripts/generators/pages/skillAnalytics/generate-skill-analytics.mjs', 'data/pages/skillAnalytics'],
+  ['data/skills', 'scripts/generators/data/publish-skills-data.mjs', 'data/skills'],
   ['data/courses', 'scripts/generators/pages/courses/generate-courses.mjs', 'data/pages/courses'],
 ]) {
   if (!authored(source)) continue;
@@ -191,6 +192,7 @@ const published = filesUnder(resources);
 for (const [source, prefix] of [
   ['data/lessons', 'data/pages/lessons/'],
   ['data/skills', 'data/pages/skillAnalytics/'],
+  ['data/skills', 'data/skills/'],
   ['data/courses', 'data/pages/courses/'],
 ]) {
   if (authored(source) && !published.some(name => name.startsWith(prefix) && name.endsWith('.json'))) {
