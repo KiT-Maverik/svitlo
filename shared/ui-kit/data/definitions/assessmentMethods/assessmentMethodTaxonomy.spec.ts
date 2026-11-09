@@ -34,7 +34,10 @@ describe('Assessment Method authored definitions', () => {
       for (const field of ['title', 'description'] as const) {
         assert.deepEqual(Object.keys(locales[field]).sort(), [...languages].sort(), name + '/' + field);
         for (const language of languages) {
-          assert.ok(locales[field][language as keyof typeof locales[typeof field]]?.trim(), name + '/' + field + '/' + language);
+          assert.ok(
+            locales[field][language as keyof (typeof locales)[typeof field]]?.trim(),
+            name + '/' + field + '/' + language,
+          );
         }
       }
       for (const language of languages) {
@@ -55,7 +58,10 @@ describe('Assessment Method authored definitions', () => {
       const source = readFileSync(fileURLToPath(new URL('./' + name + '.ts', import.meta.url)), 'utf8');
       assert.match(source, /defineAssessmentMethod\(/);
       assert.ok(source.includes("id: '" + methods[name as keyof typeof methods].config.base.id + "'"));
-      assert.doesNotMatch(source, /assessmentMethodTranslations|_AssessmentMethod_Data|assessmentMethods_AssessmentMethod_Ids|from ['"]\.\/locales/);
+      assert.doesNotMatch(
+        source,
+        /assessmentMethodTranslations|_AssessmentMethod_Data|assessmentMethods_AssessmentMethod_Ids|from ['"]\.\/locales/,
+      );
     }
   });
 });
