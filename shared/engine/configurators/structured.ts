@@ -10,10 +10,6 @@ export type EntityDefinition = {
     readonly base: unknown;
     readonly locales: () => unknown;
     readonly overrides?: () => unknown;
-    readonly test?: {
-      readonly config: (...args: any[]) => unknown;
-      readonly props: (props: unknown) => unknown;
-    };
   };
 };
 export type TaggedDefinition<Kind extends string> = EntityDefinition & { readonly kind: Kind };
@@ -90,7 +86,7 @@ export function partitionDefinition(source: unknown, localizablePaths: readonly 
             locales[language] = isObject(previous) ? deepMerge(previous, patch) : patch;
           }
         }
-        Object.assign(overrides, items.overrides);
+        if (Object.keys(items.overrides).length) overrides.items = items.overrides;
       }
 
       return { base, locales, overrides };
