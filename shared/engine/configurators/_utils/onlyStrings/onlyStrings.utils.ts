@@ -1,10 +1,9 @@
-export const onlyStrings = (o: Object) => {
-  return Object.keys(o).reduce((acc, key) => {
-    if (typeof o[key] === 'string') {
-      acc[key] = o[key];
-    } else if (typeof o[key] === 'object') {
-      acc[key] = onlyStrings(o[key]);
-    }
-    return acc;
-  }, {});
+import type { DeepPartial } from '#types';
+
+import { projectFields } from '../_internal/projectFields';
+import { isLocaleDictionary } from '../onlyLocales/onlyLocales.utils';
+
+/** Keep invariant strings, not the strings inside localized dictionaries. */
+export function onlyStrings<const T extends object>(source: T): DeepPartial<T> {
+  return projectFields(source, value => typeof value === 'string', isLocaleDictionary);
 }
