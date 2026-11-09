@@ -4,18 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import ts from 'typescript';
 
-const taxonomyTypes = new Set([
-  'SkillId',
-  'Skill_Config',
-  'Skill',
-  'SkillData',
-  'SkillGroup_Config',
-  'SkillGroup',
-  'SkillGroupData',
-  'SkillDomain_Config',
-  'SkillDomain',
-  'SkillDomainData',
-]);
+const taxonomyTypes = new Set(['SkillId']);
 const localizationContracts = new Set([
   'DEFAULT_SUPPORTED_LANGUAGES',
   'FALLBACK_LANGUAGE',

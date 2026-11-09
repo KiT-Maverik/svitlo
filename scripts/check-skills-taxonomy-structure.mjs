@@ -55,7 +55,7 @@ function childRefs(config, name, file, optional = false) {
   check(ts.isArrayLiteralExpression(p.initializer), 'Invalid child configurator array ' + name + ': ' + file);
   for (const entry of p.initializer.elements) {
     check(ts.isIdentifier(entry), 'Invalid configurator array reference: ' + file);
-    const match = /^(\\w+)_(?:SkillGroup|Skill)_Data$/.exec(entry.text);
+    const match = /^(\w+)_(?:SkillGroup|Skill)_Data$/.exec(entry.text);
     check(match && identifier.test(match[1]), 'Invalid child configurator symbol: ' + file);
     check(!result.has(match[1]), 'Duplicate child slug ' + match[1] + ': ' + file);
     result.set(match[1], entry.text);
