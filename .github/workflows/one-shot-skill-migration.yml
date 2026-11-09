@@ -33,9 +33,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -t packages < <(find content -mindepth 3 -maxdepth 3 -type d -path '*/data/skills' | sort)
+          mapfile -t packages < <(find content -mindepth 3 -maxdepth 3 -type d -path '*/data/skills' ! -path 'content/playground/data/skills' | sort)
           echo "Found ${#packages[@]} Skill taxonomy packages"
-          if [ "${#packages[@]}" -ne 15 ]; then
+          if [ "${#packages[@]}" -ne 14 ]; then
             echo "::error::Unexpected taxonomy package count; refusing a partial rollout"
             exit 1
           fi
