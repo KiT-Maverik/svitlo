@@ -3,8 +3,10 @@ import { z } from 'zod';
 import { lessonConfigurator_Schema } from '../../lessons/defineLesson/defineLesson.schemas';
 import { episodeConfigurator_Schema } from '../defineEpisode/defineEpisode.schemas';
 import {
-  createHierarchyChildSchema, createHierarchyIdentitySchema,
-  createHierarchyPropsSchema, hierarchyResolvedChild_Schema,
+  createHierarchyChildSchema,
+  createHierarchyIdentitySchema,
+  createHierarchyPropsSchema,
+  hierarchyResolvedChild_Schema,
 } from '../_shared/courseHierarchy.schemas';
 
 export const chapter_Config_Schema = z.strictObject({

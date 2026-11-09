@@ -13,10 +13,12 @@ export function defineCourse<
   const Content extends readonly (
     Module_Configurator | Chapter_Configurator | Episode_Configurator | Lesson_Configurator
   )[],
->(config: Omit<Course_Config, 'parameters' | 'content'> & {
-  parameters: { languages: Languages };
-  content: Content;
-}) {
+>(
+  config: Omit<Course_Config, 'parameters' | 'content'> & {
+    parameters: { languages: Languages };
+    content: Content;
+  },
+) {
   course_Config_Schema.parse(config);
   const { type, id, title, description, scenarioMode, prerequisites, parameters, content } = config;
   const { text: prerequisiteText, ...invariantPrerequisites } = prerequisites ?? {};
@@ -25,7 +27,10 @@ export function defineCourse<
   // Children must be materialized by the publisher, never copied into base.
   const localeEntries = {} as const;
   const base = {
-    type, id, scenarioMode, parameters,
+    type,
+    id,
+    scenarioMode,
+    parameters,
     ...(prerequisites ? { prerequisites: invariantPrerequisites } : {}),
     ...onlyStrings(localeEntries),
   } satisfies DeepPartial<Course_Config>;

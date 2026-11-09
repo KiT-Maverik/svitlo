@@ -8,20 +8,34 @@ export const courseHierarchyTypes = ['course', 'module', 'chapter', 'episode'] a
 export type CourseHierarchy_Type = (typeof courseHierarchyTypes)[number];
 
 export const textConfigurator_Schema = z.custom<ContentBlock_Text_Configurator>(
-  value => contentBlockConfigurator_Schema.safeParse(value).success &&
-    value !== null && typeof value === 'object' &&
-    'config' in value && typeof value.config === 'object' && value.config !== null &&
-    'base' in value.config && typeof value.config.base === 'object' && value.config.base !== null &&
-    'type' in value.config.base && value.config.base.type === 'text',
+  value =>
+    contentBlockConfigurator_Schema.safeParse(value).success &&
+    value !== null &&
+    typeof value === 'object' &&
+    'config' in value &&
+    typeof value.config === 'object' &&
+    value.config !== null &&
+    'base' in value.config &&
+    typeof value.config.base === 'object' &&
+    value.config.base !== null &&
+    'type' in value.config.base &&
+    value.config.base.type === 'text',
   { message: 'Expected defineText configurator' },
 );
 
 export const markdownConfigurator_Schema = z.custom<ContentBlock_Markdown_Configurator>(
-  value => contentBlockConfigurator_Schema.safeParse(value).success &&
-    value !== null && typeof value === 'object' &&
-    'config' in value && typeof value.config === 'object' && value.config !== null &&
-    'base' in value.config && typeof value.config.base === 'object' && value.config.base !== null &&
-    'type' in value.config.base && value.config.base.type === 'markdown',
+  value =>
+    contentBlockConfigurator_Schema.safeParse(value).success &&
+    value !== null &&
+    typeof value === 'object' &&
+    'config' in value &&
+    typeof value.config === 'object' &&
+    value.config !== null &&
+    'base' in value.config &&
+    typeof value.config.base === 'object' &&
+    value.config.base !== null &&
+    'type' in value.config.base &&
+    value.config.base.type === 'markdown',
   { message: 'Expected defineMarkdown configurator' },
 );
 
@@ -52,16 +66,21 @@ export function createHierarchyChildSchema<Child>(type: CourseHierarchy_Type) {
       const base = config.base;
       return (
         typeof config.locales === 'function' &&
-        base !== null && typeof base === 'object' &&
-        'type' in base && base.type === type &&
-        'id' in base && typeof base.id === 'string'
+        base !== null &&
+        typeof base === 'object' &&
+        'type' in base &&
+        base.type === type &&
+        'id' in base &&
+        typeof base.id === 'string'
       );
     },
     { message: `Expected define${type} configurator, not authored data` },
   );
 }
 
-export const hierarchyResolvedChild_Schema = z.object({
-  type: z.enum(['module', 'chapter', 'episode', 'lesson']),
-  id: z.uuid(),
-}).catchall(z.unknown());
+export const hierarchyResolvedChild_Schema = z
+  .object({
+    type: z.enum(['module', 'chapter', 'episode', 'lesson']),
+    id: z.uuid(),
+  })
+  .catchall(z.unknown());

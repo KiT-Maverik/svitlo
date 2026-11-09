@@ -2,12 +2,29 @@ import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
 
-import { buildAnswerWithBlocks_Config_Schema, type Question_BuildAnswerWithBlocks_Config } from './defineBuildAnswerWithBlocks.schemas';
+import {
+  buildAnswerWithBlocks_Config_Schema,
+  type Question_BuildAnswerWithBlocks_Config,
+} from './defineBuildAnswerWithBlocks.schemas';
 
-export function defineBuildAnswerWithBlocks<const Config extends Question_BuildAnswerWithBlocks_Config>(config: Config) {
+export function defineBuildAnswerWithBlocks<const Config extends Question_BuildAnswerWithBlocks_Config>(
+  config: Config,
+) {
   buildAnswerWithBlocks_Config_Schema.parse(config);
 
-  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, correctSequence, distractors, placeholder } = config;
+  const {
+    id,
+    type,
+    slug,
+    assessmentMethod,
+    restrictions,
+    question,
+    hint,
+    explanation,
+    correctSequence,
+    distractors,
+    placeholder,
+  } = config;
 
   const localeEntries = { placeholder } as const;
 
@@ -30,7 +47,8 @@ export function defineBuildAnswerWithBlocks<const Config extends Question_BuildA
     question,
     hint,
     explanation,
-    correctSequence, distractors,
+    correctSequence,
+    distractors,
   };
 }
 

@@ -6,8 +6,15 @@ import {
 } from '../../contentBlocks/contentBlock.schemas';
 
 export const flashcardRelationshipTypes = [
-  'reverse', 'equivalent', 'contrast', 'complementary', 'prerequisite',
-  'partOf', 'exampleOf', 'causes', 'precedes',
+  'reverse',
+  'equivalent',
+  'contrast',
+  'complementary',
+  'prerequisite',
+  'partOf',
+  'exampleOf',
+  'causes',
+  'precedes',
 ] as const;
 
 const relationship_Schema = z.strictObject({
@@ -63,9 +70,12 @@ export const flashcardConfigurator_Schema = z.custom<{
     const base = config.base;
     return (
       typeof config.locales === 'function' &&
-      base !== null && typeof base === 'object' &&
-      'type' in base && base.type === 'flashcard' &&
-      'id' in base && typeof base.id === 'string'
+      base !== null &&
+      typeof base === 'object' &&
+      'type' in base &&
+      base.type === 'flashcard' &&
+      'id' in base &&
+      typeof base.id === 'string'
     );
   },
   { message: 'Expected defineFlashcard configurator, not authored Flashcard data' },

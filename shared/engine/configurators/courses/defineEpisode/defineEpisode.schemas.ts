@@ -3,7 +3,9 @@ import { z } from 'zod';
 import { scenarioSectionConfigurator_Schema } from '../../sections/section.schemas';
 import type { ScenarioSection_Configurator } from '../../sections/defineScenarioSection/defineScenarioSection';
 import {
-  createHierarchyChildSchema, createHierarchyIdentitySchema, createHierarchyPropsSchema,
+  createHierarchyChildSchema,
+  createHierarchyIdentitySchema,
+  createHierarchyPropsSchema,
 } from '../_shared/courseHierarchy.schemas';
 
 export const episode_Config_Schema = z.strictObject({

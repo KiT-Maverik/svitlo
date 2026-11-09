@@ -3,10 +3,9 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_utils';
 import { quizSection_Config_Schema, type QuizSection_Config } from './defineQuizSection.schemas';
 
-export function defineQuizSection<
-  const Slug extends string,
-  const Parameters extends QuizSection_Config['parameters'],
->(config: Omit<QuizSection_Config, 'slug' | 'parameters'> & { slug: Slug; parameters: Parameters }) {
+export function defineQuizSection<const Slug extends string, const Parameters extends QuizSection_Config['parameters']>(
+  config: Omit<QuizSection_Config, 'slug' | 'parameters'> & { slug: Slug; parameters: Parameters },
+) {
   quizSection_Config_Schema.parse(config);
 
   const { type, id, slug, title, navigationLabel, skippable, parameters } = config;
@@ -15,7 +14,10 @@ export function defineQuizSection<
   const { screen, ...invariantParameters } = parameters;
   const localeEntries = { title, navigationLabel } as const;
   const base = {
-    type, id, slug, skippable,
+    type,
+    id,
+    slug,
+    skippable,
     parameters: invariantParameters,
     ...onlyStrings(localeEntries),
   } satisfies DeepPartial<QuizSection_Config>;

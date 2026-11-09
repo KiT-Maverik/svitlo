@@ -14,7 +14,10 @@ function containsFunction(value: unknown): boolean {
 
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const text = defineText({
-  type: 'text', id: id('a1'), slug: 'front', params: {},
+  type: 'text',
+  id: id('a1'),
+  slug: 'front',
+  params: {},
   value: { en: 'What?', uk: 'Що?' },
 });
 const source = {
@@ -24,11 +27,18 @@ const source = {
   back: [text],
   hint: [text],
   tags: ['math'],
-  flags: [{ type: 'list' as const, count: 4 }, { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } }],
-  relationships: [{
-    relationshipId: 'r1', type: 'reverse' as const,
-    relatedFlashcardId: id('a3'), position: 'peer' as const,
-  }],
+  flags: [
+    { type: 'list' as const, count: 4 },
+    { type: 'acronym' as const, value: { en: 'ABC', uk: 'АБВ' } },
+  ],
+  relationships: [
+    {
+      relationshipId: 'r1',
+      type: 'reverse' as const,
+      relatedFlashcardId: id('a3'),
+      position: 'peer' as const,
+    },
+  ],
 };
 
 test('Flashcard validates nested definitions and preserves ordered blocks', () => {
@@ -48,8 +58,12 @@ test('Flashcard validates nested definitions and preserves ordered blocks', () =
 
 test('Flashcard rejects raw child configs and invalid relationship variants', () => {
   assert.equal(flashcard_Config_Schema.safeParse({ ...source, front: [text.config.base] }).success, false);
-  assert.equal(flashcard_Config_Schema.safeParse({
-    ...source, relationships: [{ ...source.relationships[0], type: 'invalid' }],
-  }).success, false);
+  assert.equal(
+    flashcard_Config_Schema.safeParse({
+      ...source,
+      relationships: [{ ...source.relationships[0], type: 'invalid' }],
+    }).success,
+    false,
+  );
   assert.equal(flashcard_Props_Schema.safeParse(source).success, false);
 });

@@ -2,9 +2,14 @@ import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
 
-import { selectMultipleAnswers_Config_Schema, type Question_SelectMultipleAnswers_Config } from './defineSelectMultipleAnswers.schemas';
+import {
+  selectMultipleAnswers_Config_Schema,
+  type Question_SelectMultipleAnswers_Config,
+} from './defineSelectMultipleAnswers.schemas';
 
-export function defineSelectMultipleAnswers<const Config extends Question_SelectMultipleAnswers_Config>(config: Config) {
+export function defineSelectMultipleAnswers<const Config extends Question_SelectMultipleAnswers_Config>(
+  config: Config,
+) {
   selectMultipleAnswers_Config_Schema.parse(config);
 
   const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, answers } = config;

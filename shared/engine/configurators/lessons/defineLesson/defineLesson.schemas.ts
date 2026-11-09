@@ -1,16 +1,20 @@
 import { z } from 'zod';
 
 import { languageCode_Schema } from '#schemas';
-import {
-  contentBlockLocalizationSwitch,
-} from '../../contentBlocks/contentBlock.schemas';
+import { contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import { flashcardConfigurator_Schema } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
 import { sectionConfigurator_Schema } from '../../sections/section.schemas';
 
 export const lessonQuestionTypes = [
-  'selectOneAnswer', 'selectMultipleAnswers', 'matchBlocks', 'answerWithText',
-  'answerWithNumber', 'orderSequence', 'buildAnswerWithBlocks',
-  'fillBlanksWithBlocks', 'fillBlanksWithText',
+  'selectOneAnswer',
+  'selectMultipleAnswers',
+  'matchBlocks',
+  'answerWithText',
+  'answerWithNumber',
+  'orderSequence',
+  'buildAnswerWithBlocks',
+  'fillBlanksWithBlocks',
+  'fillBlanksWithText',
 ] as const;
 export type Lesson_Question_Type = (typeof lessonQuestionTypes)[number];
 
@@ -31,10 +35,14 @@ export const lessonQuestionConfigurator_Schema = z.custom<{
     const base = config.base;
     return (
       typeof config.locales === 'function' &&
-      base !== null && typeof base === 'object' &&
-      'type' in base && lessonQuestionTypes.some(type => type === base.type) &&
-      'id' in base && typeof base.id === 'string' &&
-      'slug' in base && typeof base.slug === 'string'
+      base !== null &&
+      typeof base === 'object' &&
+      'type' in base &&
+      lessonQuestionTypes.some(type => type === base.type) &&
+      'id' in base &&
+      typeof base.id === 'string' &&
+      'slug' in base &&
+      typeof base.slug === 'string'
     );
   },
   { message: 'Expected a Question configurator, not raw Question data' },
@@ -57,10 +65,10 @@ const questions_Schema = z
     }
   });
 
-const languages_Schema = z.array(languageCode_Schema).nonempty().refine(
-  values => new Set(values).size === values.length,
-  'Declared languages must be unique',
-);
+const languages_Schema = z
+  .array(languageCode_Schema)
+  .nonempty()
+  .refine(values => new Set(values).size === values.length, 'Declared languages must be unique');
 function createLessonSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const title = contentBlockLocalizationSwitch[mode];
   const childSchemas = {
@@ -71,10 +79,14 @@ function createLessonSchema<Mode extends keyof typeof contentBlockLocalizationSw
     },
     props: {
       flashcards: z.array(z.object({ type: z.literal('flashcard'), id: z.uuid() }).catchall(z.unknown())),
-      sections: z.array(z.object({
-        type: z.enum(['theory', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'scenario', 'quiz']),
-        id: z.uuid(),
-      }).catchall(z.unknown())),
+      sections: z.array(
+        z
+          .object({
+            type: z.enum(['theory', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'scenario', 'quiz']),
+            id: z.uuid(),
+          })
+          .catchall(z.unknown()),
+      ),
       questions: z.record(z.string(), z.unknown()).optional(),
     },
   } as const;
@@ -120,10 +132,15 @@ export const lessonConfigurator_Schema = z.custom<{
     if (config === null || typeof config !== 'object' || !('base' in config) || !('locales' in config)) return false;
     const base = config.base;
     return (
-      typeof config.locales === 'function' && base !== null && typeof base === 'object' &&
-      'type' in base && base.type === 'lesson' &&
-      'id' in base && typeof base.id === 'string' &&
-      'slug' in base && typeof base.slug === 'string'
+      typeof config.locales === 'function' &&
+      base !== null &&
+      typeof base === 'object' &&
+      'type' in base &&
+      base.type === 'lesson' &&
+      'id' in base &&
+      typeof base.id === 'string' &&
+      'slug' in base &&
+      typeof base.slug === 'string'
     );
   },
   { message: 'Expected defineLesson configurator, not authored Lesson data' },

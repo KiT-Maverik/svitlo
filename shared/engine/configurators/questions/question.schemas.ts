@@ -4,10 +4,7 @@ import { disability_Schema } from '#schemas';
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
 
 import { contentBlockChild } from '../contentBlocks/contentBlockChild/contentBlockChild';
-import {
-  contentBlockLocalizationSwitch,
-  contentBlockResolved_Schema,
-} from '../contentBlocks/contentBlock.schemas';
+import { contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
 
 export const questionTypes = [
   'selectOneAnswer',
@@ -31,10 +28,10 @@ export const questionBlockSwitch = {
 
 export const questionLocalizationSwitch = contentBlockLocalizationSwitch;
 
-export function createQuestionFields<
-  const Kind extends Question_Type,
-  Mode extends keyof typeof questionBlockSwitch,
->(kind: Kind, mode: Mode) {
+export function createQuestionFields<const Kind extends Question_Type, Mode extends keyof typeof questionBlockSwitch>(
+  kind: Kind,
+  mode: Mode,
+) {
   const child = questionBlockSwitch[mode];
 
   return {

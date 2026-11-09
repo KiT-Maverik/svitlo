@@ -2,12 +2,16 @@ import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
 
-import { answerWithNumber_Config_Schema, type Question_AnswerWithNumber_Config } from './defineAnswerWithNumber.schemas';
+import {
+  answerWithNumber_Config_Schema,
+  type Question_AnswerWithNumber_Config,
+} from './defineAnswerWithNumber.schemas';
 
 export function defineAnswerWithNumber<const Config extends Question_AnswerWithNumber_Config>(config: Config) {
   answerWithNumber_Config_Schema.parse(config);
 
-  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, correctAnswers, placeholder } = config;
+  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, correctAnswers, placeholder } =
+    config;
 
   const localeEntries = { placeholder } as const;
 

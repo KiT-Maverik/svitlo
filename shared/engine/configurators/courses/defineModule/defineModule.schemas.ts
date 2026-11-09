@@ -4,8 +4,10 @@ import { lessonConfigurator_Schema } from '../../lessons/defineLesson/defineLess
 import { episodeConfigurator_Schema } from '../defineEpisode/defineEpisode.schemas';
 import { chapterConfigurator_Schema } from '../defineChapter/defineChapter.schemas';
 import {
-  createHierarchyChildSchema, createHierarchyIdentitySchema,
-  createHierarchyPropsSchema, hierarchyResolvedChild_Schema,
+  createHierarchyChildSchema,
+  createHierarchyIdentitySchema,
+  createHierarchyPropsSchema,
+  hierarchyResolvedChild_Schema,
 } from '../_shared/courseHierarchy.schemas';
 
 export const module_Config_Schema = z.strictObject({

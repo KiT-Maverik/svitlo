@@ -8,11 +8,13 @@ export function defineFlashcard<
   const Front extends readonly ContentBlock_Configurator[],
   const Back extends readonly ContentBlock_Configurator[],
   const Hint extends readonly ContentBlock_Configurator[],
->(config: Omit<Flashcard_Config, 'front' | 'back' | 'hint'> & {
-  front: Front;
-  back: Back;
-  hint: Hint;
-}) {
+>(
+  config: Omit<Flashcard_Config, 'front' | 'back' | 'hint'> & {
+    front: Front;
+    back: Back;
+    hint: Hint;
+  },
+) {
   flashcard_Config_Schema.parse(config);
 
   const { type, id, isDefault, front, back, hint, tags, flags, relationships } = config;
@@ -21,7 +23,11 @@ export function defineFlashcard<
   const localeEntries = { flags } as const;
   const invariantStrings = onlyStrings(localeEntries);
   const base = {
-    type, id, isDefault, tags, relationships,
+    type,
+    id,
+    isDefault,
+    tags,
+    relationships,
     ...invariantStrings,
     // A list flag carries a numeric invariant. OnlyStrings intentionally
     // removes numbers; restore these from the original validated flags.

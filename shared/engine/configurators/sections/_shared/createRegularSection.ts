@@ -23,7 +23,10 @@ export function createRegularSection<
   const { type, id, slug, title, navigationLabel, skippable, content } = config;
   const localeEntries = { title, navigationLabel } as const;
   const base = {
-    type, id, slug, skippable,
+    type,
+    id,
+    slug,
+    skippable,
     ...onlyStrings(localeEntries),
   } satisfies DeepPartial<typeof config>;
 

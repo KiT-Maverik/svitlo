@@ -28,12 +28,39 @@ const answers = { correct: { yes: block }, incorrect: { no: block }, distractors
 const one = defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', answers });
 const multiple = defineSelectMultipleAnswers({ ...common, type: 'selectMultipleAnswers', answers });
 const matched = defineMatchBlocks({ ...common, type: 'matchBlocks', pairs: { pair: { left: block, right: block } } });
-const text = defineAnswerWithText({ ...common, type: 'answerWithText', correctAnswers: ['yes'], placeholder: 'Answer' });
-const number = defineAnswerWithNumber({ ...common, type: 'answerWithNumber', correctAnswers: [2], placeholder: 'Number' });
+const text = defineAnswerWithText({
+  ...common,
+  type: 'answerWithText',
+  correctAnswers: ['yes'],
+  placeholder: 'Answer',
+});
+const number = defineAnswerWithNumber({
+  ...common,
+  type: 'answerWithNumber',
+  correctAnswers: [2],
+  placeholder: 'Number',
+});
 const order = defineOrderSequence({ ...common, type: 'orderSequence', sequence: [block] });
-const build = defineBuildAnswerWithBlocks({ ...common, type: 'buildAnswerWithBlocks', correctSequence: [block], distractors: [block], placeholder: 'Build' });
-const blocks = defineFillBlanksWithBlocks({ ...common, type: 'fillBlanksWithBlocks', slots: [{ selector: 'x', correctAnswer: block }], distractors: [block], placeholder: 'Fill' });
-const blanks = defineFillBlanksWithText({ ...common, type: 'fillBlanksWithText', slots: [{ selector: 'x', correctAnswers: ['yes'] }], placeholder: 'Fill' });
+const build = defineBuildAnswerWithBlocks({
+  ...common,
+  type: 'buildAnswerWithBlocks',
+  correctSequence: [block],
+  distractors: [block],
+  placeholder: 'Build',
+});
+const blocks = defineFillBlanksWithBlocks({
+  ...common,
+  type: 'fillBlanksWithBlocks',
+  slots: [{ selector: 'x', correctAnswer: block }],
+  distractors: [block],
+  placeholder: 'Fill',
+});
+const blanks = defineFillBlanksWithText({
+  ...common,
+  type: 'fillBlanksWithText',
+  slots: [{ selector: 'x', correctAnswers: ['yes'] }],
+  placeholder: 'Fill',
+});
 
 type OneSlug = Expect<Equal<typeof one.config.base.slug, 'question-one'>>;
 type MultipleSlug = Expect<Equal<typeof multiple.config.base.slug, 'question-one'>>;
@@ -47,7 +74,7 @@ type BlanksSlug = Expect<Equal<typeof blanks.config.base.slug, 'question-one'>>;
 type OneKind = Expect<Equal<typeof one.kind, 'selectOneAnswer'>>;
 type NumberType = Expect<Equal<typeof number.config.base.type, 'answerWithNumber'>>;
 type CorrectAnswer = Expect<Equal<typeof one.answers.correct.yes, typeof block>>;
-type ExactQuestion = Expect<Equal<typeof order.question[0], typeof block>>;
+type ExactQuestion = Expect<Equal<(typeof order.question)[0], typeof block>>;
 
 const raw = { id, type: 'text' as const, slug: 'raw', params: {}, value: 'raw' };
 // @ts-expect-error Raw ContentBlock configuration is not a nested ContentBlock configurator.
@@ -59,7 +86,13 @@ defineMatchBlocks({ ...common, type: 'matchBlocks', pairs: { bad: { left: raw, r
 // @ts-expect-error A sequence cannot contain raw ContentBlock configs.
 defineOrderSequence({ ...common, type: 'orderSequence', sequence: [raw] });
 // @ts-expect-error A fill-in slot requires a nested ContentBlock configurator.
-defineFillBlanksWithBlocks({ ...common, type: 'fillBlanksWithBlocks', slots: [{ selector: 'x', correctAnswer: raw }], distractors: [], placeholder: 'Fill' });
+defineFillBlanksWithBlocks({
+  ...common,
+  type: 'fillBlanksWithBlocks',
+  slots: [{ selector: 'x', correctAnswer: raw }],
+  distractors: [],
+  placeholder: 'Fill',
+});
 // @ts-expect-error Correct answers for number questions must be numeric.
 defineAnswerWithNumber({ ...common, type: 'answerWithNumber', correctAnswers: ['2'], placeholder: 'Number' });
 // @ts-expect-error Correct answers for text questions must be localized text.

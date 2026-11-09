@@ -7,7 +7,8 @@ import { answerWithText_Config_Schema, type Question_AnswerWithText_Config } fro
 export function defineAnswerWithText<const Config extends Question_AnswerWithText_Config>(config: Config) {
   answerWithText_Config_Schema.parse(config);
 
-  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, correctAnswers, placeholder } = config;
+  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, correctAnswers, placeholder } =
+    config;
 
   const localeEntries = { correctAnswers, placeholder } as const;
 

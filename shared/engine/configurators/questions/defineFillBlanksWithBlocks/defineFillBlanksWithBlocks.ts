@@ -2,12 +2,27 @@ import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
 
-import { fillBlanksWithBlocks_Config_Schema, type Question_FillBlanksWithBlocks_Config } from './defineFillBlanksWithBlocks.schemas';
+import {
+  fillBlanksWithBlocks_Config_Schema,
+  type Question_FillBlanksWithBlocks_Config,
+} from './defineFillBlanksWithBlocks.schemas';
 
 export function defineFillBlanksWithBlocks<const Config extends Question_FillBlanksWithBlocks_Config>(config: Config) {
   fillBlanksWithBlocks_Config_Schema.parse(config);
 
-  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, slots, distractors, placeholder } = config;
+  const {
+    id,
+    type,
+    slug,
+    assessmentMethod,
+    restrictions,
+    question,
+    hint,
+    explanation,
+    slots,
+    distractors,
+    placeholder,
+  } = config;
 
   const localeEntries = { placeholder, slots: slots.map(({ selector }) => ({ selector })) } as const;
 
@@ -30,7 +45,8 @@ export function defineFillBlanksWithBlocks<const Config extends Question_FillBla
     question,
     hint,
     explanation,
-    slots, distractors,
+    slots,
+    distractors,
   };
 }
 

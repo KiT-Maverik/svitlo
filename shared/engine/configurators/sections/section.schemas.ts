@@ -6,7 +6,12 @@ import {
 } from '../contentBlocks/contentBlock.schemas';
 
 export const regularSectionTypes = [
-  'theory', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'scenario',
+  'theory',
+  'practice',
+  'codingTask',
+  'learningFlow',
+  'flashcards',
+  'scenario',
 ] as const;
 export const sectionTypes = [...regularSectionTypes, 'quiz'] as const;
 export type RegularSection_Type = (typeof regularSectionTypes)[number];
@@ -52,11 +57,16 @@ export const sectionConfigurator_Schema = z.custom<{
     const base = config.base;
     return (
       typeof config.locales === 'function' &&
-      base !== null && typeof base === 'object' &&
-      'type' in base && sectionTypes.some(type => type === base.type) &&
-      'type' in base && base.type === value.sectionType &&
-      'id' in base && typeof base.id === 'string' &&
-      'slug' in base && typeof base.slug === 'string'
+      base !== null &&
+      typeof base === 'object' &&
+      'type' in base &&
+      sectionTypes.some(type => type === base.type) &&
+      'type' in base &&
+      base.type === value.sectionType &&
+      'id' in base &&
+      typeof base.id === 'string' &&
+      'slug' in base &&
+      typeof base.slug === 'string'
     );
   },
   { message: 'Expected define*Section configurator, not raw Section data' },

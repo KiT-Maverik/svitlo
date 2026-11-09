@@ -41,7 +41,14 @@ const resolvedBlock = { id, slug: 'prompt-block', type: 'text' as const, params:
 const locale = { en: 'Answer', uk: 'Відповідь' } as const;
 
 function common<const Kind extends string>(type: Kind) {
-  return { id, slug: 'test-question', type, assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const], question: [block] as [typeof block] };
+  return {
+    id,
+    slug: 'test-question',
+    type,
+    assessmentMethod: 'retrieval' as const,
+    restrictions: ['dyslexia' as const],
+    question: [block] as [typeof block],
+  };
 }
 
 const answers = {
@@ -73,14 +80,23 @@ test('all nine Question Config and Props schemas validate authored definitions a
     },
     {
       config: { ...common('matchBlocks'), pairs: { one: { left: block, right: block } } },
-      props: { ...common('matchBlocks'), question: [resolvedBlock], pairs: { one: { left: resolvedBlock, right: resolvedBlock } } },
+      props: {
+        ...common('matchBlocks'),
+        question: [resolvedBlock],
+        pairs: { one: { left: resolvedBlock, right: resolvedBlock } },
+      },
       configSchema: matchBlocks_Config_Schema,
       propsSchema: matchBlocks_Props_Schema,
       define: defineMatchBlocks,
     },
     {
       config: { ...common('answerWithText'), correctAnswers: [locale], placeholder: locale },
-      props: { ...common('answerWithText'), question: [resolvedBlock], correctAnswers: ['Answer'], placeholder: 'Answer' },
+      props: {
+        ...common('answerWithText'),
+        question: [resolvedBlock],
+        correctAnswers: ['Answer'],
+        placeholder: 'Answer',
+      },
       configSchema: answerWithText_Config_Schema,
       propsSchema: answerWithText_Props_Schema,
       define: defineAnswerWithText,
@@ -100,22 +116,53 @@ test('all nine Question Config and Props schemas validate authored definitions a
       define: defineOrderSequence,
     },
     {
-      config: { ...common('buildAnswerWithBlocks'), correctSequence: [block] as [typeof block], distractors: [block], placeholder: locale },
-      props: { ...common('buildAnswerWithBlocks'), question: [resolvedBlock], correctSequence: [resolvedBlock], distractors: [resolvedBlock], placeholder: 'Answer' },
+      config: {
+        ...common('buildAnswerWithBlocks'),
+        correctSequence: [block] as [typeof block],
+        distractors: [block],
+        placeholder: locale,
+      },
+      props: {
+        ...common('buildAnswerWithBlocks'),
+        question: [resolvedBlock],
+        correctSequence: [resolvedBlock],
+        distractors: [resolvedBlock],
+        placeholder: 'Answer',
+      },
       configSchema: buildAnswerWithBlocks_Config_Schema,
       propsSchema: buildAnswerWithBlocks_Props_Schema,
       define: defineBuildAnswerWithBlocks,
     },
     {
-      config: { ...common('fillBlanksWithBlocks'), slots: [{ selector: '{{x}}', correctAnswer: block }], distractors: [block], placeholder: locale },
-      props: { ...common('fillBlanksWithBlocks'), question: [resolvedBlock], slots: [{ selector: '{{x}}', correctAnswer: resolvedBlock }], distractors: [resolvedBlock], placeholder: 'Answer' },
+      config: {
+        ...common('fillBlanksWithBlocks'),
+        slots: [{ selector: '{{x}}', correctAnswer: block }],
+        distractors: [block],
+        placeholder: locale,
+      },
+      props: {
+        ...common('fillBlanksWithBlocks'),
+        question: [resolvedBlock],
+        slots: [{ selector: '{{x}}', correctAnswer: resolvedBlock }],
+        distractors: [resolvedBlock],
+        placeholder: 'Answer',
+      },
       configSchema: fillBlanksWithBlocks_Config_Schema,
       propsSchema: fillBlanksWithBlocks_Props_Schema,
       define: defineFillBlanksWithBlocks,
     },
     {
-      config: { ...common('fillBlanksWithText'), slots: [{ selector: '{{x}}', correctAnswers: [locale] }], placeholder: locale },
-      props: { ...common('fillBlanksWithText'), question: [resolvedBlock], slots: [{ selector: '{{x}}', correctAnswers: ['Answer'] }], placeholder: 'Answer' },
+      config: {
+        ...common('fillBlanksWithText'),
+        slots: [{ selector: '{{x}}', correctAnswers: [locale] }],
+        placeholder: locale,
+      },
+      props: {
+        ...common('fillBlanksWithText'),
+        question: [resolvedBlock],
+        slots: [{ selector: '{{x}}', correctAnswers: ['Answer'] }],
+        placeholder: 'Answer',
+      },
       configSchema: fillBlanksWithText_Config_Schema,
       propsSchema: fillBlanksWithText_Props_Schema,
       define: defineFillBlanksWithText,
@@ -126,11 +173,27 @@ test('all nine Question Config and Props schemas validate authored definitions a
     assert.equal(entry.propsSchema.safeParse(entry.props).success, true, entry.config.type);
     assert.equal(entry.configSchema.safeParse(entry.props).success, false, entry.config.type);
     assert.equal(entry.propsSchema.safeParse(entry.config).success, false, entry.config.type);
-    assert.equal(entry.configSchema.safeParse({ ...entry.config, question: [resolvedBlock] }).success, false, entry.config.type);
+    assert.equal(
+      entry.configSchema.safeParse({ ...entry.config, question: [resolvedBlock] }).success,
+      false,
+      entry.config.type,
+    );
     assert.equal(entry.configSchema.safeParse({ ...entry.config, id: 'invalid' }).success, false, entry.config.type);
-    assert.equal(entry.configSchema.safeParse({ ...entry.config, assessmentMethod: 'unregistered' }).success, false, entry.config.type);
-    assert.equal(entry.configSchema.safeParse({ ...entry.config, restrictions: [12] }).success, false, entry.config.type);
-    assert.equal(entry.configSchema.safeParse({ ...entry.config, restrictions: ['unknown-restriction'] }).success, false, entry.config.type);
+    assert.equal(
+      entry.configSchema.safeParse({ ...entry.config, assessmentMethod: 'unregistered' }).success,
+      false,
+      entry.config.type,
+    );
+    assert.equal(
+      entry.configSchema.safeParse({ ...entry.config, restrictions: [12] }).success,
+      false,
+      entry.config.type,
+    );
+    assert.equal(
+      entry.configSchema.safeParse({ ...entry.config, restrictions: ['unknown-restriction'] }).success,
+      false,
+      entry.config.type,
+    );
   }
 });
 
@@ -203,15 +266,65 @@ test('Text answer and slot localization is projected without duplicating locale 
 
 test('Nested child and answer constraints reject malformed inputs at runtime', () => {
   const raw = { id, slug: 'raw', type: 'text', params: {}, value: 'Raw' };
-  assert.equal(selectOneAnswer_Config_Schema.safeParse({ ...common('selectOneAnswer'), answers: { ...answers, correct: { one: raw } } }).success, false);
-  assert.equal(matchBlocks_Config_Schema.safeParse({ ...common('matchBlocks'), pairs: { a: { left: raw, right: block } } }).success, false);
+  assert.equal(
+    selectOneAnswer_Config_Schema.safeParse({
+      ...common('selectOneAnswer'),
+      answers: { ...answers, correct: { one: raw } },
+    }).success,
+    false,
+  );
+  assert.equal(
+    matchBlocks_Config_Schema.safeParse({ ...common('matchBlocks'), pairs: { a: { left: raw, right: block } } })
+      .success,
+    false,
+  );
   assert.equal(orderSequence_Config_Schema.safeParse({ ...common('orderSequence'), sequence: [] }).success, false);
-  assert.equal(fillBlanksWithBlocks_Config_Schema.safeParse({ ...common('fillBlanksWithBlocks'), slots: [{ selector: 'a', correctAnswer: raw }], distractors: [], placeholder: 'A' }).success, false);
-  assert.equal(answerWithText_Config_Schema.safeParse({ ...common('answerWithText'), correctAnswers: [17], placeholder: 'A' }).success, false);
-  assert.equal(answerWithNumber_Config_Schema.safeParse({ ...common('answerWithNumber'), correctAnswers: ['17'], placeholder: 'A' }).success, false);
-  assert.equal(fillBlanksWithText_Config_Schema.safeParse({ ...common('fillBlanksWithText'), slots: [{ selector: 'a', correctAnswers: [17] }], placeholder: 'A' }).success, false);
-  assert.equal(buildAnswerWithBlocks_Config_Schema.safeParse({ ...common('buildAnswerWithBlocks'), correctSequence: [raw], distractors: [], placeholder: 'A' }).success, false);
-  assert.equal(selectMultipleAnswers_Config_Schema.safeParse({ ...common('selectMultipleAnswers'), answers: { ...answers, incorrect: { bad: raw } } }).success, false);
+  assert.equal(
+    fillBlanksWithBlocks_Config_Schema.safeParse({
+      ...common('fillBlanksWithBlocks'),
+      slots: [{ selector: 'a', correctAnswer: raw }],
+      distractors: [],
+      placeholder: 'A',
+    }).success,
+    false,
+  );
+  assert.equal(
+    answerWithText_Config_Schema.safeParse({ ...common('answerWithText'), correctAnswers: [17], placeholder: 'A' })
+      .success,
+    false,
+  );
+  assert.equal(
+    answerWithNumber_Config_Schema.safeParse({
+      ...common('answerWithNumber'),
+      correctAnswers: ['17'],
+      placeholder: 'A',
+    }).success,
+    false,
+  );
+  assert.equal(
+    fillBlanksWithText_Config_Schema.safeParse({
+      ...common('fillBlanksWithText'),
+      slots: [{ selector: 'a', correctAnswers: [17] }],
+      placeholder: 'A',
+    }).success,
+    false,
+  );
+  assert.equal(
+    buildAnswerWithBlocks_Config_Schema.safeParse({
+      ...common('buildAnswerWithBlocks'),
+      correctSequence: [raw],
+      distractors: [],
+      placeholder: 'A',
+    }).success,
+    false,
+  );
+  assert.equal(
+    selectMultipleAnswers_Config_Schema.safeParse({
+      ...common('selectMultipleAnswers'),
+      answers: { ...answers, incorrect: { bad: raw } },
+    }).success,
+    false,
+  );
 });
 
 test('Assessment Method slugs and perception restrictions have finite schema-backed values', () => {

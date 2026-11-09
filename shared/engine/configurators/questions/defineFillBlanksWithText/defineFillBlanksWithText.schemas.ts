@@ -8,9 +8,7 @@ function createFillBlanksWithTextSchema<Mode extends keyof typeof questionBlockS
 
   return z.strictObject({
     ...createQuestionFields('fillBlanksWithText', mode),
-    slots: z.array(
-      z.strictObject({ selector: z.string(), correctAnswers: z.array(localized) }),
-    ),
+    slots: z.array(z.strictObject({ selector: z.string(), correctAnswers: z.array(localized) })),
     placeholder: localized,
   });
 }

@@ -2,7 +2,10 @@ import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
 
-import { fillBlanksWithText_Config_Schema, type Question_FillBlanksWithText_Config } from './defineFillBlanksWithText.schemas';
+import {
+  fillBlanksWithText_Config_Schema,
+  type Question_FillBlanksWithText_Config,
+} from './defineFillBlanksWithText.schemas';
 
 export function defineFillBlanksWithText<const Config extends Question_FillBlanksWithText_Config>(config: Config) {
   fillBlanksWithText_Config_Schema.parse(config);
