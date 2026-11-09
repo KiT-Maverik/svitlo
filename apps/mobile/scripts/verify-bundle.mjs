@@ -22,7 +22,11 @@ for (const lesson of index.lessons) {
     }
   }
 }
-assert.ok(existsSync(join(dist, 'data/pages/skillAnalytics/uk.json')), 'Missing compiled Skills base JSON');
+for (const language of ['base', 'uk']) {
+  const filename = join(dist, 'data/skills', language + '.json');
+  assert.ok(existsSync(filename), 'Missing compiled Skills resource: ' + filename);
+  JSON.parse(readFileSync(filename, 'utf8'));
+}
 const locales = readdirSync(join(dist, 'data/ui-kit')).filter(name => name.endsWith('.json'));
 assert.ok(locales.length > 0, 'Missing UI Kit localizations');
 for (const locale of locales) JSON.parse(readFileSync(join(dist, 'data/ui-kit', locale), 'utf8'));
