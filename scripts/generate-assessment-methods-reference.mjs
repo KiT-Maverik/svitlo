@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * PR-scoped Assessment Methods reference, statically assembled from canonical
- * Contracts, English Engine methodology and UI Kit locale data.
+ * Contracts, UI Kit authored methodological definitions and short UI labels.
  *
  * node scripts/generate-assessment-methods-reference.mjs --locale uk --stdout
  * node scripts/generate-assessment-methods-reference.mjs --locale uk \
@@ -19,7 +19,7 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..'
 const sourcePaths = Object.freeze({
   identities: 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
   languages: 'shared/contracts/src/types/languages.ts',
-  descriptions: 'shared/engine/src/data/assessmentMethodTaxonomy/locales/en.ts',
+  descriptions: 'shared/ui-kit/data/definitions/assessmentMethods',
   labels: 'shared/ui-kit/data/locale/assessmentMethods.ts',
 });
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -103,6 +103,50 @@ function assertExactKeys(value, keys, context) {
   }
 }
 
+
+/**
+ * Extract English methodology directly from literal defineAssessmentMethod()
+ * arguments. The reference generator deliberately never executes TypeScript.
+ */
+function readEnglishMethodDescriptions(root, ids) {
+  const descriptions = Object.create(null);
+  for (const [key, id] of Object.entries(ids)) {
+    const relative = path.posix.join(sourcePaths.descriptions, key + '.ts');
+    const filename = path.join(root, relative);
+    if (!fs.existsSync(filename) || !fs.statSync(filename).isFile()) {
+      throw new Error('Missing canonical Assessment Methods source: ' + relative);
+    }
+    const ast = ts.createSourceFile(filename, fs.readFileSync(filename, 'utf8'), ts.ScriptTarget.Latest, true);
+    if (ast.parseDiagnostics.length) throw new Error('Invalid TypeScript source: ' + relative);
+    let config;
+    for (const statement of ast.statements) {
+      if (!ts.isVariableStatement(statement)) continue;
+      for (const declaration of statement.declarationList.declarations) {
+        if (!ts.isIdentifier(declaration.name) || declaration.name.text !== key) continue;
+        const call = unwrap(declaration.initializer);
+        if (
+          !ts.isCallExpression(call) ||
+          !ts.isIdentifier(call.expression) ||
+          call.expression.text !== 'defineAssessmentMethod' ||
+          call.arguments.length !== 1
+        ) {
+          throw new Error('Expected defineAssessmentMethod() for ' + key);
+        }
+        config = staticValue(call.arguments[0], new Map());
+      }
+    }
+    if (!config || config.id !== id || config.slug !== key) {
+      throw new Error('Incorrect canonical Assessment Method definition: ' + key);
+    }
+    const description = config.description?.en;
+    if (typeof description !== 'string' || !description.trim()) {
+      throw new Error('Missing English methodological description for ' + key);
+    }
+    descriptions[key] = { description };
+  }
+  return descriptions;
+}
+
 export function supportedAssessmentMethodLocales(root = repoRoot) {
   const definitions = declaration(root, sourcePaths.languages, 'DEFAULT_SUPPORTED_LANGUAGES');
   if (!Array.isArray(definitions) || !definitions.length) throw new Error('Empty DEFAULT_SUPPORTED_LANGUAGES');
@@ -127,7 +171,7 @@ export function readAssessmentMethodsReference({ root = repoRoot, locale }) {
     knownIds.add(id.toLowerCase());
   }
 
-  const descriptions = declaration(root, sourcePaths.descriptions, 'en_AssessmentMethod_Locale');
+  const descriptions = readEnglishMethodDescriptions(root, ids);
   assertExactKeys(descriptions, keys, 'English methodological descriptions');
   const uiKit = declaration(root, sourcePaths.labels, 'assessmentMethods');
   assertExactKeys(uiKit, languages, 'UI Kit Assessment Methods locales');
@@ -202,7 +246,9 @@ export function renderAssessmentMethodsReference(options) {
         '), ' +
         '[methodology](' +
         links.descriptions +
-        '), [localized label](' +
+        '/' +
+        method.key +
+        '.ts), [localized label](' +
         links.labels +
         ')',
       '',

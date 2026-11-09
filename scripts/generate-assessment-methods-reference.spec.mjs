@@ -13,11 +13,17 @@ import {
 } from './generate-assessment-methods-reference.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const definitionRoot = 'shared/ui-kit/data/definitions/assessmentMethods';
+const definitions = fs
+  .readdirSync(path.join(repoRoot, definitionRoot))
+  .filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
+  .sort();
 const sources = [
   'shared/contracts/src/types/content/assessmentMethod.ids.ts',
   'shared/contracts/src/types/languages.ts',
-  'shared/engine/src/data/assessmentMethodTaxonomy/locales/en.ts',
+  definitionRoot + '/retrieval.ts',
   'shared/ui-kit/data/locale/assessmentMethods.ts',
+  ...definitions.filter(name => name !== 'retrieval.ts').map(name => definitionRoot + '/' + name),
 ];
 const keyHeading = /^## \x60([A-Za-z]+)\x60$/gm;
 
@@ -70,6 +76,7 @@ test('every supported language has exactly the canonical 16 keys, IDs and actual
     assert.ok(markdown.includes('Methods: 16'));
     assert.ok(markdown.includes('../../shared/contracts/src/types/content/assessmentMethod.ids.ts'));
     assert.ok(markdown.includes('../../shared/ui-kit/data/locale/assessmentMethods.ts'));
+    assert.ok(markdown.includes('../../shared/ui-kit/data/definitions/assessmentMethods/retrieval.ts'));
     for (let i = 0; i < data.methods.length; i++) {
       const method = data.methods[i];
       assert.equal(method.id, canonicalIds.get(method.key));
@@ -144,7 +151,7 @@ test('unknown locales, missing source, invalid UUIDs and missing English descrip
 
 test('missing English descriptions are not repaired using localized content', () =>
   withFixture(root => {
-    replaceFile(root, sources[2], text => text.replace('    description:', '    missingDescription:'));
+    replaceFile(root, sources[2], text => text.replace('  description: {', '  missingDescription: {'));
     assert.throws(
       () => readAssessmentMethodsReference({ root, locale: 'uk' }),
       /Missing English methodological description for retrieval/,
