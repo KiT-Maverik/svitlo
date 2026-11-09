@@ -63,12 +63,22 @@ const languages_Schema = z.array(languageCode_Schema).nonempty().refine(
 );
 function createLessonSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const title = contentBlockLocalizationSwitch[mode];
-  const children = mode === 'config'
-    ? { flashcards: z.array(flashcardConfigurator_Schema), sections: z.array(sectionConfigurator_Schema) }
-    : {
-        flashcards: z.array(z.object({ type: z.literal('flashcard'), id: z.uuid() }).catchall(z.unknown())),
-        sections: z.array(z.object({ type: z.enum(['theory', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'scenario', 'quiz']), id: z.uuid() }).catchall(z.unknown())),
-      };
+  const childSchemas = {
+    config: {
+      flashcards: z.array(flashcardConfigurator_Schema),
+      sections: z.array(sectionConfigurator_Schema),
+      questions: questions_Schema.optional(),
+    },
+    props: {
+      flashcards: z.array(z.object({ type: z.literal('flashcard'), id: z.uuid() }).catchall(z.unknown())),
+      sections: z.array(z.object({
+        type: z.enum(['theory', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'scenario', 'quiz']),
+        id: z.uuid(),
+      }).catchall(z.unknown())),
+      questions: z.record(z.string(), z.unknown()).optional(),
+    },
+  } as const;
+  const children = childSchemas[mode];
 
   return z.strictObject({
     type: z.literal('lesson'),
@@ -86,7 +96,7 @@ function createLessonSchema<Mode extends keyof typeof contentBlockLocalizationSw
         showIndexes: z.boolean(),
       }),
     }),
-    questions: mode === 'config' ? questions_Schema.optional() : z.record(z.string(), z.unknown()).optional(),
+    questions: children.questions,
     sections: children.sections,
     events: z.record(z.string(), z.unknown()).optional(),
   });
