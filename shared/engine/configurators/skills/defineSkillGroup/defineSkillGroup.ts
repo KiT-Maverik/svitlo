@@ -2,7 +2,7 @@ import type { DeepPartial } from '#types';
 
 import { skillGroup_Config_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
 
-export function defineSkillGroupMethod(config: SkillGroup_Config) {
+export function defineSkillGroup(config: SkillGroup_Config) {
   skillGroup_Config_Schema.parse(config);
 
   const { id, description, slug, name, skills } = config;
@@ -23,4 +23,4 @@ export function defineSkillGroupMethod(config: SkillGroup_Config) {
   };
 }
 
-export type SkillGroup_Configurator = ReturnType<typeof defineSkillGroupMethod>;
+export type SkillGroup_Configurator = ReturnType<typeof defineSkillGroup>;

@@ -2,7 +2,7 @@ import type { DeepPartial } from '#types';
 
 import { skillDomain_Config_Schema, type SkillDomain_Config } from './defineSkillDomain.schemas';
 
-export function defineSkillDomainMethod(config: SkillDomain_Config) {
+export function defineSkillDomain(config: SkillDomain_Config) {
   skillDomain_Config_Schema.parse(config);
 
   const { id, description, slug, title, skills, groups } = config;
@@ -24,4 +24,4 @@ export function defineSkillDomainMethod(config: SkillDomain_Config) {
   };
 }
 
-export type SkillDomain_Configurator = ReturnType<typeof defineSkillDomainMethod>;
+export type SkillDomain_Configurator = ReturnType<typeof defineSkillDomain>;
