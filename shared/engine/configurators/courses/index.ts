@@ -2,15 +2,20 @@ import { z } from 'zod';
 import { childDefinition, defineStructured, uuid, resolvedProps, taggedChild } from '../structured';
 import type { DefinitionLanguages, TaggedDefinition } from '../structured';
 import { scenarioSectionChild } from '../sections';
-import type { TextContentDefinition } from '../contentBlocks/defineRemaining';
+import type { ContentBlock_Text_Configurator } from '../contentBlocks/defineText/defineText';
+import type { ContentBlock_Markdown_Configurator } from '../contentBlocks/defineMarkdown/defineMarkdown';
 
-type TextDefinition = TextContentDefinition;
+type TextDefinition = ContentBlock_Text_Configurator;
 const title = () =>
   childDefinition<TextDefinition>(v => {
     const base = v.config.base;
     return typeof base === 'object' && base !== null && 'type' in base && base.type === 'text';
   });
-const markdown = () => taggedChild('markdown');
+const markdown = () =>
+  childDefinition<ContentBlock_Markdown_Configurator>(value => {
+    const base = value.config.base;
+    return typeof base === 'object' && base !== null && 'type' in base && base.type === 'markdown';
+  });
 const chapterContent = () => taggedChild('episode', 'lesson');
 const moduleContent = () => taggedChild('chapter', 'episode', 'lesson');
 const courseContent = () => taggedChild('module', 'chapter', 'episode', 'lesson');

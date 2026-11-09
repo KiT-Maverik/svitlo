@@ -9,9 +9,9 @@ import {
   resolvedProps,
 } from '../structured';
 import type { DefinitionLanguages, TaggedDefinition } from '../structured';
-import type { ContentBlockDefinition } from '../contentBlocks/defineRemaining';
+import { contentBlockChild } from '../contentBlocks';
 
-const block = () => childDefinition<ContentBlockDefinition>();
+const block = () => contentBlockChild();
 const screen = () =>
   z.strictObject({
     showDefaultContent: z.boolean().optional(),

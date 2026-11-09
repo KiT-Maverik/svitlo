@@ -1,4 +1,4 @@
-import { configuratorArrayToSluggedObject } from '../utils/configuratorArrayToSluggedObject/configuratorArrayToSluggedObject.utils';
+import { configuratorArrayToSluggedObject } from './_utils';
 import { defineSkill, type Skill_Configurator } from './skills/defineSkill/defineSkill';
 import type { Skill_Config } from './skills/defineSkill/defineSkill.schemas';
 import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
