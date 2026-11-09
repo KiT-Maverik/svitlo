@@ -161,14 +161,7 @@ function createAssessmentMethodResources() {
       localized[language][name] = { title: props.title, description: props.description };
     }
   }
-  return {
-    base: {
-      meta: { scope: 'global', methods: entries.map(({ name }) => name), languages },
-      data: base,
-    },
-    localized,
-    languages,
-  };
+  return { base, localized, languages };
 }
 
 try {

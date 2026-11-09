@@ -26,13 +26,26 @@ test('build bundles the real lesson and localized config, flashcards and questio
   }
   assert.ok(existsSync(join(renderer, 'data/ui-kit/uk-UA.json')));
   const methodsRoot = join(renderer, 'data/ui-kit/assessment-methods');
-  const { meta, data: base } = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
+  const base = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
+  const methods = Object.keys(base).sort();
   assert.equal(existsSync(join(methodsRoot, 'meta.json')), false);
-  assert.equal(meta.methods.length, 16);
-  assert.deepEqual(Object.keys(base).sort(), [...meta.methods].sort());
-  for (const language of meta.languages) {
-    const data = JSON.parse(readFileSync(join(methodsRoot, language + '.json'), 'utf8'));
-    assert.deepEqual(Object.keys(data).sort(), [...meta.methods].sort());
+  assert.equal(methods.length, 16);
+  for (const method of methods) {
+    assert.equal(base[method].slug, method);
+    assert.ok(base[method].id);
+  }
+  const languages = readdirSync(methodsRoot).filter(name => name !== 'base.json');
+  assert.equal(languages.length, 29);
+  assert.ok(languages.includes('uk.json'));
+  assert.ok(languages.includes('qm.json'));
+  for (const filename of languages) {
+    assert.match(filename, /^[a-z]{2}\.json$/);
+    const data = JSON.parse(readFileSync(join(methodsRoot, filename), 'utf8'));
+    assert.deepEqual(Object.keys(data).sort(), methods);
+    for (const method of methods) {
+      assert.ok(data[method].title);
+      assert.ok(data[method].description);
+    }
   }
   assert.ok(existsSync(join(renderer, 'data/pages/skillAnalytics/uk.json')));
   assert.ok(existsSync(join(renderer, 'flags/ua.svg')));

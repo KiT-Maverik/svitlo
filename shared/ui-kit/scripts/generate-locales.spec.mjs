@@ -97,17 +97,11 @@ describe('Assessment Methods sparse publication', () => {
   it('publishes one invariant base and a complete selected-language resource for every locale', () => {
     const result = generate();
     assert.equal(result.status, 0, result.stderr);
-    const baseResource = JSON.parse(readFileSync(path.join(methodsRoot, 'base.json'), 'utf8'));
-    assert.deepEqual(Object.keys(baseResource).sort(), ['data', 'meta']);
-    const { meta, data: base } = baseResource;
-    assert.equal(meta.scope, 'global');
+    const base = JSON.parse(readFileSync(path.join(methodsRoot, 'base.json'), 'utf8'));
     assert.equal(names.length, 16);
-    assert.deepEqual(meta.methods, names);
-    assert.deepEqual(meta.languages, DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language));
-    assert.ok(meta.languages.every(language => /^[a-z]{2}$/.test(language)));
     assert.deepEqual(Object.keys(base), names);
     assert.deepEqual(readdirSync(methodsRoot).sort(), [
-      'base.json', ...meta.languages.map(language => language + '.json'),
+      'base.json', ...DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language + '.json'),
     ].sort());
 
     for (const name of names) {
@@ -116,13 +110,16 @@ describe('Assessment Methods sparse publication', () => {
     for (const { language } of DEFAULT_SUPPORTED_LANGUAGES) {
       const local = JSON.parse(readFileSync(path.join(methodsRoot, language + '.json'), 'utf8'));
       assert.deepEqual(Object.keys(local), names);
+      const merged = Object.fromEntries(
+        Object.keys(base).map(name => [name, { ...base[name], ...local[name] }]),
+      );
       for (const name of names) {
         assert.deepEqual(Object.keys(local[name]).sort(), ['description', 'title']);
         assert.ok(local[name].title.trim(), name + '/' + language);
         assert.ok(local[name].description.trim(), name + '/' + language);
         assert.deepEqual(
-          assessmentMethod_Props_Schema.parse({ ...base[name], ...local[name] }),
-          { ...base[name], ...local[name] },
+          assessmentMethod_Props_Schema.parse(merged[name]),
+          merged[name],
         );
       }
     }
