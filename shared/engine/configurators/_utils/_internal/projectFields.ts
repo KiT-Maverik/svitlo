@@ -4,6 +4,8 @@ import type { DeepPartial } from '#types';
  * Project JSON-like authored fields without mutating the input.
  * Array placeholders preserve indexes used by localized patches.
  * Base projections can retain an array skeleton even when every element is localized.
+ * TODO(#436): Define array-safe base/locale deep-merge semantics before treating these
+ * placeholders as a general solution for published content.
  */
 export function projectFields<const T extends object>(
   source: T,
