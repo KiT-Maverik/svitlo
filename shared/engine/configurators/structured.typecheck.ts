@@ -1,7 +1,8 @@
 import { defineText } from './contentBlocks/defineText/defineText';
 import { defineTheorySection } from './sections';
 import { defineLesson } from './lessons';
-import { defineSkill, defineSkillGroup } from './skills';
+import { defineSkill, defineSkillGroup, type Skill_Config } from './skills';
+import { allLanguageCodes } from '../schemas/languages.schemas';
 
 const languages = ['en', 'uk'] as const;
 const validText = defineText<typeof languages>({
@@ -28,26 +29,26 @@ defineTheorySection<typeof languages>({
   // @ts-expect-error Nested blocks must be Definition objects, not raw configs.
   content: [{ type: 'text', id: 'b775647f-203d-481a-a1c7-4d331c779d6a', slug: 'raw', value: 'Raw' }],
 });
-const skill = defineSkill<typeof languages>({
-  type: 'skill',
+const allLocales = Object.fromEntries(allLanguageCodes.map(code => [code, 'Reading'])) as Skill_Config['name'];
+const skill = defineSkill({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6a',
   slug: 'reading',
-  name: { en: 'Reading', uk: 'Читання' },
-  description: { methodological: 'Reading', frontend: { en: 'Reading', uk: 'Читання' } },
+  name: allLocales,
+  description: { methodological: 'Reading', frontend: allLocales },
 });
-defineSkillGroup<typeof languages>({
-  type: 'skillGroup',
+defineSkillGroup({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
   slug: 'literacy',
-  name: { en: 'Literacy', uk: 'Грамотність' },
-  skills: { reading: skill },
+  name: allLocales,
+  description: { methodological: 'Literacy', frontend: allLocales },
+  skills: [skill],
 });
-defineSkillGroup<typeof languages>({
-  type: 'skillGroup',
+defineSkillGroup({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
   slug: 'invalid',
-  name: { en: 'Literacy', uk: 'Грамотність' },
-  // @ts-expect-error A raw skill config is not a child Definition.
-  skills: { reading: { type: 'skill', id: 'x', slug: 'x', name: { en: 'X', uk: 'X' } } },
+  name: allLocales,
+  description: { methodological: 'Literacy', frontend: allLocales },
+  // @ts-expect-error A raw Skill configuration is not a child configurator.
+  skills: [{ id: 'x', slug: 'x', name: allLocales }],
 });
 void defineLesson;

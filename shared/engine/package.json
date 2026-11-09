@@ -7,7 +7,7 @@
     "code:check:types": "tsc -p tsconfig.json --noEmit",
     "prepack": "npm run package:build",
     "pretest": "npm run package:build",
-    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js .test-build/configurators/createCourseConfigurator/createModuleConfigurator/*.spec.js .test-build/schemas/*.spec.js .test-build/definitions/*.spec.js",
+    "test": "tsc -p tsconfig.test.json && node --test .test-build/utils/builders/*/*.spec.js .test-build/utils/configuratorArrayToSluggedObject/*.spec.js .test-build/utils/createDynamicQuestion/*.spec.js .test-build/utils/createLocalizedFileLocations/*.spec.js .test-build/utils/entityPath/*.spec.js .test-build/utils/generators/getMarkdownLocale/*.spec.js .test-build/utils/generators/lessons/*.spec.js .test-build/lessons/*.spec.js .test-build/data/assessmentMethodTaxonomy/*.spec.js .test-build/configurators_old/createCourseConfigurator/createModuleConfigurator/*.spec.js .test-build/schemas/*.spec.js .test-build/configurators/*.spec.js",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
@@ -42,9 +42,9 @@
   "imports": {
     "#configurators": "./dist/configurators/index.js",
     "#data": "./dist/data/index.js",
-    "#definitions": "./dist/definitions/index.js",
     "#lessons": "./dist/lessons/index.js",
     "#schemas": "./dist/schemas/index.js",
-    "#utils": "./dist/utils/index.js"
+    "#utils": "./dist/utils/index.js",
+    "#types": "./dist/types/index.js"
   }
 }

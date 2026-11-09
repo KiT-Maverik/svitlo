@@ -1,6 +1,7 @@
-import { defineQuestion } from './defineQuestion';
+import type { Question_SelectOneAnswer } from '@svitlo/contracts/content';
+import type { HowLightMoves_Languages } from '../constants';
 
-export const fastestMedium_Question_Data = defineQuestion({
+export const fastestMedium_Question_Data = {
   answers: {
     correct: {
       vacuum: {
@@ -157,7 +158,7 @@ export const fastestMedium_Question_Data = defineQuestion({
     },
   ],
   id: '08c3bae5-081a-5afc-bccf-e44078e137f2',
-  slug: 'fastestMedium',
+  slug: 'fastestMedium' as const,
   question: [
     {
       id: 'f671bcff-e9a1-5d7a-afd0-f28b4d591078',
@@ -198,4 +199,4 @@ export const fastestMedium_Question_Data = defineQuestion({
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-});
+} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;

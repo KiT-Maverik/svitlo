@@ -1,6 +1,7 @@
-import { defineQuestion } from './defineQuestion';
+import type { Question_SelectOneAnswer } from '@svitlo/contracts/content';
+import type { HowLightMoves_Languages } from '../constants';
 
-export const lightTravelsStraight_Question_Data = defineQuestion({
+export const lightTravelsStraight_Question_Data = {
   answers: {
     correct: {
       straightLine: {
@@ -157,7 +158,7 @@ export const lightTravelsStraight_Question_Data = defineQuestion({
     },
   ],
   id: 'a4f1e4aa-3831-5e3f-aece-1df57f757d82',
-  slug: 'lightTravelsStraight',
+  slug: 'lightTravelsStraight' as const,
   question: [
     {
       id: '42b21cc4-14a5-5159-8c28-aa1fb0309c95',
@@ -198,4 +199,4 @@ export const lightTravelsStraight_Question_Data = defineQuestion({
   ],
   restrictions: [],
   type: 'selectOneAnswer',
-});
+} satisfies Question_SelectOneAnswer<'data', HowLightMoves_Languages>;

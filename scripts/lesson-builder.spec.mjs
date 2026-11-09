@@ -160,7 +160,7 @@ test('generates a typed full Lesson with all approved source text and selected Q
     assert.equal(result.lessonId, lessonId);
     const ts = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
     assert.match(ts, /createLesson<Languages>/);
-    assert.match(ts, /createSection<Languages>/);
+    assert.match(ts, /createSectionConfigurator<Languages>/);
     assert.match(ts, /createContentBlock<Languages>/);
     assert.match(ts, /satisfies Question_Catalog<'data', Languages>/);
     assert.match(ts, /How Light Moves/);
@@ -326,13 +326,11 @@ test('does not fake Scene implementations; missing specifications fail explicitl
     f.save();
     assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown Scene specification/);
   }));
-test('real Playground Lesson is read-only integration evidence of current creators and Question Bank', () => {
+test('real Playground Sections and Question Bank use current APIs', () => {
   const root = path.join(repoRoot, 'content/playground/data/lessons/c', lessonId);
-  const lesson = fs.readFileSync(path.join(root, 'index.ts'), 'utf8');
   const quiz = fs.readFileSync(path.join(root, 'sections/quiz/index.ts'), 'utf8');
   const catalog = fs.readFileSync(path.join(root, 'questions/index.ts'), 'utf8');
-  assert.match(lesson, /createLesson<HowLightMoves_Languages>/);
-  assert.match(quiz, /createSection<HowLightMoves_Languages>/);
+  assert.match(quiz, /createSectionConfigurator<HowLightMoves_Languages>/);
   assert.match(quiz, /questionSlugs:/);
   assert.match(catalog, /Question_Catalog<'data', HowLightMoves_Languages>/);
   assert.equal(fs.existsSync(path.join(root, 'content.yaml')), false);

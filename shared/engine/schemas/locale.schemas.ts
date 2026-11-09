@@ -20,3 +20,8 @@ export const createLocaleSubsetSchema = <const Languages extends readonly [Langu
 
   return base;
 };
+
+export const localizationSwitch = {
+  config: locale_All_Schema,
+  props: localeText_Schema,
+} as const;

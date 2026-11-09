@@ -930,10 +930,11 @@ function renderLesson(input, model) {
   // catalog: that would turn required NonEmptyArray tuples readonly.
   const bank = JSON.stringify(model.bank, null, 2).replace(/("slug":\s*)("(?:[^"\\]|\\.)*")/g, '$1$2 as const');
   const parts = model.sections.map(section => {
-    if (section.type === 'quiz') return 'createSection<Languages>()(' + JSON.stringify(section, null, 2) + ')';
+    if (section.type === 'quiz')
+      return 'createSectionConfigurator<Languages>()(' + JSON.stringify(section, null, 2) + ')';
     const { content: blocks, ...meta } = section;
     return (
-      'createSection<Languages>()({ ...(' +
+      'createSectionConfigurator<Languages>()({ ...(' +
       JSON.stringify(meta, null, 2) +
       ' as const)' +
       ', content: [' +
@@ -944,7 +945,7 @@ function renderLesson(input, model) {
   return (
     marker +
     '\n' +
-    "import { createLesson, createSection, createContentBlock, linkFlashcards } from '@svitlo/engine';\n" +
+    "import { createLesson, createSectionConfigurator, createContentBlock, linkFlashcards } from '@svitlo/engine';\n" +
     "import type { Locale_Languages, Question_Catalog } from '@svitlo/contracts/content';\n\n" +
     'export const supportedLanguages = ' +
     languages +

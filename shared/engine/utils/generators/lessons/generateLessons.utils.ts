@@ -7,6 +7,7 @@ import { resolveEntityPath } from '../../entityPath/resolveEntityPath.utils';
 
 /** Load authoring TypeScript without requiring the application runtime. */
 export async function loadLessonData(entry: string): Promise<unknown> {
+  const { build } = await import('esbuild');
   const directory = fs.mkdtempSync(path.join(path.dirname(entry), '.lesson-load-'));
   const output = path.join(directory, 'lesson.cjs');
   try {
@@ -81,9 +82,10 @@ export async function renderTextbookLessonFiles(packageDirectory: string): Promi
         throw new Error(`Lesson path mismatch: ${bucket.name}/${entry.name}`);
       const lessonDir = path.join(dir, entry.name);
       const candidates = fs.readdirSync(lessonDir).filter(name => name.endsWith('.data.ts'));
-      if (!candidates.length) continue; // Editorial draft without authored TS.
-      if (candidates.length !== 1) throw new Error(`Ambiguous Lesson files: ${lessonDir}`);
-      const creator = createLessonFromUnknown(await loadLessonData(path.join(lessonDir, candidates[0])));
+      if (candidates.length > 1) throw new Error(`Ambiguous Lesson files: ${lessonDir}`);
+      const entrypoint = candidates[0] ?? (fs.existsSync(path.join(lessonDir, 'index.ts')) ? 'index.ts' : null);
+      if (!entrypoint) continue; // Editorial draft without authored TS.
+      const creator = createLessonFromUnknown(await loadLessonData(path.join(lessonDir, entrypoint)));
       const lesson = creator.getData();
       if (lesson.id.toLowerCase() !== entry.name) throw new Error(`Lesson UUID/path mismatch: ${lessonDir}`);
       for (const [key, value] of renderLessonFiles(lesson)) {

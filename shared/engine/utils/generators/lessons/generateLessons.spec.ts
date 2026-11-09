@@ -4,7 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { mergeLessonResources } from '../../../lessons/mergeLessonResources';
-import { renderLessonFiles, writeLessonFiles } from './generateLessons.utils';
+import { renderLessonFiles, renderTextbookLessonFiles, writeLessonFiles } from './generateLessons.utils';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const lesson = {
@@ -79,6 +79,20 @@ describe('renderLessonFiles', () => {
       );
     } finally {
       fs.rmSync(temp, { recursive: true, force: true });
+    }
+  });
+
+  it('publishes a Lesson exported from its directory index', async () => {
+    const textbook = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-index-lesson-'));
+    try {
+      const directory = path.join(textbook, 'data/lessons/c', id);
+      fs.mkdirSync(directory, { recursive: true });
+      fs.writeFileSync(path.join(directory, 'index.ts'), `export const lessonData = ${JSON.stringify(lesson)};\n`);
+      const files = await renderTextbookLessonFiles(textbook);
+      assert.ok(files.has(`c/${id}/config/base.json`));
+      assert.ok(files.has(`c/${id}/config/uk.json`));
+    } finally {
+      fs.rmSync(textbook, { recursive: true, force: true });
     }
   });
 });
