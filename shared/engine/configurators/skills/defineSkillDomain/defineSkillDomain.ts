@@ -1,9 +1,19 @@
 import type { DeepPartial } from '#types';
 import { configuratorArrayToSluggedObject } from '../../../utils/configuratorArrayToSluggedObject/configuratorArrayToSluggedObject.utils';
+import type { Skill_Configurator } from '../defineSkill/defineSkill';
+import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
 
 import { skillDomain_Config_Schema, type SkillDomain_Config } from './defineSkillDomain.schemas';
 
-export function defineSkillDomain(config: SkillDomain_Config) {
+export function defineSkillDomain<
+  const Slug extends string,
+  const Groups extends readonly SkillGroup_Configurator[] = readonly [],
+  const Skills extends readonly Skill_Configurator[] = readonly [],
+>(config: Omit<SkillDomain_Config, 'slug' | 'groups' | 'skills'> & {
+  slug: Slug;
+  groups?: Groups;
+  skills?: Skills;
+}) {
   skillDomain_Config_Schema.parse(config);
 
   const { id, description, slug, title, skills, groups } = config;
