@@ -8,7 +8,7 @@ permissions:
   contents: write
 concurrency:
   group: playground-skill-migration
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   migrate:
     if: github.repository == 'KiT-Maverik/svitlo-web'
@@ -17,9 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { persist-credentials: true }
-      - uses: actions/setup-node@v4
-        with: { node-version: '24', cache: npm }
-      - run: npm ci
+      - run: node --version && npm --version && npm ci
       - name: Prepare missing synthetic Playground descriptions (no production translations)
         shell: bash
         run: |
@@ -82,4 +80,6 @@ jobs:
           git rm -- .github/workflows/one-shot-playground-skills.yml
           git diff --cached --stat
           git commit -m "Migrate Playground test skills to define configurators"
+          git fetch origin tooling/migrate-skill-definitions
+          git rebase origin/tooling/migrate-skill-definitions
           git push origin HEAD:tooling/migrate-skill-definitions
