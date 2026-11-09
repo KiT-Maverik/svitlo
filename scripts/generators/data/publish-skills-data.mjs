@@ -112,19 +112,18 @@ function readEntity(file, slug, kind, codes) {
   const newName = kind === 'SkillDomain' ? 'defineSkillDomain' : kind === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill';
   assert(
     call && ts.isCallExpression(call) && ts.isIdentifier(call.expression) &&
-    [newName, 'build' + kind + 'Config'].includes(call.expression.text) && call.arguments.length === 1,
+    call.expression.text === newName && call.arguments.length === 1,
     'Invalid configurator for ' + symbol + ': ' + file,
   );
-  const modern = call.expression.text === newName;
   const props = fields(call.arguments[0], file);
-  const allowed = new Set(['slug', 'id', 'description', modern && kind === 'SkillDomain' ? 'title' : 'name',
+  const allowed = new Set(['slug', 'id', 'description', kind === 'SkillDomain' ? 'title' : 'name',
     ...(kind === 'SkillDomain' ? ['groups', 'skills'] : kind === 'SkillGroup' ? ['skills'] : [])]);
   for (const name of props.keys()) assert(allowed.has(name), 'Unexpected config field: ' + file + '.' + name);
   const authoredSlug = literal(props.get('slug'), file + '.slug');
   assert(authoredSlug === slug && slugPattern.test(authoredSlug), 'Missing/mismatched Skill slug: ' + file);
   const id = literal(props.get('id'), file + '.id');
   assert(uuidPattern.test(id), 'Invalid UUID: ' + file);
-  const label = modern && kind === 'SkillDomain' ? 'title' : 'name';
+  const label = kind === 'SkillDomain' ? 'title' : 'name';
   const name = localizedStrings(props.get(label), codes, file + '.' + label);
   let description, methodological;
   if (props.has('description')) {
@@ -136,9 +135,8 @@ function readEntity(file, slug, kind, codes) {
     }
     if (detail.has('frontend')) description = localizedStrings(detail.get('frontend'), codes, file + '.description.frontend');
   }
-  assert(!modern || !!methodological, 'Configurator requires methodological description: ' + file);
+  assert(!!methodological, 'Configurator requires methodological description: ' + file);
   assert(kind !== 'Skill' || description, 'Skill requires complete frontend descriptions: ' + file);
-  assert(!modern || kind !== 'Skill' || !!description, 'Skill configurator requires complete frontend descriptions: ' + file);
   return { id, slug, kind, name, description, methodological };
 }
 

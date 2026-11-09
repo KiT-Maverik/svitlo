@@ -52,28 +52,13 @@ function childRefs(config, name, file, optional = false) {
   if (!p && optional) return new Map();
   check(p, 'Missing child collection ' + name + ': ' + file);
   const result = new Map();
-  if (ts.isArrayLiteralExpression(p.initializer)) {
-    for (const entry of p.initializer.elements) {
-      check(ts.isIdentifier(entry), 'Invalid configurator array reference: ' + file);
-      const match = /^(\w+)_(?:SkillGroup|Skill)_Data$/.exec(entry.text);
-      check(match && identifier.test(match[1]), 'Invalid child configurator symbol: ' + file);
-      check(!result.has(match[1]), 'Duplicate child slug ' + match[1] + ': ' + file);
-      result.set(match[1], entry.text);
-    }
-  } else {
-    // Allow legacy object-literal fixtures until all generator test inputs are migrated.
-    check(ts.isObjectLiteralExpression(p.initializer), 'Invalid child collection ' + name + ': ' + file);
-    for (const child of p.initializer.properties) {
-      check(
-        ts.isPropertyAssignment(child) &&
-          ts.isIdentifier(child.name) &&
-          identifier.test(child.name.text) &&
-          ts.isIdentifier(child.initializer),
-        'Invalid child entity reference: ' + file,
-      );
-      check(!result.has(child.name.text), 'Duplicate child slug ' + child.name.text + ': ' + file);
-      result.set(child.name.text, child.initializer.text);
-    }
+  check(ts.isArrayLiteralExpression(p.initializer), 'Invalid child configurator array ' + name + ': ' + file);
+  for (const entry of p.initializer.elements) {
+    check(ts.isIdentifier(entry), 'Invalid configurator array reference: ' + file);
+    const match = /^(\\w+)_(?:SkillGroup|Skill)_Data$/.exec(entry.text);
+    check(match && identifier.test(match[1]), 'Invalid child configurator symbol: ' + file);
+    check(!result.has(match[1]), 'Duplicate child slug ' + match[1] + ': ' + file);
+    result.set(match[1], entry.text);
   }
   return result;
 }
@@ -102,7 +87,7 @@ export function checkTaxonomy(root = defaultRoot) {
           d.initializer &&
           ts.isCallExpression(d.initializer) &&
           ts.isIdentifier(d.initializer.expression) &&
-          ['build' + type + 'Config', type === 'SkillDomain' ? 'defineSkillDomain' : type === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill'].includes(d.initializer.expression.text) &&
+          d.initializer.expression.text === (type === 'SkillDomain' ? 'defineSkillDomain' : type === 'SkillGroup' ? 'defineSkillGroup' : 'defineSkill') &&
           d.initializer.arguments.length === 1 &&
           ts.isObjectLiteralExpression(d.initializer.arguments[0]),
       );

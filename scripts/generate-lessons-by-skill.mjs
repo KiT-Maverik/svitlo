@@ -57,11 +57,11 @@ function parseSkillDeclaration(initializer) {
     !expr ||
     !ts.isCallExpression(expr) ||
     !ts.isIdentifier(expr.expression) ||
-    expr.expression.text !== 'buildSkillConfig'
+    expr.expression.text !== 'defineSkill'
   )
     return null;
   const object = unwrap(expr.arguments[0]);
-  if (!object || !ts.isObjectLiteralExpression(object)) throw new Error('Invalid buildSkillConfig call');
+  if (!object || !ts.isObjectLiteralExpression(object)) throw new Error('Invalid defineSkill call');
   const id = literal(member(object, 'id')?.initializer);
   const names = unwrap(member(object, 'name')?.initializer);
   const name = names && ts.isObjectLiteralExpression(names) ? literal(member(names, 'en')?.initializer) : null;
@@ -176,10 +176,19 @@ function lessonData(root, lesson, catalogue, knownLessons, visiting = new Set())
               if (!catalogue.byId.has(id)) throw new Error('Unknown Skill UUID ' + id + ' in ' + cacheKey);
               return id;
             }
-            if (ts.isPropertyAccessExpression(node) && node.name.text === 'id' && ts.isIdentifier(node.expression)) {
-              const key = aliases.get(node.expression.text) ?? node.expression.text;
+            if (
+              ts.isPropertyAccessExpression(node) &&
+              node.name.text === 'id' &&
+              ts.isPropertyAccessExpression(node.expression) &&
+              node.expression.name.text === 'base' &&
+              ts.isPropertyAccessExpression(node.expression.expression) &&
+              node.expression.expression.name.text === 'config' &&
+              ts.isIdentifier(node.expression.expression.expression)
+            ) {
+              const symbol = node.expression.expression.expression.text;
+              const key = aliases.get(symbol) ?? symbol;
               const skill = catalogue.bySymbol.get(key);
-              if (!skill) throw new Error('Unknown Skill reference ' + key + '.id in ' + cacheKey);
+              if (!skill) throw new Error('Unknown Skill reference ' + key + '.config.base.id in ' + cacheKey);
               return skill.id;
             }
             throw new Error('Unsupported dynamic Skill expression in ' + cacheKey);

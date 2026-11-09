@@ -14,7 +14,7 @@ const put = (p, value) => {
   fs.writeFileSync(p, value);
 };
 const source =
-  'export const fixture = buildSkillDomainConfig({\n  id: "4e36cc11-d273-44a4-aa6d-a153c4e53701",\n  name: { en: "Example" },\n});\n';
+  'export const fixture = defineSkillDomain({\n  id: "4e36cc11-d273-44a4-aa6d-a153c4e53701",\n  title: { en: "Example" },\n});\n';
 const md = (label = 'Methodological description: Conceptual domain scope in English.') =>
   '# Test\n\n## DOMAINS\n\n### Example\n\nGroups: 0 · Skills: 1\n\n' +
   '[a.data.ts](../../src/data/skillsTaxonomy/a/a.data.ts)\n\n' +
