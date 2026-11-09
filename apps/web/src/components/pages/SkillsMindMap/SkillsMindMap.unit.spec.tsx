@@ -43,7 +43,7 @@ describe('SkillsMindMap', () => {
     fireEvent.click(screen.getByTestId('skill-node-testWarmColors'));
     expect(screen.getByTestId('skill-node-testRed')).toBeInTheDocument();
     expect(globalThis.fetch).toHaveBeenCalledWith(
-      '/data/pages/skillAnalytics/uk.json',
+      '/data/skills/uk.json',
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });
@@ -182,7 +182,7 @@ describe('SkillsMindMap', () => {
     await waitFor(() => expect(screen.getByTestId('skill-node-testRed')).toHaveTextContent('Red'));
     expect(window.location.search).toBe('?lang=en');
     expect(globalThis.fetch).toHaveBeenCalledWith(
-      '/data/pages/skillAnalytics/en.json',
+      '/data/skills/en.json',
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });
@@ -196,6 +196,6 @@ describe('SkillsMindMap', () => {
       </SkillsPageSettingsProvider>,
     );
     expect(await screen.findByRole('alert')).toHaveTextContent('відсутня');
-    expect(globalThis.fetch).not.toHaveBeenCalledWith('/data/pages/skillAnalytics/ru.json', expect.anything());
+    expect(globalThis.fetch).not.toHaveBeenCalledWith('/data/skills/ru.json', expect.anything());
   });
 });

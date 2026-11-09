@@ -35,7 +35,7 @@ describe('Skill learning destination', () => {
       '/skillAnalytics?lang=uk',
     );
     expect(globalThis.fetch).toHaveBeenCalledWith(
-      '/data/pages/skillAnalytics/uk.json',
+      '/data/skills/uk.json',
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });

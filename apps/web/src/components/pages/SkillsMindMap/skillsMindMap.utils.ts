@@ -12,18 +12,6 @@ export interface SkillNode {
   readonly children: readonly SkillNode[];
 }
 
-export interface PublishedSkillMeta {
-  readonly id: string;
-  readonly collection: SkillNodeKind;
-  readonly groups?: readonly string[];
-  readonly skills?: readonly string[];
-}
-
-export interface PublishedSkillCopy {
-  readonly name: string;
-  readonly description?: string;
-}
-
 export interface MapNode extends SkillNode {
   readonly depth: 1 | 2 | 3;
   readonly x: number;
