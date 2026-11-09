@@ -14,12 +14,14 @@ export function defineCheckpoint<
 
   const { id, type, slug, title, items, ...params } = config;
 
+  const localeEntries = { title } as const;
+
   const base = {
     id,
     type,
     slug,
     ...params,
-    ...onlyStrings({ title }),
+    ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
   return {

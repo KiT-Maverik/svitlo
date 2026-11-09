@@ -11,17 +11,19 @@ export function defineMarkdown<const Slug extends string>(
 
   const { id, type, slug, locales } = config;
 
+  const localeEntries = { locales } as const;
+
   const base = {
     id,
     type,
     slug,
-    ...onlyStrings({ locales }),
+    ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
   return {
     config: {
       base,
-      locales: () => onlyLocales({ locales }) satisfies DeepPartial<ContentBlock_Markdown_Config>,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Markdown_Config>,
     },
   };
 }

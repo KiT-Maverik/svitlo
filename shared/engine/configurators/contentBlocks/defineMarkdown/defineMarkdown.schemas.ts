@@ -4,6 +4,7 @@ import { createContentBlockMetaSchema, contentBlockLocalizationSwitch } from '..
 
 function createMarkdownSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const localized = contentBlockLocalizationSwitch[mode];
+
   return z.object({
     ...createContentBlockMetaSchema('markdown').shape,
     locales: localized,

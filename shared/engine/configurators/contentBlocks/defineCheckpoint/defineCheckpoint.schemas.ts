@@ -9,7 +9,9 @@ import {
 
 function createCheckpointSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const localized = contentBlockLocalizationSwitch[mode];
+
   const child = { config: contentBlockConfigurator_Schema, props: contentBlockResolved_Schema }[mode];
+
   return z.object({
     ...createContentBlockMetaSchema('checkpoint').shape,
     title: localized,

@@ -11,12 +11,14 @@ export function defineCarousel<const Slug extends string>(
 
   const { id, type, slug, title, slides, ...params } = config;
 
+  const localeEntries = { title } as const;
+
   const base = {
     id,
     type,
     slug,
     ...params,
-    ...onlyStrings({ title }),
+    ...onlyStrings(localeEntries),
     slides: slides.map(slide => onlyStrings(slide)),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 

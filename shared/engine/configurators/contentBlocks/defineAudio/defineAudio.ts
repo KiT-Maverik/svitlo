@@ -9,7 +9,7 @@ export function defineAudio<const Slug extends string>(config: Omit<ContentBlock
 
   const { id, type, slug, fileLocation, title, description, fallback } = config;
 
-  const localeEntries = { fileLocation, title, description, fallback }
+  const localeEntries = { fileLocation, title, description, fallback } as const;
 
   const base = {
     id,

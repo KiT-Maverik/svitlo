@@ -4,6 +4,7 @@ import { createContentBlockMetaSchema, contentBlockLocalizationSwitch } from '..
 
 function createCarouselSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const localized = contentBlockLocalizationSwitch[mode];
+
   const slide = z.object({
     src: localized,
     alt: localized,

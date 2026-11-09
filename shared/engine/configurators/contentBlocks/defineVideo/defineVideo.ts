@@ -1,7 +1,6 @@
 import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
-
 import { video_Config_Schema, type ContentBlock_Video_Config } from './defineVideo.schemas';
 
 export function defineVideo<const Slug extends string>(config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug }) {
@@ -9,17 +8,19 @@ export function defineVideo<const Slug extends string>(config: Omit<ContentBlock
 
   const { id, type, slug, fileLocation, poster, title, fallback } = config;
 
+  const localeEntries = { fileLocation, poster, title, fallback } as const;
+
   const base = {
     id,
     type,
     slug,
-    ...onlyStrings({ fileLocation, poster, title, fallback }),
+    ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
   return {
     config: {
       base,
-      locales: () => onlyLocales({ fileLocation, poster, title, fallback }) satisfies DeepPartial<ContentBlock_Video_Config>,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Video_Config>,
     },
   };
 }

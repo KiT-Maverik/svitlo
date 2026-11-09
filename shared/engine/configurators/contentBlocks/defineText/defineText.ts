@@ -9,18 +9,20 @@ export function defineText<const Slug extends string>(config: Omit<ContentBlock_
 
   const { id, type, slug, value, params } = config;
 
+  const localeEntries = { value } as const;
+
   const base = {
     id,
     type,
     slug,
     params,
-    ...onlyStrings({ value }),
+    ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Text_Config>;
 
   return {
     config: {
       base,
-      locales: () => onlyLocales({ value }) satisfies DeepPartial<ContentBlock_Text_Config>,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Text_Config>,
     },
   };
 }

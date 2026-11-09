@@ -9,18 +9,20 @@ export function defineImage<const Slug extends string>(config: Omit<ContentBlock
 
   const { id, type, slug, src, alt, caption, fallback, ...layout } = config;
 
+  const localeEntries = { src, alt, caption, fallback } as const;
+
   const base = {
     id,
     type,
     slug,
     ...layout,
-    ...onlyStrings({ src, alt, caption, fallback }),
+    ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Image_Config>;
 
   return {
     config: {
       base,
-      locales: () => onlyLocales({ src, alt, caption, fallback }) satisfies DeepPartial<ContentBlock_Image_Config>,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Image_Config>,
     },
   };
 }

@@ -9,6 +9,7 @@ const wrap_Schema = z.strictObject({
 
 function createTextSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
   const localized = contentBlockLocalizationSwitch[mode];
+
   return z.object({
     ...createContentBlockMetaSchema('text').shape,
     params: z.object({

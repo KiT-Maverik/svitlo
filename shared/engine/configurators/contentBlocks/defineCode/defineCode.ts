@@ -9,18 +9,20 @@ export function defineCode<const Slug extends string>(config: Omit<ContentBlock_
 
   const { id, slug, type, language, title, code, fileLocation, variables } = config;
 
+  const localeEntries = { title, code, fileLocation, variables } as const;
+
   const base = {
     id,
     slug,
     type,
     language,
-    ...onlyStrings({ title, code, fileLocation, variables }),
+    ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
   return {
     config: {
       base,
-      locales: () => onlyLocales({ title, code, fileLocation, variables }) satisfies DeepPartial<ContentBlock_Code_Config>,
+      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Code_Config>,
     },
   };
 }
