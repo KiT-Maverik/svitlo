@@ -1,5 +1,4 @@
 export { getMarkdownLocale } from './generators/getMarkdownLocale/getMarkdownLocale.util';
-export { configuratorArrayToSluggedObject } from './configuratorArrayToSluggedObject/configuratorArrayToSluggedObject.utils';
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './languages';
 export {
   loadLessonData,

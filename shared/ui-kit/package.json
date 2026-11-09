@@ -12,7 +12,7 @@
     "prepack": "npm run package:build",
     "storybook:start": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "test:locales": "vitest run scripts/generate-locales.spec.ts && node --test scripts/sync-flags.spec.mjs",
+    "test:locales": "vitest run scripts/generateLocales.spec.ts && node --test scripts/syncFlags.spec.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
@@ -55,7 +55,7 @@
   "files": [
     "dist",
     "assets/flags",
-    "scripts/sync-flags.mjs"
+    "scripts/syncFlags.mjs"
   ],
   "peerDependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -72,6 +72,6 @@
     "rehype-sanitize": "^6.0.0"
   },
   "bin": {
-    "svitlo-sync-flags": "./scripts/sync-flags.mjs"
+    "svitlo-sync-flags": "./scripts/syncFlags.mjs"
   }
 }

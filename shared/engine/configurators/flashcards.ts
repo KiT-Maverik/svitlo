@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { childDefinition, defineStructured, localizedText, uuid, resolvedProps } from './structured';
+import { defineStructured, localizedText, uuid, resolvedProps } from './structured';
 import type { DefinitionLanguages } from './structured';
-import type { ContentBlockDefinition } from './contentBlocks/defineRemaining';
+import { contentBlockChild } from './contentBlocks';
 
-const block = () => childDefinition<ContentBlockDefinition>();
+const block = () => contentBlockChild();
 const flags = <L extends DefinitionLanguages>(l: L) =>
   z.discriminatedUnion('type', [
     z.strictObject({ type: z.literal('list'), count: z.number().int().nonnegative() }),
