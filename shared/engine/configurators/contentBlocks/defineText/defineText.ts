@@ -1,5 +1,7 @@
 import type { DeepPartial } from '#types';
 
+import { onlyLocales, onlyStrings } from '../../_utils';
+
 import { text_Config_Schema, type ContentBlock_Text_Config } from './defineText.schemas';
 
 export function defineText<const Slug extends string>(config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug }) {
@@ -12,13 +14,13 @@ export function defineText<const Slug extends string>(config: Omit<ContentBlock_
     type,
     slug,
     params,
-    ...(typeof value === 'string' ? { value } : {}),
+    ...onlyStrings({ value }),
   } satisfies DeepPartial<ContentBlock_Text_Config>;
 
   return {
     config: {
       base,
-      locales: () => (typeof value === 'string' ? {} : { value }) satisfies DeepPartial<ContentBlock_Text_Config>,
+      locales: () => onlyLocales({ value }) satisfies DeepPartial<ContentBlock_Text_Config>,
     },
   };
 }
