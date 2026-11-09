@@ -3,22 +3,26 @@ import { describe, it } from 'node:test';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
+import { ASSESSMENT_METHOD_KEYS, type AssessmentMethodKey } from '@svitlo/contracts/content';
 import { assessmentMethod_Props_Schema } from '@svitlo/engine';
 import * as methods from './index';
 
 const directory = fileURLToPath(new URL('./', import.meta.url));
-const names = Object.keys(assessmentMethods_AssessmentMethod_Ids).sort();
+const names = Object.keys(methods).sort();
+const typedMethods: Record<AssessmentMethodKey, (typeof methods)[keyof typeof methods]> = methods;
+void typedMethods;
 const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
 
 describe('Assessment Method authored definitions', () => {
   it('defines exactly the 16 canonical methods with unique, unchanged IDs and slugs', () => {
     assert.equal(names.length, 16);
-    assert.equal(new Set(Object.values(assessmentMethods_AssessmentMethod_Ids)).size, 16);
-    assert.deepEqual(Object.keys(methods).sort(), names);
+    assert.deepEqual(names, [...ASSESSMENT_METHOD_KEYS].sort());
+    const ids = names.map(name => methods[name as keyof typeof methods].config.base.id);
+    assert.equal(new Set(ids).size, 16);
     for (const name of names) {
       const { base } = methods[name as keyof typeof methods].config;
-      assert.deepEqual(base, { id: assessmentMethods_AssessmentMethod_Ids[name as keyof typeof assessmentMethods_AssessmentMethod_Ids], slug: name });
+      assert.deepEqual(Object.keys(base).sort(), ['id', 'slug']);
+      assert.equal(base.slug, name);
       assert.match(base.id, /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i);
     }
   });
@@ -50,7 +54,7 @@ describe('Assessment Method authored definitions', () => {
     for (const name of names) {
       const source = readFileSync(fileURLToPath(new URL('./' + name + '.ts', import.meta.url)), 'utf8');
       assert.match(source, /defineAssessmentMethod\(/);
-      assert.ok(source.includes("id: '" + assessmentMethods_AssessmentMethod_Ids[name as keyof typeof assessmentMethods_AssessmentMethod_Ids] + "'"));
+      assert.ok(source.includes("id: '" + methods[name as keyof typeof methods].config.base.id + "'"));
       assert.doesNotMatch(source, /assessmentMethodTranslations|_AssessmentMethod_Data|assessmentMethods_AssessmentMethod_Ids|from ['"]\.\/locales/);
     }
   });

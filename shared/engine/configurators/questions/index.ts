@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { assessmentMethods_AssessmentMethod_Ids } from '@svitlo/contracts/content';
+import { ASSESSMENT_METHOD_KEYS } from '@svitlo/contracts/content';
 import { defineStructured, localizedText, uuid, slug, resolvedProps } from '../structured';
 import type { DefinitionLanguages } from '../structured';
 import { contentBlockChild } from '../contentBlocks';
@@ -7,15 +7,11 @@ import { contentBlockChild } from '../contentBlocks';
 const block = () => contentBlockChild();
 const blocks = () => z.tuple([block()], block());
 const texts = <L extends DefinitionLanguages>(l: L) => localizedText(l);
-const assessmentKeys = Object.keys(assessmentMethods_AssessmentMethod_Ids) as [
-  keyof typeof assessmentMethods_AssessmentMethod_Ids,
-  ...(keyof typeof assessmentMethods_AssessmentMethod_Ids)[],
-];
 const common = <Kind extends string, L extends DefinitionLanguages>(kind: Kind, l: L) => ({
   id: uuid,
   slug,
   type: z.literal(kind),
-  assessmentMethod: z.enum(assessmentKeys),
+  assessmentMethod: z.enum(ASSESSMENT_METHOD_KEYS),
   restrictions: z.array(z.string()),
   question: blocks(),
   hint: blocks().optional(),

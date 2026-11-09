@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * PR-scoped Assessment Methods reference, statically assembled from canonical
- * Contracts and UI Kit authored Assessment Method definitions.
+ * UI Kit authored Assessment Method definitions.
  *
  * node scripts/generate-assessment-methods-reference.mjs --locale uk --stdout
  * node scripts/generate-assessment-methods-reference.mjs --locale uk \
@@ -17,7 +17,6 @@ import ts from 'typescript';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourcePaths = Object.freeze({
-  identities: 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
   languages: 'shared/contracts/src/types/languages.ts',
   descriptions: 'shared/ui-kit/data/definitions/assessmentMethods',
 });
@@ -106,21 +105,31 @@ function assertExactKeys(value, keys, context) {
  * Extract English methodology directly from literal defineAssessmentMethod()
  * arguments. The reference generator deliberately never executes TypeScript.
  */
-function readMethodDefinitions(root, ids, languages) {
-  const descriptions = Object.create(null);
-  for (const [key, id] of Object.entries(ids)) {
-    const relative = path.posix.join(sourcePaths.descriptions, key + '.ts');
-    const filename = path.join(root, relative);
-    if (!fs.existsSync(filename) || !fs.statSync(filename).isFile()) {
-      throw new Error('Missing canonical Assessment Methods source: ' + relative);
-    }
-    const ast = ts.createSourceFile(filename, fs.readFileSync(filename, 'utf8'), ts.ScriptTarget.Latest, true);
+function readAssessmentMethodDefinitions(root, languages) {
+  const directory = path.join(root, sourcePaths.descriptions);
+  if (!fs.existsSync(directory) || !fs.statSync(directory).isDirectory()) {
+    throw new Error('Missing canonical Assessment Methods directory: ' + sourcePaths.descriptions);
+  }
+  const files = fs
+    .readdirSync(directory)
+    .filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
+    .sort();
+  if (files.length !== 16) throw new Error('Expected exactly 16 canonical Assessment Methods; found ' + files.length);
+
+  const definitions = Object.create(null);
+  const knownIds = new Set();
+  for (const filename of files) {
+    const key = filename.slice(0, -3);
+    const relative = path.posix.join(sourcePaths.descriptions, filename);
+    const fullPath = path.join(root, relative);
+    const ast = ts.createSourceFile(fullPath, fs.readFileSync(fullPath, 'utf8'), ts.ScriptTarget.Latest, true);
     if (ast.parseDiagnostics.length) throw new Error('Invalid TypeScript source: ' + relative);
     let config;
     for (const statement of ast.statements) {
       if (!ts.isVariableStatement(statement)) continue;
       for (const declaration of statement.declarationList.declarations) {
         if (!ts.isIdentifier(declaration.name) || declaration.name.text !== key) continue;
+        if (config) throw new Error('Duplicate definition: ' + key);
         const call = unwrap(declaration.initializer);
         if (
           !ts.isCallExpression(call) ||
@@ -133,17 +142,24 @@ function readMethodDefinitions(root, ids, languages) {
         config = staticValue(call.arguments[0], new Map());
       }
     }
-    if (!config || config.id !== id || config.slug !== key) {
+    if (!config || config.slug !== key) {
       throw new Error('Incorrect canonical Assessment Method definition: ' + key);
     }
+    if (typeof config.id !== 'string' || !UUID.test(config.id)) {
+      throw new Error('Invalid canonical Assessment Method UUID: ' + key);
+    }
+    if (knownIds.has(config.id.toLowerCase())) {
+      throw new Error('Duplicate canonical Assessment Method UUID: ' + config.id);
+    }
+    knownIds.add(config.id.toLowerCase());
     const description = config.description?.en;
     if (typeof description !== 'string' || !description.trim()) {
       throw new Error('Missing English methodological description for ' + key);
     }
     assertExactKeys(config.title, languages, 'Assessment Method titles for ' + key);
-    descriptions[key] = { description, title: config.title };
+    definitions[key] = { id: config.id, description, title: config.title };
   }
-  return descriptions;
+  return definitions;
 }
 
 export function supportedAssessmentMethodLocales(root = repoRoot) {
@@ -160,30 +176,16 @@ export function supportedAssessmentMethodLocales(root = repoRoot) {
 export function readAssessmentMethodsReference({ root = repoRoot, locale }) {
   const languages = supportedAssessmentMethodLocales(root);
   if (!locale || !languages.includes(locale)) throw new Error('Unsupported Assessment Methods locale: ' + locale);
-  const ids = declaration(root, sourcePaths.identities, 'assessmentMethods_AssessmentMethod_Ids');
-  const keys = Object.keys(ids);
-  if (keys.length !== 16) throw new Error('Expected exactly 16 canonical Assessment Methods; found ' + keys.length);
-  const knownIds = new Set();
-  for (const [key, id] of Object.entries(ids)) {
-    if (typeof id !== 'string' || !UUID.test(id)) throw new Error('Invalid canonical Assessment Method UUID: ' + key);
-    if (knownIds.has(id.toLowerCase())) throw new Error('Duplicate canonical Assessment Method UUID: ' + id);
-    knownIds.add(id.toLowerCase());
-  }
-
-  const descriptions = readMethodDefinitions(root, ids, languages);
-  assertExactKeys(descriptions, keys, 'English methodological descriptions');
-
+  const definitions = readAssessmentMethodDefinitions(root, languages);
+  const keys = Object.keys(definitions);
   const methods = keys.map(key => {
-    const english = descriptions[key];
-    if (!english || typeof english.description !== 'string' || !english.description.trim()) {
-      throw new Error('Missing English methodological description for ' + key);
-    }
-    const title = english.title[locale];
+    const definition = definitions[key];
+    const title = definition.title[locale];
     if (typeof title !== 'string' || !title.trim()) {
       throw new Error('Missing Assessment Method title for ' + key + ' (' + locale + ')');
     }
     if (/[\r\n]/.test(title)) throw new Error('Multiline Assessment Method title for ' + key + ' (' + locale + ')');
-    return { key, id: ids[key], title, description: english.description.trim() };
+    return { key, id: definition.id, title, description: definition.description.trim() };
   });
   return { locale, methods };
 }
@@ -195,7 +197,6 @@ function escapeMarkdown(text) {
 export function renderAssessmentMethodsReference(options) {
   const { locale, methods } = readAssessmentMethodsReference(options);
   const links = {
-    identities: '../../' + sourcePaths.identities,
     descriptions: '../../' + sourcePaths.descriptions,
   };
   const lines = [
@@ -213,12 +214,9 @@ export function renderAssessmentMethodsReference(options) {
       'AssessmentMethodKey' +
       tick +
       ' in machine-readable configurations. ' +
-      'This temporary reference is not a new taxonomy or a replacement for canonical Contracts.',
+      'This temporary reference is not a new taxonomy or a replacement for canonical definitions.',
     '',
-    'Canonical sources: [Assessment Method keys and UUIDs](' +
-      links.identities +
-      '), ' +
-      '[Assessment Method titles and English methodological descriptions](' +
+    'Canonical sources: [Assessment Method definitions, UUIDs, titles and English methodological descriptions](' +
       links.descriptions +
       ').',
     '',
@@ -232,14 +230,7 @@ export function renderAssessmentMethodsReference(options) {
       '- **UUID:** ' + tick + method.id + tick,
       '- **Frontend title (' + locale + '):** ' + escapeMarkdown(method.title),
       '- **Methodological description (English):** ' + escapeMarkdown(method.description),
-      '- **Canonical definitions:** [identity](' +
-        links.identities +
-        '), ' +
-        '[methodology and localized title](' +
-        links.descriptions +
-        '/' +
-        method.key +
-        '.ts)',
+      '- **Canonical definitions:** [definition and methodology](' + links.descriptions + '/' + method.key + '.ts)',
       '',
     );
   }

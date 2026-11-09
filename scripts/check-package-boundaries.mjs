@@ -185,9 +185,12 @@ assert(
     engine.exports['.']?.default === './dist/index.js',
   'Engine must expose only the compiled root entrypoint',
 );
+const assessmentMethodsRoot = resolve(root, 'shared/ui-kit/data/definitions/assessmentMethods');
 assert(
-  existsSync(resolve(root, 'shared/engine/data/assessmentMethodTaxonomy/index.data.ts')),
-  'Engine must own the canonical Assessment Method Taxonomy',
+  existsSync(join(assessmentMethodsRoot, 'index.ts')) &&
+    readdirSync(assessmentMethodsRoot).filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
+      .length === 16,
+  'UI Kit must own exactly 16 canonical Assessment Method definitions',
 );
 assert(
   !existsSync(resolve(root, 'content/math/src/data/assessmentMethodTaxonomy')),
@@ -214,9 +217,10 @@ assert(
   'Engine must own shared skill builder tests',
 );
 assert(
-  existsSync(resolve(root, 'shared/engine/data/index.ts')) &&
-    readFileSync(resolve(root, 'shared/engine/data/index.ts'), 'utf8').includes('assessmentMethodTaxonomy'),
-  'Engine must expose Assessment Methods through the data barrel',
+  !existsSync(resolve(root, 'shared/engine/data/assessmentMethodTaxonomy')) &&
+    !existsSync(resolve(root, 'shared/contracts/src/types/content/assessmentMethod.ids.ts')) &&
+    !existsSync(resolve(root, 'shared/engine/utils/builders/config/buildAssessmentMethodConfig.utils.ts')),
+  'Legacy Assessment Method taxonomy, UUID registry and config builder must be removed',
 );
 const engineRoots = [
   'builders',
