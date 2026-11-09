@@ -87,7 +87,7 @@ function readCode(file, kind) {
   const ast = sourceFile(file, source);
   let found;
   function walk(n) {
-    if (ts.isCallExpression(n) && ts.isIdentifier(n.expression) && n.expression.text === 'build' + kind + 'Config') {
+    if (ts.isCallExpression(n) && ts.isIdentifier(n.expression) && [ 'build' + kind + 'Config', 'define' + kind ].includes(n.expression.text)) {
       if (found || n.arguments.length !== 1 || !ts.isObjectLiteralExpression(n.arguments[0]))
         throw Error('Ambiguous ' + kind + ' config: ' + file);
       found = n.arguments[0];
@@ -95,7 +95,7 @@ function readCode(file, kind) {
     ts.forEachChild(n, walk);
   }
   walk(ast);
-  if (!found) throw Error('Missing build' + kind + 'Config: ' + file);
+  if (!found) throw Error('Missing Skill configurator: ' + file);
   return { source, ast, config: found };
 }
 function literal(node, field) {
@@ -283,13 +283,14 @@ function existing(e) {
   const slugProp = optionalProperty(code.config, 'slug');
   const slug = slugProp ? literal(slugProp.initializer, 'slug') : undefined;
   if (slug && slug !== e.slug) throw Error('Slug differs from canonical source filename: ' + rel(f));
-  const name = dict(unwrap(property(code.config, 'name').initializer), 'name');
+  const label = e.kind === 'SkillDomain' && optionalProperty(code.config, 'title') ? 'title' : 'name';
+  const name = dict(unwrap(property(code.config, label).initializer), label);
   const desc = unwrap(property(code.config, 'description').initializer);
   const methodological = literal(property(desc, 'methodological').initializer, 'methodological');
   const frontendProp = optionalProperty(desc, 'frontend');
   const frontend = frontendProp ? dict(unwrap(frontendProp.initializer), 'frontend') : undefined;
   for (const p of code.config.properties)
-    if (!ts.isPropertyAssignment(p) || !['slug', 'id', 'name', 'description', 'groups', 'skills'].includes(p.name.text))
+    if (!ts.isPropertyAssignment(p) || !['slug', 'id', 'name', 'title', 'description', 'groups', 'skills'].includes(p.name.text))
       throw Error('Unsupported config property; refusing rewrite: ' + rel(f));
   return { slug, id, name, frontend, methodological };
 }
@@ -374,11 +375,11 @@ function children(e, local) {
     });
 }
 function render(e, value, kids) {
-  const imports = ['import { build' + e.kind + "Config } from '@svitlo/engine';"];
+  const imports = ['import { define' + e.kind + " } from '@svitlo/engine';"];
   const lines = [
     '  slug: ' + JSON.stringify(e.slug) + ',',
     '  id: ' + JSON.stringify(value.id) + ',',
-    '  name: ' + dictionary(value.name) + ',',
+    '  ' + (e.kind === 'SkillDomain' ? 'title' : 'name') + ': ' + dictionary(value.name) + ',',
   ];
   const groups = kids.filter(x => x.kind === 'SkillGroup');
   const skills = kids.filter(x => x.kind === 'Skill');
@@ -388,14 +389,14 @@ function render(e, value, kids) {
   if (skills.length)
     imports.push('import { ' + skills.map(x => x.slug + '_Skill_Data').join(', ') + " } from './skills';");
   if (e.kind === 'SkillDomain') {
-    lines.push('  groups: {');
-    for (const x of groups) lines.push('    ' + x.slug + ': ' + x.slug + '_SkillGroup_Data,');
-    lines.push('  },');
+    lines.push('  groups: [');
+    for (const x of groups) lines.push('    ' + x.slug + '_SkillGroup_Data,');
+    lines.push('  ],');
   }
   if (skills.length) {
-    lines.push('  skills: {');
-    for (const x of skills) lines.push('    ' + x.slug + ': ' + x.slug + '_Skill_Data,');
-    lines.push('  },');
+    lines.push('  skills: [');
+    for (const x of skills) lines.push('    ' + x.slug + '_Skill_Data,');
+    lines.push('  ],');
   }
   lines.push('  description: {');
   lines.push('    methodological: ' + JSON.stringify(value.methodological) + ',');
@@ -407,9 +408,9 @@ function render(e, value, kids) {
     e.slug +
     '_' +
     e.kind +
-    '_Data = build' +
+    '_Data = define' +
     e.kind +
-    'Config({\n' +
+    '({\n' +
     lines.join('\n') +
     '\n});\n'
   );
@@ -418,29 +419,28 @@ function stableMembership(e, kids) {
   if (e.kind === 'Skill') return true;
   const old = readCode(fileOf(e), e.kind).config;
   if (optionalProperty(old, 'groupIds') || optionalProperty(old, 'skillIds')) return false;
-  for (const [field, kind] of [
-    ['groups', 'SkillGroup'],
-    ['skills', 'Skill'],
-  ]) {
+  for (const [field, kind] of [['groups', 'SkillGroup'], ['skills', 'Skill']]) {
     if (field === 'groups' && e.kind === 'SkillGroup') continue;
     const members = kids.filter(x => x.kind === kind);
     const prop = optionalProperty(old, field);
-    if (!prop && field === 'groups') return false; // Domain groups is required.
     if (!prop) {
       if (members.length) return false;
+      if (field === 'groups') continue;
       continue;
     }
-    const obj = unwrap(prop.initializer);
-    if (!ts.isObjectLiteralExpression(obj) || obj.properties.length !== members.length) return false;
-    for (const member of members) {
-      const entry = obj.properties.find(p => ts.isPropertyAssignment(p) && p.name?.text === member.slug);
-      if (
-        !entry ||
-        !ts.isIdentifier(entry.initializer) ||
-        entry.initializer.text !== member.slug + '_' + kind + '_Data'
-      )
-        return false;
-    }
+    const value = unwrap(prop.initializer);
+    if (ts.isArrayLiteralExpression(value)) {
+      if (value.elements.length !== members.length) return false;
+      const expected = new Set(members.map(x => x.slug + '_' + kind + '_Data'));
+      if (value.elements.some(x => !ts.isIdentifier(x) || !expected.has(x.text))) return false;
+    } else if (ts.isObjectLiteralExpression(value)) {
+      if (value.properties.length !== members.length) return false;
+      for (const member of members) {
+        const entry = value.properties.find(p => ts.isPropertyAssignment(p) && p.name?.text === member.slug);
+        if (!entry || !ts.isIdentifier(entry.initializer) ||
+            entry.initializer.text !== member.slug + '_' + kind + '_Data') return false;
+      }
+    } else return false;
   }
   return true;
 }
@@ -452,7 +452,8 @@ function patchExisting(e, reviewed, methodological) {
     info = readCode(file, e.kind),
     changes = [];
   const add = (node, text) => changes.push({ start: node.getStart(info.ast), end: node.getEnd(), text });
-  const currentName = unwrap(property(info.config, 'name').initializer);
+  const label = e.kind === 'SkillDomain' && optionalProperty(info.config, 'title') ? 'title' : 'name';
+  const currentName = unwrap(property(info.config, label).initializer);
   if (reviewed.name && !sameDictionary(dict(currentName, 'name'), reviewed.name))
     add(currentName, dictionary(reviewed.name));
   if (!optionalProperty(info.config, 'slug'))
