@@ -1,28 +1,23 @@
+import type { DeepPartial } from '#types';
+
 import { skillGroup_Config_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
-
-type Base = Pick<SkillGroup_Config, 'id' | 'slug'> & {
-  description: Pick<SkillGroup_Config['description'], 'methodological'>;
-};
-
-type Locale = Pick<SkillGroup_Config, 'name'> & {
-  description: Pick<SkillGroup_Config['description'], 'frontend'>;
-};
 
 export function defineSkillGroupMethod(config: SkillGroup_Config) {
   skillGroup_Config_Schema.parse(config);
 
   const { id, description, slug, name, skills } = config;
 
-  const base: Base = {
+  const base = {
     id,
     slug,
     description: { methodological: description.methodological },
-  };
+  } satisfies DeepPartial<SkillGroup_Config>;
 
   return {
     config: {
       base,
-      locales: (): Locale => ({ name, description: { frontend: description.frontend } }),
+      locales: () =>
+        ({ name, description: { frontend: description.frontend } }) satisfies DeepPartial<SkillGroup_Config>,
     },
     skill: Object.fromEntries(skills.map((skill): [string, typeof skill] => [skill.config.base.slug, skill])),
   };
