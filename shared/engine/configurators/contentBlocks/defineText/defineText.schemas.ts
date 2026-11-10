@@ -1,34 +1,34 @@
 import { z } from 'zod';
 
-import {
-  createContentBlockMetaSchema,
-  contentBlockLocalizationSwitch,
-  textStylingRules_Schema,
-} from '../contentBlock.schemas';
+import { createContentBlockBaseSchema, localizationSwitch, textStylingRules_Schema } from '../_shared';
+import { Configurator_Mode } from '../../configurator.schemas';
+import { addUnifiedLocale } from '../../_shared';
 
-const wrap_Schema = z
-  .strictObject({
-    enabled: z.literal(true).optional(),
-    typographyProps: z.unknown().optional(),
-  })
-  .optional();
+const contentBlockBase = createContentBlockBaseSchema('text');
 
-function createTextSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
-  const localized = contentBlockLocalizationSwitch[mode];
+const params = contentBlockBase.shape.params.extend({
+  ...textStylingRules_Schema.shape,
+  wrap: z
+    .object({
+      enabled: z.literal(true),
+      typographyProps: z.unknown().optional(),
+    })
+    .optional(),
+});
 
-  return z.object({
-    ...createContentBlockMetaSchema('text').shape,
-    params: z.object({
-      ...textStylingRules_Schema.shape,
-      wrap: wrap_Schema,
-      ...(mode === 'props' ? { disabled: z.literal(true).optional() } : {}),
-    }),
-    value: localized,
-  });
-}
+const textBase = contentBlockBase.extend({
+  params,
+});
 
-export const text_Config_Schema = createTextSchema('config');
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  value: localizationSwitch[mode],
+});
+export type ContentBlock_Text_Locale<Mode extends Configurator_Mode> = z.infer<
+  z.ZodObject<ReturnType<typeof locale<Mode>>>
+>;
+
+export const text_Config_Schema = textBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Text_Config = z.infer<typeof text_Config_Schema>;
 
-export const text_Props_Schema = createTextSchema('props');
+export const text_Props_Schema = textBase.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Text_Props = z.infer<typeof text_Props_Schema>;

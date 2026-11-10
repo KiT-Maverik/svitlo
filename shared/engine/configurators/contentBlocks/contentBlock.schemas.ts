@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema } from '#schemas';
+import type { ContentBlock_Configurator } from './contentBlock.types';
 
 export const contentBlockTypes = [
   'text',
@@ -35,10 +36,12 @@ export const contentBlockLocalizationSwitch = {
 
 export const textStylePresets = ['highlight', 'bold', 'cursive', 'underscore', 'crossed', 'variable'] as const;
 export type TextStylePreset = (typeof textStylePresets)[number];
+
 export const textTonePresets = ['neutral', 'info', 'warning', 'success'] as const;
 export type TextTonePreset = (typeof textTonePresets)[number];
 
 const textStyle_Schema = z.enum(textStylePresets);
+
 const textStylingRule_Schema = z.strictObject({
   id: z.uuid(),
   applyStyle: z.tuple([textStyle_Schema], textStyle_Schema),
@@ -84,3 +87,9 @@ export const contentBlockConfigurator_Schema = z.custom<{
   },
   { message: 'Expected a ContentBlock configurator returned by define*, not a raw config' },
 );
+
+// The Checkpoint schema uses the structural type to avoid a recursive type alias.
+export const contentBlockChild_Schema = contentBlockConfigurator_Schema as z.ZodType<
+  ContentBlock_Configurator,
+  ContentBlock_Configurator
+>;

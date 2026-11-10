@@ -28,6 +28,5 @@ export * from './defineCheckpoint/defineCheckpoint.schemas';
 export * from './defineScene/defineScene';
 export * from './defineScene/defineScene.schemas';
 
-export type { ContentBlock_Configurator } from './contentBlock.types';
-export { contentBlockChild } from './contentBlockChild/contentBlockChild';
+export type { ContentBlock_Configurator, ContentBlock_Props } from './contentBlock.types';
 export * from './contentBlock.schemas';
