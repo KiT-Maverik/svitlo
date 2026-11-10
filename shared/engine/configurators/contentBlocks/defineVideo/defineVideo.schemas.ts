@@ -4,9 +4,11 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('video');
+
 const params = contentBlockBase.shape.params.extend({
-  
+
 });
+
 const videoBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({

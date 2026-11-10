@@ -4,6 +4,7 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('carousel');
+
 const params = contentBlockBase.shape.params.extend({
   aspectRatio: z.number().positive().optional(),
   objectFit: z.enum(['cover', 'contain']).optional(),
@@ -19,6 +20,7 @@ const params = contentBlockBase.shape.params.extend({
   startIndex: z.number().int().nonnegative().optional(),
   pauseOnHover: z.boolean().optional(),
 });
+
 const carouselBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({

@@ -4,9 +4,11 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('code');
+
 const params = contentBlockBase.shape.params.extend({
   language: z.string().min(1),
 });
+
 const codeBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
@@ -15,6 +17,7 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   fileLocation: localizationSwitch[mode].optional(),
   variables: z.array(z.object({ id: z.string().min(1), value: localizationSwitch[mode] })).optional(),
 });
+
 export type ContentBlock_Code_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;

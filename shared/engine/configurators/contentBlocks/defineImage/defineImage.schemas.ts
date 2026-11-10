@@ -4,6 +4,7 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('image');
+
 const params = contentBlockBase.shape.params.extend({
   width: z.number().positive().optional(),
   height: z.number().positive().optional(),
@@ -13,6 +14,7 @@ const params = contentBlockBase.shape.params.extend({
   sizes: z.string().optional(),
   unoptimized: z.boolean().optional(),
 });
+
 const imageBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({

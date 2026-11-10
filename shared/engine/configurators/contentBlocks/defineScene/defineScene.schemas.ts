@@ -7,6 +7,7 @@ import { languageCode_Schema } from '#schemas';
 const sceneValue_Schema: z.ZodType<string | { [key: string]: unknown }> = z.lazy(() =>
   z.union([z.string(), z.record(z.string(), sceneValue_Schema)]),
 );
+
 const sceneLocalizationSwitch = {
   config: z.partialRecord(languageCode_Schema, sceneValue_Schema),
   props: sceneValue_Schema,
@@ -14,7 +15,7 @@ const sceneLocalizationSwitch = {
 
 const contentBlockBase = createContentBlockBaseSchema('scene');
 const params = contentBlockBase.shape.params.extend({
-  
+
 });
 const sceneBase = contentBlockBase.extend({ params });
 
