@@ -72,7 +72,7 @@ export const contentBlockConfigurator_Schema = z.custom<{
 );
 
 // The Checkpoint schema uses the structural type to avoid a recursive type alias.
-export const contentBlockChild_Schema = contentBlockConfigurator_Schema as z.ZodType<
+export const contentBlockChild_Schema = contentBlockConfigurator_Schema as unknown as z.ZodType<
   ContentBlock_Configurator,
   ContentBlock_Configurator
 >;
