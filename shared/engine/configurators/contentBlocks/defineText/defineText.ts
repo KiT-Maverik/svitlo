@@ -19,7 +19,7 @@ export const defineText = (config: ContentBlock_Text_Config) => {
     ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Text_Config>;
 
-  const overrides = { params: { disabled: true} } satisfies DeepPartial<ContentBlock_Text_Props>;
+  const overrides = { params: {} } satisfies DeepPartial<ContentBlock_Text_Props>;
 
   return {
     config: {

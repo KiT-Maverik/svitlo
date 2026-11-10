@@ -20,7 +20,7 @@ const createTextSchema = (mode: Configurator_Mode)=> {
         enabled: z.literal(true),
         typographyProps: z.unknown().optional(),
       }).optional(),
-      ...(mode === 'props' ? disabledParam_Schema : {}),
+      ...(mode === 'props' ? disabledParam_Schema.shape : {}),
     }),
     value: localized,
   });
