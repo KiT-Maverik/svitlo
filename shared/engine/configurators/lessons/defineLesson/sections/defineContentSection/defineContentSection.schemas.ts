@@ -1,9 +1,8 @@
 import { z } from 'zod';
 
-import { createSectionMetaSchema } from '../_shared';
-import type { Section_Config_Content, Section_Props_Content } from '../_shared/section.types';
+import { createSectionBaseSchema, Section_Config_Content, Section_Props_Content } from '../_shared';
 
-const contentSectionSchemas = createSectionMetaSchema('content');
+const contentSectionSchemas = createSectionBaseSchema('content');
 
 export const contentSection_Config_Schema = contentSectionSchemas.config;
 export type Content_Section_Config = z.infer<typeof contentSection_Config_Schema> & Section_Config_Content;

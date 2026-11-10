@@ -2,12 +2,17 @@ import { z } from 'zod';
 
 import { contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import { Configurator_Mode } from '../../configurator.schemas';
+import {paramsBase_Schema} from "../../../../_shared";
 
 export const sectionTypes = ['practice', 'codingTask', 'flow', 'flashcards', 'quiz', 'content'] as const;
 
 export type Section_Type = (typeof sectionTypes)[number];
 
-export const createSectionMetaSchema = (type: Section_Type) => {
+const commonParams = paramsBase_Schema.shape.params.extend({
+  skippable: z.literal(true).optional(),
+})
+
+export const createSectionBaseSchema = (type: Section_Type) => {
   const meta = (mode: Configurator_Mode) => ({
     type: z.literal(type),
     id: z.uuid(),
@@ -17,7 +22,6 @@ export const createSectionMetaSchema = (type: Section_Type) => {
 
   const params = (mode: Configurator_Mode) => ({
     navigationLabel: contentBlockLocalizationSwitch[mode],
-    skippable: z.literal(true).optional(),
   });
 
   return {
