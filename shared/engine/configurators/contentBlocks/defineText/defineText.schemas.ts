@@ -23,7 +23,7 @@ const base = z.object({
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   value: localizationSwitch[mode],
 });
-export type ContentBlock_Text_Locale<Mode extends Configurator_Mode> = ReturnType<typeof locale<Mode>>;
+export type ContentBlock_Text_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 
 export const text_Config_Schema = base.extend(locale('config'));
 export type ContentBlock_Text_Config = z.infer<typeof text_Config_Schema>;
