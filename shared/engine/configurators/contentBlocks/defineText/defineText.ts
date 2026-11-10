@@ -24,7 +24,7 @@ export const defineText = (config: ContentBlock_Text_Config) => {
   return {
     config: {
       base,
-      locales: () => onlyLocales(locale) satisfies DeepPartial<ContentBlock_Text_Config>,
+      locales: (): DeepPartial<ContentBlock_Text_Locale<'config'>> => onlyLocales(locale),
     },
     disable: () => overrides.params.disabled = true,
   };
