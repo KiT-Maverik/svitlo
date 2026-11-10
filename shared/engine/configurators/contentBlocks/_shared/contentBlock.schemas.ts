@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema, camelCase_Schema } from '#schemas';
+import {paramsBase_Schema} from "../../_shared";
 
 export const contentBlockTypes = [
   'text',
@@ -17,7 +18,8 @@ export const contentBlockTypes = [
 export type ContentBlock_Type = (typeof contentBlockTypes)[number];
 
 export const createContentBlockBaseSchema = (type: ContentBlock_Type) =>
-  z.object({ id: z.uuid(), slug: camelCase_Schema.min(1), type: z.literal(type) });
+  z.object({ id: z.uuid(), slug: camelCase_Schema.min(1), type: z.literal(type) })
+    .and(paramsBase_Schema);
 
 const localeSubset_Schema = z
   .partialRecord(languageCode_Schema, localeText_Schema)

@@ -1,7 +1,5 @@
 import { z } from 'zod';
 
-import {disabledParam_Schema} from "#schemas";
-
 import {
   createContentBlockBaseSchema,
   localizationSwitch,
@@ -10,16 +8,15 @@ import {
 import {Configurator_Mode} from "../../configurator.schemas";
 import {addUnifiedLocale} from "../../_utils";
 
-const base = z.object({
-  ...createContentBlockBaseSchema('text').shape,
-  params: z.object({
-    ...textStylingRules_Schema.shape,
-    wrap: z.object({
-      enabled: z.literal(true),
-      typographyProps: z.unknown().optional(),
-    }).optional(),
-  }).and(disabledParam_Schema),
-});
+const base = createContentBlockBaseSchema('text')
+
+{
+...textStylingRules_Schema.shape,
+  wrap: z.object({
+  enabled: z.literal(true),
+  typographyProps: z.unknown().optional(),
+}).optional(),
+}
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   value: localizationSwitch[mode],
