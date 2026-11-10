@@ -11,7 +11,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'A validated HTTPS YouTube link or privacy-enhanced embedded player. Embeds require an accessible title or hint and an internet connection.',
+          'A validated HTTPS YouTube link or privacy-enhanced embedded player. A required label names the link, iframe and fallback. Optional title is shown as a caption.',
       },
     },
   },
@@ -22,8 +22,8 @@ const meta = {
 
     href: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
     mode: 'link',
-    title: 'YouTube IFrame API demonstration',
-    hint: 'Opens in a new tab.',
+    title: 'YouTube link example',
+    label: 'Watch the YouTube IFrame API demonstration',
   },
   argTypes: {
     id: { control: false },
@@ -41,8 +41,8 @@ export const Playground: Story = {};
 export const Embedded: Story = {
   args: {
     mode: 'embed',
-    title: 'YouTube player demonstration',
-    hint: 'The embedded video loads only when online.',
+    title: 'Embedded player example',
+    label: 'YouTube player demonstration',
   },
 };
 
@@ -57,8 +57,8 @@ export const WithLocalizedFallback: Story = {
   args: {
     mode: 'embed',
 
-    title: 'Відеодемонстрація',
-    hint: 'Для завантаження потрібне з’єднання.',
+    title: 'Демонстрація YouTube',
+    label: 'Відеодемонстрація',
     fallback: { offline: 'Немає доступу до інтернету.', unavailable: 'Відео недоступне.', retry: 'Повторити' },
   },
 };

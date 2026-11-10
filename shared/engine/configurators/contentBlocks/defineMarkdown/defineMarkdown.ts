@@ -1,31 +1,42 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings } from '../../_utils';
+import { onlyLocales, onlyStrings } from '../../_shared';
 
-import { markdown_Config_Schema, type ContentBlock_Markdown_Config } from './defineMarkdown.schemas';
+import {
+  markdown_Config_Schema,
+  type ContentBlock_Markdown_Config,
+  type ContentBlock_Markdown_Locale,
+} from './defineMarkdown.schemas';
 
-export function defineMarkdown<const Slug extends string>(
-  config: Omit<ContentBlock_Markdown_Config, 'slug'> & { slug: Slug },
-) {
+export const defineMarkdown = (config: ContentBlock_Markdown_Config) => {
   markdown_Config_Schema.parse(config);
 
-  const { id, type, slug, locales } = config;
-
-  const localeEntries = { locales } as const;
+  const { id, type, slug, locale, params } = config;
 
   const base = {
     id,
     type,
     slug,
-    ...onlyStrings(localeEntries),
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
+
+  const overrides: DeepPartial<ContentBlock_Markdown_Config> = {};
 
   return {
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Markdown_Config>,
+      locales: (): { locale: DeepPartial<ContentBlock_Markdown_Locale<'config'>> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
     },
-  };
-}
+    override: {
+      params: (newParams: DeepPartial<ContentBlock_Markdown_Config['params']>) => (overrides.params = newParams),
+      locale: (newLocale: DeepPartial<ContentBlock_Markdown_Locale<'config'>>) => (overrides.locale = newLocale),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+  } as const;
+};
 
 export type ContentBlock_Markdown_Configurator = ReturnType<typeof defineMarkdown>;

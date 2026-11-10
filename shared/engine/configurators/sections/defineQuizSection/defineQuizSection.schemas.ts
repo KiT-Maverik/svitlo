@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import {
   contentBlockConfigurator_Schema,
-  contentBlockLocalizationSwitch,
+  localizationSwitch,
   contentBlockResolved_Schema,
-} from '../../contentBlocks/contentBlock.schemas';
+} from '../../contentBlocks/_shared';
 import { createSectionMetaSchema } from '../section.schemas';
 
-function createQuizSectionSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
+function createQuizSectionSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
   const block = { config: contentBlockConfigurator_Schema, props: contentBlockResolved_Schema }[mode];
   const screen = z.strictObject({
     showDefaultContent: z.boolean().optional(),

@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { onlyLocales, onlyStrings } from './_utils';
+import { onlyLocales, onlyStrings } from './_shared';
 
 const enUk = { en: 'Hello', uk: 'Привіт' } as const;
 

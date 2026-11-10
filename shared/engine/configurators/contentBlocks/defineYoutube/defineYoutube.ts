@@ -1,31 +1,42 @@
 import type { DeepPartial } from '#types';
 
-import { youtube_Config_Schema, type ContentBlock_Youtube_Config } from './defineYoutube.schemas';
-import { onlyLocales, onlyStrings } from '../../_utils';
+import { onlyLocales, onlyStrings } from '../../_shared';
 
-export function defineYoutube<const Slug extends string>(
-  config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug },
-) {
+import {
+  youtube_Config_Schema,
+  type ContentBlock_Youtube_Config,
+  type ContentBlock_Youtube_Locale,
+} from './defineYoutube.schemas';
+
+export const defineYoutube = (config: ContentBlock_Youtube_Config) => {
   youtube_Config_Schema.parse(config);
 
-  const { id, type, slug, href, mode, title, hint, fallback } = config;
-
-  const localeEntries = { href, title, hint, fallback } as const;
+  const { id, type, slug, locale, params } = config;
 
   const base = {
     id,
     type,
     slug,
-    mode,
-    ...onlyStrings(localeEntries),
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
+
+  const overrides: DeepPartial<ContentBlock_Youtube_Config> = {};
 
   return {
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Youtube_Config>,
+      locales: (): { locale: DeepPartial<ContentBlock_Youtube_Locale<'config'>> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
     },
-  };
-}
+    override: {
+      params: (newParams: DeepPartial<ContentBlock_Youtube_Config['params']>) => (overrides.params = newParams),
+      locale: (newLocale: DeepPartial<ContentBlock_Youtube_Locale<'config'>>) => (overrides.locale = newLocale),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+  } as const;
+};
 
 export type ContentBlock_Youtube_Configurator = ReturnType<typeof defineYoutube>;

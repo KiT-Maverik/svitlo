@@ -3,8 +3,11 @@ import { disability_Schema } from '#schemas';
 
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
 
-import { contentBlockChild } from '../contentBlocks/contentBlockChild/contentBlockChild';
-import { contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
+import {
+  contentBlockConfigurator_Schema,
+  contentBlockResolved_Schema,
+  localizationSwitch,
+} from '../contentBlocks/_shared';
 
 export const questionTypes = [
   'selectOneAnswer',
@@ -22,11 +25,11 @@ export type Question_Type = (typeof questionTypes)[number];
 
 /** Authored Questions hold ContentBlock definitions; published Questions contain resolved props. */
 export const questionBlockSwitch = {
-  config: contentBlockChild(),
+  config: contentBlockConfigurator_Schema,
   props: contentBlockResolved_Schema,
 } as const;
 
-export const questionLocalizationSwitch = contentBlockLocalizationSwitch;
+export const questionLocalizationSwitch = localizationSwitch;
 
 export function createQuestionFields<const Kind extends Question_Type, Mode extends keyof typeof questionBlockSwitch>(
   kind: Kind,

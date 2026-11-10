@@ -84,6 +84,7 @@ export const contentBlockGallery_Creator = createSectionConfigurator<HowLightMov
       fileLocation: '/textbooks/playground/barabaka.mp4',
       poster: '/textbooks/playground/whale.png',
       title: 'VIDEO · Locally published MP4',
+      label: 'Local MP4 demonstration',
     }),
     createContentBlock<HowLightMoves_Languages>()({
       id: 'playground-gallery-audio',
@@ -100,7 +101,7 @@ export const contentBlockGallery_Creator = createSectionConfigurator<HowLightMov
       mode: 'embed',
       href: 'https://www.youtube.com/watch?v=jNQXAC9IVRw',
       title: 'YOUTUBE · External embedded video',
-      hint: 'Requires an internet connection; offline mode shows a fallback.',
+      label: 'Embedded YouTube demonstration',
     }),
     // Use an existing registered Scene so this course-only fixture needs no
     // separate Scene implementation or changes to the generated Scene registry.
