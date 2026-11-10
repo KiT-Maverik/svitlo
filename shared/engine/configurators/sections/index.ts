@@ -1,7 +1,4 @@
-export * from './section.schemas';
 export type { Section_Configurator } from './section.types';
-export * from './defineTheorySection/defineTheorySection';
-export * from './defineTheorySection/defineTheorySection.schemas';
 export * from './definePracticeSection/definePracticeSection';
 export * from './definePracticeSection/definePracticeSection.schemas';
 export * from './defineCodingTaskSection/defineCodingTaskSection';
@@ -10,7 +7,5 @@ export * from './defineLearningFlowSection/defineLearningFlowSection';
 export * from './defineLearningFlowSection/defineLearningFlowSection.schemas';
 export * from './defineFlashcardsSection/defineFlashcardsSection';
 export * from './defineFlashcardsSection/defineFlashcardsSection.schemas';
-export * from './defineScenarioSection/defineScenarioSection';
-export * from './defineScenarioSection/defineScenarioSection.schemas';
 export * from './defineQuizSection/defineQuizSection';
 export * from './defineQuizSection/defineQuizSection.schemas';

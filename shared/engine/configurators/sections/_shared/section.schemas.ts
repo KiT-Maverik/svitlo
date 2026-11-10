@@ -18,7 +18,7 @@ export const createSectionMetaSchema = (type: Section_Type, mode: Configurator_M
 
   const localized = contentBlockLocalizationSwitch[mode];
 
-  return {
+  return z.object({
     type: z.literal(type),
     id: z.uuid(),
     slug: z.string().min(1),
@@ -27,5 +27,5 @@ export const createSectionMetaSchema = (type: Section_Type, mode: Configurator_M
       navigationLabel: localized,
       skippable: z.literal(true).optional(),
     }),
-  };
+  });
 }

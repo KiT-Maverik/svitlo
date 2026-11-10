@@ -1,7 +1,9 @@
-import { createRegularSectionSchema } from '../section.schemas';
+import { z } from 'zod';
 
-export const contentSection_Config_Schema = createRegularSectionSchema('theory', 'config');
-export type ContentSection_Config = import('zod').z.infer<typeof contentSection_Config_Schema>;
+import { createSectionMetaSchema } from '../section.schemas';
 
-export const contentSection_Props_Schema = createRegularSectionSchema('theory', 'props');
-export type ContentSection_Props = import('zod').z.infer<typeof contentSection_Props_Schema>;
+export const contentSection_Config_Schema = createSectionMetaSchema('content', 'config');
+export type ContentSection_Config = z.infer<typeof contentSection_Config_Schema>;
+
+export const contentSection_Props_Schema = createSectionMetaSchema('content', 'props');
+export type ContentSection_Props = z.infer<typeof contentSection_Props_Schema>;
