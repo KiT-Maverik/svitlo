@@ -1,6 +1,6 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings } from '../../_utils';
+import { onlyLocales, onlyStrings } from '../../_shared';
 
 import {text_Config_Schema, type ContentBlock_Text_Config, type ContentBlock_Text_Locale} from './defineText.schemas';
 
