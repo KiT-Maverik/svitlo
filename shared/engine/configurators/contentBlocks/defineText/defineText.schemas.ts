@@ -18,7 +18,7 @@ const base = z.object({
       enabled: z.literal(true),
       typographyProps: z.unknown().optional(),
     }).optional(),
-  }),
+  }).and(disabledParam_Schema),
 });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
@@ -29,7 +29,5 @@ export type ContentBlock_Text_Locale<Mode extends Configurator_Mode> = z.infer<z
 export const text_Config_Schema = base.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Text_Config = z.infer<typeof text_Config_Schema>;
 
-export const text_Props_Schema = base.extend({
-  params: base.shape.params.extend(disabledParam_Schema.shape),
-}).extend(addUnifiedLocale(locale('props')));
+export const text_Props_Schema = base.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Text_Props = z.infer<typeof text_Props_Schema>;
