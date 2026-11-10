@@ -33,7 +33,7 @@ export type ContentBlock_NonCheckpoint_Configurator =
 
 export type ContentBlock_Configurator = ContentBlock_NonCheckpoint_Configurator | ContentBlock_Checkpoint_Configurator;
 
-export type ContentBlock_Props =
+export type ContentBlock_NonCheckpoint_Props =
   | ContentBlock_Text_Props
   | ContentBlock_Markdown_Props
   | ContentBlock_Code_Props
@@ -42,5 +42,6 @@ export type ContentBlock_Props =
   | ContentBlock_Audio_Props
   | ContentBlock_Youtube_Props
   | ContentBlock_Carousel_Props
-  | ContentBlock_Checkpoint_Props
   | ContentBlock_Scene_Props;
+
+export type ContentBlock_Props = ContentBlock_NonCheckpoint_Props | ContentBlock_Checkpoint_Props;

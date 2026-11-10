@@ -3,7 +3,7 @@ import { z } from 'zod';
 import type { ContentBlock_NonCheckpoint_Configurator } from '../contentBlock.types';
 import type { ContentBlock_Text_Configurator } from '../defineText/defineText';
 import type { ContentBlock_Text_Props } from '../defineText/defineText.schemas';
-import type { ContentBlock_Props } from '../contentBlock.types';
+import type { ContentBlock_NonCheckpoint_Props } from '../contentBlock.types';
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
@@ -61,7 +61,7 @@ export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Sc
  */
 export const checkpoint_Props_Schema = checkpointBase.extend(addUnifiedLocale(locale('props')));
 export type Checkpoint_Resolved_Answer = {
-  items: Record<string, Exclude<ContentBlock_Props, ContentBlock_Checkpoint_Props>>;
+  items: Record<string, ContentBlock_NonCheckpoint_Props>;
   order: string[];
 };
 export type Checkpoint_Resolved_Content = {
