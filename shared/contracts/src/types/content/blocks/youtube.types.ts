@@ -10,9 +10,13 @@ type Youtube_Fallback<Value> = {
   retry?: Value;
 };
 
-type Youtube_Display<Value> =
-  | { mode: 'link'; title?: Value; hint?: Value }
-  | ({ mode: 'embed' } & ({ title: Value; hint?: Value } | { title?: Value; hint: Value }));
+type Youtube_Display<Value> = {
+  mode: 'link' | 'embed';
+  /** Optional visible title of the content block. */
+  title?: Value;
+  /** Required accessible iframe name, link text, and fallback label. */
+  label: Value;
+};
 
 type ContentBlock_Youtube_Data<SupportedLanguages extends Locale_Languages> = ContentBlock_Data_Meta<'youtube'> & {
   href: Locale_Options<SupportedLanguages>;

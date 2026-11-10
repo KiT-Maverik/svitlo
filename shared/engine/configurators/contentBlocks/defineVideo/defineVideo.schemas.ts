@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { createContentBlockBaseSchema, localizationSwitch,  } from '../_shared';
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
@@ -14,7 +14,10 @@ const videoBase = contentBlockBase.extend({ params });
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   fileLocation: localizationSwitch[mode],
   poster: localizationSwitch[mode],
+  // Optional visible title, separate from the video player label.
   title: localizationSwitch[mode].optional(),
+  // Required accessible name for the video player and fallback.
+  label: localizationSwitch[mode],
   fallback: z.object({
     offline: localizationSwitch[mode].optional(),
     unavailable: localizationSwitch[mode].optional(),
