@@ -14,6 +14,8 @@ import {
   defineScene,
   text_Config_Schema,
   text_Props_Schema,
+  code_Config_Schema,
+  code_Props_Schema,
   youtube_Config_Schema,
   youtube_Props_Schema,
   video_Config_Schema,
@@ -48,7 +50,7 @@ test('Text validates metadata, nested params and nested locale independently', (
 test('all non-composite ContentBlocks follow the defineText API and keep params separate', () => {
   const definitions = [
     defineMarkdown({ id, slug: 'md', type: 'markdown', params: {}, locale: { value } }),
-    defineCode({ id, slug: 'code', type: 'code', params: { language: 'typescript' }, locale: { code: value } }),
+    defineCode({ id, slug: 'code', type: 'code', params: { language: 'typescript', fileLocation: 'samples/demo.ts' }, locale: { variables: [{ id: 'greeting', value }] } }),
     defineImage({ id, slug: 'image', type: 'image', params: { width: 100, height: 50 }, locale: { src: value, alt: 'An image' } }),
     defineVideo({ id, slug: 'video', type: 'video', params: {}, locale: { fileLocation: value, poster: 'poster.png', label: 'Local video' } }),
     defineAudio({ id, slug: 'audio', type: 'audio', params: {}, locale: { fileLocation: value, title: 'Narration' } }),
@@ -71,15 +73,23 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
   }
 });
 
-test('Code and Image retain cross-field validation; media labels are always required', () => {
-  assert.throws(
-    () => defineCode({
-      id, slug: 'badCode', type: 'code',
-      params: { language: 'ts' },
-      locale: { code: 'x', fileLocation: 'file.ts' },
-    }),
-    /Provide exactly one of code or fileLocation/,
-  );
+test('Code requires a template source, Image retains cross-field validation, and media labels are required', () => {
+  const source = {
+    id, slug: 'codeTemplate', type: 'code' as const,
+    params: { language: 'typescript' },
+    locale: { variables: [{ id: 'greeting', value: 'Hello' }] },
+  };
+  assert.equal(code_Config_Schema.safeParse(source).success, false);
+  assert.equal(code_Props_Schema.safeParse(source).success, false);
+  assert.equal(code_Config_Schema.safeParse({
+    ...source, params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+  }).success, true);
+  assert.equal(code_Props_Schema.safeParse({
+    ...source, params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+  }).success, true);
+  assert.equal(code_Config_Schema.safeParse({
+    ...source, params: { ...source.params, fileLocation: '' },
+  }).success, false);
   assert.throws(
     () => defineImage({
       id, slug: 'badImage', type: 'image',
@@ -131,21 +141,21 @@ test('localized fallback and indexed media fields remain in locale projections',
   });
 
   const code = defineCode({
-    id, slug: 'example', type: 'code', params: { language: 'typescript' },
+    id, slug: 'example', type: 'code',
+    params: { language: 'typescript', fileLocation: 'templates/greeting.ts' },
     locale: {
-      code: value,
       variables: [
         { id: 'translated', value: { uk: 'Локальна змінна' } },
         { id: 'fixed', value: 'invariant' },
       ],
     },
   });
-  assert.deepEqual(code.config.base.params, { language: 'typescript' });
+  assert.deepEqual(code.config.base.params, { language: 'typescript', fileLocation: 'templates/greeting.ts' });
   assert.deepEqual(code.config.base.locale, {
     variables: [{ id: 'translated' }, { id: 'fixed', value: 'invariant' }],
   });
   assert.deepEqual(code.config.locales(), {
-    locale: { code: value, variables: [{ value: { uk: 'Локальна змінна' } }, {}] },
+    locale: { variables: [{ value: { uk: 'Локальна змінна' } }, {}] },
   });
 
   const carousel = defineCarousel({
