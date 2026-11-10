@@ -18,7 +18,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Native video playback with an optional visible title, required accessible label, poster and localized fallback/retry behavior.',
+        component:
+          'Native video playback with an optional visible title, required accessible label, poster and localized fallback/retry behavior.',
       },
     },
   },

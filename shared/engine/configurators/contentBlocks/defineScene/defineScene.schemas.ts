@@ -14,9 +14,7 @@ const sceneLocalizationSwitch = {
 } as const;
 
 const contentBlockBase = createContentBlockBaseSchema('scene');
-const params = contentBlockBase.shape.params.extend({
-
-});
+const params = contentBlockBase.shape.params.extend({});
 const sceneBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({

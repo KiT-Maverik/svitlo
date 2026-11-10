@@ -3,7 +3,11 @@ import { disability_Schema } from '#schemas';
 
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
 
-import { contentBlockConfigurator_Schema, contentBlockResolved_Schema, localizationSwitch } from '../contentBlocks/_shared';
+import {
+  contentBlockConfigurator_Schema,
+  contentBlockResolved_Schema,
+  localizationSwitch,
+} from '../contentBlocks/_shared';
 
 export const questionTypes = [
   'selectOneAnswer',

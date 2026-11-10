@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { createContentBlockBaseSchema, localizationSwitch,  } from '../_shared';
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
@@ -25,11 +25,15 @@ const carouselBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode].optional(),
-  slides: z.array(z.object({
-    src: localizationSwitch[mode],
-    alt: localizationSwitch[mode],
-    caption: localizationSwitch[mode].optional(),
-  })).min(1),
+  slides: z
+    .array(
+      z.object({
+        src: localizationSwitch[mode],
+        alt: localizationSwitch[mode],
+        caption: localizationSwitch[mode].optional(),
+      }),
+    )
+    .min(1),
 });
 export type ContentBlock_Carousel_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<ReturnType<typeof locale<Mode>>>

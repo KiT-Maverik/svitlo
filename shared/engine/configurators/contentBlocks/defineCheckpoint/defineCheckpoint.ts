@@ -45,10 +45,8 @@ export const defineCheckpoint = <
       overrides,
     },
     override: {
-      params: (newParams: DeepPartial<ContentBlock_Checkpoint_Config['params']>) =>
-        (overrides.params = newParams),
-      locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) =>
-        (overrides.locale = newLocale),
+      params: (newParams: DeepPartial<ContentBlock_Checkpoint_Config['params']>) => (overrides.params = newParams),
+      locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => (overrides.locale = newLocale),
     },
     disable: () => (overrides.params = { disabled: true }),
     // Child configurators stay in authored content. The publisher resolves them

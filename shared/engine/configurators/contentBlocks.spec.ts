@@ -52,13 +52,49 @@ test('Text validates metadata, nested params and nested locale independently', (
 test('all non-composite ContentBlocks follow the defineText API and keep params separate', () => {
   const definitions = [
     defineMarkdown({ id, slug: 'md', type: 'markdown', params: {}, locale: { value } }),
-    defineCode({ id, slug: 'code', type: 'code', params: { language: 'typescript', fileLocation: 'samples/demo.ts' }, locale: { variables: [{ id: 'greeting', value }] } }),
-    defineImage({ id, slug: 'image', type: 'image', params: { width: 100, height: 50 }, locale: { src: value, alt: 'An image' } }),
-    defineVideo({ id, slug: 'video', type: 'video', params: {}, locale: { fileLocation: value, poster: 'poster.png', label: 'Local video' } }),
+    defineCode({
+      id,
+      slug: 'code',
+      type: 'code',
+      params: { language: 'typescript', fileLocation: 'samples/demo.ts' },
+      locale: { variables: [{ id: 'greeting', value }] },
+    }),
+    defineImage({
+      id,
+      slug: 'image',
+      type: 'image',
+      params: { width: 100, height: 50 },
+      locale: { src: value, alt: 'An image' },
+    }),
+    defineVideo({
+      id,
+      slug: 'video',
+      type: 'video',
+      params: {},
+      locale: { fileLocation: value, poster: 'poster.png', label: 'Local video' },
+    }),
     defineAudio({ id, slug: 'audio', type: 'audio', params: {}, locale: { fileLocation: value, title: 'Narration' } }),
-    defineYoutube({ id, slug: 'youtube', type: 'youtube', params: { mode: 'link' }, locale: { href: value, label: 'Watch video' } }),
-    defineCarousel({ id, slug: 'carousel', type: 'carousel', params: {}, locale: { slides: [{ src: value, alt: 'Image' }] } }),
-    defineScene({ id, slug: 'scene', type: 'scene', params: {}, locale: { value: { en: { greeting: 'Hello' }, uk: { greeting: 'Привіт' } } } }),
+    defineYoutube({
+      id,
+      slug: 'youtube',
+      type: 'youtube',
+      params: { mode: 'link' },
+      locale: { href: value, label: 'Watch video' },
+    }),
+    defineCarousel({
+      id,
+      slug: 'carousel',
+      type: 'carousel',
+      params: {},
+      locale: { slides: [{ src: value, alt: 'Image' }] },
+    }),
+    defineScene({
+      id,
+      slug: 'scene',
+      type: 'scene',
+      params: {},
+      locale: { value: { en: { greeting: 'Hello' }, uk: { greeting: 'Привіт' } } },
+    }),
   ];
 
   assert.equal(definitions.length, 8);
@@ -77,57 +113,102 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
 
 test('Code requires a template source, Image retains cross-field validation, and media labels are required', () => {
   const source = {
-    id, slug: 'codeTemplate', type: 'code' as const,
+    id,
+    slug: 'codeTemplate',
+    type: 'code' as const,
     params: { language: 'typescript' },
     locale: { variables: [{ id: 'greeting', value: 'Hello' }] },
   };
   assert.equal(code_Config_Schema.safeParse(source).success, false);
   assert.equal(code_Props_Schema.safeParse(source).success, false);
-  assert.equal(code_Config_Schema.safeParse({
-    ...source, params: { ...source.params, fileLocation: 'templates/greeting.ts' },
-  }).success, true);
-  assert.equal(code_Props_Schema.safeParse({
-    ...source, params: { ...source.params, fileLocation: 'templates/greeting.ts' },
-  }).success, true);
-  assert.equal(code_Config_Schema.safeParse({
-    ...source, params: { ...source.params, fileLocation: '' },
-  }).success, false);
+  assert.equal(
+    code_Config_Schema.safeParse({
+      ...source,
+      params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+    }).success,
+    true,
+  );
+  assert.equal(
+    code_Props_Schema.safeParse({
+      ...source,
+      params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+    }).success,
+    true,
+  );
+  assert.equal(
+    code_Config_Schema.safeParse({
+      ...source,
+      params: { ...source.params, fileLocation: '' },
+    }).success,
+    false,
+  );
   assert.throws(
-    () => defineImage({
-      id, slug: 'badImage', type: 'image',
-      params: {}, locale: { src: 'x', alt: 'y' },
-    }),
+    () =>
+      defineImage({
+        id,
+        slug: 'badImage',
+        type: 'image',
+        params: {},
+        locale: { src: 'x', alt: 'y' },
+      }),
     /Image requires either fill/,
   );
   for (const mode of ['embed', 'link'] as const) {
     const source = {
-      id, slug: 'exampleYoutube', type: 'youtube' as const,
-      params: { mode }, locale: { href: 'https://youtube.com/watch?v=M7lc1UVf-VE' },
+      id,
+      slug: 'exampleYoutube',
+      type: 'youtube' as const,
+      params: { mode },
+      locale: { href: 'https://youtube.com/watch?v=M7lc1UVf-VE' },
     };
     assert.equal(youtube_Config_Schema.safeParse(source).success, false);
     assert.equal(youtube_Props_Schema.safeParse(source).success, false);
-    assert.equal(youtube_Config_Schema.safeParse({
-      ...source, locale: { ...source.locale, label: 'Watch this video' },
-    }).success, true);
-    assert.equal(youtube_Props_Schema.safeParse({
-      ...source, locale: { ...source.locale, label: 'Watch this video' },
-    }).success, true);
+    assert.equal(
+      youtube_Config_Schema.safeParse({
+        ...source,
+        locale: { ...source.locale, label: 'Watch this video' },
+      }).success,
+      true,
+    );
+    assert.equal(
+      youtube_Props_Schema.safeParse({
+        ...source,
+        locale: { ...source.locale, label: 'Watch this video' },
+      }).success,
+      true,
+    );
   }
-  const source = { id, slug: 'sampleVideo', type: 'video' as const, params: {},
-    locale: { fileLocation: '/video.mp4', poster: '/poster.jpg' } };
+  const source = {
+    id,
+    slug: 'sampleVideo',
+    type: 'video' as const,
+    params: {},
+    locale: { fileLocation: '/video.mp4', poster: '/poster.jpg' },
+  };
   assert.equal(video_Config_Schema.safeParse(source).success, false);
   assert.equal(video_Props_Schema.safeParse(source).success, false);
-  assert.equal(video_Config_Schema.safeParse({
-    ...source, locale: { ...source.locale, label: 'Sample video' },
-  }).success, true);
-  assert.equal(video_Props_Schema.safeParse({
-    ...source, locale: { ...source.locale, label: 'Sample video' },
-  }).success, true);
+  assert.equal(
+    video_Config_Schema.safeParse({
+      ...source,
+      locale: { ...source.locale, label: 'Sample video' },
+    }).success,
+    true,
+  );
+  assert.equal(
+    video_Props_Schema.safeParse({
+      ...source,
+      locale: { ...source.locale, label: 'Sample video' },
+    }).success,
+    true,
+  );
 });
 
 test('localized fallback and indexed media fields remain in locale projections', () => {
   const audio = defineAudio({
-    id, slug: 'narration', type: 'audio', params: {},
+    id,
+    slug: 'narration',
+    type: 'audio',
+    params: {},
     locale: {
       fileLocation: { en: '/voice/en.mp3', uk: '/voice/uk.mp3' },
       title: 'Narration',
@@ -143,7 +224,9 @@ test('localized fallback and indexed media fields remain in locale projections',
   });
 
   const code = defineCode({
-    id, slug: 'example', type: 'code',
+    id,
+    slug: 'example',
+    type: 'code',
     params: { language: 'typescript', fileLocation: 'templates/greeting.ts' },
     locale: {
       variables: [
@@ -161,7 +244,10 @@ test('localized fallback and indexed media fields remain in locale projections',
   });
 
   const carousel = defineCarousel({
-    id, slug: 'slides', type: 'carousel', params: { loop: true },
+    id,
+    slug: 'slides',
+    type: 'carousel',
+    params: { loop: true },
     locale: {
       slides: [
         { src: value, alt: { en: 'First' } },
@@ -180,10 +266,16 @@ test('localized fallback and indexed media fields remain in locale projections',
 
 test('Checkpoint has stable item slugs, explicit order and no index-based coupling', () => {
   const answer = defineText({
-    id, slug: 'answer', type: 'text', params: {}, locale: { value },
+    id,
+    slug: 'answer',
+    type: 'text',
+    params: {},
+    locale: { value },
   });
   const config = {
-    id: otherId, slug: 'review', type: 'checkpoint' as const,
+    id: otherId,
+    slug: 'review',
+    type: 'checkpoint' as const,
     params: { enableChecks: true },
     locale: { title: value },
     content: {
@@ -208,16 +300,25 @@ test('Checkpoint has stable item slugs, explicit order and no index-based coupli
   assert.equal(checkpoint_Config_Schema.safeParse(config).success, true);
 
   // Published props use the same stable keys but resolved, non-configurator children.
-  assert.equal(checkpoint_Props_Schema.safeParse({
-    id: otherId, slug: 'review', type: 'checkpoint',
-    params: { enableChecks: true }, locale: { title: 'Review' },
-    content: {
-      items: { whatIsLight: {
-        question: 'What is light?', answer: [{ id, slug: 'answer', type: 'text' }],
-      } },
-      order: ['whatIsLight'],
-    },
-  }).success, true);
+  assert.equal(
+    checkpoint_Props_Schema.safeParse({
+      id: otherId,
+      slug: 'review',
+      type: 'checkpoint',
+      params: { enableChecks: true },
+      locale: { title: 'Review' },
+      content: {
+        items: {
+          whatIsLight: {
+            question: 'What is light?',
+            answer: [{ id, slug: 'answer', type: 'text' }],
+          },
+        },
+        order: ['whatIsLight'],
+      },
+    }).success,
+    true,
+  );
 
   checkpoint.override.params({ showIndices: true });
   assert.deepEqual(checkpoint.config.overrides.params, { showIndices: true });
@@ -227,30 +328,49 @@ test('Checkpoint has stable item slugs, explicit order and no index-based coupli
 
 test('Checkpoint validates camelCase keys and an exact, duplicate-free order', () => {
   const answer = defineText({
-    id, slug: 'answer', type: 'text', params: {}, locale: { value },
+    id,
+    slug: 'answer',
+    type: 'text',
+    params: {},
+    locale: { value },
   });
   const base = {
-    id: otherId, slug: 'review', type: 'checkpoint' as const,
-    params: {}, locale: { title: 'Review' },
+    id: otherId,
+    slug: 'review',
+    type: 'checkpoint' as const,
+    params: {},
+    locale: { title: 'Review' },
   };
   const item = { question: value, answer: [answer] };
   const valid = { items: { firstItem: item, secondItem: item }, order: ['secondItem', 'firstItem'] };
 
   const cases: { name: string; content: unknown; error?: string }[] = [
     { name: 'missing order', content: { items: valid.items } },
-    { name: 'missing referenced item', content: { items: valid.items, order: ['firstItem'] },
-      error: 'Checkpoint item missing from order' },
-    { name: 'duplicate reference', content: { items: valid.items, order: ['firstItem', 'firstItem', 'secondItem'] },
-      error: 'Duplicate Checkpoint item slug' },
-    { name: 'unknown reference', content: { items: valid.items, order: ['firstItem', 'unknownItem', 'secondItem'] },
-      error: 'Unknown Checkpoint item slug' },
+    {
+      name: 'missing referenced item',
+      content: { items: valid.items, order: ['firstItem'] },
+      error: 'Checkpoint item missing from order',
+    },
+    {
+      name: 'duplicate reference',
+      content: { items: valid.items, order: ['firstItem', 'firstItem', 'secondItem'] },
+      error: 'Duplicate Checkpoint item slug',
+    },
+    {
+      name: 'unknown reference',
+      content: { items: valid.items, order: ['firstItem', 'unknownItem', 'secondItem'] },
+      error: 'Unknown Checkpoint item slug',
+    },
     { name: 'non-camelCase key', content: { items: { first_item: item }, order: ['first_item'] } },
     { name: 'missing question', content: { items: { firstItem: { answer: [answer] } }, order: ['firstItem'] } },
     { name: 'empty answer', content: { items: { firstItem: { question: value, answer: [] } }, order: ['firstItem'] } },
-    { name: 'raw child instead of configurator', content: {
-      items: { firstItem: { question: value, answer: [{ id, slug: 'answer', type: 'text' }] } },
-      order: ['firstItem'],
-    } },
+    {
+      name: 'raw child instead of configurator',
+      content: {
+        items: { firstItem: { question: value, answer: [{ id, slug: 'answer', type: 'text' }] } },
+        order: ['firstItem'],
+      },
+    },
   ];
 
   assert.equal(checkpoint_Config_Schema.safeParse({ ...base, content: valid }).success, true);
@@ -259,7 +379,10 @@ test('Checkpoint validates camelCase keys and an exact, duplicate-free order', (
     const result = checkpoint_Config_Schema.safeParse({ ...base, content });
     assert.equal(result.success, false, name);
     if (!result.success && error) {
-      assert.ok(result.error.issues.some(issue => issue.message.includes(error)), name);
+      assert.ok(
+        result.error.issues.some(issue => issue.message.includes(error)),
+        name,
+      );
     }
   }
 });
@@ -270,7 +393,11 @@ test('Scene keeps nested language dictionaries in locales only', () => {
     uk: { greeting: 'Привіт', state: { message: 'Готово' } },
   };
   const scene = defineScene({
-    id, slug: 'introduction', type: 'scene', params: {}, locale: { value: localized },
+    id,
+    slug: 'introduction',
+    type: 'scene',
+    params: {},
+    locale: { value: localized },
   });
   assert.deepEqual(scene.config.base.locale, {});
   assert.deepEqual(scene.config.locales(), { locale: { value: localized } });

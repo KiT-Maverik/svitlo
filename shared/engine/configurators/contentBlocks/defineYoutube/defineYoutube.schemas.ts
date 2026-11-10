@@ -17,11 +17,13 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode].optional(),
   // Required: iframe.title, visible link text, and fallback label.
   label: localizationSwitch[mode],
-  fallback: z.object({
-    offline: localizationSwitch[mode].optional(),
-    unavailable: localizationSwitch[mode].optional(),
-    retry: localizationSwitch[mode].optional(),
-  }).optional(),
+  fallback: z
+    .object({
+      offline: localizationSwitch[mode].optional(),
+      unavailable: localizationSwitch[mode].optional(),
+      retry: localizationSwitch[mode].optional(),
+    })
+    .optional(),
 });
 export type ContentBlock_Youtube_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<ReturnType<typeof locale<Mode>>>

@@ -2,11 +2,7 @@ import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_shared';
 
-import {
-  code_Config_Schema,
-  type ContentBlock_Code_Config,
-  type ContentBlock_Code_Locale,
-} from './defineCode.schemas';
+import { code_Config_Schema, type ContentBlock_Code_Config, type ContentBlock_Code_Locale } from './defineCode.schemas';
 
 export const defineCode = (config: ContentBlock_Code_Config) => {
   code_Config_Schema.parse(config);

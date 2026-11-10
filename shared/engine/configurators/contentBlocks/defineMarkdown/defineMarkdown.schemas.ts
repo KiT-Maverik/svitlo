@@ -1,13 +1,11 @@
 import { z } from 'zod';
-import { createContentBlockBaseSchema, localizationSwitch,  } from '../_shared';
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('markdown');
 
-const params = contentBlockBase.shape.params.extend({
-
-});
+const params = contentBlockBase.shape.params.extend({});
 
 const markdownBase = contentBlockBase.extend({ params });
 
