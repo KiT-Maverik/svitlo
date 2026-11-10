@@ -4,6 +4,10 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 
 import {text_Config_Schema, type ContentBlock_Text_Config, ContentBlock_Text_Props, type ContentBlock_Text_Locale} from './defineText.schemas';
 
+type TextOverrides = DeepPartial<Omit<ContentBlock_Text_Config, 'params'> & {
+  params: ContentBlock_Text_Props['params'];
+}>;
+
 export const defineText = (config: ContentBlock_Text_Config) => {
   text_Config_Schema.parse(config);
 
@@ -17,7 +21,7 @@ export const defineText = (config: ContentBlock_Text_Config) => {
     locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Text_Config>;
 
-  const overrides: { params: DeepPartial<ContentBlock_Text_Props['params']> } = { params: {} };
+  const overrides: TextOverrides = { params: {} };
 
   return {
     config: {
@@ -28,10 +32,10 @@ export const defineText = (config: ContentBlock_Text_Config) => {
       overrides,
     },
     override: {
-      params: (newParams: DeepPartial<ContentBlock_Text_Config>) => overrides.params = newParams,
+      params: (newParams: DeepPartial<ContentBlock_Text_Config['params']>) => overrides.params = newParams,
       locale: (newLocale: DeepPartial<ContentBlock_Text_Locale<'config'>>) => overrides.locale = newLocale,
     },
-    disable: () => overrides.params.disabled = true,
+    disable: () => (overrides.params ??= {}).disabled = true,
   } as const;
 }
 
