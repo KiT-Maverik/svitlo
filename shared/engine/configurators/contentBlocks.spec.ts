@@ -14,6 +14,8 @@ import {
   defineScene,
   text_Config_Schema,
   text_Props_Schema,
+  checkpoint_Config_Schema,
+  checkpoint_Props_Schema,
   code_Config_Schema,
   code_Props_Schema,
   youtube_Config_Schema,
@@ -176,33 +178,52 @@ test('localized fallback and indexed media fields remain in locale projections',
   });
 });
 
-test('Checkpoint keeps child configurators separate from serializable base params', () => {
+test('Checkpoint keeps every localized question alongside its nested answer configurators', () => {
   const answer = defineText({
     id, slug: 'answer', type: 'text', params: {}, locale: { value },
   });
-  const checkpoint = defineCheckpoint({
+  const config = {
     id: otherId,
     slug: 'review',
-    type: 'checkpoint',
-    params: { enableChecks: true, items: [{ answer: [answer], check: true }] },
-    locale: { title: value, items: [{ question: value }] },
-  });
+    type: 'checkpoint' as const,
+    params: { enableChecks: true },
+    locale: { title: value },
+    content: [
+      { question: value, answer: [answer] as [typeof answer], check: true as const },
+      { question: 'Second question', answer: [answer] as [typeof answer] },
+    ],
+  };
+  const checkpoint = defineCheckpoint(config);
 
-  assert.strictEqual(checkpoint.items[0].answer[0], answer);
+  assert.equal(checkpoint.content, config.content);
+  assert.strictEqual(checkpoint.content[0].answer[0], answer);
   assert.deepEqual(checkpoint.config.base.params, { enableChecks: true });
-  assert.equal(checkpoint.config.base.locale?.items?.length, 1);
-  assert.deepEqual(checkpoint.config.locales(), {
-    locale: { title: value, items: [{ question: value }] },
-  });
+  assert.deepEqual(checkpoint.config.base.locale, {});
+  assert.deepEqual(checkpoint.config.locales(), { locale: { title: value } });
+  assert.equal('content' in checkpoint.config.base, false);
   assert.equal(JSON.stringify(checkpoint.config.base).includes('function'), false);
+  assert.equal(checkpoint_Config_Schema.safeParse(config).success, true);
+  assert.equal(checkpoint_Props_Schema.safeParse({
+    id: otherId, slug: 'review', type: 'checkpoint',
+    params: { enableChecks: true }, locale: { title: 'Review' },
+    content: [{ question: 'What is light?', answer: [{ id, slug: 'answer', type: 'text' }] }],
+  }).success, true);
+
+  // A Checkpoint item must have its own question and at least one valid child configurator.
+  assert.equal(checkpoint_Config_Schema.safeParse({
+    ...config, content: [{ answer: [answer] }],
+  }).success, false);
+  assert.equal(checkpoint_Config_Schema.safeParse({
+    ...config, content: [{ question: value, answer: [] }],
+  }).success, false);
+  assert.equal(checkpoint_Config_Schema.safeParse({
+    ...config, content: [{ question: value, answer: [{ id, slug: 'raw', type: 'text' }] }],
+  }).success, false);
+
+  checkpoint.override.params({ showIndices: true });
+  assert.deepEqual(checkpoint.config.overrides.params, { showIndices: true });
   checkpoint.disable();
   assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
-
-  assert.throws(() => defineCheckpoint({
-    id: otherId, slug: 'mismatched', type: 'checkpoint',
-    params: { items: [{ answer: [answer] }] },
-    locale: { title: 'Review', items: [] },
-  }), /must have equal length/);
 });
 
 test('Scene keeps nested language dictionaries in locales only', () => {
