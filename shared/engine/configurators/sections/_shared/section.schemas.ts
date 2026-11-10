@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { localizationSwitch } from '../../contentBlocks/_shared';
 import { Configurator_Mode } from '../../configurator.schemas';
 
 export const sectionTypes = ['practice', 'codingTask', 'flow', 'flashcards', 'quiz', 'content'] as const;
@@ -12,23 +12,23 @@ export const createSectionMetaSchema = (type: Section_Type) => {
     type: z.literal(type),
     id: z.uuid(),
     slug: z.string().min(1),
-    title: contentBlockLocalizationSwitch[mode],
+    title: localizationSwitch[mode],
   });
 
   const params = (mode: Configurator_Mode) => ({
-    navigationLabel: contentBlockLocalizationSwitch[mode],
+    navigationLabel: localizationSwitch[mode],
     skippable: z.literal(true).optional(),
   });
 
   return {
     config: z.object({
       ...meta('config'),
-      title: contentBlockLocalizationSwitch.config,
+      title: localizationSwitch.config,
       params: params('config'),
     }),
     props: z.object({
       ...meta('props'),
-      title: contentBlockLocalizationSwitch.props,
+      title: localizationSwitch.props,
       params: z.object({
         ...params('props'),
         disable: z.literal(true).optional(),

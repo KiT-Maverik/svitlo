@@ -1,36 +1,46 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings } from '../../_utils';
+import { onlyLocales, onlyStrings } from '../../_shared';
+import {
+  checkpoint_Config_Schema,
+  type ContentBlock_Checkpoint_Config,
+  type ContentBlock_Checkpoint_Locale,
+} from './defineCheckpoint.schemas';
 
-import { checkpoint_Config_Schema, type ContentBlock_Checkpoint_Config } from './defineCheckpoint.schemas';
-
-export function defineCheckpoint<
-  const Slug extends string,
-  const Items extends readonly ContentBlock_Checkpoint_Config['items'][number][],
->(config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'items'> & { slug: Slug; items: Items }) {
+export const defineCheckpoint = (config: ContentBlock_Checkpoint_Config) => {
   checkpoint_Config_Schema.parse(config);
 
-  const { id, type, slug, title, items, ...params } = config;
-
-  // Only localized questions belong to this projection; child configurators stay in items.
-  const localeEntries = { title, items: items.map(({ question }) => ({ question })) } as const;
+  const { id, type, slug, locale, params } = config;
+  const { items, ...otherParams } = params;
 
   const base = {
     id,
     type,
     slug,
-    ...params,
-    ...onlyStrings(localeEntries),
+    params: otherParams,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
+
+  const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};
 
   return {
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Checkpoint_Config>,
+      locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
     },
-    // Keep the authored child configurators, never flatten them into raw configs.
-    items,
-  };
-}
+    override: {
+      params: (newParams: DeepPartial<Omit<ContentBlock_Checkpoint_Config['params'], 'items'>>) =>
+        (overrides.params = newParams),
+      locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) =>
+        (overrides.locale = newLocale),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+    // Nested configurators remain authoring-time children, not serialized raw configs.
+    items: items.map((item, index) => ({ ...item, question: locale.items[index].question })),
+  } as const;
+};
 
 export type ContentBlock_Checkpoint_Configurator = ReturnType<typeof defineCheckpoint>;
