@@ -23,10 +23,9 @@ export const createSectionMetaSchema = (type: Section_Type, mode: Configurator_M
     id: z.uuid(),
     slug: z.string().min(1),
     title: localized,
+    params: z.object({
+      navigationLabel: localized,
+      skippable: z.literal(true).optional(),
+    }),
   };
 }
-
-export const sectionCommonParams_Schema = z.object({
-  navigationLabel: z.string().min(1),
-  skippable: z.literal(true).optional(),
-});
