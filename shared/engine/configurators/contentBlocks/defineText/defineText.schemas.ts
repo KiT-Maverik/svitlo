@@ -9,13 +9,6 @@ import {
 } from '../_shared';
 import {Configurator_Mode} from "../../configurator.schemas";
 
-const wrap_Schema = z
-  .strictObject({
-    enabled: z.literal(true).optional(),
-    typographyProps: z.unknown().optional(),
-  })
-  .optional();
-
 const createTextSchema = (mode: Configurator_Mode)=> {
   const localized = localizationSwitch[mode];
 
@@ -23,7 +16,10 @@ const createTextSchema = (mode: Configurator_Mode)=> {
     ...createContentBlockMetaSchema('text').shape,
     params: z.object({
       ...textStylingRules_Schema.shape,
-      wrap: wrap_Schema,
+      wrap: z.object({
+        enabled: z.literal(true),
+        typographyProps: z.unknown().optional(),
+      }).optional(),
       ...(mode === 'props' ? disabledParam_Schema : {}),
     }),
     value: localized,
