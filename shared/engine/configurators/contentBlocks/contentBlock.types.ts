@@ -19,7 +19,8 @@ import type { ContentBlock_Carousel_Props } from './defineCarousel/defineCarouse
 import type { ContentBlock_Checkpoint_Props } from './defineCheckpoint/defineCheckpoint.schemas';
 import type { ContentBlock_Scene_Props } from './defineScene/defineScene.schemas';
 
-export type ContentBlock_Configurator =
+/** Allowed as nested answer blocks; Checkpoint recursion is deliberately excluded. */
+export type ContentBlock_NonCheckpoint_Configurator =
   | ContentBlock_Text_Configurator
   | ContentBlock_Markdown_Configurator
   | ContentBlock_Code_Configurator
@@ -28,8 +29,9 @@ export type ContentBlock_Configurator =
   | ContentBlock_Audio_Configurator
   | ContentBlock_Youtube_Configurator
   | ContentBlock_Carousel_Configurator
-  | ContentBlock_Checkpoint_Configurator
   | ContentBlock_Scene_Configurator;
+
+export type ContentBlock_Configurator = ContentBlock_NonCheckpoint_Configurator | ContentBlock_Checkpoint_Configurator;
 
 export type ContentBlock_Props =
   | ContentBlock_Text_Props

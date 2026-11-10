@@ -1,12 +1,10 @@
 import { z } from 'zod';
 
-import { camelCase_Schema } from '#schemas';
-import {
-  createContentBlockBaseSchema,
-  localizationSwitch,
-  contentBlockConfigurator_Schema,
-  contentBlockResolved_Schema,
-} from '../_shared';
+import type { ContentBlock_NonCheckpoint_Configurator } from '../contentBlock.types';
+import type { ContentBlock_Text_Configurator } from '../defineText/defineText';
+import type { ContentBlock_Text_Props } from '../defineText/defineText.schemas';
+import type { ContentBlock_Props } from '../contentBlock.types';
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
@@ -34,69 +32,46 @@ export type ContentBlock_Checkpoint_Locale<Mode extends Configurator_Mode> = z.i
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;
 
-// Keyed items preserve stable identities across localization and reordering.
-// The order is explicit; never infer display order from JavaScript object keys.
-const content = <Mode extends Configurator_Mode>(mode: Mode) => {
-  const child = {
-    config: contentBlockConfigurator_Schema,
-    props: contentBlockResolved_Schema,
-  }[mode];
-
-  return z
-    .object({
-      items: z.record(
-        camelCase_Schema,
-        z.object({
-          question: localizationSwitch[mode],
-          answer: z.tuple([child], child),
-          check: z.literal(true).optional(),
-        }),
-      ),
-      order: z.array(camelCase_Schema),
-    })
-    .superRefine(({ items, order }, context) => {
-      const itemSlugs = Object.keys(items);
-      const known = new Set(itemSlugs);
-      const ordered = new Set<string>();
-
-      for (const [index, slug] of order.entries()) {
-        if (ordered.has(slug)) {
-          context.addIssue({
-            code: 'custom',
-            path: ['order', index],
-            message: `Duplicate Checkpoint item slug in order: ${slug}`,
-          });
-        }
-        if (!known.has(slug)) {
-          context.addIssue({
-            code: 'custom',
-            path: ['order', index],
-            message: `Unknown Checkpoint item slug in order: ${slug}`,
-          });
-        }
-        ordered.add(slug);
-      }
-
-      for (const slug of itemSlugs) {
-        if (!ordered.has(slug)) {
-          context.addIssue({
-            code: 'custom',
-            path: ['order'],
-            message: `Checkpoint item missing from order: ${slug}`,
-          });
-        }
-      }
-    });
+/** The nested block validates itself in defineText; the parent validates only collection integrity. */
+export type Checkpoint_Answer_Items = Record<string, ContentBlock_NonCheckpoint_Configurator>;
+export type Checkpoint_Answer<Items extends Checkpoint_Answer_Items = Checkpoint_Answer_Items> = {
+  items: Items;
+  order: readonly (keyof Items & string)[];
+};
+export type Checkpoint_Item<Answers extends Checkpoint_Answer_Items = Checkpoint_Answer_Items> = {
+  question: ContentBlock_Text_Configurator;
+  answer: Checkpoint_Answer<Answers>;
+  check?: true;
+};
+export type Checkpoint_Items = Record<string, Checkpoint_Item>;
+export type Checkpoint_Content<Items extends Checkpoint_Items = Checkpoint_Items> = {
+  items: Items;
+  order: readonly (keyof Items & string)[];
 };
 
-export const checkpoint_Config_Schema = checkpointBase.extend({
-  ...addUnifiedLocale(locale('config')),
-  content: content('config'),
-});
-export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema>;
+/** For authored definitions, only the Checkpoint's own metadata belongs to Zod. */
+export const checkpoint_Config_Schema = checkpointBase.extend(addUnifiedLocale(locale('config')));
+export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema> & {
+  content: Checkpoint_Content;
+};
 
-export const checkpoint_Props_Schema = checkpointBase.extend({
-  ...addUnifiedLocale(locale('props')),
-  content: content('props'),
-});
-export type ContentBlock_Checkpoint_Props = z.infer<typeof checkpoint_Props_Schema>;
+/**
+ * The Props schema also validates only metadata. Published child blocks are
+ * resolved by the resource generator and retain identity-keyed order.
+ */
+export const checkpoint_Props_Schema = checkpointBase.extend(addUnifiedLocale(locale('props')));
+export type Checkpoint_Resolved_Answer = {
+  items: Record<string, Exclude<ContentBlock_Props, ContentBlock_Checkpoint_Props>>;
+  order: string[];
+};
+export type Checkpoint_Resolved_Content = {
+  items: Record<string, {
+    question: ContentBlock_Text_Props;
+    answer: Checkpoint_Resolved_Answer;
+    check?: true;
+  }>;
+  order: string[];
+};
+export type ContentBlock_Checkpoint_Props = z.infer<typeof checkpoint_Props_Schema> & {
+  content: Checkpoint_Resolved_Content;
+};
