@@ -2,14 +2,14 @@ import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
 
-import { text_Config_Schema, type ContentBlock_Text_Config } from './defineText.schemas';
+import {text_Config_Schema, type ContentBlock_Text_Config, ContentBlock_Text_Props} from './defineText.schemas';
 
-export function defineText<const Slug extends string>(config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug }) {
+export const defineText = (config: ContentBlock_Text_Config) => {
   text_Config_Schema.parse(config);
 
   const { id, type, slug, value, params } = config;
 
-  const localeEntries = { value } as const;
+  const localeEntries = { value } as const satisfies DeepPartial<ContentBlock_Text_Config>;
 
   const base = {
     id,
@@ -19,11 +19,14 @@ export function defineText<const Slug extends string>(config: Omit<ContentBlock_
     ...onlyStrings(localeEntries),
   } satisfies DeepPartial<ContentBlock_Text_Config>;
 
+  const overrides = { params: {} } satisfies DeepPartial<ContentBlock_Text_Props>;
+
   return {
     config: {
       base,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Text_Config>,
     },
+    disable: () => overrides.params.disabled = true,
   };
 }
 
