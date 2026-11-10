@@ -1,32 +1,49 @@
-import type {DeepPartial} from "#types";
+import type { DeepPartial } from '#types';
+import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
 
-import { contentSection_Config_Schema, type Content_Section_Config } from './defineContentSection.schemas';
-import {onlyStrings, onlyLocales} from "../../_utils";
+import { onlyLocales, onlyStrings } from '../../_utils';
+import {
+  contentSection_Config_Schema,
+  type Content_Section_Config,
+  type Content_Section_Props,
+} from './defineContentSection.schemas';
 
-export const defineContentSection = (config: Content_Section_Config)=> {
-  contentSection_Config_Schema.parse(config);
+export function defineContentSection<
+  const Slug extends string,
+  const Content extends readonly ContentBlock_Configurator[],
+>(config: Omit<Content_Section_Config, 'slug' | 'content'> & { slug: Slug; content: Content }) {
+  const { content, ...metadata } = config;
+  contentSection_Config_Schema.parse(metadata);
 
-  const { id, type, slug, fileLocation, title, description, fallback } = config;
-
-  const localeEntries: DeepPartial<Content_Section_Config> = { fileLocation, title, description, fallback } as const;
+  const { id, type, slug, title, params } = metadata;
+  const localeEntries = { title, params: { navigationLabel: params.navigationLabel } };
 
   const base = {
     id,
     type,
     slug,
-    ...onlyStrings(localeEntries),
+    ...onlyStrings({ title }),
+    params: {
+      ...(params.skippable ? { skippable: true } : {}),
+      ...onlyStrings({ navigationLabel: params.navigationLabel }),
+    },
   } satisfies DeepPartial<Content_Section_Config>;
 
-  const overrides: DeepPartial<Content_Section_Config> = {};
+  const overrides = {
+    params: {},
+  } satisfies DeepPartial<Content_Section_Props>;
 
   return {
     config: {
       base,
-      getLocales: ()=> onlyLocales(localeEntries),
+      getLocales: () => onlyLocales(localeEntries) satisfies DeepPartial<Content_Section_Config>,
       overrides,
     },
-    disable: () => overrides.params.disable = true,
-  }
+    content,
+    disable: () => {
+      overrides.params.disable = true;
+    },
+  };
 }
 
 export type ContentSection_Configurator = ReturnType<typeof defineContentSection>;
