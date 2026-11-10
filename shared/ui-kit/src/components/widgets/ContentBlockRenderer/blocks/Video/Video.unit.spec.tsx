@@ -11,7 +11,8 @@ const response: ContentBlock_Video_Response = {
 
   fileLocation: '/lesson.mp4',
   poster: '/poster.png',
-  title: 'Приклад відео',
+  title: 'Назва блоку',
+  label: 'Приклад відео',
   fallback: {
     offline: 'Відео недоступне без мережі',
     unavailable: 'Відео не знайдено',
@@ -45,6 +46,8 @@ describe('Video content block', () => {
     const video = container.querySelector('video');
     expect(video).toHaveAttribute('src', '/lesson.mp4');
     expect(video).toHaveAttribute('poster', '/poster.png');
+    expect(video).toHaveAttribute('aria-label', 'Приклад відео');
+    expect(container.querySelector('figcaption')).toHaveTextContent('Назва блоку');
 
     fireEvent.stalled(video!);
     expect(screen.getByRole('alert')).toHaveTextContent('Відео недоступне без мережі');
@@ -52,6 +55,13 @@ describe('Video content block', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Повторити' }));
     expect(container.querySelector('video')).not.toBeNull();
+  });
+
+  it('retains an accessible label without an optional visible title', () => {
+    setOnline(true);
+    const { container } = render(<Video messages={enUiKitMessages.video} {...response} title={undefined} />);
+    expect(container.querySelector('video')).toHaveAttribute('aria-label', 'Приклад відео');
+    expect(container.querySelector('figcaption')).toBeNull();
   });
 
   it('distinguishes an unavailable source from a decoding error', () => {

@@ -14,6 +14,10 @@ import {
   defineScene,
   text_Config_Schema,
   text_Props_Schema,
+  youtube_Config_Schema,
+  youtube_Props_Schema,
+  video_Config_Schema,
+  video_Props_Schema,
 } from './contentBlocks';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
@@ -46,9 +50,9 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
     defineMarkdown({ id, slug: 'md', type: 'markdown', params: {}, locale: { value } }),
     defineCode({ id, slug: 'code', type: 'code', params: { language: 'typescript' }, locale: { code: value } }),
     defineImage({ id, slug: 'image', type: 'image', params: { width: 100, height: 50 }, locale: { src: value, alt: 'An image' } }),
-    defineVideo({ id, slug: 'video', type: 'video', params: {}, locale: { fileLocation: value, poster: 'poster.png' } }),
+    defineVideo({ id, slug: 'video', type: 'video', params: {}, locale: { fileLocation: value, poster: 'poster.png', label: 'Local video' } }),
     defineAudio({ id, slug: 'audio', type: 'audio', params: {}, locale: { fileLocation: value, title: 'Narration' } }),
-    defineYoutube({ id, slug: 'youtube', type: 'youtube', params: { mode: 'link' }, locale: { href: value } }),
+    defineYoutube({ id, slug: 'youtube', type: 'youtube', params: { mode: 'link' }, locale: { href: value, label: 'Watch video' } }),
     defineCarousel({ id, slug: 'carousel', type: 'carousel', params: {}, locale: { slides: [{ src: value, alt: 'Image' }] } }),
     defineScene({ id, slug: 'scene', type: 'scene', params: {}, locale: { value: { en: { greeting: 'Hello' }, uk: { greeting: 'Привіт' } } } }),
   ];
@@ -67,7 +71,7 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
   }
 });
 
-test('Code, Image and YouTube retain their cross-field validation', () => {
+test('Code and Image retain cross-field validation; media labels are always required', () => {
   assert.throws(
     () => defineCode({
       id, slug: 'badCode', type: 'code',
@@ -83,13 +87,30 @@ test('Code, Image and YouTube retain their cross-field validation', () => {
     }),
     /Image requires either fill/,
   );
-  assert.throws(
-    () => defineYoutube({
-      id, slug: 'badYoutube', type: 'youtube',
-      params: { mode: 'embed' }, locale: { href: 'https://youtube.com/watch?v=example' },
-    }),
-    /Embedded video requires title or hint/,
-  );
+  for (const mode of ['embed', 'link'] as const) {
+    const source = {
+      id, slug: 'exampleYoutube', type: 'youtube' as const,
+      params: { mode }, locale: { href: 'https://youtube.com/watch?v=M7lc1UVf-VE' },
+    };
+    assert.equal(youtube_Config_Schema.safeParse(source).success, false);
+    assert.equal(youtube_Props_Schema.safeParse(source).success, false);
+    assert.equal(youtube_Config_Schema.safeParse({
+      ...source, locale: { ...source.locale, label: 'Watch this video' },
+    }).success, true);
+    assert.equal(youtube_Props_Schema.safeParse({
+      ...source, locale: { ...source.locale, label: 'Watch this video' },
+    }).success, true);
+  }
+  const source = { id, slug: 'sampleVideo', type: 'video' as const, params: {},
+    locale: { fileLocation: '/video.mp4', poster: '/poster.jpg' } };
+  assert.equal(video_Config_Schema.safeParse(source).success, false);
+  assert.equal(video_Props_Schema.safeParse(source).success, false);
+  assert.equal(video_Config_Schema.safeParse({
+    ...source, locale: { ...source.locale, label: 'Sample video' },
+  }).success, true);
+  assert.equal(video_Props_Schema.safeParse({
+    ...source, locale: { ...source.locale, label: 'Sample video' },
+  }).success, true);
 });
 
 test('localized fallback and indexed media fields remain in locale projections', () => {

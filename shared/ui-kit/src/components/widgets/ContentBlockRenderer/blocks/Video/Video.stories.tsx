@@ -18,7 +18,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Native video playback with an optional title, poster, and localized fallback/retry behavior.',
+        component: 'Native video playback with an optional visible title, required accessible label, poster and localized fallback/retry behavior.',
       },
     },
   },
@@ -29,7 +29,8 @@ const meta = {
 
     fileLocation: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
     poster,
-    title: 'Flower video',
+    title: 'Flower video example',
+    label: 'Video showing a flower',
   },
   argTypes: { id: { control: false }, type: { control: false }, fallback: { control: 'object' } },
 } satisfies Meta<typeof Video>;
