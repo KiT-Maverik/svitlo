@@ -6,7 +6,7 @@ import {
   textStylingRules_Schema,
 } from '../_shared';
 import {Configurator_Mode} from "../../configurator.schemas";
-import {addUnifiedLocale} from "../../_utils";
+import {addUnifiedLocale} from "../../_shared";
 
 const base = createContentBlockBaseSchema('text')
 
