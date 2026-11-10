@@ -11,51 +11,53 @@ import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('checkpoint');
 
-const child = {
-  config: contentBlockConfigurator_Schema,
-  props: contentBlockResolved_Schema,
-} as const;
+const params = contentBlockBase.shape.params.extend({
+  headingLevel: z.number().int().min(1).max(6).optional(),
+  showIndices: z.boolean().optional(),
+  showChevron: z.boolean().optional(),
+  showIcon: z.boolean().optional(),
+  indexPosition: z.enum(['left', 'right']).optional(),
+  iconPosition: z.enum(['left', 'right']).optional(),
+  chevronPosition: z.enum(['left', 'right']).optional(),
+  enableChecks: z.boolean().optional(),
+  requireCompletion: z.boolean().optional(),
+  renderAsGroup: z.boolean().optional(),
+});
 
-// Checkpoint child answers belong to params, while translated questions belong to locale.
-// Potential future extraction: indexed child/locale projection, once array merge semantics are finalized.
-const params = <Mode extends Configurator_Mode>(mode: Mode) =>
-  contentBlockBase.shape.params.extend({
-    headingLevel: z.number().int().min(1).max(6).optional(),
-    showIndices: z.boolean().optional(),
-    showChevron: z.boolean().optional(),
-    showIcon: z.boolean().optional(),
-    indexPosition: z.enum(['left', 'right']).optional(),
-    iconPosition: z.enum(['left', 'right']).optional(),
-    chevronPosition: z.enum(['left', 'right']).optional(),
-    enableChecks: z.boolean().optional(),
-    requireCompletion: z.boolean().optional(),
-    renderAsGroup: z.boolean().optional(),
-    items: z.array(z.object({
-      answer: z.tuple([child[mode]], child[mode]),
-      check: z.literal(true).optional(),
-    })),
-  });
-
-const checkpointBase = <Mode extends Configurator_Mode>(mode: Mode) =>
-  contentBlockBase.extend({ params: params(mode) });
+const checkpointBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
-  items: z.array(z.object({ question: localizationSwitch[mode] })),
 });
 export type ContentBlock_Checkpoint_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;
 
-const hasMatchingItems = (value: { params: { items: unknown[] }; locale: { items: unknown[] } }) =>
-  value.params.items.length === value.locale.items.length;
+// Every entry owns its localized question and its answer configurators.
+// Keep related fields together; publication resolves child configurators per entry.
+const content = <Mode extends Configurator_Mode>(mode: Mode) => {
+  const child = {
+    config: contentBlockConfigurator_Schema,
+    props: contentBlockResolved_Schema,
+  }[mode];
 
-export const checkpoint_Config_Schema = checkpointBase('config')
-  .extend(addUnifiedLocale(locale('config')))
-  .refine(hasMatchingItems, { message: 'Checkpoint params.items and locale.items must have equal length' });
+  return z.array(
+    z.object({
+      question: localizationSwitch[mode],
+      answer: z.tuple([child], child),
+      check: z.literal(true).optional(),
+    }),
+  );
+};
+
+export const checkpoint_Config_Schema = checkpointBase.extend({
+  ...addUnifiedLocale(locale('config')),
+  content: content('config'),
+});
 export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema>;
 
-export const checkpoint_Props_Schema = checkpointBase('props')
-  .extend(addUnifiedLocale(locale('props')))
-  .refine(hasMatchingItems, { message: 'Checkpoint params.items and locale.items must have equal length' });
+export const checkpoint_Props_Schema = checkpointBase.extend({
+  ...addUnifiedLocale(locale('props')),
+  content: content('props'),
+});
 export type ContentBlock_Checkpoint_Props = z.infer<typeof checkpoint_Props_Schema>;
