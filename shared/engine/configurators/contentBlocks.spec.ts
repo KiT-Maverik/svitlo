@@ -178,52 +178,90 @@ test('localized fallback and indexed media fields remain in locale projections',
   });
 });
 
-test('Checkpoint keeps every localized question alongside its nested answer configurators', () => {
+test('Checkpoint has stable item slugs, explicit order and no index-based coupling', () => {
   const answer = defineText({
     id, slug: 'answer', type: 'text', params: {}, locale: { value },
   });
   const config = {
-    id: otherId,
-    slug: 'review',
-    type: 'checkpoint' as const,
+    id: otherId, slug: 'review', type: 'checkpoint' as const,
     params: { enableChecks: true },
     locale: { title: value },
-    content: [
-      { question: value, answer: [answer] as [typeof answer], check: true as const },
-      { question: 'Second question', answer: [answer] as [typeof answer] },
-    ],
+    content: {
+      items: {
+        whatIsLight: { question: value, answer: [answer] as [typeof answer], check: true as const },
+        howLightTravels: { question: 'How does light travel?', answer: [answer] as [typeof answer] },
+      },
+      // Intentionally different from object declaration order.
+      order: ['howLightTravels', 'whatIsLight'] as const,
+    },
   };
   const checkpoint = defineCheckpoint(config);
-
-  assert.equal(checkpoint.content, config.content);
-  assert.strictEqual(checkpoint.content[0].answer[0], answer);
+  assert.strictEqual(checkpoint.content, config.content);
+  assert.strictEqual(checkpoint.content.items.whatIsLight.answer[0], answer);
+  assert.equal(checkpoint.content.items.howLightTravels.question, 'How does light travel?');
+  assert.deepEqual(checkpoint.content.order, ['howLightTravels', 'whatIsLight']);
   assert.deepEqual(checkpoint.config.base.params, { enableChecks: true });
   assert.deepEqual(checkpoint.config.base.locale, {});
   assert.deepEqual(checkpoint.config.locales(), { locale: { title: value } });
   assert.equal('content' in checkpoint.config.base, false);
   assert.equal(JSON.stringify(checkpoint.config.base).includes('function'), false);
   assert.equal(checkpoint_Config_Schema.safeParse(config).success, true);
+
+  // Published props use the same stable keys but resolved, non-configurator children.
   assert.equal(checkpoint_Props_Schema.safeParse({
     id: otherId, slug: 'review', type: 'checkpoint',
     params: { enableChecks: true }, locale: { title: 'Review' },
-    content: [{ question: 'What is light?', answer: [{ id, slug: 'answer', type: 'text' }] }],
+    content: {
+      items: { whatIsLight: {
+        question: 'What is light?', answer: [{ id, slug: 'answer', type: 'text' }],
+      } },
+      order: ['whatIsLight'],
+    },
   }).success, true);
-
-  // A Checkpoint item must have its own question and at least one valid child configurator.
-  assert.equal(checkpoint_Config_Schema.safeParse({
-    ...config, content: [{ answer: [answer] }],
-  }).success, false);
-  assert.equal(checkpoint_Config_Schema.safeParse({
-    ...config, content: [{ question: value, answer: [] }],
-  }).success, false);
-  assert.equal(checkpoint_Config_Schema.safeParse({
-    ...config, content: [{ question: value, answer: [{ id, slug: 'raw', type: 'text' }] }],
-  }).success, false);
 
   checkpoint.override.params({ showIndices: true });
   assert.deepEqual(checkpoint.config.overrides.params, { showIndices: true });
   checkpoint.disable();
   assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
+});
+
+test('Checkpoint validates camelCase keys and an exact, duplicate-free order', () => {
+  const answer = defineText({
+    id, slug: 'answer', type: 'text', params: {}, locale: { value },
+  });
+  const base = {
+    id: otherId, slug: 'review', type: 'checkpoint' as const,
+    params: {}, locale: { title: 'Review' },
+  };
+  const item = { question: value, answer: [answer] };
+  const valid = { items: { firstItem: item, secondItem: item }, order: ['secondItem', 'firstItem'] };
+
+  const cases: { name: string; content: unknown; error?: string }[] = [
+    { name: 'missing order', content: { items: valid.items } },
+    { name: 'missing referenced item', content: { items: valid.items, order: ['firstItem'] },
+      error: 'Checkpoint item missing from order' },
+    { name: 'duplicate reference', content: { items: valid.items, order: ['firstItem', 'firstItem', 'secondItem'] },
+      error: 'Duplicate Checkpoint item slug' },
+    { name: 'unknown reference', content: { items: valid.items, order: ['firstItem', 'unknownItem', 'secondItem'] },
+      error: 'Unknown Checkpoint item slug' },
+    { name: 'non-camelCase key', content: { items: { first_item: item }, order: ['first_item'] } },
+    { name: 'missing question', content: { items: { firstItem: { answer: [answer] } }, order: ['firstItem'] } },
+    { name: 'empty answer', content: { items: { firstItem: { question: value, answer: [] } }, order: ['firstItem'] } },
+    { name: 'raw child instead of configurator', content: {
+      items: { firstItem: { question: value, answer: [{ id, slug: 'answer', type: 'text' }] } },
+      order: ['firstItem'],
+    } },
+  ];
+
+  assert.equal(checkpoint_Config_Schema.safeParse({ ...base, content: valid }).success, true);
+
+  for (const { name, content, error } of cases) {
+    const result = checkpoint_Config_Schema.safeParse({ ...base, content });
+    assert.equal(result.success, false, name);
+    if (!result.success && error) {
+      assert.ok(result.error.issues.some(issue => issue.message.includes(error)), name);
+    }
+  }
 });
 
 test('Scene keeps nested language dictionaries in locales only', () => {
