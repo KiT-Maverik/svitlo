@@ -8,6 +8,7 @@ import {
   textStylingRules_Schema,
 } from '../_shared';
 import {Configurator_Mode} from "../../configurator.schemas";
+import {addUnifiedLocale} from "../../_utils";
 
 const base = z.object({
   ...createContentBlockMetaSchema('text').shape,
@@ -25,10 +26,10 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
 });
 export type ContentBlock_Text_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 
-export const text_Config_Schema = base.extend(locale('config'));
+export const text_Config_Schema = base.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Text_Config = z.infer<typeof text_Config_Schema>;
 
 export const text_Props_Schema = base.extend({
   params: base.shape.params.extend(disabledParam_Schema.shape),
-}).extend(locale('props'));
+}).extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Text_Props = z.infer<typeof text_Props_Schema>;
