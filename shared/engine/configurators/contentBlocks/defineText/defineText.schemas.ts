@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+import {disabledParam_Schema} from "#schemas";
+
 import {
   createContentBlockMetaSchema,
   localizationSwitch,
@@ -22,7 +24,7 @@ const createTextSchema = (mode: Configurator_Mode)=> {
     params: z.object({
       ...textStylingRules_Schema.shape,
       wrap: wrap_Schema,
-      ...(mode === 'props' ? { disabled: z.literal(true).optional() } : {}),
+      ...(mode === 'props' ? disabledParam_Schema : {}),
     }),
     value: localized,
   });
