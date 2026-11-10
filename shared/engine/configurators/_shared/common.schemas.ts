@@ -1,5 +1,7 @@
 import {z} from "zod";
 
-export const paramsBase_Schema = z.object({
-  params: z.literal(true).optional()
-}).optional();
+export const paramsBase_Schema = {
+  params: {
+    disabled: z.literal(true).optional()
+  }
+};

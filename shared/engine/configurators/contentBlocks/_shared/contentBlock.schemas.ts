@@ -19,7 +19,7 @@ export type ContentBlock_Type = (typeof contentBlockTypes)[number];
 
 export const createContentBlockBaseSchema = (type: ContentBlock_Type) =>
   z.object({ id: z.uuid(), slug: camelCase_Schema.min(1), type: z.literal(type) })
-    .and(paramsBase_Schema);
+    .extend(paramsBase_Schema);
 
 const localeSubset_Schema = z
   .partialRecord(languageCode_Schema, localeText_Schema)

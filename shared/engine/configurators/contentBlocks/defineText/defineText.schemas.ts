@@ -8,15 +8,13 @@ import {
 import {Configurator_Mode} from "../../configurator.schemas";
 import {addUnifiedLocale} from "../../_shared";
 
-const base = createContentBlockBaseSchema('text')
-
-{
-...textStylingRules_Schema.shape,
+const base = createContentBlockBaseSchema('text').shape.params.extend({
+  ...textStylingRules_Schema.shape,
   wrap: z.object({
-  enabled: z.literal(true),
-  typographyProps: z.unknown().optional(),
-}).optional(),
-}
+    enabled: z.literal(true),
+    typographyProps: z.unknown().optional(),
+  }).optional(),
+})
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   value: localizationSwitch[mode],
