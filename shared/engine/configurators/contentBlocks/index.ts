@@ -24,6 +24,8 @@ export * from './defineCarousel/defineCarousel.schemas';
 
 export * from './defineCheckpoint/defineCheckpoint';
 export * from './defineCheckpoint/defineCheckpoint.schemas';
+export * from './defineCheckpoint/checkpoint.utils';
+export * from './defineCheckpoint/publishCheckpointResponse';
 
 export * from './defineScene/defineScene';
 export * from './defineScene/defineScene.schemas';
