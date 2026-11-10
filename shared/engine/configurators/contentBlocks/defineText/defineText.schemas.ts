@@ -2,9 +2,10 @@ import { z } from 'zod';
 
 import {
   createContentBlockMetaSchema,
-  contentBlockLocalizationSwitch,
+  localizationSwitch,
   textStylingRules_Schema,
-} from '../contentBlock.schemas';
+} from '../_shared';
+import {Configurator_Mode} from "../../configurator.schemas";
 
 const wrap_Schema = z
   .strictObject({
@@ -13,8 +14,8 @@ const wrap_Schema = z
   })
   .optional();
 
-function createTextSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
-  const localized = contentBlockLocalizationSwitch[mode];
+const createTextSchema = (mode: Configurator_Mode)=> {
+  const localized = localizationSwitch[mode];
 
   return z.object({
     ...createContentBlockMetaSchema('text').shape,
