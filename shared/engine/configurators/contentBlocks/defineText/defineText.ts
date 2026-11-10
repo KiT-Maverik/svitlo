@@ -32,7 +32,7 @@ export const defineText = (config: ContentBlock_Text_Config) => {
       locale: (newLocale: DeepPartial<ContentBlock_Text_Locale<'config'>>) => overrides.locale = newLocale,
     },
     disable: () => overrides.params.disabled = true,
-  };
+  } as const;
 }
 
 export type ContentBlock_Text_Configurator = ReturnType<typeof defineText>;
