@@ -17,13 +17,14 @@ export const contentBlockTypes = [
 ] as const;
 export type ContentBlock_Type = (typeof contentBlockTypes)[number];
 
-export const createContentBlockBaseSchema = (type: ContentBlock_Type) =>
-  z.object({
-    id: z.uuid(),
-    slug: camelCase_Schema.min(1),
-    type: z.literal(type),
-    ...paramsBase_Schema.shape,
-  })
+export const createContentBlockBaseSchema =
+  <const Type extends ContentBlock_Type>(type: Type) =>
+    z.object({
+      id: z.uuid(),
+      slug: camelCase_Schema.min(1),
+      type: z.literal(type),
+      ...paramsBase_Schema.shape,
+    });
 
 const localeSubset_Schema = z
   .partialRecord(languageCode_Schema, localeText_Schema)
