@@ -1,28 +1,31 @@
 import { z } from 'zod';
+import { createContentBlockBaseSchema, localizationSwitch,  } from '../_shared';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { addUnifiedLocale } from '../../_shared';
 
-import { createContentBlockMetaSchema, contentBlockLocalizationSwitch } from '../contentBlock.schemas';
+const contentBlockBase = createContentBlockBaseSchema('video');
+const params = contentBlockBase.shape.params.extend({
+  
+});
+const videoBase = contentBlockBase.extend({ params });
 
-function createVideoSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
-  const localized = contentBlockLocalizationSwitch[mode];
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  fileLocation: localizationSwitch[mode],
+  poster: localizationSwitch[mode],
+  title: localizationSwitch[mode].optional(),
+  fallback: z.object({
+    offline: localizationSwitch[mode].optional(),
+    unavailable: localizationSwitch[mode].optional(),
+    playbackError: localizationSwitch[mode].optional(),
+    retry: localizationSwitch[mode].optional(),
+  }).optional(),
+});
+export type ContentBlock_Video_Locale<Mode extends Configurator_Mode> = z.infer<
+  z.ZodObject<ReturnType<typeof locale<Mode>>>
+>;
 
-  return z.object({
-    ...createContentBlockMetaSchema('video').shape,
-    fileLocation: localized,
-    poster: localized,
-    title: localized.optional(),
-    fallback: z
-      .object({
-        offline: localized.optional(),
-        unavailable: localized.optional(),
-        playbackError: localized.optional(),
-        retry: localized.optional(),
-      })
-      .optional(),
-  });
-}
-
-export const video_Config_Schema = createVideoSchema('config');
+export const video_Config_Schema = videoBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Video_Config = z.infer<typeof video_Config_Schema>;
 
-export const video_Props_Schema = createVideoSchema('props');
+export const video_Props_Schema = videoBase.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Video_Props = z.infer<typeof video_Props_Schema>;

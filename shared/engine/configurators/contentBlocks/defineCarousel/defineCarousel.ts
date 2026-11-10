@@ -1,32 +1,42 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings } from '../../_utils';
+import { onlyLocales, onlyStrings } from '../../_shared';
 
-import { carousel_Config_Schema, type ContentBlock_Carousel_Config } from './defineCarousel.schemas';
+import {
+  carousel_Config_Schema,
+  type ContentBlock_Carousel_Config,
+  type ContentBlock_Carousel_Locale,
+} from './defineCarousel.schemas';
 
-export function defineCarousel<const Slug extends string>(
-  config: Omit<ContentBlock_Carousel_Config, 'slug'> & { slug: Slug },
-) {
+export const defineCarousel = (config: ContentBlock_Carousel_Config) => {
   carousel_Config_Schema.parse(config);
 
-  const { id, type, slug, title, slides, ...params } = config;
-
-  const localeEntries = { title, slides } as const;
+  const { id, type, slug, locale, params } = config;
 
   const base = {
     id,
     type,
     slug,
-    ...params,
-    ...onlyStrings(localeEntries),
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
+
+  const overrides: DeepPartial<ContentBlock_Carousel_Config> = {};
 
   return {
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Carousel_Config>,
+      locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
     },
-  };
-}
+    override: {
+      params: (newParams: DeepPartial<ContentBlock_Carousel_Config['params']>) => (overrides.params = newParams),
+      locale: (newLocale: DeepPartial<ContentBlock_Carousel_Locale<'config'>>) => (overrides.locale = newLocale),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+  } as const;
+};
 
 export type ContentBlock_Carousel_Configurator = ReturnType<typeof defineCarousel>;

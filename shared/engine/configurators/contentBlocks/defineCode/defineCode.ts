@@ -1,30 +1,42 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings } from '../../_utils';
+import { onlyLocales, onlyStrings } from '../../_shared';
 
-import { code_Config_Schema, type ContentBlock_Code_Config } from './defineCode.schemas';
+import {
+  code_Config_Schema,
+  type ContentBlock_Code_Config,
+  type ContentBlock_Code_Locale,
+} from './defineCode.schemas';
 
-export function defineCode<const Slug extends string>(config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug }) {
+export const defineCode = (config: ContentBlock_Code_Config) => {
   code_Config_Schema.parse(config);
 
-  const { id, slug, type, language, title, code, fileLocation, variables } = config;
-
-  const localeEntries = { title, code, fileLocation, variables } as const;
+  const { id, type, slug, locale, params } = config;
 
   const base = {
     id,
-    slug,
     type,
-    language,
-    ...onlyStrings(localeEntries),
+    slug,
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
+
+  const overrides: DeepPartial<ContentBlock_Code_Config> = {};
 
   return {
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<ContentBlock_Code_Config>,
+      locales: (): { locale: DeepPartial<ContentBlock_Code_Locale<'config'>> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
     },
-  };
-}
+    override: {
+      params: (newParams: DeepPartial<ContentBlock_Code_Config['params']>) => (overrides.params = newParams),
+      locale: (newLocale: DeepPartial<ContentBlock_Code_Locale<'config'>>) => (overrides.locale = newLocale),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+  } as const;
+};
 
 export type ContentBlock_Code_Configurator = ReturnType<typeof defineCode>;

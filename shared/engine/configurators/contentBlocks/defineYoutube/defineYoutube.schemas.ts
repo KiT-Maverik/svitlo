@@ -1,32 +1,34 @@
 import { z } from 'zod';
+import { createContentBlockBaseSchema, localizationSwitch,  } from '../_shared';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { addUnifiedLocale } from '../../_shared';
 
-import { createContentBlockMetaSchema, contentBlockLocalizationSwitch } from '../contentBlock.schemas';
+const contentBlockBase = createContentBlockBaseSchema('youtube');
+const params = contentBlockBase.shape.params.extend({
+  mode: z.enum(['link', 'embed']),
+});
+const youtubeBase = contentBlockBase.extend({ params });
 
-function createYoutubeSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
-  const localized = contentBlockLocalizationSwitch[mode];
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  href: localizationSwitch[mode],
+  title: localizationSwitch[mode].optional(),
+  hint: localizationSwitch[mode].optional(),
+  fallback: z.object({
+    offline: localizationSwitch[mode].optional(),
+    unavailable: localizationSwitch[mode].optional(),
+    retry: localizationSwitch[mode].optional(),
+  }).optional(),
+});
+export type ContentBlock_Youtube_Locale<Mode extends Configurator_Mode> = z.infer<
+  z.ZodObject<ReturnType<typeof locale<Mode>>>
+>;
 
-  return z
-    .object({
-      ...createContentBlockMetaSchema('youtube').shape,
-      href: localized,
-      mode: z.enum(['link', 'embed']),
-      title: localized.optional(),
-      hint: localized.optional(),
-      fallback: z
-        .object({
-          offline: localized.optional(),
-          unavailable: localized.optional(),
-          retry: localized.optional(),
-        })
-        .optional(),
-    })
-    .refine(value => value.mode === 'link' || value.title !== undefined || value.hint !== undefined, {
-      message: 'Embedded video requires title or hint',
-    });
-}
-
-export const youtube_Config_Schema = createYoutubeSchema('config');
+export const youtube_Config_Schema = youtubeBase.extend(addUnifiedLocale(locale('config'))).refine(value => value.params.mode === 'link' || value.locale.title !== undefined || value.locale.hint !== undefined, {
+    message: 'Embedded video requires title or hint',
+  });
 export type ContentBlock_Youtube_Config = z.infer<typeof youtube_Config_Schema>;
 
-export const youtube_Props_Schema = createYoutubeSchema('props');
+export const youtube_Props_Schema = youtubeBase.extend(addUnifiedLocale(locale('props'))).refine(value => value.params.mode === 'link' || value.locale.title !== undefined || value.locale.hint !== undefined, {
+    message: 'Embedded video requires title or hint',
+  });
 export type ContentBlock_Youtube_Props = z.infer<typeof youtube_Props_Schema>;
