@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import {
   contentBlockConfigurator_Schema,
-  contentBlockLocalizationSwitch,
+  localizationSwitch,
   contentBlockResolved_Schema,
-} from '../../contentBlocks/contentBlock.schemas';
+} from '../../contentBlocks/_shared';
 
 export const flashcardRelationshipTypes = [
   'reverse',
@@ -24,8 +24,8 @@ const relationship_Schema = z.strictObject({
   position: z.enum(['peer', 'source', 'target']),
 });
 
-function createFlashcardSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
-  const localized = contentBlockLocalizationSwitch[mode];
+function createFlashcardSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
+  const localized = localizationSwitch[mode];
   const block = { config: contentBlockConfigurator_Schema, props: contentBlockResolved_Schema }[mode];
   const flags = z.discriminatedUnion('type', [
     z.strictObject({ type: z.literal('list'), count: z.number().int().nonnegative() }),
