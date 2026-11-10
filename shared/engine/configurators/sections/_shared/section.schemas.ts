@@ -7,30 +7,30 @@ export const sectionTypes = ['practice', 'codingTask', 'flow', 'flashcards', 'qu
 
 export type Section_Type = (typeof sectionTypes)[number];
 
-export const createSectionMetaSchema = (type: Section_Type, mode: Configurator_Mode) => {
-  const meta = {
+export const createSectionMetaSchema = (type: Section_Type) => {
+  const meta = (mode: Configurator_Mode) => ({
     type: z.literal(type),
     id: z.uuid(),
     slug: z.string().min(1),
     title: contentBlockLocalizationSwitch[mode]
-  };
+  });
 
-  const params = {
+  const params =  (mode: Configurator_Mode) => ({
     navigationLabel: contentBlockLocalizationSwitch[mode],
     skippable: z.literal(true).optional(),
-  }
+  });
 
   return {
     config: z.object({
-      ...meta,
+      ...meta('config'),
       title: contentBlockLocalizationSwitch.config,
-      params,
+      params: params('config'),
     }),
     props: z.object({
-      ...meta,
+      ...meta('props'),
       title: contentBlockLocalizationSwitch.props,
       params: z.object({
-        ...params,
+        ...params('props'),
         disable: z.literal(true).optional(),
       }),
     }),
