@@ -13,10 +13,12 @@ import {
  * Zod additionally requires that order lists every item exactly once.
  */
 export const defineCheckpoint = <
+  const Slug extends string,
   const Items extends ContentBlock_Checkpoint_Config['content']['items'],
   const Order extends readonly (keyof Items & string)[],
 >(
-  config: Omit<ContentBlock_Checkpoint_Config, 'content'> & {
+  config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
+    slug: Slug;
     content: { items: Items; order: Order };
   },
 ) => {

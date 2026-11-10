@@ -77,6 +77,7 @@ const authoredYoutube: ContentBlock_Youtube<'data', TestLanguages> = {
   mode: 'embed',
   href: 'https://youtu.be/M7lc1UVf-VE',
   title: 'Lesson video',
+  label: 'Watch the lesson video',
   fallback: {
     offline: 'Connect to watch',
     unavailable: 'Video unavailable',
@@ -119,7 +120,7 @@ const authoredFillImage: ContentBlock_Image<'data', TestLanguages> = {
   objectFit: 'contain',
   sizes: '(max-width: 768px) 100vw, 768px',
 };
-// @ts-expect-error Embedded YouTube videos require an accessible title or hint.
+// @ts-expect-error YouTube links and embeds require an accessible label.
 const unlabelledYoutube: ContentBlock_Youtube<'response', TestLanguages> = {
   id: 'youtube-id',
   type: 'youtube',
