@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import { Configurator_Mode } from '../../configurator.schemas';
-import {paramsBase_Schema} from "../../../../_shared";
+import {identityBase_Schema, paramsBase_Schema} from "../../../../_shared";
 
 export const sectionTypes = ['practice', 'codingTask', 'flow', 'flashcards', 'quiz', 'content'] as const;
 
@@ -13,25 +13,18 @@ const commonParams = paramsBase_Schema.shape.params.extend({
 })
 
 export const createSectionBaseSchema = (type: Section_Type) => {
-  const meta = (mode: Configurator_Mode) => ({
+  const identity = () => identityBase_Schema.extend({
     type: z.literal(type),
-    id: z.uuid(),
-    slug: z.string().min(1),
-    title: contentBlockLocalizationSwitch[mode],
-  });
-
-  const params = (mode: Configurator_Mode) => ({
-    navigationLabel: contentBlockLocalizationSwitch[mode],
   });
 
   return {
     config: z.object({
-      ...meta('config'),
+      ...identity('config'),
       title: contentBlockLocalizationSwitch.config,
       params: params('config'),
     }),
     props: z.object({
-      ...meta('props'),
+      ...identity('props'),
       title: contentBlockLocalizationSwitch.props,
       params: z.object({
         ...params('props'),
