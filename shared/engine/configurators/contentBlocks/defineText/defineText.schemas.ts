@@ -3,7 +3,7 @@ import { z } from 'zod';
 import {disabledParam_Schema} from "#schemas";
 
 import {
-  createContentBlockMetaSchema,
+  createContentBlockBaseSchema,
   localizationSwitch,
   textStylingRules_Schema,
 } from '../_shared';
@@ -11,7 +11,7 @@ import {Configurator_Mode} from "../../configurator.schemas";
 import {addUnifiedLocale} from "../../_utils";
 
 const base = z.object({
-  ...createContentBlockMetaSchema('text').shape,
+  ...createContentBlockBaseSchema('text').shape,
   params: z.object({
     ...textStylingRules_Schema.shape,
     wrap: z.object({

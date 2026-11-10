@@ -16,7 +16,7 @@ export const contentBlockTypes = [
 ] as const;
 export type ContentBlock_Type = (typeof contentBlockTypes)[number];
 
-export const createContentBlockMetaSchema = (type: ContentBlock_Type) =>
+export const createContentBlockBaseSchema = (type: ContentBlock_Type) =>
   z.object({ id: z.uuid(), slug: camelCase_Schema.min(1), type: z.literal(type) });
 
 const localeSubset_Schema = z
