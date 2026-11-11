@@ -3,9 +3,11 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared';
 
 import { code_Config_Schema, type ContentBlock_Code_Config, type ContentBlock_Code_Locale } from './defineCode.schemas';
+import { validateCodeVariables } from './validateCodeVariables';
 
-const validate = (config: ContentBlock_Code_Config) => {
+const validate = (config: ContentBlock_Code_Config, resolvedSource?: string) => {
   code_Config_Schema.parse(config);
+  validateCodeVariables(config, resolvedSource);
 };
 
 /**
@@ -16,7 +18,10 @@ const validate = (config: ContentBlock_Code_Config) => {
  * `%_%VARIABLE_NAME%_%` in the source, using UPPER_SNAKE_CASE IDs.
  * Matching `locale.variables` supply localized replacement values.
  * Only values are localized; substitution happens before highlighting.
- * Unmatched markers remain literal and do not alter surrounding code.
+ * Each declared variable ID must correspond to a placeholder, and vice versa.
+ * Pass the resolved source text as the second argument to
+ * `config.validate(config, resolvedSource)` for the complete check; without
+ * source text, validation can check declared IDs but cannot inspect the file.
  */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
