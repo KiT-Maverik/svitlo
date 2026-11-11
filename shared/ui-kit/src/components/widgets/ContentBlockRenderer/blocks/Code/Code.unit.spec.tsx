@@ -13,7 +13,7 @@ const response: ContentBlock_Code_Response = {
   language: 'typescript',
   title: 'Приклад',
   codeAsText: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
-  variables: [{ id: 'GREETING', value: 'Привіт' }],
+  variables: { GREETING: 'Привіт' },
 };
 
 describe('Code content block', () => {
@@ -31,17 +31,17 @@ describe('Code content block', () => {
   });
 
   it('shows unknown languages and missing variables as readable plain text', () => {
-    const { container } = render(<Code {...response} language="made-up" variables={[]} />);
+    const { container } = render(<Code {...response} language="made-up" variables={{}} />);
     expect(container.querySelector('code')).toHaveTextContent('const greeting = "%_%GREETING%_%";');
     expect(container.querySelector('.hljs-keyword')).toBeNull();
   });
 
   it('never treats substituted code as markup', () => {
     expect(
-      resolveCodeVariables('const value = "%_%VALUE%_%";', [{ id: 'VALUE', value: '<script>alert(1)</script>' }]),
+      resolveCodeVariables('const value = "%_%VALUE%_%";', { VALUE: '<script>alert(1)</script>' }),
     ).toBe('const value = "<script>alert(1)</script>";');
     const { container } = render(
-      <Code {...response} variables={[{ id: 'GREETING', value: '<script>alert(1)</script>' }]} />,
+      <Code {...response} variables={{ GREETING: '<script>alert(1)</script>' }} />,
     );
     expect(container.querySelector('script')).toBeNull();
     expect(container.querySelector('code')).toHaveTextContent('<script>alert(1)</script>');
@@ -49,7 +49,7 @@ describe('Code content block', () => {
 
   it('leaves malformed, missing and obsolete placeholders unchanged', () => {
     const source = 'const old = "{{legacy}}"; const invalid = "%_%lower_case%_%";';
-    expect(resolveCodeVariables(source, [{ id: 'LEGACY', value: 'ignored' }])).toBe(source);
+    expect(resolveCodeVariables(source, { LEGACY: 'ignored' })).toBe(source);
     expect(resolveCodeVariables('%_%UNDEFINED%_%')).toBe('%_%UNDEFINED%_%');
     expect(resolveCodeVariables('%_%OPEN')).toBe('%_%OPEN');
   });
@@ -64,7 +64,7 @@ describe('Code content block', () => {
 describe('Code variables and localization', () => {
   it('replaces repeated short markers without altering ordinary object braces', () => {
     expect(
-      resolveCodeVariables('const item = { first: "%_%WORD%_%", second: "%_%WORD%_%" };', [{ id: 'WORD', value: 'light' }]),
+      resolveCodeVariables('const item = { first: "%_%WORD%_%", second: "%_%WORD%_%" };', { WORD: 'light' }),
     ).toBe('const item = { first: "light", second: "light" };');
   });
 
