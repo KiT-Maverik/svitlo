@@ -11,17 +11,22 @@ const validate = (config: ContentBlock_Code_Config, resolvedSource?: string) => 
 };
 
 /**
- * Define Code from a source template with localized replacements.
+ * Define a static, display-only Code block from a source file.
  *
  * @remarks
- * `params.fileLocation` identifies the source template. Write
- * `%_%VARIABLE_NAME%_%` in the source, using UPPER_SNAKE_CASE IDs.
- * Matching `locale.variables` supply localized replacement values.
- * Only values are localized; substitution happens before highlighting.
- * Each declared variable ID must correspond to a placeholder, and vice versa.
- * Pass the resolved source text as the second argument to
- * `config.validate(config, resolvedSource)` for the complete check; without
- * source text, validation can check declared IDs but cannot inspect the file.
+ * Code is rendered as text with syntax highlighting; this block never compiles,
+ * evaluates or executes the source. `params.fileLocation` identifies the source
+ * file used by the publisher, not an executable entry point.
+ *
+ * Use `%_%VARIABLE_NAME%_%` in that file with UPPER_SNAKE_CASE IDs matching
+ * `locale.variables`. Only the replacement values are localized.
+ *
+ * `config.validate(config)` checks the authored data without filesystem access.
+ * The Node-only publisher can call `loadAndValidateCodeTemplate(config, baseDirectory)`
+ * to resolve a file relative to an explicit root, check that it exists, read it
+ * as UTF-8 and reject undeclared, missing or malformed placeholders.
+ * Alternatively, `config.validate(config, resolvedSource)` checks the same
+ * placeholders when the caller already has the source string.
  */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
