@@ -365,6 +365,35 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
       error.result.errors.some(issue => issue.check === 'configurator'),
   );
 
+  // Matching identity alone is not enough: an answer must expose the ContentBlock API.
+  const fakeAnswer = {
+    id: answer.id,
+    slug: answer.slug,
+    type: answer.type,
+    config: {
+      base: answer.config.base,
+      locales: answer.config.locales,
+      overrides: {},
+      validate: answer.config.validate,
+    },
+  };
+  assert.throws(
+    () => checkpoint.config.validate({
+      ...config,
+      content: {
+        ...config.content,
+        items: {
+          whatIsLight: {
+            ...config.content.items.whatIsLight,
+            answer: { items: { answer: fakeAnswer }, order: ['answer'] },
+          },
+        },
+      },
+    } as unknown as typeof config),
+    error => error instanceof CheckpointValidationError &&
+      error.result.errors.some(issue => issue.check === 'configurator'),
+  );
+
   const nested = {
     ...config,
     content: { ...config.content, items: {

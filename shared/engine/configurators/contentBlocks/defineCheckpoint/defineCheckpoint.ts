@@ -98,8 +98,13 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
       typeof base.type !== 'string' ||
       typeof base.id !== 'string' ||
       typeof base.slug !== 'string' ||
+      !isObject(value.config.overrides) ||
       typeof locales !== 'function' ||
-      typeof validateChild !== 'function'
+      typeof validateChild !== 'function' ||
+      !isObject(value.override) ||
+      typeof value.override.params !== 'function' ||
+      typeof value.override.locale !== 'function' ||
+      typeof value.disable !== 'function'
     ) {
       fail('configurator', path, 'Invalid ContentBlock configurator identity or methods');
       return;
