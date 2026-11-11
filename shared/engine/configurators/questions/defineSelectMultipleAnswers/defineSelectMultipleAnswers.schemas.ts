@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
 import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
