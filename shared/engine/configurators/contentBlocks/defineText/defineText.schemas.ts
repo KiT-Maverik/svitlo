@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { createContentBlockBaseSchema, localizationSwitch, textVariables_Schema } from '../_shared';
 import { Configurator_Mode } from '../../configurator.schemas';
-import { addUnifiedLocale } from '../../_shared';
+import { addUnifiedLocale } from '../../_shared__configurators';
 
 const contentBlockBase = createContentBlockBaseSchema('text');
 
