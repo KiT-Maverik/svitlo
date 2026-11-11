@@ -4,10 +4,14 @@ import type { Skill_Configurator } from '../defineSkill/defineSkill';
 
 import { skillGroup_Config_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
 
+const validate = (config: unknown) => {
+  skillGroup_Config_Schema.parse(config);
+};
+
 export function defineSkillGroup<const Slug extends string, const Skills extends readonly Skill_Configurator[]>(
   config: Omit<SkillGroup_Config, 'slug' | 'skills'> & { slug: Slug; skills: Skills },
 ) {
-  skillGroup_Config_Schema.parse(config);
+  validate(config);
 
   const { id, description, slug, name, skills } = config;
 
@@ -18,8 +22,12 @@ export function defineSkillGroup<const Slug extends string, const Skills extends
   } satisfies DeepPartial<SkillGroup_Config>;
 
   return {
+    id,
+    slug,
+    type: 'skillGroup' as const,
     config: {
       base,
+      validate,
       locales: () =>
         ({
           name,

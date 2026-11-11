@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import type { ContentBlock_Text_Configurator } from '../../contentBlocks/defineText/defineText';
 import type { ContentBlock_Markdown_Configurator } from '../../contentBlocks/defineMarkdown/defineMarkdown';
-import { contentBlockConfigurator_Schema } from '../../contentBlocks/contentBlock.schemas';
+import { contentBlockConfigurator_Schema } from '../../contentBlocks/_shared';
 
 export const courseHierarchyTypes = ['course', 'module', 'chapter', 'episode'] as const;
 export type CourseHierarchy_Type = (typeof courseHierarchyTypes)[number];

@@ -1,2 +1,1 @@
-export * from './defineLesson/defineLesson';
-export * from './defineLesson/defineLesson.schemas';
+export * from './defineLesson';

@@ -4,8 +4,12 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 
 import { orderSequence_Config_Schema, type Question_OrderSequence_Config } from './defineOrderSequence.schemas';
 
-export function defineOrderSequence<const Config extends Question_OrderSequence_Config>(config: Config) {
+const validate = (config: Question_OrderSequence_Config) => {
   orderSequence_Config_Schema.parse(config);
+};
+
+export function defineOrderSequence<const Config extends Question_OrderSequence_Config>(config: Config) {
+  validate(config);
 
   const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, sequence } = config;
 
@@ -21,10 +25,14 @@ export function defineOrderSequence<const Config extends Question_OrderSequence_
   } satisfies DeepPartial<Question_OrderSequence_Config>;
 
   return {
+    id,
+    slug,
+    type,
     kind: 'orderSequence' as const,
     config: {
       base,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_OrderSequence_Config>,
+      validate,
     },
     // Nested ContentBlocks remain configurators; the publishing phase resolves them.
     question,

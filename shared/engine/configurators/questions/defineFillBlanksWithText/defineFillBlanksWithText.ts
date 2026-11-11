@@ -7,8 +7,12 @@ import {
   type Question_FillBlanksWithText_Config,
 } from './defineFillBlanksWithText.schemas';
 
-export function defineFillBlanksWithText<const Config extends Question_FillBlanksWithText_Config>(config: Config) {
+const validate = (config: Question_FillBlanksWithText_Config) => {
   fillBlanksWithText_Config_Schema.parse(config);
+};
+
+export function defineFillBlanksWithText<const Config extends Question_FillBlanksWithText_Config>(config: Config) {
+  validate(config);
 
   const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, slots, placeholder } = config;
 
@@ -24,10 +28,14 @@ export function defineFillBlanksWithText<const Config extends Question_FillBlank
   } satisfies DeepPartial<Question_FillBlanksWithText_Config>;
 
   return {
+    id,
+    slug,
+    type,
     kind: 'fillBlanksWithText' as const,
     config: {
       base,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_FillBlanksWithText_Config>,
+      validate,
     },
     // Nested ContentBlocks remain configurators; the publishing phase resolves them.
     question,

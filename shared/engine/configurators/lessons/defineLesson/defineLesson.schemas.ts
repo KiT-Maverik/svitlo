@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { languageCode_Schema } from '#schemas';
-import { contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { localizationSwitch } from '../../contentBlocks/_shared';
 import { flashcardConfigurator_Schema } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
 import { sectionConfigurator_Schema } from '../../sections/section.schemas';
 
@@ -69,8 +69,8 @@ const languages_Schema = z
   .array(languageCode_Schema)
   .nonempty()
   .refine(values => new Set(values).size === values.length, 'Declared languages must be unique');
-function createLessonSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
-  const title = contentBlockLocalizationSwitch[mode];
+function createLessonSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
+  const title = localizationSwitch[mode];
   const childSchemas = {
     config: {
       flashcards: z.array(flashcardConfigurator_Schema),

@@ -18,6 +18,7 @@ export const Video = ({
   fileLocation,
   poster,
   title,
+  label,
   fallback,
   messages,
 }: ContentBlock_Video_Response & {
@@ -73,7 +74,7 @@ export const Video = ({
     <figure {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.figure}>
       {failureKind ? (
         <div className={styles.placeholder} role="alert">
-          {title && <strong>{title}</strong>}
+          <strong>{label}</strong>
           <span>{fallback?.[failureKind] || messages[failureKind]}</span>
           <Button type="button" variant="outlined" onClick={retry}>
             {fallback?.retry || messages['retry']}
@@ -89,7 +90,7 @@ export const Video = ({
           poster={poster}
           preload="metadata"
           playsInline
-          aria-label={title}
+          aria-label={label}
           onError={handleError}
           onStalled={failIfOffline}
           onWaiting={failIfOffline}

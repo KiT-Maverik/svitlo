@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { onlyLocales, onlyStrings } from './_utils';
+import { onlyLocales, onlyStrings } from './_shared';
 
 const enUk = { en: 'Hello', uk: 'Привіт' } as const;
 
@@ -62,8 +62,8 @@ test('onlyLocales keeps valid sparse locale dictionaries at their original neste
 test('locale recognition excludes unsupported language codes and invalid localized text', () => {
   assert.deepEqual(onlyLocales({ text: { xx: 'Not supported' } }), {});
   assert.deepEqual(onlyLocales({ text: { en: 42 } }), {});
-  // ContentBlock schemas validate nonempty text; this projector checks locale
-  // structure only, so it can also preserve Scene text values.
+  // ContentBlock schemas validate nonempty text; the projector only checks
+  // locale dictionary structure, leaving value validation to the schemas.
   assert.deepEqual(onlyLocales({ text: { en: '' } }), { text: { en: '' } });
   assert.deepEqual(onlyLocales({ text: {} }), {});
   assert.deepEqual(onlyLocales({ text: { en: 'Text', label: 'Not a locale key' } }), {});
@@ -96,15 +96,26 @@ test('localized-only arrays keep their base skeleton and precise locale position
   assert.deepEqual(onlyLocales(source), source);
 });
 
-test('structured Scene dictionaries remain localized rather than leaking into base', () => {
+test('Scene uses ordinary field-level localized dictionaries at any nesting depth', () => {
   const source = {
-    locales: {
-      en: { greeting: 'Hello', state: { message: 'Ready' } },
-      uk: { greeting: 'Привіт', state: { message: 'Готово' } },
+    value: {
+      character: 'hero',
+      greeting: { en: 'Hello', uk: 'Привіт' },
+      state: {
+        emotion: 'happy',
+        message: { en: 'Ready', uk: 'Готово' },
+      },
     },
   };
-  assert.deepEqual(onlyStrings(source), {});
-  assert.deepEqual(onlyLocales(source), source);
-  // A record with arbitrary keys is not a locale dictionary.
+  assert.deepEqual(onlyStrings(source), {
+    value: { character: 'hero', state: { emotion: 'happy' } },
+  });
+  assert.deepEqual(onlyLocales(source), {
+    value: {
+      greeting: { en: 'Hello', uk: 'Привіт' },
+      state: { message: { en: 'Ready', uk: 'Готово' } },
+    },
+  });
+  // Structural records are not themselves locale dictionaries.
   assert.deepEqual(onlyLocales({ value: { greeting: 'Hello' } }), {});
 });

@@ -4,6 +4,10 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
 import { flashcard_Config_Schema, type Flashcard_Config } from './defineFlashcard.schemas';
 
+const validate = (config: unknown) => {
+  flashcard_Config_Schema.parse(config);
+};
+
 export function defineFlashcard<
   const Front extends readonly ContentBlock_Configurator[],
   const Back extends readonly ContentBlock_Configurator[],
@@ -15,7 +19,7 @@ export function defineFlashcard<
     hint: Hint;
   },
 ) {
-  flashcard_Config_Schema.parse(config);
+  validate(config);
 
   const { type, id, isDefault, front, back, hint, tags, flags, relationships } = config;
   // TODO(#436): Array patch semantics for localized flag values remain unresolved.
@@ -38,8 +42,11 @@ export function defineFlashcard<
   } satisfies DeepPartial<Flashcard_Config>;
 
   return {
+    id,
+    type,
     config: {
       base,
+      validate,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Flashcard_Config>,
     },
     front,

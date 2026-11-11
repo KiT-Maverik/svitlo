@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { ContentBlock_Configurator } from '../contentBlock.types';
 
 import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema, camelCase_Schema } from '#schemas';
 import { paramsBase_Schema } from '../../_shared';
@@ -33,3 +34,45 @@ export const localizationSwitch = {
   config: z.union([nonTranslatableText_Schema, localeSubset_Schema]),
   props: localeText_Schema,
 } as const;
+
+/** Resolved child blocks are plain props, never authoring-time configurators. */
+export const contentBlockResolved_Schema = z
+  .object({
+    id: z.uuid(),
+    slug: z.string().min(1),
+    type: z.enum(contentBlockTypes),
+  })
+  .catchall(z.unknown());
+
+/** Nest configurators, not authored child configs. */
+export const contentBlockConfigurator_Schema = z.custom<{
+  readonly config: {
+    readonly base: { readonly id: string; readonly slug: string; readonly type: ContentBlock_Type };
+    readonly locales: () => unknown;
+  };
+}>(
+  value => {
+    if (value === null || typeof value !== 'object' || !('config' in value)) return false;
+    const config = value.config;
+    if (config === null || typeof config !== 'object' || !('base' in config) || !('locales' in config)) return false;
+    const base = config.base;
+    return (
+      typeof config.locales === 'function' &&
+      base !== null &&
+      typeof base === 'object' &&
+      'id' in base &&
+      typeof base.id === 'string' &&
+      'slug' in base &&
+      typeof base.slug === 'string' &&
+      'type' in base &&
+      contentBlockTypes.includes(base.type as ContentBlock_Type)
+    );
+  },
+  { message: 'Expected a ContentBlock configurator returned by define*, not a raw config' },
+);
+
+// The Checkpoint schema uses the structural type to avoid a recursive type alias.
+export const contentBlockChild_Schema = contentBlockConfigurator_Schema as unknown as z.ZodType<
+  ContentBlock_Configurator,
+  ContentBlock_Configurator
+>;

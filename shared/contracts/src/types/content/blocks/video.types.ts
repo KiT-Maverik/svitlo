@@ -15,6 +15,8 @@ type ContentBlock_Video_Data<SupportedLanguages extends Locale_Languages> = Cont
   fileLocation: Locale_Options<SupportedLanguages>;
   poster: Locale_Options<SupportedLanguages>;
   title?: Locale_Options<SupportedLanguages>;
+  /** Accessible name, independent from the optional visible title. */
+  label: Locale_Options<SupportedLanguages>;
   fallback?: Video_Fallback<Locale_Options<SupportedLanguages>>;
 };
 
@@ -22,6 +24,7 @@ export type ContentBlock_Video_Response = ContentBlock_Response_Meta<'video'> & 
   fileLocation: string;
   poster: string;
   title?: string;
+  label: string;
   fallback?: Video_Fallback<string>;
 };
 

@@ -12,7 +12,8 @@ const response: ContentBlock_Youtube_Response = {
   mode: 'embed',
 
   href: 'https://youtu.be/M7lc1UVf-VE',
-  title: 'Приклад відео',
+  title: 'Назва блоку',
+  label: 'Приклад відео',
   fallback: {
     offline: 'Немає з’єднання',
     unavailable: 'Відео не відтворюється',
@@ -86,7 +87,7 @@ describe('YouTube content block', () => {
 });
 
 describe('YouTube links, validation, and retry', () => {
-  it('opens external links safely and uses a hint when no title is supplied', () => {
+  it('opens external links safely and uses the label without a visible title', () => {
     setOnline(true);
     render(
       <Youtube
@@ -94,13 +95,20 @@ describe('YouTube links, validation, and retry', () => {
         {...response}
         mode="link"
         title={undefined}
-        hint="Watch the example"
+        label="Watch the example"
       />,
     );
     const link = screen.getByRole('link', { name: 'Watch the example' });
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
     expect(link).toHaveAttribute('href', response.href);
+  });
+
+  it('keeps the block title separate from the link text', () => {
+    setOnline(true);
+    render(<Youtube messages={enUiKitMessages.youtube} {...response} mode="link" />);
+    expect(screen.getByRole('link', { name: 'Приклад відео' })).toBeInTheDocument();
+    expect(screen.getByText('Назва блоку')).toBeInTheDocument();
   });
 
   it('accepts watch, shorts and embed paths but rejects invalid identifiers', () => {

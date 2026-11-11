@@ -1,26 +1,31 @@
 import { z } from 'zod';
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { addUnifiedLocale } from '../../_shared';
 
-import { createContentBlockMetaSchema, contentBlockLocalizationSwitch } from '../contentBlock.schemas';
+const contentBlockBase = createContentBlockBaseSchema('code');
 
-function createCodeSchema<Mode extends keyof typeof contentBlockLocalizationSwitch>(mode: Mode) {
-  const localized = contentBlockLocalizationSwitch[mode];
+const params = contentBlockBase.shape.params.extend({
+  language: z.string().min(1),
+  // Source template reference. Kept as a string until resource addressing is finalized.
+  // The publisher resolves it to source code before the UI Kit renders the block.
+  fileLocation: z.string().min(1),
+});
 
-  return z
-    .object({
-      ...createContentBlockMetaSchema('code').shape,
-      language: z.string().min(1),
-      title: localized.optional(),
-      code: localized.optional(),
-      fileLocation: localized.optional(),
-      variables: z.array(z.object({ id: z.string().min(1), value: localized })).optional(),
-    })
-    .refine(value => Number(value.code !== undefined) + Number(value.fileLocation !== undefined) === 1, {
-      message: 'Provide exactly one of code or fileLocation',
-    });
-}
+const codeBase = contentBlockBase.extend({ params });
 
-export const code_Config_Schema = createCodeSchema('config');
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  title: localizationSwitch[mode].optional(),
+  // The source template uses {{id}} placeholders. Only replacement values are localized.
+  variables: z.array(z.object({ id: z.string().min(1), value: localizationSwitch[mode] })).optional(),
+});
+
+export type ContentBlock_Code_Locale<Mode extends Configurator_Mode> = z.infer<
+  z.ZodObject<ReturnType<typeof locale<Mode>>>
+>;
+
+export const code_Config_Schema = codeBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Code_Config = z.infer<typeof code_Config_Schema>;
 
-export const code_Props_Schema = createCodeSchema('props');
+export const code_Props_Schema = codeBase.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Code_Props = z.infer<typeof code_Props_Schema>;

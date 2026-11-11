@@ -4,8 +4,12 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 
 import { matchBlocks_Config_Schema, type Question_MatchBlocks_Config } from './defineMatchBlocks.schemas';
 
-export function defineMatchBlocks<const Config extends Question_MatchBlocks_Config>(config: Config) {
+const validate = (config: Question_MatchBlocks_Config) => {
   matchBlocks_Config_Schema.parse(config);
+};
+
+export function defineMatchBlocks<const Config extends Question_MatchBlocks_Config>(config: Config) {
+  validate(config);
 
   const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, pairs } = config;
 
@@ -21,10 +25,14 @@ export function defineMatchBlocks<const Config extends Question_MatchBlocks_Conf
   } satisfies DeepPartial<Question_MatchBlocks_Config>;
 
   return {
+    id,
+    slug,
+    type,
     kind: 'matchBlocks' as const,
     config: {
       base,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_MatchBlocks_Config>,
+      validate,
     },
     // Nested ContentBlocks remain configurators; the publishing phase resolves them.
     question,

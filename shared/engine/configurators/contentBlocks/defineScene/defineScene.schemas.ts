@@ -1,26 +1,41 @@
 import { z } from 'zod';
 
-import { languageCode_Schema } from '#schemas';
-import { createContentBlockMetaSchema } from '../contentBlock.schemas';
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { addUnifiedLocale } from '../../_shared';
 
-const sceneValue_Schema: z.ZodType<string | { [key: string]: unknown }> = z.lazy(() =>
-  z.union([z.string(), z.record(z.string(), sceneValue_Schema)]),
+type SceneValue = string | { [key: string]: SceneValue };
+
+/**
+ * A Scene uses the standard ContentBlock field-level localization contract:
+ * strings are invariant, and language dictionaries localize individual leaves.
+ */
+const sceneConfigValue_Schema: z.ZodType<SceneValue> = z.lazy(() =>
+  z.union([localizationSwitch.config, z.record(z.string(), sceneConfigValue_Schema)]),
+);
+
+const scenePropsValue_Schema: z.ZodType<SceneValue> = z.lazy(() =>
+  z.union([localizationSwitch.props, z.record(z.string(), scenePropsValue_Schema)]),
 );
 
 const sceneLocalizationSwitch = {
-  config: z.partialRecord(languageCode_Schema, sceneValue_Schema),
-  props: sceneValue_Schema,
+  config: sceneConfigValue_Schema,
+  props: scenePropsValue_Schema,
 } as const;
 
-function createSceneSchema<Mode extends keyof typeof sceneLocalizationSwitch>(mode: Mode) {
-  return z.object({
-    ...createContentBlockMetaSchema('scene').shape,
-    locales: sceneLocalizationSwitch[mode],
-  });
-}
+const contentBlockBase = createContentBlockBaseSchema('scene');
+const params = contentBlockBase.shape.params.extend({});
+const sceneBase = contentBlockBase.extend({ params });
 
-export const scene_Config_Schema = createSceneSchema('config');
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  value: sceneLocalizationSwitch[mode],
+});
+export type ContentBlock_Scene_Locale<Mode extends Configurator_Mode> = z.infer<
+  z.ZodObject<ReturnType<typeof locale<Mode>>>
+>;
+
+export const scene_Config_Schema = sceneBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Scene_Config = z.infer<typeof scene_Config_Schema>;
 
-export const scene_Props_Schema = createSceneSchema('props');
+export const scene_Props_Schema = sceneBase.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Scene_Props = z.infer<typeof scene_Props_Schema>;

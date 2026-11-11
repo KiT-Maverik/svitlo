@@ -25,7 +25,7 @@ export const Youtube = ({
   href,
   mode,
   title,
-  hint,
+  label,
   fallback: fallbackMessages,
   messages,
 }: ContentBlock_Youtube_Response & {
@@ -37,13 +37,8 @@ export const Youtube = ({
   const [failedHref, setFailedHref] = useState<string | null>(null);
   const unavailable = mode === 'embed' && failedHref === href;
   const attributes = localizedAttributes({ locale: { code: contentLanguage } });
-  const label = title || hint || href;
-
   if (mode === 'link') youtubeVideoId(href);
-  else {
-    youtubeEmbedUrl(href);
-    if (!title && !hint) throw new Error('Embedded YouTube blocks require an accessible title or hint');
-  }
+  else youtubeEmbedUrl(href);
 
   useEffect(() => {
     if (mode !== 'embed' || online !== true || unavailable) return;
@@ -104,21 +99,24 @@ export const Youtube = ({
   );
 
   if (mode === 'link') {
-    return fallbackKind ? (
-      <div {...attributes} className={styles.linkFallback}>
-        {fallback}
-      </div>
-    ) : (
-      <a {...attributes} href={href} rel="noopener noreferrer" target="_blank">
-        {label}
-      </a>
+    return (
+      <figure {...attributes} className={styles.figure}>
+        {fallbackKind ? (
+          <div className={styles.linkFallback}>{fallback}</div>
+        ) : (
+          <a href={href} rel="noopener noreferrer" target="_blank">
+            {label}
+          </a>
+        )}
+        {title && <figcaption>{title}</figcaption>}
+      </figure>
     );
   }
 
   return (
     <figure {...attributes} className={styles.figure}>
       {fallback || <div key="player" ref={playerHost} className={styles.player} />}
-      {hint && <figcaption>{hint}</figcaption>}
+      {title && <figcaption>{title}</figcaption>}
     </figure>
   );
 };
