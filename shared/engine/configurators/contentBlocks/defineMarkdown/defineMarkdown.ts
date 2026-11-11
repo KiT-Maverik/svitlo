@@ -2,14 +2,14 @@ import { readFileSync, readdirSync } from 'node:fs';
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales, onlyStrings } from '../../_shared';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
 import {
   markdown_Config_Schema,
   type ContentBlock_Markdown_Config,
   type ContentBlock_Markdown_Locale,
 } from './defineMarkdown.schemas';
-import { validateReplacementVariables } from '../_shared';
+import { validateReplacementVariables } from '../_shared__contentBlocks';
 
 type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCodes[] };
 
@@ -31,8 +31,9 @@ function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Rec
 
   const directory = new URL('./locales/', moduleUrl);
   const expected = new Set(languages);
-  const unexpected = readdirSync(directory)
-    .filter(name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCodes));
+  const unexpected = readdirSync(directory).filter(
+    name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCodes),
+  );
   if (unexpected.length) throw new Error('Unexpected Markdown locale files: ' + unexpected.join(', '));
 
   const values: Partial<Record<LanguageCodes, string>> = {};
@@ -73,9 +74,10 @@ const validate = (config: ContentBlock_Markdown_Config) => {
 export const defineMarkdown = <const Slug extends string>(
   config: MarkdownInlineConfig<Slug> | MarkdownFileConfig<Slug>,
 ) => {
-  const locale = 'files' in config && config.files
-    ? { ...config.locale, value: readMarkdownFiles(config.files) }
-    : (config as MarkdownInlineConfig<Slug>).locale;
+  const locale =
+    'files' in config && config.files
+      ? { ...config.locale, value: readMarkdownFiles(config.files) }
+      : (config as MarkdownInlineConfig<Slug>).locale;
 
   const resolved: ContentBlock_Markdown_Config = {
     id: config.id,

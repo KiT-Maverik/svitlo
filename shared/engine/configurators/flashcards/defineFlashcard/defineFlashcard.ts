@@ -1,7 +1,7 @@
 import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
-import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 import { flashcard_Config_Schema, type Flashcard_Config } from './defineFlashcard.schemas';
 
 const validate = (config: unknown) => {

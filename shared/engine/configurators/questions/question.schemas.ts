@@ -2,26 +2,13 @@ import { z } from 'zod';
 import { disability_Schema } from '#schemas';
 
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
+import { questionTypes, type Question_Type } from './question.constants';
 
 import {
   contentBlockConfigurator_Schema,
   contentBlockResolved_Schema,
-  localizationSwitch,
-} from '../contentBlocks/_shared';
-
-export const questionTypes = [
-  'selectOneAnswer',
-  'selectMultipleAnswers',
-  'matchBlocks',
-  'answerWithText',
-  'answerWithNumber',
-  'orderSequence',
-  'buildAnswerWithBlocks',
-  'fillBlanksWithBlocks',
-  'fillBlanksWithText',
-] as const;
-
-export type Question_Type = (typeof questionTypes)[number];
+  contentBlockLocalizationSwitch as localizationSwitch,
+} from '../contentBlocks';
 
 /** Authored Questions hold ContentBlock definitions; published Questions contain resolved props. */
 export const questionBlockSwitch = {

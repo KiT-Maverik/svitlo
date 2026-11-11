@@ -1,5 +1,5 @@
 export * from './addUnifiedLocale/addUnifiedLocale.utils';
-export * from './configuratorArrayToSlugMap/configuratorArrayToSlugMap.utils';
+export * from '../configuratorArrayToSlugMap';
 export * from './orderedConfiguratorCollection/orderedConfiguratorCollection.utils';
 export * from './validateSluggedConfiguratorMap/validateSluggedConfiguratorMap.utils';
 export * from './validateOrderedKeys/validateOrderedKeys.utils';

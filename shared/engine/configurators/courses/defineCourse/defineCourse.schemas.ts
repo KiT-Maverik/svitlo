@@ -9,7 +9,7 @@ import {
   hierarchyResolvedChild_Schema,
   markdownConfigurator_Schema,
   textConfigurator_Schema,
-} from '../_shared/courseHierarchy.schemas';
+} from '../_shared__courses/courseHierarchy.schemas';
 import { episodeConfigurator_Schema } from '../defineEpisode/defineEpisode.schemas';
 import { chapterConfigurator_Schema } from '../defineChapter/defineChapter.schemas';
 import { moduleConfigurator_Schema } from '../defineModule/defineModule.schemas';

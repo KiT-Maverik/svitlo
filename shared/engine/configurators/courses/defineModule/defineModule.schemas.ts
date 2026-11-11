@@ -8,7 +8,7 @@ import {
   createHierarchyIdentitySchema,
   createHierarchyPropsSchema,
   hierarchyResolvedChild_Schema,
-} from '../_shared/courseHierarchy.schemas';
+} from '../_shared__courses/courseHierarchy.schemas';
 
 export const module_Config_Schema = z.strictObject({
   ...createHierarchyIdentitySchema('module'),

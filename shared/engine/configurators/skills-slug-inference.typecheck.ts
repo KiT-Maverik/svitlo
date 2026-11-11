@@ -1,4 +1,4 @@
-import { configuratorArrayToSlugMap } from './_shared';
+import { configuratorArrayToSlugMap } from './configuratorArrayToSlugMap';
 import { defineSkill, type Skill_Configurator } from './skills/defineSkill/defineSkill';
 import type { Skill_Config } from './skills/defineSkill/defineSkill.schemas';
 import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';

@@ -26,7 +26,7 @@ import {
   video_Config_Schema,
   video_Props_Schema,
 } from './contentBlocks';
-import { configuratorArrayToSlugMap } from './_shared';
+import { configuratorArrayToSlugMap } from './_shared__configurators';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
 const otherId = 'b775647f-203d-481a-a1c7-4d331c779d6b';
@@ -531,10 +531,11 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
     () => checkpoint.config.validate(config),
     error =>
       error instanceof CheckpointValidationError &&
-      error.result.errors.some(issue =>
-        issue.check === 'question' &&
-        issue.path === 'content.items.whatIsLight.question' &&
-        issue.message.includes('remain enabled'),
+      error.result.errors.some(
+        issue =>
+          issue.check === 'question' &&
+          issue.path === 'content.items.whatIsLight.question' &&
+          issue.message.includes('remain enabled'),
       ),
   );
 

@@ -1,10 +1,5 @@
 import { z } from 'zod';
-
-export const textStylePresets = ['highlight', 'bold', 'cursive', 'underscore', 'crossed', 'variable'] as const;
-export type TextStylePreset = (typeof textStylePresets)[number];
-
-export const textTonePresets = ['neutral', 'info', 'warning', 'success'] as const;
-export type TextTonePreset = (typeof textTonePresets)[number];
+import { textStylePresets, textTonePresets } from '../contentBlock.constants';
 
 const textStyle_Schema = z.enum(textStylePresets);
 

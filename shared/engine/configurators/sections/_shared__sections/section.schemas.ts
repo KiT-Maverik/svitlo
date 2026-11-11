@@ -1,10 +1,8 @@
 import { z } from 'zod';
-import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared';
-import { localizationSwitch } from '../../contentBlocks/_shared';
+import type { Section_Type } from '../section.constants';
+import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
+import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
-
-export const sectionTypes = ['content', 'practice', 'codingTask', 'learningFlow', 'flashcards', 'quiz'] as const;
-export type Section_Type = (typeof sectionTypes)[number];
 
 const sectionParams = paramsBase_Schema.shape.params.extend({
   skippable: z.literal(true).optional(),

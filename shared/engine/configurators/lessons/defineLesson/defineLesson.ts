@@ -1,8 +1,8 @@
 import type { LanguageCodes } from '#schemas';
 import type { DeepPartial } from '#types';
-import { onlyLocales, onlyStrings, createOrderedConfiguratorCollection, validateOrderedConfiguratorCollection, validateSluggedConfiguratorMap } from '../../_shared';
-import type { Section_Configurator } from '../../sections/section.types';
-import { sectionTypes } from '../../sections/_shared';
+import { onlyLocales, onlyStrings, createOrderedConfiguratorCollection, validateOrderedConfiguratorCollection, validateSluggedConfiguratorMap } from '../../_shared__configurators';
+import type { Section_Configurator } from '../../sections';
+import { sectionTypes } from '../../sections';
 import { lesson_Config_Schema, lessonQuestionTypes, type Lesson_Config } from './defineLesson.schemas';
 
 /**

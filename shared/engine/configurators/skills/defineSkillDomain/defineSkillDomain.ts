@@ -1,7 +1,7 @@
 import type { DeepPartial } from '#types';
-import { configuratorArrayToSlugMap } from '../../_shared';
-import type { Skill_Configurator } from '../defineSkill/defineSkill';
-import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
+import { configuratorArrayToSlugMap } from '../../configuratorArrayToSlugMap';
+import type { Skill_Configurator } from '../defineSkill';
+import type { SkillGroup_Configurator } from '../defineSkillGroup';
 
 import { skillDomain_Config_Schema, type SkillDomain_Config } from './defineSkillDomain.schemas';
 

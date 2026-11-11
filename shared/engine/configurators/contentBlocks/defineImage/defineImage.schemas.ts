@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { addUnifiedLocale } from '../../_shared';
+import { addUnifiedLocale } from '../../_shared__configurators';
 
 const contentBlockBase = createContentBlockBaseSchema('image');
 

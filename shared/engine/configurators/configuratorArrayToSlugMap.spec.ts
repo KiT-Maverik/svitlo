@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { configuratorArrayToSlugMap } from './configuratorArrayToSlugMap.utils';
+import { configuratorArrayToSlugMap } from './configuratorArrayToSlugMap';
 
 test('makes a typed slug-keyed map without changing configurators or their order', () => {
   const first = { slug: 'firstBlock' as const, config: { base: { slug: 'firstBlock' } } };

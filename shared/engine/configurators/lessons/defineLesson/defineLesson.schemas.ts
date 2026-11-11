@@ -1,24 +1,15 @@
 import { z } from 'zod';
+import { questionTypes as lessonQuestionTypes } from '../../questions';
 import { languageCode_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared';
-import type { OrderedConfiguratorCollection } from '../../_shared/orderedConfiguratorCollection/orderedConfiguratorCollection.utils';
-import { localizationSwitch } from '../../contentBlocks/_shared';
-import type { Section_Configurator, Section_Props } from '../../sections/section.types';
-import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/defineFlashcard';
-import type { Flashcard_Props } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
-import type { Question_Configurator } from '../../questions/question.types';
+import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
+import type { OrderedConfiguratorCollection } from '../../_shared__configurators/orderedConfiguratorCollection/orderedConfiguratorCollection.utils';
+import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
+import type { Section_Configurator, Section_Props } from '../../sections';
+import type { Flashcard_Configurator } from '../../flashcards';
+import type { Flashcard_Props } from '../../flashcards';
+import type { Question_Configurator } from '../../questions';
 
-export const lessonQuestionTypes = [
-  'selectOneAnswer',
-  'selectMultipleAnswers',
-  'matchBlocks',
-  'answerWithText',
-  'answerWithNumber',
-  'orderSequence',
-  'buildAnswerWithBlocks',
-  'fillBlanksWithBlocks',
-  'fillBlanksWithText',
-] as const;
+export { lessonQuestionTypes };
 export type Lesson_Question_Type = (typeof lessonQuestionTypes)[number];
 export type Lesson_QuestionBank = Partial<Record<Lesson_Question_Type, Record<string, Question_Configurator>>>;
 

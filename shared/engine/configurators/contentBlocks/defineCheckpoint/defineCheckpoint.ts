@@ -1,8 +1,8 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared';
+import { onlyLocales, onlyStrings, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
 import { camelCase_Schema } from '#schemas';
-import { contentBlockTypes } from '../_shared';
+import { contentBlockTypes } from '../contentBlock.constants';
 import {
   checkpoint_Config_Schema,
   type ContentBlock_Checkpoint_Config,

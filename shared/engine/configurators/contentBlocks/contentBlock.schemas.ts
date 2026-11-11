@@ -1,22 +1,9 @@
 import { z } from 'zod';
-import type { ContentBlock_Configurator } from '../contentBlock.types';
+import type { ContentBlock_Configurator } from './contentBlock.types';
 
 import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema } from '../../_shared';
-
-export const contentBlockTypes = [
-  'text',
-  'code',
-  'image',
-  'video',
-  'youtube',
-  'carousel',
-  'scene',
-  'checkpoint',
-  'markdown',
-  'audio',
-] as const;
-export type ContentBlock_Type = (typeof contentBlockTypes)[number];
+import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators';
+import { contentBlockTypes, type ContentBlock_Type } from './contentBlock.constants';
 
 export const createContentBlockBaseSchema = <const Type extends ContentBlock_Type>(type: Type) =>
   identityBase_Schema.extend({

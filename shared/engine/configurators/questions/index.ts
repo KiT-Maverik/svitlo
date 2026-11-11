@@ -19,3 +19,5 @@ export * from './defineFillBlanksWithText';
 export * from './question.schemas';
 export type { Question_Configurator } from './question.types';
 export * from './assessmentMethod.schemas';
+
+export * from './question.constants';
