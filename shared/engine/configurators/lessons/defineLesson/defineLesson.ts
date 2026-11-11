@@ -2,8 +2,8 @@ import type { LanguageCodes } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
-import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/defineFlashcard';
-import type { Section_Configurator } from '../../sections/section.types';
+import type { Flashcard_Configurator } from '../../flashcards';
+import type { Section_Configurator } from '../../sections';
 import { lesson_Config_Schema, type Lesson_Config } from './defineLesson.schemas';
 
 const validate = (config: unknown) => {
