@@ -21,10 +21,10 @@ const reading = defineSkill({ ...fields, slug: 'reading' });
 const writing = defineSkill({ ...fields, slug: 'writing' });
 const numeracy = defineSkill({ ...fields, slug: 'numeracy' });
 
-type ReadingSlug = Expect<Equal<typeof reading.config.base.slug, 'reading'>>;
+type ReadingSlug = Expect<Equal<typeof reading.slug, 'reading'>>;
 
 const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: [reading, writing] });
-type GroupSlug = Expect<Equal<typeof group.config.base.slug, 'literacy'>>;
+type GroupSlug = Expect<Equal<typeof group.slug, 'literacy'>>;
 type GroupKeys = Expect<Equal<keyof typeof group.skill, 'reading' | 'writing'>>;
 type ReadingValue = Expect<Equal<typeof group.skill.reading, typeof reading>>;
 type WritingValue = Expect<Equal<typeof group.skill.writing, typeof writing>>;
@@ -39,7 +39,7 @@ const domain = defineSkillDomain({
   groups: [group],
   skills: [numeracy],
 });
-type DomainSlug = Expect<Equal<typeof domain.config.base.slug, 'language'>>;
+type DomainSlug = Expect<Equal<typeof domain.slug, 'language'>>;
 type DomainGroupKeys = Expect<Equal<keyof typeof domain.group, 'literacy'>>;
 type DomainSkillKeys = Expect<Equal<keyof typeof domain.skill, 'numeracy'>>;
 type DomainGroupValue = Expect<Equal<typeof domain.group.literacy, typeof group>>;
@@ -78,8 +78,8 @@ type ReadonlyDomainGroupKeys = Expect<Equal<keyof typeof readonlyDomain.group, '
 type ReadonlyDomainSkillKeys = Expect<Equal<keyof typeof readonlyDomain.skill, 'reading' | 'writing'>>;
 
 const inline = configuratorArrayToSluggedObject([
-  { config: { base: { slug: 'first' } }, onlyFirst: true },
-  { config: { base: { slug: 'second' } }, onlySecond: true },
+  { slug: 'first' as const, onlyFirst: true },
+  { slug: 'second' as const, onlySecond: true },
 ]);
 type InlineKeys = Expect<Equal<keyof typeof inline, 'first' | 'second'>>;
 // @ts-expect-error Each key points to its own configurator, not the entire union.

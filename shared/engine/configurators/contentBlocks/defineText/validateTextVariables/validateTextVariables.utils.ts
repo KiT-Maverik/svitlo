@@ -6,7 +6,7 @@ const camelCase = /^[a-z][A-Za-z0-9]*$/;
 /** Validate configured Text variable keys against inline fragments in every authored locale. */
 export function validateTextVariables(config: ContentBlock_Text_Config): void {
   const variables = config.params.variables;
-  if (!variables || Object.keys(variables).length === 0) return;
+  // Even without declared variables, stray %_% fragments must be rejected.
 
   const errors: string[] = [];
   const configured = new Set(Object.keys(variables));

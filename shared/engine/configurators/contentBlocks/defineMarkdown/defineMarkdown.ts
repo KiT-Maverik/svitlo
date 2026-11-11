@@ -9,7 +9,7 @@ import {
   type ContentBlock_Markdown_Config,
   type ContentBlock_Markdown_Locale,
 } from './defineMarkdown.schemas';
-import { validateMarkdownVariables } from './validateMarkdownVariables';
+import { validateReplacementVariables } from '../_shared';
 
 type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCodes[] };
 
@@ -52,7 +52,8 @@ function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Rec
 
 const validate = (config: ContentBlock_Markdown_Config) => {
   markdown_Config_Schema.parse(config);
-  validateMarkdownVariables(config);
+  const errors = validateReplacementVariables(config.locale.value, config.locale.variables, 'locale.value');
+  if (errors.length) throw new Error('Markdown variables validation failed:\\n' + errors.join('\\n'));
 };
 
 /**

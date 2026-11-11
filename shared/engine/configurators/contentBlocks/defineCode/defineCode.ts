@@ -3,11 +3,12 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared';
 
 import { code_Config_Schema, type ContentBlock_Code_Config, type ContentBlock_Code_Locale } from './defineCode.schemas';
-import { validateCodeVariables } from './validateCodeVariables';
+import { validateReplacementVariables } from '../_shared';
 
 const validate = (config: ContentBlock_Code_Config) => {
   code_Config_Schema.parse(config);
-  validateCodeVariables(config);
+  const errors = validateReplacementVariables(config.params.codeAsText, config.locale.variables, 'Code template');
+  if (errors.length) throw new Error('Code variables validation failed:\\n' + errors.join('\\n'));
 };
 
 /**

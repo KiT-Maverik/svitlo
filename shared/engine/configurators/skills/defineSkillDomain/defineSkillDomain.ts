@@ -1,5 +1,5 @@
 import type { DeepPartial } from '#types';
-import { configuratorArrayToSluggedObject } from '../../_utils';
+import { configuratorArrayToSlugMap } from '../../_shared';
 import type { Skill_Configurator } from '../defineSkill/defineSkill';
 import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
 

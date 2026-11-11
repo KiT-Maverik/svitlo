@@ -43,7 +43,7 @@ export function validateSluggedConfiguratorMap(
       issues.push({
         check: 'slug',
         path: at,
-        message: 'Key ' + slug + ' does not match configurator slug ' + String(child.slug),
+        message: 'Expected a matching ' + itemLabel + ' configurator at ' + slug + ': key does not match configurator slug ' + String(child.slug),
       });
     }
     if (typeof child.type !== 'string' || !allowedTypes.includes(child.type)) {
