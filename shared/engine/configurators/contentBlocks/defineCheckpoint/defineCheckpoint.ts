@@ -3,8 +3,6 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared';
 import {
   checkpoint_Config_Schema,
-  type Checkpoint_Allowed_Configurator,
-  type Checkpoint_Config_Item,
   type ContentBlock_Checkpoint_Config,
   type ContentBlock_Checkpoint_Locale,
 } from './defineCheckpoint.schemas';
@@ -38,8 +36,8 @@ const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
 /**
- * One module-level validator, reused for initial creation and every content
- * override. Collect all independent integrity errors before throwing one report.
+ * One module-level validator, reused for initial creation and explicit revalidation.
+ * Collect all independent integrity errors before throwing one report.
  * Child definitions have already validated their own fields in their define*.
  */
 const validate = (config: ContentBlock_Checkpoint_Config): void => {
@@ -154,7 +152,7 @@ export const defineCheckpoint = <const Slug extends string>(
 ) => {
   validate(config);
   const { id, type, slug, locale, params } = config;
-  // Shallow copies make overrides nonmutating for the original authored config.
+  // Expose mutable ordered content without adding a separate mutation API.
   const content: CheckpointContent = {
     items: { ...config.content.items },
     order: [...config.content.order],
@@ -165,24 +163,6 @@ export const defineCheckpoint = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
   const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};
-
-  const updateContent = (next: CheckpointContent) => {
-    validate({ ...config, content: next });
-    content.items = next.items;
-    content.order = next.order;
-  };
-
-  const updateAnswers = (
-    questionSlug: string,
-    change: (answer: Checkpoint_Config_Item['answer']) => Checkpoint_Config_Item['answer'],
-  ) => {
-    const item = content.items[questionSlug];
-    if (!item) throw new Error('Unknown Checkpoint question: ' + questionSlug);
-    updateContent({
-      items: { ...content.items, [questionSlug]: { ...item, answer: change(item.answer) } },
-      order: [...content.order],
-    });
-  };
 
   return {
     id,
@@ -199,35 +179,6 @@ export const defineCheckpoint = <const Slug extends string>(
     override: {
       params: (newParams: DeepPartial<ContentBlock_Checkpoint_Config['params']>) => (overrides.params = newParams),
       locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => (overrides.locale = newLocale),
-      content: {
-        add: (itemSlug: string, item: Checkpoint_Config_Item) => updateContent({
-          items: { ...content.items, [itemSlug]: item },
-          order: [...content.order, itemSlug],
-        }),
-        remove: (itemSlug: string) => {
-          const items = { ...content.items };
-          if (!Object.hasOwn(items, itemSlug)) throw new Error('Unknown Checkpoint item: ' + itemSlug);
-          delete items[itemSlug];
-          updateContent({ items, order: content.order.filter(key => key !== itemSlug) });
-        },
-        setOrder: (order: string[]) => updateContent({ items: { ...content.items }, order }),
-        answers: (questionSlug: string) => ({
-          add: (answerSlug: string, answer: Checkpoint_Allowed_Configurator) =>
-            updateAnswers(questionSlug, current => ({
-              items: { ...current.items, [answerSlug]: answer },
-              order: [...current.order, answerSlug],
-            })),
-          remove: (answerSlug: string) =>
-            updateAnswers(questionSlug, current => {
-              const items = { ...current.items };
-              if (!Object.hasOwn(items, answerSlug)) throw new Error('Unknown answer: ' + answerSlug);
-              delete items[answerSlug];
-              return { items, order: current.order.filter(key => key !== answerSlug) };
-            }),
-          setOrder: (order: string[]) =>
-            updateAnswers(questionSlug, current => ({ items: { ...current.items }, order })),
-        }),
-      },
     },
     disable: () => (overrides.params = { disabled: true }),
     content,

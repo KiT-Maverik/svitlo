@@ -346,6 +346,25 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
       error.result.errors.some(issue => issue.check === 'order'),
   );
 
+  const invalidAnswer = {
+    ...config,
+    content: {
+      ...config.content,
+      items: {
+        whatIsLight: {
+          ...config.content.items.whatIsLight,
+          answer: { items: { answer: { ...answer, slug: 'wrongSlug' }, invalid: {} }, order: ['answer', 'invalid'] },
+        },
+      },
+    },
+  };
+  assert.throws(
+    () => checkpoint.config.validate(invalidAnswer as unknown as typeof config),
+    error => error instanceof CheckpointValidationError &&
+      error.result.errors.some(issue => issue.check === 'identity') &&
+      error.result.errors.some(issue => issue.check === 'configurator'),
+  );
+
   const nested = {
     ...config,
     content: { ...config.content, items: {
@@ -360,26 +379,40 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
       error.result.errors.some(issue => issue.message.includes('Unsupported answer type: checkpoint')),
   );
 
+  // Nested configurators retain their own override APIs.
+  checkpoint.content.items.whatIsLight.question.override.locale({ value: 'Updated question' });
+  checkpoint.content.items.whatIsLight.answer.items.answer.override.locale({ value: 'Updated explanation' });
+  assert.deepEqual(question.config.overrides.locale, { value: 'Updated question' });
+  assert.deepEqual(answer.config.overrides.locale, { value: 'Updated explanation' });
+
+  // Authors modify the ordered collections directly; validation remains explicit.
   const added = {
     question,
     answer: { items: { answer }, order: ['answer'] },
   };
-  checkpoint.override.content.add('anotherQuestion', added);
+  checkpoint.content.items.anotherQuestion = added;
+  checkpoint.content.order.push('anotherQuestion');
   assert.deepEqual(checkpoint.content.order, ['whatIsLight', 'anotherQuestion']);
-  checkpoint.override.content.setOrder(['anotherQuestion', 'whatIsLight']);
-  assert.deepEqual(checkpoint.content.order, ['anotherQuestion', 'whatIsLight']);
-  assert.throws(() => checkpoint.override.content.setOrder(['whatIsLight', 'whatIsLight']), CheckpointValidationError);
-  assert.deepEqual(checkpoint.content.order, ['anotherQuestion', 'whatIsLight']);
-  checkpoint.override.content.answers('anotherQuestion').add('illustration', illustration);
-  assert.deepEqual(checkpoint.content.items.anotherQuestion.answer.order, ['answer', 'illustration']);
-  checkpoint.override.content.answers('anotherQuestion').setOrder(['illustration', 'answer']);
-  checkpoint.override.content.answers('anotherQuestion').remove('answer');
+
+  checkpoint.content.order.reverse();
+  checkpoint.content.items.anotherQuestion.answer.items.illustration = illustration;
+  checkpoint.content.items.anotherQuestion.answer.order.push('illustration');
+  checkpoint.content.items.anotherQuestion.answer.order.reverse();
+  delete checkpoint.content.items.anotherQuestion.answer.items.answer;
+  checkpoint.content.items.anotherQuestion.answer.order.pop();
   assert.deepEqual(checkpoint.content.items.anotherQuestion.answer.order, ['illustration']);
-  assert.throws(() => checkpoint.override.content.answers('anotherQuestion').remove('illustration'),
-    CheckpointValidationError);
-  assert.deepEqual(checkpoint.content.items.anotherQuestion.answer.order, ['illustration']);
-  checkpoint.override.content.remove('anotherQuestion');
-  assert.deepEqual(checkpoint.content.order, ['whatIsLight']);
+  assert.doesNotThrow(() => checkpoint.config.validate({ ...config, content: checkpoint.content }));
+
+  checkpoint.content.order.push('anotherQuestion');
+  assert.deepEqual(checkpoint.content.order, ['anotherQuestion', 'whatIsLight', 'anotherQuestion']);
+  assert.throws(
+    () => checkpoint.config.validate({ ...config, content: checkpoint.content }),
+    error => error instanceof CheckpointValidationError && error.result.errors.some(issue => issue.check === 'order'),
+  );
+  checkpoint.content.order.pop();
+  delete checkpoint.content.items.anotherQuestion;
+  checkpoint.content.order.splice(checkpoint.content.order.indexOf('anotherQuestion'), 1);
+  assert.doesNotThrow(() => checkpoint.config.validate({ ...config, content: checkpoint.content }));
   checkpoint.disable();
   assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
 });
