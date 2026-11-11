@@ -15,12 +15,7 @@ import { lesson_Config_Schema, lessonQuestionTypes, type Lesson_Config } from '.
  * Define a reusable Lesson with slug-keyed Section configurators.
  *
  * @remarks
- * The optional `programId` associates this Lesson with one specific program
- * (Course). Set it only for course-owned narrative or other course-specific
- * lessons which should not be treated as reusable universal content. Omit it
- * for standalone Lessons that may be used by multiple courses. Episode is not
- * needed to express this distinction; migrating Course/Episode consumers is a
- * separate change.
+ * Lessons are reusable across Courses; course-specific changes belong in overrides.
  *
  * `section.items` must contain actual define* Section configurators and
  * `section.order` must list their slugs exactly once. Override params/locale

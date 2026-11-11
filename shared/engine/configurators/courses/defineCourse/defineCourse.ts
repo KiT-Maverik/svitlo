@@ -49,7 +49,7 @@ export const defineCourse = <
     params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
     content: { items: Items; order: string[] };
   },
-) => {
+): Course_Configurator<Slug, Items, Languages> => {
   validate(config as unknown as Course_Config);
   const { id, slug, type, params, locale } = config;
   const content = { items: { ...config.content.items }, order: [...config.content.order] };
@@ -85,4 +85,31 @@ export const defineCourse = <
   } as const;
 };
 
-export type Course_Configurator = ReturnType<typeof defineCourse>;
+/** Public Course shape. Explicitly named to keep declaration output bounded. */
+export type Course_Configurator<
+  Slug extends string = string,
+  Items extends Record<string, Course_Child> = Record<string, Course_Child>,
+  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'course';
+  readonly config: {
+    readonly base: {
+      id: string;
+      slug: Slug;
+      type: 'course';
+      params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
+      locale: DeepPartial<Course_Locale<'config'>>;
+    };
+    readonly locales: () => { locale: DeepPartial<Course_Locale<'config'>> };
+    readonly overrides: DeepPartial<Course_Config>;
+    readonly validate: (candidate: Course_Config) => void;
+  };
+  readonly override: {
+    readonly params: (value: DeepPartial<Course_Config['params']>) => void;
+    readonly locale: (value: DeepPartial<Course_Locale<'config'>>) => void;
+  };
+  readonly disable: () => void;
+  readonly content: { items: Items; order: string[] };
+};

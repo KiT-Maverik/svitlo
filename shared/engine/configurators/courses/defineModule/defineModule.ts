@@ -35,7 +35,7 @@ export const defineModule = <const Slug extends string, const Items extends Reco
     slug: Slug;
     content: { items: Items; order: string[] };
   },
-) => {
+): Module_Configurator<Slug, Items> => {
   validate(config);
   const { id, slug, type, params, locale } = config;
   const content = { items: { ...config.content.items }, order: [...config.content.order] };
@@ -71,4 +71,30 @@ export const defineModule = <const Slug extends string, const Items extends Reco
   } as const;
 };
 
-export type Module_Configurator = ReturnType<typeof defineModule>;
+/** Public Module shape. Explicitly named to keep declaration output bounded. */
+export type Module_Configurator<
+  Slug extends string = string,
+  Items extends Record<string, Module_Child> = Record<string, Module_Child>,
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'module';
+  readonly config: {
+    readonly base: {
+      id: string;
+      slug: Slug;
+      type: 'module';
+      params: Module_Config['params'];
+      locale: DeepPartial<Module_Locale<'config'>>;
+    };
+    readonly locales: () => { locale: DeepPartial<Module_Locale<'config'>> };
+    readonly overrides: DeepPartial<Module_Config>;
+    readonly validate: (candidate: Module_Config) => void;
+  };
+  readonly override: {
+    readonly params: (value: DeepPartial<Module_Config['params']>) => void;
+    readonly locale: (value: DeepPartial<Module_Locale<'config'>>) => void;
+  };
+  readonly disable: () => void;
+  readonly content: { items: Items; order: string[] };
+};

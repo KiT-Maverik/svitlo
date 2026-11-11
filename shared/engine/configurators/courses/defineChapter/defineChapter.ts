@@ -33,7 +33,7 @@ export const defineChapter = <
     slug: Slug;
     content: { items: Items; order: string[] };
   },
-) => {
+): Chapter_Configurator<Slug, Items> => {
   validate(config);
   const { id, slug, type, params, locale } = config;
   const content = { items: { ...config.content.items }, order: [...config.content.order] };
@@ -69,4 +69,33 @@ export const defineChapter = <
   } as const;
 };
 
-export type Chapter_Configurator = ReturnType<typeof defineChapter>;
+/** Public Chapter shape. Explicitly named to keep declaration output bounded. */
+export type Chapter_Configurator<
+  Slug extends string = string,
+  Items extends Record<string, import('../../lessons/defineLesson').Lesson_Configurator> = Record<
+    string,
+    import('../../lessons/defineLesson').Lesson_Configurator
+  >,
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'chapter';
+  readonly config: {
+    readonly base: {
+      id: string;
+      slug: Slug;
+      type: 'chapter';
+      params: Chapter_Config['params'];
+      locale: DeepPartial<Chapter_Locale<'config'>>;
+    };
+    readonly locales: () => { locale: DeepPartial<Chapter_Locale<'config'>> };
+    readonly overrides: DeepPartial<Chapter_Config>;
+    readonly validate: (candidate: Chapter_Config) => void;
+  };
+  readonly override: {
+    readonly params: (value: DeepPartial<Chapter_Config['params']>) => void;
+    readonly locale: (value: DeepPartial<Chapter_Locale<'config'>>) => void;
+  };
+  readonly disable: () => void;
+  readonly content: { items: Items; order: string[] };
+};
