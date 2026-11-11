@@ -1,5 +1,4 @@
-import type { HowLightMoves_Languages } from '../../constants';
-import { createSectionConfigurator, createContentBlock } from '@svitlo/engine';
+import { definePracticeSection, defineText } from '@svitlo/engine';
 import { showcase } from './scenes/showcase';
 
 const title = {
@@ -34,19 +33,20 @@ const title = {
   zh: '练习',
 };
 
-export const practice_Section_Configurator = createSectionConfigurator<HowLightMoves_Languages>()({
+export const practiceSection = definePracticeSection({
   id: '562f4c02-6ea0-55f0-900d-7d90e60bc314',
-  type: 'practice',
   slug: 'practice',
-  title,
-  navigationLabel: title,
-  skippable: true,
-  content: [
-    createContentBlock<HowLightMoves_Languages>()({
-      type: 'text',
-      id: 'ae0cafb2-acdc-4eea-849b-582de3882f61',
-      slug: 'task',
-      value: {
+  type: 'practice',
+  params: { skippable: true },
+  locale: { title, navigationLabel: title },
+  content: {
+    items: {
+      task: defineText({
+        id: 'ae0cafb2-acdc-4eea-849b-582de3882f61',
+        slug: 'task',
+        type: 'text',
+        params: {},
+        locale: { value: {
         ar: 'قارِن سرعة الضوء في الفراغ والهواء والماء.',
         be: 'Параўнай хуткасьць сьвятла ў вакуўме, паветры і вадзе.',
         bn: 'শূন্যস্থান, বায়ু ও পানিতে আলোর গতির তুলনা করো।',
@@ -76,10 +76,10 @@ export const practice_Section_Configurator = createSectionConfigurator<HowLightM
         ur: 'خلا، ہوا اور پانی میں روشنی کی رفتار کا موازنہ کریں۔',
         vi: 'So sánh tốc độ ánh sáng trong chân không, không khí và nước.',
         zh: '比较光在真空、空气和水中的传播速度。',
-      },
-    }),
-    createContentBlock<HowLightMoves_Languages>()(showcase),
-  ],
+      } },
+      }),
+      showcase,
+    },
+    order: ['task', 'showcase'],
+  },
 });
-
-export const practice_Section = practice_Section_Configurator.getData();
