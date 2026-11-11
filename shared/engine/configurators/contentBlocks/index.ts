@@ -20,4 +20,4 @@ export * from './defineScene';
 
 export type { ContentBlock_Configurator, ContentBlock_Props } from './contentBlock.types';
 export * from './contentBlock.constants';
-export { localizationSwitch, contentBlockConfigurator_Schema, contentBlockResolved_Schema } from './contentBlock.schemas';
+export { localizationSwitch as contentBlockLocalizationSwitch, contentBlockConfigurator_Schema, contentBlockResolved_Schema } from './contentBlock.schemas';
