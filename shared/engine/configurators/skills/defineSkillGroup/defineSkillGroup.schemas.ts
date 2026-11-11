@@ -2,8 +2,7 @@ import { z } from 'zod';
 
 import { localizationSwitch, localeText_Schema } from '#schemas';
 
-import { Skill_Props } from '../defineSkill/defineSkill.schemas';
-import { Skill_Configurator } from '../defineSkill/defineSkill';
+import type { Skill_Props, Skill_Configurator } from '../defineSkill';
 
 function createSkillGroupSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
   const localized = localizationSwitch[mode];
