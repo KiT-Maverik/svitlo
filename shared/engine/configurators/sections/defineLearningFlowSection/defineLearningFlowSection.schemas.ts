@@ -1,29 +1,26 @@
 import { z } from 'zod';
 
-import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
-import { contentBlockLocalizationSwitch } from '../../contentBlocks';
+import { identityBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import type { Section_Config_Content, Section_Props_Content } from '../_shared__sections';
-
-const params = paramsBase_Schema.shape.params.extend({
-  skippable: z.literal(true).optional(),
-});
+import {
+  createSectionLocaleBase,
+  sectionParamsBase_Schema,
+  type Section_Config_Content,
+  type Section_Locale,
+  type Section_Props_Content,
+} from '../_shared__sections';
 
 const sectionBase = identityBase_Schema.extend({
   type: z.literal('learningFlow'),
-  params,
+  params: sectionParamsBase_Schema,
 });
 
-const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-  title: contentBlockLocalizationSwitch[mode],
-  navigationLabel: contentBlockLocalizationSwitch[mode],
-});
-export type LearningFlowSection_Locale<Mode extends Configurator_Mode> = z.infer<
-  z.ZodObject<ReturnType<typeof locale<Mode>>>
->;
+export type LearningFlowSection_Locale<Mode extends Configurator_Mode> = Section_Locale<Mode>;
 
-export const learningFlowSection_Config_Schema = sectionBase.extend(addUnifiedLocale(locale('config')));
+export const learningFlowSection_Config_Schema = sectionBase.extend(
+  addUnifiedLocale(createSectionLocaleBase('config')),
+);
 export type LearningFlowSection_Config = z.infer<typeof learningFlowSection_Config_Schema> & Section_Config_Content;
 
-export const learningFlowSection_Props_Schema = sectionBase.extend(addUnifiedLocale(locale('props')));
+export const learningFlowSection_Props_Schema = sectionBase.extend(addUnifiedLocale(createSectionLocaleBase('props')));
 export type LearningFlowSection_Props = z.infer<typeof learningFlowSection_Props_Schema> & Section_Props_Content;
