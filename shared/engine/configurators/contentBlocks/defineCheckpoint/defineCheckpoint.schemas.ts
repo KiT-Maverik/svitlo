@@ -65,11 +65,14 @@ type OrderedContent<Item> = {
   order: string[];
 };
 
-export type Checkpoint_Config_Item = {
-  question: ContentBlock_Text_Configurator;
-  answer: OrderedContent<Checkpoint_Allowed_Configurator>;
-  check?: true;
-};
+/** `false` is reserved for overrides; initial content must contain question objects. */
+export type Checkpoint_Config_Item =
+  | {
+      question: ContentBlock_Text_Configurator;
+      answer: OrderedContent<Checkpoint_Allowed_Configurator>;
+      check?: true;
+    }
+  | false;
 
 export type Checkpoint_Props_Item = {
   question: ContentBlock_Text_Props;
