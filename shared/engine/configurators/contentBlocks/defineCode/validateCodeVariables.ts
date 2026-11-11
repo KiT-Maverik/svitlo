@@ -6,15 +6,11 @@ const upperSnakeCase = /^[A-Z][A-Z0-9_]*$/;
 /** Validate localized Code replacement IDs against the already-provided source text. */
 export function validateCodeVariables(config: ContentBlock_Code_Config): void {
   const variables = config.locale.variables;
-  if (!variables?.length) return;
+  if (!variables || Object.keys(variables).length === 0) return;
 
   const errors: string[] = [];
-  const configured = new Set<string>();
-
-  for (const variable of variables) {
-    if (configured.has(variable.id)) errors.push(`Duplicate Code variable ID "${variable.id}"`);
-    configured.add(variable.id);
-  }
+  // Object keys are unique, so duplicate-ID checks are unnecessary.
+  const configured = new Set(Object.keys(variables));
 
   const found = new Set<string>();
   const parts = config.params.codeAsText.split(delimiter);
