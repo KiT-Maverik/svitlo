@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { ContentBlock_Configurator } from './contentBlock.types';
 
 import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema, camelCase_Schema } from '#schemas';
-import { paramsBase_Schema } from '../_shared';
+import { paramsBase_Schema } from '../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Type } from './contentBlock.constants';
 
 export const createContentBlockBaseSchema = <const Type extends ContentBlock_Type>(type: Type) =>
