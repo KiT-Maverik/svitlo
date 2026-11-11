@@ -3,7 +3,7 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
 import { text_Config_Schema, type ContentBlock_Text_Config, type ContentBlock_Text_Locale } from './defineText.schemas';
-import { validateTextVariables } from './validateTextVariables';
+import { validateTextVariables } from './validateTextVariables/validateTextVariables.utils';
 
 const validate = (config: ContentBlock_Text_Config) => {
   text_Config_Schema.parse(config);

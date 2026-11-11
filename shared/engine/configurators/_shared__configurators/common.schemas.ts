@@ -8,7 +8,7 @@ export const paramsBase_Schema = z.object({
   }),
 });
 
-/** Shared authored identity for the upcoming Lesson/Section configurator migration. */
+/** Shared authored identity for Lesson, Section and ContentBlock configurators. */
 export const identityBase_Schema = z.object({
   id: z.uuid(),
   slug: camelCase_Schema,

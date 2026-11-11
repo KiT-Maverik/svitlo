@@ -92,8 +92,8 @@ test('Text rejects malformed marker syntax, empty values and non-camelCase IDs',
   }
 });
 
-test('Text skips fragment integrity checks when no variables are configured', () => {
-  assert.doesNotThrow(() =>
+test('Text rejects malformed or undeclared fragments even without configured variables', () => {
+  assert.throws(() =>
     defineText({
       id: textConfig.id,
       slug: 'plainText',
@@ -165,13 +165,18 @@ test('Code projects localized values by variable key and validates resolved prop
   assert.equal(code_Props_Schema.safeParse(config).success, false);
 });
 
-test('Code skips placeholder integrity checks when no variables are configured', () => {
+test('Code checks placeholder integrity even without configured variables', () => {
   const config: ContentBlock_Code_Config = {
     ...codeConfig,
+    params: { ...codeConfig.params, codeAsText: 'const a = 1;' },
     locale: {},
   };
   const code = defineCode(config);
-  assert.doesNotThrow(() => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%BROKEN' } }));
+  assert.throws(() => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%BROKEN' } }));
+  assert.throws(
+    () => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%UNKNOWN%_%' } }),
+    /not declared/,
+  );
 });
 
 test('Code validates static source text during definition', () => {

@@ -1,14 +1,12 @@
 import { z } from 'zod';
 import type { ContentBlock_Configurator } from './contentBlock.types';
 
-import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema, camelCase_Schema } from '#schemas';
-import { paramsBase_Schema } from '../_shared__configurators';
+import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema } from '#schemas';
+import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators';
 import { contentBlockTypes, type ContentBlock_Type } from './contentBlock.constants';
 
 export const createContentBlockBaseSchema = <const Type extends ContentBlock_Type>(type: Type) =>
-  z.object({
-    id: z.uuid(),
-    slug: camelCase_Schema.min(1),
+  identityBase_Schema.extend({
     type: z.literal(type),
     ...paramsBase_Schema.shape,
   });

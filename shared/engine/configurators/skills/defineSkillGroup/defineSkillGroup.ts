@@ -1,5 +1,5 @@
 import type { DeepPartial } from '#types';
-import { configuratorArrayToSluggedObject } from '../../_utils';
+import { configuratorArrayToSlugMap } from '../../configuratorArrayToSlugMap';
 import type { Skill_Configurator } from '../defineSkill';
 
 import { skillGroup_Config_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
@@ -34,7 +34,7 @@ export function defineSkillGroup<const Slug extends string, const Skills extends
           ...(description.frontend === undefined ? {} : { description: { frontend: description.frontend } }),
         }) satisfies DeepPartial<SkillGroup_Config>,
     },
-    skill: configuratorArrayToSluggedObject(skills),
+    skill: configuratorArrayToSlugMap(skills),
   };
 }
 

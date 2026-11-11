@@ -105,3 +105,28 @@ test('Lesson rejects mismatched collection keys and raw child configs', () => {
     /matching child configurator/,
   );
 });
+
+test('Lesson Question Bank validates keyed child identity without invoking question validation', () => {
+  const lesson = makeLesson();
+  const question = {
+    slug: 'question',
+    type: 'selectOneAnswer',
+    config: {
+      locales: () => ({}),
+      validate: () => {
+        throw new Error('Child must validate itself');
+      },
+    },
+  };
+  const withQuestions = (slug: string) =>
+    ({
+      ...lesson.config.base,
+      locale: { title: 'Example' },
+      section: lesson.section,
+      flashcards: [],
+      questions: { selectOneAnswer: { [slug]: question } },
+    }) as unknown as Parameters<typeof lesson.config.validate>[0];
+
+  assert.doesNotThrow(() => lesson.config.validate(withQuestions('question')));
+  assert.throws(() => lesson.config.validate(withQuestions('wrongSlug')), /matching Lesson Question configurator/);
+});

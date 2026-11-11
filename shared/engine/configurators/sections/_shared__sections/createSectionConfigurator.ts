@@ -1,6 +1,11 @@
 import type { DeepPartial } from '#types';
 import type { z } from 'zod';
-import { onlyLocales, onlyStrings, createOrderedConfiguratorCollection } from '../../_shared__configurators';
+import {
+  onlyLocales,
+  onlyStrings,
+  createOrderedConfiguratorCollection,
+  validateOrderedConfiguratorCollection,
+} from '../../_shared__configurators';
 import { contentBlockTypes } from '../../contentBlocks';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 
@@ -26,8 +31,7 @@ export function createSectionConfigurator<
     const { content, ...metadata } = candidate;
     schema.parse(metadata);
     // Do not recursively invoke each ContentBlock's validator.
-    const validated = createOrderedConfiguratorCollection(content, contentBlockTypes);
-    void validated;
+    validateOrderedConfiguratorCollection(content, contentBlockTypes);
     extraValidation?.(candidate);
   };
   validate(input);

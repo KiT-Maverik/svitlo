@@ -1,4 +1,4 @@
-import { configuratorArrayToSluggedObject } from './_utils';
+import { configuratorArrayToSlugMap } from './configuratorArrayToSlugMap';
 import { defineSkill, type Skill_Configurator } from './skills/defineSkill/defineSkill';
 import type { Skill_Config } from './skills/defineSkill/defineSkill.schemas';
 import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
@@ -21,10 +21,10 @@ const reading = defineSkill({ ...fields, slug: 'reading' });
 const writing = defineSkill({ ...fields, slug: 'writing' });
 const numeracy = defineSkill({ ...fields, slug: 'numeracy' });
 
-type ReadingSlug = Expect<Equal<typeof reading.config.base.slug, 'reading'>>;
+type ReadingSlug = Expect<Equal<typeof reading.slug, 'reading'>>;
 
 const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: [reading, writing] });
-type GroupSlug = Expect<Equal<typeof group.config.base.slug, 'literacy'>>;
+type GroupSlug = Expect<Equal<typeof group.slug, 'literacy'>>;
 type GroupKeys = Expect<Equal<keyof typeof group.skill, 'reading' | 'writing'>>;
 type ReadingValue = Expect<Equal<typeof group.skill.reading, typeof reading>>;
 type WritingValue = Expect<Equal<typeof group.skill.writing, typeof writing>>;
@@ -39,7 +39,7 @@ const domain = defineSkillDomain({
   groups: [group],
   skills: [numeracy],
 });
-type DomainSlug = Expect<Equal<typeof domain.config.base.slug, 'language'>>;
+type DomainSlug = Expect<Equal<typeof domain.slug, 'language'>>;
 type DomainGroupKeys = Expect<Equal<keyof typeof domain.group, 'literacy'>>;
 type DomainSkillKeys = Expect<Equal<keyof typeof domain.skill, 'numeracy'>>;
 type DomainGroupValue = Expect<Equal<typeof domain.group.literacy, typeof group>>;
@@ -77,9 +77,9 @@ const readonlyDomain = defineSkillDomain({
 type ReadonlyDomainGroupKeys = Expect<Equal<keyof typeof readonlyDomain.group, 'literacy'>>;
 type ReadonlyDomainSkillKeys = Expect<Equal<keyof typeof readonlyDomain.skill, 'reading' | 'writing'>>;
 
-const inline = configuratorArrayToSluggedObject([
-  { config: { base: { slug: 'first' } }, onlyFirst: true },
-  { config: { base: { slug: 'second' } }, onlySecond: true },
+const inline = configuratorArrayToSlugMap([
+  { slug: 'first' as const, onlyFirst: true },
+  { slug: 'second' as const, onlySecond: true },
 ]);
 type InlineKeys = Expect<Equal<keyof typeof inline, 'first' | 'second'>>;
 // @ts-expect-error Each key points to its own configurator, not the entire union.
@@ -89,12 +89,12 @@ void inline.third;
 
 // Arbitrary string slugs have a partial index signature, never a guaranteed value.
 const dynamicSkill = defineSkill({ ...fields, slug: dynamicSlug });
-const dynamicMap = configuratorArrayToSluggedObject([dynamicSkill]);
+const dynamicMap = configuratorArrayToSlugMap([dynamicSkill]);
 const maybeDynamic: Skill_Configurator | undefined = dynamicMap.anything;
 // @ts-expect-error A dynamic string slug cannot guarantee this key exists.
 const guaranteedDynamic: Skill_Configurator = dynamicMap.anything;
 
-const mixedMap = configuratorArrayToSluggedObject([reading, dynamicSkill]);
+const mixedMap = configuratorArrayToSlugMap([reading, dynamicSkill]);
 type KnownMixedValue = Expect<Equal<typeof mixedMap.reading, typeof reading>>;
 const maybeMixed: Skill_Configurator | undefined = mixedMap.unknown;
 // @ts-expect-error A mixed collection cannot guarantee unknown keys.

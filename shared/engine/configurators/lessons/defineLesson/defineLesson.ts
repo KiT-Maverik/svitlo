@@ -1,6 +1,12 @@
 import type { LanguageCodes } from '#schemas';
 import type { DeepPartial } from '#types';
-import { onlyLocales, onlyStrings, createOrderedConfiguratorCollection } from '../../_shared__configurators';
+import {
+  onlyLocales,
+  onlyStrings,
+  createOrderedConfiguratorCollection,
+  validateOrderedConfiguratorCollection,
+  validateSluggedConfiguratorMap,
+} from '../../_shared__configurators';
 import type { Section_Configurator } from '../../sections';
 import { sectionTypes } from '../../sections';
 import { lesson_Config_Schema, lessonQuestionTypes, type Lesson_Config } from './defineLesson.schemas';
@@ -36,7 +42,7 @@ export function defineLesson<
   const validate = (candidate: Lesson_Config) => {
     const { section, flashcards, questions, events, ...metadata } = candidate;
     lesson_Config_Schema.parse(metadata);
-    createOrderedConfiguratorCollection(section, sectionTypes);
+    validateOrderedConfiguratorCollection(section, sectionTypes);
 
     // Validate Question bank keys and the nested configurator boundary only;
     // every Question and Flashcard is responsible for its own validation.
@@ -44,15 +50,12 @@ export function defineLesson<
       if (!lessonQuestionTypes.includes(type as (typeof lessonQuestionTypes)[number])) {
         throw new Error('Unknown Lesson question type: ' + type);
       }
-      for (const [slug, question] of Object.entries(entries ?? {})) {
-        if (
-          question.slug !== slug ||
-          question.type !== type ||
-          !question.config ||
-          typeof question.config.locales !== 'function'
-        ) {
-          throw new Error('Invalid Lesson Question configurator: ' + type + '/' + slug);
-        }
+      const issues = validateSluggedConfiguratorMap(entries ?? {}, [type], {
+        path: 'questions.' + type,
+        itemLabel: 'Lesson Question',
+      });
+      if (issues.length) {
+        throw new Error('Invalid Lesson Question configurator: ' + issues.map(issue => issue.message).join('; '));
       }
     }
     for (const flashcard of flashcards) {

@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { questionTypes as lessonQuestionTypes } from '../../questions';
 import { languageCode_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
-import type { OrderedConfiguratorCollection } from '../../_shared__configurators/orderedConfiguratorCollection.utils';
+import type { OrderedConfiguratorCollection } from '../../_shared__configurators/orderedConfiguratorCollection/orderedConfiguratorCollection.utils';
 import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
 import type { Section_Configurator, Section_Props } from '../../sections';
 import type { Flashcard_Configurator } from '../../flashcards';
