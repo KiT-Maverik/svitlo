@@ -1,10 +1,10 @@
 import type { TheorySection_Configurator } from './defineTheorySection/defineTheorySection';
-import type { PracticeSection_Configurator } from './definePracticeSection/definePracticeSection';
-import type { CodingTaskSection_Configurator } from './defineCodingTaskSection/defineCodingTaskSection';
-import type { LearningFlowSection_Configurator } from './defineLearningFlowSection/defineLearningFlowSection';
-import type { FlashcardsSection_Configurator } from './defineFlashcardsSection/defineFlashcardsSection';
+import type { PracticeSection_Configurator } from './definePracticeSection';
+import type { CodingTaskSection_Configurator } from './defineCodingTaskSection';
+import type { LearningFlowSection_Configurator } from './defineLearningFlowSection';
+import type { FlashcardsSection_Configurator } from './defineFlashcardsSection';
 import type { ScenarioSection_Configurator } from './defineScenarioSection/defineScenarioSection';
-import type { QuizSection_Configurator } from './defineQuizSection/defineQuizSection';
+import type { QuizSection_Configurator } from './defineQuizSection';
 
 export type Section_Configurator =
   | TheorySection_Configurator
