@@ -56,8 +56,7 @@ test('Text rejects undeclared and missing variable identifiers', () => {
     /Text fragment "otherName" is not declared/,
   );
   assert.throws(
-    () =>
-      text.config.validate({ ...textConfig, locale: { value: 'No marked fragments.' } }),
+    () => text.config.validate({ ...textConfig, locale: { value: 'No marked fragments.' } }),
     /missing configured Text fragment "personName"/,
   );
 });
@@ -66,10 +65,11 @@ test('Text variable names must be camelCase object keys', () => {
   const text = defineText(textConfig);
   assert.doesNotThrow(() => text.config.validate(textConfig));
   assert.throws(
-    () => text.config.validate({
-      ...textConfig,
-      params: { variables: { PERSON_NAME: { applyStyle: ['variable'] } } },
-    }),
+    () =>
+      text.config.validate({
+        ...textConfig,
+        params: { variables: { PERSON_NAME: { applyStyle: ['variable'] } } },
+      }),
     /Invalid|invalid|regular expression/i,
   );
 });
@@ -108,14 +108,19 @@ test('Code validates declared IDs and checks source when resolved text is provid
   const code = defineCode(codeConfig);
   assert.doesNotThrow(() => code.config.validate(codeConfig));
   assert.doesNotThrow(() =>
-    code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'const a = "%_%USER_NAME%_%"; const b = "%_%USER_NAME%_%";' } }),
+    code.config.validate({
+      ...codeConfig,
+      params: { ...codeConfig.params, codeAsText: 'const a = "%_%USER_NAME%_%"; const b = "%_%USER_NAME%_%";' },
+    }),
   );
   assert.throws(
-    () => code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'const a = "%_%EXTRA%_%";' } }),
+    () =>
+      code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'const a = "%_%EXTRA%_%";' } }),
     /variable "EXTRA" is not declared in locale\.variables/,
   );
   assert.throws(
-    () => code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'console.log("missing");' } }),
+    () =>
+      code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'console.log("missing");' } }),
     /missing configured variable "USER_NAME"/,
   );
 });

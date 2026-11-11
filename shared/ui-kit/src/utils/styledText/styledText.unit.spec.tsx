@@ -14,9 +14,7 @@ describe('styledText utilities', () => {
   });
 
   it('preserves non-Text markers and malformed identifiers literally', () => {
-    expect(parseText('print(%_%NAME%_%)')).toEqual([
-      { kind: 'text', value: 'print(%_%NAME%_%)' },
-    ]);
+    expect(parseText('print(%_%NAME%_%)')).toEqual([{ kind: 'text', value: 'print(%_%NAME%_%)' }]);
     expect(parseText('Hello %_%id: snake_case; value: John%_%')).toEqual([
       { kind: 'text', value: 'Hello %_%id: snake_case; value: John%_%' },
     ]);

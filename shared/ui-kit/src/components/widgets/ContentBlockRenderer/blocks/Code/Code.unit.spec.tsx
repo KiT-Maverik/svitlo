@@ -37,12 +37,10 @@ describe('Code content block', () => {
   });
 
   it('never treats substituted code as markup', () => {
-    expect(
-      resolveCodeVariables('const value = "%_%VALUE%_%";', { VALUE: '<script>alert(1)</script>' }),
-    ).toBe('const value = "<script>alert(1)</script>";');
-    const { container } = render(
-      <Code {...response} variables={{ GREETING: '<script>alert(1)</script>' }} />,
+    expect(resolveCodeVariables('const value = "%_%VALUE%_%";', { VALUE: '<script>alert(1)</script>' })).toBe(
+      'const value = "<script>alert(1)</script>";',
     );
+    const { container } = render(<Code {...response} variables={{ GREETING: '<script>alert(1)</script>' }} />);
     expect(container.querySelector('script')).toBeNull();
     expect(container.querySelector('code')).toHaveTextContent('<script>alert(1)</script>');
   });
@@ -63,9 +61,9 @@ describe('Code content block', () => {
 
 describe('Code variables and localization', () => {
   it('replaces repeated short markers without altering ordinary object braces', () => {
-    expect(
-      resolveCodeVariables('const item = { first: "%_%WORD%_%", second: "%_%WORD%_%" };', { WORD: 'light' }),
-    ).toBe('const item = { first: "light", second: "light" };');
+    expect(resolveCodeVariables('const item = { first: "%_%WORD%_%", second: "%_%WORD%_%" };', { WORD: 'light' })).toBe(
+      'const item = { first: "light", second: "light" };',
+    );
   });
 
   it('marks code figures with the locale direction and keeps the language label', () => {

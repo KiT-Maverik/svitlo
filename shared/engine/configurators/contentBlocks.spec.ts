@@ -273,7 +273,10 @@ test('localized fallback and indexed media fields remain in locale projections',
       },
     },
   });
-  assert.deepEqual(code.config.base.params, { language: 'typescript', codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";' });
+  assert.deepEqual(code.config.base.params, {
+    language: 'typescript',
+    codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";',
+  });
   assert.deepEqual(code.config.base.locale, {
     variables: { FIXED: 'invariant' },
   });
