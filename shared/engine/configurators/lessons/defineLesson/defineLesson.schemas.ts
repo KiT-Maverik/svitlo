@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { languageCode_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared';
-import type { OrderedConfiguratorCollection } from '../../_shared/orderedConfiguratorCollection.utils';
+import type { OrderedConfiguratorCollection } from '../../_shared/orderedConfiguratorCollection/orderedConfiguratorCollection.utils';
 import { localizationSwitch } from '../../contentBlocks/_shared';
 import type { Section_Configurator, Section_Props } from '../../sections/section.types';
 import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/defineFlashcard';
