@@ -29,7 +29,8 @@ const formattedMarkdown = defineMarkdown({
   type: 'markdown',
   params: {},
   locale: {
-    value: "## Markdown\n\nThis block shows **bold**, *italic* and `inline code`.\n\n- First item\n- Second item\n\n> A short quotation.",
+    value:
+      '## Markdown\n\nThis block shows **bold**, *italic* and `inline code`.\n\n- First item\n- Second item\n\n> A short quotation.',
   },
 });
 
@@ -39,7 +40,7 @@ const highlightedCode = defineCode({
   type: 'code',
   params: {
     language: 'typescript',
-    codeAsText: "const lesson = { topic: \"light\", speed: 299_792_458 };\nconsole.log(lesson.topic);",
+    codeAsText: 'const lesson = { topic: "light", speed: 299_792_458 };\nconsole.log(lesson.topic);',
   },
   locale: { title: 'CODE · TypeScript' },
 });

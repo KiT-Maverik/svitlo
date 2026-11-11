@@ -18,7 +18,8 @@ const story = defineContentSection({
         type: 'markdown',
         params: {},
         locale: {
-          value: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+          value:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         },
       }),
     },

@@ -37,7 +37,8 @@ export const playgroundLightCourse = defineCourse({
   params: { languages: howLightMoves_languages },
   locale: {
     title: 'Playground · Light Journey',
-    description: 'A demonstration Course with Modules, a Chapter, a Course-owned story Lesson and a Course-specific Lesson composition.',
+    description:
+      'A demonstration Course with Modules, a Chapter, a Course-owned story Lesson and a Course-specific Lesson composition.',
   },
   content: {
     items: { lightLaboratory },

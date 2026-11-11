@@ -17,9 +17,7 @@ function getReducedMotion() {
   return window.matchMedia(reducedMotionQuery).matches;
 }
 
-export function LightPropagationSimulation({
-  locales,
-}: { locales: LightPropagationSimulationLocale }) {
+export function LightPropagationSimulation({ locales }: { locales: LightPropagationSimulationLocale }) {
   const reducedMotion = useSyncExternalStore(subscribeToReducedMotion, getReducedMotion, () => false);
   const [playbackOverride, setPlaybackOverride] = useState<boolean | null>(null);
   const [speed, setSpeed] = useState(1);
