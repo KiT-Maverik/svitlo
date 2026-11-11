@@ -45,8 +45,12 @@ export function defineLesson<
         throw new Error('Unknown Lesson question type: ' + type);
       }
       for (const [slug, question] of Object.entries(entries ?? {})) {
-        if (question.slug !== slug || question.type !== type || !question.config ||
-          typeof question.config.locales !== 'function') {
+        if (
+          question.slug !== slug ||
+          question.type !== type ||
+          !question.config ||
+          typeof question.config.locales !== 'function'
+        ) {
           throw new Error('Invalid Lesson Question configurator: ' + type + '/' + slug);
         }
       }
@@ -69,7 +73,9 @@ export function defineLesson<
   } = {};
 
   return {
-    id, slug, type,
+    id,
+    slug,
+    type,
     config: {
       base: { id, slug, type, programId, skills, params, locale: onlyStrings(locale) },
       locales: () => ({ locale: onlyLocales(locale) }),
@@ -81,8 +87,12 @@ export function defineLesson<
     questions,
     events,
     override: {
-      params: (value: DeepPartial<Lesson_Config['params']>) => { overrides.params = value; },
-      locale: (value: DeepPartial<Lesson_Config['locale']>) => { overrides.locale = value; },
+      params: (value: DeepPartial<Lesson_Config['params']>) => {
+        overrides.params = value;
+      },
+      locale: (value: DeepPartial<Lesson_Config['locale']>) => {
+        overrides.locale = value;
+      },
       section: {
         add: (sectionSlug: string, section: Section_Configurator) => {
           sections.override.add(sectionSlug, section);
@@ -98,7 +108,9 @@ export function defineLesson<
         },
       },
     },
-    disable: () => { overrides.params = { disabled: true }; },
+    disable: () => {
+      overrides.params = { disabled: true };
+    },
   } as const;
 }
 

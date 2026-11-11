@@ -1,6 +1,9 @@
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
 import { createSectionConfigurator } from '../_shared';
-import { learningFlowSection_Config_Schema, type LearningFlowSection_Config } from './defineLearningFlowSection.schemas';
+import {
+  learningFlowSection_Config_Schema,
+  type LearningFlowSection_Config,
+} from './defineLearningFlowSection.schemas';
 
 /**
  * Define a LearningFlow Section with slug-keyed ContentBlock configurators.

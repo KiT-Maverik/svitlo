@@ -43,11 +43,17 @@ export function validateOrderedConfiguratorCollection(
   for (const [slug, child] of Object.entries(value.items)) {
     if (!slugPattern.test(slug)) throw new Error('Invalid item slug: ' + slug);
     if (child === false && allowDisabled) continue;
-    if (!object(child) || !object(child.config) || !object(child.config.base) ||
-      typeof child.config.locales !== 'function' || child.slug !== slug ||
-      child.config.base.slug !== slug || child.id !== child.config.base.id ||
+    if (
+      !object(child) ||
+      !object(child.config) ||
+      !object(child.config.base) ||
+      typeof child.config.locales !== 'function' ||
+      child.slug !== slug ||
+      child.config.base.slug !== slug ||
+      child.id !== child.config.base.id ||
       child.type !== child.config.base.type ||
-      !allowedTypes.includes(child.type as string)) {
+      !allowedTypes.includes(child.type as string)
+    ) {
       throw new Error('Expected a matching child configurator at ' + slug);
     }
     active.add(slug);

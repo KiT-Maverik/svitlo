@@ -41,7 +41,9 @@ export function createSectionConfigurator<
   } = {};
 
   return {
-    id, slug, type,
+    id,
+    slug,
+    type,
     config: {
       base: { id, slug, type, params, locale: onlyStrings(locale) },
       locales: () => ({ locale: onlyLocales(locale) }),
@@ -49,8 +51,12 @@ export function createSectionConfigurator<
       validate,
     },
     override: {
-      params: (value: DeepPartial<Config['params']>) => { overrides.params = value; },
-      locale: (value: DeepPartial<Config['locale']>) => { overrides.locale = value; },
+      params: (value: DeepPartial<Config['params']>) => {
+        overrides.params = value;
+      },
+      locale: (value: DeepPartial<Config['locale']>) => {
+        overrides.locale = value;
+      },
       content: {
         add: (childSlug: string, child: ContentBlock_Configurator) => {
           collection.override.add(childSlug, child);
@@ -66,7 +72,9 @@ export function createSectionConfigurator<
         },
       },
     },
-    disable: () => { overrides.params = { disabled: true } as DeepPartial<Config['params']>; },
+    disable: () => {
+      overrides.params = { disabled: true } as DeepPartial<Config['params']>;
+    },
     content: collection.content,
   } as const;
 }

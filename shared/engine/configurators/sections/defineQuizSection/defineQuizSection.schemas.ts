@@ -24,10 +24,12 @@ const params = base.config.shape.params.extend({
     showProgress: z.boolean().optional(),
   }),
   feedbackMode: z.enum(['immediate', 'after-completion']),
-  grading: z.strictObject({
-    mode: z.enum(['percentage', 'points']),
-    successThreshold: z.number(),
-  }).optional(),
+  grading: z
+    .strictObject({
+      mode: z.enum(['percentage', 'points']),
+      successThreshold: z.number(),
+    })
+    .optional(),
   interaction: z.strictObject({
     retries: z.number().int().nonnegative(),
     showErrors: z.boolean(),
@@ -37,26 +39,34 @@ const params = base.config.shape.params.extend({
     allowQuestionNavigation: z.boolean(),
     skippable: z.boolean(),
   }),
-  questionOptions: z.strictObject({
-    selectOneAnswer: z.strictObject({
-      incorrectCount: z.number().int().nonnegative().optional(),
-      includeDistractors: z.boolean().optional(),
-      shuffleAnswers: z.boolean().optional(),
-      correctVariant: z.enum(['first', 'random']).optional(),
-    }).optional(),
-  }).optional(),
+  questionOptions: z
+    .strictObject({
+      selectOneAnswer: z
+        .strictObject({
+          incorrectCount: z.number().int().nonnegative().optional(),
+          includeDistractors: z.boolean().optional(),
+          shuffleAnswers: z.boolean().optional(),
+          correctVariant: z.enum(['first', 'random']).optional(),
+        })
+        .optional(),
+    })
+    .optional(),
   results: z.strictObject({
     visibility: z.enum(['immediate', 'after-review', 'hidden']),
     showScore: z.boolean(),
   }),
-  screen: z.strictObject({
-    starting: screen.optional(),
-    ending: z.strictObject({
-      success: screen,
-      fail: screen,
-      retry: screen.optional(),
-    }).optional(),
-  }).optional(),
+  screen: z
+    .strictObject({
+      starting: screen.optional(),
+      ending: z
+        .strictObject({
+          success: screen,
+          fail: screen,
+          retry: screen.optional(),
+        })
+        .optional(),
+    })
+    .optional(),
 });
 
 export const quizSection_Config_Schema = base.config.extend({ params });

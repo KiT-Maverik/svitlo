@@ -8,26 +8,36 @@ import { lesson_Config_Schema } from './defineLesson.schemas';
 
 const id = (suffix: string) => '663572e7-bd85-4516-86e2-3de07d209e' + suffix;
 const text = defineText({
-  type: 'text', id: id('01'), slug: 'paragraph', params: {},
+  type: 'text',
+  id: id('01'),
+  slug: 'paragraph',
+  params: {},
   locale: { value: { en: 'Hello', uk: 'Привіт' } },
 });
 const section = defineContentSection({
-  type: 'content', id: id('02'), slug: 'intro', params: {},
+  type: 'content',
+  id: id('02'),
+  slug: 'intro',
+  params: {},
   locale: { title: 'Introduction', navigationLabel: '1' },
   content: { items: { paragraph: text }, order: ['paragraph'] },
 });
-const makeLesson = () => defineLesson({
-  id: id('03'), slug: 'exampleLesson', type: 'lesson',
-  programId: id('04'),
-  skills: [],
-  params: {
-    requireQuiz: false, languages: ['en', 'uk'],
-    sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
-  },
-  locale: { title: { en: 'Example', uk: 'Приклад' } },
-  section: { items: { intro: section }, order: ['intro'] },
-  flashcards: [],
-});
+const makeLesson = () =>
+  defineLesson({
+    id: id('03'),
+    slug: 'exampleLesson',
+    type: 'lesson',
+    programId: id('04'),
+    skills: [],
+    params: {
+      requireQuiz: false,
+      languages: ['en', 'uk'],
+      sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+    },
+    locale: { title: { en: 'Example', uk: 'Приклад' } },
+    section: { items: { intro: section }, order: ['intro'] },
+    flashcards: [],
+  });
 
 test('Lesson projects its own base/locale and keeps child Section configurators', () => {
   const lesson = makeLesson();
@@ -35,14 +45,20 @@ test('Lesson projects its own base/locale and keeps child Section configurators'
   assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
   assert.equal(lesson.section.items.intro, section);
   assert.equal(lesson.config.base.section, undefined);
-  assert.equal(lesson_Config_Schema.safeParse(lesson.config.base).success, false,
-    'locale projection is sparse, not the complete authored config');
+  assert.equal(
+    lesson_Config_Schema.safeParse(lesson.config.base).success,
+    false,
+    'locale projection is sparse, not the complete authored config',
+  );
 });
 
 test('Lesson override changes only sparse Section composition and never mutates original', () => {
   const lesson = makeLesson();
   const second = defineContentSection({
-    type: 'content', id: id('05'), slug: 'extra', params: {},
+    type: 'content',
+    id: id('05'),
+    slug: 'extra',
+    params: {},
     locale: { title: 'Extra', navigationLabel: '2' },
     content: { items: {}, order: [] },
   });
@@ -66,13 +82,26 @@ test('Lesson override changes only sparse Section composition and never mutates 
 });
 
 test('Lesson rejects mismatched collection keys and raw child configs', () => {
-  assert.throws(() => defineLesson({
-    id: id('03'), slug: 'wrong', type: 'lesson', skills: [],
-    params: { requireQuiz: false, languages: ['en'], sections: {
-      allowNavigation: true, allowSkipping: true, showIndexes: false,
-    } },
-    locale: { title: 'Wrong' },
-    section: { items: { wrongKey: section }, order: ['wrongKey'] },
-    flashcards: [],
-  }), /matching child configurator/);
+  assert.throws(
+    () =>
+      defineLesson({
+        id: id('03'),
+        slug: 'wrong',
+        type: 'lesson',
+        skills: [],
+        params: {
+          requireQuiz: false,
+          languages: ['en'],
+          sections: {
+            allowNavigation: true,
+            allowSkipping: true,
+            showIndexes: false,
+          },
+        },
+        locale: { title: 'Wrong' },
+        section: { items: { wrongKey: section }, order: ['wrongKey'] },
+        flashcards: [],
+      }),
+    /matching child configurator/,
+  );
 });

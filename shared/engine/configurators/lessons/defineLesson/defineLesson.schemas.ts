@@ -22,7 +22,9 @@ export const lessonQuestionTypes = [
 export type Lesson_Question_Type = (typeof lessonQuestionTypes)[number];
 export type Lesson_QuestionBank = Partial<Record<Lesson_Question_Type, Record<string, Question_Configurator>>>;
 
-const languages = z.array(languageCode_Schema).nonempty()
+const languages = z
+  .array(languageCode_Schema)
+  .nonempty()
   .refine(list => new Set(list).size === list.length, 'Lesson languages must be unique');
 
 const params = paramsBase_Schema.shape.params.extend({
@@ -75,13 +77,23 @@ export const lessonConfigurator_Schema = z.custom<{
     readonly base: { readonly type: 'lesson'; readonly id: string; readonly slug: string };
     readonly locales: () => unknown;
   };
-}>(value => {
-  if (value === null || typeof value !== 'object' || !('config' in value)) return false;
-  const config = value.config;
-  if (config === null || typeof config !== 'object' || !('base' in config) || !('locales' in config)) return false;
-  const base = config.base;
-  return typeof config.locales === 'function' && base !== null && typeof base === 'object' &&
-    'type' in base && base.type === 'lesson' &&
-    'id' in base && typeof base.id === 'string' &&
-    'slug' in base && typeof base.slug === 'string';
-}, { message: 'Expected defineLesson configurator, not authored Lesson data' });
+}>(
+  value => {
+    if (value === null || typeof value !== 'object' || !('config' in value)) return false;
+    const config = value.config;
+    if (config === null || typeof config !== 'object' || !('base' in config) || !('locales' in config)) return false;
+    const base = config.base;
+    return (
+      typeof config.locales === 'function' &&
+      base !== null &&
+      typeof base === 'object' &&
+      'type' in base &&
+      base.type === 'lesson' &&
+      'id' in base &&
+      typeof base.id === 'string' &&
+      'slug' in base &&
+      typeof base.slug === 'string'
+    );
+  },
+  { message: 'Expected defineLesson configurator, not authored Lesson data' },
+);

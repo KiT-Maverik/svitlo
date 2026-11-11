@@ -18,12 +18,7 @@ export function defineQuizSection<
 ) {
   const validateScreens = (value: QuizSection_Config) => {
     const screen = value.params.screen;
-    const screens = [
-      screen?.starting,
-      screen?.ending?.success,
-      screen?.ending?.fail,
-      screen?.ending?.retry,
-    ];
+    const screens = [screen?.starting, screen?.ending?.success, screen?.ending?.fail, screen?.ending?.retry];
     for (const entry of screens) {
       for (const slug of entry?.content ?? []) {
         if (!Object.hasOwn(value.content.items, slug)) {
