@@ -9,13 +9,21 @@ const questionBase = createQuestionBaseSchema('selectMultipleAnswers');
 export const selectMultipleAnswers_Config_Schema = questionBase.extend(addUnifiedLocale({}));
 export type Question_SelectMultipleAnswers_Config = z.infer<typeof selectMultipleAnswers_Config_Schema> & {
   content: QuestionContent<ContentBlock_Configurator> & {
-  answers: { correct: Record<string, ContentBlock_Configurator>; incorrect: Record<string, ContentBlock_Configurator>; distractors: Record<string, ContentBlock_Configurator> };
-};
+    answers: {
+      correct: Record<string, ContentBlock_Configurator>;
+      incorrect: Record<string, ContentBlock_Configurator>;
+      distractors: Record<string, ContentBlock_Configurator>;
+    };
+  };
 };
 
 export const selectMultipleAnswers_Props_Schema = questionBase.extend(addUnifiedLocale({}));
 export type Question_SelectMultipleAnswers_Props = z.infer<typeof selectMultipleAnswers_Props_Schema> & {
   content: QuestionContent<ContentBlock_Props> & {
-  answers: { correct: Record<string, ContentBlock_Props>; incorrect: Record<string, ContentBlock_Props>; distractors: Record<string, ContentBlock_Props> };
-};
+    answers: {
+      correct: Record<string, ContentBlock_Props>;
+      incorrect: Record<string, ContentBlock_Props>;
+      distractors: Record<string, ContentBlock_Props>;
+    };
+  };
 };

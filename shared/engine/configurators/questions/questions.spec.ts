@@ -42,7 +42,10 @@ test('all nine Question configurators expose the same small lifecycle surface', 
   const questions = [
     defineSelectOneAnswer({ ...common('selectOneAnswer'), content: { ...prompt, answers } }),
     defineSelectMultipleAnswers({ ...common('selectMultipleAnswers'), content: { ...prompt, answers } }),
-    defineMatchBlocks({ ...common('matchBlocks'), content: { ...prompt, pairs: { pair: { left: block, right: block } } } }),
+    defineMatchBlocks({
+      ...common('matchBlocks'),
+      content: { ...prompt, pairs: { pair: { left: block, right: block } } },
+    }),
     defineAnswerWithText({
       ...common('answerWithText'),
       locale: { correctAnswers: [localized], placeholder: localized },
@@ -98,7 +101,9 @@ test('Question metadata validation does not recursively parse ContentBlocks', ()
   assert.equal(selectOneAnswer_Config_Schema.safeParse(input).success, true);
   assert.doesNotThrow(() => question.config.validate(input));
   assert.throws(() => question.config.validate({ ...input, content: { ...content, question: [] as never } }));
-  assert.throws(() => defineSelectOneAnswer({ ...input, params: { assessmentMethod: 'invalid' as never, restrictions: [] } }));
+  assert.throws(() =>
+    defineSelectOneAnswer({ ...input, params: { assessmentMethod: 'invalid' as never, restrictions: [] } }),
+  );
   assert.strictEqual(question.content, input.content);
   question.content.answers.correct.yes.override.locale({ value: 'Updated' });
   assert.deepEqual(block.config.overrides.locale, { value: 'Updated' });
@@ -113,14 +118,20 @@ test('text answer locale data and invariant numeric answers stay separated', () 
   assert.deepEqual(text.config.locales(), {
     locale: { correctAnswers: [{}, localized], placeholder: localized },
   });
-  assert.equal(answerWithText_Config_Schema.safeParse({
-    ...common('answerWithText'),
-    locale: { correctAnswers: [localized], placeholder: localized },
-  }).success, true);
-  assert.equal(answerWithText_Props_Schema.safeParse({
-    ...common('answerWithText'),
-    locale: { correctAnswers: ['Answer'], placeholder: 'Answer' },
-  }).success, true);
+  assert.equal(
+    answerWithText_Config_Schema.safeParse({
+      ...common('answerWithText'),
+      locale: { correctAnswers: [localized], placeholder: localized },
+    }).success,
+    true,
+  );
+  assert.equal(
+    answerWithText_Props_Schema.safeParse({
+      ...common('answerWithText'),
+      locale: { correctAnswers: ['Answer'], placeholder: 'Answer' },
+    }).success,
+    true,
+  );
   text.override.locale({ placeholder: 'Updated' });
   assert.deepEqual(text.config.overrides.locale, { placeholder: 'Updated' });
 

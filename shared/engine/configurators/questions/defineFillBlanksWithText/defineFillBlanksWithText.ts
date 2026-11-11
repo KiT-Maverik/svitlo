@@ -1,6 +1,9 @@
 import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import { fillBlanksWithText_Config_Schema, type Question_FillBlanksWithText_Config } from './defineFillBlanksWithText.schemas';
+import {
+  fillBlanksWithText_Config_Schema,
+  type Question_FillBlanksWithText_Config,
+} from './defineFillBlanksWithText.schemas';
 
 const validate = (candidate: Question_FillBlanksWithText_Config): void => {
   const { content, ...metadata } = candidate;
@@ -8,7 +11,6 @@ const validate = (candidate: Question_FillBlanksWithText_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  
 };
 
 /** Define fillBlanksWithText with independently validated child ContentBlocks. */

@@ -12,7 +12,9 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
     !content.pairs ||
     typeof content.pairs !== 'object' ||
     Array.isArray(content.pairs) ||
-    Object.values(content.pairs).some(pair => !pair || typeof pair !== 'object' || !('left' in pair) || !('right' in pair))
+    Object.values(content.pairs).some(
+      pair => !pair || typeof pair !== 'object' || !('left' in pair) || !('right' in pair),
+    )
   ) {
     throw new Error('Question pairs must contain left and right blocks');
   }

@@ -1,6 +1,9 @@
 import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import { buildAnswerWithBlocks_Config_Schema, type Question_BuildAnswerWithBlocks_Config } from './defineBuildAnswerWithBlocks.schemas';
+import {
+  buildAnswerWithBlocks_Config_Schema,
+  type Question_BuildAnswerWithBlocks_Config,
+} from './defineBuildAnswerWithBlocks.schemas';
 
 const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   const { content, ...metadata } = candidate;
@@ -8,7 +11,8 @@ const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  if (!Array.isArray(content.correctSequence) || !content.correctSequence.length || !Array.isArray(content.distractors)) throw new Error('Question requires a nonempty correctSequence and distractors array');
+  if (!Array.isArray(content.correctSequence) || !content.correctSequence.length || !Array.isArray(content.distractors))
+    throw new Error('Question requires a nonempty correctSequence and distractors array');
 };
 
 /** Define buildAnswerWithBlocks with independently validated child ContentBlocks. */

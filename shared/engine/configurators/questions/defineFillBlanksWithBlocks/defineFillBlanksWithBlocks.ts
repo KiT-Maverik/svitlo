@@ -1,6 +1,9 @@
 import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import { fillBlanksWithBlocks_Config_Schema, type Question_FillBlanksWithBlocks_Config } from './defineFillBlanksWithBlocks.schemas';
+import {
+  fillBlanksWithBlocks_Config_Schema,
+  type Question_FillBlanksWithBlocks_Config,
+} from './defineFillBlanksWithBlocks.schemas';
 
 const validate = (candidate: Question_FillBlanksWithBlocks_Config): void => {
   const { content, ...metadata } = candidate;

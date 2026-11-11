@@ -1,6 +1,9 @@
 import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import { answerWithNumber_Config_Schema, type Question_AnswerWithNumber_Config } from './defineAnswerWithNumber.schemas';
+import {
+  answerWithNumber_Config_Schema,
+  type Question_AnswerWithNumber_Config,
+} from './defineAnswerWithNumber.schemas';
 
 const validate = (candidate: Question_AnswerWithNumber_Config): void => {
   const { content, ...metadata } = candidate;
@@ -8,7 +11,6 @@ const validate = (candidate: Question_AnswerWithNumber_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  
 };
 
 /** Define answerWithNumber with independently validated child ContentBlocks. */

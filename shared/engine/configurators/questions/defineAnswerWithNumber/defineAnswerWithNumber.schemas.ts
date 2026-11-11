@@ -10,7 +10,7 @@ const params = questionBase.shape.params.extend({
   correctAnswers: z.array(z.number()),
 });
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-    placeholder: localizationSwitch[mode],
+  placeholder: localizationSwitch[mode],
 });
 
 /** The schema validates Question metadata; child blocks own their validation. */

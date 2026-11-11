@@ -8,7 +8,6 @@ const validate = (candidate: Question_AnswerWithText_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  
 };
 
 /** Define answerWithText with independently validated child ContentBlocks. */

@@ -7,8 +7,8 @@ import { createQuestionBaseSchema, type QuestionContent } from '../question.sche
 
 const questionBase = createQuestionBaseSchema('fillBlanksWithText');
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-    slots: z.array(z.object({ selector: z.string(), correctAnswers: z.array(localizationSwitch[mode]) })),
-    placeholder: localizationSwitch[mode],
+  slots: z.array(z.object({ selector: z.string(), correctAnswers: z.array(localizationSwitch[mode]) })),
+  placeholder: localizationSwitch[mode],
 });
 
 /** The schema validates Question metadata; child blocks own their validation. */

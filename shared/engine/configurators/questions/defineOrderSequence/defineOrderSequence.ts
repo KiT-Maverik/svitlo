@@ -8,7 +8,8 @@ const validate = (candidate: Question_OrderSequence_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  if (!Array.isArray(content.sequence) || !content.sequence.length) throw new Error('Question sequence cannot be empty');
+  if (!Array.isArray(content.sequence) || !content.sequence.length)
+    throw new Error('Question sequence cannot be empty');
 };
 
 /** Define orderSequence with independently validated child ContentBlocks. */

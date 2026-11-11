@@ -7,8 +7,8 @@ import { createQuestionBaseSchema, type QuestionContent } from '../question.sche
 
 const questionBase = createQuestionBaseSchema('answerWithText');
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-    correctAnswers: z.array(localizationSwitch[mode]),
-    placeholder: localizationSwitch[mode],
+  correctAnswers: z.array(localizationSwitch[mode]),
+  placeholder: localizationSwitch[mode],
 });
 
 /** The schema validates Question metadata; child blocks own their validation. */

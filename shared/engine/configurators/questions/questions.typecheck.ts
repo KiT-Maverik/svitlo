@@ -21,14 +21,49 @@ const common = { id, slug: 'questionOne', params, locale: {}, content: { questio
 const answers = { correct: { yes: block }, incorrect: { no: block }, distractors: { maybe: block } };
 
 const one = defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', content: { ...common.content, answers } });
-const multiple = defineSelectMultipleAnswers({ ...common, type: 'selectMultipleAnswers', content: { ...common.content, answers } });
-const matched = defineMatchBlocks({ ...common, type: 'matchBlocks', content: { ...common.content, pairs: { one: { left: block, right: block } } } });
-const text = defineAnswerWithText({ ...common, type: 'answerWithText', locale: { correctAnswers: ['yes'], placeholder: 'Answer' } });
-const number = defineAnswerWithNumber({ ...common, type: 'answerWithNumber', params: { ...params, correctAnswers: [2] }, locale: { placeholder: 'Number' } });
-const order = defineOrderSequence({ ...common, type: 'orderSequence', content: { ...common.content, sequence: [block] as [typeof block] } });
-const build = defineBuildAnswerWithBlocks({ ...common, type: 'buildAnswerWithBlocks', locale: { placeholder: 'Build' }, content: { ...common.content, correctSequence: [block] as [typeof block], distractors: [block] } });
-const blocks = defineFillBlanksWithBlocks({ ...common, type: 'fillBlanksWithBlocks', locale: { placeholder: 'Fill' }, content: { ...common.content, slots: [{ selector: 'x', correctAnswer: block }], distractors: [block] } });
-const blanks = defineFillBlanksWithText({ ...common, type: 'fillBlanksWithText', locale: { slots: [{ selector: 'x', correctAnswers: ['yes'] }], placeholder: 'Fill' } });
+const multiple = defineSelectMultipleAnswers({
+  ...common,
+  type: 'selectMultipleAnswers',
+  content: { ...common.content, answers },
+});
+const matched = defineMatchBlocks({
+  ...common,
+  type: 'matchBlocks',
+  content: { ...common.content, pairs: { one: { left: block, right: block } } },
+});
+const text = defineAnswerWithText({
+  ...common,
+  type: 'answerWithText',
+  locale: { correctAnswers: ['yes'], placeholder: 'Answer' },
+});
+const number = defineAnswerWithNumber({
+  ...common,
+  type: 'answerWithNumber',
+  params: { ...params, correctAnswers: [2] },
+  locale: { placeholder: 'Number' },
+});
+const order = defineOrderSequence({
+  ...common,
+  type: 'orderSequence',
+  content: { ...common.content, sequence: [block] as [typeof block] },
+});
+const build = defineBuildAnswerWithBlocks({
+  ...common,
+  type: 'buildAnswerWithBlocks',
+  locale: { placeholder: 'Build' },
+  content: { ...common.content, correctSequence: [block] as [typeof block], distractors: [block] },
+});
+const blocks = defineFillBlanksWithBlocks({
+  ...common,
+  type: 'fillBlanksWithBlocks',
+  locale: { placeholder: 'Fill' },
+  content: { ...common.content, slots: [{ selector: 'x', correctAnswer: block }], distractors: [block] },
+});
+const blanks = defineFillBlanksWithText({
+  ...common,
+  type: 'fillBlanksWithText',
+  locale: { slots: [{ selector: 'x', correctAnswers: ['yes'] }], placeholder: 'Fill' },
+});
 
 type OneSlug = Expect<Equal<typeof one.config.base.slug, 'questionOne'>>;
 type MultipleSlug = Expect<Equal<typeof multiple.config.base.slug, 'questionOne'>>;
@@ -44,10 +79,24 @@ type AnswerBlock = Expect<Equal<typeof one.content.answers.correct.yes, typeof b
 type PromptBlock = Expect<Equal<(typeof order.content.question)[0], typeof block>>;
 
 // @ts-expect-error A raw ContentBlock config is not a nested configurator.
-defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', content: { question: [{ id, type: 'text', slug: 'raw', params: {}, locale: { value: 'raw' } }], answers } });
+defineSelectOneAnswer({
+  ...common,
+  type: 'selectOneAnswer',
+  content: { question: [{ id, type: 'text', slug: 'raw', params: {}, locale: { value: 'raw' } }], answers },
+});
 // @ts-expect-error Number question answers must be numeric.
-defineAnswerWithNumber({ ...common, type: 'answerWithNumber', params: { ...params, correctAnswers: ['2'] }, locale: { placeholder: 'Number' } });
+defineAnswerWithNumber({
+  ...common,
+  type: 'answerWithNumber',
+  params: { ...params, correctAnswers: ['2'] },
+  locale: { placeholder: 'Number' },
+});
 // @ts-expect-error Assessment Methods are known slugs.
-defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', params: { ...params, assessmentMethod: 'unknown' }, content: { ...common.content, answers } });
+defineSelectOneAnswer({
+  ...common,
+  type: 'selectOneAnswer',
+  params: { ...params, assessmentMethod: 'unknown' },
+  content: { ...common.content, answers },
+});
 
 void [one, multiple, matched, text, number, order, build, blocks, blanks];
