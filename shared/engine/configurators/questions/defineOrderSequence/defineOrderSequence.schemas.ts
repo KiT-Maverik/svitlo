@@ -1,18 +1,21 @@
 import { z } from 'zod';
+import { addUnifiedLocale } from '../../_shared__configurators';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
+import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
 
-import { createQuestionFields, questionBlockSwitch, questionLocalizationSwitch } from '../question.schemas';
+const questionBase = createQuestionBaseSchema('orderSequence');
 
-function createOrderSequenceSchema<Mode extends keyof typeof questionBlockSwitch>(mode: Mode) {
-  const child = questionBlockSwitch[mode];
+/** The schema validates Question metadata; child blocks own their validation. */
+export const orderSequence_Config_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_OrderSequence_Config = z.infer<typeof orderSequence_Config_Schema> & {
+  content: QuestionContent<ContentBlock_Configurator> & {
+    sequence: [ContentBlock_Configurator, ...ContentBlock_Configurator[]];
+  };
+};
 
-  return z.strictObject({
-    ...createQuestionFields('orderSequence', mode),
-    sequence: z.tuple([child], child),
-  });
-}
-
-export const orderSequence_Config_Schema = createOrderSequenceSchema('config');
-export type Question_OrderSequence_Config = z.infer<typeof orderSequence_Config_Schema>;
-
-export const orderSequence_Props_Schema = createOrderSequenceSchema('props');
-export type Question_OrderSequence_Props = z.infer<typeof orderSequence_Props_Schema>;
+export const orderSequence_Props_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_OrderSequence_Props = z.infer<typeof orderSequence_Props_Schema> & {
+  content: QuestionContent<ContentBlock_Props> & {
+    sequence: [ContentBlock_Props, ...ContentBlock_Props[]];
+  };
+};

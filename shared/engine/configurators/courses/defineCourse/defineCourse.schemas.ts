@@ -1,74 +1,51 @@
 import { z } from 'zod';
 
 import { languageCode_Schema } from '#schemas';
+import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import type { Lesson_Configurator, Lesson_Props } from '../../lessons/defineLesson';
+import type { Chapter_Configurator, Chapter_Props } from '../defineChapter';
+import type { Module_Configurator, Module_Props } from '../defineModule';
 
-import { lessonConfigurator_Schema } from '../../lessons/defineLesson/defineLesson.schemas';
-import {
-  createHierarchyChildSchema,
-  createHierarchyPropsSchema,
-  hierarchyResolvedChild_Schema,
-  markdownConfigurator_Schema,
-  textConfigurator_Schema,
-} from '../_shared__courses/courseHierarchy.schemas';
-import { episodeConfigurator_Schema } from '../defineEpisode/defineEpisode.schemas';
-import { chapterConfigurator_Schema } from '../defineChapter/defineChapter.schemas';
-import { moduleConfigurator_Schema } from '../defineModule/defineModule.schemas';
+const params = paramsBase_Schema.shape.params.extend({
+  languages: z
+    .array(languageCode_Schema)
+    .nonempty()
+    .refine(values => new Set(values).size === values.length, 'Course languages must be unique'),
+  scenarioMode: z.enum(['none', 'story']).optional(),
+  prerequisites: z
+    .object({
+      skills: z.array(z.uuid()).optional(),
+      skillGroups: z.array(z.uuid()).optional(),
+      skillDomains: z.array(z.uuid()).optional(),
+      courses: z.array(z.uuid()).optional(),
+    })
+    .optional(),
+});
 
-export const course_Config_Schema = z.strictObject({
+const identity = identityBase_Schema.extend({
   type: z.literal('course'),
-  id: z.uuid(),
-  title: textConfigurator_Schema,
-  description: markdownConfigurator_Schema,
-  scenarioMode: z.enum(['none', 'story']).optional(),
-  prerequisites: z
-    .strictObject({
-      skills: z.array(z.uuid()).optional(),
-      skillGroups: z.array(z.uuid()).optional(),
-      skillDomains: z.array(z.uuid()).optional(),
-      courses: z.array(z.uuid()).optional(),
-      text: markdownConfigurator_Schema.optional(),
-    })
-    .optional(),
-  parameters: z.strictObject({
-    languages: z
-      .array(languageCode_Schema)
-      .nonempty()
-      .refine(values => new Set(values).size === values.length, 'Course languages must be unique'),
-  }),
-  content: z.array(
-    z.union([
-      moduleConfigurator_Schema,
-      chapterConfigurator_Schema,
-      episodeConfigurator_Schema,
-      lessonConfigurator_Schema,
-    ]),
-  ),
+  params,
 });
-export type Course_Config = z.infer<typeof course_Config_Schema>;
 
-export const course_Props_Schema = z.strictObject({
-  ...createHierarchyPropsSchema('course'),
-  description: z.object({ type: z.literal('markdown'), id: z.uuid() }).catchall(z.unknown()),
-  scenarioMode: z.enum(['none', 'story']).optional(),
-  prerequisites: z
-    .strictObject({
-      skills: z.array(z.uuid()).optional(),
-      skillGroups: z.array(z.uuid()).optional(),
-      skillDomains: z.array(z.uuid()).optional(),
-      courses: z.array(z.uuid()).optional(),
-      text: z
-        .object({ type: z.literal('markdown'), id: z.uuid() })
-        .catchall(z.unknown())
-        .optional(),
-    })
-    .optional(),
-  parameters: z.strictObject({
-    languages: z.array(languageCode_Schema).nonempty(),
-  }),
-  content: z.array(hierarchyResolvedChild_Schema),
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  title: localizationSwitch[mode],
+  description: localizationSwitch[mode],
+  prerequisitesText: localizationSwitch[mode].optional(),
 });
-export type Course_Props = z.infer<typeof course_Props_Schema>;
+export type Course_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 
-export const courseConfigurator_Schema = createHierarchyChildSchema<{
-  readonly config: { readonly base: { readonly type: 'course'; readonly id: string }; readonly locales: () => object };
-}>('course');
+export type Course_Child = Module_Configurator | Chapter_Configurator | Lesson_Configurator;
+export type Course_Child_Props = Module_Props | Chapter_Props | Lesson_Props;
+
+/** Children are configurators, not recursively parsed Zod data. false is reserved for overrides. */
+export type Course_Content = { items: Record<string, Course_Child | false>; order: string[] };
+
+export const course_Config_Schema = identity.extend(addUnifiedLocale(locale('config')));
+export type Course_Config = z.infer<typeof course_Config_Schema> & { content: Course_Content };
+
+export const course_Props_Schema = identity.extend(addUnifiedLocale(locale('props')));
+export type Course_Props = z.infer<typeof course_Props_Schema> & {
+  content: { items: Record<string, Course_Child_Props>; order: string[] };
+};

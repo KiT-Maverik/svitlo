@@ -1,63 +1,60 @@
 import type { DeepPartial } from '#types';
-
-import { onlyLocales, onlyStrings } from '../../_utils';
-
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
   buildAnswerWithBlocks_Config_Schema,
   type Question_BuildAnswerWithBlocks_Config,
 } from './defineBuildAnswerWithBlocks.schemas';
 
-const validate = (config: Question_BuildAnswerWithBlocks_Config) => {
-  buildAnswerWithBlocks_Config_Schema.parse(config);
+const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
+  const { content, ...metadata } = candidate;
+  buildAnswerWithBlocks_Config_Schema.parse(metadata);
+  if (!Array.isArray(content?.question) || content.question.length === 0) {
+    throw new Error('Question content.question must contain at least one ContentBlock');
+  }
+  if (!Array.isArray(content.correctSequence) || !content.correctSequence.length || !Array.isArray(content.distractors))
+    throw new Error('Question requires a nonempty correctSequence and distractors array');
 };
 
-export function defineBuildAnswerWithBlocks<const Config extends Question_BuildAnswerWithBlocks_Config>(
-  config: Config,
-) {
+/** Define buildAnswerWithBlocks with independently validated child ContentBlocks. */
+export const defineBuildAnswerWithBlocks = <
+  const Slug extends string,
+  const Content extends Question_BuildAnswerWithBlocks_Config['content'],
+>(
+  config: Omit<Question_BuildAnswerWithBlocks_Config, 'slug' | 'content'> & {
+    slug: Slug;
+    content: Content;
+  },
+) => {
   validate(config);
-
-  const {
-    id,
-    type,
-    slug,
-    assessmentMethod,
-    restrictions,
-    question,
-    hint,
-    explanation,
-    correctSequence,
-    distractors,
-    placeholder,
-  } = config;
-
-  const localeEntries = { placeholder } as const;
-
+  const { id, slug, type, params, locale, content } = config;
   const base = {
     id,
-    type,
     slug,
-    assessmentMethod,
-    restrictions,
-    ...onlyStrings(localeEntries),
+    type,
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<Question_BuildAnswerWithBlocks_Config>;
+  const overrides: DeepPartial<Question_BuildAnswerWithBlocks_Config> = {};
 
   return {
     id,
     slug,
     type,
-    kind: 'buildAnswerWithBlocks' as const,
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_BuildAnswerWithBlocks_Config>,
+      locales: (): { locale: DeepPartial<Question_BuildAnswerWithBlocks_Config['locale']> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
       validate,
     },
-    // Nested ContentBlocks remain configurators; the publishing phase resolves them.
-    question,
-    hint,
-    explanation,
-    correctSequence,
-    distractors,
-  };
-}
+    content,
+    override: {
+      params: (value: DeepPartial<Question_BuildAnswerWithBlocks_Config['params']>) => (overrides.params = value),
+      locale: (value: DeepPartial<Question_BuildAnswerWithBlocks_Config['locale']>) => (overrides.locale = value),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+  } as const;
+};
 
 export type Question_BuildAnswerWithBlocks_Configurator = ReturnType<typeof defineBuildAnswerWithBlocks>;
