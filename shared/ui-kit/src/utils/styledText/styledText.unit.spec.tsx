@@ -25,7 +25,7 @@ describe('styledText utilities', () => {
   it('applies styles when embedded in another element', () => {
     const content = applyStyledText({
       text: 'Hi %_%id: name; value: John%_%',
-      styling: [{ id: 'name', applyStyle: ['bold', 'highlight'], tone: 'success' }],
+      variables: { name: { applyStyle: ['bold', 'highlight'], tone: 'success' } },
     });
     const html = renderToStaticMarkup(<strong>{content}</strong>);
 
