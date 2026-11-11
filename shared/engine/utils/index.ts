@@ -1,3 +1,4 @@
+export { loadAndValidateCodeTemplate } from './generators/code/loadAndValidateCodeTemplate.utils';
 export { getMarkdownLocale } from './generators/getMarkdownLocale/getMarkdownLocale.util';
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './languages';
 export {
