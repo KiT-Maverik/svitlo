@@ -33,7 +33,7 @@ export const Playground: Story = {};
 
 export const StyledFragments: Story = {
   args: {
-    value: 'A {{id: wave; value: light wave}} can be described by its {{id: speed; value: speed}}.',
+    value: 'A %_%id: wave; value: light wave%_% can be described by its %_%id: speed; value: speed%_%.',
     styling: [
       { id: 'wave', applyStyle: ['bold', 'highlight'], tone: 'info' },
       { id: 'speed', applyStyle: ['variable', 'underscore'], applyColor: '#1565c0' },
