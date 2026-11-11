@@ -156,12 +156,8 @@
     "textStyle": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "applyStyle"],
+      "required": ["applyStyle"],
       "properties": {
-        "id": {
-          "type": "string",
-          "pattern": "^[a-z][A-Za-z0-9]*$"
-        },
         "applyStyle": {
           "type": "array",
           "items": {
@@ -220,12 +216,14 @@
             }
           ]
         },
-        "styling": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/textStyle"
+        "variables": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z][A-Za-z0-9]*$"
           },
-          "minItems": 1
+          "additionalProperties": {
+            "$ref": "#/$defs/textStyle"
+          }
         },
         "wrap": {
           "type": "object",
