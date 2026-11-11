@@ -86,33 +86,6 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
     return value.items;
   };
 
-  const inspectBlock = (value: unknown, path: string): { type: string; slug: string } | undefined => {
-    if (!isObject(value) || !isObject(value.config) || !isObject(value.config.base)) {
-      fail('configurator', path, 'Expected a ContentBlock configurator returned by define*');
-      return;
-    }
-    const { base, locales, validate: validateChild } = value.config;
-    if (
-      typeof base.type !== 'string' ||
-      typeof base.id !== 'string' ||
-      typeof base.slug !== 'string' ||
-      !isObject(value.config.overrides) ||
-      typeof locales !== 'function' ||
-      typeof validateChild !== 'function' ||
-      !isObject(value.override) ||
-      typeof value.override.params !== 'function' ||
-      typeof value.override.locale !== 'function' ||
-      typeof value.disable !== 'function'
-    ) {
-      fail('configurator', path, 'Invalid ContentBlock configurator identity or methods');
-      return;
-    }
-    if (value.type !== base.type || value.slug !== base.slug || value.id !== base.id) {
-      fail('identity', path, 'Top-level id, slug and type must match config.base');
-    }
-    return { type: base.type, slug: base.slug };
-  };
-
   const contentItems = validateCollection(config?.content, 'content');
   if (contentItems) {
     for (const [slug, item] of Object.entries(contentItems)) {
@@ -125,8 +98,7 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
         fail('item', path + '.check', 'check must be true when provided');
       }
 
-      const question = inspectBlock(item.question, path + '.question');
-      if (question && question.type !== 'text') {
+      if (!isObject(item.question) || item.question.type !== 'text') {
         fail('question', path + '.question', 'Question must be a Text configurator');
       }
 
@@ -134,13 +106,15 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
       if (!answers) continue;
       for (const [answerSlug, value] of Object.entries(answers)) {
         const answerPath = path + '.answer.items.' + answerSlug;
-        const answer = inspectBlock(value, answerPath);
-        if (!answer) continue;
-        if (!allowedAnswers.has(answer.type)) {
-          fail('answer', answerPath, 'Unsupported answer type: ' + answer.type);
+        if (!isObject(value)) {
+          fail('answer', answerPath, 'Expected an answer ContentBlock configurator');
+          continue;
         }
-        if (answer.slug !== answerSlug) {
-          fail('slug', answerPath, 'Key ' + answerSlug + ' does not match configurator slug ' + answer.slug);
+        if (typeof value.type !== 'string' || !allowedAnswers.has(value.type)) {
+          fail('answer', answerPath, 'Unsupported answer type: ' + String(value.type));
+        }
+        if (value.slug !== answerSlug) {
+          fail('slug', answerPath, 'Key ' + answerSlug + ' does not match configurator slug ' + String(value.slug));
         }
       }
     }

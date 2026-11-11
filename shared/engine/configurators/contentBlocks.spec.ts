@@ -385,38 +385,33 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
     () => checkpoint.config.validate(invalidAnswer as unknown as typeof config),
     error =>
       error instanceof CheckpointValidationError &&
-      error.result.errors.some(issue => issue.check === 'identity') &&
-      error.result.errors.some(issue => issue.check === 'configurator'),
+      error.result.errors.some(issue => issue.check === 'slug') &&
+      error.result.errors.some(issue => issue.check === 'answer'),
   );
 
-  // Matching identity alone is not enough: an answer must expose the ContentBlock API.
-  const fakeAnswer = {
-    id: answer.id,
-    slug: answer.slug,
-    type: answer.type,
+  // Checkpoint owns relationships, not the internal validation of child blocks.
+  const answerWithOwnValidator = {
+    ...answer,
     config: {
-      base: answer.config.base,
-      locales: answer.config.locales,
-      overrides: {},
-      validate: answer.config.validate,
+      ...answer.config,
+      validate: () => {
+        throw new Error('Child ContentBlock validation must not run from Checkpoint');
+      },
     },
   };
-  assert.throws(
-    () =>
-      checkpoint.config.validate({
-        ...config,
-        content: {
-          ...config.content,
-          items: {
-            whatIsLight: {
-              ...config.content.items.whatIsLight,
-              answer: { items: { answer: fakeAnswer }, order: ['answer'] },
-            },
+  assert.doesNotThrow(() =>
+    checkpoint.config.validate({
+      ...config,
+      content: {
+        ...config.content,
+        items: {
+          whatIsLight: {
+            ...config.content.items.whatIsLight,
+            answer: { items: { answer: answerWithOwnValidator }, order: ['answer'] },
           },
         },
-      } as unknown as typeof config),
-    error =>
-      error instanceof CheckpointValidationError && error.result.errors.some(issue => issue.check === 'configurator'),
+      },
+    }),
   );
 
   const nested = {
