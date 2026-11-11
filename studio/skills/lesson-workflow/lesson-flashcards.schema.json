@@ -282,7 +282,7 @@
             "properties": {
               "id": {
                 "type": "string",
-                "pattern": "^[a-z][A-Za-z0-9]*$"
+                "pattern": "^[A-Z][A-Z0-9_]*$"
               },
               "value": {
                 "oneOf": [

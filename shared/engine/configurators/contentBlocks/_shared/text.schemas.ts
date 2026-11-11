@@ -9,7 +9,7 @@ export type TextTonePreset = (typeof textTonePresets)[number];
 const textStyle_Schema = z.enum(textStylePresets);
 
 const textStylingRule_Schema = z.strictObject({
-  id: z.uuid(),
+  id: z.string().regex(/^[a-z][A-Za-z0-9]*$/),
   applyStyle: z.tuple([textStyle_Schema], textStyle_Schema),
   applyColor: z.string().optional(),
   tone: z.enum(textTonePresets).optional(),

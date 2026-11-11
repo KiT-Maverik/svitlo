@@ -17,7 +17,7 @@ type ContentBlock_Code_Data<SupportedLanguages extends Locale_Languages> = Conte
   };
 
 export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & {
-  /** Display-only source text. Inline {{id}} markers use localized variables below. */
+  /** Display-only source text. %_%UPPER_SNAKE_CASE%_% markers use localized variables below. */
   code: string;
   language: string;
   title?: string;

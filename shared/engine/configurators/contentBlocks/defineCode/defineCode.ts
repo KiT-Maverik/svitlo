@@ -8,6 +8,16 @@ const validate = (config: ContentBlock_Code_Config) => {
   code_Config_Schema.parse(config);
 };
 
+/**
+ * Define Code from a source template with localized replacements.
+ *
+ * @remarks
+ * `params.fileLocation` identifies the source template. Write
+ * `%_%VARIABLE_NAME%_%` in the source, using UPPER_SNAKE_CASE IDs.
+ * Matching `locale.variables` supply localized replacement values.
+ * Only values are localized; substitution happens before highlighting.
+ * Unmatched markers remain literal and do not alter surrounding code.
+ */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
 ) => {

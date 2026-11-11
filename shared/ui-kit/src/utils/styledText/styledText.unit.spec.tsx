@@ -7,23 +7,24 @@ import styles from './StyledText.module.css';
 
 describe('styledText utilities', () => {
   it('parses a string independently of a rendering component', () => {
-    expect(parseText('Hi {{id: name; value: John}}')).toEqual([
+    expect(parseText('Hi %_%id: name; value: John%_%')).toEqual([
       { kind: 'text', value: 'Hi ' },
       { kind: 'fragment', id: 'name', value: 'John' },
     ]);
   });
 
-  it('parses bare identifiers for use outside styled text', () => {
-    expect(parseText('print({{name}})')).toEqual([
-      { kind: 'text', value: 'print(' },
-      { kind: 'fragment', id: 'name', value: 'name' },
-      { kind: 'text', value: ')' },
+  it('preserves non-Text markers and malformed identifiers literally', () => {
+    expect(parseText('print(%_%NAME%_%)')).toEqual([
+      { kind: 'text', value: 'print(%_%NAME%_%)' },
+    ]);
+    expect(parseText('Hello %_%id: snake_case; value: John%_%')).toEqual([
+      { kind: 'text', value: 'Hello %_%id: snake_case; value: John%_%' },
     ]);
   });
 
   it('applies styles when embedded in another element', () => {
     const content = applyStyledText({
-      text: 'Hi {{id: name; value: John}}',
+      text: 'Hi %_%id: name; value: John%_%',
       styling: [{ id: 'name', applyStyle: ['bold', 'highlight'], tone: 'success' }],
     });
     const html = renderToStaticMarkup(<strong>{content}</strong>);

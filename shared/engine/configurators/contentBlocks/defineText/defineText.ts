@@ -8,6 +8,15 @@ const validate = (config: ContentBlock_Text_Config) => {
   text_Config_Schema.parse(config);
 };
 
+/**
+ * Define localized Text with optional styling for inline fragments.
+ *
+ * @remarks
+ * In `locale.value`, use `%_%id: personName; value: Maria%_%`.
+ * The fragment displays its `value` and uses `id` to select a
+ * `params.styling` rule. The ID must be camelCase; it is
+ * not a Code replacement variable. Ordinary text remains unchanged.
+ */
 export const defineText = <const Slug extends string>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
 ) => {

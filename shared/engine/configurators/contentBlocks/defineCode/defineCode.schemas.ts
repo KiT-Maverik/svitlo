@@ -16,8 +16,8 @@ const codeBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode].optional(),
-  // The source template uses {{id}} placeholders. Only replacement values are localized.
-  variables: z.array(z.object({ id: z.string().min(1), value: localizationSwitch[mode] })).optional(),
+  // Code templates use %_%UPPER_SNAKE_CASE%_% placeholders. Only replacement values are localized.
+  variables: z.array(z.object({ id: z.string().regex(/^[A-Z][A-Z0-9_]*$/), value: localizationSwitch[mode] })).optional(),
 });
 
 export type ContentBlock_Code_Locale<Mode extends Configurator_Mode> = z.infer<

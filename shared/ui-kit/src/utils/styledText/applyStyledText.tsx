@@ -10,7 +10,7 @@ export interface ApplyStyledTextOptions {
 
 export function applyStyledText({ text, styling }: ApplyStyledTextOptions) {
   const content = parseText(text).map((part, index) => {
-    if (part.kind === 'text') return part.value.replaceAll('}}', '');
+    if (part.kind === 'text') return part.value;
 
     const rule = styling?.find(item => item.id === part.id);
     if (!rule) return part.value;

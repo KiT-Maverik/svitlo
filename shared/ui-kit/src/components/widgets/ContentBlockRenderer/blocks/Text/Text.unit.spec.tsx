@@ -13,16 +13,16 @@ const textResponse = (
 
 describe('Text', () => {
   it('renders marker values without service syntax when no styling is supplied', () => {
-    render(<Text {...textResponse('Hello {{id: name; value: John}}!')} />);
+    render(<Text {...textResponse('Hello %_%id: name; value: John%_%!')} />);
     const paragraph = screen.getByText('Hello John!');
     expect(paragraph.tagName).toBe('P');
-    expect(paragraph.textContent).not.toContain('{{');
+    expect(paragraph.textContent).not.toContain('%_%');
   });
 
   it('applies configured styles to matching fragments in one span', () => {
     render(
       <Text
-        {...textResponse('{{id: name; value: John}} and {{id: name; value: Jane}}', [
+        {...textResponse('%_%id: name; value: John%_% and %_%id: name; value: Jane%_%', [
           { id: 'name', applyStyle: ['variable', 'bold', 'underscore'], applyColor: 'red' },
         ])}
       />,
@@ -38,7 +38,7 @@ describe('Text', () => {
 
   it('selects a MUI palette token for each highlight tone without inline colors', () => {
     const text =
-      '{{id: default; value: Default}} {{id: info; value: Info}} {{id: neutral; value: Neutral}} {{id: success; value: Success}}';
+      '%_%id: default; value: Default%_% %_%id: info; value: Info%_% %_%id: neutral; value: Neutral%_% %_%id: success; value: Success%_%';
     const styling = [
       { id: 'default', applyStyle: ['highlight'] },
       { id: 'info', applyStyle: ['highlight'], tone: 'info' },
@@ -59,13 +59,13 @@ describe('Text', () => {
   it('renders marked text on the server', () => {
     const html = renderToStaticMarkup(
       <Text
-        {...textResponse('Hello {{id: name; value: John}}', [{ id: 'name', applyStyle: ['highlight'], tone: 'info' }])}
+        {...textResponse('Hello %_%id: name; value: John%_%', [{ id: 'name', applyStyle: ['highlight'], tone: 'info' }])}
       />,
     );
     expect(html).toContain('Hello ');
     expect(html).toContain('John');
     expect(html).toContain(styles.highlightInfo);
-    expect(html).not.toContain('{{');
+    expect(html).not.toContain('%_%');
   });
 
   it('ignores styling for absent or unmatched ids and keeps the value visible', () => {
@@ -73,14 +73,14 @@ describe('Text', () => {
       <Text {...textResponse('Plain text', [{ id: 'missing', applyStyle: ['highlight'] }])} />,
     );
     expect(container.querySelector('span')).toBeNull();
-    rerender(<Text {...textResponse('Hi {{id: name; value: John}}', [{ id: 'other', applyStyle: ['bold'] }])} />);
+    rerender(<Text {...textResponse('Hi %_%id: name; value: John%_%', [{ id: 'other', applyStyle: ['bold'] }])} />);
     expect(screen.getByText('Hi John')).toBeVisible();
     expect(container.querySelector('span')).toBeNull();
   });
 
   it('supports unwrapped output and Typography props', () => {
     const { container, rerender } = render(
-      <Text {...textResponse('Bare {{id: name; value: John}}', undefined, { enabled: false })} />,
+      <Text {...textResponse('Bare %_%id: name; value: John%_%', undefined, { enabled: false })} />,
     );
     expect(container.textContent).toBe('Bare John');
     expect(container.querySelector('p')).toBeNull();
@@ -89,19 +89,18 @@ describe('Text', () => {
   });
 
   it('keeps readable text when a marker is incomplete', () => {
-    const { container } = render(<Text {...textResponse('Hello {{id: name; value: John')} />);
-    expect(container.textContent).toBe('Hello John');
+    const { container } = render(<Text {...textResponse('Hello %_%id: name; value: John')} />);
+    expect(container.textContent).toBe('Hello %_%id: name; value: John');
   });
 
   it('recovers from an unfinished marker before another marker', () => {
-    const { container } = render(<Text {...textResponse('{{id: first; value: John {{id: second; value: Jane}}')} />);
-    expect(container.textContent).toBe('John Jane');
-    expect(container.textContent).not.toContain('{{');
+    const { container } = render(<Text {...textResponse('%_%id: first; value: John %_%id: second; value: Jane%_%')} />);
+    expect(container.textContent).toBe('%_%id: first; value: John Jane');
   });
 
-  it('does not expose an unmatched closing delimiter', () => {
-    const { container } = render(<Text {...textResponse('Hello John }}')} />);
-    expect(container.textContent).toBe('Hello John ');
+  it('preserves an unmatched closing delimiter as ordinary text', () => {
+    const { container } = render(<Text {...textResponse('Hello John %_%')} />);
+    expect(container.textContent).toBe('Hello John %_%');
   });
 });
 
@@ -109,7 +108,7 @@ describe('Text additional inline styling', () => {
   it('combines cursive and crossed-out styles on a single fragment', () => {
     render(
       <Text
-        {...textResponse('The {{id: old; value: outdated}} wording is replaced.', [
+        {...textResponse('The %_%id: old; value: outdated%_% wording is replaced.', [
           { id: 'old', applyStyle: ['cursive', 'crossed'] },
         ])}
       />,
@@ -121,7 +120,7 @@ describe('Text additional inline styling', () => {
 
   it('preserves literal punctuation around multiple inline fragments', () => {
     const { container } = render(
-      <Text {...textResponse('({{id: first; value: one}}), [{{id: second; value: two}}]!')} />,
+      <Text {...textResponse('(%_%id: first; value: one%_%), [%_%id: second; value: two%_%]!')} />,
     );
     expect(container.textContent).toBe('(one), [two]!');
   });

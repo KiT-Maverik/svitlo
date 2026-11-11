@@ -119,6 +119,32 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
   if (!result.success) throw new CheckpointValidationError(result);
 };
 
+/**
+ * Define an ordered Checkpoint of questions and their permitted answer blocks.
+ *
+ * @remarks
+ * `content.items` maps camelCase question keys to
+ * `{ question, answer, check? }` entries; `question` must be a Text
+ * configurator. Each `answer` contains `items`, a map of ContentBlock
+ * configurators keyed by their own slugs, and an explicit `order` array.
+ * Checkpoints cannot be nested inside answers.
+ *
+ * **Use `configuratorArrayToSlugMap([...])` to build `answer.items`**
+ * instead of manually copying configurator slugs into map keys. The helper
+ * derives keys from the top-level `slug`, retains literal keys for TypeScript
+ * autocomplete, and rejects duplicate slugs. It does not build the outer
+ * `content.items`, whose values are question/answer entries, not configurators.
+ *
+ * Both `content.order` and each `answer.order` must list every corresponding
+ * item key exactly once. Their order, not object insertion order, controls the
+ * authored sequence.
+ *
+ * `checkpoint.content` may be edited directly. Such edits are **not**
+ * automatically validated; call `checkpoint.config.validate` with the original
+ * configuration and the current content before publishing. Validation collects
+ * structural problems in a `CheckpointValidationError`.
+ *
+ */
 export const defineCheckpoint = <const Slug extends string>(
   config: Omit<ContentBlock_Checkpoint_Config, 'slug'> & { slug: Slug },
 ) => {
