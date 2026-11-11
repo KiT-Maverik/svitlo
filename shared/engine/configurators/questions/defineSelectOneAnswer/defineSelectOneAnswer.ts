@@ -4,8 +4,12 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 
 import { selectOneAnswer_Config_Schema, type Question_SelectOneAnswer_Config } from './defineSelectOneAnswer.schemas';
 
-export function defineSelectOneAnswer<const Config extends Question_SelectOneAnswer_Config>(config: Config) {
+const validate = (config: Question_SelectOneAnswer_Config) => {
   selectOneAnswer_Config_Schema.parse(config);
+};
+
+export function defineSelectOneAnswer<const Config extends Question_SelectOneAnswer_Config>(config: Config) {
+  validate(config);
 
   const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, answers } = config;
 
@@ -21,10 +25,14 @@ export function defineSelectOneAnswer<const Config extends Question_SelectOneAns
   } satisfies DeepPartial<Question_SelectOneAnswer_Config>;
 
   return {
+    id,
+    slug,
+    type,
     kind: 'selectOneAnswer' as const,
     config: {
       base,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_SelectOneAnswer_Config>,
+      validate,
     },
     // Nested ContentBlocks remain configurators; the publishing phase resolves them.
     question,

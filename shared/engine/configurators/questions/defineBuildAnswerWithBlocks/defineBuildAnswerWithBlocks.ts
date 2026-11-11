@@ -7,10 +7,14 @@ import {
   type Question_BuildAnswerWithBlocks_Config,
 } from './defineBuildAnswerWithBlocks.schemas';
 
+const validate = (config: Question_BuildAnswerWithBlocks_Config) => {
+  buildAnswerWithBlocks_Config_Schema.parse(config);
+};
+
 export function defineBuildAnswerWithBlocks<const Config extends Question_BuildAnswerWithBlocks_Config>(
   config: Config,
 ) {
-  buildAnswerWithBlocks_Config_Schema.parse(config);
+  validate(config);
 
   const {
     id,
@@ -38,10 +42,14 @@ export function defineBuildAnswerWithBlocks<const Config extends Question_BuildA
   } satisfies DeepPartial<Question_BuildAnswerWithBlocks_Config>;
 
   return {
+    id,
+    slug,
+    type,
     kind: 'buildAnswerWithBlocks' as const,
     config: {
       base,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_BuildAnswerWithBlocks_Config>,
+      validate,
     },
     // Nested ContentBlocks remain configurators; the publishing phase resolves them.
     question,

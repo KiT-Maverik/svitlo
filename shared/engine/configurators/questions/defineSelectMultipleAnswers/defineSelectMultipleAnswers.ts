@@ -7,10 +7,14 @@ import {
   type Question_SelectMultipleAnswers_Config,
 } from './defineSelectMultipleAnswers.schemas';
 
+const validate = (config: Question_SelectMultipleAnswers_Config) => {
+  selectMultipleAnswers_Config_Schema.parse(config);
+};
+
 export function defineSelectMultipleAnswers<const Config extends Question_SelectMultipleAnswers_Config>(
   config: Config,
 ) {
-  selectMultipleAnswers_Config_Schema.parse(config);
+  validate(config);
 
   const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, answers } = config;
 
@@ -26,10 +30,14 @@ export function defineSelectMultipleAnswers<const Config extends Question_Select
   } satisfies DeepPartial<Question_SelectMultipleAnswers_Config>;
 
   return {
+    id,
+    slug,
+    type,
     kind: 'selectMultipleAnswers' as const,
     config: {
       base,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_SelectMultipleAnswers_Config>,
+      validate,
     },
     // Nested ContentBlocks remain configurators; the publishing phase resolves them.
     question,
