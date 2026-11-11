@@ -28,9 +28,7 @@ function withTextbook(run: (cwd: string, asset: string, sceneEntry: string) => v
 
 test('validates textbook media URLs against book-owned static and public resources', () => {
   withTextbook((cwd, asset) => {
-    assert.doesNotThrow(() =>
-      validateLocalAssetPaths('/textbooks/example/media/existing.png', 'locale.src', cwd),
-    );
+    assert.doesNotThrow(() => validateLocalAssetPaths('/textbooks/example/media/existing.png', 'locale.src', cwd));
     assert.doesNotThrow(() => validateLocalAssetPaths('media/existing.png', 'locale.src', cwd));
     assert.doesNotThrow(() => validateLocalAssetPaths(pathToFileURL(asset).href, 'locale.src', cwd));
     assert.throws(
@@ -45,12 +43,17 @@ test('validates textbook media URLs against book-owned static and public resourc
 });
 
 test('checks every localized media variant and identifies the failing field', () => {
-  withTextbook((cwd) => {
+  withTextbook(cwd => {
     assert.throws(
-      () => validateLocalAssetPaths({
-        en: '/textbooks/example/media/existing.png',
-        uk: '/textbooks/example/media/missing.png',
-      }, 'locale.slides[1].src', cwd),
+      () =>
+        validateLocalAssetPaths(
+          {
+            en: '/textbooks/example/media/existing.png',
+            uk: '/textbooks/example/media/missing.png',
+          },
+          'locale.slides[1].src',
+          cwd,
+        ),
       /Missing local media file at locale.slides\[1\].src.uk/,
     );
   });
@@ -58,7 +61,12 @@ test('checks every localized media variant and identifies the failing field', ()
 
 test('does not attempt network access for external and embedded URLs', () => {
   withTextbook(cwd => {
-    for (const value of ['https://cdn.example.org/example.jpg', '//cdn.example.org/example.jpg', 'data:image/png;base64,YQ==', 'blob:example']) {
+    for (const value of [
+      'https://cdn.example.org/example.jpg',
+      '//cdn.example.org/example.jpg',
+      'data:image/png;base64,YQ==',
+      'blob:example',
+    ]) {
       assert.doesNotThrow(() => validateLocalAssetPaths(value, 'locale.src', cwd));
     }
   });

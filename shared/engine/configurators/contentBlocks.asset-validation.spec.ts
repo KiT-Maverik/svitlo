@@ -25,24 +25,38 @@ test('ContentBlock validators check packaged Image, Audio, Video, Carousel and S
   try {
     process.chdir(textbook);
     const imageConfig = {
-      id, slug: 'image', type: 'image' as const,
+      id,
+      slug: 'image',
+      type: 'image' as const,
       params: { width: 10, height: 10 },
       locale: { src: url('photo.png'), alt: 'Photo' },
     };
     const audioConfig = {
-      id, slug: 'audio', type: 'audio' as const, params: {},
+      id,
+      slug: 'audio',
+      type: 'audio' as const,
+      params: {},
       locale: { fileLocation: { en: url('tone.wav'), uk: url('tone.wav') }, title: 'Tone' },
     };
     const videoConfig = {
-      id, slug: 'video', type: 'video' as const, params: {},
+      id,
+      slug: 'video',
+      type: 'video' as const,
+      params: {},
       locale: { fileLocation: url('clip.mp4'), poster: url('poster.jpg'), label: 'Video' },
     };
     const carouselConfig = {
-      id, slug: 'carousel', type: 'carousel' as const, params: {},
+      id,
+      slug: 'carousel',
+      type: 'carousel' as const,
+      params: {},
       locale: { slides: [{ src: url('photo.png'), alt: 'Photo' }] },
     };
     const sceneConfig = {
-      id, slug: 'scene', type: 'scene' as const, params: {},
+      id,
+      slug: 'scene',
+      type: 'scene' as const,
+      params: {},
       locale: { value: { title: 'Demo Scene' } },
     };
 
@@ -57,7 +71,11 @@ test('ContentBlock validators check packaged Image, Audio, Video, Carousel and S
       /Missing local media file at locale.src/,
     );
     assert.throws(
-      () => audio.config.validate({ ...audioConfig, locale: { ...audioConfig.locale, fileLocation: { uk: url('missing.wav') } } }),
+      () =>
+        audio.config.validate({
+          ...audioConfig,
+          locale: { ...audioConfig.locale, fileLocation: { uk: url('missing.wav') } },
+        }),
       /Missing local media file at locale.fileLocation.uk/,
     );
     assert.throws(
@@ -65,10 +83,11 @@ test('ContentBlock validators check packaged Image, Audio, Video, Carousel and S
       /Missing local media file at locale.poster/,
     );
     assert.throws(
-      () => carousel.config.validate({
-        ...carouselConfig,
-        locale: { slides: [{ src: url('missing.png'), alt: 'Photo' }] },
-      }),
+      () =>
+        carousel.config.validate({
+          ...carouselConfig,
+          locale: { slides: [{ src: url('missing.png'), alt: 'Photo' }] },
+        }),
       /Missing local media file at locale.slides\[0\].src/,
     );
 

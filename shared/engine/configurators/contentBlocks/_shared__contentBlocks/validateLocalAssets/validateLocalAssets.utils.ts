@@ -39,10 +39,7 @@ function textbookByName(repoRoot: string, name: string): string | undefined {
   return undefined;
 }
 
-function localMediaCandidates(
-  source: string,
-  cwd: string,
-): string[] | undefined {
+function localMediaCandidates(source: string, cwd: string): string[] | undefined {
   if (source.startsWith('file:')) return [fileURLToPath(source)];
   // HTTP, CDN, blob and embedded data are not files in the textbook package.
   if (/^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(source)) return undefined;
@@ -56,9 +53,7 @@ function localMediaCandidates(
   }
 
   const textbookPath = /^\/textbooks\/([^/]+)\/(.+)$/.exec(barePath);
-  const root = textbookPath
-    ? textbookByName(repoRoot, textbookPath[1])
-    : currentTextbookRoot(repoRoot, cwd);
+  const root = textbookPath ? textbookByName(repoRoot, textbookPath[1]) : currentTextbookRoot(repoRoot, cwd);
   if (!root) {
     if (textbookPath) throw new Error('Unknown textbook for local media: ' + source);
     // Without a textbook context an unscoped URL belongs to the host, not Engine.
@@ -79,7 +74,10 @@ function localMediaCandidates(
  * External URLs are deliberately not fetched.
  */
 export function validateLocalAssetPaths(value: string | object, field: string, cwd = process.cwd()): void {
-  const entries = typeof value === 'string' ? [[field, value]] : Object.entries(value).map(([locale, source]) => [field + '.' + locale, source]);
+  const entries =
+    typeof value === 'string'
+      ? [[field, value]]
+      : Object.entries(value).map(([locale, source]) => [field + '.' + locale, source]);
   for (const [path, source] of entries) {
     if (typeof source !== 'string') throw new Error('Expected a media file path at ' + path);
     const candidates = localMediaCandidates(source, cwd);
