@@ -12,7 +12,7 @@ const textResponse = (
 ): ContentBlock_Text_Response => ({ id: 'text-id', type: 'text', value, variables, wrap });
 
 describe('Text', () => {
-  it('renders marker values without service syntax when no styling is supplied', () => {
+  it('renders marker values without service syntax when no variables are supplied', () => {
     render(<Text {...textResponse('Hello %_%id: name; value: John%_%!')} />);
     const paragraph = screen.getByText('Hello John!');
     expect(paragraph.tagName).toBe('P');
