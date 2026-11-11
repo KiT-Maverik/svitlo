@@ -8,13 +8,12 @@ export type TextTonePreset = (typeof textTonePresets)[number];
 
 const textStyle_Schema = z.enum(textStylePresets);
 
-const textStylingRule_Schema = z.strictObject({
-  id: z.uuid(),
+const textVariableRule_Schema = z.strictObject({
   applyStyle: z.tuple([textStyle_Schema], textStyle_Schema),
   applyColor: z.string().optional(),
   tone: z.enum(textTonePresets).optional(),
 });
 
-export const textStylingRules_Schema = z.object({
-  styling: z.tuple([textStylingRule_Schema], textStylingRule_Schema).optional(),
+export const textVariables_Schema = z.object({
+  variables: z.record(z.string().regex(/^[a-z][A-Za-z0-9]*$/), textVariableRule_Schema).optional(),
 });

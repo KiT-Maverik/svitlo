@@ -156,12 +156,8 @@
     "textStyle": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "applyStyle"],
+      "required": ["applyStyle"],
       "properties": {
-        "id": {
-          "type": "string",
-          "pattern": "^[a-z][A-Za-z0-9]*$"
-        },
         "applyStyle": {
           "type": "array",
           "items": {
@@ -220,12 +216,14 @@
             }
           ]
         },
-        "styling": {
-          "type": "array",
-          "items": {
-            "$ref": "#/$defs/textStyle"
+        "variables": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[a-z][A-Za-z0-9]*$"
           },
-          "minItems": 1
+          "additionalProperties": {
+            "$ref": "#/$defs/textStyle"
+          }
         },
         "wrap": {
           "type": "object",
@@ -274,30 +272,21 @@
           ]
         },
         "variables": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["id", "value"],
-            "properties": {
-              "id": {
-                "type": "string",
-                "pattern": "^[a-z][A-Za-z0-9]*$"
-              },
-              "value": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  {
-                    "$ref": "#/$defs/questionFieldRef"
-                  }
-                ]
-              }
-            }
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[A-Z][A-Z0-9_]*$"
           },
-          "minItems": 0
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "$ref": "#/$defs/questionFieldRef"
+              }
+            ]
+          }
         }
       }
     },

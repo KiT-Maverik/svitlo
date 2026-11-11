@@ -8,6 +8,7 @@ import {
 } from './defineCheckpoint.schemas';
 
 type CheckpointContent = ContentBlock_Checkpoint_Config['content'];
+type CheckpointItem = Exclude<CheckpointContent['items'][string], false>;
 type CheckpointSubject = { id?: string; slug?: string; type?: string };
 
 export type CheckpointValidationIssue = {
@@ -86,7 +87,7 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
     for (const [slug, item] of Object.entries(contentItems)) {
       const path = 'content.items.' + slug;
       if (!isObject(item)) {
-        fail('item', path, 'Expected a question and answer item');
+        fail('item', path, item === false ? 'false is reserved for overrides' : 'Expected a question and answer item');
         continue;
       }
       if (item.check !== undefined && item.check !== true) {
@@ -95,6 +96,13 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
 
       if (!isObject(item.question) || item.question.type !== 'text') {
         fail('question', path + '.question', 'Question must be a Text configurator');
+      } else if (
+        isObject(item.question.config) &&
+        [item.question.config.base, item.question.config.overrides].some(
+          state => isObject(state) && isObject(state.params) && state.params.disabled === true,
+        )
+      ) {
+        fail('question', path + '.question', 'Question must remain enabled');
       }
 
       const answers = validateCollection(item.answer, path + '.answer');
@@ -119,13 +127,46 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
   if (!result.success) throw new CheckpointValidationError(result);
 };
 
-export const defineCheckpoint = <const Slug extends string>(
-  config: Omit<ContentBlock_Checkpoint_Config, 'slug'> & { slug: Slug },
+/**
+ * Define an ordered Checkpoint of questions and their permitted answer blocks.
+ *
+ * @remarks
+ * `content.items` maps camelCase question keys to
+ * `{ question, answer, check? }` entries; `question` must be a Text
+ * configurator. Each `answer` contains `items`, a map of ContentBlock
+ * configurators keyed by their own slugs, and an explicit `order` array.
+ * Checkpoints cannot be nested inside answers.
+ *
+ * **Use `configuratorArrayToSlugMap([...])` to build `answer.items`**
+ * instead of manually copying configurator slugs into map keys. The helper
+ * derives keys from the top-level `slug`, retains literal keys for TypeScript
+ * autocomplete, and rejects duplicate slugs. It does not build the outer
+ * `content.items`, whose values are question/answer entries, not configurators.
+ *
+ * Both `content.order` and each `answer.order` must list every corresponding
+ * item key exactly once. Their order, not object insertion order, controls the
+ * authored sequence.
+ *
+ * The original `content` stays unchanged. Use `override.content.add(slug, item)`
+ * to append a question, `disable(slugs)` to write `false` for existing keys
+ * and remove them from order, or `order(slugs)` to replace the complete
+ * order. A question's Text configurator must remain enabled, even though it
+ * exposes `disable()`. `false` is valid **only in overrides**, never in authored content.
+ * Overrides are applied during assembly; validate the resolved collection
+ * before publication.
+ */
+export const defineCheckpoint = <
+  const Slug extends string,
+  const Items extends Record<string, CheckpointContent['items'][string]>,
+>(
+  config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
+    slug: Slug;
+    content: { items: Items; order: string[] };
+  },
 ) => {
   validate(config);
   const { id, type, slug, locale, params } = config;
-  // Expose mutable ordered content without adding a separate mutation API.
-  const content: CheckpointContent = {
+  const content = {
     items: { ...config.content.items },
     order: [...config.content.order],
   };
@@ -139,6 +180,7 @@ export const defineCheckpoint = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
   const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};
+  const currentOrder = () => (overrides.content?.order ?? content.order) as string[];
 
   return {
     id,
@@ -155,6 +197,44 @@ export const defineCheckpoint = <const Slug extends string>(
     override: {
       params: (newParams: DeepPartial<ContentBlock_Checkpoint_Config['params']>) => (overrides.params = newParams),
       locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => (overrides.locale = newLocale),
+      content: {
+        add: (itemSlug: string, item: CheckpointItem) => {
+          if (
+            !camelCase.test(itemSlug) ||
+            Object.hasOwn(content.items, itemSlug) ||
+            Object.hasOwn(overrides.content?.items ?? {}, itemSlug)
+          ) {
+            throw new Error(`Invalid or duplicate Checkpoint question slug: ${itemSlug}`);
+          }
+          const patch = (overrides.content ??= {});
+          (patch.items ??= {})[itemSlug] = item;
+          patch.order = [...currentOrder(), itemSlug];
+        },
+        disable: (slugs: (keyof Items & string)[]) => {
+          const selected = new Set<string>(slugs);
+          for (const key of selected) {
+            if (!Object.hasOwn(content.items, key)) throw new Error(`Unknown Checkpoint question slug: ${key}`);
+          }
+          if (!selected.size) return;
+          const patch = (overrides.content ??= {});
+          for (const key of selected) (patch.items ??= {})[key] = false;
+          patch.order = currentOrder().filter(key => !selected.has(key));
+        },
+        order: (slugs: string[]) => {
+          const active = Object.entries({ ...content.items, ...overrides.content?.items })
+            .filter(([, item]) => item !== false)
+            .map(([key]) => key);
+          const ordered = new Set(slugs);
+          if (
+            ordered.size !== active.length ||
+            slugs.length !== active.length ||
+            active.some(key => !ordered.has(key))
+          ) {
+            throw new Error('Checkpoint order must contain each active question slug exactly once');
+          }
+          (overrides.content ??= {}).order = [...slugs];
+        },
+      },
     },
     disable: () => (overrides.params = { disabled: true }),
     content,

@@ -59,7 +59,7 @@ const runtimeText: ContentBlock_Text<'response', TestLanguages> = {
   id: 'text-id',
   type: 'text',
   value: 'hello {{id: name; value: John}}',
-  styling: [{ id: 'name', applyStyle: ['highlight', 'variable'], tone: 'info' }],
+  variables: { name: { applyStyle: ['highlight', 'variable'], tone: 'info' } },
   wrap: { typographyProps: { component: 'h2', variant: 'h4', sx: { mb: 2 } } },
 };
 const authoredText: ContentBlock_Text<'data', TestLanguages> = {
@@ -67,7 +67,7 @@ const authoredText: ContentBlock_Text<'data', TestLanguages> = {
   slug: 'intro',
   type: 'text',
   value: 'hello {{id: name; value: John}}',
-  styling: [{ id: 'name', applyStyle: ['highlight'], tone: 'warning' }],
+  variables: { name: { applyStyle: ['highlight'], tone: 'warning' } },
   wrap: { typographyProps: { component: 'p', align: 'center' } },
 };
 const authoredYoutube: ContentBlock_Youtube<'data', TestLanguages> = {
@@ -98,16 +98,16 @@ const authoredCode: ContentBlock_Code<'data', TestLanguages> = {
   id: 'code-id',
   slug: 'greeting',
   type: 'code',
-  fileLocation: '/examples/greeting.ts',
+  codeAsText: 'console.log("%_%GREETING%_%");',
   language: 'typescript',
-  variables: [{ id: 'greeting', value: 'Hello' }],
+  variables: { GREETING: 'Hello' },
 };
 const runtimeCode: ContentBlock_Code<'response', TestLanguages> = {
   id: 'code-id',
   type: 'code',
-  code: 'console.log("{{greeting}}");',
+  codeAsText: 'console.log("%_%GREETING%_%");',
   language: 'typescript',
-  variables: [{ id: 'greeting', value: 'Hello' }],
+  variables: { GREETING: 'Hello' },
 };
 const authoredFillImage: ContentBlock_Image<'data', TestLanguages> = {
   id: 'image-fill-id',

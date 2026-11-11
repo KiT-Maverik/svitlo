@@ -21,7 +21,7 @@ const meta = {
   argTypes: {
     id: { control: false },
     type: { control: false },
-    styling: { control: 'object' },
+    variables: { control: 'object' },
     wrap: { control: 'object' },
   },
 } satisfies Meta<typeof Text>;
@@ -33,11 +33,11 @@ export const Playground: Story = {};
 
 export const StyledFragments: Story = {
   args: {
-    value: 'A {{id: wave; value: light wave}} can be described by its {{id: speed; value: speed}}.',
-    styling: [
-      { id: 'wave', applyStyle: ['bold', 'highlight'], tone: 'info' },
-      { id: 'speed', applyStyle: ['variable', 'underscore'], applyColor: '#1565c0' },
-    ],
+    value: 'A %_%id: wave; value: light wave%_% can be described by its %_%id: speed; value: speed%_%.',
+    variables: {
+      wave: { applyStyle: ['bold', 'highlight'], tone: 'info' },
+      speed: { applyStyle: ['variable', 'underscore'], applyColor: '#1565c0' },
+    },
   },
 };
 
