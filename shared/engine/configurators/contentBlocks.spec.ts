@@ -503,7 +503,11 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
   assert.throws(() => checkpoint.override.content.order(['whatIsLight', 'anotherQuestion']), /each active question/);
 
   const items = { ...checkpoint.content.items, ...checkpoint.config.overrides.content?.items };
-  const resolved = Object.fromEntries(Object.entries(items).filter(([, item]) => Boolean(item)));
+  const resolved: Record<string, import('./contentBlocks/defineCheckpoint/defineCheckpoint.schemas').Checkpoint_Config_Item> =
+    {};
+  for (const [slug, item] of Object.entries(items)) {
+    if (item) resolved[slug] = item;
+  }
   assert.doesNotThrow(() =>
     checkpoint.config.validate({
       ...config,
