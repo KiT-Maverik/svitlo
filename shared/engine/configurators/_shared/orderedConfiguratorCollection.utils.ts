@@ -98,7 +98,7 @@ export function createOrderedConfiguratorCollection<
         });
       },
       disable: (slugs: (keyof Items & string)[]) => {
-        const items = effective().items;
+        const items: Record<string, Item | false> = effective().items;
         const next = { ...overrides.items };
         const selected = new Set<string>(slugs);
         for (const slug of selected) {
