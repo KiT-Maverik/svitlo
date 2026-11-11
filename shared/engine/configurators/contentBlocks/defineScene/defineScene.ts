@@ -1,4 +1,5 @@
 import type { DeepPartial } from '#types';
+import { validateSceneEntry } from '../_shared__contentBlocks';
 
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
@@ -10,6 +11,7 @@ import {
 
 const validate = (config: ContentBlock_Scene_Config) => {
   scene_Config_Schema.parse(config);
+  validateSceneEntry(config.id);
 };
 
 /**

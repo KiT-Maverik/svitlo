@@ -1,4 +1,5 @@
 import type { DeepPartial } from '#types';
+import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
@@ -10,6 +11,7 @@ import {
 
 const validate = (config: ContentBlock_Image_Config) => {
   image_Config_Schema.parse(config);
+  validateLocalAssetPaths(config.locale.src, 'locale.src');
 };
 
 export const defineImage = <const Slug extends string>(
