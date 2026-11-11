@@ -1,16 +1,26 @@
 import { z } from 'zod';
-import { createContentBlockBaseSchema } from '../_shared';
+
+import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
-import { languageCode_Schema } from '#schemas';
 
-const sceneValue_Schema: z.ZodType<string | { [key: string]: unknown }> = z.lazy(() =>
-  z.union([z.string(), z.record(z.string(), sceneValue_Schema)]),
+type SceneValue = string | { [key: string]: SceneValue };
+
+/**
+ * A Scene uses the standard ContentBlock field-level localization contract:
+ * strings are invariant, and language dictionaries localize individual leaves.
+ */
+const sceneConfigValue_Schema: z.ZodType<SceneValue> = z.lazy(() =>
+  z.union([localizationSwitch.config, z.record(z.string(), sceneConfigValue_Schema)]),
+);
+
+const scenePropsValue_Schema: z.ZodType<SceneValue> = z.lazy(() =>
+  z.union([localizationSwitch.props, z.record(z.string(), scenePropsValue_Schema)]),
 );
 
 const sceneLocalizationSwitch = {
-  config: z.partialRecord(languageCode_Schema, sceneValue_Schema),
-  props: sceneValue_Schema,
+  config: sceneConfigValue_Schema,
+  props: scenePropsValue_Schema,
 } as const;
 
 const contentBlockBase = createContentBlockBaseSchema('scene');
