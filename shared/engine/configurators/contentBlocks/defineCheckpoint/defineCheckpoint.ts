@@ -7,8 +7,12 @@ import {
   type ContentBlock_Checkpoint_Locale,
 } from './defineCheckpoint.schemas';
 
-export const defineCheckpoint = (config: ContentBlock_Checkpoint_Config) => {
+const validate = (config: ContentBlock_Checkpoint_Config) => {
   checkpoint_Config_Schema.parse(config);
+}
+
+export const defineCheckpoint = (config: ContentBlock_Checkpoint_Config) => {
+  validate(config);
 
   const { id, type, slug, locale, params, content } = config;
 
@@ -23,6 +27,9 @@ export const defineCheckpoint = (config: ContentBlock_Checkpoint_Config) => {
   const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({
