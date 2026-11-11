@@ -1,10 +1,6 @@
 import hljs from 'highlight.js/lib/common';
-// Code markers use UPPER_SNAKE_CASE names, not Text's inline id/value fragments.
-const codePlaceholder = /%_%([A-Z][A-Z0-9_]*)%_%/g;
 
-export function resolveCodeVariables(code: string, variables?: Readonly<Record<string, string>>): string {
-  return code.replace(codePlaceholder, (marker, id: string) => variables?.[id] ?? marker);
-}
+export { resolveTemplateVariables as resolveCodeVariables } from '../resolveTemplateVariables';
 
 /** Highlight only an explicitly named supported language; unknown names remain plain text. */
 export function highlightCode(code: string, language: string): string | null {

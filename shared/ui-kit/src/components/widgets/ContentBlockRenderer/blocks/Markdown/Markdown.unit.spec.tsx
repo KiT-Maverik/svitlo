@@ -53,6 +53,18 @@ describe('Markdown content block', () => {
     expect(within(article).getByRole('heading', { name: 'عنوان الدرس' })).toBeVisible();
   });
 
+  it('replaces Code-style markers before rendering Markdown', () => {
+    render(<Markdown {...response} text="# %_%NAME%_%" variables={{ NAME: 'Ada' }} />);
+    expect(screen.getByRole('heading', { name: 'Ada' })).toBeVisible();
+  });
+
+  it('sanitizes HTML supplied through variables', () => {
+    render(<Markdown {...response} text="**%_%VALUE%_%**" variables={{ VALUE: '<script>alert(1)</script>Safe' }} />);
+    const article = screen.getByRole('article');
+    expect(article.querySelector('script')).toBeNull();
+    expect(article).toHaveTextContent('Safe');
+  });
+
   it('supports the authored mark and aside elements', () => {
     render(<Markdown {...response} text="<aside><mark>Highlighted lesson</mark></aside>" />);
     expect(screen.getByRole('article').querySelector('aside mark')).toHaveTextContent('Highlighted lesson');
