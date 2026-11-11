@@ -1,16 +1,22 @@
-import type { TheorySection_Configurator } from './defineTheorySection/defineTheorySection';
-import type { PracticeSection_Configurator } from './definePracticeSection';
-import type { CodingTaskSection_Configurator } from './defineCodingTaskSection';
-import type { LearningFlowSection_Configurator } from './defineLearningFlowSection';
-import type { FlashcardsSection_Configurator } from './defineFlashcardsSection';
-import type { ScenarioSection_Configurator } from './defineScenarioSection/defineScenarioSection';
-import type { QuizSection_Configurator } from './defineQuizSection';
+import type { ContentSection_Configurator, Content_Section_Props } from './defineContentSection';
+import type { PracticeSection_Configurator, PracticeSection_Props } from './definePracticeSection';
+import type { CodingTaskSection_Configurator, CodingTaskSection_Props } from './defineCodingTaskSection';
+import type { LearningFlowSection_Configurator, LearningFlowSection_Props } from './defineLearningFlowSection';
+import type { FlashcardsSection_Configurator, FlashcardsSection_Props } from './defineFlashcardsSection';
+import type { QuizSection_Configurator, QuizSection_Props } from './defineQuizSection';
 
 export type Section_Configurator =
-  | TheorySection_Configurator
+  | ContentSection_Configurator
   | PracticeSection_Configurator
   | CodingTaskSection_Configurator
   | LearningFlowSection_Configurator
   | FlashcardsSection_Configurator
-  | ScenarioSection_Configurator
   | QuizSection_Configurator;
+
+export type Section_Props =
+  | Content_Section_Props
+  | PracticeSection_Props
+  | CodingTaskSection_Props
+  | LearningFlowSection_Props
+  | FlashcardsSection_Props
+  | QuizSection_Props;

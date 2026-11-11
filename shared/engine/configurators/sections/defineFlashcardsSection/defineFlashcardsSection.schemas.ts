@@ -1,7 +1,10 @@
-import { createRegularSectionSchema } from '../section.schemas';
+import { z } from 'zod';
+import { createSectionBaseSchema } from '../_shared__sections';
+import type { Section_Config_Content, Section_Props_Content } from '../_shared__sections';
 
-export const flashcardsSection_Config_Schema = createRegularSectionSchema('flashcards', 'config');
-export type FlashcardsSection_Config = import('zod').z.infer<typeof flashcardsSection_Config_Schema>;
+const schemas = createSectionBaseSchema('flashcards');
+export const flashcardsSection_Config_Schema = schemas.config;
+export type FlashcardsSection_Config = z.infer<typeof flashcardsSection_Config_Schema> & Section_Config_Content;
 
-export const flashcardsSection_Props_Schema = createRegularSectionSchema('flashcards', 'props');
-export type FlashcardsSection_Props = import('zod').z.infer<typeof flashcardsSection_Props_Schema>;
+export const flashcardsSection_Props_Schema = schemas.props;
+export type FlashcardsSection_Props = z.infer<typeof flashcardsSection_Props_Schema> & Section_Props_Content;

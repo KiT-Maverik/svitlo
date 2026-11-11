@@ -1,7 +1,10 @@
-import { createRegularSectionSchema } from '../section.schemas';
+import { z } from 'zod';
+import { createSectionBaseSchema } from '../_shared__sections';
+import type { Section_Config_Content, Section_Props_Content } from '../_shared__sections';
 
-export const learningFlowSection_Config_Schema = createRegularSectionSchema('learningFlow', 'config');
-export type LearningFlowSection_Config = import('zod').z.infer<typeof learningFlowSection_Config_Schema>;
+const schemas = createSectionBaseSchema('learningFlow');
+export const learningFlowSection_Config_Schema = schemas.config;
+export type LearningFlowSection_Config = z.infer<typeof learningFlowSection_Config_Schema> & Section_Config_Content;
 
-export const learningFlowSection_Props_Schema = createRegularSectionSchema('learningFlow', 'props');
-export type LearningFlowSection_Props = import('zod').z.infer<typeof learningFlowSection_Props_Schema>;
+export const learningFlowSection_Props_Schema = schemas.props;
+export type LearningFlowSection_Props = z.infer<typeof learningFlowSection_Props_Schema> & Section_Props_Content;

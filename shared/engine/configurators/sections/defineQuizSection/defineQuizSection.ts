@@ -1,44 +1,33 @@
-import type { DeepPartial } from '#types';
-
-import { onlyLocales, onlyStrings } from '../../_utils';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
+import { createSectionConfigurator } from '../_shared__sections';
 import { quizSection_Config_Schema, type QuizSection_Config } from './defineQuizSection.schemas';
 
-const validate = (config: QuizSection_Config) => {
-  quizSection_Config_Schema.parse(config);
-};
-
-export function defineQuizSection<const Slug extends string, const Parameters extends QuizSection_Config['parameters']>(
-  config: Omit<QuizSection_Config, 'slug' | 'parameters'> & { slug: Slug; parameters: Parameters },
+/**
+ * Define a Quiz Section using the same content/override lifecycle as all Sections.
+ * Screen.content contains block slugs pointing into content.items, not nested
+ * ContentBlock configs. The actual configurators live only in Section.content.
+ */
+export function defineQuizSection<
+  const Slug extends string,
+  const Items extends Record<string, ContentBlock_Configurator>,
+>(
+  config: Omit<QuizSection_Config, 'slug' | 'content'> & {
+    slug: Slug;
+    content: { items: Items; order: string[] };
+  },
 ) {
-  validate(config);
-
-  const { type, id, slug, title, navigationLabel, skippable, parameters } = config;
-  // Screen content may contain nested ContentBlock configurators. Keep these
-  // outside base; the publisher must explicitly resolve them as child data.
-  const { screen, ...invariantParameters } = parameters;
-  const localeEntries = { title, navigationLabel } as const;
-  const base = {
-    type,
-    id,
-    slug,
-    skippable,
-    parameters: invariantParameters,
-    ...onlyStrings(localeEntries),
-  } satisfies DeepPartial<QuizSection_Config>;
-
-  return {
-    id,
-    slug,
-    type,
-    sectionType: 'quiz' as const,
-    config: {
-      base,
-      validate,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<QuizSection_Config>,
-    },
-    parameters,
-    screen,
+  const validateScreens = (value: QuizSection_Config) => {
+    const screen = value.params.screen;
+    const screens = [screen?.starting, screen?.ending?.success, screen?.ending?.fail, screen?.ending?.retry];
+    for (const entry of screens) {
+      for (const slug of entry?.content ?? []) {
+        if (!Object.hasOwn(value.content.items, slug)) {
+          throw new Error('Quiz screen references unknown ContentBlock: ' + slug);
+        }
+      }
+    }
   };
+  return createSectionConfigurator(config, quizSection_Config_Schema, validateScreens);
 }
 
 export type QuizSection_Configurator = ReturnType<typeof defineQuizSection>;
