@@ -1,24 +1,22 @@
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
-import { createRegularSection } from '../_shared/createRegularSection';
+import { createSectionConfigurator } from '../_shared';
 import { codingTaskSection_Config_Schema, type CodingTaskSection_Config } from './defineCodingTaskSection.schemas';
 
-const validate = (config: CodingTaskSection_Config) => {
-  codingTaskSection_Config_Schema.parse(config);
-};
-
+/**
+ * Define a CodingTask Section with slug-keyed ContentBlock configurators.
+ * content.items holds the actual define* objects; content.order lists their slugs.
+ * Use override.content.add/disable/order for sparse per-course changes.
+ */
 export function defineCodingTaskSection<
   const Slug extends string,
-  const Content extends readonly ContentBlock_Configurator[],
->(config: Omit<CodingTaskSection_Config, 'slug' | 'content'> & { slug: Slug; content: Content }) {
-  validate(config);
-  const section = createRegularSection(config);
-  return {
-    ...section,
-    id: config.id,
-    slug: config.slug,
-    type: config.type,
-    config: { ...section.config, validate },
-  };
+  const Items extends Record<string, ContentBlock_Configurator>,
+>(
+  config: Omit<CodingTaskSection_Config, 'slug' | 'content'> & {
+    slug: Slug;
+    content: { items: Items; order: string[] };
+  },
+) {
+  return createSectionConfigurator(config, codingTaskSection_Config_Schema);
 }
 
 export type CodingTaskSection_Configurator = ReturnType<typeof defineCodingTaskSection>;
