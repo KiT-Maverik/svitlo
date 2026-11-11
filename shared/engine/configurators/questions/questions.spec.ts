@@ -26,7 +26,7 @@ const block = defineText({
   locale: { value: { en: 'Hello', uk: 'Привіт' } },
 });
 const params = { assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const] };
-const prompt = { question: [block] as const };
+const prompt = { question: [block] as [typeof block] };
 const localized = { en: 'Answer', uk: 'Відповідь' } as const;
 const common = <const Type extends string>(type: Type) => ({
   id,
@@ -52,11 +52,11 @@ test('all nine Question configurators expose the same small lifecycle surface', 
       params: { ...params, correctAnswers: [42] },
       locale: { placeholder: localized },
     }),
-    defineOrderSequence({ ...common('orderSequence'), content: { ...prompt, sequence: [block] as const } }),
+    defineOrderSequence({ ...common('orderSequence'), content: { ...prompt, sequence: [block] as [typeof block] } }),
     defineBuildAnswerWithBlocks({
       ...common('buildAnswerWithBlocks'),
       locale: { placeholder: localized },
-      content: { ...prompt, correctSequence: [block] as const, distractors: [block] },
+      content: { ...prompt, correctSequence: [block] as [typeof block], distractors: [block] },
     }),
     defineFillBlanksWithBlocks({
       ...common('fillBlanksWithBlocks'),

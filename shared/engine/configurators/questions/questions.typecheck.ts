@@ -17,7 +17,7 @@ type Expect<T extends true> = T;
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
 const block = defineText({ id, type: 'text', slug: 'answerBlock', params: {}, locale: { value: 'OK' } });
 const params = { assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const] };
-const common = { id, slug: 'questionOne', params, locale: {}, content: { question: [block] as const } };
+const common = { id, slug: 'questionOne', params, locale: {}, content: { question: [block] as [typeof block] } };
 const answers = { correct: { yes: block }, incorrect: { no: block }, distractors: { maybe: block } };
 
 const one = defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', content: { ...common.content, answers } });
@@ -25,8 +25,8 @@ const multiple = defineSelectMultipleAnswers({ ...common, type: 'selectMultipleA
 const matched = defineMatchBlocks({ ...common, type: 'matchBlocks', content: { ...common.content, pairs: { one: { left: block, right: block } } } });
 const text = defineAnswerWithText({ ...common, type: 'answerWithText', locale: { correctAnswers: ['yes'], placeholder: 'Answer' } });
 const number = defineAnswerWithNumber({ ...common, type: 'answerWithNumber', params: { ...params, correctAnswers: [2] }, locale: { placeholder: 'Number' } });
-const order = defineOrderSequence({ ...common, type: 'orderSequence', content: { ...common.content, sequence: [block] as const } });
-const build = defineBuildAnswerWithBlocks({ ...common, type: 'buildAnswerWithBlocks', locale: { placeholder: 'Build' }, content: { ...common.content, correctSequence: [block] as const, distractors: [block] } });
+const order = defineOrderSequence({ ...common, type: 'orderSequence', content: { ...common.content, sequence: [block] as [typeof block] } });
+const build = defineBuildAnswerWithBlocks({ ...common, type: 'buildAnswerWithBlocks', locale: { placeholder: 'Build' }, content: { ...common.content, correctSequence: [block] as [typeof block], distractors: [block] } });
 const blocks = defineFillBlanksWithBlocks({ ...common, type: 'fillBlanksWithBlocks', locale: { placeholder: 'Fill' }, content: { ...common.content, slots: [{ selector: 'x', correctAnswer: block }], distractors: [block] } });
 const blanks = defineFillBlanksWithText({ ...common, type: 'fillBlanksWithText', locale: { slots: [{ selector: 'x', correctAnswers: ['yes'] }], placeholder: 'Fill' } });
 

@@ -16,7 +16,7 @@ export const createQuestionBaseSchema = <const Type extends Question_Type>(type:
 
 /** Child definitions are typed, not recursively parsed by the parent. */
 export type QuestionContent<Block> = {
-  question: readonly [Block, ...Block[]];
-  hint?: readonly [Block, ...Block[]];
-  explanation?: readonly [Block, ...Block[]];
+  question: [Block, ...Block[]];
+  hint?: [Block, ...Block[]];
+  explanation?: [Block, ...Block[]];
 };

@@ -8,7 +8,13 @@ const validate = (candidate: Question_FillBlanksWithBlocks_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  if (!Array.isArray(content.slots) || !Array.isArray(content.distractors)) throw new Error('Question requires slots and distractors arrays');
+  if (
+    !Array.isArray(content.slots) ||
+    content.slots.some(slot => !slot || typeof slot.selector !== 'string' || !slot.correctAnswer) ||
+    !Array.isArray(content.distractors)
+  ) {
+    throw new Error('Question requires slots with selectors and answer blocks, and a distractors array');
+  }
 };
 
 /** Define fillBlanksWithBlocks with independently validated child ContentBlocks. */

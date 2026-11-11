@@ -8,7 +8,12 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  if (!content.answers || !content.answers.correct || !content.answers.incorrect || !content.answers.distractors) throw new Error('Question answers must define correct, incorrect and distractors');
+  const groups = content.answers;
+  if (!groups || [groups.correct, groups.incorrect, groups.distractors].every(
+    group => group !== null && typeof group === 'object' && !Array.isArray(group),
+  ) === false) {
+    throw new Error('Question answers must define correct, incorrect and distractors maps');
+  }
 };
 
 /** Define selectOneAnswer with independently validated child ContentBlocks. */

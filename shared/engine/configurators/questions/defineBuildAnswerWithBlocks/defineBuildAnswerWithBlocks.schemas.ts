@@ -14,13 +14,13 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
 export const buildAnswerWithBlocks_Config_Schema = questionBase.extend(addUnifiedLocale(locale('config')));
 export type Question_BuildAnswerWithBlocks_Config = z.infer<typeof buildAnswerWithBlocks_Config_Schema> & {
   content: QuestionContent<ContentBlock_Configurator> & {
-  correctSequence: readonly [ContentBlock_Configurator, ...ContentBlock_Configurator[]]; distractors: ContentBlock_Configurator[];
+  correctSequence: [ContentBlock_Configurator, ...ContentBlock_Configurator[]]; distractors: ContentBlock_Configurator[];
 };
 };
 
 export const buildAnswerWithBlocks_Props_Schema = questionBase.extend(addUnifiedLocale(locale('props')));
 export type Question_BuildAnswerWithBlocks_Props = z.infer<typeof buildAnswerWithBlocks_Props_Schema> & {
   content: QuestionContent<ContentBlock_Props> & {
-  correctSequence: readonly [ContentBlock_Props, ...ContentBlock_Props[]]; distractors: ContentBlock_Props[];
+  correctSequence: [ContentBlock_Props, ...ContentBlock_Props[]]; distractors: ContentBlock_Props[];
 };
 };

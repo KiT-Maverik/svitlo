@@ -8,7 +8,14 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
   if (!Array.isArray(content?.question) || content.question.length === 0) {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
-  if (!content.pairs || typeof content.pairs !== 'object' || Array.isArray(content.pairs)) throw new Error('Question pairs must be an object');
+  if (
+    !content.pairs ||
+    typeof content.pairs !== 'object' ||
+    Array.isArray(content.pairs) ||
+    Object.values(content.pairs).some(pair => !pair || typeof pair !== 'object' || !('left' in pair) || !('right' in pair))
+  ) {
+    throw new Error('Question pairs must contain left and right blocks');
+  }
 };
 
 /** Define matchBlocks with independently validated child ContentBlocks. */
