@@ -522,6 +522,42 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
   );
   checkpoint.disable();
   assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
+
+  // A Checkpoint question must remain enabled; answer blocks may be disabled.
+  answer.disable();
+  assert.doesNotThrow(() => checkpoint.config.validate(config));
+  question.disable();
+  assert.throws(
+    () => checkpoint.config.validate(config),
+    error =>
+      error instanceof CheckpointValidationError &&
+      error.result.errors.some(issue =>
+        issue.check === 'question' &&
+        issue.path === 'content.items.whatIsLight.question' &&
+        issue.message.includes('remain enabled'),
+      ),
+  );
+
+  const disabledAtDefinition = defineText({
+    id,
+    slug: 'disabledQuestion',
+    type: 'text',
+    params: { disabled: true },
+    locale: { value: 'Disabled question' },
+  });
+  assert.throws(
+    () =>
+      checkpoint.config.validate({
+        ...config,
+        content: {
+          ...config.content,
+          items: {
+            whatIsLight: { ...config.content.items.whatIsLight, question: disabledAtDefinition },
+          },
+        },
+      }),
+    /Question must remain enabled/,
+  );
 });
 
 test('Scene separates invariant fields from localized text at nested paths', () => {
