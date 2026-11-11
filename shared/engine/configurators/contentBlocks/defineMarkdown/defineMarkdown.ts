@@ -8,8 +8,12 @@ import {
   type ContentBlock_Markdown_Locale,
 } from './defineMarkdown.schemas';
 
-export const defineMarkdown = (config: ContentBlock_Markdown_Config) => {
+const validate = (config: ContentBlock_Markdown_Config) => {
   markdown_Config_Schema.parse(config);
+};
+
+export const defineMarkdown = <const Slug extends string>(config: Omit<ContentBlock_Markdown_Config, 'slug'> & { slug: Slug }) => {
+  validate(config);
 
   const { id, type, slug, locale, params } = config;
 
@@ -24,12 +28,16 @@ export const defineMarkdown = (config: ContentBlock_Markdown_Config) => {
   const overrides: DeepPartial<ContentBlock_Markdown_Config> = {};
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Markdown_Locale<'config'>> } => ({
         locale: onlyLocales(locale),
       }),
       overrides,
+      validate,
     },
     override: {
       params: (newParams: DeepPartial<ContentBlock_Markdown_Config['params']>) => (overrides.params = newParams),

@@ -8,8 +8,12 @@ import {
   type ContentBlock_Scene_Locale,
 } from './defineScene.schemas';
 
-export const defineScene = (config: ContentBlock_Scene_Config) => {
+const validate = (config: ContentBlock_Scene_Config) => {
   scene_Config_Schema.parse(config);
+};
+
+export const defineScene = <const Slug extends string>(config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug }) => {
+  validate(config);
 
   const { id, type, slug, locale, params } = config;
 
@@ -24,12 +28,16 @@ export const defineScene = (config: ContentBlock_Scene_Config) => {
   const overrides: DeepPartial<ContentBlock_Scene_Config> = {};
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Scene_Locale<'config'>> } => ({
         locale: onlyLocales(locale),
       }),
       overrides,
+      validate,
     },
     override: {
       params: (newParams: DeepPartial<ContentBlock_Scene_Config['params']>) => (overrides.params = newParams),

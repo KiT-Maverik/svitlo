@@ -8,8 +8,12 @@ import {
   type ContentBlock_Video_Locale,
 } from './defineVideo.schemas';
 
-export const defineVideo = (config: ContentBlock_Video_Config) => {
+const validate = (config: ContentBlock_Video_Config) => {
   video_Config_Schema.parse(config);
+};
+
+export const defineVideo = <const Slug extends string>(config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug }) => {
+  validate(config);
 
   const { id, type, slug, locale, params } = config;
 
@@ -24,12 +28,16 @@ export const defineVideo = (config: ContentBlock_Video_Config) => {
   const overrides: DeepPartial<ContentBlock_Video_Config> = {};
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Video_Locale<'config'>> } => ({
         locale: onlyLocales(locale),
       }),
       overrides,
+      validate,
     },
     override: {
       params: (newParams: DeepPartial<ContentBlock_Video_Config['params']>) => (overrides.params = newParams),
