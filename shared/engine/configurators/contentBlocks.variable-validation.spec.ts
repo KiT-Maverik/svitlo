@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { defineCode, defineText } from './contentBlocks';
+import { code_Config_Schema, code_Props_Schema, defineCode, defineText } from './contentBlocks';
 import type { ContentBlock_Code_Config } from './contentBlocks/defineCode/defineCode.schemas';
 import type { ContentBlock_Text_Config } from './contentBlocks/defineText/defineText.schemas';
 
@@ -23,7 +23,7 @@ const codeConfig: ContentBlock_Code_Config = {
   type: 'code',
   slug: 'exampleCode',
   params: { language: 'typescript', codeAsText: 'const user = "%_%USER_NAME%_%";' },
-  locale: { variables: [{ id: 'USER_NAME', value: { en: 'Maria' } }] },
+  locale: { variables: { USER_NAME: { en: 'Maria' } } },
 };
 
 test('Text validates all declared styling IDs in every provided locale', () => {
@@ -121,20 +121,15 @@ test('Code validates declared IDs and checks source when resolved text is provid
   );
 });
 
-test('Code rejects duplicate declared IDs and malformed source markers', () => {
+test('Code rejects invalid variable keys and malformed source markers', () => {
   const code = defineCode(codeConfig);
-  assert.throws(
-    () =>
-      code.config.validate({
-        ...codeConfig,
-        locale: {
-          variables: [
-            { id: 'USER_NAME', value: 'Maria' },
-            { id: 'USER_NAME', value: 'Jane' },
-          ],
-        },
-      }),
-    /Duplicate Code variable ID "USER_NAME"/,
+  assert.equal(
+    code_Config_Schema.safeParse({ ...codeConfig, locale: { variables: { user_name: 'Maria' } } }).success,
+    false,
+  );
+  assert.equal(
+    code_Config_Schema.safeParse({ ...codeConfig, locale: { variables: { GREETING: 123 } } }).success,
+    false,
   );
   for (const source of ['%_%user_name%_%', '%_%USER_NAME', '%_%id: personName; value: Maria%_%']) {
     assert.throws(
@@ -145,6 +140,27 @@ test('Code rejects duplicate declared IDs and malformed source markers', () => {
   }
 });
 
+test('Code projects localized values by variable key and validates resolved props', () => {
+  const config: ContentBlock_Code_Config = {
+    ...codeConfig,
+    params: { ...codeConfig.params, codeAsText: 'const name = "%_%USER_NAME%_%"; const suffix = "%_%FIXED%_%";' },
+    locale: { variables: { USER_NAME: { en: 'Maria', uk: 'Марія' }, FIXED: '!' } },
+  };
+  const code = defineCode(config);
+  assert.deepEqual(code.config.base.locale, { variables: { FIXED: '!' } });
+  assert.deepEqual(code.config.locales(), {
+    locale: { variables: { USER_NAME: { en: 'Maria', uk: 'Марія' } } },
+  });
+  assert.equal(
+    code_Props_Schema.safeParse({
+      ...config,
+      locale: { variables: { USER_NAME: 'Марія', FIXED: '!' } },
+    }).success,
+    true,
+  );
+  assert.equal(code_Props_Schema.safeParse(config).success, false);
+});
+
 test('Code skips placeholder integrity checks when no variables are configured', () => {
   const config: ContentBlock_Code_Config = {
     ...codeConfig,
@@ -153,7 +169,6 @@ test('Code skips placeholder integrity checks when no variables are configured',
   const code = defineCode(config);
   assert.doesNotThrow(() => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%BROKEN' } }));
 });
-
 
 test('Code validates static source text during definition', () => {
   assert.throws(
