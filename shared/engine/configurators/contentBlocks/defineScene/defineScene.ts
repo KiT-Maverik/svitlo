@@ -14,6 +14,10 @@ const validate = (config: ContentBlock_Scene_Config) => {
 
 /**
  * Define a Scene with invariant strings and field-level localized text.
+ * Do not use arrays anywhere in the authored Scene locale value. Represent
+ * collections as objects with stable, descriptive keys instead, so sparse
+ * locale patches can be deep-merged deterministically without array indexes.
+ * Scene components may convert resolved keyed objects into arrays when needed.
  * Derive the component's single-language value type with `ResolveLocale<typeof value>`.
  * Runtime localization and translation completeness are handled by publication.
  */
