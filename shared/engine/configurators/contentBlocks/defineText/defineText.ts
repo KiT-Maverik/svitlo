@@ -3,9 +3,11 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared';
 
 import { text_Config_Schema, type ContentBlock_Text_Config, type ContentBlock_Text_Locale } from './defineText.schemas';
+import { validateTextVariables } from './validateTextVariables';
 
 const validate = (config: ContentBlock_Text_Config) => {
   text_Config_Schema.parse(config);
+  validateTextVariables(config);
 };
 
 /**
@@ -15,7 +17,8 @@ const validate = (config: ContentBlock_Text_Config) => {
  * In `locale.value`, use `%_%id: personName; value: Maria%_%`.
  * The fragment displays its `value` and uses `id` to select a
  * `params.styling` rule. The ID must be camelCase; it is
- * not a Code replacement variable. Ordinary text remains unchanged.
+ * not a Code replacement variable. Every configured style ID must appear in
+ * each supplied locale value, with no undeclared or malformed fragments.
  */
 export const defineText = <const Slug extends string>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
