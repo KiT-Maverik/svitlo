@@ -5,14 +5,14 @@ import styles from './StyledText.module.css';
 
 export interface ApplyStyledTextOptions {
   text: string;
-  styling?: StyledText_Rules;
+  variables?: StyledText_Rules;
 }
 
-export function applyStyledText({ text, styling }: ApplyStyledTextOptions) {
+export function applyStyledText({ text, variables }: ApplyStyledTextOptions) {
   const content = parseText(text).map((part, index) => {
     if (part.kind === 'text') return part.value;
 
-    const rule = styling?.find(item => item.id === part.id);
+    const rule = variables?.[part.id];
     if (!rule) return part.value;
 
     const applied = new Set(rule.applyStyle);
