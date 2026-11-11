@@ -1,7 +1,10 @@
-import { createRegularSectionSchema } from '../section.schemas';
+import { z } from 'zod';
+import { createSectionBaseSchema } from '../_shared';
+import type { Section_Config_Content, Section_Props_Content } from '../_shared/section.types';
 
-export const practiceSection_Config_Schema = createRegularSectionSchema('practice', 'config');
-export type PracticeSection_Config = import('zod').z.infer<typeof practiceSection_Config_Schema>;
+const schemas = createSectionBaseSchema('practice');
+export const practiceSection_Config_Schema = schemas.config;
+export type PracticeSection_Config = z.infer<typeof practiceSection_Config_Schema> & Section_Config_Content;
 
-export const practiceSection_Props_Schema = createRegularSectionSchema('practice', 'props');
-export type PracticeSection_Props = import('zod').z.infer<typeof practiceSection_Props_Schema>;
+export const practiceSection_Props_Schema = schemas.props;
+export type PracticeSection_Props = z.infer<typeof practiceSection_Props_Schema> & Section_Props_Content;
