@@ -5,6 +5,10 @@ import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGro
 
 import { skillDomain_Config_Schema, type SkillDomain_Config } from './defineSkillDomain.schemas';
 
+const validate = (config: SkillDomain_Config) => {
+  skillDomain_Config_Schema.parse(config);
+};
+
 export function defineSkillDomain<
   const Slug extends string,
   const Groups extends readonly SkillGroup_Configurator[] = readonly [],
@@ -16,7 +20,7 @@ export function defineSkillDomain<
     skills?: Skills;
   },
 ) {
-  skillDomain_Config_Schema.parse(config);
+  validate(config);
 
   const { id, description, slug, title, skills, groups } = config;
 
@@ -27,8 +31,12 @@ export function defineSkillDomain<
   } satisfies DeepPartial<SkillDomain_Config>;
 
   return {
+    id,
+    slug,
+    type: 'skillDomain' as const,
     config: {
       base,
+      validate,
       locales: () =>
         ({
           title,

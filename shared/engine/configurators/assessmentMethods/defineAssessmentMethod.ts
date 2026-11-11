@@ -2,8 +2,12 @@ import type { DeepPartial } from '#types';
 
 import { assessmentMethod_Config_Schema, type AssessmentMethod_Config } from './defineAssessmentMethod.schemas';
 
-export function defineAssessmentMethod(config: AssessmentMethod_Config) {
+const validate = (config: AssessmentMethod_Config) => {
   assessmentMethod_Config_Schema.parse(config);
+};
+
+export function defineAssessmentMethod(config: AssessmentMethod_Config) {
+  validate(config);
 
   const { id, description, slug, title } = config;
 
@@ -13,8 +17,12 @@ export function defineAssessmentMethod(config: AssessmentMethod_Config) {
   } satisfies DeepPartial<AssessmentMethod_Config>;
 
   return {
+    id,
+    slug,
+    type: 'assessmentMethod' as const,
     config: {
       base,
+      validate,
       locales: () => ({ title, description }) satisfies DeepPartial<AssessmentMethod_Config>,
     },
   };
