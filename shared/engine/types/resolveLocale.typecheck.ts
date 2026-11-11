@@ -3,7 +3,7 @@ import type { ResolveLocale as RuntimeResolveLocale } from '../runtime';
 import type { LanguageCodes } from '../schemas/languages.schemas';
 
 type Assert<T extends true> = T;
-type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends (<T>() => T extends B ? 1 : 2) ? true : false;
+type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 
 const authoredValue = {
   character: 'hero',
@@ -28,9 +28,14 @@ type SceneChecks = [
   Assert<Equal<RuntimeResolveLocale<typeof authoredValue>, Expected>>,
   Assert<Equal<ResolveLocale<Partial<Record<LanguageCodes, string>>>, string>>,
   Assert<Equal<ResolveLocale<{ en: string; nonLocaleKey: string }>, { en: string; nonLocaleKey: string }>>,
-  Assert<Equal<ResolveLocale<{ items: readonly [{ en: string }, { fixed: 'title' }] }>, {
-    items: readonly [string, { fixed: string }];
-  }>>,
+  Assert<
+    Equal<
+      ResolveLocale<{ items: readonly [{ en: string }, { fixed: 'title' }] }>,
+      {
+        items: readonly [string, { fixed: string }];
+      }
+    >
+  >,
 ];
 
 // Ensure field-level locale leaves are strings in a component's resolved value.
