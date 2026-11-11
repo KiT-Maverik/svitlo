@@ -4,14 +4,14 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('markdown');
-
-const params = contentBlockBase.shape.params.extend({});
-
-const markdownBase = contentBlockBase.extend({ params });
+const markdownBase = contentBlockBase.extend({ params: contentBlockBase.shape.params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   value: localizationSwitch[mode],
+  // Use the same %_%UPPER_SNAKE_CASE%_% placeholders as Code.
+  variables: z.record(z.string().regex(/^[A-Z][A-Z0-9_]*$/), localizationSwitch[mode]).optional(),
 });
+
 export type ContentBlock_Markdown_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;
