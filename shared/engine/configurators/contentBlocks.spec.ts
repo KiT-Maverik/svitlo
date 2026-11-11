@@ -504,16 +504,19 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
 
   const items = { ...checkpoint.content.items, ...checkpoint.config.overrides.content?.items };
   const resolved = Object.fromEntries(Object.entries(items).filter(([, item]) => item !== false));
-  assert.doesNotThrow(() => checkpoint.config.validate({
-    ...config,
-    content: { items: resolved, order: checkpoint.config.overrides.content?.order as string[] },
-  }));
+  assert.doesNotThrow(() =>
+    checkpoint.config.validate({
+      ...config,
+      content: { items: resolved, order: checkpoint.config.overrides.content?.order as string[] },
+    }),
+  );
   assert.throws(
     () => checkpoint.config.validate({
       ...config,
       content: { items: { whatIsLight: false }, order: ['whatIsLight'] },
     }),
-    error => error instanceof CheckpointValidationError &&
+    error =>
+      error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.message.includes('reserved for overrides')),
   );
   checkpoint.disable();
