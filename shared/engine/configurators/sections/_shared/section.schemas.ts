@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { localizationSwitch } from '../../contentBlocks';
+import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
 import { type Section_Type } from '../section.constants';
 import { Configurator_Mode } from '../../configurator.schemas';
 
