@@ -101,6 +101,10 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
 
   assert.equal(definitions.length, 8);
   for (const block of definitions) {
+    assert.equal(block.id, id);
+    assert.equal(block.slug, block.config.base.slug);
+    assert.equal(block.type, block.config.base.type);
+    assert.equal(typeof block.config.validate, 'function');
     assert.equal(block.config.base.id, id);
     assert.equal(typeof block.config.locales, 'function');
     assert.equal(typeof block.override.params, 'function');
@@ -333,6 +337,13 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
       assert.ok(error.result.errors.length >= 4);
       return true;
     },
+  );
+
+  assert.throws(
+    () => checkpoint.config.validate({ ...malformed, id: 'not-a-uuid' } as unknown as typeof config),
+    error => error instanceof CheckpointValidationError &&
+      error.result.errors.some(issue => issue.check === 'metadata') &&
+      error.result.errors.some(issue => issue.check === 'order'),
   );
 
   const nested = {
