@@ -8,3 +8,5 @@ export * from './courses';
 export * from './skills';
 export * from './assessmentMethods';
 export * from './flashcards';
+
+export { configuratorArrayToSlugMap } from './_shared';

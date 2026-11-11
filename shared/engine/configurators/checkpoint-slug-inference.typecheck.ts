@@ -36,8 +36,8 @@ const checkpoint = defineCheckpoint({
 type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
 checkpoint.override.content.answers('whatIsLight').setOrder(['answer']);
 
-// @ts-expect-error A bare config is not a Text configurator.
 const notQuestion: import('./contentBlocks/defineCheckpoint').Checkpoint_Config_Item = {
+  // @ts-expect-error A bare config is not a Text configurator.
   question: question.config.base,
   answer: { items: answers, order: ['answer'] },
 };
