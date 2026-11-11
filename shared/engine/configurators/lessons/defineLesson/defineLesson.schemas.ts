@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { languageCode_Schema } from '#schemas';
-import { localizationSwitch } from '../../contentBlocks';
+import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
 import { questionTypes as lessonQuestionTypes } from '../../questions';
 import { flashcardConfigurator_Schema } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
 import { sectionConfigurator_Schema } from '../../sections/section.schemas';
