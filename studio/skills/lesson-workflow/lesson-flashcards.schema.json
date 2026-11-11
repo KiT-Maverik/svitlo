@@ -274,30 +274,21 @@
           ]
         },
         "variables": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": ["id", "value"],
-            "properties": {
-              "id": {
-                "type": "string",
-                "pattern": "^[A-Z][A-Z0-9_]*$"
-              },
-              "value": {
-                "oneOf": [
-                  {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  {
-                    "$ref": "#/$defs/questionFieldRef"
-                  }
-                ]
-              }
-            }
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[A-Z][A-Z0-9_]*$"
           },
-          "minItems": 0
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "$ref": "#/$defs/questionFieldRef"
+              }
+            ]
+          }
         }
       }
     },
