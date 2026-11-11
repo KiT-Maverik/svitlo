@@ -100,14 +100,14 @@ const authoredCode: ContentBlock_Code<'data', TestLanguages> = {
   type: 'code',
   codeAsText: 'console.log("%_%GREETING%_%");',
   language: 'typescript',
-  variables: [{ id: 'GREETING', value: 'Hello' }],
+  variables: { GREETING: 'Hello' },
 };
 const runtimeCode: ContentBlock_Code<'response', TestLanguages> = {
   id: 'code-id',
   type: 'code',
   codeAsText: 'console.log("%_%GREETING%_%");',
   language: 'typescript',
-  variables: [{ id: 'GREETING', value: 'Hello' }],
+  variables: { GREETING: 'Hello' },
 };
 const authoredFillImage: ContentBlock_Image<'data', TestLanguages> = {
   id: 'image-fill-id',
