@@ -3,17 +3,13 @@ import type { ContentBlock_Text_Config } from './defineText.schemas';
 const delimiter = '%_%';
 const camelCase = /^[a-z][A-Za-z0-9]*$/;
 
-/** Validate configured styling IDs against the inline fragments of every authored locale. */
+/** Validate configured Text variable keys against inline fragments in every authored locale. */
 export function validateTextVariables(config: ContentBlock_Text_Config): void {
-  const styling = config.params.styling;
-  if (!styling?.length) return;
+  const variables = config.params.variables;
+  if (!variables || Object.keys(variables).length === 0) return;
 
   const errors: string[] = [];
-  const configured = new Set<string>();
-  for (const rule of styling) {
-    if (configured.has(rule.id)) errors.push(`Duplicate Text styling ID "${rule.id}"`);
-    configured.add(rule.id);
-  }
+  const configured = new Set(Object.keys(variables));
 
   const variants =
     typeof config.locale.value === 'string'
@@ -40,7 +36,7 @@ export function validateTextVariables(config: ContentBlock_Text_Config): void {
       }
       if (!matched[2].trim()) errors.push(`${path}: empty value for Text fragment "${id}"`);
       found.add(id);
-      if (!configured.has(id)) errors.push(`${path}: Text fragment "${id}" is not declared in params.styling`);
+      if (!configured.has(id)) errors.push(`${path}: Text fragment "${id}" is not declared in params.variables`);
     }
 
     for (const id of configured) {
