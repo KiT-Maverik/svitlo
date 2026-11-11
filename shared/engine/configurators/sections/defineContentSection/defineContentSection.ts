@@ -1,5 +1,5 @@
 import type { DeepPartial } from '#types';
-import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
 import {
