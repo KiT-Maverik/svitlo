@@ -20,7 +20,7 @@ const meta = {
     title: 'Greeting',
     language: 'typescript',
     codeAsText: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
-    variables: [{ id: 'GREETING', value: 'Hello!' }],
+    variables: { GREETING: 'Hello!' },
   },
   argTypes: { id: { control: false }, type: { control: false }, variables: { control: 'object' } },
 } satisfies Meta<typeof Code>;
@@ -38,7 +38,7 @@ export const LocalizedVariables: Story = {
       </ContentLanguageContext.Provider>
     ),
   ],
-  args: { title: 'Привітання', variables: [{ id: 'GREETING', value: 'Привіт!' }] },
+  args: { title: 'Привітання', variables: { GREETING: 'Привіт!' } },
 };
 
 export const UnknownLanguage: Story = {
@@ -46,7 +46,7 @@ export const UnknownLanguage: Story = {
     language: 'custom-language',
     codeAsText: 'let value = 42;\nprint(value);',
     title: 'Plain-text fallback',
-    variables: [],
+    variables: {},
   },
 };
 
