@@ -6,6 +6,7 @@
 export * from './configurators';
 export * from './lessons';
 export * from './schemas';
+export type { ResolveLocale } from './types';
 
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './utils/languages';
 export { splitLessonValue } from './lessons/splitLessonValue';
