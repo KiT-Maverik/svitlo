@@ -7,7 +7,7 @@ import { questionTypes, type Question_Type } from './question.constants';
 import {
   contentBlockConfigurator_Schema,
   contentBlockResolved_Schema,
-  localizationSwitch,
+  contentBlockLocalizationSwitch as localizationSwitch,
 } from '../contentBlocks';
 
 /** Authored Questions hold ContentBlock definitions; published Questions contain resolved props. */
