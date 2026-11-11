@@ -49,16 +49,16 @@ type CourseSlug = Expect<Equal<typeof course.slug, 'course'>>;
 type NestedKind = Expect<Equal<typeof course.content.items.module.type, 'module'>>;
 type ExactChapter = Expect<Equal<typeof module.content.items.chapter, typeof chapter>>;
 
-// @ts-expect-error A Chapter cannot contain Modules.
 defineChapter({
   id,
   type: 'chapter',
   slug: 'invalid',
   params: {},
   locale: { title: 'Invalid' },
+  // @ts-expect-error A Chapter cannot contain Modules.
+  // @ts-expect-error A Module cannot contain Modules.
   content: { items: { module }, order: ['module'] },
 });
-// @ts-expect-error A Module cannot contain Modules.
 defineModule({
   id,
   type: 'module',
@@ -67,12 +67,12 @@ defineModule({
   locale: { title: 'Invalid' },
   content: { items: { module }, order: ['module'] },
 });
-// @ts-expect-error Course locale must contain description.
 defineCourse({
   id,
   type: 'course',
   slug: 'invalid',
   params: { languages: ['en'] },
+  // @ts-expect-error Course locale must contain description.
   locale: { title: 'Course' },
   content: { items: {}, order: [] },
 });
