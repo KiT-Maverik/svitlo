@@ -56,7 +56,6 @@ defineChapter({
   params: {},
   locale: { title: 'Invalid' },
   // @ts-expect-error A Chapter cannot contain Modules.
-  // @ts-expect-error A Module cannot contain Modules.
   content: { items: { module }, order: ['module'] },
 });
 defineModule({
@@ -65,6 +64,7 @@ defineModule({
   slug: 'invalid',
   params: {},
   locale: { title: 'Invalid' },
+  // @ts-expect-error A Module cannot contain Modules.
   content: { items: { module }, order: ['module'] },
 });
 defineCourse({
