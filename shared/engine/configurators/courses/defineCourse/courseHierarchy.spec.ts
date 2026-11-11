@@ -1,159 +1,129 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { defineText } from '../../contentBlocks/defineText/defineText';
-import { defineMarkdown } from '../../contentBlocks/defineMarkdown/defineMarkdown';
-import { defineTheorySection } from '../../sections/defineTheorySection/defineTheorySection';
-import { defineScenarioSection } from '../../sections/defineScenarioSection/defineScenarioSection';
-import { defineFlashcard } from '../../flashcards/defineFlashcard/defineFlashcard';
-import { defineLesson } from '../../lessons/defineLesson/defineLesson';
-import { defineEpisode } from '../defineEpisode/defineEpisode';
-import { defineChapter } from '../defineChapter/defineChapter';
-import { defineModule } from '../defineModule/defineModule';
+import { defineLesson } from '../../lessons/defineLesson';
+import { defineChapter } from '../defineChapter';
+import { defineModule } from '../defineModule';
 import { defineCourse } from './defineCourse';
-import { chapter_Config_Schema } from '../defineChapter/defineChapter.schemas';
-import { course_Config_Schema } from './defineCourse.schemas';
-
-function containsFunction(value: unknown): boolean {
-  if (typeof value === 'function') return true;
-  if (Array.isArray(value)) return value.some(containsFunction);
-  if (value !== null && typeof value === 'object') return Object.values(value).some(containsFunction);
-  return false;
-}
+import { course_Config_Schema, type Course_Config } from './defineCourse.schemas';
 
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const languages = ['en', 'uk'] as const;
-const text = defineText({
-  id: id('c1'),
-  type: 'text',
-  slug: 'title',
-  params: {},
-  value: { en: 'Hello', uk: 'Привіт' },
-});
-const description = defineMarkdown({
+
+const createLesson = (slug: string, suffix: string) =>
+  defineLesson({
+    id: id(suffix),
+    slug,
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages,
+      requireQuiz: false,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: { en: 'Lesson', uk: 'Урок' } },
+    section: { items: {}, order: [] },
+    flashcards: [],
+  });
+
+const lesson = createLesson('lesson', 'c1');
+const chapterInput = {
   id: id('c2'),
-  type: 'markdown',
-  slug: 'description',
-  locales: { en: 'Intro', uk: 'Вступ' },
-});
-const scenario = defineScenarioSection({
+  type: 'chapter' as const,
+  slug: 'chapter',
+  params: { iconKey: 'book' },
+  locale: { title: { en: 'Chapter', uk: 'Розділ' } },
+  content: { items: { lesson }, order: ['lesson'] },
+};
+const chapter = defineChapter(chapterInput);
+const moduleInput = {
   id: id('c3'),
-  type: 'scenario',
-  slug: 'scene',
-  title: { en: 'Story', uk: 'Історія' },
-  navigationLabel: 'S',
-  content: [text],
-});
-const theory = defineTheorySection({
+  type: 'module' as const,
+  slug: 'module',
+  params: {},
+  locale: { title: 'Module' },
+  content: { items: { chapter }, order: ['chapter'] },
+};
+const module = defineModule(moduleInput);
+const courseInput = {
   id: id('c4'),
-  type: 'theory',
-  slug: 'intro',
-  title: { en: 'Theory', uk: 'Теорія' },
-  navigationLabel: '1',
-  content: [text],
-});
-const card = defineFlashcard({
-  id: id('c5'),
-  type: 'flashcard',
-  front: [text],
-  back: [text],
-  hint: [],
-  tags: [],
-  flags: [],
-});
-const lesson = defineLesson({
-  id: id('c6'),
-  type: 'lesson',
-  slug: 'lesson',
-  title: { en: 'Lesson', uk: 'Урок' },
-  flashcards: [card],
-  skills: [],
-  parameters: {
-    requireQuiz: false,
-    languages,
-    sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
-  },
-  sections: [theory],
-});
-const episode = defineEpisode({ type: 'episode', id: id('c7'), title: text, sections: [scenario] });
-const chapter = defineChapter({ type: 'chapter', id: id('c8'), title: text, content: [lesson, episode] });
-const module = defineModule({ type: 'module', id: id('c9'), title: text, content: [chapter] });
-const course = defineCourse({
-  type: 'course',
-  id: id('ca'),
-  title: text,
-  description,
-  parameters: { languages },
-  content: [module],
+  type: 'course' as const,
+  slug: 'course',
+  params: { languages, scenarioMode: 'story' as const },
+  locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Course introduction' },
+  content: { items: { module }, order: ['module'] },
+};
+
+test('Course hierarchy retains slugged configurators and projects only own metadata', () => {
+  const course = defineCourse(courseInput);
+
+  assert.equal(course.slug, 'course');
+  assert.equal(course.content.items.module, module);
+  assert.equal(module.content.items.chapter, chapter);
+  assert.equal(chapter.content.items.lesson, lesson);
+  assert.equal(course.config.base.params.scenarioMode, 'story');
+  assert.deepEqual(course.config.locales(), { locale: { title: { en: 'Course', uk: 'Курс' } } });
+  assert.deepEqual(course.config.base.locale, { description: 'Course introduction' });
+  assert.equal('content' in course.config.base, false);
+  assert.equal('content' in module.config.base, false);
+  assert.equal('content' in chapter.config.base, false);
+  assert.equal(course_Config_Schema.safeParse(courseInput).success, true);
 });
 
-test('typed ContentBlock to Flashcard/Section/Lesson/Course composition preserves order and identity', () => {
-  assert.deepEqual(course.content, [module]);
-  assert.deepEqual(module.content, [chapter]);
-  assert.deepEqual(chapter.content, [lesson, episode]);
-  assert.deepEqual(episode.sections, [scenario]);
-  assert.deepEqual(lesson.flashcards, [card]);
-  assert.deepEqual(lesson.sections, [theory]);
-  assert.deepEqual(theory.content, [text]);
-  assert.equal(course.title, text);
-  assert.equal(course.description, description);
-  assert.equal(course.config.base.type, 'course');
-  assert.equal(lesson.config.base.slug, 'lesson');
-  assert.equal(containsFunction(course.config.base), false);
-  assert.equal(containsFunction(lesson.config.base), false);
-  assert.deepEqual(lesson.config.locales(), { title: { en: 'Lesson', uk: 'Урок' } });
-  assert.equal(
-    course_Config_Schema.safeParse({
-      type: 'course',
-      id: id('ca'),
-      title: text,
-      description,
-      parameters: { languages },
-      content: [module],
-    }).success,
-    true,
+test('Course hierarchy permits direct content editing and explicit revalidation', () => {
+  const course = defineCourse(courseInput);
+  const extraLesson = createLesson('extraLesson', 'c5');
+
+  Object.assign(course.content.items, { extraLesson });
+  course.content.order.push('extraLesson');
+  assert.doesNotThrow(() =>
+    course.config.validate({ ...courseInput, content: course.content } as unknown as Course_Config),
+  );
+
+  course.content.order.push('module');
+  assert.throws(
+    () => course.config.validate({ ...courseInput, content: course.content } as unknown as Course_Config),
+    /Duplicate slug/,
+  );
+  assert.deepEqual(courseInput.content.order, ['module'], 'authored content was not mutated');
+});
+
+test('Course, Module and Chapter enforce their allowed child types and key order', () => {
+  assert.throws(
+    () => defineCourse({ ...courseInput, content: { items: { wrongKey: module }, order: ['wrongKey'] } }),
+    /does not match configurator slug/,
+  );
+  assert.throws(
+    () => defineModule({ ...moduleInput, content: { items: { module }, order: ['module'] } as never }),
+    /Unsupported Module child type/,
+  );
+  assert.throws(
+    () => defineChapter({ ...chapterInput, content: { items: { chapter }, order: ['chapter'] } as never }),
+    /Unsupported Chapter child type/,
+  );
+  assert.throws(
+    () => defineCourse({ ...courseInput, params: { languages: ['en', 'en'] as unknown as typeof languages } }),
+    /unique/,
   );
 });
 
-test('Course child kinds, Scenario-only Episode, and nested authored inputs are validated', () => {
-  assert.equal(
-    chapter_Config_Schema.safeParse({
-      type: 'chapter',
-      id: id('cc'),
-      title: text,
-      content: [module],
-    }).success,
-    false,
+test('Parent validators never call nested child validators', () => {
+  const course = defineCourse(courseInput);
+  const brokenChild = {
+    ...module,
+    config: { ...module.config, validate: () => { throw new Error('Child validator was called'); } },
+  };
+  assert.doesNotThrow(() =>
+    course.config.validate({
+      ...courseInput,
+      content: { items: { module: brokenChild }, order: ['module'] },
+    } as unknown as Course_Config),
   );
-  assert.throws(() =>
-    defineEpisode({
-      type: 'episode',
-      id: id('cd'),
-      title: text,
-      // @ts-expect-error An Episode only accepts Scenario Section configurators.
-      sections: [theory],
-    }),
-  );
-  assert.equal(
-    course_Config_Schema.safeParse({
-      type: 'course',
-      id: id('ce'),
-      title: text.config.base,
-      description,
-      parameters: { languages },
-      content: [module],
-    }).success,
-    false,
-  );
-  assert.equal(
-    course_Config_Schema.safeParse({
-      type: 'course',
-      id: id('cf'),
-      title: text,
-      description,
-      parameters: { languages: ['en', 'en'] },
-      content: [module],
-    }).success,
-    false,
-  );
+
+  course.override.params({ scenarioMode: 'none' });
+  assert.deepEqual(course.config.overrides.params, { scenarioMode: 'none' });
+  course.override.locale({ title: 'Alternative title' });
+  assert.deepEqual(course.config.overrides.locale, { title: 'Alternative title' });
+  course.disable();
+  assert.deepEqual(course.config.overrides.params, { disabled: true });
 });

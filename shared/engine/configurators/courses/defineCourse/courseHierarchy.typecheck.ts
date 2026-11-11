@@ -1,59 +1,51 @@
-import { defineText } from '../../contentBlocks/defineText/defineText';
-import { defineScenarioSection } from '../../sections/defineScenarioSection/defineScenarioSection';
-import { defineTheorySection } from '../../sections/defineTheorySection/defineTheorySection';
-import { defineEpisode } from '../defineEpisode/defineEpisode';
-import { defineChapter } from '../defineChapter/defineChapter';
-import { defineModule } from '../defineModule/defineModule';
+import { defineLesson } from '../../lessons/defineLesson';
+import { defineChapter } from '../defineChapter';
+import { defineModule } from '../defineModule';
 import { defineCourse } from './defineCourse';
-import { defineMarkdown } from '../../contentBlocks/defineMarkdown/defineMarkdown';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d01';
-const title = defineText({ type: 'text', id, slug: 'title', params: {}, value: 'Title' });
-const description = defineMarkdown({ type: 'markdown', id, slug: 'description', locales: 'Description' });
-const scenario = defineScenarioSection({
-  type: 'scenario',
+const lesson = defineLesson({
   id,
-  slug: 'scenario',
-  title: 'Scenario',
-  navigationLabel: 'S',
-  content: [title],
+  type: 'lesson',
+  slug: 'lesson',
+  skills: [],
+  params: {
+    requireQuiz: false,
+    languages: ['en', 'uk'] as const,
+    sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+  },
+  locale: { title: 'Lesson' },
+  section: { items: {}, order: [] },
+  flashcards: [],
 });
-const theory = defineTheorySection({
-  type: 'theory',
-  id,
-  slug: 'theory',
-  title: 'Theory',
-  navigationLabel: 'T',
-  content: [title],
+const chapter = defineChapter({
+  id, type: 'chapter', slug: 'chapter', params: {}, locale: { title: 'Chapter' },
+  content: { items: { lesson }, order: ['lesson'] },
 });
-const episode = defineEpisode({ type: 'episode', id, title, sections: [scenario] });
-const chapter = defineChapter({ type: 'chapter', id, title, content: [episode] });
-const module = defineModule({ type: 'module', id, title, content: [chapter] });
+const module = defineModule({
+  id, type: 'module', slug: 'module', params: {}, locale: { title: 'Module' },
+  content: { items: { chapter }, order: ['chapter'] },
+});
 const course = defineCourse({
-  type: 'course',
-  id,
-  title,
-  description,
-  parameters: { languages: ['en', 'uk'] as const },
-  content: [module, chapter, episode],
+  id, type: 'course', slug: 'course', params: { languages: ['en', 'uk'] as const },
+  locale: { title: 'Course', description: 'Introduction' },
+  content: { items: { module, chapter, lesson }, order: ['module', 'chapter', 'lesson'] },
 });
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;
-type ScenarioSlug = Expect<Equal<typeof scenario.config.base.slug, 'scenario'>>;
-type TheorySlug = Expect<Equal<typeof theory.config.base.slug, 'theory'>>;
-type NestedKind = Expect<Equal<(typeof course.content)[0]['config']['base']['type'], 'module'>>;
-type ExactEpisode = Expect<Equal<(typeof chapter.content)[0], typeof episode>>;
+type CourseSlug = Expect<Equal<typeof course.slug, 'course'>>;
+type NestedKind = Expect<Equal<typeof course.content.items.module.type, 'module'>>;
+type ExactChapter = Expect<Equal<typeof module.content.items.chapter, typeof chapter>>;
 
-// @ts-expect-error Chapter must not contain Modules.
-defineChapter({ type: 'chapter', id, title, content: [module] });
-// @ts-expect-error Episode must not contain Theory Sections.
-defineEpisode({ type: 'episode', id, title, sections: [theory] });
-// @ts-expect-error Course description must be a Markdown configurator.
-defineCourse({ type: 'course', id, title, description: title, parameters: { languages: ['en'] }, content: [] });
+// @ts-expect-error A Chapter cannot contain Modules.
+defineChapter({ id, type: 'chapter', slug: 'invalid', params: {}, locale: { title: 'Invalid' }, content: { items: { module }, order: ['module'] } });
+// @ts-expect-error A Module cannot contain Modules.
+defineModule({ id, type: 'module', slug: 'invalid', params: {}, locale: { title: 'Invalid' }, content: { items: { module }, order: ['module'] } });
+// @ts-expect-error Course locale must contain description.
+defineCourse({ id, type: 'course', slug: 'invalid', params: { languages: ['en'] }, locale: { title: 'Course' }, content: { items: {}, order: [] } });
 
 void course;
-void (null as unknown as ScenarioSlug);
-void (null as unknown as TheorySlug);
+void (null as unknown as CourseSlug);
 void (null as unknown as NestedKind);
-void (null as unknown as ExactEpisode);
+void (null as unknown as ExactChapter);
