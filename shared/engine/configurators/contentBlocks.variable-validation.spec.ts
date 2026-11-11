@@ -168,6 +168,7 @@ test('Code projects localized values by variable key and validates resolved prop
 test('Code checks placeholder integrity even without configured variables', () => {
   const config: ContentBlock_Code_Config = {
     ...codeConfig,
+    params: { ...codeConfig.params, codeAsText: 'const a = 1;' },
     locale: {},
   };
   const code = defineCode(config);

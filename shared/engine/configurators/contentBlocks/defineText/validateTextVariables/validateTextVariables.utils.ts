@@ -1,4 +1,4 @@
-import type { ContentBlock_Text_Config } from './defineText.schemas';
+import type { ContentBlock_Text_Config } from '../defineText.schemas';
 
 const delimiter = '%_%';
 const camelCase = /^[a-z][A-Za-z0-9]*$/;
@@ -9,7 +9,7 @@ export function validateTextVariables(config: ContentBlock_Text_Config): void {
   // Even without declared variables, stray %_% fragments must be rejected.
 
   const errors: string[] = [];
-  const configured = new Set(Object.keys(variables));
+  const configured = new Set(Object.keys(variables ?? {}));
 
   const variants =
     typeof config.locale.value === 'string'

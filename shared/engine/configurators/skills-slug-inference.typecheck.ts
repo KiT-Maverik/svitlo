@@ -1,4 +1,4 @@
-import { configuratorArrayToSluggedObject } from './_utils';
+import { configuratorArrayToSlugMap } from './_shared';
 import { defineSkill, type Skill_Configurator } from './skills/defineSkill/defineSkill';
 import type { Skill_Config } from './skills/defineSkill/defineSkill.schemas';
 import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
@@ -77,7 +77,7 @@ const readonlyDomain = defineSkillDomain({
 type ReadonlyDomainGroupKeys = Expect<Equal<keyof typeof readonlyDomain.group, 'literacy'>>;
 type ReadonlyDomainSkillKeys = Expect<Equal<keyof typeof readonlyDomain.skill, 'reading' | 'writing'>>;
 
-const inline = configuratorArrayToSluggedObject([
+const inline = configuratorArrayToSlugMap([
   { slug: 'first' as const, onlyFirst: true },
   { slug: 'second' as const, onlySecond: true },
 ]);
@@ -89,12 +89,12 @@ void inline.third;
 
 // Arbitrary string slugs have a partial index signature, never a guaranteed value.
 const dynamicSkill = defineSkill({ ...fields, slug: dynamicSlug });
-const dynamicMap = configuratorArrayToSluggedObject([dynamicSkill]);
+const dynamicMap = configuratorArrayToSlugMap([dynamicSkill]);
 const maybeDynamic: Skill_Configurator | undefined = dynamicMap.anything;
 // @ts-expect-error A dynamic string slug cannot guarantee this key exists.
 const guaranteedDynamic: Skill_Configurator = dynamicMap.anything;
 
-const mixedMap = configuratorArrayToSluggedObject([reading, dynamicSkill]);
+const mixedMap = configuratorArrayToSlugMap([reading, dynamicSkill]);
 type KnownMixedValue = Expect<Equal<typeof mixedMap.reading, typeof reading>>;
 const maybeMixed: Skill_Configurator | undefined = mixedMap.unknown;
 // @ts-expect-error A mixed collection cannot guarantee unknown keys.

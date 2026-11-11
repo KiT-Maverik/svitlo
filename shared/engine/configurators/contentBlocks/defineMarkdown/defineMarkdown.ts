@@ -53,7 +53,7 @@ function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Rec
 const validate = (config: ContentBlock_Markdown_Config) => {
   markdown_Config_Schema.parse(config);
   const errors = validateReplacementVariables(config.locale.value, config.locale.variables, 'locale.value');
-  if (errors.length) throw new Error('Markdown variables validation failed:\\n' + errors.join('\\n'));
+  if (errors.length) throw new Error('Markdown variables validation failed:\n' + errors.join('\n'));
 };
 
 /**
