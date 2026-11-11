@@ -1,5 +1,5 @@
 import type { ContentBlock_Configurator } from '../../contentBlocks';
-import { createRegularSection } from '../_shared/createRegularSection';
+import { createRegularSection } from '../_shared__sections/createRegularSection';
 import { practiceSection_Config_Schema, type PracticeSection_Config } from './definePracticeSection.schemas';
 
 const validate = (config: PracticeSection_Config) => {
