@@ -27,6 +27,6 @@ export {
   contentBlockChild_Schema,
   textStylePresets,
   textTonePresets,
-  textStylingRules_Schema,
+  textVariables_Schema,
 } from './_shared';
 export type { ContentBlock_Type, TextStylePreset, TextTonePreset } from './_shared';

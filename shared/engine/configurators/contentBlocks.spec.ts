@@ -46,6 +46,28 @@ test('Text validates metadata, nested params and nested locale independently', (
   assert.equal(text_Props_Schema.safeParse(config).success, false);
   assert.equal(text_Config_Schema.safeParse({ ...config, params: { disabled: false } }).success, false);
   assert.throws(() => defineText({ ...config, id: 'bad' }), /Invalid UUID/);
+  assert.equal(
+    text_Config_Schema.safeParse({
+      ...config,
+      params: { variables: { personName: { applyStyle: ['variable'] } } },
+    }).success,
+    true,
+  );
+  assert.equal(
+    text_Config_Schema.safeParse({
+      ...config,
+      params: { variables: { PERSON_NAME: { applyStyle: ['variable'] } } },
+    }).success,
+    false,
+  );
+
+  assert.equal(
+    text_Config_Schema.safeParse({
+      ...config,
+      params: { variables: { personName: { applyStyle: ['bold'], id: 'personName' } } },
+    }).success,
+    false,
+  );
 
   text.override.params({ wrap: { enabled: true } });
   assert.deepEqual(text.config.overrides.params, { wrap: { enabled: true } });
@@ -60,8 +82,8 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
       id,
       slug: 'code',
       type: 'code',
-      params: { language: 'typescript', fileLocation: 'samples/demo.ts' },
-      locale: { variables: [{ id: 'greeting', value }] },
+      params: { language: 'typescript', codeAsText: 'const greeting = "%_%GREETING%_%";' },
+      locale: { variables: { GREETING: value } },
     }),
     defineImage({
       id,
@@ -119,34 +141,42 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
   }
 });
 
-test('Code requires a template source, Image retains cross-field validation, and media labels are required', () => {
+test('Code requires nonempty static text, Image retains cross-field validation, and media labels are required', () => {
   const source = {
     id,
     slug: 'codeTemplate',
     type: 'code' as const,
     params: { language: 'typescript' },
-    locale: { variables: [{ id: 'greeting', value: 'Hello' }] },
+    locale: { variables: { GREETING: 'Hello' } },
   };
+  assert.equal(
+    code_Config_Schema.safeParse({
+      ...source,
+      params: { ...source.params, codeAsText: 'const greeting = "%_%GREETING%_%";' },
+      locale: { variables: { lowerCase: 'Hello' } },
+    }).success,
+    false,
+  );
   assert.equal(code_Config_Schema.safeParse(source).success, false);
   assert.equal(code_Props_Schema.safeParse(source).success, false);
   assert.equal(
     code_Config_Schema.safeParse({
       ...source,
-      params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+      params: { ...source.params, codeAsText: 'const greeting = "%_%GREETING%_%";' },
     }).success,
     true,
   );
   assert.equal(
     code_Props_Schema.safeParse({
       ...source,
-      params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+      params: { ...source.params, codeAsText: 'const greeting = "%_%GREETING%_%";' },
     }).success,
     true,
   );
   assert.equal(
     code_Config_Schema.safeParse({
       ...source,
-      params: { ...source.params, fileLocation: '' },
+      params: { ...source.params, codeAsText: '' },
     }).success,
     false,
   );
@@ -235,20 +265,23 @@ test('localized fallback and indexed media fields remain in locale projections',
     id,
     slug: 'example',
     type: 'code',
-    params: { language: 'typescript', fileLocation: 'templates/greeting.ts' },
+    params: { language: 'typescript', codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";' },
     locale: {
-      variables: [
-        { id: 'translated', value: { uk: 'Локальна змінна' } },
-        { id: 'fixed', value: 'invariant' },
-      ],
+      variables: {
+        TRANSLATED: { uk: 'Локальна змінна' },
+        FIXED: 'invariant',
+      },
     },
   });
-  assert.deepEqual(code.config.base.params, { language: 'typescript', fileLocation: 'templates/greeting.ts' });
+  assert.deepEqual(code.config.base.params, {
+    language: 'typescript',
+    codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";',
+  });
   assert.deepEqual(code.config.base.locale, {
-    variables: [{ id: 'translated' }, { id: 'fixed', value: 'invariant' }],
+    variables: { FIXED: 'invariant' },
   });
   assert.deepEqual(code.config.locales(), {
-    locale: { variables: [{ value: { uk: 'Локальна змінна' } }, {}] },
+    locale: { variables: { TRANSLATED: { uk: 'Локальна змінна' } } },
   });
 
   const carousel = defineCarousel({

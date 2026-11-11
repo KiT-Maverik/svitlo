@@ -13,7 +13,7 @@ export type ContentBlock_Text_Wrap = {
 };
 
 export type ContentBlock_Text_Presentation = {
-  styling?: StyledText_Rules;
+  variables?: StyledText_Rules;
   wrap?: ContentBlock_Text_Wrap;
 };
 

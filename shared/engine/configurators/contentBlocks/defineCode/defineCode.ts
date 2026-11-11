@@ -3,11 +3,46 @@ import type { DeepPartial } from '#types';
 import { onlyLocales, onlyStrings } from '../../_shared';
 
 import { code_Config_Schema, type ContentBlock_Code_Config, type ContentBlock_Code_Locale } from './defineCode.schemas';
+import { validateCodeVariables } from './validateCodeVariables';
 
 const validate = (config: ContentBlock_Code_Config) => {
   code_Config_Schema.parse(config);
+  validateCodeVariables(config);
 };
 
+/**
+ * Define a static Code block for displaying source text with syntax highlighting.
+ *
+ * @remarks
+ * Pass the complete source string in `params.codeAsText`. Code blocks are
+ * display-only: no compilation or execution occurs. Indentation, whitespace
+ * and line breaks are preserved.
+ *
+ * When the source lives in a file, place it beside the authoring definition
+ * and read it as UTF-8 there, before calling `defineCode`. Resolve the path
+ * relative to the current module using `import.meta.url`, not process.cwd().
+ * Node's `readFileSync` throws if the file cannot be read; the configurator
+ * itself requires no file path, loader or filesystem dependency.
+ *
+ * Use `%_%VARIABLE_NAME%_%` in the source, with matching UPPER_SNAKE_CASE
+ * keys in the `locale.variables` object. Each key maps to an invariant
+ * string or a dictionary of language-specific strings. `config.validate`
+ * checks these references directly against `params.codeAsText`.
+ *
+ * @example
+ * ```ts
+ * import { readFileSync } from 'node:fs';
+ *
+ * const codeAsText = readFileSync(new URL('./example.py', import.meta.url), 'utf8');
+ * const block = defineCode({
+ *   id: 'c2cc84f3-f057-493d-b1b6-1880aad8023b',
+ *   slug: 'example',
+ *   type: 'code',
+ *   params: { language: 'python', codeAsText },
+ *   locale: {},
+ * });
+ * ```
+ */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
 ) => {
