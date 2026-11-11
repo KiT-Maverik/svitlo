@@ -1,29 +1,20 @@
-export * from './defineSelectOneAnswer/defineSelectOneAnswer';
-export * from './defineSelectOneAnswer/defineSelectOneAnswer.schemas';
+export * from './defineSelectOneAnswer';
 
-export * from './defineSelectMultipleAnswers/defineSelectMultipleAnswers';
-export * from './defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
+export * from './defineSelectMultipleAnswers';
 
-export * from './defineMatchBlocks/defineMatchBlocks';
-export * from './defineMatchBlocks/defineMatchBlocks.schemas';
+export * from './defineMatchBlocks';
 
-export * from './defineAnswerWithText/defineAnswerWithText';
-export * from './defineAnswerWithText/defineAnswerWithText.schemas';
+export * from './defineAnswerWithText';
 
-export * from './defineAnswerWithNumber/defineAnswerWithNumber';
-export * from './defineAnswerWithNumber/defineAnswerWithNumber.schemas';
+export * from './defineAnswerWithNumber';
 
-export * from './defineOrderSequence/defineOrderSequence';
-export * from './defineOrderSequence/defineOrderSequence.schemas';
+export * from './defineOrderSequence';
 
-export * from './defineBuildAnswerWithBlocks/defineBuildAnswerWithBlocks';
-export * from './defineBuildAnswerWithBlocks/defineBuildAnswerWithBlocks.schemas';
+export * from './defineBuildAnswerWithBlocks';
 
-export * from './defineFillBlanksWithBlocks/defineFillBlanksWithBlocks';
-export * from './defineFillBlanksWithBlocks/defineFillBlanksWithBlocks.schemas';
+export * from './defineFillBlanksWithBlocks';
 
-export * from './defineFillBlanksWithText/defineFillBlanksWithText';
-export * from './defineFillBlanksWithText/defineFillBlanksWithText.schemas';
+export * from './defineFillBlanksWithText';
 
 export * from './question.schemas';
 export type { Question_Configurator } from './question.types';

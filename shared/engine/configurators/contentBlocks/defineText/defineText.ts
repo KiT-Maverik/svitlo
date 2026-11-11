@@ -4,8 +4,14 @@ import { onlyLocales, onlyStrings } from '../../_shared';
 
 import { text_Config_Schema, type ContentBlock_Text_Config, type ContentBlock_Text_Locale } from './defineText.schemas';
 
-export const defineText = (config: ContentBlock_Text_Config) => {
+const validate = (config: ContentBlock_Text_Config) => {
   text_Config_Schema.parse(config);
+};
+
+export const defineText = <const Slug extends string>(
+  config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
+) => {
+  validate(config);
 
   const { id, type, slug, locale, params } = config;
 
@@ -20,12 +26,16 @@ export const defineText = (config: ContentBlock_Text_Config) => {
   const overrides: DeepPartial<ContentBlock_Text_Config> = {};
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Text_Locale<'config'>> } => ({
         locale: onlyLocales(locale),
       }),
       overrides,
+      validate,
     },
     override: {
       params: (newParams: DeepPartial<ContentBlock_Text_Config['params']>) => (overrides.params = newParams),

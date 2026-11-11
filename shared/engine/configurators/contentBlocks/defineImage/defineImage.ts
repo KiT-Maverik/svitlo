@@ -8,8 +8,14 @@ import {
   type ContentBlock_Image_Locale,
 } from './defineImage.schemas';
 
-export const defineImage = (config: ContentBlock_Image_Config) => {
+const validate = (config: ContentBlock_Image_Config) => {
   image_Config_Schema.parse(config);
+};
+
+export const defineImage = <const Slug extends string>(
+  config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug },
+) => {
+  validate(config);
 
   const { id, type, slug, locale, params } = config;
 
@@ -24,12 +30,16 @@ export const defineImage = (config: ContentBlock_Image_Config) => {
   const overrides: DeepPartial<ContentBlock_Image_Config> = {};
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Image_Locale<'config'>> } => ({
         locale: onlyLocales(locale),
       }),
       overrides,
+      validate,
     },
     override: {
       params: (newParams: DeepPartial<ContentBlock_Image_Config['params']>) => (overrides.params = newParams),

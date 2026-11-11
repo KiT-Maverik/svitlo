@@ -7,24 +7,128 @@ import {
   type ContentBlock_Checkpoint_Locale,
 } from './defineCheckpoint.schemas';
 
-/**
- * Keep literal keys of content.items so order can only reference declared slugs
- * and editors can autocomplete checkpoint.content.items.<slug>.
- * Zod additionally requires that order lists every item exactly once.
- */
-export const defineCheckpoint = <
-  const Slug extends string,
-  const Items extends ContentBlock_Checkpoint_Config['content']['items'],
-  const Order extends readonly (keyof Items & string)[],
->(
-  config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
-    slug: Slug;
-    content: { items: Items; order: Order };
-  },
-) => {
-  checkpoint_Config_Schema.parse(config);
+type CheckpointContent = ContentBlock_Checkpoint_Config['content'];
+type CheckpointSubject = { id?: string; slug?: string; type?: string };
 
-  const { id, type, slug, locale, params, content } = config;
+export type CheckpointValidationIssue = {
+  check: string;
+  path: string;
+  message: string;
+};
+export type CheckpointValidationResult = {
+  success: boolean;
+  subject: CheckpointSubject;
+  errors: CheckpointValidationIssue[];
+};
+
+export class CheckpointValidationError extends Error {
+  constructor(readonly result: CheckpointValidationResult) {
+    super('Checkpoint validation failed: ' + JSON.stringify(result));
+    this.name = 'CheckpointValidationError';
+  }
+}
+
+const camelCase = /^[a-z][a-zA-Z0-9]*$/;
+const allowedAnswers = new Set(['text', 'markdown', 'code', 'image', 'video', 'audio', 'youtube', 'carousel', 'scene']);
+const isObject = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
+
+const validate = (config: ContentBlock_Checkpoint_Config): void => {
+  const subject = {
+    id: config?.id,
+    slug: config?.slug,
+    type: config?.type,
+  };
+  const result: CheckpointValidationResult = { success: true, subject, errors: [] };
+  const fail = (check: string, path: string, message: string) => {
+    result.errors.push({ check, path, message });
+  };
+
+  const metadata = checkpoint_Config_Schema.safeParse(config);
+  if (!metadata.success) {
+    for (const issue of metadata.error.issues) {
+      fail('metadata', issue.path.join('.'), issue.message);
+    }
+  }
+
+  const validateCollection = (value: unknown, path: string): Record<string, unknown> | undefined => {
+    if (!isObject(value) || !isObject(value.items) || !Array.isArray(value.order)) {
+      fail('collection', path, 'Expected an object with items and order');
+      return;
+    }
+
+    const keys = Object.keys(value.items);
+    if (!keys.length) fail('collection', path + '.items', 'At least one item is required');
+    for (const key of keys) {
+      if (!camelCase.test(key)) fail('slug', path + '.items.' + key, 'Item key must be camelCase');
+    }
+
+    const seen = new Set<string>();
+    for (const [index, slug] of value.order.entries()) {
+      if (typeof slug !== 'string' || !camelCase.test(slug)) {
+        fail('order', path + '.order[' + index + ']', 'Order entry must be a camelCase slug');
+        continue;
+      }
+      if (seen.has(slug)) fail('order', path + '.order[' + index + ']', 'Duplicate slug: ' + slug);
+      if (!Object.hasOwn(value.items, slug)) {
+        fail('order', path + '.order[' + index + ']', 'Unknown slug: ' + slug);
+      }
+      seen.add(slug);
+    }
+    for (const key of keys) {
+      if (!seen.has(key)) fail('order', path + '.order', 'Missing slug: ' + key);
+    }
+    return value.items;
+  };
+
+  const contentItems = validateCollection(config?.content, 'content');
+  if (contentItems) {
+    for (const [slug, item] of Object.entries(contentItems)) {
+      const path = 'content.items.' + slug;
+      if (!isObject(item)) {
+        fail('item', path, 'Expected a question and answer item');
+        continue;
+      }
+      if (item.check !== undefined && item.check !== true) {
+        fail('item', path + '.check', 'check must be true when provided');
+      }
+
+      if (!isObject(item.question) || item.question.type !== 'text') {
+        fail('question', path + '.question', 'Question must be a Text configurator');
+      }
+
+      const answers = validateCollection(item.answer, path + '.answer');
+      if (!answers) continue;
+      for (const [answerSlug, value] of Object.entries(answers)) {
+        const answerPath = path + '.answer.items.' + answerSlug;
+        if (!isObject(value)) {
+          fail('answer', answerPath, 'Expected an answer ContentBlock configurator');
+          continue;
+        }
+        if (typeof value.type !== 'string' || !allowedAnswers.has(value.type)) {
+          fail('answer', answerPath, 'Unsupported answer type: ' + String(value.type));
+        }
+        if (value.slug !== answerSlug) {
+          fail('slug', answerPath, 'Key ' + answerSlug + ' does not match configurator slug ' + String(value.slug));
+        }
+      }
+    }
+  }
+
+  result.success = result.errors.length === 0;
+  if (!result.success) throw new CheckpointValidationError(result);
+};
+
+export const defineCheckpoint = <const Slug extends string>(
+  config: Omit<ContentBlock_Checkpoint_Config, 'slug'> & { slug: Slug },
+) => {
+  validate(config);
+  const { id, type, slug, locale, params } = config;
+  // Expose mutable ordered content without adding a separate mutation API.
+  const content: CheckpointContent = {
+    items: { ...config.content.items },
+    order: [...config.content.order],
+  };
 
   const base = {
     id,
@@ -37,20 +141,22 @@ export const defineCheckpoint = <
   const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({
         locale: onlyLocales(locale),
       }),
       overrides,
+      validate,
     },
     override: {
       params: (newParams: DeepPartial<ContentBlock_Checkpoint_Config['params']>) => (overrides.params = newParams),
       locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => (overrides.locale = newLocale),
     },
     disable: () => (overrides.params = { disabled: true }),
-    // Child configurators stay in authored content. The publisher resolves them
-    // and projects localized item questions by slug, never by array index.
     content,
   } as const;
 };

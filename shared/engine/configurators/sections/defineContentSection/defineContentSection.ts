@@ -8,12 +8,17 @@ import {
   type Content_Section_Props,
 } from './defineContentSection.schemas';
 
+const validate = (config: Content_Section_Config) => {
+  const { content: _content, ...metadata } = config;
+  contentSection_Config_Schema.parse(metadata);
+};
+
 export function defineContentSection<
   const Slug extends string,
   const Content extends readonly ContentBlock_Configurator[],
 >(config: Omit<Content_Section_Config, 'slug' | 'content'> & { slug: Slug; content: Content }) {
   const { content, ...metadata } = config;
-  contentSection_Config_Schema.parse(metadata);
+  validate(config);
 
   const { id, type, slug, title, params } = metadata;
   const localeEntries = { title, params: { navigationLabel: params.navigationLabel } };
@@ -34,8 +39,12 @@ export function defineContentSection<
   } satisfies DeepPartial<Content_Section_Props>;
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
+      validate,
       getLocales: () => onlyLocales(localeEntries) satisfies DeepPartial<Content_Section_Config>,
       overrides,
     },

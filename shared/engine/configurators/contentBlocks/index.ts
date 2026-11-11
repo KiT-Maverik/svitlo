@@ -1,32 +1,22 @@
-export * from './defineText/defineText';
-export * from './defineText/defineText.schemas';
+export * from './defineText';
 
-export * from './defineMarkdown/defineMarkdown';
-export * from './defineMarkdown/defineMarkdown.schemas';
+export * from './defineMarkdown';
 
-export * from './defineCode/defineCode';
-export * from './defineCode/defineCode.schemas';
+export * from './defineCode';
 
-export * from './defineImage/defineImage';
-export * from './defineImage/defineImage.schemas';
+export * from './defineImage';
 
-export * from './defineVideo/defineVideo';
-export * from './defineVideo/defineVideo.schemas';
+export * from './defineVideo';
 
-export * from './defineAudio/defineAudio';
-export * from './defineAudio/defineAudio.schemas';
+export * from './defineAudio';
 
-export * from './defineYoutube/defineYoutube';
-export * from './defineYoutube/defineYoutube.schemas';
+export * from './defineYoutube';
 
-export * from './defineCarousel/defineCarousel';
-export * from './defineCarousel/defineCarousel.schemas';
+export * from './defineCarousel';
 
-export * from './defineCheckpoint/defineCheckpoint';
-export * from './defineCheckpoint/defineCheckpoint.schemas';
+export * from './defineCheckpoint';
 
-export * from './defineScene/defineScene';
-export * from './defineScene/defineScene.schemas';
+export * from './defineScene';
 
 export type { ContentBlock_Configurator, ContentBlock_Props } from './contentBlock.types';
 export {
