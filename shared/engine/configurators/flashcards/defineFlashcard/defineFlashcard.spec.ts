@@ -127,3 +127,33 @@ test('Flashcard rejects invalid child boundary, ordering, flags and relationship
     },
   }).success, false);
 });
+
+test('Flashcard permits an omitted hint and rejects duplicate semantic entries', () => {
+  const { hint: _hint, ...requiredContent } = source.content;
+  const card = defineFlashcard({ ...source, content: requiredContent });
+  assert.equal(card.content.hint, undefined);
+
+  assert.throws(() => defineFlashcard({
+    ...source,
+    parameters: {
+      ...source.parameters,
+      flags: {
+        items: { ...source.parameters.flags.items, secondList: { type: 'list', count: 3 } },
+        order: ['list', 'acronym', 'secondList'],
+      },
+    },
+  }));
+  assert.throws(() => defineFlashcard({
+    ...source,
+    parameters: {
+      ...source.parameters,
+      relationships: {
+        items: {
+          ...source.parameters.relationships.items,
+          otherLink: { ...source.parameters.relationships.items.reverseLink },
+        },
+        order: ['reverseLink', 'otherLink'],
+      },
+    },
+  }));
+});
