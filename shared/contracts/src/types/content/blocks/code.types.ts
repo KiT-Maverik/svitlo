@@ -9,7 +9,7 @@ type ContentBlock_Code_Data<SupportedLanguages extends Locale_Languages> = Conte
   codeAsText: string;
   language: string;
   title?: Locale_Options<SupportedLanguages>;
-  variables?: { id: string; value: Locale_Options<SupportedLanguages> }[];
+  variables?: Record<string, Locale_Options<SupportedLanguages>>;
 };
 
 export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & {
@@ -17,7 +17,7 @@ export type ContentBlock_Code_Response = ContentBlock_Response_Meta<'code'> & {
   codeAsText: string;
   language: string;
   title?: string;
-  variables?: { id: string; value: string }[];
+  variables?: Record<string, string>;
 };
 
 export type ContentBlock_Code<
