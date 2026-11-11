@@ -531,10 +531,11 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
     () => checkpoint.config.validate(config),
     error =>
       error instanceof CheckpointValidationError &&
-      error.result.errors.some(issue =>
-        issue.check === 'question' &&
-        issue.path === 'content.items.whatIsLight.question' &&
-        issue.message.includes('remain enabled'),
+      error.result.errors.some(
+        issue =>
+          issue.check === 'question' &&
+          issue.path === 'content.items.whatIsLight.question' &&
+          issue.message.includes('remain enabled'),
       ),
   );
 

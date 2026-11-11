@@ -6,9 +6,10 @@ export function validateMarkdownVariables(config: ContentBlock_Markdown_Config):
   const variables = config.locale.variables ?? {};
   const declared = new Set(Object.keys(variables));
   const value = config.locale.value;
-  const variants = typeof value === 'string'
-    ? [['locale.value', value] as const]
-    : Object.entries(value).map(([language, text]) => ['locale.value.' + language, text] as const);
+  const variants =
+    typeof value === 'string'
+      ? [['locale.value', value] as const]
+      : Object.entries(value).map(([language, text]) => ['locale.value.' + language, text] as const);
   const errors = variants.flatMap(([path, text]) => validateTemplateVariables(text, declared, path));
 
   if (typeof value !== 'string') {

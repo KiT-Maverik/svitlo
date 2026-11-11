@@ -31,8 +31,9 @@ function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Rec
 
   const directory = new URL('./locales/', moduleUrl);
   const expected = new Set(languages);
-  const unexpected = readdirSync(directory)
-    .filter(name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCodes));
+  const unexpected = readdirSync(directory).filter(
+    name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCodes),
+  );
   if (unexpected.length) throw new Error('Unexpected Markdown locale files: ' + unexpected.join(', '));
 
   const values: Partial<Record<LanguageCodes, string>> = {};
@@ -72,9 +73,10 @@ const validate = (config: ContentBlock_Markdown_Config) => {
 export const defineMarkdown = <const Slug extends string>(
   config: MarkdownInlineConfig<Slug> | MarkdownFileConfig<Slug>,
 ) => {
-  const locale = 'files' in config && config.files
-    ? { ...config.locale, value: readMarkdownFiles(config.files) }
-    : (config as MarkdownInlineConfig<Slug>).locale;
+  const locale =
+    'files' in config && config.files
+      ? { ...config.locale, value: readMarkdownFiles(config.files) }
+      : (config as MarkdownInlineConfig<Slug>).locale;
 
   const resolved: ContentBlock_Markdown_Config = {
     id: config.id,
