@@ -14,22 +14,22 @@ const validate = (config: ContentBlock_Code_Config) => {
  * Define a static Code block for displaying source text with syntax highlighting.
  *
  * @remarks
- * Pass the complete source string in \`params.codeAsText\`. Code blocks are
+ * Pass the complete source string in `params.codeAsText`. Code blocks are
  * display-only: no compilation or execution occurs. Indentation, whitespace
  * and line breaks are preserved.
  *
  * When the source lives in a file, place it beside the authoring definition
- * and read it as UTF-8 there, before calling \`defineCode\`. Resolve the path
- * relative to the current module using \`import.meta.url\`, not process.cwd().
- * Node's \`readFileSync\` throws if the file cannot be read; the configurator
+ * and read it as UTF-8 there, before calling `defineCode`. Resolve the path
+ * relative to the current module using `import.meta.url`, not process.cwd().
+ * Node's `readFileSync` throws if the file cannot be read; the configurator
  * itself requires no file path, loader or filesystem dependency.
  *
- * Use \`%_%VARIABLE_NAME%_%\` in the source, with matching UPPER_SNAKE_CASE
- * IDs in \`locale.variables\`. \`config.validate\` checks these references
- * directly against \`params.codeAsText\`.
+ * Use `%_%VARIABLE_NAME%_%` in the source, with matching UPPER_SNAKE_CASE
+ * IDs in `locale.variables`. `config.validate` checks these references
+ * directly against `params.codeAsText`.
  *
  * @example
- * \`\`\`ts
+ * ```ts
  * import { readFileSync } from 'node:fs';
  *
  * const codeAsText = readFileSync(new URL('./example.py', import.meta.url), 'utf8');
@@ -40,7 +40,7 @@ const validate = (config: ContentBlock_Code_Config) => {
  *   params: { language: 'python', codeAsText },
  *   locale: {},
  * });
- * \`\`\`
+ * ```
  */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },

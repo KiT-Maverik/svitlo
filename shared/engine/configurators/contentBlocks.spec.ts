@@ -72,7 +72,7 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
       id,
       slug: 'code',
       type: 'code',
-      params: { language: 'typescript', fileLocation: 'samples/demo.ts' },
+      params: { language: 'typescript', codeAsText: 'const greeting = "%_%GREETING%_%";' },
       locale: { variables: [{ id: 'GREETING', value }] },
     }),
     defineImage({
@@ -131,7 +131,7 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
   }
 });
 
-test('Code requires a template source, Image retains cross-field validation, and media labels are required', () => {
+test('Code requires nonempty static text, Image retains cross-field validation, and media labels are required', () => {
   const source = {
     id,
     slug: 'codeTemplate',
@@ -142,7 +142,7 @@ test('Code requires a template source, Image retains cross-field validation, and
   assert.equal(
     code_Config_Schema.safeParse({
       ...source,
-      params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+      params: { ...source.params, codeAsText: 'const greeting = "%_%GREETING%_%";' },
       locale: { variables: [{ id: 'lowerCase', value: 'Hello' }] },
     }).success,
     false,
@@ -152,21 +152,21 @@ test('Code requires a template source, Image retains cross-field validation, and
   assert.equal(
     code_Config_Schema.safeParse({
       ...source,
-      params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+      params: { ...source.params, codeAsText: 'const greeting = "%_%GREETING%_%";' },
     }).success,
     true,
   );
   assert.equal(
     code_Props_Schema.safeParse({
       ...source,
-      params: { ...source.params, fileLocation: 'templates/greeting.ts' },
+      params: { ...source.params, codeAsText: 'const greeting = "%_%GREETING%_%";' },
     }).success,
     true,
   );
   assert.equal(
     code_Config_Schema.safeParse({
       ...source,
-      params: { ...source.params, fileLocation: '' },
+      params: { ...source.params, codeAsText: '' },
     }).success,
     false,
   );
@@ -255,7 +255,7 @@ test('localized fallback and indexed media fields remain in locale projections',
     id,
     slug: 'example',
     type: 'code',
-    params: { language: 'typescript', fileLocation: 'templates/greeting.ts' },
+    params: { language: 'typescript', codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";' },
     locale: {
       variables: [
         { id: 'TRANSLATED', value: { uk: 'Локальна змінна' } },
@@ -263,7 +263,7 @@ test('localized fallback and indexed media fields remain in locale projections',
       ],
     },
   });
-  assert.deepEqual(code.config.base.params, { language: 'typescript', fileLocation: 'templates/greeting.ts' });
+  assert.deepEqual(code.config.base.params, { language: 'typescript', codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";' });
   assert.deepEqual(code.config.base.locale, {
     variables: [{ id: 'TRANSLATED' }, { id: 'FIXED', value: 'invariant' }],
   });

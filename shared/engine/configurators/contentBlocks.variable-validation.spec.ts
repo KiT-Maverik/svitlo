@@ -22,7 +22,7 @@ const codeConfig: ContentBlock_Code_Config = {
   id: '69d1e14d-4238-4d52-a99c-c19094903e40',
   type: 'code',
   slug: 'exampleCode',
-  params: { language: 'typescript', fileLocation: 'templates/example.ts' },
+  params: { language: 'typescript', codeAsText: 'const user = "%_%USER_NAME%_%";' },
   locale: { variables: [{ id: 'USER_NAME', value: { en: 'Maria' } }] },
 };
 
@@ -109,14 +109,14 @@ test('Code validates declared IDs and checks source when resolved text is provid
   const code = defineCode(codeConfig);
   assert.doesNotThrow(() => code.config.validate(codeConfig));
   assert.doesNotThrow(() =>
-    code.config.validate(codeConfig, 'const a = "%_%USER_NAME%_%"; const b = "%_%USER_NAME%_%";'),
+    code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'const a = "%_%USER_NAME%_%"; const b = "%_%USER_NAME%_%";' } }),
   );
   assert.throws(
-    () => code.config.validate(codeConfig, 'const a = "%_%EXTRA%_%";'),
+    () => code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'const a = "%_%EXTRA%_%";' } }),
     /variable "EXTRA" is not declared in locale\.variables/,
   );
   assert.throws(
-    () => code.config.validate(codeConfig, 'console.log("missing");'),
+    () => code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'console.log("missing");' } }),
     /missing configured variable "USER_NAME"/,
   );
 });
@@ -138,7 +138,7 @@ test('Code rejects duplicate declared IDs and malformed source markers', () => {
   );
   for (const source of ['%_%user_name%_%', '%_%USER_NAME', '%_%id: personName; value: Maria%_%']) {
     assert.throws(
-      () => code.config.validate(codeConfig, source),
+      () => code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: source } }),
       /Code variables validation failed/,
       source,
     );
@@ -151,5 +151,18 @@ test('Code skips placeholder integrity checks when no variables are configured',
     locale: {},
   };
   const code = defineCode(config);
-  assert.doesNotThrow(() => code.config.validate(config, '%_%BROKEN'));
+  assert.doesNotThrow(() => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%BROKEN' } }));
+});
+
+
+test('Code validates static source text during definition', () => {
+  assert.throws(
+    () => defineCode({ ...codeConfig, params: { ...codeConfig.params, codeAsText: '%_%UNDECLARED%_%' } }),
+    /variable "UNDECLARED" is not declared/,
+  );
+  assert.throws(
+    () => defineCode({ ...codeConfig, params: { ...codeConfig.params, codeAsText: '' } }),
+    /Too small|expected string|String must contain/i,
+  );
+  assert.doesNotThrow(() => defineCode(codeConfig));
 });
