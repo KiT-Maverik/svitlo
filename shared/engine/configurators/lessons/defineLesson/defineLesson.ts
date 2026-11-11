@@ -1,59 +1,105 @@
 import type { LanguageCodes } from '#schemas';
 import type { DeepPartial } from '#types';
-
-import { onlyLocales, onlyStrings } from '../../_utils';
-import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/defineFlashcard';
+import { onlyLocales, onlyStrings, createOrderedConfiguratorCollection } from '../../_shared';
 import type { Section_Configurator } from '../../sections/section.types';
-import { lesson_Config_Schema, type Lesson_Config } from './defineLesson.schemas';
+import { sectionTypes } from '../../sections/_shared';
+import { lesson_Config_Schema, lessonQuestionTypes, type Lesson_Config } from './defineLesson.schemas';
 
-const validate = (config: unknown) => {
-  lesson_Config_Schema.parse(config);
-};
-
+/**
+ * Define a reusable Lesson with slug-keyed Section configurators.
+ *
+ * @remarks
+ * The optional `programId` associates this Lesson with one specific program
+ * (Course). Set it only for course-owned narrative or other course-specific
+ * lessons which should not be treated as reusable universal content. Omit it
+ * for standalone Lessons that may be used by multiple courses. Episode is not
+ * needed to express this distinction; migrating Course/Episode consumers is a
+ * separate change.
+ *
+ * `section.items` must contain actual define* Section configurators and
+ * `section.order` must list their slugs exactly once. Override params/locale
+ * and use `override.section.add/disable/order` to change a course-specific
+ * composition without modifying the authored Lesson. Child Sections retain
+ * their own override API.
+ */
 export function defineLesson<
   const Slug extends string,
   const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],
-  const Sections extends readonly Section_Configurator[],
-  const Flashcards extends readonly Flashcard_Configurator[],
-  const Questions extends Lesson_Config['questions'] = Lesson_Config['questions'],
+  const Items extends Record<string, Section_Configurator>,
 >(
-  config: Omit<Lesson_Config, 'slug' | 'sections' | 'flashcards' | 'questions' | 'parameters'> & {
+  config: Omit<Lesson_Config, 'slug' | 'params' | 'section'> & {
     slug: Slug;
-    sections: Sections;
-    flashcards: Flashcards;
-    questions?: Questions;
-    parameters: Omit<Lesson_Config['parameters'], 'languages'> & { languages: Languages };
+    params: Omit<Lesson_Config['params'], 'languages'> & { languages: Languages };
+    section: { items: Items; order: string[] };
   },
 ) {
-  validate(config);
+  const validate = (candidate: Lesson_Config) => {
+    const { section, flashcards, questions, events, ...metadata } = candidate;
+    lesson_Config_Schema.parse(metadata);
+    createOrderedConfiguratorCollection(section, sectionTypes);
 
-  const { type, id, slug, title, flashcards, sections, skills, parameters, questions, events } = config;
-  const localeEntries = { title } as const;
-  const base = {
-    type,
-    id,
-    slug,
-    skills,
-    parameters,
-    ...onlyStrings(localeEntries),
-  } satisfies DeepPartial<Lesson_Config>;
+    // Validate Question bank keys and the nested configurator boundary only;
+    // every Question and Flashcard is responsible for its own validation.
+    for (const [type, entries] of Object.entries(questions ?? {})) {
+      if (!lessonQuestionTypes.includes(type as (typeof lessonQuestionTypes)[number])) {
+        throw new Error('Unknown Lesson question type: ' + type);
+      }
+      for (const [slug, question] of Object.entries(entries ?? {})) {
+        if (question.slug !== slug || question.type !== type || !question.config ||
+          typeof question.config.locales !== 'function') {
+          throw new Error('Invalid Lesson Question configurator: ' + type + '/' + slug);
+        }
+      }
+    }
+    for (const flashcard of flashcards) {
+      if (flashcard.type !== 'flashcard' || typeof flashcard.config.locales !== 'function') {
+        throw new Error('Invalid Lesson Flashcard configurator');
+      }
+    }
+    void events;
+  };
+  validate(config as unknown as Lesson_Config);
+
+  const { id, slug, type, programId, skills, params, locale, flashcards, questions, events } = config;
+  const sections = createOrderedConfiguratorCollection(config.section, sectionTypes);
+  const overrides: {
+    params?: DeepPartial<Lesson_Config['params']>;
+    locale?: DeepPartial<Lesson_Config['locale']>;
+    section?: typeof sections.overrides;
+  } = {};
 
   return {
-    id,
-    slug,
-    type,
+    id, slug, type,
     config: {
-      base,
+      base: { id, slug, type, programId, skills, params, locale: onlyStrings(locale) },
+      locales: () => ({ locale: onlyLocales(locale) }),
+      overrides,
       validate,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Lesson_Config>,
     },
-    sections,
+    section: sections.content,
     flashcards,
     questions,
-    // Events are authoring-time behavioral configuration; a publisher must
-    // explicitly project serializable values, rather than serializing callbacks.
     events,
-  };
+    override: {
+      params: (value: DeepPartial<Lesson_Config['params']>) => { overrides.params = value; },
+      locale: (value: DeepPartial<Lesson_Config['locale']>) => { overrides.locale = value; },
+      section: {
+        add: (sectionSlug: string, section: Section_Configurator) => {
+          sections.override.add(sectionSlug, section);
+          overrides.section = sections.overrides;
+        },
+        disable: (slugs: (keyof Items & string)[]) => {
+          sections.override.disable(slugs);
+          overrides.section = sections.overrides;
+        },
+        order: (slugs: string[]) => {
+          sections.override.order(slugs);
+          overrides.section = sections.overrides;
+        },
+      },
+    },
+    disable: () => { overrides.params = { disabled: true }; },
+  } as const;
 }
 
 export type Lesson_Configurator = ReturnType<typeof defineLesson>;
