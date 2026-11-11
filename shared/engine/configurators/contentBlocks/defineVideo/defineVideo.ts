@@ -1,4 +1,5 @@
 import type { DeepPartial } from '#types';
+import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
@@ -10,6 +11,8 @@ import {
 
 const validate = (config: ContentBlock_Video_Config) => {
   video_Config_Schema.parse(config);
+  validateLocalAssetPaths(config.locale.fileLocation, 'locale.fileLocation');
+  validateLocalAssetPaths(config.locale.poster, 'locale.poster');
 };
 
 export const defineVideo = <const Slug extends string>(

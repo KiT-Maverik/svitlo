@@ -1,4 +1,5 @@
 import type { DeepPartial } from '#types';
+import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
@@ -10,6 +11,7 @@ import {
 
 const validate = (config: ContentBlock_Audio_Config) => {
   audio_Config_Schema.parse(config);
+  validateLocalAssetPaths(config.locale.fileLocation, 'locale.fileLocation');
 };
 
 export const defineAudio = <const Slug extends string>(
