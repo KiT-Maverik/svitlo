@@ -3,7 +3,7 @@ import {
   contentBlockConfigurator_Schema,
   localizationSwitch,
   contentBlockResolved_Schema,
-} from '../../contentBlocks/_shared';
+} from '../../contentBlocks';
 import { createSectionMetaSchema } from '../section.schemas';
 
 function createQuizSectionSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
