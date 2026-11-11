@@ -1,6 +1,6 @@
 import { defineText } from './contentBlocks/defineText';
 import { defineCheckpoint } from './contentBlocks/defineCheckpoint';
-import { configuratorArrayToSlugMap } from './_shared';
+import { configuratorArrayToSlugMap } from './_shared__configurators';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;

@@ -26,7 +26,7 @@ import {
   video_Config_Schema,
   video_Props_Schema,
 } from './contentBlocks';
-import { configuratorArrayToSlugMap } from './_shared';
+import { configuratorArrayToSlugMap } from './_shared__configurators';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
 const otherId = 'b775647f-203d-481a-a1c7-4d331c779d6b';
