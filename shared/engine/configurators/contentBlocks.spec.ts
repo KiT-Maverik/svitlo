@@ -49,14 +49,22 @@ test('Text validates metadata, nested params and nested locale independently', (
   assert.equal(
     text_Config_Schema.safeParse({
       ...config,
-      params: { styling: [{ id: 'personName', applyStyle: ['variable'] }] },
+      params: { variables: { personName: { applyStyle: ['variable'] } } },
     }).success,
     true,
   );
   assert.equal(
     text_Config_Schema.safeParse({
       ...config,
-      params: { styling: [{ id: 'PERSON_NAME', applyStyle: ['variable'] }] },
+      params: { variables: { PERSON_NAME: { applyStyle: ['variable'] } } },
+    }).success,
+    false,
+  );
+
+  assert.equal(
+    text_Config_Schema.safeParse({
+      ...config,
+      params: { variables: { personName: { applyStyle: ['bold'], id: 'personName' } } },
     }).success,
     false,
   );
