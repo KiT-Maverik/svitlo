@@ -75,7 +75,7 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
       slug: 'code',
       type: 'code',
       params: { language: 'typescript', codeAsText: 'const greeting = "%_%GREETING%_%";' },
-      locale: { variables: [{ id: 'GREETING', value }] },
+      locale: { variables: { GREETING: value } },
     }),
     defineImage({
       id,
@@ -139,13 +139,13 @@ test('Code requires nonempty static text, Image retains cross-field validation, 
     slug: 'codeTemplate',
     type: 'code' as const,
     params: { language: 'typescript' },
-    locale: { variables: [{ id: 'GREETING', value: 'Hello' }] },
+    locale: { variables: { GREETING: 'Hello' } },
   };
   assert.equal(
     code_Config_Schema.safeParse({
       ...source,
       params: { ...source.params, codeAsText: 'const greeting = "%_%GREETING%_%";' },
-      locale: { variables: [{ id: 'lowerCase', value: 'Hello' }] },
+      locale: { variables: { lowerCase: 'Hello' } },
     }).success,
     false,
   );
@@ -259,18 +259,18 @@ test('localized fallback and indexed media fields remain in locale projections',
     type: 'code',
     params: { language: 'typescript', codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";' },
     locale: {
-      variables: [
-        { id: 'TRANSLATED', value: { uk: 'Локальна змінна' } },
-        { id: 'FIXED', value: 'invariant' },
-      ],
+      variables: {
+        TRANSLATED: { uk: 'Локальна змінна' },
+        FIXED: 'invariant',
+      },
     },
   });
   assert.deepEqual(code.config.base.params, { language: 'typescript', codeAsText: 'const first = "%_%TRANSLATED%_%"; const second = "%_%FIXED%_%";' });
   assert.deepEqual(code.config.base.locale, {
-    variables: [{ id: 'TRANSLATED' }, { id: 'FIXED', value: 'invariant' }],
+    variables: { FIXED: 'invariant' },
   });
   assert.deepEqual(code.config.locales(), {
-    locale: { variables: [{ value: { uk: 'Локальна змінна' } }, {}] },
+    locale: { variables: { TRANSLATED: { uk: 'Локальна змінна' } } },
   });
 
   const carousel = defineCarousel({
