@@ -1,13 +1,13 @@
 import { z } from 'zod';
 
-import { createContentBlockBaseSchema, localizationSwitch, textStylingRules_Schema } from '../_shared';
+import { createContentBlockBaseSchema, localizationSwitch, textVariables_Schema } from '../_shared';
 import { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
 
 const contentBlockBase = createContentBlockBaseSchema('text');
 
 const params = contentBlockBase.shape.params.extend({
-  ...textStylingRules_Schema.shape,
+  ...textVariables_Schema.shape,
   wrap: z
     .object({
       enabled: z.literal(true),
