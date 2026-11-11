@@ -17,7 +17,7 @@ type Expect<T extends true> = T;
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
 const block = defineText({ id, type: 'text', slug: 'answerBlock', params: {}, locale: { value: 'OK' } });
 const params = { assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const] };
-const common = { id, slug: 'questionOne', params, locale: {}, content: { question: [block] as [typeof block] } };
+const common = { id, slug: 'questionOne' as const, params, locale: {}, content: { question: [block] as [typeof block] } };
 const answers = { correct: { yes: block }, incorrect: { no: block }, distractors: { maybe: block } };
 
 const one = defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', content: { ...common.content, answers } });
