@@ -1,11 +1,6 @@
 export type { Section_Configurator } from './section.types';
-export * from './definePracticeSection/definePracticeSection';
-export * from './definePracticeSection/definePracticeSection.schemas';
-export * from './defineCodingTaskSection/defineCodingTaskSection';
-export * from './defineCodingTaskSection/defineCodingTaskSection.schemas';
-export * from './defineLearningFlowSection/defineLearningFlowSection';
-export * from './defineLearningFlowSection/defineLearningFlowSection.schemas';
-export * from './defineFlashcardsSection/defineFlashcardsSection';
-export * from './defineFlashcardsSection/defineFlashcardsSection.schemas';
-export * from './defineQuizSection/defineQuizSection';
-export * from './defineQuizSection/defineQuizSection.schemas';
+export * from './definePracticeSection';
+export * from './defineCodingTaskSection';
+export * from './defineLearningFlowSection';
+export * from './defineFlashcardsSection';
+export * from './defineQuizSection';
