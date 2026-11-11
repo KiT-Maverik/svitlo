@@ -1,11 +1,8 @@
 import { z } from 'zod';
 
-import { localizationSwitch } from '../../contentBlocks/_shared';
+import { localizationSwitch } from '../../contentBlocks';
+import { type Section_Type } from '../section.constants';
 import { Configurator_Mode } from '../../configurator.schemas';
-
-export const sectionTypes = ['practice', 'codingTask', 'flow', 'flashcards', 'quiz', 'content'] as const;
-
-export type Section_Type = (typeof sectionTypes)[number];
 
 export const createSectionMetaSchema = (type: Section_Type) => {
   const meta = (mode: Configurator_Mode) => ({
