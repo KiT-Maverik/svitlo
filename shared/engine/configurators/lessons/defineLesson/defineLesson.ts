@@ -67,7 +67,7 @@ export function defineLesson<
   };
   validate(config as unknown as Lesson_Config);
 
-  const { id, slug, type, programId, skills, params, locale, flashcards, questions, events } = config;
+  const { id, slug, type, skills, params, locale, flashcards, questions, events } = config;
   const sections = createOrderedConfiguratorCollection(config.section, sectionTypes);
   const overrides: {
     params?: DeepPartial<Lesson_Config['params']>;
@@ -80,7 +80,7 @@ export function defineLesson<
     slug,
     type,
     config: {
-      base: { id, slug, type, programId, skills, params, locale: onlyStrings(locale) },
+      base: { id, slug, type, skills, params, locale: onlyStrings(locale) },
       locales: () => ({ locale: onlyLocales(locale) }),
       overrides,
       validate,

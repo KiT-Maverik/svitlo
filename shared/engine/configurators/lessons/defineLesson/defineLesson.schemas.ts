@@ -30,11 +30,6 @@ const params = paramsBase_Schema.shape.params.extend({
 
 const identity = identityBase_Schema.extend({
   type: z.literal('lesson'),
-  /**
-   * Course/program-owned Lesson marker. When omitted, the Lesson is reusable
-   * across courses; when present, its content belongs to this specific Course.
-   */
-  programId: z.uuid().optional(),
   skills: z.array(z.uuid()),
   params,
 });
@@ -58,33 +53,3 @@ export type Lesson_Props = z.infer<typeof lesson_Props_Schema> & {
   flashcards: readonly Flashcard_Props[];
   questions?: Record<string, unknown>;
 };
-
-/** Nest a Lesson configurator, never its authored config. */
-export const lessonConfigurator_Schema = z.custom<{
-  readonly id: string;
-  readonly slug: string;
-  readonly type: 'lesson';
-  readonly config: {
-    readonly base: { readonly type: 'lesson'; readonly id: string; readonly slug: string };
-    readonly locales: () => unknown;
-  };
-}>(
-  value => {
-    if (value === null || typeof value !== 'object' || !('config' in value)) return false;
-    const config = value.config;
-    if (config === null || typeof config !== 'object' || !('base' in config) || !('locales' in config)) return false;
-    const base = config.base;
-    return (
-      typeof config.locales === 'function' &&
-      base !== null &&
-      typeof base === 'object' &&
-      'type' in base &&
-      base.type === 'lesson' &&
-      'id' in base &&
-      typeof base.id === 'string' &&
-      'slug' in base &&
-      typeof base.slug === 'string'
-    );
-  },
-  { message: 'Expected defineLesson configurator, not authored Lesson data' },
-);
