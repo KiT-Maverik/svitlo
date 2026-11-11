@@ -1,5 +1,5 @@
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
-import { createRegularSection } from '../_shared/createRegularSection';
+import { createRegularSection } from '../_shared__sections/createRegularSection';
 import { flashcardsSection_Config_Schema, type FlashcardsSection_Config } from './defineFlashcardsSection.schemas';
 
 const validate = (config: FlashcardsSection_Config) => {

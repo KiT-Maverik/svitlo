@@ -1,5 +1,5 @@
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
-import { createRegularSection } from '../_shared/createRegularSection';
+import { createRegularSection } from '../_shared__sections/createRegularSection';
 import {
   learningFlowSection_Config_Schema,
   type LearningFlowSection_Config,

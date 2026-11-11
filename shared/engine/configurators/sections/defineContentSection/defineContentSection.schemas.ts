@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-import { createSectionMetaSchema } from '../_shared';
-import type { Section_Config_Content, Section_Props_Content } from '../_shared/section.types';
+import { createSectionMetaSchema } from '../_shared__sections';
+import type { Section_Config_Content, Section_Props_Content } from '../_shared__sections/section.types';
 
 const contentSectionSchemas = createSectionMetaSchema('content');
 

@@ -1,5 +1,5 @@
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
-import { createRegularSection } from '../_shared/createRegularSection';
+import { createRegularSection } from '../_shared__sections/createRegularSection';
 import { codingTaskSection_Config_Schema, type CodingTaskSection_Config } from './defineCodingTaskSection.schemas';
 
 const validate = (config: CodingTaskSection_Config) => {
