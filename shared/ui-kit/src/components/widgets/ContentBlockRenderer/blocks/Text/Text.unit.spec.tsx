@@ -7,9 +7,9 @@ import styles from '#utils/styledText/StyledText.module.css';
 
 const textResponse = (
   value: string,
-  styling?: ContentBlock_Text_Response['styling'],
+  variables?: ContentBlock_Text_Response['variables'],
   wrap?: ContentBlock_Text_Response['wrap'],
-): ContentBlock_Text_Response => ({ id: 'text-id', type: 'text', value, styling, wrap });
+): ContentBlock_Text_Response => ({ id: 'text-id', type: 'text', value, variables, wrap });
 
 describe('Text', () => {
   it('renders marker values without service syntax when no styling is supplied', () => {
@@ -22,9 +22,9 @@ describe('Text', () => {
   it('applies configured styles to matching fragments in one span', () => {
     render(
       <Text
-        {...textResponse('%_%id: name; value: John%_% and %_%id: name; value: Jane%_%', [
-          { id: 'name', applyStyle: ['variable', 'bold', 'underscore'], applyColor: 'red' },
-        ])}
+        {...textResponse('%_%id: name; value: John%_% and %_%id: name; value: Jane%_%', {
+          name: { applyStyle: ['variable', 'bold', 'underscore'], applyColor: 'red' },
+        })}
       />,
     );
     for (const value of ['John', 'Jane']) {
@@ -39,13 +39,13 @@ describe('Text', () => {
   it('selects a MUI palette token for each highlight tone without inline colors', () => {
     const text =
       '%_%id: default; value: Default%_% %_%id: info; value: Info%_% %_%id: neutral; value: Neutral%_% %_%id: success; value: Success%_%';
-    const styling = [
-      { id: 'default', applyStyle: ['highlight'] },
-      { id: 'info', applyStyle: ['highlight'], tone: 'info' },
-      { id: 'neutral', applyStyle: ['highlight'], tone: 'neutral' },
-      { id: 'success', applyStyle: ['highlight'], tone: 'success' },
-    ] satisfies NonNullable<ContentBlock_Text_Response['styling']>;
-    render(<Text {...textResponse(text, styling)} />);
+    const variables = {
+      default: { applyStyle: ['highlight'] },
+      info: { applyStyle: ['highlight'], tone: 'info' },
+      neutral: { applyStyle: ['highlight'], tone: 'neutral' },
+      success: { applyStyle: ['highlight'], tone: 'success' },
+    } satisfies NonNullable<ContentBlock_Text_Response['variables']>;
+    render(<Text {...textResponse(text, variables)} />);
 
     expect(screen.getByText('Default')).toHaveClass(styles.highlight);
     expect(screen.getByText('Info')).toHaveClass(styles.highlight, styles.highlightInfo);
@@ -59,7 +59,7 @@ describe('Text', () => {
   it('renders marked text on the server', () => {
     const html = renderToStaticMarkup(
       <Text
-        {...textResponse('Hello %_%id: name; value: John%_%', [{ id: 'name', applyStyle: ['highlight'], tone: 'info' }])}
+        {...textResponse('Hello %_%id: name; value: John%_%', { name: { applyStyle: ['highlight'], tone: 'info' } })}
       />,
     );
     expect(html).toContain('Hello ');
@@ -70,10 +70,10 @@ describe('Text', () => {
 
   it('ignores styling for absent or unmatched ids and keeps the value visible', () => {
     const { rerender, container } = render(
-      <Text {...textResponse('Plain text', [{ id: 'missing', applyStyle: ['highlight'] }])} />,
+      <Text {...textResponse('Plain text', { missing: { applyStyle: ['highlight'] } })} />,
     );
     expect(container.querySelector('span')).toBeNull();
-    rerender(<Text {...textResponse('Hi %_%id: name; value: John%_%', [{ id: 'other', applyStyle: ['bold'] }])} />);
+    rerender(<Text {...textResponse('Hi %_%id: name; value: John%_%', { other: { applyStyle: ['bold'] } })} />);
     expect(screen.getByText('Hi John')).toBeVisible();
     expect(container.querySelector('span')).toBeNull();
   });
@@ -108,9 +108,9 @@ describe('Text additional inline styling', () => {
   it('combines cursive and crossed-out styles on a single fragment', () => {
     render(
       <Text
-        {...textResponse('The %_%id: old; value: outdated%_% wording is replaced.', [
-          { id: 'old', applyStyle: ['cursive', 'crossed'] },
-        ])}
+        {...textResponse('The %_%id: old; value: outdated%_% wording is replaced.', {
+          old: { applyStyle: ['cursive', 'crossed'] },
+        })}
       />,
     );
     const fragment = screen.getByText('outdated');
