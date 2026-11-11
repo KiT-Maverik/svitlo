@@ -1,16 +1,13 @@
-import { createLesson } from '@svitlo/engine';
-import { howLightMoves_languages, type HowLightMoves_Languages } from './constants';
-import { howLightMoves_Flashcards } from './flashcards';
-import { howLightMoves_Questions } from './questions';
+import { defineLesson } from '@svitlo/engine';
+import { howLightMoves_languages } from './constants';
+import { howLightMovesFlashcards } from './flashcards';
+import { howLightMovesQuestions } from './questions';
 import { testExplainLightTravel_Skill_Data } from '../../../skills/testLight/testLightPropagation/skills';
-import { practice_Section_Configurator } from './sections/practice';
-import { quiz_Section_Configurator } from './sections/quiz';
-import { theory_Section_Configurator } from './sections/theory/theory';
+import { contentSection } from './sections/content';
+import { practiceSection } from './sections/practice';
+import { quizSection } from './sections/quiz';
 
-export const howLightMoves_Lesson_Configurator = createLesson<HowLightMoves_Languages>()({
-  id: 'd3048d21-8690-5255-b62c-984c69ac272c',
-  slug: 'howLightMoves',
-  title: {
+export const howLightMovesTitle = {
     en: 'How Light Travels',
     qm: 'Yarıq nasıl yayıla?',
     lt: 'Kaip sklinda šviesa',
@@ -40,10 +37,14 @@ export const howLightMoves_Lesson_Configurator = createLesson<HowLightMoves_Lang
     he: 'כיצד האור מתקדם',
     pl: 'Jak rozchodzi się światło',
     uk: 'Як рухається світло',
-  },
-  flashcards: howLightMoves_Flashcards,
-  skills: [testExplainLightTravel_Skill_Data.config.base.id],
-  parameters: {
+  };
+
+export const howLightMoves = defineLesson({
+  id: 'd3048d21-8690-5255-b62c-984c69ac272c',
+  slug: 'howLightMoves',
+  type: 'lesson',
+  skills: [testExplainLightTravel_Skill_Data.id],
+  params: {
     requireQuiz: true,
     languages: howLightMoves_languages,
     sections: {
@@ -52,8 +53,11 @@ export const howLightMoves_Lesson_Configurator = createLesson<HowLightMoves_Lang
       showIndexes: true,
     },
   },
-  questions: howLightMoves_Questions,
-  sections: [theory_Section_Configurator, practice_Section_Configurator, quiz_Section_Configurator],
+  locale: { title: howLightMovesTitle },
+  flashcards: howLightMovesFlashcards,
+  questions: howLightMovesQuestions,
+  section: {
+    items: { content: contentSection, practice: practiceSection, quiz: quizSection },
+    order: ['content', 'practice', 'quiz'],
+  },
 });
-
-export const howLightMoves_Data = howLightMoves_Lesson_Configurator.getData();
