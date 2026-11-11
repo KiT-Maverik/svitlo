@@ -12,16 +12,7 @@ import {
  * and editors can autocomplete checkpoint.content.items.<slug>.
  * Zod additionally requires that order lists every item exactly once.
  */
-export const defineCheckpoint = <
-  const Slug extends string,
-  const Items extends ContentBlock_Checkpoint_Config['content']['items'],
-  const Order extends readonly (keyof Items & string)[],
->(
-  config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
-    slug: Slug;
-    content: { items: Items; order: Order };
-  },
-) => {
+export const defineCheckpoint = (config: ContentBlock_Checkpoint_Config) => {
   checkpoint_Config_Schema.parse(config);
 
   const { id, type, slug, locale, params, content } = config;
@@ -49,8 +40,6 @@ export const defineCheckpoint = <
       locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => (overrides.locale = newLocale),
     },
     disable: () => (overrides.params = { disabled: true }),
-    // Child configurators stay in authored content. The publisher resolves them
-    // and projects localized item questions by slug, never by array index.
     content,
   } as const;
 };

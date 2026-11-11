@@ -1,14 +1,15 @@
 import { z } from 'zod';
 
-import { camelCase_Schema } from '#schemas';
 import {
   createContentBlockBaseSchema,
   localizationSwitch,
-  contentBlockConfigurator_Schema,
-  contentBlockResolved_Schema,
 } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared';
+import type {ContentBlock_Audio_Props, ContentBlock_Audio_Configurator} from "../defineAudio";
+import type { ContentBlock_Carousel_Configurator, ContentBlock_Carousel_Props} from "../defineCarousel";
+import type {ContentBlock_Code_Configurator, ContentBlock_Code_Props} from "../defineCode";
+import type {ContentBlock_Image_Configurator, ContentBlock_Image_Props} from "../defineImage";
 
 const contentBlockBase = createContentBlockBaseSchema('checkpoint');
 
@@ -34,69 +35,34 @@ export type ContentBlock_Checkpoint_Locale<Mode extends Configurator_Mode> = z.i
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;
 
-// Keyed items preserve stable identities across localization and reordering.
-// The order is explicit; never infer display order from JavaScript object keys.
-const content = <Mode extends Configurator_Mode>(mode: Mode) => {
-  const child = {
-    config: contentBlockConfigurator_Schema,
-    props: contentBlockResolved_Schema,
-  }[mode];
+type Config_Content_Items =
+  Record<
+    string,
+    ContentBlock_Audio_Configurator |
+    ContentBlock_Image_Configurator |
+    ContentBlock_Carousel_Configurator |
+    ContentBlock_Code_Configurator
+  >
 
-  return z
-    .object({
-      items: z.record(
-        camelCase_Schema,
-        z.object({
-          question: localizationSwitch[mode],
-          answer: z.tuple([child], child),
-          check: z.literal(true).optional(),
-        }),
-      ),
-      order: z.array(camelCase_Schema),
-    })
-    .superRefine(({ items, order }, context) => {
-      const itemSlugs = Object.keys(items);
-      const known = new Set(itemSlugs);
-      const ordered = new Set<string>();
+type Props_Content_Items =
+  Array<
+    ContentBlock_Audio_Props |
+    ContentBlock_Image_Props |
+    ContentBlock_Carousel_Props |
+    ContentBlock_Code_Props
+  >;
 
-      for (const [index, slug] of order.entries()) {
-        if (ordered.has(slug)) {
-          context.addIssue({
-            code: 'custom',
-            path: ['order', index],
-            message: `Duplicate Checkpoint item slug in order: ${slug}`,
-          });
-        }
-        if (!known.has(slug)) {
-          context.addIssue({
-            code: 'custom',
-            path: ['order', index],
-            message: `Unknown Checkpoint item slug in order: ${slug}`,
-          });
-        }
-        ordered.add(slug);
-      }
-
-      for (const slug of itemSlugs) {
-        if (!ordered.has(slug)) {
-          context.addIssue({
-            code: 'custom',
-            path: ['order'],
-            message: `Checkpoint item missing from order: ${slug}`,
-          });
-        }
-      }
-    });
-};
+type Content<Items extends Props_Content_Items | Config_Content_Items> = {
+  items: Items;
+  order: string[];
+}
 
 export const checkpoint_Config_Schema = checkpointBase.extend({
   ...addUnifiedLocale(locale('config')),
-  content: content('config'),
 });
-export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema>;
+export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema> & Content<Config_Content_Items>;
 
 export const checkpoint_Props_Schema = checkpointBase.extend({
   ...addUnifiedLocale(locale('props')),
-  content: content('props'),
 });
-export type ContentBlock_Checkpoint_Props = z.infer<typeof checkpoint_Props_Schema>;
+export type ContentBlock_Checkpoint_Props = z.infer<typeof checkpoint_Props_Schema> & Content<Props_Content_Items>;
