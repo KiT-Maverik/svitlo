@@ -98,16 +98,16 @@ const authoredCode: ContentBlock_Code<'data', TestLanguages> = {
   id: 'code-id',
   slug: 'greeting',
   type: 'code',
-  fileLocation: '/examples/greeting.ts',
+  codeAsText: 'console.log("%_%GREETING%_%");',
   language: 'typescript',
-  variables: [{ id: 'greeting', value: 'Hello' }],
+  variables: [{ id: 'GREETING', value: 'Hello' }],
 };
 const runtimeCode: ContentBlock_Code<'response', TestLanguages> = {
   id: 'code-id',
   type: 'code',
-  code: 'console.log("{{greeting}}");',
+  codeAsText: 'console.log("%_%GREETING%_%");',
   language: 'typescript',
-  variables: [{ id: 'greeting', value: 'Hello' }],
+  variables: [{ id: 'GREETING', value: 'Hello' }],
 };
 const authoredFillImage: ContentBlock_Image<'data', TestLanguages> = {
   id: 'image-fill-id',
