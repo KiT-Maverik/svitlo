@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import {textStylePresets, textTonePresets} from "../contentBlock.constants";
+import { textStylePresets, textTonePresets } from '../contentBlock.constants';
 
 const textStyle_Schema = z.enum(textStylePresets);
 
