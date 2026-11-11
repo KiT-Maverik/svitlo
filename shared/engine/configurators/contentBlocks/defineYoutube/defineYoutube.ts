@@ -12,7 +12,9 @@ const validate = (config: ContentBlock_Youtube_Config) => {
   youtube_Config_Schema.parse(config);
 };
 
-export const defineYoutube = <const Slug extends string>(config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug }) => {
+export const defineYoutube = <const Slug extends string>(
+  config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

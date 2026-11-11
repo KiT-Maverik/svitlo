@@ -12,7 +12,9 @@ const validate = (config: ContentBlock_Audio_Config) => {
   audio_Config_Schema.parse(config);
 };
 
-export const defineAudio = <const Slug extends string>(config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug }) => {
+export const defineAudio = <const Slug extends string>(
+  config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

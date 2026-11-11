@@ -8,7 +8,9 @@ const validate = (config: ContentBlock_Text_Config) => {
   text_Config_Schema.parse(config);
 };
 
-export const defineText = <const Slug extends string>(config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug }) => {
+export const defineText = <const Slug extends string>(
+  config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

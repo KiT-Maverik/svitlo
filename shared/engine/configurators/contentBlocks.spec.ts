@@ -272,17 +272,32 @@ test('localized fallback and indexed media fields remain in locale projections',
 
 test('Checkpoint keeps questions and keyed answers without nesting content in the metadata schema', () => {
   const question = defineText({
-    id, slug: 'question', type: 'text', params: {}, locale: { value },
+    id,
+    slug: 'question',
+    type: 'text',
+    params: {},
+    locale: { value },
   });
   const answer = defineText({
-    id: otherId, slug: 'answer', type: 'text', params: {}, locale: { value: 'A simple explanation' },
+    id: otherId,
+    slug: 'answer',
+    type: 'text',
+    params: {},
+    locale: { value: 'A simple explanation' },
   });
   const illustration = defineMarkdown({
-    id, slug: 'illustration', type: 'markdown', params: {}, locale: { value: 'An example' },
+    id,
+    slug: 'illustration',
+    type: 'markdown',
+    params: {},
+    locale: { value: 'An example' },
   });
   const config = {
-    id: otherId, slug: 'review', type: 'checkpoint' as const,
-    params: { enableChecks: true }, locale: { title: value },
+    id: otherId,
+    slug: 'review',
+    type: 'checkpoint' as const,
+    params: { enableChecks: true },
+    locale: { title: value },
     content: {
       items: {
         whatIsLight: {
@@ -309,9 +324,16 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
   assert.deepEqual(checkpoint.config.base.params, { enableChecks: true });
   assert.deepEqual(checkpoint.config.locales(), { locale: { title: value } });
   assert.equal(checkpoint_Config_Schema.safeParse({ ...config, content: null }).success, true);
-  assert.equal(checkpoint_Props_Schema.safeParse({
-    id: otherId, slug: 'review', type: 'checkpoint', params: {}, locale: { title: 'Review' },
-  }).success, true);
+  assert.equal(
+    checkpoint_Props_Schema.safeParse({
+      id: otherId,
+      slug: 'review',
+      type: 'checkpoint',
+      params: {},
+      locale: { title: 'Review' },
+    }).success,
+    true,
+  );
   assert.doesNotThrow(() => checkpoint.config.validate(config));
 
   const malformed = {
@@ -341,7 +363,8 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
 
   assert.throws(
     () => checkpoint.config.validate({ ...malformed, id: 'not-a-uuid' } as unknown as typeof config),
-    error => error instanceof CheckpointValidationError &&
+    error =>
+      error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.check === 'metadata') &&
       error.result.errors.some(issue => issue.check === 'order'),
   );
@@ -360,7 +383,8 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
   };
   assert.throws(
     () => checkpoint.config.validate(invalidAnswer as unknown as typeof config),
-    error => error instanceof CheckpointValidationError &&
+    error =>
+      error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.check === 'identity') &&
       error.result.errors.some(issue => issue.check === 'configurator'),
   );
@@ -378,33 +402,39 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
     },
   };
   assert.throws(
-    () => checkpoint.config.validate({
-      ...config,
-      content: {
-        ...config.content,
-        items: {
-          whatIsLight: {
-            ...config.content.items.whatIsLight,
-            answer: { items: { answer: fakeAnswer }, order: ['answer'] },
+    () =>
+      checkpoint.config.validate({
+        ...config,
+        content: {
+          ...config.content,
+          items: {
+            whatIsLight: {
+              ...config.content.items.whatIsLight,
+              answer: { items: { answer: fakeAnswer }, order: ['answer'] },
+            },
           },
         },
-      },
-    } as unknown as typeof config),
-    error => error instanceof CheckpointValidationError &&
-      error.result.errors.some(issue => issue.check === 'configurator'),
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointValidationError && error.result.errors.some(issue => issue.check === 'configurator'),
   );
 
   const nested = {
     ...config,
-    content: { ...config.content, items: {
-      whatIsLight: { ...config.content.items.whatIsLight,
-        answer: { items: { review: checkpoint }, order: ['review'] },
+    content: {
+      ...config.content,
+      items: {
+        whatIsLight: {
+          ...config.content.items.whatIsLight,
+          answer: { items: { review: checkpoint }, order: ['review'] },
+        },
       },
-    } },
+    },
   };
   assert.throws(
     () => checkpoint.config.validate(nested as unknown as typeof config),
-    error => error instanceof CheckpointValidationError &&
+    error =>
+      error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.message.includes('Unsupported answer type: checkpoint')),
   );
 

@@ -12,7 +12,9 @@ const validate = (config: ContentBlock_Carousel_Config) => {
   carousel_Config_Schema.parse(config);
 };
 
-export const defineCarousel = <const Slug extends string>(config: Omit<ContentBlock_Carousel_Config, 'slug'> & { slug: Slug }) => {
+export const defineCarousel = <const Slug extends string>(
+  config: Omit<ContentBlock_Carousel_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

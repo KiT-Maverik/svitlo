@@ -12,7 +12,9 @@ const validate = (config: ContentBlock_Scene_Config) => {
   scene_Config_Schema.parse(config);
 };
 
-export const defineScene = <const Slug extends string>(config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug }) => {
+export const defineScene = <const Slug extends string>(
+  config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

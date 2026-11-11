@@ -7,11 +7,17 @@ type Expect<T extends true> = T;
 
 const question = defineText({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6a',
-  type: 'text', slug: 'question', params: {}, locale: { value: 'What is light?' },
+  type: 'text',
+  slug: 'question',
+  params: {},
+  locale: { value: 'What is light?' },
 });
 const answer = defineText({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
-  type: 'text', slug: 'answer', params: {}, locale: { value: 'Electromagnetic radiation' },
+  type: 'text',
+  slug: 'answer',
+  params: {},
+  locale: { value: 'Electromagnetic radiation' },
 });
 
 const answers = configuratorArrayToSlugMap([answer]);
@@ -22,11 +28,15 @@ void answers.unknown;
 
 const checkpoint = defineCheckpoint({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6c',
-  type: 'checkpoint', slug: 'review', params: {}, locale: { title: 'Review' },
+  type: 'checkpoint',
+  slug: 'review',
+  params: {},
+  locale: { title: 'Review' },
   content: {
     items: {
       whatIsLight: {
-        question, answer: { items: answers, order: ['answer'] },
+        question,
+        answer: { items: answers, order: ['answer'] },
       },
     },
     order: ['whatIsLight'],

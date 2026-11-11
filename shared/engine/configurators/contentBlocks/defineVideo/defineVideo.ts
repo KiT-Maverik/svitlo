@@ -12,7 +12,9 @@ const validate = (config: ContentBlock_Video_Config) => {
   video_Config_Schema.parse(config);
 };
 
-export const defineVideo = <const Slug extends string>(config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug }) => {
+export const defineVideo = <const Slug extends string>(
+  config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

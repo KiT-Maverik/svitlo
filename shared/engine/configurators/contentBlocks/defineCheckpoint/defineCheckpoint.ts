@@ -29,9 +29,7 @@ export class CheckpointValidationError extends Error {
 }
 
 const camelCase = /^[a-z][a-zA-Z0-9]*$/;
-const allowedAnswers = new Set([
-  'text', 'markdown', 'code', 'image', 'video', 'audio', 'youtube', 'carousel', 'scene',
-]);
+const allowedAnswers = new Set(['text', 'markdown', 'code', 'image', 'video', 'audio', 'youtube', 'carousel', 'scene']);
 const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
@@ -164,7 +162,11 @@ export const defineCheckpoint = <const Slug extends string>(
   };
 
   const base = {
-    id, type, slug, params, locale: onlyStrings(locale),
+    id,
+    type,
+    slug,
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
   const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};

@@ -12,7 +12,9 @@ const validate = (config: ContentBlock_Image_Config) => {
   image_Config_Schema.parse(config);
 };
 
-export const defineImage = <const Slug extends string>(config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug }) => {
+export const defineImage = <const Slug extends string>(
+  config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

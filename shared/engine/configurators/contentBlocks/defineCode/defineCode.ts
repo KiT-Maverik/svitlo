@@ -8,7 +8,9 @@ const validate = (config: ContentBlock_Code_Config) => {
   code_Config_Schema.parse(config);
 };
 
-export const defineCode = <const Slug extends string>(config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug }) => {
+export const defineCode = <const Slug extends string>(
+  config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;

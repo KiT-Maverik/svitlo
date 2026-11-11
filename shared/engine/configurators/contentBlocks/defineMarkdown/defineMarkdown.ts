@@ -12,7 +12,9 @@ const validate = (config: ContentBlock_Markdown_Config) => {
   markdown_Config_Schema.parse(config);
 };
 
-export const defineMarkdown = <const Slug extends string>(config: Omit<ContentBlock_Markdown_Config, 'slug'> & { slug: Slug }) => {
+export const defineMarkdown = <const Slug extends string>(
+  config: Omit<ContentBlock_Markdown_Config, 'slug'> & { slug: Slug },
+) => {
   validate(config);
 
   const { id, type, slug, locale, params } = config;
