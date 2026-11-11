@@ -2,10 +2,10 @@ import type { LanguageCodes } from '#schemas';
 import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
-import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
-import type { Episode_Configurator } from '../defineEpisode/defineEpisode';
-import type { Chapter_Configurator } from '../defineChapter/defineChapter';
-import type { Module_Configurator } from '../defineModule/defineModule';
+import type { Lesson_Configurator } from '../../lessons/defineLesson';
+import type { Episode_Configurator } from '../defineEpisode';
+import type { Chapter_Configurator } from '../defineChapter';
+import type { Module_Configurator } from '../defineModule';
 import { course_Config_Schema, type Course_Config } from './defineCourse.schemas';
 
 const validate = (config: unknown) => {
