@@ -53,8 +53,10 @@ type Props_Content_Items =
   >;
 
 type Content<Items extends Props_Content_Items | Config_Content_Items> = {
-  items: Items;
-  order: string[];
+  content: {
+    items: Items;
+    order: string[];
+  }
 }
 
 export const checkpoint_Config_Schema = checkpointBase.extend({

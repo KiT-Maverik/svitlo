@@ -7,11 +7,6 @@ import {
   type ContentBlock_Checkpoint_Locale,
 } from './defineCheckpoint.schemas';
 
-/**
- * Keep literal keys of content.items so order can only reference declared slugs
- * and editors can autocomplete checkpoint.content.items.<slug>.
- * Zod additionally requires that order lists every item exactly once.
- */
 export const defineCheckpoint = (config: ContentBlock_Checkpoint_Config) => {
   checkpoint_Config_Schema.parse(config);
 
