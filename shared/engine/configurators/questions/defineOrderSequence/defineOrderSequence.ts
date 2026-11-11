@@ -1,45 +1,56 @@
 import type { DeepPartial } from '#types';
-
-import { onlyLocales, onlyStrings } from '../../_utils';
-
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import { orderSequence_Config_Schema, type Question_OrderSequence_Config } from './defineOrderSequence.schemas';
 
-const validate = (config: Question_OrderSequence_Config) => {
-  orderSequence_Config_Schema.parse(config);
+const validate = (candidate: Question_OrderSequence_Config): void => {
+  const { content, ...metadata } = candidate;
+  orderSequence_Config_Schema.parse(metadata);
+  if (!Array.isArray(content?.question) || content.question.length === 0) {
+    throw new Error('Question content.question must contain at least one ContentBlock');
+  }
+  if (!Array.isArray(content.sequence) || !content.sequence.length) throw new Error('Question sequence cannot be empty');
 };
 
-export function defineOrderSequence<const Config extends Question_OrderSequence_Config>(config: Config) {
+/** Define orderSequence with independently validated child ContentBlocks. */
+export const defineOrderSequence = <
+  const Slug extends string,
+  const Content extends Question_OrderSequence_Config['content'],
+>(
+  config: Omit<Question_OrderSequence_Config, 'slug' | 'content'> & {
+    slug: Slug;
+    content: Content;
+  },
+) => {
   validate(config);
-
-  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, sequence } = config;
-
-  const localeEntries = {} as const;
-
+  const { id, slug, type, params, locale, content } = config;
   const base = {
     id,
-    type,
     slug,
-    assessmentMethod,
-    restrictions,
-    ...onlyStrings(localeEntries),
+    type,
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<Question_OrderSequence_Config>;
+  const overrides: DeepPartial<Question_OrderSequence_Config> = {};
 
   return {
     id,
     slug,
     type,
-    kind: 'orderSequence' as const,
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_OrderSequence_Config>,
+      locales: (): { locale: DeepPartial<Question_OrderSequence_Config['locale']> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
       validate,
     },
-    // Nested ContentBlocks remain configurators; the publishing phase resolves them.
-    question,
-    hint,
-    explanation,
-    sequence,
-  };
-}
+    content,
+    override: {
+      params: (value: DeepPartial<Question_OrderSequence_Config['params']>) => (overrides.params = value),
+      locale: (value: DeepPartial<Question_OrderSequence_Config['locale']>) => (overrides.locale = value),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+  } as const;
+};
 
 export type Question_OrderSequence_Configurator = ReturnType<typeof defineOrderSequence>;

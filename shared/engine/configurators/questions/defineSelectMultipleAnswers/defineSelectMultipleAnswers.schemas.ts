@@ -1,22 +1,22 @@
 import { z } from 'zod';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { addUnifiedLocale } from '../../_shared__configurators';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
+import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
 
-import { createQuestionFields, questionBlockSwitch, questionLocalizationSwitch } from '../question.schemas';
+const questionBase = createQuestionBaseSchema('selectMultipleAnswers');
 
-function createSelectMultipleAnswersSchema<Mode extends keyof typeof questionBlockSwitch>(mode: Mode) {
-  const child = questionBlockSwitch[mode];
+/** The schema validates Question metadata; child blocks own their validation. */
+export const selectMultipleAnswers_Config_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_SelectMultipleAnswers_Config = z.infer<typeof selectMultipleAnswers_Config_Schema> & {
+  content: QuestionContent<ContentBlock_Configurator> & {
+  answers: { correct: Record<string, ContentBlock_Configurator>; incorrect: Record<string, ContentBlock_Configurator>; distractors: Record<string, ContentBlock_Configurator> };
+};
+};
 
-  return z.strictObject({
-    ...createQuestionFields('selectMultipleAnswers', mode),
-    answers: z.strictObject({
-      correct: z.record(z.string(), child),
-      incorrect: z.record(z.string(), child),
-      distractors: z.record(z.string(), child),
-    }),
-  });
-}
-
-export const selectMultipleAnswers_Config_Schema = createSelectMultipleAnswersSchema('config');
-export type Question_SelectMultipleAnswers_Config = z.infer<typeof selectMultipleAnswers_Config_Schema>;
-
-export const selectMultipleAnswers_Props_Schema = createSelectMultipleAnswersSchema('props');
-export type Question_SelectMultipleAnswers_Props = z.infer<typeof selectMultipleAnswers_Props_Schema>;
+export const selectMultipleAnswers_Props_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_SelectMultipleAnswers_Props = z.infer<typeof selectMultipleAnswers_Props_Schema> & {
+  content: QuestionContent<ContentBlock_Props> & {
+  answers: { correct: Record<string, ContentBlock_Props>; incorrect: Record<string, ContentBlock_Props>; distractors: Record<string, ContentBlock_Props> };
+};
+};

@@ -1,45 +1,56 @@
 import type { DeepPartial } from '#types';
-
-import { onlyLocales, onlyStrings } from '../../_utils';
-
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import { answerWithText_Config_Schema, type Question_AnswerWithText_Config } from './defineAnswerWithText.schemas';
 
-const validate = (config: Question_AnswerWithText_Config) => {
-  answerWithText_Config_Schema.parse(config);
+const validate = (candidate: Question_AnswerWithText_Config): void => {
+  const { content, ...metadata } = candidate;
+  answerWithText_Config_Schema.parse(metadata);
+  if (!Array.isArray(content?.question) || content.question.length === 0) {
+    throw new Error('Question content.question must contain at least one ContentBlock');
+  }
+  
 };
 
-export function defineAnswerWithText<const Config extends Question_AnswerWithText_Config>(config: Config) {
+/** Define answerWithText with independently validated child ContentBlocks. */
+export const defineAnswerWithText = <
+  const Slug extends string,
+  const Content extends Question_AnswerWithText_Config['content'],
+>(
+  config: Omit<Question_AnswerWithText_Config, 'slug' | 'content'> & {
+    slug: Slug;
+    content: Content;
+  },
+) => {
   validate(config);
-
-  const { id, type, slug, assessmentMethod, restrictions, question, hint, explanation, correctAnswers, placeholder } =
-    config;
-
-  const localeEntries = { correctAnswers, placeholder } as const;
-
+  const { id, slug, type, params, locale, content } = config;
   const base = {
     id,
-    type,
     slug,
-    assessmentMethod,
-    restrictions,
-    ...onlyStrings(localeEntries),
+    type,
+    params,
+    locale: onlyStrings(locale),
   } satisfies DeepPartial<Question_AnswerWithText_Config>;
+  const overrides: DeepPartial<Question_AnswerWithText_Config> = {};
 
   return {
     id,
     slug,
     type,
-    kind: 'answerWithText' as const,
     config: {
       base,
-      locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Question_AnswerWithText_Config>,
+      locales: (): { locale: DeepPartial<Question_AnswerWithText_Config['locale']> } => ({
+        locale: onlyLocales(locale),
+      }),
+      overrides,
       validate,
     },
-    // Nested ContentBlocks remain configurators; the publishing phase resolves them.
-    question,
-    hint,
-    explanation,
-  };
-}
+    content,
+    override: {
+      params: (value: DeepPartial<Question_AnswerWithText_Config['params']>) => (overrides.params = value),
+      locale: (value: DeepPartial<Question_AnswerWithText_Config['locale']>) => (overrides.locale = value),
+    },
+    disable: () => (overrides.params = { disabled: true }),
+  } as const;
+};
 
 export type Question_AnswerWithText_Configurator = ReturnType<typeof defineAnswerWithText>;
