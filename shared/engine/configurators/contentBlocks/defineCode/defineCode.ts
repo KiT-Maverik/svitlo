@@ -25,8 +25,9 @@ const validate = (config: ContentBlock_Code_Config) => {
  * itself requires no file path, loader or filesystem dependency.
  *
  * Use `%_%VARIABLE_NAME%_%` in the source, with matching UPPER_SNAKE_CASE
- * IDs in `locale.variables`. `config.validate` checks these references
- * directly against `params.codeAsText`.
+ * keys in the `locale.variables` object. Each key maps to an invariant
+ * string or a dictionary of language-specific strings. `config.validate`
+ * checks these references directly against `params.codeAsText`.
  *
  * @example
  * ```ts
