@@ -16,6 +16,7 @@ import {
   text_Props_Schema,
   checkpoint_Config_Schema,
   checkpoint_Props_Schema,
+  CheckpointValidationError,
   code_Config_Schema,
   code_Props_Schema,
   youtube_Config_Schema,
@@ -23,6 +24,7 @@ import {
   video_Config_Schema,
   video_Props_Schema,
 } from './contentBlocks';
+import { configuratorArrayToSlugMap } from './_shared';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
 const otherId = 'b775647f-203d-481a-a1c7-4d331c779d6b';
@@ -264,127 +266,111 @@ test('localized fallback and indexed media fields remain in locale projections',
   });
 });
 
-test('Checkpoint has stable item slugs, explicit order and no index-based coupling', () => {
+test('Checkpoint keeps questions and keyed answers without nesting content in the metadata schema', () => {
+  const question = defineText({
+    id, slug: 'question', type: 'text', params: {}, locale: { value },
+  });
   const answer = defineText({
-    id,
-    slug: 'answer',
-    type: 'text',
-    params: {},
-    locale: { value },
+    id: otherId, slug: 'answer', type: 'text', params: {}, locale: { value: 'A simple explanation' },
+  });
+  const illustration = defineMarkdown({
+    id, slug: 'illustration', type: 'markdown', params: {}, locale: { value: 'An example' },
   });
   const config = {
-    id: otherId,
-    slug: 'review',
-    type: 'checkpoint' as const,
-    params: { enableChecks: true },
-    locale: { title: value },
+    id: otherId, slug: 'review', type: 'checkpoint' as const,
+    params: { enableChecks: true }, locale: { title: value },
     content: {
       items: {
-        whatIsLight: { question: value, answer: [answer] as [typeof answer], check: true as const },
-        howLightTravels: { question: 'How does light travel?', answer: [answer] as [typeof answer] },
+        whatIsLight: {
+          question,
+          answer: {
+            items: configuratorArrayToSlugMap([answer, illustration]),
+            order: ['illustration', 'answer'],
+          },
+          check: true as const,
+        },
       },
-      // Intentionally different from object declaration order.
-      order: ['howLightTravels', 'whatIsLight'] as const,
+      order: ['whatIsLight'],
     },
   };
   const checkpoint = defineCheckpoint(config);
-  assert.strictEqual(checkpoint.content, config.content);
-  assert.strictEqual(checkpoint.content.items.whatIsLight.answer[0], answer);
-  assert.equal(checkpoint.content.items.howLightTravels.question, 'How does light travel?');
-  assert.deepEqual(checkpoint.content.order, ['howLightTravels', 'whatIsLight']);
-  assert.deepEqual(checkpoint.config.base.params, { enableChecks: true });
-  assert.deepEqual(checkpoint.config.base.locale, {});
-  assert.deepEqual(checkpoint.config.locales(), { locale: { title: value } });
-  assert.equal('content' in checkpoint.config.base, false);
-  assert.equal(JSON.stringify(checkpoint.config.base).includes('function'), false);
-  assert.equal(checkpoint_Config_Schema.safeParse(config).success, true);
 
-  // Published props use the same stable keys but resolved, non-configurator children.
-  assert.equal(
-    checkpoint_Props_Schema.safeParse({
-      id: otherId,
-      slug: 'review',
-      type: 'checkpoint',
-      params: { enableChecks: true },
-      locale: { title: 'Review' },
-      content: {
-        items: {
-          whatIsLight: {
-            question: 'What is light?',
-            answer: [{ id, slug: 'answer', type: 'text' }],
-          },
+  assert.equal(checkpoint.id, otherId);
+  assert.equal(checkpoint.slug, 'review');
+  assert.equal(checkpoint.type, 'checkpoint');
+  assert.strictEqual(checkpoint.content.items.whatIsLight.question, question);
+  assert.strictEqual(checkpoint.content.items.whatIsLight.answer.items.answer, answer);
+  assert.deepEqual(checkpoint.content.items.whatIsLight.answer.order, ['illustration', 'answer']);
+  assert.equal('content' in checkpoint.config.base, false);
+  assert.deepEqual(checkpoint.config.base.params, { enableChecks: true });
+  assert.deepEqual(checkpoint.config.locales(), { locale: { title: value } });
+  assert.equal(checkpoint_Config_Schema.safeParse({ ...config, content: null }).success, true);
+  assert.equal(checkpoint_Props_Schema.safeParse({
+    id: otherId, slug: 'review', type: 'checkpoint', params: {}, locale: { title: 'Review' },
+  }).success, true);
+  assert.doesNotThrow(() => checkpoint.config.validate(config));
+
+  const malformed = {
+    ...config,
+    content: {
+      items: {
+        bad_slug: {
+          question: illustration,
+          answer: { items: { wrongKey: answer }, order: ['wrongKey', 'wrongKey'] },
         },
-        order: ['whatIsLight'],
       },
-    }).success,
-    true,
+      order: ['bad_slug', 'unknown'],
+    },
+  };
+  assert.throws(
+    () => checkpoint.config.validate(malformed as unknown as typeof config),
+    error => {
+      assert.ok(error instanceof CheckpointValidationError);
+      assert.deepEqual(error.result.subject, { id: otherId, slug: 'review', type: 'checkpoint' });
+      assert.equal(error.result.success, false);
+      const checks = error.result.errors.map(issue => issue.check);
+      for (const check of ['slug', 'order', 'question']) assert.ok(checks.includes(check), check);
+      assert.ok(error.result.errors.length >= 4);
+      return true;
+    },
   );
 
-  checkpoint.override.params({ showIndices: true });
-  assert.deepEqual(checkpoint.config.overrides.params, { showIndices: true });
+  const nested = {
+    ...config,
+    content: { ...config.content, items: {
+      whatIsLight: { ...config.content.items.whatIsLight,
+        answer: { items: { review: checkpoint }, order: ['review'] },
+      },
+    } },
+  };
+  assert.throws(
+    () => checkpoint.config.validate(nested as unknown as typeof config),
+    error => error instanceof CheckpointValidationError &&
+      error.result.errors.some(issue => issue.message.includes('Unsupported answer type: checkpoint')),
+  );
+
+  const added = {
+    question,
+    answer: { items: { answer }, order: ['answer'] },
+  };
+  checkpoint.override.content.add('anotherQuestion', added);
+  assert.deepEqual(checkpoint.content.order, ['whatIsLight', 'anotherQuestion']);
+  checkpoint.override.content.setOrder(['anotherQuestion', 'whatIsLight']);
+  assert.deepEqual(checkpoint.content.order, ['anotherQuestion', 'whatIsLight']);
+  assert.throws(() => checkpoint.override.content.setOrder(['whatIsLight', 'whatIsLight']), CheckpointValidationError);
+  assert.deepEqual(checkpoint.content.order, ['anotherQuestion', 'whatIsLight']);
+  checkpoint.override.content.answers('anotherQuestion').add('illustration', illustration);
+  assert.deepEqual(checkpoint.content.items.anotherQuestion.answer.order, ['answer', 'illustration']);
+  checkpoint.override.content.answers('anotherQuestion').setOrder(['illustration', 'answer']);
+  checkpoint.override.content.answers('anotherQuestion').remove('answer');
+  assert.deepEqual(checkpoint.content.items.anotherQuestion.answer.order, ['illustration']);
+  assert.throws(() => checkpoint.override.content.answers('anotherQuestion').remove('illustration'),
+    CheckpointValidationError);
+  assert.deepEqual(checkpoint.content.items.anotherQuestion.answer.order, ['illustration']);
+  checkpoint.override.content.remove('anotherQuestion');
+  assert.deepEqual(checkpoint.content.order, ['whatIsLight']);
   checkpoint.disable();
   assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
-});
-
-test('Checkpoint validates camelCase keys and an exact, duplicate-free order', () => {
-  const answer = defineText({
-    id,
-    slug: 'answer',
-    type: 'text',
-    params: {},
-    locale: { value },
-  });
-  const base = {
-    id: otherId,
-    slug: 'review',
-    type: 'checkpoint' as const,
-    params: {},
-    locale: { title: 'Review' },
-  };
-  const item = { question: value, answer: [answer] };
-  const valid = { items: { firstItem: item, secondItem: item }, order: ['secondItem', 'firstItem'] };
-
-  const cases: { name: string; content: unknown; error?: string }[] = [
-    { name: 'missing order', content: { items: valid.items } },
-    {
-      name: 'missing referenced item',
-      content: { items: valid.items, order: ['firstItem'] },
-      error: 'Checkpoint item missing from order',
-    },
-    {
-      name: 'duplicate reference',
-      content: { items: valid.items, order: ['firstItem', 'firstItem', 'secondItem'] },
-      error: 'Duplicate Checkpoint item slug',
-    },
-    {
-      name: 'unknown reference',
-      content: { items: valid.items, order: ['firstItem', 'unknownItem', 'secondItem'] },
-      error: 'Unknown Checkpoint item slug',
-    },
-    { name: 'non-camelCase key', content: { items: { first_item: item }, order: ['first_item'] } },
-    { name: 'missing question', content: { items: { firstItem: { answer: [answer] } }, order: ['firstItem'] } },
-    { name: 'empty answer', content: { items: { firstItem: { question: value, answer: [] } }, order: ['firstItem'] } },
-    {
-      name: 'raw child instead of configurator',
-      content: {
-        items: { firstItem: { question: value, answer: [{ id, slug: 'answer', type: 'text' }] } },
-        order: ['firstItem'],
-      },
-    },
-  ];
-
-  assert.equal(checkpoint_Config_Schema.safeParse({ ...base, content: valid }).success, true);
-
-  for (const { name, content, error } of cases) {
-    const result = checkpoint_Config_Schema.safeParse({ ...base, content });
-    assert.equal(result.success, false, name);
-    if (!result.success && error) {
-      assert.ok(
-        result.error.issues.some(issue => issue.message.includes(error)),
-        name,
-      );
-    }
-  }
 });
 
 test('Scene keeps nested language dictionaries in locales only', () => {
