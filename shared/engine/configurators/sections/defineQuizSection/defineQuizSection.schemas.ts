@@ -1,15 +1,28 @@
 import { z } from 'zod';
 import { camelCase_Schema } from '#schemas';
-import { createSectionBaseSchema } from '../_shared__sections';
+import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
+import { contentBlockLocalizationSwitch } from '../../contentBlocks';
+import type { Configurator_Mode } from '../../configurator.schemas';
 import type { Section_Config_Content, Section_Props_Content } from '../_shared__sections';
 
-const base = createSectionBaseSchema('quiz');
+const sectionBase = identityBase_Schema.extend({
+  type: z.literal('quiz'),
+  params: paramsBase_Schema.shape.params.extend({
+    skippable: z.literal(true).optional(),
+  }),
+});
+
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  title: contentBlockLocalizationSwitch[mode],
+  navigationLabel: contentBlockLocalizationSwitch[mode],
+});
+export type QuizSection_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
 const screen = z.strictObject({
   showDefaultContent: z.boolean().optional(),
   // Screen content references Section.content.items, never nested raw configs.
   content: z.array(camelCase_Schema).optional(),
 });
-const params = base.config.shape.params.extend({
+const params = sectionBase.shape.params.extend({
   isBlocker: z.boolean().optional(),
   timeLimitSeconds: z.number().positive().optional(),
   selection: z.strictObject({
@@ -69,8 +82,8 @@ const params = base.config.shape.params.extend({
     .optional(),
 });
 
-export const quizSection_Config_Schema = base.config.extend({ params });
+export const quizSection_Config_Schema = sectionBase.extend({ params }).extend(addUnifiedLocale(locale('config')));
 export type QuizSection_Config = z.infer<typeof quizSection_Config_Schema> & Section_Config_Content;
 
-export const quizSection_Props_Schema = base.props.extend({ params });
+export const quizSection_Props_Schema = sectionBase.extend({ params }).extend(addUnifiedLocale(locale('props')));
 export type QuizSection_Props = z.infer<typeof quizSection_Props_Schema> & Section_Props_Content;
