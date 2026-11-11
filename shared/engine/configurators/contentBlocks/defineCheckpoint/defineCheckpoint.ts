@@ -36,6 +36,7 @@ export const defineCheckpoint = (config: ContentBlock_Checkpoint_Config) => {
         locale: onlyLocales(locale),
       }),
       overrides,
+      validate,
     },
     override: {
       params: (newParams: DeepPartial<ContentBlock_Checkpoint_Config['params']>) => (overrides.params = newParams),
