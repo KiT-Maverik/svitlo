@@ -5,6 +5,7 @@ import type { ContentBlock_Markdown_Response } from '@svitlo/contracts/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
+import { resolveTemplateVariables } from '../resolveTemplateVariables';
 import styles from './Markdown.module.css';
 
 // Retain the lesson-specific elements while sanitizing authored HTML.
@@ -14,11 +15,13 @@ const schema = {
 };
 
 /** Render a published, localized Markdown content block. */
-export const Markdown = ({ text }: ContentBlock_Markdown_Response) => {
+export const Markdown = ({ text, variables }: ContentBlock_Markdown_Response) => {
   const contentLanguage = useContentLanguage();
   return (
     <article {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.content}>
-      <ReactMarkdown rehypePlugins={[rehypeRaw, [rehypeSanitize, schema]]}>{text}</ReactMarkdown>
+      <ReactMarkdown rehypePlugins={[rehypeRaw, [rehypeSanitize, schema]]}>
+        {resolveTemplateVariables(text, variables)}
+      </ReactMarkdown>
     </article>
   );
 };
