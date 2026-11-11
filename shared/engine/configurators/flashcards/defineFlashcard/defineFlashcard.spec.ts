@@ -28,7 +28,6 @@ const source = {
   id: id('a4'),
   slug: 'lightCard',
   parameters: {
-    isDefault: true as const,
     tags: ['math'],
     flags: {
       items: {

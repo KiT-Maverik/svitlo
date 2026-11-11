@@ -79,7 +79,6 @@ function createFlashcardSchema<Mode extends Configurator_Mode>(mode: Mode) {
   return identityBase_Schema.extend({
     type: z.literal('flashcard'),
     parameters: paramsBase_Schema.shape.params.extend({
-      isDefault: z.literal(true).optional(),
       tags: z.array(z.string()),
       flags: z.strictObject({
         items: z.record(z.string(), flagSchema(mode)),
