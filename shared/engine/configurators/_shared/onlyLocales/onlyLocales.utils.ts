@@ -5,15 +5,11 @@ import type { DeepPartial } from '#types';
 
 import { projectFields } from '../_internal/projectFields';
 
-// Scene values can contain nested text records. Ordinary text blocks constrain
-// these values further in their own Config schemas.
-const localizedValue_Schema: z.ZodType<unknown> = z.lazy(() =>
-  z.union([z.string(), z.record(z.string(), localizedValue_Schema)]),
-);
+// Only language-to-string dictionaries are localized leaves. Nested Scene
+// records use the same field-level localization contract as other blocks.
+const localeDictionary_Schema = z.partialRecord(languageCode_Schema, z.string());
 
-const localeDictionary_Schema = z.partialRecord(languageCode_Schema, localizedValue_Schema);
-
-/** Recognize locale dictionaries by language keys, including structured Scene values. */
+/** Recognize dictionaries keyed only by supported languages. */
 export function isLocaleDictionary(value: unknown): boolean {
   return (
     value !== null &&
