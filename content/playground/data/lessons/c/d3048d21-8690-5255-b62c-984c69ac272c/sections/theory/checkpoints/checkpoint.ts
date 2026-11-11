@@ -1,11 +1,11 @@
-import type { ContentBlock_Checkpoint } from '@svitlo/contracts/content';
-import type { HowLightMoves_Languages } from '../../../constants';
+import { defineCheckpoint, defineText } from '@svitlo/engine';
 
-export const checkpoint = {
-  type: 'checkpoint',
+export const checkpoint = defineCheckpoint({
   id: 'cd65e160-da27-57e1-a58f-38b1276c4346',
   slug: 'checkpoint',
-  title: {
+  type: 'checkpoint',
+  params: {},
+  locale: { title: {
     ar: 'حاول أن تشرح',
     be: 'Паспрабуй патлумачыць',
     bn: 'ব্যাখ্যা করার চেষ্টা করো',
@@ -35,10 +35,16 @@ export const checkpoint = {
     ur: 'وضاحت کرنے کی کوشش کریں',
     vi: 'Thử giải thích',
     zh: '试着解释',
-  },
-  items: [
-    {
-      question: {
+  } },
+  content: {
+    items: {
+    sourceLocation: {
+      question: defineText({
+        id: '4a4b8dc2-f006-5e3c-8c67-b6f8b4ba1300',
+        slug: 'sourceLocationQuestion',
+        type: 'text',
+        params: {},
+        locale: { value: {
         ar: 'أين يقع مصدر الضوء في المشهد؟',
         be: 'Дзе ў сцэне знаходзіцца крыніца сьвятла?',
         bn: 'দৃশ্যে আলোর উৎস কোথায়?',
@@ -68,13 +74,16 @@ export const checkpoint = {
         ur: 'منظر میں روشنی کا منبع کہاں ہے؟',
         vi: 'Nguồn sáng nằm ở đâu trong cảnh?',
         zh: '场景中的光源在哪里？',
-      },
-      answer: [
-        {
-          id: 'f87ad205-5981-4791-94ff-e6be5132f28b',
-          slug: 'lightSourcePositionAnswer',
-          type: 'text',
-          value: {
+      } },
+      }),
+      answer: {
+        items: {
+          lightSourcePositionAnswer: defineText({
+            id: 'f87ad205-5981-4791-94ff-e6be5132f28b',
+            slug: 'lightSourcePositionAnswer',
+            type: 'text',
+            params: {},
+            locale: { value: {
             ar: 'المصدر على اليمين.',
             be: 'Крыніца знаходзіцца зьлева.',
             bn: 'উৎসটি বাঁ দিকে।',
@@ -104,12 +113,19 @@ export const checkpoint = {
             ur: 'منبع دائیں طرف ہے۔',
             vi: 'Nguồn sáng ở bên trái.',
             zh: '光源在左侧。',
-          },
+          } },
+          }),
         },
-      ],
+        order: ['lightSourcePositionAnswer'],
+      },
     },
-    {
-      question: {
+    animationSpeed: {
+      question: defineText({
+        id: '542c42b3-793c-51b7-a73c-99d350752721',
+        slug: 'animationSpeedQuestion',
+        type: 'text',
+        params: {},
+        locale: { value: {
         ar: 'هل يتغير المسار عندما تغيّر سرعة الحركة؟',
         be: 'Ці зьмяняецца шлях сьвятла, калі зьмяніць хуткасьць анімацыі?',
         bn: 'অ্যানিমেশনের গতি বদলালে কি পথ বদলে যায়?',
@@ -139,13 +155,16 @@ export const checkpoint = {
         ur: 'حرکت کی رفتار بدلنے سے کیا راستہ بدلتا ہے؟',
         vi: 'Quỹ đạo có thay đổi khi bạn đổi tốc độ hoạt ảnh không?',
         zh: '改变动画速度时，路径会改变吗？',
-      },
-      answer: [
-        {
-          id: '254655af-de7b-42e4-8f74-04a568b48f6d',
-          slug: 'animationSpeedAnswer',
-          type: 'text',
-          value: {
+      } },
+      }),
+      answer: {
+        items: {
+          animationSpeedAnswer: defineText({
+            id: '254655af-de7b-42e4-8f74-04a568b48f6d',
+            slug: 'animationSpeedAnswer',
+            type: 'text',
+            params: {},
+            locale: { value: {
             ar: 'يغيّر عنصر التحكم سرعة العرض فقط؛ ويبقى المسار مستقيمًا.',
             be: 'Рэгулятар зьмяняе толькі хуткасьць анімацыі; шлях застаецца простым.',
             bn: 'নিয়ন্ত্রণটি শুধু অ্যানিমেশনের গতি বদলায়; পথ সোজাই থাকে।',
@@ -175,12 +194,19 @@ export const checkpoint = {
             ur: 'کنٹرول صرف حرکت کی رفتار بدلتا ہے؛ راستہ سیدھا رہتا ہے۔',
             vi: 'Nút điều khiển chỉ đổi tốc độ hoạt ảnh; quỹ đạo vẫn thẳng.',
             zh: '调节器只改变动画速度，传播路径仍是直线。',
-          },
+          } },
+          }),
         },
-      ],
+        order: ['animationSpeedAnswer'],
+      },
     },
-    {
-      question: {
+    opaqueObjectShadow: {
+      question: defineText({
+        id: '776c9320-b190-5bec-8ac1-5b9e23e35cf1',
+        slug: 'opaqueObjectShadowQuestion',
+        type: 'text',
+        params: {},
+        locale: { value: {
         ar: 'ماذا يحدث إذا وضعت جسمًا معتمًا بين المصدر والشاشة؟',
         be: 'Што будзе, калі паставіць непразрысты прадмет паміж крыніцай і экранам?',
         bn: 'উৎস ও পর্দার মাঝখানে অস্বচ্ছ বস্তু রাখলে কী হবে?',
@@ -210,13 +236,16 @@ export const checkpoint = {
         ur: 'منبع اور پردے کے درمیان غیر شفاف چیز رکھنے سے کیا ہوگا؟',
         vi: 'Điều gì xảy ra nếu đặt vật không trong suốt giữa nguồn sáng và màn chắn?',
         zh: '如果在光源和屏幕之间放置不透明物体，会发生什么？',
-      },
-      answer: [
-        {
-          id: '9eece55a-e495-452b-8645-ead0a1570842',
-          slug: 'opaqueObjectShadowAnswer',
-          type: 'text',
-          value: {
+      } },
+      }),
+      answer: {
+        items: {
+          opaqueObjectShadowAnswer: defineText({
+            id: '9eece55a-e495-452b-8645-ead0a1570842',
+            slug: 'opaqueObjectShadowAnswer',
+            type: 'text',
+            params: {},
+            locale: { value: {
             ar: 'يحجب الجسم المعتم جزءًا من الضوء فتتكوّن خلفه ظلال.',
             be: 'Непразрысты прадмет затрымлівае частку сьвятла, і за ім утвараецца цень.',
             bn: 'অস্বচ্ছ বস্তু কিছু আলো আটকে দেয় এবং তার পেছনে ছায়া তৈরি হয়।',
@@ -246,9 +275,13 @@ export const checkpoint = {
             ur: 'غیر شفاف چیز کچھ روشنی روک دیتی ہے اور اس کے پیچھے سایہ بن جاتا ہے۔',
             vi: 'Vật không trong suốt chắn một phần ánh sáng và tạo bóng phía sau.',
             zh: '不透明物体会挡住部分光线，并在后方形成影子。',
-          },
+          } },
+          }),
         },
-      ],
+        order: ['opaqueObjectShadowAnswer'],
+      },
     },
-  ],
-} satisfies ContentBlock_Checkpoint<'data', HowLightMoves_Languages>;
+    },
+    order: ['sourceLocation', 'animationSpeed', 'opaqueObjectShadow'],
+  },
+});
