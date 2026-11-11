@@ -10,6 +10,7 @@ type ContentBlock_Markdown_Data<SupportedLanguages extends Locale_Languages> = C
 
 export type ContentBlock_Markdown_Response = ContentBlock_Response_Meta<'markdown'> & {
   text: string;
+  variables?: Record<string, string>;
 };
 
 export type ContentBlock_Markdown<
