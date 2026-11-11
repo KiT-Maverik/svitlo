@@ -192,50 +192,50 @@ test('Code requires nonempty static text, Image retains cross-field validation, 
     /Image requires either fill/,
   );
   for (const mode of ['embed', 'link'] as const) {
-    const source = {
+    const videoSource = {
       id,
       slug: 'exampleYoutube',
       type: 'youtube' as const,
       params: { mode },
       locale: { href: 'https://youtube.com/watch?v=M7lc1UVf-VE' },
     };
-    assert.equal(youtube_Config_Schema.safeParse(source).success, false);
-    assert.equal(youtube_Props_Schema.safeParse(source).success, false);
+    assert.equal(youtube_Config_Schema.safeParse(videoSource).success, false);
+    assert.equal(youtube_Props_Schema.safeParse(videoSource).success, false);
     assert.equal(
       youtube_Config_Schema.safeParse({
-        ...source,
-        locale: { ...source.locale, label: 'Watch this video' },
+        ...videoSource,
+        locale: { ...videoSource.locale, label: 'Watch this video' },
       }).success,
       true,
     );
     assert.equal(
       youtube_Props_Schema.safeParse({
-        ...source,
-        locale: { ...source.locale, label: 'Watch this video' },
+        ...videoSource,
+        locale: { ...videoSource.locale, label: 'Watch this video' },
       }).success,
       true,
     );
   }
-  const source = {
+  const videoSource = {
     id,
     slug: 'sampleVideo',
     type: 'video' as const,
     params: {},
     locale: { fileLocation: '/video.mp4', poster: '/poster.jpg' },
   };
-  assert.equal(video_Config_Schema.safeParse(source).success, false);
-  assert.equal(video_Props_Schema.safeParse(source).success, false);
+  assert.equal(video_Config_Schema.safeParse(videoSource).success, false);
+  assert.equal(video_Props_Schema.safeParse(videoSource).success, false);
   assert.equal(
     video_Config_Schema.safeParse({
-      ...source,
-      locale: { ...source.locale, label: 'Sample video' },
+      ...videoSource,
+      locale: { ...videoSource.locale, label: 'Sample video' },
     }).success,
     true,
   );
   assert.equal(
     video_Props_Schema.safeParse({
-      ...source,
-      locale: { ...source.locale, label: 'Sample video' },
+      ...videoSource,
+      locale: { ...videoSource.locale, label: 'Sample video' },
     }).success,
     true,
   );

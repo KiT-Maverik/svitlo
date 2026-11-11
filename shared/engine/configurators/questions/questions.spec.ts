@@ -70,7 +70,7 @@ test('all nine Question configurators expose the same small lifecycle surface', 
       ...common('fillBlanksWithText'),
       locale: { slots: [{ selector: 'slot', correctAnswers: [localized] }], placeholder: localized },
     }),
-  ];
+  ] as const;
 
   for (const item of questions) {
     assert.equal(item.id, id);

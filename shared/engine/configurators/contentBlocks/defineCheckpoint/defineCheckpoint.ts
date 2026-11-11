@@ -187,7 +187,7 @@ export const defineCheckpoint = <
           (patch.items ??= {})[itemSlug] = item;
           patch.order = [...currentOrder(), itemSlug];
         },
-        disable: (slugs: (keyof Items & string)[]) => {
+        disable: (slugs: string[]) => {
           const selected = new Set<string>(slugs);
           for (const key of selected) {
             if (!Object.hasOwn(content.items, key)) throw new Error(`Unknown Checkpoint question slug: ${key}`);

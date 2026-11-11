@@ -78,7 +78,7 @@ test('Quiz screen references blocks in Section.content and validates metadata', 
   });
   assert.equal(section.type, 'quiz');
   assert.equal(section.content.items.prompt, prompt);
-  assert.deepEqual(section.config.base.params.screen.starting?.content, ['prompt']);
+  assert.deepEqual(section.config.base.params.screen?.starting?.content, ['prompt']);
   assert.equal(
     quizSection_Config_Schema.safeParse({
       type: 'quiz',

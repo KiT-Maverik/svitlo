@@ -96,7 +96,7 @@ export const defineContentSection = <
           (patch.items ??= {})[childSlug] = child;
           patch.order = [...currentOrder(), childSlug];
         },
-        disable: (slugs: (keyof Items & string)[]) => {
+        disable: (slugs: string[]) => {
           const selected = new Set<string>(slugs);
           const items: Record<string, ContentBlock_Configurator | false> = {
             ...content.items,

@@ -96,7 +96,7 @@ export function defineLesson<
           sections.override.add(sectionSlug, section);
           overrides.section = sections.overrides;
         },
-        disable: (slugs: (keyof Items & string)[]) => {
+        disable: (slugs: string[]) => {
           sections.override.disable(slugs);
           overrides.section = sections.overrides;
         },

@@ -27,7 +27,6 @@ const makeLesson = () =>
     id: id('03'),
     slug: 'exampleLesson',
     type: 'lesson',
-    programId: id('04'),
     skills: [],
     params: {
       requireQuiz: false,
@@ -41,10 +40,10 @@ const makeLesson = () =>
 
 test('Lesson projects its own base/locale and keeps child Section configurators', () => {
   const lesson = makeLesson();
-  assert.equal(lesson.config.base.programId, id('04'));
+  assert.equal('programId' in lesson.config.base, false);
   assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
   assert.equal(lesson.section.items.intro, section);
-  assert.equal(lesson.config.base.section, undefined);
+  assert.equal('section' in lesson.config.base, false);
   assert.equal(
     lesson_Config_Schema.safeParse(lesson.config.base).success,
     false,
