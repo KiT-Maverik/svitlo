@@ -83,6 +83,8 @@ test('all nine Question configurators expose the same small lifecycle surface', 
     assert.deepEqual(item.config.overrides.params, { disabled: true });
   }
   assert.strictEqual(questions[0].content.answers.correct.yes, block);
+  questions[0].content.question.push(block);
+  assert.equal(questions[0].content.question.length, 2);
   assert.strictEqual(questions[2].content.pairs.pair.left, block);
   assert.strictEqual(questions[5].content.sequence[0], block);
   assert.strictEqual(questions[6].content.correctSequence[0], block);

@@ -9,9 +9,9 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
     throw new Error('Question content.question must contain at least one ContentBlock');
   }
   const groups = content.answers;
-  if (!groups || [groups.correct, groups.incorrect, groups.distractors].every(
-    group => group !== null && typeof group === 'object' && !Array.isArray(group),
-  ) === false) {
+  if (!groups || [groups.correct, groups.incorrect, groups.distractors].some(
+    group => group === null || typeof group !== 'object' || Array.isArray(group),
+  )) {
     throw new Error('Question answers must define correct, incorrect and distractors maps');
   }
 };
