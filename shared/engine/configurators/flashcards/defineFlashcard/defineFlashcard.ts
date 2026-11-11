@@ -4,7 +4,7 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
 import { flashcard_Config_Schema, type Flashcard_Config } from './defineFlashcard.schemas';
 
-const validate = (config: Flashcard_Config) => {
+const validate = (config: unknown) => {
   flashcard_Config_Schema.parse(config);
 };
 

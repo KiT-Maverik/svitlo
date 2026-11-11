@@ -4,7 +4,7 @@ import { onlyLocales, onlyStrings } from '../../_utils';
 import type { ScenarioSection_Configurator } from '../../sections/defineScenarioSection/defineScenarioSection';
 import { episode_Config_Schema, type Episode_Config } from './defineEpisode.schemas';
 
-const validate = (config: Episode_Config) => {
+const validate = (config: unknown) => {
   episode_Config_Schema.parse(config);
 };
 

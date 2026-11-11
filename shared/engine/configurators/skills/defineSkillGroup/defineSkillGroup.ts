@@ -4,7 +4,7 @@ import type { Skill_Configurator } from '../defineSkill/defineSkill';
 
 import { skillGroup_Config_Schema, type SkillGroup_Config } from './defineSkillGroup.schemas';
 
-const validate = (config: SkillGroup_Config) => {
+const validate = (config: unknown) => {
   skillGroup_Config_Schema.parse(config);
 };
 

@@ -5,7 +5,7 @@ import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesso
 import type { Episode_Configurator } from '../defineEpisode/defineEpisode';
 import { chapter_Config_Schema, type Chapter_Config } from './defineChapter.schemas';
 
-const validate = (config: Chapter_Config) => {
+const validate = (config: unknown) => {
   chapter_Config_Schema.parse(config);
 };
 

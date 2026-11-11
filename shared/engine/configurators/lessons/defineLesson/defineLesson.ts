@@ -6,7 +6,7 @@ import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/de
 import type { Section_Configurator } from '../../sections/section.types';
 import { lesson_Config_Schema, type Lesson_Config } from './defineLesson.schemas';
 
-const validate = (config: Lesson_Config) => {
+const validate = (config: unknown) => {
   lesson_Config_Schema.parse(config);
 };
 

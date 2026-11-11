@@ -8,7 +8,7 @@ import type { Chapter_Configurator } from '../defineChapter/defineChapter';
 import type { Module_Configurator } from '../defineModule/defineModule';
 import { course_Config_Schema, type Course_Config } from './defineCourse.schemas';
 
-const validate = (config: Course_Config) => {
+const validate = (config: unknown) => {
   course_Config_Schema.parse(config);
 };
 

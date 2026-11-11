@@ -5,7 +5,7 @@ import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGro
 
 import { skillDomain_Config_Schema, type SkillDomain_Config } from './defineSkillDomain.schemas';
 
-const validate = (config: SkillDomain_Config) => {
+const validate = (config: unknown) => {
   skillDomain_Config_Schema.parse(config);
 };
 
