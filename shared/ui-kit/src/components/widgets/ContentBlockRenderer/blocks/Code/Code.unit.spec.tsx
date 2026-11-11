@@ -12,7 +12,7 @@ const response: ContentBlock_Code_Response = {
 
   language: 'typescript',
   title: 'Приклад',
-  code: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
+  codeAsText: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
   variables: [{ id: 'GREETING', value: 'Привіт' }],
 };
 

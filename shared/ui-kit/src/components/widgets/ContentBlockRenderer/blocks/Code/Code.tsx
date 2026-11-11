@@ -5,9 +5,9 @@ import { useContentLanguage } from '../../ContentLanguageContext';
 import { highlightCode, resolveCodeVariables } from './Code.utils';
 import styles from './Code.module.css';
 
-export const Code = ({ code, language, title, variables }: ContentBlock_Code_Response) => {
+export const Code = ({ codeAsText, language, title, variables }: ContentBlock_Code_Response) => {
   const contentLanguage = useContentLanguage();
-  const value = resolveCodeVariables(code, variables);
+  const value = resolveCodeVariables(codeAsText, variables);
   const highlighted = highlightCode(value, language);
 
   return (

@@ -7,9 +7,8 @@ const contentBlockBase = createContentBlockBaseSchema('code');
 
 const params = contentBlockBase.shape.params.extend({
   language: z.string().min(1),
-  // Source template reference. Kept as a string until resource addressing is finalized.
-  // The publisher resolves it to source code before the UI Kit renders the block.
-  fileLocation: z.string().min(1),
+  // Authored static source text; indentation and line breaks are preserved.
+  codeAsText: z.string().min(1),
 });
 
 const codeBase = contentBlockBase.extend({ params });

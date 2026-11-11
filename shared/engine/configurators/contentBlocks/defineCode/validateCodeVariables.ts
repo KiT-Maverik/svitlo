@@ -3,11 +3,8 @@ import type { ContentBlock_Code_Config } from './defineCode.schemas';
 const delimiter = '%_%';
 const upperSnakeCase = /^[A-Z][A-Z0-9_]*$/;
 
-/**
- * Validate configured Code variable IDs. Pass resolved source code to also
- * verify all placeholders; fileLocation alone contains no source text.
- */
-export function validateCodeVariables(config: ContentBlock_Code_Config, sourceCode?: string): void {
+/** Validate localized Code replacement IDs against the already-provided source text. */
+export function validateCodeVariables(config: ContentBlock_Code_Config): void {
   const variables = config.locale.variables;
   if (!variables?.length) return;
 
@@ -19,9 +16,9 @@ export function validateCodeVariables(config: ContentBlock_Code_Config, sourceCo
     configured.add(variable.id);
   }
 
-  if (sourceCode !== undefined) {
+  {
     const found = new Set<string>();
-    const parts = sourceCode.split(delimiter);
+    const parts = config.params.codeAsText.split(delimiter);
     if (parts.length % 2 === 0) errors.push(`Code template: unmatched "${delimiter}" delimiter`);
 
     for (let index = 1; index < parts.length; index += 2) {

@@ -5,28 +5,42 @@ import { onlyLocales, onlyStrings } from '../../_shared';
 import { code_Config_Schema, type ContentBlock_Code_Config, type ContentBlock_Code_Locale } from './defineCode.schemas';
 import { validateCodeVariables } from './validateCodeVariables';
 
-const validate = (config: ContentBlock_Code_Config, resolvedSource?: string) => {
+const validate = (config: ContentBlock_Code_Config) => {
   code_Config_Schema.parse(config);
-  validateCodeVariables(config, resolvedSource);
+  validateCodeVariables(config);
 };
 
 /**
- * Define a static, display-only Code block from a source file.
+ * Define a static Code block for displaying source text with syntax highlighting.
  *
  * @remarks
- * Code is rendered as text with syntax highlighting; this block never compiles,
- * evaluates or executes the source. `params.fileLocation` identifies the source
- * file used by the publisher, not an executable entry point.
+ * Pass the complete source string in \`params.codeAsText\`. Code blocks are
+ * display-only: no compilation or execution occurs. Indentation, whitespace
+ * and line breaks are preserved.
  *
- * Use `%_%VARIABLE_NAME%_%` in that file with UPPER_SNAKE_CASE IDs matching
- * `locale.variables`. Only the replacement values are localized.
+ * When the source lives in a file, place it beside the authoring definition
+ * and read it as UTF-8 there, before calling \`defineCode\`. Resolve the path
+ * relative to the current module using \`import.meta.url\`, not process.cwd().
+ * Node's \`readFileSync\` throws if the file cannot be read; the configurator
+ * itself requires no file path, loader or filesystem dependency.
  *
- * `config.validate(config)` checks the authored data without filesystem access.
- * The Node-only publisher can call `loadAndValidateCodeTemplate(config, baseDirectory)`
- * to resolve a file relative to an explicit root, check that it exists, read it
- * as UTF-8 and reject undeclared, missing or malformed placeholders.
- * Alternatively, `config.validate(config, resolvedSource)` checks the same
- * placeholders when the caller already has the source string.
+ * Use \`%_%VARIABLE_NAME%_%\` in the source, with matching UPPER_SNAKE_CASE
+ * IDs in \`locale.variables\`. \`config.validate\` checks these references
+ * directly against \`params.codeAsText\`.
+ *
+ * @example
+ * \`\`\`ts
+ * import { readFileSync } from 'node:fs';
+ *
+ * const codeAsText = readFileSync(new URL('./example.py', import.meta.url), 'utf8');
+ * const block = defineCode({
+ *   id: 'c2cc84f3-f057-493d-b1b6-1880aad8023b',
+ *   slug: 'example',
+ *   type: 'code',
+ *   params: { language: 'python', codeAsText },
+ *   locale: {},
+ * });
+ * \`\`\`
  */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
