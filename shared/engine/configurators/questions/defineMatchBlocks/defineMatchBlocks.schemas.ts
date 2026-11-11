@@ -1,18 +1,21 @@
 import { z } from 'zod';
+import { addUnifiedLocale } from '../../_shared__configurators';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
+import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
 
-import { createQuestionFields, questionBlockSwitch, questionLocalizationSwitch } from '../question.schemas';
+const questionBase = createQuestionBaseSchema('matchBlocks');
 
-function createMatchBlocksSchema<Mode extends keyof typeof questionBlockSwitch>(mode: Mode) {
-  const child = questionBlockSwitch[mode];
+/** The schema validates Question metadata; child blocks own their validation. */
+export const matchBlocks_Config_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_MatchBlocks_Config = z.infer<typeof matchBlocks_Config_Schema> & {
+  content: QuestionContent<ContentBlock_Configurator> & {
+    pairs: Record<string, { left: ContentBlock_Configurator; right: ContentBlock_Configurator }>;
+  };
+};
 
-  return z.strictObject({
-    ...createQuestionFields('matchBlocks', mode),
-    pairs: z.record(z.string(), z.strictObject({ left: child, right: child })),
-  });
-}
-
-export const matchBlocks_Config_Schema = createMatchBlocksSchema('config');
-export type Question_MatchBlocks_Config = z.infer<typeof matchBlocks_Config_Schema>;
-
-export const matchBlocks_Props_Schema = createMatchBlocksSchema('props');
-export type Question_MatchBlocks_Props = z.infer<typeof matchBlocks_Props_Schema>;
+export const matchBlocks_Props_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_MatchBlocks_Props = z.infer<typeof matchBlocks_Props_Schema> & {
+  content: QuestionContent<ContentBlock_Props> & {
+    pairs: Record<string, { left: ContentBlock_Props; right: ContentBlock_Props }>;
+  };
+};

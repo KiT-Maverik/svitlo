@@ -1,26 +1,30 @@
 import { z } from 'zod';
 
-import { lessonConfigurator_Schema } from '../../lessons/defineLesson/defineLesson.schemas';
-import { episodeConfigurator_Schema } from '../defineEpisode/defineEpisode.schemas';
-import {
-  createHierarchyChildSchema,
-  createHierarchyIdentitySchema,
-  createHierarchyPropsSchema,
-  hierarchyResolvedChild_Schema,
-} from '../_shared__courses/courseHierarchy.schemas';
+import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import type { Lesson_Configurator, Lesson_Props } from '../../lessons/defineLesson';
 
-export const chapter_Config_Schema = z.strictObject({
-  ...createHierarchyIdentitySchema('chapter'),
-  content: z.array(z.union([lessonConfigurator_Schema, episodeConfigurator_Schema])),
+const params = paramsBase_Schema.shape.params.extend({
+  iconKey: z.string().optional(),
 });
-export type Chapter_Config = z.infer<typeof chapter_Config_Schema>;
 
-export const chapter_Props_Schema = z.strictObject({
-  ...createHierarchyPropsSchema('chapter'),
-  content: z.array(hierarchyResolvedChild_Schema),
+const identity = identityBase_Schema.extend({
+  type: z.literal('chapter'),
+  params,
 });
-export type Chapter_Props = z.infer<typeof chapter_Props_Schema>;
 
-export const chapterConfigurator_Schema = createHierarchyChildSchema<{
-  readonly config: { readonly base: { readonly type: 'chapter'; readonly id: string }; readonly locales: () => object };
-}>('chapter');
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  title: localizationSwitch[mode],
+});
+export type Chapter_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
+
+export type Chapter_Content = { items: Record<string, Lesson_Configurator | false>; order: string[] };
+
+export const chapter_Config_Schema = identity.extend(addUnifiedLocale(locale('config')));
+export type Chapter_Config = z.infer<typeof chapter_Config_Schema> & { content: Chapter_Content };
+
+export const chapter_Props_Schema = identity.extend(addUnifiedLocale(locale('props')));
+export type Chapter_Props = z.infer<typeof chapter_Props_Schema> & {
+  content: { items: Record<string, Lesson_Props>; order: string[] };
+};
