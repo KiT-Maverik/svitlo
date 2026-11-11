@@ -33,11 +33,6 @@ const allowedAnswers = new Set(['text', 'markdown', 'code', 'image', 'video', 'a
 const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
-/**
- * One module-level validator, reused for initial creation and explicit revalidation.
- * Collect all independent integrity errors before throwing one report.
- * Child definitions have already validated their own fields in their define*.
- */
 const validate = (config: ContentBlock_Checkpoint_Config): void => {
   const subject = {
     id: config?.id,
