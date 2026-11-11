@@ -12,6 +12,11 @@ const validate = (config: ContentBlock_Scene_Config) => {
   scene_Config_Schema.parse(config);
 };
 
+/**
+ * Define a Scene with invariant strings and field-level localized text.
+ * Derive the component's single-language value type with `ResolveLocale<typeof value>`.
+ * Runtime localization and translation completeness are handled by publication.
+ */
 export const defineScene = <const Slug extends string>(
   config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug },
 ) => {

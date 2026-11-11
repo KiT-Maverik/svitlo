@@ -14,6 +14,8 @@ import {
   defineScene,
   text_Config_Schema,
   text_Props_Schema,
+  scene_Config_Schema,
+  scene_Props_Schema,
   checkpoint_Config_Schema,
   checkpoint_Props_Schema,
   CheckpointValidationError,
@@ -95,7 +97,7 @@ test('all non-composite ContentBlocks follow the defineText API and keep params 
       slug: 'scene',
       type: 'scene',
       params: {},
-      locale: { value: { en: { greeting: 'Hello' }, uk: { greeting: 'Привіт' } } },
+      locale: { value: { greeting: value } },
     }),
   ];
 
@@ -471,18 +473,54 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
   assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
 });
 
-test('Scene keeps nested language dictionaries in locales only', () => {
+test('Scene separates invariant fields from localized text at nested paths', () => {
   const localized = {
-    en: { greeting: 'Hello', state: { message: 'Ready' } },
-    uk: { greeting: 'Привіт', state: { message: 'Готово' } },
+    character: 'hero',
+    greeting: { en: 'Hello', uk: 'Привіт' },
+    state: {
+      emotion: 'happy',
+      message: { en: 'Ready', uk: 'Готово' },
+    },
   };
-  const scene = defineScene({
+  const config = {
     id,
     slug: 'introduction',
-    type: 'scene',
+    type: 'scene' as const,
     params: {},
     locale: { value: localized },
+  };
+  const scene = defineScene(config);
+
+  assert.deepEqual(scene.config.base.locale, {
+    value: { character: 'hero', state: { emotion: 'happy' } },
   });
-  assert.deepEqual(scene.config.base.locale, {});
-  assert.deepEqual(scene.config.locales(), { locale: { value: localized } });
+  assert.deepEqual(scene.config.locales(), {
+    locale: {
+      value: {
+        greeting: { en: 'Hello', uk: 'Привіт' },
+        state: { message: { en: 'Ready', uk: 'Готово' } },
+      },
+    },
+  });
+  assert.equal(scene_Config_Schema.safeParse(config).success, true);
+  assert.equal(
+    scene_Props_Schema.safeParse({
+      ...config,
+      locale: {
+        value: {
+          character: 'hero',
+          greeting: 'Hello',
+          state: { emotion: 'happy', message: 'Ready' },
+        },
+      },
+    }).success,
+    true,
+  );
+  assert.equal(
+    scene_Config_Schema.safeParse({
+      ...config,
+      locale: { value: { greeting: 42 } },
+    }).success,
+    false,
+  );
 });
