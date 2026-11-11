@@ -79,7 +79,7 @@ export const defineMarkdown = <const Slug extends string>(
       ? { ...config.locale, value: readMarkdownFiles(config.files) }
       : (config as MarkdownInlineConfig<Slug>).locale;
 
-  const resolved: ContentBlock_Markdown_Config = {
+  const resolved: ContentBlock_Markdown_Config & { slug: Slug } = {
     id: config.id,
     slug: config.slug,
     type: config.type,

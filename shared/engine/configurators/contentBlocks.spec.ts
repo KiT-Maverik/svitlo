@@ -515,7 +515,7 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
       checkpoint.config.validate({
         ...config,
         content: { items: { whatIsLight: false }, order: ['whatIsLight'] },
-      }),
+      } as unknown as typeof config),
     error =>
       error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.message.includes('reserved for overrides')),

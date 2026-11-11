@@ -156,7 +156,9 @@ export const defineCheckpoint = <
     locale: onlyStrings(locale),
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
-  const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};
+  const overrides: Omit<DeepPartial<ContentBlock_Checkpoint_Config>, 'content'> & {
+    content?: { items?: Record<string, CheckpointItem | false>; order?: string[] };
+  } = {};
   const currentOrder = () => (overrides.content?.order ?? content.order) as string[];
 
   return {

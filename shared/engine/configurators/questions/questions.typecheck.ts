@@ -65,36 +65,36 @@ const blanks = defineFillBlanksWithText({
   locale: { slots: [{ selector: 'x', correctAnswers: ['yes'] }], placeholder: 'Fill' },
 });
 
-type OneSlug = Expect<Equal<typeof one.config.base.slug, 'questionOne'>>;
-type MultipleSlug = Expect<Equal<typeof multiple.config.base.slug, 'questionOne'>>;
-type MatchSlug = Expect<Equal<typeof matched.config.base.slug, 'questionOne'>>;
-type TextSlug = Expect<Equal<typeof text.config.base.slug, 'questionOne'>>;
-type NumberSlug = Expect<Equal<typeof number.config.base.slug, 'questionOne'>>;
-type OrderSlug = Expect<Equal<typeof order.config.base.slug, 'questionOne'>>;
-type BuildSlug = Expect<Equal<typeof build.config.base.slug, 'questionOne'>>;
-type BlocksSlug = Expect<Equal<typeof blocks.config.base.slug, 'questionOne'>>;
-type BlanksSlug = Expect<Equal<typeof blanks.config.base.slug, 'questionOne'>>;
+type OneSlug = Expect<Equal<typeof one.slug, 'questionOne'>>;
+type MultipleSlug = Expect<Equal<typeof multiple.slug, 'questionOne'>>;
+type MatchSlug = Expect<Equal<typeof matched.slug, 'questionOne'>>;
+type TextSlug = Expect<Equal<typeof text.slug, 'questionOne'>>;
+type NumberSlug = Expect<Equal<typeof number.slug, 'questionOne'>>;
+type OrderSlug = Expect<Equal<typeof order.slug, 'questionOne'>>;
+type BuildSlug = Expect<Equal<typeof build.slug, 'questionOne'>>;
+type BlocksSlug = Expect<Equal<typeof blocks.slug, 'questionOne'>>;
+type BlanksSlug = Expect<Equal<typeof blanks.slug, 'questionOne'>>;
 type OneType = Expect<Equal<typeof one.type, 'selectOneAnswer'>>;
 type AnswerBlock = Expect<Equal<typeof one.content.answers.correct.yes, typeof block>>;
 type PromptBlock = Expect<Equal<(typeof order.content.question)[0], typeof block>>;
 
-// @ts-expect-error A raw ContentBlock config is not a nested configurator.
 defineSelectOneAnswer({
   ...common,
   type: 'selectOneAnswer',
+  // @ts-expect-error A raw authored ContentBlock is not a nested configurator.
   content: { question: [{ id, type: 'text', slug: 'raw', params: {}, locale: { value: 'raw' } }], answers },
 });
-// @ts-expect-error Number question answers must be numeric.
 defineAnswerWithNumber({
   ...common,
   type: 'answerWithNumber',
+  // @ts-expect-error Number question answers must be numeric.
   params: { ...params, correctAnswers: ['2'] },
   locale: { placeholder: 'Number' },
 });
-// @ts-expect-error Assessment Methods are known slugs.
 defineSelectOneAnswer({
   ...common,
   type: 'selectOneAnswer',
+  // @ts-expect-error Assessment Methods are known slugs.
   params: { ...params, assessmentMethod: 'unknown' },
   content: { ...common.content, answers },
 });
