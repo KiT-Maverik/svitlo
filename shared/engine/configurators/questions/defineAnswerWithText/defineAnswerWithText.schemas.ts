@@ -1,20 +1,23 @@
 import { z } from 'zod';
+import type { Configurator_Mode } from '../../configurator.schemas';
+import { addUnifiedLocale } from '../../_shared__configurators';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
+import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
+import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
 
-import { createQuestionFields, questionBlockSwitch, questionLocalizationSwitch } from '../question.schemas';
+const questionBase = createQuestionBaseSchema('answerWithText');
+const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
+  correctAnswers: z.array(localizationSwitch[mode]),
+  placeholder: localizationSwitch[mode],
+});
 
-function createAnswerWithTextSchema<Mode extends keyof typeof questionBlockSwitch>(mode: Mode) {
-  const child = questionBlockSwitch[mode];
-  const localized = questionLocalizationSwitch[mode];
+/** The schema validates Question metadata; child blocks own their validation. */
+export const answerWithText_Config_Schema = questionBase.extend(addUnifiedLocale(locale('config')));
+export type Question_AnswerWithText_Config = z.infer<typeof answerWithText_Config_Schema> & {
+  content: QuestionContent<ContentBlock_Configurator>;
+};
 
-  return z.strictObject({
-    ...createQuestionFields('answerWithText', mode),
-    correctAnswers: z.array(localized),
-    placeholder: localized,
-  });
-}
-
-export const answerWithText_Config_Schema = createAnswerWithTextSchema('config');
-export type Question_AnswerWithText_Config = z.infer<typeof answerWithText_Config_Schema>;
-
-export const answerWithText_Props_Schema = createAnswerWithTextSchema('props');
-export type Question_AnswerWithText_Props = z.infer<typeof answerWithText_Props_Schema>;
+export const answerWithText_Props_Schema = questionBase.extend(addUnifiedLocale(locale('props')));
+export type Question_AnswerWithText_Props = z.infer<typeof answerWithText_Props_Schema> & {
+  content: QuestionContent<ContentBlock_Props>;
+};

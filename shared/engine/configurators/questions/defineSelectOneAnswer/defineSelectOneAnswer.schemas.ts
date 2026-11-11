@@ -1,22 +1,29 @@
 import { z } from 'zod';
+import { addUnifiedLocale } from '../../_shared__configurators';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
+import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
 
-import { createQuestionFields, questionBlockSwitch, questionLocalizationSwitch } from '../question.schemas';
+const questionBase = createQuestionBaseSchema('selectOneAnswer');
 
-function createSelectOneAnswerSchema<Mode extends keyof typeof questionBlockSwitch>(mode: Mode) {
-  const child = questionBlockSwitch[mode];
+/** The schema validates Question metadata; child blocks own their validation. */
+export const selectOneAnswer_Config_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_SelectOneAnswer_Config = z.infer<typeof selectOneAnswer_Config_Schema> & {
+  content: QuestionContent<ContentBlock_Configurator> & {
+    answers: {
+      correct: Record<string, ContentBlock_Configurator>;
+      incorrect: Record<string, ContentBlock_Configurator>;
+      distractors: Record<string, ContentBlock_Configurator>;
+    };
+  };
+};
 
-  return z.strictObject({
-    ...createQuestionFields('selectOneAnswer', mode),
-    answers: z.strictObject({
-      correct: z.record(z.string(), child),
-      incorrect: z.record(z.string(), child),
-      distractors: z.record(z.string(), child),
-    }),
-  });
-}
-
-export const selectOneAnswer_Config_Schema = createSelectOneAnswerSchema('config');
-export type Question_SelectOneAnswer_Config = z.infer<typeof selectOneAnswer_Config_Schema>;
-
-export const selectOneAnswer_Props_Schema = createSelectOneAnswerSchema('props');
-export type Question_SelectOneAnswer_Props = z.infer<typeof selectOneAnswer_Props_Schema>;
+export const selectOneAnswer_Props_Schema = questionBase.extend(addUnifiedLocale({}));
+export type Question_SelectOneAnswer_Props = z.infer<typeof selectOneAnswer_Props_Schema> & {
+  content: QuestionContent<ContentBlock_Props> & {
+    answers: {
+      correct: Record<string, ContentBlock_Props>;
+      incorrect: Record<string, ContentBlock_Props>;
+      distractors: Record<string, ContentBlock_Props>;
+    };
+  };
+};
