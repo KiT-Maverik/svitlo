@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import {
   contentBlockConfigurator_Schema,
-  localizationSwitch,
+  contentBlockLocalizationSwitch as localizationSwitch,
   contentBlockResolved_Schema,
 } from '../../contentBlocks';
 import { createSectionMetaSchema } from '../section.schemas';
