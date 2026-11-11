@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { addUnifiedLocale } from '../../_shared';
+import { addUnifiedLocale } from '../../_shared__configurators';
 
 const contentBlockBase = createContentBlockBaseSchema('carousel');
 

@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { addUnifiedLocale } from '../../_shared';
+import { addUnifiedLocale } from '../../_shared__configurators';
 import type { ContentBlock_Audio_Configurator, ContentBlock_Audio_Props } from '../defineAudio';
 import type { ContentBlock_Carousel_Configurator, ContentBlock_Carousel_Props } from '../defineCarousel';
 import type { ContentBlock_Code_Configurator, ContentBlock_Code_Props } from '../defineCode';
