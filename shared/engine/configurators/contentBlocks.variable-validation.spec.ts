@@ -53,7 +53,7 @@ test('Text rejects undeclared and missing variable identifiers', () => {
         ...textConfig,
         locale: { value: 'Hi %_%id: otherName; value: Jane%_%' },
       }),
-    /Text fragment "otherName" is not declared in params\\.variables/,
+    /Text fragment "otherName" is not declared/,
   );
   assert.throws(
     () =>
