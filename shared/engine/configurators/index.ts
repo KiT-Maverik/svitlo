@@ -9,4 +9,4 @@ export * from './skills';
 export * from './assessmentMethods';
 export * from './flashcards';
 
-export { configuratorArrayToSlugMap } from './_shared';
+export { configuratorArrayToSlugMap } from './configuratorArrayToSlugMap';

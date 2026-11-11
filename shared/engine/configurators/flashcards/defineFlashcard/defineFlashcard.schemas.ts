@@ -1,9 +1,9 @@
 import { z } from 'zod';
 import {
   contentBlockConfigurator_Schema,
-  localizationSwitch,
+  contentBlockLocalizationSwitch as localizationSwitch,
   contentBlockResolved_Schema,
-} from '../../contentBlocks/_shared';
+} from '../../contentBlocks';
 
 export const flashcardRelationshipTypes = [
   'reverse',

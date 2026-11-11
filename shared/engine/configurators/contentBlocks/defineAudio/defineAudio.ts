@@ -1,6 +1,6 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings } from '../../_shared';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
 import {
   audio_Config_Schema,

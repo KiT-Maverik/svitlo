@@ -1,5 +1,5 @@
-import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
-import { createSectionConfigurator } from '../_shared';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
+import { createSectionConfigurator } from '../_shared__sections';
 import { flashcardsSection_Config_Schema, type FlashcardsSection_Config } from './defineFlashcardsSection.schemas';
 
 /**

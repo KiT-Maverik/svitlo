@@ -1,8 +1,8 @@
 import type { DeepPartial } from '#types';
 import type { z } from 'zod';
-import { onlyLocales, onlyStrings, createOrderedConfiguratorCollection } from '../../_shared';
-import { contentBlockTypes } from '../../contentBlocks/_shared';
-import type { ContentBlock_Configurator } from '../../contentBlocks/contentBlock.types';
+import { onlyLocales, onlyStrings, createOrderedConfiguratorCollection } from '../../_shared__configurators';
+import { contentBlockTypes } from '../../contentBlocks';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 
 type SectionInput = {
   readonly id: string;

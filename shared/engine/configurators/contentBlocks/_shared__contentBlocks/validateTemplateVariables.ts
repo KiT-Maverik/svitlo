@@ -2,11 +2,7 @@ const delimiter = '%_%';
 const upperSnakeCase = /^[A-Z][A-Z0-9_]*$/;
 
 /** Check a Code/Markdown source against its declared replacement identifiers. */
-export function validateTemplateVariables(
-  source: string,
-  declared: ReadonlySet<string>,
-  path: string,
-): string[] {
+export function validateTemplateVariables(source: string, declared: ReadonlySet<string>, path: string): string[] {
   const errors: string[] = [];
   const found = new Set<string>();
   const parts = source.split(delimiter);

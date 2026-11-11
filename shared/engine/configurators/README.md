@@ -2,6 +2,8 @@
 
 `configurators/` houses the `define*` authoring factories and Zod-backed schemas. The former `definitions/` directory has been folded into this directory. Legacy Course creators live separately in `configurators_old/`.
 
+Private helper directories follow `_shared__<owningDirectory>` (for example `_shared__configurators` or `_shared__contentBlocks`) and are imported **only inside their owning directory**. Shared contracts needed by other groups belong in public `*.constants.ts`, `*.types.ts` or `*.schemas.ts` files, exported through the group's `index.ts`. Public indexes must not re-export a private helper directory.
+
 The new Skill, SkillGroup, SkillDomain and AssessmentMethod factories intentionally use a minimal shape:
 
 - `config.base` — non-localized fields such as `id`, `slug` and methodological description.

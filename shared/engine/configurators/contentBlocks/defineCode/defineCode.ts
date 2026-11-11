@@ -1,6 +1,6 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings } from '../../_shared';
+import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 
 import { code_Config_Schema, type ContentBlock_Code_Config, type ContentBlock_Code_Locale } from './defineCode.schemas';
 import { validateCodeVariables } from './validateCodeVariables';
