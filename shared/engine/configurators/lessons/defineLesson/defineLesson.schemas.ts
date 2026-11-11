@@ -2,20 +2,11 @@ import { z } from 'zod';
 
 import { languageCode_Schema } from '#schemas';
 import { localizationSwitch } from '../../contentBlocks';
+import { questionTypes as lessonQuestionTypes } from '../../questions';
 import { flashcardConfigurator_Schema } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
 import { sectionConfigurator_Schema } from '../../sections/section.schemas';
 
-export const lessonQuestionTypes = [
-  'selectOneAnswer',
-  'selectMultipleAnswers',
-  'matchBlocks',
-  'answerWithText',
-  'answerWithNumber',
-  'orderSequence',
-  'buildAnswerWithBlocks',
-  'fillBlanksWithBlocks',
-  'fillBlanksWithText',
-] as const;
+export { lessonQuestionTypes };
 export type Lesson_Question_Type = (typeof lessonQuestionTypes)[number];
 
 /**
