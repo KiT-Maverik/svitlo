@@ -14,39 +14,8 @@ const validate = (config: ContentBlock_Scene_Config) => {
 
 /**
  * Define a Scene with invariant strings and field-level localized text.
- *
- * Keep the authored value in a local constant, then derive the Scene component's
- * resolved (single-language) value type with Engine's `ResolveLocale` utility.
- *
- * @example
- * ```ts
- * import { defineScene, type ResolveLocale } from '@svitlo/engine';
- *
- * const introductionValue = {
- *   character: 'hero',
- *   greeting: { en: 'Hello!', uk: 'Привіт!' },
- *   dialog: {
- *     emotion: 'happy',
- *     message: { en: 'Ready?', uk: 'Готовий?' },
- *   },
- * } as const;
- *
- * const introductionScene = defineScene({
- *   id: sceneId,
- *   slug: 'introduction',
- *   type: 'scene',
- *   params: {},
- *   locale: { value: introductionValue },
- * });
- *
- * type IntroductionSceneValue = ResolveLocale<typeof introductionValue>;
- *
- * // The Scene component receives `value: IntroductionSceneValue` after
- * // resource assembly and language selection.
- * ```
- *
- * `ResolveLocale` is type-only. The existing publisher assembles the actual
- * localized values and must verify that required translations are present.
+ * Derive the component's single-language value type with `ResolveLocale<typeof value>`.
+ * Runtime localization and translation completeness are handled by publication.
  */
 export const defineScene = <const Slug extends string>(
   config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug },
