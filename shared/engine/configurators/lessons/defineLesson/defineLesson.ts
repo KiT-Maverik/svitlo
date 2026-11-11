@@ -6,6 +6,10 @@ import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/de
 import type { Section_Configurator } from '../../sections/section.types';
 import { lesson_Config_Schema, type Lesson_Config } from './defineLesson.schemas';
 
+const validate = (config: Lesson_Config) => {
+  lesson_Config_Schema.parse(config);
+};
+
 export function defineLesson<
   const Slug extends string,
   const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],
@@ -21,7 +25,7 @@ export function defineLesson<
     parameters: Omit<Lesson_Config['parameters'], 'languages'> & { languages: Languages };
   },
 ) {
-  lesson_Config_Schema.parse(config);
+  validate(config);
 
   const { type, id, slug, title, flashcards, sections, skills, parameters, questions, events } = config;
   const localeEntries = { title } as const;
@@ -35,8 +39,12 @@ export function defineLesson<
   } satisfies DeepPartial<Lesson_Config>;
 
   return {
+    id,
+    slug,
+    type,
     config: {
       base,
+      validate,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Lesson_Config>,
     },
     sections,

@@ -8,6 +8,10 @@ import type { Chapter_Configurator } from '../defineChapter/defineChapter';
 import type { Module_Configurator } from '../defineModule/defineModule';
 import { course_Config_Schema, type Course_Config } from './defineCourse.schemas';
 
+const validate = (config: Course_Config) => {
+  course_Config_Schema.parse(config);
+};
+
 export function defineCourse<
   const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],
   const Content extends readonly (
@@ -19,7 +23,7 @@ export function defineCourse<
     content: Content;
   },
 ) {
-  course_Config_Schema.parse(config);
+  validate(config);
   const { type, id, title, description, scenarioMode, prerequisites, parameters, content } = config;
   const { text: prerequisiteText, ...invariantPrerequisites } = prerequisites ?? {};
 
@@ -36,8 +40,11 @@ export function defineCourse<
   } satisfies DeepPartial<Course_Config>;
 
   return {
+    id,
+    type,
     config: {
       base,
+      validate,
       locales: () => onlyLocales(localeEntries) satisfies DeepPartial<Course_Config>,
     },
     title,
