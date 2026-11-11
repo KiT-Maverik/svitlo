@@ -6,11 +6,7 @@ import {
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import {
-  chapter_Config_Schema,
-  type Chapter_Config,
-  type Chapter_Locale,
-} from './defineChapter.schemas';
+import { chapter_Config_Schema, type Chapter_Config, type Chapter_Locale } from './defineChapter.schemas';
 
 const allowedChildren = ['lesson'] as const;
 

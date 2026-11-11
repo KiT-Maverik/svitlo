@@ -19,15 +19,26 @@ const lesson = defineLesson({
   flashcards: [],
 });
 const chapter = defineChapter({
-  id, type: 'chapter', slug: 'chapter', params: {}, locale: { title: 'Chapter' },
+  id,
+  type: 'chapter',
+  slug: 'chapter',
+  params: {},
+  locale: { title: 'Chapter' },
   content: { items: { lesson }, order: ['lesson'] },
 });
 const module = defineModule({
-  id, type: 'module', slug: 'module', params: {}, locale: { title: 'Module' },
+  id,
+  type: 'module',
+  slug: 'module',
+  params: {},
+  locale: { title: 'Module' },
   content: { items: { chapter }, order: ['chapter'] },
 });
 const course = defineCourse({
-  id, type: 'course', slug: 'course', params: { languages: ['en', 'uk'] as const },
+  id,
+  type: 'course',
+  slug: 'course',
+  params: { languages: ['en', 'uk'] as const },
   locale: { title: 'Course', description: 'Introduction' },
   content: { items: { module, chapter, lesson }, order: ['module', 'chapter', 'lesson'] },
 });
@@ -39,11 +50,32 @@ type NestedKind = Expect<Equal<typeof course.content.items.module.type, 'module'
 type ExactChapter = Expect<Equal<typeof module.content.items.chapter, typeof chapter>>;
 
 // @ts-expect-error A Chapter cannot contain Modules.
-defineChapter({ id, type: 'chapter', slug: 'invalid', params: {}, locale: { title: 'Invalid' }, content: { items: { module }, order: ['module'] } });
+defineChapter({
+  id,
+  type: 'chapter',
+  slug: 'invalid',
+  params: {},
+  locale: { title: 'Invalid' },
+  content: { items: { module }, order: ['module'] },
+});
 // @ts-expect-error A Module cannot contain Modules.
-defineModule({ id, type: 'module', slug: 'invalid', params: {}, locale: { title: 'Invalid' }, content: { items: { module }, order: ['module'] } });
+defineModule({
+  id,
+  type: 'module',
+  slug: 'invalid',
+  params: {},
+  locale: { title: 'Invalid' },
+  content: { items: { module }, order: ['module'] },
+});
 // @ts-expect-error Course locale must contain description.
-defineCourse({ id, type: 'course', slug: 'invalid', params: { languages: ['en'] }, locale: { title: 'Course' }, content: { items: {}, order: [] } });
+defineCourse({
+  id,
+  type: 'course',
+  slug: 'invalid',
+  params: { languages: ['en'] },
+  locale: { title: 'Course' },
+  content: { items: {}, order: [] },
+});
 
 void course;
 void (null as unknown as CourseSlug);

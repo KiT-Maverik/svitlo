@@ -111,7 +111,12 @@ test('Parent validators never call nested child validators', () => {
   const course = defineCourse(courseInput);
   const brokenChild = {
     ...module,
-    config: { ...module.config, validate: () => { throw new Error('Child validator was called'); } },
+    config: {
+      ...module.config,
+      validate: () => {
+        throw new Error('Child validator was called');
+      },
+    },
   };
   assert.doesNotThrow(() =>
     course.config.validate({

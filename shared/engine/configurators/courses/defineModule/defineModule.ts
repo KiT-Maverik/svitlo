@@ -30,10 +30,7 @@ const validate = (config: Module_Config): void => {
 };
 
 /** Define a Module of Chapters and Lessons with an explicit content order. */
-export const defineModule = <
-  const Slug extends string,
-  const Items extends Record<string, Module_Child>,
->(
+export const defineModule = <const Slug extends string, const Items extends Record<string, Module_Child>>(
   config: Omit<Module_Config, 'slug' | 'content'> & {
     slug: Slug;
     content: { items: Items; order: string[] };
