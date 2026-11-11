@@ -1,9 +1,9 @@
 import type { DeepPartial } from '#types';
 
 import { onlyLocales, onlyStrings } from '../../_utils';
-import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
-import type { Chapter_Configurator } from '../defineChapter/defineChapter';
-import type { Episode_Configurator } from '../defineEpisode/defineEpisode';
+import type { Lesson_Configurator } from '../../lessons/defineLesson';
+import type { Chapter_Configurator } from '../defineChapter';
+import type { Episode_Configurator } from '../defineEpisode';
 import { module_Config_Schema, type Module_Config } from './defineModule.schemas';
 
 const validate = (config: unknown) => {
