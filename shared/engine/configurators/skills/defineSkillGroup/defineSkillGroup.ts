@@ -34,7 +34,7 @@ export function defineSkillGroup<const Slug extends string, const Skills extends
           ...(description.frontend === undefined ? {} : { description: { frontend: description.frontend } }),
         }) satisfies DeepPartial<SkillGroup_Config>,
     },
-    skill: configuratorArrayToSluggedObject(skills),
+    skill: configuratorArrayToSlugMap(skills),
   };
 }
 

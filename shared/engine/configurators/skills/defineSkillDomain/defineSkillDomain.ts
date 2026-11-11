@@ -43,8 +43,8 @@ export function defineSkillDomain<
           ...(description.frontend === undefined ? {} : { description: { frontend: description.frontend } }),
         }) satisfies DeepPartial<SkillDomain_Config>,
     },
-    group: configuratorArrayToSluggedObject(groups ?? []),
-    skill: configuratorArrayToSluggedObject(skills ?? []),
+    group: configuratorArrayToSlugMap(groups ?? []),
+    skill: configuratorArrayToSlugMap(skills ?? []),
   };
 }
 

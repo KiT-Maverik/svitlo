@@ -27,8 +27,9 @@ export function validateOrderedKeys(
     return [{ check: 'collection', path, message: 'Expected an object with items and order' }];
   }
 
+  const items = value.items;
   const issues: OrderedKeysValidationIssue[] = [];
-  const keys = Object.keys(value.items);
+  const keys = Object.keys(items);
   if (requireNonEmpty && !keys.length) {
     issues.push({ check: 'collection', path: path + '.items', message: 'At least one item is required' });
   }
@@ -40,7 +41,7 @@ export function validateOrderedKeys(
   }
 
   const seen = new Set<string>();
-  const active = keys.filter(key => !allowDisabled || value.items[key] !== false);
+  const active = keys.filter(key => !allowDisabled || items[key] !== false);
   const activeSet = new Set(active);
   for (const [index, slug] of value.order.entries()) {
     const at = path + '.order[' + index + ']';
