@@ -39,6 +39,20 @@ const validate = (config: Flashcard_Config): void => {
     const issues = validateOrderedKeys(collection, { path: 'parameters.' + name });
     if (issues.length) throw new Error('Invalid Flashcard ' + name + ': ' + issues.map(issue => issue.message).join('; '));
   }
+
+  const builtInFlags = new Set<string>();
+  for (const flag of Object.values(config.parameters.flags.items)) {
+    if (flag.type === 'custom') continue;
+    if (builtInFlags.has(flag.type)) throw new Error('Duplicate built-in Flashcard flag: ' + flag.type);
+    builtInFlags.add(flag.type);
+  }
+  const relationIds = new Set<string>();
+  for (const relationship of Object.values(config.parameters.relationships?.items ?? {})) {
+    if (relationIds.has(relationship.relationshipId)) {
+      throw new Error('Duplicate Flashcard relationship ID: ' + relationship.relationshipId);
+    }
+    relationIds.add(relationship.relationshipId);
+  }
 };
 
 /**
