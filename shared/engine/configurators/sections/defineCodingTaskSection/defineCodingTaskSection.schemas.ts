@@ -1,7 +1,10 @@
-import { createRegularSectionSchema } from '../section.schemas';
+import { z } from 'zod';
+import { createSectionBaseSchema } from '../_shared__sections';
+import type { Section_Config_Content, Section_Props_Content } from '../_shared__sections/section.types';
 
-export const codingTaskSection_Config_Schema = createRegularSectionSchema('codingTask', 'config');
-export type CodingTaskSection_Config = import('zod').z.infer<typeof codingTaskSection_Config_Schema>;
+const schemas = createSectionBaseSchema('codingTask');
+export const codingTaskSection_Config_Schema = schemas.config;
+export type CodingTaskSection_Config = z.infer<typeof codingTaskSection_Config_Schema> & Section_Config_Content;
 
-export const codingTaskSection_Props_Schema = createRegularSectionSchema('codingTask', 'props');
-export type CodingTaskSection_Props = import('zod').z.infer<typeof codingTaskSection_Props_Schema>;
+export const codingTaskSection_Props_Schema = schemas.props;
+export type CodingTaskSection_Props = z.infer<typeof codingTaskSection_Props_Schema> & Section_Props_Content;
