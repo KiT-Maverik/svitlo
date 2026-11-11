@@ -3,14 +3,20 @@ import test from 'node:test';
 import { validateOrderedKeys } from './validateOrderedKeys.utils';
 
 test('validates order for ordinary question items, not only configurators', () => {
-  assert.deepEqual(validateOrderedKeys({ items: { first: { answer: {} }, second: 5 }, order: ['second', 'first'] }), []);
+  assert.deepEqual(
+    validateOrderedKeys({ items: { first: { answer: {} }, second: 5 }, order: ['second', 'first'] }),
+    [],
+  );
 });
 
 test('reports invalid keys, missing, repeated, and unknown order slugs', () => {
-  const issues = validateOrderedKeys({
-    items: { first: {}, bad_slug: {} },
-    order: ['first', 'first', 'missing'],
-  }, { path: 'questions' });
+  const issues = validateOrderedKeys(
+    {
+      items: { first: {}, bad_slug: {} },
+      order: ['first', 'first', 'missing'],
+    },
+    { path: 'questions' },
+  );
   assert.ok(issues.some(issue => issue.check === 'slug' && issue.path === 'questions.items.bad_slug'));
   assert.ok(issues.some(issue => issue.message === 'Duplicate slug: first'));
   assert.ok(issues.some(issue => issue.message === 'Unknown slug: missing'));

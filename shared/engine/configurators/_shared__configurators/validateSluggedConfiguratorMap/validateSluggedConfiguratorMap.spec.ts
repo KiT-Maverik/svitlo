@@ -7,7 +7,9 @@ const good = {
   type: 'text',
   config: {
     locales: () => ({}),
-    validate: () => { throw new Error('Do not invoke child validation'); },
+    validate: () => {
+      throw new Error('Do not invoke child validation');
+    },
   },
 };
 
@@ -16,13 +18,19 @@ test('accepts matching keyed configurators without revalidating children', () =>
 });
 
 test('reports key/slug mismatch, unsupported type and raw authoring data', () => {
-  const issues = validateSluggedConfiguratorMap({
-    wrongKey: good,
-    unsupported: { ...good, slug: 'unsupported', type: 'checkpoint' },
-    notConfigurator: { slug: 'notConfigurator', type: 'text' },
-  }, ['text'], { path: 'answer.items', itemLabel: 'answer' });
+  const issues = validateSluggedConfiguratorMap(
+    {
+      wrongKey: good,
+      unsupported: { ...good, slug: 'unsupported', type: 'checkpoint' },
+      notConfigurator: { slug: 'notConfigurator', type: 'text' },
+    },
+    ['text'],
+    { path: 'answer.items', itemLabel: 'answer' },
+  );
   assert.ok(issues.some(issue => issue.check === 'slug' && issue.path === 'answer.items.wrongKey'));
-  assert.ok(issues.some(issue => issue.check === 'item' && issue.message.includes('Unsupported answer type: checkpoint')));
+  assert.ok(
+    issues.some(issue => issue.check === 'item' && issue.message.includes('Unsupported answer type: checkpoint')),
+  );
   assert.ok(issues.some(issue => issue.check === 'item' && issue.path === 'answer.items.notConfigurator'));
 });
 

@@ -1,6 +1,11 @@
 import type { DeepPartial } from '#types';
 
-import { onlyLocales, onlyStrings, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
+import {
+  onlyLocales,
+  onlyStrings,
+  validateOrderedKeys,
+  validateSluggedConfiguratorMap,
+} from '../../_shared__configurators';
 import { camelCase_Schema } from '#schemas';
 import { contentBlockTypes } from '../contentBlock.constants';
 import {

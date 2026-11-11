@@ -173,7 +173,10 @@ test('Code checks placeholder integrity even without configured variables', () =
   };
   const code = defineCode(config);
   assert.throws(() => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%BROKEN' } }));
-  assert.throws(() => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%UNKNOWN%_%' } }), /not declared/);
+  assert.throws(
+    () => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%UNKNOWN%_%' } }),
+    /not declared/,
+  );
 });
 
 test('Code validates static source text during definition', () => {

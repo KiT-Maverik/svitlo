@@ -36,14 +36,24 @@ export function validateSluggedConfiguratorMap(
     }
     if (child === false && allowDisabled) continue;
     if (!isRecord(child)) {
-      issues.push({ check: 'item', path: at, message: 'Expected a matching ' + itemLabel + ' configurator at ' + slug });
+      issues.push({
+        check: 'item',
+        path: at,
+        message: 'Expected a matching ' + itemLabel + ' configurator at ' + slug,
+      });
       continue;
     }
     if (child.slug !== slug) {
       issues.push({
         check: 'slug',
         path: at,
-        message: 'Expected a matching ' + itemLabel + ' configurator at ' + slug + ': key does not match configurator slug ' + String(child.slug),
+        message:
+          'Expected a matching ' +
+          itemLabel +
+          ' configurator at ' +
+          slug +
+          ': key does not match configurator slug ' +
+          String(child.slug),
       });
     }
     if (typeof child.type !== 'string' || !allowedTypes.includes(child.type)) {
