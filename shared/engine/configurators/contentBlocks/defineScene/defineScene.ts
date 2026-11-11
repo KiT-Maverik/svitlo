@@ -31,8 +31,6 @@ const validate = (config: ContentBlock_Scene_Config) => {
  *   },
  * } as const;
  *
- * type IntroductionSceneValue = ResolveLocale<typeof introductionValue>;
- *
  * const introductionScene = defineScene({
  *   id: sceneId,
  *   slug: 'introduction',
@@ -40,6 +38,8 @@ const validate = (config: ContentBlock_Scene_Config) => {
  *   params: {},
  *   locale: { value: introductionValue },
  * });
+ *
+ * type IntroductionSceneValue = ResolveLocale<typeof introductionValue>;
  *
  * // The Scene component receives `value: IntroductionSceneValue` after
  * // resource assembly and language selection.
