@@ -18,7 +18,9 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: contentBlockLocalizationSwitch[mode],
   navigationLabel: contentBlockLocalizationSwitch[mode],
 });
-export type ContentSection_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
+export type ContentSection_Locale<Mode extends Configurator_Mode> = z.infer<
+  z.ZodObject<ReturnType<typeof locale<Mode>>>
+>;
 
 export const contentSection_Config_Schema = sectionBase.extend(addUnifiedLocale(locale('config')));
 export type Content_Section_Config = z.infer<typeof contentSection_Config_Schema> & Section_Config_Content;
