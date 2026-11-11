@@ -3,41 +3,12 @@ import { z } from 'zod';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { contentBlockLocalizationSwitch, type ContentBlock_Configurator, type ContentBlock_Props } from '../../contentBlocks';
-
-export const flashcardRelationshipTypes = [
-  'reverse',
-  'equivalent',
-  'contrast',
-  'complementary',
-  'prerequisite',
-  'partOf',
-  'exampleOf',
-  'causes',
-  'precedes',
-] as const;
-export type Flashcard_Relationship_Type = (typeof flashcardRelationshipTypes)[number];
-
-export const flashcardRelationshipPositions = ['peer', 'source', 'target'] as const;
-export type Flashcard_Relationship_Position = (typeof flashcardRelationshipPositions)[number];
-
-export const flashcardFlagTypes = ['list', 'warning', 'acronym', 'custom'] as const;
-export type Flashcard_Flag_Type = (typeof flashcardFlagTypes)[number];
-
-export const flashcardFlagColors = ['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'] as const;
-export type Flashcard_Flag_Color = (typeof flashcardFlagColors)[number];
-
-export const flashcardFlagIcons = [
-  'list',
-  'warning',
-  'acronym',
-  'info',
-  'star',
-  'bookmark',
-  'lightbulb',
-  'code',
-  'check',
-] as const;
-export type Flashcard_Flag_Icon = (typeof flashcardFlagIcons)[number];
+import {
+  flashcardFlagColors,
+  flashcardFlagIcons,
+  flashcardRelationshipPositions,
+  flashcardRelationshipTypes
+} from "../flashcards.constants";
 
 const relationship_Schema = z.strictObject({
   relationshipId: z.string().min(1),
@@ -103,36 +74,3 @@ export const flashcard_Props_Schema = createFlashcardSchema('props');
 export type Flashcard_Props = z.infer<typeof flashcard_Props_Schema> & {
   content: Flashcard_Content<ContentBlock_Props>;
 };
-
-/** Check the configurator boundary without parsing or rebuilding its child ContentBlocks. */
-export const flashcardConfigurator_Schema = z.custom<{
-  readonly id: string;
-  readonly slug: string;
-  readonly type: 'flashcard';
-  readonly config: {
-    readonly base: { readonly id: string; readonly slug: string; readonly type: 'flashcard' };
-    readonly locales: () => unknown;
-  };
-}>(
-  value => {
-    if (value === null || typeof value !== 'object' || !('config' in value)) return false;
-    const candidate = value as Record<string, unknown>;
-    const config = candidate.config;
-    if (config === null || typeof config !== 'object' || !('base' in config) || !('locales' in config))
-      return false;
-    const base = config.base;
-    return (
-      typeof config.locales === 'function' &&
-      base !== null &&
-      typeof base === 'object' &&
-      'id' in base &&
-      'slug' in base &&
-      'type' in base &&
-      base.id === candidate.id &&
-      base.slug === candidate.slug &&
-      base.type === 'flashcard' &&
-      candidate.type === 'flashcard'
-    );
-  },
-  { message: 'Expected defineFlashcard configurator, not authored Flashcard data' },
-);

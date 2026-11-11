@@ -19,4 +19,4 @@ export function defineFlashcardsSection<
   return createSectionConfigurator(config, flashcardsSection_Config_Schema);
 }
 
-export type FlashcardsSection_Configurator = ReturnType<typeof defineFlashcardsSection>;
+export type Flashcards_Section_Configurator = ReturnType<typeof defineFlashcardsSection>;

@@ -3,11 +3,7 @@ import test from 'node:test';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineFlashcard } from './defineFlashcard';
-import {
-  flashcard_Config_Schema,
-  flashcard_Props_Schema,
-  flashcardConfigurator_Schema,
-} from './defineFlashcard.schemas';
+import { flashcard_Config_Schema, flashcard_Props_Schema } from './defineFlashcard.schemas';
 
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const front = defineText({
@@ -68,7 +64,6 @@ test('Flashcard separates identity, metadata, locales and ordered child blocks',
     parameters: { flags: { items: { acronym: { value: { en: 'ABC', uk: 'АБВ' } } } } },
   });
   assert.equal(flashcard_Config_Schema.safeParse(source).success, true);
-  assert.equal(flashcardConfigurator_Schema.safeParse(card).success, true);
   assert.equal(flashcard_Props_Schema.safeParse(source).success, false);
 });
 

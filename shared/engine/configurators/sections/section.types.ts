@@ -2,7 +2,7 @@ import type { ContentSection_Configurator, Content_Section_Props } from './defin
 import type { PracticeSection_Configurator, PracticeSection_Props } from './definePracticeSection';
 import type { CodingTaskSection_Configurator, CodingTaskSection_Props } from './defineCodingTaskSection';
 import type { LearningFlowSection_Configurator, LearningFlowSection_Props } from './defineLearningFlowSection';
-import type { FlashcardsSection_Configurator, FlashcardsSection_Props } from './defineFlashcardsSection';
+import type { Flashcards_Section_Configurator, FlashcardsSection_Props } from './defineFlashcardsSection';
 import type { QuizSection_Configurator, QuizSection_Props } from './defineQuizSection';
 
 export type Section_Configurator =
@@ -10,7 +10,7 @@ export type Section_Configurator =
   | PracticeSection_Configurator
   | CodingTaskSection_Configurator
   | LearningFlowSection_Configurator
-  | FlashcardsSection_Configurator
+  | Flashcards_Section_Configurator
   | QuizSection_Configurator;
 
 export type Section_Props =
