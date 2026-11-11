@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-import type { ContentBlock_Text_Configurator } from '../../contentBlocks/defineText/defineText';
-import type { ContentBlock_Markdown_Configurator } from '../../contentBlocks/defineMarkdown/defineMarkdown';
-import { contentBlockConfigurator_Schema } from '../../contentBlocks/_shared';
-
-export const courseHierarchyTypes = ['course', 'module', 'chapter', 'episode'] as const;
-export type CourseHierarchy_Type = (typeof courseHierarchyTypes)[number];
+import {
+  contentBlockConfigurator_Schema,
+  type ContentBlock_Text_Configurator,
+  type ContentBlock_Markdown_Configurator,
+} from '../../contentBlocks';
+import { type CourseHierarchy_Type } from '../course.constants';
 
 export const textConfigurator_Schema = z.custom<ContentBlock_Text_Configurator>(
   value =>
