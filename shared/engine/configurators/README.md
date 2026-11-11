@@ -1,6 +1,6 @@
 # Engine entity configurators
 
-`configurators/` houses the current entity-owned `define*` configurators and Zod-backed schemas. The obsolete `structured` / `Definition` compatibility layer has been removed. The separate `configurators_old/` Course publishers remain temporarily because Playground and the legacy Lesson publication tests still consume them; removing those publishers requires migrating those consumers first.
+`configurators/` houses the current entity-owned `define*` configurators and Zod-backed schemas. The obsolete `structured` / `Definition` compatibility layer and unused structural ContentBlock Zod guards have been removed. The separate `configurators_old/` Course publishers remain temporarily because Playground and the legacy Lesson publication tests still consume them; removing those publishers requires migrating those consumers first.
 
 Private helper directories follow `_shared__<owningDirectory>` (for example `_shared__configurators` or `_shared__contentBlocks`) and are imported **only inside their owning directory**. Shared contracts needed by other groups belong in public `*.constants.ts`, `*.types.ts` or `*.schemas.ts` files, exported through the group's `index.ts`. Public indexes must not re-export a private helper directory.
 
