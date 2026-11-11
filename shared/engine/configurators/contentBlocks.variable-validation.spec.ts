@@ -9,7 +9,7 @@ const textConfig: ContentBlock_Text_Config = {
   id: 'd20cb256-3a15-4ae2-924e-3f2d01ee937b',
   type: 'text',
   slug: 'exampleText',
-  params: { styling: [{ id: 'personName', applyStyle: ['variable'] }] },
+  params: { variables: { personName: { applyStyle: ['variable'] } } },
   locale: {
     value: {
       en: 'Hi %_%id: personName; value: Maria%_%!',
@@ -26,7 +26,7 @@ const codeConfig: ContentBlock_Code_Config = {
   locale: { variables: { USER_NAME: { en: 'Maria' } } },
 };
 
-test('Text validates all declared styling IDs in every provided locale', () => {
+test('Text validates all declared variable IDs in every provided locale', () => {
   const text = defineText(textConfig);
   assert.doesNotThrow(() => text.config.validate(textConfig));
   assert.doesNotThrow(() =>
@@ -45,7 +45,7 @@ test('Text validates all declared styling IDs in every provided locale', () => {
   );
 });
 
-test('Text rejects undeclared, duplicate and missing styling identifiers', () => {
+test('Text rejects undeclared and missing variable identifiers', () => {
   const text = defineText(textConfig);
   assert.throws(
     () =>
@@ -53,25 +53,24 @@ test('Text rejects undeclared, duplicate and missing styling identifiers', () =>
         ...textConfig,
         locale: { value: 'Hi %_%id: otherName; value: Jane%_%' },
       }),
-    /Text fragment "otherName" is not declared/,
+    /Text fragment "otherName" is not declared in params\\.variables/,
   );
   assert.throws(
     () =>
       text.config.validate({ ...textConfig, locale: { value: 'No marked fragments.' } }),
     /missing configured Text fragment "personName"/,
   );
+});
+
+test('Text variable names must be camelCase object keys', () => {
+  const text = defineText(textConfig);
+  assert.doesNotThrow(() => text.config.validate(textConfig));
   assert.throws(
-    () =>
-      text.config.validate({
-        ...textConfig,
-        params: {
-          styling: [
-            { id: 'personName', applyStyle: ['variable'] },
-            { id: 'personName', applyStyle: ['bold'] },
-          ],
-        },
-      }),
-    /Duplicate Text styling ID "personName"/,
+    () => text.config.validate({
+      ...textConfig,
+      params: { variables: { PERSON_NAME: { applyStyle: ['variable'] } } },
+    }),
+    /Invalid|invalid|regular expression/i,
   );
 });
 
@@ -93,7 +92,7 @@ test('Text rejects malformed marker syntax, empty values and non-camelCase IDs',
   }
 });
 
-test('Text skips fragment integrity checks when no styling is configured', () => {
+test('Text skips fragment integrity checks when no variables are configured', () => {
   assert.doesNotThrow(() =>
     defineText({
       id: textConfig.id,
