@@ -1,19 +1,17 @@
-import type { Question_Catalog } from '@svitlo/contracts/content';
-import type { HowLightMoves_Languages } from '../constants';
-import { airVacuumSpeed_Question_Data } from './airVacuumSpeed';
-import { fastestMedium_Question_Data } from './fastestMedium';
-import { lightRayDirection_Question_Data } from './lightRayDirection';
-import { lightSpeedInWater_Question_Data } from './lightSpeedInWater';
-import { lightTravelsStraight_Question_Data } from './lightTravelsStraight';
-import { opaqueObjectShadow_Question_Data } from './opaqueObjectShadow';
+import { airVacuumSpeed } from './airVacuumSpeed';
+import { fastestMedium } from './fastestMedium';
+import { lightRayDirection } from './lightRayDirection';
+import { lightSpeedInWater } from './lightSpeedInWater';
+import { lightTravelsStraight } from './lightTravelsStraight';
+import { opaqueObjectShadow } from './opaqueObjectShadow';
 
-export const howLightMoves_Questions = {
+export const howLightMovesQuestions = {
   selectOneAnswer: {
-    lightTravelsStraight: lightTravelsStraight_Question_Data,
-    lightRayDirection: lightRayDirection_Question_Data,
-    fastestMedium: fastestMedium_Question_Data,
-    lightSpeedInWater: lightSpeedInWater_Question_Data,
-    airVacuumSpeed: airVacuumSpeed_Question_Data,
-    opaqueObjectShadow: opaqueObjectShadow_Question_Data,
+    lightTravelsStraight,
+    lightRayDirection,
+    fastestMedium,
+    lightSpeedInWater,
+    airVacuumSpeed,
+    opaqueObjectShadow,
   },
-} satisfies Question_Catalog<'data', HowLightMoves_Languages>;
+};
