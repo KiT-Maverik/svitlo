@@ -191,8 +191,11 @@ export const defineCheckpoint = <
       locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => (overrides.locale = newLocale),
       content: {
         add: (itemSlug: string, item: CheckpointItem) => {
-          if (!camelCase.test(itemSlug) || Object.hasOwn(content.items, itemSlug) ||
-              Object.hasOwn(overrides.content?.items ?? {}, itemSlug)) {
+          if (
+            !camelCase.test(itemSlug) ||
+            Object.hasOwn(content.items, itemSlug) ||
+            Object.hasOwn(overrides.content?.items ?? {}, itemSlug)
+          ) {
             throw new Error(`Invalid or duplicate Checkpoint question slug: ${itemSlug}`);
           }
           const patch = (overrides.content ??= {});
@@ -214,8 +217,11 @@ export const defineCheckpoint = <
             .filter(([, item]) => item !== false)
             .map(([key]) => key);
           const ordered = new Set(slugs);
-          if (ordered.size !== active.length || slugs.length !== active.length ||
-              active.some(key => !ordered.has(key))) {
+          if (
+            ordered.size !== active.length ||
+            slugs.length !== active.length ||
+            active.some(key => !ordered.has(key))
+          ) {
             throw new Error('Checkpoint order must contain each active question slug exactly once');
           }
           (overrides.content ??= {}).order = [...slugs];
