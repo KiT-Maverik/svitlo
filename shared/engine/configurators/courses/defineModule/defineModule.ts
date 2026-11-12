@@ -253,7 +253,10 @@ export const defineModule = <
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
-      module_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+      module_Props_Schema.parse(mergeForValidation<Record<string, unknown>>(
+        result.base as Record<string, unknown>,
+        (result.locale?.[language] ?? {}) as Record<string, unknown>,
+      ));
     }
     return result;
   };
