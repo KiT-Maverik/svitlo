@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { deepStrict_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch, textVariables_Schema } from '../_shared__contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
@@ -11,16 +12,13 @@ const params = contentBlockBase.shape.params.extend({
   wrap: z
     .object({
       enabled: z.literal(true),
-      // MUI Typography props belong to the consuming app; Engine stays independent of MUI.
-      // The app validates this value, so Engine deliberately accepts it as unknown.
-      typographyProps: z.unknown().optional(),
+      // UI-specific MUI props are opaque to Engine, but must be JSON-safe.
+      typographyProps: z.record(z.string(), z.json()).optional(),
     })
     .optional(),
 });
 
-const textBase = contentBlockBase.extend({
-  params,
-});
+const textBase = contentBlockBase.extend({ params });
 
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   value: localizationSwitch[mode],
@@ -32,17 +30,16 @@ export type ContentBlock_Text_Locale<Mode extends Configurator_Mode> = z.infer<
 export const text_Config_Schema = textBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Text_Config = z.infer<typeof text_Config_Schema>;
 
-/** Validate Text override metadata strictly without changing the authored config schema. */
-export const text_Override_Config_Schema = text_Config_Schema
-  .extend({
-    params: text_Config_Schema.shape.params
-      .extend({
-        wrap: text_Config_Schema.shape.params.shape.wrap.unwrap().strict().optional(),
-      })
-      .strict(),
-    locale: text_Config_Schema.shape.locale.strict(),
-  })
-  .strict();
+/** Only configurable fields may be overridden; each nested object rejects unknown keys. */
+export const text_Override_Config_Schema = z.deepPartial(
+  deepStrict_Schema(
+    z.object({
+      params: text_Config_Schema.shape.params,
+      locale: text_Config_Schema.shape.locale,
+    }),
+  ),
+);
+export type ContentBlock_Text_Overrides = z.input<typeof text_Override_Config_Schema>;
 
 /** Required nonlocalized fields come from the Text base schema. */
 export type ContentBlock_Text_ResourceBase = z.infer<typeof textBase> & {
