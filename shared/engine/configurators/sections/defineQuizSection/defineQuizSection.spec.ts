@@ -33,8 +33,8 @@ test('Content Section rejects authored raw blocks and allows valid build overrid
     locale: { title: { en: 'Theory', uk: 'Теорія' }, navigationLabel: '1' },
     content: { items: { prompt }, order: ['prompt'] },
   });
-  assert.equal(section.build.props().base.slug, 'intro');
-  assert.deepEqual(section.build.overrides({ content: { order: ['prompt'] } }).base.content?.map(x => x.slug), ['prompt']);
+  assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.slug, 'intro');
+  assert.deepEqual(section.build.overrides({ content: { order: ['prompt'] } }, { languages: ['en', 'uk'] }).base.content?.map(x => x.slug), ['prompt']);
   assert.deepEqual(section.config.locales(), { locale: { title: { en: 'Theory', uk: 'Теорія' } } });
   assert.throws(() => defineContentSection({
     type: 'content', id: id('b3'), slug: 'bad', params: {},
@@ -50,12 +50,12 @@ test('Content Section rejects authored raw blocks and allows valid build overrid
 test('Quiz preserves named screen references and scoring semantics', () => {
   const quiz = makeQuiz();
   assert.equal(quiz.type, 'quiz');
-  assert.deepEqual(quiz.build.props().base.params.screen?.starting?.content, ['prompt']);
-  assert.equal(quiz.build.props().base.params.interaction.retries, 1);
-  assert.deepEqual(quiz.build.overrides({ params: { interaction: { retries: 2 } } }).base.params?.interaction, { retries: 2 });
+  assert.deepEqual(quiz.build.props({ languages: ['en', 'uk'] }).base.params.screen?.starting?.content, ['prompt']);
+  assert.equal(quiz.build.props({ languages: ['en', 'uk'] }).base.params.interaction.retries, 1);
+  assert.deepEqual(quiz.build.overrides({ params: { interaction: { retries: 2 } } }, { languages: ['en', 'uk'] }).base.params?.interaction, { retries: 2 });
   const overridden = quiz.build.overrides({
     content: { items: { prompt: { locale: { value: { uk: 'Читай далі' } } } } },
-  });
+  }, { languages: ['en', 'uk'] });
   const firstBlock = overridden.locale?.uk?.content?.[0];
   assert.equal(firstBlock?.type, 'text');
   assert.equal((firstBlock?.locale as { value?: string } | undefined)?.value, 'Читай далі');
@@ -67,10 +67,10 @@ test('Quiz preserves named screen references and scoring semantics', () => {
   }).success, false);
   assert.throws(() => makeQuiz().build.overrides({
     content: { items: { prompt: false }, order: [] },
-  }), /unknown ContentBlock/);
+  }, { languages: ['en', 'uk'] }), /unknown ContentBlock/);
   assert.throws(() => makeQuiz().build.overrides({
     params: { screen: { starting: { content: ['missing'] } } },
-  }), /unknown ContentBlock/);
+  }, { languages: ['en', 'uk'] }), /unknown ContentBlock/);
   assert.throws(() => defineQuizSection({
     type: 'quiz', id: id('b5'), slug: 'badQuiz',
     params: { ...quizParams, screen: { starting: { content: ['notPresent'] } } },
