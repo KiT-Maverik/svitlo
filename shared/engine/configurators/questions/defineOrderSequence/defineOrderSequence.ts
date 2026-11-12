@@ -8,6 +8,7 @@ import {
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
 } from '../_shared__questions';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   orderSequence_Config_Schema, orderSequence_Override_Config_Schema,
@@ -25,10 +26,14 @@ const validate = (candidate: Question_OrderSequence_Config): void => {
 };
 
 type ContentShape = Question_OrderSequence_Config['content'];
-export type Question_OrderSequence_Overrides<Content extends ContentShape = ContentShape> =
+export type Question_OrderSequence_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> =
   Question_OrderSequence_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content> & {
-      sequence?: OrderedBlockPatch<Content['sequence']['items']>;
+    content?: QuestionCommonPatch<Content, Added, Languages> & {
+      sequence?: OrderedBlockPatch<Content['sequence']['items'], Added, Languages>;
     };
   };
 
@@ -63,7 +68,7 @@ export const defineOrderSequence = <
   
   const extraContent = (
     source: Content,
-    patch?: NonNullable<Question_OrderSequence_Overrides<Content>['content']>['sequence'],
+    patch?: OrderedBlockPatch,
   ) => {
     const result = resolveBlockCollection(source.sequence, patch, 'content.sequence', true);
     const locale: Record<string, Record<string, unknown>> = {};
@@ -88,8 +93,8 @@ export const defineOrderSequence = <
     };
   };
 
-  const overrides = (
-    patch: Question_OrderSequence_Overrides<Content>,
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_OrderSequence_Overrides<Content, Added, Languages>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);
