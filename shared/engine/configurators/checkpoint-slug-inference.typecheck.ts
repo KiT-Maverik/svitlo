@@ -52,10 +52,36 @@ const checkpoint = defineCheckpoint({
 
 type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
 type CheckpointItemKeys = Expect<Equal<keyof typeof checkpoint.content.items, 'whatIsLight'>>;
-checkpoint.content.items.whatIsLight.question.assemble.overrides({ locale: { value: 'Updated question' } });
-checkpoint.content.items.whatIsLight.answer.items.answer.assemble.overrides({ locale: { value: 'Updated answer' } });
+checkpoint.content.items.whatIsLight.question.build.overrides({ locale: { value: 'Updated question' } });
+checkpoint.content.items.whatIsLight.answer.items.answer.build.overrides({ locale: { value: 'Updated answer' } });
 // @ts-expect-error Checkpoint item keys must be inferred literally.
 void checkpoint.content.items.unknown;
+
+const later = defineText({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d6e',
+  type: 'text',
+  slug: 'later',
+  params: {},
+  locale: { value: 'Later answer' },
+});
+item.build.overrides({
+  question: { locale: { value: { uk: 'Оновлене питання' } } },
+  answer: {
+    items: { answer: { locale: { value: 'Updated' } } },
+    additionalItems: configuratorArrayToSlugMap([later]),
+    order: ['answer', 'later'],
+  },
+});
+// @ts-expect-error Only existing answer keys can be patched.
+item.build.overrides({ answer: { items: { unknown: { locale: { value: 'Unknown' } } } } });
+// @ts-expect-error The mandatory question cannot be disabled.
+item.build.overrides({ question: { params: { disabled: true } } });
+// @ts-expect-error Unknown slugs are forbidden in the final order.
+item.build.overrides({ answer: { order: ['unknown'] } });
+// @ts-expect-error Identity cannot be changed.
+item.build.overrides({ slug: 'renamed' });
+// @ts-expect-error A new child must not reuse an authored slug.
+item.build.overrides({ answer: { additionalItems: configuratorArrayToSlugMap([answer]) } });
 
 const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_CheckpointItem_Config = {
   id: 'b775647f-203d-481a-a1c7-4d331c779d6d',

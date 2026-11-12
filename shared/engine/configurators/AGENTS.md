@@ -1,6 +1,6 @@
 # Configurator architecture
 
-**Scope:** Authoring-time entity configurators and their validation/publication API. All flat ContentBlocks (`defineText`, `defineAudio`, `defineCarousel`, `defineCode`, `defineImage`, `defineMarkdown`, `defineScene`, `defineVideo`, `defineYoutube`) now expose the stateless `build` API. Nested configurators, including Checkpoint and CheckpointItem, require separate architecture work and must not be described as migrated. Root `AGENTS.md` and applicable Studio guidance also apply.
+**Scope:** Authoring-time entity configurators and their validation/publication API. All flat ContentBlocks (`defineText`, `defineAudio`, `defineCarousel`, `defineCode`, `defineImage`, `defineMarkdown`, `defineScene`, `defineVideo`, `defineYoutube`) now expose the stateless `build` API. The nested `CheckpointItem` now implements a `build` API; the outer `Checkpoint` and other nested configurators remain unmigrated. Root `AGENTS.md` and applicable Studio guidance also apply.
 
 ## Ownership and public API
 
@@ -51,6 +51,7 @@
 
 - `Config` holds authored data (including nested configurators where applicable), `Props` holds UI-ready values, and `Overrides` is an independently typed sparse patch. For nested collections, existing children receive their own typed overrides, and new children are supplied as configurators through an explicitly typed `additional*` slug map; author them with `configuratorArrayToSlugMap`. The parent alone validates keys/order, filters disabled entries, and materializes sorted Props arrays. These nested APIs are planned and are **not implemented by the flat ContentBlocks**.
 - When a collection changes, publish its full replacement Props array, not positional sparse array fragments. For scalar/object fields, continue publishing only supplied sparse overrides.
+- Do **not** generate locale files merely to repeat invariant replacement arrays: locale-specific publications contain only real translated data. A removed localized child may leave an override with `base.answer = [invariantChild]` and `locale: undefined`; the required runtime layering is specified in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md) and must apply `override.base` after `resource.locale[language]` so the removed child cannot reappear.
 - Configurators are **build-time only**. The planned file-writing contract lives in [`../generators/AGENTS.md`](../generators/AGENTS.md); runtime resolution and Props validation live in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md). Neither future layer is implemented merely by these documents.
 - Test complete resources and sparse patches, one-language and invariant locale cases, direct and embedded resource shapes, overload type inference, deep unknown-field rejection, semantic validation of the temporary merged candidate, array replacement semantics where applicable, JSON safety, and mutation isolation.
-- Keep transitional accessors for legacy consumers until their migration is explicitly in scope; do not claim nested configurators already implement Build.
+- Keep transitional accessors for legacy consumers until their migration is explicitly in scope; do not claim other nested configurators already implement Build.
