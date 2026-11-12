@@ -16,7 +16,7 @@ import {
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
 const questionBase = createQuestionBaseSchema('answerWithNumber');
-const params = questionBase.shape.params.extend({ correctAnswers: z.array(z.number()) });
+const params = questionBase.shape.params.extend({ correctAnswers: z.array(z.number()).min(1) });
 
 export const answerWithNumber_Config_Schema = questionBase.extend({
   params,
