@@ -88,3 +88,22 @@ void courseEnglish;
 void (null as unknown as CourseSlug);
 void (null as unknown as NestedKind);
 void (null as unknown as ExactChapter);
+
+/** Nested language scope is statically checked for publication as well as composition. */
+course.build.props({ languages: ['en', 'uk'] });
+course.build.props({ languages: ['uk'] });
+module.build.props({ languages: ['en'] });
+chapter.build.props({ languages: ['uk'] });
+course.build.overrides({}, { languages: ['uk'] });
+// @ts-expect-error Polish is not guaranteed by Course.
+course.build.props({ languages: ['pl'] });
+// @ts-expect-error Module does not guarantee Polish.
+module.build.props({ languages: ['pl'] });
+// @ts-expect-error Chapter does not guarantee German.
+chapter.build.props({ languages: ['de'] });
+// @ts-expect-error Override publication languages are checked.
+course.build.overrides({}, { languages: ['de'] });
+// @ts-expect-error Explicit publication languages are required.
+course.build.props();
+// @ts-expect-error Overrides require explicit language options.
+course.build.overrides({});
