@@ -7,8 +7,6 @@ import {
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
@@ -20,8 +18,7 @@ import {
   type ContentBlock_Markdown_PropsBase,
 } from './defineMarkdown.schemas';
 
-type MarkdownLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Markdown_Locale<'props'>>>>;
-type MarkdownEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Markdown_Locale<'props'>>>;
+type MarkdownLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Markdown_Locale<'props'>> }>>;
 type MarkdownPropsPublication<Base, LocaleFiles = MarkdownLocaleFiles> = {
   base: Base;
   locale: LocaleFiles | undefined;
@@ -95,7 +92,9 @@ const buildMarkdownProps = (
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Markdown_PropsBase;
-  return { base, locale: locale as unknown as MarkdownLocaleFiles | undefined };
+  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
+    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
+  )) as MarkdownLocaleFiles | undefined };
 };
 
 const buildMarkdownPatch = (
@@ -109,7 +108,9 @@ const buildMarkdownPatch = (
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as MarkdownLocaleFiles | undefined,
+    locale: (locale === undefined ? undefined : Object.fromEntries(
+    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
+  )) as MarkdownLocaleFiles | undefined,
   };
 };
 
@@ -182,16 +183,8 @@ export const defineMarkdown = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
-  function props(): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase, MarkdownEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase, MarkdownLocaleFiles | MarkdownEmbeddedLocaleFiles> {
-    const publication = buildMarkdownProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> =>
+    buildMarkdownProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
     try {
