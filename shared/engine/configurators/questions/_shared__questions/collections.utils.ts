@@ -146,6 +146,7 @@ export const resolveBlockCollection = (
   const order = patch?.order ?? source.order;
   const errors = validateOrderedKeys({ items, order }, { path, allowDisabled: true, requireNonEmpty: nonEmpty });
   if (errors.length) throw new Error(errors.map(issue => issue.path + ': ' + issue.message).join('; '));
+  if (nonEmpty && order.length === 0) throw new Error(path + ' must contain at least one active item');
   const entries = order.map(key => resolveChild(items[key] as Block, childPatches[key]));
   const locale: Files<Fragment[]> = {};
   for (const entry of entries) {
