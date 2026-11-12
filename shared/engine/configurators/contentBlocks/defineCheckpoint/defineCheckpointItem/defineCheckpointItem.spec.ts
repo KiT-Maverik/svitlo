@@ -5,7 +5,7 @@ import { configuratorArrayToSlugMap } from '../../../_shared__configurators';
 import { defineText } from '../../defineText';
 import { defineCheckpointItem, checkpointItem_Config_Schema, checkpointItem_Props_Schema } from './index';
 
-const makeText = (id: string, slug: string, value: string | { en?: string; uk?: string }) =>
+const makeText = <const Slug extends string>(id: string, slug: Slug, value: string | { en?: string; uk?: string }) =>
   defineText({ id, slug, type: 'text', params: {}, locale: { value } });
 
 const questionId = 'b775647f-203d-481a-a1c7-4d331c779d6a';

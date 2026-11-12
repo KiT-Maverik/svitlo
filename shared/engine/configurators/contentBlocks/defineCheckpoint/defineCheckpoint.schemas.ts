@@ -5,7 +5,6 @@ import { deepStrict_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
-import { contentBlockConfigurator_Schema } from '../contentBlock.schemas';
 import { checkpointItem_Props_Schema } from './defineCheckpointItem';
 import type {
   ContentBlock_CheckpointItem_Configurator,
@@ -43,17 +42,12 @@ type OrderedContent<Item> = { items: Record<string, Item>; order: string[] };
 export type Checkpoint_Config_Item = ContentBlock_CheckpointItem_Configurator;
 export type Checkpoint_Props_Item = ContentBlock_CheckpointItem_Props;
 
-const isCheckpointItem = (value: unknown): value is ContentBlock_CheckpointItem_Configurator =>
-  contentBlockConfigurator_Schema.safeParse(value).success &&
-  value !== null &&
-  typeof value === 'object' &&
-  'type' in value &&
-  value.type === 'checkpointItem';
-
 export const checkpoint_Config_Schema = checkpointBase.extend({
   ...addUnifiedLocale(locale('config')),
   content: z.object({
-    items: z.record(z.string(), z.custom<ContentBlock_CheckpointItem_Configurator>(isCheckpointItem)),
+    // The parent validate() owns child kind, identity, Build API and order checks.
+    // Do not reuse the renderable ContentBlock guard: checkpointItem is not a UI block type.
+    items: z.record(z.string(), z.custom<ContentBlock_CheckpointItem_Configurator>()),
     order: z.array(z.string()),
   }),
 });

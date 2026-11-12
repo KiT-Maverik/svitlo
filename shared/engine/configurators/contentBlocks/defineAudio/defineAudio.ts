@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
@@ -70,8 +70,11 @@ const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublica
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineAudio = <const Slug extends string>(
-  config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug },
+export const defineAudio = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Audio_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
@@ -100,7 +103,7 @@ export const defineAudio = <const Slug extends string>(
       });
     }
   };
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -114,6 +117,7 @@ export const defineAudio = <const Slug extends string>(
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Audio_Configurator = ReturnType<typeof defineAudio>;

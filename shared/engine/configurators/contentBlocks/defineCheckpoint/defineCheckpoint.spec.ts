@@ -3,7 +3,7 @@ import test from 'node:test';
 
 import { configuratorArrayToSlugMap, mergeForValidation } from '../../_shared__configurators';
 import { defineText } from '../defineText';
-import { defineCheckpoint, checkpoint_Props_Schema } from './index';
+import { defineCheckpoint, checkpoint_Config_Schema, checkpoint_Props_Schema } from './index';
 import { defineCheckpointItem } from './defineCheckpointItem';
 
 const ids = Array.from({ length: 10 }, (_, i) => 'b775647f-203d-481a-a1c7-4d331c779d6' + i);
@@ -40,6 +40,22 @@ const example = () => {
   });
   return { checkpoint, first, second };
 };
+
+test('Checkpoint accepts valid CheckpointItem configurators without treating them as renderable ContentBlocks', () => {
+  const { checkpoint, first } = example();
+  assert.equal(
+    checkpoint_Config_Schema.safeParse({
+      id: ids[0],
+      slug: 'review',
+      type: 'checkpoint',
+      params: {},
+      locale: { title: 'Review' },
+      content: { items: { first }, order: ['first'] },
+    }).success,
+    true,
+  );
+  assert.equal(checkpoint.build.props().base.content[0].type, 'checkpointItem');
+});
 
 test('Checkpoint publishes sorted nested Props, not authoring maps', () => {
   const { checkpoint } = example();

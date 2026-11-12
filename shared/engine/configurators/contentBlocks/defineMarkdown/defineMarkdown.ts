@@ -1,5 +1,5 @@
 import { readFileSync, readdirSync } from 'node:fs';
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, RequireLanguages, LanguageScope } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
@@ -27,15 +27,18 @@ type MarkdownOverridePropsBase = {
 
 type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCodes[] };
 
-type MarkdownInlineConfig<Slug extends string> = Omit<ContentBlock_Markdown_Config, 'slug'> & {
-  slug: Slug;
-  files?: never;
-};
+type MarkdownInlineConfig<Slug extends string, Languages extends readonly LanguageCodes[]> = Omit<
+  ContentBlock_Markdown_Config,
+  'slug'
+> & { slug: Slug; files?: never } & ConfigWithLanguages<ContentBlock_Markdown_Config, Languages>;
 
-type MarkdownFileConfig<Slug extends string> = Omit<ContentBlock_Markdown_Config, 'slug' | 'locale'> & {
+type MarkdownFileConfig<Slug extends string, Languages extends readonly LanguageCodes[]> = Omit<
+  ContentBlock_Markdown_Config,
+  'slug' | 'locale'
+> & {
   slug: Slug;
   files: MarkdownFiles;
-  locale?: Omit<ContentBlock_Markdown_Locale<'config'>, 'value'>;
+  locale?: Omit<RequireLanguages<ContentBlock_Markdown_Locale<'config'>, Languages>, 'value'>;
 };
 
 function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Record<LanguageCodes, string>> {
@@ -138,6 +141,19 @@ const mergeMarkdownForValidation = (
     }
     effective.locale.variables = { ...effective.locale.variables, [name]: complete };
   }
+  // If a previously invariant source becomes localized for only one language,
+  // unmentioned translations still use the invariant source. A localized
+  // replacement dictionary can therefore contain languages absent from the
+  // temporary, one-language source. Project those dictionaries *only for
+  // semantic validation*, never for publication.
+  if (typeof original.locale.value === 'string' && typeof patch.locale?.value === 'object') {
+    const languages = new Set(Object.keys(effective.locale.value));
+    for (const [name, value] of Object.entries(effective.locale.variables ?? {})) {
+      if (typeof value === 'string') continue;
+      const relevant = Object.fromEntries(Object.entries(value).filter(([language]) => languages.has(language)));
+      effective.locale.variables = { ...effective.locale.variables, [name]: relevant };
+    }
+  }
   return effective;
 };
 
@@ -159,13 +175,13 @@ const mergeMarkdownForValidation = (
  * Stateless ContentBlock Build API validates isolated snapshots and emits
  * either complete Props or exclusively sparse override fields.
  */
-export const defineMarkdown = <const Slug extends string>(
-  config: MarkdownInlineConfig<Slug> | MarkdownFileConfig<Slug>,
+export const defineMarkdown = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: MarkdownInlineConfig<Slug, Languages> | MarkdownFileConfig<Slug, Languages>,
 ) => {
   const locale =
     'files' in config && config.files
       ? { ...config.locale, value: readMarkdownFiles(config.files) }
-      : (config as MarkdownInlineConfig<Slug>).locale;
+      : (config as MarkdownInlineConfig<Slug, Languages>).locale;
   const resolved: ContentBlock_Markdown_Config = {
     id: config.id,
     slug: config.slug,
@@ -203,7 +219,7 @@ export const defineMarkdown = <const Slug extends string>(
       );
     }
   };
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -217,6 +233,7 @@ export const defineMarkdown = <const Slug extends string>(
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Markdown_Configurator = ReturnType<typeof defineMarkdown>;

@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
@@ -70,8 +70,11 @@ const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublica
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineImage = <const Slug extends string>(
-  config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug },
+export const defineImage = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Image_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
@@ -100,7 +103,7 @@ export const defineImage = <const Slug extends string>(
       });
     }
   };
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -114,6 +117,7 @@ export const defineImage = <const Slug extends string>(
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Image_Configurator = ReturnType<typeof defineImage>;

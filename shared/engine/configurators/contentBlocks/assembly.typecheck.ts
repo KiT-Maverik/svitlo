@@ -2,6 +2,7 @@ import {
   defineText,
   defineAudio,
   defineCarousel,
+  defineCarouselSlide,
   defineCode,
   defineImage,
   defineMarkdown,
@@ -25,7 +26,18 @@ const carousel = defineCarousel({
   slug: 'carousel',
   type: 'carousel',
   params: {},
-  locale: { slides: [{ src: 'https://example.com/image.png', alt: 'Alt' }] },
+  locale: {},
+  slides: {
+    items: {
+      first: defineCarouselSlide({
+        id,
+        slug: 'first',
+        type: 'carouselSlide',
+        locale: { src: 'https://example.com/image.png', alt: 'Alt' },
+      }),
+    },
+    order: ['first'],
+  },
 });
 const code = defineCode({
   id,
@@ -60,7 +72,11 @@ const video = defineVideo({
   slug: 'video',
   type: 'video',
   params: {},
-  locale: { fileLocation: 'https://example.com/movie.mp4', label: { en: 'Movie' } },
+  locale: {
+    fileLocation: 'https://example.com/movie.mp4',
+    poster: 'https://example.com/movie.jpg',
+    label: { en: 'Movie' },
+  },
 });
 const youtube = defineYoutube({
   id,
@@ -183,3 +199,98 @@ void videoSlug;
 youtube.assemble.resource();
 const youtubeSlug: 'youtube' = youtube.slug;
 void youtubeSlug;
+
+/** Required language tuples are compile-time only; overrides may remain sparse. */
+const multilingual = defineText<'multilingual', ['uk', 'en']>({
+  id,
+  slug: 'multilingual',
+  type: 'text',
+  params: {},
+  locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
+});
+multilingual.build.overrides({ locale: { value: { uk: 'Вітаю' } } });
+defineText<'missingLanguage', ['uk', 'en']>({
+  id,
+  slug: 'missingLanguage',
+  type: 'text',
+  params: {},
+  // @ts-expect-error Missing a required dictionary language ('en').
+  locale: { value: { uk: 'Привіт' } },
+});
+defineText<'unsupportedLanguage', ['uk', 'en']>({
+  id,
+  slug: 'unsupportedLanguage',
+  type: 'text',
+  params: {},
+  locale: {
+    value: {
+      uk: 'Привіт',
+      en: 'Hello',
+      // @ts-expect-error Unknown locale code ('ru') is not supported.
+      ru: 'Hi',
+    },
+  },
+});
+defineMarkdown<'missingVariableLanguage', ['uk', 'en']>({
+  id,
+  slug: 'missingVariableLanguage',
+  type: 'markdown',
+  params: {},
+  locale: {
+    value: 'Hello %_%NAME%_%',
+    variables: {
+      // @ts-expect-error The nested replacement dictionary must also include en.
+      NAME: { uk: 'Ада' },
+    },
+  },
+});
+
+const bilingualSlide = defineCarouselSlide<'bilingualSlide', ['uk', 'en']>({
+  id,
+  slug: 'bilingualSlide',
+  type: 'carouselSlide',
+  locale: { src: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
+});
+void bilingualSlide;
+
+const ukOnlySlide = defineCarouselSlide<'ukOnly', ['uk']>({
+  id,
+  slug: 'ukOnly',
+  type: 'carouselSlide',
+  locale: { src: 'https://example.com/uk-only.png', alt: { uk: 'Лише українською' } },
+});
+const bilingualSlideForGallery = defineCarouselSlide<'bilingual', ['uk', 'en']>({
+  id,
+  slug: 'bilingual',
+  type: 'carouselSlide',
+  locale: { src: 'https://example.com/bilingual.png', alt: { uk: 'Фото', en: 'Photo' } },
+});
+const typedCarouselSupports = defineCarousel<
+  'typedGallery',
+  { bilingual: typeof bilingualSlideForGallery },
+  ['uk', 'en']
+>({
+  id,
+  slug: 'typedGallery',
+  type: 'carousel',
+  params: {},
+  locale: { title: 'Gallery' },
+  slides: { items: { bilingual: bilingualSlideForGallery }, order: ['bilingual'] },
+});
+void typedCarouselSupports;
+
+// A typed parent cannot include a child that lacks a required language.
+defineCarousel<'invalidGallery', { ukOnly: typeof ukOnlySlide }, ['uk', 'en']>({
+  id,
+  slug: 'invalidGallery',
+  type: 'carousel',
+  params: {},
+  locale: { title: 'Gallery' },
+  slides: {
+    items: {
+      // @ts-expect-error The parent requires en, but the slide only supports uk.
+      ukOnly: ukOnlySlide,
+    },
+    order: ['ukOnly'],
+  },
+});

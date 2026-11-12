@@ -4,6 +4,7 @@ import test from 'node:test';
 import {
   defineAudio,
   defineCarousel,
+  defineCarouselSlide,
   defineCode,
   defineImage,
   defineMarkdown,
@@ -13,6 +14,14 @@ import {
 } from './index';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
+const slide = <const Slug extends string>(
+  slug: Slug,
+  locale: {
+    src: string | Partial<Record<'en' | 'uk', string>>;
+    alt: string | Partial<Record<'en' | 'uk', string>>;
+    caption?: string | Partial<Record<'en' | 'uk', string>>;
+  },
+) => defineCarouselSlide({ id, slug, type: 'carouselSlide', locale });
 
 test('Published locale bodies already match Props and require no embedding', () => {
   const block = defineAudio({
@@ -82,43 +91,42 @@ test('Audio publishes Props-shaped locale bodies and isolated sparse patches', (
   assert.deepEqual(audio.build.props().base.params, {});
 });
 
-test('Carousel publishes complete localized arrays and atomically replaces slides', () => {
+test('Carousel publishes ordered complete localized arrays and handles sparse child overrides', () => {
+  const first = slide('first', {
+    src: { en: 'https://example.com/a-en.png', uk: 'https://example.com/a-uk.png' },
+    alt: 'First',
+  });
+  const second = slide('second', {
+    src: 'https://example.com/b.png',
+    alt: 'Second',
+    caption: { en: 'A caption', uk: 'Підпис' },
+  });
   const carousel = defineCarousel({
     id,
     type: 'carousel',
     slug: 'gallery',
     params: { loop: true },
-    locale: {
-      title: 'Gallery',
-      slides: [
-        { src: { en: 'https://example.com/a-en.png', uk: 'https://example.com/a-uk.png' }, alt: 'First' },
-        { src: 'https://example.com/b.png', alt: 'Second', caption: { en: 'A caption', uk: 'Підпис' } },
-      ],
-    },
+    locale: { title: 'Gallery' },
+    slides: { items: { first, second }, order: ['first', 'second'] },
   });
   const resource = carousel.build.props();
-  assert.deepEqual(resource.base.locale, { title: 'Gallery' });
+  assert.equal(resource.base.locale?.title, 'Gallery');
   assert.deepEqual(resource.locale?.en?.locale.slides, [
     { src: 'https://example.com/a-en.png', alt: 'First' },
     { src: 'https://example.com/b.png', alt: 'Second', caption: 'A caption' },
   ]);
-  assert.deepEqual(resource.locale?.uk?.locale.slides?.[0]?.src, 'https://example.com/a-uk.png');
-  assert.deepEqual(carousel.build.props().locale?.en, {
-    locale: { slides: resource.locale?.en?.locale.slides },
+  assert.equal(resource.locale?.uk?.locale.slides?.[0]?.src, 'https://example.com/a-uk.png');
+  const localized = carousel.build.overrides({
+    slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
   });
-  const replacement = [{ src: 'https://example.com/other.png', alt: 'Other' }];
-  assert.deepEqual(carousel.build.overrides({ locale: { slides: replacement } }), {
-    base: { locale: { slides: replacement } },
-    locale: undefined,
-  });
-  assert.throws(
-    () => carousel.build.overrides({ locale: { slides: [{ alt: 'Missing src' }] } }),
-    /Invalid Carousel overrides/,
-  );
-  assert.throws(() => carousel.build.overrides({ locale: { slides: [] } }), /Invalid Carousel overrides/);
-  assert.deepEqual(carousel.build.props().locale?.en?.locale.slides?.length, 2);
+  assert.deepEqual(localized.locale?.uk?.locale.slides, [
+    { src: 'https://example.com/a-uk.png', alt: 'Перший' },
+    { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
+  ]);
+  assert.equal(localized.locale?.en?.locale.slides?.[0]?.alt, 'First');
+  assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
+  assert.equal(carousel.build.props().locale?.en?.locale.slides?.length, 2);
 });
-
 test('Code applies semantic validation after merging sparse replacement dictionaries', () => {
   const code = defineCode({
     id,
@@ -304,17 +312,21 @@ test('Every flat ContentBlock exposes the stateless Build API', () => {
   assert.equal(typeof block.build.props, 'function');
 });
 
-test('Carousel rejects incomplete per-language arrays rather than publishing positional fragments', () => {
+test('Carousel rejects a language lacking complete slide fields', () => {
+  const mixed = slide('mixed', {
+    src: { en: 'https://example.com/en.png' },
+    alt: { uk: 'Українською' },
+  });
   const carousel = defineCarousel({
     id,
     slug: 'mixedSlides',
     type: 'carousel',
     params: {},
-    locale: { slides: [{ src: { en: 'https://example.com/en.png' }, alt: { uk: 'Українською' } }] },
+    locale: {},
+    slides: { items: { mixed }, order: ['mixed'] },
   });
   assert.throws(() => carousel.build.props(), /Incomplete Carousel slides/);
 });
-
 test('Markdown can override one language of an invariant replacement without losing the others', () => {
   const markdown = defineMarkdown({
     id,
@@ -346,7 +358,8 @@ test('Flat ContentBlocks publish stateless Props without the legacy assemble sur
       slug: 'b',
       type: 'carousel',
       params: {},
-      locale: { slides: [{ src: 'https://example.com/a.png', alt: 'A' }] },
+      locale: {},
+      slides: { items: { first: slide('first', { src: 'https://example.com/a.png', alt: 'A' }) }, order: ['first'] },
     }),
     defineCode({
       id,
@@ -412,38 +425,31 @@ test('Flat ContentBlocks publish stateless Props without the legacy assemble sur
   }
 });
 
-test('Carousel array replacement and published output are mutation-isolated', () => {
-  const authored = {
+test('Carousel slide overrides and published output are mutation-isolated', () => {
+  const authored = { src: 'https://example.com/a.png', alt: 'Original' };
+  const first = slide('first', authored);
+  const carousel = defineCarousel({
     id,
     slug: 'atomicSlides',
-    type: 'carousel' as const,
+    type: 'carousel',
     params: {},
-    locale: { slides: [{ src: 'https://example.com/a.png', alt: 'Original' }] },
-  };
-  const carousel = defineCarousel(authored);
-  const replacement = [{ src: 'https://example.com/b.png', alt: 'Updated' }];
-  const patch = { locale: { slides: replacement } };
+    locale: {},
+    slides: { items: { first }, order: ['first'] },
+  });
+  const patch = { slides: { items: { first: { locale: { alt: 'Updated' } } } } };
   const publication = carousel.build.overrides(patch);
-
-  assert.deepEqual(publication.base.locale?.slides, replacement);
-  replacement[0].alt = 'Mutated caller';
+  assert.deepEqual(publication.base.locale?.slides, [{ src: 'https://example.com/a.png', alt: 'Updated' }]);
+  patch.slides.items.first.locale.alt = 'Mutated caller';
   assert.equal(publication.base.locale?.slides?.[0]?.alt, 'Updated');
-
   if (publication.base.locale?.slides?.[0]) publication.base.locale.slides[0].alt = 'Mutated result';
   assert.deepEqual(
-    carousel.build.overrides({
-      locale: { slides: [{ src: 'https://example.com/b.png', alt: 'Updated' }] },
-    }).base.locale?.slides,
-    [{ src: 'https://example.com/b.png', alt: 'Updated' }],
+    carousel.build.overrides({ slides: { items: { first: { locale: { alt: 'Updated' } } } } }).base.locale?.slides,
+    [{ src: 'https://example.com/a.png', alt: 'Updated' }],
   );
-
-  authored.locale.slides[0].alt = 'Mutated author';
+  authored.alt = 'Mutated author';
   assert.equal(carousel.build.props().base.locale?.slides?.[0]?.alt, 'Original');
   assert.throws(
-    () =>
-      carousel.build.overrides({
-        locale: { slides: [{ src: 'https://example.com/a.png', alt: 'A', typo: 'invalid' }] },
-      } as never),
+    () => carousel.build.overrides({ slides: { items: { first: { locale: { typo: 'invalid' } } } } } as never),
     /Invalid Carousel overrides/,
   );
 });
