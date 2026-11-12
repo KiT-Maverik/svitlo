@@ -32,7 +32,7 @@ export function defineAssessmentMethod<
   const props = (): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }> => {
     const current = copyAuthored();
     const own = splitLocalizedFields({ title: current.title, description: current.description });
-    return { base: { id, slug, ...own.base }, locale: own.locale };
+    return { base: { id, slug, ...own.base }, locale: own.locale as AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>['locale'] };
   };
 
   const overrides = (patch: AssessmentMethod_Overrides): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>> => {
@@ -40,7 +40,7 @@ export function defineAssessmentMethod<
       const sparse = assessmentMethod_Override_Config_Schema.parse(patch);
       validate(assessmentMethod_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
       const own = splitLocalizedFields(sparse);
-      return { base: own.base, locale: own.locale };
+      return { base: own.base, locale: own.locale as AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>['locale'] };
     } catch (error) {
       throw new Error(
         'Invalid Assessment Method overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
@@ -60,7 +60,7 @@ export function defineAssessmentMethod<
       validate,
       locales: (): DeepPartial<AssessmentMethod_Config> => {
         const current = copyAuthored();
-        return { title: onlyLocales(current.title), description: onlyLocales(current.description) };
+        return onlyLocales({ title: current.title, description: current.description });
       },
     },
   } as const;
