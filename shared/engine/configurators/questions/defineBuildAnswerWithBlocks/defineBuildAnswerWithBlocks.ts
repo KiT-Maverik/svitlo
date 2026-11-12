@@ -7,12 +7,14 @@ import {
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
+  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   buildAnswerWithBlocks_Config_Schema, buildAnswerWithBlocks_Override_Config_Schema,
   type Question_BuildAnswerWithBlocks_Config,
+  buildAnswerWithBlocks_Props_Schema,
   type Question_BuildAnswerWithBlocks_Props,
   type Question_BuildAnswerWithBlocks_MetadataOverrides,
 } from './defineBuildAnswerWithBlocks.schemas';
@@ -23,8 +25,9 @@ const metadataSchema = buildAnswerWithBlocks_Config_Schema.omit({ content: true 
 const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   buildAnswerWithBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
-  resolveBlockCollection(candidate.content.correctSequence, undefined, 'content.correctSequence', true)
-    .base.forEach((block, index) => assertEnabledBlock(block, 'content.correctSequence[' + index + ']'));
+  validateBlockCollection(candidate.content.correctSequence, 'content.correctSequence', true);
+  candidate.content.correctSequence.order.forEach(key =>
+    assertEnabledBlock(candidate.content.correctSequence.items[key].config.base, 'content.correctSequence.' + key));
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
 
@@ -75,13 +78,14 @@ export const defineBuildAnswerWithBlocks = <
   
   const extraContent = (
     source: Content,
+    languages: readonly LanguageCodes[],
     patch?: { correctSequence?: ResolvableBlockPatch; distractors?: ResolvableBlockPatch },
   ) => {
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
     for (const field of ['correctSequence', 'distractors'] as const) {
       if (patch && patch[field] === undefined) continue;
-      const result = resolveBlockCollection(source[field], patch?.[field], 'content.' + field, field === 'correctSequence');
+      const result = resolveBlockCollection(source[field], languages, patch?.[field], 'content.' + field, field === 'correctSequence');
       if (field === 'correctSequence') {
         result.base.forEach((block, index) => assertEnabledBlock(block, 'content.correctSequence[' + index + ']'));
       }
@@ -91,14 +95,15 @@ export const defineBuildAnswerWithBlocks = <
     return { base, locale };
   };
 
-  const props = (): QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props> => {
+  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
-    const own = projectQuestionLocale(metadata.locale);
-    const common = resolveCommonContent(initialContent);
-    const extra = extraContent(initialContent);
+    const own = projectQuestionLocale(metadata.locale, languages);
+    const common = resolveCommonContent(initialContent, languages);
+    const extra = extraContent(initialContent, languages);
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
-    return {
+    const resource = {
       base: {
         id, slug, type, params: metadata.params,
         locale: own.base,
@@ -106,19 +111,23 @@ export const defineBuildAnswerWithBlocks = <
       },
       locale: finishFiles(files),
     } as QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props>;
+    validateQuestionPublication(buildAnswerWithBlocks_Props_Schema, languages, resource);
+    return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
     patch: Question_BuildAnswerWithBlocks_Overrides<Content, Added, Languages>,
+    options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       ensureQuestionPatchShape(patch);
       const metadataPatch = buildAnswerWithBlocks_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
         ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
       });
       validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
-      const own = projectQuestionLocale(metadataPatch.locale ?? {});
+      const own = projectQuestionLocale(metadataPatch.locale ?? {}, languages);
       const files = own.files;
       const base: Record<string, unknown> = {
         ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
@@ -131,13 +140,15 @@ export const defineBuildAnswerWithBlocks = <
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
-        const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
-        const extra = (patch.content.correctSequence !== undefined || patch.content.distractors !== undefined) ? extraContent(initialContent, patch.content) : {base:{},locale:{}};
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
+        const extra = (patch.content.correctSequence !== undefined || patch.content.distractors !== undefined) ? extraContent(initialContent, languages, patch.content) : {base:{},locale:{}};
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props>;
+      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props>;
+      validateQuestionPublication(buildAnswerWithBlocks_Props_Schema, languages, props(options), publication);
+      return publication;
     } catch (error) {
       throw new Error(
         'Invalid BuildAnswerWithBlocks Question overrides for ' + id + ': ' +
