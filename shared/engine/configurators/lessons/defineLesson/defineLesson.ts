@@ -1,10 +1,12 @@
 import type {
-  DeepPartial, LanguageScope, ChildrenSupporting, RequireLanguages,
+  DeepPartial, LanguageScope, ChildrenSupporting, RequireLanguages, PublicationLanguageOptions,
 } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
@@ -17,7 +19,7 @@ import type { Flashcard_Configurator } from '../../flashcards';
 import { questionTypes } from '../../questions';
 import type { Question_Configurator } from '../../questions';
 import {
-  lesson_Config_Schema, lesson_Override_Metadata_Schema, lessonQuestionTypes,
+  lesson_Config_Schema, lesson_Override_Metadata_Schema, lesson_Props_Schema, lessonQuestionTypes,
   type Lesson_Config, type Lesson_PropsBase, type Lesson_Overrides, type Lesson_QuestionBank,
   type Lesson_Question_Type,
 } from './defineLesson.schemas';
@@ -25,7 +27,8 @@ import {
 type Child = {
   id: string; slug: string; type: string;
   config?: { base?: { id?: string; slug?: string; type?: string }; locales?: () => unknown };
-  build: { props: () => ChildResource; overrides: (patch: never) => ChildPatch };
+  build: { props: (options: PublicationLanguageOptions) => ChildResource;
+    overrides: (patch: never, options: PublicationLanguageOptions) => ChildPatch };
 };
 type ChildResource = {
   base: Record<string, unknown>;
@@ -87,7 +90,7 @@ const validate = (config: Lesson_Config): void => {
     }
   }
   if (config.params.requireQuiz && !hasEnabledQuiz(
-    config.section.order.map(key => config.section.items[key].build.props().base),
+    config.section.order.map(key => config.section.items[key].build.props({ languages: config.params.languages }).base),
   )) {
     throw new Error('Lesson requires at least one enabled Quiz section');
   }
@@ -155,25 +158,22 @@ export function defineLesson<
   } satisfies DeepPartial<Lesson_Config>;
 
   const buildOrdered = (
-    items: Record<string, unknown>, order: readonly string[], changes: Record<string, unknown> = {},
+    items: Record<string, unknown>, order: readonly string[], languages: readonly LanguageCodes[],
+    changes: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
       const child = items[key];
       if (!isBuildChild(child)) throw new Error('Nested child is missing Build API: ' + key);
-      const resource = child.build.props();
-      const patch = Object.hasOwn(changes, key) ? child.build.overrides(changes[key] as never) : undefined;
+      const resource = child.build.props({ languages });
+      const patch = Object.hasOwn(changes, key) ? child.build.overrides(changes[key] as never, { languages }) : undefined;
       return { resource, patch };
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     );
-    const languages = new Set<LanguageCodes>();
-    for (const { resource, patch } of entries) {
-      for (const code of Object.keys(resource.locale ?? {})) languages.add(code as LanguageCodes);
-      for (const code of Object.keys(patch?.locale ?? {})) languages.add(code as LanguageCodes);
-    }
     const locales: Partial<Record<LanguageCodes, Record<string, unknown>[]>> = {};
     for (const code of languages) {
+      if (!entries.some(({ resource, patch }) => resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined)) continue;
       locales[code] = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(resource.base, (resource.locale?.[code] ?? {}) as DeepPartial<typeof resource.base>);
         const effective = patch ? mergeForValidation(original, patch.base) : original;
@@ -185,12 +185,13 @@ export function defineLesson<
 
   const buildQuestions = (
     bank: Lesson_QuestionBank,
+    languages: readonly LanguageCodes[],
     changes: Partial<Record<Lesson_Question_Type, Record<string, unknown>>> = {},
   ) => {
     const base: NonNullable<Lesson_PropsBase['questions']> = {};
     const locales: Partial<Record<LanguageCodes, NonNullable<Lesson_PropsBase['questions']>>> = {};
     for (const [kind, items] of Object.entries(bank)) {
-      const built = buildOrdered(items, Object.keys(items).sort(), changes[kind as Lesson_Question_Type] ?? {});
+      const built = buildOrdered(items, Object.keys(items).sort(), languages, changes[kind as Lesson_Question_Type] ?? {});
       base[kind as Lesson_Question_Type] = built.bases;
       for (const [code, entries] of Object.entries(built.locales)) {
         (locales[code as LanguageCodes] ??= {})[kind as Lesson_Question_Type] = entries;
@@ -212,23 +213,27 @@ export function defineLesson<
     }
   };
 
-  const props = (): Publication<Lesson_PropsBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): Publication<Lesson_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     const own = copyAuthored();
+    for (const code of languages) {
+      if (!own.params.languages.includes(code)) throw new Error('Lesson does not support publication language: ' + code);
+    }
     const split = splitLocalizedFields(own.locale);
     const files: Files = {};
-    for (const [code, fields] of Object.entries(split.locale ?? {})) {
+    for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
       files[code as LanguageCodes] = { locale: fields as LocaleBody['locale'] };
     }
-    const sections = buildOrdered(initialSections, sectionOrder);
-    const cards = buildOrdered(initialCards, flashcardOrder);
-    const bank = buildQuestions(initialQuestions);
+    const sections = buildOrdered(initialSections, sectionOrder, languages);
+    const cards = buildOrdered(initialCards, flashcardOrder, languages);
+    const bank = buildQuestions(initialQuestions, languages);
     addLocalizedArray(files, 'section', sections.locales);
     addLocalizedArray(files, 'flashcards', cards.locales);
     addQuestionFiles(files, bank.locales);
     return structuredClone({
       base: {
         id, slug, type, programId: own.programId,
-        skills: own.skills, params: own.params,
+        skills: own.skills, params: { ...own.params, languages: [...languages] },
         ...(Object.keys(split.base).length ? { locale: split.base as { title?: string } } : {}),
         section: sections.bases as Lesson_PropsBase['section'],
         flashcards: cards.bases as Lesson_PropsBase['flashcards'],
@@ -311,8 +316,13 @@ export function defineLesson<
           : AddedQuestions[Kind];
       } };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
+      for (const code of languages) {
+        if (!authored.params.languages.includes(code)) throw new Error('Lesson does not support publication language: ' + code);
+      }
       if (!isRecord(patch)) throw new Error('Expected Lesson overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'section', 'flashcards', 'questions'].includes(key)) {
@@ -325,7 +335,7 @@ export function defineLesson<
       const own = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
       const split = splitLocalizedFields(metadataPatch.locale ?? {});
       const files: Files = {};
-      for (const [code, fields] of Object.entries(split.locale ?? {})) {
+      for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
         files[code as LanguageCodes] = { locale: fields as LocaleBody['locale'] };
       }
       const output: Publication<OverrideBase> = {
@@ -338,12 +348,12 @@ export function defineLesson<
       const sections = resolveCollection('section', initialSections, sectionOrder, patch.section as CollectionPatch | undefined, sectionTypes);
       const cards = resolveCollection('flashcards', initialCards, flashcardOrder, patch.flashcards as CollectionPatch | undefined, ['flashcard']);
       if (sections.changed) {
-        const built = buildOrdered(sections.active, sections.order, sections.childChanges);
+        const built = buildOrdered(sections.active, sections.order, languages, sections.childChanges);
         output.base.section = built.bases as Lesson_PropsBase['section'];
         addLocalizedArray(files, 'section', built.locales);
       }
       if (cards.changed) {
-        const built = buildOrdered(cards.active, cards.order, cards.childChanges);
+        const built = buildOrdered(cards.active, cards.order, languages, cards.childChanges);
         output.base.flashcards = built.bases as Lesson_PropsBase['flashcards'];
         addLocalizedArray(files, 'flashcards', built.locales);
       }
@@ -391,7 +401,7 @@ export function defineLesson<
           questionPatches[kind as Lesson_Question_Type] = childChanges;
         }
         if (Object.keys(patch.questions).length) {
-          const built = buildQuestions(nextQuestions, questionPatches);
+          const built = buildQuestions(nextQuestions, languages, questionPatches);
           output.base.questions = built.base;
           addQuestionFiles(files, built.locales);
         }
@@ -407,7 +417,7 @@ export function defineLesson<
       if (own.params.requireQuiz && !hasEnabledQuiz(
         sections.changed
           ? (output.base.section ?? [])
-          : buildOrdered(sections.active, sections.order).bases as Lesson_PropsBase['section'],
+          : buildOrdered(sections.active, sections.order, languages).bases as Lesson_PropsBase['section'],
       )) {
         throw new Error('Lesson requires at least one enabled Quiz section');
       }
