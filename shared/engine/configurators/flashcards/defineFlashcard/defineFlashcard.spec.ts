@@ -65,14 +65,14 @@ const source = {
 test('Flashcard composes ordered sides and named flags as JSON-only published Props', () => {
   const card = defineFlashcard(source);
   assert.equal(card.content.front.items.front, front);
-  assert.equal(card.build.props().base.slug, 'lightCard');
-  assert.deepEqual(card.build.props().base.content.front.map(x => x.slug), ['front']);
-  assert.deepEqual(card.build.props().base.parameters.flags.map(x => x.type), ['list', 'acronym']);
-  assert.deepEqual(card.build.props().base.parameters.relationships?.map(x => x.relationshipId), ['r1']);
-  assert.equal(textValue(card.build.props().locale?.uk?.content?.front), 'Що?');
-  assert.equal(flagValue(card.build.props().locale?.en?.parameters?.flags, 1), 'ABC');
-  assert.equal(flagValue(card.build.props().locale?.uk?.parameters?.flags, 1), 'АБВ');
-  assert.doesNotThrow(() => JSON.stringify(card.build.props()));
+  assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
+  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.content.front.map(x => x.slug), ['front']);
+  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.flags.map(x => x.type), ['list', 'acronym']);
+  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.relationships?.map(x => x.relationshipId), ['r1']);
+  assert.equal(textValue(card.build.props({ languages: ['en', 'uk'] }).locale?.uk?.content?.front), 'Що?');
+  assert.equal(flagValue(card.build.props({ languages: ['en', 'uk'] }).locale?.en?.parameters?.flags, 1), 'ABC');
+  assert.equal(flagValue(card.build.props({ languages: ['en', 'uk'] }).locale?.uk?.parameters?.flags, 1), 'АБВ');
+  assert.doesNotThrow(() => JSON.stringify(card.build.props({ languages: ['en', 'uk'] })));
   assert.equal(flashcard_Config_Schema.safeParse(source).success, true);
   assert.equal(flashcardConfigurator_Schema.safeParse(card).success, true);
   assert.equal(flashcard_Props_Schema.safeParse(source).success, false);
@@ -84,42 +84,42 @@ test('Flashcard applies independent side changes and sparse flag updates without
   const card = defineFlashcard(source);
   const first = card.build.overrides({
     content: { front: { items: { front: false }, additionalItems: { extra }, order: ['extra'] } },
-  });
+  }, { languages: ['en', 'uk'] });
   assert.deepEqual(first.base.content?.front?.map(block => block.slug), ['extra']);
   assert.deepEqual(first.locale, undefined);
-  assert.deepEqual(card.build.props().base.content.front.map(block => block.slug), ['front']);
+  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.content.front.map(block => block.slug), ['front']);
   const second = card.build.overrides({
     parameters: {
       tags: ['science'],
       flags: { items: { acronym: { value: { uk: 'НОВЕ' } } } },
     },
-  });
+  }, { languages: ['en', 'uk'] });
   assert.deepEqual(second.base.parameters?.tags, ['science']);
   assert.equal(flagValue(second.locale?.uk?.parameters?.flags, 1), 'НОВЕ');
   assert.equal(flagValue(second.locale?.en?.parameters?.flags, 1), 'ABC');
-  assert.deepEqual(card.build.props().base.parameters.tags, ['math']);
+  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
   const reordered = card.build.overrides({
     parameters: { flags: { order: ['acronym', 'list'] } },
-  });
+  }, { languages: ['en', 'uk'] });
   assert.deepEqual(reordered.base.parameters?.flags?.map(x => x.type), ['acronym', 'list']);
   assert.equal(card.content.front.items.front, front);
 });
 
 test('Flashcard rejects invalid metadata, identity, duplicate flags, orphan ordering and empty mandatory side', () => {
   const card = defineFlashcard(source);
-  assert.throws(() => card.build.overrides({ slug: 'wrong' } as never), /Invalid Flashcard overrides/);
+  assert.throws(() => card.build.overrides({ slug: 'wrong' } as never, { languages: ['en', 'uk'] }), /Invalid Flashcard overrides/);
   assert.throws(() => card.build.overrides({
     content: { front: { items: { front: false }, order: [] } },
-  }), /At least one item/);
+  }, { languages: ['en', 'uk'] }), /At least one item/);
   assert.throws(() => card.build.overrides({
     content: { front: { additionalItems: { extra } } },
-  }), /order is required/);
+  }, { languages: ['en', 'uk'] }), /order is required/);
   assert.throws(() => card.build.overrides({
     parameters: { flags: { items: { acronym: { type: 'custom' } } } },
-  } as never), /Invalid Flashcard overrides/);
+  } as never, { languages: ['en', 'uk'] }), /Invalid Flashcard overrides/);
   assert.throws(() => card.build.overrides({
     parameters: { relationships: { items: { reverseLink: { relationshipId: 'changed' } } } },
-  } as never), /Invalid Flashcard overrides/);
+  } as never, { languages: ['en', 'uk'] }), /Invalid Flashcard overrides/);
   assert.throws(() => defineFlashcard({
     ...source, parameters: { ...source.parameters, flags: {
       items: { ...source.parameters.flags.items, duplicate: { type: 'list', count: 3 } },
@@ -138,10 +138,10 @@ test('Flashcard rejects invalid metadata, identity, duplicate flags, orphan orde
 test('Flashcard permits absent hint and provides independent detached results', () => {
   const { hint: _hint, ...requiredContent } = source.content;
   const card = defineFlashcard({ ...source, content: requiredContent });
-  assert.equal(card.build.props().base.content.hint, undefined);
-  const original = card.build.props();
-  const changed = card.build.overrides({ parameters: { tags: ['other'] } });
+  assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.content.hint, undefined);
+  const original = card.build.props({ languages: ['en', 'uk'] });
+  const changed = card.build.overrides({ parameters: { tags: ['other'] } }, { languages: ['en', 'uk'] });
   assert.deepEqual(changed.base, { parameters: { tags: ['other'] } });
   original.base.parameters.tags.push('mutation');
-  assert.deepEqual(card.build.props().base.parameters.tags, ['math']);
+  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
 });
