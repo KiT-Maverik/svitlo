@@ -4,17 +4,17 @@
 
 ## Responsibility
 
-- Generators run at **build/publish time**, accept a configurator and the publication context, invoke `assemble.resource()` for complete resources or `assemble.overrides(patch)` for that context's sparse overrides, and write the returned data to the correct destination files.
-- The configurator owns entity validation, semantic rules, and splitting publication data. Generators **must not recreate Config Schemas, reimplement entity-specific assembly, or build runtime Props**.
-- Treat each independent override context as its own publication artifact. Never mutate the imported configurator or combine unrelated contexts merely because they use the same original resource.
+- Generators run at **build/publish time**, accept completed publication results (`{ base, locale }`) and destination information, and serialize those results. They do not accept configurators or invoke `build`/`assemble` methods.
+- Configurators own entity validation, override resolution, nested composition, disabled-item filtering, ordering, and Props preparation. Generators **must not interpret Config/Overrides, filter or sort children, recreate schemas, or build Props**.
+- Treat each independently prepared override context as its own publication artifact. Never mutate supplied payloads or combine unrelated publication contexts merely because they refer to the same original resource.
 - Define paths, file naming, ownership and cleanup rules with the actual resource/index contracts before implementing a generator. Do not invent a universal directory layout from this document alone.
 
 ## File publication contract
 
-- An assembly result has `{ base, locale }`. Write `base` as its publication payload. For `locale`, each language key already contains the **direct JSON body** of that language's file; never nest a second `locale` property.
+- A completed publication result has `{ base, locale }`. Write `base` as its publication payload. For `locale`, each language key already contains the **direct JSON body** of that language's file; never nest a second `locale` property.
 - A resource's `base` is complete for the invariant fields; an override's `base` contains **only overridden fields**. Preserve the distinction when generating file paths and names.
 - `locale: undefined` means there is no translated locale file to write for that result. Do not serialize an `undefined` property into JSON or create empty translation files by default.
-- Preserve every explicit sparse value and collection marker (including `false` for a supported disabled entry). Do not fill missing override fields with original resource values.
+- Preserve completed data as supplied. Do not fill missing override fields with original resource values, and do not interpret authoring-only collection markers or flags.
 - Keep output deterministic, JSON-compatible, and reproducible from Git-authored inputs. Report publication failures with enough resource and file context to diagnose them.
 
 ## Boundary and verification

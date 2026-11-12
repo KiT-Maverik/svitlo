@@ -70,15 +70,21 @@ const youtube = defineYoutube({
   locale: { href: 'https://youtube.com/watch?v=example', label: { en: 'Watch' } },
 });
 
-const textPublished = text.assemble.resource();
-const textEmbedded = text.assemble.resource({ embed: true });
+const textPublished = text.build.props();
+const textEmbedded = text.build.props({ embed: true });
 void textEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void textPublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void textEmbedded.locale?.en?.value;
 // @ts-expect-error The only explicit embed value permitted is true.
-text.assemble.resource({ embed: false });
+text.build.props({ embed: false });
+// @ts-expect-error Text no longer exposes the assembly API.
+text.assemble.resource();
+// @ts-expect-error Props-shaped nested locale input is not an authored Overrides patch.
+text.build.overrides({ locale: { value: { locale: { value: 'Hi' } } } });
+// @ts-expect-error Identity is not overridable.
+text.build.overrides({ id });
 
 const audioPublished = audio.assemble.resource();
 const audioEmbedded = audio.assemble.resource({ embed: true });
