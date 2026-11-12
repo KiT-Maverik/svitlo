@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ChildrenSupporting } from '#types';
 import type { LanguageCodes } from '#schemas';
 import { mergeForValidation, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
 import { contentBlockTypes } from '../../contentBlocks/contentBlock.constants';
@@ -14,20 +14,30 @@ export type OrderedBlocks<Child = Block> = {
   items: Record<string, Child>;
   order: string[];
 };
-export type OrderedBlockPatch<Children extends Record<string, Block> = Record<string, Block>> = {
+export type OrderedBlockPatch<
+  Children extends Record<string, Block> = Record<string, Block>,
+  Added extends Record<string, Block> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> = {
   items?: { [Key in keyof Children]?: Parameters<Children[Key]['build']['overrides']>[0] | false };
-  additionalItems?: Record<string, Block>;
-  order?: string[];
+  additionalItems?: Added & ChildrenSupporting<Languages, Added> & {
+    [Key in keyof Children]?: never;
+  };
+  order?: Extract<keyof Children | keyof NoInfer<Added>, string>[];
 };
 export type QuestionCommonContent<Child = Block> = {
   question: OrderedBlocks<Child>;
   hint?: OrderedBlocks<Child>;
   explanation?: OrderedBlocks<Child>;
 };
-export type QuestionCommonPatch<Content extends QuestionCommonContent> = {
-  question?: OrderedBlockPatch<Content['question']['items']>;
-  hint?: OrderedBlockPatch<NonNullable<Content['hint']>['items']>;
-  explanation?: OrderedBlockPatch<NonNullable<Content['explanation']>['items']>;
+export type QuestionCommonPatch<
+  Content extends QuestionCommonContent,
+  Added extends Record<string, Block> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> = {
+  question?: OrderedBlockPatch<Content['question']['items'], Added, Languages>;
+  hint?: OrderedBlockPatch<NonNullable<Content['hint']>['items'], Added, Languages>;
+  explanation?: OrderedBlockPatch<NonNullable<Content['explanation']>['items'], Added, Languages>;
 };
 
 export type ResolvedCollection<T> = { base: T; locale: Files<T> };
