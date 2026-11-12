@@ -23,6 +23,7 @@ import {
   validateEffectiveQuestionMetadata,
   type QuestionCommonPatch,
   type QuestionResourcePublication, type QuestionOverridePublication,
+  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -30,6 +31,7 @@ import {
   fillBlanksWithText_Config_Schema,
   fillBlanksWithText_Override_Config_Schema,
   type Question_FillBlanksWithText_Config,
+  fillBlanksWithText_Props_Schema,
   type Question_FillBlanksWithText_Props,
   type Question_FillBlanksWithText_MetadataOverrides,
 } from './defineFillBlanksWithText.schemas';
@@ -112,7 +114,7 @@ export const defineFillBlanksWithText = <
     slots: cloneJson(initialContent.slots),
   } as Content;
 
-  const projectSlots = (patch?: {
+  const projectSlots = (languages: readonly LanguageCodes[], patch?: {
     items?: SlotChanges<Content>;
     additionalItems?: Record<string, Slot>;
     order?: string[];
@@ -166,7 +168,7 @@ export const defineFillBlanksWithText = <
     const active: SlotMap = Object.fromEntries(
       order.map(key => [key, effective[key] as Slot]),
     );
-    const resolved = projectSlotList(active, undefined, order);
+    const resolved = projectSlotList(active, languages, undefined, order);
     if (patch === undefined) return resolved;
 
     const modifies =
@@ -178,7 +180,7 @@ export const defineFillBlanksWithText = <
     const affected = structural || patch.order !== undefined
       ? Object.keys(resolved.locale)
       : Object.keys(
-          projectSlotList(initialContent.slots.items, translatedChanges as never, initialContent.slots.order).locale,
+          projectSlotList(initialContent.slots.items, languages, translatedChanges as never, initialContent.slots.order).locale,
         );
     const locale: typeof resolved.locale = {};
     for (const code of affected) {
@@ -191,9 +193,9 @@ export const defineFillBlanksWithText = <
     };
   };
 
-  const ownProps = (metadata: typeof authored) => {
-    const own = projectQuestionLocale(metadata.locale);
-    const projected = projectSlots();
+  const ownProps = (metadata: typeof authored, languages: readonly LanguageCodes[]) => {
+    const own = projectQuestionLocale(metadata.locale, languages);
+    const projected = projectSlots(languages);
     if (projected.base !== undefined) own.base.slots = projected.base;
     for (const [language, slots] of Object.entries(projected.locale)) {
       (own.files[language as LanguageCodes] ??= {}).locale = {
@@ -204,12 +206,13 @@ export const defineFillBlanksWithText = <
     return own;
   };
 
-  const props = (): QuestionResourcePublication<Question_FillBlanksWithText_Props> => {
+  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_FillBlanksWithText_Props> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
-    const own = ownProps(metadata);
-    const common = resolveCommonContent(initialContent);
+    const own = ownProps(metadata, languages);
+    const common = resolveCommonContent(initialContent, languages);
     mergeQuestionContent(own.files, common.locale);
-    return {
+    const resource = {
       base: {
         id,
         slug,
@@ -220,6 +223,8 @@ export const defineFillBlanksWithText = <
       },
       locale: finishFiles(own.files),
     } as QuestionResourcePublication<Question_FillBlanksWithText_Props>;
+    validateQuestionPublication(fillBlanksWithText_Props_Schema, languages, resource);
+    return resource;
   };
 
   const overrides = <
@@ -227,15 +232,17 @@ export const defineFillBlanksWithText = <
     const AddedSlots extends Record<string, Slot> = {},
   >(
     patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlots>,
+    options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithText_Props> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       ensureQuestionPatchShape(patch);
       const metadataPatch = fillBlanksWithText_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
         ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
       });
       validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, value => metadataSchema.parse(value));
-      const own = projectQuestionLocale(metadataPatch.locale ?? {});
+      const own = projectQuestionLocale(metadataPatch.locale ?? {}, languages);
       const base: Record<string, unknown> = {
         ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
         ...(Object.keys(own.base).length ? { locale: own.base } : {}),
@@ -248,11 +255,11 @@ export const defineFillBlanksWithText = <
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
-        const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
         if (Object.keys(common.base).length) base.content = common.base;
         mergeQuestionContent(own.files, common.locale);
         if (patch.content.slots !== undefined) {
-          const projected = projectSlots(patch.content.slots);
+          const projected = projectSlots(languages, patch.content.slots);
           if (projected.base !== undefined) {
             (base.locale ??= {} as Record<string, unknown>);
             (base.locale as Record<string, unknown>).slots = projected.base;
@@ -265,7 +272,9 @@ export const defineFillBlanksWithText = <
           }
         }
       }
-      return { base, locale: finishFiles(own.files) } as QuestionOverridePublication<Question_FillBlanksWithText_Props>;
+      const publication = { base, locale: finishFiles(own.files) } as QuestionOverridePublication<Question_FillBlanksWithText_Props>;
+      validateQuestionPublication(fillBlanksWithText_Props_Schema, languages, props(options), publication);
+      return publication;
     } catch (error) {
       throw new Error(
         'Invalid FillBlanksWithText Question overrides for ' + id + ': ' +
