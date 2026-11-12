@@ -12,8 +12,8 @@ import { validateTextVariables } from './defineText.utils';
 
 export type ContentBlock_Text_Overrides = DeepPartial<Pick<ContentBlock_Text_Config, 'params' | 'locale'>>;
 
-type TextLocales = Partial<Record<LanguageCodes, { locale: ContentBlock_Text_Locale<'props'> }>>;
-type TextAssembly<Base> = { base: Base; locales: TextLocales };
+type TextLocales = Partial<Record<LanguageCodes, ContentBlock_Text_Locale<'props'>>>;
+type TextAssembly<Base> = { base: Base; locales: TextLocales | undefined };
 type TextOverrideBase = {
   params?: DeepPartial<ContentBlock_Text_Config['params']>;
   locale?: Partial<ContentBlock_Text_Locale<'props'>>;
@@ -25,14 +25,14 @@ const validate = (config: ContentBlock_Text_Config): void => {
 };
 
 /** Put invariant Text values in base; publish translations by language. */
-const assembleLocales = (value: ContentBlock_Text_Config['locale']['value'] | undefined): TextLocales => {
+const assembleLocales = (value: ContentBlock_Text_Config['locale']['value'] | undefined): TextLocales | undefined => {
   const locales: TextLocales = {};
   if (value && typeof value === 'object') {
     for (const [language, text] of Object.entries(value)) {
-      if (text !== undefined) locales[language as LanguageCodes] = { locale: { value: text } };
+      if (text !== undefined) locales[language as LanguageCodes] = { value: text };
     }
   }
-  return locales;
+  return Object.keys(locales).length ? locales : undefined;
 };
 
 /**
@@ -66,7 +66,11 @@ export const defineText = <const Slug extends string>(
   } satisfies ContentBlock_Text_ResourceBase;
 
   const resource = (): TextAssembly<ContentBlock_Text_ResourceBase> => {
-    return { base: { ...base }, locales: assembleLocales(locale.value) };
+    const locales = assembleLocales(locale.value);
+    if (locales === undefined && typeof base.locale?.value !== 'string') {
+      throw new Error('Text resource has neither a base value nor localized values');
+    }
+    return { base: { ...base }, locales };
   };
 
   const overrides = (patch: ContentBlock_Text_Overrides): TextAssembly<TextOverrideBase> => {
@@ -85,9 +89,7 @@ export const defineText = <const Slug extends string>(
       : params.variables;
 
     const value =
-      patch.locale?.value !== undefined &&
-      typeof patch.locale.value === 'object' &&
-      typeof locale.value === 'object'
+      patch.locale?.value !== undefined && typeof patch.locale.value === 'object' && typeof locale.value === 'object'
         ? { ...locale.value, ...patch.locale.value }
         : (patch.locale?.value ?? locale.value);
 
@@ -102,13 +104,15 @@ export const defineText = <const Slug extends string>(
       locale: { ...locale, ...patch.locale, value },
     } as ContentBlock_Text_Config);
 
-    return {
-      base: {
-        ...(patch.params !== undefined ? { params: patch.params } : {}),
-        ...(typeof patch.locale?.value === 'string' ? { locale: { value: patch.locale.value } } : {}),
-      },
-      locales: assembleLocales(patch.locale?.value),
+    const locales = assembleLocales(patch.locale?.value);
+    const overrideBase: TextOverrideBase = {
+      ...(patch.params !== undefined ? { params: patch.params } : {}),
+      ...(typeof patch.locale?.value === 'string' ? { locale: { value: patch.locale.value } } : {}),
     };
+    if (patch.locale?.value !== undefined && locales === undefined && typeof overrideBase.locale?.value !== 'string') {
+      throw new Error('Text override has neither a base value nor localized values');
+    }
+    return { base: overrideBase, locales };
   };
 
   return {

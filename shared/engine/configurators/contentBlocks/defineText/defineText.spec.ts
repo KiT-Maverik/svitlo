@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { defineText, text_Props_Schema } from './index';
+import { defineText, text_Props_Schema, type ContentBlock_Text_Config } from './index';
 
 const identity = {
   id: 'c2cc84f3-f057-493d-b1b6-1880aad8023b',
@@ -16,7 +16,7 @@ test('Text assembles an invariant value into base and no locale files', () => {
 
   assert.deepEqual(assembled, {
     base: { ...identity, locale: { value: 'Welcome' } },
-    locales: {},
+    locales: undefined,
   });
   assert.equal(text_Props_Schema.safeParse(assembled.base).success, true);
 });
@@ -31,11 +31,22 @@ test('Text assembles translations as deep-mergeable, language-keyed fragments', 
   assert.deepEqual(assembled, {
     base: { ...identity },
     locales: {
-      en: { locale: { value: 'Welcome' } },
-      uk: { locale: { value: 'Ласкаво просимо' } },
+      en: { value: 'Welcome' },
+      uk: { value: 'Ласкаво просимо' },
     },
   });
-  assert.equal(text_Props_Schema.safeParse({ ...assembled.base, ...assembled.locales.uk }).success, true);
+  assert.equal(text_Props_Schema.safeParse({ ...assembled.base, locale: assembled.locales?.uk }).success, true);
+});
+
+test('Text requires a base value when resource locales are absent', () => {
+  const config: ContentBlock_Text_Config = {
+    ...identity,
+    locale: { value: { en: 'Welcome' } },
+  };
+  const text = defineText(config);
+  config.locale.value = 'Universal text';
+
+  assert.throws(() => text.assemble.resource(), /neither a base value nor localized values/);
 });
 
 test('Text publishes only sparse overrides without mutating the original', () => {
@@ -48,7 +59,7 @@ test('Text publishes only sparse overrides without mutating the original', () =>
 
   assert.deepEqual(text.assemble.overrides(patch), {
     base: { params: { disabled: true } },
-    locales: { uk: { locale: { value: 'Вітаю' } } },
+    locales: { uk: { value: 'Вітаю' } },
   });
   assert.deepEqual(text.assemble.resource(), before);
   assert.deepEqual(patch, { params: { disabled: true }, locale: { value: { uk: 'Вітаю' } } });
@@ -64,11 +75,12 @@ test('Text permits an invariant override and leaves the source untouched', () =>
 
   assert.deepEqual(text.assemble.overrides({ locale: { value: 'Universal text' } }), {
     base: { locale: { value: 'Universal text' } },
-    locales: {},
+    locales: undefined,
   });
+  assert.throws(() => text.assemble.overrides({ locale: { value: {} } }), /neither a base value nor localized values/);
   assert.deepEqual(text.assemble.resource().locales, {
-    en: { locale: { value: 'Welcome' } },
-    uk: { locale: { value: 'Привіт' } },
+    en: { value: 'Welcome' },
+    uk: { value: 'Привіт' },
   });
 });
 
@@ -90,24 +102,22 @@ test('Text validates the resolved override without publishing the resolved resou
     }),
     {
       base: {},
-      locales: { uk: { locale: { value: 'Вітаю %_%id: personName; value: Оля%_%' } } },
+      locales: { uk: { value: 'Вітаю %_%id: personName; value: Оля%_%' } },
     },
   );
   assert.throws(
     () => text.assemble.overrides({ locale: { value: { uk: 'Вітаю' } } }),
     /missing configured Text fragment "personName"/,
   );
-  assert.throws(
-    () => text.assemble.overrides({ locale: { value: { uk: '' } } }),
+  assert.throws(() => text.assemble.overrides({ locale: { value: { uk: '' } } }));
+  assert.throws(() => text.assemble.overrides({ params: { variables: { anotherName: { applyColor: 'red' } } } }));
+  assert.doesNotThrow(() =>
+    text.validate({
+      ...identity,
+      params: { variables: { personName: { applyStyle: ['bold'] } } },
+      locale: { value: 'Hi %_%id: personName; value: Ada%_%' },
+    }),
   );
-  assert.throws(
-    () => text.assemble.overrides({ params: { variables: { anotherName: { applyColor: 'red' } } } }),
-  );
-  assert.doesNotThrow(() => text.validate({
-    ...identity,
-    params: { variables: { personName: { applyStyle: ['bold'] } } },
-    locale: { value: 'Hi %_%id: personName; value: Ada%_%' },
-  }));
 });
 
 test('Text validates deep partial parameter patches against the full config', () => {
@@ -117,10 +127,13 @@ test('Text validates deep partial parameter patches against the full config', ()
     locale: { value: 'Welcome' },
   });
 
-  assert.deepEqual(text.assemble.overrides({
-    params: { wrap: { typographyProps: { weight: 'bold' } } },
-  }), {
-    base: { params: { wrap: { typographyProps: { weight: 'bold' } } } },
-    locales: {},
-  });
+  assert.deepEqual(
+    text.assemble.overrides({
+      params: { wrap: { typographyProps: { weight: 'bold' } } },
+    }),
+    {
+      base: { params: { wrap: { typographyProps: { weight: 'bold' } } } },
+      locales: undefined,
+    },
+  );
 });
