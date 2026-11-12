@@ -24,6 +24,7 @@ import {
   type QuestionCommonPatch,
   type QuestionPublication,
 } from '../_shared__questions';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithText_Config_Schema,
@@ -43,9 +44,13 @@ type SlotsOverride<Content extends ContentShape> = {
   additionalItems?: Record<string, Slot>;
   order?: string[];
 };
-export type Question_FillBlanksWithText_Overrides<Content extends ContentShape = ContentShape> =
+export type Question_FillBlanksWithText_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> =
   Question_FillBlanksWithText_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content> & {
+    content?: QuestionCommonPatch<Content, Added, Languages> & {
       slots?: SlotsOverride<Content>;
     };
   };
@@ -206,8 +211,8 @@ export const defineFillBlanksWithText = <
     };
   };
 
-  const overrides = (
-    patch: Question_FillBlanksWithText_Overrides<Content>,
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);
