@@ -8,6 +8,7 @@ import {
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
 } from '../_shared__questions';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   buildAnswerWithBlocks_Config_Schema, buildAnswerWithBlocks_Override_Config_Schema,
@@ -26,11 +27,15 @@ const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
 };
 
 type ContentShape = Question_BuildAnswerWithBlocks_Config['content'];
-export type Question_BuildAnswerWithBlocks_Overrides<Content extends ContentShape = ContentShape> =
+export type Question_BuildAnswerWithBlocks_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> =
   Question_BuildAnswerWithBlocks_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content> & {
-      correctSequence?: OrderedBlockPatch<Content['correctSequence']['items']>;
-  distractors?: OrderedBlockPatch<Content['distractors']['items']>;
+    content?: QuestionCommonPatch<Content, Added, Languages> & {
+      correctSequence?: OrderedBlockPatch<Content['correctSequence']['items'], Added, Languages>;
+  distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
     };
   };
 
@@ -68,7 +73,7 @@ export const defineBuildAnswerWithBlocks = <
   
   const extraContent = (
     source: Content,
-    patch?: NonNullable<Question_BuildAnswerWithBlocks_Overrides<Content>['content']>,
+    patch?: { correctSequence?: OrderedBlockPatch; distractors?: OrderedBlockPatch },
   ) => {
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
@@ -98,8 +103,8 @@ export const defineBuildAnswerWithBlocks = <
     };
   };
 
-  const overrides = (
-    patch: Question_BuildAnswerWithBlocks_Overrides<Content>,
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_BuildAnswerWithBlocks_Overrides<Content, Added, Languages>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);
