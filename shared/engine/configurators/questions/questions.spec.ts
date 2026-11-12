@@ -343,3 +343,43 @@ test('invariant child collections emit no redundant locale files', () => {
   });
   assert.equal(question.build.props({ languages: ['uk', 'en'] }).locale, undefined);
 });
+
+test('nested child overrides publish only the explicitly requested locale', () => {
+  const translated = defineText({
+    id, slug: 'translatedPrompt', type: 'text', params: {},
+    locale: { value: { uk: 'Запитання', en: 'Question', pl: 'Pytanie' } },
+  });
+  const question = defineAnswerWithNumber({
+    ...common('answerWithNumber'), params: { ...params, correctAnswers: [1] },
+    locale: { placeholder: 'Number' },
+    content: { question: collection(translated) },
+  });
+  const patch = question.build.overrides({
+    content: { question: { items: {
+      translatedPrompt: { locale: { value: { uk: 'Оновлено', en: 'Updated', pl: 'Zmienione' } } },
+    } } },
+  }, { languages: ['uk'] });
+  assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
+  const blocks = (patch.locale?.uk as { content: { question: { locale: { value: string } }[] } }).content.question;
+  assert.equal(blocks[0].locale.value, 'Оновлено');
+});
+
+test('localized answer and text-slot projections reject only missing selected translations', () => {
+  const answer = defineAnswerWithText({
+    ...common('answerWithText'),
+    locale: { correctAnswers: { yes: { uk: 'Так' } }, placeholder: 'Answer' },
+  });
+  assert.doesNotThrow(() => answer.build.props({ languages: ['uk'] }));
+  assert.throws(() => answer.build.props({ languages: ['en'] }), /Incomplete accepted-answer set/);
+
+  const slot = defineFillBlanksWithText({
+    ...common('fillBlanksWithText'),
+    locale: { placeholder: 'Answer' },
+    content: {
+      ...prompt,
+      slots: { items: { firstSlot: { correctAnswers: { yes: { uk: 'Так' } } } }, order: ['firstSlot'] },
+    },
+  });
+  assert.doesNotThrow(() => slot.build.props({ languages: ['uk'] }));
+  assert.throws(() => slot.build.props({ languages: ['en'] }), /Incomplete text slot/);
+});
