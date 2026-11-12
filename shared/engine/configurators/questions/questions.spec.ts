@@ -12,6 +12,7 @@ import {
   defineFillBlanksWithBlocks,
   defineFillBlanksWithText,
   answerWithNumber_Config_Schema,
+  selectOneAnswer_Props_Schema,
 } from './index';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
@@ -262,4 +263,17 @@ test('SelectMultipleAnswers rejects partially disabled correct answer sets', () 
     }),
     /enabled ContentBlock/,
   );
+});
+
+test('invariant-only Questions publish a required empty locale Props object', () => {
+  const question = defineSelectOneAnswer({
+    ...common('selectOneAnswer'), content: { ...prompt, answers },
+  });
+  const built = question.build.props();
+  assert.deepEqual(built.base.locale, {});
+  assert.equal(built.locale, undefined);
+  assert.equal(selectOneAnswer_Props_Schema.safeParse(built.base).success, true);
+  // A sparse patch must not inject empty locale data.
+  const patch = question.build.overrides({ params: { restrictions: [] } });
+  assert.equal(Object.hasOwn(patch.base, 'locale'), false);
 });

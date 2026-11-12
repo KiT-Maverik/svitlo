@@ -33,7 +33,7 @@ type QuestionPropsShape = {
 /** Concrete, entity-specific publication shapes; arrays are resolved before publication. */
 export type QuestionResourcePublication<Props extends QuestionPropsShape> = QuestionPublication<
   Pick<Props, 'id' | 'slug' | 'type' | 'params'> & {
-    locale?: Partial<Props['locale']>;
+    locale: Partial<Props['locale']>;
     content: QuestionPublishedValue<Props['content']>;
   },
   QuestionLocaleFiles<Props>

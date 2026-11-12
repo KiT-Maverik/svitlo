@@ -215,7 +215,7 @@ export const defineFillBlanksWithText = <
         slug,
         type,
         params: metadata.params,
-        ...(Object.keys(own.base).length ? { locale: own.base } : {}),
+        locale: own.base,
         content: common.base,
       },
       locale: finishFiles(own.files),

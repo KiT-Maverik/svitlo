@@ -148,7 +148,7 @@ export const defineSelectMultipleAnswers = <
     return {
       base: {
         id, slug, type, params: metadata.params,
-        ...(Object.keys(own.base).length ? { locale: own.base } : {}),
+        locale: own.base,
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
