@@ -4,7 +4,7 @@ import { validateOrderedKeys } from '../../_shared__configurators';
 import { cloneJson, isRecord, resolveChild, validateBlock } from './collections.utils';
 
 type Block = ContentBlock_Configurator;
-type Entry = Record<string, Block>;
+type Entry = Record<string, unknown>;
 type NestedCollection = { items: Record<string, Entry>; order: string[] };
 type NestedPatch = {
   items?: Record<string, Record<string, unknown> | false>;
@@ -31,7 +31,7 @@ const validateNested = (collection: NestedCollection, path: string, fields: read
     }
     for (const field of fields) {
       const child = entry[field];
-      validateBlock(child, child?.slug ?? '');
+      validateBlock(child, isRecord(child) && typeof child.slug === 'string' ? child.slug : '');
     }
   }
 };
@@ -84,7 +84,7 @@ const resolveNested = (
     const entry = active[key] as Entry;
     const changes = changed[key] === false ? undefined : changed[key] as Plain | undefined;
     const built: Record<string, ReturnType<typeof resolveChild>> = {};
-    for (const field of fields) built[field] = resolveChild(entry[field], changes?.[field]);
+    for (const field of fields) built[field] = resolveChild(entry[field] as Block, changes?.[field]);
     base[key] = Object.fromEntries(fields.map(field => [field, built[field].base]));
     const languages = new Set<LanguageCodes>();
     for (const field of fields) {
