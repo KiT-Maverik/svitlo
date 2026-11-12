@@ -33,3 +33,20 @@ jobs:
         run: npm run package:build --workspace @svitlo/contracts
       - name: Typecheck Engine and execute ContentBlock regression tests
         run: npm run test:contentblocks --workspace @svitlo/engine
+      - name: Preview formatting of changed Engine files (no file writes)
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const prettier = require('prettier');
+          const files = ["shared/engine/configurators/AGENTS.md","shared/engine/configurators/README.md","shared/engine/configurators/contentBlocks.asset-validation.spec.ts","shared/engine/configurators/contentBlocks/assembly.spec.ts","shared/engine/configurators/contentBlocks/assembly.typecheck.ts","shared/engine/configurators/contentBlocks/defineAudio/defineAudio.ts","shared/engine/configurators/contentBlocks/defineCarousel/defineCarousel.schemas.ts","shared/engine/configurators/contentBlocks/defineCarousel/defineCarousel.spec.ts","shared/engine/configurators/contentBlocks/defineCarousel/defineCarousel.ts","shared/engine/configurators/contentBlocks/defineCarousel/defineCarouselSlide/defineCarouselSlide.schemas.ts","shared/engine/configurators/contentBlocks/defineCarousel/defineCarouselSlide/defineCarouselSlide.ts","shared/engine/configurators/contentBlocks/defineCarousel/defineCarouselSlide/index.ts","shared/engine/configurators/contentBlocks/defineCarousel/index.ts","shared/engine/configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas.ts","shared/engine/configurators/contentBlocks/defineCheckpoint/defineCheckpoint.spec.ts","shared/engine/configurators/contentBlocks/defineCheckpoint/defineCheckpoint.ts","shared/engine/configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.spec.ts","shared/engine/configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.ts","shared/engine/configurators/contentBlocks/defineCode/defineCode.ts","shared/engine/configurators/contentBlocks/defineImage/defineImage.ts","shared/engine/configurators/contentBlocks/defineMarkdown/defineMarkdown.spec.ts","shared/engine/configurators/contentBlocks/defineMarkdown/defineMarkdown.ts","shared/engine/configurators/contentBlocks/defineScene/defineScene.ts","shared/engine/configurators/contentBlocks/defineText/defineText.ts","shared/engine/configurators/contentBlocks/defineVideo/defineVideo.ts","shared/engine/configurators/contentBlocks/defineYoutube/defineYoutube.ts","shared/engine/package.json","shared/engine/tsconfig.contentblocks.json","shared/engine/types/index.ts","shared/engine/types/requiredLanguages.ts"];
+          (async () => {
+            for (const filepath of files) {
+              const source = fs.readFileSync(filepath, 'utf8');
+              const config = await prettier.resolveConfig(filepath);
+              const formatted = await prettier.format(source, { ...config, filepath });
+              if (formatted !== source) {
+                console.log('SVITLO_FORMATTED_FILE::' + JSON.stringify({ filepath, content: formatted }));
+              }
+            }
+          })().catch(error => { console.error(error); process.exitCode = 1; });
+          NODE
