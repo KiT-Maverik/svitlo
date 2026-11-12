@@ -45,13 +45,12 @@ export const course_Override_Config_Schema: z.ZodType<Course_Metadata_Overrides>
     locale: course_Config_Schema.shape.locale,
   })),
 );
-type ChildPatch<Child> = Child extends { build: { overrides: (patch: infer Patch) => unknown } } ? Patch : never;
 export type Course_Overrides<
   Items extends Record<string, Course_Child> = Record<string, Course_Child>,
   Added extends Record<string, Course_Child> = {},
 > = Course_Metadata_Overrides & {
   content?: {
-    items?: { [Key in keyof Items]?: ChildPatch<Items[Key]> | false };
+    items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };
     order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
   };
