@@ -7,7 +7,6 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
-  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
@@ -17,13 +16,13 @@ import {
   type ContentBlock_Image_Config,
   type ContentBlock_Image_Locale,
   type ContentBlock_Image_Overrides,
-  type ContentBlock_Image_ResourceBase,
+  type ContentBlock_Image_PropsBase,
 } from './defineImage.schemas';
 
 type ImageLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Image_Locale<'props'>>>>;
 type ImageEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Image_Locale<'props'>>>;
-type ImageAssembly<Base, LocaleFiles = ImageLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type ImageOverrideBase = {
+type ImagePropsPublication<Base, LocaleFiles = ImageLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type ImageOverridePropsBase = {
   params?: ContentBlock_Image_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Image_Locale<'props'>>;
 };
@@ -37,7 +36,7 @@ const validate = (config: ContentBlock_Image_Config): void => {
   parseAndValidate(config);
 };
 
-const assembleImage = (config: ContentBlock_Image_Config): ImageAssembly<ContentBlock_Image_ResourceBase> => {
+const buildImageProps = (config: ContentBlock_Image_Config): ImagePropsPublication<ContentBlock_Image_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -48,11 +47,11 @@ const assembleImage = (config: ContentBlock_Image_Config): ImageAssembly<Content
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Image_Locale<'props'>> }
       : {}),
-  } satisfies ContentBlock_Image_ResourceBase;
+  } satisfies ContentBlock_Image_PropsBase;
   return { base, locale: locale as unknown as ImageLocaleFiles | undefined };
 };
 
-const assembleImagePatch = (patch: ContentBlock_Image_Overrides): ImageAssembly<ImageOverrideBase> => {
+const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublication<ImageOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
@@ -67,8 +66,8 @@ const assembleImagePatch = (patch: ContentBlock_Image_Overrides): ImageAssembly<
 
 /** Define Image. */
 /**
- * Build-time stateless publication. The isolated merged candidate is used
- * only for validation; the published override remains sparse.
+ * Build complete Props and validated sparse overrides. Temporary merged
+ * configurations are used only for semantic validation.
  */
 export const defineImage = <const Slug extends string>(
   config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug },
@@ -85,25 +84,21 @@ export const defineImage = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Image_Config>;
 
-  function resource(): ImageAssembly<ContentBlock_Image_ResourceBase>;
-  function resource(options: { embed: true }): ImageAssembly<ContentBlock_Image_ResourceBase, ImageEmbeddedLocaleFiles>;
-  function resource(options?: {
+  function props(): ImagePropsPublication<ContentBlock_Image_PropsBase>;
+  function props(options: { embed: true }): ImagePropsPublication<ContentBlock_Image_PropsBase, ImageEmbeddedLocaleFiles>;
+  function props(options?: {
     embed?: true;
-  }): ImageAssembly<ContentBlock_Image_ResourceBase, ImageLocaleFiles | ImageEmbeddedLocaleFiles> {
-    const assembled = assembleImage(copyAuthored());
-    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }): ImagePropsPublication<ContentBlock_Image_PropsBase, ImageLocaleFiles | ImageEmbeddedLocaleFiles> {
+    const publication = buildImageProps(parseAndValidate(copyAuthored()));
+    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
-  const resourceApi: ResourceAssembler<
-    ContentBlock_Image_ResourceBase,
-    DeepPartial<ContentBlock_Image_Locale<'props'>>
-  > = resource;
 
-  const overrides = (patch: ContentBlock_Image_Overrides): ImageAssembly<ImageOverrideBase> => {
+  const overrides = (patch: ContentBlock_Image_Overrides): ImagePropsPublication<ImageOverridePropsBase> => {
     try {
       const parsedPatch = image_Override_Config_Schema.parse(patch);
       const effective = image_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return assembleImagePatch(structuredClone(parsedPatch));
+      return buildImagePatch(structuredClone(parsedPatch));
     } catch (error) {
       throw new Error(`Invalid Image overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,
@@ -115,7 +110,7 @@ export const defineImage = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource: resourceApi, overrides },
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Image_Locale<'config'>> } => ({

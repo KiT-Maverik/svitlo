@@ -56,7 +56,7 @@ export const carousel_Override_Config_Schema: z.ZodType<ContentBlock_Carousel_Ov
   ),
 );
 
-export type ContentBlock_Carousel_ResourceBase = z.infer<typeof carouselBase> & {
+export type ContentBlock_Carousel_PropsBase = z.infer<typeof carouselBase> & {
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
 };
 

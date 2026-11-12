@@ -7,7 +7,6 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
-  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
@@ -17,13 +16,13 @@ import {
   type ContentBlock_Code_Config,
   type ContentBlock_Code_Locale,
   type ContentBlock_Code_Overrides,
-  type ContentBlock_Code_ResourceBase,
+  type ContentBlock_Code_PropsBase,
 } from './defineCode.schemas';
 
 type CodeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Code_Locale<'props'>>>>;
 type CodeEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Code_Locale<'props'>>>;
-type CodeAssembly<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type CodeOverrideBase = {
+type CodePropsPublication<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type CodeOverridePropsBase = {
   params?: ContentBlock_Code_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Code_Locale<'props'>>;
 };
@@ -38,7 +37,7 @@ const validate = (config: ContentBlock_Code_Config): void => {
   parseAndValidate(config);
 };
 
-const assembleCode = (config: ContentBlock_Code_Config): CodeAssembly<ContentBlock_Code_ResourceBase> => {
+const buildCodeProps = (config: ContentBlock_Code_Config): CodePropsPublication<ContentBlock_Code_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -49,11 +48,11 @@ const assembleCode = (config: ContentBlock_Code_Config): CodeAssembly<ContentBlo
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
       : {}),
-  } satisfies ContentBlock_Code_ResourceBase;
+  } satisfies ContentBlock_Code_PropsBase;
   return { base, locale: locale as unknown as CodeLocaleFiles | undefined };
 };
 
-const assembleCodePatch = (patch: ContentBlock_Code_Overrides): CodeAssembly<CodeOverrideBase> => {
+const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublication<CodeOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
@@ -100,8 +99,8 @@ const assembleCodePatch = (patch: ContentBlock_Code_Overrides): CodeAssembly<Cod
  * ```
  */
 /**
- * Build-time stateless publication. The isolated merged candidate is used
- * only for validation; the published override remains sparse.
+ * Build complete Props and validated sparse overrides. Temporary merged
+ * configurations are used only for semantic validation.
  */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
@@ -118,25 +117,21 @@ export const defineCode = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
-  function resource(): CodeAssembly<ContentBlock_Code_ResourceBase>;
-  function resource(options: { embed: true }): CodeAssembly<ContentBlock_Code_ResourceBase, CodeEmbeddedLocaleFiles>;
-  function resource(options?: {
+  function props(): CodePropsPublication<ContentBlock_Code_PropsBase>;
+  function props(options: { embed: true }): CodePropsPublication<ContentBlock_Code_PropsBase, CodeEmbeddedLocaleFiles>;
+  function props(options?: {
     embed?: true;
-  }): CodeAssembly<ContentBlock_Code_ResourceBase, CodeLocaleFiles | CodeEmbeddedLocaleFiles> {
-    const assembled = assembleCode(copyAuthored());
-    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }): CodePropsPublication<ContentBlock_Code_PropsBase, CodeLocaleFiles | CodeEmbeddedLocaleFiles> {
+    const publication = buildCodeProps(parseAndValidate(copyAuthored()));
+    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
-  const resourceApi: ResourceAssembler<
-    ContentBlock_Code_ResourceBase,
-    DeepPartial<ContentBlock_Code_Locale<'props'>>
-  > = resource;
 
-  const overrides = (patch: ContentBlock_Code_Overrides): CodeAssembly<CodeOverrideBase> => {
+  const overrides = (patch: ContentBlock_Code_Overrides): CodePropsPublication<CodeOverridePropsBase> => {
     try {
       const parsedPatch = code_Override_Config_Schema.parse(patch);
       const effective = code_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return assembleCodePatch(structuredClone(parsedPatch));
+      return buildCodePatch(structuredClone(parsedPatch));
     } catch (error) {
       throw new Error(`Invalid Code overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,
@@ -148,7 +143,7 @@ export const defineCode = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource: resourceApi, overrides },
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Code_Locale<'config'>> } => ({
