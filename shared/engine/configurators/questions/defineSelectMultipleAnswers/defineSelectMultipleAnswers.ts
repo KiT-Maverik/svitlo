@@ -21,8 +21,14 @@ const metadataSchema = selectMultipleAnswers_Config_Schema.omit({ content: true 
 const validate = (candidate: Question_SelectMultipleAnswers_Config): void => {
   selectMultipleAnswers_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
+  const groups = candidate.content.answers;
   for (const group of ['correct', 'incorrect', 'distractors'] as const) {
-    validateBlockCollection(candidate.content.answers[group], 'content.answers.' + group);
+    validateBlockCollection(groups[group], 'content.answers.' + group);
+  }
+  if (!groups.correct.order.length) throw new Error('SelectMultipleAnswers requires a correct answer');
+  const slugs = (['correct', 'incorrect', 'distractors'] as const).flatMap(group => groups[group].order);
+  if (new Set(slugs).size !== slugs.length) {
+    throw new Error('An answer cannot occur in multiple scoring groups');
   }
 };
 
