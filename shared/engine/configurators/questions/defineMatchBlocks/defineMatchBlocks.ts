@@ -111,7 +111,7 @@ export const defineMatchBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    }
+    } as QuestionResourcePublication<Question_MatchBlocks_Props>;
   };
 
   const overrides = <

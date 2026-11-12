@@ -122,7 +122,7 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    }
+    } as QuestionResourcePublication<Question_FillBlanksWithBlocks_Props>;
   };
 
   const overrides = <

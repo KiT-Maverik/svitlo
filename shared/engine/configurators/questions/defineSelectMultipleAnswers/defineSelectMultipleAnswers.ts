@@ -152,7 +152,7 @@ export const defineSelectMultipleAnswers = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    }
+    } as QuestionResourcePublication<Question_SelectMultipleAnswers_Props>;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(

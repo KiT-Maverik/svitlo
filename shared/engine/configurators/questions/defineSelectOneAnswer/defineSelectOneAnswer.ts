@@ -148,7 +148,7 @@ export const defineSelectOneAnswer = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    }
+    } as QuestionResourcePublication<Question_SelectOneAnswer_Props>;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(

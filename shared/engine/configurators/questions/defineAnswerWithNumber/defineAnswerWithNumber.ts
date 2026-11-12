@@ -81,7 +81,7 @@ export const defineAnswerWithNumber = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    }
+    } as QuestionResourcePublication<Question_AnswerWithNumber_Props>;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
