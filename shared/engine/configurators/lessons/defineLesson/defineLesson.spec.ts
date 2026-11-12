@@ -149,11 +149,14 @@ test('requireQuiz demands an enabled Quiz when authored and after Section overri
     section: { items: { intro: false }, order: ['knowledgeQuiz'] },
   }));
 
+  const disabledQuiz = defineQuizSection<'disabledQuiz', {}, ['en', 'uk']>({
+    id: id('09'), slug: 'disabledQuiz', type: 'quiz',
+    params: { ...quiz.config.base.params, disabled: true },
+    locale: { title: 'Disabled quiz', navigationLabel: 'Q' },
+    content: { items: {}, order: [] },
+  });
   assert.throws(() => defineLesson({
     ...lessonInput,
-    section: { items: { knowledgeQuiz: quiz }, order: ['knowledgeQuiz'] },
-    // A Quiz that is disabled at authoring time must not satisfy requireQuiz either.
-  }).build.overrides({
-    section: { items: { knowledgeQuiz: { params: { disabled: true } } } },
+    section: { items: { disabledQuiz }, order: ['disabledQuiz'] },
   }), /at least one enabled Quiz/);
 });
