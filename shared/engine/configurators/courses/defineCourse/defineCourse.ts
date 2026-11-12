@@ -69,9 +69,21 @@ const validate = (config: Course_Config): void => {
 const parseChild = (value: unknown): Course_Child_Props => {
   if (!isRecord(value)) throw new Error('Expected resolved Course child Props');
   switch (value.type) {
-    case 'module': return module_Props_Schema.parse(value);
-    case 'chapter': return chapter_Props_Schema.parse(value);
-    case 'lesson': return lesson_Props_Schema.parse(value);
+    case 'module': {
+      const parsed = module_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
+      return structuredClone(value) as Course_Child_Props;
+    }
+    case 'chapter': {
+      const parsed = chapter_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
+      return structuredClone(value) as Course_Child_Props;
+    }
+    case 'lesson': {
+      const parsed = lesson_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
+      return structuredClone(value) as Course_Child_Props;
+    }
     default: throw new Error('Unsupported Course child type: ' + String(value.type));
   }
 };
