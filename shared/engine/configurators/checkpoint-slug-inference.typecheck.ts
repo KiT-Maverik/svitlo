@@ -52,8 +52,8 @@ const checkpoint = defineCheckpoint({
 
 type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
 type CheckpointItemKeys = Expect<Equal<keyof typeof checkpoint.content.items, 'whatIsLight'>>;
-checkpoint.content.items.whatIsLight.question.build.overrides({ locale: { value: 'Updated question' } });
-checkpoint.content.items.whatIsLight.answer.items.answer.build.overrides({ locale: { value: 'Updated answer' } });
+checkpoint.content.items.whatIsLight.question.build.overrides({ locale: { value: 'Updated question' } }, { languages: ['en', 'uk'] });
+checkpoint.content.items.whatIsLight.answer.items.answer.build.overrides({ locale: { value: 'Updated answer' } }, { languages: ['en', 'uk'] });
 // @ts-expect-error Checkpoint item keys must be inferred literally.
 void checkpoint.content.items.unknown;
 
@@ -71,17 +71,17 @@ item.build.overrides({
     additionalItems: configuratorArrayToSlugMap([later]),
     order: ['answer', 'later'],
   },
-});
+}, { languages: ['en', 'uk'] });
 // @ts-expect-error Only existing answer keys can be patched.
-item.build.overrides({ answer: { items: { unknown: { locale: { value: 'Unknown' } } } } });
+item.build.overrides({ answer: { items: { unknown: { locale: { value: 'Unknown' } } } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error The mandatory question cannot be disabled.
-item.build.overrides({ question: { params: { disabled: true } } });
+item.build.overrides({ question: { params: { disabled: true } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error Unknown slugs are forbidden in the final order.
-item.build.overrides({ answer: { order: ['unknown'] } });
+item.build.overrides({ answer: { order: ['unknown'] } }, { languages: ['en', 'uk'] });
 // @ts-expect-error Identity cannot be changed.
-item.build.overrides({ slug: 'renamed' });
+item.build.overrides({ slug: 'renamed' }, { languages: ['en', 'uk'] });
 // @ts-expect-error A new child must not reuse an authored slug.
-item.build.overrides({ answer: { additionalItems: configuratorArrayToSlugMap([answer]) } });
+item.build.overrides({ answer: { additionalItems: configuratorArrayToSlugMap([answer]) } }, { languages: ['en', 'uk'] });
 
 const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_CheckpointItem_Config = {
   id: 'b775647f-203d-481a-a1c7-4d331c779d6d',
@@ -93,7 +93,7 @@ const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_Check
 };
 void notQuestion;
 
-const publishedCheckpoint = checkpoint.build.props();
+const publishedCheckpoint = checkpoint.build.props({ languages: ['en', 'uk'] });
 void publishedCheckpoint.base.content[0]?.question;
 void publishedCheckpoint.locale?.uk?.content?.[0]?.question.locale.value;
 // @ts-expect-error Published Props use sorted arrays instead of authored maps.
@@ -101,11 +101,11 @@ void publishedCheckpoint.base.content.items;
 // @ts-expect-error The old mutable Checkpoint API is not available.
 checkpoint.override.content.disable(['whatIsLight']);
 // @ts-expect-error Checkpoint identity is immutable under overrides.
-checkpoint.build.overrides({ slug: 'other' });
+checkpoint.build.overrides({ slug: 'other' }, { languages: ['en', 'uk'] });
 // @ts-expect-error Only known authored CheckpointItems may receive sparse patches.
-checkpoint.build.overrides({ content: { items: { unknown: { check: true } } } });
+checkpoint.build.overrides({ content: { items: { unknown: { check: true } } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error An unknown final-order slug is rejected statically.
-checkpoint.build.overrides({ content: { order: ['unknown'] } });
+checkpoint.build.overrides({ content: { order: ['unknown'] } }, { languages: ['en', 'uk'] });
 
 const laterItem = defineCheckpointItem({
   id: 'b775647f-203d-481a-a1c7-4d331c779d6f',
@@ -120,6 +120,6 @@ checkpoint.build.overrides({
     additionalItems: configuratorArrayToSlugMap([laterItem]),
     order: ['whatIsLight', 'laterItem'],
   },
-});
+}, { languages: ['en', 'uk'] });
 // @ts-expect-error Existing CheckpointItem slugs cannot be added again.
-checkpoint.build.overrides({ content: { additionalItems: configuratorArrayToSlugMap([item]) } });
+checkpoint.build.overrides({ content: { additionalItems: configuratorArrayToSlugMap([item]) } }, { languages: ['en', 'uk'] });

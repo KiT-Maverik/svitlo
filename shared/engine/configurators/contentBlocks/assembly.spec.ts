@@ -31,12 +31,12 @@ test('Published locale bodies already match Props and require no embedding', () 
     params: {},
     locale: { title: { en: 'Hello' }, fileLocation: 'https://example.com/audio.mp3' },
   });
-  const result = block.build.props();
+  const result = block.build.props({ languages: ['en', 'uk'] });
   assert.deepEqual(result.locale?.en, { locale: { title: 'Hello' } });
-  assert.deepEqual(block.build.overrides({ locale: { title: { en: 'Updated' } } }).locale?.en, {
+  assert.deepEqual(block.build.overrides({ locale: { title: { en: 'Updated' } } }, { languages: ['en', 'uk'] }).locale?.en, {
     locale: { title: 'Updated' },
   });
-  assert.equal(block.build.props().base.locale?.fileLocation, 'https://example.com/audio.mp3');
+  assert.equal(block.build.props({ languages: ['en', 'uk'] }).base.locale?.fileLocation, 'https://example.com/audio.mp3');
 });
 
 test('Audio publishes Props-shaped locale bodies and isolated sparse patches', () => {
@@ -52,7 +52,7 @@ test('Audio publishes Props-shaped locale bodies and isolated sparse patches', (
     },
   };
   const audio = defineAudio(authored);
-  assert.deepEqual(audio.build.props(), {
+  assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }), {
     base: {
       id,
       slug: 'audioExample',
@@ -65,30 +65,30 @@ test('Audio publishes Props-shaped locale bodies and isolated sparse patches', (
       uk: { locale: { fileLocation: 'https://example.com/uk.mp3', fallback: { retry: 'Повторити' } } },
     },
   });
-  assert.deepEqual(audio.build.props(), {
-    base: audio.build.props().base,
+  assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }), {
+    base: audio.build.props({ languages: ['en', 'uk'] }).base,
     locale: {
       en: { locale: { fileLocation: 'https://example.com/en.mp3' } },
       uk: { locale: { fileLocation: 'https://example.com/uk.mp3', fallback: { retry: 'Повторити' } } },
     },
   });
   const patch = { locale: { title: { uk: 'Оповідь' } }, params: { disabled: true as const } };
-  assert.deepEqual(audio.build.overrides(patch), {
+  assert.deepEqual(audio.build.overrides(patch, { languages: ['en', 'uk'] }), {
     base: { params: { disabled: true } },
     locale: { uk: { locale: { title: 'Оповідь' } } },
   });
-  assert.deepEqual(audio.build.overrides({}), { base: {}, locale: undefined });
+  assert.deepEqual(audio.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
   assert.throws(
-    () => audio.build.overrides({ locale: { fallback: { unknown: 'bad' } } } as never),
+    () => audio.build.overrides({ locale: { fallback: { unknown: 'bad' } } } as never, { languages: ['en', 'uk'] }),
     /Invalid Audio overrides/,
   );
   assert.equal('override' in audio, false);
   assert.equal('disable' in audio, false);
   authored.locale.title = 'Changed';
-  assert.equal(audio.build.props().base.locale?.title, 'Narration');
-  const first = audio.build.props();
+  assert.equal(audio.build.props({ languages: ['en', 'uk'] }).base.locale?.title, 'Narration');
+  const first = audio.build.props({ languages: ['en', 'uk'] });
   first.base.params.disabled = true;
-  assert.deepEqual(audio.build.props().base.params, {});
+  assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }).base.params, {});
 });
 
 test('Carousel publishes ordered complete localized arrays and handles sparse child overrides', () => {
@@ -109,7 +109,7 @@ test('Carousel publishes ordered complete localized arrays and handles sparse ch
     locale: { title: 'Gallery' },
     slides: { items: { first, second }, order: ['first', 'second'] },
   });
-  const resource = carousel.build.props();
+  const resource = carousel.build.props({ languages: ['en', 'uk'] });
   assert.equal(resource.base.locale?.title, 'Gallery');
   assert.deepEqual(resource.locale?.en?.locale.slides, [
     { src: 'https://example.com/a-en.png', alt: 'First' },
@@ -118,14 +118,14 @@ test('Carousel publishes ordered complete localized arrays and handles sparse ch
   assert.equal(resource.locale?.uk?.locale.slides?.[0]?.src, 'https://example.com/a-uk.png');
   const localized = carousel.build.overrides({
     slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
-  });
+  }, { languages: ['en', 'uk'] });
   assert.deepEqual(localized.locale?.uk?.locale.slides, [
     { src: 'https://example.com/a-uk.png', alt: 'Перший' },
     { src: 'https://example.com/b.png', alt: 'Second', caption: 'Підпис' },
   ]);
   assert.equal(localized.locale?.en?.locale.slides?.[0]?.alt, 'First');
   assert.equal(JSON.stringify(localized).includes('additionalItems'), false);
-  assert.equal(carousel.build.props().locale?.en?.locale.slides?.length, 2);
+  assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
 });
 test('Code applies semantic validation after merging sparse replacement dictionaries', () => {
   const code = defineCode({
@@ -135,7 +135,7 @@ test('Code applies semantic validation after merging sparse replacement dictiona
     params: { language: 'python', codeAsText: 'print(%_%NAME%_%)' },
     locale: { title: 'Code', variables: { NAME: { en: 'Ada', uk: 'Ада' } } },
   });
-  assert.deepEqual(code.build.props(), {
+  assert.deepEqual(code.build.props({ languages: ['en', 'uk'] }), {
     base: {
       id,
       type: 'code',
@@ -145,19 +145,19 @@ test('Code applies semantic validation after merging sparse replacement dictiona
     },
     locale: { en: { locale: { variables: { NAME: 'Ada' } } }, uk: { locale: { variables: { NAME: 'Ада' } } } },
   });
-  assert.deepEqual(code.build.props().locale?.uk, {
+  assert.deepEqual(code.build.props({ languages: ['en', 'uk'] }).locale?.uk, {
     locale: { variables: { NAME: 'Ада' } },
   });
-  assert.deepEqual(code.build.overrides({ locale: { variables: { NAME: { uk: 'Оля' } } } }), {
+  assert.deepEqual(code.build.overrides({ locale: { variables: { NAME: { uk: 'Оля' } } } }, { languages: ['en', 'uk'] }), {
     base: {},
     locale: { uk: { locale: { variables: { NAME: 'Оля' } } } },
   });
   assert.throws(
-    () => code.build.overrides({ params: { codeAsText: 'print(123)' } }),
+    () => code.build.overrides({ params: { codeAsText: 'print(123)' } }, { languages: ['en', 'uk'] }),
     /Code variables validation failed/,
   );
   assert.throws(
-    () => code.build.overrides({ locale: { variables: { UNKNOWN: 'Nope' } } }),
+    () => code.build.overrides({ locale: { variables: { UNKNOWN: 'Nope' } } }, { languages: ['en', 'uk'] }),
     /Code variables validation failed/,
   );
 });
@@ -174,25 +174,25 @@ test('Image validates merged dimensions and nested sparse localized fields', () 
       fallback: { offline: 'Offline' },
     },
   });
-  assert.deepEqual(image.build.props().base.locale, {
+  assert.deepEqual(image.build.props({ languages: ['en', 'uk'] }).base.locale, {
     src: 'https://example.com/image.png',
     fallback: { offline: 'Offline' },
   });
-  assert.deepEqual(image.build.props().locale?.uk, { locale: { alt: 'Схема' } });
-  assert.deepEqual(image.build.overrides({ locale: { alt: { uk: 'Ілюстрація' } } }), {
+  assert.deepEqual(image.build.props({ languages: ['en', 'uk'] }).locale?.uk, { locale: { alt: 'Схема' } });
+  assert.deepEqual(image.build.overrides({ locale: { alt: { uk: 'Ілюстрація' } } }, { languages: ['en', 'uk'] }), {
     base: {},
     locale: { uk: { locale: { alt: 'Ілюстрація' } } },
   });
-  assert.deepEqual(image.build.overrides({ params: { height: 200 } }), {
+  assert.deepEqual(image.build.overrides({ params: { height: 200 } }, { languages: ['en', 'uk'] }), {
     base: { params: { height: 200 } },
     locale: undefined,
   });
   assert.throws(
-    () => image.build.overrides({ params: { fill: true } }),
+    () => image.build.overrides({ params: { fill: true } }, { languages: ['en', 'uk'] }),
     /Image requires either fill\/aspectRatio or width\/height/,
   );
   assert.throws(
-    () => image.build.overrides({ locale: { fallback: { typo: 'Nope' } } } as never),
+    () => image.build.overrides({ locale: { fallback: { typo: 'Nope' } } } as never, { languages: ['en', 'uk'] }),
     /Invalid Image overrides/,
   );
 });
@@ -208,23 +208,23 @@ test('Markdown checks variables on resolved sparse locale overrides', () => {
       variables: { NAME: { en: 'Ada', uk: 'Ада' } },
     },
   });
-  assert.deepEqual(markdown.build.props().locale, {
+  assert.deepEqual(markdown.build.props({ languages: ['en', 'uk'] }).locale, {
     en: { locale: { value: 'Hello %_%NAME%_%', variables: { NAME: 'Ada' } } },
     uk: { locale: { value: 'Привіт %_%NAME%_%', variables: { NAME: 'Ада' } } },
   });
-  assert.deepEqual(markdown.build.props().locale?.en, {
+  assert.deepEqual(markdown.build.props({ languages: ['en', 'uk'] }).locale?.en, {
     locale: { value: 'Hello %_%NAME%_%', variables: { NAME: 'Ada' } },
   });
-  assert.deepEqual(markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Оля' } } } }), {
+  assert.deepEqual(markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Оля' } } } }, { languages: ['en', 'uk'] }), {
     base: {},
     locale: { uk: { locale: { variables: { NAME: 'Оля' } } } },
   });
   assert.throws(
-    () => markdown.build.overrides({ locale: { value: { uk: 'Без змінної' } } }),
+    () => markdown.build.overrides({ locale: { value: { uk: 'Без змінної' } } }, { languages: ['en', 'uk'] }),
     /missing configured variable "NAME"/,
   );
   assert.throws(
-    () => markdown.build.overrides({ locale: { variables: { OTHER: 'stray' } } }),
+    () => markdown.build.overrides({ locale: { variables: { OTHER: 'stray' } } }, { languages: ['en', 'uk'] }),
     /missing configured variable "OTHER"/,
   );
 });
@@ -239,21 +239,21 @@ test('Scene recursively partitions its data-only localized leaves', () => {
       value: { heading: { en: 'Hello', uk: 'Привіт' }, panel: { caption: 'Invariant', info: { uk: 'Деталі' } } },
     },
   });
-  assert.deepEqual(scene.build.props(), {
+  assert.deepEqual(scene.build.props({ languages: ['en', 'uk'] }), {
     base: { id, type: 'scene', slug: 'simulation', params: {}, locale: { value: { panel: { caption: 'Invariant' } } } },
     locale: {
       en: { locale: { value: { heading: 'Hello' } } },
       uk: { locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } } },
     },
   });
-  assert.deepEqual(scene.build.props().locale?.uk, {
+  assert.deepEqual(scene.build.props({ languages: ['en', 'uk'] }).locale?.uk, {
     locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } },
   });
-  assert.deepEqual(scene.build.overrides({ locale: { value: { panel: { caption: { uk: 'Підпис' } } } } }), {
+  assert.deepEqual(scene.build.overrides({ locale: { value: { panel: { caption: { uk: 'Підпис' } } } } }, { languages: ['en', 'uk'] }), {
     base: {},
     locale: { uk: { locale: { value: { panel: { caption: 'Підпис' } } } } },
   });
-  assert.throws(() => scene.build.overrides({ params: { unknown: true } } as never), /Invalid Scene overrides/);
+  assert.throws(() => scene.build.overrides({ params: { unknown: true } } as never, { languages: ['en', 'uk'] }), /Invalid Scene overrides/);
 });
 
 test('Video and YouTube publish media-specific fallback and link fields', () => {
@@ -269,12 +269,12 @@ test('Video and YouTube publish media-specific fallback and link fields', () => 
       fallback: { offline: 'Offline' },
     },
   });
-  assert.deepEqual(video.build.props().locale, {
+  assert.deepEqual(video.build.props({ languages: ['en', 'uk'] }).locale, {
     en: { locale: { label: 'Movie' } },
     uk: { locale: { label: 'Відео' } },
   });
-  assert.deepEqual(video.build.props().locale?.uk, { locale: { label: 'Відео' } });
-  assert.deepEqual(video.build.overrides({ locale: { label: { uk: 'Фільм' } } }), {
+  assert.deepEqual(video.build.props({ languages: ['en', 'uk'] }).locale?.uk, { locale: { label: 'Відео' } });
+  assert.deepEqual(video.build.overrides({ locale: { label: { uk: 'Фільм' } } }, { languages: ['en', 'uk'] }), {
     base: {},
     locale: { uk: { locale: { label: 'Фільм' } } },
   });
@@ -285,13 +285,13 @@ test('Video and YouTube publish media-specific fallback and link fields', () => 
     params: { mode: 'link' },
     locale: { href: 'https://youtube.com/watch?v=example', label: { en: 'Watch', uk: 'Дивитись' } },
   });
-  assert.deepEqual(youtube.build.props().base.locale, { href: 'https://youtube.com/watch?v=example' });
-  assert.deepEqual(youtube.build.props().locale?.en, { locale: { label: 'Watch' } });
-  assert.deepEqual(youtube.build.overrides({ params: { mode: 'embed' }, locale: { label: { uk: 'Переглянути' } } }), {
+  assert.deepEqual(youtube.build.props({ languages: ['en', 'uk'] }).base.locale, { href: 'https://youtube.com/watch?v=example' });
+  assert.deepEqual(youtube.build.props({ languages: ['en', 'uk'] }).locale?.en, { locale: { label: 'Watch' } });
+  assert.deepEqual(youtube.build.overrides({ params: { mode: 'embed' }, locale: { label: { uk: 'Переглянути' } } }, { languages: ['en', 'uk'] }), {
     base: { params: { mode: 'embed' } },
     locale: { uk: { locale: { label: 'Переглянути' } } },
   });
-  assert.throws(() => youtube.build.overrides({ locale: { nope: 'bad' } } as never), /Invalid Youtube overrides/);
+  assert.throws(() => youtube.build.overrides({ locale: { nope: 'bad' } } as never, { languages: ['en', 'uk'] }), /Invalid Youtube overrides/);
 });
 
 test('Every flat ContentBlock exposes the stateless Build API', () => {
@@ -325,7 +325,7 @@ test('Carousel rejects a language lacking complete slide fields', () => {
     locale: {},
     slides: { items: { mixed }, order: ['mixed'] },
   });
-  assert.throws(() => carousel.build.props(), /Incomplete Carousel slides/);
+  assert.throws(() => carousel.build.props({ languages: ['en', 'uk'] }), /Incomplete Carousel slides/);
 });
 test('Markdown can override one language of an invariant replacement without losing the others', () => {
   const markdown = defineMarkdown({
@@ -338,7 +338,7 @@ test('Markdown can override one language of an invariant replacement without los
       variables: { NAME: 'Ada' },
     },
   });
-  assert.deepEqual(markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Оля' } } } }), {
+  assert.deepEqual(markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Оля' } } } }, { languages: ['en', 'uk'] }), {
     base: {},
     locale: { uk: { locale: { variables: { NAME: 'Оля' } } } },
   });
@@ -413,15 +413,15 @@ test('Flat ContentBlocks publish stateless Props without the legacy assemble sur
     assert.equal('assemble' in block, false);
     assert.equal(typeof block.build.props, 'function');
     assert.equal(typeof block.build.overrides, 'function');
-    const original = block.build.props();
-    assert.deepEqual(block.build.props().base, original.base);
-    assert.deepEqual(block.build.overrides({ params: { disabled: true } }), {
+    const original = block.build.props({ languages: ['en', 'uk'] });
+    assert.deepEqual(block.build.props({ languages: ['en', 'uk'] }).base, original.base);
+    assert.deepEqual(block.build.overrides({ params: { disabled: true } }, { languages: ['en', 'uk'] }), {
       base: { params: { disabled: true } },
       locale: undefined,
     });
-    assert.deepEqual(block.build.overrides({}), { base: {}, locale: undefined });
-    assert.deepEqual(block.build.props(), original);
-    assert.throws(() => block.build.overrides({ params: { unknown: true } } as never), /Invalid .* overrides/);
+    assert.deepEqual(block.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
+    assert.deepEqual(block.build.props({ languages: ['en', 'uk'] }), original);
+    assert.throws(() => block.build.overrides({ params: { unknown: true } } as never, { languages: ['en', 'uk'] }), /Invalid .* overrides/);
   }
 });
 
@@ -437,19 +437,19 @@ test('Carousel slide overrides and published output are mutation-isolated', () =
     slides: { items: { first }, order: ['first'] },
   });
   const patch = { slides: { items: { first: { locale: { alt: 'Updated' } } } } };
-  const publication = carousel.build.overrides(patch);
+  const publication = carousel.build.overrides(patch, { languages: ['en', 'uk'] });
   assert.deepEqual(publication.base.locale?.slides, [{ src: 'https://example.com/a.png', alt: 'Updated' }]);
   patch.slides.items.first.locale.alt = 'Mutated caller';
   assert.equal(publication.base.locale?.slides?.[0]?.alt, 'Updated');
   if (publication.base.locale?.slides?.[0]) publication.base.locale.slides[0].alt = 'Mutated result';
   assert.deepEqual(
-    carousel.build.overrides({ slides: { items: { first: { locale: { alt: 'Updated' } } } } }).base.locale?.slides,
+    carousel.build.overrides({ slides: { items: { first: { locale: { alt: 'Updated' } } } } }, { languages: ['en', 'uk'] }).base.locale?.slides,
     [{ src: 'https://example.com/a.png', alt: 'Updated' }],
   );
   authored.alt = 'Mutated author';
-  assert.equal(carousel.build.props().base.locale?.slides?.[0]?.alt, 'Original');
+  assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides?.[0]?.alt, 'Original');
   assert.throws(
-    () => carousel.build.overrides({ slides: { items: { first: { locale: { typo: 'invalid' } } } } } as never),
+    () => carousel.build.overrides({ slides: { items: { first: { locale: { typo: 'invalid' } } } } } as never, { languages: ['en', 'uk'] }),
     /Invalid Carousel overrides/,
   );
 });
