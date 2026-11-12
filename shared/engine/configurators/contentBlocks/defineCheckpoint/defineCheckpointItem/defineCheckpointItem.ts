@@ -300,7 +300,8 @@ export const defineCheckpointItem = <
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active answer is required');
 
-      const modifiesAnswers = patch.answer !== undefined || Object.keys(additions).length > 0;
+      const modifiesAnswers = Object.keys(changes).length > 0 || patch.answer?.order !== undefined ||
+        Object.keys(additions).length > 0;
       if (modifiesAnswers) {
         const active = Object.fromEntries(
           Object.entries(enabled).filter((entry): entry is [string, Checkpoint_Allowed_Configurator] =>

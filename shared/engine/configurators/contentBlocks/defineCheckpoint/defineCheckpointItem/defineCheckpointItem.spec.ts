@@ -59,6 +59,7 @@ test('CheckpointItem publishes sparse question-only overrides without touching a
     locale: { uk: { question: { locale: { value: 'Оновлене питання?' } } } },
   });
   assert.deepEqual(item.build.overrides({}), { base: {}, locale: undefined });
+  assert.deepEqual(item.build.overrides({ answer: {} }), { base: {}, locale: undefined });
 });
 
 test('CheckpointItem replaces the whole answer array when an existing child changes', () => {
