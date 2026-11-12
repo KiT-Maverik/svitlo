@@ -200,9 +200,16 @@ export const defineChapter = <
     const locale: Partial<Record<LanguageCodes, Chapter_Child_Props[]>> = {};
     for (const language of languages) {
       const resolved = entries.map(({ resource, patch }) => {
-        const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-        const withBasePatch = mergeForValidation(original, (patch?.base ?? {}) as DeepPartial<typeof original>);
-        const effective = mergeForValidation(withBasePatch, (patch?.locale?.[language] ?? {}) as DeepPartial<typeof withBasePatch>);
+        const original = mergeForValidation<Record<string, unknown>>(
+          resource.base as Record<string, unknown>,
+          (resource.locale?.[language] ?? {}) as Record<string, unknown>,
+        );
+        const withBasePatch = mergeForValidation<Record<string, unknown>>(
+          original, (patch?.base ?? {}) as Record<string, unknown>,
+        );
+        const effective = mergeForValidation<Record<string, unknown>>(
+          withBasePatch, (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
+        );
         return parseChild(effective);
       });
       // Inspect the published envelope without recursively expanding nested Lesson unions.
