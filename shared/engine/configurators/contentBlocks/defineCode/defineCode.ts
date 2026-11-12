@@ -6,8 +6,6 @@ import {
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
@@ -19,8 +17,7 @@ import {
   type ContentBlock_Code_PropsBase,
 } from './defineCode.schemas';
 
-type CodeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Code_Locale<'props'>>>>;
-type CodeEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Code_Locale<'props'>>>;
+type CodeLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Code_Locale<'props'>> }>>;
 type CodePropsPublication<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type CodeOverridePropsBase = {
   params?: ContentBlock_Code_Overrides['params'];
@@ -49,7 +46,9 @@ const buildCodeProps = (config: ContentBlock_Code_Config): CodePropsPublication<
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Code_PropsBase;
-  return { base, locale: locale as unknown as CodeLocaleFiles | undefined };
+  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
+    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
+  )) as CodeLocaleFiles | undefined };
 };
 
 const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublication<CodeOverridePropsBase> => {
@@ -61,7 +60,9 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as CodeLocaleFiles | undefined,
+    locale: (locale === undefined ? undefined : Object.fromEntries(
+    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
+  )) as CodeLocaleFiles | undefined,
   };
 };
 
@@ -117,14 +118,8 @@ export const defineCode = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
-  function props(): CodePropsPublication<ContentBlock_Code_PropsBase>;
-  function props(options: { embed: true }): CodePropsPublication<ContentBlock_Code_PropsBase, CodeEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): CodePropsPublication<ContentBlock_Code_PropsBase, CodeLocaleFiles | CodeEmbeddedLocaleFiles> {
-    const publication = buildCodeProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): CodePropsPublication<ContentBlock_Code_PropsBase> =>
+    buildCodeProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Code_Overrides): CodePropsPublication<CodeOverridePropsBase> => {
     try {
