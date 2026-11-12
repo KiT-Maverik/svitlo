@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { z } from 'zod';
 
 import { defineText, text_Props_Schema, type ContentBlock_Text_Config } from './index';
 
@@ -133,6 +134,40 @@ test('Text validates deep partial parameter patches against the full config', ()
     }),
     {
       base: { params: { wrap: { typographyProps: { weight: 'bold' } } } },
+      locales: undefined,
+    },
+  );
+});
+
+test('Text rejects unknown override fields with its ID and Zod issues', () => {
+  const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+
+  for (const patch of [
+    { unexpected: true },
+    { params: { unexpected: true } },
+    { params: { wrap: { enabled: true, unexpected: true } } },
+    { locale: { value: 'Welcome', unexpected: true } },
+  ]) {
+    assert.throws(
+      () => text.assemble.overrides(patch as never),
+      error => {
+        assert.ok(error instanceof Error);
+        assert.match(error.message, new RegExp(`Invalid Text overrides for ${identity.id}`));
+        assert.ok(error.cause instanceof z.ZodError);
+        assert.ok(error.cause.issues.some(issue => issue.code === 'unrecognized_keys'));
+        return true;
+      },
+    );
+  }
+});
+
+test('Text leaves MUI typography props to the consuming app', () => {
+  const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+
+  assert.deepEqual(
+    text.assemble.overrides({ params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } } }),
+    {
+      base: { params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } } },
       locales: undefined,
     },
   );

@@ -4,6 +4,7 @@ import type { LanguageCodes } from '#schemas';
 import { onlyLocales } from '../../_shared__configurators';
 import {
   text_Config_Schema,
+  text_Override_Config_Schema,
   type ContentBlock_Text_Config,
   type ContentBlock_Text_Locale,
   type ContentBlock_Text_ResourceBase,
@@ -93,16 +94,24 @@ export const defineText = <const Slug extends string>(
         ? { ...locale.value, ...patch.locale.value }
         : (patch.locale?.value ?? locale.value);
 
-    validate({
-      ...config,
-      params: {
-        ...params,
-        ...patch.params,
-        variables,
-        ...(patch.params?.wrap ? { wrap: { ...params.wrap, ...patch.params.wrap } } : {}),
-      },
-      locale: { ...locale, ...patch.locale, value },
-    } as ContentBlock_Text_Config);
+    try {
+      const resolved = text_Override_Config_Schema.parse({
+        ...config,
+        ...patch,
+        params: {
+          ...params,
+          ...patch.params,
+          variables,
+          ...(patch.params?.wrap ? { wrap: { ...params.wrap, ...patch.params.wrap } } : {}),
+        },
+        locale: { ...locale, ...patch.locale, value },
+      });
+      validateTextVariables(resolved);
+    } catch (error) {
+      throw new Error(`Invalid Text overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
+        cause: error,
+      });
+    }
 
     const locales = assembleLocales(patch.locale?.value);
     const overrideBase: TextOverrideBase = {
