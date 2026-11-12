@@ -2,7 +2,8 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 
-import { localizationSwitch, localeText_Schema } from '#schemas';
+import { localeText_Schema } from '#schemas';
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
 function createSkillSchema<Mode extends keyof typeof localizationSwitch>(mode: Mode) {
   const localized = localizationSwitch[mode];
