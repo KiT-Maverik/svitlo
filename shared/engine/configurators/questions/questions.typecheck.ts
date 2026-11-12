@@ -87,15 +87,8 @@ const validLanguageChild = defineAnswerWithNumber<'validLanguageChild', typeof l
   locale: { placeholder: { uk: 'Відповідь' } }, content: localContent,
 });
 // @ts-expect-error Typed Question cannot require an unsupported child language (pl).
-defineAnswerWithNumber<'badLanguageChild', typeof localContent, ['uk', 'en', 'pl']>({
-  id, slug: 'badLanguageChild', type: 'answerWithNumber', params: { ...params, correctAnswers: [1] },
-  locale: { placeholder: { uk: 'Відповідь', en: 'Answer', pl: 'Odpowiedź' } },
-  content: localContent,
-});
+defineAnswerWithNumber<'badLanguageChild', typeof localContent, ['uk', 'en', 'pl']>({ id, slug: 'badLanguageChild', type: 'answerWithNumber', params: { ...params, correctAnswers: [1] }, locale: { placeholder: { uk: 'Відповідь', en: 'Answer', pl: 'Odpowiedź' } }, content: localContent });
 // @ts-expect-error Config language tuple needs all declared translations.
-defineAnswerWithNumber<'badLocale', typeof localContent, ['uk', 'en']>({
-  id, slug: 'badLocale', type: 'answerWithNumber', params: { ...params, correctAnswers: [1] },
-  locale: { placeholder: { uk: 'Відповідь' } }, content: localContent,
-});
+defineAnswerWithNumber<'badLocale', typeof localContent, ['uk', 'en']>({ id, slug: 'badLocale', type: 'answerWithNumber', params: { ...params, correctAnswers: [1] }, locale: { placeholder: { uk: 'Відповідь' } }, content: localContent });
 
 void [one, multiple, matched, text, number, order, build, blocks, blanks, validLanguageChild];
