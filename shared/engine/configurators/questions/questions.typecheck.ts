@@ -53,7 +53,8 @@ const blocks = defineFillBlanksWithBlocks({
 });
 const blanks = defineFillBlanksWithText({
   ...common, type: 'fillBlanksWithText',
-  locale: { slots: { slot: { correctAnswers: { first: 'yes' } } }, placeholder: 'Fill' },
+  locale: { placeholder: 'Fill' },
+  content: { ...common.content, slots: { items: { slot: { correctAnswers: { first: 'yes' } } }, order: ['slot'] } },
 });
 
 type OneSlug = Expect<Equal<typeof one.slug, 'questionOne'>>;
