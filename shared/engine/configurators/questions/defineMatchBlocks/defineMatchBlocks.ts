@@ -7,12 +7,14 @@ import {
   snapshotCommonContent, snapshotBlockCollection, snapshotNestedCollection, validateNestedBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
+  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   matchBlocks_Config_Schema, matchBlocks_Override_Config_Schema,
   type Question_MatchBlocks_Config,
+  matchBlocks_Props_Schema,
   type Question_MatchBlocks_Props,
   type Question_MatchBlocks_MetadataOverrides,
 } from './defineMatchBlocks.schemas';
@@ -89,22 +91,24 @@ export const defineMatchBlocks = <
 
   const extraContent = (
     source: Content,
+    languages: readonly LanguageCodes[],
     patch?: { items?: Record<string, Record<string, unknown> | false>; additionalItems?: Record<string, { left: ContentBlock_Configurator; right: ContentBlock_Configurator }>; order?: string[] },
   ) => {
-    const result = resolvePairMap(source.pairs, patch as never);
+    const result = resolvePairMap(source.pairs, languages, patch as never);
     const locale: Record<string, Record<string, unknown>> = {};
     for (const [language, pairs] of Object.entries(result.locale)) locale[language] = { pairs };
     return { base: { pairs: result.base }, locale };
   };
 
-  const props = (): QuestionResourcePublication<Question_MatchBlocks_Props> => {
+  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_MatchBlocks_Props> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
-    const own = projectQuestionLocale(metadata.locale);
-    const common = resolveCommonContent(initialContent);
-    const extra = extraContent(initialContent);
+    const own = projectQuestionLocale(metadata.locale, languages);
+    const common = resolveCommonContent(initialContent, languages);
+    const extra = extraContent(initialContent, languages);
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
-    return {
+    const resource = {
       base: {
         id, slug, type, params: metadata.params,
         locale: own.base,
@@ -112,6 +116,8 @@ export const defineMatchBlocks = <
       },
       locale: finishFiles(files),
     } as QuestionResourcePublication<Question_MatchBlocks_Props>;
+    validateQuestionPublication(matchBlocks_Props_Schema, languages, resource);
+    return resource;
   };
 
   const overrides = <
@@ -119,15 +125,17 @@ export const defineMatchBlocks = <
     const AddedPairs extends Record<string, Pair> = {},
   >(
     patch: Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairs>,
+    options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_MatchBlocks_Props> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       ensureQuestionPatchShape(patch);
       const metadataPatch = matchBlocks_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
         ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
       });
       validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
-      const own = projectQuestionLocale(metadataPatch.locale ?? {});
+      const own = projectQuestionLocale(metadataPatch.locale ?? {}, languages);
       const files = own.files;
       const base: Record<string, unknown> = {
         ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
@@ -140,13 +148,15 @@ export const defineMatchBlocks = <
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
-        const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
-        const extra = patch.content.pairs !== undefined ? extraContent(initialContent, patch.content.pairs) : {base:{},locale:{}};
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
+        const extra = patch.content.pairs !== undefined ? extraContent(initialContent, languages, patch.content.pairs) : {base:{},locale:{}};
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_MatchBlocks_Props>;
+      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_MatchBlocks_Props>;
+      validateQuestionPublication(matchBlocks_Props_Schema, languages, props(options), publication);
+      return publication;
     } catch (error) {
       throw new Error(
         'Invalid MatchBlocks Question overrides for ' + id + ': ' +
