@@ -5,7 +5,7 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
-import { defineImage, defineAudio, defineVideo, defineCarousel, defineScene } from './contentBlocks';
+import { defineImage, defineAudio, defineVideo, defineCarousel, defineCarouselSlide, defineScene } from './contentBlocks';
 
 const id = '72d22bea-d787-4c6d-9a83-144830c6d325';
 const url = (name: string) => '/textbooks/example/' + name;
@@ -45,12 +45,19 @@ test('ContentBlock validators check packaged Image, Audio, Video, Carousel and S
       params: {},
       locale: { fileLocation: url('clip.mp4'), poster: url('poster.jpg'), label: 'Video' },
     };
+    const photoSlide = defineCarouselSlide({
+      id,
+      slug: 'photo',
+      type: 'carouselSlide',
+      locale: { src: url('photo.png'), alt: 'Photo' },
+    });
     const carouselConfig = {
       id,
       slug: 'carousel',
       type: 'carousel' as const,
       params: {},
-      locale: { slides: [{ src: url('photo.png'), alt: 'Photo' }] },
+      locale: {},
+      slides: { items: { photo: photoSlide }, order: ['photo'] },
     };
     const sceneConfig = {
       id,
@@ -83,12 +90,13 @@ test('ContentBlock validators check packaged Image, Audio, Video, Carousel and S
       /Missing local media file at locale.poster/,
     );
     assert.throws(
-      () =>
-        carousel.config.validate({
-          ...carouselConfig,
-          locale: { slides: [{ src: url('missing.png'), alt: 'Photo' }] },
-        }),
-      /Missing local media file at locale.slides\[0\].src/,
+      () => photoSlide.validate({
+        id,
+        slug: 'photo',
+        type: 'carouselSlide',
+        locale: { src: url('missing.png'), alt: 'Photo' },
+      }),
+      /Missing local media file at locale.src/,
     );
 
     unlinkSync(join(media, 'clip.mp4'));
