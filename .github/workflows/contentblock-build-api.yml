@@ -1,0 +1,33 @@
+name: ContentBlock Build API
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'shared/engine/configurators/contentBlocks/**'
+      - 'shared/engine/configurators/_shared__configurators/**'
+      - 'shared/engine/types/**'
+      - 'shared/engine/package.json'
+      - '.github/workflows/contentblock-build-api.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: contentblock-build-api-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Typecheck Engine and execute ContentBlock regression tests
+        run: npm run test:contentblocks --workspace @svitlo/engine
