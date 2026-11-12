@@ -1,9 +1,14 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
+
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
-import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
+import {
+  carouselSlide_Published_Schema,
+  type ContentBlock_CarouselSlide_Configurator,
+  type ContentBlock_CarouselSlide_Fields,
+} from './defineCarouselSlide';
 
 const contentBlockBase = createContentBlockBaseSchema('carousel');
 
@@ -25,29 +30,29 @@ const params = contentBlockBase.shape.params.extend({
 
 const carouselBase = contentBlockBase.extend({ params });
 
-const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-  title: localizationSwitch[mode].optional(),
-  slides: z
-    .array(
-      z.object({
-        src: localizationSwitch[mode],
-        alt: localizationSwitch[mode],
-        caption: localizationSwitch[mode].optional(),
-      }),
-    )
-    .min(1),
-});
-export type ContentBlock_Carousel_Locale<Mode extends Configurator_Mode> = z.infer<
-  z.ZodObject<ReturnType<typeof locale<Mode>>>
->;
+const configLocale = { title: localizationSwitch.config.optional() };
+const propsLocale = {
+  title: localizationSwitch.props.optional(),
+  slides: z.array(carouselSlide_Published_Schema).min(1),
+};
 
-export const carousel_Config_Schema = carouselBase.extend(addUnifiedLocale(locale('config')));
+export type ContentBlock_Carousel_Locale<Mode extends 'config' | 'props'> = Mode extends 'config'
+  ? z.infer<z.ZodObject<typeof configLocale>>
+  : z.infer<z.ZodObject<typeof propsLocale>>;
+
+/** Authored slides are named configurators, not positional entries in locale. */
+export const carousel_Config_Schema = carouselBase.extend({
+  ...addUnifiedLocale(configLocale),
+  slides: z.object({
+    // Parent validate() owns kind, matching slug and ordered collection checks.
+    items: z.record(z.string(), z.custom<ContentBlock_CarouselSlide_Configurator>()),
+    order: z.array(z.string()),
+  }),
+});
 export type ContentBlock_Carousel_Config = z.infer<typeof carousel_Config_Schema>;
 
-/** Sparse overrides derive permitted fields directly from the authored Config Schema. */
-export type ContentBlock_Carousel_Overrides = DeepPartial<Pick<ContentBlock_Carousel_Config, 'params' | 'locale'>>;
-
-export const carousel_Override_Config_Schema: z.ZodType<ContentBlock_Carousel_Overrides> = z.deepPartial(
+export type Carousel_Metadata_Overrides = DeepPartial<Pick<ContentBlock_Carousel_Config, 'params' | 'locale'>>;
+export const carousel_Override_Config_Schema: z.ZodType<Carousel_Metadata_Overrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: carousel_Config_Schema.shape.params,
@@ -56,9 +61,21 @@ export const carousel_Override_Config_Schema: z.ZodType<ContentBlock_Carousel_Ov
   ),
 );
 
+export type ContentBlock_Carousel_Overrides<
+  Items extends Record<string, ContentBlock_CarouselSlide_Configurator> = Record<string, ContentBlock_CarouselSlide_Configurator>,
+  Added extends Record<string, ContentBlock_CarouselSlide_Configurator> = {},
+> = Carousel_Metadata_Overrides & {
+  slides?: {
+    items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
+    additionalItems?: Added & { [Key in keyof Items]?: never };
+    order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+  };
+};
+
 export type ContentBlock_Carousel_PropsBase = z.infer<typeof carouselBase> & {
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
 };
 
-export const carousel_Props_Schema = carouselBase.extend(addUnifiedLocale(locale('props')));
+export const carousel_Props_Schema = carouselBase.extend(addUnifiedLocale(propsLocale));
 export type ContentBlock_Carousel_Props = z.infer<typeof carousel_Props_Schema>;
+export type ContentBlock_Carousel_SlideProps = ContentBlock_CarouselSlide_Fields;
