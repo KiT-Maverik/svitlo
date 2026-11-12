@@ -1,42 +1,76 @@
-import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
+import type { ConfigWithLanguages, DeepPartial, LanguageScope, RequireLanguages } from '#types';
 import type { LanguageCodes } from '#schemas';
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import { deepStrict_Schema, camelCase_Schema } from '#schemas';
+import { z } from 'zod';
+
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
-  projectQuestionLocale, projectSlotList, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
-  snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  validateOrderedKeys,
+} from '../../_shared__configurators';
+import {
+  cloneJson,
+  ensureQuestionPatchShape,
+  finishFiles,
+  isRecord,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  projectSlotList,
+  resolveCommonContent,
+  snapshotCommonContent,
+  validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type QuestionCommonPatch,
+  type QuestionPublication,
 } from '../_shared__questions';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
-  fillBlanksWithText_Config_Schema, fillBlanksWithText_Override_Config_Schema,
+  fillBlanksWithText_Config_Schema,
+  fillBlanksWithText_Override_Config_Schema,
   type Question_FillBlanksWithText_Config,
   type Question_FillBlanksWithText_MetadataOverrides,
 } from './defineFillBlanksWithText.schemas';
 
-const metadataSchema = fillBlanksWithText_Config_Schema.omit({ content: true });
-
-/** Validate authored Question metadata and owned child collection boundaries. */
-const validate = (candidate: Question_FillBlanksWithText_Config): void => {
-  fillBlanksWithText_Config_Schema.parse(candidate);
-  validateCommonContent(candidate.content);
-  if (!Object.keys(candidate.locale.slots).length) throw new Error('FillBlanksWithText requires at least one slot');
-  for (const slot of Object.values(candidate.locale.slots)) {
-    if (!Object.keys(slot.correctAnswers).length) throw new Error('Every text slot requires a correct answer');
-  }
-  
-};
-
 type ContentShape = Question_FillBlanksWithText_Config['content'];
+type Slot = ContentShape['slots']['items'][string];
+type SlotMap = ContentShape['slots']['items'];
+type SlotChanges<Content extends ContentShape> = {
+  [Key in keyof Content['slots']['items']]?: DeepPartial<Content['slots']['items'][Key]> | false;
+};
+type SlotsOverride<Content extends ContentShape> = {
+  items?: SlotChanges<Content>;
+  additionalItems?: Record<string, Slot>;
+  order?: string[];
+};
 export type Question_FillBlanksWithText_Overrides<Content extends ContentShape = ContentShape> =
   Question_FillBlanksWithText_MetadataOverrides & {
     content?: QuestionCommonPatch<Content> & {
-      
+      slots?: SlotsOverride<Content>;
     };
   };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+const metadataSchema = fillBlanksWithText_Config_Schema.omit({ content: true });
+const slotSchema = fillBlanksWithText_Config_Schema.shape.content.shape.slots.shape.items.valueType;
+const slotPatchSchema: z.ZodType<DeepPartial<Slot>> = z.deepPartial(deepStrict_Schema(slotSchema));
+
+const validateSlots = (value: ContentShape['slots']): void => {
+  const issues = validateOrderedKeys(value, { path: 'content.slots', requireNonEmpty: true });
+  if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+  if (!value.order.length) throw new Error('FillBlanksWithText requires at least one slot');
+  for (const [selector, item] of Object.entries(value.items)) {
+    camelCase_Schema.parse(selector);
+    slotSchema.parse(item);
+  }
+};
+
+const validate = (candidate: Question_FillBlanksWithText_Config): void => {
+  fillBlanksWithText_Config_Schema.parse(candidate);
+  validateCommonContent(candidate.content);
+  validateSlots(candidate.content.slots);
+};
+
+/** A named authored slot is never a positional locale override. */
 export const defineFillBlanksWithText = <
   const Slug extends string,
   const Content extends ContentShape,
@@ -45,46 +79,130 @@ export const defineFillBlanksWithText = <
   config: Omit<Question_FillBlanksWithText_Config, 'slug' | 'content'> & {
     slug: Slug;
     content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      
+      slots: RequireLanguages<Content['slots'], Languages>;
     };
   } & ConfigWithLanguages<Question_FillBlanksWithText_Config, Languages>,
 ) => {
   validate(config);
   const authored = cloneJson(metadataSchema.parse(config));
-  const copyMetadata = () => cloneJson(authored);
   const { id, type } = authored;
   const slug = config.slug;
+  const copyMetadata = () => cloneJson(authored);
   const initialContent = {
     ...snapshotCommonContent(config.content),
-    
+    slots: {
+      items: cloneJson(config.content.slots.items),
+      order: [...config.content.slots.order],
+    },
   } as Content;
-  // Transitional authored access; never pass these mutable objects into Build.
   const content = {
     ...snapshotCommonContent(initialContent),
-    
+    slots: cloneJson(initialContent.slots),
   } as Content;
 
-  
+  const projectSlots = (patch?: SlotsOverride<Content>) => {
+    if (patch !== undefined && !isRecord(patch)) throw new Error('content.slots must be an object');
+    for (const key of Object.keys(patch ?? {})) {
+      if (!['items', 'additionalItems', 'order'].includes(key)) {
+        throw new Error('Unknown content.slots override field: ' + key);
+      }
+    }
+    const changes = patch?.items ?? {};
+    const additions = patch?.additionalItems ?? {};
+    if (!isRecord(changes) || !isRecord(additions)) {
+      throw new Error('content.slots items must be slug-keyed objects');
+    }
+
+    const effective: Record<string, Slot | false> = { ...cloneJson(initialContent.slots.items) };
+    const translatedChanges: Record<string, DeepPartial<Slot>> = {};
+    let structural = Object.keys(additions).length > 0;
+    for (const [key, value] of Object.entries(additions)) {
+      if (Object.hasOwn(effective, key)) throw new Error('Duplicate slot: ' + key);
+      camelCase_Schema.parse(key);
+      effective[key] = cloneJson(slotSchema.parse(value));
+    }
+    for (const [key, change] of Object.entries(changes)) {
+      if (!Object.hasOwn(initialContent.slots.items, key)) {
+        throw new Error('Cannot override unknown text slot: ' + key);
+      }
+      if (change === false) {
+        effective[key] = false;
+        structural = true;
+      } else {
+        const validated = slotPatchSchema.parse(change);
+        translatedChanges[key] = validated;
+        effective[key] = slotSchema.parse(
+          mergeForValidation(cloneJson(initialContent.slots.items[key]), validated),
+        );
+      }
+    }
+    if (structural && patch?.order === undefined) {
+      throw new Error('content.slots.order is required for additions/removals');
+    }
+    const order = patch?.order ?? initialContent.slots.order;
+    const issues = validateOrderedKeys(
+      { items: effective, order },
+      { path: 'content.slots', requireNonEmpty: true, allowDisabled: true },
+    );
+    if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+    if (order.length === 0) throw new Error('At least one active text slot is required');
+
+    const active: SlotMap = Object.fromEntries(
+      order.map(key => [key, effective[key] as Slot]),
+    );
+    const resolved = projectSlotList(active, undefined, order);
+    if (patch === undefined) return resolved;
+
+    const modifies =
+      Object.keys(changes).length > 0 ||
+      Object.keys(additions).length > 0 ||
+      patch.order !== undefined;
+    if (!modifies) return { locale: {}, base: undefined };
+
+    const affected = structural || patch.order !== undefined
+      ? Object.keys(resolved.locale)
+      : Object.keys(
+          projectSlotList(initialContent.slots.items, translatedChanges as never, initialContent.slots.order).locale,
+        );
+    const locale: typeof resolved.locale = {};
+    for (const code of affected) {
+      const language = code as LanguageCodes;
+      if (resolved.locale[language]) locale[language] = resolved.locale[language];
+    }
+    return {
+      ...(resolved.base === undefined ? {} : { base: resolved.base }),
+      locale,
+    };
+  };
+
+  const ownProps = (metadata: typeof authored) => {
+    const own = projectQuestionLocale(metadata.locale);
+    const projected = projectSlots();
+    if (projected.base !== undefined) own.base.slots = projected.base;
+    for (const [language, slots] of Object.entries(projected.locale)) {
+      (own.files[language as LanguageCodes] ??= {}).locale = {
+        ...((own.files[language as LanguageCodes]?.locale ?? {}) as Record<string, unknown>),
+        slots,
+      };
+    }
+    return own;
+  };
+
   const props = (): QuestionPublication<Record<string, unknown>> => {
     const metadata = copyMetadata();
-    const own = projectQuestionLocale({ placeholder: metadata.locale.placeholder });
-    const localized = projectSlotList(metadata.locale.slots);
-    if (localized.base !== undefined) own.base.slots = localized.base;
-    for (const [language, values] of Object.entries(localized.locale)) {
-      const file = (own.files[language as LanguageCodes] ??= {});
-      file.locale = { ...((file.locale ?? {}) as Record<string, unknown>), slots: values };
-    }
+    const own = ownProps(metadata);
     const common = resolveCommonContent(initialContent);
-    const extra = {base:{},locale:{}};
-    const files = own.files;
-    mergeQuestionContent(files, common.locale, extra.locale);
+    mergeQuestionContent(own.files, common.locale);
     return {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         ...(Object.keys(own.base).length ? { locale: own.base } : {}),
-        content: { ...common.base, ...extra.base },
+        content: common.base,
       },
-      locale: finishFiles(files),
+      locale: finishFiles(own.files),
     };
   };
 
@@ -97,40 +215,38 @@ export const defineFillBlanksWithText = <
         ...(patch.params !== undefined ? { params: patch.params } : {}),
         ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
       });
-      validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
-      const own = projectQuestionLocale(
-        metadataPatch.locale?.placeholder === undefined ? {} : { placeholder: metadataPatch.locale.placeholder },
-      );
-      if (metadataPatch.locale?.slots !== undefined) {
-        const localized = projectSlotList(
-          authored.locale.slots,
-          metadataPatch.locale.slots as never,
-        );
-        if (localized.base !== undefined) own.base.slots = localized.base;
-        for (const [language, values] of Object.entries(localized.locale)) {
-          const file = (own.files[language as LanguageCodes] ??= {});
-          file.locale = { ...((file.locale ?? {}) as Record<string, unknown>), slots: values };
-        }
-      }
-      const files = own.files;
+      validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, value => metadataSchema.parse(value));
+      const own = projectQuestionLocale(metadataPatch.locale ?? {});
       const base: Record<string, unknown> = {
         ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
         ...(Object.keys(own.base).length ? { locale: own.base } : {}),
       };
+
       if (patch.content !== undefined) {
-        if (!isRecord(patch.content)) throw new Error('content must be a plain object');
+        if (!isRecord(patch.content)) throw new Error('content must be an object');
         for (const key of Object.keys(patch.content)) {
-          if (!['question', 'hint', 'explanation'].includes(key)) {
+          if (!['question', 'hint', 'explanation', 'slots'].includes(key)) {
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
         const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
-        const extra = {base:{},locale:{}};
-        const changed = { ...common.base, ...extra.base };
-        if (Object.keys(changed).length) base.content = changed;
-        mergeQuestionContent(files, common.locale, extra.locale);
+        if (Object.keys(common.base).length) base.content = common.base;
+        mergeQuestionContent(own.files, common.locale);
+        if (patch.content.slots !== undefined) {
+          const projected = projectSlots(patch.content.slots);
+          if (projected.base !== undefined) {
+            (base.locale ??= {} as Record<string, unknown>);
+            (base.locale as Record<string, unknown>).slots = projected.base;
+          }
+          for (const [language, slots] of Object.entries(projected.locale)) {
+            (own.files[language as LanguageCodes] ??= {}).locale = {
+              ...((own.files[language as LanguageCodes]?.locale ?? {}) as Record<string, unknown>),
+              slots,
+            };
+          }
+        }
       }
-      return { base, locale: finishFiles(files) };
+      return { base, locale: finishFiles(own.files) };
     } catch (error) {
       throw new Error(
         'Invalid FillBlanksWithText Question overrides for ' + id + ': ' +
@@ -140,12 +256,21 @@ export const defineFillBlanksWithText = <
     }
   };
 
-  const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
-      base,
+      base: {
+        id,
+        slug,
+        type,
+        params: cloneJson(authored.params),
+        locale: onlyStrings(authored.locale),
+      },
       locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),
       validate,
     },
