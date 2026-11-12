@@ -1,9 +1,11 @@
 import type { LanguageCodes } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, RequireLanguages } from '#types';
+import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
   mergeForValidation,
   onlyLocales,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   onlyStrings,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -14,6 +16,7 @@ import { lesson_Props_Schema } from '../../lessons/defineLesson';
 import {
   module_Config_Schema,
   module_Override_Config_Schema,
+  module_Props_Schema,
   type Module_Child,
   type Module_Child_Props,
   type Module_Config,
@@ -29,8 +32,8 @@ type ChildResource = {
 };
 type BuildChild = {
   build: {
-    props: () => ChildResource;
-    overrides: (value: never) => ChildResource;
+    props: (options: PublicationLanguageOptions) => ChildResource;
+    overrides: (value: never, options: PublicationLanguageOptions) => ChildResource;
   };
 };
 type ModulePublication<Base> = {
@@ -117,12 +120,13 @@ export type Module_Configurator<
   readonly content: { items: Items; order: string[] };
   readonly validate: typeof validate;
   readonly build: {
-    props: () => ModulePublication<ModulePropsBase>;
-    overrides: <const Added extends Record<string, Module_Child> = {}>(
+    props(options: PublicationLanguageOptions<Languages>): ModulePublication<ModulePropsBase>;
+    overrides<const Added extends Record<string, Module_Child> = {}>(
       patch: Module_Overrides<Items, Added> & {
         content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
       },
-    ) => ModulePublication<ModuleOverrideBase>;
+      options: PublicationLanguageOptions<Languages>,
+    ): ModulePublication<ModuleOverrideBase>;
   };
   readonly config: {
     base: ModuleConfigBase;
@@ -171,8 +175,8 @@ export const defineModule = <
   const buildContent = (
     items: Record<string, Module_Child>,
     order: readonly string[],
+    languages: readonly LanguageCodes[],
     patches: Record<string, unknown> = {},
-    ownLanguages: readonly LanguageCodes[] = [],
   ) => {
     const ids = new Set<string>();
     for (const key of order) {
@@ -187,26 +191,24 @@ export const defineModule = <
       if (!build || typeof build.props !== 'function' || typeof build.overrides !== 'function') {
         throw new Error('Child lacks the stateless Build API: ' + key);
       }
-      const resource = build.props();
-      const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never) : undefined;
+      const resource = build.props({ languages });
+      const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never, { languages }) : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
       mergeForValidation(resource.base, (patch?.base ?? {}) as DeepPartial<typeof resource.base>),
     );
-    const languages = new Set<LanguageCodes>(ownLanguages);
-    for (const { resource, patch } of entries) {
-      for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
-      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
-    }
     const locale: Partial<Record<LanguageCodes, Module_Child_Props[]>> = {};
     for (const language of languages) {
-      locale[language] = entries.map(({ resource, patch }) => {
+      const resolved = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
         const withBasePatch = mergeForValidation(original, (patch?.base ?? {}) as DeepPartial<typeof original>);
         const effective = mergeForValidation(withBasePatch, (patch?.locale?.[language] ?? {}) as DeepPartial<typeof withBasePatch>);
         return parseChild(effective);
       });
+      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
+        locale[language] = resolved;
+      }
     }
     return { base, locale };
   };
@@ -219,15 +221,16 @@ export const defineModule = <
     locale: onlyStrings(authored.locale),
   };
 
-  const props = (): ModulePublication<ModulePropsBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): ModulePublication<ModulePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
-    const children = buildContent(initialItems, initialOrder, {}, Object.keys(own.files) as LanguageCodes[]);
-    const files = own.files;
+    const children = buildContent(initialItems, initialOrder, languages);
+    const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locale)) {
       (files[language as LanguageCodes] ??= {}).content = entries;
     }
-    return {
+    const result: ModulePublication<ModulePropsBase> = {
       base: {
         id, slug, type, params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
@@ -235,14 +238,20 @@ export const defineModule = <
       },
       locale: Object.keys(files).length ? files : undefined,
     };
+    for (const language of languages) {
+      module_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+    }
+    return result;
   };
 
   const overrides = <const Added extends Record<string, Module_Child> = {}>(
     patch: Module_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): ModulePublication<ModuleOverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       if (!isRecord(patch)) throw new Error('Expected Module overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) throw new Error('Unknown Module override field: ' + key);
@@ -259,7 +268,7 @@ export const defineModule = <
         },
         locale: undefined,
       };
-      const files = own.files;
+      const files = selectPublicationLocales(own.files, languages) ?? {};
 
       if (patch.content !== undefined && !isRecord(patch.content)) throw new Error('content must be an object');
       if (patch.content) {
@@ -313,7 +322,7 @@ export const defineModule = <
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, Module_Child] => entry[1] !== false),
         );
-        const built = buildContent(enabled, order, childPatches, Object.keys(files) as LanguageCodes[]);
+        const built = buildContent(enabled, order, languages, childPatches);
         output.base.content = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           (files[language as LanguageCodes] ??= {}).content = values;
