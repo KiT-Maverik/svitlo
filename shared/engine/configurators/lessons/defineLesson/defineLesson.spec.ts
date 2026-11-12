@@ -35,7 +35,7 @@ const makeLesson = () => defineLesson({
 
 test('Lesson emits plain Section Props arrays with correct own and nested locale paths', () => {
   const lesson = makeLesson();
-  const built = lesson.build.props();
+  const built = lesson.build.props({ languages: ['en', 'uk'] });
   assert.equal(lesson.config.base.programId, id('04'));
   assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
   assert.equal(lesson.section.items.intro, section);
@@ -61,11 +61,11 @@ test('Lesson independently overrides Sections, nested ContentBlocks, languages a
       paragraph: { locale: { value: { uk: 'Новий текст' } } },
     } } } } },
     locale: { title: { uk: 'Новий заголовок' } },
-  });
+  }, { languages: ['en', 'uk'] });
   assert.deepEqual(updated.base.section?.map(item => item.slug), ['intro']);
   assert.equal(textValue(updated.locale?.uk?.section?.[0]?.content), 'Новий текст');
   assert.deepEqual(updated.locale?.uk?.locale, { title: 'Новий заголовок' });
-  assert.equal(textValue(lesson.build.props().locale?.uk?.section?.[0]?.content), 'Привіт');
+  assert.equal(textValue(lesson.build.props({ languages: ['en', 'uk'] }).locale?.uk?.section?.[0]?.content), 'Привіт');
 
   const second = defineContentSection<'extra', {}, ['en', 'uk']>({
     type: 'content', id: id('05'), slug: 'extra', params: {},
@@ -75,15 +75,15 @@ test('Lesson independently overrides Sections, nested ContentBlocks, languages a
   const changed = lesson.build.overrides({
     section: { items: { intro: false }, additionalItems: { extra: second }, order: ['extra'] },
     params: { sections: { allowSkipping: true } },
-  });
+  }, { languages: ['en', 'uk'] });
   assert.deepEqual(changed.base.section?.map(item => item.slug), ['extra']);
   assert.equal(changed.locale, undefined);
   assert.deepEqual(changed.base.params?.sections, { allowSkipping: true });
   assert.deepEqual(lesson.section.order, ['intro']);
-  assert.deepEqual(lesson.build.props().base.section.map(item => item.slug), ['intro']);
-  assert.throws(() => lesson.build.overrides({ section: { items: { intro: false } } }), /order is required/);
-  assert.throws(() => lesson.build.overrides({ id: id('09') } as never), /Invalid Lesson overrides/);
-  assert.throws(() => lesson.build.overrides({ params: { languages: ['pl'] } } as never), /Invalid Lesson overrides/);
+  assert.deepEqual(lesson.build.props({ languages: ['en', 'uk'] }).base.section.map(item => item.slug), ['intro']);
+  assert.throws(() => lesson.build.overrides({ section: { items: { intro: false } } }, { languages: ['en', 'uk'] }), /order is required/);
+  assert.throws(() => lesson.build.overrides({ id: id('09') } as never, { languages: ['en', 'uk'] }), /Invalid Lesson overrides/);
+  assert.throws(() => lesson.build.overrides({ params: { languages: ['pl'] } } as never, { languages: ['en', 'uk'] }), /Invalid Lesson overrides/);
 });
 
 test('Lesson rejects wrong section keys and unsupported child types', () => {
@@ -138,16 +138,16 @@ test('requireQuiz demands an enabled Quiz when authored and after Section overri
       order: ['intro', 'knowledgeQuiz'],
     },
   });
-  assert.doesNotThrow(() => required.build.props());
+  assert.doesNotThrow(() => required.build.props({ languages: ['en', 'uk'] }));
   assert.throws(() => required.build.overrides({
     section: { items: { knowledgeQuiz: false }, order: ['intro'] },
-  }), /at least one enabled Quiz/);
+  }, { languages: ['en', 'uk'] }), /at least one enabled Quiz/);
   assert.throws(() => required.build.overrides({
     section: { items: { knowledgeQuiz: { params: { disabled: true } } } },
-  }), /at least one enabled Quiz/);
+  }, { languages: ['en', 'uk'] }), /at least one enabled Quiz/);
   assert.doesNotThrow(() => required.build.overrides({
     section: { items: { intro: false }, order: ['knowledgeQuiz'] },
-  }));
+  }, { languages: ['en', 'uk'] }));
 
   const disabledQuiz = defineQuizSection<'disabledQuiz', {}, ['en', 'uk']>({
     id: id('09'), slug: 'disabledQuiz', type: 'quiz',
