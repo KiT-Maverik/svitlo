@@ -260,8 +260,10 @@ export function defineSkillDomain<
         for (const [slug, child] of Object.entries(additions)) {
           if (Object.hasOwn(initial, slug)) throw new Error('Duplicate ' + key + ' slug: ' + slug);
           if (!isRecord(child) || !isRecord(child.build) ||
-            typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
-            throw new Error('New ' + type + ' must expose the Build API: ' + slug);
+            typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
+            !isRecord(child.config) || !isRecord(child.config.base) ||
+            child.config.base.id !== child.id || child.config.base.slug !== slug) {
+            throw new Error('New ' + type + ' must expose a matching immutable Build identity: ' + slug);
           }
           active[slug] = child as T;
         }
