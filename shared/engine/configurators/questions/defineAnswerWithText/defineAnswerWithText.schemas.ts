@@ -20,7 +20,7 @@ const params = questionBase.shape.params;
 
 export const answerWithText_Config_Schema = questionBase.extend({
   params,
-  ...addUnifiedLocale({ correctAnswers: z.record(z.string(), localizationSwitch.config), placeholder: localizationSwitch.config }),
+  ...addUnifiedLocale({ correctAnswers: z.record(z.string(), localizationSwitch.config).refine(value => Object.keys(value).length > 0), placeholder: localizationSwitch.config }),
   content: questionCommonContent_Config_Schema,
 });
 export type Question_AnswerWithText_Config = z.infer<typeof answerWithText_Config_Schema>;
