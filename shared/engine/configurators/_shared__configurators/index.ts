@@ -7,3 +7,4 @@ export * from './validateOrderedKeys/validateOrderedKeys.utils';
 export * from './onlyLocales/onlyLocales.utils';
 export * from './onlyStrings/onlyStrings.utils';
 export * from './common.schemas';
+export * from './assemblyFields.utils';
