@@ -21,6 +21,9 @@ const metadataSchema = answerWithText_Config_Schema.omit({ content: true });
 const validate = (candidate: Question_AnswerWithText_Config): void => {
   answerWithText_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
+  if (!Object.keys(candidate.locale.correctAnswers).length) {
+    throw new Error('AnswerWithText requires at least one correct answer');
+  }
   
 };
 
