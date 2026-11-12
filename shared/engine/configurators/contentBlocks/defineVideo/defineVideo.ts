@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
@@ -71,8 +71,8 @@ const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublica
  * Stateless ContentBlock Build API validates isolated snapshots and emits
  * either complete Props or exclusively sparse override fields.
  */
-export const defineVideo = <const Slug extends string>(
-  config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug },
+export const defineVideo = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Video_Config, Languages>,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
@@ -101,7 +101,7 @@ export const defineVideo = <const Slug extends string>(
       });
     }
   };
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -115,6 +115,7 @@ export const defineVideo = <const Slug extends string>(
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Video_Configurator = ReturnType<typeof defineVideo>;
