@@ -72,7 +72,7 @@ const video = defineVideo({
   slug: 'video',
   type: 'video',
   params: {},
-  locale: { fileLocation: 'https://example.com/movie.mp4', label: { en: 'Movie' } },
+  locale: { fileLocation: 'https://example.com/movie.mp4', poster: 'https://example.com/movie.jpg', label: { en: 'Movie' } },
 });
 const youtube = defineYoutube({
   id,
