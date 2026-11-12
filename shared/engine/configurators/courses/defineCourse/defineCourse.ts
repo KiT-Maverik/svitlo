@@ -243,7 +243,7 @@ export const defineCourse = <
     }
     const result: CoursePublication<CoursePropsBase> = {
       base: {
-        id, slug, type, params: metadata.params,
+        id, slug, type, params: { ...metadata.params, languages: [...languages] },
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         content: children.base,
       },
