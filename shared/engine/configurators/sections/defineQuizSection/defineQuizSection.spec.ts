@@ -50,7 +50,7 @@ test('Content Section rejects authored raw blocks and allows valid build overrid
 test('Quiz preserves named screen references and scoring semantics', () => {
   const quiz = makeQuiz();
   assert.equal(quiz.type, 'quiz');
-  assert.deepEqual(quiz.build.props().base.params.screen.starting?.content, ['prompt']);
+  assert.deepEqual(quiz.build.props().base.params.screen?.starting?.content, ['prompt']);
   assert.equal(quiz.build.props().base.params.interaction.retries, 1);
   assert.deepEqual(quiz.build.overrides({ params: { interaction: { retries: 2 } } }).base.params?.interaction, { retries: 2 });
   const overridden = quiz.build.overrides({
