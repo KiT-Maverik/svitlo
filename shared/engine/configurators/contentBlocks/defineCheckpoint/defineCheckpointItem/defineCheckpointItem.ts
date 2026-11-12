@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, LanguageScope, ChildSupporting, ChildrenSupporting } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
@@ -130,10 +130,13 @@ type ItemOverrideBase = {
 export const defineCheckpointItem = <
   const Slug extends string,
   const Answers extends Record<string, Checkpoint_Allowed_Configurator>,
+  const Question extends ContentBlock_CheckpointItem_Config['question'],
+  const Languages extends readonly LanguageCodes[] = [],
 >(
-  config: Omit<ContentBlock_CheckpointItem_Config, 'slug' | 'answer'> & {
+  config: Omit<ContentBlock_CheckpointItem_Config, 'slug' | 'answer' | 'question'> & {
     slug: Slug;
-    answer: { items: Answers; order: string[] };
+    question: Question & ChildSupporting<Languages, Question>;
+    answer: { items: Answers & ChildrenSupporting<Languages, Answers>; order: string[] };
   },
 ) => {
   validate(config);
@@ -217,7 +220,9 @@ export const defineCheckpointItem = <
   };
 
   const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
-    patch: CheckpointItem_Overrides<Answers, Added>,
+    patch: CheckpointItem_Overrides<Answers, Added> & {
+      answer?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+    },
   ): ItemPublication<ItemOverrideBase> => {
     try {
       if (!isObject(patch)) throw new Error('Expected an overrides object');
@@ -332,7 +337,7 @@ export const defineCheckpointItem = <
     }
   };
 
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -347,6 +352,7 @@ export const defineCheckpointItem = <
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_CheckpointItem_Configurator = ReturnType<typeof defineCheckpointItem>;
