@@ -86,6 +86,7 @@ const validate = (config: Flashcard_Config): void => {
   for (const side of ['front', 'back', 'hint'] as const) {
     const collection = config.content?.[side];
     if (!collection && side === 'hint') continue;
+    if (!collection) throw new Error('Flashcard content.' + side + ' is required');
     const path = 'content.' + side;
     const issues = [
       ...validateOrderedKeys(collection, { path, requireNonEmpty: side !== 'hint' }),
@@ -296,6 +297,9 @@ export function defineFlashcard<
     const back = buildSide(initialContent.back.items, initialContent.back.order, languages);
     const hint = initialContent.hint && buildSide(initialContent.hint.items, initialContent.hint.order, languages);
     const flags = buildFlags(source.parameters.flags, languages);
+    const { flags: authoredFlags, relationships: authoredRelationships, ...publishedParameters } = source.parameters;
+    void authoredFlags;
+    void authoredRelationships;
     addSideFiles(files, 'front', front);
     addSideFiles(files, 'back', back);
     if (hint) addSideFiles(files, 'hint', hint);
@@ -304,7 +308,7 @@ export function defineFlashcard<
       base: {
         id, slug, type,
         parameters: {
-          ...source.parameters,
+          ...publishedParameters,
           flags: flags.bases,
           ...(source.parameters.relationships ? {
             relationships: buildRelationships(source.parameters.relationships),
@@ -358,7 +362,7 @@ export function defineFlashcard<
         ),
       });
       const candidate = copyAuthored();
-      const newParams = mergeForValidation(candidate.parameters, metadataPatch.parameters ?? {});
+      const newParams = mergeForValidation<Flashcard_Config['parameters']>(candidate.parameters, metadataPatch.parameters ?? {});
       const output: Publication<OverrideBase> = {
         base: { ...(Object.keys(metadataPatch.parameters ?? {}).length ? {
           parameters: metadataPatch.parameters,
@@ -373,11 +377,22 @@ export function defineFlashcard<
         (value) => flashcardFlag_Config_Schema.parse(value),
         (previous, value) => {
           if (!isRecord(value)) throw new Error('Flag patch must be an object');
-          const branch = flashcardFlag_Config_Schema.options.find(
-            option => option.shape.type.safeParse(previous.type).success,
-          );
-          if (!branch) throw new Error('Unknown Flashcard flag type');
-          const sparse = z.deepPartial(branch.omit({ type: true }).strict()).parse(value);
+          // Select the original schema branch before deriving an identity-free sparse patch.
+          const branches = flashcardFlag_Config_Schema.options;
+          const sparse = (() => {
+            switch (previous.type) {
+              case 'list':
+                return z.deepPartial(branches[0].omit({ type: true }).strict()).parse(value);
+              case 'warning':
+                return z.deepPartial(branches[1].omit({ type: true }).strict()).parse(value);
+              case 'acronym':
+                return z.deepPartial(branches[2].omit({ type: true }).strict()).parse(value);
+              case 'custom':
+                return z.deepPartial(branches[3].omit({ type: true }).strict()).parse(value);
+              default:
+                throw new Error('Unknown Flashcard flag type');
+            }
+          })();
           return flashcardFlag_Config_Schema.parse(mergeForValidation(previous, sparse));
         },
       );
