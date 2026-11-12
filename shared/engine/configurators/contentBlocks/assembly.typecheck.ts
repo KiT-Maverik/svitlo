@@ -71,16 +71,12 @@ const youtube = defineYoutube({
 });
 
 const textPublished = text.build.props();
-const textEmbedded = text.build.props({ embed: true });
-void textEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void textPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void textEmbedded.locale?.en?.value;
-// @ts-expect-error The only explicit embed value permitted is true.
-text.build.props({ embed: false });
-// @ts-expect-error Text no longer exposes the assembly API.
-text.build.props();
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void textPublished.locale?.en?.value;
+// @ts-expect-error The Build API does not support conditional embedding.
+text.build.props({ embed: true });
+
 // @ts-expect-error Props-shaped nested locale input is not an authored Overrides patch.
 text.build.overrides({ locale: { value: { locale: { value: 'Hi' } } } });
 // @ts-expect-error Identity ID is not overridable.
@@ -93,84 +89,60 @@ text.build.overrides({ type: 'text' });
 text.build.overrides({ locale: { value: ['not a locale dictionary'] } });
 
 const audioPublished = audio.build.props();
-const audioEmbedded = audio.build.props({ embed: true });
-void audioEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void audioPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void audioEmbedded.locale?.en?.title;
-// @ts-expect-error The only explicit embed value permitted is true.
-audio.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void audioPublished.locale?.en?.title;
+// @ts-expect-error The Build API does not support conditional embedding.
+audio.build.props({ embed: true });
 
 const carouselPublished = carousel.build.props();
-const carouselEmbedded = carousel.build.props({ embed: true });
-void carouselEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void carouselPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void carouselEmbedded.locale?.en?.slides;
-// @ts-expect-error The only explicit embed value permitted is true.
-carousel.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void carouselPublished.locale?.en?.slides;
+// @ts-expect-error The Build API does not support conditional embedding.
+carousel.build.props({ embed: true });
 
 const codePublished = code.build.props();
-const codeEmbedded = code.build.props({ embed: true });
-void codeEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void codePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void codeEmbedded.locale?.en?.variables;
-// @ts-expect-error The only explicit embed value permitted is true.
-code.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void codePublished.locale?.en?.variables;
+// @ts-expect-error The Build API does not support conditional embedding.
+code.build.props({ embed: true });
 
 const imagePublished = image.build.props();
-const imageEmbedded = image.build.props({ embed: true });
-void imageEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void imagePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void imageEmbedded.locale?.en?.alt;
-// @ts-expect-error The only explicit embed value permitted is true.
-image.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void imagePublished.locale?.en?.alt;
+// @ts-expect-error The Build API does not support conditional embedding.
+image.build.props({ embed: true });
 
 const markdownPublished = markdown.build.props();
-const markdownEmbedded = markdown.build.props({ embed: true });
-void markdownEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void markdownPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void markdownEmbedded.locale?.en?.value;
-// @ts-expect-error The only explicit embed value permitted is true.
-markdown.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void markdownPublished.locale?.en?.value;
+// @ts-expect-error The Build API does not support conditional embedding.
+markdown.build.props({ embed: true });
 
 const scenePublished = scene.build.props();
-const sceneEmbedded = scene.build.props({ embed: true });
-void sceneEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void scenePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void sceneEmbedded.locale?.en?.value;
-// @ts-expect-error The only explicit embed value permitted is true.
-scene.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void scenePublished.locale?.en?.value;
+// @ts-expect-error The Build API does not support conditional embedding.
+scene.build.props({ embed: true });
 
 const videoPublished = video.build.props();
-const videoEmbedded = video.build.props({ embed: true });
-void videoEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void videoPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void videoEmbedded.locale?.en?.label;
-// @ts-expect-error The only explicit embed value permitted is true.
-video.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void videoPublished.locale?.en?.label;
+// @ts-expect-error The Build API does not support conditional embedding.
+video.build.props({ embed: true });
 
 const youtubePublished = youtube.build.props();
-const youtubeEmbedded = youtube.build.props({ embed: true });
-void youtubeEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
 void youtubePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void youtubeEmbedded.locale?.en?.label;
-// @ts-expect-error The only explicit embed value permitted is true.
-youtube.build.props({ embed: false });
+// @ts-expect-error Localized fields are nested under the Props locale field.
+void youtubePublished.locale?.en?.label;
+// @ts-expect-error The Build API does not support conditional embedding.
+youtube.build.props({ embed: true });
 
 // @ts-expect-error Audio no longer exposes the legacy assemble API.
 audio.assemble.resource();
