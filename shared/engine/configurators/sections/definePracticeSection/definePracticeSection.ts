@@ -81,7 +81,7 @@ const validate = (config: PracticeSection_Config): void => {
   for (const [key, child] of Object.entries(config.content.items)) {
     if (!isRecord(child) || !isRecord(child.build) ||
         typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config?.base) || child.config.base.id !== child.id ||
+        !isRecord(child.config) || !isRecord(child.config.base) || child.config.base.id !== child.id ||
         child.config.base.type !== child.type || child.config.base.slug !== key) {
       throw new Error('Invalid Section ContentBlock Build API or identity: ' + key);
     }
@@ -229,7 +229,7 @@ export const definePracticeSection = <
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Section ContentBlock slug: ' + key);
         if (!isRecord(child) || !isRecord(child.build) ||
             typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-            !isRecord(child.config?.base) || child.config.base.id !== child.id ||
+            !isRecord(child.config) || !isRecord(child.config.base) || child.config.base.id !== child.id ||
             child.config.base.type !== child.type || child.config.base.slug !== key) {
           throw new Error('New Section ContentBlock must expose a valid Build API: ' + key);
         }

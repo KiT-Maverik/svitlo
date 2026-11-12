@@ -180,7 +180,7 @@ export function defineLesson<
     id, slug, type, programId: authored.programId, skills: [...authored.skills],
     params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
     ...(authored.events !== undefined ? { events: structuredClone(authored.events) } : {}),
-  } satisfies DeepPartial<Lesson_Config>;
+  };
 
   const buildOrdered = (
     items: Record<string, unknown>, order: readonly string[], languages: readonly LanguageCodes[],

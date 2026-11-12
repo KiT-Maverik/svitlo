@@ -97,7 +97,7 @@ const validate = (config: Flashcard_Config): void => {
     for (const [key, child] of Object.entries(collection.items)) {
       if (!isRecord(child) || !isRecord(child.build) ||
           typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-          !isRecord(child.config?.base) || child.config.base.id !== child.id ||
+          !isRecord(child.config) || !isRecord(child.config.base) || child.config.base.id !== child.id ||
           child.config.base.slug !== key || child.config.base.type !== child.type) {
         throw new Error('Invalid Flashcard ContentBlock Build API or identity: ' + key);
       }
@@ -442,7 +442,7 @@ export function defineFlashcard<
           if (Object.hasOwn(current.items, key)) throw new Error('Duplicate Flashcard ContentBlock slug: ' + key);
           if (!isRecord(child) || !isRecord(child.build) ||
               typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-              !isRecord(child.config?.base) || child.config.base.id !== child.id ||
+              !isRecord(child.config) || !isRecord(child.config.base) || child.config.base.id !== child.id ||
               child.config.base.type !== child.type || child.config.base.slug !== key) {
             throw new Error('New Flashcard ContentBlock must expose a valid Build API: ' + key);
           }
