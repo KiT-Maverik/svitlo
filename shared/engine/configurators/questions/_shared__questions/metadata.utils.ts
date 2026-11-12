@@ -39,9 +39,16 @@ export type QuestionResourcePublication<Props extends QuestionPropsShape> = Ques
   QuestionLocaleFiles<Props>
 >;
 
+/** Sparse object fields, but published arrays are always complete atomic replacements. */
+export type QuestionSparseValue<Value> = Value extends readonly unknown[]
+  ? Value
+  : Value extends object
+    ? { [Key in keyof Value]?: QuestionSparseValue<Value[Key]> }
+    : Value;
+
 export type QuestionOverridePublication<Props extends QuestionPropsShape> = QuestionPublication<
   {
-    params?: DeepPartial<Props['params']>;
+    params?: QuestionSparseValue<Props['params']>;
     locale?: Partial<Props['locale']>;
     content?: Partial<QuestionPublishedValue<Props['content']>>;
   },
