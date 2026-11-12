@@ -99,6 +99,19 @@ test('SkillGroup admits typed new children with complete order and rejects key c
     /Duplicate|does not match/,
   );
   assert.deepEqual(group.build.props().base.skills?.map(item => item.slug), ['balance', 'motion']);
+  const duplicateId = defineSkill<'duplicate', ['en', 'uk']>({
+    id: id('01'), slug: 'duplicate', name: { en: 'Duplicate', uk: 'Дублікат' },
+    description: {
+      methodological: 'Duplicate identity',
+      frontend: { en: 'Duplicate', uk: 'Дублікат' },
+    },
+  });
+  assert.throws(
+    () => group.build.overrides({
+      skills: { additionalItems: { duplicate: duplicateId }, order: ['balance', 'motion', 'duplicate'] },
+    }),
+    /Duplicate Skill ID/,
+  );
 });
 
 test('SkillDomain composes nested Groups without publishing authoring maps', () => {
