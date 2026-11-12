@@ -6,7 +6,7 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionPublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -68,7 +68,7 @@ export const defineOrderSequence = <
   
   const extraContent = (
     source: Content,
-    patch?: OrderedBlockPatch,
+    patch?: ResolvableBlockPatch,
   ) => {
     const result = resolveBlockCollection(source.sequence, patch, 'content.sequence', true);
     const locale: Record<string, Record<string, unknown>> = {};
