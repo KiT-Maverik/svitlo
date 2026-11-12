@@ -84,7 +84,7 @@ jobs:
           exit 1
 
       # A GITHUB_TOKEN push can put subsequent PR checks behind maintainer approval.
-      # Use a dedicated GitHub App token, scoped to this repository's contents.
+      # Use a repository-scoped GitHub App token for contents and workflow updates.
       # Setup: vars.PR_FORMATTER_APP_CLIENT_ID and secrets.PR_FORMATTER_APP_PRIVATE_KEY.
       - name: Create formatter GitHub App token
         if: github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
@@ -94,6 +94,7 @@ jobs:
           client-id: ${{ vars.PR_FORMATTER_APP_CLIENT_ID }}
           private-key: ${{ secrets.PR_FORMATTER_APP_PRIVATE_KEY }}
           permission-contents: write
+          permission-workflows: write
 
       - name: Commit formatting fixes to PR source branch
         if: github.event_name == 'pull_request' && steps.changes.outputs.changed == 'true' && github.event.pull_request.head.repo.full_name == github.repository
