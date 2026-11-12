@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
@@ -103,8 +103,8 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineCode = <const Slug extends string>(
-  config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
+export const defineCode = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Code_Config, Languages>,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
@@ -133,7 +133,7 @@ export const defineCode = <const Slug extends string>(
       });
     }
   };
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -147,6 +147,7 @@ export const defineCode = <const Slug extends string>(
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Code_Configurator = ReturnType<typeof defineCode>;
