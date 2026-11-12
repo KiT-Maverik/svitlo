@@ -29,6 +29,24 @@ function authoringLanguageContracts() {
     locale: { title: { en: 'Intro', uk: 'Вступ' }, navigationLabel: '1' },
     content: { items: { paragraph: enUkText }, order: ['paragraph'] },
   });
+  bilingual.build.overrides({
+    content: {
+      additionalItems: {
+        // @ts-expect-error A new child must support every language of the parent Section.
+        ukOnly: ukText,
+      },
+      order: ['paragraph', 'ukOnly'],
+    },
+  });
+  bilingual.build.overrides({
+    content: {
+      items: {
+        // @ts-expect-error Existing child slugs remain literal keys; unknown keys are rejected.
+        missing: false,
+      },
+    },
+  });
+
   const ukrainian = defineContentSection<'onlyUkrainian', { ukOnly: typeof ukText }, ['uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e04',
     slug: 'onlyUkrainian', type: 'content', params: {},
