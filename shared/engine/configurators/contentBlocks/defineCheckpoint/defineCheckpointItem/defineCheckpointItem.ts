@@ -1,11 +1,17 @@
 import type { DeepPartial } from '#types';
+import type { LanguageCodes } from '#schemas';
 
-import { validateOrderedKeys, validateSluggedConfiguratorMap } from '../../../_shared__configurators';
+import {
+  mergeForValidation,
+  validateOrderedKeys,
+  validateSluggedConfiguratorMap,
+} from '../../../_shared__configurators';
 import { contentBlockConfigurator_Schema } from '../../contentBlock.schemas';
 import { contentBlockTypes } from '../../contentBlock.constants';
 import {
   checkpointItem_Config_Schema,
   type Checkpoint_Allowed_Configurator,
+  type CheckpointItem_Overrides,
   type ContentBlock_CheckpointItem_Config,
 } from './defineCheckpointItem.schemas';
 
@@ -32,6 +38,7 @@ const allowedAnswers = contentBlockTypes.filter(type => type !== 'checkpoint');
 const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
+/** Validate this item's metadata and collection boundaries, never child internals. */
 const validate = (config: ContentBlock_CheckpointItem_Config): void => {
   const result: CheckpointItemValidationResult = {
     success: true,
@@ -58,8 +65,9 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
     !isObject(question.config.base) ||
     question.config.base.type !== 'text' ||
     question.config.base.slug !== question.slug ||
-    !isObject(question.assemble) ||
-    typeof question.assemble.resource !== 'function'
+    !isObject(question.build) ||
+    typeof question.build.props !== 'function' ||
+    typeof question.build.overrides !== 'function'
   ) {
     fail('question', 'question', 'Question must be a Text configurator');
   } else if (isObject(question.config.base.params) && question.config.base.params.disabled === true) {
@@ -77,13 +85,43 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
     })) {
       fail(issue.check === 'item' ? 'answer' : issue.check, issue.path, issue.message);
     }
+    for (const [key, child] of Object.entries(answer.items)) {
+      if (!isObject(child) || !isObject(child.build) ||
+        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+        fail('answer', 'answer.items.' + key, 'Answer must expose the ContentBlock Build API');
+      }
+    }
   }
 
   result.success = result.errors.length === 0;
   if (!result.success) throw new CheckpointItemValidationError(result);
 };
 
-/** Define one Checkpoint item with its Text question and ordered permitted answers. */
+type ChildPublication = {
+  base: Record<string, unknown>;
+  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+};
+type ItemLocaleBody = {
+  question?: Record<string, unknown>;
+  answer?: Record<string, unknown>[];
+};
+type ItemLocaleFiles = Partial<Record<LanguageCodes, ItemLocaleBody>>;
+type ItemPublication<Base> = { base: Base; locale: ItemLocaleFiles | undefined };
+type ItemBase = {
+  id: string;
+  slug: string;
+  type: 'checkpointItem';
+  check?: true;
+  question: Record<string, unknown>;
+  answer: Record<string, unknown>[];
+};
+type ItemOverrideBase = {
+  check?: true;
+  question?: Record<string, unknown>;
+  answer?: Record<string, unknown>[];
+};
+
+/** Define one Checkpoint item with a mandatory Text question and ordered answers. */
 export const defineCheckpointItem = <
   const Slug extends string,
   const Answers extends Record<string, Checkpoint_Allowed_Configurator>,
@@ -95,10 +133,10 @@ export const defineCheckpointItem = <
 ) => {
   validate(config);
   const { id, type, slug, question, check } = config;
-  const answer = {
-    items: { ...config.answer.items },
-    order: [...config.answer.order],
-  };
+  const initialItems: Answers = { ...config.answer.items };
+  const initialOrder = [...config.answer.order];
+  // Transitional parent accessors; Build never serializes this collection.
+  const answer = { items: { ...initialItems }, order: [...initialOrder] };
 
   const base = {
     id,
@@ -107,6 +145,184 @@ export const defineCheckpointItem = <
     ...(check !== undefined ? { check } : {}),
   } satisfies DeepPartial<ContentBlock_CheckpointItem_Config>;
 
+  const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
+    child.build.props({ embed: true }) as unknown as ChildPublication;
+
+  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPublication =>
+    (child.build.overrides as (patch: never) => ChildPublication)(patch as never);
+
+  /**
+   * A published answer collection is always a complete, already sorted array.
+   * Per-language arrays contain all effective children, not positional deltas.
+   */
+  const buildAnswers = (
+    items: Record<string, Checkpoint_Allowed_Configurator>,
+    order: readonly string[],
+    patches: Record<string, unknown> = {},
+  ) => {
+    const entries = order.map(key => {
+      const child = items[key];
+      const original = buildChild(child);
+      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key]) : undefined;
+      return { original, patch };
+    });
+    const bases = entries.map(({ original, patch }) =>
+      patch ? mergeForValidation(original.base, patch.base) : original.base,
+    );
+    const languages = new Set<LanguageCodes>();
+    for (const { original, patch } of entries) {
+      for (const language of Object.keys(original.locale ?? {})) languages.add(language as LanguageCodes);
+      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
+    }
+    const locales: ItemLocaleFiles = {};
+    for (const language of languages) {
+      locales[language] = {
+        answer: entries.map(({ original, patch }) => {
+          const originalLocale = original.locale?.[language] ?? {};
+          const localizedOriginal = mergeForValidation(original.base, originalLocale);
+          const withPatchBase = patch ? mergeForValidation(localizedOriginal, patch.base) : localizedOriginal;
+          const localizedPatch = patch?.locale?.[language];
+          // build.overrides() uses direct language bodies; embed them at the
+          // child Props path before applying them to the resolved child.
+          return localizedPatch
+            ? mergeForValidation(withPatchBase, { locale: localizedPatch })
+            : withPatchBase;
+        }),
+      };
+    }
+    return { bases, locales };
+  };
+
+  function props(): ItemPublication<ItemBase>;
+  function props(options: { embed: true }): ItemPublication<ItemBase>;
+  function props(options?: { embed?: true }): ItemPublication<ItemBase> {
+    // No localizable fields belong to CheckpointItem itself. Its children
+    // already produce embedded Props fragments in either parent mode.
+    void options;
+    const builtQuestion = question.build.props({ embed: true }) as unknown as ChildPublication;
+    const builtAnswers = buildAnswers(initialItems, initialOrder);
+    const locale = { ...builtAnswers.locales };
+    for (const [language, fields] of Object.entries(builtQuestion.locale ?? {})) {
+      (locale[language as LanguageCodes] ??= {}).question = fields;
+    }
+    return {
+      base: {
+        id, slug, type,
+        ...(check !== undefined ? { check } : {}),
+        question: builtQuestion.base,
+        answer: builtAnswers.bases,
+      },
+      locale: Object.keys(locale).length ? locale : undefined,
+    };
+  }
+
+  const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
+    patch: CheckpointItem_Overrides<Answers, Added>,
+  ): ItemPublication<ItemOverrideBase> => {
+    try {
+      if (!isObject(patch)) throw new Error('Expected an overrides object');
+      for (const key of Object.keys(patch)) {
+        if (!['check', 'question', 'answer', 'additionalContentBlocks'].includes(key)) {
+          throw new Error('Unknown Checkpoint Item override field: ' + key);
+        }
+      }
+      if (patch.check !== undefined) checkpointItem_Config_Schema.shape.check.parse(patch.check);
+
+      const output: ItemPublication<ItemOverrideBase> = { base: {}, locale: undefined };
+      const locales: ItemLocaleFiles = {};
+      if (patch.question !== undefined) {
+        if (!isObject(patch.question)) throw new Error('Question override must be an object');
+        if (isObject(patch.question.params) && Object.hasOwn(patch.question.params, 'disabled')) {
+          throw new Error('The mandatory Checkpoint question cannot be disabled');
+        }
+        const built = question.build.overrides(patch.question);
+        if (Object.keys(built.base).length) output.base.question = built.base;
+        for (const [language, fields] of Object.entries(built.locale ?? {})) {
+          (locales[language as LanguageCodes] ??= {}).question = { locale: fields };
+        }
+      }
+
+      if (patch.check !== undefined) output.base.check = patch.check;
+      if (patch.answer !== undefined && !isObject(patch.answer)) {
+        throw new Error('Answer override must be an object');
+      }
+      const changes = patch.answer?.items ?? {};
+      if (!isObject(changes)) throw new Error('answer.items must be a slug-keyed object');
+      if (patch.answer) {
+        for (const key of Object.keys(patch.answer)) {
+          if (!['items', 'order'].includes(key)) throw new Error('Unknown answer override field: ' + key);
+        }
+      }
+
+      const additions = patch.additionalContentBlocks ?? {};
+      if (!isObject(additions)) throw new Error('additionalContentBlocks must be a slug-keyed configurator map');
+      const addedIssues = validateSluggedConfiguratorMap(additions, allowedAnswers, {
+        path: 'additionalContentBlocks',
+        itemLabel: 'ContentBlock',
+      });
+      if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
+
+      const patches: Record<string, unknown> = {};
+      const enabled: Record<string, Checkpoint_Allowed_Configurator | false> = { ...initialItems };
+      let structureChanged = Object.keys(additions).length > 0;
+
+      for (const [key, child] of Object.entries(additions)) {
+        if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate answer slug: ' + key);
+        if (!isObject(child) || !isObject(child.build) ||
+          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+          throw new Error('New ContentBlock must expose the Build API: ' + key);
+        }
+        enabled[key] = child as Checkpoint_Allowed_Configurator;
+      }
+
+      for (const [key, value] of Object.entries(changes)) {
+        if (!Object.hasOwn(initialItems, key)) {
+          throw new Error('Cannot override an unknown existing answer: ' + key);
+        }
+        if (value === false) {
+          enabled[key] = false;
+          structureChanged = true;
+        } else {
+          if (!isObject(value)) throw new Error('Answer overrides must be objects or false: ' + key);
+          patches[key] = value;
+        }
+      }
+
+      if (structureChanged && patch.answer?.order === undefined) {
+        throw new Error('answer.order is required when adding or disabling answers');
+      }
+      const order = patch.answer?.order ?? initialOrder;
+      const issues = validateOrderedKeys({ items: enabled, order }, {
+        path: 'answer',
+        allowDisabled: true,
+        requireNonEmpty: true,
+      });
+      if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+      if (!order.length) throw new Error('At least one active answer is required');
+
+      const modifiesAnswers = patch.answer !== undefined || Object.keys(additions).length > 0;
+      if (modifiesAnswers) {
+        const active = Object.fromEntries(
+          Object.entries(enabled).filter((entry): entry is [string, Checkpoint_Allowed_Configurator] =>
+            entry[1] !== false),
+        );
+        const built = buildAnswers(active, order, patches);
+        output.base.answer = built.bases;
+        for (const [language, fragment] of Object.entries(built.locales)) {
+          (locales[language as LanguageCodes] ??= {}).answer = fragment.answer;
+        }
+      }
+      output.locale = Object.keys(locales).length ? locales : undefined;
+      return output;
+    } catch (error) {
+      throw new Error(
+        'Invalid Checkpoint Item overrides for ' + id + ': ' +
+          (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
+    }
+  };
+
   return {
     id,
     slug,
@@ -114,6 +330,8 @@ export const defineCheckpointItem = <
     question,
     answer,
     ...(check !== undefined ? { check } : {}),
+    validate,
+    build: { props, overrides },
     config: {
       base,
       locales: () => ({ locale: {} }),
