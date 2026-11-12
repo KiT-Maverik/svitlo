@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import type { DeepPartial } from '#types';
+import { deepStrict_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
@@ -45,6 +47,22 @@ export const image_Config_Schema = imageBase
     },
   );
 export type ContentBlock_Image_Config = z.infer<typeof image_Config_Schema>;
+
+/** Sparse overrides derive permitted fields directly from the authored Config Schema. */
+export type ContentBlock_Image_Overrides = DeepPartial<Pick<ContentBlock_Image_Config, 'params' | 'locale'>>;
+
+export const image_Override_Config_Schema: z.ZodType<ContentBlock_Image_Overrides> = z.deepPartial(
+  deepStrict_Schema(
+    z.object({
+      params: image_Config_Schema.shape.params,
+      locale: image_Config_Schema.shape.locale,
+    }),
+  ),
+);
+
+export type ContentBlock_Image_ResourceBase = z.infer<typeof imageBase> & {
+  locale?: DeepPartial<ContentBlock_Image_Locale<'props'>>;
+};
 
 export const image_Props_Schema = imageBase
   .extend(addUnifiedLocale(locale('props')))

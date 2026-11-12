@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import type { DeepPartial } from '#types';
+import { deepStrict_Schema } from '#schemas';
 
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
@@ -36,6 +38,22 @@ export type ContentBlock_Scene_Locale<Mode extends Configurator_Mode> = z.infer<
 
 export const scene_Config_Schema = sceneBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Scene_Config = z.infer<typeof scene_Config_Schema>;
+
+/** Sparse overrides derive permitted fields directly from the authored Config Schema. */
+export type ContentBlock_Scene_Overrides = DeepPartial<Pick<ContentBlock_Scene_Config, 'params' | 'locale'>>;
+
+export const scene_Override_Config_Schema: z.ZodType<ContentBlock_Scene_Overrides> = z.deepPartial(
+  deepStrict_Schema(
+    z.object({
+      params: scene_Config_Schema.shape.params,
+      locale: scene_Config_Schema.shape.locale,
+    }),
+  ),
+);
+
+export type ContentBlock_Scene_ResourceBase = z.infer<typeof sceneBase> & {
+  locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>;
+};
 
 export const scene_Props_Schema = sceneBase.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Scene_Props = z.infer<typeof scene_Props_Schema>;
