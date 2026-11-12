@@ -179,14 +179,19 @@ export const defineMarkdown = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
   function resource(): MarkdownAssembly<ContentBlock_Markdown_ResourceBase>;
-  function resource(options: { embed: true }): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownLocaleFiles | MarkdownEmbeddedLocaleFiles> {
+  function resource(options: {
+    embed: true;
+  }): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownEmbeddedLocaleFiles>;
+  function resource(options?: {
+    embed?: true;
+  }): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownLocaleFiles | MarkdownEmbeddedLocaleFiles> {
     const assembled = assembleMarkdown(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Markdown_ResourceBase, DeepPartial<ContentBlock_Markdown_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Markdown_ResourceBase,
+    DeepPartial<ContentBlock_Markdown_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
     try {

@@ -128,9 +128,9 @@ export const defineText = <const Slug extends string>(
 
   function resource(): TextAssembly<ContentBlock_Text_ResourceBase>;
   function resource(options: { embed: true }): TextAssembly<ContentBlock_Text_ResourceBase, TextEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): TextAssembly<ContentBlock_Text_ResourceBase, TextLocaleFiles | TextEmbeddedLocaleFiles> {
+  function resource(options?: {
+    embed?: true;
+  }): TextAssembly<ContentBlock_Text_ResourceBase, TextLocaleFiles | TextEmbeddedLocaleFiles> {
     const assembled = assembleText(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }

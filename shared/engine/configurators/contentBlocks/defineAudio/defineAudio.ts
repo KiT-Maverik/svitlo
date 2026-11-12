@@ -87,13 +87,16 @@ export const defineAudio = <const Slug extends string>(
 
   function resource(): AudioAssembly<ContentBlock_Audio_ResourceBase>;
   function resource(options: { embed: true }): AudioAssembly<ContentBlock_Audio_ResourceBase, AudioEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): AudioAssembly<ContentBlock_Audio_ResourceBase, AudioLocaleFiles | AudioEmbeddedLocaleFiles> {
+  function resource(options?: {
+    embed?: true;
+  }): AudioAssembly<ContentBlock_Audio_ResourceBase, AudioLocaleFiles | AudioEmbeddedLocaleFiles> {
     const assembled = assembleAudio(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Audio_ResourceBase, DeepPartial<ContentBlock_Audio_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Audio_ResourceBase,
+    DeepPartial<ContentBlock_Audio_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Audio_Overrides): AudioAssembly<AudioOverrideBase> => {
     try {

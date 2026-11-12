@@ -1,16 +1,74 @@
-import { defineText, defineAudio, defineCarousel, defineCode, defineImage, defineMarkdown, defineScene, defineVideo, defineYoutube } from './index';
+import {
+  defineText,
+  defineAudio,
+  defineCarousel,
+  defineCode,
+  defineImage,
+  defineMarkdown,
+  defineScene,
+  defineVideo,
+  defineYoutube,
+} from './index';
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 
 const text = defineText({ id, slug: 'text', type: 'text', params: {}, locale: { value: { en: 'Hi' } } });
-const audio = defineAudio({ id, slug: 'audio', type: 'audio', params: {}, locale: { title: { en: 'Narration' }, fileLocation: 'https://example.com/a.mp3' } });
-const carousel = defineCarousel({ id, slug: 'carousel', type: 'carousel', params: {}, locale: { slides: [{ src: 'https://example.com/image.png', alt: 'Alt' }] } });
-const code = defineCode({ id, slug: 'code', type: 'code', params: { language: 'python', codeAsText: 'print(1)' }, locale: { title: { en: 'Code' } } });
-const image = defineImage({ id, slug: 'image', type: 'image', params: { width: 100, height: 100 }, locale: { src: 'https://example.com/image.png', alt: { en: 'Diagram' } } });
-const markdown = defineMarkdown({ id, slug: 'markdown', type: 'markdown', params: {}, locale: { value: { en: 'Hello' } } });
-const scene = defineScene({ id, slug: 'scene', type: 'scene', params: {}, locale: { value: { heading: { en: 'Hello' } } } });
-const video = defineVideo({ id, slug: 'video', type: 'video', params: {}, locale: { fileLocation: 'https://example.com/movie.mp4', label: { en: 'Movie' } } });
-const youtube = defineYoutube({ id, slug: 'youtube', type: 'youtube', params: { mode: 'link' }, locale: { href: 'https://youtube.com/watch?v=example', label: { en: 'Watch' } } });
+const audio = defineAudio({
+  id,
+  slug: 'audio',
+  type: 'audio',
+  params: {},
+  locale: { title: { en: 'Narration' }, fileLocation: 'https://example.com/a.mp3' },
+});
+const carousel = defineCarousel({
+  id,
+  slug: 'carousel',
+  type: 'carousel',
+  params: {},
+  locale: { slides: [{ src: 'https://example.com/image.png', alt: 'Alt' }] },
+});
+const code = defineCode({
+  id,
+  slug: 'code',
+  type: 'code',
+  params: { language: 'python', codeAsText: 'print(1)' },
+  locale: { title: { en: 'Code' } },
+});
+const image = defineImage({
+  id,
+  slug: 'image',
+  type: 'image',
+  params: { width: 100, height: 100 },
+  locale: { src: 'https://example.com/image.png', alt: { en: 'Diagram' } },
+});
+const markdown = defineMarkdown({
+  id,
+  slug: 'markdown',
+  type: 'markdown',
+  params: {},
+  locale: { value: { en: 'Hello' } },
+});
+const scene = defineScene({
+  id,
+  slug: 'scene',
+  type: 'scene',
+  params: {},
+  locale: { value: { heading: { en: 'Hello' } } },
+});
+const video = defineVideo({
+  id,
+  slug: 'video',
+  type: 'video',
+  params: {},
+  locale: { fileLocation: 'https://example.com/movie.mp4', label: { en: 'Movie' } },
+});
+const youtube = defineYoutube({
+  id,
+  slug: 'youtube',
+  type: 'youtube',
+  params: { mode: 'link' },
+  locale: { href: 'https://youtube.com/watch?v=example', label: { en: 'Watch' } },
+});
 
 const textPublished = text.assemble.resource();
 const textEmbedded = text.assemble.resource({ embed: true });

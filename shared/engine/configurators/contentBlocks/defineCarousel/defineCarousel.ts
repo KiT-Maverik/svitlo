@@ -105,14 +105,19 @@ export const defineCarousel = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
   function resource(): CarouselAssembly<ContentBlock_Carousel_ResourceBase>;
-  function resource(options: { embed: true }): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselLocaleFiles | CarouselEmbeddedLocaleFiles> {
+  function resource(options: {
+    embed: true;
+  }): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselEmbeddedLocaleFiles>;
+  function resource(options?: {
+    embed?: true;
+  }): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselLocaleFiles | CarouselEmbeddedLocaleFiles> {
     const assembled = assembleCarousel(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Carousel_ResourceBase, DeepPartial<ContentBlock_Carousel_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Carousel_ResourceBase,
+    DeepPartial<ContentBlock_Carousel_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Carousel_Overrides): CarouselAssembly<CarouselOverrideBase> => {
     try {

@@ -87,13 +87,16 @@ export const defineImage = <const Slug extends string>(
 
   function resource(): ImageAssembly<ContentBlock_Image_ResourceBase>;
   function resource(options: { embed: true }): ImageAssembly<ContentBlock_Image_ResourceBase, ImageEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): ImageAssembly<ContentBlock_Image_ResourceBase, ImageLocaleFiles | ImageEmbeddedLocaleFiles> {
+  function resource(options?: {
+    embed?: true;
+  }): ImageAssembly<ContentBlock_Image_ResourceBase, ImageLocaleFiles | ImageEmbeddedLocaleFiles> {
     const assembled = assembleImage(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Image_ResourceBase, DeepPartial<ContentBlock_Image_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Image_ResourceBase,
+    DeepPartial<ContentBlock_Image_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Image_Overrides): ImageAssembly<ImageOverrideBase> => {
     try {

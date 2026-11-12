@@ -95,13 +95,16 @@ export const defineScene = <const Slug extends string>(
 
   function resource(): SceneAssembly<ContentBlock_Scene_ResourceBase>;
   function resource(options: { embed: true }): SceneAssembly<ContentBlock_Scene_ResourceBase, SceneEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): SceneAssembly<ContentBlock_Scene_ResourceBase, SceneLocaleFiles | SceneEmbeddedLocaleFiles> {
+  function resource(options?: {
+    embed?: true;
+  }): SceneAssembly<ContentBlock_Scene_ResourceBase, SceneLocaleFiles | SceneEmbeddedLocaleFiles> {
     const assembled = assembleScene(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Scene_ResourceBase, DeepPartial<ContentBlock_Scene_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Scene_ResourceBase,
+    DeepPartial<ContentBlock_Scene_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Scene_Overrides): SceneAssembly<SceneOverrideBase> => {
     try {

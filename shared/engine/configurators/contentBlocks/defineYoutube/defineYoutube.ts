@@ -85,14 +85,19 @@ export const defineYoutube = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
 
   function resource(): YoutubeAssembly<ContentBlock_Youtube_ResourceBase>;
-  function resource(options: { embed: true }): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeLocaleFiles | YoutubeEmbeddedLocaleFiles> {
+  function resource(options: {
+    embed: true;
+  }): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeEmbeddedLocaleFiles>;
+  function resource(options?: {
+    embed?: true;
+  }): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeLocaleFiles | YoutubeEmbeddedLocaleFiles> {
     const assembled = assembleYoutube(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Youtube_ResourceBase, DeepPartial<ContentBlock_Youtube_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Youtube_ResourceBase,
+    DeepPartial<ContentBlock_Youtube_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Youtube_Overrides): YoutubeAssembly<YoutubeOverrideBase> => {
     try {

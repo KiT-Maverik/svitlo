@@ -120,13 +120,16 @@ export const defineCode = <const Slug extends string>(
 
   function resource(): CodeAssembly<ContentBlock_Code_ResourceBase>;
   function resource(options: { embed: true }): CodeAssembly<ContentBlock_Code_ResourceBase, CodeEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): CodeAssembly<ContentBlock_Code_ResourceBase, CodeLocaleFiles | CodeEmbeddedLocaleFiles> {
+  function resource(options?: {
+    embed?: true;
+  }): CodeAssembly<ContentBlock_Code_ResourceBase, CodeLocaleFiles | CodeEmbeddedLocaleFiles> {
     const assembled = assembleCode(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Code_ResourceBase, DeepPartial<ContentBlock_Code_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Code_ResourceBase,
+    DeepPartial<ContentBlock_Code_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Code_Overrides): CodeAssembly<CodeOverrideBase> => {
     try {

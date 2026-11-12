@@ -88,13 +88,16 @@ export const defineVideo = <const Slug extends string>(
 
   function resource(): VideoAssembly<ContentBlock_Video_ResourceBase>;
   function resource(options: { embed: true }): VideoAssembly<ContentBlock_Video_ResourceBase, VideoEmbeddedLocaleFiles>;
-  function resource(
-    options?: { embed?: true },
-  ): VideoAssembly<ContentBlock_Video_ResourceBase, VideoLocaleFiles | VideoEmbeddedLocaleFiles> {
+  function resource(options?: {
+    embed?: true;
+  }): VideoAssembly<ContentBlock_Video_ResourceBase, VideoLocaleFiles | VideoEmbeddedLocaleFiles> {
     const assembled = assembleVideo(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
-  const resourceApi: ResourceAssembler<ContentBlock_Video_ResourceBase, DeepPartial<ContentBlock_Video_Locale<'props'>>> = resource;
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Video_ResourceBase,
+    DeepPartial<ContentBlock_Video_Locale<'props'>>
+  > = resource;
 
   const overrides = (patch: ContentBlock_Video_Overrides): VideoAssembly<VideoOverrideBase> => {
     try {
