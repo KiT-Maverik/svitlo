@@ -56,6 +56,40 @@ const validate = (config: SkillDomain_Config): void => {
   if (issues.length) throw new Error('SkillDomain validation failed: ' + issues.map(x => x.path + ': ' + x.message).join('; '));
 };
 
+/** Bound declaration surface; existing and added slug keys remain explicit. */
+export type SkillDomain_Configurator<
+  Slug extends string = string,
+  Groups extends Record<string, Group> = Record<string, Group>,
+  Skills extends Record<string, Skill> = Record<string, Skill>,
+  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'skillDomain';
+  readonly skills: { items: Skills; order: string[] } | undefined;
+  readonly groups: { items: Groups; order: string[] } | undefined;
+  readonly skill: Skills;
+  readonly group: Groups;
+  readonly validate: typeof validate;
+  readonly build: {
+    props: () => SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }>;
+    overrides: <
+      const AddedSkills extends Record<string, Skill> = {},
+      const AddedGroups extends Record<string, Group> = {},
+    >(
+      patch: SkillDomain_Overrides<Skills, Groups, AddedSkills, AddedGroups> & {
+        skills?: { additionalItems?: AddedSkills & ChildrenSupporting<Languages, AddedSkills> };
+        groups?: { additionalItems?: AddedGroups & ChildrenSupporting<Languages, AddedGroups> };
+      },
+    ) => SkillDomainPublication<SkillDomainOverrideBase>;
+  };
+  readonly config: {
+    base: DeepPartial<SkillDomain_Config>;
+    validate: typeof validate;
+    locales: () => SkillDomain_Metadata_Overrides;
+  };
+} & LanguageScope<Languages>;
+
 /** A Domain owns separate ordered collections of Groups and directly attached Skills. */
 export function defineSkillDomain<
   const Slug extends string,
@@ -70,7 +104,7 @@ export function defineSkillDomain<
     title: RequireLanguages<SkillDomain_Config['title'], Languages>;
     description: RequireLanguages<SkillDomain_Config['description'], Languages>;
   },
-) {
+): SkillDomain_Configurator<Slug, Groups, Skills, Languages> {
   validate(config);
   const metadataSchema = skillDomain_Config_Schema.omit({ skills: true, groups: true });
   const authored = metadataSchema.parse(config);
@@ -263,7 +297,6 @@ export function defineSkillDomain<
       },
     },
   } as const;
-  return result as typeof result & LanguageScope<Languages>;
+  return result as SkillDomain_Configurator<Slug, Groups, Skills, Languages>;
 }
 
-export type SkillDomain_Configurator = ReturnType<typeof defineSkillDomain>;
