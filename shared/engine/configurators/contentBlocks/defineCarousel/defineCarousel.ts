@@ -44,7 +44,10 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
   const parsed = carousel_Config_Schema.safeParse(config);
   if (!parsed.success) throw new Error('Invalid Carousel Config: ' + parsed.error.message);
 
-  const issues = validateOrderedKeys(config.slides, { path: 'slides', requireNonEmpty: true });
+  const issues: { check: string; path: string; message: string }[] = validateOrderedKeys(config.slides, {
+    path: 'slides',
+    requireNonEmpty: true,
+  });
   if (isRecord(config.slides) && isRecord(config.slides.items)) {
     issues.push(...validateSluggedConfiguratorMap(config.slides.items, ['carouselSlide'], {
       path: 'slides.items',
