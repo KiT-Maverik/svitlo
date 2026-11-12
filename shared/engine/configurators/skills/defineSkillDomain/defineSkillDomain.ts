@@ -1,9 +1,11 @@
 import type { LanguageCodes } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, RequireLanguages } from '#types';
+import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
   mergeForValidation,
   onlyLocales,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
@@ -13,6 +15,7 @@ import { skillGroup_Props_Schema, type SkillGroup_Configurator, type SkillGroup_
 import {
   skillDomain_Config_Schema,
   skillDomain_Override_Config_Schema,
+  skillDomain_Props_Schema,
   type SkillDomain_Config,
   type SkillDomain_Metadata_Overrides,
   type SkillDomain_Overrides,
@@ -86,8 +89,8 @@ export type SkillDomain_Configurator<
   readonly group: Groups;
   readonly validate: typeof validate;
   readonly build: {
-    props: () => SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }>;
-    overrides: <
+    props(options: PublicationLanguageOptions<Languages>): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }>;
+    overrides<
       const AddedSkills extends Record<string, Skill> = {},
       const AddedGroups extends Record<string, Group> = {},
     >(
@@ -95,7 +98,8 @@ export type SkillDomain_Configurator<
         skills?: { additionalItems?: AddedSkills & ChildrenSupporting<Languages, AddedSkills> };
         groups?: { additionalItems?: AddedGroups & ChildrenSupporting<Languages, AddedGroups> };
       },
-    ) => SkillDomainPublication<SkillDomainOverrideBase>;
+      options: PublicationLanguageOptions<Languages>,
+    ): SkillDomainPublication<SkillDomainOverrideBase>;
   };
   readonly config: {
     base: DeepPartial<SkillDomain_Config>;
@@ -145,8 +149,8 @@ export function defineSkillDomain<
     items: Record<string, Child>,
     order: readonly string[],
     parse: (value: unknown) => Props,
+    languages: readonly LanguageCodes[],
     patches: Record<string, unknown> = {},
-    ownLanguages: readonly LanguageCodes[] = [],
   ) => {
     const seen = new Set<string>();
     for (const key of order) {
@@ -157,48 +161,50 @@ export function defineSkillDomain<
     }
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props();
+      const resource = child.build.props({ languages });
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (value: never) => ChildPatch)(patches[key] as never)
+        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => ChildPatch)(patches[key] as never, { languages })
         : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
       mergeForValidation(resource.base, (patch?.base ?? {}) as DeepPartial<typeof resource.base>),
     ) as DeepPartial<Props>[];
-    const languages = new Set<LanguageCodes>(ownLanguages);
-    for (const { resource, patch } of entries) {
-      for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
-      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
-    }
     const locale: Partial<Record<LanguageCodes, Props[]>> = {};
     for (const language of languages) {
-      locale[language] = entries.map(({ resource, patch }) => {
+      const resolved = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
         const patched = mergeForValidation(original, (patch?.base ?? {}) as DeepPartial<typeof original>);
         return parse(mergeForValidation(patched, (patch?.locale?.[language] ?? {}) as DeepPartial<typeof patched>));
       });
+      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
+        locale[language] = resolved;
+      }
     }
     return { base, locale };
   };
 
-  const props = (): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }> => {
+  const props = (options: PublicationLanguageOptions<Languages>): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }> => {
+    const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = splitOwn({ title: current.title, description: current.description });
-    const files = structuredClone(own.locale);
+    const files = selectPublicationLocales(own.locale, languages) ?? {};
     const base: DeepPartial<SkillDomain_Props> & { id: string; slug: string } = { id, slug, ...own.base };
-    const ownLanguages = Object.keys(files) as LanguageCodes[];
     if (skills) {
-      const built = buildChildren(initialSkills, skillOrder, value => skill_Props_Schema.parse(value), {}, ownLanguages);
+      const built = buildChildren(initialSkills, skillOrder, value => skill_Props_Schema.parse(value), languages);
       base.skills = built.base;
       for (const [language, values] of Object.entries(built.locale)) (files[language as LanguageCodes] ??= {}).skills = values;
     }
     if (groups) {
-      const built = buildChildren(initialGroups, groupOrder, value => skillGroup_Props_Schema.parse(value), {}, ownLanguages);
+      const built = buildChildren(initialGroups, groupOrder, value => skillGroup_Props_Schema.parse(value), languages);
       base.groups = built.base;
       for (const [language, values] of Object.entries(built.locale)) (files[language as LanguageCodes] ??= {}).groups = values;
     }
-    return { base, locale: Object.keys(files).length ? files : undefined };
+    const result = { base, locale: Object.keys(files).length ? files : undefined };
+    for (const language of languages) {
+      skillDomain_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+    }
+    return result;
   };
 
   /** Compile-time child patches retain exact existing and added slug keys. */
@@ -210,8 +216,10 @@ export function defineSkillDomain<
       skills?: { additionalItems?: AddedSkills & ChildrenSupporting<Languages, AddedSkills> };
       groups?: { additionalItems?: AddedGroups & ChildrenSupporting<Languages, AddedGroups> };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): SkillDomainPublication<SkillDomainOverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       if (!isRecord(patch)) throw new Error('Expected SkillDomain overrides object');
       for (const key of Object.keys(patch)) {
         if (!['title', 'description', 'skills', 'groups'].includes(key)) {
@@ -223,7 +231,7 @@ export function defineSkillDomain<
       );
       metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
       const own = splitOwn(metadataPatch);
-      const files = structuredClone(own.locale);
+      const files = selectPublicationLocales(own.locale, languages) ?? {};
       const output: SkillDomainPublication<SkillDomainOverrideBase> = { base: { ...own.base }, locale: undefined };
 
       const effectiveChildren: Record<'skills' | 'groups', Record<string, Child>> = {
@@ -288,7 +296,7 @@ export function defineSkillDomain<
         if (!Object.keys(changes).length && !Object.keys(additions).length && patchCollection.order === undefined) return;
         const enabled = Object.fromEntries(Object.entries(active).filter((entry): entry is [string, T] => entry[1] !== false));
         effectiveChildren[key] = enabled;
-        const built = buildChildren(enabled, order, parse, childPatches, Object.keys(files) as LanguageCodes[]);
+        const built = buildChildren(enabled, order, parse, languages, childPatches);
         (output.base as Record<string, unknown>)[key] = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           ((files[language as LanguageCodes] ??= {}) as Record<string, unknown>)[key] = values;
