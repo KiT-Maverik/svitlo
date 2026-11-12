@@ -1,7 +1,9 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, ChildrenSupporting } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, ChildrenSupporting, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 import {
   mergeForValidation,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
@@ -107,6 +109,7 @@ export const defineQuizSection = <
   const buildContent = (
     items: Record<string, Block>,
     order: readonly string[],
+    languages: readonly LanguageCodes[],
     patches: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -120,13 +123,9 @@ export const defineQuizSection = <
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     ) as QuizSection_PropsBase['content'];
-    const languages = new Set<LanguageCodes>();
-    for (const { resource, patch } of entries) {
-      for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
-      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
-    }
     const locales: Partial<Record<LanguageCodes, QuizSection_PropsBase['content']>> = {};
     for (const language of languages) {
+      if (!entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) continue;
       locales[language] = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(
           resource.base, (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
@@ -140,11 +139,12 @@ export const defineQuizSection = <
     return { bases, locales };
   };
 
-  const props = (): Publication<QuizSection_PropsBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): Publication<QuizSection_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
-    const children = buildContent(initialItems, initialOrder);
-    const files = own.files;
+    const children = buildContent(initialItems, initialOrder, languages);
+    const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locales)) {
       (files[language as LanguageCodes] ??= {}).content = entries;
     }
@@ -162,8 +162,10 @@ export const defineQuizSection = <
     patch: QuizSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       if (!isRecord(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) {
@@ -182,7 +184,7 @@ export const defineQuizSection = <
         },
         locale: undefined,
       };
-      const files = own.files;
+      const files = selectPublicationLocales(own.files, languages) ?? {};
       if (patch.content !== undefined && !isRecord(patch.content)) {
         throw new Error('content must be an object');
       }
@@ -235,7 +237,7 @@ export const defineQuizSection = <
       // Parent semantic invariants (notably Quiz screen references) must use the active collection.
       validate({ ...candidate, content: { items: enabled, order: [...order] } });
       if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
-        const built = buildContent(enabled, order, childPatches);
+        const built = buildContent(enabled, order, languages, childPatches);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
           (files[language as LanguageCodes] ??= {}).content = entries;
