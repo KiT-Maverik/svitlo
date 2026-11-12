@@ -184,7 +184,7 @@ export const defineSelectMultipleAnswers = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_SelectMultipleAnswers_Props>;
+    } as unknown as QuestionResourcePublication<Question_SelectMultipleAnswers_Props>;
     validateQuestionPublication(selectMultipleAnswers_Props_Schema, languages, resource);
     return resource;
   };

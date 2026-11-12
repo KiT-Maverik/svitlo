@@ -139,7 +139,7 @@ export const defineBuildAnswerWithBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props>;
+    } as unknown as QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props>;
     validateQuestionPublication(buildAnswerWithBlocks_Props_Schema, languages, resource);
     return resource;
   };

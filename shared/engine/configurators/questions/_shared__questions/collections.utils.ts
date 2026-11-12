@@ -39,7 +39,7 @@ export type OrderedBlockPatch<
 /** Broad internal runtime input; public OrderedBlockPatch retains literal key and language inference. */
 export type ResolvableBlockPatch = {
   items?: Record<string, unknown>;
-  additionalItems?: Record<string, Block>;
+  additionalItems?: Record<string, unknown>;
   order?: string[];
 };
 export type QuestionCommonContent<Child = Block> = {
@@ -128,7 +128,7 @@ export const validateCommonContent = (content: QuestionCommonContent): void => {
 const readResource = (child: Block, languages: readonly LanguageCodes[]): BlockResource =>
   cloneJson(child.build.props({ languages }) as BlockResource);
 const readPatch = (child: Block, patch: unknown, languages: readonly LanguageCodes[]): BlockPatch =>
-  cloneJson(child.build.overrides(patch as never, { languages }) as BlockPatch);
+  cloneJson((child.build.overrides as (value: never, options: { languages: readonly LanguageCodes[] }) => BlockPatch)(patch as never, { languages }));
 
 const propsSchemas: Record<string, { parse: (value: unknown) => unknown }> = {
   text: text_Props_Schema,

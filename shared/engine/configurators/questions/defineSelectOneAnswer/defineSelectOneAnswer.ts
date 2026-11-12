@@ -180,7 +180,7 @@ export const defineSelectOneAnswer = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_SelectOneAnswer_Props>;
+    } as unknown as QuestionResourcePublication<Question_SelectOneAnswer_Props>;
     validateQuestionPublication(selectOneAnswer_Props_Schema, languages, resource);
     return resource;
   };

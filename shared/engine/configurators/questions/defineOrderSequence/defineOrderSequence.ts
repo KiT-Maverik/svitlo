@@ -117,7 +117,7 @@ export const defineOrderSequence = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_OrderSequence_Props>;
+    } as unknown as QuestionResourcePublication<Question_OrderSequence_Props>;
     validateQuestionPublication(orderSequence_Props_Schema, languages, resource);
     return resource;
   };

@@ -8,7 +8,7 @@ type Entry = Record<string, unknown>;
 type NestedCollection = { items: Record<string, Entry>; order: string[] };
 type NestedPatch = {
   items?: Record<string, Record<string, unknown> | false>;
-  additionalItems?: Record<string, Entry>;
+  additionalItems?: Record<string, unknown>;
   order?: string[];
 };
 type Files<T> = Partial<Record<LanguageCodes, T>>;
@@ -67,6 +67,7 @@ const resolveNested = (
   let structural = Object.keys(added).length > 0;
   for (const [key, item] of Object.entries(added)) {
     if (Object.hasOwn(active, key)) throw new Error('Duplicate ' + path + ' slug: ' + key);
+    if (!isRecord(item)) throw new Error('Invalid added nested Question item: ' + path + '.' + key);
     validateNested({ items: { [key]: item }, order: [key] }, path, fields);
     active[key] = item;
   }

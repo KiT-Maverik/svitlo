@@ -96,7 +96,7 @@ export const defineAnswerWithNumber = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_AnswerWithNumber_Props>;
+    } as unknown as QuestionResourcePublication<Question_AnswerWithNumber_Props>;
     validateQuestionPublication(answerWithNumber_Props_Schema, languages, resource);
     return resource;
   };

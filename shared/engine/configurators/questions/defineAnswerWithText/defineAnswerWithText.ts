@@ -106,7 +106,7 @@ export const defineAnswerWithText = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_AnswerWithText_Props>;
+    } as unknown as QuestionResourcePublication<Question_AnswerWithText_Props>;
     validateQuestionPublication(answerWithText_Props_Schema, languages, resource);
     return resource;
   };

@@ -224,7 +224,7 @@ export const defineFillBlanksWithText = <
         content: common.base,
       },
       locale: finishFiles(own.files),
-    } as QuestionResourcePublication<Question_FillBlanksWithText_Props>;
+    } as unknown as QuestionResourcePublication<Question_FillBlanksWithText_Props>;
     validateQuestionPublication(fillBlanksWithText_Props_Schema, languages, resource);
     return resource;
   };

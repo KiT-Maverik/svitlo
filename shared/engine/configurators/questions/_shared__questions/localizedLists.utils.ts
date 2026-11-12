@@ -39,7 +39,11 @@ export const projectAnswerList = (
   for (const key of keys) {
     if (!camelCase_Schema.safeParse(key).success) throw new Error('Invalid answer key: ' + key);
   }
-  const values = keys.map(key => effective[key]);
+  const values = keys.map(key => {
+    const value = effective[key];
+    if (value === undefined) throw new Error('Missing accepted-answer value for ' + key);
+    return value;
+  });
   const allInvariant = values.every(value => typeof value === 'string');
   const structural = patch !== undefined && Object.keys(patch).some(key => !Object.hasOwn(original, key));
   const invariantChanged = patch !== undefined && Object.values(patch).some(value => typeof value === 'string');
@@ -72,7 +76,7 @@ export const projectSlotList = (
   const effective = patch ? mergeForValidation(cloneJson(original), patch) : cloneJson(original);
   const entries = (order ?? Object.keys(effective)).map(selector => {
     if (!Object.hasOwn(effective, selector)) throw new Error('Unknown text slot selector: ' + selector);
-    return [selector, effective[selector]] as const;
+    return [selector, effective[selector]!] as const;
   });
   if (new Set(entries.map(([selector]) => selector)).size !== entries.length) {
     throw new Error('Duplicate text slot selector');

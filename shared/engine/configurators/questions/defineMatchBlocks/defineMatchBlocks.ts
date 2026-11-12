@@ -153,7 +153,7 @@ export const defineMatchBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_MatchBlocks_Props>;
+    } as unknown as QuestionResourcePublication<Question_MatchBlocks_Props>;
     validateQuestionPublication(matchBlocks_Props_Schema, languages, resource);
     return resource;
   };

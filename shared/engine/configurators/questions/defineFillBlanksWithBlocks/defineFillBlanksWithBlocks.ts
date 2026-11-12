@@ -165,7 +165,7 @@ export const defineFillBlanksWithBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    } as QuestionResourcePublication<Question_FillBlanksWithBlocks_Props>;
+    } as unknown as QuestionResourcePublication<Question_FillBlanksWithBlocks_Props>;
     validateQuestionPublication(fillBlanksWithBlocks_Props_Schema, languages, resource);
     return resource;
   };
