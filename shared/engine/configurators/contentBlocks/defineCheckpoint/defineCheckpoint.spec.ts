@@ -134,7 +134,7 @@ test('Checkpoint rejects invalid authored collections and preserves authored sna
   }), /At least one active Checkpoint item/);
   const original = checkpoint.build.props();
   checkpoint.content.order.reverse();
-  checkpoint.content.items.first = checkpoint.content.items.second;
+  checkpoint.content.items.first = checkpoint.content.items.second as never;
   const modifiedOutput = checkpoint.build.props();
   modifiedOutput.base.content.reverse();
   assert.deepEqual(checkpoint.build.props(), original);
