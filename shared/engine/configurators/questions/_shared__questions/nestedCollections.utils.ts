@@ -33,7 +33,7 @@ const validateNested = (collection: NestedCollection, path: string, fields: read
     for (const field of fields) {
       const child = entry[field];
       validateBlock(child, isRecord(child) && typeof child.slug === 'string' ? child.slug : '');
-      assertEnabledBlock((child as Block).build.props().base, path + '.' + key + '.' + field);
+      assertEnabledBlock((child as Block).config.base, path + '.' + key + '.' + field);
     }
   }
 };
@@ -46,6 +46,7 @@ export const validateNestedBlockCollection = validateNested;
  */
 const resolveNested = (
   source: NestedCollection,
+  languages: readonly LanguageCodes[],
   patch: NestedPatch | undefined,
   fields: readonly string[],
   path: string,
@@ -88,7 +89,7 @@ const resolveNested = (
     const changes = changed[key] === false ? undefined : changed[key] as Plain | undefined;
     const built: Record<string, ReturnType<typeof resolveChild>> = {};
     for (const field of fields) {
-      built[field] = resolveChild(entry[field] as Block, changes?.[field]);
+      built[field] = resolveChild(entry[field] as Block, languages, changes?.[field]);
       assertEnabledBlock(built[field].base, path + '.' + key + '.' + field);
     }
     base[key] = Object.fromEntries(fields.map(field => [field, built[field].base]));
@@ -111,16 +112,16 @@ const resolveNested = (
 };
 
 export const resolvePairMap = (
-  source: NestedCollection, patch?: NestedPatch,
+  source: NestedCollection, languages: readonly LanguageCodes[], patch?: NestedPatch,
 ): NestedResult<Record<string, Plain>> => {
-  const built = resolveNested(source, patch, ['left', 'right'], 'content.pairs');
+  const built = resolveNested(source, languages, patch, ['left', 'right'], 'content.pairs');
   return { base: built.base, locale: built.locale };
 };
 
 export const resolveSlotBlocks = (
-  source: NestedCollection, patch?: NestedPatch,
+  source: NestedCollection, languages: readonly LanguageCodes[], patch?: NestedPatch,
 ): NestedResult<Array<{ selector: string; correctAnswer: Plain }>> => {
-  const built = resolveNested(source, patch, ['correctAnswer'], 'content.slots');
+  const built = resolveNested(source, languages, patch, ['correctAnswer'], 'content.slots');
   const mapArray = (records: Record<string, Plain>) =>
     built.order.map(selector => ({ selector, correctAnswer: records[selector].correctAnswer as Plain }));
   const locale: Files<Array<{ selector: string; correctAnswer: Plain }>> = {};
