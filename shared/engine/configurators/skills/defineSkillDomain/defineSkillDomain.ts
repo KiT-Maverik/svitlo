@@ -228,7 +228,7 @@ export function defineSkillDomain<
         const built = buildChildren(enabled, order, parse, childPatches, Object.keys(files) as LanguageCodes[]);
         (output.base as Record<string, unknown>)[key] = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
-          (files[language as LanguageCodes] ??= {})[key] = values;
+          ((files[language as LanguageCodes] ??= {}) as Record<string, unknown>)[key] = values;
         }
       };
 
