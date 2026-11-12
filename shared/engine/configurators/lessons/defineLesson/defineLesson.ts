@@ -56,6 +56,31 @@ type OverrideBase = {
 type CollectionPatch = { items?: Record<string, unknown>; additionalItems?: Record<string, unknown>; order?: string[] };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
+/** Verify complete Props for the requested language, including applied nested array patches. */
+const validatePublication = (
+  resource: Publication<unknown>,
+  languages: readonly LanguageCodes[],
+  patch?: Publication<unknown>,
+): void => {
+  for (const language of languages) {
+    const original = mergeForValidation(
+      resource.base as Record<string, unknown>,
+      (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
+    );
+    const withPatch = patch
+      ? mergeForValidation(original, patch.base as DeepPartial<Record<string, unknown>>)
+      : original;
+    const effective = patch
+      ? mergeForValidation(withPatch, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
+      : withPatch;
+    try {
+      lesson_Props_Schema.parse(effective);
+    } catch (error) {
+      throw new Error('Invalid Lesson Props for language ' + language + ': ' +
+        (error instanceof Error ? error.message : String(error)), { cause: error });
+    }
+  }
+};
 const isBuildChild = (value: unknown): value is Child => {
   if (!isRecord(value) || !isRecord(value.build)) return false;
   return typeof value.id === 'string' && typeof value.slug === 'string' &&
@@ -230,7 +255,7 @@ export function defineLesson<
     addLocalizedArray(files, 'section', sections.locales);
     addLocalizedArray(files, 'flashcards', cards.locales);
     addQuestionFiles(files, bank.locales);
-    return structuredClone({
+    const result = structuredClone({
       base: {
         id, slug, type, programId: own.programId,
         skills: own.skills, params: { ...own.params, languages: [...languages] },
@@ -242,6 +267,8 @@ export function defineLesson<
       },
       locale: Object.keys(files).length ? files : undefined,
     });
+    validatePublication(result, languages);
+    return result;
   };
 
   /** Nested patches rebuild only the changed, ordered collection, as a complete atomic array. */
@@ -422,7 +449,9 @@ export function defineLesson<
         throw new Error('Lesson requires at least one enabled Quiz section');
       }
       output.locale = Object.keys(files).length ? files : undefined;
-      return structuredClone(output);
+      const result = structuredClone(output);
+      validatePublication(props(options), languages, result);
+      return result;
     } catch (error) {
       throw new Error(
         'Invalid Lesson overrides for ' + id + ': ' +
