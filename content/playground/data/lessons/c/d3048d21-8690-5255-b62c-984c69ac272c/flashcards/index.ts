@@ -1,77 +1,70 @@
-import type { Flashcard } from '@svitlo/contracts/content';
-import type { HowLightMoves_Languages } from '../constants';
-import { fastestMedium_Question_Data } from '../questions/fastestMedium';
-import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';
-import { opaqueObjectShadow_Question_Data } from '../questions/opaqueObjectShadow';
+import { defineFlashcard } from '@svitlo/engine';
+import { lightTravelsStraight } from '../questions/lightTravelsStraight';
+import { fastestMedium } from '../questions/fastestMedium';
+import { opaqueObjectShadow } from '../questions/opaqueObjectShadow';
 
-export const howLightMoves_Flashcards = [
-  {
-    id: '860102db-5184-5249-88dd-7acea86ff5b4',
-    isDefault: true,
-    front: [
-      {
-        id: '92a594ef-604e-5145-84cd-eb8c027c427b',
-        slug: 'front',
-        type: 'text',
-        value: lightTravelsStraight_Question_Data.question[0].value,
-      },
-    ],
-    back: [
-      {
-        id: '0abe9721-e67e-5c7a-97d4-c152bf863286',
-        slug: 'back',
-        type: 'text',
-        value: lightTravelsStraight_Question_Data.answers.correct.straightLine.value,
-      },
-    ],
-    hint: [],
+const lightTravelsStraightFlashcard = defineFlashcard({
+  id: '860102db-5184-5249-88dd-7acea86ff5b4',
+  slug: 'lightTravelsStraightFlashcard',
+  type: 'flashcard',
+  parameters: {
     tags: ['lightPropagation'],
-    flags: [],
+    flags: { items: {}, order: [] },
   },
-  {
-    id: 'a7a04904-ed6b-515e-bdd7-040458b53fad',
-    isDefault: true,
-    front: [
-      {
-        id: '77e01b3b-7d28-5910-9ba0-2021fa71dc50',
-        slug: 'front',
-        type: 'text',
-        value: fastestMedium_Question_Data.question[0].value,
-      },
-    ],
-    back: [
-      {
-        id: 'b790287a-f297-5057-88b1-954e1226ca5f',
-        slug: 'back',
-        type: 'text',
-        value: fastestMedium_Question_Data.answers.correct.vacuum.value,
-      },
-    ],
-    hint: [],
+  content: {
+    front: {
+      items: { question: lightTravelsStraight.content.question[0] },
+      order: ['question'],
+    },
+    back: {
+      items: { straightLine: lightTravelsStraight.content.answers.correct.straightLine },
+      order: ['straightLine'],
+    },
+  },
+});
+
+const fastestMediumFlashcard = defineFlashcard({
+  id: 'a7a04904-ed6b-515e-bdd7-040458b53fad',
+  slug: 'fastestMediumFlashcard',
+  type: 'flashcard',
+  parameters: {
     tags: ['lightSpeed'],
-    flags: [],
+    flags: { items: {}, order: [] },
   },
-  {
-    id: '715383c3-ea22-5043-9213-555180837358',
-    isDefault: true,
-    front: [
-      {
-        id: '8c3c60f6-3f70-5ab3-aa22-0a99a34888cd',
-        slug: 'front',
-        type: 'text',
-        value: opaqueObjectShadow_Question_Data.question[0].value,
-      },
-    ],
-    back: [
-      {
-        id: '2df093ea-4ef3-5935-94e7-06bb5a4b409c',
-        slug: 'back',
-        type: 'text',
-        value: opaqueObjectShadow_Question_Data.answers.correct.shadow.value,
-      },
-    ],
-    hint: [],
+  content: {
+    front: {
+      items: { question: fastestMedium.content.question[0] },
+      order: ['question'],
+    },
+    back: {
+      items: { vacuum: fastestMedium.content.answers.correct.vacuum },
+      order: ['vacuum'],
+    },
+  },
+});
+
+const opaqueObjectShadowFlashcard = defineFlashcard({
+  id: '715383c3-ea22-5043-9213-555180837358',
+  slug: 'opaqueObjectShadowFlashcard',
+  type: 'flashcard',
+  parameters: {
     tags: ['shadow'],
-    flags: [],
+    flags: { items: {}, order: [] },
   },
-] satisfies Flashcard<'data', HowLightMoves_Languages>[];
+  content: {
+    front: {
+      items: { question: opaqueObjectShadow.content.question[0] },
+      order: ['question'],
+    },
+    back: {
+      items: { shadow: opaqueObjectShadow.content.answers.correct.shadow },
+      order: ['shadow'],
+    },
+  },
+});
+
+export const howLightMovesFlashcards = [
+  lightTravelsStraightFlashcard,
+  fastestMediumFlashcard,
+  opaqueObjectShadowFlashcard,
+];

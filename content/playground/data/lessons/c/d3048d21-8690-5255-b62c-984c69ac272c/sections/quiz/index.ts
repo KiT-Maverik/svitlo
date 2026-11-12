@@ -1,7 +1,5 @@
-import type { HowLightMoves_Languages } from '../../constants';
-import type { Quiz_Parameters } from '@svitlo/contracts/content';
-import { createSectionConfigurator } from '@svitlo/engine';
-import { howLightMoves_Questions } from '../../questions';
+import { defineQuizSection } from '@svitlo/engine';
+import { howLightMovesQuestions } from '../../questions';
 
 const title = {
   ar: 'اختبار',
@@ -35,41 +33,37 @@ const title = {
   zh: '测验',
 };
 
-const parameters = {
-  isBlocker: true,
-  timeLimitSeconds: 300,
-  selection: { mode: 'all', questionSlugs: Object.keys(howLightMoves_Questions.selectOneAnswer) },
-  layout: { mode: 'stepper', showProgress: true },
-  feedbackMode: 'immediate',
-  interaction: {
-    retries: 0,
-    showErrors: true,
-    showCorrectAnswers: true,
-    allowExplanations: true,
-    allowDeferring: false,
-    allowQuestionNavigation: true,
+export const quizSection = defineQuizSection({
+  id: '2a02b81f-dbd6-58d8-9711-4deb97312a56',
+  slug: 'quiz',
+  type: 'quiz',
+  params: {
     skippable: true,
-  },
-  results: { visibility: 'after-review', showScore: true },
-  screen: {},
-  questionOptions: {
-    selectOneAnswer: {
-      incorrectCount: 1,
-      includeDistractors: true,
-      shuffleAnswers: true,
-      correctVariant: 'random',
+    isBlocker: true,
+    timeLimitSeconds: 300,
+    selection: { mode: 'all', questionSlugs: Object.keys(howLightMovesQuestions.selectOneAnswer) },
+    layout: { mode: 'stepper', showProgress: true },
+    feedbackMode: 'immediate',
+    interaction: {
+      retries: 0,
+      showErrors: true,
+      showCorrectAnswers: true,
+      allowExplanations: true,
+      allowDeferring: false,
+      allowQuestionNavigation: true,
+      skippable: true,
+    },
+    results: { visibility: 'after-review', showScore: true },
+    screen: {},
+    questionOptions: {
+      selectOneAnswer: {
+        incorrectCount: 1,
+        includeDistractors: true,
+        shuffleAnswers: true,
+        correctVariant: 'random',
+      },
     },
   },
-} satisfies Quiz_Parameters<'data', HowLightMoves_Languages>;
-
-export const quiz_Section_Configurator = createSectionConfigurator<HowLightMoves_Languages>()({
-  id: '2a02b81f-dbd6-58d8-9711-4deb97312a56',
-  type: 'quiz',
-  slug: 'quiz',
-  title,
-  navigationLabel: title,
-  skippable: true,
-  parameters,
+  locale: { title, navigationLabel: title },
+  content: { items: {}, order: [] },
 });
-
-export const quiz_Section = quiz_Section_Configurator.getData();
