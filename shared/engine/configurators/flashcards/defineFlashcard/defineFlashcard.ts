@@ -185,9 +185,20 @@ export function defineFlashcard<
       hint: { items: { ...initialContent.hint.items }, order: [...initialContent.hint.order] },
     } : {}),
   };
+  // Transitional projection keeps invariant flag metadata separate from locale files.
   const base = {
     id, slug, type,
-    parameters: structuredClone(authored.parameters),
+    parameters: {
+      ...structuredClone(authored.parameters),
+      flags: {
+        order: [...authored.parameters.flags.order],
+        items: Object.fromEntries(
+          Object.entries(authored.parameters.flags.items).map(([key, flag]) => [
+            key, splitLocalizedFields(flag).base,
+          ]),
+        ),
+      },
+    },
   } satisfies DeepPartial<Flashcard_Config>;
 
   const buildSide = (
