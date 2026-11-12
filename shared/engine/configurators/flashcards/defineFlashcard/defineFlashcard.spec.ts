@@ -145,3 +145,17 @@ test('Flashcard permits absent hint and provides independent detached results', 
   original.base.parameters.tags.push('mutation');
   assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.tags, ['math']);
 });
+
+test('Flashcard publishes selected languages only and checks each requested resolved Props', () => {
+  const card = defineFlashcard(source);
+  const single = card.build.props({ languages: ['uk'] });
+  assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
+  assert.equal(single.locale?.en, undefined);
+  const patch = card.build.overrides({
+    parameters: { flags: { items: { acronym: { value: { uk: 'НОВЕ' } } } } },
+  }, { languages: ['uk'] });
+  assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
+  assert.equal(flagValue(patch.locale?.uk?.parameters?.flags, 1), 'НОВЕ');
+  assert.throws(() => card.build.props({ languages: [] }), /nonempty languages/);
+  assert.throws(() => card.build.props({ languages: ['uk', 'uk'] }), /unique/);
+});
