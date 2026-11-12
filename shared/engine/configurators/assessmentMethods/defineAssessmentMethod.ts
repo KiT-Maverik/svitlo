@@ -1,31 +1,108 @@
-import type { DeepPartial } from '#types';
+import type { LanguageCodes } from '#schemas';
+import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
-import { assessmentMethod_Config_Schema, type AssessmentMethod_Config } from './defineAssessmentMethod.schemas';
+import { mergeForValidation, onlyLocales, resolvePublicationLanguages, selectPublicationLocales, splitLocalizedFields } from '../_shared__configurators';
+import {
+  assessmentMethod_Config_Schema,
+  assessmentMethod_Override_Config_Schema,
+  type AssessmentMethod_Config,
+  type AssessmentMethod_Overrides,
+  type AssessmentMethod_Props,
+} from './defineAssessmentMethod.schemas';
 
-const validate = (config: AssessmentMethod_Config) => {
+type AssessmentMethodPublication<Base> = {
+  base: Base;
+  locale: Partial<Record<LanguageCodes, DeepPartial<AssessmentMethod_Props>>> | undefined;
+};
+
+const validate = (config: AssessmentMethod_Config): void => {
   assessmentMethod_Config_Schema.parse(config);
 };
 
-export function defineAssessmentMethod(config: AssessmentMethod_Config) {
-  validate(config);
+/** Explicit Props/Override return types keep declaration output compact. */
+export type AssessmentMethod_Configurator<
+  Slug extends string = string,
+  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'assessmentMethod';
+  readonly validate: typeof validate;
+  readonly build: {
+    props(options: PublicationLanguageOptions<Languages>): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }>;
+    overrides(patch: AssessmentMethod_Overrides, options: PublicationLanguageOptions<Languages>): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>;
+  };
+  readonly config: {
+    base: DeepPartial<AssessmentMethod_Props> & { id: string; slug: string };
+    validate: typeof validate;
+    locales: () => DeepPartial<AssessmentMethod_Config>;
+  };
+} & LanguageScope<Languages>;
 
-  const { id, description, slug, title } = config;
+/** Assessment method descriptions and labels retain their authored semantics. */
+export function defineAssessmentMethod<
+  const Slug extends string,
+  const Languages extends readonly LanguageCodes[] = [],
+>(config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>): AssessmentMethod_Configurator<Slug, Languages> {
+  const authored = structuredClone(assessmentMethod_Config_Schema.parse(config));
+  const { id } = authored;
+  const slug = config.slug;
+  const copyAuthored = () => assessmentMethod_Config_Schema.parse(structuredClone(authored));
 
-  const base = {
-    id,
-    slug,
-  } satisfies DeepPartial<AssessmentMethod_Config>;
+  const props = (options: PublicationLanguageOptions<Languages>): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }> => {
+    const languages = resolvePublicationLanguages(options);
+    const current = copyAuthored();
+    const own = splitLocalizedFields({ title: current.title, description: current.description });
+    const result: AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }> = {
+      base: { id, slug, ...own.base },
+      locale: selectPublicationLocales(own.locale as AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>['locale'], languages),
+    };
+    for (const language of languages) {
+      assessmentMethod_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+    }
+    return result;
+  };
 
-  return {
+  const overrides = (patch: AssessmentMethod_Overrides, options: PublicationLanguageOptions<Languages>): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>> => {
+    try {
+      const languages = resolvePublicationLanguages(options);
+      const sparse = assessmentMethod_Override_Config_Schema.parse(patch);
+      validate(assessmentMethod_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
+      const own = splitLocalizedFields(sparse);
+      const result: AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>> = {
+        base: own.base,
+        locale: selectPublicationLocales(own.locale as AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>['locale'], languages),
+      };
+      const resource = props(options);
+      for (const language of languages) {
+        const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
+        const patched = mergeForValidation(original, result.base);
+        assessmentMethod_Props_Schema.parse(mergeForValidation(patched, result.locale?.[language] ?? {}));
+      }
+      return result;
+    } catch (error) {
+      throw new Error(
+        'Invalid Assessment Method overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
+    }
+  };
+
+  const result = {
     id,
     slug,
     type: 'assessmentMethod' as const,
+    validate,
+    build: { props, overrides },
     config: {
-      base,
+      base: { id, slug, ...splitLocalizedFields({ title: authored.title, description: authored.description }).base },
       validate,
-      locales: () => ({ title, description }) satisfies DeepPartial<AssessmentMethod_Config>,
+      locales: (): DeepPartial<AssessmentMethod_Config> => {
+        const current = copyAuthored();
+        return onlyLocales({ title: current.title, description: current.description });
+      },
     },
-  };
+  } as const;
+  return result as AssessmentMethod_Configurator<Slug, Languages>;
 }
 
-export type AssessmentMethod_Configurator = ReturnType<typeof defineAssessmentMethod>;

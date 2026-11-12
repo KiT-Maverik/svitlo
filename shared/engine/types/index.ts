@@ -8,4 +8,5 @@ export type {
   LanguageScope,
   ChildSupporting,
   ChildrenSupporting,
+  PublicationLanguageOptions,
 } from './requiredLanguages';
