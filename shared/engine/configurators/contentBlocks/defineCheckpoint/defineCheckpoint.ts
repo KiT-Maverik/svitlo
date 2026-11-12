@@ -85,9 +85,6 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
     if (!content.order.length) {
       fail('order', 'content.order', 'At least one active Checkpoint item is required');
     }
-    for (const [key, item] of Object.entries(content.items)) {
-      if (item === false) fail('item', 'content.items.' + key, 'false is reserved for overrides');
-    }
     for (const issue of validateSluggedConfiguratorMap(content.items, ['checkpointItem'], {
       path: 'content.items',
       itemLabel: 'Checkpoint item',
@@ -171,9 +168,9 @@ export const defineCheckpoint = <
         : undefined;
       return { resource, patch };
     });
-    const bases = entries.map(({ resource, patch }) =>
+    const bases: ItemResource['base'][] = entries.map(({ resource, patch }) =>
       patch
-        ? mergeForValidation(resource.base, patch.base as DeepPartial<typeof resource.base>)
+        ? mergeForValidation<ItemResource['base']>(resource.base, patch.base as DeepPartial<ItemResource['base']>)
         : resource.base,
     );
 
