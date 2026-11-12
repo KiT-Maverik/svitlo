@@ -2,12 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   markdown_Config_Schema,
@@ -18,7 +13,9 @@ import {
   type ContentBlock_Markdown_PropsBase,
 } from './defineMarkdown.schemas';
 
-type MarkdownLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Markdown_Locale<'props'>> }>>;
+type MarkdownLocaleFiles = Partial<
+  Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Markdown_Locale<'props'>> }>
+>;
 type MarkdownPropsPublication<Base, LocaleFiles = MarkdownLocaleFiles> = {
   base: Base;
   locale: LocaleFiles | undefined;
@@ -92,9 +89,13 @@ const buildMarkdownProps = (
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Markdown_PropsBase;
-  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as MarkdownLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      MarkdownLocaleFiles | undefined,
+  };
 };
 
 const buildMarkdownPatch = (
@@ -108,9 +109,10 @@ const buildMarkdownPatch = (
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
         : {}),
     },
-    locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as MarkdownLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      MarkdownLocaleFiles | undefined,
   };
 };
 

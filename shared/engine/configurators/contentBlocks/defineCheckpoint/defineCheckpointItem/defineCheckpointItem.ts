@@ -88,8 +88,12 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
       fail(issue.check === 'item' ? 'answer' : issue.check, issue.path, issue.message);
     }
     for (const [key, child] of Object.entries(answer.items)) {
-      if (!isObject(child) || !isObject(child.build) ||
-        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+      if (
+        !isObject(child) ||
+        !isObject(child.build) ||
+        typeof child.build.props !== 'function' ||
+        typeof child.build.overrides !== 'function'
+      ) {
         fail('answer', 'answer.items.' + key, 'Answer must expose the ContentBlock Build API');
       }
     }
@@ -184,9 +188,7 @@ export const defineCheckpointItem = <
           const withPatchBase = patch ? mergeForValidation(localizedOriginal, patch.base) : localizedOriginal;
           const localizedPatch = patch?.locale?.[language];
           // Child overrides already contain Props-shaped locale paths.
-          return localizedPatch
-            ? mergeForValidation(withPatchBase, localizedPatch)
-            : withPatchBase;
+          return localizedPatch ? mergeForValidation(withPatchBase, localizedPatch) : withPatchBase;
         }),
       };
     }
@@ -203,7 +205,9 @@ export const defineCheckpointItem = <
     }
     return {
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         ...(check !== undefined ? { check } : {}),
         question: builtQuestion.base,
         answer: builtAnswers.bases,
@@ -246,7 +250,8 @@ export const defineCheckpointItem = <
       if (!isObject(changes)) throw new Error('answer.items must be a slug-keyed object');
       if (patch.answer) {
         for (const key of Object.keys(patch.answer)) {
-          if (!['items', 'additionalItems', 'order'].includes(key)) throw new Error('Unknown answer override field: ' + key);
+          if (!['items', 'additionalItems', 'order'].includes(key))
+            throw new Error('Unknown answer override field: ' + key);
         }
       }
 
@@ -264,8 +269,12 @@ export const defineCheckpointItem = <
 
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate answer slug: ' + key);
-        if (!isObject(child) || !isObject(child.build) ||
-          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+        if (
+          !isObject(child) ||
+          !isObject(child.build) ||
+          typeof child.build.props !== 'function' ||
+          typeof child.build.overrides !== 'function'
+        ) {
           throw new Error('New ContentBlock must expose the Build API: ' + key);
         }
         enabled[key] = child as Checkpoint_Allowed_Configurator;
@@ -288,20 +297,24 @@ export const defineCheckpointItem = <
         throw new Error('answer.order is required when adding or disabling answers');
       }
       const order = patch.answer?.order ?? initialOrder;
-      const issues = validateOrderedKeys({ items: enabled, order }, {
-        path: 'answer',
-        allowDisabled: true,
-        requireNonEmpty: true,
-      });
+      const issues = validateOrderedKeys(
+        { items: enabled, order },
+        {
+          path: 'answer',
+          allowDisabled: true,
+          requireNonEmpty: true,
+        },
+      );
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active answer is required');
 
-      const modifiesAnswers = Object.keys(changes).length > 0 || patch.answer?.order !== undefined ||
-        Object.keys(additions).length > 0;
+      const modifiesAnswers =
+        Object.keys(changes).length > 0 || patch.answer?.order !== undefined || Object.keys(additions).length > 0;
       if (modifiesAnswers) {
         const active = Object.fromEntries(
-          Object.entries(enabled).filter((entry): entry is [string, Checkpoint_Allowed_Configurator] =>
-            entry[1] !== false),
+          Object.entries(enabled).filter(
+            (entry): entry is [string, Checkpoint_Allowed_Configurator] => entry[1] !== false,
+          ),
         );
         const built = buildAnswers(active, order, patches);
         output.base.answer = built.bases;
@@ -313,8 +326,7 @@ export const defineCheckpointItem = <
       return output;
     } catch (error) {
       throw new Error(
-        'Invalid Checkpoint Item overrides for ' + id + ': ' +
-          (error instanceof Error ? error.message : String(error)),
+        'Invalid Checkpoint Item overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }

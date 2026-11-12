@@ -1,12 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   audio_Config_Schema,
@@ -45,9 +40,13 @@ const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublicati
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Audio_PropsBase;
-  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as AudioLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      AudioLocaleFiles | undefined,
+  };
 };
 
 const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
@@ -59,9 +58,10 @@ const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublica
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
         : {}),
     },
-    locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as AudioLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      AudioLocaleFiles | undefined,
   };
 };
 

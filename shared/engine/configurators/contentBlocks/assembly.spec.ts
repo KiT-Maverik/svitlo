@@ -16,7 +16,10 @@ const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 
 test('Published locale bodies already match Props and require no embedding', () => {
   const block = defineAudio({
-    id, slug: 'localeShape', type: 'audio', params: {},
+    id,
+    slug: 'localeShape',
+    type: 'audio',
+    params: {},
     locale: { title: { en: 'Hello' }, fileLocation: 'https://example.com/audio.mp3' },
   });
   const result = block.build.props();
@@ -26,7 +29,6 @@ test('Published locale bodies already match Props and require no embedding', () 
   });
   assert.equal(block.build.props().base.locale?.fileLocation, 'https://example.com/audio.mp3');
 });
-
 
 test('Audio publishes Props-shaped locale bodies and isolated sparse patches', () => {
   const authored = {
@@ -231,7 +233,10 @@ test('Scene recursively partitions its data-only localized leaves', () => {
   });
   assert.deepEqual(scene.build.props(), {
     base: { id, type: 'scene', slug: 'simulation', params: {}, locale: { value: { panel: { caption: 'Invariant' } } } },
-    locale: { en: { locale: { value: { heading: 'Hello' } } }, uk: { locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } } } },
+    locale: {
+      en: { locale: { value: { heading: 'Hello' } } },
+      uk: { locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } } },
+    },
   });
   assert.deepEqual(scene.build.props().locale?.uk, {
     locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } },
@@ -256,7 +261,10 @@ test('Video and YouTube publish media-specific fallback and link fields', () => 
       fallback: { offline: 'Offline' },
     },
   });
-  assert.deepEqual(video.build.props().locale, { en: { locale: { label: 'Movie' } }, uk: { locale: { label: 'Відео' } } });
+  assert.deepEqual(video.build.props().locale, {
+    en: { locale: { label: 'Movie' } },
+    uk: { locale: { label: 'Відео' } },
+  });
   assert.deepEqual(video.build.props().locale?.uk, { locale: { label: 'Відео' } });
   assert.deepEqual(video.build.overrides({ locale: { label: { uk: 'Фільм' } } }), {
     base: {},

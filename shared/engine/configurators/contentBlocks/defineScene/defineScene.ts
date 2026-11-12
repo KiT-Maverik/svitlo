@@ -1,12 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateSceneEntry } from '../_shared__contentBlocks';
 import {
   scene_Config_Schema,
@@ -45,9 +40,13 @@ const buildSceneProps = (config: ContentBlock_Scene_Config): ScenePropsPublicati
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Scene_PropsBase;
-  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as SceneLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      SceneLocaleFiles | undefined,
+  };
 };
 
 const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublication<SceneOverridePropsBase> => {
@@ -59,9 +58,10 @@ const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublica
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
         : {}),
     },
-    locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as SceneLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      SceneLocaleFiles | undefined,
   };
 };
 

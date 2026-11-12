@@ -1,12 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   image_Config_Schema,
@@ -45,9 +40,13 @@ const buildImageProps = (config: ContentBlock_Image_Config): ImagePropsPublicati
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Image_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Image_PropsBase;
-  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as ImageLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      ImageLocaleFiles | undefined,
+  };
 };
 
 const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublication<ImageOverridePropsBase> => {
@@ -59,9 +58,10 @@ const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublica
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Image_Locale<'props'>> }
         : {}),
     },
-    locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as ImageLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      ImageLocaleFiles | undefined,
   };
 };
 

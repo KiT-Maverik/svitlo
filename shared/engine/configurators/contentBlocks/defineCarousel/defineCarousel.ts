@@ -1,12 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   carousel_Config_Schema,
@@ -18,7 +13,9 @@ import {
   type ContentBlock_Carousel_PropsBase,
 } from './defineCarousel.schemas';
 
-type CarouselLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> }>>;
+type CarouselLocaleFiles = Partial<
+  Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> }>
+>;
 type CarouselPropsPublication<Base, LocaleFiles = CarouselLocaleFiles> = {
   base: Base;
   locale: LocaleFiles | undefined;
@@ -63,9 +60,11 @@ const buildCarouselProps = (
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Carousel_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Carousel_PropsBase;
-  const files = (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as CarouselLocaleFiles | undefined;
+  const files = (
+    locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))
+  ) as CarouselLocaleFiles | undefined;
   validatePublishedSlides(files);
   return { base, locale: files };
 };
@@ -74,9 +73,11 @@ const buildCarouselPatch = (
   patch: ContentBlock_Carousel_Overrides,
 ): CarouselPropsPublication<CarouselOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
-  const files = (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as CarouselLocaleFiles | undefined;
+  const files = (
+    locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))
+  ) as CarouselLocaleFiles | undefined;
   validatePublishedSlides(files);
   return {
     base: {

@@ -29,9 +29,7 @@ const validate = (config: ContentBlock_Text_Config): void => {
 };
 
 /** Every translated file is already a Props-shaped fragment. */
-const buildLocale = (
-  value: ContentBlock_Text_Config['locale']['value'] | undefined,
-): TextLocaleFiles | undefined => {
+const buildLocale = (value: ContentBlock_Text_Config['locale']['value'] | undefined): TextLocaleFiles | undefined => {
   const locale: TextLocaleFiles = {};
   if (value && typeof value === 'object') {
     for (const [language, text] of Object.entries(value)) {
@@ -125,8 +123,7 @@ export const defineText = <const Slug extends string>(
   const copyAuthored = () => text_Config_Schema.parse(structuredClone(authored));
   const base = { ...buildTextProps(copyAuthored()).base, slug };
 
-  const props = (): TextPropsPublication<ContentBlock_Text_PropsBase> =>
-    buildTextProps(copyAuthored());
+  const props = (): TextPropsPublication<ContentBlock_Text_PropsBase> => buildTextProps(copyAuthored());
 
   const overrides = (patch: ContentBlock_Text_Overrides): TextPropsPublication<TextOverridePropsBase> => {
     try {

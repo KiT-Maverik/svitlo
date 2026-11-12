@@ -1,12 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import {
   youtube_Config_Schema,
   youtube_Override_Config_Schema,
@@ -46,9 +41,13 @@ const buildYoutubeProps = (
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Youtube_PropsBase;
-  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as YoutubeLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      YoutubeLocaleFiles | undefined,
+  };
 };
 
 const buildYoutubePatch = (
@@ -62,9 +61,10 @@ const buildYoutubePatch = (
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
         : {}),
     },
-    locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as YoutubeLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      YoutubeLocaleFiles | undefined,
   };
 };
 

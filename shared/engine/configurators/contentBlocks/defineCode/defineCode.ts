@@ -1,12 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   code_Config_Schema,
@@ -46,9 +41,13 @@ const buildCodeProps = (config: ContentBlock_Code_Config): CodePropsPublication<
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Code_PropsBase;
-  return { base, locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as CodeLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      CodeLocaleFiles | undefined,
+  };
 };
 
 const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublication<CodeOverridePropsBase> => {
@@ -60,9 +59,10 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
         : {}),
     },
-    locale: (locale === undefined ? undefined : Object.fromEntries(
-    Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
-  )) as CodeLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      CodeLocaleFiles | undefined,
   };
 };
 
