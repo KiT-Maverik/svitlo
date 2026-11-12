@@ -353,35 +353,38 @@ test('Checkpoint Item owns question and answer validation', () => {
 
   assert.throws(
     () => item.config.validate({ ...config, id: 'not-a-uuid' }),
-    error => error instanceof CheckpointItemValidationError &&
-      error.result.errors.some(issue => issue.check === 'metadata'),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.check === 'metadata'),
   );
   assert.throws(
     () => item.config.validate({ ...config, check: false } as unknown as typeof config),
-    error => error instanceof CheckpointItemValidationError &&
-      error.result.errors.some(issue => issue.path === 'check'),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.path === 'check'),
   );
   assert.throws(
     () => item.config.validate({ ...config, question: illustration } as unknown as typeof config),
-    error => error instanceof CheckpointItemValidationError &&
-      error.result.errors.some(issue => issue.check === 'question'),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.check === 'question'),
   );
   assert.throws(
-    () => item.config.validate({
-      ...config,
-      answer: { items: { wrongKey: answer }, order: ['wrongKey', 'wrongKey'] },
-    } as unknown as typeof config),
-    error => error instanceof CheckpointItemValidationError &&
+    () =>
+      item.config.validate({
+        ...config,
+        answer: { items: { wrongKey: answer }, order: ['wrongKey', 'wrongKey'] },
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointItemValidationError &&
       error.result.errors.some(issue => issue.check === 'slug') &&
       error.result.errors.some(issue => issue.check === 'order'),
   );
   assert.throws(
-    () => item.config.validate({
-      ...config,
-      answer: { items: { answer, invalid: {} }, order: ['answer', 'invalid'] },
-    } as unknown as typeof config),
-    error => error instanceof CheckpointItemValidationError &&
-      error.result.errors.some(issue => issue.check === 'answer'),
+    () =>
+      item.config.validate({
+        ...config,
+        answer: { items: { answer, invalid: {} }, order: ['answer', 'invalid'] },
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.check === 'answer'),
   );
 
   const disabledQuestion = defineText({
@@ -442,9 +445,16 @@ test('Checkpoint validates outer items and preserves content overrides', () => {
   assert.deepEqual(checkpoint.config.base.params, { enableChecks: true });
   assert.deepEqual(checkpoint.config.locales(), { locale: { title: value } });
   assert.equal(checkpoint_Config_Schema.safeParse({ ...config, content: null }).success, true);
-  assert.equal(checkpoint_Props_Schema.safeParse({
-    id: otherId, slug: 'review', type: 'checkpoint', params: {}, locale: { title: 'Review' },
-  }).success, true);
+  assert.equal(
+    checkpoint_Props_Schema.safeParse({
+      id: otherId,
+      slug: 'review',
+      type: 'checkpoint',
+      params: {},
+      locale: { title: 'Review' },
+    }).success,
+    true,
+  );
   assert.doesNotThrow(() => checkpoint.config.validate(config));
 
   const malformed = {
@@ -453,30 +463,43 @@ test('Checkpoint validates outer items and preserves content overrides', () => {
   };
   assert.throws(
     () => checkpoint.config.validate(malformed as unknown as typeof config),
-    error => error instanceof CheckpointValidationError &&
+    error =>
+      error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.check === 'slug') &&
       error.result.errors.some(issue => issue.check === 'order'),
   );
   assert.throws(
-    () => checkpoint.config.validate({ ...config, content: { items: { whatIsLight: false }, order: ['whatIsLight'] } } as unknown as typeof config),
-    error => error instanceof CheckpointValidationError &&
+    () =>
+      checkpoint.config.validate({
+        ...config,
+        content: { items: { whatIsLight: false }, order: ['whatIsLight'] },
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.message.includes('reserved for overrides')),
   );
   assert.throws(
-    () => checkpoint.config.validate({
-      ...config,
-      content: { items: { whatIsLight: answer }, order: ['whatIsLight'] },
-    } as unknown as typeof config),
-    error => error instanceof CheckpointValidationError &&
+    () =>
+      checkpoint.config.validate({
+        ...config,
+        content: { items: { whatIsLight: answer }, order: ['whatIsLight'] },
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.message.includes('Unsupported Checkpoint item type')),
   );
 
   assert.throws(
-    () => item.config.validate({
-      id, slug: 'whatIsLight', type: 'checkpointItem', question,
-      answer: { items: { review: checkpoint }, order: ['review'] },
-    } as unknown as Parameters<typeof item.config.validate>[0]),
-    error => error instanceof CheckpointItemValidationError &&
+    () =>
+      item.config.validate({
+        id,
+        slug: 'whatIsLight',
+        type: 'checkpointItem',
+        question,
+        answer: { items: { review: checkpoint }, order: ['review'] },
+      } as unknown as Parameters<typeof item.config.validate>[0]),
+    error =>
+      error instanceof CheckpointItemValidationError &&
       error.result.errors.some(issue => issue.message.includes('Unsupported answer type: checkpoint')),
   );
 
@@ -506,10 +529,12 @@ test('Checkpoint validates outer items and preserves content overrides', () => {
 
   const merged = { ...checkpoint.content.items, ...checkpoint.config.overrides.content?.items };
   const resolved = Object.fromEntries(Object.entries(merged).filter(([, value]) => value !== false));
-  assert.doesNotThrow(() => checkpoint.config.validate({
-    ...config,
-    content: { items: resolved, order: checkpoint.config.overrides.content?.order as string[] },
-  } as typeof config));
+  assert.doesNotThrow(() =>
+    checkpoint.config.validate({
+      ...config,
+      content: { items: resolved, order: checkpoint.config.overrides.content?.order as string[] },
+    } as typeof config),
+  );
   checkpoint.disable();
   assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
 });

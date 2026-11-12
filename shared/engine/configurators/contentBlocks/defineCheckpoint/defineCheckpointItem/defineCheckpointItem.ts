@@ -1,9 +1,6 @@
 import type { DeepPartial } from '#types';
 
-import {
-  validateOrderedKeys,
-  validateSluggedConfiguratorMap,
-} from '../../../_shared__configurators';
+import { validateOrderedKeys, validateSluggedConfiguratorMap } from '../../../_shared__configurators';
 import { contentBlockConfigurator_Schema } from '../../contentBlock.schemas';
 import { contentBlockTypes } from '../../contentBlock.constants';
 import {
@@ -65,10 +62,7 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
     typeof question.assemble.resource !== 'function'
   ) {
     fail('question', 'question', 'Question must be a Text configurator');
-  } else if (
-    isObject(question.config.base.params) &&
-    question.config.base.params.disabled === true
-  ) {
+  } else if (isObject(question.config.base.params) && question.config.base.params.disabled === true) {
     fail('question', 'question', 'Question must remain enabled');
   }
 
