@@ -63,9 +63,9 @@ export const defineSelectMultipleAnswers = <
   const initialContent = {
     ...snapshotCommonContent(config.content),
     answers: {
-      correct: snapshotBlockCollection(source.answers.correct),
-      incorrect: snapshotBlockCollection(source.answers.incorrect),
-      distractors: snapshotBlockCollection(source.answers.distractors),
+      correct: snapshotBlockCollection(config.content.answers.correct),
+      incorrect: snapshotBlockCollection(config.content.answers.incorrect),
+      distractors: snapshotBlockCollection(config.content.answers.distractors),
     },
   } as Content;
   // Transitional authored access; never pass these mutable objects into Build.

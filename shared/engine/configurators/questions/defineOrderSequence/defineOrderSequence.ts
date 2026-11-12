@@ -52,7 +52,7 @@ export const defineOrderSequence = <
   const slug = config.slug;
   const initialContent = {
     ...snapshotCommonContent(config.content),
-    sequence: snapshotBlockCollection(source.sequence),
+    sequence: snapshotBlockCollection(config.content.sequence),
   } as Content;
   // Transitional authored access; never pass these mutable objects into Build.
   const content = {

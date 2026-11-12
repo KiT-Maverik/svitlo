@@ -55,8 +55,8 @@ export const defineBuildAnswerWithBlocks = <
   const slug = config.slug;
   const initialContent = {
     ...snapshotCommonContent(config.content),
-    correctSequence: snapshotBlockCollection(source.correctSequence),
-    distractors: snapshotBlockCollection(source.distractors),
+    correctSequence: snapshotBlockCollection(config.content.correctSequence),
+    distractors: snapshotBlockCollection(config.content.distractors),
   } as Content;
   // Transitional authored access; never pass these mutable objects into Build.
   const content = {
