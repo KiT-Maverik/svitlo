@@ -200,7 +200,7 @@ export const defineCheckpointItem = <
     // No localizable fields belong to CheckpointItem itself. Its children
     // already produce embedded Props fragments in either parent mode.
     void options;
-    const builtQuestion = question.build.props({ embed: true }) as unknown as ChildPublication;
+    const builtQuestion = question.build.props({ embed: true });
     const builtAnswers = buildAnswers(initialItems, initialOrder);
     const locale = { ...builtAnswers.locales };
     for (const [language, fields] of Object.entries(builtQuestion.locale ?? {})) {
