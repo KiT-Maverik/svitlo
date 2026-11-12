@@ -2,6 +2,7 @@ import {
   defineText,
   defineAudio,
   defineCarousel,
+  defineCarouselSlide,
   defineCode,
   defineImage,
   defineMarkdown,
@@ -25,7 +26,18 @@ const carousel = defineCarousel({
   slug: 'carousel',
   type: 'carousel',
   params: {},
-  locale: { slides: [{ src: 'https://example.com/image.png', alt: 'Alt' }] },
+  locale: {},
+  slides: {
+    items: {
+      first: defineCarouselSlide({
+        id,
+        slug: 'first',
+        type: 'carouselSlide',
+        locale: { src: 'https://example.com/image.png', alt: 'Alt' },
+      }),
+    },
+    order: ['first'],
+  },
 });
 const code = defineCode({
   id,
@@ -183,3 +195,22 @@ void videoSlug;
 youtube.assemble.resource();
 const youtubeSlug: 'youtube' = youtube.slug;
 void youtubeSlug;
+
+/** Required language tuples are compile-time only; overrides may remain sparse. */
+const multilingual = defineText<'multilingual', ['uk', 'en']>({
+  id, slug: 'multilingual', type: 'text', params: {},
+  locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
+});
+multilingual.build.overrides({ locale: { value: { uk: 'Вітаю' } } });
+// @ts-expect-error Missing a required dictionary language ('en').
+defineText<'missingLanguage', ['uk', 'en']>({ id, slug: 'missingLanguage', type: 'text', params: {}, locale: { value: { uk: 'Привіт' } } });
+// @ts-expect-error Unknown locale code ('ru') is not a supported language.
+defineText<'unsupportedLanguage', ['uk', 'en']>({ id, slug: 'unsupportedLanguage', type: 'text', params: {}, locale: { value: { uk: 'Привіт', en: 'Hello', ru: 'Hi' } } });
+// @ts-expect-error Required languages also apply to nested Markdown variable dictionaries.
+defineMarkdown<'missingVariableLanguage', ['uk', 'en']>({ id, slug: 'missingVariableLanguage', type: 'markdown', params: {}, locale: { value: 'Hello %_%NAME%_%', variables: { NAME: { uk: 'Ада' } } } });
+
+const bilingualSlide = defineCarouselSlide<'bilingualSlide', ['uk', 'en']>({
+  id, slug: 'bilingualSlide', type: 'carouselSlide',
+  locale: { src: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
+});
+void bilingualSlide;
