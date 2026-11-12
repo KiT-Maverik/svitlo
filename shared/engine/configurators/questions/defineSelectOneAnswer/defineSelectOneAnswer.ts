@@ -7,12 +7,14 @@ import {
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
+  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   selectOneAnswer_Config_Schema, selectOneAnswer_Override_Config_Schema,
   type Question_SelectOneAnswer_Config,
+  selectOneAnswer_Props_Schema,
   type Question_SelectOneAnswer_Props,
   type Question_SelectOneAnswer_MetadataOverrides,
 } from './defineSelectOneAnswer.schemas';
@@ -32,7 +34,7 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
   }
-  assertEnabledBlock(groups.correct.items[groups.correct.order[0]].build.props().base, 'content.answers.correct');
+  assertEnabledBlock(groups.correct.items[groups.correct.order[0]].config.base, 'content.answers.correct');
 };
 
 type ContentShape = Question_SelectOneAnswer_Config['content'];
@@ -94,6 +96,7 @@ export const defineSelectOneAnswer = <
   
   const extraContent = (
     source: Content,
+    languages: readonly LanguageCodes[],
     patch?: {
       correct?: ResolvableBlockPatch;
       incorrect?: ResolvableBlockPatch;
@@ -108,9 +111,9 @@ export const defineSelectOneAnswer = <
       if (!groups.some(group => group === key)) throw new Error('Unknown scoring group: ' + key);
     }
     const complete = {
-      correct: resolveBlockMap(source.answers.correct, patch?.correct, 'content.answers.correct'),
-      incorrect: resolveBlockMap(source.answers.incorrect, patch?.incorrect, 'content.answers.incorrect'),
-      distractors: resolveBlockMap(source.answers.distractors, patch?.distractors, 'content.answers.distractors'),
+      correct: resolveBlockMap(source.answers.correct, languages, patch?.correct, 'content.answers.correct'),
+      incorrect: resolveBlockMap(source.answers.incorrect, languages, patch?.incorrect, 'content.answers.incorrect'),
+      distractors: resolveBlockMap(source.answers.distractors, languages, patch?.distractors, 'content.answers.distractors'),
     };
     const correctCount = Object.keys(complete.correct.base).length;
     if (correctCount !== 1) {
@@ -134,14 +137,15 @@ export const defineSelectOneAnswer = <
     return { base, locale };
   };
 
-  const props = (): QuestionResourcePublication<Question_SelectOneAnswer_Props> => {
+  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_SelectOneAnswer_Props> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
-    const own = projectQuestionLocale(metadata.locale);
-    const common = resolveCommonContent(initialContent);
-    const extra = extraContent(initialContent);
+    const own = projectQuestionLocale(metadata.locale, languages);
+    const common = resolveCommonContent(initialContent, languages);
+    const extra = extraContent(initialContent, languages);
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
-    return {
+    const resource = {
       base: {
         id, slug, type, params: metadata.params,
         locale: own.base,
@@ -149,19 +153,23 @@ export const defineSelectOneAnswer = <
       },
       locale: finishFiles(files),
     } as QuestionResourcePublication<Question_SelectOneAnswer_Props>;
+    validateQuestionPublication(selectOneAnswer_Props_Schema, languages, resource);
+    return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
     patch: Question_SelectOneAnswer_Overrides<Content, Added, Languages>,
+    options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_SelectOneAnswer_Props> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       ensureQuestionPatchShape(patch);
       const metadataPatch = selectOneAnswer_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
         ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
       });
       validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
-      const own = projectQuestionLocale(metadataPatch.locale ?? {});
+      const own = projectQuestionLocale(metadataPatch.locale ?? {}, languages);
       const files = own.files;
       const base: Record<string, unknown> = {
         ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
@@ -174,13 +182,15 @@ export const defineSelectOneAnswer = <
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
-        const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
-        const extra = patch.content.answers !== undefined ? extraContent(initialContent, patch.content.answers) : {base:{},locale:{}};
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
+        const extra = patch.content.answers !== undefined ? extraContent(initialContent, languages, patch.content.answers) : {base:{},locale:{}};
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_SelectOneAnswer_Props>;
+      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_SelectOneAnswer_Props>;
+      validateQuestionPublication(selectOneAnswer_Props_Schema, languages, props(options), publication);
+      return publication;
     } catch (error) {
       throw new Error(
         'Invalid SelectOneAnswer Question overrides for ' + id + ': ' +
