@@ -29,6 +29,12 @@ function authoringLanguageContracts() {
     locale: { title: { en: 'Intro', uk: 'Вступ' }, navigationLabel: '1' },
     content: { items: { paragraph: enUkText }, order: ['paragraph'] },
   });
+  // @ts-expect-error Build publication always requires explicit selected languages.
+  bilingual.build.props();
+  // @ts-expect-error Section can publish only its authored language tuple.
+  bilingual.build.props({ languages: ['pl'] });
+  // @ts-expect-error Patch publication also requires explicit selected languages.
+  bilingual.build.overrides({});
   bilingual.build.overrides({
     content: {
       additionalItems: {
@@ -72,6 +78,8 @@ function authoringLanguageContracts() {
     flashcards: { items: {}, order: [] },
   });
   lesson.build.overrides({ section: { items: { intro: { locale: { title: { uk: 'Оновлено' } } } } } }, { languages: ['uk'] });
+  // @ts-expect-error Lesson supports only the authored Ukrainian publication scope.
+  lesson.build.props({ languages: ['en'] });
 }
 
 void authoringLanguageContracts;
