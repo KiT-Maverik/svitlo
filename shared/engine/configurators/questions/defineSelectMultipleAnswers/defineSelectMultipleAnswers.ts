@@ -8,6 +8,7 @@ import {
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
 } from '../_shared__questions';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   selectMultipleAnswers_Config_Schema, selectMultipleAnswers_Override_Config_Schema,
@@ -33,13 +34,17 @@ const validate = (candidate: Question_SelectMultipleAnswers_Config): void => {
 };
 
 type ContentShape = Question_SelectMultipleAnswers_Config['content'];
-export type Question_SelectMultipleAnswers_Overrides<Content extends ContentShape = ContentShape> =
+export type Question_SelectMultipleAnswers_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> =
   Question_SelectMultipleAnswers_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content> & {
+    content?: QuestionCommonPatch<Content, Added, Languages> & {
       answers?: {
-    correct?: OrderedBlockPatch<Content['answers']['correct']['items']>;
-    incorrect?: OrderedBlockPatch<Content['answers']['incorrect']['items']>;
-    distractors?: OrderedBlockPatch<Content['answers']['distractors']['items']>;
+    correct?: OrderedBlockPatch<Content['answers']['correct']['items'], Added, Languages>;
+    incorrect?: OrderedBlockPatch<Content['answers']['incorrect']['items'], Added, Languages>;
+    distractors?: OrderedBlockPatch<Content['answers']['distractors']['items'], Added, Languages>;
   };
     };
   };
@@ -87,7 +92,11 @@ export const defineSelectMultipleAnswers = <
   
   const extraContent = (
     source: Content,
-    patch?: NonNullable<Question_SelectMultipleAnswers_Overrides<Content>['content']>['answers'],
+    patch?: {
+      correct?: OrderedBlockPatch;
+      incorrect?: OrderedBlockPatch;
+      distractors?: OrderedBlockPatch;
+    },
   ) => {
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
@@ -139,8 +148,8 @@ export const defineSelectMultipleAnswers = <
     };
   };
 
-  const overrides = (
-    patch: Question_SelectMultipleAnswers_Overrides<Content>,
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_SelectMultipleAnswers_Overrides<Content, Added, Languages>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);
