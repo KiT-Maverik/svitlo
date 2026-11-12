@@ -23,13 +23,18 @@ const parseAndValidate = (config: ContentBlock_Youtube_Config): ContentBlock_You
 
   return parsed;
 };
-const validate = (config: ContentBlock_Youtube_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Youtube_Config): void => {
+  parseAndValidate(config);
+};
 
 const assembleYoutube = (config: ContentBlock_Youtube_Config): YoutubeAssembly<ContentBlock_Youtube_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
       : {}),
@@ -63,7 +68,11 @@ export const defineYoutube = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => youtube_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
 
   const resource = (): YoutubeAssembly<ContentBlock_Youtube_ResourceBase> => assembleYoutube(copyAuthored());
@@ -74,13 +83,19 @@ export const defineYoutube = <const Slug extends string>(
       validate(effective);
       return assembleYoutubePatch(structuredClone(parsedPatch));
     } catch (error) {
-      throw new Error(`Invalid Youtube overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
-        cause: error,
-      });
+      throw new Error(
+        `Invalid Youtube overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,
+        {
+          cause: error,
+        },
+      );
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,

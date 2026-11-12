@@ -25,13 +25,18 @@ const parseAndValidate = (config: ContentBlock_Code_Config): ContentBlock_Code_C
   if (errors.length) throw new Error('Code variables validation failed:\n' + errors.join('\n'));
   return parsed;
 };
-const validate = (config: ContentBlock_Code_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Code_Config): void => {
+  parseAndValidate(config);
+};
 
 const assembleCode = (config: ContentBlock_Code_Config): CodeAssembly<ContentBlock_Code_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
       : {}),
@@ -97,7 +102,11 @@ export const defineCode = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => code_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
   const resource = (): CodeAssembly<ContentBlock_Code_ResourceBase> => assembleCode(copyAuthored());
@@ -114,7 +123,10 @@ export const defineCode = <const Slug extends string>(
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,

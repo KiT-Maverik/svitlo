@@ -25,13 +25,18 @@ const parseAndValidate = (config: ContentBlock_Video_Config): ContentBlock_Video
   validateLocalAssetPaths(parsed.locale.poster, 'locale.poster');
   return parsed;
 };
-const validate = (config: ContentBlock_Video_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Video_Config): void => {
+  parseAndValidate(config);
+};
 
 const assembleVideo = (config: ContentBlock_Video_Config): VideoAssembly<ContentBlock_Video_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
       : {}),
@@ -65,7 +70,11 @@ export const defineVideo = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => video_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
   const resource = (): VideoAssembly<ContentBlock_Video_ResourceBase> => assembleVideo(copyAuthored());
@@ -82,7 +91,10 @@ export const defineVideo = <const Slug extends string>(
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,

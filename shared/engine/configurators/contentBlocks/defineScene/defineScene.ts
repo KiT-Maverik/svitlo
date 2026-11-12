@@ -24,13 +24,18 @@ const parseAndValidate = (config: ContentBlock_Scene_Config): ContentBlock_Scene
   validateSceneEntry(parsed.id);
   return parsed;
 };
-const validate = (config: ContentBlock_Scene_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Scene_Config): void => {
+  parseAndValidate(config);
+};
 
 const assembleScene = (config: ContentBlock_Scene_Config): SceneAssembly<ContentBlock_Scene_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
       : {}),
@@ -72,7 +77,11 @@ export const defineScene = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => scene_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Scene_Config>;
 
   const resource = (): SceneAssembly<ContentBlock_Scene_ResourceBase> => assembleScene(copyAuthored());
@@ -89,7 +98,10 @@ export const defineScene = <const Slug extends string>(
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,

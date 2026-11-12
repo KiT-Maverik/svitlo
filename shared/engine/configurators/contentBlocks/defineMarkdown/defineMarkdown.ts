@@ -66,13 +66,20 @@ const parseAndValidate = (config: ContentBlock_Markdown_Config): ContentBlock_Ma
   if (errors.length) throw new Error('Markdown variables validation failed:\n' + errors.join('\n'));
   return parsed;
 };
-const validate = (config: ContentBlock_Markdown_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Markdown_Config): void => {
+  parseAndValidate(config);
+};
 
-const assembleMarkdown = (config: ContentBlock_Markdown_Config): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => {
+const assembleMarkdown = (
+  config: ContentBlock_Markdown_Config,
+): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
       : {}),
@@ -155,7 +162,11 @@ export const defineMarkdown = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => markdown_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
   const resource = (): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => assembleMarkdown(copyAuthored());
@@ -166,13 +177,19 @@ export const defineMarkdown = <const Slug extends string>(
       validate(effective);
       return assembleMarkdownPatch(structuredClone(parsedPatch));
     } catch (error) {
-      throw new Error(`Invalid Markdown overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
-        cause: error,
-      });
+      throw new Error(
+        `Invalid Markdown overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,
+        {
+          cause: error,
+        },
+      );
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,

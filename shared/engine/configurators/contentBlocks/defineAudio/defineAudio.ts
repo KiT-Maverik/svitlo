@@ -24,13 +24,18 @@ const parseAndValidate = (config: ContentBlock_Audio_Config): ContentBlock_Audio
   validateLocalAssetPaths(parsed.locale.fileLocation, 'locale.fileLocation');
   return parsed;
 };
-const validate = (config: ContentBlock_Audio_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Audio_Config): void => {
+  parseAndValidate(config);
+};
 
 const assembleAudio = (config: ContentBlock_Audio_Config): AudioAssembly<ContentBlock_Audio_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
       : {}),
@@ -64,7 +69,11 @@ export const defineAudio = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => audio_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
   const resource = (): AudioAssembly<ContentBlock_Audio_ResourceBase> => assembleAudio(copyAuthored());
@@ -81,7 +90,10 @@ export const defineAudio = <const Slug extends string>(
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,

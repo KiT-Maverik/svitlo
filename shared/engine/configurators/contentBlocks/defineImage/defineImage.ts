@@ -24,13 +24,18 @@ const parseAndValidate = (config: ContentBlock_Image_Config): ContentBlock_Image
   validateLocalAssetPaths(parsed.locale.src, 'locale.src');
   return parsed;
 };
-const validate = (config: ContentBlock_Image_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Image_Config): void => {
+  parseAndValidate(config);
+};
 
 const assembleImage = (config: ContentBlock_Image_Config): ImageAssembly<ContentBlock_Image_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Image_Locale<'props'>> }
       : {}),
@@ -64,7 +69,11 @@ export const defineImage = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => image_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Image_Config>;
 
   const resource = (): ImageAssembly<ContentBlock_Image_ResourceBase> => assembleImage(copyAuthored());
@@ -81,7 +90,10 @@ export const defineImage = <const Slug extends string>(
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,

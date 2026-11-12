@@ -25,7 +25,9 @@ const parseAndValidate = (config: ContentBlock_Carousel_Config): ContentBlock_Ca
   parsed.locale.slides.forEach((slide, index) => validateLocalAssetPaths(slide.src, `locale.slides[${index}].src`));
   return parsed;
 };
-const validate = (config: ContentBlock_Carousel_Config): void => { parseAndValidate(config); };
+const validate = (config: ContentBlock_Carousel_Config): void => {
+  parseAndValidate(config);
+};
 
 /** Arrays are atomic, so each published language receives complete slide Props. */
 const validatePublishedSlides = (locale: CarouselLocaleFiles | undefined): void => {
@@ -39,11 +41,16 @@ const validatePublishedSlides = (locale: CarouselLocaleFiles | undefined): void 
   }
 };
 
-const assembleCarousel = (config: ContentBlock_Carousel_Config): CarouselAssembly<ContentBlock_Carousel_ResourceBase> => {
+const assembleCarousel = (
+  config: ContentBlock_Carousel_Config,
+): CarouselAssembly<ContentBlock_Carousel_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
-    id, type, slug, params,
+    id,
+    type,
+    slug,
+    params,
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Carousel_Locale<'props'>> }
       : {}),
@@ -81,7 +88,11 @@ export const defineCarousel = <const Slug extends string>(
   const slug = config.slug;
   const copyAuthored = () => carousel_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    type,
+    slug,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
   const resource = (): CarouselAssembly<ContentBlock_Carousel_ResourceBase> => assembleCarousel(copyAuthored());
@@ -92,13 +103,19 @@ export const defineCarousel = <const Slug extends string>(
       validate(effective);
       return assembleCarouselPatch(structuredClone(parsedPatch));
     } catch (error) {
-      throw new Error(`Invalid Carousel overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
-        cause: error,
-      });
+      throw new Error(
+        `Invalid Carousel overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,
+        {
+          cause: error,
+        },
+      );
     }
   };
   return {
-    id, slug, type, validate,
+    id,
+    slug,
+    type,
+    validate,
     assemble: { resource, overrides },
     config: {
       base,
