@@ -75,6 +75,12 @@ const validate = (config: Chapter_Config): void => {
       }
     }
   }
+  const seenIds = new Set<string>();
+  for (const child of Object.values(config.content?.items ?? {})) {
+    if (!isRecord(child) || typeof child.id !== 'string') continue;
+    if (seenIds.has(child.id)) errors.push('content.items: duplicate Chapter child ID ' + child.id);
+    seenIds.add(child.id);
+  }
   if (errors.length) throw new Error('Chapter validation failed: ' + errors.join('; '));
 };
 
@@ -162,6 +168,13 @@ export const defineChapter = <
     patches: Record<string, unknown> = {},
     ownLanguages: readonly LanguageCodes[] = [],
   ) => {
+    const ids = new Set<string>();
+    for (const key of order) {
+      const child = items[key];
+      if (!child) throw new Error('Unknown Chapter child: ' + key);
+      if (ids.has(child.id)) throw new Error('Duplicate Chapter child ID: ' + child.id);
+      ids.add(child.id);
+    }
     const entries = order.map(key => {
       const raw = items[key];
       const build = (raw as unknown as BuildChild).build;
