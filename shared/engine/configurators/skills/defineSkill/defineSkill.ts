@@ -38,7 +38,7 @@ export function defineSkill<
     const own = project({ name: current.name, description: current.description });
     return {
       base: { id: id as SkillId, slug, ...own.base },
-      locale: own.locale,
+      locale: own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'],
     };
   };
 
@@ -47,7 +47,7 @@ export function defineSkill<
       const sparse = skill_Override_Config_Schema.parse(patch);
       validate(skill_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
       const own = splitLocalizedFields(sparse);
-      return { base: own.base, locale: own.locale };
+      return { base: own.base, locale: own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'] };
     } catch (error) {
       throw new Error(
         'Invalid Skill overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
@@ -67,10 +67,7 @@ export function defineSkill<
       validate,
       locales: (): DeepPartial<Skill_Config> => {
         const current = copyAuthored();
-        return {
-          name: onlyLocales(current.name),
-          description: { frontend: onlyLocales(current.description.frontend) },
-        };
+        return onlyLocales({ name: current.name, description: { frontend: current.description.frontend } });
       },
     },
   } as const;
