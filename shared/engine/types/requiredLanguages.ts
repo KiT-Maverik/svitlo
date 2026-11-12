@@ -25,10 +25,9 @@ export type ConfigWithLanguages<Config extends { locale: object }, Languages ext
   Omit<Config, 'locale'> & { locale: RequireLanguages<Config['locale'], Languages> };
 
 /** Phantom-only language metadata: used exclusively for compile-time parent/child compatibility. */
-/** Declaration-only symbol so exported configurator return types can name the phantom field. */
-export declare const languageScope: unique symbol;
+/** Type-only phantom brand. It is never emitted in published Props or accessed at runtime. */
 export type LanguageScope<Languages extends readonly LanguageCodes[]> = {
-  readonly [languageScope]: Languages;
+  readonly __svitloLanguageScope: Languages;
 };
 
 /** The parent cannot advertise a language absent from its child. */
