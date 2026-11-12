@@ -209,29 +209,40 @@ const multilingual = defineText<'multilingual', ['uk', 'en']>({
   locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
 });
 multilingual.build.overrides({ locale: { value: { uk: 'Вітаю' } } });
-// @ts-expect-error Missing a required dictionary language ('en').
 defineText<'missingLanguage', ['uk', 'en']>({
   id,
   slug: 'missingLanguage',
   type: 'text',
   params: {},
+  // @ts-expect-error Missing a required dictionary language ('en').
   locale: { value: { uk: 'Привіт' } },
 });
-// @ts-expect-error Unknown locale code ('ru') is not a supported language.
 defineText<'unsupportedLanguage', ['uk', 'en']>({
   id,
   slug: 'unsupportedLanguage',
   type: 'text',
   params: {},
-  locale: { value: { uk: 'Привіт', en: 'Hello', ru: 'Hi' } },
+  locale: {
+    value: {
+      uk: 'Привіт',
+      en: 'Hello',
+      // @ts-expect-error Unknown locale code ('ru') is not supported.
+      ru: 'Hi',
+    },
+  },
 });
-// @ts-expect-error Required languages also apply to nested Markdown variable dictionaries.
 defineMarkdown<'missingVariableLanguage', ['uk', 'en']>({
   id,
   slug: 'missingVariableLanguage',
   type: 'markdown',
   params: {},
-  locale: { value: 'Hello %_%NAME%_%', variables: { NAME: { uk: 'Ада' } } },
+  locale: {
+    value: 'Hello %_%NAME%_%',
+    variables: {
+      // @ts-expect-error The nested replacement dictionary must also include en.
+      NAME: { uk: 'Ада' },
+    },
+  },
 });
 
 const bilingualSlide = defineCarouselSlide<'bilingualSlide', ['uk', 'en']>({
