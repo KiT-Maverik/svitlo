@@ -35,7 +35,7 @@ test('Carousel publishes ordered UI slide arrays, never child configurators or s
     { src: 'https://example.com/b.png', alt: 'Second' },
     { src: 'https://example.com/en-a.png', alt: 'First' },
   ]);
-  assert.deepEqual(resource.locale?.uk?.locale.slides?.map(item => item.src), [
+  assert.deepEqual(resource.locale?.uk?.locale.slides?.map(item => item?.src), [
     'https://example.com/b.png',
     'https://example.com/uk-a.png',
   ]);
@@ -127,7 +127,8 @@ test('Carousel rejects invalid authored slugs and preserves its snapshot', () =>
   }), /key does not match configurator slug/);
   const resource = carousel.build.props();
   carousel.slides.order.reverse();
-  carousel.slides.items.first = carousel.slides.items.second as never;
+  const exposed = carousel.slides as { items: Record<string, unknown>; order: string[] };
+  exposed.items.first = exposed.items.second;
   assert.deepEqual(carousel.build.props(), resource);
 });
 
