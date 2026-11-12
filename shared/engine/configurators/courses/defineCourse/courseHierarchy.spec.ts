@@ -124,4 +124,15 @@ test('Course, Module and Chapter reject wrong child types and duplicate slugs', 
     () => defineCourse({ ...courseInput, params: { languages: ['en', 'en'] as unknown as typeof languages } }),
     /unique/,
   );
+  const duplicate = defineChapter<'copy', {}, typeof languages>({
+    id: id('c3'), slug: 'copy', type: 'chapter', params: {},
+    locale: { title: 'Duplicate ID' }, content: { items: {}, order: [] },
+  });
+  assert.throws(
+    () => defineCourse({
+      ...courseInput,
+      content: { items: { module, copy: duplicate }, order: ['module', 'copy'] },
+    }),
+    /duplicate Course child ID/,
+  );
 });
