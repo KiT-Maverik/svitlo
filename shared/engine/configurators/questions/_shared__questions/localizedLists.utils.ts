@@ -63,9 +63,16 @@ export const projectAnswerList = (
 export const projectSlotList = (
   original: LocalizedSlotList,
   patch?: Partial<LocalizedSlotList>,
+  order?: readonly string[],
 ): Projection<Array<{ selector: string; correctAnswers: string[] }>> => {
   const effective = patch ? mergeForValidation(cloneJson(original), patch) : cloneJson(original);
-  const entries = Object.entries(effective);
+  const entries = (order ?? Object.keys(effective)).map(selector => {
+    if (!Object.hasOwn(effective, selector)) throw new Error('Unknown text slot selector: ' + selector);
+    return [selector, effective[selector]] as const;
+  });
+  if (new Set(entries.map(([selector]) => selector)).size !== entries.length) {
+    throw new Error('Duplicate text slot selector');
+  }
   for (const [selector, slot] of entries) {
     if (!camelCase_Schema.safeParse(selector).success || !isRecord(slot) || !isRecord(slot.correctAnswers)) {
       throw new Error('Invalid named text slot: ' + selector);
