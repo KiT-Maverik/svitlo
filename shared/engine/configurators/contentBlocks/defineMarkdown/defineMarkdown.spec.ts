@@ -95,6 +95,24 @@ test('Markdown requires every declared variable in every locale', () => {
   );
 });
 
+test('Markdown accepts a sparse localized source override with originally invariant text and multilingual variables', () => {
+  const markdown = defineMarkdown({
+    ...base,
+    locale: {
+      value: 'Hello %_%NAME%_%',
+      variables: { NAME: { en: 'Ada', uk: 'Ада' } },
+    },
+  });
+  const before = markdown.build.props();
+  const patch = markdown.build.overrides({ locale: { value: { uk: 'Вітаю %_%NAME%_%' } } });
+  assert.deepEqual(patch, { base: {}, locale: { uk: { locale: { value: 'Вітаю %_%NAME%_%' } } } });
+  assert.deepEqual(markdown.build.props(), before);
+  assert.throws(() => markdown.build.overrides({ locale: { value: { uk: 'Вітаю' } } }),
+    /missing configured variable "NAME"/);
+  assert.throws(() => markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Ада' } }, value: { uk: '%_%UNKNOWN%_%' } } }),
+    /variable "UNKNOWN" is not declared/);
+});
+
 test('Markdown rejects malformed placeholders, unused variables and undeclared placeholders', () => {
   const variables = { NAME: 'Ada' };
   for (const value of ['%_%NAME', '%_%name%_%', '%_%id: name; value: Ada%_%']) {
