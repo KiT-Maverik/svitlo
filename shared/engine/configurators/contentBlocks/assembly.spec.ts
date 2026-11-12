@@ -31,12 +31,12 @@ test('Published locale bodies already match Props and require no embedding', () 
     params: {},
     locale: { title: { en: 'Hello' }, fileLocation: 'https://example.com/audio.mp3' },
   });
-  const result = block.build.props({ languages: ['en', 'uk'] });
+  const result = block.build.props({ languages: ['en'] });
   assert.deepEqual(result.locale?.en, { locale: { title: 'Hello' } });
-  assert.deepEqual(block.build.overrides({ locale: { title: { en: 'Updated' } } }, { languages: ['en', 'uk'] }).locale?.en, {
+  assert.deepEqual(block.build.overrides({ locale: { title: { en: 'Updated' } } }, { languages: ['en'] }).locale?.en, {
     locale: { title: 'Updated' },
   });
-  assert.equal(block.build.props({ languages: ['en', 'uk'] }).base.locale?.fileLocation, 'https://example.com/audio.mp3');
+  assert.equal(block.build.props({ languages: ['en'] }).base.locale?.fileLocation, 'https://example.com/audio.mp3');
 });
 
 test('Audio publishes Props-shaped locale bodies and isolated sparse patches', () => {

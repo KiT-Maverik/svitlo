@@ -228,7 +228,7 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
   config.locale.value = 'Other';
   config.params.disabled = true;
 
-  assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }), {
+  assert.deepEqual(text.build.props({ languages: ['en'] }), {
     base: {
       ...identity,
       params: { wrap: { enabled: true, typographyProps: { nested: { weight: 'normal' } } } },
@@ -236,17 +236,36 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
     locale: { en: { locale: { value: 'Welcome' } } },
   });
 
-  const assembled = text.build.props({ languages: ['en', 'uk'] });
+  const assembled = text.build.props({ languages: ['en'] });
   (assembled.base.params.wrap?.typographyProps as { nested: { weight: string } }).nested.weight = 'mutated output';
-  assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }).base.params.wrap?.typographyProps, { nested: { weight: 'normal' } });
+  assert.deepEqual(text.build.props({ languages: ['en'] }).base.params.wrap?.typographyProps, { nested: { weight: 'normal' } });
 
   const patch = { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } };
-  const first = text.build.overrides(patch, { languages: ['en', 'uk'] });
+  const first = text.build.overrides(patch, { languages: ['en'] });
   (first.base.params?.wrap?.typographyProps as { nested: { weight: string } }).nested.weight =
     'mutated override output';
-  assert.deepEqual(text.build.overrides(patch, { languages: ['en', 'uk'] }), {
+  assert.deepEqual(text.build.overrides(patch, { languages: ['en'] }), {
     base: { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } },
     locale: undefined,
   });
   assert.deepEqual(patch, { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } });
+});
+
+test('Text validates requested publication languages, not every authored translation', () => {
+  const text = defineText<'trilingual', ['uk', 'en', 'pl']>({
+    ...identity, slug: 'trilingual',
+    locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
+  });
+  const selected = text.build.props({ languages: ['uk'] });
+  assert.deepEqual(Object.keys(selected.locale ?? {}), ['uk']);
+  assert.deepEqual(selected.locale?.uk, { locale: { value: 'Привіт' } });
+  assert.deepEqual(text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }, { languages: ['uk'] }).locale, {
+    uk: { locale: { value: 'Вітаю' } },
+  });
+  assert.throws(() => text.build.props({ languages: [] }), /nonempty languages/);
+  assert.throws(() => text.build.props({ languages: ['uk', 'uk'] }), /unique/);
+  assert.throws(() => text.build.props({ languages: ['bogus'] as never }));
+  const partial = defineText({ ...identity, locale: { value: { en: 'Only English' } } });
+  assert.doesNotThrow(() => partial.build.props({ languages: ['en'] }));
+  assert.throws(() => partial.build.props({ languages: ['uk'] }), /Invalid publication for language uk/);
 });
