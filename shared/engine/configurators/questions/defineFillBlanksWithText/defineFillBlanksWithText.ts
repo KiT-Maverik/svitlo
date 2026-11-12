@@ -21,6 +21,10 @@ const metadataSchema = fillBlanksWithText_Config_Schema.omit({ content: true });
 const validate = (candidate: Question_FillBlanksWithText_Config): void => {
   fillBlanksWithText_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
+  if (!Object.keys(candidate.locale.slots).length) throw new Error('FillBlanksWithText requires at least one slot');
+  for (const slot of Object.values(candidate.locale.slots)) {
+    if (!Object.keys(slot.correctAnswers).length) throw new Error('Every text slot requires a correct answer');
+  }
   
 };
 
