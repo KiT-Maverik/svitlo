@@ -7,7 +7,7 @@ type Block = ContentBlock_Configurator;
 type Entry = Record<string, unknown>;
 type NestedCollection = { items: Record<string, Entry>; order: string[] };
 type NestedPatch = {
-  items?: Record<string, Record<string, unknown> | false>;
+  items?: Record<string, unknown>;
   additionalItems?: Record<string, unknown>;
   order?: string[];
 };

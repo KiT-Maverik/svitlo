@@ -25,8 +25,8 @@ const validate = (config: Skill_Config): void => {
 const project = (input: DeepPartial<Pick<Skill_Config, 'name' | 'description'>>) => {
   const split = splitLocalizedFields(input);
   return {
-    base: split.base as DeepPartial<Skill_Props>,
-    locale: split.locale as Partial<Record<LanguageCodes, DeepPartial<Skill_Props>>> | undefined,
+    base: split.base as DeepPartial<Pick<Skill_Props, 'name' | 'description'>>,
+    locale: split.locale as Partial<Record<LanguageCodes, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
   };
 };
 

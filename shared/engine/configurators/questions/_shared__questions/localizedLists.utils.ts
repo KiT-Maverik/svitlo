@@ -105,7 +105,7 @@ export const projectSlotList = (
   const invariantChanged =
     patch !== undefined &&
     Object.values(patch).some(slot =>
-      Object.values(slot.correctAnswers ?? {}).some(value => typeof value === 'string'),
+      Object.values(slot?.correctAnswers ?? {}).some(value => typeof value === 'string'),
     );
   const affected = allInvariant
     ? []

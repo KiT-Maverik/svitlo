@@ -241,7 +241,7 @@ export const resolveBlockCollection = (
 export const resolveBlockMap = (
   source: OrderedBlocks,
   languages: readonly LanguageCodes[],
-  patch?: OrderedBlockPatch,
+  patch?: ResolvableBlockPatch,
   path = 'content',
 ): ResolvedCollection<Record<string, Fragment>> => {
   const result = resolveBlockCollection(source, languages, patch, path);
