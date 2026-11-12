@@ -1,9 +1,11 @@
 import type { LanguageCodes } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, RequireLanguages } from '#types';
+import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
   mergeForValidation,
   onlyLocales,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
@@ -71,12 +73,13 @@ export type SkillGroup_Configurator<
   readonly skill: Skills;
   readonly validate: typeof validate;
   readonly build: {
-    props: () => SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }>;
-    overrides: <const Added extends Record<string, Skill> = {}>(
+    props(options: PublicationLanguageOptions<Languages>): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }>;
+    overrides<const Added extends Record<string, Skill> = {}>(
       patch: SkillGroup_Overrides<Skills, Added> & {
         skills?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
       },
-    ) => SkillGroupPublication<SkillGroupOverrideBase>;
+      options: PublicationLanguageOptions<Languages>,
+    ): SkillGroupPublication<SkillGroupOverrideBase>;
   };
   readonly config: {
     base: DeepPartial<SkillGroup_Config>;
@@ -120,8 +123,8 @@ export function defineSkillGroup<
   const buildSkills = (
     items: Record<string, Skill>,
     order: readonly string[],
+    languages: readonly LanguageCodes[],
     patches: Record<string, unknown> = {},
-    ownLanguages: readonly LanguageCodes[] = [],
   ) => {
     const seen = new Set<string>();
     for (const key of order) {
@@ -132,52 +135,57 @@ export function defineSkillGroup<
     }
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props();
+      const resource = child.build.props({ languages });
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (value: never) => SkillPatch)(patches[key] as never)
+        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => SkillPatch)(patches[key] as never, { languages })
         : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
       mergeForValidation(resource.base, (patch?.base ?? {}) as DeepPartial<typeof resource.base>),
     ) as DeepPartial<Skill_Props>[];
-    const languages = new Set<LanguageCodes>(ownLanguages);
-    for (const { resource, patch } of entries) {
-      for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
-      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
-    }
     const locale: Partial<Record<LanguageCodes, Skill_Props[]>> = {};
     for (const language of languages) {
-      locale[language] = entries.map(({ resource, patch }) => {
+      const resolved = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
         const withPatchBase = mergeForValidation(withResourceLocale, (patch?.base ?? {}) as DeepPartial<typeof resource.base>);
         const effective = mergeForValidation(withPatchBase, patch?.locale?.[language] ?? {});
         return skill_Props_Schema.parse(effective);
       });
+      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
+        locale[language] = resolved;
+      }
     }
     return { base, locale };
   };
 
-  const props = (): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }> => {
+  const props = (options: PublicationLanguageOptions<Languages>): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }> => {
+    const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = splitOwn({ name: current.name, description: current.description });
-    const children = buildSkills(initialItems, initialOrder, {}, Object.keys(own.locale) as LanguageCodes[]);
-    const files = structuredClone(own.locale);
+    const children = buildSkills(initialItems, initialOrder, languages);
+    const files = selectPublicationLocales(own.locale, languages) ?? {};
     for (const [language, values] of Object.entries(children.locale)) {
       (files[language as LanguageCodes] ??= {}).skills = values;
     }
-    return {
+    const result = {
       base: { id, slug, ...own.base, skills: children.base },
       locale: Object.keys(files).length ? files : undefined,
     };
+    for (const language of languages) {
+      skillGroup_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+    }
+    return result;
   };
 
   const overrides = <const Added extends Record<string, Skill> = {}>(
     patch: SkillGroup_Overrides<Skills, Added> & {
       skills?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): SkillGroupPublication<SkillGroupOverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       if (!isRecord(patch)) throw new Error('Expected SkillGroup overrides object');
       for (const key of Object.keys(patch)) {
         if (!['name', 'description', 'skills'].includes(key)) throw new Error('Unknown SkillGroup override field: ' + key);
@@ -191,7 +199,7 @@ export function defineSkillGroup<
         base: { ...own.base },
         locale: undefined,
       };
-      const files = structuredClone(own.locale);
+      const files = selectPublicationLocales(own.locale, languages) ?? {};
 
       if (patch.skills !== undefined && !isRecord(patch.skills)) throw new Error('skills must be an object');
       if (patch.skills) {
@@ -245,7 +253,7 @@ export function defineSkillGroup<
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, Skill] => entry[1] !== false),
         );
-        const built = buildSkills(enabled, order, childPatches, Object.keys(files) as LanguageCodes[]);
+        const built = buildSkills(enabled, order, languages, childPatches);
         output.base.skills = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           (files[language as LanguageCodes] ??= {}).skills = values;
