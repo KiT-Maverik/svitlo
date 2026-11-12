@@ -1,47 +1,43 @@
 # Configurator architecture
 
-These rules apply to new configurators and to configurators being migrated to the Assembly API. Inspect real code and contracts rather than copying the old mutable override lifecycle. Repository-wide `AGENTS.md` and applicable Studio guidance also apply.
+**Scope:** Authoring-time entity configurators and their validation/publication API. These rules are the target for new or migrated configurators; only \`defineText\` currently pilots the new Assembly API. Verify actual contracts before treating other entities as migrated. Root \`AGENTS.md\` and applicable Studio guidance also apply.
 
 ## Ownership and public API
 
-- Each configurator owns its configuration, validation, and assembly lifecycle. Different entities may need substantially different lifecycles: **do not introduce generic configurator factories, assembly factories, or premature shared abstractions**. Small deliberate duplication is preferable to opaque dependencies and difficult type inference. Share only proven, truly universal utilities.
-- Expose `id`, `type`, and `slug` directly; preserve literal slug inference for typed collections.
-- Keep `config` for the authored original and its service methods, including validation or legacy accessors. Never store per-consumer overrides in shared mutable state. An imported configurator must be safe to reuse across courses.
-- Expose `assemble.resource()` for the complete authored resource and `assemble.overrides(patch)` for **only the supplied override fields**. Both return independently owned data, not configurator instances.
+- Each configurator owns its authored configuration, validation, and \`assemble\` lifecycle. Entities may have different lifecycles: **do not add generic configurator/assembly factories or premature shared abstractions**. Prefer clear local code and deliberate duplication over opaque dependencies and weakened type inference.
+- Expose \`id\`, \`type\`, and \`slug\` directly, preserving literal slug inference for typed collections.
+- Retain an independent snapshot of authored input. Never store per-consumer overrides in shared mutable configurator state; the same configurator must be reusable in independent publication contexts.
+- \`assemble.resource()\` returns a complete publication result; \`assemble.overrides(patch)\` returns only the validated sparse patch. Both return independently owned, data-only results rather than configurator instances.
+- Transitional \`config.base\` / \`config.locales()\` accessors may remain for unmigrated consumers. Do not propagate the old mutable \`override\`, \`disable\`, or \`config.overrides\` lifecycle to migrated configurators.
 
-## Config shape: keyed objects instead of arrays
+## Authored config and collection shapes
 
-- **Do not author array-valued configuration fields except `order`.** Represent collections as slug-keyed or otherwise named objects. Arbitrary arrays cannot be safely deep-merged by key, so avoid index-based patches and positional assumptions.
-- `order` is the sole array field permitted by the target authored configuration model. It lists collection keys and is **replaced as a whole**, never deep-merged by index, when resolving overrides later.
-- Existing array/tuple contracts in unmigrated configurators are legacy migration work, not examples to copy or permission to break unrelated consumers in this pilot. Opaque external library props have their own validation owner; do not generalize their internal representation into the authored config model.
+- Prefer named or slug-keyed objects for collections, and a separate \`order\` array when order matters. Do not model collections as positional arrays that require per-index overrides.
+- **Arrays are allowed. Every array-valued override replaces the entire array**, including \`order\`, \`applyStyle\`, and any future array field; never deep-merge arrays by index or concatenate implicitly. A patch must satisfy the applicable field schema (for example, nonempty-array rules).
+- Plain keyed objects can be merged recursively by key, subject to entity-specific semantics. Opaque values owned by another contract should be replaced as a unit when required; do not assume all object-like values are mergeable.
+- Existing collection and array shapes in unmigrated entities are migration work, not a reason to silently break unrelated consumers.
 
-## Schema and validation boundaries
+## Validation and schema ownership
 
-- The authored `*_Config_Schema` validates the fields it declares and can remain non-strict at its top level. A configurator may also type children outside the metadata schema (for example, a keyed `content` collection); children validate their own data.
-- A parent validates its own fields and child **collection boundaries** (allowed child kind, ID/slug relationships, keys, order, disabled entries). Never recursively revalidate a child that assembled and validated itself.
-- Derive a **deep-strict, deep-partial override schema** from the permitted fields of the existing Config Schema: use `z.deepPartial(deepStrict_Schema(schema))`. The shared `deepStrict_Schema` helper lives in `shared/engine/schemas/misc.schemas.ts`; unknown fields must fail at their real paths. `deepPartial` makes fields optional, but does not itself make objects strict. Do not allow identity fields to be overridden unless explicitly supported.
-- A sparse override of a localized dictionary may supply **one language** without repeating its siblings. Schema constraints and entity-specific semantic checks must remain meaningful.
-- Preserve entity-specific semantic validation alongside Zod. For example, Text checks that configured variables occur correctly in every effective localized value.
-- Keep deliberately opaque external fields independent of unrelated UI libraries, but ensure publication data is JSON-compatible. An object with arbitrary keys is not automatically JSON-safe: validate its values as JSON too.
+- The existing \`*_Config_Schema\` is the **single authored configuration schema**. Derive override validation from **only its permitted overridable fields**, for example by selecting existing schema shapes and applying \`z.deepPartial(deepStrict_Schema(...))\`. A named derived schema is acceptable when useful, but **do not hand-author or maintain a second, independent override field schema**.
+- The derived override validator must reject unknown fields at supported schema-owned object boundaries and must not allow identity fields unless an entity explicitly supports them. \`deepStrict_Schema\` has documented Zod coverage limits; check them when introducing new schema wrappers.
+- Parsing the sparse patch must preserve sparse publication semantics. Defaults, coercions, transforms, or refinements inherited from the Config Schema must not silently introduce fields that were absent from the supplied patch.
+- Validate **twice for two purposes**: first structurally parse the sparse patch; then temporarily merge that validated patch with an isolated authored snapshot and run the entity's normal cross-field/semantic validation. Publish the first validated sparse result, **not** the temporary merged candidate.
+- A localized dictionary patch may provide one language without repeating others. For temporary validation, merge specified languages by code; an invariant string intentionally replaces the dictionary for that field. Enforce entity-specific semantic rules, such as Text variable references, against the effective candidate.
+- Each parent validates its own schema and collection boundaries: allowed child kinds, IDs/slugs, keys, ordering, disabled entries, and parent-child constraints. Do not duplicate internal child validation. When a parent resolves its own child overrides, it must recheck the parent invariants against the resulting child state.
+- Keep deliberately opaque external fields independent from UI libraries, but require JSON-compatible publication values; allowing arbitrary object keys is not permission to publish functions or non-JSON values.
 
-## Assembly contract
+## Publication contract
 
-1. Validate authored input and retain an independent snapshot. Do not depend on caller-owned mutable objects or shared mutable overrides.
-2. `assemble.resource()` validates and partitions the complete authored configuration into generator-ready `{ base, locale }`.
-3. `assemble.overrides(patch)` runs **two logically distinct checks**: first parse only the patch with the strict, deep-partial override schema (structural validity, types and unknown fields); then temporarily merge the validated patch with an isolated copy of the authored config and run the normal `validate()` (cross-field and semantic validity).
-4. **Publish only the validated patch.** Partition the first parse's result, never the temporary merged config, into `{ base, locale }`. No inherited params or translations may be copied into override output. Validation input and publication output are deliberately different objects.
-5. Neither assembly method mutates authored data, a previous assembly result, or another course's overrides. Include the entity ID and original error details in override validation errors.
+1. Validate authored input and take an independent snapshot.
+2. \`assemble.resource()\` yields \`{ base, locale }\` for the complete authored resource: invariant identity/parameters in \`base\`, optional invariant text in \`base.locale\`, and language-specific values under language keys in \`locale\`.
+3. \`assemble.overrides(patch)\` yields the same partition but only for fields actually supplied and validated. No inherited parameters, translations, or identity fields may leak into a patch.
+4. Each language entry in \`locale\` is the direct payload of that locale's published file, **not** an additional nested \`locale\` wrapper. Use \`locale: undefined\` when there is no translated payload.
+5. Neither call may mutate authored input, patch input, earlier assembly results, or another context's overrides. Include the entity ID and original cause in override validation errors.
+6. Both results must be JSON-compatible publication data, with no functions, configurator instances, or internal state. A generator is responsible for writing the result, not validating the entity again.
 
-Each configurator specifies its own temporary validation merge rules. A language dictionary override changes only specified languages; an invariant `locale.value` string intentionally **replaces the entire language dictionary** for that field when the published override is resolved. Neither transition should silently introduce redundant publication data. For nested collection overrides, preserve named-key semantics and explicit disabled markers; do not deep-merge child configurator instances as ordinary objects.
+## Responsibility boundary and verification
 
-## Generator, runtime, and locale files
-
-- Assembly results are **ready for the generator to write**: JSON-compatible data, no methods, functions, configurator instances, or internal mutable state. The generator is a writer, not the owner of entity validation or assembly logic.
-- The output field is singular `locale`, a dictionary keyed by supported language codes. Each entry is already the content of that locale's JSON file: **no extra `locale` wrapper** inside each language entry. The generator knows the destination field/path.
-- `base` has the entity's required invariant fields plus optional non-translated locale fields. Sparse override `base` contains only overridden fields. Use `locale: undefined` when no translated locale files are needed.
-- Configurators and their large authored objects are **build-time only**. Next.js server, Electron, and Capacitor runtimes read published data and use a separate lightweight Props resolver. It combines base data, selected locale, and available override layers with the defined merge rules, then validates with Props schemas. Runtime code must not import heavy `define*` configurators.
-- Runtime resolution replaces `order` arrays wholesale, filters intentionally disabled entries, and applies localized value overrides. The assembler validates data for publication; it does not build runtime Props.
-
-## Migration verification
-
-Test full resources and sparse override payloads; invariant values and individual language patches; deep unknown-key failures; semantic checks after a temporary merge; JSON safety; and independence from mutations of authored input, patch input, and prior results. Test child boundaries without recursively revalidating children. Keep legacy consumers working until their migration is authorized; do not claim an unmigrated API is already implemented.
+- Configurators are **build-time only**. The planned file-writing contract lives in [\`../generators/AGENTS.md\`](../generators/AGENTS.md); runtime resolution and Props validation live in [\`../assemblers/AGENTS.md\`](../assemblers/AGENTS.md). Neither future layer is implemented merely by these documents.
+- Test complete resources and sparse patches, one-language and invariant locale cases, deep unknown-field rejection, semantic validation of the temporary merged candidate, array replacement semantics where applicable, JSON safety, and mutation isolation.
+- Keep current legacy consumers working until their migration is explicitly in scope; do not claim their old APIs already use Assembly.

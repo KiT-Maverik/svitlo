@@ -5,9 +5,20 @@ export const camelCase_Schema = z.string().regex(/^[a-z][a-zA-Z0-9]*$/, 'Must be
 export const disabledParam_Schema = z.object({ disabled: z.literal(true).optional() });
 
 /**
- * Reject unknown keys at every declared object level, preserving the original
- * schema's refinements and leaving open records/opaque JSON values alone.
- * No changes are made to the supplied schema.
+ * Reject unknown keys at supported schema-owned object boundaries without
+ * mutating the supplied schema; existing refinements are preserved.
+ *
+ * Recurses through Zod objects, optional/nullable/default/prefault/readonly
+ * wrappers, unions, records' values, arrays, tuples, and intersections.
+ * Other node kinds (including lazy/pipeline/transform wrappers) are returned
+ * unchanged: nested objects behind unsupported wrappers are NOT guaranteed
+ * to become strict. Records retain arbitrary keys and opaque values retain
+ * their own validation rules.
+ *
+ * This helper uses Zod v4 internal cloning and `_zod.def`; recheck its tests
+ * and supported node shapes after Zod upgrades. For sparse overrides, derive
+ * permitted fields from the existing Config Schema rather than maintaining
+ * a second independently authored override shape.
  */
 export const deepStrict_Schema = <T extends z.ZodType>(schema: T): T => {
   // Clone the Zod definition so refinements and metadata survive.
