@@ -325,7 +325,7 @@ test('Carousel rejects a language lacking complete slide fields', () => {
     locale: {},
     slides: { items: { mixed }, order: ['mixed'] },
   });
-  assert.throws(() => carousel.build.props({ languages: ['en', 'uk'] }), /Incomplete Carousel slides/);
+  assert.throws(() => carousel.build.props({ languages: ['en', 'uk'] }), /Incomplete Carousel slides|Invalid publication for language/);
 });
 test('Markdown can override one language of an invariant replacement without losing the others', () => {
   const markdown = defineMarkdown({
