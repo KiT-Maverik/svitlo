@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "outDir": "./.test-build",
+    "declaration": false,
+    "types": ["node"]
+  },
+  "include": [
+    "configurators/contentBlocks/assembly.spec.ts",
+    "configurators/contentBlocks/defineText/**/*.spec.ts",
+    "configurators/contentBlocks/defineMarkdown/**/*.spec.ts",
+    "configurators/contentBlocks/defineCarousel/**/*.spec.ts",
+    "configurators/contentBlocks/defineCheckpoint/**/*.spec.ts",
+    "configurators/contentBlocks/_shared__contentBlocks/validateReplacementVariables/**/*.spec.ts",
+    "configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/**/*.spec.ts",
+    "configurators/_shared__configurators/validateOrderedKeys/**/*.spec.ts",
+    "configurators/_shared__configurators/validateSluggedConfiguratorMap/**/*.spec.ts"
+  ],
+  "exclude": ["node_modules", "dist", ".test-build"]
+}
