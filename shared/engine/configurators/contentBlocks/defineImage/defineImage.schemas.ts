@@ -60,7 +60,7 @@ export const image_Override_Config_Schema: z.ZodType<ContentBlock_Image_Override
   ),
 );
 
-export type ContentBlock_Image_ResourceBase = z.infer<typeof imageBase> & {
+export type ContentBlock_Image_PropsBase = z.infer<typeof imageBase> & {
   locale?: DeepPartial<ContentBlock_Image_Locale<'props'>>;
 };
 

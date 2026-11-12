@@ -80,88 +80,128 @@ void textEmbedded.locale?.en?.value;
 // @ts-expect-error The only explicit embed value permitted is true.
 text.build.props({ embed: false });
 // @ts-expect-error Text no longer exposes the assembly API.
-text.assemble.resource();
+text.build.props();
 // @ts-expect-error Props-shaped nested locale input is not an authored Overrides patch.
 text.build.overrides({ locale: { value: { locale: { value: 'Hi' } } } });
 // @ts-expect-error Identity is not overridable.
 text.build.overrides({ id });
 
-const audioPublished = audio.assemble.resource();
-const audioEmbedded = audio.assemble.resource({ embed: true });
+const audioPublished = audio.build.props();
+const audioEmbedded = audio.build.props({ embed: true });
 void audioEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void audioPublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void audioEmbedded.locale?.en?.title;
 // @ts-expect-error The only explicit embed value permitted is true.
-audio.assemble.resource({ embed: false });
+audio.build.props({ embed: false });
 
-const carouselPublished = carousel.assemble.resource();
-const carouselEmbedded = carousel.assemble.resource({ embed: true });
+const carouselPublished = carousel.build.props();
+const carouselEmbedded = carousel.build.props({ embed: true });
 void carouselEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void carouselPublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void carouselEmbedded.locale?.en?.slides;
 // @ts-expect-error The only explicit embed value permitted is true.
-carousel.assemble.resource({ embed: false });
+carousel.build.props({ embed: false });
 
-const codePublished = code.assemble.resource();
-const codeEmbedded = code.assemble.resource({ embed: true });
+const codePublished = code.build.props();
+const codeEmbedded = code.build.props({ embed: true });
 void codeEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void codePublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void codeEmbedded.locale?.en?.variables;
 // @ts-expect-error The only explicit embed value permitted is true.
-code.assemble.resource({ embed: false });
+code.build.props({ embed: false });
 
-const imagePublished = image.assemble.resource();
-const imageEmbedded = image.assemble.resource({ embed: true });
+const imagePublished = image.build.props();
+const imageEmbedded = image.build.props({ embed: true });
 void imageEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void imagePublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void imageEmbedded.locale?.en?.alt;
 // @ts-expect-error The only explicit embed value permitted is true.
-image.assemble.resource({ embed: false });
+image.build.props({ embed: false });
 
-const markdownPublished = markdown.assemble.resource();
-const markdownEmbedded = markdown.assemble.resource({ embed: true });
+const markdownPublished = markdown.build.props();
+const markdownEmbedded = markdown.build.props({ embed: true });
 void markdownEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void markdownPublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void markdownEmbedded.locale?.en?.value;
 // @ts-expect-error The only explicit embed value permitted is true.
-markdown.assemble.resource({ embed: false });
+markdown.build.props({ embed: false });
 
-const scenePublished = scene.assemble.resource();
-const sceneEmbedded = scene.assemble.resource({ embed: true });
+const scenePublished = scene.build.props();
+const sceneEmbedded = scene.build.props({ embed: true });
 void sceneEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void scenePublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void sceneEmbedded.locale?.en?.value;
 // @ts-expect-error The only explicit embed value permitted is true.
-scene.assemble.resource({ embed: false });
+scene.build.props({ embed: false });
 
-const videoPublished = video.assemble.resource();
-const videoEmbedded = video.assemble.resource({ embed: true });
+const videoPublished = video.build.props();
+const videoEmbedded = video.build.props({ embed: true });
 void videoEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void videoPublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void videoEmbedded.locale?.en?.label;
 // @ts-expect-error The only explicit embed value permitted is true.
-video.assemble.resource({ embed: false });
+video.build.props({ embed: false });
 
-const youtubePublished = youtube.assemble.resource();
-const youtubeEmbedded = youtube.assemble.resource({ embed: true });
+const youtubePublished = youtube.build.props();
+const youtubeEmbedded = youtube.build.props({ embed: true });
 void youtubeEmbedded.locale?.en?.locale;
 // @ts-expect-error Published language files do not have a nested locale wrapper.
 void youtubePublished.locale?.en?.locale;
 // @ts-expect-error Embedded locale fragments expose their fields under locale.
 void youtubeEmbedded.locale?.en?.label;
 // @ts-expect-error The only explicit embed value permitted is true.
-youtube.assemble.resource({ embed: false });
+youtube.build.props({ embed: false });
+
+// @ts-expect-error Audio no longer exposes the legacy assemble API.
+audio.assemble.resource();
+const audioSlug: 'audio' = audio.slug;
+void audioSlug;
+
+// @ts-expect-error Carousel no longer exposes the legacy assemble API.
+carousel.assemble.resource();
+const carouselSlug: 'carousel' = carousel.slug;
+void carouselSlug;
+
+// @ts-expect-error Code no longer exposes the legacy assemble API.
+code.assemble.resource();
+const codeSlug: 'code' = code.slug;
+void codeSlug;
+
+// @ts-expect-error Image no longer exposes the legacy assemble API.
+image.assemble.resource();
+const imageSlug: 'image' = image.slug;
+void imageSlug;
+
+// @ts-expect-error Markdown no longer exposes the legacy assemble API.
+markdown.assemble.resource();
+const markdownSlug: 'markdown' = markdown.slug;
+void markdownSlug;
+
+// @ts-expect-error Scene no longer exposes the legacy assemble API.
+scene.assemble.resource();
+const sceneSlug: 'scene' = scene.slug;
+void sceneSlug;
+
+// @ts-expect-error Video no longer exposes the legacy assemble API.
+video.assemble.resource();
+const videoSlug: 'video' = video.slug;
+void videoSlug;
+
+// @ts-expect-error Youtube no longer exposes the legacy assemble API.
+youtube.assemble.resource();
+const youtubeSlug: 'youtube' = youtube.slug;
+void youtubeSlug;

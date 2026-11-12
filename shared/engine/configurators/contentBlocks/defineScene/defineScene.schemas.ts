@@ -51,7 +51,7 @@ export const scene_Override_Config_Schema: z.ZodType<ContentBlock_Scene_Override
   ),
 );
 
-export type ContentBlock_Scene_ResourceBase = z.infer<typeof sceneBase> & {
+export type ContentBlock_Scene_PropsBase = z.infer<typeof sceneBase> & {
   locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>;
 };
 

@@ -7,7 +7,6 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
-  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import {
@@ -16,13 +15,13 @@ import {
   type ContentBlock_Youtube_Config,
   type ContentBlock_Youtube_Locale,
   type ContentBlock_Youtube_Overrides,
-  type ContentBlock_Youtube_ResourceBase,
+  type ContentBlock_Youtube_PropsBase,
 } from './defineYoutube.schemas';
 
 type YoutubeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Youtube_Locale<'props'>>>>;
 type YoutubeEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Youtube_Locale<'props'>>>;
-type YoutubeAssembly<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type YoutubeOverrideBase = {
+type YoutubePropsPublication<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type YoutubeOverridePropsBase = {
   params?: ContentBlock_Youtube_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Youtube_Locale<'props'>>;
 };
@@ -36,7 +35,9 @@ const validate = (config: ContentBlock_Youtube_Config): void => {
   parseAndValidate(config);
 };
 
-const assembleYoutube = (config: ContentBlock_Youtube_Config): YoutubeAssembly<ContentBlock_Youtube_ResourceBase> => {
+const buildYoutubeProps = (
+  config: ContentBlock_Youtube_Config,
+): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -47,11 +48,13 @@ const assembleYoutube = (config: ContentBlock_Youtube_Config): YoutubeAssembly<C
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
       : {}),
-  } satisfies ContentBlock_Youtube_ResourceBase;
+  } satisfies ContentBlock_Youtube_PropsBase;
   return { base, locale: locale as unknown as YoutubeLocaleFiles | undefined };
 };
 
-const assembleYoutubePatch = (patch: ContentBlock_Youtube_Overrides): YoutubeAssembly<YoutubeOverrideBase> => {
+const buildYoutubePatch = (
+  patch: ContentBlock_Youtube_Overrides,
+): YoutubePropsPublication<YoutubeOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
@@ -66,8 +69,8 @@ const assembleYoutubePatch = (patch: ContentBlock_Youtube_Overrides): YoutubeAss
 
 /** Define Youtube. */
 /**
- * Stateless authored ContentBlock. Assembly validates isolated snapshots and
- * emits either complete resources or exclusively sparse override fields.
+ * Stateless ContentBlock Build API validates isolated snapshots and emits
+ * either complete Props or exclusively sparse override fields.
  */
 export const defineYoutube = <const Slug extends string>(
   config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug },
@@ -84,27 +87,23 @@ export const defineYoutube = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
 
-  function resource(): YoutubeAssembly<ContentBlock_Youtube_ResourceBase>;
-  function resource(options: {
+  function props(): YoutubePropsPublication<ContentBlock_Youtube_PropsBase>;
+  function props(options: {
     embed: true;
-  }): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeEmbeddedLocaleFiles>;
-  function resource(options?: {
+  }): YoutubePropsPublication<ContentBlock_Youtube_PropsBase, YoutubeEmbeddedLocaleFiles>;
+  function props(options?: {
     embed?: true;
-  }): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeLocaleFiles | YoutubeEmbeddedLocaleFiles> {
-    const assembled = assembleYoutube(copyAuthored());
-    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }): YoutubePropsPublication<ContentBlock_Youtube_PropsBase, YoutubeLocaleFiles | YoutubeEmbeddedLocaleFiles> {
+    const publication = buildYoutubeProps(parseAndValidate(copyAuthored()));
+    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
-  const resourceApi: ResourceAssembler<
-    ContentBlock_Youtube_ResourceBase,
-    DeepPartial<ContentBlock_Youtube_Locale<'props'>>
-  > = resource;
 
-  const overrides = (patch: ContentBlock_Youtube_Overrides): YoutubeAssembly<YoutubeOverrideBase> => {
+  const overrides = (patch: ContentBlock_Youtube_Overrides): YoutubePropsPublication<YoutubeOverridePropsBase> => {
     try {
       const parsedPatch = youtube_Override_Config_Schema.parse(patch);
       const effective = youtube_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return assembleYoutubePatch(structuredClone(parsedPatch));
+      return buildYoutubePatch(structuredClone(parsedPatch));
     } catch (error) {
       throw new Error(
         `Invalid Youtube overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,
@@ -119,7 +118,7 @@ export const defineYoutube = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource: resourceApi, overrides },
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Youtube_Locale<'config'>> } => ({

@@ -46,7 +46,7 @@ export const video_Override_Config_Schema: z.ZodType<ContentBlock_Video_Override
   ),
 );
 
-export type ContentBlock_Video_ResourceBase = z.infer<typeof videoBase> & {
+export type ContentBlock_Video_PropsBase = z.infer<typeof videoBase> & {
   locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
 };
 
