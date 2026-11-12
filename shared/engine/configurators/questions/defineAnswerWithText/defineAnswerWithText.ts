@@ -7,12 +7,14 @@ import {
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
+  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   answerWithText_Config_Schema, answerWithText_Override_Config_Schema,
   type Question_AnswerWithText_Config,
+  answerWithText_Props_Schema,
   type Question_AnswerWithText_Props,
   type Question_AnswerWithText_MetadataOverrides,
 } from './defineAnswerWithText.schemas';
@@ -70,20 +72,21 @@ export const defineAnswerWithText = <
   } as Content;
 
   
-  const props = (): QuestionResourcePublication<Question_AnswerWithText_Props> => {
+  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_AnswerWithText_Props> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
-    const own = projectQuestionLocale({ placeholder: metadata.locale.placeholder });
-    const localized = projectAnswerList(metadata.locale.correctAnswers);
+    const own = projectQuestionLocale({ placeholder: metadata.locale.placeholder }, languages);
+    const localized = projectAnswerList(metadata.locale.correctAnswers, languages);
     if (localized.base !== undefined) own.base.correctAnswers = localized.base;
     for (const [language, values] of Object.entries(localized.locale)) {
       const file = (own.files[language as LanguageCodes] ??= {});
       file.locale = { ...((file.locale ?? {}) as Record<string, unknown>), correctAnswers: values };
     }
-    const common = resolveCommonContent(initialContent);
+    const common = resolveCommonContent(initialContent, languages);
     const extra = {base:{},locale:{}};
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
-    return {
+    const resource = {
       base: {
         id, slug, type, params: metadata.params,
         locale: own.base,
@@ -91,12 +94,16 @@ export const defineAnswerWithText = <
       },
       locale: finishFiles(files),
     } as QuestionResourcePublication<Question_AnswerWithText_Props>;
+    validateQuestionPublication(answerWithText_Props_Schema, languages, resource);
+    return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
     patch: Question_AnswerWithText_Overrides<Content, Added, Languages>,
+    options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_AnswerWithText_Props> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       ensureQuestionPatchShape(patch);
       const metadataPatch = answerWithText_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
@@ -105,10 +112,12 @@ export const defineAnswerWithText = <
       validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
       const own = projectQuestionLocale(
         metadataPatch.locale?.placeholder === undefined ? {} : { placeholder: metadataPatch.locale.placeholder },
+        languages,
       );
       if (metadataPatch.locale?.correctAnswers !== undefined) {
         const localized = projectAnswerList(
           authored.locale.correctAnswers,
+          languages,
           metadataPatch.locale.correctAnswers as never,
         );
         if (localized.base !== undefined) own.base.correctAnswers = localized.base;
@@ -129,13 +138,15 @@ export const defineAnswerWithText = <
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
-        const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
         const extra = {base:{},locale:{}};
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_AnswerWithText_Props>;
+      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_AnswerWithText_Props>;
+      validateQuestionPublication(answerWithText_Props_Schema, languages, props(options), publication);
+      return publication;
     } catch (error) {
       throw new Error(
         'Invalid AnswerWithText Question overrides for ' + id + ': ' +
