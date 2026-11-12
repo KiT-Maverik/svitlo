@@ -1,7 +1,15 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  wrapLocale,
+  type ResourceAssembler,
+  type WrappedLocaleFiles,
+} from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   carousel_Config_Schema,
@@ -14,7 +22,8 @@ import {
 } from './defineCarousel.schemas';
 
 type CarouselLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Carousel_Locale<'props'>>>>;
-type CarouselAssembly<Base> = { base: Base; locale: CarouselLocaleFiles | undefined };
+type CarouselEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Carousel_Locale<'props'>>>;
+type CarouselAssembly<Base, LocaleFiles = CarouselLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type CarouselOverrideBase = {
   params?: ContentBlock_Carousel_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
@@ -95,7 +104,21 @@ export const defineCarousel = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
-  const resource = (): CarouselAssembly<ContentBlock_Carousel_ResourceBase> => assembleCarousel(copyAuthored());
+  function resource(): CarouselAssembly<ContentBlock_Carousel_ResourceBase>;
+  function resource(options: {
+    embed: true;
+  }): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselEmbeddedLocaleFiles>;
+  function resource(options?: {
+    embed?: true;
+  }): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselLocaleFiles | CarouselEmbeddedLocaleFiles> {
+    const assembled = assembleCarousel(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Carousel_ResourceBase,
+    DeepPartial<ContentBlock_Carousel_Locale<'props'>>
+  > = resource;
+
   const overrides = (patch: ContentBlock_Carousel_Overrides): CarouselAssembly<CarouselOverrideBase> => {
     try {
       const parsedPatch = carousel_Override_Config_Schema.parse(patch);
@@ -116,7 +139,7 @@ export const defineCarousel = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({

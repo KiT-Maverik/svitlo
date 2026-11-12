@@ -7,7 +7,8 @@
 - Each configurator owns its authored configuration, validation, and `assemble` lifecycle. Entities may have different lifecycles: **do not add generic configurator/assembly factories or premature shared abstractions**. Prefer clear local code and deliberate duplication over opaque dependencies and weakened type inference.
 - Expose `id`, `type`, and `slug` directly, preserving literal slug inference for typed collections.
 - Retain an independent snapshot of authored input. Never store per-consumer overrides in shared mutable configurator state; the same configurator must be reusable in independent publication contexts.
-- `assemble.resource()` returns a complete publication result; `assemble.overrides(patch)` returns only the validated sparse patch. Both return independently owned, data-only results rather than configurator instances.
+- `assemble.resource()` returns a complete publication result; `assemble.resource({ embed: true })` returns the same `base` with Props-shaped localized fragments for nesting under a parent. The supplied `embed` flag may only be literal `true` (never `false`); overloads must preserve precise return types. Do not introduce a separate `embedded()` method.
+- `assemble.overrides(patch)` returns only the validated sparse patch. Assembly results are independently owned, data-only values rather than configurator instances.
 - Transitional `config.base` / `config.locales()` accessors may remain for unmigrated consumers. Do not propagate the old mutable `override`, `disable`, or `config.overrides` lifecycle to migrated configurators.
 
 ## Authored config and collection shapes
@@ -31,13 +32,21 @@
 
 1. Validate authored input and take an independent snapshot.
 2. `assemble.resource()` yields `{ base, locale }` for the complete authored resource: invariant identity/parameters in `base`, optional invariant text in `base.locale`, and language-specific values under language keys in `locale`.
-3. `assemble.overrides(patch)` yields the same partition but only for fields actually supplied and validated. No inherited parameters, translations, or identity fields may leak into a patch.
-4. Each language entry in `locale` is the direct payload of that locale's published file, **not** an additional nested `locale` wrapper. Use `locale: undefined` when there is no translated payload.
-5. Neither call may mutate authored input, patch input, earlier assembly results, or another context's overrides. Include the entity ID and original cause in override validation errors.
-6. Both results must be JSON-compatible publication data, with no functions, configurator instances, or internal state. A generator is responsible for writing the result, not validating the entity again.
+3. `assemble.resource({ embed: true })` retains the same `base` but wraps each language's **own** translated fields as `{ locale: fields }` (Props-shaped fragments). For instance, Text returns `locale.en = { locale: { value: 'Hello' } }` instead of `{ value: 'Hello' }`. The shared `wrapLocale` utility in `_shared__configurators` performs only this wrapper conversion; never hide entity validation or assembly in it.
+4. `assemble.overrides(patch)` yields the same publication partition but only for fields actually supplied and validated. No inherited parameters, translations, or identity fields may leak into a patch.
+5. Without `embed`, each language entry in `locale` is the direct payload of that locale's published file, **not** an additional nested `locale` wrapper. In either resource mode, use `locale: undefined` when there is no translated payload.
+6. Neither call may mutate authored input, patch input, earlier assembly results, or another context's overrides. Include the entity ID and original cause in override validation errors.
+7. Results must be JSON-compatible data, with no functions, configurator instances, or internal state. Generators write the root `resource()` result, without revalidating entities.
+
+## Nested resource assembly
+
+- A parent calls `child.assemble.resource({ embed: true })` for each child, regardless of whether its own call is embedded. Children validate their own authored data; the parent validates collection boundaries, allowed children and cross-child constraints.
+- Place every child's `base` under its actual Props path in the parent's `base`, and each child's `locale[language]` under the corresponding path in the parent's `locale[language]`. Language codes exist only at the outer assembly envelope; do not serialize nested `base`/`locale` envelopes or child configurator instances.
+- The parent's `embed` mode wraps **its own** localized fields, not its descendant Props fragments. Invariant localized values remain under `base.locale`; they do not create translated locale entries.
+- These rules apply to `assemble.resource` only. **Do not change `assemble.overrides` or invent embedded override behavior** until its API is designed separately.
 
 ## Responsibility boundary and verification
 
 - Configurators are **build-time only**. The planned file-writing contract lives in [`../generators/AGENTS.md`](../generators/AGENTS.md); runtime resolution and Props validation live in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md). Neither future layer is implemented merely by these documents.
-- Test complete resources and sparse patches, one-language and invariant locale cases, deep unknown-field rejection, semantic validation of the temporary merged candidate, array replacement semantics where applicable, JSON safety, and mutation isolation.
+- Test complete resources and sparse patches, one-language and invariant locale cases, direct and embedded resource shapes, overload type inference, deep unknown-field rejection, semantic validation of the temporary merged candidate, array replacement semantics where applicable, JSON safety, and mutation isolation.
 - Keep current legacy consumers working until their migration is explicitly in scope; do not claim their old APIs already use Assembly.

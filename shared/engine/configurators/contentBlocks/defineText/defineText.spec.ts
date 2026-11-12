@@ -31,6 +31,33 @@ test('Text publishes translated values directly as language JSON bodies', () => 
   assert.equal(text_Props_Schema.safeParse({ ...output.base, locale: output.locale?.uk }).success, true);
 });
 
+test('Text embeds translated values as Props-shaped locale fragments', () => {
+  const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+  const publication = text.assemble.resource();
+  const embedded = text.assemble.resource({ embed: true });
+
+  assert.deepEqual(embedded, {
+    base: publication.base,
+    locale: {
+      en: { locale: { value: 'Welcome' } },
+      uk: { locale: { value: 'Привіт' } },
+    },
+  });
+  assert.equal(text_Props_Schema.safeParse({ ...embedded.base, ...embedded.locale?.uk }).success, true);
+  assert.deepEqual(text.assemble.resource(), publication);
+
+  if (embedded.locale?.en) embedded.locale.en.locale.value = 'Modified output';
+  assert.deepEqual(text.assemble.resource({ embed: true }).locale?.en, { locale: { value: 'Welcome' } });
+});
+
+test('Text embedding preserves invariant values without inventing locale files', () => {
+  const text = defineText({ ...identity, locale: { value: 'Universal' } });
+  assert.deepEqual(text.assemble.resource({ embed: true }), {
+    base: { ...identity, locale: { value: 'Universal' } },
+    locale: undefined,
+  });
+});
+
 test('Text publishes only the validated override patch, not inherited properties', () => {
   const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
   const before = text.assemble.resource();

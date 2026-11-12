@@ -1,7 +1,15 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  wrapLocale,
+  type ResourceAssembler,
+  type WrappedLocaleFiles,
+} from '../../_shared__configurators';
 import {
   youtube_Config_Schema,
   youtube_Override_Config_Schema,
@@ -12,7 +20,8 @@ import {
 } from './defineYoutube.schemas';
 
 type YoutubeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Youtube_Locale<'props'>>>>;
-type YoutubeAssembly<Base> = { base: Base; locale: YoutubeLocaleFiles | undefined };
+type YoutubeEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Youtube_Locale<'props'>>>;
+type YoutubeAssembly<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type YoutubeOverrideBase = {
   params?: ContentBlock_Youtube_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Youtube_Locale<'props'>>;
@@ -75,7 +84,21 @@ export const defineYoutube = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
 
-  const resource = (): YoutubeAssembly<ContentBlock_Youtube_ResourceBase> => assembleYoutube(copyAuthored());
+  function resource(): YoutubeAssembly<ContentBlock_Youtube_ResourceBase>;
+  function resource(options: {
+    embed: true;
+  }): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeEmbeddedLocaleFiles>;
+  function resource(options?: {
+    embed?: true;
+  }): YoutubeAssembly<ContentBlock_Youtube_ResourceBase, YoutubeLocaleFiles | YoutubeEmbeddedLocaleFiles> {
+    const assembled = assembleYoutube(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
+  const resourceApi: ResourceAssembler<
+    ContentBlock_Youtube_ResourceBase,
+    DeepPartial<ContentBlock_Youtube_Locale<'props'>>
+  > = resource;
+
   const overrides = (patch: ContentBlock_Youtube_Overrides): YoutubeAssembly<YoutubeOverrideBase> => {
     try {
       const parsedPatch = youtube_Override_Config_Schema.parse(patch);
@@ -96,7 +119,7 @@ export const defineYoutube = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Youtube_Locale<'config'>> } => ({
