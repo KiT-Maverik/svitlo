@@ -7,12 +7,14 @@ import {
   snapshotCommonContent, snapshotBlockCollection, snapshotNestedCollection, validateNestedBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
+  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithBlocks_Config_Schema, fillBlanksWithBlocks_Override_Config_Schema,
   type Question_FillBlanksWithBlocks_Config,
+  fillBlanksWithBlocks_Props_Schema,
   type Question_FillBlanksWithBlocks_Props,
   type Question_FillBlanksWithBlocks_MetadataOverrides,
 } from './defineFillBlanksWithBlocks.schemas';
@@ -91,31 +93,33 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
 
   const extraContent = (
     source: Content,
+    languages: readonly LanguageCodes[],
     patch?: { slots?: {items?: Record<string, Record<string, unknown> | false>;additionalItems?: Record<string, {correctAnswer: ContentBlock_Configurator}>;order?: string[]}; distractors?: ResolvableBlockPatch },
   ) => {
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
     if (!patch || patch.slots !== undefined) {
-      const result = resolveSlotBlocks(source.slots, patch?.slots as never);
+      const result = resolveSlotBlocks(source.slots, languages, patch?.slots as never);
       base.slots = result.base;
       for (const [language, slots] of Object.entries(result.locale)) (locale[language] ??= {}).slots = slots;
     }
     if (!patch || patch.distractors !== undefined) {
-      const result = resolveBlockCollection(source.distractors, patch?.distractors, 'content.distractors');
+      const result = resolveBlockCollection(source.distractors, languages, patch?.distractors, 'content.distractors');
       base.distractors = result.base;
       for (const [language, entries] of Object.entries(result.locale)) (locale[language] ??= {}).distractors = entries;
     }
     return { base, locale };
   };
 
-  const props = (): QuestionResourcePublication<Question_FillBlanksWithBlocks_Props> => {
+  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_FillBlanksWithBlocks_Props> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
-    const own = projectQuestionLocale(metadata.locale);
-    const common = resolveCommonContent(initialContent);
-    const extra = extraContent(initialContent);
+    const own = projectQuestionLocale(metadata.locale, languages);
+    const common = resolveCommonContent(initialContent, languages);
+    const extra = extraContent(initialContent, languages);
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
-    return {
+    const resource = {
       base: {
         id, slug, type, params: metadata.params,
         locale: own.base,
@@ -123,6 +127,8 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
       },
       locale: finishFiles(files),
     } as QuestionResourcePublication<Question_FillBlanksWithBlocks_Props>;
+    validateQuestionPublication(fillBlanksWithBlocks_Props_Schema, languages, resource);
+    return resource;
   };
 
   const overrides = <
@@ -130,15 +136,17 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
     const AddedSlots extends Record<string, SlotBlock> = {},
   >(
     patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlots>,
+    options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Props> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       ensureQuestionPatchShape(patch);
       const metadataPatch = fillBlanksWithBlocks_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
         ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
       });
       validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
-      const own = projectQuestionLocale(metadataPatch.locale ?? {});
+      const own = projectQuestionLocale(metadataPatch.locale ?? {}, languages);
       const files = own.files;
       const base: Record<string, unknown> = {
         ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
@@ -151,14 +159,16 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
-        const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
         const extra = (patch.content.slots !== undefined || patch.content.distractors !== undefined) ?
-          extraContent(initialContent, patch.content) : {base:{},locale:{}};
+          extraContent(initialContent, languages, patch.content) : {base:{},locale:{}};
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_FillBlanksWithBlocks_Props>;
+      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_FillBlanksWithBlocks_Props>;
+      validateQuestionPublication(fillBlanksWithBlocks_Props_Schema, languages, props(options), publication);
+      return publication;
     } catch (error) {
       throw new Error(
         'Invalid FillBlanksWithBlocks Question overrides for ' + id + ': ' +
