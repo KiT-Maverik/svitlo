@@ -22,8 +22,9 @@ const yes = block('yes', 'Yes');
 const no = block('no', 'No');
 const maybe = block('maybe', 'Maybe');
 const extra = block('extra', 'Extra');
-const collection = <T extends { slug: string }>(value: T) => ({
-  items: { [value.slug]: value }, order: [value.slug],
+const collection = <const Slug extends string, T extends { slug: Slug }>(value: T) => ({
+  items: { [value.slug]: value } as Record<Slug, T>,
+  order: [value.slug] as Slug[],
 });
 const prompt = { question: collection(promptBlock) };
 const params = { assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const] };
