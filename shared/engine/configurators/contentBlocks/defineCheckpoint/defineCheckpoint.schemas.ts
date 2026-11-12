@@ -6,10 +6,10 @@ import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__co
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
 import { contentBlockConfigurator_Schema } from '../contentBlock.schemas';
+import { checkpointItem_Props_Schema } from './defineCheckpointItem';
 import type {
   ContentBlock_CheckpointItem_Configurator,
   ContentBlock_CheckpointItem_Props,
-  checkpointItem_Props_Schema,
 } from './defineCheckpointItem';
 
 export type { Checkpoint_Allowed_Configurator, Checkpoint_Allowed_Props } from './defineCheckpointItem';
