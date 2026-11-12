@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { DeepPartial } from '#types';
 
 import { deepStrict_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch, textVariables_Schema } from '../_shared__contentBlocks';
@@ -13,7 +14,12 @@ const params = contentBlockBase.shape.params.extend({
     .object({
       enabled: z.literal(true),
       // UI-specific MUI props are opaque to Engine, but must be JSON-safe.
-      typographyProps: z.record(z.string(), z.json()).optional(),
+      typographyProps: z
+        .record(z.string(), z.unknown())
+        .refine(value => z.record(z.string(), z.json()).safeParse(value).success, {
+          message: 'Typography props must be a JSON-compatible object',
+        })
+        .optional(),
     })
     .optional(),
 });
@@ -31,7 +37,9 @@ export const text_Config_Schema = textBase.extend(addUnifiedLocale(locale('confi
 export type ContentBlock_Text_Config = z.infer<typeof text_Config_Schema>;
 
 /** Only configurable fields may be overridden; each nested object rejects unknown keys. */
-export const text_Override_Config_Schema = z.deepPartial(
+export type ContentBlock_Text_Overrides = DeepPartial<Pick<ContentBlock_Text_Config, 'params' | 'locale'>>;
+
+export const text_Override_Config_Schema: z.ZodType<ContentBlock_Text_Overrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: text_Config_Schema.shape.params,
@@ -39,7 +47,6 @@ export const text_Override_Config_Schema = z.deepPartial(
     }),
   ),
 );
-export type ContentBlock_Text_Overrides = z.input<typeof text_Override_Config_Schema>;
 
 /** Required nonlocalized fields come from the Text base schema. */
 export type ContentBlock_Text_ResourceBase = z.infer<typeof textBase> & {

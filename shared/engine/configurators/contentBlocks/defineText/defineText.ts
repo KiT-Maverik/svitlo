@@ -116,10 +116,10 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
 export const defineText = <const Slug extends string>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
 ) => {
-  const authored = parseAndValidate(config);
+  const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
   const slug = config.slug;
-  const copyAuthored = () => text_Config_Schema.parse(authored);
+  const copyAuthored = () => text_Config_Schema.parse(structuredClone(authored));
   const base = { ...assembleText(copyAuthored()).base, slug };
 
   const resource = (): TextAssembly<ContentBlock_Text_ResourceBase> => assembleText(copyAuthored());
@@ -133,7 +133,7 @@ export const defineText = <const Slug extends string>(
       const resolved = text_Config_Schema.parse(mergeTextOverride(copyAuthored(), validatedPatch));
       validate(resolved);
 
-      return assembleTextPatch(validatedPatch);
+      return assembleTextPatch(structuredClone(validatedPatch));
     } catch (error) {
       throw new Error(`Invalid Text overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,

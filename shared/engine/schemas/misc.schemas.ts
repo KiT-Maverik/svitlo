@@ -28,7 +28,7 @@ export const deepStrict_Schema = <T extends z.ZodType>(schema: T): T => {
       node instanceof z.ZodPrefault ||
       node instanceof z.ZodReadonly
     ) {
-      return clone(node, { innerType: visit((node._zod.def as { innerType: z.ZodType }).innerType) });
+      return clone(node, { innerType: visit((node._zod.def as unknown as { innerType: z.ZodType }).innerType) });
     }
     if (node instanceof z.ZodUnion) {
       return clone(node, { options: node.options.map(option => visit(option as z.ZodType)) });
@@ -40,7 +40,7 @@ export const deepStrict_Schema = <T extends z.ZodType>(schema: T): T => {
       return clone(node, { element: visit(node.element as z.ZodType) });
     }
     if (node instanceof z.ZodTuple) {
-      return clone(node, { items: node.items.map(item => visit(item as z.ZodType)) });
+      return clone(node, { items: node._zod.def.items.map(item => visit(item as z.ZodType)) });
     }
     if (node instanceof z.ZodIntersection) {
       return clone(node, {
