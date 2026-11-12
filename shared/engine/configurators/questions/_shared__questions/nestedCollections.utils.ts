@@ -97,11 +97,11 @@ const resolveNested = (
       assertEnabledBlock(built[field].base, path + '.' + key + '.' + field);
     }
     base[key] = Object.fromEntries(fields.map(field => [field, built[field].base]));
-    const languages = new Set<LanguageCodes>();
+    const translatedLanguages = new Set<LanguageCodes>();
     for (const field of fields) {
-      for (const language of Object.keys(built[field].locale)) languages.add(language as LanguageCodes);
+      for (const language of Object.keys(built[field].locale)) translatedLanguages.add(language as LanguageCodes);
     }
-    for (const language of languages) {
+    for (const language of translatedLanguages) {
       (locale[language] ??= {})[key] = Object.fromEntries(
         fields.map(field => [field, cloneJson(built[field].locale[language] ?? built[field].base)]),
       );

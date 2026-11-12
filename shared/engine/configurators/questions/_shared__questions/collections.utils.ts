@@ -124,20 +124,11 @@ export const validateCommonContent = (content: QuestionCommonContent): void => {
   if (content.explanation !== undefined) validateBlockCollection(content.explanation, 'content.explanation');
 };
 
-/** Propagate publication scope. Older ContentBlocks currently ignore extra arguments;
- * the selected-language Props parse below prevents incomplete child translations. */
+/** ContentBlocks have a first-class selected-language Build API; no transition adapter. */
 const readResource = (child: Block, languages: readonly LanguageCodes[]): BlockResource =>
-  cloneJson(
-    (child.build.props as unknown as (options: { languages: readonly LanguageCodes[] }) => BlockResource)({
-      languages,
-    }),
-  );
+  cloneJson(child.build.props({ languages }) as BlockResource);
 const readPatch = (child: Block, patch: unknown, languages: readonly LanguageCodes[]): BlockPatch =>
-  cloneJson(
-    (
-      child.build.overrides as unknown as (input: never, options: { languages: readonly LanguageCodes[] }) => BlockPatch
-    )(patch as never, { languages }),
-  );
+  cloneJson(child.build.overrides(patch as never, { languages }) as BlockPatch);
 
 const propsSchemas: Record<string, { parse: (value: unknown) => unknown }> = {
   text: text_Props_Schema,
