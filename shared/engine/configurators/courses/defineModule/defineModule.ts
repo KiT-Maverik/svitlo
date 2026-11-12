@@ -76,6 +76,12 @@ const validate = (config: Module_Config): void => {
       }
     }
   }
+  const seenIds = new Set<string>();
+  for (const child of Object.values(config.content?.items ?? {})) {
+    if (!isRecord(child) || typeof child.id !== 'string') continue;
+    if (seenIds.has(child.id)) errors.push('content.items: duplicate Module child ID ' + child.id);
+    seenIds.add(child.id);
+  }
   if (errors.length) throw new Error('Module validation failed: ' + errors.join('; '));
 };
 
@@ -168,6 +174,13 @@ export const defineModule = <
     patches: Record<string, unknown> = {},
     ownLanguages: readonly LanguageCodes[] = [],
   ) => {
+    const ids = new Set<string>();
+    for (const key of order) {
+      const child = items[key];
+      if (!child) throw new Error('Unknown Module child: ' + key);
+      if (ids.has(child.id)) throw new Error('Duplicate Module child ID: ' + child.id);
+      ids.add(child.id);
+    }
     const entries = order.map(key => {
       const raw = items[key];
       const build = (raw as unknown as BuildChild).build;
