@@ -8,7 +8,7 @@ import {
   type ContentBlock_Text_Locale,
   type ContentBlock_Text_ResourceBase,
 } from './defineText.schemas';
-import { validateTextVariables } from './validateTextVariables/validateTextVariables.utils';
+import { validateTextVariables } from './defineText.utils';
 
 export type ContentBlock_Text_Overrides = DeepPartial<Pick<ContentBlock_Text_Config, 'params' | 'locale'>>;
 
