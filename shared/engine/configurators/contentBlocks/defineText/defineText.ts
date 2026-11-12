@@ -15,14 +15,14 @@ export type ContentBlock_Text_Overrides = DeepPartial<Pick<ContentBlock_Text_Con
 
 type TextLocales = Partial<Record<LanguageCodes, ContentBlock_Text_Locale<'props'>>>;
 type TextAssembly<Base> = { base: Base; locales: TextLocales | undefined };
-type TextOverrideBase = {
-  params?: DeepPartial<ContentBlock_Text_Config['params']>;
-  locale?: Partial<ContentBlock_Text_Locale<'props'>>;
-};
 
-const validate = (config: ContentBlock_Text_Config): void => {
+const parseAndValidate = (config: ContentBlock_Text_Config): ContentBlock_Text_Config => {
   const parsed = text_Config_Schema.parse(config);
   validateTextVariables(parsed);
+  return parsed;
+};
+const validate = (config: ContentBlock_Text_Config): void => {
+  parseAndValidate(config);
 };
 
 /** Put invariant Text values in base; publish translations by language. */
@@ -36,6 +36,56 @@ const assembleLocales = (value: ContentBlock_Text_Config['locale']['value'] | un
   return Object.keys(locales).length ? locales : undefined;
 };
 
+const assembleText = (config: ContentBlock_Text_Config): TextAssembly<ContentBlock_Text_ResourceBase> => {
+  const { id, type, slug, params, locale } = config;
+  const base = {
+    id,
+    type,
+    slug,
+    params,
+    ...(typeof locale.value === 'string' ? { locale: { value: locale.value } } : {}),
+  } satisfies ContentBlock_Text_ResourceBase;
+  const locales = assembleLocales(locale.value);
+  if (locales === undefined && typeof base.locale?.value !== 'string') {
+    throw new Error('Text resource has neither a base value nor localized values');
+  }
+  return { base, locales };
+};
+
+/** Text fields use object patches; variable rules merge by key and arrays replace. */
+const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock_Text_Overrides) => ({
+  ...source,
+  ...patch,
+  params: {
+    ...source.params,
+    ...patch.params,
+    ...(patch.params?.wrap ? { wrap: { ...source.params.wrap, ...patch.params.wrap } } : {}),
+    ...(patch.params?.variables
+      ? {
+          variables: {
+            ...source.params.variables,
+            ...Object.fromEntries(
+              Object.entries(patch.params.variables).map(([key, rule]) => [
+                key,
+                { ...source.params.variables?.[key], ...rule },
+              ]),
+            ),
+          },
+        }
+      : {}),
+  },
+  locale: {
+    ...source.locale,
+    ...patch.locale,
+    value:
+      patch.locale?.value !== undefined &&
+      typeof patch.locale.value === 'object' &&
+      typeof source.locale.value === 'object'
+        ? { ...source.locale.value, ...patch.locale.value }
+        : (patch.locale?.value ?? source.locale.value),
+  },
+});
+
 /**
  * Define localized Text with optional styling for inline fragments.
  *
@@ -47,81 +97,31 @@ const assembleLocales = (value: ContentBlock_Text_Config['locale']['value'] | un
  * Every configured variable ID must appear in every supplied locale value,
  * with no undeclared or malformed fragments.
  *
- * `assemble.resource()` publishes a complete, validated resource. The
- * `assemble.overrides(patch)` method validates against this definition but
- * returns only the supplied patch, never mutating the shared configurator.
- * Applying published overrides to Props is the consumer's responsibility.
+ * `assemble.resource()` publishes the authored resource. `assemble.overrides(patch)`
+ * validates and publishes a complete variant without changing authored Text fields.
  */
 export const defineText = <const Slug extends string>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
 ) => {
-  validate(config);
-  const { id, type, slug, locale, params } = config;
+  const authored = parseAndValidate(config);
+  const { id, type } = authored;
+  const slug = config.slug;
+  // Zod clones declared fields. typographyProps remains opaque to Engine.
+  const copyAuthored = () => text_Config_Schema.parse(authored);
+  const base = { ...assembleText(copyAuthored()).base, slug };
 
-  const base = {
-    id,
-    type,
-    slug,
-    params,
-    ...(typeof locale.value === 'string' ? { locale: { value: locale.value } } : {}),
-  } satisfies ContentBlock_Text_ResourceBase;
+  const resource = (): TextAssembly<ContentBlock_Text_ResourceBase> => assembleText(copyAuthored());
 
-  const resource = (): TextAssembly<ContentBlock_Text_ResourceBase> => {
-    const locales = assembleLocales(locale.value);
-    if (locales === undefined && typeof base.locale?.value !== 'string') {
-      throw new Error('Text resource has neither a base value nor localized values');
-    }
-    return { base: { ...base }, locales };
-  };
-
-  const overrides = (patch: ContentBlock_Text_Overrides): TextAssembly<TextOverrideBase> => {
-    // Resolve only Text's own fields for validation. Do not persist the
-    // candidate: the consumer will apply the published patch at runtime.
-    const variables = patch.params?.variables
-      ? {
-          ...params.variables,
-          ...Object.fromEntries(
-            Object.entries(patch.params.variables).map(([key, value]) => [
-              key,
-              { ...params.variables?.[key], ...value },
-            ]),
-          ),
-        }
-      : params.variables;
-
-    const value =
-      patch.locale?.value !== undefined && typeof patch.locale.value === 'object' && typeof locale.value === 'object'
-        ? { ...locale.value, ...patch.locale.value }
-        : (patch.locale?.value ?? locale.value);
-
+  const overrides = (patch: ContentBlock_Text_Overrides): TextAssembly<ContentBlock_Text_ResourceBase> => {
     try {
-      const resolved = text_Override_Config_Schema.parse({
-        ...config,
-        ...patch,
-        params: {
-          ...params,
-          ...patch.params,
-          variables,
-          ...(patch.params?.wrap ? { wrap: { ...params.wrap, ...patch.params.wrap } } : {}),
-        },
-        locale: { ...locale, ...patch.locale, value },
-      });
+      const resolved = text_Override_Config_Schema.parse(mergeTextOverride(copyAuthored(), patch));
       validateTextVariables(resolved);
+      return assembleText(resolved);
     } catch (error) {
       throw new Error(`Invalid Text overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,
       });
     }
-
-    const locales = assembleLocales(patch.locale?.value);
-    const overrideBase: TextOverrideBase = {
-      ...(patch.params !== undefined ? { params: patch.params } : {}),
-      ...(typeof patch.locale?.value === 'string' ? { locale: { value: patch.locale.value } } : {}),
-    };
-    if (patch.locale?.value !== undefined && locales === undefined && typeof overrideBase.locale?.value !== 'string') {
-      throw new Error('Text override has neither a base value nor localized values');
-    }
-    return { base: overrideBase, locales };
   };
 
   return {
@@ -135,7 +135,7 @@ export const defineText = <const Slug extends string>(
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Text_Locale<'config'>> } => ({
-        locale: onlyLocales(locale),
+        locale: onlyLocales(copyAuthored().locale),
       }),
       validate,
     },

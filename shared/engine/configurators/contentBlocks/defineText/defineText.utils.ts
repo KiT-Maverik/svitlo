@@ -1,4 +1,4 @@
-import type { ContentBlock_Text_Config } from '../defineText.schemas';
+import type { ContentBlock_Text_Config } from './defineText.schemas';
 
 const delimiter = '%_%';
 const camelCase = /^[a-z][A-Za-z0-9]*$/;
