@@ -1,6 +1,6 @@
 # Configurator architecture
 
-**Scope:** Authoring-time entity configurators and their validation/publication API. These rules are the target for new or migrated configurators; only `defineText` currently pilots the new Assembly API. Verify actual contracts before treating other entities as migrated. Root `AGENTS.md` and applicable Studio guidance also apply.
+**Scope:** Authoring-time entity configurators and their validation/publication API. These rules are the target for new or migrated configurators; the flat ContentBlocks currently use the new Assembly API; Checkpoint is excluded pending its nested API design. Verify actual contracts before treating other entities as migrated. Root `AGENTS.md` and applicable Studio guidance also apply.
 
 ## Ownership and public API
 
