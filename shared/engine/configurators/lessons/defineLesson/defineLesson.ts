@@ -135,11 +135,10 @@ export function defineLesson<
   );
   const section = { items: { ...initialSections }, order: [...sectionOrder] };
   const flashcards = { items: { ...initialCards }, order: [...flashcardOrder] };
-  const questions = structuredClone(Object.fromEntries(Object.entries(initialQuestions).map(
-    ([kind, items]) => [kind, Object.fromEntries(Object.entries(items).map(
-      ([slug, value]) => [slug, value],
-    ))],
-  )));
+  // Configurators contain methods and cannot be structured-cloned. Copy only the bank maps.
+  const questions = Object.fromEntries(
+    Object.entries(initialQuestions).map(([kind, items]) => [kind, { ...items }]),
+  );
   const base = {
     id, slug, type, programId: authored.programId, skills: [...authored.skills],
     params: structuredClone(authored.params), locale: onlyStrings(authored.locale),

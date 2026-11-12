@@ -67,7 +67,7 @@ export type Lesson_Props = Omit<z.infer<typeof lesson_Props_Schema>, 'section' |
   flashcards: Flashcard_Props[];
 };
 export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'slug' | 'type' | 'params' | 'skills' | 'programId'> & {
-  locale?: DeepPartial<Lesson_Config['locale']> extends infer Value ? { title?: string } : never;
+  locale?: { title?: string };
   section: ReturnType<Section_Configurator['build']['props']>['base'][];
   flashcards: ReturnType<Flashcard_Configurator['build']['props']>['base'][];
   questions?: Partial<Record<Lesson_Question_Type, Record<string, unknown>[]>>;
