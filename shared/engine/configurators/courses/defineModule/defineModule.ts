@@ -240,7 +240,9 @@ export const defineModule = <
     const children = buildContent(initialItems, initialOrder, languages);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locale)) {
-      (files[language as LanguageCodes] ??= {}).content = entries;
+      // Publication fragments are parsed against the concrete Props schema below.
+      const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+      destination.content = entries;
     }
     const result: ModulePublication<ModulePropsBase> = {
       base: {
