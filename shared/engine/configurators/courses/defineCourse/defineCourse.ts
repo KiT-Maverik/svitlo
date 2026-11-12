@@ -169,7 +169,7 @@ export const defineCourse = <
     const files: Partial<Record<LanguageCodes, DeepPartial<Course_Props>>> = {};
     for (const [language, fields] of Object.entries(own.locale ?? {})) {
       files[language as LanguageCodes] = {
-        locale: fields as DeepPartial<Course_Locale<'props'>,
+        locale: fields as DeepPartial<Course_Locale<'props'>>,
       };
     }
     return {
