@@ -25,7 +25,8 @@ export type ConfigWithLanguages<Config extends { locale: object }, Languages ext
   Omit<Config, 'locale'> & { locale: RequireLanguages<Config['locale'], Languages> };
 
 /** Phantom-only language metadata: used exclusively for compile-time parent/child compatibility. */
-declare const languageScope: unique symbol;
+/** Declaration-only symbol so exported configurator return types can name the phantom field. */
+export declare const languageScope: unique symbol;
 export type LanguageScope<Languages extends readonly LanguageCodes[]> = {
   readonly [languageScope]: Languages;
 };
