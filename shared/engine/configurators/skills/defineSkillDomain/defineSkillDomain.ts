@@ -55,6 +55,18 @@ const validate = (config: SkillDomain_Config): void => {
       }
     }
   }
+  const ids = new Set<string>();
+  const slugs = new Set<string>();
+  for (const [slug, child] of [
+    ...Object.entries(config.skills?.items ?? {}),
+    ...Object.entries(config.groups?.items ?? {}),
+  ]) {
+    if (slugs.has(slug)) issues.push({ path: slug, message: 'Duplicate Domain child slug: ' + slug });
+    slugs.add(slug);
+    if (!isRecord(child) || typeof child.id !== 'string') continue;
+    if (ids.has(child.id)) issues.push({ path: slug, message: 'Duplicate Domain child ID: ' + child.id });
+    ids.add(child.id);
+  }
   if (issues.length) throw new Error('SkillDomain validation failed: ' + issues.map(x => x.path + ': ' + x.message).join('; '));
 };
 
@@ -136,6 +148,13 @@ export function defineSkillDomain<
     patches: Record<string, unknown> = {},
     ownLanguages: readonly LanguageCodes[] = [],
   ) => {
+    const seen = new Set<string>();
+    for (const key of order) {
+      const child = items[key];
+      if (!child) throw new Error('Unknown SkillDomain child: ' + key);
+      if (seen.has(child.id)) throw new Error('Duplicate SkillDomain child ID: ' + child.id);
+      seen.add(child.id);
+    }
     const entries = order.map(key => {
       const child = items[key];
       const resource = child.build.props();
