@@ -47,6 +47,14 @@ const validate = (config: SkillGroup_Config): void => {
       issues.push({ check: 'item', path: 'skills.items.' + key, message: 'Skill must expose the Build API' });
     }
   }
+  const ids = new Set<string>();
+  for (const child of Object.values(config.skills?.items ?? {})) {
+    if (!isRecord(child) || typeof child.id !== 'string') continue;
+    if (ids.has(child.id)) {
+      issues.push({ check: 'item', path: 'skills.items', message: 'Duplicate Skill ID: ' + child.id });
+    }
+    ids.add(child.id);
+  }
   if (issues.length) throw new Error('SkillGroup validation failed: ' + issues.map(issue => issue.message).join('; '));
 };
 
@@ -115,6 +123,13 @@ export function defineSkillGroup<
     patches: Record<string, unknown> = {},
     ownLanguages: readonly LanguageCodes[] = [],
   ) => {
+    const seen = new Set<string>();
+    for (const key of order) {
+      const child = items[key];
+      if (!child) throw new Error('Unknown Skill: ' + key);
+      if (seen.has(child.id)) throw new Error('Duplicate Skill ID: ' + child.id);
+      seen.add(child.id);
+    }
     const entries = order.map(key => {
       const child = items[key];
       const resource = child.build.props();
