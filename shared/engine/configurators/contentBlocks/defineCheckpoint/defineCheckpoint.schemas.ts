@@ -60,14 +60,14 @@ export const checkpoint_Config_Schema = checkpointBase.extend({
 export type ContentBlock_Checkpoint_Config = z.infer<typeof checkpoint_Config_Schema>;
 
 /** Only schema-owned metadata fields may be overridden; collection rules are contextual. */
-export type Checkpoint_Metadata_Overrides = DeepPartial<
-  Pick<ContentBlock_Checkpoint_Config, 'params' | 'locale'>
->;
+export type Checkpoint_Metadata_Overrides = DeepPartial<Pick<ContentBlock_Checkpoint_Config, 'params' | 'locale'>>;
 export const checkpoint_Override_Config_Schema: z.ZodType<Checkpoint_Metadata_Overrides> = z.deepPartial(
-  deepStrict_Schema(z.object({
-    params: checkpoint_Config_Schema.shape.params,
-    locale: checkpoint_Config_Schema.shape.locale,
-  })),
+  deepStrict_Schema(
+    z.object({
+      params: checkpoint_Config_Schema.shape.params,
+      locale: checkpoint_Config_Schema.shape.locale,
+    }),
+  ),
 );
 
 export type Checkpoint_Overrides<

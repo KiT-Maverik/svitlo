@@ -9,7 +9,10 @@ import {
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import type { ContentBlock_CheckpointItem_Configurator, ContentBlock_CheckpointItem_Props } from './defineCheckpointItem';
+import type {
+  ContentBlock_CheckpointItem_Configurator,
+  ContentBlock_CheckpointItem_Props,
+} from './defineCheckpointItem';
 import {
   checkpoint_Config_Schema,
   checkpoint_Override_Config_Schema,
@@ -108,10 +111,7 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
 };
 
 /** Define a Checkpoint with an ordered collection of CheckpointItem configurators. */
-export const defineCheckpoint = <
-  const Slug extends string,
-  const Items extends Record<string, CheckpointItem>,
->(
+export const defineCheckpoint = <const Slug extends string, const Items extends Record<string, CheckpointItem>>(
   config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
     slug: Slug;
     content: { items: Items; order: string[] };
@@ -191,9 +191,11 @@ export const defineCheckpoint = <
           ? mergeForValidation(original, patch.base as DeepPartial<typeof resource.base>)
           : original;
         const translatedPatch = patch?.locale?.[language];
-        return (translatedPatch
-          ? mergeForValidation(withPatchBase, translatedPatch as DeepPartial<typeof resource.base>)
-          : withPatchBase) as ContentBlock_CheckpointItem_Props;
+        return (
+          translatedPatch
+            ? mergeForValidation(withPatchBase, translatedPatch as DeepPartial<typeof resource.base>)
+            : withPatchBase
+        ) as ContentBlock_CheckpointItem_Props;
       });
     }
     return { bases, locales };
@@ -306,14 +308,10 @@ export const defineCheckpoint = <
       if (!order.length) throw new Error('At least one active Checkpoint item is required');
 
       const modifiesContent =
-        Object.keys(changes).length > 0 ||
-        Object.keys(additions).length > 0 ||
-        patch.content?.order !== undefined;
+        Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.content?.order !== undefined;
       if (modifiesContent) {
         const enabled = Object.fromEntries(
-          Object.entries(active).filter(
-            (entry): entry is [string, CheckpointItem] => entry[1] !== false,
-          ),
+          Object.entries(active).filter((entry): entry is [string, CheckpointItem] => entry[1] !== false),
         );
         const built = buildContent(enabled, order, childPatches);
         output.base.content = built.bases;
