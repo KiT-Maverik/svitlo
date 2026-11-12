@@ -60,6 +60,10 @@ const isBuildChild = (value: unknown): value is Child => {
     typeof value.build.overrides === 'function';
 };
 
+/** A required Quiz must remain present and enabled in the effective Lesson sections. */
+const hasEnabledQuiz = (sections: readonly { type: string; params?: { disabled?: boolean } }[]): boolean =>
+  sections.some(section => section.type === 'quiz' && section.params?.disabled !== true);
+
 /** Validate ownership/identity only; children handle their own schemas and semantics. */
 const validate = (config: Lesson_Config): void => {
   lesson_Config_Schema.parse(config);
@@ -81,6 +85,11 @@ const validate = (config: Lesson_Config): void => {
         throw new Error('Invalid Lesson ' + name + ' Build API or identity: ' + key);
       }
     }
+  }
+  if (config.params.requireQuiz && !hasEnabledQuiz(
+    config.section.order.map(key => config.section.items[key].build.props().base),
+  )) {
+    throw new Error('Lesson requires at least one enabled Quiz section');
   }
   for (const [kind, entries] of Object.entries(config.questions ?? {})) {
     if (!lessonQuestionTypes.includes(kind as Lesson_Question_Type)) {
@@ -394,6 +403,14 @@ export function defineLesson<
         flashcards: { items: cards.active as Record<string, Flashcard_Configurator>, order: [...cards.order] },
         questions: nextQuestions,
       });
+      // Child overrides can disable a Quiz without removing its configurator from the map.
+      if (own.params.requireQuiz && !hasEnabledQuiz(
+        sections.changed
+          ? (output.base.section ?? [])
+          : buildOrdered(sections.active, sections.order).bases as Lesson_PropsBase['section'],
+      )) {
+        throw new Error('Lesson requires at least one enabled Quiz section');
+      }
       output.locale = Object.keys(files).length ? files : undefined;
       return structuredClone(output);
     } catch (error) {
