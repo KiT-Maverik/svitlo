@@ -5,7 +5,14 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
-import { defineImage, defineAudio, defineVideo, defineCarousel, defineCarouselSlide, defineScene } from './contentBlocks';
+import {
+  defineImage,
+  defineAudio,
+  defineVideo,
+  defineCarousel,
+  defineCarouselSlide,
+  defineScene,
+} from './contentBlocks';
 
 const id = '72d22bea-d787-4c6d-9a83-144830c6d325';
 const url = (name: string) => '/textbooks/example/' + name;
@@ -90,12 +97,13 @@ test('ContentBlock validators check packaged Image, Audio, Video, Carousel and S
       /Missing local media file at locale.poster/,
     );
     assert.throws(
-      () => photoSlide.validate({
-        id,
-        slug: 'photo',
-        type: 'carouselSlide',
-        locale: { src: url('missing.png'), alt: 'Photo' },
-      }),
+      () =>
+        photoSlide.validate({
+          id,
+          slug: 'photo',
+          type: 'carouselSlide',
+          locale: { src: url('missing.png'), alt: 'Photo' },
+        }),
       /Missing local media file at locale.src/,
     );
 

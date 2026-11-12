@@ -20,10 +20,7 @@ import {
   type ContentBlock_Carousel_PropsBase,
   type ContentBlock_Carousel_SlideProps,
 } from './defineCarousel.schemas';
-import {
-  carouselSlide_Published_Schema,
-  type ContentBlock_CarouselSlide_Configurator,
-} from './defineCarouselSlide';
+import { carouselSlide_Published_Schema, type ContentBlock_CarouselSlide_Configurator } from './defineCarouselSlide';
 
 type Slide = ContentBlock_CarouselSlide_Configurator;
 type SlideResource = ReturnType<Slide['build']['props']>;
@@ -49,10 +46,12 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
     requireNonEmpty: true,
   });
   if (isRecord(config.slides) && isRecord(config.slides.items)) {
-    issues.push(...validateSluggedConfiguratorMap(config.slides.items, ['carouselSlide'], {
-      path: 'slides.items',
-      itemLabel: 'Carousel slide',
-    }));
+    issues.push(
+      ...validateSluggedConfiguratorMap(config.slides.items, ['carouselSlide'], {
+        path: 'slides.items',
+        itemLabel: 'Carousel slide',
+      }),
+    );
     for (const [key, slide] of Object.entries(config.slides.items)) {
       if (
         !isRecord(slide) ||
@@ -60,7 +59,11 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
         typeof slide.build.props !== 'function' ||
         typeof slide.build.overrides !== 'function'
       ) {
-        issues.push({ check: 'item', path: 'slides.items.' + key, message: 'Carousel slide must expose the Build API' });
+        issues.push({
+          check: 'item',
+          path: 'slides.items.' + key,
+          message: 'Carousel slide must expose the Build API',
+        });
       }
     }
   }
@@ -109,7 +112,10 @@ export const defineCarousel = <
     items: Record<string, Slide>,
     order: readonly string[],
     patches: Record<string, unknown> = {},
-  ): { base: ContentBlock_Carousel_SlideProps[] | undefined; locale: Partial<Record<LanguageCodes, ContentBlock_Carousel_SlideProps[]>> } => {
+  ): {
+    base: ContentBlock_Carousel_SlideProps[] | undefined;
+    locale: Partial<Record<LanguageCodes, ContentBlock_Carousel_SlideProps[]>>;
+  } => {
     const entries = order.map(key => {
       const slide = items[key];
       const resource = slide.build.props();
@@ -120,10 +126,7 @@ export const defineCarousel = <
     });
 
     const invariant = entries.map(({ resource, patch }) =>
-      mergeForValidation(
-        resource.base.locale ?? {},
-        patch?.base.locale ?? {},
-      ),
+      mergeForValidation(resource.base.locale ?? {}, patch?.base.locale ?? {}),
     );
     const arraySchema = z.array(carouselSlide_Published_Schema).min(1);
     const parsedInvariant = arraySchema.safeParse(invariant);
@@ -137,10 +140,7 @@ export const defineCarousel = <
     const localized: Partial<Record<LanguageCodes, ContentBlock_Carousel_SlideProps[]>> = {};
     for (const language of languages) {
       const values = entries.map(({ resource, patch }) => {
-        const fromResource = mergeForValidation(
-          resource.base.locale ?? {},
-          resource.locale?.[language]?.locale ?? {},
-        );
+        const fromResource = mergeForValidation(resource.base.locale ?? {}, resource.locale?.[language]?.locale ?? {});
         const withPatchBase = mergeForValidation(fromResource, patch?.base.locale ?? {});
         return mergeForValidation(withPatchBase, patch?.locale?.[language]?.locale ?? {});
       });
@@ -265,7 +265,8 @@ export const defineCarousel = <
         active[key] = slide as Slide;
       }
       for (const [key, change] of Object.entries(changes)) {
-        if (!Object.hasOwn(initialItems, key)) throw new Error('Cannot override an unknown existing Carousel slide: ' + key);
+        if (!Object.hasOwn(initialItems, key))
+          throw new Error('Cannot override an unknown existing Carousel slide: ' + key);
         if (change === false) {
           active[key] = false;
           structureChanged = true;

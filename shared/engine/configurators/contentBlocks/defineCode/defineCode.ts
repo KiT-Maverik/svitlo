@@ -104,7 +104,10 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
  * configurations are used only for semantic validation.
  */
 export const defineCode = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
-  config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Code_Config, Languages>,
+  config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Code_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;

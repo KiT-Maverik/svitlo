@@ -79,7 +79,10 @@ const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublica
  * either complete Props or exclusively sparse override fields.
  */
 export const defineScene = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
-  config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Scene_Config, Languages>,
+  config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Scene_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;

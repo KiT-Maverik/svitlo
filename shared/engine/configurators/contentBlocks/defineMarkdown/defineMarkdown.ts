@@ -27,17 +27,19 @@ type MarkdownOverridePropsBase = {
 
 type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCodes[] };
 
-type MarkdownInlineConfig<Slug extends string, Languages extends readonly LanguageCodes[]> =
-  Omit<ContentBlock_Markdown_Config, 'slug'> &
-  { slug: Slug; files?: never } &
-  ConfigWithLanguages<ContentBlock_Markdown_Config, Languages>;
+type MarkdownInlineConfig<Slug extends string, Languages extends readonly LanguageCodes[]> = Omit<
+  ContentBlock_Markdown_Config,
+  'slug'
+> & { slug: Slug; files?: never } & ConfigWithLanguages<ContentBlock_Markdown_Config, Languages>;
 
-type MarkdownFileConfig<Slug extends string, Languages extends readonly LanguageCodes[]> =
-  Omit<ContentBlock_Markdown_Config, 'slug' | 'locale'> & {
-    slug: Slug;
-    files: MarkdownFiles;
-    locale?: Omit<RequireLanguages<ContentBlock_Markdown_Locale<'config'>, Languages>, 'value'>;
-  };
+type MarkdownFileConfig<Slug extends string, Languages extends readonly LanguageCodes[]> = Omit<
+  ContentBlock_Markdown_Config,
+  'slug' | 'locale'
+> & {
+  slug: Slug;
+  files: MarkdownFiles;
+  locale?: Omit<RequireLanguages<ContentBlock_Markdown_Locale<'config'>, Languages>, 'value'>;
+};
 
 function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Record<LanguageCodes, string>> {
   if (!languages.length || new Set(languages).size !== languages.length) {

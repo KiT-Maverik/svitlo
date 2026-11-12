@@ -72,7 +72,11 @@ const video = defineVideo({
   slug: 'video',
   type: 'video',
   params: {},
-  locale: { fileLocation: 'https://example.com/movie.mp4', poster: 'https://example.com/movie.jpg', label: { en: 'Movie' } },
+  locale: {
+    fileLocation: 'https://example.com/movie.mp4',
+    poster: 'https://example.com/movie.jpg',
+    label: { en: 'Movie' },
+  },
 });
 const youtube = defineYoutube({
   id,
@@ -198,19 +202,42 @@ void youtubeSlug;
 
 /** Required language tuples are compile-time only; overrides may remain sparse. */
 const multilingual = defineText<'multilingual', ['uk', 'en']>({
-  id, slug: 'multilingual', type: 'text', params: {},
+  id,
+  slug: 'multilingual',
+  type: 'text',
+  params: {},
   locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
 });
 multilingual.build.overrides({ locale: { value: { uk: 'Вітаю' } } });
 // @ts-expect-error Missing a required dictionary language ('en').
-defineText<'missingLanguage', ['uk', 'en']>({ id, slug: 'missingLanguage', type: 'text', params: {}, locale: { value: { uk: 'Привіт' } } });
+defineText<'missingLanguage', ['uk', 'en']>({
+  id,
+  slug: 'missingLanguage',
+  type: 'text',
+  params: {},
+  locale: { value: { uk: 'Привіт' } },
+});
 // @ts-expect-error Unknown locale code ('ru') is not a supported language.
-defineText<'unsupportedLanguage', ['uk', 'en']>({ id, slug: 'unsupportedLanguage', type: 'text', params: {}, locale: { value: { uk: 'Привіт', en: 'Hello', ru: 'Hi' } } });
+defineText<'unsupportedLanguage', ['uk', 'en']>({
+  id,
+  slug: 'unsupportedLanguage',
+  type: 'text',
+  params: {},
+  locale: { value: { uk: 'Привіт', en: 'Hello', ru: 'Hi' } },
+});
 // @ts-expect-error Required languages also apply to nested Markdown variable dictionaries.
-defineMarkdown<'missingVariableLanguage', ['uk', 'en']>({ id, slug: 'missingVariableLanguage', type: 'markdown', params: {}, locale: { value: 'Hello %_%NAME%_%', variables: { NAME: { uk: 'Ада' } } } });
+defineMarkdown<'missingVariableLanguage', ['uk', 'en']>({
+  id,
+  slug: 'missingVariableLanguage',
+  type: 'markdown',
+  params: {},
+  locale: { value: 'Hello %_%NAME%_%', variables: { NAME: { uk: 'Ада' } } },
+});
 
 const bilingualSlide = defineCarouselSlide<'bilingualSlide', ['uk', 'en']>({
-  id, slug: 'bilingualSlide', type: 'carouselSlide',
+  id,
+  slug: 'bilingualSlide',
+  type: 'carouselSlide',
   locale: { src: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 void bilingualSlide;

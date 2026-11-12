@@ -115,7 +115,10 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * mutates the original Text configurator.
  */
 export const defineText = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
-  config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Text_Config, Languages>,
+  config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Text_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;

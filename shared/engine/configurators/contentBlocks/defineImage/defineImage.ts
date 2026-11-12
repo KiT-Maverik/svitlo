@@ -71,7 +71,10 @@ const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublica
  * configurations are used only for semantic validation.
  */
 export const defineImage = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
-  config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Image_Config, Languages>,
+  config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Image_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;

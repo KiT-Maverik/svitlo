@@ -7,7 +7,11 @@ const ids = Array.from({ length: 4 }, (_, index) => 'b775647f-203d-481a-a1c7-4d3
 const slide = <const Slug extends string>(
   slug: Slug,
   id: string,
-  locale: { src: string | Partial<Record<'en' | 'uk', string>>; alt: string | Partial<Record<'en' | 'uk', string>>; caption?: string | Partial<Record<'en' | 'uk', string>> },
+  locale: {
+    src: string | Partial<Record<'en' | 'uk', string>>;
+    alt: string | Partial<Record<'en' | 'uk', string>>;
+    caption?: string | Partial<Record<'en' | 'uk', string>>;
+  },
 ) => defineCarouselSlide({ id, slug, type: 'carouselSlide', locale });
 
 const example = () => {
@@ -35,17 +39,20 @@ test('Carousel publishes ordered UI slide arrays, never child configurators or s
     { src: 'https://example.com/b.png', alt: 'Second' },
     { src: 'https://example.com/en-a.png', alt: 'First' },
   ]);
-  assert.deepEqual(resource.locale?.uk?.locale.slides?.map(item => item?.src), [
-    'https://example.com/b.png',
-    'https://example.com/uk-a.png',
-  ]);
+  assert.deepEqual(
+    resource.locale?.uk?.locale.slides?.map(item => item?.src),
+    ['https://example.com/b.png', 'https://example.com/uk-a.png'],
+  );
   assert.equal(JSON.stringify(resource).includes('additionalItems'), false);
   assert.equal(JSON.stringify(resource).includes('"order"'), false);
   assert.equal(JSON.stringify(resource).includes('"items"'), false);
-  assert.equal(carousel_Props_Schema.safeParse({
-    ...resource.base,
-    locale: { ...resource.base.locale, ...resource.locale?.uk?.locale },
-  }).success, true);
+  assert.equal(
+    carousel_Props_Schema.safeParse({
+      ...resource.base,
+      locale: { ...resource.base.locale, ...resource.locale?.uk?.locale },
+    }).success,
+    true,
+  );
 });
 
 test('Carousel keeps invariant slides in base with no redundant locale arrays', () => {
@@ -58,9 +65,7 @@ test('Carousel keeps invariant slides in base with no redundant locale arrays', 
     locale: {},
     slides: { items: { first }, order: ['first'] },
   });
-  assert.deepEqual(carousel.build.props().base.locale?.slides, [
-    { src: 'https://example.com/base.png', alt: 'Base' },
-  ]);
+  assert.deepEqual(carousel.build.props().base.locale?.slides, [{ src: 'https://example.com/base.png', alt: 'Base' }]);
   assert.equal(carousel.build.props().locale, undefined);
   assert.deepEqual(carousel.build.overrides({}), { base: {}, locale: undefined });
 });
@@ -121,10 +126,18 @@ test('Carousel rejects invalid collection boundaries, unknown fields, and identi
 
 test('Carousel rejects invalid authored slugs and preserves its snapshot', () => {
   const { carousel, first } = example();
-  assert.throws(() => defineCarousel({
-    id: ids[0], slug: 'invalid', type: 'carousel', params: {}, locale: {},
-    slides: { items: { different: first }, order: ['different'] },
-  }), /key does not match configurator slug/);
+  assert.throws(
+    () =>
+      defineCarousel({
+        id: ids[0],
+        slug: 'invalid',
+        type: 'carousel',
+        params: {},
+        locale: {},
+        slides: { items: { different: first }, order: ['different'] },
+      }),
+    /key does not match configurator slug/,
+  );
   const resource = carousel.build.props();
   carousel.slides.order.reverse();
   const exposed = carousel.slides as { items: Record<string, unknown>; order: string[] };
@@ -134,7 +147,8 @@ test('Carousel rejects invalid authored slugs and preserves its snapshot', () =>
 
 test('Carousel child patches cannot modify slide identity and support sparse locale overrides', () => {
   const child = slide('one', ids[1], {
-    src: 'https://example.com/one.png', alt: { en: 'One', uk: 'Один' },
+    src: 'https://example.com/one.png',
+    alt: { en: 'One', uk: 'Один' },
   });
   assert.deepEqual(child.build.overrides({ locale: { alt: { uk: 'Перший' } } }), {
     base: {},

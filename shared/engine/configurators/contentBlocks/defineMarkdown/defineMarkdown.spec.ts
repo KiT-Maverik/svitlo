@@ -44,20 +44,24 @@ test('Markdown reads locale files beside definition and publishes only their tex
       },
     });
     assert.equal('files' in markdown.config.base, false);
-    assert.equal(markdown_Props_Schema.safeParse({
-      ...base,
-      locale: { value: 'Привіт %_%NAME%_%', variables: { NAME: 'Ада' } },
-    }).success, true);
+    assert.equal(
+      markdown_Props_Schema.safeParse({
+        ...base,
+        locale: { value: 'Привіт %_%NAME%_%', variables: { NAME: 'Ада' } },
+      }).success,
+      true,
+    );
   });
 });
 
 test('Markdown file mode rejects missing, empty, duplicate, and unexpected language files', () => {
   withMarkdownFiles((moduleUrl, directory) => {
     writeFileSync(join(directory, 'en.md'), 'Hello');
-    const withFiles = (languages: readonly ('en' | 'uk')[]) => defineMarkdown({
-      ...base,
-      files: { moduleUrl, languages },
-    });
+    const withFiles = (languages: readonly ('en' | 'uk')[]) =>
+      defineMarkdown({
+        ...base,
+        files: { moduleUrl, languages },
+      });
 
     assert.throws(() => withFiles(['en', 'uk']), /Missing or unreadable Markdown locale file: .*uk\.md/);
     writeFileSync(join(directory, 'uk.md'), ' \n ');
@@ -82,7 +86,8 @@ test('Markdown requires every declared variable in every locale', () => {
     /locale\.value\.uk: missing configured variable "NAME"/,
   );
   assert.throws(
-    () => markdown.config.validate({ ...base, locale: { ...locale, value: { en: '# %_%OTHER%_%', uk: '# %_%NAME%_%' } } }),
+    () =>
+      markdown.config.validate({ ...base, locale: { ...locale, value: { en: '# %_%OTHER%_%', uk: '# %_%NAME%_%' } } }),
     /locale\.value\.en: variable "OTHER" is not declared/,
   );
   assert.throws(
@@ -90,7 +95,11 @@ test('Markdown requires every declared variable in every locale', () => {
     /locale\.variables\.NAME: missing replacement for "uk"/,
   );
   assert.throws(
-    () => markdown.config.validate({ ...base, locale: { ...locale, variables: { NAME: { en: 'Ada', uk: 'Ада', fr: 'Ada' } } } }),
+    () =>
+      markdown.config.validate({
+        ...base,
+        locale: { ...locale, variables: { NAME: { en: 'Ada', uk: 'Ада', fr: 'Ada' } } },
+      }),
     /locale\.variables\.NAME: unexpected replacement locale "fr"/,
   );
 });
@@ -107,10 +116,14 @@ test('Markdown accepts a sparse localized source override with originally invari
   const patch = markdown.build.overrides({ locale: { value: { uk: 'Вітаю %_%NAME%_%' } } });
   assert.deepEqual(patch, { base: {}, locale: { uk: { locale: { value: 'Вітаю %_%NAME%_%' } } } });
   assert.deepEqual(markdown.build.props(), before);
-  assert.throws(() => markdown.build.overrides({ locale: { value: { uk: 'Вітаю' } } }),
-    /missing configured variable "NAME"/);
-  assert.throws(() => markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Ада' } }, value: { uk: '%_%UNKNOWN%_%' } } }),
-    /variable "UNKNOWN" is not declared/);
+  assert.throws(
+    () => markdown.build.overrides({ locale: { value: { uk: 'Вітаю' } } }),
+    /missing configured variable "NAME"/,
+  );
+  assert.throws(
+    () => markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Ада' } }, value: { uk: '%_%UNKNOWN%_%' } } }),
+    /variable "UNKNOWN" is not declared/,
+  );
 });
 
 test('Markdown rejects malformed placeholders, unused variables and undeclared placeholders', () => {
@@ -129,8 +142,10 @@ test('Markdown rejects malformed placeholders, unused variables and undeclared p
     () => defineMarkdown({ ...base, locale: { value: '%_%UNKNOWN%_%' } }),
     /variable "UNKNOWN" is not declared/,
   );
-  assert.doesNotThrow(() => defineMarkdown({
-    ...base,
-    locale: { value: { en: '%_%NAME%_% %_%NAME%_%', uk: '%_%NAME%_%' }, variables },
-  }));
+  assert.doesNotThrow(() =>
+    defineMarkdown({
+      ...base,
+      locale: { value: { en: '%_%NAME%_% %_%NAME%_%', uk: '%_%NAME%_%' }, variables },
+    }),
+  );
 });

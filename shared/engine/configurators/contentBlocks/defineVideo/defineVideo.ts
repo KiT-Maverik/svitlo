@@ -72,7 +72,10 @@ const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublica
  * either complete Props or exclusively sparse override fields.
  */
 export const defineVideo = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
-  config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Video_Config, Languages>,
+  config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Video_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;

@@ -16,7 +16,11 @@ import {
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 const slide = <const Slug extends string>(
   slug: Slug,
-  locale: { src: string | Partial<Record<'en' | 'uk', string>>; alt: string | Partial<Record<'en' | 'uk', string>>; caption?: string | Partial<Record<'en' | 'uk', string>> },
+  locale: {
+    src: string | Partial<Record<'en' | 'uk', string>>;
+    alt: string | Partial<Record<'en' | 'uk', string>>;
+    caption?: string | Partial<Record<'en' | 'uk', string>>;
+  },
 ) => defineCarouselSlide({ id, slug, type: 'carouselSlide', locale });
 
 test('Published locale bodies already match Props and require no embedding', () => {
@@ -86,7 +90,6 @@ test('Audio publishes Props-shaped locale bodies and isolated sparse patches', (
   first.base.params.disabled = true;
   assert.deepEqual(audio.build.props().base.params, {});
 });
-
 
 test('Carousel publishes ordered complete localized arrays and handles sparse child overrides', () => {
   const first = slide('first', {
@@ -309,7 +312,6 @@ test('Every flat ContentBlock exposes the stateless Build API', () => {
   assert.equal(typeof block.build.props, 'function');
 });
 
-
 test('Carousel rejects a language lacking complete slide fields', () => {
   const mixed = slide('mixed', {
     src: { en: 'https://example.com/en.png' },
@@ -422,7 +424,6 @@ test('Flat ContentBlocks publish stateless Props without the legacy assemble sur
     assert.throws(() => block.build.overrides({ params: { unknown: true } } as never), /Invalid .* overrides/);
   }
 });
-
 
 test('Carousel slide overrides and published output are mutation-isolated', () => {
   const authored = { src: 'https://example.com/a.png', alt: 'Original' };

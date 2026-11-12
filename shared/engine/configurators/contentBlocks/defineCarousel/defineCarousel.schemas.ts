@@ -62,7 +62,10 @@ export const carousel_Override_Config_Schema: z.ZodType<Carousel_Metadata_Overri
 );
 
 export type ContentBlock_Carousel_Overrides<
-  Items extends Record<string, ContentBlock_CarouselSlide_Configurator> = Record<string, ContentBlock_CarouselSlide_Configurator>,
+  Items extends Record<string, ContentBlock_CarouselSlide_Configurator> = Record<
+    string,
+    ContentBlock_CarouselSlide_Configurator
+  >,
   Added extends Record<string, ContentBlock_CarouselSlide_Configurator> = {},
 > = Carousel_Metadata_Overrides & {
   slides?: {

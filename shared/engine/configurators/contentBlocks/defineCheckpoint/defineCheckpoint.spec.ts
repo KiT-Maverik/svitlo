@@ -43,14 +43,17 @@ const example = () => {
 
 test('Checkpoint accepts valid CheckpointItem configurators without treating them as renderable ContentBlocks', () => {
   const { checkpoint, first } = example();
-  assert.equal(checkpoint_Config_Schema.safeParse({
-    id: ids[0],
-    slug: 'review',
-    type: 'checkpoint',
-    params: {},
-    locale: { title: 'Review' },
-    content: { items: { first }, order: ['first'] },
-  }).success, true);
+  assert.equal(
+    checkpoint_Config_Schema.safeParse({
+      id: ids[0],
+      slug: 'review',
+      type: 'checkpoint',
+      params: {},
+      locale: { title: 'Review' },
+      content: { items: { first }, order: ['first'] },
+    }).success,
+    true,
+  );
   assert.equal(checkpoint.build.props().base.content[0].type, 'checkpointItem');
 });
 

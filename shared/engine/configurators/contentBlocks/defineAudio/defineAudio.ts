@@ -71,7 +71,10 @@ const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublica
  * configurations are used only for semantic validation.
  */
 export const defineAudio = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
-  config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Audio_Config, Languages>,
+  config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Audio_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;

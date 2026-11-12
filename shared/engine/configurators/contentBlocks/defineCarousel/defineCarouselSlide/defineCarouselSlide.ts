@@ -28,19 +28,21 @@ const publishLocale = (input: DeepPartial<ContentBlock_CarouselSlide_Config['loc
   const { base, locale } = splitLocalizedFields(input);
   return {
     invariant: base as Partial<ContentBlock_CarouselSlide_Fields>,
-    files: locale === undefined
-      ? undefined
-      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }])) as SlideLocaleFiles,
+    files:
+      locale === undefined
+        ? undefined
+        : (Object.fromEntries(
+            Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]),
+          ) as SlideLocaleFiles),
   };
 };
 
 /** Slide identity never appears in the Carousel's UI slides array. */
-export const defineCarouselSlide = <
-  const Slug extends string,
-  const Languages extends readonly LanguageCodes[] = [],
->(
-  config: Omit<ContentBlock_CarouselSlide_Config, 'slug'> & { slug: Slug } &
-    ConfigWithLanguages<ContentBlock_CarouselSlide_Config, Languages>,
+export const defineCarouselSlide = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<ContentBlock_CarouselSlide_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_CarouselSlide_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
@@ -74,7 +76,9 @@ export const defineCarouselSlide = <
     id,
     slug,
     type,
-    validate: (value: ContentBlock_CarouselSlide_Config): void => { parseAndValidate(value); },
+    validate: (value: ContentBlock_CarouselSlide_Config): void => {
+      parseAndValidate(value);
+    },
     build: { props, overrides },
     config: {
       base: { id, slug, type, locale: onlyStrings(authored.locale) },

@@ -74,7 +74,10 @@ const buildYoutubePatch = (
  * either complete Props or exclusively sparse override fields.
  */
 export const defineYoutube = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
-  config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Youtube_Config, Languages>,
+  config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
+      ContentBlock_Youtube_Config,
+      Languages
+    >,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
