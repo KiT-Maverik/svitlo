@@ -66,7 +66,6 @@ export const defineText = <const Slug extends string>(
   } satisfies ContentBlock_Text_ResourceBase;
 
   const resource = (): TextAssembly<ContentBlock_Text_ResourceBase> => {
-    validate(config);
     return { base: { ...base }, locales: assembleLocales(locale.value) };
   };
 
