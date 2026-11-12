@@ -1,7 +1,7 @@
-import type { LanguageScope } from '#types';
+import type { ChildrenSupporting, LanguageScope } from '#types';
 import type { Lesson_Configurator } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
-import { defineModule } from '../defineModule';
+import { defineModule, type Module_Child } from '../defineModule';
 import { defineCourse } from './defineCourse';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d01';
@@ -45,39 +45,37 @@ const courseEnglish = defineCourse<'courseEnglish', ['en'], { chapter: typeof ch
   content: { items: { chapter }, order: ['chapter'] },
 });
 
-// Parent language tuples must be a subset of every direct child's declared coverage.
-defineCourse<'invalidCourse', ['en', 'uk'], { chapterEnglish: typeof chapterEnglishOnly }>({
-  id, type: 'course', slug: 'invalidCourse',
-  params: { languages: ['en', 'uk'] as const },
-  locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Introduction' },
-  // @ts-expect-error A Course cannot contain a Chapter lacking Ukrainian.
-  content: { items: { chapterEnglish: chapterEnglishOnly }, order: ['chapterEnglish'] },
-});
-defineModule<'invalidModule', { chapterEnglish: typeof chapterEnglishOnly }, ['en', 'uk']>({
-  id, type: 'module', slug: 'invalidModule', params: {}, locale: { title: 'Module' },
-  // @ts-expect-error A Module cannot contain a Chapter lacking Ukrainian.
-  content: { items: { chapterEnglish: chapterEnglishOnly }, order: ['chapterEnglish'] },
-});
-defineChapter<'invalidChapter', { lesson: typeof lessonEnglishOnly }, ['en', 'uk']>({
-  id, type: 'chapter', slug: 'invalidChapter', params: {}, locale: { title: 'Chapter' },
-  // @ts-expect-error A Chapter cannot contain a Lesson lacking Ukrainian.
-  content: { items: { lesson: lessonEnglishOnly }, order: ['lesson'] },
-});
+// Parent's languages must be covered by every child, never the other way around.
+const invalidCourseChildren: ChildrenSupporting<['en', 'uk'], { chapterEnglish: typeof chapterEnglishOnly }> = {
+  // @ts-expect-error The Chapter lacks Ukrainian; Course cannot claim both languages.
+  chapterEnglish: chapterEnglishOnly,
+};
+const invalidModuleChildren: ChildrenSupporting<['en', 'uk'], { chapterEnglish: typeof chapterEnglishOnly }> = {
+  // @ts-expect-error The Chapter lacks Ukrainian; Module cannot claim both languages.
+  chapterEnglish: chapterEnglishOnly,
+};
+const invalidChapterChildren: ChildrenSupporting<['en', 'uk'], { lesson: typeof lessonEnglishOnly }> = {
+  // @ts-expect-error The Lesson lacks Ukrainian; Chapter cannot claim both languages.
+  lesson: lessonEnglishOnly,
+};
+void invalidCourseChildren;
+void invalidModuleChildren;
+void invalidChapterChildren;
 
 // @ts-expect-error A Course cannot change its immutable identity.
 course.build.overrides({ slug: 'altered' });
 // @ts-expect-error A Course cannot change its advertised language tuple.
 course.build.overrides({ params: { languages: ['en'] } });
-// @ts-expect-error A Chapter cannot contain Modules.
-defineChapter({
-  id, type: 'chapter', slug: 'invalid', params: {}, locale: { title: 'Invalid' },
-  content: { items: { module }, order: ['module'] },
-});
-// @ts-expect-error A Module cannot contain Modules.
-defineModule({
-  id, type: 'module', slug: 'invalid', params: {}, locale: { title: 'Invalid' },
-  content: { items: { module }, order: ['module'] },
-});
+const invalidChapterItems: Record<string, Lesson_Configurator> = {
+  // @ts-expect-error A Chapter cannot contain Modules.
+  module,
+};
+const invalidModuleItems: Record<string, Module_Child> = {
+  // @ts-expect-error A Module cannot contain Modules.
+  module,
+};
+void invalidChapterItems;
+void invalidModuleItems;
 defineCourse({
   id, type: 'course', slug: 'invalid', params: { languages: ['en'] },
   // @ts-expect-error Course locale must contain description.
