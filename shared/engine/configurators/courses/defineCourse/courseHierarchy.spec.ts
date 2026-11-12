@@ -153,7 +153,7 @@ test('Course scope excludes extra Chapter translations and propagates selected l
   assert.ok(JSON.stringify(resource.locale?.uk).includes('Розділ'));
 
   const override = course.build.overrides({
-    content: { items: { module: { locale: { title: { uk: 'Розділ модуля', en: 'Hidden' } } } },
+    content: { items: { module: { locale: { title: { uk: 'Розділ модуля', en: 'Hidden' } } } } },
   }, { languages: ['uk'] });
   assert.deepEqual(Object.keys(override.locale ?? {}), ['uk']);
   assert.equal(JSON.stringify(override).includes('Hidden'), false);
