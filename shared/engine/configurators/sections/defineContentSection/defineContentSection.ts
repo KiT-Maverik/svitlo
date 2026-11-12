@@ -13,6 +13,7 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   contentSection_Config_Schema,
+  contentSection_Props_Schema,
   contentSection_Override_Config_Schema,
   type Content_Section_Config,
   type ContentSection_Locale,
@@ -40,6 +41,33 @@ type OverrideBase = {
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
+
+/** Validate the effective Props for each explicitly requested publication locale. */
+const validateResolvedProps = (
+  resource: Publication<unknown>,
+  languages: readonly LanguageCodes[],
+  patch?: Publication<unknown>,
+): void => {
+  for (const language of languages) {
+    const base = mergeForValidation(
+      resource.base as Record<string, unknown>,
+      (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
+    );
+    const patched = patch
+      ? mergeForValidation(base, patch.base as DeepPartial<Record<string, unknown>>)
+      : base;
+    const resolved = patch
+      ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
+      : patched;
+    try {
+      contentSection_Props_Schema.parse(resolved);
+    } catch (error) {
+      throw new Error('Invalid defineContentSection Props for language ' + language + ': ' +
+        (error instanceof Error ? error.message : String(error)), { cause: error });
+    }
+  }
+};
+
 
 const validate = (config: Content_Section_Config): void => {
   contentSection_Config_Schema.parse(config);
@@ -138,7 +166,7 @@ export const defineContentSection = <
     for (const [language, entries] of Object.entries(children.locales)) {
       (files[language as LanguageCodes] ??= {}).content = entries;
     }
-    return structuredClone({
+    const result = structuredClone({
       base: {
         id, slug, type, params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
@@ -146,6 +174,8 @@ export const defineContentSection = <
       },
       locale: Object.keys(files).length ? files : undefined,
     });
+    validateResolvedProps(result, languages);
+    return result;
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
@@ -234,7 +264,9 @@ export const defineContentSection = <
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
-      return structuredClone(output);
+      const result = structuredClone(output);
+      validateResolvedProps(props(options), languages, result);
+      return result;
     } catch (error) {
       throw new Error(
         'Invalid defineContentSection overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
