@@ -2,7 +2,14 @@ import { readFileSync, readdirSync } from 'node:fs';
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  wrapLocale,
+  type WrappedLocaleFiles,
+} from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   markdown_Config_Schema,
@@ -14,7 +21,8 @@ import {
 } from './defineMarkdown.schemas';
 
 type MarkdownLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Markdown_Locale<'props'>>>>;
-type MarkdownAssembly<Base> = { base: Base; locale: MarkdownLocaleFiles | undefined };
+type MarkdownEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Markdown_Locale<'props'>>>;
+type MarkdownAssembly<Base, LocaleFiles = MarkdownLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type MarkdownOverrideBase = {
   params?: ContentBlock_Markdown_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
@@ -169,7 +177,14 @@ export const defineMarkdown = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
-  const resource = (): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => assembleMarkdown(copyAuthored());
+  function resource(): MarkdownAssembly<ContentBlock_Markdown_ResourceBase>;
+  function resource(options: { embed: true }): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownEmbeddedLocaleFiles>;
+  function resource(
+    options?: { embed?: true },
+  ): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownLocaleFiles | MarkdownEmbeddedLocaleFiles> {
+    const assembled = assembleMarkdown(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
   const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
     try {
       const parsedPatch = markdown_Override_Config_Schema.parse(patch);

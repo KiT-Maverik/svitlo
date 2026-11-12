@@ -1,7 +1,14 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  wrapLocale,
+  type WrappedLocaleFiles,
+} from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   audio_Config_Schema,
@@ -13,7 +20,8 @@ import {
 } from './defineAudio.schemas';
 
 type AudioLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Audio_Locale<'props'>>>>;
-type AudioAssembly<Base> = { base: Base; locale: AudioLocaleFiles | undefined };
+type AudioEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Audio_Locale<'props'>>>;
+type AudioAssembly<Base, LocaleFiles = AudioLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type AudioOverrideBase = {
   params?: ContentBlock_Audio_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Audio_Locale<'props'>>;
@@ -76,7 +84,14 @@ export const defineAudio = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
-  const resource = (): AudioAssembly<ContentBlock_Audio_ResourceBase> => assembleAudio(copyAuthored());
+  function resource(): AudioAssembly<ContentBlock_Audio_ResourceBase>;
+  function resource(options: { embed: true }): AudioAssembly<ContentBlock_Audio_ResourceBase, AudioEmbeddedLocaleFiles>;
+  function resource(
+    options?: { embed?: true },
+  ): AudioAssembly<ContentBlock_Audio_ResourceBase, AudioLocaleFiles | AudioEmbeddedLocaleFiles> {
+    const assembled = assembleAudio(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
   const overrides = (patch: ContentBlock_Audio_Overrides): AudioAssembly<AudioOverrideBase> => {
     try {
       const parsedPatch = audio_Override_Config_Schema.parse(patch);

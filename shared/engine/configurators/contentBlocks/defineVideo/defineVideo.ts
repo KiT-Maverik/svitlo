@@ -1,7 +1,14 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  wrapLocale,
+  type WrappedLocaleFiles,
+} from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   video_Config_Schema,
@@ -13,7 +20,8 @@ import {
 } from './defineVideo.schemas';
 
 type VideoLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Video_Locale<'props'>>>>;
-type VideoAssembly<Base> = { base: Base; locale: VideoLocaleFiles | undefined };
+type VideoEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Video_Locale<'props'>>>;
+type VideoAssembly<Base, LocaleFiles = VideoLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type VideoOverrideBase = {
   params?: ContentBlock_Video_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
@@ -77,7 +85,14 @@ export const defineVideo = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
-  const resource = (): VideoAssembly<ContentBlock_Video_ResourceBase> => assembleVideo(copyAuthored());
+  function resource(): VideoAssembly<ContentBlock_Video_ResourceBase>;
+  function resource(options: { embed: true }): VideoAssembly<ContentBlock_Video_ResourceBase, VideoEmbeddedLocaleFiles>;
+  function resource(
+    options?: { embed?: true },
+  ): VideoAssembly<ContentBlock_Video_ResourceBase, VideoLocaleFiles | VideoEmbeddedLocaleFiles> {
+    const assembled = assembleVideo(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
   const overrides = (patch: ContentBlock_Video_Overrides): VideoAssembly<VideoOverrideBase> => {
     try {
       const parsedPatch = video_Override_Config_Schema.parse(patch);

@@ -1,7 +1,14 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  wrapLocale,
+  type WrappedLocaleFiles,
+} from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   code_Config_Schema,
@@ -13,7 +20,8 @@ import {
 } from './defineCode.schemas';
 
 type CodeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Code_Locale<'props'>>>>;
-type CodeAssembly<Base> = { base: Base; locale: CodeLocaleFiles | undefined };
+type CodeEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Code_Locale<'props'>>>;
+type CodeAssembly<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type CodeOverrideBase = {
   params?: ContentBlock_Code_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Code_Locale<'props'>>;
@@ -109,7 +117,14 @@ export const defineCode = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
-  const resource = (): CodeAssembly<ContentBlock_Code_ResourceBase> => assembleCode(copyAuthored());
+  function resource(): CodeAssembly<ContentBlock_Code_ResourceBase>;
+  function resource(options: { embed: true }): CodeAssembly<ContentBlock_Code_ResourceBase, CodeEmbeddedLocaleFiles>;
+  function resource(
+    options?: { embed?: true },
+  ): CodeAssembly<ContentBlock_Code_ResourceBase, CodeLocaleFiles | CodeEmbeddedLocaleFiles> {
+    const assembled = assembleCode(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
   const overrides = (patch: ContentBlock_Code_Overrides): CodeAssembly<CodeOverrideBase> => {
     try {
       const parsedPatch = code_Override_Config_Schema.parse(patch);

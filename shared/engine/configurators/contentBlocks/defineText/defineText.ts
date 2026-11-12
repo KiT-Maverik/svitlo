@@ -1,7 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales } from '../../_shared__configurators';
+import { onlyLocales, wrapLocale, type WrappedLocaleFiles } from '../../_shared__configurators';
 import {
   text_Config_Schema,
   text_Override_Config_Schema,
@@ -13,7 +13,8 @@ import {
 import { validateTextVariables } from './defineText.utils';
 
 type TextLocaleFiles = Partial<Record<LanguageCodes, ContentBlock_Text_Locale<'props'>>>;
-type TextAssembly<Base> = { base: Base; locale: TextLocaleFiles | undefined };
+type TextEmbeddedLocaleFiles = WrappedLocaleFiles<ContentBlock_Text_Locale<'props'>>;
+type TextAssembly<Base, LocaleFiles = TextLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type TextOverrideBase = {
   params?: ContentBlock_Text_Overrides['params'];
   locale?: Partial<ContentBlock_Text_Locale<'props'>>;
@@ -111,6 +112,7 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * with no undeclared or malformed fragments.
  *
  * `assemble.resource()` publishes the complete authored resource.
+ * `assemble.resource({ embed: true })` wraps translated fields in a Props-shaped `locale` field.
  * `assemble.overrides(patch)` strictly checks the sparse patch, validates
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
@@ -124,7 +126,14 @@ export const defineText = <const Slug extends string>(
   const copyAuthored = () => text_Config_Schema.parse(structuredClone(authored));
   const base = { ...assembleText(copyAuthored()).base, slug };
 
-  const resource = (): TextAssembly<ContentBlock_Text_ResourceBase> => assembleText(copyAuthored());
+  function resource(): TextAssembly<ContentBlock_Text_ResourceBase>;
+  function resource(options: { embed: true }): TextAssembly<ContentBlock_Text_ResourceBase, TextEmbeddedLocaleFiles>;
+  function resource(
+    options?: { embed?: true },
+  ): TextAssembly<ContentBlock_Text_ResourceBase, TextLocaleFiles | TextEmbeddedLocaleFiles> {
+    const assembled = assembleText(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
 
   const overrides = (patch: ContentBlock_Text_Overrides): TextAssembly<TextOverrideBase> => {
     try {

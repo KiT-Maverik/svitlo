@@ -1,7 +1,14 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  wrapLocale,
+  type WrappedLocaleFiles,
+} from '../../_shared__configurators';
 import { validateSceneEntry } from '../_shared__contentBlocks';
 import {
   scene_Config_Schema,
@@ -13,7 +20,8 @@ import {
 } from './defineScene.schemas';
 
 type SceneLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Scene_Locale<'props'>>>>;
-type SceneAssembly<Base> = { base: Base; locale: SceneLocaleFiles | undefined };
+type SceneEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Scene_Locale<'props'>>>;
+type SceneAssembly<Base, LocaleFiles = SceneLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type SceneOverrideBase = {
   params?: ContentBlock_Scene_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>;
@@ -84,7 +92,14 @@ export const defineScene = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Scene_Config>;
 
-  const resource = (): SceneAssembly<ContentBlock_Scene_ResourceBase> => assembleScene(copyAuthored());
+  function resource(): SceneAssembly<ContentBlock_Scene_ResourceBase>;
+  function resource(options: { embed: true }): SceneAssembly<ContentBlock_Scene_ResourceBase, SceneEmbeddedLocaleFiles>;
+  function resource(
+    options?: { embed?: true },
+  ): SceneAssembly<ContentBlock_Scene_ResourceBase, SceneLocaleFiles | SceneEmbeddedLocaleFiles> {
+    const assembled = assembleScene(copyAuthored());
+    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }
   const overrides = (patch: ContentBlock_Scene_Overrides): SceneAssembly<SceneOverrideBase> => {
     try {
       const parsedPatch = scene_Override_Config_Schema.parse(patch);
