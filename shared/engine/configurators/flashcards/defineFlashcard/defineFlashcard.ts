@@ -396,7 +396,7 @@ export function defineFlashcard<
           return flashcardFlag_Config_Schema.parse(mergeForValidation(previous, sparse));
         },
       );
-      newParams.flags = flags as Flashcard_Config['parameters']['flags'];
+      newParams.flags = { items: flags.items, order: flags.order };
       if (flags.changed) {
         const built = buildFlags(newParams.flags, languages);
         (output.base.parameters ??= {}).flags = built.bases;
@@ -416,7 +416,7 @@ export function defineFlashcard<
       );
       newParams.relationships = (
         candidate.parameters.relationships || relationships.changed
-          ? relationships as Flashcard_Config['parameters']['relationships']
+          ? { items: relationships.items, order: relationships.order }
           : undefined
       );
       if (relationships.changed) {

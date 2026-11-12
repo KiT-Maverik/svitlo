@@ -20,7 +20,7 @@ const chapter = defineChapter<'chapter', {}, typeof chapterLanguages>({
   locale: { title: { en: 'Chapter', uk: 'Розділ', pl: 'Rozdział' } },
   content: { items: {}, order: [] },
 });
-const module = defineModule<'module', { chapter: typeof chapter }, typeof languages>({
+const chapterModule = defineModule<'module', { chapter: typeof chapter }, typeof languages>({
   id: id('c3'),
   type: 'module',
   slug: 'module',
@@ -34,14 +34,14 @@ const courseInput = {
   slug: 'course' as const,
   params: { languages, scenarioMode: 'story' as const },
   locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Course introduction' },
-  content: { items: { module }, order: ['module'] },
+  content: { items: { module: chapterModule }, order: ['module'] },
 };
-const course = defineCourse<'course', typeof languages, { module: typeof module }>(courseInput);
+const course = defineCourse<'course', typeof languages, { module: typeof chapterModule }>(courseInput);
 
 test('Course hierarchy retains literal slugs and publishes ordered plain Props', () => {
   assert.equal(course.slug, 'course');
-  assert.equal(course.content.items.module, module);
-  assert.equal(module.content.items.chapter, chapter);
+  assert.equal(course.content.items.module, chapterModule);
+  assert.equal(chapterModule.content.items.chapter, chapter);
   const resource = course.build.props({ languages: ['en', 'uk'] });
   assert.equal(resource.base.params.scenarioMode, 'story');
   assert.deepEqual(resource.base.content?.map(child => child!.slug), ['module']);
@@ -115,11 +115,11 @@ test('Independent Course Build calls do not mutate original children or authored
 
 test('Course, Module and Chapter reject wrong child types and duplicate slugs', () => {
   assert.throws(
-    () => defineCourse({ ...courseInput, content: { items: { wrongKey: module }, order: ['wrongKey'] } }),
+    () => defineCourse({ ...courseInput, content: { items: { wrongKey: chapterModule }, order: ['wrongKey'] } }),
     /does not match configurator slug/,
   );
   assert.throws(
-    () => defineModule({ id: id('c6'), slug: 'invalid', type: 'module', params: {}, locale: { title: 'Invalid' }, content: { items: { module }, order: ['module'] } } as never),
+    () => defineModule({ id: id('c6'), slug: 'invalid', type: 'module', params: {}, locale: { title: 'Invalid' }, content: { items: { module: chapterModule }, order: ['module'] } } as never),
     /Unsupported Module child type/,
   );
   assert.throws(
@@ -137,7 +137,7 @@ test('Course, Module and Chapter reject wrong child types and duplicate slugs', 
   assert.throws(
     () => defineCourse({
       ...courseInput,
-      content: { items: { module, copy: duplicate }, order: ['module', 'copy'] },
+      content: { items: { module: chapterModule, copy: duplicate }, order: ['module', 'copy'] },
     }),
     /duplicate Course child ID/,
   );

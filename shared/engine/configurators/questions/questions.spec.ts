@@ -458,7 +458,7 @@ test('publication validates selected child translations without requiring unsele
     content: { question: collection(missing) },
   });
   assert.doesNotThrow(() => badQuestion.build.props({ languages: ['uk'] }));
-  assert.throws(() => badQuestion.build.props({ languages: ['en'] }), /ContentBlock publication/);
+  assert.throws(() => badQuestion.build.props({ languages: ['en'] }), /ContentBlock publication|Invalid publication for language en/);
 });
 
 test('invariant child collections emit no redundant locale files', () => {

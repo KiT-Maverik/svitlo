@@ -20,11 +20,11 @@ const fields = {
 
 test('SkillGroup and SkillDomain index actual child configurators by their slug', () => {
   const reading = defineSkill({ ...fields, slug: 'reading' });
-  const writing = defineSkill({ ...fields, slug: 'writing' });
-  const numeracy = defineSkill({ ...fields, slug: 'numeracy' });
-  const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: { items: { reading, writing }, order: ['reading','writing'] } });
+  const writing = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd161', slug: 'writing' });
+  const numeracy = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd162', slug: 'numeracy' });
+  const group = defineSkillGroup({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd163', slug: 'literacy', skills: { items: { reading, writing }, order: ['reading','writing'] } });
   const domain = defineSkillDomain({
-    id: fields.id,
+    id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd164',
     slug: 'language',
     title: localized,
     description,
