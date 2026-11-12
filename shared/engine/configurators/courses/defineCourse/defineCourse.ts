@@ -150,7 +150,7 @@ export const defineCourse = <
     params: Omit<Course_Config['params'], 'languages'> & { languages: Languages };
   },
 ): Course_Configurator<Slug, Items, Languages> => {
-  validate(config);
+  validate(config as unknown as Course_Config);
   const metadataSchema = course_Config_Schema.omit({ content: true });
   const authored = metadataSchema.parse(config);
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
