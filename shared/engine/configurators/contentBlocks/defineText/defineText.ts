@@ -1,14 +1,103 @@
 import type { DeepPartial } from '#types';
+import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
+import { onlyLocales } from '../../_shared__configurators';
+import {
+  text_Config_Schema,
+  text_Override_Config_Schema,
+  type ContentBlock_Text_Config,
+  type ContentBlock_Text_Locale,
+  type ContentBlock_Text_Overrides,
+  type ContentBlock_Text_ResourceBase,
+} from './defineText.schemas';
+import { validateTextVariables } from './defineText.utils';
 
-import { text_Config_Schema, type ContentBlock_Text_Config, type ContentBlock_Text_Locale } from './defineText.schemas';
-import { validateTextVariables } from './validateTextVariables/validateTextVariables.utils';
-
-const validate = (config: ContentBlock_Text_Config) => {
-  text_Config_Schema.parse(config);
-  validateTextVariables(config);
+type TextLocaleFiles = Partial<Record<LanguageCodes, ContentBlock_Text_Locale<'props'>>>;
+type TextAssembly<Base> = { base: Base; locale: TextLocaleFiles | undefined };
+type TextOverrideBase = {
+  params?: ContentBlock_Text_Overrides['params'];
+  locale?: Partial<ContentBlock_Text_Locale<'props'>>;
 };
+
+const parseAndValidate = (config: ContentBlock_Text_Config): ContentBlock_Text_Config => {
+  const parsed = text_Config_Schema.parse(config);
+  validateTextVariables(parsed);
+  return parsed;
+};
+const validate = (config: ContentBlock_Text_Config): void => {
+  parseAndValidate(config);
+};
+
+/** Publish only language dictionaries, with no extra locale wrapper in each file. */
+const assembleLocale = (
+  value: ContentBlock_Text_Config['locale']['value'] | undefined,
+): TextLocaleFiles | undefined => {
+  const locale: TextLocaleFiles = {};
+  if (value && typeof value === 'object') {
+    for (const [language, text] of Object.entries(value)) {
+      if (text !== undefined) locale[language as LanguageCodes] = { value: text };
+    }
+  }
+  return Object.keys(locale).length ? locale : undefined;
+};
+
+const assembleText = (config: ContentBlock_Text_Config): TextAssembly<ContentBlock_Text_ResourceBase> => {
+  const { id, type, slug, params, locale } = config;
+  const base = {
+    id,
+    type,
+    slug,
+    params,
+    ...(typeof locale.value === 'string' ? { locale: { value: locale.value } } : {}),
+  } satisfies ContentBlock_Text_ResourceBase;
+  const translations = assembleLocale(locale.value);
+  if (translations === undefined && typeof base.locale?.value !== 'string') {
+    throw new Error('Text resource has neither a base value nor localized values');
+  }
+  return { base, locale: translations };
+};
+
+/** Publish only the validated, supplied fields, never the temporary resolved config. */
+const assembleTextPatch = (patch: ContentBlock_Text_Overrides): TextAssembly<TextOverrideBase> => ({
+  base: {
+    ...(patch.params !== undefined ? { params: patch.params } : {}),
+    ...(typeof patch.locale?.value === 'string' ? { locale: { value: patch.locale.value } } : {}),
+  },
+  locale: assembleLocale(patch.locale?.value),
+});
+
+/** Text dictionaries merge by language, variable rules by key; opaque values replace. */
+const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock_Text_Overrides) => ({
+  ...source,
+  params: {
+    ...source.params,
+    ...patch.params,
+    ...(patch.params?.wrap ? { wrap: { ...source.params.wrap, ...patch.params.wrap } } : {}),
+    ...(patch.params?.variables
+      ? {
+          variables: {
+            ...source.params.variables,
+            ...Object.fromEntries(
+              Object.entries(patch.params.variables).map(([key, rule]) => [
+                key,
+                { ...source.params.variables?.[key], ...rule },
+              ]),
+            ),
+          },
+        }
+      : {}),
+  },
+  locale: {
+    ...source.locale,
+    ...patch.locale,
+    value:
+      patch.locale?.value !== undefined &&
+      typeof patch.locale.value === 'object' &&
+      typeof source.locale.value === 'object'
+        ? { ...source.locale.value, ...patch.locale.value }
+        : (patch.locale?.value ?? source.locale.value),
+  },
+});
 
 /**
  * Define localized Text with optional styling for inline fragments.
@@ -20,41 +109,54 @@ const validate = (config: ContentBlock_Text_Config) => {
  * Unlike Code variables, the visible value is authored inline in each locale.
  * Every configured variable ID must appear in every supplied locale value,
  * with no undeclared or malformed fragments.
+ *
+ * `assemble.resource()` publishes the complete authored resource.
+ * `assemble.overrides(patch)` strictly checks the sparse patch, validates
+ * a temporary merged config, and publishes only the patch. Neither method
+ * mutates the original Text configurator.
  */
 export const defineText = <const Slug extends string>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
 ) => {
-  validate(config);
+  const authored = structuredClone(parseAndValidate(config));
+  const { id, type } = authored;
+  const slug = config.slug;
+  const copyAuthored = () => text_Config_Schema.parse(structuredClone(authored));
+  const base = { ...assembleText(copyAuthored()).base, slug };
 
-  const { id, type, slug, locale, params } = config;
+  const resource = (): TextAssembly<ContentBlock_Text_ResourceBase> => assembleText(copyAuthored());
 
-  const base = {
-    id,
-    type,
-    slug,
-    params,
-    locale: onlyStrings(locale),
-  } satisfies DeepPartial<ContentBlock_Text_Config>;
+  const overrides = (patch: ContentBlock_Text_Overrides): TextAssembly<TextOverrideBase> => {
+    try {
+      // Structural: reject unknown fields, bad types, and invalid locale keys.
+      const validatedPatch = text_Override_Config_Schema.parse(patch);
 
-  const overrides: DeepPartial<ContentBlock_Text_Config> = {};
+      // Semantic: inspect the fully resolved candidate, never publish it.
+      const resolved = text_Config_Schema.parse(mergeTextOverride(copyAuthored(), validatedPatch));
+      validate(resolved);
+
+      return assembleTextPatch(structuredClone(validatedPatch));
+    } catch (error) {
+      throw new Error(`Invalid Text overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
+        cause: error,
+      });
+    }
+  };
 
   return {
     id,
     slug,
     type,
+    validate,
+    assemble: { resource, overrides },
+    // Transitional compatibility for parents not migrated to assembly yet.
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Text_Locale<'config'>> } => ({
-        locale: onlyLocales(locale),
+        locale: onlyLocales(copyAuthored().locale),
       }),
-      overrides,
       validate,
     },
-    override: {
-      params: (newParams: DeepPartial<ContentBlock_Text_Config['params']>) => (overrides.params = newParams),
-      locale: (newLocale: DeepPartial<ContentBlock_Text_Locale<'config'>>) => (overrides.locale = newLocale),
-    },
-    disable: () => (overrides.params = { disabled: true }),
   } as const;
 };
 
