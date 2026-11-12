@@ -9,17 +9,14 @@ import { lesson_Props_Schema, type Lesson_Configurator, type Lesson_Props } from
 const params = paramsBase_Schema.shape.params.extend({
   iconKey: z.string().optional(),
 });
-
 const identity = identityBase_Schema.extend({
   type: z.literal('chapter'),
   params,
 });
-
 const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
 });
 export type Chapter_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
-
 export type Chapter_Child = Lesson_Configurator;
 export type Chapter_Child_Props = Lesson_Props;
 
@@ -32,22 +29,17 @@ export const chapter_Config_Schema = identity.extend({
 });
 export type Chapter_Config = z.infer<typeof chapter_Config_Schema>;
 
-/** Sparse metadata derives from authored fields, excluding immutable identity. */
 export type Chapter_Metadata_Overrides = {
   params?: DeepPartial<Chapter_Config['params']>;
   locale?: DeepPartial<Chapter_Config['locale']>;
 };
 export const chapter_Override_Config_Schema: z.ZodType<Chapter_Metadata_Overrides> = z.deepPartial(
-  deepStrict_Schema(
-    z.object({
-      params: chapter_Config_Schema.shape.params,
-      locale: chapter_Config_Schema.shape.locale,
-    }),
-  ),
+  deepStrict_Schema(z.object({
+    params: chapter_Config_Schema.shape.params,
+    locale: chapter_Config_Schema.shape.locale,
+  })),
 );
-
 type ChildPatch<Child> = Child extends { build: { overrides: (patch: infer Patch) => unknown } } ? Patch : never;
-
 export type Chapter_Overrides<
   Items extends Record<string, Chapter_Child> = Record<string, Chapter_Child>,
   Added extends Record<string, Chapter_Child> = {},
@@ -61,6 +53,6 @@ export type Chapter_Overrides<
 
 export const chapter_Props_Schema = identity.extend({
   ...addUnifiedLocale(locale('props')),
-  content: z.array(z.union([lesson_Props_Schema])),
+  content: z.array(lesson_Props_Schema),
 });
 export type Chapter_Props = z.infer<typeof chapter_Props_Schema>;
