@@ -13,6 +13,7 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   flashcard_Config_Schema,
+  flashcard_Props_Schema,
   flashcardFlag_Config_Schema,
   flashcardRelationship_Schema,
   flashcard_Override_Metadata_Schema,
@@ -53,6 +54,32 @@ type NamedPatch = {
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
+
+/** Ensure each requested language materializes a complete Flashcard, not a partial UI value. */
+const validatePublication = (
+  resource: Publication<unknown>,
+  languages: readonly LanguageCodes[],
+  patch?: Publication<unknown>,
+): void => {
+  for (const language of languages) {
+    const original = mergeForValidation(
+      resource.base as Record<string, unknown>,
+      (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
+    );
+    const withPatch = patch
+      ? mergeForValidation(original, patch.base as DeepPartial<Record<string, unknown>>)
+      : original;
+    const effective = patch
+      ? mergeForValidation(withPatch, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
+      : withPatch;
+    try {
+      flashcard_Props_Schema.parse(effective);
+    } catch (error) {
+      throw new Error('Invalid Flashcard Props for language ' + language + ': ' +
+        (error instanceof Error ? error.message : String(error)), { cause: error });
+    }
+  }
+};
 
 const validate = (config: Flashcard_Config): void => {
   flashcard_Config_Schema.parse(config);
@@ -273,7 +300,7 @@ export function defineFlashcard<
     addSideFiles(files, 'back', back);
     if (hint) addSideFiles(files, 'hint', hint);
     addFlagFiles(files, flags);
-    return structuredClone({
+    const result = structuredClone({
       base: {
         id, slug, type,
         parameters: {
@@ -288,8 +315,10 @@ export function defineFlashcard<
           ...(hint ? { hint: hint.bases } : {}),
         },
       },
-      locale: Object.keys(files).length ? files : undefined,
+      locale: selectPublicationLocales(Object.keys(files).length ? files : undefined, languages),
     });
+    validatePublication(result, languages);
+    return result;
   };
 
   const overrides = <
@@ -446,8 +475,10 @@ export function defineFlashcard<
         }
       }
       validate({ ...candidate, content: effective });
-      output.locale = Object.keys(files).length ? files : undefined;
-      return structuredClone(output);
+      output.locale = selectPublicationLocales(Object.keys(files).length ? files : undefined, languages);
+      const result = structuredClone(output);
+      validatePublication(props(options), languages, result);
+      return result;
     } catch (error) {
       throw new Error(
         'Invalid Flashcard overrides for ' + id + ': ' +
