@@ -19,11 +19,31 @@ const validate = (config: AssessmentMethod_Config): void => {
   assessmentMethod_Config_Schema.parse(config);
 };
 
+/** Explicit Props/Override return types keep declaration output compact. */
+export type AssessmentMethod_Configurator<
+  Slug extends string = string,
+  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'assessmentMethod';
+  readonly validate: typeof validate;
+  readonly build: {
+    props: () => AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }>;
+    overrides: (patch: AssessmentMethod_Overrides) => AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>>;
+  };
+  readonly config: {
+    base: DeepPartial<AssessmentMethod_Props> & { id: string; slug: string };
+    validate: typeof validate;
+    locales: () => DeepPartial<AssessmentMethod_Config>;
+  };
+} & LanguageScope<Languages>;
+
 /** Assessment method descriptions and labels retain their authored semantics. */
 export function defineAssessmentMethod<
   const Slug extends string,
   const Languages extends readonly LanguageCodes[] = [],
->(config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>) {
+>(config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>): AssessmentMethod_Configurator<Slug, Languages> {
   const authored = structuredClone(assessmentMethod_Config_Schema.parse(config));
   const { id } = authored;
   const slug = config.slug;
@@ -64,7 +84,6 @@ export function defineAssessmentMethod<
       },
     },
   } as const;
-  return result as typeof result & LanguageScope<Languages>;
+  return result as AssessmentMethod_Configurator<Slug, Languages>;
 }
 
-export type AssessmentMethod_Configurator = ReturnType<typeof defineAssessmentMethod>;
