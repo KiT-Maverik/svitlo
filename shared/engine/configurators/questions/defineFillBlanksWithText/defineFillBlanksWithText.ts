@@ -39,19 +39,25 @@ type SlotMap = ContentShape['slots']['items'];
 type SlotChanges<Content extends ContentShape> = {
   [Key in keyof Content['slots']['items']]?: DeepPartial<Content['slots']['items'][Key]> | false;
 };
-type SlotsOverride<Content extends ContentShape> = {
+type SlotsOverride<
+  Content extends ContentShape,
+  AddedSlots extends Record<string, Slot>,
+  Languages extends readonly LanguageCodes[],
+> = {
   items?: SlotChanges<Content>;
-  additionalItems?: Record<string, Slot>;
-  order?: string[];
+  additionalItems?: AddedSlots & RequireLanguages<AddedSlots, Languages> &
+    { [Key in keyof Content['slots']['items']]?: never };
+  order?: Extract<keyof Content['slots']['items'] | keyof NoInfer<AddedSlots>, string>[];
 };
 export type Question_FillBlanksWithText_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
+  AddedSlots extends Record<string, Slot> = {},
 > =
   Question_FillBlanksWithText_MetadataOverrides & {
     content?: QuestionCommonPatch<Content, Added, Languages> & {
-      slots?: SlotsOverride<Content>;
+      slots?: SlotsOverride<Content, AddedSlots, Languages>;
     };
   };
 
@@ -105,7 +111,11 @@ export const defineFillBlanksWithText = <
     slots: cloneJson(initialContent.slots),
   } as Content;
 
-  const projectSlots = (patch?: SlotsOverride<Content>) => {
+  const projectSlots = (patch?: {
+    items?: SlotChanges<Content>;
+    additionalItems?: Record<string, Slot>;
+    order?: string[];
+  }) => {
     if (patch !== undefined && !isRecord(patch)) throw new Error('content.slots must be an object');
     for (const key of Object.keys(patch ?? {})) {
       if (!['items', 'additionalItems', 'order'].includes(key)) {
@@ -211,8 +221,11 @@ export const defineFillBlanksWithText = <
     };
   };
 
-  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
-    patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages>,
+  const overrides = <
+    const Added extends Record<string, ContentBlock_Configurator> = {},
+    const AddedSlots extends Record<string, Slot> = {},
+  >(
+    patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlots>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);

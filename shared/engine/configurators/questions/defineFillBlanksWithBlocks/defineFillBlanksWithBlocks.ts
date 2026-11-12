@@ -28,19 +28,30 @@ const validate = (candidate: Question_FillBlanksWithBlocks_Config): void => {
 };
 
 type ContentShape = Question_FillBlanksWithBlocks_Config['content'];
+type SlotBlock = { correctAnswer: ContentBlock_Configurator };
+type SlotBlocksOverride<
+  Content extends ContentShape,
+  AddedSlots extends Record<string, SlotBlock>,
+  Languages extends readonly LanguageCodes[],
+> = {
+  items?: { [Key in keyof Content['slots']['items']]?:
+    { correctAnswer?: Parameters<Content['slots']['items'][Key]['correctAnswer']['build']['overrides']>[0] } | false };
+  additionalItems?: AddedSlots & {
+    [Key in keyof AddedSlots]: {
+      correctAnswer: ChildSupporting<Languages, AddedSlots[Key]['correctAnswer']>;
+    };
+  } & { [Key in keyof Content['slots']['items']]?: never };
+  order?: Extract<keyof Content['slots']['items'] | keyof NoInfer<AddedSlots>, string>[];
+};
 export type Question_FillBlanksWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
+  AddedSlots extends Record<string, SlotBlock> = {},
 > =
   Question_FillBlanksWithBlocks_MetadataOverrides & {
     content?: QuestionCommonPatch<Content, Added, Languages> & {
-      slots?: {
-  items?: { [Key in keyof Content['slots']['items']]?:
-    { correctAnswer?: Parameters<Content['slots']['items'][Key]['correctAnswer']['build']['overrides']>[0] } | false };
-  additionalItems?: Record<string, { correctAnswer: ContentBlock_Configurator }>;
-  order?: string[];
-};
+      slots?: SlotBlocksOverride<Content, AddedSlots, Languages>;
 distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
     };
   };
@@ -113,8 +124,11 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
     };
   };
 
-  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
-    patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages>,
+  const overrides = <
+    const Added extends Record<string, ContentBlock_Configurator> = {},
+    const AddedSlots extends Record<string, SlotBlock> = {},
+  >(
+    patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlots>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);

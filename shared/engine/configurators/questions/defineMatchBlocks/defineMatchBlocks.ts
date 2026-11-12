@@ -27,20 +27,32 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
 };
 
 type ContentShape = Question_MatchBlocks_Config['content'];
+type Pair = { left: ContentBlock_Configurator; right: ContentBlock_Configurator };
+type PairsOverride<
+  Content extends ContentShape,
+  AddedPairs extends Record<string, Pair>,
+  Languages extends readonly LanguageCodes[],
+> = {
+  items?: { [Key in keyof Content['pairs']['items']]?:
+    { left?: Parameters<Content['pairs']['items'][Key]['left']['build']['overrides']>[0];
+      right?: Parameters<Content['pairs']['items'][Key]['right']['build']['overrides']>[0] } | false };
+  additionalItems?: AddedPairs & {
+    [Key in keyof AddedPairs]: {
+      left: ChildSupporting<Languages, AddedPairs[Key]['left']>;
+      right: ChildSupporting<Languages, AddedPairs[Key]['right']>;
+    };
+  } & { [Key in keyof Content['pairs']['items']]?: never };
+  order?: Extract<keyof Content['pairs']['items'] | keyof NoInfer<AddedPairs>, string>[];
+};
 export type Question_MatchBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
+  AddedPairs extends Record<string, Pair> = {},
 > =
   Question_MatchBlocks_MetadataOverrides & {
     content?: QuestionCommonPatch<Content, Added, Languages> & {
-      pairs?: {
-  items?: { [Key in keyof Content['pairs']['items']]?:
-    { left?: Parameters<Content['pairs']['items'][Key]['left']['build']['overrides']>[0];
-      right?: Parameters<Content['pairs']['items'][Key]['right']['build']['overrides']>[0] } | false };
-  additionalItems?: Record<string, { left: ContentBlock_Configurator; right: ContentBlock_Configurator }>;
-  order?: string[];
-};
+      pairs?: PairsOverride<Content, AddedPairs, Languages>;
     };
   };
 
@@ -101,8 +113,11 @@ export const defineMatchBlocks = <
     };
   };
 
-  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
-    patch: Question_MatchBlocks_Overrides<Content, Added, Languages>,
+  const overrides = <
+    const Added extends Record<string, ContentBlock_Configurator> = {},
+    const AddedPairs extends Record<string, Pair> = {},
+  >(
+    patch: Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairs>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);

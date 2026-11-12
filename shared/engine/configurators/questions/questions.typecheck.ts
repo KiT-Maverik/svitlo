@@ -93,3 +93,69 @@ defineAnswerWithNumber<'badLanguageChild', typeof localContent, ['uk', 'en', 'pl
 defineAnswerWithNumber<'badLocale', typeof localContent, ['uk', 'en']>({ id, slug: 'badLocale', type: 'answerWithNumber', params: { ...params, correctAnswers: [1] }, locale: { placeholder: { uk: 'Відповідь' } }, content: localContent });
 
 void [one, multiple, matched, text, number, order, build, blocks, blanks, validLanguageChild];
+
+const anotherLocalizedBlock = defineText<'anotherLocalizedBlock', ['uk', 'en']>({
+  id, type: 'text', slug: 'anotherLocalizedBlock', params: {}, locale: { value: { uk: 'Ні', en: 'No' } },
+});
+const onlyUkrainianBlock = defineText<'onlyUkrainianBlock', ['uk']>({
+  id, type: 'text', slug: 'onlyUkrainianBlock', params: {}, locale: { value: { uk: 'Тільки українською' } },
+});
+
+const scopedPairContent = {
+  ...localContent,
+  pairs: {
+    items: { firstPair: { left: localizedBlock, right: anotherLocalizedBlock } },
+    order: ['firstPair'],
+  },
+};
+const scopedMatch = defineMatchBlocks<'scopedMatch', typeof scopedPairContent, ['uk', 'en']>({
+  id, slug: 'scopedMatch', type: 'matchBlocks', params, locale: {}, content: scopedPairContent,
+});
+scopedMatch.build.overrides({
+  content: { pairs: {
+    additionalItems: { secondPair: { left: anotherLocalizedBlock, right: localizedBlock } },
+    order: ['firstPair', 'secondPair'],
+  } },
+});
+// @ts-expect-error New MatchBlocks pairs cannot contain a child lacking the parent language scope.
+scopedMatch.build.overrides({ content: { pairs: { additionalItems: { secondPair: { left: onlyUkrainianBlock, right: localizedBlock } }, order: ['firstPair', 'secondPair'] } } });
+// @ts-expect-error MatchBlocks order keys must refer to authored or added pairs.
+scopedMatch.build.overrides({ content: { pairs: { order: ['missingPair'] } } });
+
+const scopedSlotContent = {
+  ...localContent,
+  slots: { items: { originalSlot: { correctAnswer: localizedBlock } }, order: ['originalSlot'] },
+  distractors: { items: { anotherLocalizedBlock }, order: ['anotherLocalizedBlock'] },
+};
+const scopedBlocks = defineFillBlanksWithBlocks<'scopedBlocks', typeof scopedSlotContent, ['uk', 'en']>({
+  id, slug: 'scopedBlocks', type: 'fillBlanksWithBlocks', params,
+  locale: { placeholder: { uk: 'Вставте', en: 'Fill' } }, content: scopedSlotContent,
+});
+scopedBlocks.build.overrides({
+  content: { slots: {
+    additionalItems: { secondSlot: { correctAnswer: anotherLocalizedBlock } },
+    order: ['originalSlot', 'secondSlot'],
+  } },
+});
+// @ts-expect-error New answer slots must cover every language declared by their Question.
+scopedBlocks.build.overrides({ content: { slots: { additionalItems: { secondSlot: { correctAnswer: onlyUkrainianBlock } }, order: ['originalSlot', 'secondSlot'] } } });
+// @ts-expect-error Block slot order cannot refer to arbitrary selectors.
+scopedBlocks.build.overrides({ content: { slots: { order: ['unknownSlot'] } } });
+
+const scopedTextSlotContent = {
+  ...localContent,
+  slots: { items: { originalSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } } }, order: ['originalSlot'] },
+};
+const scopedTextSlots = defineFillBlanksWithText<'scopedTextSlots', typeof scopedTextSlotContent, ['uk', 'en']>({
+  id, slug: 'scopedTextSlots', type: 'fillBlanksWithText', params,
+  locale: { placeholder: { uk: 'Вставте', en: 'Fill' } }, content: scopedTextSlotContent,
+});
+scopedTextSlots.build.overrides({
+  content: { slots: { additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } } }, order: ['originalSlot', 'secondSlot'] } },
+});
+// @ts-expect-error New text slots need all declared translations.
+scopedTextSlots.build.overrides({ content: { slots: { additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так' } } } }, order: ['originalSlot', 'secondSlot'] } } });
+// @ts-expect-error Text slot order must use known or added keys.
+scopedTextSlots.build.overrides({ content: { slots: { order: ['unknownSlot'] } } });
+
+void [scopedMatch, scopedBlocks, scopedTextSlots];
