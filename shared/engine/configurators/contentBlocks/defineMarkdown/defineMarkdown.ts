@@ -138,6 +138,19 @@ const mergeMarkdownForValidation = (
     }
     effective.locale.variables = { ...effective.locale.variables, [name]: complete };
   }
+  // If a previously invariant source becomes localized for only one language,
+  // unmentioned translations still use the invariant source. A localized
+  // replacement dictionary can therefore contain languages absent from the
+  // temporary, one-language source. Project those dictionaries *only for
+  // semantic validation*, never for publication.
+  if (typeof original.locale.value === 'string' && typeof patch.locale?.value === 'object') {
+    const languages = new Set(Object.keys(effective.locale.value));
+    for (const [name, value] of Object.entries(effective.locale.variables ?? {})) {
+      if (typeof value === 'string') continue;
+      const relevant = Object.fromEntries(Object.entries(value).filter(([language]) => languages.has(language)));
+      effective.locale.variables = { ...effective.locale.variables, [name]: relevant };
+    }
+  }
   return effective;
 };
 
