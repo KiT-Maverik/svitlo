@@ -48,8 +48,8 @@ export const text_Override_Config_Schema: z.ZodType<ContentBlock_Text_Overrides>
   ),
 );
 
-/** Required nonlocalized fields come from the Text base schema. */
-export type ContentBlock_Text_ResourceBase = z.infer<typeof textBase> & {
+/** Published base is a Props fragment: translations are kept in separate locale files. */
+export type ContentBlock_Text_PropsBase = z.infer<typeof textBase> & {
   locale?: Partial<ContentBlock_Text_Locale<'props'>>;
 };
 

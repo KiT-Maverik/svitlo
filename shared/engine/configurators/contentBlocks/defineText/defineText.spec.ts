@@ -11,9 +11,16 @@ const identity = {
   params: {},
 };
 
+test('Text exposes only the new build publication API', () => {
+  const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+  assert.equal('assemble' in text, false);
+  assert.equal(typeof text.build.props, 'function');
+  assert.equal(typeof text.build.overrides, 'function');
+});
+
 test('Text publishes invariant values in base and no locale files', () => {
   const text = defineText({ ...identity, locale: { value: 'Welcome' } });
-  const output = text.assemble.resource();
+  const output = text.build.props();
   assert.deepEqual(output, {
     base: { ...identity, locale: { value: 'Welcome' } },
     locale: undefined,
@@ -23,7 +30,7 @@ test('Text publishes invariant values in base and no locale files', () => {
 
 test('Text publishes translated values directly as language JSON bodies', () => {
   const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
-  const output = text.assemble.resource();
+  const output = text.build.props();
   assert.deepEqual(output, {
     base: { ...identity },
     locale: { en: { value: 'Welcome' }, uk: { value: 'Привіт' } },
@@ -33,8 +40,8 @@ test('Text publishes translated values directly as language JSON bodies', () => 
 
 test('Text embeds translated values as Props-shaped locale fragments', () => {
   const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
-  const publication = text.assemble.resource();
-  const embedded = text.assemble.resource({ embed: true });
+  const publication = text.build.props();
+  const embedded = text.build.props({ embed: true });
 
   assert.deepEqual(embedded, {
     base: publication.base,
@@ -44,15 +51,15 @@ test('Text embeds translated values as Props-shaped locale fragments', () => {
     },
   });
   assert.equal(text_Props_Schema.safeParse({ ...embedded.base, ...embedded.locale?.uk }).success, true);
-  assert.deepEqual(text.assemble.resource(), publication);
+  assert.deepEqual(text.build.props(), publication);
 
   if (embedded.locale?.en) embedded.locale.en.locale.value = 'Modified output';
-  assert.deepEqual(text.assemble.resource({ embed: true }).locale?.en, { locale: { value: 'Welcome' } });
+  assert.deepEqual(text.build.props({ embed: true }).locale?.en, { locale: { value: 'Welcome' } });
 });
 
 test('Text embedding preserves invariant values without inventing locale files', () => {
   const text = defineText({ ...identity, locale: { value: 'Universal' } });
-  assert.deepEqual(text.assemble.resource({ embed: true }), {
+  assert.deepEqual(text.build.props({ embed: true }), {
     base: { ...identity, locale: { value: 'Universal' } },
     locale: undefined,
   });
@@ -60,15 +67,15 @@ test('Text embedding preserves invariant values without inventing locale files',
 
 test('Text publishes only the validated override patch, not inherited properties', () => {
   const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
-  const before = text.assemble.resource();
+  const before = text.build.props();
   const patch = { params: { disabled: true as const }, locale: { value: { uk: 'Вітаю' } } };
 
-  assert.deepEqual(text.assemble.overrides(patch), {
+  assert.deepEqual(text.build.overrides(patch), {
     base: { params: { disabled: true } },
     locale: { uk: { value: 'Вітаю' } },
   });
-  assert.deepEqual(text.assemble.overrides({}), { base: {}, locale: undefined });
-  assert.deepEqual(text.assemble.resource(), before);
+  assert.deepEqual(text.build.overrides({}), { base: {}, locale: undefined });
+  assert.deepEqual(text.build.props(), before);
   assert.deepEqual(patch, { params: { disabled: true }, locale: { value: { uk: 'Вітаю' } } });
   assert.equal('override' in text, false);
   assert.equal('disable' in text, false);
@@ -78,7 +85,7 @@ test('Text permits a one-language override of an invariant or localized text', (
   const localized = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
   const invariant = defineText({ ...identity, locale: { value: 'Welcome' } });
   for (const text of [localized, invariant]) {
-    assert.deepEqual(text.assemble.overrides({ locale: { value: { uk: 'Вітаю' } } }), {
+    assert.deepEqual(text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }), {
       base: {},
       locale: { uk: { value: 'Вітаю' } },
     });
@@ -87,11 +94,11 @@ test('Text permits a one-language override of an invariant or localized text', (
 
 test('Text publishes invariant overrides as an intentional dictionary replacement', () => {
   const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
-  assert.deepEqual(text.assemble.overrides({ locale: { value: 'Universal' } }), {
+  assert.deepEqual(text.build.overrides({ locale: { value: 'Universal' } }), {
     base: { locale: { value: 'Universal' } },
     locale: undefined,
   });
-  assert.deepEqual(text.assemble.resource().locale, {
+  assert.deepEqual(text.build.props().locale, {
     en: { value: 'Welcome' },
     uk: { value: 'Привіт' },
   });
@@ -109,7 +116,7 @@ test('Text checks semantic variable rules against the temporarily merged config'
     },
   });
   assert.deepEqual(
-    text.assemble.overrides({
+    text.build.overrides({
       locale: { value: { uk: 'Вітаю %_%id: personName; value: Оля%_%' } },
     }),
     {
@@ -118,11 +125,11 @@ test('Text checks semantic variable rules against the temporarily merged config'
     },
   );
   assert.throws(
-    () => text.assemble.overrides({ locale: { value: { uk: 'Вітаю' } } }),
+    () => text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }),
     /missing configured Text fragment "personName"/,
   );
   assert.throws(
-    () => text.assemble.overrides({ params: { variables: { anotherName: { applyStyle: ['bold'] } } } }),
+    () => text.build.overrides({ params: { variables: { anotherName: { applyStyle: ['bold'] } } } }),
     /Text variables validation failed/,
   );
   assert.doesNotThrow(() =>
@@ -144,7 +151,7 @@ test('Text allows deep-partial nested patches and publishes only those keys', ()
     locale: { value: 'Hi %_%id: personName; value: Ada%_%' },
   });
   assert.deepEqual(
-    text.assemble.overrides({
+    text.build.overrides({
       params: {
         wrap: { typographyProps: { weight: 'bold' } },
         variables: { personName: { applyColor: 'blue' } },
@@ -174,7 +181,7 @@ test('Text strictly rejects unknown override fields with cause and identity', ()
     { locale: { value: { wrongLanguage: 'Bonjour' } } },
   ]) {
     assert.throws(
-      () => text.assemble.overrides(input as never),
+      () => text.build.overrides(input as never),
       error => {
         assert.ok(error instanceof Error);
         assert.match(error.message, new RegExp(`Invalid Text overrides for ${identity.id}`));
@@ -188,7 +195,7 @@ test('Text strictly rejects unknown override fields with cause and identity', ()
 test('Text requires typographyProps to be a JSON-compatible object', () => {
   const text = defineText({ ...identity, locale: { value: 'Welcome' } });
   assert.deepEqual(
-    text.assemble.overrides({
+    text.build.overrides({
       params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } },
     }),
     {
@@ -197,7 +204,7 @@ test('Text requires typographyProps to be a JSON-compatible object', () => {
     },
   );
   for (const value of ['not-an-object', { onClick: () => 42 }, { nested: { invalid: undefined } }, { nested: 1n }]) {
-    assert.throws(() => text.assemble.overrides({ params: { wrap: { typographyProps: value as never } } }));
+    assert.throws(() => text.build.overrides({ params: { wrap: { typographyProps: value as never } } }));
   }
 });
 
@@ -213,7 +220,7 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
   config.locale.value = 'Other';
   config.params.disabled = true;
 
-  assert.deepEqual(text.assemble.resource(), {
+  assert.deepEqual(text.build.props(), {
     base: {
       ...identity,
       params: { wrap: { enabled: true, typographyProps: { nested: { weight: 'normal' } } } },
@@ -221,15 +228,15 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
     locale: { en: { value: 'Welcome' } },
   });
 
-  const assembled = text.assemble.resource();
+  const assembled = text.build.props();
   (assembled.base.params.wrap?.typographyProps as { nested: { weight: string } }).nested.weight = 'mutated output';
-  assert.deepEqual(text.assemble.resource().base.params.wrap?.typographyProps, { nested: { weight: 'normal' } });
+  assert.deepEqual(text.build.props().base.params.wrap?.typographyProps, { nested: { weight: 'normal' } });
 
   const patch = { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } };
-  const first = text.assemble.overrides(patch);
+  const first = text.build.overrides(patch);
   (first.base.params?.wrap?.typographyProps as { nested: { weight: string } }).nested.weight =
     'mutated override output';
-  assert.deepEqual(text.assemble.overrides(patch), {
+  assert.deepEqual(text.build.overrides(patch), {
     base: { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } },
     locale: undefined,
   });
