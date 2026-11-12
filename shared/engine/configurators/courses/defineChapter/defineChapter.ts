@@ -340,7 +340,9 @@ export const defineChapter = <
         const built = buildContent(enabled, order, languages, childPatches);
         output.base.content = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
-          (files[language as LanguageCodes] ??= {}).content = values;
+          // Keep the atomic child array as a runtime publication fragment; validate it through Props.
+          const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+          destination.content = values;
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
