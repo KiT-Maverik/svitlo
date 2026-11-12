@@ -15,7 +15,7 @@ export const projectQuestionLocale = (input: Record<string, unknown>) => {
   return { base: cloneJson(own.base), files };
 };
 
-export const ensureQuestionPatchShape = (patch: unknown): asserts patch is Record<string, unknown> => {
+export function ensureQuestionPatchShape(patch: unknown): asserts patch is Record<string, unknown> {
   if (!isRecord(patch)) throw new Error('Question overrides must be a plain object');
   for (const key of Object.keys(patch)) {
     if (!['params', 'locale', 'content'].includes(key)) {
