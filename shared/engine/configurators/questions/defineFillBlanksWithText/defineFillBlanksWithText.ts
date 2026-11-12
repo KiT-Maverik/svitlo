@@ -38,7 +38,7 @@ type ContentShape = Question_FillBlanksWithText_Config['content'];
 type Slot = ContentShape['slots']['items'][string];
 type SlotMap = ContentShape['slots']['items'];
 type SlotChanges<Content extends ContentShape> = {
-  [Key in keyof Content['slots']['items']]?: DeepPartial<Content['slots']['items'][Key]> | false;
+  [Key in keyof Content['slots']['items']]?: DeepPartial<Slot> | false;
 };
 type SlotsOverride<
   Content extends ContentShape,
@@ -47,7 +47,8 @@ type SlotsOverride<
 > = {
   items?: SlotChanges<Content>;
   additionalItems?: AddedSlots &
-    RequireLanguages<AddedSlots, Languages> & { [Key in keyof Content['slots']['items']]?: never };
+    RequireLanguages<AddedSlots, Languages> &
+    (string extends keyof Content['slots']['items'] ? {} : { [Key in keyof Content['slots']['items']]?: never });
   order?: Extract<keyof Content['slots']['items'] | keyof NoInfer<AddedSlots>, string>[];
 };
 export type Question_FillBlanksWithText_Overrides<

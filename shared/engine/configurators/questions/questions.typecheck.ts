@@ -103,10 +103,10 @@ one.build.overrides({ id }, scope);
 one.build.overrides({ content: { question: { items: { answerBlock: { slug: 'another' } } } } }, scope);
 // @ts-expect-error Number question answers must remain numeric.
 number.build.overrides({ params: { correctAnswers: ['2'] } }, scope);
-// @ts-expect-error Assessment Method slugs are closed.
 defineSelectOneAnswer({
   ...common,
   type: 'selectOneAnswer',
+  // @ts-expect-error Assessment Method slugs are closed.
   params: { ...params, assessmentMethod: 'unknown' },
   content: { ...common.content, answers },
 });
@@ -124,19 +124,19 @@ const validLanguageChild = defineAnswerWithNumber<'validLanguageChild', typeof l
   slug: 'validLanguageChild',
   type: 'answerWithNumber',
   params: { ...params, correctAnswers: [1] },
+  // @ts-expect-error Declared English support requires an English translation.
   locale: { placeholder: { uk: 'Відповідь' } },
   content: localContent,
 });
-// @ts-expect-error Typed Question cannot require an unsupported child language (pl).
 defineAnswerWithNumber<'badLanguageChild', typeof localContent, ['uk', 'en', 'pl']>({
   id,
   slug: 'badLanguageChild',
   type: 'answerWithNumber',
   params: { ...params, correctAnswers: [1] },
   locale: { placeholder: { uk: 'Відповідь', en: 'Answer', pl: 'Odpowiedź' } },
+  // @ts-expect-error A child lacking pl cannot satisfy a trilingual Question.
   content: localContent,
 });
-// @ts-expect-error Config language tuple needs all declared translations.
 defineAnswerWithNumber<'badLocale', typeof localContent, ['uk', 'en']>({
   id,
   slug: 'badLocale',
@@ -189,11 +189,11 @@ scopedMatch.build.overrides(
   },
   scope,
 );
-// @ts-expect-error New MatchBlocks pairs cannot contain a child lacking the parent language scope.
 scopedMatch.build.overrides(
   {
     content: {
       pairs: {
+        // @ts-expect-error A bilingual Question cannot add a Ukrainian-only child.
         additionalItems: { secondPair: { left: onlyUkrainianBlock, right: localizedBlock } },
         order: ['firstPair', 'secondPair'],
       },
@@ -228,11 +228,11 @@ scopedBlocks.build.overrides(
   },
   scope,
 );
-// @ts-expect-error New answer slots must cover every language declared by their Question.
 scopedBlocks.build.overrides(
   {
     content: {
       slots: {
+        // @ts-expect-error Bilingual Question slots require bilingual ContentBlocks.
         additionalItems: { secondSlot: { correctAnswer: onlyUkrainianBlock } },
         order: ['originalSlot', 'secondSlot'],
       },
@@ -266,11 +266,11 @@ scopedTextSlots.build.overrides(
   },
   scope,
 );
-// @ts-expect-error New text slots need all declared translations.
 scopedTextSlots.build.overrides(
   {
     content: {
       slots: {
+        // @ts-expect-error The added slot needs the declared English translation.
         additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так' } } } },
         order: ['originalSlot', 'secondSlot'],
       },

@@ -104,13 +104,14 @@ test('all nine Questions expose immutable stateless Build instead of mutable ove
     assert.deepEqual(a, b);
     assert.deepEqual((a.base.content as { question: { slug: string }[] }).question[0].slug, 'promptBlock');
     assert.doesNotThrow(() => JSON.stringify(a));
-    assert.doesNotThrow(() => JSON.stringify(question.build.overrides({ params: { disabled: true } }, scope)));
-    assert.throws(() => question.build.overrides({ type: 'modified' } as never, scope), /overrides/);
-    assert.throws(() => question.build.overrides({ locale: { unexpected: 'X' } } as never, scope), /overrides/);
+    const override = question.build.overrides as (patch: never, options: typeof scope) => unknown;
+    assert.doesNotThrow(() => JSON.stringify(override({ params: { disabled: true } } as never, scope)));
+    assert.throws(() => override({ type: 'modified' } as never, scope), /overrides/);
+    assert.throws(() => override({ locale: { unexpected: 'X' } } as never, scope), /overrides/);
   }
   assert.equal(
     (
-      instances[0].build.props(scope).base.content as {
+      instances[0].build.props(scope).base.content as unknown as {
         answers: { correct: { yes: { slug: string } } };
       }
     ).answers.correct.yes.slug,
@@ -118,7 +119,7 @@ test('all nine Questions expose immutable stateless Build instead of mutable ove
   );
   assert.equal(
     (
-      instances[2].build.props(scope).base.content as {
+      instances[2].build.props(scope).base.content as unknown as {
         pairs: { pairOne: { left: { slug: string } } };
       }
     ).pairs.pairOne.left.slug,
