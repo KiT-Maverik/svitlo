@@ -46,7 +46,7 @@ test('every Section publishes ordered JSON-safe ContentBlock Props without mutab
     assert.equal('override' in section, false);
     assert.equal('disable' in section, false);
     assert.equal('overrides' in section.config, false);
-    const original = section.build.props();
+    const original = section.build.props({ languages: ['en', 'uk'] });
     assert.equal(original.base.content[0]?.slug, 'prompt');
     assert.equal(textValue(original.locale?.uk?.content), 'Питання');
     assert.deepEqual(original.locale?.uk?.locale, { title: 'Назва' });
@@ -59,42 +59,42 @@ test('every Section publishes ordered JSON-safe ContentBlock Props without mutab
         additionalItems: { extra },
         order: ['extra'],
       },
-    });
+    }, { languages: ['en', 'uk'] });
     assert.deepEqual(changed.base.content?.map(block => block.slug), ['extra']);
     assert.deepEqual(changed.locale, undefined, 'invariant replacement needs no translated file');
-    assert.equal(section.build.props().base.content[0]?.slug, 'prompt');
+    assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
     assert.deepEqual(section.content.order, ['prompt']);
     assert.deepEqual(original.base.content.map(block => block.slug), ['prompt']);
-    assert.equal(textValue(section.build.props().locale?.uk?.content), 'Питання');
+    assert.equal(textValue(section.build.props({ languages: ['en', 'uk'] }).locale?.uk?.content), 'Питання');
 
-    const sparse = section.build.overrides({ locale: { title: { uk: 'Оновлено' } } });
+    const sparse = section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, { languages: ['en', 'uk'] });
     assert.deepEqual(sparse.base, {});
     assert.deepEqual(sparse.locale, { uk: { locale: { title: 'Оновлено' } } });
 
     assert.throws(() => section.build.overrides({
       content: { items: { prompt: false } },
-    }), /order is required/);
+    }, { languages: ['en', 'uk'] }), /order is required/);
     assert.throws(() => section.build.overrides({
       content: { additionalItems: { extra }, order: ['prompt'] },
-    }), /Missing slug/);
+    }, { languages: ['en', 'uk'] }), /Missing slug/);
     assert.throws(() => section.build.overrides({
       content: { additionalItems: { extra }, order: ['prompt', 'extra', 'extra'] },
-    }), /Duplicate slug/);
-    assert.throws(() => section.build.overrides({ id: id('09') } as never), /Invalid .* overrides/);
-    assert.throws(() => section.build.overrides({ locale: { unexpected: 'x' } } as never), /Invalid .* overrides/);
+    }, { languages: ['en', 'uk'] }), /Duplicate slug/);
+    assert.throws(() => section.build.overrides({ id: id('09') } as never, { languages: ['en', 'uk'] }), /Invalid .* overrides/);
+    assert.throws(() => section.build.overrides({ locale: { unexpected: 'x' } } as never, { languages: ['en', 'uk'] }), /Invalid .* overrides/);
   }
 });
 
 test('all Sections remain reusable across independently built override contexts', () => {
   for (const create of definitions) {
     const section = create();
-    const one = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Один' } } } } } });
-    const two = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Два' } } } } } });
+    const one = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Один' } } } } } }, { languages: ['en', 'uk'] });
+    const two = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Два' } } } } } }, { languages: ['en', 'uk'] });
     assert.equal(textValue(one.locale?.uk?.content), 'Один');
     assert.equal(textValue(two.locale?.uk?.content), 'Два');
-    const base = section.build.props();
+    const base = section.build.props({ languages: ['en', 'uk'] });
     assert.equal(textValue(base.locale?.uk?.content), 'Питання');
     if (one.base.content) one.base.content[0]!.slug = 'tampered';
-    assert.equal(section.build.props().base.content[0]?.slug, 'prompt');
+    assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
   }
 });
