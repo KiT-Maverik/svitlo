@@ -238,9 +238,9 @@ export function defineFlashcard<
   ) => {
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props() as unknown as BlockResource;
+      const resource = child.build.props({ languages }) as unknown as BlockResource;
       const patch = Object.hasOwn(changes, key)
-        ? (child.build.overrides as (value: never) => BlockPatch)(changes[key] as never)
+        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => BlockPatch)(changes[key] as never, { languages })
         : undefined;
       return { resource, patch };
     });

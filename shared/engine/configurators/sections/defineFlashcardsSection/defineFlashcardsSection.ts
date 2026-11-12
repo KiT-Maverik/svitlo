@@ -132,9 +132,9 @@ export const defineFlashcardsSection = <
   ) => {
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props() as unknown as ChildResource;
+      const resource = child.build.props({ languages }) as unknown as ChildResource;
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (value: never) => ChildPatch)(patches[key] as never)
+        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => ChildPatch)(patches[key] as never, { languages })
         : undefined;
       return { resource, patch };
     });
