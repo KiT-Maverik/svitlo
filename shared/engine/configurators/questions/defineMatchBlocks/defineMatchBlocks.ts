@@ -27,9 +27,13 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
 };
 
 type ContentShape = Question_MatchBlocks_Config['content'];
-export type Question_MatchBlocks_Overrides<Content extends ContentShape = ContentShape> =
+export type Question_MatchBlocks_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> =
   Question_MatchBlocks_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content> & {
+    content?: QuestionCommonPatch<Content, Added, Languages> & {
       pairs?: {
   items?: { [Key in keyof Content['pairs']['items']]?:
     { left?: Parameters<Content['pairs']['items'][Key]['left']['build']['overrides']>[0];
@@ -72,7 +76,7 @@ export const defineMatchBlocks = <
 
   const extraContent = (
     source: Content,
-    patch?: NonNullable<Question_MatchBlocks_Overrides<Content>['content']>['pairs'],
+    patch?: { items?: Record<string, Record<string, unknown> | false>; additionalItems?: Record<string, { left: ContentBlock_Configurator; right: ContentBlock_Configurator }>; order?: string[] },
   ) => {
     const result = resolvePairMap(source.pairs, patch as never);
     const locale: Record<string, Record<string, unknown>> = {};
@@ -97,8 +101,8 @@ export const defineMatchBlocks = <
     };
   };
 
-  const overrides = (
-    patch: Question_MatchBlocks_Overrides<Content>,
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_MatchBlocks_Overrides<Content, Added, Languages>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);
