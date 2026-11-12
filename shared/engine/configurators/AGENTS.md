@@ -5,7 +5,7 @@
 ## Ownership and public API
 
 - Each configurator owns its authored configuration, validation, and `build` lifecycle. Entities may have different lifecycles: **do not add generic configurator/assembly factories or premature shared abstractions**. Prefer clear local code and deliberate duplication over opaque dependencies and weakened type inference.
-- Expose `id`, `type`, and `slug` directly, preserving literal slug inference for typed collections.
+- Expose `id`, `type`, and `slug` directly, preserving literal slug inference for typed collections. **Identity is immutable:** `build.overrides()` must never accept or publish changes to `id`, `slug`, or `type` at any nesting depth. Exclude these fields from Overrides TypeScript types and reject them at runtime using strict schema validation. A newly added child is a new configurator with its own identity, not an identity override.
 - Retain an independent snapshot of authored input. Never store per-consumer overrides in shared mutable configurator state; the same configurator must be reusable in independent publication contexts.
 - `build.props()` returns a complete publication result; `build.props({ embed: true })` returns the same `base` with Props-shaped localized fragments for nesting under a parent. The supplied `embed` flag may only be literal `true` (never `false`); overloads must preserve precise return types. Do not introduce a separate `embedded()` method.
 - `build.overrides(patch)` returns only the validated sparse patch. Build results are independently owned, data-only values rather than configurator instances.
@@ -14,7 +14,8 @@
 ## Authored config and collection shapes
 
 - Prefer named or slug-keyed objects for collections, and a separate `order` array when order matters. Do not model collections as positional arrays that require per-index overrides.
-- **Arrays are allowed. Every array-valued override replaces the entire array**, including `order`, `applyStyle`, and any future array field; never deep-merge arrays by index or concatenate implicitly. A patch must satisfy the applicable field schema (for example, nonempty-array rules).
+- **No arrays inside authored `locale` Config/Overrides for new or migrated entities**, including nested localized values: use slug-keyed/named objects. Put a collection's `order` array alongside its `items` map, outside `locale`. Resolved Props may contain already ordered arrays. The existing `Carousel.locale.slides` schema is a known legacy exception that requires a dedicated migration; do not silently break it in unrelated work.
+- Arrays are permitted outside authored `locale` (for example, `order` and `params.variables.*.applyStyle`) and in resolved Props. **Every array-valued override replaces the entire array**; never deep-merge arrays by index or concatenate implicitly. A patch must satisfy the applicable field schema (for example, nonempty-array rules).
 - Plain keyed objects can be merged recursively by key, subject to entity-specific semantics. Opaque values owned by another contract should be replaced as a unit when required; do not assume all object-like values are mergeable.
 - Existing collection and array shapes in unmigrated entities are migration work, not a reason to silently break unrelated consumers.
 
@@ -26,6 +27,7 @@
 - Validate **twice for two purposes**: first structurally parse the sparse patch; then temporarily merge that validated patch with an isolated authored snapshot and run the entity's normal cross-field/semantic validation. Publish the first validated sparse result, **not** the temporary merged candidate.
 - A localized dictionary patch may provide one language without repeating others. For temporary validation, merge specified languages by code; an invariant string intentionally replaces the dictionary for that field. Enforce entity-specific semantic rules, such as Text variable references, against the effective candidate.
 - Each parent validates its own schema and collection boundaries: allowed child kinds, IDs/slugs, keys, ordering, disabled entries, and parent-child constraints. Do not duplicate internal child validation. When a parent resolves its own child overrides, it must recheck the parent invariants against the resulting child state.
+- For context-dependent restrictions such as a Checkpoint Item's mandatory Text question, exclude `params.disabled` from that **child override position** in TypeScript; do not globally remove the ability to disable ordinary Text blocks. Retain a runtime check of mandatory-child invariants for untyped/JavaScript input and authored configurations; TypeScript alone is not a runtime validation boundary.
 - Keep deliberately opaque external fields independent from UI libraries, but require JSON-compatible publication values; allowing arbitrary object keys is not permission to publish functions or non-JSON values.
 
 ## Publication contract
