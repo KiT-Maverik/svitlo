@@ -11,8 +11,10 @@ import { contentBlockTypes } from '../../contentBlock.constants';
 import {
   checkpointItem_Config_Schema,
   type Checkpoint_Allowed_Configurator,
+  type Checkpoint_Allowed_PropsBase,
   type CheckpointItem_Overrides,
   type ContentBlock_CheckpointItem_Config,
+  type ContentBlock_CheckpointItem_Props,
 } from './defineCheckpointItem.schemas';
 
 export type CheckpointItemValidationIssue = {
@@ -98,8 +100,11 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
 };
 
 type ChildPublication = {
-  base: Record<string, unknown>;
+  base: Checkpoint_Allowed_PropsBase;
   locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+};
+type ChildPatchPublication = Omit<ChildPublication, 'base'> & {
+  base: DeepPartial<Checkpoint_Allowed_PropsBase>;
 };
 type ItemLocaleBody = {
   question?: Record<string, unknown>;
@@ -107,18 +112,14 @@ type ItemLocaleBody = {
 };
 type ItemLocaleFiles = Partial<Record<LanguageCodes, ItemLocaleBody>>;
 type ItemPublication<Base> = { base: Base; locale: ItemLocaleFiles | undefined };
-type ItemBase = {
-  id: string;
-  slug: string;
-  type: 'checkpointItem';
-  check?: true;
-  question: Record<string, unknown>;
-  answer: Record<string, unknown>[];
+type ItemBase = Pick<ContentBlock_CheckpointItem_Props, 'id' | 'slug' | 'type' | 'check'> & {
+  question: ReturnType<ContentBlock_CheckpointItem_Config['question']['build']['props']>['base'];
+  answer: Checkpoint_Allowed_PropsBase[];
 };
 type ItemOverrideBase = {
   check?: true;
-  question?: Record<string, unknown>;
-  answer?: Record<string, unknown>[];
+  question?: DeepPartial<ItemBase['question']>;
+  answer?: Checkpoint_Allowed_PropsBase[];
 };
 
 /** Define one Checkpoint item with a mandatory Text question and ordered answers. */
@@ -148,8 +149,8 @@ export const defineCheckpointItem = <
   const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
     child.build.props({ embed: true }) as unknown as ChildPublication;
 
-  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPublication =>
-    (child.build.overrides as (patch: never) => ChildPublication)(patch as never);
+  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
+    (child.build.overrides as (patch: never) => ChildPatchPublication)(patch as never);
 
   /**
    * A published answer collection is always a complete, already sorted array.
@@ -222,7 +223,7 @@ export const defineCheckpointItem = <
     try {
       if (!isObject(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
-        if (!['check', 'question', 'answer', 'additionalContentBlocks'].includes(key)) {
+        if (!['check', 'question', 'answer'].includes(key)) {
           throw new Error('Unknown Checkpoint Item override field: ' + key);
         }
       }
@@ -250,14 +251,14 @@ export const defineCheckpointItem = <
       if (!isObject(changes)) throw new Error('answer.items must be a slug-keyed object');
       if (patch.answer) {
         for (const key of Object.keys(patch.answer)) {
-          if (!['items', 'order'].includes(key)) throw new Error('Unknown answer override field: ' + key);
+          if (!['items', 'additionalItems', 'order'].includes(key)) throw new Error('Unknown answer override field: ' + key);
         }
       }
 
-      const additions = patch.additionalContentBlocks ?? {};
-      if (!isObject(additions)) throw new Error('additionalContentBlocks must be a slug-keyed configurator map');
+      const additions = patch.answer?.additionalItems ?? {};
+      if (!isObject(additions)) throw new Error('answer.additionalItems must be a slug-keyed configurator map');
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedAnswers, {
-        path: 'additionalContentBlocks',
+        path: 'answer.additionalItems',
         itemLabel: 'ContentBlock',
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
