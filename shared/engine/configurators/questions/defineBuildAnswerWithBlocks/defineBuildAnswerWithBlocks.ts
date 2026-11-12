@@ -2,7 +2,7 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
+  assertEnabledBlock, cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
@@ -22,7 +22,8 @@ const metadataSchema = buildAnswerWithBlocks_Config_Schema.omit({ content: true 
 const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   buildAnswerWithBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
-  validateBlockCollection(candidate.content.correctSequence, 'content.correctSequence', true);
+  resolveBlockCollection(candidate.content.correctSequence, undefined, 'content.correctSequence', true)
+    .base.forEach((block, index) => assertEnabledBlock(block, 'content.correctSequence[' + index + ']'));
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
 
@@ -80,6 +81,9 @@ export const defineBuildAnswerWithBlocks = <
     for (const field of ['correctSequence', 'distractors'] as const) {
       if (patch && patch[field] === undefined) continue;
       const result = resolveBlockCollection(source[field], patch?.[field], 'content.' + field, field === 'correctSequence');
+      if (field === 'correctSequence') {
+        result.base.forEach((block, index) => assertEnabledBlock(block, 'content.correctSequence[' + index + ']'));
+      }
       base[field] = result.base;
       for (const [language, entries] of Object.entries(result.locale)) (locale[language] ??= {})[field] = entries;
     }

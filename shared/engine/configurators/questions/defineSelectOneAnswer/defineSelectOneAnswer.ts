@@ -2,7 +2,7 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
+  assertEnabledBlock, isEnabledBlock, cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
@@ -31,6 +31,7 @@ const validate = (candidate: Question_SelectOneAnswer_Config): void => {
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
   }
+  assertEnabledBlock(groups.correct.items[groups.correct.order[0]].build.props().base, 'content.answers.correct');
 };
 
 type ContentShape = Question_SelectOneAnswer_Config['content'];
@@ -114,6 +115,7 @@ export const defineSelectOneAnswer = <
     if (correctCount !== 1) {
       throw new Error('SelectOneAnswer has an invalid number of correct answers');
     }
+    assertEnabledBlock(Object.values(complete.correct.base)[0], 'content.answers.correct');
     const activeKeys = groups.flatMap(group => Object.keys(complete[group].base));
     if (new Set(activeKeys).size !== activeKeys.length) {
       throw new Error('An answer cannot occur in multiple scoring groups');

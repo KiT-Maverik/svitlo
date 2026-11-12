@@ -55,6 +55,14 @@ export type ComposedContent = {
 export const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
+/** A selected scoring block must remain usable after its child overrides are applied. */
+export const isEnabledBlock = (value: unknown): boolean =>
+  isRecord(value) && isRecord(value.params) && value.params.disabled !== true;
+
+export const assertEnabledBlock = (value: unknown, path: string): void => {
+  if (!isEnabledBlock(value)) throw new Error(path + ' must be an enabled ContentBlock');
+};
+
 export const cloneJson = <T>(value: T): T => structuredClone(value);
 
 /** Snapshot only the collection map/order; children stay independent configurator references. */

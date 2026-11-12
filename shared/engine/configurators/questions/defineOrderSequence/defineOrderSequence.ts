@@ -2,7 +2,7 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
+  assertEnabledBlock, cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
@@ -22,7 +22,8 @@ const metadataSchema = orderSequence_Config_Schema.omit({ content: true });
 const validate = (candidate: Question_OrderSequence_Config): void => {
   orderSequence_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
-  validateBlockCollection(candidate.content.sequence, 'content.sequence', true);
+  resolveBlockCollection(candidate.content.sequence, undefined, 'content.sequence', true)
+    .base.forEach((block, index) => assertEnabledBlock(block, 'content.sequence[' + index + ']'));
 };
 
 type ContentShape = Question_OrderSequence_Config['content'];
@@ -71,6 +72,7 @@ export const defineOrderSequence = <
     patch?: ResolvableBlockPatch,
   ) => {
     const result = resolveBlockCollection(source.sequence, patch, 'content.sequence', true);
+    result.base.forEach((block, index) => assertEnabledBlock(block, 'content.sequence[' + index + ']'));
     const locale: Record<string, Record<string, unknown>> = {};
     for (const [language, entries] of Object.entries(result.locale)) locale[language] = { sequence: entries };
     return { base: { sequence: result.base }, locale };

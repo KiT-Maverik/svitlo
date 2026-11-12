@@ -186,3 +186,59 @@ test('numeric scoring values remain atomic and Question build results are isolat
   assert.deepEqual((question.build.props().base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
   assert.throws(() => question.build.overrides({ params: { correctAnswers: ['two'] } } as never));
 });
+
+test('scored answers remain enabled after nested child overrides', () => {
+  const one = defineSelectOneAnswer({ ...common('selectOneAnswer'), content: { ...prompt, answers } });
+  assert.throws(
+    () => one.build.overrides({ content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } }),
+    /enabled ContentBlock/,
+  );
+
+  const multiple = defineSelectMultipleAnswers({
+    ...common('selectMultipleAnswers'), content: { ...prompt, answers },
+  });
+  assert.throws(
+    () => multiple.build.overrides({ content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } }),
+    /enabled ContentBlock/,
+  );
+
+  const match = defineMatchBlocks({
+    ...common('matchBlocks'),
+    content: { ...prompt, pairs: { items: { pairOne: { left: yes, right: no } }, order: ['pairOne'] } },
+  });
+  assert.throws(
+    () => match.build.overrides({ content: { pairs: { items: { pairOne: { left: { params: { disabled: true } } } } } } }),
+    /enabled ContentBlock/,
+  );
+
+  const blanks = defineFillBlanksWithBlocks({
+    ...common('fillBlanksWithBlocks'), locale: { placeholder: 'Fill' },
+    content: {
+      ...prompt, slots: { items: { slotOne: { correctAnswer: yes } }, order: ['slotOne'] },
+      distractors: collection(no),
+    },
+  });
+  assert.throws(
+    () => blanks.build.overrides({
+      content: { slots: { items: { slotOne: { correctAnswer: { params: { disabled: true } } } } } },
+    }),
+    /enabled ContentBlock/,
+  );
+
+  const sequence = defineOrderSequence({
+    ...common('orderSequence'), content: { ...prompt, sequence: collection(yes) },
+  });
+  assert.throws(
+    () => sequence.build.overrides({ content: { sequence: { items: { yes: { params: { disabled: true } } } } } }),
+    /enabled ContentBlock/,
+  );
+
+  const built = defineBuildAnswerWithBlocks({
+    ...common('buildAnswerWithBlocks'), locale: { placeholder: 'Build' },
+    content: { ...prompt, correctSequence: collection(yes), distractors: collection(no) },
+  });
+  assert.throws(
+    () => built.build.overrides({ content: { correctSequence: { items: { yes: { params: { disabled: true } } } } } }),
+    /enabled ContentBlock/,
+  );
+});

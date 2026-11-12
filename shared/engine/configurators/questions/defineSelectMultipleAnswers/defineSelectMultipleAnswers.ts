@@ -2,7 +2,7 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
+  assertEnabledBlock, isEnabledBlock, cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
@@ -30,6 +30,9 @@ const validate = (candidate: Question_SelectMultipleAnswers_Config): void => {
   const slugs = (['correct', 'incorrect', 'distractors'] as const).flatMap(group => groups[group].order);
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
+  }
+  if (!groups.correct.order.some(key => isEnabledBlock(groups.correct.items[key].build.props().base))) {
+    throw new Error('content.answers.correct must contain an enabled ContentBlock');
   }
 };
 
@@ -113,6 +116,9 @@ export const defineSelectMultipleAnswers = <
     const correctCount = Object.keys(complete.correct.base).length;
     if (correctCount < 1) {
       throw new Error('SelectMultipleAnswers has an invalid number of correct answers');
+    }
+    if (!Object.values(complete.correct.base).some(isEnabledBlock)) {
+      throw new Error('content.answers.correct must contain an enabled ContentBlock');
     }
     const activeKeys = groups.flatMap(group => Object.keys(complete[group].base));
     if (new Set(activeKeys).size !== activeKeys.length) {
