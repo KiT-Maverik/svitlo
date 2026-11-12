@@ -78,9 +78,9 @@ defineModule({
   id, type: 'module', slug: 'invalid', params: {}, locale: { title: 'Invalid' },
   content: { items: { module }, order: ['module'] },
 });
-// @ts-expect-error Course locale must contain description.
 defineCourse({
   id, type: 'course', slug: 'invalid', params: { languages: ['en'] },
+  // @ts-expect-error Course locale must contain description.
   locale: { title: 'Course' },
   content: { items: {}, order: [] },
 });
