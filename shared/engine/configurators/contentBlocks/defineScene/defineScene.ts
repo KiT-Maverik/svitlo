@@ -1,14 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateSceneEntry } from '../_shared__contentBlocks';
 import {
   scene_Config_Schema,
@@ -19,8 +12,7 @@ import {
   type ContentBlock_Scene_PropsBase,
 } from './defineScene.schemas';
 
-type SceneLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Scene_Locale<'props'>>>>;
-type SceneEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Scene_Locale<'props'>>>;
+type SceneLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Scene_Locale<'props'>> }>>;
 type ScenePropsPublication<Base, LocaleFiles = SceneLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type SceneOverridePropsBase = {
   params?: ContentBlock_Scene_Overrides['params'];
@@ -48,7 +40,13 @@ const buildSceneProps = (config: ContentBlock_Scene_Config): ScenePropsPublicati
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Scene_PropsBase;
-  return { base, locale: locale as unknown as SceneLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      SceneLocaleFiles | undefined,
+  };
 };
 
 const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublication<SceneOverridePropsBase> => {
@@ -60,7 +58,10 @@ const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublica
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as SceneLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      SceneLocaleFiles | undefined,
   };
 };
 
@@ -92,16 +93,8 @@ export const defineScene = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Scene_Config>;
 
-  function props(): ScenePropsPublication<ContentBlock_Scene_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): ScenePropsPublication<ContentBlock_Scene_PropsBase, SceneEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): ScenePropsPublication<ContentBlock_Scene_PropsBase, SceneLocaleFiles | SceneEmbeddedLocaleFiles> {
-    const publication = buildSceneProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): ScenePropsPublication<ContentBlock_Scene_PropsBase> =>
+    buildSceneProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Scene_Overrides): ScenePropsPublication<SceneOverridePropsBase> => {
     try {

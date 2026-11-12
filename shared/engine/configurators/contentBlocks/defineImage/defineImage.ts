@@ -1,14 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   image_Config_Schema,
@@ -19,8 +12,7 @@ import {
   type ContentBlock_Image_PropsBase,
 } from './defineImage.schemas';
 
-type ImageLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Image_Locale<'props'>>>>;
-type ImageEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Image_Locale<'props'>>>;
+type ImageLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Image_Locale<'props'>> }>>;
 type ImagePropsPublication<Base, LocaleFiles = ImageLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type ImageOverridePropsBase = {
   params?: ContentBlock_Image_Overrides['params'];
@@ -48,7 +40,13 @@ const buildImageProps = (config: ContentBlock_Image_Config): ImagePropsPublicati
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Image_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Image_PropsBase;
-  return { base, locale: locale as unknown as ImageLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      ImageLocaleFiles | undefined,
+  };
 };
 
 const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublication<ImageOverridePropsBase> => {
@@ -60,7 +58,10 @@ const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublica
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Image_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as ImageLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      ImageLocaleFiles | undefined,
   };
 };
 
@@ -84,16 +85,8 @@ export const defineImage = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Image_Config>;
 
-  function props(): ImagePropsPublication<ContentBlock_Image_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): ImagePropsPublication<ContentBlock_Image_PropsBase, ImageEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): ImagePropsPublication<ContentBlock_Image_PropsBase, ImageLocaleFiles | ImageEmbeddedLocaleFiles> {
-    const publication = buildImageProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): ImagePropsPublication<ContentBlock_Image_PropsBase> =>
+    buildImageProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Image_Overrides): ImagePropsPublication<ImageOverridePropsBase> => {
     try {

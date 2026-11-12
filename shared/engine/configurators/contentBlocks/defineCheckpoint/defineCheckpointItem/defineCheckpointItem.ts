@@ -88,8 +88,12 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
       fail(issue.check === 'item' ? 'answer' : issue.check, issue.path, issue.message);
     }
     for (const [key, child] of Object.entries(answer.items)) {
-      if (!isObject(child) || !isObject(child.build) ||
-        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+      if (
+        !isObject(child) ||
+        !isObject(child.build) ||
+        typeof child.build.props !== 'function' ||
+        typeof child.build.overrides !== 'function'
+      ) {
         fail('answer', 'answer.items.' + key, 'Answer must expose the ContentBlock Build API');
       }
     }
@@ -147,7 +151,7 @@ export const defineCheckpointItem = <
   } satisfies DeepPartial<ContentBlock_CheckpointItem_Config>;
 
   const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
-    child.build.props({ embed: true }) as unknown as ChildPublication;
+    child.build.props() as unknown as ChildPublication;
 
   const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
     (child.build.overrides as (patch: never) => ChildPatchPublication)(patch as never);
@@ -183,24 +187,17 @@ export const defineCheckpointItem = <
           const localizedOriginal = mergeForValidation(original.base, originalLocale);
           const withPatchBase = patch ? mergeForValidation(localizedOriginal, patch.base) : localizedOriginal;
           const localizedPatch = patch?.locale?.[language];
-          // build.overrides() uses direct language bodies; embed them at the
-          // child Props path before applying them to the resolved child.
-          return localizedPatch
-            ? mergeForValidation(withPatchBase, { locale: localizedPatch })
-            : withPatchBase;
+          // Child overrides already contain Props-shaped locale paths.
+          return localizedPatch ? mergeForValidation(withPatchBase, localizedPatch) : withPatchBase;
         }),
       };
     }
     return { bases, locales };
   };
 
-  function props(): ItemPublication<ItemBase>;
-  function props(options: { embed: true }): ItemPublication<ItemBase>;
-  function props(options?: { embed?: true }): ItemPublication<ItemBase> {
-    // No localizable fields belong to CheckpointItem itself. Its children
-    // already produce embedded Props fragments in either parent mode.
-    void options;
-    const builtQuestion = question.build.props({ embed: true });
+  const props = (): ItemPublication<ItemBase> => {
+    // Children already produce Props-shaped locale fragments.
+    const builtQuestion = question.build.props();
     const builtAnswers = buildAnswers(initialItems, initialOrder);
     const locale = { ...builtAnswers.locales };
     for (const [language, fields] of Object.entries(builtQuestion.locale ?? {})) {
@@ -208,14 +205,16 @@ export const defineCheckpointItem = <
     }
     return {
       base: {
-        id, slug, type,
+        id,
+        slug,
+        type,
         ...(check !== undefined ? { check } : {}),
         question: builtQuestion.base,
         answer: builtAnswers.bases,
       },
       locale: Object.keys(locale).length ? locale : undefined,
     };
-  }
+  };
 
   const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
     patch: CheckpointItem_Overrides<Answers, Added>,
@@ -239,7 +238,7 @@ export const defineCheckpointItem = <
         const built = question.build.overrides(patch.question);
         if (Object.keys(built.base).length) output.base.question = built.base;
         for (const [language, fields] of Object.entries(built.locale ?? {})) {
-          (locales[language as LanguageCodes] ??= {}).question = { locale: fields };
+          (locales[language as LanguageCodes] ??= {}).question = fields;
         }
       }
 
@@ -251,7 +250,8 @@ export const defineCheckpointItem = <
       if (!isObject(changes)) throw new Error('answer.items must be a slug-keyed object');
       if (patch.answer) {
         for (const key of Object.keys(patch.answer)) {
-          if (!['items', 'additionalItems', 'order'].includes(key)) throw new Error('Unknown answer override field: ' + key);
+          if (!['items', 'additionalItems', 'order'].includes(key))
+            throw new Error('Unknown answer override field: ' + key);
         }
       }
 
@@ -269,8 +269,12 @@ export const defineCheckpointItem = <
 
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate answer slug: ' + key);
-        if (!isObject(child) || !isObject(child.build) ||
-          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+        if (
+          !isObject(child) ||
+          !isObject(child.build) ||
+          typeof child.build.props !== 'function' ||
+          typeof child.build.overrides !== 'function'
+        ) {
           throw new Error('New ContentBlock must expose the Build API: ' + key);
         }
         enabled[key] = child as Checkpoint_Allowed_Configurator;
@@ -293,20 +297,24 @@ export const defineCheckpointItem = <
         throw new Error('answer.order is required when adding or disabling answers');
       }
       const order = patch.answer?.order ?? initialOrder;
-      const issues = validateOrderedKeys({ items: enabled, order }, {
-        path: 'answer',
-        allowDisabled: true,
-        requireNonEmpty: true,
-      });
+      const issues = validateOrderedKeys(
+        { items: enabled, order },
+        {
+          path: 'answer',
+          allowDisabled: true,
+          requireNonEmpty: true,
+        },
+      );
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active answer is required');
 
-      const modifiesAnswers = Object.keys(changes).length > 0 || patch.answer?.order !== undefined ||
-        Object.keys(additions).length > 0;
+      const modifiesAnswers =
+        Object.keys(changes).length > 0 || patch.answer?.order !== undefined || Object.keys(additions).length > 0;
       if (modifiesAnswers) {
         const active = Object.fromEntries(
-          Object.entries(enabled).filter((entry): entry is [string, Checkpoint_Allowed_Configurator] =>
-            entry[1] !== false),
+          Object.entries(enabled).filter(
+            (entry): entry is [string, Checkpoint_Allowed_Configurator] => entry[1] !== false,
+          ),
         );
         const built = buildAnswers(active, order, patches);
         output.base.answer = built.bases;
@@ -318,8 +326,7 @@ export const defineCheckpointItem = <
       return output;
     } catch (error) {
       throw new Error(
-        'Invalid Checkpoint Item overrides for ' + id + ': ' +
-          (error instanceof Error ? error.message : String(error)),
+        'Invalid Checkpoint Item overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }

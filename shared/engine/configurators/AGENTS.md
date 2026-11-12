@@ -7,7 +7,7 @@
 - Each configurator owns its authored configuration, validation, and `build` lifecycle. Entities may have different lifecycles: **do not add generic configurator/assembly factories or premature shared abstractions**. Prefer clear local code and deliberate duplication over opaque dependencies and weakened type inference.
 - Expose `id`, `type`, and `slug` directly, preserving literal slug inference for typed collections. **Identity is immutable:** `build.overrides()` must never accept or publish changes to `id`, `slug`, or `type` at any nesting depth. Exclude these fields from Overrides TypeScript types and reject them at runtime using strict schema validation. A newly added child is a new configurator with its own identity, not an identity override.
 - Retain an independent snapshot of authored input. Never store per-consumer overrides in shared mutable configurator state; the same configurator must be reusable in independent publication contexts.
-- `build.props()` returns a complete publication result; `build.props({ embed: true })` returns the same `base` with Props-shaped localized fragments for nesting under a parent. The supplied `embed` flag may only be literal `true` (never `false`); overloads must preserve precise return types. Do not introduce a separate `embedded()` method.
+- `build.props()` always returns a complete publication result in a single Props-shaped format. There is only one published locale shape. Each language file is a Props fragment including each owning entity's nested `locale` property where appropriate.
 - `build.overrides(patch)` returns only the validated sparse patch. Build results are independently owned, data-only values rather than configurator instances.
 - Transitional `config.base` / `config.locales()` accessors may remain for unmigrated consumers. Do not propagate the old mutable `override`, `disable`, or `config.overrides` lifecycle to migrated configurators.
 
@@ -34,18 +34,18 @@
 
 1. Validate authored input and take an independent snapshot.
 2. `build.props()` yields `{ base, locale }` for the complete authored resource: invariant identity/parameters in `base`, optional invariant text in `base.locale`, and language-specific values under language keys in `locale`.
-3. `build.props({ embed: true })` retains the same `base` but wraps each language's **own** translated fields as `{ locale: fields }` (Props-shaped fragments). For instance, Text returns `locale.en = { locale: { value: 'Hello' } }` instead of `{ value: 'Hello' }`. The shared `wrapLocale` utility in `_shared__configurators` performs only this wrapper conversion; never hide entity validation or assembly in it.
+3. Every language payload is already a Props-shaped fragment: for Text, `locale.en = { locale: { value: 'Hello' } }`. Nested children preserve their own Props paths without any further `locale` wrapping. Never add an extra wrapper around an already composed child fragment.
 4. `build.overrides(patch)` yields the same publication partition but only for fields actually supplied and validated. No inherited parameters, translations, or identity fields may leak into a patch.
-5. Without `embed`, each language entry in `locale` is the direct payload of that locale's published file, **not** an additional nested `locale` wrapper. In either resource mode, use `locale: undefined` when there is no translated payload.
+5. Each `locale[language]` value is the direct JSON payload of that language's published file, already in Props shape. Use `locale: undefined` when there is no translated payload; invariant values stay only in `base`.
 6. Neither call may mutate authored input, patch input, earlier assembly results, or another context's overrides. Include the entity ID and original cause in override validation errors.
 7. Results must be JSON-compatible Props-shaped data, with no functions, configurator instances, or internal state. Config-only collection organization (`items`, `order`) and override-only additions/disables must be fully resolved by `build`: published Props expose only the collection's sorted array of active child Props. Generators serialize completed results without entity-specific logic.
 
 ## Nested resource assembly
 
-- A parent calls `child.build.props({ embed: true })` for each child, regardless of whether its own call is embedded. Children validate their own authored data; the parent validates collection boundaries, allowed children and cross-child constraints.
+- A parent calls `child.build.props()` for each child. Children validate their own authored data; the parent validates collection boundaries, allowed children and cross-child constraints.
 - Place every child's `base` under its actual Props path in the parent's `base`, and each child's `locale[language]` under the corresponding path in the parent's `locale[language]`. Language codes exist only at the outer assembly envelope; do not serialize nested `base`/`locale` envelopes or child configurator instances.
-- The parent's `embed` mode wraps **its own** localized fields, not its descendant Props fragments. Invariant localized values remain under `base.locale`; they do not create translated locale entries.
-- These rules apply to `build.props` only. **Do not invent embedded override behavior** until its API is designed separately.
+- Each parent wraps only its **own** localized fields in its Props `locale` field and places child locale fragments directly under the child's Props path. Invariant localized values remain under `base.locale` and do not create translated files.
+- The same Props-shaped locale contract applies to `build.props()` and `build.overrides(patch)`. Override fragments remain sparse, but a child's published locale fragment is already correctly nested; never assume it is a flat collection of localized fields.
 
 ## Responsibility boundary and verification
 
@@ -53,5 +53,5 @@
 - When a collection changes, publish its full replacement Props array, not positional sparse array fragments. For scalar/object fields, continue publishing only supplied sparse overrides.
 - Do **not** generate locale files merely to repeat invariant replacement arrays: locale-specific publications contain only real translated data. A removed localized child may leave an override with `base.answer = [invariantChild]` and `locale: undefined`; the required runtime layering is specified in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md) and must apply `override.base` after `resource.locale[language]` so the removed child cannot reappear.
 - Configurators are **build-time only**. The planned file-writing contract lives in [`../generators/AGENTS.md`](../generators/AGENTS.md); runtime resolution and Props validation live in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md). Neither future layer is implemented merely by these documents.
-- Test complete resources and sparse patches, one-language and invariant locale cases, direct and embedded resource shapes, overload type inference, deep unknown-field rejection, semantic validation of the temporary merged candidate, array replacement semantics where applicable, JSON safety, and mutation isolation.
+- Test complete resources and sparse patches, one-language and invariant locale cases, unified resource/override locale shapes, single-signature Build API types, deep unknown-field rejection, semantic validation of the temporary merged candidate, array replacement semantics where applicable, JSON safety, and mutation isolation.
 - Keep transitional accessors for legacy consumers until their migration is explicitly in scope; do not claim other nested configurators already implement Build.

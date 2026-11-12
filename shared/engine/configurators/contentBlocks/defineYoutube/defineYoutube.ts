@@ -1,14 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import {
   youtube_Config_Schema,
   youtube_Override_Config_Schema,
@@ -18,8 +11,7 @@ import {
   type ContentBlock_Youtube_PropsBase,
 } from './defineYoutube.schemas';
 
-type YoutubeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Youtube_Locale<'props'>>>>;
-type YoutubeEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Youtube_Locale<'props'>>>;
+type YoutubeLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Youtube_Locale<'props'>> }>>;
 type YoutubePropsPublication<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type YoutubeOverridePropsBase = {
   params?: ContentBlock_Youtube_Overrides['params'];
@@ -49,7 +41,13 @@ const buildYoutubeProps = (
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Youtube_PropsBase;
-  return { base, locale: locale as unknown as YoutubeLocaleFiles | undefined };
+  return {
+    base,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      YoutubeLocaleFiles | undefined,
+  };
 };
 
 const buildYoutubePatch = (
@@ -63,7 +61,10 @@ const buildYoutubePatch = (
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as YoutubeLocaleFiles | undefined,
+    locale: (locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))) as
+      YoutubeLocaleFiles | undefined,
   };
 };
 
@@ -87,16 +88,8 @@ export const defineYoutube = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
 
-  function props(): YoutubePropsPublication<ContentBlock_Youtube_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): YoutubePropsPublication<ContentBlock_Youtube_PropsBase, YoutubeEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): YoutubePropsPublication<ContentBlock_Youtube_PropsBase, YoutubeLocaleFiles | YoutubeEmbeddedLocaleFiles> {
-    const publication = buildYoutubeProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> =>
+    buildYoutubeProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Youtube_Overrides): YoutubePropsPublication<YoutubeOverridePropsBase> => {
     try {

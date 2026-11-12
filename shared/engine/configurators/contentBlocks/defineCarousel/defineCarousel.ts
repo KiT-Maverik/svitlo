@@ -1,14 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   carousel_Config_Schema,
@@ -20,8 +13,9 @@ import {
   type ContentBlock_Carousel_PropsBase,
 } from './defineCarousel.schemas';
 
-type CarouselLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Carousel_Locale<'props'>>>>;
-type CarouselEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Carousel_Locale<'props'>>>;
+type CarouselLocaleFiles = Partial<
+  Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> }>
+>;
 type CarouselPropsPublication<Base, LocaleFiles = CarouselLocaleFiles> = {
   base: Base;
   locale: LocaleFiles | undefined;
@@ -43,8 +37,8 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
 /** Arrays are atomic, so each published language receives complete slide Props. */
 const validatePublishedSlides = (locale: CarouselLocaleFiles | undefined): void => {
   for (const [language, fields] of Object.entries(locale ?? {})) {
-    if (fields.slides !== undefined) {
-      const parsed = carousel_Props_Schema.shape.locale.shape.slides.safeParse(fields.slides);
+    if (fields.locale.slides !== undefined) {
+      const parsed = carousel_Props_Schema.shape.locale.shape.slides.safeParse(fields.locale.slides);
       if (!parsed.success) {
         throw new Error(`Incomplete Carousel slides for ${language}: ${parsed.error.message}`, { cause: parsed.error });
       }
@@ -66,7 +60,11 @@ const buildCarouselProps = (
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Carousel_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Carousel_PropsBase;
-  const files = locale as unknown as CarouselLocaleFiles | undefined;
+  const files = (
+    locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))
+  ) as CarouselLocaleFiles | undefined;
   validatePublishedSlides(files);
   return { base, locale: files };
 };
@@ -75,7 +73,11 @@ const buildCarouselPatch = (
   patch: ContentBlock_Carousel_Overrides,
 ): CarouselPropsPublication<CarouselOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
-  const files = locale as unknown as CarouselLocaleFiles | undefined;
+  const files = (
+    locale === undefined
+      ? undefined
+      : Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }]))
+  ) as CarouselLocaleFiles | undefined;
   validatePublishedSlides(files);
   return {
     base: {
@@ -108,16 +110,8 @@ export const defineCarousel = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
-  function props(): CarouselPropsPublication<ContentBlock_Carousel_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): CarouselPropsPublication<ContentBlock_Carousel_PropsBase, CarouselEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): CarouselPropsPublication<ContentBlock_Carousel_PropsBase, CarouselLocaleFiles | CarouselEmbeddedLocaleFiles> {
-    const publication = buildCarouselProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): CarouselPropsPublication<ContentBlock_Carousel_PropsBase> =>
+    buildCarouselProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Carousel_Overrides): CarouselPropsPublication<CarouselOverridePropsBase> => {
     try {
