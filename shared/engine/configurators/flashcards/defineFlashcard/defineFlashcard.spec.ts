@@ -67,7 +67,7 @@ test('Flashcard composes ordered sides and named flags as JSON-only published Pr
   assert.equal(card.content.front.items.front, front);
   assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
   assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.content.front.map(x => x.slug), ['front']);
-  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.flags.map(x => x.type), ['list', 'acronym']);
+  assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.flags.map(x => x!.type), ['list', 'acronym']);
   assert.deepEqual(card.build.props({ languages: ['en', 'uk'] }).base.parameters.relationships?.map(x => x.relationshipId), ['r1']);
   assert.equal(textValue(card.build.props({ languages: ['en', 'uk'] }).locale?.uk?.content?.front), 'Що?');
   assert.equal(flagValue(card.build.props({ languages: ['en', 'uk'] }).locale?.en?.parameters?.flags, 1), 'ABC');
@@ -101,7 +101,7 @@ test('Flashcard applies independent side changes and sparse flag updates without
   const reordered = card.build.overrides({
     parameters: { flags: { order: ['acronym', 'list'] } },
   }, { languages: ['en', 'uk'] });
-  assert.deepEqual(reordered.base.parameters?.flags?.map(x => x.type), ['acronym', 'list']);
+  assert.deepEqual(reordered.base.parameters?.flags?.map(x => x!.type), ['acronym', 'list']);
   assert.equal(card.content.front.items.front, front);
 });
 

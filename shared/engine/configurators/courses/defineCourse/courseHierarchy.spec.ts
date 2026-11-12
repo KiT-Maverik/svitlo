@@ -44,15 +44,18 @@ test('Course hierarchy retains literal slugs and publishes ordered plain Props',
   assert.equal(module.content.items.chapter, chapter);
   const resource = course.build.props({ languages: ['en', 'uk'] });
   assert.equal(resource.base.params.scenarioMode, 'story');
-  assert.deepEqual(resource.base.content?.map(child => child.slug), ['module']);
-  assert.deepEqual(resource.locale?.uk?.content?.map(child => child.slug), ['module']);
+  assert.deepEqual(resource.base.content?.map(child => child!.slug), ['module']);
+  assert.deepEqual(resource.locale?.uk?.content?.map(child => child!.slug), ['module']);
   assert.ok(JSON.stringify(resource.locale?.uk).includes('Розділ'));
   assert.equal('items' in resource.base.content[0]!, false);
   assert.equal(JSON.stringify(resource).includes('"order"'), false);
   assert.equal(JSON.stringify(resource).includes('"build"'), false);
   assert.deepEqual(course.config.locales(), { locale: { title: { en: 'Course', uk: 'Курс' } } });
   assert.equal(course_Config_Schema.safeParse(courseInput).success, true);
-  assert.equal(course_Props_Schema.safeParse(mergeForValidation(resource.base, resource.locale?.uk ?? {})).success, true);
+  assert.equal(course_Props_Schema.safeParse(mergeForValidation<Record<string, unknown>>(
+    resource.base as Record<string, unknown>,
+    (resource.locale?.uk ?? {}) as Record<string, unknown>,
+  )).success, true);
 });
 
 test('Course overrides preserve sparse metadata and replace nested ordered child Props atomically', () => {
@@ -63,7 +66,7 @@ test('Course overrides preserve sparse metadata and replace nested ordered child
   const nested = course.build.overrides({
     content: { items: { module: { locale: { title: 'Unit' } } } },
   }, { languages: ['en', 'uk'] });
-  assert.deepEqual(nested.base.content?.map(child => child.slug), ['module']);
+  assert.deepEqual(nested.base.content?.map(child => child!.slug), ['module']);
   assert.equal(nested.base.content?.[0]?.locale?.title, 'Unit');
   assert.equal(course.build.props({ languages: ['en', 'uk'] }).base.content[0]?.locale?.title, 'Module');
 
@@ -86,9 +89,9 @@ test('Course supports typed additional Chapters without mutating its original Mo
   const patch = course.build.overrides({
     content: { additionalItems: { extra }, order: ['extra', 'module'] },
   }, { languages: ['en', 'uk'] });
-  assert.deepEqual(patch.base.content?.map(child => child.slug), ['extra', 'module']);
-  assert.deepEqual(patch.locale?.uk?.content?.map(child => child.slug), ['extra', 'module']);
-  assert.deepEqual(course.build.props({ languages: ['en', 'uk'] }).base.content.map(child => child.slug), ['module']);
+  assert.deepEqual(patch.base.content?.map(child => child!.slug), ['extra', 'module']);
+  assert.deepEqual(patch.locale?.uk?.content?.map(child => child!.slug), ['extra', 'module']);
+  assert.deepEqual(course.build.props({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug), ['module']);
   assert.throws(
     () => course.build.overrides({ content: { additionalItems: { module: extra } as never, order: ['module'] } }, { languages: ['en', 'uk'] }),
     /Duplicate|does not match/,
@@ -105,8 +108,8 @@ test('Independent Course Build calls do not mutate original children or authored
 
   const authoredContent = course.content;
   authoredContent.order.push('module');
-  assert.throws(() => course.validate({ ...courseInput, content: authoredContent }), /Duplicate slug/);
-  assert.deepEqual(course.build.props({ languages: ['en', 'uk'] }).base.content.map(child => child.slug), ['module']);
+  assert.throws(() => course.validate({ ...courseInput, content: authoredContent } as never), /Duplicate slug/);
+  assert.deepEqual(course.build.props({ languages: ['en', 'uk'] }).base.content.map(child => child!.slug), ['module']);
   assert.deepEqual(courseInput.content.order, ['module']);
 });
 
