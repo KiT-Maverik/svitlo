@@ -13,6 +13,7 @@ import {
 import { skill_Props_Schema, type Skill_Configurator, type Skill_Props } from '../defineSkill';
 import {
   skillGroup_Config_Schema,
+  skillGroup_Props_Schema,
   skillGroup_Override_Config_Schema,
   type SkillGroup_Config,
   type SkillGroup_Metadata_Overrides,
@@ -286,6 +287,6 @@ export function defineSkillGroup<
       },
     },
   } as const;
-  return result as SkillGroup_Configurator<Slug, Skills, Languages>;
+  return result as typeof result & LanguageScope<Languages>;
 }
 

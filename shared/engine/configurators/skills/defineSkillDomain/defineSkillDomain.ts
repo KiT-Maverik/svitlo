@@ -129,8 +129,8 @@ export function defineSkillDomain<
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id } = authored;
   const slug = config.slug;
-  const initialSkills: Skills = { ...(config.skills?.items ?? {}) } as Skills;
-  const initialGroups: Groups = { ...(config.groups?.items ?? {}) } as Groups;
+  const initialSkills: Skills = config.skills ? { ...config.skills.items } : ({} as Skills);
+  const initialGroups: Groups = config.groups ? { ...config.groups.items } : ({} as Groups);
   const skillOrder = [...(config.skills?.order ?? [])];
   const groupOrder = [...(config.groups?.order ?? [])];
   const skills = config.skills ? { items: { ...initialSkills }, order: [...skillOrder] } : undefined;
@@ -345,6 +345,6 @@ export function defineSkillDomain<
       },
     },
   } as const;
-  return result as SkillDomain_Configurator<Slug, Groups, Skills, Languages>;
+  return result as typeof result & LanguageScope<Languages>;
 }
 

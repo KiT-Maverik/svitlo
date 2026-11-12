@@ -5,6 +5,7 @@ import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLan
 import { mergeForValidation, onlyLocales, resolvePublicationLanguages, selectPublicationLocales, splitLocalizedFields } from '../../_shared__configurators';
 import {
   skill_Config_Schema,
+  skill_Props_Schema,
   skill_Override_Config_Schema,
   type Skill_Config,
   type Skill_Overrides,
@@ -21,8 +22,13 @@ const validate = (config: Skill_Config): void => {
 };
 
 /** Authored dictionaries are projected into complete Props-shaped locale-file bodies. */
-const project = (input: Pick<Skill_Config, 'name' | 'description'>) =>
-  splitLocalizedFields(input);
+const project = (input: DeepPartial<Pick<Skill_Config, 'name' | 'description'>>) => {
+  const split = splitLocalizedFields(input);
+  return {
+    base: split.base as DeepPartial<Skill_Props>,
+    locale: split.locale as Partial<Record<LanguageCodes, DeepPartial<Skill_Props>>> | undefined,
+  };
+};
 
 /** Fixed public surface preserves literal Slug and optional language tuple. */
 export type Skill_Configurator<
@@ -72,7 +78,7 @@ export function defineSkill<
       const languages = resolvePublicationLanguages(options);
       const sparse = skill_Override_Config_Schema.parse(patch);
       validate(skill_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
-      const own = splitLocalizedFields(sparse);
+      const own = project(sparse);
       const result: SkillPublication<DeepPartial<Skill_Props>> = {
         base: own.base,
         locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
@@ -107,6 +113,6 @@ export function defineSkill<
       },
     },
   } as const;
-  return result as Skill_Configurator<Slug, Languages>;
+  return result as typeof result & LanguageScope<Languages>;
 }
 
