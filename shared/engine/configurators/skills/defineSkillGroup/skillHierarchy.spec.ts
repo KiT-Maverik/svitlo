@@ -86,9 +86,9 @@ test('SkillGroup validates, orders, overrides and disables Skills without mutati
 });
 
 test('SkillGroup admits typed new children with complete order and rejects key collisions', () => {
-  const added = defineSkill<'force', ['uk']>({
-    id: id('05'), slug: 'force', name: { uk: 'Сила' },
-    description: { methodological: 'Define forces', frontend: { uk: 'Визнач силу' } },
+  const added = defineSkill<'force', ['en', 'uk']>({
+    id: id('05'), slug: 'force', name: { en: 'Force', uk: 'Сила' },
+    description: { methodological: 'Define forces', frontend: { en: 'Define force', uk: 'Визнач силу' } },
   });
   const patch = group.build.overrides({
     skills: { additionalItems: { force: added }, order: ['force', 'balance', 'motion'] },
