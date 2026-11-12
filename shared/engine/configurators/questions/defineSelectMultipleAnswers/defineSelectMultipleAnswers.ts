@@ -6,7 +6,7 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionPublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -93,9 +93,9 @@ export const defineSelectMultipleAnswers = <
   const extraContent = (
     source: Content,
     patch?: {
-      correct?: OrderedBlockPatch;
-      incorrect?: OrderedBlockPatch;
-      distractors?: OrderedBlockPatch;
+      correct?: ResolvableBlockPatch;
+      incorrect?: ResolvableBlockPatch;
+      distractors?: ResolvableBlockPatch;
     },
   ) => {
     const base: Record<string, unknown> = {};
