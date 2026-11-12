@@ -124,7 +124,6 @@ const validLanguageChild = defineAnswerWithNumber<'validLanguageChild', typeof l
   slug: 'validLanguageChild',
   type: 'answerWithNumber',
   params: { ...params, correctAnswers: [1] },
-  // @ts-expect-error Declared English support requires an English translation.
   locale: { placeholder: { uk: 'Відповідь' } },
   content: localContent,
 });
@@ -142,6 +141,7 @@ defineAnswerWithNumber<'badLocale', typeof localContent, ['uk', 'en']>({
   slug: 'badLocale',
   type: 'answerWithNumber',
   params: { ...params, correctAnswers: [1] },
+  // @ts-expect-error A bilingual Question must provide both translations.
   locale: { placeholder: { uk: 'Відповідь' } },
   content: localContent,
 });
