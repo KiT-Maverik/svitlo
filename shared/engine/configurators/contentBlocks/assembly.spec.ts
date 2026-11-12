@@ -270,13 +270,10 @@ test('Video and YouTube publish media-specific fallback and link fields', () => 
   });
   assert.deepEqual(youtube.build.props().base.locale, { href: 'https://youtube.com/watch?v=example' });
   assert.deepEqual(youtube.build.props({ embed: true }).locale?.en, { locale: { label: 'Watch' } });
-  assert.deepEqual(
-    youtube.build.overrides({ params: { mode: 'embed' }, locale: { label: { uk: 'Переглянути' } } }),
-    {
-      base: { params: { mode: 'embed' } },
-      locale: { uk: { label: 'Переглянути' } },
-    },
-  );
+  assert.deepEqual(youtube.build.overrides({ params: { mode: 'embed' }, locale: { label: { uk: 'Переглянути' } } }), {
+    base: { params: { mode: 'embed' } },
+    locale: { uk: { label: 'Переглянути' } },
+  });
   assert.throws(() => youtube.build.overrides({ locale: { nope: 'bad' } } as never), /Invalid Youtube overrides/);
 });
 
