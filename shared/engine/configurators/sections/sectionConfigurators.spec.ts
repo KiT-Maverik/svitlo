@@ -98,3 +98,19 @@ test('all Sections remain reusable across independently built override contexts'
     assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
   }
 });
+
+test('Sections materialize only selected languages in resources and atomic nested patches', () => {
+  for (const create of definitions) {
+    const section = create();
+    const one = section.build.props({ languages: ['uk'] });
+    assert.deepEqual(Object.keys(one.locale ?? {}), ['uk']);
+    assert.equal(one.locale?.en, undefined);
+    const replacement = section.build.overrides({
+      content: { items: { prompt: { locale: { value: { uk: 'Новий текст' } } } } },
+    }, { languages: ['uk'] });
+    assert.deepEqual(Object.keys(replacement.locale ?? {}), ['uk']);
+    assert.equal(textValue(replacement.locale?.uk?.content), 'Новий текст');
+    assert.throws(() => section.build.props({ languages: [] }), /nonempty languages/);
+    assert.throws(() => section.build.props({ languages: ['uk', 'uk'] }), /unique/);
+  }
+});
