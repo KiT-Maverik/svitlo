@@ -29,7 +29,9 @@ const validate = (config: ContentBlock_Text_Config): void => {
 };
 
 /** Publish only language dictionaries, with no extra locale wrapper in each file. */
-const assembleLocale = (value: ContentBlock_Text_Config['locale']['value'] | undefined): TextLocaleFiles | undefined => {
+const assembleLocale = (
+  value: ContentBlock_Text_Config['locale']['value'] | undefined,
+): TextLocaleFiles | undefined => {
   const locale: TextLocaleFiles = {};
   if (value && typeof value === 'object') {
     for (const [language, text] of Object.entries(value)) {

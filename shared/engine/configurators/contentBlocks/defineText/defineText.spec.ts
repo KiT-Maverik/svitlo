@@ -81,12 +81,15 @@ test('Text checks semantic variable rules against the temporarily merged config'
       },
     },
   });
-  assert.deepEqual(text.assemble.overrides({
-    locale: { value: { uk: 'Вітаю %_%id: personName; value: Оля%_%' } },
-  }), {
-    base: {},
-    locale: { uk: { value: 'Вітаю %_%id: personName; value: Оля%_%' } },
-  });
+  assert.deepEqual(
+    text.assemble.overrides({
+      locale: { value: { uk: 'Вітаю %_%id: personName; value: Оля%_%' } },
+    }),
+    {
+      base: {},
+      locale: { uk: { value: 'Вітаю %_%id: personName; value: Оля%_%' } },
+    },
+  );
   assert.throws(
     () => text.assemble.overrides({ locale: { value: { uk: 'Вітаю' } } }),
     /missing configured Text fragment "personName"/,
@@ -95,11 +98,13 @@ test('Text checks semantic variable rules against the temporarily merged config'
     () => text.assemble.overrides({ params: { variables: { anotherName: { applyStyle: ['bold'] } } } }),
     /Text variables validation failed/,
   );
-  assert.doesNotThrow(() => text.validate({
-    ...identity,
-    params: { variables: { personName: { applyStyle: ['bold'] } } },
-    locale: { value: 'Hi %_%id: personName; value: Ada%_%' },
-  }));
+  assert.doesNotThrow(() =>
+    text.validate({
+      ...identity,
+      params: { variables: { personName: { applyStyle: ['bold'] } } },
+      locale: { value: 'Hi %_%id: personName; value: Ada%_%' },
+    }),
+  );
 });
 
 test('Text allows deep-partial nested patches and publishes only those keys', () => {
@@ -111,20 +116,23 @@ test('Text allows deep-partial nested patches and publishes only those keys', ()
     },
     locale: { value: 'Hi %_%id: personName; value: Ada%_%' },
   });
-  assert.deepEqual(text.assemble.overrides({
-    params: {
-      wrap: { typographyProps: { weight: 'bold' } },
-      variables: { personName: { applyColor: 'blue' } },
-    },
-  }), {
-    base: {
+  assert.deepEqual(
+    text.assemble.overrides({
       params: {
         wrap: { typographyProps: { weight: 'bold' } },
         variables: { personName: { applyColor: 'blue' } },
       },
+    }),
+    {
+      base: {
+        params: {
+          wrap: { typographyProps: { weight: 'bold' } },
+          variables: { personName: { applyColor: 'blue' } },
+        },
+      },
+      locale: undefined,
     },
-    locale: undefined,
-  });
+  );
 });
 
 test('Text strictly rejects unknown override fields with cause and identity', () => {
@@ -152,12 +160,15 @@ test('Text strictly rejects unknown override fields with cause and identity', ()
 
 test('Text requires typographyProps to be a JSON-compatible object', () => {
   const text = defineText({ ...identity, locale: { value: 'Welcome' } });
-  assert.deepEqual(text.assemble.overrides({
-    params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } },
-  }), {
-    base: { params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } } },
-    locale: undefined,
-  });
+  assert.deepEqual(
+    text.assemble.overrides({
+      params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } },
+    }),
+    {
+      base: { params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } } },
+      locale: undefined,
+    },
+  );
   for (const value of ['not-an-object', { onClick: () => 42 }, { nested: { invalid: undefined } }, { nested: 1n }]) {
     assert.throws(() => text.assemble.overrides({ params: { wrap: { typographyProps: value as never } } }));
   }
@@ -189,7 +200,8 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
 
   const patch = { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } };
   const first = text.assemble.overrides(patch);
-  (first.base.params?.wrap?.typographyProps as { nested: { weight: string } }).nested.weight = 'mutated override output';
+  (first.base.params?.wrap?.typographyProps as { nested: { weight: string } }).nested.weight =
+    'mutated override output';
   assert.deepEqual(text.assemble.overrides(patch), {
     base: { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } },
     locale: undefined,
