@@ -7,101 +7,73 @@ import { quizSection_Config_Schema } from './defineQuizSection.schemas';
 
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const prompt = defineText({
-  id: id('b1'),
-  slug: 'prompt',
-  type: 'text',
-  params: {},
+  id: id('b1'), slug: 'prompt', type: 'text', params: {},
   locale: { value: { en: 'Read', uk: 'Читай' } },
 });
-
 const quizParams = {
   selection: { mode: 'sample' as const, count: 3 },
   layout: { mode: 'stepper' as const, showProgress: true },
   feedbackMode: 'after-completion' as const,
   interaction: {
-    retries: 1,
-    showErrors: true,
-    showCorrectAnswers: false,
-    allowExplanations: true,
-    allowDeferring: false,
-    allowQuestionNavigation: true,
-    skippable: false,
+    retries: 1, showErrors: true, showCorrectAnswers: false,
+    allowExplanations: true, allowDeferring: false, allowQuestionNavigation: true, skippable: false,
   },
   results: { visibility: 'immediate' as const, showScore: true },
   screen: { starting: { content: ['prompt'] } },
 };
+const makeQuiz = () => defineQuizSection({
+  type: 'quiz', id: id('b4'), slug: 'quiz', params: quizParams,
+  locale: { title: 'Quiz', navigationLabel: 'Q' },
+  content: { items: { prompt }, order: ['prompt'] },
+});
 
-test('Content Section retains configurators and sparse content overrides', () => {
+test('Content Section rejects authored raw blocks and allows valid build overrides', () => {
   const section = defineContentSection({
-    type: 'content',
-    id: id('b2'),
-    slug: 'intro',
-    params: {},
+    type: 'content', id: id('b2'), slug: 'intro', params: {},
     locale: { title: { en: 'Theory', uk: 'Теорія' }, navigationLabel: '1' },
     content: { items: { prompt }, order: ['prompt'] },
   });
-  assert.equal(section.config.base.slug, 'intro');
-  assert.equal(section.config.base.locale.navigationLabel, '1');
+  assert.equal(section.build.props().base.slug, 'intro');
+  assert.deepEqual(section.build.overrides({ content: { order: ['prompt'] } }).base.content?.map(x => x.slug), ['prompt']);
   assert.deepEqual(section.config.locales(), { locale: { title: { en: 'Theory', uk: 'Теорія' } } });
-  assert.equal(section.content.items.prompt, prompt);
-  section.override.content.order(['prompt']);
-  assert.deepEqual(section.config.overrides.content?.order, ['prompt']);
-  section.override.content.disable(['prompt']);
-  assert.deepEqual(section.config.overrides.content?.items?.prompt, false);
-  assert.deepEqual(section.content.order, ['prompt'], 'authored content stays unchanged');
-  assert.deepEqual(section.config.overrides.content?.order, []);
-
-  assert.throws(() =>
-    defineContentSection({
-      type: 'content',
-      id: id('b3'),
-      slug: 'bad',
-      params: {},
-      locale: { title: 'Invalid', navigationLabel: 'X' },
-      content: {
-        // @ts-expect-error Raw authored data is not a ContentBlock configurator.
-        items: { prompt: prompt.config.base },
-        order: ['prompt'],
-      },
-    }),
-  );
+  assert.throws(() => defineContentSection({
+    type: 'content', id: id('b3'), slug: 'bad', params: {},
+    locale: { title: 'Invalid', navigationLabel: 'X' },
+    content: {
+      // @ts-expect-error Raw data is not a ContentBlock configurator.
+      items: { prompt: prompt.config.base },
+      order: ['prompt'],
+    },
+  }));
 });
 
-test('Quiz screen references blocks in Section.content and validates metadata', () => {
-  const section = defineQuizSection({
-    type: 'quiz',
-    id: id('b4'),
-    slug: 'quiz',
-    params: quizParams,
+test('Quiz preserves named screen references and scoring semantics', () => {
+  const quiz = makeQuiz();
+  assert.equal(quiz.type, 'quiz');
+  assert.deepEqual(quiz.build.props().base.params.screen.starting?.content, ['prompt']);
+  assert.equal(quiz.build.props().base.params.interaction.retries, 1);
+  assert.deepEqual(quiz.build.overrides({ params: { interaction: { retries: 2 } } }).base.params?.interaction, { retries: 2 });
+  assert.deepEqual(
+    quiz.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Читай далі' } } } } } })
+      .locale?.uk?.content?.[0]?.locale?.value,
+    'Читай далі',
+  );
+  assert.equal(quizSection_Config_Schema.safeParse({
+    ...quiz.config.base,
+    content: quiz.content,
+    locale: { title: 'Quiz', navigationLabel: 'Q' },
+    params: { ...quizParams, interaction: { ...quizParams.interaction, retries: -1 } },
+  }).success, false);
+  assert.throws(() => makeQuiz().build.overrides({
+    content: { items: { prompt: false }, order: [] },
+  }), /unknown ContentBlock/);
+  assert.throws(() => makeQuiz().build.overrides({
+    params: { screen: { starting: { content: ['missing'] } } },
+  }), /unknown ContentBlock/);
+  assert.throws(() => defineQuizSection({
+    type: 'quiz', id: id('b5'), slug: 'badQuiz',
+    params: { ...quizParams, screen: { starting: { content: ['notPresent'] } } },
     locale: { title: 'Quiz', navigationLabel: 'Q' },
     content: { items: { prompt }, order: ['prompt'] },
-  });
-  assert.equal(section.type, 'quiz');
-  assert.equal(section.content.items.prompt, prompt);
-  assert.deepEqual(section.config.base.params.screen.starting?.content, ['prompt']);
-  assert.equal(
-    quizSection_Config_Schema.safeParse({
-      type: 'quiz',
-      id: id('b4'),
-      slug: 'quiz',
-      params: {
-        ...quizParams,
-        interaction: { ...quizParams.interaction, retries: -1 },
-      },
-      locale: { title: 'Quiz', navigationLabel: 'Q' },
-    }).success,
-    false,
-  );
-  assert.throws(
-    () =>
-      defineQuizSection({
-        type: 'quiz',
-        id: id('b5'),
-        slug: 'badQuiz',
-        params: { ...quizParams, screen: { starting: { content: ['notPresent'] } } },
-        locale: { title: 'Quiz', navigationLabel: 'Q' },
-        content: { items: { prompt }, order: ['prompt'] },
-      }),
-    /unknown ContentBlock/,
-  );
+  }), /unknown ContentBlock/);
 });
