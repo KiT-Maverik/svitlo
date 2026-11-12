@@ -1,8 +1,10 @@
-import type { DeepPartial, LanguageScope, ChildrenSupporting, RequireLanguages } from '#types';
+import type { DeepPartial, LanguageScope, ChildrenSupporting, RequireLanguages, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
   onlyLocales,
   splitLocalizedFields,
   validateOrderedKeys,
@@ -204,6 +206,7 @@ export function defineFlashcard<
   const buildSide = (
     items: Record<string, Block>,
     order: readonly string[],
+    languages: readonly LanguageCodes[],
     changes: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -217,13 +220,9 @@ export function defineFlashcard<
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     ) as Flashcard_PropsBase['content']['front'];
-    const languages = new Set<LanguageCodes>();
-    for (const { resource, patch } of entries) {
-      for (const code of Object.keys(resource.locale ?? {})) languages.add(code as LanguageCodes);
-      for (const code of Object.keys(patch?.locale ?? {})) languages.add(code as LanguageCodes);
-    }
     const locales: Partial<Record<LanguageCodes, Flashcard_PropsBase['content']['front']>> = {};
     for (const code of languages) {
+      if (!entries.some(({ resource, patch }) => resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined)) continue;
       locales[code] = entries.map(({ resource, patch }) => {
         const first = mergeForValidation(
           resource.base, (resource.locale?.[code] ?? {}) as DeepPartial<typeof resource.base>,
@@ -235,13 +234,12 @@ export function defineFlashcard<
     return { bases, locales };
   };
 
-  const buildFlags = (flags: Flashcard_Config['parameters']['flags']) => {
+  const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCodes[]) => {
     const entries = flags.order.map(key => splitLocalizedFields(flags.items[key]));
     const bases = entries.map(entry => entry.base) as FlagFragment[];
-    const languages = new Set<LanguageCodes>();
-    for (const entry of entries) for (const code of Object.keys(entry.locale ?? {})) languages.add(code as LanguageCodes);
     const locales: Partial<Record<LanguageCodes, FlagFragment[]>> = {};
     for (const code of languages) {
+      if (!entries.some(entry => entry.locale?.[code] !== undefined)) continue;
       locales[code] = entries.map(entry =>
         mergeForValidation(entry.base, (entry.locale?.[code] ?? {}) as DeepPartial<typeof entry.base>),
       ) as FlagFragment[];
@@ -263,13 +261,14 @@ export function defineFlashcard<
     }
   };
 
-  const props = (): Publication<Flashcard_PropsBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): Publication<Flashcard_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     const source = copyAuthored();
     const files: Files = {};
-    const front = buildSide(initialContent.front.items, initialContent.front.order);
-    const back = buildSide(initialContent.back.items, initialContent.back.order);
-    const hint = initialContent.hint && buildSide(initialContent.hint.items, initialContent.hint.order);
-    const flags = buildFlags(source.parameters.flags);
+    const front = buildSide(initialContent.front.items, initialContent.front.order, languages);
+    const back = buildSide(initialContent.back.items, initialContent.back.order, languages);
+    const hint = initialContent.hint && buildSide(initialContent.hint.items, initialContent.hint.order, languages);
+    const flags = buildFlags(source.parameters.flags, languages);
     addSideFiles(files, 'front', front);
     addSideFiles(files, 'back', back);
     if (hint) addSideFiles(files, 'hint', hint);
@@ -310,8 +309,10 @@ export function defineFlashcard<
         hint?: { additionalItems?: AddedHint & ChildrenSupporting<Languages, AddedHint> };
       };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       if (!isRecord(patch)) throw new Error('Expected a Flashcard overrides object');
       for (const key of Object.keys(patch)) {
         if (!['parameters', 'content'].includes(key)) throw new Error('Unknown Flashcard override field: ' + key);
@@ -353,7 +354,7 @@ export function defineFlashcard<
       );
       newParams.flags = flags as Flashcard_Config['parameters']['flags'];
       if (flags.changed) {
-        const built = buildFlags(newParams.flags);
+        const built = buildFlags(newParams.flags, languages);
         (output.base.parameters ??= {}).flags = built.bases;
         addFlagFiles(files, built);
       }
@@ -439,7 +440,7 @@ export function defineFlashcard<
         );
         effective[side] = { items: active, order: [...order] };
         if (Object.keys(changes).length || Object.keys(additions).length || change.order !== undefined) {
-          const built = buildSide(active, order, patches);
+          const built = buildSide(active, order, languages, patches);
           (output.base.content ??= {})[side] = built.bases;
           addSideFiles(files, side, built);
         }
