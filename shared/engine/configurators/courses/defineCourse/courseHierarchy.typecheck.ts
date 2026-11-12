@@ -63,9 +63,9 @@ void invalidModuleChildren;
 void invalidChapterChildren;
 
 // @ts-expect-error A Course cannot change its immutable identity.
-course.build.overrides({ slug: 'altered' });
+course.build.overrides({ slug: 'altered' }, { languages: ['en', 'uk'] });
 // @ts-expect-error A Course cannot change its advertised language tuple.
-course.build.overrides({ params: { languages: ['en'] } });
+course.build.overrides({ params: { languages: ['en'] } }, { languages: ['en', 'uk'] });
 const invalidChapterItems: Record<string, Lesson_Configurator> = {
   // @ts-expect-error A Chapter cannot contain Modules.
   module,
