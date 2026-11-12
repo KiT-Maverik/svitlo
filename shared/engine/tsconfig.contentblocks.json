@@ -7,6 +7,8 @@
   },
   "include": [
     "configurators/contentBlocks/assembly.spec.ts",
+    "configurators/contentBlocks/assembly.typecheck.ts",
+    "configurators/contentBlocks.asset-validation.spec.ts",
     "configurators/contentBlocks/defineText/**/*.spec.ts",
     "configurators/contentBlocks/defineMarkdown/**/*.spec.ts",
     "configurators/contentBlocks/defineCarousel/**/*.spec.ts",
