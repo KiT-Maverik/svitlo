@@ -8,6 +8,7 @@ import {
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
 } from '../_shared__questions';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   answerWithNumber_Config_Schema, answerWithNumber_Override_Config_Schema,
@@ -25,9 +26,13 @@ const validate = (candidate: Question_AnswerWithNumber_Config): void => {
 };
 
 type ContentShape = Question_AnswerWithNumber_Config['content'];
-export type Question_AnswerWithNumber_Overrides<Content extends ContentShape = ContentShape> =
+export type Question_AnswerWithNumber_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> =
   Question_AnswerWithNumber_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content> & {
+    content?: QuestionCommonPatch<Content, Added, Languages> & {
       
     };
   };
@@ -78,8 +83,8 @@ export const defineAnswerWithNumber = <
     };
   };
 
-  const overrides = (
-    patch: Question_AnswerWithNumber_Overrides<Content>,
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_AnswerWithNumber_Overrides<Content, Added, Languages>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);
