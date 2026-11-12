@@ -23,6 +23,7 @@ const validate = (candidate: Question_FillBlanksWithBlocks_Config): void => {
   fillBlanksWithBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
   validateNestedBlockCollection(candidate.content.slots, 'content.slots', ['correctAnswer']);
+  if (!candidate.content.slots.order.length) throw new Error('FillBlanksWithBlocks requires at least one slot');
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
 
