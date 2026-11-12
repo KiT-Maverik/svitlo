@@ -5,6 +5,7 @@ import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } fr
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   carousel_Config_Schema,
+  carousel_Props_Schema,
   carousel_Override_Config_Schema,
   type ContentBlock_Carousel_Config,
   type ContentBlock_Carousel_Locale,
@@ -26,6 +27,18 @@ const parseAndValidate = (config: ContentBlock_Carousel_Config): ContentBlock_Ca
 };
 const validate = (config: ContentBlock_Carousel_Config): void => { parseAndValidate(config); };
 
+/** Arrays are atomic, so each published language receives complete slide Props. */
+const validatePublishedSlides = (locale: CarouselLocaleFiles | undefined): void => {
+  for (const [language, fields] of Object.entries(locale ?? {})) {
+    if (fields.slides !== undefined) {
+      const parsed = carousel_Props_Schema.shape.locale.shape.slides.safeParse(fields.slides);
+      if (!parsed.success) {
+        throw new Error(`Incomplete Carousel slides for ${language}: ${parsed.error.message}`, { cause: parsed.error });
+      }
+    }
+  }
+};
+
 const assembleCarousel = (config: ContentBlock_Carousel_Config): CarouselAssembly<ContentBlock_Carousel_ResourceBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
@@ -35,11 +48,15 @@ const assembleCarousel = (config: ContentBlock_Carousel_Config): CarouselAssembl
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Carousel_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Carousel_ResourceBase;
-  return { base, locale: locale as unknown as CarouselLocaleFiles | undefined };
+  const files = locale as unknown as CarouselLocaleFiles | undefined;
+  validatePublishedSlides(files);
+  return { base, locale: files };
 };
 
 const assembleCarouselPatch = (patch: ContentBlock_Carousel_Overrides): CarouselAssembly<CarouselOverrideBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  const files = locale as unknown as CarouselLocaleFiles | undefined;
+  validatePublishedSlides(files);
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
@@ -47,7 +64,7 @@ const assembleCarouselPatch = (patch: ContentBlock_Carousel_Overrides): Carousel
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Carousel_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as CarouselLocaleFiles | undefined,
+    locale: files,
   };
 };
 

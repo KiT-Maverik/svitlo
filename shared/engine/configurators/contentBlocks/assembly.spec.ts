@@ -164,3 +164,24 @@ test('Every flat ContentBlock has stateless assembly but Checkpoint retains its 
   assert.equal('overrides' in block.config, false);
   assert.equal(typeof block.config.locales, 'function');
 });
+
+test('Carousel rejects incomplete per-language arrays rather than publishing positional fragments', () => {
+  const carousel = defineCarousel({
+    id, slug: 'mixedSlides', type: 'carousel', params: {},
+    locale: { slides: [{ src: { en: 'https://example.com/en.png' }, alt: { uk: 'Українською' } }] },
+  });
+  assert.throws(() => carousel.assemble.resource(), /Incomplete Carousel slides/);
+});
+
+test('Markdown can override one language of an invariant replacement without losing the others', () => {
+  const markdown = defineMarkdown({
+    id, slug: 'invariantVariable', type: 'markdown', params: {},
+    locale: {
+      value: { en: 'Hello %_%NAME%_%', uk: 'Привіт %_%NAME%_%' },
+      variables: { NAME: 'Ada' },
+    },
+  });
+  assert.deepEqual(markdown.assemble.overrides({ locale: { variables: { NAME: { uk: 'Оля' } } } }), {
+    base: {}, locale: { uk: { variables: { NAME: 'Оля' } } },
+  });
+});

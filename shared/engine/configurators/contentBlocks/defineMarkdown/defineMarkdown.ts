@@ -94,6 +94,31 @@ const assembleMarkdownPatch = (patch: ContentBlock_Markdown_Overrides): Markdown
 };
 
 /**
+ * If an invariant replacement gets a one-language patch, preserve the
+ * invariant for the remaining authored languages ONLY during validation.
+ * The published patch remains one-language and does not inherit those values.
+ */
+const mergeMarkdownForValidation = (
+  original: ContentBlock_Markdown_Config,
+  patch: ContentBlock_Markdown_Overrides,
+): ContentBlock_Markdown_Config => {
+  const effective = mergeForValidation(original, patch);
+  if (typeof effective.locale.value !== 'object') return effective;
+  for (const [name, replacement] of Object.entries(patch.locale?.variables ?? {})) {
+    const previous = original.locale.variables?.[name];
+    if (typeof previous !== 'string' || !replacement || typeof replacement !== 'object') continue;
+    const localized = replacement as Partial<Record<LanguageCodes, string>>;
+    const complete: Partial<Record<LanguageCodes, string>> = {};
+    for (const language of Object.keys(effective.locale.value)) {
+      const code = language as LanguageCodes;
+      complete[code] = localized[code] ?? previous;
+    }
+    effective.locale.variables = { ...effective.locale.variables, [name]: complete };
+  }
+  return effective;
+};
+
+/**
  * Define localized Markdown with optional Code-style replacement variables.
  *
  * @remarks
@@ -137,7 +162,7 @@ export const defineMarkdown = <const Slug extends string>(
   const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
     try {
       const parsedPatch = markdown_Override_Config_Schema.parse(patch);
-      const effective = markdown_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
+      const effective = markdown_Config_Schema.parse(mergeMarkdownForValidation(copyAuthored(), parsedPatch));
       validate(effective);
       return assembleMarkdownPatch(structuredClone(parsedPatch));
     } catch (error) {
