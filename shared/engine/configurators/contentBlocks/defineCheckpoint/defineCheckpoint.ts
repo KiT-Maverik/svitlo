@@ -1,20 +1,42 @@
 import type { DeepPartial } from '#types';
+import type { LanguageCodes } from '#schemas';
 
 import {
+  mergeForValidation,
   onlyLocales,
   onlyStrings,
+  splitLocalizedFields,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
-import { camelCase_Schema } from '#schemas';
+import type {
+  ContentBlock_CheckpointItem_Configurator,
+  ContentBlock_CheckpointItem_Props,
+} from './defineCheckpointItem';
 import {
   checkpoint_Config_Schema,
+  checkpoint_Override_Config_Schema,
+  type Checkpoint_Metadata_Overrides,
+  type Checkpoint_Overrides,
   type ContentBlock_Checkpoint_Config,
   type ContentBlock_Checkpoint_Locale,
+  type ContentBlock_Checkpoint_PropsBase,
 } from './defineCheckpoint.schemas';
 
-type CheckpointContent = ContentBlock_Checkpoint_Config['content'];
-type CheckpointItem = Exclude<CheckpointContent['items'][string], false>;
+type CheckpointItem = ContentBlock_CheckpointItem_Configurator;
+type ItemResource = ReturnType<CheckpointItem['build']['props']>;
+type ItemOverride = ReturnType<CheckpointItem['build']['overrides']>;
+type CheckpointLocaleBody = {
+  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>;
+  content?: ContentBlock_CheckpointItem_Props[];
+};
+type CheckpointLocaleFiles = Partial<Record<LanguageCodes, CheckpointLocaleBody>>;
+type CheckpointPublication<Base> = { base: Base; locale: CheckpointLocaleFiles | undefined };
+type CheckpointOverrideBase = {
+  params?: Checkpoint_Metadata_Overrides['params'];
+  locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>;
+  content?: ContentBlock_Checkpoint_PropsBase['content'];
+};
 type CheckpointSubject = { id?: string; slug?: string; type?: string };
 
 export type CheckpointValidationIssue = {
@@ -22,6 +44,7 @@ export type CheckpointValidationIssue = {
   path: string;
   message: string;
 };
+
 export type CheckpointValidationResult = {
   success: boolean;
   subject: CheckpointSubject;
@@ -38,6 +61,7 @@ export class CheckpointValidationError extends Error {
 const isObject = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
+/** Validate Checkpoint metadata and collection boundaries, not child internals. */
 const validate = (config: ContentBlock_Checkpoint_Config): void => {
   const result: CheckpointValidationResult = {
     success: true,
@@ -61,8 +85,8 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
   }
 
   if (isObject(content) && isObject(content.items) && Array.isArray(content.order)) {
-    for (const [slug, item] of Object.entries(content.items)) {
-      if (item === false) fail('item', 'content.items.' + slug, 'false is reserved for overrides');
+    if (!content.order.length) {
+      fail('order', 'content.order', 'At least one active Checkpoint item is required');
     }
     for (const issue of validateSluggedConfiguratorMap(content.items, ['checkpointItem'], {
       path: 'content.items',
@@ -70,107 +94,256 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
     })) {
       fail(issue.check, issue.path, issue.message);
     }
+    for (const [key, child] of Object.entries(content.items)) {
+      if (
+        !isObject(child) ||
+        !isObject(child.build) ||
+        typeof child.build.props !== 'function' ||
+        typeof child.build.overrides !== 'function'
+      ) {
+        fail('item', 'content.items.' + key, 'Checkpoint item must expose the Build API');
+      }
+    }
   }
 
   result.success = result.errors.length === 0;
   if (!result.success) throw new CheckpointValidationError(result);
 };
 
-/**
- * Define a Checkpoint containing ordered `defineCheckpointItem` configurators.
- *
- * Use `configuratorArrayToSlugMap([...])` for `content.items` and
- * `answer.items`. A Checkpoint validates its own metadata and the outer
- * collection, while each Checkpoint Item validates its Text question and
- * ordered answers. `false` is reserved for collection overrides.
- *
- * `override.content.add(slug, item)` appends a Checkpoint Item;
- * `disable(slugs)` disables existing entries, and `order(slugs)` replaces
- * the authored order without mutating the original collection.
- */
-export const defineCheckpoint = <
-  const Slug extends string,
-  const Items extends Record<string, CheckpointContent['items'][string]>,
->(
+/** Define a Checkpoint with an ordered collection of CheckpointItem configurators. */
+export const defineCheckpoint = <const Slug extends string, const Items extends Record<string, CheckpointItem>>(
   config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
     slug: Slug;
     content: { items: Items; order: string[] };
   },
 ) => {
   validate(config);
-  const { id, type, slug, locale, params } = config;
-  const content = {
-    items: { ...config.content.items },
-    order: [...config.content.order],
-  };
+  // Snapshot only serializable metadata. Children are immutable configurator references.
+  const metadataSchema = checkpoint_Config_Schema.omit({ content: true });
+  const authored = metadataSchema.parse(config);
+  const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
+  const { id, type } = authored;
+  const slug = config.slug;
+  const initialItems: Items = { ...config.content.items };
+  const initialOrder = [...config.content.order];
+  // Transitional read-only-by-convention access for existing authoring consumers.
+  const content = { items: { ...initialItems }, order: [...initialOrder] };
 
   const base = {
     id,
-    type,
     slug,
-    params,
-    locale: onlyStrings(locale),
+    type,
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Checkpoint_Config>;
 
-  const overrides: DeepPartial<ContentBlock_Checkpoint_Config> = {};
-  const currentOrder = () => (overrides.content?.order ?? content.order) as string[];
+  const splitOwnLocale = (input: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => {
+    const { base: invariant, locale } = splitLocalizedFields(input);
+    const files: CheckpointLocaleFiles = {};
+    for (const [language, fields] of Object.entries(locale ?? {})) {
+      files[language as LanguageCodes] = {
+        locale: fields as DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>,
+      };
+    }
+    return {
+      invariant: invariant as DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>,
+      files,
+    };
+  };
+
+  /**
+   * Arrays are atomic: build complete, ordered child Props for each affected language.
+   * Every child fragment already uses the final Props paths.
+   */
+  const buildContent = (
+    items: Record<string, CheckpointItem>,
+    order: readonly string[],
+    patches: Record<string, unknown> = {},
+  ) => {
+    const entries = order.map(key => {
+      const child = items[key];
+      const resource = child.build.props();
+      const patch = Object.hasOwn(patches, key)
+        ? (child.build.overrides as (patch: never) => ItemOverride)(patches[key] as never)
+        : undefined;
+      return { resource, patch };
+    });
+    const bases: ItemResource['base'][] = entries.map(({ resource, patch }) =>
+      patch
+        ? mergeForValidation<ItemResource['base']>(resource.base, patch.base as DeepPartial<ItemResource['base']>)
+        : resource.base,
+    );
+
+    const languages = new Set<LanguageCodes>();
+    for (const { resource, patch } of entries) {
+      for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
+      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
+    }
+
+    const locales: Partial<Record<LanguageCodes, ContentBlock_CheckpointItem_Props[]>> = {};
+    for (const language of languages) {
+      locales[language] = entries.map(({ resource, patch }) => {
+        const original = mergeForValidation(
+          resource.base,
+          (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
+        );
+        const withPatchBase = patch
+          ? mergeForValidation(original, patch.base as DeepPartial<typeof resource.base>)
+          : original;
+        const translatedPatch = patch?.locale?.[language];
+        return (
+          translatedPatch
+            ? mergeForValidation(withPatchBase, translatedPatch as DeepPartial<typeof resource.base>)
+            : withPatchBase
+        ) as ContentBlock_CheckpointItem_Props;
+      });
+    }
+    return { bases, locales };
+  };
+
+  const props = (): CheckpointPublication<ContentBlock_Checkpoint_PropsBase> => {
+    const metadata = copyAuthored();
+    const own = splitOwnLocale(metadata.locale);
+    const built = buildContent(initialItems, initialOrder);
+    const files = own.files;
+    for (const [language, entries] of Object.entries(built.locales)) {
+      (files[language as LanguageCodes] ??= {}).content = entries;
+    }
+    return {
+      base: {
+        id,
+        slug,
+        type,
+        params: metadata.params,
+        ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
+        content: built.bases,
+      },
+      locale: Object.keys(files).length ? files : undefined,
+    };
+  };
+
+  const overrides = <const Added extends Record<string, CheckpointItem> = {}>(
+    patch: Checkpoint_Overrides<Items, Added>,
+  ): CheckpointPublication<CheckpointOverrideBase> => {
+    try {
+      if (!isObject(patch)) throw new Error('Expected an overrides object');
+      for (const key of Object.keys(patch)) {
+        if (!['params', 'locale', 'content'].includes(key)) {
+          throw new Error('Unknown Checkpoint override field: ' + key);
+        }
+      }
+      const metadataPatch = checkpoint_Override_Config_Schema.parse(
+        Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
+      );
+      // Validate metadata against the effective authored candidate, but publish only the patch.
+      metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
+      const own = splitOwnLocale(metadataPatch.locale ?? {});
+      const output: CheckpointPublication<CheckpointOverrideBase> = {
+        base: {
+          ...(metadataPatch.params !== undefined ? { params: metadataPatch.params } : {}),
+          ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
+        },
+        locale: undefined,
+      };
+      const files = own.files;
+
+      if (patch.content !== undefined && !isObject(patch.content)) {
+        throw new Error('content must be an object');
+      }
+      if (patch.content) {
+        for (const key of Object.keys(patch.content)) {
+          if (!['items', 'additionalItems', 'order'].includes(key)) {
+            throw new Error('Unknown Checkpoint content override field: ' + key);
+          }
+        }
+      }
+      const changes = patch.content?.items ?? {};
+      if (!isObject(changes)) throw new Error('content.items must be a slug-keyed object');
+      const additions = patch.content?.additionalItems ?? {};
+      if (!isObject(additions)) throw new Error('content.additionalItems must be a slug-keyed configurator map');
+
+      const addedIssues = validateSluggedConfiguratorMap(additions, ['checkpointItem'], {
+        path: 'content.additionalItems',
+        itemLabel: 'Checkpoint item',
+      });
+      if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
+
+      const active: Record<string, CheckpointItem | false> = { ...initialItems };
+      const childPatches: Record<string, unknown> = {};
+      let structureChanged = Object.keys(additions).length > 0;
+      for (const [key, child] of Object.entries(additions)) {
+        if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Checkpoint item slug: ' + key);
+        if (
+          !isObject(child) ||
+          !isObject(child.build) ||
+          typeof child.build.props !== 'function' ||
+          typeof child.build.overrides !== 'function'
+        ) {
+          throw new Error('New Checkpoint item must expose the Build API: ' + key);
+        }
+        active[key] = child as CheckpointItem;
+      }
+      for (const [key, change] of Object.entries(changes)) {
+        if (!Object.hasOwn(initialItems, key)) {
+          throw new Error('Cannot override an unknown existing Checkpoint item: ' + key);
+        }
+        if (change === false) {
+          active[key] = false;
+          structureChanged = true;
+        } else {
+          if (!isObject(change)) throw new Error('Checkpoint item overrides must be objects or false: ' + key);
+          childPatches[key] = change;
+        }
+      }
+
+      if (structureChanged && patch.content?.order === undefined) {
+        throw new Error('content.order is required when adding or disabling Checkpoint items');
+      }
+      const order = patch.content?.order ?? initialOrder;
+      const issues = validateOrderedKeys(
+        { items: active, order },
+        { path: 'content', allowDisabled: true, requireNonEmpty: true },
+      );
+      if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+      if (!order.length) throw new Error('At least one active Checkpoint item is required');
+
+      const modifiesContent =
+        Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.content?.order !== undefined;
+      if (modifiesContent) {
+        const enabled = Object.fromEntries(
+          Object.entries(active).filter((entry): entry is [string, CheckpointItem] => entry[1] !== false),
+        );
+        const built = buildContent(enabled, order, childPatches);
+        output.base.content = built.bases;
+        for (const [language, entries] of Object.entries(built.locales)) {
+          (files[language as LanguageCodes] ??= {}).content = entries;
+        }
+      }
+
+      output.locale = Object.keys(files).length ? files : undefined;
+      return output;
+    } catch (error) {
+      throw new Error(
+        'Invalid Checkpoint overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
+    }
+  };
 
   return {
     id,
     slug,
     type,
+    content,
+    validate,
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>> } => ({
-        locale: onlyLocales(locale),
+        locale: onlyLocales(copyAuthored().locale),
       }),
-      overrides,
       validate,
     },
-    override: {
-      params: (newParams: DeepPartial<ContentBlock_Checkpoint_Config['params']>) => (overrides.params = newParams),
-      locale: (newLocale: DeepPartial<ContentBlock_Checkpoint_Locale<'config'>>) => (overrides.locale = newLocale),
-      content: {
-        add: (itemSlug: string, item: CheckpointItem) => {
-          if (
-            !camelCase_Schema.safeParse(itemSlug).success ||
-            Object.hasOwn(content.items, itemSlug) ||
-            Object.hasOwn(overrides.content?.items ?? {}, itemSlug)
-          ) {
-            throw new Error('Invalid or duplicate Checkpoint question slug: ' + itemSlug);
-          }
-          if (
-            validateSluggedConfiguratorMap({ [itemSlug]: item }, ['checkpointItem'], {
-              itemLabel: 'Checkpoint item',
-            }).length
-          ) {
-            throw new Error('Expected a Checkpoint Item configurator with matching slug: ' + itemSlug);
-          }
-          const patch = (overrides.content ??= {});
-          (patch.items ??= {})[itemSlug] = item;
-          patch.order = [...currentOrder(), itemSlug];
-        },
-        disable: (slugs: (keyof Items & string)[]) => {
-          const selected = new Set<string>(slugs);
-          for (const key of selected) {
-            if (!Object.hasOwn(content.items, key)) throw new Error('Unknown Checkpoint question slug: ' + key);
-          }
-          if (!selected.size) return;
-          const patch = (overrides.content ??= {});
-          for (const key of selected) (patch.items ??= {})[key] = false;
-          patch.order = currentOrder().filter(key => !selected.has(key));
-        },
-        order: (slugs: string[]) => {
-          const items = { ...content.items, ...overrides.content?.items };
-          if (validateOrderedKeys({ items, order: slugs }, { allowDisabled: true }).length) {
-            throw new Error('Checkpoint order must contain each active question slug exactly once');
-          }
-          (overrides.content ??= {}).order = [...slugs];
-        },
-      },
-    },
-    disable: () => (overrides.params = { disabled: true }),
-    content,
   } as const;
 };
 
