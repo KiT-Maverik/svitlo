@@ -92,3 +92,34 @@ const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_Check
   answer: { items: answers, order: ['answer'] },
 };
 void notQuestion;
+
+const publishedCheckpoint = checkpoint.build.props();
+void publishedCheckpoint.base.content[0]?.question;
+void publishedCheckpoint.locale?.uk?.content?.[0]?.question.locale.value;
+// @ts-expect-error Published Props use sorted arrays instead of authored maps.
+void publishedCheckpoint.base.content.items;
+// @ts-expect-error The old mutable Checkpoint API is not available.
+checkpoint.override.content.disable(['whatIsLight']);
+// @ts-expect-error Checkpoint identity is immutable under overrides.
+checkpoint.build.overrides({ slug: 'other' });
+// @ts-expect-error Only known authored CheckpointItems may receive sparse patches.
+checkpoint.build.overrides({ content: { items: { unknown: { check: true } } } });
+// @ts-expect-error An unknown final-order slug is rejected statically.
+checkpoint.build.overrides({ content: { order: ['unknown'] } });
+
+const laterItem = defineCheckpointItem({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d6f',
+  type: 'checkpointItem',
+  slug: 'laterItem',
+  question,
+  answer: { items: configuratorArrayToSlugMap([later]), order: ['later'] },
+});
+checkpoint.build.overrides({
+  content: {
+    items: { whatIsLight: { question: { locale: { value: { uk: 'Оновлене?' } } } } },
+    additionalItems: configuratorArrayToSlugMap([laterItem]),
+    order: ['whatIsLight', 'laterItem'],
+  },
+});
+// @ts-expect-error Existing CheckpointItem slugs cannot be added again.
+checkpoint.build.overrides({ content: { additionalItems: configuratorArrayToSlugMap([item]) } });
