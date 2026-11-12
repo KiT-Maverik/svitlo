@@ -48,7 +48,9 @@ const validate = (config: SkillDomain_Config): void => {
     }));
     for (const [slug, child] of Object.entries(collection.items)) {
       if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
+        !isRecord(child.config) || !isRecord(child.config.base) ||
+        child.config.base.id !== child.id || child.config.base.slug !== slug) {
         issues.push({ path: key + '.items.' + slug, message: 'Child must expose the Build API' });
       }
     }
