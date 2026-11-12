@@ -1,21 +1,49 @@
 import { z } from 'zod';
+import type { DeepPartial } from '#types';
+import { deepStrict_Schema } from '#schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
+import { contentBlockConfigurator_Schema, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
-import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
+import {
+  createQuestionBaseSchema,
+  questionBlockCollection_Config_Schema,
+  questionCommonContent_Config_Schema,
+  questionCommonContent_Props_Schema,
+  type QuestionContent,
+  type QuestionPublishedContent,
+  type QuestionMetadataOverrides,
+} from '../question.schemas';
+const authoredBlock = z.custom<ContentBlock_Configurator>(
+  value => contentBlockConfigurator_Schema.safeParse(value).success,
+);
 
 const questionBase = createQuestionBaseSchema('matchBlocks');
+const params = questionBase.shape.params;
 
-/** The schema validates Question metadata; child blocks own their validation. */
-export const matchBlocks_Config_Schema = questionBase.extend(addUnifiedLocale({}));
-export type Question_MatchBlocks_Config = z.infer<typeof matchBlocks_Config_Schema> & {
-  content: QuestionContent<ContentBlock_Configurator> & {
-    pairs: Record<string, { left: ContentBlock_Configurator; right: ContentBlock_Configurator }>;
-  };
-};
+export const matchBlocks_Config_Schema = questionBase.extend({
+  params,
+  ...addUnifiedLocale({}),
+  content: questionCommonContent_Config_Schema.extend({ pairs: z.object({
+  items: z.record(z.string(), z.object({ left: authoredBlock, right: authoredBlock })),
+  order: z.array(z.string()),
+}) }),
+});
+export type Question_MatchBlocks_Config = z.infer<typeof matchBlocks_Config_Schema>;
 
-export const matchBlocks_Props_Schema = questionBase.extend(addUnifiedLocale({}));
-export type Question_MatchBlocks_Props = z.infer<typeof matchBlocks_Props_Schema> & {
-  content: QuestionContent<ContentBlock_Props> & {
-    pairs: Record<string, { left: ContentBlock_Props; right: ContentBlock_Props }>;
-  };
+/** Only the authored Config metadata fields are independently overridable. */
+export type Question_MatchBlocks_MetadataOverrides = QuestionMetadataOverrides<Question_MatchBlocks_Config>;
+export const matchBlocks_Override_Config_Schema: z.ZodType<Question_MatchBlocks_MetadataOverrides> = z.deepPartial(
+  deepStrict_Schema(z.object({
+    params: matchBlocks_Config_Schema.shape.params,
+    locale: matchBlocks_Config_Schema.shape.locale,
+  })),
+);
+
+export const matchBlocks_Props_Schema = questionBase.extend({
+  params,
+  ...addUnifiedLocale({}),
+  content: questionCommonContent_Props_Schema.extend({ pairs: z.record(z.string(), z.object({ left: contentBlockResolved_Schema, right: contentBlockResolved_Schema })) }),
+});
+export type Question_MatchBlocks_Props = Omit<z.infer<typeof matchBlocks_Props_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Props> & { pairs: Record<string, { left: ContentBlock_Props; right: ContentBlock_Props }> };
 };
