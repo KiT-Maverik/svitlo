@@ -1,10 +1,11 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   image_Config_Schema,
+  image_Props_Schema,
   image_Override_Config_Schema,
   type ContentBlock_Image_Config,
   type ContentBlock_Image_Locale,
@@ -88,15 +89,24 @@ export const defineImage = <const Slug extends string, const Languages extends r
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Image_Config>;
 
-  const props = (): ImagePropsPublication<ContentBlock_Image_PropsBase> =>
-    buildImageProps(parseAndValidate(copyAuthored()));
+  const props = (options: PublicationLanguageOptions<Languages>): ImagePropsPublication<ContentBlock_Image_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
+    const result = buildImageProps(parseAndValidate(copyAuthored()));
+    result.locale = selectPublicationLocales(result.locale, languages);
+    validateRequestedPublication(image_Props_Schema, result, languages);
+    return result;
+  };
 
-  const overrides = (patch: ContentBlock_Image_Overrides): ImagePropsPublication<ImageOverridePropsBase> => {
+  const overrides = (patch: ContentBlock_Image_Overrides, options: PublicationLanguageOptions<Languages>): ImagePropsPublication<ImageOverridePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = image_Override_Config_Schema.parse(patch);
       const effective = image_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return buildImagePatch(structuredClone(parsedPatch));
+      const output = buildImagePatch(structuredClone(parsedPatch));
+      output.locale = selectPublicationLocales(output.locale, languages);
+      validateRequestedPublication(image_Props_Schema, props(options), languages, output);
+      return output;
     } catch (error) {
       throw new Error(`Invalid Image overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,

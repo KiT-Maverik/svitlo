@@ -1,11 +1,12 @@
 import { readFileSync, readdirSync } from 'node:fs';
-import type { DeepPartial, ConfigWithLanguages, RequireLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, RequireLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   markdown_Config_Schema,
+  markdown_Props_Schema,
   markdown_Override_Config_Schema,
   type ContentBlock_Markdown_Config,
   type ContentBlock_Markdown_Locale,
@@ -201,15 +202,24 @@ export const defineMarkdown = <const Slug extends string, const Languages extend
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
-  const props = (): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> =>
-    buildMarkdownProps(parseAndValidate(copyAuthored()));
+  const props = (options: PublicationLanguageOptions<Languages>): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
+    const result = buildMarkdownProps(parseAndValidate(copyAuthored()));
+    result.locale = selectPublicationLocales(result.locale, languages);
+    validateRequestedPublication(markdown_Props_Schema, result, languages);
+    return result;
+  };
 
-  const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
+  const overrides = (patch: ContentBlock_Markdown_Overrides, options: PublicationLanguageOptions<Languages>): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = markdown_Override_Config_Schema.parse(patch);
       const effective = markdown_Config_Schema.parse(mergeMarkdownForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return buildMarkdownPatch(structuredClone(parsedPatch));
+      const output = buildMarkdownPatch(structuredClone(parsedPatch));
+      output.locale = selectPublicationLocales(output.locale, languages);
+      validateRequestedPublication(markdown_Props_Schema, props(options), languages, output);
+      return output;
     } catch (error) {
       throw new Error(
         `Invalid Markdown overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,
