@@ -1,31 +1,14 @@
 import type { LanguageScope } from '#types';
-import { defineLesson } from '../../lessons/defineLesson';
+import type { Lesson_Configurator } from '../../lessons/defineLesson';
 import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
 import { defineCourse } from './defineCourse';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d01';
 
-/**
- * This bridge is removed at integration after Agent 1 migrates defineLesson.
- * The phantom scope carries only compile-time coverage, never runtime data.
- */
-const oldLesson = defineLesson({
-  id,
-  type: 'lesson',
-  slug: 'lesson',
-  skills: [],
-  params: {
-    requireQuiz: false,
-    languages: ['en', 'uk'] as const,
-    sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
-  },
-  locale: { title: 'Lesson' },
-  section: { items: {}, order: [] },
-  flashcards: [],
-});
-const lesson = oldLesson as typeof oldLesson & LanguageScope<['en', 'uk']>;
-const lessonEnglishOnly = oldLesson as typeof oldLesson & LanguageScope<['en']>;
+/** Type-only fixtures: Agent 1 owns the actual Lesson configurator's Build migration. */
+declare const lesson: Lesson_Configurator & LanguageScope<['en', 'uk']>;
+declare const lessonEnglishOnly: Lesson_Configurator & LanguageScope<['en']>;
 
 const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['en', 'uk']>({
   id, type: 'chapter', slug: 'chapter', params: {},
