@@ -36,8 +36,8 @@ function authoringLanguageContracts() {
     content: { items: { ukOnly: ukText }, order: ['ukOnly'] },
   });
 
-  // @ts-expect-error Section child fails bilingual Lesson's required language coverage.
   const impossible: ChildrenSupporting<['en', 'uk'], { onlyUkrainian: typeof ukrainian }> = {
+    // @ts-expect-error Section child fails bilingual Lesson's required language coverage.
     onlyUkrainian: ukrainian,
   };
   void impossible;
