@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { defineSkill } from '../defineSkill';
+import { mergeForValidation } from '../../_shared__configurators';
+import { defineSkill, skill_Props_Schema } from '../defineSkill';
 import { defineSkillGroup } from './defineSkillGroup';
 import { defineSkillDomain } from '../defineSkillDomain';
 
@@ -51,6 +52,7 @@ test('Skill publishes localized Props-shaped files and an invariant methodologic
   });
   assert.equal(result.locale?.en?.name, 'Balance');
   assert.equal(JSON.stringify(result).includes('function'), false);
+  assert.equal(skill_Props_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success, true);
 });
 
 test('Skill overrides are sparse, strict and immutable', () => {
