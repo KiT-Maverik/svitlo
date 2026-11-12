@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
@@ -73,8 +73,8 @@ const buildYoutubePatch = (
  * Stateless ContentBlock Build API validates isolated snapshots and emits
  * either complete Props or exclusively sparse override fields.
  */
-export const defineYoutube = <const Slug extends string>(
-  config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug },
+export const defineYoutube = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Youtube_Config, Languages>,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
@@ -106,7 +106,7 @@ export const defineYoutube = <const Slug extends string>(
       );
     }
   };
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -120,6 +120,7 @@ export const defineYoutube = <const Slug extends string>(
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Youtube_Configurator = ReturnType<typeof defineYoutube>;
