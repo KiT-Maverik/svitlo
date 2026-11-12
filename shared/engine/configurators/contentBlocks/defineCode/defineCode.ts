@@ -7,6 +7,7 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
+  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
@@ -125,6 +126,8 @@ export const defineCode = <const Slug extends string>(
     const assembled = assembleCode(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
+  const resourceApi: ResourceAssembler<ContentBlock_Code_ResourceBase, DeepPartial<ContentBlock_Code_Locale<'props'>>> = resource;
+
   const overrides = (patch: ContentBlock_Code_Overrides): CodeAssembly<CodeOverrideBase> => {
     try {
       const parsedPatch = code_Override_Config_Schema.parse(patch);
@@ -142,7 +145,7 @@ export const defineCode = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Code_Locale<'config'>> } => ({

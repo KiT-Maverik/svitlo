@@ -7,6 +7,7 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
+  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
@@ -92,6 +93,8 @@ export const defineImage = <const Slug extends string>(
     const assembled = assembleImage(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
+  const resourceApi: ResourceAssembler<ContentBlock_Image_ResourceBase, DeepPartial<ContentBlock_Image_Locale<'props'>>> = resource;
+
   const overrides = (patch: ContentBlock_Image_Overrides): ImageAssembly<ImageOverrideBase> => {
     try {
       const parsedPatch = image_Override_Config_Schema.parse(patch);
@@ -109,7 +112,7 @@ export const defineImage = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Image_Locale<'config'>> } => ({

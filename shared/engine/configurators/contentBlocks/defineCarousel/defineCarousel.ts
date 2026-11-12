@@ -7,6 +7,7 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
+  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
@@ -111,6 +112,8 @@ export const defineCarousel = <const Slug extends string>(
     const assembled = assembleCarousel(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
+  const resourceApi: ResourceAssembler<ContentBlock_Carousel_ResourceBase, DeepPartial<ContentBlock_Carousel_Locale<'props'>>> = resource;
+
   const overrides = (patch: ContentBlock_Carousel_Overrides): CarouselAssembly<CarouselOverrideBase> => {
     try {
       const parsedPatch = carousel_Override_Config_Schema.parse(patch);
@@ -131,7 +134,7 @@ export const defineCarousel = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({

@@ -8,6 +8,7 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
+  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
@@ -185,6 +186,8 @@ export const defineMarkdown = <const Slug extends string>(
     const assembled = assembleMarkdown(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
+  const resourceApi: ResourceAssembler<ContentBlock_Markdown_ResourceBase, DeepPartial<ContentBlock_Markdown_Locale<'props'>>> = resource;
+
   const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
     try {
       const parsedPatch = markdown_Override_Config_Schema.parse(patch);
@@ -205,7 +208,7 @@ export const defineMarkdown = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Markdown_Locale<'config'>> } => ({

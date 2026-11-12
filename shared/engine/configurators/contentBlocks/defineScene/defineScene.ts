@@ -7,6 +7,7 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
+  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateSceneEntry } from '../_shared__contentBlocks';
@@ -100,6 +101,8 @@ export const defineScene = <const Slug extends string>(
     const assembled = assembleScene(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
+  const resourceApi: ResourceAssembler<ContentBlock_Scene_ResourceBase, DeepPartial<ContentBlock_Scene_Locale<'props'>>> = resource;
+
   const overrides = (patch: ContentBlock_Scene_Overrides): SceneAssembly<SceneOverrideBase> => {
     try {
       const parsedPatch = scene_Override_Config_Schema.parse(patch);
@@ -117,7 +120,7 @@ export const defineScene = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Scene_Locale<'config'>> } => ({

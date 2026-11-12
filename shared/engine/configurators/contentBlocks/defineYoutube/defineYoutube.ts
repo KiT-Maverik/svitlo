@@ -7,6 +7,7 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
+  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import {
@@ -91,6 +92,8 @@ export const defineYoutube = <const Slug extends string>(
     const assembled = assembleYoutube(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
+  const resourceApi: ResourceAssembler<ContentBlock_Youtube_ResourceBase, DeepPartial<ContentBlock_Youtube_Locale<'props'>>> = resource;
+
   const overrides = (patch: ContentBlock_Youtube_Overrides): YoutubeAssembly<YoutubeOverrideBase> => {
     try {
       const parsedPatch = youtube_Override_Config_Schema.parse(patch);
@@ -111,7 +114,7 @@ export const defineYoutube = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Youtube_Locale<'config'>> } => ({

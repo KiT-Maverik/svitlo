@@ -7,6 +7,7 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
+  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
@@ -93,6 +94,8 @@ export const defineVideo = <const Slug extends string>(
     const assembled = assembleVideo(copyAuthored());
     return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
   }
+  const resourceApi: ResourceAssembler<ContentBlock_Video_ResourceBase, DeepPartial<ContentBlock_Video_Locale<'props'>>> = resource;
+
   const overrides = (patch: ContentBlock_Video_Overrides): VideoAssembly<VideoOverrideBase> => {
     try {
       const parsedPatch = video_Override_Config_Schema.parse(patch);
@@ -110,7 +113,7 @@ export const defineVideo = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource, overrides },
+    assemble: { resource: resourceApi, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Video_Locale<'config'>> } => ({
