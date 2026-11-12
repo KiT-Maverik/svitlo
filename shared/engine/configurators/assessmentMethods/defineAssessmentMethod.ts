@@ -1,31 +1,70 @@
-import type { DeepPartial } from '#types';
+import type { LanguageCodes } from '#schemas';
+import type { DeepPartial, LanguageScope, RequireLanguages } from '#types';
 
-import { assessmentMethod_Config_Schema, type AssessmentMethod_Config } from './defineAssessmentMethod.schemas';
+import { mergeForValidation, onlyLocales, splitLocalizedFields } from '../_shared__configurators';
+import {
+  assessmentMethod_Config_Schema,
+  assessmentMethod_Override_Config_Schema,
+  type AssessmentMethod_Config,
+  type AssessmentMethod_Overrides,
+  type AssessmentMethod_Props,
+} from './defineAssessmentMethod.schemas';
 
-const validate = (config: AssessmentMethod_Config) => {
+type AssessmentMethodPublication<Base> = {
+  base: Base;
+  locale: Partial<Record<LanguageCodes, DeepPartial<AssessmentMethod_Props>>> | undefined;
+};
+
+const validate = (config: AssessmentMethod_Config): void => {
   assessmentMethod_Config_Schema.parse(config);
 };
 
-export function defineAssessmentMethod(config: AssessmentMethod_Config) {
-  validate(config);
+/** Assessment method descriptions and labels retain their authored semantics. */
+export function defineAssessmentMethod<
+  const Slug extends string,
+  const Languages extends readonly LanguageCodes[] = [],
+>(config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>) {
+  const authored = structuredClone(assessmentMethod_Config_Schema.parse(config));
+  const { id } = authored;
+  const slug = config.slug;
+  const copyAuthored = () => assessmentMethod_Config_Schema.parse(structuredClone(authored));
 
-  const { id, description, slug, title } = config;
+  const props = (): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props> & { id: string; slug: string }> => {
+    const current = copyAuthored();
+    const own = splitLocalizedFields({ title: current.title, description: current.description });
+    return { base: { id, slug, ...own.base }, locale: own.locale };
+  };
 
-  const base = {
-    id,
-    slug,
-  } satisfies DeepPartial<AssessmentMethod_Config>;
+  const overrides = (patch: AssessmentMethod_Overrides): AssessmentMethodPublication<DeepPartial<AssessmentMethod_Props>> => {
+    try {
+      const sparse = assessmentMethod_Override_Config_Schema.parse(patch);
+      validate(assessmentMethod_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
+      const own = splitLocalizedFields(sparse);
+      return { base: own.base, locale: own.locale };
+    } catch (error) {
+      throw new Error(
+        'Invalid Assessment Method overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
+    }
+  };
 
-  return {
+  const result = {
     id,
     slug,
     type: 'assessmentMethod' as const,
+    validate,
+    build: { props, overrides },
     config: {
-      base,
+      base: props().base,
       validate,
-      locales: () => ({ title, description }) satisfies DeepPartial<AssessmentMethod_Config>,
+      locales: (): DeepPartial<AssessmentMethod_Config> => {
+        const current = copyAuthored();
+        return { title: onlyLocales(current.title), description: onlyLocales(current.description) };
+      },
     },
-  };
+  } as const;
+  return result as typeof result & LanguageScope<Languages>;
 }
 
 export type AssessmentMethod_Configurator = ReturnType<typeof defineAssessmentMethod>;
