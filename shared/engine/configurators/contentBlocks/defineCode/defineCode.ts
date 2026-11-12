@@ -1,14 +1,55 @@
 import type { DeepPartial } from '#types';
+import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-
-import { code_Config_Schema, type ContentBlock_Code_Config, type ContentBlock_Code_Locale } from './defineCode.schemas';
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
+import {
+  code_Config_Schema,
+  code_Override_Config_Schema,
+  type ContentBlock_Code_Config,
+  type ContentBlock_Code_Locale,
+  type ContentBlock_Code_Overrides,
+  type ContentBlock_Code_ResourceBase,
+} from './defineCode.schemas';
 
-const validate = (config: ContentBlock_Code_Config) => {
-  code_Config_Schema.parse(config);
-  const errors = validateReplacementVariables(config.params.codeAsText, config.locale.variables, 'Code template');
+type CodeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Code_Locale<'props'>>>>;
+type CodeAssembly<Base> = { base: Base; locale: CodeLocaleFiles | undefined };
+type CodeOverrideBase = {
+  params?: ContentBlock_Code_Overrides['params'];
+  locale?: DeepPartial<ContentBlock_Code_Locale<'props'>>;
+};
+
+const parseAndValidate = (config: ContentBlock_Code_Config): ContentBlock_Code_Config => {
+  const parsed = code_Config_Schema.parse(config);
+  const errors = validateReplacementVariables(parsed.params.codeAsText, parsed.locale.variables, 'Code template');
   if (errors.length) throw new Error('Code variables validation failed:\n' + errors.join('\n'));
+  return parsed;
+};
+const validate = (config: ContentBlock_Code_Config): void => { parseAndValidate(config); };
+
+const assembleCode = (config: ContentBlock_Code_Config): CodeAssembly<ContentBlock_Code_ResourceBase> => {
+  const { id, type, slug, params } = config;
+  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const base = {
+    id, type, slug, params,
+    ...(Object.keys(invariant).length
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
+      : {}),
+  } satisfies ContentBlock_Code_ResourceBase;
+  return { base, locale: locale as unknown as CodeLocaleFiles | undefined };
+};
+
+const assembleCodePatch = (patch: ContentBlock_Code_Overrides): CodeAssembly<CodeOverrideBase> => {
+  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  return {
+    base: {
+      ...(patch.params !== undefined ? { params: patch.params } : {}),
+      ...(Object.keys(invariant).length
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Code_Locale<'props'>> }
+        : {}),
+    },
+    locale: locale as unknown as CodeLocaleFiles | undefined,
+  };
 };
 
 /**
@@ -44,40 +85,44 @@ const validate = (config: ContentBlock_Code_Config) => {
  * });
  * ```
  */
+/**
+ * Build-time stateless publication. The isolated merged candidate is used
+ * only for validation; the published override remains sparse.
+ */
 export const defineCode = <const Slug extends string>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug },
 ) => {
-  validate(config);
-
-  const { id, type, slug, locale, params } = config;
-
+  const authored = structuredClone(parseAndValidate(config));
+  const { id, type } = authored;
+  const slug = config.slug;
+  const copyAuthored = () => code_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id,
-    type,
-    slug,
-    params,
-    locale: onlyStrings(locale),
+    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
-  const overrides: DeepPartial<ContentBlock_Code_Config> = {};
-
+  const resource = (): CodeAssembly<ContentBlock_Code_ResourceBase> => assembleCode(copyAuthored());
+  const overrides = (patch: ContentBlock_Code_Overrides): CodeAssembly<CodeOverrideBase> => {
+    try {
+      const parsedPatch = code_Override_Config_Schema.parse(patch);
+      const effective = code_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
+      validate(effective);
+      return assembleCodePatch(structuredClone(parsedPatch));
+    } catch (error) {
+      throw new Error(`Invalid Code overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
+        cause: error,
+      });
+    }
+  };
   return {
-    id,
-    slug,
-    type,
+    id, slug, type, validate,
+    assemble: { resource, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Code_Locale<'config'>> } => ({
-        locale: onlyLocales(locale),
+        locale: onlyLocales(copyAuthored().locale),
       }),
-      overrides,
       validate,
     },
-    override: {
-      params: (newParams: DeepPartial<ContentBlock_Code_Config['params']>) => (overrides.params = newParams),
-      locale: (newLocale: DeepPartial<ContentBlock_Code_Locale<'config'>>) => (overrides.locale = newLocale),
-    },
-    disable: () => (overrides.params = { disabled: true }),
   } as const;
 };
 
