@@ -1,4 +1,4 @@
-import { defineCheckpoint, defineText } from '@svitlo/engine';
+import { configuratorArrayToSlugMap, defineCheckpoint, defineCheckpointItem, defineText } from '@svitlo/engine';
 
 export const checkpoint = defineCheckpoint({
   id: 'cd65e160-da27-57e1-a58f-38b1276c4346',
@@ -39,8 +39,11 @@ export const checkpoint = defineCheckpoint({
     },
   },
   content: {
-    items: {
-      sourceLocation: {
+    items: configuratorArrayToSlugMap([
+      defineCheckpointItem({
+        id: '327be513-a21f-5d66-9bb1-7890c672de11',
+        slug: 'sourceLocation',
+        type: 'checkpointItem',
         question: defineText({
           id: '4a4b8dc2-f006-5e3c-8c67-b6f8b4ba1300',
           slug: 'sourceLocationQuestion',
@@ -81,8 +84,8 @@ export const checkpoint = defineCheckpoint({
           },
         }),
         answer: {
-          items: {
-            lightSourcePositionAnswer: defineText({
+          items: configuratorArrayToSlugMap([
+            defineText({
               id: 'f87ad205-5981-4791-94ff-e6be5132f28b',
               slug: 'lightSourcePositionAnswer',
               type: 'text',
@@ -121,11 +124,14 @@ export const checkpoint = defineCheckpoint({
                 },
               },
             }),
-          },
+          ]),
           order: ['lightSourcePositionAnswer'],
         },
-      },
-      animationSpeed: {
+      }),
+      defineCheckpointItem({
+        id: '327be513-a21f-5d66-9bb1-7890c672de12',
+        slug: 'animationSpeed',
+        type: 'checkpointItem',
         question: defineText({
           id: '542c42b3-793c-51b7-a73c-99d350752721',
           slug: 'animationSpeedQuestion',
@@ -166,8 +172,8 @@ export const checkpoint = defineCheckpoint({
           },
         }),
         answer: {
-          items: {
-            animationSpeedAnswer: defineText({
+          items: configuratorArrayToSlugMap([
+            defineText({
               id: '254655af-de7b-42e4-8f74-04a568b48f6d',
               slug: 'animationSpeedAnswer',
               type: 'text',
@@ -206,11 +212,14 @@ export const checkpoint = defineCheckpoint({
                 },
               },
             }),
-          },
+          ]),
           order: ['animationSpeedAnswer'],
         },
-      },
-      opaqueObjectShadow: {
+      }),
+      defineCheckpointItem({
+        id: '327be513-a21f-5d66-9bb1-7890c672de13',
+        slug: 'opaqueObjectShadow',
+        type: 'checkpointItem',
         question: defineText({
           id: '776c9320-b190-5bec-8ac1-5b9e23e35cf1',
           slug: 'opaqueObjectShadowQuestion',
@@ -251,8 +260,8 @@ export const checkpoint = defineCheckpoint({
           },
         }),
         answer: {
-          items: {
-            opaqueObjectShadowAnswer: defineText({
+          items: configuratorArrayToSlugMap([
+            defineText({
               id: '9eece55a-e495-452b-8645-ead0a1570842',
               slug: 'opaqueObjectShadowAnswer',
               type: 'text',
@@ -291,11 +300,11 @@ export const checkpoint = defineCheckpoint({
                 },
               },
             }),
-          },
+          ]),
           order: ['opaqueObjectShadowAnswer'],
         },
-      },
-    },
+      }),
+    ]),
     order: ['sourceLocation', 'animationSpeed', 'opaqueObjectShadow'],
   },
 });

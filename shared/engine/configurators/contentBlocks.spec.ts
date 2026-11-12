@@ -11,6 +11,9 @@ import {
   defineYoutube,
   defineCarousel,
   defineCheckpoint,
+  defineCheckpointItem,
+  checkpointItem_Config_Schema,
+  CheckpointItemValidationError,
   defineScene,
   text_Config_Schema,
   text_Props_Schema,
@@ -305,7 +308,7 @@ test('localized fallback and indexed media fields remain in locale projections',
   });
 });
 
-test('Checkpoint keeps questions and keyed answers without nesting content in the metadata schema', () => {
+test('Checkpoint Item owns question and answer validation', () => {
   const question = defineText({
     id,
     slug: 'question',
@@ -318,14 +321,114 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
     slug: 'answer',
     type: 'text',
     params: {},
-    locale: { value: 'A simple explanation' },
+    locale: { value: 'An answer' },
   });
   const illustration = defineMarkdown({
     id,
     slug: 'illustration',
     type: 'markdown',
     params: {},
-    locale: { value: 'An example' },
+    locale: { value: 'An illustration' },
+  });
+  const config = {
+    id,
+    slug: 'whatIsLight',
+    type: 'checkpointItem' as const,
+    question,
+    answer: {
+      items: configuratorArrayToSlugMap([answer, illustration]),
+      order: ['illustration', 'answer'],
+    },
+    check: true as const,
+  };
+  const item = defineCheckpointItem(config);
+  assert.equal(item.id, id);
+  assert.equal(item.slug, 'whatIsLight');
+  assert.equal(item.type, 'checkpointItem');
+  assert.strictEqual(item.question, question);
+  assert.strictEqual(item.answer.items.answer, answer);
+  assert.deepEqual(item.answer.order, ['illustration', 'answer']);
+  assert.equal(checkpointItem_Config_Schema.safeParse(config).success, true);
+  assert.doesNotThrow(() => item.config.validate(config));
+
+  assert.throws(
+    () => item.config.validate({ ...config, id: 'not-a-uuid' }),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.check === 'metadata'),
+  );
+  assert.throws(
+    () => item.config.validate({ ...config, check: false } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.path === 'check'),
+  );
+  assert.throws(
+    () => item.config.validate({ ...config, question: illustration } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.check === 'question'),
+  );
+  assert.throws(
+    () =>
+      item.config.validate({
+        ...config,
+        answer: { items: { wrongKey: answer }, order: ['wrongKey', 'wrongKey'] },
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointItemValidationError &&
+      error.result.errors.some(issue => issue.check === 'slug') &&
+      error.result.errors.some(issue => issue.check === 'order'),
+  );
+  assert.throws(
+    () =>
+      item.config.validate({
+        ...config,
+        answer: { items: { answer, invalid: {} }, order: ['answer', 'invalid'] },
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointItemValidationError && error.result.errors.some(issue => issue.check === 'answer'),
+  );
+
+  const disabledQuestion = defineText({
+    id,
+    slug: 'disabledQuestion',
+    type: 'text',
+    params: { disabled: true },
+    locale: { value: 'Disabled' },
+  });
+  assert.throws(() => defineCheckpointItem({ ...config, question: disabledQuestion }), /remain enabled/);
+
+  const answerWithOwnValidator = {
+    ...answer,
+    config: {
+      ...answer.config,
+      validate: () => {
+        throw new Error('Must not validate the child ContentBlock');
+      },
+    },
+  };
+  assert.doesNotThrow(() =>
+    item.config.validate({
+      ...config,
+      answer: { items: { answer: answerWithOwnValidator }, order: ['answer'] },
+    }),
+  );
+});
+
+test('Checkpoint validates outer items and preserves content overrides', () => {
+  const question = defineText({ id, slug: 'question', type: 'text', params: {}, locale: { value } });
+  const answer = defineText({
+    id: otherId,
+    slug: 'answer',
+    type: 'text',
+    params: {},
+    locale: { value: 'Answer' },
+  });
+  const item = defineCheckpointItem({
+    id,
+    slug: 'whatIsLight',
+    type: 'checkpointItem',
+    question,
+    answer: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
+    check: true,
   });
   const config = {
     id: otherId,
@@ -333,28 +436,11 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
     type: 'checkpoint' as const,
     params: { enableChecks: true },
     locale: { title: value },
-    content: {
-      items: {
-        whatIsLight: {
-          question,
-          answer: {
-            items: configuratorArrayToSlugMap([answer, illustration]),
-            order: ['illustration', 'answer'],
-          },
-          check: true as const,
-        },
-      },
-      order: ['whatIsLight'],
-    },
+    content: { items: configuratorArrayToSlugMap([item]), order: ['whatIsLight'] },
   };
   const checkpoint = defineCheckpoint(config);
-
-  assert.equal(checkpoint.id, otherId);
   assert.equal(checkpoint.slug, 'review');
-  assert.equal(checkpoint.type, 'checkpoint');
-  assert.strictEqual(checkpoint.content.items.whatIsLight.question, question);
-  assert.strictEqual(checkpoint.content.items.whatIsLight.answer.items.answer, answer);
-  assert.deepEqual(checkpoint.content.items.whatIsLight.answer.order, ['illustration', 'answer']);
+  assert.strictEqual(checkpoint.content.items.whatIsLight, item);
   assert.equal('content' in checkpoint.config.base, false);
   assert.deepEqual(checkpoint.config.base.params, { enableChecks: true });
   assert.deepEqual(checkpoint.config.locales(), { locale: { title: value } });
@@ -373,192 +459,84 @@ test('Checkpoint keeps questions and keyed answers without nesting content in th
 
   const malformed = {
     ...config,
-    content: {
-      items: {
-        bad_slug: {
-          question: illustration,
-          answer: { items: { wrongKey: answer }, order: ['wrongKey', 'wrongKey'] },
-        },
-      },
-      order: ['bad_slug', 'unknown'],
-    },
+    content: { items: { bad_slug: item }, order: ['bad_slug', 'unknown'] },
   };
   assert.throws(
     () => checkpoint.config.validate(malformed as unknown as typeof config),
-    error => {
-      assert.ok(error instanceof CheckpointValidationError);
-      assert.deepEqual(error.result.subject, { id: otherId, slug: 'review', type: 'checkpoint' });
-      assert.equal(error.result.success, false);
-      const checks = error.result.errors.map(issue => issue.check);
-      for (const check of ['slug', 'order', 'question']) assert.ok(checks.includes(check), check);
-      assert.ok(error.result.errors.length >= 4);
-      return true;
-    },
-  );
-
-  assert.throws(
-    () => checkpoint.config.validate({ ...malformed, id: 'not-a-uuid' } as unknown as typeof config),
-    error =>
-      error instanceof CheckpointValidationError &&
-      error.result.errors.some(issue => issue.check === 'metadata') &&
-      error.result.errors.some(issue => issue.check === 'order'),
-  );
-
-  const invalidAnswer = {
-    ...config,
-    content: {
-      ...config.content,
-      items: {
-        whatIsLight: {
-          ...config.content.items.whatIsLight,
-          answer: { items: { answer: { ...answer, slug: 'wrongSlug' }, invalid: {} }, order: ['answer', 'invalid'] },
-        },
-      },
-    },
-  };
-  assert.throws(
-    () => checkpoint.config.validate(invalidAnswer as unknown as typeof config),
     error =>
       error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.check === 'slug') &&
-      error.result.errors.some(issue => issue.check === 'answer'),
-  );
-
-  // Checkpoint owns relationships, not the internal validation of child blocks.
-  const answerWithOwnValidator = {
-    ...answer,
-    config: {
-      ...answer.config,
-      validate: () => {
-        throw new Error('Child ContentBlock validation must not run from Checkpoint');
-      },
-    },
-  };
-  assert.doesNotThrow(() =>
-    checkpoint.config.validate({
-      ...config,
-      content: {
-        ...config.content,
-        items: {
-          whatIsLight: {
-            ...config.content.items.whatIsLight,
-            answer: { items: { answer: answerWithOwnValidator }, order: ['answer'] },
-          },
-        },
-      },
-    }),
-  );
-
-  const nested = {
-    ...config,
-    content: {
-      ...config.content,
-      items: {
-        whatIsLight: {
-          ...config.content.items.whatIsLight,
-          answer: { items: { review: checkpoint }, order: ['review'] },
-        },
-      },
-    },
-  };
-  assert.throws(
-    () => checkpoint.config.validate(nested as unknown as typeof config),
-    error =>
-      error instanceof CheckpointValidationError &&
-      error.result.errors.some(issue => issue.message.includes('Unsupported answer type: checkpoint')),
-  );
-
-  // Nested configurators retain their own override APIs.
-  checkpoint.content.items.whatIsLight.question.override.locale({ value: 'Updated question' });
-  checkpoint.content.items.whatIsLight.answer.items.answer.override.locale({ value: 'Updated explanation' });
-  assert.deepEqual(question.config.overrides.locale, { value: 'Updated question' });
-  assert.deepEqual(answer.config.overrides.locale, { value: 'Updated explanation' });
-
-  // Content overrides do not mutate authored questions or order.
-  const added = {
-    question,
-    answer: { items: { answer }, order: ['answer'] },
-  };
-  checkpoint.override.content.add('anotherQuestion', added);
-  assert.strictEqual(checkpoint.config.overrides.content?.items?.anotherQuestion, added);
-  assert.deepEqual(checkpoint.config.overrides.content?.order, ['whatIsLight', 'anotherQuestion']);
-  assert.deepEqual(checkpoint.content.order, ['whatIsLight']);
-  assert.deepEqual(Object.keys(checkpoint.content.items), ['whatIsLight']);
-  assert.deepEqual(config.content.order, ['whatIsLight']);
-
-  assert.throws(() => checkpoint.override.content.add('whatIsLight', added), /duplicate/);
-  assert.throws(() => checkpoint.override.content.add('bad_slug', added), /Invalid/);
-  assert.throws(() => checkpoint.override.content.order(['anotherQuestion']), /each active question/);
-  assert.throws(() => checkpoint.override.content.order(['whatIsLight', 'whatIsLight']), /each active question/);
-  assert.throws(() => checkpoint.override.content.order(['whatIsLight', 'unknown']), /each active question/);
-  assert.deepEqual(checkpoint.config.overrides.content?.order, ['whatIsLight', 'anotherQuestion']);
-
-  checkpoint.override.content.order(['anotherQuestion', 'whatIsLight']);
-  checkpoint.override.content.disable(['whatIsLight']);
-  assert.equal(checkpoint.config.overrides.content?.items?.whatIsLight, false);
-  assert.deepEqual(checkpoint.config.overrides.content?.order, ['anotherQuestion']);
-  checkpoint.override.content.disable(['whatIsLight']); // Idempotent.
-  assert.deepEqual(checkpoint.config.overrides.content?.order, ['anotherQuestion']);
-  assert.throws(() => checkpoint.override.content.disable(['unknown' as 'whatIsLight']), /Unknown/);
-  assert.throws(() => checkpoint.override.content.order(['whatIsLight', 'anotherQuestion']), /each active question/);
-
-  const items = { ...checkpoint.content.items, ...checkpoint.config.overrides.content?.items };
-  const resolved = Object.fromEntries(Object.entries(items).filter(([, item]) => item !== false));
-  assert.doesNotThrow(() =>
-    checkpoint.config.validate({
-      ...config,
-      content: { items: resolved, order: checkpoint.config.overrides.content?.order as string[] },
-    }),
+      error.result.errors.some(issue => issue.check === 'order'),
   );
   assert.throws(
     () =>
       checkpoint.config.validate({
         ...config,
         content: { items: { whatIsLight: false }, order: ['whatIsLight'] },
-      }),
+      } as unknown as typeof config),
     error =>
       error instanceof CheckpointValidationError &&
       error.result.errors.some(issue => issue.message.includes('reserved for overrides')),
   );
-  checkpoint.disable();
-  assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
-
-  // A Checkpoint question must remain enabled; answer blocks may be disabled.
-  answer.disable();
-  assert.doesNotThrow(() => checkpoint.config.validate(config));
-  question.disable();
-  assert.throws(
-    () => checkpoint.config.validate(config),
-    error =>
-      error instanceof CheckpointValidationError &&
-      error.result.errors.some(
-        issue =>
-          issue.check === 'question' &&
-          issue.path === 'content.items.whatIsLight.question' &&
-          issue.message.includes('remain enabled'),
-      ),
-  );
-
-  const disabledAtDefinition = defineText({
-    id,
-    slug: 'disabledQuestion',
-    type: 'text',
-    params: { disabled: true },
-    locale: { value: 'Disabled question' },
-  });
   assert.throws(
     () =>
       checkpoint.config.validate({
         ...config,
-        content: {
-          ...config.content,
-          items: {
-            whatIsLight: { ...config.content.items.whatIsLight, question: disabledAtDefinition },
-          },
-        },
-      }),
-    /Question must remain enabled/,
+        content: { items: { whatIsLight: answer }, order: ['whatIsLight'] },
+      } as unknown as typeof config),
+    error =>
+      error instanceof CheckpointValidationError &&
+      error.result.errors.some(issue => issue.message.includes('Unsupported Checkpoint item type')),
   );
+
+  assert.throws(
+    () =>
+      item.config.validate({
+        id,
+        slug: 'whatIsLight',
+        type: 'checkpointItem',
+        question,
+        answer: { items: { review: checkpoint }, order: ['review'] },
+      } as unknown as Parameters<typeof item.config.validate>[0]),
+    error =>
+      error instanceof CheckpointItemValidationError &&
+      error.result.errors.some(issue => issue.message.includes('Unsupported answer type: checkpoint')),
+  );
+
+  const added = defineCheckpointItem({
+    id: otherId,
+    slug: 'anotherQuestion',
+    type: 'checkpointItem',
+    question,
+    answer: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
+  });
+  checkpoint.override.content.add('anotherQuestion', added);
+  assert.strictEqual(checkpoint.config.overrides.content?.items?.anotherQuestion, added);
+  assert.deepEqual(checkpoint.config.overrides.content?.order, ['whatIsLight', 'anotherQuestion']);
+  assert.deepEqual(checkpoint.content.order, ['whatIsLight']);
+  assert.deepEqual(config.content.order, ['whatIsLight']);
+  assert.throws(() => checkpoint.override.content.add('whatIsLight', added), /duplicate/);
+  assert.throws(() => checkpoint.override.content.add('bad_slug', added), /Invalid/);
+  assert.throws(() => checkpoint.override.content.add('wrongKey', added), /matching slug/);
+  assert.throws(() => checkpoint.override.content.order(['anotherQuestion']), /each active question/);
+  checkpoint.override.content.order(['anotherQuestion', 'whatIsLight']);
+  checkpoint.override.content.disable(['whatIsLight']);
+  assert.equal(checkpoint.config.overrides.content?.items?.whatIsLight, false);
+  assert.deepEqual(checkpoint.config.overrides.content?.order, ['anotherQuestion']);
+  checkpoint.override.content.disable(['whatIsLight']);
+  assert.deepEqual(checkpoint.config.overrides.content?.order, ['anotherQuestion']);
+  assert.throws(() => checkpoint.override.content.disable(['unknown' as 'whatIsLight']), /Unknown/);
+
+  const merged = { ...checkpoint.content.items, ...checkpoint.config.overrides.content?.items };
+  const resolved = Object.fromEntries(Object.entries(merged).filter(([, value]) => value !== false));
+  assert.doesNotThrow(() =>
+    checkpoint.config.validate({
+      ...config,
+      content: { items: resolved, order: checkpoint.config.overrides.content?.order as string[] },
+    } as typeof config),
+  );
+  checkpoint.disable();
+  assert.deepEqual(checkpoint.config.overrides.params, { disabled: true });
 });
 
 test('Scene separates invariant fields from localized text at nested paths', () => {

@@ -2,6 +2,8 @@ import {
   defineAudio,
   defineCarousel,
   defineCheckpoint,
+  defineCheckpointItem,
+  configuratorArrayToSlugMap,
   defineCode,
   defineImage,
   defineLearningFlowSection,
@@ -135,8 +137,11 @@ const interactiveCheckpoint = defineCheckpoint({
   params: { enableChecks: true, showIndices: true },
   locale: { title: 'CHECKPOINT · Expand and mark the answer' },
   content: {
-    items: {
-      revealAnswer: {
+    items: configuratorArrayToSlugMap([
+      defineCheckpointItem({
+        id: '327be513-a21f-5d66-9bb1-7890c672de14',
+        slug: 'revealAnswer',
+        type: 'checkpointItem',
         question: defineText({
           id: 'bb5ec842-bd22-5dd4-9996-3d46765ce025',
           slug: 'revealQuestion',
@@ -146,19 +151,19 @@ const interactiveCheckpoint = defineCheckpoint({
         }),
         check: true,
         answer: {
-          items: {
-            checkpointAnswer: defineText({
+          items: configuratorArrayToSlugMap([
+            defineText({
               id: '3fe35315-ae2e-57bf-9fa7-ec8ce278852d',
               slug: 'checkpointAnswer',
               type: 'text',
               params: {},
               locale: { value: 'Open the checkpoint row, then mark it complete.' },
             }),
-          },
+          ]),
           order: ['checkpointAnswer'],
         },
-      },
-    },
+      }),
+    ]),
     order: ['revealAnswer'],
   },
 });
