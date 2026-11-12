@@ -86,7 +86,9 @@ export const defineVideo = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
   function props(): VideoPropsPublication<ContentBlock_Video_PropsBase>;
-  function props(options: { embed: true }): VideoPropsPublication<ContentBlock_Video_PropsBase, VideoEmbeddedLocaleFiles>;
+  function props(options: {
+    embed: true;
+  }): VideoPropsPublication<ContentBlock_Video_PropsBase, VideoEmbeddedLocaleFiles>;
   function props(options?: {
     embed?: true;
   }): VideoPropsPublication<ContentBlock_Video_PropsBase, VideoLocaleFiles | VideoEmbeddedLocaleFiles> {

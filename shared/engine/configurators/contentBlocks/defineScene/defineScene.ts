@@ -93,7 +93,9 @@ export const defineScene = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Scene_Config>;
 
   function props(): ScenePropsPublication<ContentBlock_Scene_PropsBase>;
-  function props(options: { embed: true }): ScenePropsPublication<ContentBlock_Scene_PropsBase, SceneEmbeddedLocaleFiles>;
+  function props(options: {
+    embed: true;
+  }): ScenePropsPublication<ContentBlock_Scene_PropsBase, SceneEmbeddedLocaleFiles>;
   function props(options?: {
     embed?: true;
   }): ScenePropsPublication<ContentBlock_Scene_PropsBase, SceneLocaleFiles | SceneEmbeddedLocaleFiles> {

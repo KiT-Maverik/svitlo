@@ -22,7 +22,10 @@ import {
 
 type CarouselLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Carousel_Locale<'props'>>>>;
 type CarouselEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Carousel_Locale<'props'>>>;
-type CarouselPropsPublication<Base, LocaleFiles = CarouselLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type CarouselPropsPublication<Base, LocaleFiles = CarouselLocaleFiles> = {
+  base: Base;
+  locale: LocaleFiles | undefined;
+};
 type CarouselOverridePropsBase = {
   params?: ContentBlock_Carousel_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
@@ -68,7 +71,9 @@ const buildCarouselProps = (
   return { base, locale: files };
 };
 
-const buildCarouselPatch = (patch: ContentBlock_Carousel_Overrides): CarouselPropsPublication<CarouselOverridePropsBase> => {
+const buildCarouselPatch = (
+  patch: ContentBlock_Carousel_Overrides,
+): CarouselPropsPublication<CarouselOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   const files = locale as unknown as CarouselLocaleFiles | undefined;
   validatePublishedSlides(files);

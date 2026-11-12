@@ -35,7 +35,9 @@ const validate = (config: ContentBlock_Youtube_Config): void => {
   parseAndValidate(config);
 };
 
-const buildYoutubeProps = (config: ContentBlock_Youtube_Config): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
+const buildYoutubeProps = (
+  config: ContentBlock_Youtube_Config,
+): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -50,7 +52,9 @@ const buildYoutubeProps = (config: ContentBlock_Youtube_Config): YoutubePropsPub
   return { base, locale: locale as unknown as YoutubeLocaleFiles | undefined };
 };
 
-const buildYoutubePatch = (patch: ContentBlock_Youtube_Overrides): YoutubePropsPublication<YoutubeOverridePropsBase> => {
+const buildYoutubePatch = (
+  patch: ContentBlock_Youtube_Overrides,
+): YoutubePropsPublication<YoutubeOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {

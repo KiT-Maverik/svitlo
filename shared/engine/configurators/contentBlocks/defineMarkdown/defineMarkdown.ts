@@ -22,7 +22,10 @@ import {
 
 type MarkdownLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Markdown_Locale<'props'>>>>;
 type MarkdownEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Markdown_Locale<'props'>>>;
-type MarkdownPropsPublication<Base, LocaleFiles = MarkdownLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type MarkdownPropsPublication<Base, LocaleFiles = MarkdownLocaleFiles> = {
+  base: Base;
+  locale: LocaleFiles | undefined;
+};
 type MarkdownOverridePropsBase = {
   params?: ContentBlock_Markdown_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
@@ -95,7 +98,9 @@ const buildMarkdownProps = (
   return { base, locale: locale as unknown as MarkdownLocaleFiles | undefined };
 };
 
-const buildMarkdownPatch = (patch: ContentBlock_Markdown_Overrides): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
+const buildMarkdownPatch = (
+  patch: ContentBlock_Markdown_Overrides,
+): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {

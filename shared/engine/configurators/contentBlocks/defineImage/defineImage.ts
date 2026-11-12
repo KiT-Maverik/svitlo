@@ -85,7 +85,9 @@ export const defineImage = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Image_Config>;
 
   function props(): ImagePropsPublication<ContentBlock_Image_PropsBase>;
-  function props(options: { embed: true }): ImagePropsPublication<ContentBlock_Image_PropsBase, ImageEmbeddedLocaleFiles>;
+  function props(options: {
+    embed: true;
+  }): ImagePropsPublication<ContentBlock_Image_PropsBase, ImageEmbeddedLocaleFiles>;
   function props(options?: {
     embed?: true;
   }): ImagePropsPublication<ContentBlock_Image_PropsBase, ImageLocaleFiles | ImageEmbeddedLocaleFiles> {

@@ -424,9 +424,12 @@ test('Carousel array replacement and published output are mutation-isolated', ()
   assert.equal(publication.base.locale?.slides?.[0]?.alt, 'Updated');
 
   if (publication.base.locale?.slides?.[0]) publication.base.locale.slides[0].alt = 'Mutated result';
-  assert.deepEqual(carousel.build.overrides({
-    locale: { slides: [{ src: 'https://example.com/b.png', alt: 'Updated' }] },
-  }).base.locale?.slides, [{ src: 'https://example.com/b.png', alt: 'Updated' }]);
+  assert.deepEqual(
+    carousel.build.overrides({
+      locale: { slides: [{ src: 'https://example.com/b.png', alt: 'Updated' }] },
+    }).base.locale?.slides,
+    [{ src: 'https://example.com/b.png', alt: 'Updated' }],
+  );
 
   authored.locale.slides[0].alt = 'Mutated author';
   assert.equal(carousel.build.props().base.locale?.slides?.[0]?.alt, 'Original');

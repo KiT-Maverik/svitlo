@@ -85,7 +85,9 @@ export const defineAudio = <const Slug extends string>(
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
   function props(): AudioPropsPublication<ContentBlock_Audio_PropsBase>;
-  function props(options: { embed: true }): AudioPropsPublication<ContentBlock_Audio_PropsBase, AudioEmbeddedLocaleFiles>;
+  function props(options: {
+    embed: true;
+  }): AudioPropsPublication<ContentBlock_Audio_PropsBase, AudioEmbeddedLocaleFiles>;
   function props(options?: {
     embed?: true;
   }): AudioPropsPublication<ContentBlock_Audio_PropsBase, AudioLocaleFiles | AudioEmbeddedLocaleFiles> {
