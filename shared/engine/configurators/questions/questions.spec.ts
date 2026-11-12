@@ -71,7 +71,8 @@ test('all nine Questions expose immutable stateless Build instead of mutable ove
     }),
     defineFillBlanksWithText({
       ...common('fillBlanksWithText'),
-      locale: { slots: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } }, placeholder: localized },
+      locale: { placeholder: localized },
+      content: { ...prompt, slots: { items: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } }, order: ['slotOne'] } },
     }),
   ];
 
@@ -152,13 +153,14 @@ test('Question localized answers and slots publish full Props-shaped arrays and 
 
   const blanks = defineFillBlanksWithText({
     ...common('fillBlanksWithText'),
-    locale: { slots: { one: { correctAnswers: { yes: 'Yes', another: localized } } }, placeholder: localized },
+    locale: { placeholder: localized },
+    content: { ...prompt, slots: { items: { one: { correctAnswers: { yes: 'Yes', another: localized } } }, order: ['one'] } },
   });
   assert.deepEqual(
     (blanks.build.props().locale?.uk as { locale: { slots: unknown[] } }).locale.slots,
     [{ selector: 'one', correctAnswers: ['Yes', 'Відповідь'] }],
   );
-  const sparse = blanks.build.overrides({ locale: { slots: { one: { correctAnswers: { another: { uk: 'Так' } } } } } });
+  const sparse = blanks.build.overrides({ content: { slots: { items: { one: { correctAnswers: { another: { uk: 'Так' } } } } } } });
   assert.equal(sparse.locale?.en, undefined);
   assert.deepEqual(
     (sparse.locale?.uk as { locale: { slots: unknown[] } }).locale.slots,
