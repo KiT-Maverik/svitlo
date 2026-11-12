@@ -1,25 +1,47 @@
 import { z } from 'zod';
-import type { Configurator_Mode } from '../../configurator.schemas';
+import type { DeepPartial } from '#types';
+import { deepStrict_Schema } from '#schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
+import { contentBlockConfigurator_Schema, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
-import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
-import { createQuestionBaseSchema, type QuestionContent } from '../question.schemas';
+import {
+  createQuestionBaseSchema,
+  questionBlockCollection_Config_Schema,
+  questionCommonContent_Config_Schema,
+  questionCommonContent_Props_Schema,
+  type QuestionContent,
+  type QuestionPublishedContent,
+  type QuestionMetadataOverrides,
+} from '../question.schemas';
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
 const questionBase = createQuestionBaseSchema('answerWithNumber');
-const params = questionBase.shape.params.extend({
-  correctAnswers: z.array(z.number()),
-});
-const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
-  placeholder: localizationSwitch[mode],
-});
+const params = questionBase.shape.params.extend({ correctAnswers: z.array(z.number()).min(1) });
 
-/** The schema validates Question metadata; child blocks own their validation. */
-export const answerWithNumber_Config_Schema = questionBase.extend({ params, ...addUnifiedLocale(locale('config')) });
-export type Question_AnswerWithNumber_Config = z.infer<typeof answerWithNumber_Config_Schema> & {
-  content: QuestionContent<ContentBlock_Configurator>;
-};
+export const answerWithNumber_Config_Schema = questionBase.extend({
+  params,
+  ...addUnifiedLocale({ placeholder: localizationSwitch.config }),
+  content: questionCommonContent_Config_Schema,
+});
+export type Question_AnswerWithNumber_Config = z.infer<typeof answerWithNumber_Config_Schema>;
 
-export const answerWithNumber_Props_Schema = questionBase.extend({ params, ...addUnifiedLocale(locale('props')) });
-export type Question_AnswerWithNumber_Props = z.infer<typeof answerWithNumber_Props_Schema> & {
-  content: QuestionContent<ContentBlock_Props>;
+/** Only the authored Config metadata fields are independently overridable. */
+export type Question_AnswerWithNumber_MetadataOverrides = QuestionMetadataOverrides<Question_AnswerWithNumber_Config>;
+export const answerWithNumber_Override_Config_Schema: z.ZodType<Question_AnswerWithNumber_MetadataOverrides> =
+  z.deepPartial(
+    deepStrict_Schema(
+      z.object({
+        params: answerWithNumber_Config_Schema.shape.params,
+        locale: answerWithNumber_Config_Schema.shape.locale,
+      }),
+    ),
+  );
+
+export const answerWithNumber_Props_Schema = questionBase.extend({
+  params,
+  ...addUnifiedLocale({ placeholder: localizationSwitch.props }),
+  content: questionCommonContent_Props_Schema,
+});
+export type Question_AnswerWithNumber_Props = Omit<z.infer<typeof answerWithNumber_Props_Schema>, 'content'> & {
+  content: QuestionPublishedContent<ContentBlock_Props>;
 };
