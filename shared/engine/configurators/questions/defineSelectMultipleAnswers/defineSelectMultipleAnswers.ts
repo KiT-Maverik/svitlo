@@ -32,7 +32,7 @@ const validate = (candidate: Question_SelectMultipleAnswers_Config): void => {
   if (new Set(slugs).size !== slugs.length) {
     throw new Error('An answer cannot occur in multiple scoring groups');
   }
-  if (!groups.correct.order.some(key => isEnabledBlock(groups.correct.items[key].build.props().base))) {
+  if (!groups.correct.order.every(key => isEnabledBlock(groups.correct.items[key].build.props().base))) {
     throw new Error('content.answers.correct must contain an enabled ContentBlock');
   }
 };
@@ -118,7 +118,7 @@ export const defineSelectMultipleAnswers = <
     if (correctCount < 1) {
       throw new Error('SelectMultipleAnswers has an invalid number of correct answers');
     }
-    if (!Object.values(complete.correct.base).some(isEnabledBlock)) {
+    if (!Object.values(complete.correct.base).every(isEnabledBlock)) {
       throw new Error('content.answers.correct must contain an enabled ContentBlock');
     }
     const activeKeys = groups.flatMap(group => Object.keys(complete[group].base));

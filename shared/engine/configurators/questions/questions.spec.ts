@@ -242,3 +242,24 @@ test('scored answers remain enabled after nested child overrides', () => {
     /enabled ContentBlock/,
   );
 });
+
+test('SelectMultipleAnswers rejects partially disabled correct answer sets', () => {
+  const secondCorrect = block('secondCorrect', 'Second correct answer');
+  const multi = defineSelectMultipleAnswers({
+    ...common('selectMultipleAnswers'),
+    content: {
+      ...prompt,
+      answers: {
+        correct: { items: { yes, secondCorrect }, order: ['yes', 'secondCorrect'] },
+        incorrect: collection(no),
+        distractors: collection(maybe),
+      },
+    },
+  });
+  assert.throws(
+    () => multi.build.overrides({
+      content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } },
+    }),
+    /enabled ContentBlock/,
+  );
+});
