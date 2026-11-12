@@ -214,8 +214,10 @@ export function defineSkillGroup<
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Skill slug: ' + key);
         if (!isRecord(child) || !isRecord(child.build) ||
-          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
-          throw new Error('New Skill must expose the Build API: ' + key);
+          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
+          !isRecord(child.config) || !isRecord(child.config.base) ||
+          child.config.base.id !== child.id || child.config.base.slug !== key) {
+          throw new Error('New Skill must expose a matching immutable Build identity: ' + key);
         }
         active[key] = child as Skill;
       }
