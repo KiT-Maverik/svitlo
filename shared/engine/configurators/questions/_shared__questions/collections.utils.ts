@@ -3,6 +3,16 @@ import type { LanguageCodes } from '#schemas';
 import { mergeForValidation, validateOrderedKeys, validateSluggedConfiguratorMap } from '../../_shared__configurators';
 import { contentBlockTypes } from '../../contentBlocks/contentBlock.constants';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
+import { text_Props_Schema } from '../../contentBlocks/defineText';
+import { markdown_Props_Schema } from '../../contentBlocks/defineMarkdown';
+import { code_Props_Schema } from '../../contentBlocks/defineCode';
+import { image_Props_Schema } from '../../contentBlocks/defineImage';
+import { video_Props_Schema } from '../../contentBlocks/defineVideo';
+import { audio_Props_Schema } from '../../contentBlocks/defineAudio';
+import { youtube_Props_Schema } from '../../contentBlocks/defineYoutube';
+import { carousel_Props_Schema } from '../../contentBlocks/defineCarousel';
+import { checkpoint_Props_Schema } from '../../contentBlocks/defineCheckpoint';
+import { scene_Props_Schema } from '../../contentBlocks/defineScene';
 
 type Block = ContentBlock_Configurator;
 type Fragment = Record<string, unknown>;
@@ -107,25 +117,57 @@ export const validateCommonContent = (content: QuestionCommonContent): void => {
   if (content.explanation !== undefined) validateBlockCollection(content.explanation, 'content.explanation');
 };
 
-const readResource = (child: Block): BlockResource => cloneJson(child.build.props()) as unknown as BlockResource;
-const readPatch = (child: Block, patch: unknown): BlockPatch =>
-  cloneJson((child.build.overrides as (input: never) => unknown)(patch as never)) as BlockPatch;
+/** Propagate publication scope. Older ContentBlocks currently ignore extra arguments;
+ * the selected-language Props parse below prevents incomplete child translations. */
+const readResource = (child: Block, languages: readonly LanguageCodes[]): BlockResource =>
+  cloneJson((child.build.props as (options: { languages: readonly LanguageCodes[] }) => BlockResource)({ languages }));
+const readPatch = (child: Block, patch: unknown, languages: readonly LanguageCodes[]): BlockPatch =>
+  cloneJson((child.build.overrides as (input: never, options: { languages: readonly LanguageCodes[] }) => BlockPatch)(
+    patch as never, { languages },
+  ));
+
+const propsSchemas: Record<string, { parse: (value: unknown) => unknown }> = {
+  text: text_Props_Schema,
+  markdown: markdown_Props_Schema,
+  code: code_Props_Schema,
+  image: image_Props_Schema,
+  video: video_Props_Schema,
+  audio: audio_Props_Schema,
+  youtube: youtube_Props_Schema,
+  carousel: carousel_Props_Schema,
+  checkpoint: checkpoint_Props_Schema,
+  scene: scene_Props_Schema,
+};
+const validateChildPublication = (value: Fragment, language: LanguageCodes): void => {
+  const schema = propsSchemas[value.type as string];
+  if (!schema) throw new Error('Unknown ContentBlock publication type: ' + String(value.type));
+  try {
+    schema.parse(value);
+  } catch (error) {
+    throw new Error(
+      'Invalid ContentBlock publication for ' + language + ' (' + String(value.slug) + '): ' +
+        (error instanceof Error ? error.message : String(error)),
+      { cause: error },
+    );
+  }
+};
 
 /** Resolve a child without allowing an override to mutate its authored resource. */
-export const resolveChild = (child: Block, patch?: unknown) => {
-  const original = readResource(child);
-  const builtPatch = patch === undefined ? undefined : readPatch(child, patch);
+export const resolveChild = (child: Block, languages: readonly LanguageCodes[], patch?: unknown) => {
+  const original = readResource(child, languages);
+  const builtPatch = patch === undefined ? undefined : readPatch(child, patch, languages);
   const base = builtPatch
     ? mergeForValidation(cloneJson(original.base), builtPatch.base)
     : cloneJson(original.base);
-  const languages = new Set<LanguageCodes>();
-  for (const code of Object.keys(original.locale ?? {})) languages.add(code as LanguageCodes);
-  for (const code of Object.keys(builtPatch?.locale ?? {})) languages.add(code as LanguageCodes);
   const locale: Files<Fragment> = {};
   for (const language of languages) {
     const translated = mergeForValidation(cloneJson(original.base), original.locale?.[language] ?? {});
     const withPatchBase = mergeForValidation(translated, builtPatch?.base ?? {});
-    locale[language] = mergeForValidation(withPatchBase, builtPatch?.locale?.[language] ?? {});
+    const effective = mergeForValidation(withPatchBase, builtPatch?.locale?.[language] ?? {});
+    validateChildPublication(effective, language);
+    if (original.locale?.[language] !== undefined || builtPatch?.locale?.[language] !== undefined) {
+      locale[language] = effective;
+    }
   }
   return { base, locale };
 };
@@ -136,6 +178,7 @@ export const resolveChild = (child: Block, patch?: unknown) => {
  */
 export const resolveBlockCollection = (
   source: OrderedBlocks,
+  languages: readonly LanguageCodes[],
   patch?: ResolvableBlockPatch,
   path = 'content',
   nonEmpty = false,
@@ -171,7 +214,7 @@ export const resolveBlockCollection = (
   const errors = validateOrderedKeys({ items, order }, { path, allowDisabled: true, requireNonEmpty: nonEmpty });
   if (errors.length) throw new Error(errors.map(issue => issue.path + ': ' + issue.message).join('; '));
   if (nonEmpty && order.length === 0) throw new Error(path + ' must contain at least one active item');
-  const entries = order.map(key => resolveChild(items[key] as Block, childPatches[key]));
+  const entries = order.map(key => resolveChild(items[key] as Block, languages, childPatches[key]));
   if (
     nonEmpty &&
     entries.every(entry => isRecord(entry.base.params) && entry.base.params.disabled === true)
@@ -193,10 +236,11 @@ export const resolveBlockCollection = (
 
 export const resolveBlockMap = (
   source: OrderedBlocks,
+  languages: readonly LanguageCodes[],
   patch?: OrderedBlockPatch,
   path = 'content',
 ): ResolvedCollection<Record<string, Fragment>> => {
-  const result = resolveBlockCollection(source, patch, path);
+  const result = resolveBlockCollection(source, languages, patch, path);
   const base: Record<string, Fragment> = {};
   const locale: Files<Record<string, Fragment>> = {};
   result.order.forEach((key, index) => {
@@ -210,6 +254,7 @@ export const resolveBlockMap = (
 
 export const resolveCommonContent = (
   source: QuestionCommonContent,
+  languages: readonly LanguageCodes[],
   patch?: { question?: ResolvableBlockPatch; hint?: ResolvableBlockPatch; explanation?: ResolvableBlockPatch },
 ): ComposedContent => {
   if (patch !== undefined && !isRecord(patch)) throw new Error('content must be an object');
@@ -219,7 +264,7 @@ export const resolveCommonContent = (
     if (patch && patch[field] === undefined) continue;
     const original = source[field] ?? { items: {}, order: [] };
     if (!patch && field !== 'question' && source[field] === undefined) continue;
-    const result = resolveBlockCollection(original, patch?.[field], 'content.' + field, field === 'question');
+    const result = resolveBlockCollection(original, languages, patch?.[field], 'content.' + field, field === 'question');
     base[field] = result.base;
     for (const [language, translated] of Object.entries(result.locale)) {
       (locale[language as LanguageCodes] ??= {})[field] = translated;
