@@ -41,7 +41,9 @@ const validate = (config: SkillGroup_Config): void => {
   ];
   for (const [key, child] of Object.entries(config.skills?.items ?? {})) {
     if (!isRecord(child) || !isRecord(child.build) ||
-      typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+      typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) || !isRecord(child.config.base) ||
+      child.config.base.id !== child.id || child.config.base.slug !== key) {
       issues.push({ check: 'item', path: 'skills.items.' + key, message: 'Skill must expose the Build API' });
     }
   }
