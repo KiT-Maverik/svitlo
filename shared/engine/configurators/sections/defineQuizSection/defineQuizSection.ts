@@ -11,12 +11,12 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   quizSection_Config_Schema,
-  defineQuizSection_Override_Config_Schema,
+  quizSection_Override_Config_Schema,
   type QuizSection_Config,
   type QuizSection_Locale,
-  type defineQuizSection_Overrides,
-  type defineQuizSection_PropsBase,
-  type defineQuizSection_MetadataOverrides,
+  type QuizSection_Overrides,
+  type QuizSection_PropsBase,
+  type QuizSection_MetadataOverrides,
 } from './defineQuizSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -28,13 +28,13 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<QuizSection_Locale<'props'>>; content?: defineQuizSection_PropsBase['content'] };
+type LocaleBody = { locale?: DeepPartial<QuizSection_Locale<'props'>>; content?: QuizSection_PropsBase['content'] };
 type Files = Partial<Record<LanguageCodes, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  params?: defineQuizSection_MetadataOverrides['params'];
+  params?: QuizSection_MetadataOverrides['params'];
   locale?: DeepPartial<QuizSection_Locale<'props'>>;
-  content?: defineQuizSection_PropsBase['content'];
+  content?: QuizSection_PropsBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -119,13 +119,13 @@ export const defineQuizSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as defineQuizSection_PropsBase['content'];
+    ) as QuizSection_PropsBase['content'];
     const languages = new Set<LanguageCodes>();
     for (const { resource, patch } of entries) {
       for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
       for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
     }
-    const locales: Partial<Record<LanguageCodes, defineQuizSection_PropsBase['content']>> = {};
+    const locales: Partial<Record<LanguageCodes, QuizSection_PropsBase['content']>> = {};
     for (const language of languages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(
@@ -135,12 +135,12 @@ export const defineQuizSection = <
         return patch?.locale?.[language]
           ? mergeForValidation(withPatchBase, patch.locale[language])
           : withPatchBase;
-      }) as defineQuizSection_PropsBase['content'];
+      }) as QuizSection_PropsBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (): Publication<defineQuizSection_PropsBase> => {
+  const props = (): Publication<QuizSection_PropsBase> => {
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder);
@@ -159,7 +159,7 @@ export const defineQuizSection = <
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: defineQuizSection_Overrides<Items, Added> & {
+    patch: QuizSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
   ): Publication<OverrideBase> => {
@@ -170,7 +170,7 @@ export const defineQuizSection = <
           throw new Error('Unknown Section override field: ' + key);
         }
       }
-      const metadataPatch = defineQuizSection_Override_Config_Schema.parse(
+      const metadataPatch = quizSection_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
       );
       const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));

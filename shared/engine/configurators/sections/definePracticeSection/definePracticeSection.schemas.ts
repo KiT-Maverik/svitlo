@@ -40,14 +40,14 @@ export type PracticeSection_Props = Omit<z.infer<typeof practiceSection_Props_Sc
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type definePracticeSection_PropsBase = Pick<PracticeSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type PracticeSection_PropsBase = Pick<PracticeSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<PracticeSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */
-export type definePracticeSection_MetadataOverrides = DeepPartial<Pick<PracticeSection_Config, 'params' | 'locale'>>;
-export const definePracticeSection_Override_Config_Schema: z.ZodType<definePracticeSection_MetadataOverrides> = z.deepPartial(
+export type PracticeSection_MetadataOverrides = DeepPartial<Pick<PracticeSection_Config, 'params' | 'locale'>>;
+export const practiceSection_Override_Config_Schema: z.ZodType<PracticeSection_MetadataOverrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: practiceSection_Config_Schema.shape.params,
@@ -56,10 +56,10 @@ export const definePracticeSection_Override_Config_Schema: z.ZodType<definePract
   ),
 );
 
-export type definePracticeSection_Overrides<
+export type PracticeSection_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,
   Added extends Record<string, ContentBlock_Configurator> = {},
-> = definePracticeSection_MetadataOverrides & {
+> = PracticeSection_MetadataOverrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };

@@ -11,12 +11,12 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   contentSection_Config_Schema,
-  defineContentSection_Override_Config_Schema,
+  contentSection_Override_Config_Schema,
   type Content_Section_Config,
   type ContentSection_Locale,
-  type defineContentSection_Overrides,
-  type defineContentSection_PropsBase,
-  type defineContentSection_MetadataOverrides,
+  type ContentSection_Overrides,
+  type ContentSection_PropsBase,
+  type ContentSection_MetadataOverrides,
 } from './defineContentSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -28,13 +28,13 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<ContentSection_Locale<'props'>>; content?: defineContentSection_PropsBase['content'] };
+type LocaleBody = { locale?: DeepPartial<ContentSection_Locale<'props'>>; content?: ContentSection_PropsBase['content'] };
 type Files = Partial<Record<LanguageCodes, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  params?: defineContentSection_MetadataOverrides['params'];
+  params?: ContentSection_MetadataOverrides['params'];
   locale?: DeepPartial<ContentSection_Locale<'props'>>;
-  content?: defineContentSection_PropsBase['content'];
+  content?: ContentSection_PropsBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -109,13 +109,13 @@ export const defineContentSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as defineContentSection_PropsBase['content'];
+    ) as ContentSection_PropsBase['content'];
     const languages = new Set<LanguageCodes>();
     for (const { resource, patch } of entries) {
       for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
       for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
     }
-    const locales: Partial<Record<LanguageCodes, defineContentSection_PropsBase['content']>> = {};
+    const locales: Partial<Record<LanguageCodes, ContentSection_PropsBase['content']>> = {};
     for (const language of languages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(
@@ -125,12 +125,12 @@ export const defineContentSection = <
         return patch?.locale?.[language]
           ? mergeForValidation(withPatchBase, patch.locale[language])
           : withPatchBase;
-      }) as defineContentSection_PropsBase['content'];
+      }) as ContentSection_PropsBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (): Publication<defineContentSection_PropsBase> => {
+  const props = (): Publication<ContentSection_PropsBase> => {
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder);
@@ -149,7 +149,7 @@ export const defineContentSection = <
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: defineContentSection_Overrides<Items, Added> & {
+    patch: ContentSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
   ): Publication<OverrideBase> => {
@@ -160,7 +160,7 @@ export const defineContentSection = <
           throw new Error('Unknown Section override field: ' + key);
         }
       }
-      const metadataPatch = defineContentSection_Override_Config_Schema.parse(
+      const metadataPatch = contentSection_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
       );
       const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));

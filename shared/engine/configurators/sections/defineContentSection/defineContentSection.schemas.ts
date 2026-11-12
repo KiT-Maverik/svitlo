@@ -40,14 +40,14 @@ export type Content_Section_Props = Omit<z.infer<typeof contentSection_Props_Sch
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type defineContentSection_PropsBase = Pick<Content_Section_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type ContentSection_PropsBase = Pick<Content_Section_Props, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<ContentSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */
-export type defineContentSection_MetadataOverrides = DeepPartial<Pick<Content_Section_Config, 'params' | 'locale'>>;
-export const defineContentSection_Override_Config_Schema: z.ZodType<defineContentSection_MetadataOverrides> = z.deepPartial(
+export type ContentSection_MetadataOverrides = DeepPartial<Pick<Content_Section_Config, 'params' | 'locale'>>;
+export const contentSection_Override_Config_Schema: z.ZodType<ContentSection_MetadataOverrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: contentSection_Config_Schema.shape.params,
@@ -56,10 +56,10 @@ export const defineContentSection_Override_Config_Schema: z.ZodType<defineConten
   ),
 );
 
-export type defineContentSection_Overrides<
+export type ContentSection_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,
   Added extends Record<string, ContentBlock_Configurator> = {},
-> = defineContentSection_MetadataOverrides & {
+> = ContentSection_MetadataOverrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };

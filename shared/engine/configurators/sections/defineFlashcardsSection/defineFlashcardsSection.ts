@@ -11,12 +11,12 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   flashcardsSection_Config_Schema,
-  defineFlashcardsSection_Override_Config_Schema,
+  flashcardsSection_Override_Config_Schema,
   type FlashcardsSection_Config,
   type FlashcardsSection_Locale,
-  type defineFlashcardsSection_Overrides,
-  type defineFlashcardsSection_PropsBase,
-  type defineFlashcardsSection_MetadataOverrides,
+  type FlashcardsSection_Overrides,
+  type FlashcardsSection_PropsBase,
+  type FlashcardsSection_MetadataOverrides,
 } from './defineFlashcardsSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -28,13 +28,13 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<FlashcardsSection_Locale<'props'>>; content?: defineFlashcardsSection_PropsBase['content'] };
+type LocaleBody = { locale?: DeepPartial<FlashcardsSection_Locale<'props'>>; content?: FlashcardsSection_PropsBase['content'] };
 type Files = Partial<Record<LanguageCodes, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  params?: defineFlashcardsSection_MetadataOverrides['params'];
+  params?: FlashcardsSection_MetadataOverrides['params'];
   locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
-  content?: defineFlashcardsSection_PropsBase['content'];
+  content?: FlashcardsSection_PropsBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -109,13 +109,13 @@ export const defineFlashcardsSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as defineFlashcardsSection_PropsBase['content'];
+    ) as FlashcardsSection_PropsBase['content'];
     const languages = new Set<LanguageCodes>();
     for (const { resource, patch } of entries) {
       for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
       for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
     }
-    const locales: Partial<Record<LanguageCodes, defineFlashcardsSection_PropsBase['content']>> = {};
+    const locales: Partial<Record<LanguageCodes, FlashcardsSection_PropsBase['content']>> = {};
     for (const language of languages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(
@@ -125,12 +125,12 @@ export const defineFlashcardsSection = <
         return patch?.locale?.[language]
           ? mergeForValidation(withPatchBase, patch.locale[language])
           : withPatchBase;
-      }) as defineFlashcardsSection_PropsBase['content'];
+      }) as FlashcardsSection_PropsBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (): Publication<defineFlashcardsSection_PropsBase> => {
+  const props = (): Publication<FlashcardsSection_PropsBase> => {
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder);
@@ -149,7 +149,7 @@ export const defineFlashcardsSection = <
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: defineFlashcardsSection_Overrides<Items, Added> & {
+    patch: FlashcardsSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
   ): Publication<OverrideBase> => {
@@ -160,7 +160,7 @@ export const defineFlashcardsSection = <
           throw new Error('Unknown Section override field: ' + key);
         }
       }
-      const metadataPatch = defineFlashcardsSection_Override_Config_Schema.parse(
+      const metadataPatch = flashcardsSection_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
       );
       const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));

@@ -100,14 +100,14 @@ export type QuizSection_Props = Omit<z.infer<typeof quizSection_Props_Schema>, '
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type defineQuizSection_PropsBase = Pick<QuizSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type QuizSection_PropsBase = Pick<QuizSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<QuizSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */
-export type defineQuizSection_MetadataOverrides = DeepPartial<Pick<QuizSection_Config, 'params' | 'locale'>>;
-export const defineQuizSection_Override_Config_Schema: z.ZodType<defineQuizSection_MetadataOverrides> = z.deepPartial(
+export type QuizSection_MetadataOverrides = DeepPartial<Pick<QuizSection_Config, 'params' | 'locale'>>;
+export const quizSection_Override_Config_Schema: z.ZodType<QuizSection_MetadataOverrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: quizSection_Config_Schema.shape.params,
@@ -116,10 +116,10 @@ export const defineQuizSection_Override_Config_Schema: z.ZodType<defineQuizSecti
   ),
 );
 
-export type defineQuizSection_Overrides<
+export type QuizSection_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,
   Added extends Record<string, ContentBlock_Configurator> = {},
-> = defineQuizSection_MetadataOverrides & {
+> = QuizSection_MetadataOverrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };

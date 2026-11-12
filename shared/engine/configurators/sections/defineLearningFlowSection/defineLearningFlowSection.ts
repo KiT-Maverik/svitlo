@@ -11,12 +11,12 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   learningFlowSection_Config_Schema,
-  defineLearningFlowSection_Override_Config_Schema,
+  learningFlowSection_Override_Config_Schema,
   type LearningFlowSection_Config,
   type LearningFlowSection_Locale,
-  type defineLearningFlowSection_Overrides,
-  type defineLearningFlowSection_PropsBase,
-  type defineLearningFlowSection_MetadataOverrides,
+  type LearningFlowSection_Overrides,
+  type LearningFlowSection_PropsBase,
+  type LearningFlowSection_MetadataOverrides,
 } from './defineLearningFlowSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -28,13 +28,13 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<LearningFlowSection_Locale<'props'>>; content?: defineLearningFlowSection_PropsBase['content'] };
+type LocaleBody = { locale?: DeepPartial<LearningFlowSection_Locale<'props'>>; content?: LearningFlowSection_PropsBase['content'] };
 type Files = Partial<Record<LanguageCodes, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  params?: defineLearningFlowSection_MetadataOverrides['params'];
+  params?: LearningFlowSection_MetadataOverrides['params'];
   locale?: DeepPartial<LearningFlowSection_Locale<'props'>>;
-  content?: defineLearningFlowSection_PropsBase['content'];
+  content?: LearningFlowSection_PropsBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -109,13 +109,13 @@ export const defineLearningFlowSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as defineLearningFlowSection_PropsBase['content'];
+    ) as LearningFlowSection_PropsBase['content'];
     const languages = new Set<LanguageCodes>();
     for (const { resource, patch } of entries) {
       for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
       for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
     }
-    const locales: Partial<Record<LanguageCodes, defineLearningFlowSection_PropsBase['content']>> = {};
+    const locales: Partial<Record<LanguageCodes, LearningFlowSection_PropsBase['content']>> = {};
     for (const language of languages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(
@@ -125,12 +125,12 @@ export const defineLearningFlowSection = <
         return patch?.locale?.[language]
           ? mergeForValidation(withPatchBase, patch.locale[language])
           : withPatchBase;
-      }) as defineLearningFlowSection_PropsBase['content'];
+      }) as LearningFlowSection_PropsBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (): Publication<defineLearningFlowSection_PropsBase> => {
+  const props = (): Publication<LearningFlowSection_PropsBase> => {
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder);
@@ -149,7 +149,7 @@ export const defineLearningFlowSection = <
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: defineLearningFlowSection_Overrides<Items, Added> & {
+    patch: LearningFlowSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
   ): Publication<OverrideBase> => {
@@ -160,7 +160,7 @@ export const defineLearningFlowSection = <
           throw new Error('Unknown Section override field: ' + key);
         }
       }
-      const metadataPatch = defineLearningFlowSection_Override_Config_Schema.parse(
+      const metadataPatch = learningFlowSection_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
       );
       const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));

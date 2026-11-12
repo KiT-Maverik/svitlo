@@ -11,12 +11,12 @@ import {
 import { contentBlockTypes, type ContentBlock_Configurator } from '../../contentBlocks';
 import {
   practiceSection_Config_Schema,
-  definePracticeSection_Override_Config_Schema,
+  practiceSection_Override_Config_Schema,
   type PracticeSection_Config,
   type PracticeSection_Locale,
-  type definePracticeSection_Overrides,
-  type definePracticeSection_PropsBase,
-  type definePracticeSection_MetadataOverrides,
+  type PracticeSection_Overrides,
+  type PracticeSection_PropsBase,
+  type PracticeSection_MetadataOverrides,
 } from './definePracticeSection.schemas';
 
 type Block = ContentBlock_Configurator;
@@ -28,13 +28,13 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<PracticeSection_Locale<'props'>>; content?: definePracticeSection_PropsBase['content'] };
+type LocaleBody = { locale?: DeepPartial<PracticeSection_Locale<'props'>>; content?: PracticeSection_PropsBase['content'] };
 type Files = Partial<Record<LanguageCodes, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
-  params?: definePracticeSection_MetadataOverrides['params'];
+  params?: PracticeSection_MetadataOverrides['params'];
   locale?: DeepPartial<PracticeSection_Locale<'props'>>;
-  content?: definePracticeSection_PropsBase['content'];
+  content?: PracticeSection_PropsBase['content'];
 };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -109,13 +109,13 @@ export const definePracticeSection = <
     });
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
-    ) as definePracticeSection_PropsBase['content'];
+    ) as PracticeSection_PropsBase['content'];
     const languages = new Set<LanguageCodes>();
     for (const { resource, patch } of entries) {
       for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
       for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
     }
-    const locales: Partial<Record<LanguageCodes, definePracticeSection_PropsBase['content']>> = {};
+    const locales: Partial<Record<LanguageCodes, PracticeSection_PropsBase['content']>> = {};
     for (const language of languages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(
@@ -125,12 +125,12 @@ export const definePracticeSection = <
         return patch?.locale?.[language]
           ? mergeForValidation(withPatchBase, patch.locale[language])
           : withPatchBase;
-      }) as definePracticeSection_PropsBase['content'];
+      }) as PracticeSection_PropsBase['content'];
     }
     return { bases, locales };
   };
 
-  const props = (): Publication<definePracticeSection_PropsBase> => {
+  const props = (): Publication<PracticeSection_PropsBase> => {
     const metadata = copyAuthored();
     const own = ownLocale(metadata.locale);
     const children = buildContent(initialItems, initialOrder);
@@ -149,7 +149,7 @@ export const definePracticeSection = <
   };
 
   const overrides = <const Added extends Record<string, Block> = {}>(
-    patch: definePracticeSection_Overrides<Items, Added> & {
+    patch: PracticeSection_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
   ): Publication<OverrideBase> => {
@@ -160,7 +160,7 @@ export const definePracticeSection = <
           throw new Error('Unknown Section override field: ' + key);
         }
       }
-      const metadataPatch = definePracticeSection_Override_Config_Schema.parse(
+      const metadataPatch = practiceSection_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'content')),
       );
       const candidate = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));

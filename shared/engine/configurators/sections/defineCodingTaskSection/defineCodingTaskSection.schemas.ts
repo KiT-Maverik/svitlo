@@ -40,14 +40,14 @@ export type CodingTaskSection_Props = Omit<z.infer<typeof codingTaskSection_Prop
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type defineCodingTaskSection_PropsBase = Pick<CodingTaskSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type CodingTaskSection_PropsBase = Pick<CodingTaskSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<CodingTaskSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */
-export type defineCodingTaskSection_MetadataOverrides = DeepPartial<Pick<CodingTaskSection_Config, 'params' | 'locale'>>;
-export const defineCodingTaskSection_Override_Config_Schema: z.ZodType<defineCodingTaskSection_MetadataOverrides> = z.deepPartial(
+export type CodingTaskSection_MetadataOverrides = DeepPartial<Pick<CodingTaskSection_Config, 'params' | 'locale'>>;
+export const codingTaskSection_Override_Config_Schema: z.ZodType<CodingTaskSection_MetadataOverrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: codingTaskSection_Config_Schema.shape.params,
@@ -56,10 +56,10 @@ export const defineCodingTaskSection_Override_Config_Schema: z.ZodType<defineCod
   ),
 );
 
-export type defineCodingTaskSection_Overrides<
+export type CodingTaskSection_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,
   Added extends Record<string, ContentBlock_Configurator> = {},
-> = defineCodingTaskSection_MetadataOverrides & {
+> = CodingTaskSection_MetadataOverrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };

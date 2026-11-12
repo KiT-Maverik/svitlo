@@ -40,14 +40,14 @@ export type FlashcardsSection_Props = Omit<z.infer<typeof flashcardsSection_Prop
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type defineFlashcardsSection_PropsBase = Pick<FlashcardsSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type FlashcardsSection_PropsBase = Pick<FlashcardsSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<FlashcardsSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */
-export type defineFlashcardsSection_MetadataOverrides = DeepPartial<Pick<FlashcardsSection_Config, 'params' | 'locale'>>;
-export const defineFlashcardsSection_Override_Config_Schema: z.ZodType<defineFlashcardsSection_MetadataOverrides> = z.deepPartial(
+export type FlashcardsSection_MetadataOverrides = DeepPartial<Pick<FlashcardsSection_Config, 'params' | 'locale'>>;
+export const flashcardsSection_Override_Config_Schema: z.ZodType<FlashcardsSection_MetadataOverrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: flashcardsSection_Config_Schema.shape.params,
@@ -56,10 +56,10 @@ export const defineFlashcardsSection_Override_Config_Schema: z.ZodType<defineFla
   ),
 );
 
-export type defineFlashcardsSection_Overrides<
+export type FlashcardsSection_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,
   Added extends Record<string, ContentBlock_Configurator> = {},
-> = defineFlashcardsSection_MetadataOverrides & {
+> = FlashcardsSection_MetadataOverrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };

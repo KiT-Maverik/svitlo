@@ -40,14 +40,14 @@ export type LearningFlowSection_Props = Omit<z.infer<typeof learningFlowSection_
 };
 
 /** The complete base may omit translated child fields, which live in locale files. */
-export type defineLearningFlowSection_PropsBase = Pick<LearningFlowSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+export type LearningFlowSection_PropsBase = Pick<LearningFlowSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<LearningFlowSection_Locale<'props'>>;
   content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
 };
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */
-export type defineLearningFlowSection_MetadataOverrides = DeepPartial<Pick<LearningFlowSection_Config, 'params' | 'locale'>>;
-export const defineLearningFlowSection_Override_Config_Schema: z.ZodType<defineLearningFlowSection_MetadataOverrides> = z.deepPartial(
+export type LearningFlowSection_MetadataOverrides = DeepPartial<Pick<LearningFlowSection_Config, 'params' | 'locale'>>;
+export const learningFlowSection_Override_Config_Schema: z.ZodType<LearningFlowSection_MetadataOverrides> = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: learningFlowSection_Config_Schema.shape.params,
@@ -56,10 +56,10 @@ export const defineLearningFlowSection_Override_Config_Schema: z.ZodType<defineL
   ),
 );
 
-export type defineLearningFlowSection_Overrides<
+export type LearningFlowSection_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,
   Added extends Record<string, ContentBlock_Configurator> = {},
-> = defineLearningFlowSection_MetadataOverrides & {
+> = LearningFlowSection_MetadataOverrides & {
   content?: {
     items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };
