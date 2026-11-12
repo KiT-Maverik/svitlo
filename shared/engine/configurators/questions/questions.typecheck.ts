@@ -8,6 +8,7 @@ import {
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;
 
+const scope = { languages: ['en', 'uk'] as const };
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
 const block = defineText({ id, type: 'text', slug: 'answerBlock', params: {}, locale: { value: 'OK' } });
 const params = { assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const] };
@@ -71,11 +72,11 @@ type AnswerBlock = Expect<Equal<typeof one.content.answers.correct.items.answerB
 type PromptBlock = Expect<Equal<typeof order.content.question.items.answerBlock, typeof block>>;
 
 // @ts-expect-error IDs are immutable in sparse overrides.
-one.build.overrides({ id });
+one.build.overrides({ id }, scope);
 // @ts-expect-error A nested question patch cannot change a child slug.
-one.build.overrides({ content: { question: { items: { answerBlock: { slug: 'another' } } } } });
+one.build.overrides({ content: { question: { items: { answerBlock: { slug: 'another' } } } } }, scope);
 // @ts-expect-error Number question answers must remain numeric.
-number.build.overrides({ params: { correctAnswers: ['2'] } });
+number.build.overrides({ params: { correctAnswers: ['2'] } }, scope);
 // @ts-expect-error Assessment Method slugs are closed.
 defineSelectOneAnswer({ ...common, type: 'selectOneAnswer', params: { ...params, assessmentMethod: 'unknown' }, content: { ...common.content, answers } });
 
@@ -116,11 +117,11 @@ scopedMatch.build.overrides({
     additionalItems: { secondPair: { left: anotherLocalizedBlock, right: localizedBlock } },
     order: ['firstPair', 'secondPair'],
   } },
-});
+}, scope);
 // @ts-expect-error New MatchBlocks pairs cannot contain a child lacking the parent language scope.
-scopedMatch.build.overrides({ content: { pairs: { additionalItems: { secondPair: { left: onlyUkrainianBlock, right: localizedBlock } }, order: ['firstPair', 'secondPair'] } } });
+scopedMatch.build.overrides({ content: { pairs: { additionalItems: { secondPair: { left: onlyUkrainianBlock, right: localizedBlock } }, order: ['firstPair', 'secondPair'] } } }, scope);
 // @ts-expect-error MatchBlocks order keys must refer to authored or added pairs.
-scopedMatch.build.overrides({ content: { pairs: { order: ['missingPair'] } } });
+scopedMatch.build.overrides({ content: { pairs: { order: ['missingPair'] } } }, scope);
 
 const scopedSlotContent = {
   ...localContent,
@@ -136,11 +137,11 @@ scopedBlocks.build.overrides({
     additionalItems: { secondSlot: { correctAnswer: anotherLocalizedBlock } },
     order: ['originalSlot', 'secondSlot'],
   } },
-});
+}, scope);
 // @ts-expect-error New answer slots must cover every language declared by their Question.
-scopedBlocks.build.overrides({ content: { slots: { additionalItems: { secondSlot: { correctAnswer: onlyUkrainianBlock } }, order: ['originalSlot', 'secondSlot'] } } });
+scopedBlocks.build.overrides({ content: { slots: { additionalItems: { secondSlot: { correctAnswer: onlyUkrainianBlock } }, order: ['originalSlot', 'secondSlot'] } } }, scope);
 // @ts-expect-error Block slot order cannot refer to arbitrary selectors.
-scopedBlocks.build.overrides({ content: { slots: { order: ['unknownSlot'] } } });
+scopedBlocks.build.overrides({ content: { slots: { order: ['unknownSlot'] } } }, scope);
 
 const scopedTextSlotContent = {
   ...localContent,
@@ -152,19 +153,19 @@ const scopedTextSlots = defineFillBlanksWithText<'scopedTextSlots', typeof scope
 });
 scopedTextSlots.build.overrides({
   content: { slots: { additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так', en: 'Yes' } } } }, order: ['originalSlot', 'secondSlot'] } },
-});
+}, scope);
 // @ts-expect-error New text slots need all declared translations.
-scopedTextSlots.build.overrides({ content: { slots: { additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так' } } } }, order: ['originalSlot', 'secondSlot'] } } });
+scopedTextSlots.build.overrides({ content: { slots: { additionalItems: { secondSlot: { correctAnswers: { first: { uk: 'Так' } } } }, order: ['originalSlot', 'secondSlot'] } } }, scope);
 // @ts-expect-error Text slot order must use known or added keys.
-scopedTextSlots.build.overrides({ content: { slots: { order: ['unknownSlot'] } } });
+scopedTextSlots.build.overrides({ content: { slots: { order: ['unknownSlot'] } } }, scope);
 
 void [scopedMatch, scopedBlocks, scopedTextSlots];
 
-const numberResource = number.build.props();
+const numberResource = number.build.props(scope);
 const typedAnswers: number[] = numberResource.base.params.correctAnswers;
 const typedPromptSlug: string = numberResource.base.content.question[0].slug;
 const typedNumberLocale: string | undefined = numberResource.locale?.uk?.locale?.placeholder;
-const numericOverride = number.build.overrides({ params: { correctAnswers: [3] } });
+const numericOverride = number.build.overrides({ params: { correctAnswers: [3] } }, scope);
 const typedSparseAnswers: number[] | undefined = numericOverride.base.params?.correctAnswers;
 // @ts-expect-error Concrete Build props retain the numeric answer type.
 const invalidNumericAnswers: string[] = numberResource.base.params.correctAnswers;
@@ -173,3 +174,12 @@ numberResource.base.content.unknownMember;
 // @ts-expect-error Sparse publication cannot change the Question identity.
 numericOverride.base.slug;
 void [typedAnswers, typedPromptSlug, typedNumberLocale, typedSparseAnswers, invalidNumericAnswers];
+
+validLanguageChild.build.props({ languages: ['uk'] });
+validLanguageChild.build.overrides({}, { languages: ['uk'] });
+// @ts-expect-error The typed Question only supports its declared publication languages.
+validLanguageChild.build.props({ languages: ['en'] });
+// @ts-expect-error Explicit language selection is required.
+validLanguageChild.build.props();
+// @ts-expect-error An override publication also requires language options.
+validLanguageChild.build.overrides({});
