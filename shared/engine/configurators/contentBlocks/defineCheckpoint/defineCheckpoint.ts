@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, ChildrenSupporting } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
@@ -111,11 +111,15 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
 };
 
 /** Define a Checkpoint with an ordered collection of CheckpointItem configurators. */
-export const defineCheckpoint = <const Slug extends string, const Items extends Record<string, CheckpointItem>>(
+export const defineCheckpoint = <
+  const Slug extends string,
+  const Items extends Record<string, CheckpointItem>,
+  const Languages extends readonly LanguageCodes[] = [],
+>(
   config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: { items: Items; order: string[] };
-  },
+    content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
+  } & ConfigWithLanguages<ContentBlock_Checkpoint_Config, Languages>,
 ) => {
   validate(config);
   // Snapshot only serializable metadata. Children are immutable configurator references.
@@ -223,7 +227,9 @@ export const defineCheckpoint = <const Slug extends string, const Items extends 
   };
 
   const overrides = <const Added extends Record<string, CheckpointItem> = {}>(
-    patch: Checkpoint_Overrides<Items, Added>,
+    patch: Checkpoint_Overrides<Items, Added> & {
+      content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+    },
   ): CheckpointPublication<CheckpointOverrideBase> => {
     try {
       if (!isObject(patch)) throw new Error('Expected an overrides object');
@@ -330,7 +336,7 @@ export const defineCheckpoint = <const Slug extends string, const Items extends 
     }
   };
 
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -345,6 +351,7 @@ export const defineCheckpoint = <const Slug extends string, const Items extends 
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Checkpoint_Configurator = ReturnType<typeof defineCheckpoint>;
