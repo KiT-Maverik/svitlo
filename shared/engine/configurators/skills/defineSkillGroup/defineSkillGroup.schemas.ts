@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
-import { deepStrict_Schema, localizationSwitch, localeText_Schema } from '#schemas';
+import { deepStrict_Schema, localeText_Schema } from '#schemas';
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
 import { skill_Props_Schema, type Skill_Props, type Skill_Configurator } from '../defineSkill';
 
