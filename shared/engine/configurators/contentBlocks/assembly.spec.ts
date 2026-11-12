@@ -114,7 +114,7 @@ test('Carousel publishes ordered complete localized arrays and handles sparse ch
   ]);
   assert.equal(resource.locale?.uk?.locale.slides?.[0]?.src, 'https://example.com/a-uk.png');
   const localized = carousel.build.overrides({
-    slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } },
+    slides: { items: { first: { locale: { alt: { uk: 'Перший' } } } } },
   });
   assert.deepEqual(localized.locale?.uk?.locale.slides, [
     { src: 'https://example.com/a-uk.png', alt: 'Перший' },
