@@ -147,7 +147,7 @@ export const defineCheckpointItem = <
   } satisfies DeepPartial<ContentBlock_CheckpointItem_Config>;
 
   const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
-    child.build.props({ embed: true }) as unknown as ChildPublication;
+    child.build.props() as unknown as ChildPublication;
 
   const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
     (child.build.overrides as (patch: never) => ChildPatchPublication)(patch as never);
@@ -183,10 +183,9 @@ export const defineCheckpointItem = <
           const localizedOriginal = mergeForValidation(original.base, originalLocale);
           const withPatchBase = patch ? mergeForValidation(localizedOriginal, patch.base) : localizedOriginal;
           const localizedPatch = patch?.locale?.[language];
-          // build.overrides() uses direct language bodies; embed them at the
-          // child Props path before applying them to the resolved child.
+          // Child overrides already contain Props-shaped locale paths.
           return localizedPatch
-            ? mergeForValidation(withPatchBase, { locale: localizedPatch })
+            ? mergeForValidation(withPatchBase, localizedPatch)
             : withPatchBase;
         }),
       };
@@ -194,13 +193,9 @@ export const defineCheckpointItem = <
     return { bases, locales };
   };
 
-  function props(): ItemPublication<ItemBase>;
-  function props(options: { embed: true }): ItemPublication<ItemBase>;
-  function props(options?: { embed?: true }): ItemPublication<ItemBase> {
-    // No localizable fields belong to CheckpointItem itself. Its children
-    // already produce embedded Props fragments in either parent mode.
-    void options;
-    const builtQuestion = question.build.props({ embed: true });
+  const props = (): ItemPublication<ItemBase> => {
+    // Children already produce Props-shaped locale fragments.
+    const builtQuestion = question.build.props();
     const builtAnswers = buildAnswers(initialItems, initialOrder);
     const locale = { ...builtAnswers.locales };
     for (const [language, fields] of Object.entries(builtQuestion.locale ?? {})) {
@@ -215,7 +210,7 @@ export const defineCheckpointItem = <
       },
       locale: Object.keys(locale).length ? locale : undefined,
     };
-  }
+  };
 
   const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
     patch: CheckpointItem_Overrides<Answers, Added>,
@@ -239,7 +234,7 @@ export const defineCheckpointItem = <
         const built = question.build.overrides(patch.question);
         if (Object.keys(built.base).length) output.base.question = built.base;
         for (const [language, fields] of Object.entries(built.locale ?? {})) {
-          (locales[language as LanguageCodes] ??= {}).question = { locale: fields };
+          (locales[language as LanguageCodes] ??= {}).question = fields;
         }
       }
 
