@@ -148,6 +148,12 @@ export const resolveBlockCollection = (
   if (errors.length) throw new Error(errors.map(issue => issue.path + ': ' + issue.message).join('; '));
   if (nonEmpty && order.length === 0) throw new Error(path + ' must contain at least one active item');
   const entries = order.map(key => resolveChild(items[key] as Block, childPatches[key]));
+  if (
+    nonEmpty &&
+    entries.every(entry => isRecord(entry.base.params) && entry.base.params.disabled === true)
+  ) {
+    throw new Error(path + ' must contain an enabled ContentBlock');
+  }
   const locale: Files<Fragment[]> = {};
   for (const entry of entries) {
     for (const language of Object.keys(entry.locale)) {
