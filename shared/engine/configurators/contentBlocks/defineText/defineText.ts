@@ -109,9 +109,9 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * Every configured variable ID must appear in every supplied locale value,
  * with no undeclared or malformed fragments.
  *
- * `build.props()` prepares the complete authored resource.
+ * `build.props({ languages })` prepares the complete authored resource.
  * Every translated file is a Props-shaped fragment, including its own `locale` field.
- * `build.overrides(patch)` strictly checks the sparse patch, validates
+ * `build.overrides(patch, { languages })` strictly checks the sparse patch, validates
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
  */
