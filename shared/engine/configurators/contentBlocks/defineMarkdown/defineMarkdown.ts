@@ -102,7 +102,7 @@ const mergeMarkdownForValidation = (
   original: ContentBlock_Markdown_Config,
   patch: ContentBlock_Markdown_Overrides,
 ): ContentBlock_Markdown_Config => {
-  const effective = mergeForValidation(original, patch);
+  const effective = mergeForValidation<ContentBlock_Markdown_Config>(original, patch);
   if (typeof effective.locale.value !== 'object') return effective;
   for (const [name, replacement] of Object.entries(patch.locale?.variables ?? {})) {
     const previous = original.locale.variables?.[name];
