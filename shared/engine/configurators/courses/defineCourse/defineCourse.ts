@@ -201,8 +201,13 @@ export const defineCourse = <
       const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never, { languages }) : undefined;
       return { resource, patch };
     });
+    // Child resources are already validated; avoid recursive generic inference on
+    // the whole nested Course/Lesson union while merging sparse published fragments.
     const base = entries.map(({ resource, patch }) =>
-      mergeForValidation(resource.base, (patch?.base ?? {}) as DeepPartial<typeof resource.base>),
+      mergeForValidation<Record<string, unknown>>(
+        resource.base as Record<string, unknown>,
+        (patch?.base ?? {}) as Record<string, unknown>,
+      ),
     );
     const locale: Partial<Record<LanguageCodes, Course_Child_Props[]>> = {};
     for (const language of languages) {
