@@ -23,6 +23,7 @@ const validate = (candidate: Question_MatchBlocks_Config): void => {
   matchBlocks_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
   validateNestedBlockCollection(candidate.content.pairs, 'content.pairs', ['left', 'right']);
+  if (!candidate.content.pairs.order.length) throw new Error('MatchBlocks requires at least one pair');
 };
 
 type ContentShape = Question_MatchBlocks_Config['content'];
