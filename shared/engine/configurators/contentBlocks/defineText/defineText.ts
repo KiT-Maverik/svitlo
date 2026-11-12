@@ -1,4 +1,4 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import { onlyLocales } from '../../_shared__configurators';
@@ -114,8 +114,8 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
  */
-export const defineText = <const Slug extends string>(
-  config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug },
+export const defineText = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<ContentBlock_Text_Config, Languages>,
 ) => {
   const authored = structuredClone(parseAndValidate(config));
   const { id, type } = authored;
@@ -142,7 +142,7 @@ export const defineText = <const Slug extends string>(
     }
   };
 
-  return {
+  const result = {
     id,
     slug,
     type,
@@ -157,6 +157,7 @@ export const defineText = <const Slug extends string>(
       validate,
     },
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type ContentBlock_Text_Configurator = ReturnType<typeof defineText>;
