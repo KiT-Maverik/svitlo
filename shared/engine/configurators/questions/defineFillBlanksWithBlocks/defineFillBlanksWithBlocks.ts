@@ -6,7 +6,7 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap, resolvePairMap, resolveSlotBlocks,
   snapshotCommonContent, snapshotBlockCollection, snapshotNestedCollection, validateNestedBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionPublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -79,7 +79,7 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
 
   const extraContent = (
     source: Content,
-    patch?: { slots?: {items?: Record<string, Record<string, unknown> | false>;additionalItems?: Record<string, {correctAnswer: ContentBlock_Configurator}>;order?: string[]}; distractors?: OrderedBlockPatch },
+    patch?: { slots?: {items?: Record<string, Record<string, unknown> | false>;additionalItems?: Record<string, {correctAnswer: ContentBlock_Configurator}>;order?: string[]}; distractors?: ResolvableBlockPatch },
   ) => {
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
