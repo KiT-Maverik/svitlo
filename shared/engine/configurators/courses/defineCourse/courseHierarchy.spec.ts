@@ -4,7 +4,8 @@ import test from 'node:test';
 import { defineChapter } from '../defineChapter';
 import { defineModule } from '../defineModule';
 import { defineCourse } from './defineCourse';
-import { course_Config_Schema } from './defineCourse.schemas';
+import { mergeForValidation } from '../../_shared__configurators';
+import { course_Config_Schema, course_Props_Schema } from './defineCourse.schemas';
 
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const languages = ['en', 'uk'] as const;
@@ -50,6 +51,7 @@ test('Course hierarchy retains literal slugs and publishes ordered plain Props',
   assert.equal(JSON.stringify(resource).includes('"build"'), false);
   assert.deepEqual(course.config.locales(), { locale: { title: { en: 'Course', uk: 'Курс' } } });
   assert.equal(course_Config_Schema.safeParse(courseInput).success, true);
+  assert.equal(course_Props_Schema.safeParse(mergeForValidation(resource.base, resource.locale?.uk ?? {})).success, true);
 });
 
 test('Course overrides preserve sparse metadata and replace nested ordered child Props atomically', () => {
