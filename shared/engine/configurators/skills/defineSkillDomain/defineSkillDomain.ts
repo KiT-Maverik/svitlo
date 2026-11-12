@@ -226,6 +226,11 @@ export function defineSkillDomain<
       const files = structuredClone(own.locale);
       const output: SkillDomainPublication<SkillDomainOverrideBase> = { base: { ...own.base }, locale: undefined };
 
+      const effectiveChildren: Record<'skills' | 'groups', Record<string, Child>> = {
+        skills: { ...initialSkills },
+        groups: { ...initialGroups },
+      };
+
       /** Only Domain owns addition, disable and ordering checks for its collections. */
       const applyCollection = <T extends Child, Props extends Skill_Props | SkillGroup_Props>(
         key: 'skills' | 'groups',
@@ -280,6 +285,7 @@ export function defineSkillDomain<
         if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
         if (!Object.keys(changes).length && !Object.keys(additions).length && patchCollection.order === undefined) return;
         const enabled = Object.fromEntries(Object.entries(active).filter((entry): entry is [string, T] => entry[1] !== false));
+        effectiveChildren[key] = enabled;
         const built = buildChildren(enabled, order, parse, childPatches, Object.keys(files) as LanguageCodes[]);
         (output.base as Record<string, unknown>)[key] = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
@@ -289,6 +295,17 @@ export function defineSkillDomain<
 
       applyCollection('skills', patch.skills, initialSkills, skillOrder, 'skill', value => skill_Props_Schema.parse(value));
       applyCollection('groups', patch.groups, initialGroups, groupOrder, 'skillGroup', value => skillGroup_Props_Schema.parse(value));
+      const ids = new Set<string>();
+      const slugs = new Set<string>();
+      for (const [slug, child] of [
+        ...Object.entries(effectiveChildren.skills),
+        ...Object.entries(effectiveChildren.groups),
+      ]) {
+        if (slugs.has(slug)) throw new Error('Duplicate Domain child slug: ' + slug);
+        slugs.add(slug);
+        if (ids.has(child.id)) throw new Error('Duplicate Domain child ID: ' + child.id);
+        ids.add(child.id);
+      }
       output.locale = Object.keys(files).length ? files : undefined;
       return output;
     } catch (error) {
