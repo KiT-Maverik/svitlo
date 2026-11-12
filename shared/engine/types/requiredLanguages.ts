@@ -41,3 +41,8 @@ export type ChildSupporting<Required extends readonly LanguageCodes[], Child> =
 export type ChildrenSupporting<Required extends readonly LanguageCodes[], Children extends Record<string, object>> = {
   [Key in keyof Children]: ChildSupporting<Required, Children[Key]>;
 };
+
+/** Languages to materialize for one Build call, limited to the authored language scope. */
+export type PublicationLanguageOptions<Languages extends readonly LanguageCodes[] = readonly LanguageCodes[]> = {
+  readonly languages: readonly ([Languages[number]] extends [never] ? LanguageCodes : Languages[number])[];
+};
