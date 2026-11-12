@@ -29,9 +29,10 @@ const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): st
   if (block?.type !== 'text') return undefined;
   return (block.locale as { value?: string } | undefined)?.value;
 };
-const flagValue = (flags: ({ type: string } & Record<string, unknown>)[] | undefined, index: number): string | undefined => {
+const flagValue = (flags: readonly unknown[] | undefined, index: number): string | undefined => {
   const flag = flags?.[index];
-  return flag && 'value' in flag ? flag.value as string : undefined;
+  return flag !== null && typeof flag === 'object' && 'value' in flag &&
+    typeof flag.value === 'string' ? flag.value : undefined;
 };
 
 const source = {
