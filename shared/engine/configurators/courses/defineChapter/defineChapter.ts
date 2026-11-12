@@ -157,7 +157,7 @@ export const defineChapter = <
     const files: Partial<Record<LanguageCodes, DeepPartial<Chapter_Props>>> = {};
     for (const [language, fields] of Object.entries(own.locale ?? {})) {
       files[language as LanguageCodes] = {
-        locale: fields as DeepPartial<Chapter_Locale<'props'>,
+        locale: fields as DeepPartial<Chapter_Locale<'props'>>,
       };
     }
     return {
