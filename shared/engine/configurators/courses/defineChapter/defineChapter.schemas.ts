@@ -39,13 +39,12 @@ export const chapter_Override_Config_Schema: z.ZodType<Chapter_Metadata_Override
     locale: chapter_Config_Schema.shape.locale,
   })),
 );
-type ChildPatch<Child> = Child extends { build: { overrides: (patch: infer Patch) => unknown } } ? Patch : never;
 export type Chapter_Overrides<
   Items extends Record<string, Chapter_Child> = Record<string, Chapter_Child>,
   Added extends Record<string, Chapter_Child> = {},
 > = Chapter_Metadata_Overrides & {
   content?: {
-    items?: { [Key in keyof Items]?: ChildPatch<Items[Key]> | false };
+    items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
     additionalItems?: Added & { [Key in keyof Items]?: never };
     order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
   };
