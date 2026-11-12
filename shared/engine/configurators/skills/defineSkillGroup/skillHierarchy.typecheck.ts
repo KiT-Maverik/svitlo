@@ -45,11 +45,14 @@ defineSkillDomain<'invalidDomain', { group: typeof group }, {}, ['en', 'uk']>({
 group.build.overrides({ skills: { items: { both: { name: { uk: 'Двоє' } } } } });
 // @ts-expect-error Identity fields are not overridable.
 both.build.overrides({ slug: 'altered' });
-// @ts-expect-error Unknown Skill child key must be rejected at the type boundary.
-group.build.overrides({ skills: { items: { missing: { name: 'Unknown' } } } });
-// @ts-expect-error Unsupported language cannot be omitted from a complete authored dictionary.
+group.build.overrides({ skills: { items: {
+  // @ts-expect-error Unknown Skill child key must be rejected at the type boundary.
+  missing: { name: 'Unknown' },
+} } });
 defineSkill<'incomplete', ['en', 'uk']>({
-  id, slug: 'incomplete', name: { en: 'Incomplete' },
+  id, slug: 'incomplete',
+  // @ts-expect-error Unsupported language cannot be omitted from a complete authored dictionary.
+  name: { en: 'Incomplete' },
   description: { methodological: 'Incomplete', frontend: { en: 'Only English', uk: 'Англійська' } },
 });
 
