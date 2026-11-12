@@ -66,7 +66,7 @@ test('Course overrides preserve sparse metadata and replace nested ordered child
 
   const removed = course.build.overrides({ content: { items: { module: false }, order: [] } });
   assert.deepEqual(removed.base.content, []);
-  assert.deepEqual(removed.locale?.uk?.content, []);
+  assert.equal(removed.locale, undefined, 'invariant deletion must not emit unnecessary locale files');
 
   assert.throws(() => course.build.overrides({ content: { items: { module: false } } }), /order is required/);
   assert.throws(() => course.build.overrides({ content: { order: ['module', 'module'] } }), /Duplicate slug/);
