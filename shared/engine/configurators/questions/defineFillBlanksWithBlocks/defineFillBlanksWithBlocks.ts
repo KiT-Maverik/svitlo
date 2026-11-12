@@ -28,16 +28,20 @@ const validate = (candidate: Question_FillBlanksWithBlocks_Config): void => {
 };
 
 type ContentShape = Question_FillBlanksWithBlocks_Config['content'];
-export type Question_FillBlanksWithBlocks_Overrides<Content extends ContentShape = ContentShape> =
+export type Question_FillBlanksWithBlocks_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> =
   Question_FillBlanksWithBlocks_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content> & {
+    content?: QuestionCommonPatch<Content, Added, Languages> & {
       slots?: {
   items?: { [Key in keyof Content['slots']['items']]?:
     { correctAnswer?: Parameters<Content['slots']['items'][Key]['correctAnswer']['build']['overrides']>[0] } | false };
   additionalItems?: Record<string, { correctAnswer: ContentBlock_Configurator }>;
   order?: string[];
 };
-distractors?: OrderedBlockPatch<Content['distractors']['items']>;
+distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
     };
   };
 
@@ -75,7 +79,7 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
 
   const extraContent = (
     source: Content,
-    patch?: NonNullable<Question_FillBlanksWithBlocks_Overrides<Content>['content']>,
+    patch?: { slots?: {items?: Record<string, Record<string, unknown> | false>;additionalItems?: Record<string, {correctAnswer: ContentBlock_Configurator}>;order?: string[]}; distractors?: OrderedBlockPatch },
   ) => {
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
@@ -109,8 +113,8 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
     };
   };
 
-  const overrides = (
-    patch: Question_FillBlanksWithBlocks_Overrides<Content>,
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages>,
   ): QuestionPublication<Record<string, unknown>> => {
     try {
       ensureQuestionPatchShape(patch);
