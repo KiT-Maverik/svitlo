@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import type { DeepPartial } from '#types';
+import { deepStrict_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
@@ -31,6 +33,22 @@ export type ContentBlock_Youtube_Locale<Mode extends Configurator_Mode> = z.infe
 
 export const youtube_Config_Schema = youtubeBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Youtube_Config = z.infer<typeof youtube_Config_Schema>;
+
+/** Sparse overrides derive permitted fields directly from the authored Config Schema. */
+export type ContentBlock_Youtube_Overrides = DeepPartial<Pick<ContentBlock_Youtube_Config, 'params' | 'locale'>>;
+
+export const youtube_Override_Config_Schema: z.ZodType<ContentBlock_Youtube_Overrides> = z.deepPartial(
+  deepStrict_Schema(
+    z.object({
+      params: youtube_Config_Schema.shape.params,
+      locale: youtube_Config_Schema.shape.locale,
+    }),
+  ),
+);
+
+export type ContentBlock_Youtube_ResourceBase = z.infer<typeof youtubeBase> & {
+  locale?: DeepPartial<ContentBlock_Youtube_Locale<'props'>>;
+};
 
 export const youtube_Props_Schema = youtubeBase.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Youtube_Props = z.infer<typeof youtube_Props_Schema>;
