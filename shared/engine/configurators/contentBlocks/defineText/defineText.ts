@@ -1,7 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales, wrapLocale, type WrappedLocaleFiles } from '../../_shared__configurators';
+import { onlyLocales, wrapLocale, type PropsBuilder, type WrappedLocaleFiles } from '../../_shared__configurators';
 import {
   text_Config_Schema,
   text_Override_Config_Schema,
@@ -135,6 +135,8 @@ export const defineText = <const Slug extends string>(
     return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
 
+  const propsApi: PropsBuilder<ContentBlock_Text_PropsBase, ContentBlock_Text_Locale<'props'>> = props;
+
   const overrides = (patch: ContentBlock_Text_Overrides): TextPropsPublication<TextOverridePropsBase> => {
     try {
       // Structural: reject unknown fields, bad types, and invalid locale keys.
@@ -157,7 +159,7 @@ export const defineText = <const Slug extends string>(
     slug,
     type,
     validate,
-    build: { props, overrides },
+    build: { props: propsApi, overrides },
     // Transitional compatibility for parents not migrated to assembly yet.
     config: {
       base,

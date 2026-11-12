@@ -8,6 +8,9 @@ export type ResourceAssembler<Base, Locale> = {
   (options: { embed: true }): { base: Base; locale: WrappedLocaleFiles<Locale> | undefined };
 };
 
+/** Named publication overload for the new build.props() API. */
+export type PropsBuilder<Base, Locale> = ResourceAssembler<Base, Locale>;
+
 /** Wrap per-language file bodies as Props-shaped fragments for nested assembly. */
 export const wrapLocale = <Locale>(
   files: Partial<Record<LanguageCodes, Locale>> | undefined,
