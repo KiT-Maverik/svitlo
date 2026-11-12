@@ -66,8 +66,11 @@ const later = defineText({
 });
 item.build.overrides({
   question: { locale: { value: { uk: 'Оновлене питання' } } },
-  answer: { items: { answer: { locale: { value: 'Updated' } } }, order: ['answer', 'later'] },
-  additionalContentBlocks: configuratorArrayToSlugMap([later]),
+  answer: {
+    items: { answer: { locale: { value: 'Updated' } } },
+    additionalItems: configuratorArrayToSlugMap([later]),
+    order: ['answer', 'later'],
+  },
 });
 // @ts-expect-error Only existing answer keys can be patched.
 item.build.overrides({ answer: { items: { unknown: { locale: { value: 'Unknown' } } } } });
@@ -78,7 +81,7 @@ item.build.overrides({ answer: { order: ['unknown'] } });
 // @ts-expect-error Identity cannot be changed.
 item.build.overrides({ slug: 'renamed' });
 // @ts-expect-error A new child must not reuse an authored slug.
-item.build.overrides({ additionalContentBlocks: configuratorArrayToSlugMap([answer]) });
+item.build.overrides({ answer: { additionalItems: configuratorArrayToSlugMap([answer]) } });
 
 const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_CheckpointItem_Config = {
   id: 'b775647f-203d-481a-a1c7-4d331c779d6d',
