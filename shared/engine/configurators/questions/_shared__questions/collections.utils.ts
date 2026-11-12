@@ -41,6 +41,19 @@ export const isRecord = (value: unknown): value is Record<string, unknown> =>
 
 export const cloneJson = <T>(value: T): T => structuredClone(value);
 
+/** Snapshot only the collection map/order; children stay independent configurator references. */
+export const snapshotBlockCollection = <T>(value: OrderedBlocks<T>): OrderedBlocks<T> => ({
+  items: { ...value.items },
+  order: [...value.order],
+});
+
+export const snapshotCommonContent = <C extends QuestionCommonContent>(value: C): C => ({
+  ...value,
+  question: snapshotBlockCollection(value.question),
+  ...(value.hint !== undefined ? { hint: snapshotBlockCollection(value.hint) } : {}),
+  ...(value.explanation !== undefined ? { explanation: snapshotBlockCollection(value.explanation) } : {}),
+}) as C;
+
 export function validateBlock(child: unknown, key: string): asserts child is Block {
   const errors = validateSluggedConfiguratorMap({ [key]: child }, contentBlockTypes, {
     path: 'items',
