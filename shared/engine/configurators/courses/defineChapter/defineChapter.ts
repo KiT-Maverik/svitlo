@@ -67,7 +67,11 @@ const validate = (config: Chapter_Config): void => {
 const parseChild = (value: unknown): Chapter_Child_Props => {
   if (!isRecord(value)) throw new Error('Expected resolved Chapter child Props');
   switch (value.type) {
-    case 'lesson': return lesson_Props_Schema.parse(value);
+    case 'lesson': {
+      const parsed = lesson_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
+      return structuredClone(value) as Chapter_Child_Props;
+    }
     default: throw new Error('Unsupported Chapter child type: ' + String(value.type));
   }
 };
