@@ -290,8 +290,11 @@ export const defineCourse = <
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Course child slug: ' + key);
         if (!isRecord(child) || !isRecord(child.build) ||
-          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
-          throw new Error('New Course child must expose the Build API: ' + key);
+          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
+          !isRecord(child.config) || !isRecord(child.config.base) ||
+          child.config.base.id !== child.id || child.config.base.slug !== key ||
+          child.config.base.type !== child.type) {
+          throw new Error('New Course child must expose a matching immutable Build identity: ' + key);
         }
         active[key] = child as Course_Child;
       }
