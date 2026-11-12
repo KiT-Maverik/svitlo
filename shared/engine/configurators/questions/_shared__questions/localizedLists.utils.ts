@@ -31,6 +31,7 @@ const resolve = (value: LocalizedText, language: LanguageCodes): string | undefi
  */
 export const projectAnswerList = (
   original: LocalizedTextList,
+  languages: readonly LanguageCodes[],
   patch?: Partial<LocalizedTextList>,
 ): Projection<string[]> => {
   const effective = patch ? mergeForValidation(cloneJson(original), patch) : cloneJson(original);
@@ -42,9 +43,9 @@ export const projectAnswerList = (
   const allInvariant = values.every(value => typeof value === 'string');
   const structural = patch !== undefined && Object.keys(patch).some(key => !Object.hasOwn(original, key));
   const invariantChanged = patch !== undefined && Object.values(patch).some(value => typeof value === 'string');
-  const affected = !patch || structural || invariantChanged
-    ? knownLanguages(effective)
-    : knownLanguages(patch);
+  const affected = allInvariant ? [] : !patch || structural || invariantChanged
+    ? languages
+    : languages.filter(language => knownLanguages(patch).includes(language));
   const locale: Files<string[]> = {};
   for (const language of affected) {
     const answers = values.map(value => resolve(value, language));
@@ -62,6 +63,7 @@ export const projectAnswerList = (
 /** Named slot selectors and accepted values become resolved positional UI props only after Build. */
 export const projectSlotList = (
   original: LocalizedSlotList,
+  languages: readonly LanguageCodes[],
   patch?: Partial<LocalizedSlotList>,
   order?: readonly string[],
 ): Projection<Array<{ selector: string; correctAnswers: string[] }>> => {
@@ -92,9 +94,9 @@ export const projectSlotList = (
   const structural = patch !== undefined && Object.keys(patch).some(key => !Object.hasOwn(original, key));
   const invariantChanged = patch !== undefined && Object.values(patch).some(slot =>
     Object.values(slot.correctAnswers ?? {}).some(value => typeof value === 'string'));
-  const affected = !patch || structural || invariantChanged
-    ? knownLanguages(effective)
-    : knownLanguages(patch);
+  const affected = allInvariant ? [] : !patch || structural || invariantChanged
+    ? languages
+    : languages.filter(language => knownLanguages(patch).includes(language));
   const locale: Files<Array<{ selector: string; correctAnswers: string[] }>> = {};
   for (const language of affected) locale[language] = toArray(language);
   return { ...(allInvariant ? { base: toArray() } : {}), locale };
