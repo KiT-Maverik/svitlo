@@ -214,3 +214,45 @@ const bilingualSlide = defineCarouselSlide<'bilingualSlide', ['uk', 'en']>({
   locale: { src: 'https://example.com/image.png', alt: { uk: 'Фото', en: 'Photo' } },
 });
 void bilingualSlide;
+
+const ukOnlySlide = defineCarouselSlide<'ukOnly', ['uk']>({
+  id,
+  slug: 'ukOnly',
+  type: 'carouselSlide',
+  locale: { src: 'https://example.com/uk-only.png', alt: { uk: 'Лише українською' } },
+});
+const bilingualSlideForGallery = defineCarouselSlide<'bilingual', ['uk', 'en']>({
+  id,
+  slug: 'bilingual',
+  type: 'carouselSlide',
+  locale: { src: 'https://example.com/bilingual.png', alt: { uk: 'Фото', en: 'Photo' } },
+});
+const typedCarouselSupports = defineCarousel<
+  'typedGallery',
+  { bilingual: typeof bilingualSlideForGallery },
+  ['uk', 'en']
+>({
+  id,
+  slug: 'typedGallery',
+  type: 'carousel',
+  params: {},
+  locale: { title: 'Gallery' },
+  slides: { items: { bilingual: bilingualSlideForGallery }, order: ['bilingual'] },
+});
+void typedCarouselSupports;
+
+// A typed parent cannot include a child that lacks a required language.
+defineCarousel<'invalidGallery', { ukOnly: typeof ukOnlySlide }, ['uk', 'en']>({
+  id,
+  slug: 'invalidGallery',
+  type: 'carousel',
+  params: {},
+  locale: { title: 'Gallery' },
+  slides: {
+    items: {
+      // @ts-expect-error The parent requires en, but the slide only supports uk.
+      ukOnly: ukOnlySlide,
+    },
+    order: ['ukOnly'],
+  },
+});
