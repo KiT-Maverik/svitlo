@@ -1,4 +1,4 @@
-name:    PR Auto-format
+name: PR Auto-format
 
 on:
   pull_request:
