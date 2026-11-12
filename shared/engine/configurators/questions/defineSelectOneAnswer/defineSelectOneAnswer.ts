@@ -92,9 +92,26 @@ export const defineSelectOneAnswer = <
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
     const answers: Record<string, unknown> = {};
-    for (const group of ['correct', 'incorrect', 'distractors'] as const) {
+    const groups = ['correct', 'incorrect', 'distractors'] as const;
+    for (const key of Object.keys(patch ?? {})) {
+      if (!groups.some(group => group === key)) throw new Error('Unknown scoring group: ' + key);
+    }
+    const complete = {
+      correct: resolveBlockMap(source.answers.correct, patch?.correct, 'content.answers.correct'),
+      incorrect: resolveBlockMap(source.answers.incorrect, patch?.incorrect, 'content.answers.incorrect'),
+      distractors: resolveBlockMap(source.answers.distractors, patch?.distractors, 'content.answers.distractors'),
+    };
+    const correctCount = Object.keys(complete.correct.base).length;
+    if (correctCount !== 1) {
+      throw new Error('SelectOneAnswer has an invalid number of correct answers');
+    }
+    const activeKeys = groups.flatMap(group => Object.keys(complete[group].base));
+    if (new Set(activeKeys).size !== activeKeys.length) {
+      throw new Error('An answer cannot occur in multiple scoring groups');
+    }
+    for (const group of groups) {
       if (patch && patch[group] === undefined) continue;
-      const resolved = resolveBlockMap(source.answers[group], patch?.[group], 'content.answers.' + group);
+      const resolved = complete[group];
       answers[group] = resolved.base;
       for (const [language, blocks] of Object.entries(resolved.locale)) {
         const fields = (locale[language] ??= {});
