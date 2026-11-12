@@ -37,7 +37,7 @@ function authoringLanguageContracts() {
       },
       order: ['paragraph', 'ukOnly'],
     },
-  });
+  }, { languages: ['uk'] });
   bilingual.build.overrides({
     content: {
       items: {
@@ -45,7 +45,7 @@ function authoringLanguageContracts() {
         missing: false,
       },
     },
-  });
+  }, { languages: ['uk'] });
 
   const ukrainian = defineContentSection<'onlyUkrainian', { ukOnly: typeof ukText }, ['uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e04',
@@ -71,7 +71,7 @@ function authoringLanguageContracts() {
     section: { items: { intro: bilingual }, order: ['intro'] },
     flashcards: { items: {}, order: [] },
   });
-  lesson.build.overrides({ section: { items: { intro: { locale: { title: { uk: 'Оновлено' } } } } } });
+  lesson.build.overrides({ section: { items: { intro: { locale: { title: { uk: 'Оновлено' } } } } } }, { languages: ['uk'] });
 }
 
 void authoringLanguageContracts;
