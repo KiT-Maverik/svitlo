@@ -1,8 +1,8 @@
 import type { SkillId } from '@svitlo/contracts/content';
 import type { LanguageCodes } from '#schemas';
-import type { DeepPartial, LanguageScope, RequireLanguages } from '#types';
+import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
-import { mergeForValidation, onlyLocales, splitLocalizedFields } from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, resolvePublicationLanguages, selectPublicationLocales, splitLocalizedFields } from '../../_shared__configurators';
 import {
   skill_Config_Schema,
   skill_Override_Config_Schema,
@@ -34,8 +34,8 @@ export type Skill_Configurator<
   readonly type: 'skill';
   readonly validate: typeof validate;
   readonly build: {
-    props: () => SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }>;
-    overrides: (patch: Skill_Overrides) => SkillPublication<DeepPartial<Skill_Props>>;
+    props(options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }>;
+    overrides(patch: Skill_Overrides, options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props>>;
   };
   readonly config: {
     base: DeepPartial<Skill_Props> & { id: SkillId; slug: string };
@@ -53,21 +53,37 @@ export function defineSkill<
   const slug = config.slug;
   const copyAuthored = () => skill_Config_Schema.parse(structuredClone(authored));
 
-  const props = (): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> => {
+  const props = (options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> => {
+    const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = project({ name: current.name, description: current.description });
-    return {
+    const result: SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> = {
       base: { id: id as SkillId, slug, ...own.base },
-      locale: own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'],
+      locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
     };
+    for (const language of languages) {
+      skill_Props_Schema.parse(mergeForValidation(result.base, result.locale?.[language] ?? {}));
+    }
+    return result;
   };
 
-  const overrides = (patch: Skill_Overrides): SkillPublication<DeepPartial<Skill_Props>> => {
+  const overrides = (patch: Skill_Overrides, options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props>> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       const sparse = skill_Override_Config_Schema.parse(patch);
       validate(skill_Config_Schema.parse(mergeForValidation(copyAuthored(), sparse)));
       const own = splitLocalizedFields(sparse);
-      return { base: own.base, locale: own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'] };
+      const result: SkillPublication<DeepPartial<Skill_Props>> = {
+        base: own.base,
+        locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
+      };
+      const resource = props(options);
+      for (const language of languages) {
+        const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
+        const patched = mergeForValidation(original, result.base);
+        skill_Props_Schema.parse(mergeForValidation(patched, result.locale?.[language] ?? {}));
+      }
+      return result;
     } catch (error) {
       throw new Error(
         'Invalid Skill overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
@@ -83,7 +99,7 @@ export function defineSkill<
     validate,
     build: { props, overrides },
     config: {
-      base: props().base,
+      base: { id: id as SkillId, slug, ...project({ name: authored.name, description: authored.description }).base },
       validate,
       locales: (): DeepPartial<Skill_Config> => {
         const current = copyAuthored();
