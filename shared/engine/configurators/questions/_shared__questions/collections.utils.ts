@@ -30,10 +30,11 @@ export type OrderedBlockPatch<
   Languages extends readonly LanguageCodes[] = [],
 > = {
   items?: { [Key in keyof Children]?: Parameters<Children[Key]['build']['overrides']>[0] | false };
+  // A broad string index cannot identify known slugs; runtime collection
+  // validation guards those. Preserve compile-time collision checks for literal maps.
   additionalItems?: Added &
-    ChildrenSupporting<Languages, Added> & {
-      [Key in keyof Children]?: never;
-    };
+    ChildrenSupporting<Languages, Added> &
+    (string extends keyof Children ? {} : { [Key in keyof Children]?: never });
   order?: Extract<keyof Children | keyof NoInfer<Added>, string>[];
 };
 /** Broad internal runtime input; public OrderedBlockPatch retains literal key and language inference. */
