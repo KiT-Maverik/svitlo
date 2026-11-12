@@ -61,6 +61,20 @@ const validate = (config: Chapter_Config): void => {
       itemLabel: 'Chapter child',
     }).map(issue => issue.path + ': ' + issue.message),
   ];
+  if (isRecord(config.content) && isRecord(config.content.items)) {
+    for (const [slug, child] of Object.entries(config.content.items)) {
+      if (!isRecord(child) || !isRecord(child.build) ||
+        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+        errors.push('content.items.' + slug + ': child must expose the stateless Build API');
+        continue;
+      }
+      if (!isRecord(child.config) || !isRecord(child.config.base) ||
+        child.config.base.id !== child.id || child.config.base.slug !== slug ||
+        child.config.base.type !== child.type) {
+        errors.push('content.items.' + slug + ': immutable child identity does not match its authored metadata');
+      }
+    }
+  }
   if (errors.length) throw new Error('Chapter validation failed: ' + errors.join('; '));
 };
 
