@@ -126,3 +126,26 @@ test('SkillDomain composes nested Groups without publishing authoring maps', () 
   assert.equal(domain.build.props({ languages: ['uk'] }).locale?.uk?.groups?.[0]?.name, 'Механіка');
   assert.throws(() => domain.build.overrides({ title: { madeUp: 'Invalid' } } as never, { languages: ['uk'] }), /Invalid SkillDomain overrides/);
 });
+
+test('Explicit language scope propagates through Skill, Group and Domain without leaking extra translations', () => {
+  const skillUk = balance.build.props({ languages: ['uk'] });
+  assert.deepEqual(Object.keys(skillUk.locale ?? {}), ['uk']);
+  assert.equal(skillUk.locale?.uk?.name, 'Рівновага');
+
+  const groupUk = group.build.props({ languages: ['uk'] });
+  assert.deepEqual(Object.keys(groupUk.locale ?? {}), ['uk'], 'English child translations must not leak into Ukrainian-only Group');
+  assert.deepEqual(groupUk.locale?.uk?.skills?.map(item => item.name), ['Рівновага', 'Motion']);
+
+  const domainUk = domain.build.props({ languages: ['uk'] });
+  assert.deepEqual(Object.keys(domainUk.locale ?? {}), ['uk']);
+  assert.deepEqual(domainUk.locale?.uk?.groups?.[0]?.skills?.map(item => item.name), ['Рівновага', 'Motion']);
+
+  const patch = group.build.overrides({ name: { uk: 'Новий заголовок', en: 'Hidden' } }, { languages: ['uk'] });
+  assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
+  assert.equal(patch.locale?.uk?.name, 'Новий заголовок');
+
+  assert.throws(() => balance.build.props({ languages: ['de'] } as never), /Required|expected|Invalid/i);
+  assert.throws(() => balance.build.props({ languages: [] }), /nonempty languages/);
+  assert.throws(() => balance.build.props({ languages: ['uk', 'uk'] }), /unique/);
+  assert.throws(() => balance.build.props({ languages: ['invalid'] } as never), /Invalid option|invalid|Invalid/i);
+});
