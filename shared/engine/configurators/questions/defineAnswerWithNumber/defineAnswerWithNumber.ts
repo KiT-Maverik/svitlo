@@ -7,12 +7,14 @@ import {
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
   type OrderedBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
+  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   answerWithNumber_Config_Schema, answerWithNumber_Override_Config_Schema,
   type Question_AnswerWithNumber_Config,
+  answerWithNumber_Props_Schema,
   type Question_AnswerWithNumber_Props,
   type Question_AnswerWithNumber_MetadataOverrides,
 } from './defineAnswerWithNumber.schemas';
@@ -67,14 +69,15 @@ export const defineAnswerWithNumber = <
   } as Content;
 
   
-  const props = (): QuestionResourcePublication<Question_AnswerWithNumber_Props> => {
+  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_AnswerWithNumber_Props> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
-    const own = projectQuestionLocale(metadata.locale);
-    const common = resolveCommonContent(initialContent);
+    const own = projectQuestionLocale(metadata.locale, languages);
+    const common = resolveCommonContent(initialContent, languages);
     const extra = {base:{},locale:{}};
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
-    return {
+    const resource = {
       base: {
         id, slug, type, params: metadata.params,
         locale: own.base,
@@ -82,19 +85,23 @@ export const defineAnswerWithNumber = <
       },
       locale: finishFiles(files),
     } as QuestionResourcePublication<Question_AnswerWithNumber_Props>;
+    validateQuestionPublication(answerWithNumber_Props_Schema, languages, resource);
+    return resource;
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
     patch: Question_AnswerWithNumber_Overrides<Content, Added, Languages>,
+    options: PublicationLanguageOptions<Languages>,
   ): QuestionOverridePublication<Question_AnswerWithNumber_Props> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       ensureQuestionPatchShape(patch);
       const metadataPatch = answerWithNumber_Override_Config_Schema.parse({
         ...(patch.params !== undefined ? { params: patch.params } : {}),
         ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
       });
       validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
-      const own = projectQuestionLocale(metadataPatch.locale ?? {});
+      const own = projectQuestionLocale(metadataPatch.locale ?? {}, languages);
       const files = own.files;
       const base: Record<string, unknown> = {
         ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
@@ -107,13 +114,15 @@ export const defineAnswerWithNumber = <
             throw new Error('Unknown Question content override field: ' + key);
           }
         }
-        const common = resolveCommonContent(initialContent, patch.content as QuestionCommonPatch<Content>);
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
         const extra = {base:{},locale:{}};
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_AnswerWithNumber_Props>;
+      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_AnswerWithNumber_Props>;
+      validateQuestionPublication(answerWithNumber_Props_Schema, languages, props(options), publication);
+      return publication;
     } catch (error) {
       throw new Error(
         'Invalid AnswerWithNumber Question overrides for ' + id + ': ' +
