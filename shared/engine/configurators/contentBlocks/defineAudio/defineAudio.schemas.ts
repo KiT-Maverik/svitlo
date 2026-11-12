@@ -43,7 +43,7 @@ export const audio_Override_Config_Schema: z.ZodType<ContentBlock_Audio_Override
   ),
 );
 
-export type ContentBlock_Audio_ResourceBase = z.infer<typeof audioBase> & {
+export type ContentBlock_Audio_PropsBase = z.infer<typeof audioBase> & {
   locale?: DeepPartial<ContentBlock_Audio_Locale<'props'>>;
 };
 

@@ -8,7 +8,6 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
-  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
@@ -18,13 +17,16 @@ import {
   type ContentBlock_Markdown_Config,
   type ContentBlock_Markdown_Locale,
   type ContentBlock_Markdown_Overrides,
-  type ContentBlock_Markdown_ResourceBase,
+  type ContentBlock_Markdown_PropsBase,
 } from './defineMarkdown.schemas';
 
 type MarkdownLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Markdown_Locale<'props'>>>>;
 type MarkdownEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Markdown_Locale<'props'>>>;
-type MarkdownAssembly<Base, LocaleFiles = MarkdownLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type MarkdownOverrideBase = {
+type MarkdownPropsPublication<Base, LocaleFiles = MarkdownLocaleFiles> = {
+  base: Base;
+  locale: LocaleFiles | undefined;
+};
+type MarkdownOverridePropsBase = {
   params?: ContentBlock_Markdown_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
 };
@@ -79,9 +81,9 @@ const validate = (config: ContentBlock_Markdown_Config): void => {
   parseAndValidate(config);
 };
 
-const assembleMarkdown = (
+const buildMarkdownProps = (
   config: ContentBlock_Markdown_Config,
-): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => {
+): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -92,11 +94,13 @@ const assembleMarkdown = (
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
       : {}),
-  } satisfies ContentBlock_Markdown_ResourceBase;
+  } satisfies ContentBlock_Markdown_PropsBase;
   return { base, locale: locale as unknown as MarkdownLocaleFiles | undefined };
 };
 
-const assembleMarkdownPatch = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
+const buildMarkdownPatch = (
+  patch: ContentBlock_Markdown_Overrides,
+): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
@@ -149,8 +153,8 @@ const mergeMarkdownForValidation = (
  * replacement values must exist for every corresponding language.
  */
 /**
- * Stateless authored ContentBlock. Assembly validates isolated snapshots and
- * emits either complete resources or exclusively sparse override fields.
+ * Stateless ContentBlock Build API validates isolated snapshots and emits
+ * either complete Props or exclusively sparse override fields.
  */
 export const defineMarkdown = <const Slug extends string>(
   config: MarkdownInlineConfig<Slug> | MarkdownFileConfig<Slug>,
@@ -178,27 +182,23 @@ export const defineMarkdown = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
-  function resource(): MarkdownAssembly<ContentBlock_Markdown_ResourceBase>;
-  function resource(options: {
+  function props(): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase>;
+  function props(options: {
     embed: true;
-  }): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownEmbeddedLocaleFiles>;
-  function resource(options?: {
+  }): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase, MarkdownEmbeddedLocaleFiles>;
+  function props(options?: {
     embed?: true;
-  }): MarkdownAssembly<ContentBlock_Markdown_ResourceBase, MarkdownLocaleFiles | MarkdownEmbeddedLocaleFiles> {
-    const assembled = assembleMarkdown(copyAuthored());
-    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase, MarkdownLocaleFiles | MarkdownEmbeddedLocaleFiles> {
+    const publication = buildMarkdownProps(parseAndValidate(copyAuthored()));
+    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
-  const resourceApi: ResourceAssembler<
-    ContentBlock_Markdown_ResourceBase,
-    DeepPartial<ContentBlock_Markdown_Locale<'props'>>
-  > = resource;
 
-  const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
+  const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
     try {
       const parsedPatch = markdown_Override_Config_Schema.parse(patch);
       const effective = markdown_Config_Schema.parse(mergeMarkdownForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return assembleMarkdownPatch(structuredClone(parsedPatch));
+      return buildMarkdownPatch(structuredClone(parsedPatch));
     } catch (error) {
       throw new Error(
         `Invalid Markdown overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,
@@ -213,7 +213,7 @@ export const defineMarkdown = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource: resourceApi, overrides },
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Markdown_Locale<'config'>> } => ({

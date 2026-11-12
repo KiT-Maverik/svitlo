@@ -7,7 +7,6 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
-  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
@@ -17,13 +16,13 @@ import {
   type ContentBlock_Audio_Config,
   type ContentBlock_Audio_Locale,
   type ContentBlock_Audio_Overrides,
-  type ContentBlock_Audio_ResourceBase,
+  type ContentBlock_Audio_PropsBase,
 } from './defineAudio.schemas';
 
 type AudioLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Audio_Locale<'props'>>>>;
 type AudioEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Audio_Locale<'props'>>>;
-type AudioAssembly<Base, LocaleFiles = AudioLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type AudioOverrideBase = {
+type AudioPropsPublication<Base, LocaleFiles = AudioLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type AudioOverridePropsBase = {
   params?: ContentBlock_Audio_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Audio_Locale<'props'>>;
 };
@@ -37,7 +36,7 @@ const validate = (config: ContentBlock_Audio_Config): void => {
   parseAndValidate(config);
 };
 
-const assembleAudio = (config: ContentBlock_Audio_Config): AudioAssembly<ContentBlock_Audio_ResourceBase> => {
+const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublication<ContentBlock_Audio_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -48,11 +47,11 @@ const assembleAudio = (config: ContentBlock_Audio_Config): AudioAssembly<Content
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
       : {}),
-  } satisfies ContentBlock_Audio_ResourceBase;
+  } satisfies ContentBlock_Audio_PropsBase;
   return { base, locale: locale as unknown as AudioLocaleFiles | undefined };
 };
 
-const assembleAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioAssembly<AudioOverrideBase> => {
+const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
@@ -67,8 +66,8 @@ const assembleAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioAssembly<
 
 /** Define Audio. */
 /**
- * Build-time stateless publication. The isolated merged candidate is used
- * only for validation; the published override remains sparse.
+ * Build complete Props and validated sparse overrides. Temporary merged
+ * configurations are used only for semantic validation.
  */
 export const defineAudio = <const Slug extends string>(
   config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug },
@@ -85,25 +84,23 @@ export const defineAudio = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
-  function resource(): AudioAssembly<ContentBlock_Audio_ResourceBase>;
-  function resource(options: { embed: true }): AudioAssembly<ContentBlock_Audio_ResourceBase, AudioEmbeddedLocaleFiles>;
-  function resource(options?: {
+  function props(): AudioPropsPublication<ContentBlock_Audio_PropsBase>;
+  function props(options: {
+    embed: true;
+  }): AudioPropsPublication<ContentBlock_Audio_PropsBase, AudioEmbeddedLocaleFiles>;
+  function props(options?: {
     embed?: true;
-  }): AudioAssembly<ContentBlock_Audio_ResourceBase, AudioLocaleFiles | AudioEmbeddedLocaleFiles> {
-    const assembled = assembleAudio(copyAuthored());
-    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }): AudioPropsPublication<ContentBlock_Audio_PropsBase, AudioLocaleFiles | AudioEmbeddedLocaleFiles> {
+    const publication = buildAudioProps(parseAndValidate(copyAuthored()));
+    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
-  const resourceApi: ResourceAssembler<
-    ContentBlock_Audio_ResourceBase,
-    DeepPartial<ContentBlock_Audio_Locale<'props'>>
-  > = resource;
 
-  const overrides = (patch: ContentBlock_Audio_Overrides): AudioAssembly<AudioOverrideBase> => {
+  const overrides = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
     try {
       const parsedPatch = audio_Override_Config_Schema.parse(patch);
       const effective = audio_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return assembleAudioPatch(structuredClone(parsedPatch));
+      return buildAudioPatch(structuredClone(parsedPatch));
     } catch (error) {
       throw new Error(`Invalid Audio overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,
@@ -115,7 +112,7 @@ export const defineAudio = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource: resourceApi, overrides },
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Audio_Locale<'config'>> } => ({

@@ -1,6 +1,6 @@
 # Configurator architecture
 
-**Scope:** Authoring-time entity configurators and their validation/publication API. These rules are the target for new or migrated configurators; `defineText` pilots the new `build` API; other flat ContentBlocks retain `assemble` until migrated. Checkpoint is excluded pending its nested API design. Verify actual contracts before treating other entities as migrated. Root `AGENTS.md` and applicable Studio guidance also apply.
+**Scope:** Authoring-time entity configurators and their validation/publication API. All flat ContentBlocks (`defineText`, `defineAudio`, `defineCarousel`, `defineCode`, `defineImage`, `defineMarkdown`, `defineScene`, `defineVideo`, `defineYoutube`) now expose the stateless `build` API. Nested configurators, including Checkpoint and CheckpointItem, require separate architecture work and must not be described as migrated. Root `AGENTS.md` and applicable Studio guidance also apply.
 
 ## Ownership and public API
 
@@ -49,8 +49,8 @@
 
 ## Responsibility boundary and verification
 
-- `Config` holds authored data (including nested configurators where applicable), `Props` holds UI-ready values, and `Overrides` is an independently typed sparse patch. For nested collections, existing children receive their own typed overrides, and new children are supplied as configurators through an explicitly typed `additional*` slug map; author them with `configuratorArrayToSlugMap`. The parent alone validates keys/order, filters disabled entries, and materializes sorted Props arrays. These nested APIs are planned and are **not implemented by the Text pilot**.
+- `Config` holds authored data (including nested configurators where applicable), `Props` holds UI-ready values, and `Overrides` is an independently typed sparse patch. For nested collections, existing children receive their own typed overrides, and new children are supplied as configurators through an explicitly typed `additional*` slug map; author them with `configuratorArrayToSlugMap`. The parent alone validates keys/order, filters disabled entries, and materializes sorted Props arrays. These nested APIs are planned and are **not implemented by the flat ContentBlocks**.
 - When a collection changes, publish its full replacement Props array, not positional sparse array fragments. For scalar/object fields, continue publishing only supplied sparse overrides.
 - Configurators are **build-time only**. The planned file-writing contract lives in [`../generators/AGENTS.md`](../generators/AGENTS.md); runtime resolution and Props validation live in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md). Neither future layer is implemented merely by these documents.
 - Test complete resources and sparse patches, one-language and invariant locale cases, direct and embedded resource shapes, overload type inference, deep unknown-field rejection, semantic validation of the temporary merged candidate, array replacement semantics where applicable, JSON safety, and mutation isolation.
-- Keep current legacy consumers working until their migration is explicitly in scope; do not claim their old APIs already use Assembly.
+- Keep transitional accessors for legacy consumers until their migration is explicitly in scope; do not claim nested configurators already implement Build.

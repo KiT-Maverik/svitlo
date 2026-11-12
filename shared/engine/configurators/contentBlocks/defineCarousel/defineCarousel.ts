@@ -7,7 +7,6 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
-  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
@@ -18,13 +17,16 @@ import {
   type ContentBlock_Carousel_Config,
   type ContentBlock_Carousel_Locale,
   type ContentBlock_Carousel_Overrides,
-  type ContentBlock_Carousel_ResourceBase,
+  type ContentBlock_Carousel_PropsBase,
 } from './defineCarousel.schemas';
 
 type CarouselLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Carousel_Locale<'props'>>>>;
 type CarouselEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Carousel_Locale<'props'>>>;
-type CarouselAssembly<Base, LocaleFiles = CarouselLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type CarouselOverrideBase = {
+type CarouselPropsPublication<Base, LocaleFiles = CarouselLocaleFiles> = {
+  base: Base;
+  locale: LocaleFiles | undefined;
+};
+type CarouselOverridePropsBase = {
   params?: ContentBlock_Carousel_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
 };
@@ -50,9 +52,9 @@ const validatePublishedSlides = (locale: CarouselLocaleFiles | undefined): void 
   }
 };
 
-const assembleCarousel = (
+const buildCarouselProps = (
   config: ContentBlock_Carousel_Config,
-): CarouselAssembly<ContentBlock_Carousel_ResourceBase> => {
+): CarouselPropsPublication<ContentBlock_Carousel_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -63,13 +65,15 @@ const assembleCarousel = (
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Carousel_Locale<'props'>> }
       : {}),
-  } satisfies ContentBlock_Carousel_ResourceBase;
+  } satisfies ContentBlock_Carousel_PropsBase;
   const files = locale as unknown as CarouselLocaleFiles | undefined;
   validatePublishedSlides(files);
   return { base, locale: files };
 };
 
-const assembleCarouselPatch = (patch: ContentBlock_Carousel_Overrides): CarouselAssembly<CarouselOverrideBase> => {
+const buildCarouselPatch = (
+  patch: ContentBlock_Carousel_Overrides,
+): CarouselPropsPublication<CarouselOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   const files = locale as unknown as CarouselLocaleFiles | undefined;
   validatePublishedSlides(files);
@@ -86,8 +90,8 @@ const assembleCarouselPatch = (patch: ContentBlock_Carousel_Overrides): Carousel
 
 /** Define Carousel. */
 /**
- * Build-time stateless publication. The isolated merged candidate is used
- * only for validation; the published override remains sparse.
+ * Build complete Props and validated sparse overrides. Temporary merged
+ * configurations are used only for semantic validation.
  */
 export const defineCarousel = <const Slug extends string>(
   config: Omit<ContentBlock_Carousel_Config, 'slug'> & { slug: Slug },
@@ -104,27 +108,23 @@ export const defineCarousel = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
-  function resource(): CarouselAssembly<ContentBlock_Carousel_ResourceBase>;
-  function resource(options: {
+  function props(): CarouselPropsPublication<ContentBlock_Carousel_PropsBase>;
+  function props(options: {
     embed: true;
-  }): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselEmbeddedLocaleFiles>;
-  function resource(options?: {
+  }): CarouselPropsPublication<ContentBlock_Carousel_PropsBase, CarouselEmbeddedLocaleFiles>;
+  function props(options?: {
     embed?: true;
-  }): CarouselAssembly<ContentBlock_Carousel_ResourceBase, CarouselLocaleFiles | CarouselEmbeddedLocaleFiles> {
-    const assembled = assembleCarousel(copyAuthored());
-    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }): CarouselPropsPublication<ContentBlock_Carousel_PropsBase, CarouselLocaleFiles | CarouselEmbeddedLocaleFiles> {
+    const publication = buildCarouselProps(parseAndValidate(copyAuthored()));
+    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
-  const resourceApi: ResourceAssembler<
-    ContentBlock_Carousel_ResourceBase,
-    DeepPartial<ContentBlock_Carousel_Locale<'props'>>
-  > = resource;
 
-  const overrides = (patch: ContentBlock_Carousel_Overrides): CarouselAssembly<CarouselOverrideBase> => {
+  const overrides = (patch: ContentBlock_Carousel_Overrides): CarouselPropsPublication<CarouselOverridePropsBase> => {
     try {
       const parsedPatch = carousel_Override_Config_Schema.parse(patch);
       const effective = carousel_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return assembleCarouselPatch(structuredClone(parsedPatch));
+      return buildCarouselPatch(structuredClone(parsedPatch));
     } catch (error) {
       throw new Error(
         `Invalid Carousel overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,
@@ -139,7 +139,7 @@ export const defineCarousel = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource: resourceApi, overrides },
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Carousel_Locale<'config'>> } => ({

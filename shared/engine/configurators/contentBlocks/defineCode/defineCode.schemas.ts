@@ -40,7 +40,7 @@ export const code_Override_Config_Schema: z.ZodType<ContentBlock_Code_Overrides>
   ),
 );
 
-export type ContentBlock_Code_ResourceBase = z.infer<typeof codeBase> & {
+export type ContentBlock_Code_PropsBase = z.infer<typeof codeBase> & {
   locale?: DeepPartial<ContentBlock_Code_Locale<'props'>>;
 };
 
