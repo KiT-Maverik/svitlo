@@ -6,13 +6,14 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap, resolvePairMap, resolveSlotBlocks,
   snapshotCommonContent, snapshotBlockCollection, snapshotNestedCollection, validateNestedBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   fillBlanksWithBlocks_Config_Schema, fillBlanksWithBlocks_Override_Config_Schema,
   type Question_FillBlanksWithBlocks_Config,
+  type Question_FillBlanksWithBlocks_Props,
   type Question_FillBlanksWithBlocks_MetadataOverrides,
 } from './defineFillBlanksWithBlocks.schemas';
 
@@ -107,7 +108,7 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
     return { base, locale };
   };
 
-  const props = (): QuestionPublication<Record<string, unknown>> => {
+  const props = (): QuestionResourcePublication<Question_FillBlanksWithBlocks_Props> => {
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale);
     const common = resolveCommonContent(initialContent);
@@ -121,7 +122,7 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    };
+    }
   };
 
   const overrides = <
@@ -129,7 +130,7 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
     const AddedSlots extends Record<string, SlotBlock> = {},
   >(
     patch: Question_FillBlanksWithBlocks_Overrides<Content, Added, Languages, AddedSlots>,
-  ): QuestionPublication<Record<string, unknown>> => {
+  ): QuestionOverridePublication<Question_FillBlanksWithBlocks_Props> => {
     try {
       ensureQuestionPatchShape(patch);
       const metadataPatch = fillBlanksWithBlocks_Override_Config_Schema.parse({
@@ -157,7 +158,7 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) };
+      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_FillBlanksWithBlocks_Props>;
     } catch (error) {
       throw new Error(
         'Invalid FillBlanksWithBlocks Question overrides for ' + id + ': ' +

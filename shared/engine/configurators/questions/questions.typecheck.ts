@@ -159,3 +159,17 @@ scopedTextSlots.build.overrides({ content: { slots: { additionalItems: { secondS
 scopedTextSlots.build.overrides({ content: { slots: { order: ['unknownSlot'] } } });
 
 void [scopedMatch, scopedBlocks, scopedTextSlots];
+
+const numberResource = number.build.props();
+const typedAnswers: number[] = numberResource.base.params.correctAnswers;
+const typedPromptSlug: string = numberResource.base.content.question[0].slug;
+const typedNumberLocale: string | undefined = numberResource.locale?.uk?.locale?.placeholder;
+const numericOverride = number.build.overrides({ params: { correctAnswers: [3] } });
+const typedSparseAnswers: number[] | undefined = numericOverride.base.params?.correctAnswers;
+// @ts-expect-error Concrete Build props retain the numeric answer type.
+const invalidNumericAnswers: string[] = numberResource.base.params.correctAnswers;
+// @ts-expect-error Resource content exposes the Question's actual published shape.
+numberResource.base.content.unknownMember;
+// @ts-expect-error Sparse publication cannot change the Question identity.
+numericOverride.base.slug;
+void [typedAnswers, typedPromptSlug, typedNumberLocale, typedSparseAnswers, invalidNumericAnswers];

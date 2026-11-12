@@ -22,7 +22,7 @@ import {
   validateCommonContent,
   validateEffectiveQuestionMetadata,
   type QuestionCommonPatch,
-  type QuestionPublication,
+  type QuestionResourcePublication, type QuestionOverridePublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -30,6 +30,7 @@ import {
   fillBlanksWithText_Config_Schema,
   fillBlanksWithText_Override_Config_Schema,
   type Question_FillBlanksWithText_Config,
+  type Question_FillBlanksWithText_Props,
   type Question_FillBlanksWithText_MetadataOverrides,
 } from './defineFillBlanksWithText.schemas';
 
@@ -203,7 +204,7 @@ export const defineFillBlanksWithText = <
     return own;
   };
 
-  const props = (): QuestionPublication<Record<string, unknown>> => {
+  const props = (): QuestionResourcePublication<Question_FillBlanksWithText_Props> => {
     const metadata = copyMetadata();
     const own = ownProps(metadata);
     const common = resolveCommonContent(initialContent);
@@ -218,7 +219,7 @@ export const defineFillBlanksWithText = <
         content: common.base,
       },
       locale: finishFiles(own.files),
-    };
+    }
   };
 
   const overrides = <
@@ -226,7 +227,7 @@ export const defineFillBlanksWithText = <
     const AddedSlots extends Record<string, Slot> = {},
   >(
     patch: Question_FillBlanksWithText_Overrides<Content, Added, Languages, AddedSlots>,
-  ): QuestionPublication<Record<string, unknown>> => {
+  ): QuestionOverridePublication<Question_FillBlanksWithText_Props> => {
     try {
       ensureQuestionPatchShape(patch);
       const metadataPatch = fillBlanksWithText_Override_Config_Schema.parse({
@@ -264,7 +265,7 @@ export const defineFillBlanksWithText = <
           }
         }
       }
-      return { base, locale: finishFiles(own.files) };
+      return { base, locale: finishFiles(own.files) } as QuestionOverridePublication<Question_FillBlanksWithText_Props>;
     } catch (error) {
       throw new Error(
         'Invalid FillBlanksWithText Question overrides for ' + id + ': ' +

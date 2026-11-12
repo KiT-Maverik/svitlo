@@ -6,13 +6,14 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   selectMultipleAnswers_Config_Schema, selectMultipleAnswers_Override_Config_Schema,
   type Question_SelectMultipleAnswers_Config,
+  type Question_SelectMultipleAnswers_Props,
   type Question_SelectMultipleAnswers_MetadataOverrides,
 } from './defineSelectMultipleAnswers.schemas';
 
@@ -137,7 +138,7 @@ export const defineSelectMultipleAnswers = <
     return { base, locale };
   };
 
-  const props = (): QuestionPublication<Record<string, unknown>> => {
+  const props = (): QuestionResourcePublication<Question_SelectMultipleAnswers_Props> => {
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale);
     const common = resolveCommonContent(initialContent);
@@ -151,12 +152,12 @@ export const defineSelectMultipleAnswers = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    };
+    }
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
     patch: Question_SelectMultipleAnswers_Overrides<Content, Added, Languages>,
-  ): QuestionPublication<Record<string, unknown>> => {
+  ): QuestionOverridePublication<Question_SelectMultipleAnswers_Props> => {
     try {
       ensureQuestionPatchShape(patch);
       const metadataPatch = selectMultipleAnswers_Override_Config_Schema.parse({
@@ -183,7 +184,7 @@ export const defineSelectMultipleAnswers = <
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) };
+      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_SelectMultipleAnswers_Props>;
     } catch (error) {
       throw new Error(
         'Invalid SelectMultipleAnswers Question overrides for ' + id + ': ' +

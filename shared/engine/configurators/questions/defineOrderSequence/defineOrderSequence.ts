@@ -6,13 +6,14 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   orderSequence_Config_Schema, orderSequence_Override_Config_Schema,
   type Question_OrderSequence_Config,
+  type Question_OrderSequence_Props,
   type Question_OrderSequence_MetadataOverrides,
 } from './defineOrderSequence.schemas';
 
@@ -78,7 +79,7 @@ export const defineOrderSequence = <
     return { base: { sequence: result.base }, locale };
   };
 
-  const props = (): QuestionPublication<Record<string, unknown>> => {
+  const props = (): QuestionResourcePublication<Question_OrderSequence_Props> => {
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale);
     const common = resolveCommonContent(initialContent);
@@ -92,12 +93,12 @@ export const defineOrderSequence = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    };
+    }
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
     patch: Question_OrderSequence_Overrides<Content, Added, Languages>,
-  ): QuestionPublication<Record<string, unknown>> => {
+  ): QuestionOverridePublication<Question_OrderSequence_Props> => {
     try {
       ensureQuestionPatchShape(patch);
       const metadataPatch = orderSequence_Override_Config_Schema.parse({
@@ -124,7 +125,7 @@ export const defineOrderSequence = <
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) };
+      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_OrderSequence_Props>;
     } catch (error) {
       throw new Error(
         'Invalid OrderSequence Question overrides for ' + id + ': ' +

@@ -6,13 +6,14 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap, resolvePairMap, resolveSlotBlocks,
   snapshotCommonContent, snapshotBlockCollection, snapshotNestedCollection, validateNestedBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   matchBlocks_Config_Schema, matchBlocks_Override_Config_Schema,
   type Question_MatchBlocks_Config,
+  type Question_MatchBlocks_Props,
   type Question_MatchBlocks_MetadataOverrides,
 } from './defineMatchBlocks.schemas';
 
@@ -96,7 +97,7 @@ export const defineMatchBlocks = <
     return { base: { pairs: result.base }, locale };
   };
 
-  const props = (): QuestionPublication<Record<string, unknown>> => {
+  const props = (): QuestionResourcePublication<Question_MatchBlocks_Props> => {
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale);
     const common = resolveCommonContent(initialContent);
@@ -110,7 +111,7 @@ export const defineMatchBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    };
+    }
   };
 
   const overrides = <
@@ -118,7 +119,7 @@ export const defineMatchBlocks = <
     const AddedPairs extends Record<string, Pair> = {},
   >(
     patch: Question_MatchBlocks_Overrides<Content, Added, Languages, AddedPairs>,
-  ): QuestionPublication<Record<string, unknown>> => {
+  ): QuestionOverridePublication<Question_MatchBlocks_Props> => {
     try {
       ensureQuestionPatchShape(patch);
       const metadataPatch = matchBlocks_Override_Config_Schema.parse({
@@ -145,7 +146,7 @@ export const defineMatchBlocks = <
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) };
+      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_MatchBlocks_Props>;
     } catch (error) {
       throw new Error(
         'Invalid MatchBlocks Question overrides for ' + id + ': ' +

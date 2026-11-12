@@ -6,13 +6,14 @@ import {
   projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
   snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionPublication,
+  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
   buildAnswerWithBlocks_Config_Schema, buildAnswerWithBlocks_Override_Config_Schema,
   type Question_BuildAnswerWithBlocks_Config,
+  type Question_BuildAnswerWithBlocks_Props,
   type Question_BuildAnswerWithBlocks_MetadataOverrides,
 } from './defineBuildAnswerWithBlocks.schemas';
 
@@ -90,7 +91,7 @@ export const defineBuildAnswerWithBlocks = <
     return { base, locale };
   };
 
-  const props = (): QuestionPublication<Record<string, unknown>> => {
+  const props = (): QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props> => {
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale);
     const common = resolveCommonContent(initialContent);
@@ -104,12 +105,12 @@ export const defineBuildAnswerWithBlocks = <
         content: { ...common.base, ...extra.base },
       },
       locale: finishFiles(files),
-    };
+    }
   };
 
   const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
     patch: Question_BuildAnswerWithBlocks_Overrides<Content, Added, Languages>,
-  ): QuestionPublication<Record<string, unknown>> => {
+  ): QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props> => {
     try {
       ensureQuestionPatchShape(patch);
       const metadataPatch = buildAnswerWithBlocks_Override_Config_Schema.parse({
@@ -136,7 +137,7 @@ export const defineBuildAnswerWithBlocks = <
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      return { base, locale: finishFiles(files) };
+      return { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props>;
     } catch (error) {
       throw new Error(
         'Invalid BuildAnswerWithBlocks Question overrides for ' + id + ': ' +
