@@ -15,6 +15,7 @@ import {
   selectOneAnswer_Props_Schema,
 } from './index';
 
+const scope = { languages: ['en', 'uk'] as const };
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
 const block = <const Slug extends string>(slug: Slug, text: string) =>
   defineText({ id, slug, type: 'text', params: {}, locale: { value: text } });
@@ -87,26 +88,26 @@ test('all nine Questions expose immutable stateless Build instead of mutable ove
     assert.equal('override' in question, false);
     assert.equal('disable' in question, false);
     assert.equal('overrides' in question.config, false);
-    const a = question.build.props();
-    const b = question.build.props();
+    const a = question.build.props(scope);
+    const b = question.build.props(scope);
     assert.deepEqual(a, b);
     assert.deepEqual((a.base.content as { question: { slug: string }[] }).question[0].slug, 'promptBlock');
     assert.doesNotThrow(() => JSON.stringify(a));
-    assert.doesNotThrow(() => JSON.stringify(question.build.overrides({ params: { disabled: true } })));
-    assert.throws(() => question.build.overrides({ type: 'modified' } as never), /overrides/);
-    assert.throws(() => question.build.overrides({ locale: { unexpected: 'X' } } as never), /overrides/);
+    assert.doesNotThrow(() => JSON.stringify(question.build.overrides({ params: { disabled: true } }, scope)));
+    assert.throws(() => question.build.overrides({ type: 'modified' } as never, scope), /overrides/);
+    assert.throws(() => question.build.overrides({ locale: { unexpected: 'X' } } as never, scope), /overrides/);
   }
-  assert.equal((instances[0].build.props().base.content as {
+  assert.equal((instances[0].build.props(scope).base.content as {
     answers: { correct: { yes: { slug: string } } };
   }).answers.correct.yes.slug, 'yes');
-  assert.equal((instances[2].build.props().base.content as {
+  assert.equal((instances[2].build.props(scope).base.content as {
     pairs: { pairOne: { left: { slug: string } } };
   }).pairs.pairOne.left.slug, 'yes');
-  assert.equal((instances[5].build.props().base.content as { sequence: { slug: string }[] }).sequence[0].slug, 'yes');
-  assert.equal((instances[6].build.props().base.content as {
+  assert.equal((instances[5].build.props(scope).base.content as { sequence: { slug: string }[] }).sequence[0].slug, 'yes');
+  assert.equal((instances[6].build.props(scope).base.content as {
     correctSequence: { slug: string }[];
   }).correctSequence[0].slug, 'yes');
-  assert.equal((instances[7].build.props().base.content as {
+  assert.equal((instances[7].build.props(scope).base.content as {
     slots: { selector: string }[];
   }).slots[0].selector, 'slotOne');
 });
@@ -124,18 +125,18 @@ test('Question prompt collections support additions, disables, ordering, and ide
         order: ['extra'],
       },
     },
-  });
+  }, scope);
   assert.deepEqual((override.base.content as {question:{slug:string}[]}).question.map(item => item.slug), ['extra']);
   assert.throws(() => question.build.overrides({
     content: { question: { items: { promptBlock: false } } },
-  }), /order/);
+  }, scope), /order/);
   assert.throws(() => question.build.overrides({
     content: { question: { order: ['notFound'] } },
-  }), /Unknown slug/);
+  }, scope), /Unknown slug/);
   assert.throws(() => question.build.overrides({
     content: { question: { items: { promptBlock: { id: 'changed' } as never } } },
-  }), /overrides/);
-  assert.deepEqual((question.build.props().base.content as {
+  }, scope), /overrides/);
+  assert.deepEqual((question.build.props(scope).base.content as {
     question: { slug: string }[];
   }).question[0].slug, 'promptBlock');
 });
@@ -145,11 +146,11 @@ test('Question localized answers and slots publish full Props-shaped arrays and 
     ...common('answerWithText'),
     locale: { correctAnswers: { first: 'Yes', second: localized }, placeholder: localized },
   });
-  const props = text.build.props();
+  const props = text.build.props(scope);
   assert.deepEqual((props.locale?.uk as {locale:{correctAnswers:string[]}}).locale.correctAnswers, ['Yes', 'Відповідь']);
   assert.deepEqual((props.locale?.en as {locale:{correctAnswers:string[]}}).locale.correctAnswers, ['Yes', 'Answer']);
   assert.equal(JSON.stringify(props).includes('"first"'), false);
-  const patch = text.build.overrides({ locale: { correctAnswers: { second: { uk: 'Так' } } } });
+  const patch = text.build.overrides({ locale: { correctAnswers: { second: { uk: 'Так' } } } }, scope);
   assert.equal(patch.locale?.en, undefined);
   assert.deepEqual((patch.locale?.uk as {locale:{correctAnswers:string[]}}).locale.correctAnswers, ['Yes', 'Так']);
 
@@ -159,10 +160,10 @@ test('Question localized answers and slots publish full Props-shaped arrays and 
     content: { ...prompt, slots: { items: { one: { correctAnswers: { yes: 'Yes', another: localized } } }, order: ['one'] } },
   });
   assert.deepEqual(
-    (blanks.build.props().locale?.uk as { locale: { slots: unknown[] } }).locale.slots,
+    (blanks.build.props(scope).locale?.uk as { locale: { slots: unknown[] } }).locale.slots,
     [{ selector: 'one', correctAnswers: ['Yes', 'Відповідь'] }],
   );
-  const sparse = blanks.build.overrides({ content: { slots: { items: { one: { correctAnswers: { another: { uk: 'Так' } } } } } } });
+  const sparse = blanks.build.overrides({ content: { slots: { items: { one: { correctAnswers: { another: { uk: 'Так' } } } } } } }, scope);
   assert.equal(sparse.locale?.en, undefined);
   assert.deepEqual(
     (sparse.locale?.uk as { locale: { slots: unknown[] } }).locale.slots,
@@ -178,20 +179,20 @@ test('numeric scoring values remain atomic and Question build results are isolat
   };
   const question = defineAnswerWithNumber(input);
   assert.equal(answerWithNumber_Config_Schema.safeParse(input).success, true);
-  const first = question.build.props();
-  const patch = question.build.overrides({ params: { correctAnswers: [7], restrictions: [] } });
+  const first = question.build.props(scope);
+  const patch = question.build.overrides({ params: { correctAnswers: [7], restrictions: [] } }, scope);
   assert.deepEqual((patch.base.params as { correctAnswers: number[] }).correctAnswers, [7]);
   (patch.base.params as { correctAnswers: number[] }).correctAnswers.push(8);
-  assert.deepEqual((question.build.props().base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
+  assert.deepEqual((question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
   (first.base.params as { correctAnswers: number[] }).correctAnswers.push(3);
-  assert.deepEqual((question.build.props().base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
-  assert.throws(() => question.build.overrides({ params: { correctAnswers: ['two'] } } as never));
+  assert.deepEqual((question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
+  assert.throws(() => question.build.overrides({ params: { correctAnswers: ['two'] } } as never, scope));
 });
 
 test('scored answers remain enabled after nested child overrides', () => {
   const one = defineSelectOneAnswer({ ...common('selectOneAnswer'), content: { ...prompt, answers } });
   assert.throws(
-    () => one.build.overrides({ content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } }),
+    () => one.build.overrides({ content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } }, scope),
     /enabled ContentBlock/,
   );
 
@@ -199,7 +200,7 @@ test('scored answers remain enabled after nested child overrides', () => {
     ...common('selectMultipleAnswers'), content: { ...prompt, answers },
   });
   assert.throws(
-    () => multiple.build.overrides({ content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } }),
+    () => multiple.build.overrides({ content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } } }, scope),
     /enabled ContentBlock/,
   );
 
@@ -208,7 +209,7 @@ test('scored answers remain enabled after nested child overrides', () => {
     content: { ...prompt, pairs: { items: { pairOne: { left: yes, right: no } }, order: ['pairOne'] } },
   });
   assert.throws(
-    () => match.build.overrides({ content: { pairs: { items: { pairOne: { left: { params: { disabled: true } } } } } } }),
+    () => match.build.overrides({ content: { pairs: { items: { pairOne: { left: { params: { disabled: true } } } } } } }, scope),
     /enabled ContentBlock/,
   );
 
@@ -222,7 +223,7 @@ test('scored answers remain enabled after nested child overrides', () => {
   assert.throws(
     () => blanks.build.overrides({
       content: { slots: { items: { slotOne: { correctAnswer: { params: { disabled: true } } } } } },
-    }),
+    }, scope),
     /enabled ContentBlock/,
   );
 
@@ -230,7 +231,7 @@ test('scored answers remain enabled after nested child overrides', () => {
     ...common('orderSequence'), content: { ...prompt, sequence: collection(yes) },
   });
   assert.throws(
-    () => sequence.build.overrides({ content: { sequence: { items: { yes: { params: { disabled: true } } } } } }),
+    () => sequence.build.overrides({ content: { sequence: { items: { yes: { params: { disabled: true } } } } } }, scope),
     /enabled ContentBlock/,
   );
 
@@ -239,7 +240,7 @@ test('scored answers remain enabled after nested child overrides', () => {
     content: { ...prompt, correctSequence: collection(yes), distractors: collection(no) },
   });
   assert.throws(
-    () => built.build.overrides({ content: { correctSequence: { items: { yes: { params: { disabled: true } } } } } }),
+    () => built.build.overrides({ content: { correctSequence: { items: { yes: { params: { disabled: true } } } } } }, scope),
     /enabled ContentBlock/,
   );
 });
@@ -260,7 +261,7 @@ test('SelectMultipleAnswers rejects partially disabled correct answer sets', () 
   assert.throws(
     () => multi.build.overrides({
       content: { answers: { correct: { items: { yes: { params: { disabled: true } } } } } },
-    }),
+    }, scope),
     /enabled ContentBlock/,
   );
 });
@@ -269,11 +270,76 @@ test('invariant-only Questions publish a required empty locale Props object', ()
   const question = defineSelectOneAnswer({
     ...common('selectOneAnswer'), content: { ...prompt, answers },
   });
-  const built = question.build.props();
+  const built = question.build.props(scope);
   assert.deepEqual(built.base.locale, {});
   assert.equal(built.locale, undefined);
   assert.equal(selectOneAnswer_Props_Schema.safeParse(built.base).success, true);
   // A sparse patch must not inject empty locale data.
-  const patch = question.build.overrides({ params: { restrictions: [] } });
+  const patch = question.build.overrides({ params: { restrictions: [] } }, scope);
   assert.equal(Object.hasOwn(patch.base, 'locale'), false);
+});
+
+test('explicit publication languages limit resource and override locale files', () => {
+  const question = defineAnswerWithText({
+    ...common('answerWithText'),
+    locale: {
+      placeholder: { en: 'Answer', uk: 'Відповідь', pl: 'Odpowiedź' },
+      correctAnswers: {
+        first: { en: 'Yes', uk: 'Так', pl: 'Tak' },
+        second: 'OK',
+      },
+    },
+  });
+  const published = question.build.props({ languages: ['uk'] });
+  assert.deepEqual(Object.keys(published.locale ?? {}), ['uk']);
+  assert.deepEqual((published.locale?.uk as { locale: { correctAnswers: string[] } }).locale.correctAnswers, ['Так', 'OK']);
+  const patch = question.build.overrides(
+    { locale: { correctAnswers: { first: { en: 'Sure', uk: 'Авжеж', pl: 'Pewnie' } } } },
+    { languages: ['uk'] },
+  );
+  assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
+  assert.deepEqual((patch.locale?.uk as { locale: { correctAnswers: string[] } }).locale.correctAnswers, ['Авжеж', 'OK']);
+  assert.equal(question.build.overrides(
+    { locale: { correctAnswers: { first: { pl: 'Pewnie' } } } },
+    { languages: ['uk'] },
+  ).locale, undefined);
+
+  assert.throws(() => question.build.props({ languages: [] }), /nonempty languages/);
+  assert.throws(() => question.build.props({ languages: ['uk', 'uk'] }), /unique/);
+  assert.throws(() => question.build.props({ languages: ['bad'] as never }));
+  assert.throws(() => (question.build.props as (options?: unknown) => unknown)(), /languages/);
+});
+
+test('publication validates selected child translations without requiring unselected ones', () => {
+  const localizedPrompt = defineText({
+    id, slug: 'translatedPrompt', type: 'text', params: {},
+    locale: { value: { uk: 'Питання', en: 'Question', pl: 'Pytanie' } },
+  });
+  const question = defineAnswerWithNumber({
+    ...common('answerWithNumber'),
+    params: { ...params, correctAnswers: [4] },
+    locale: { placeholder: 'Number' },
+    content: { question: collection(localizedPrompt) },
+  });
+  assert.deepEqual(Object.keys(question.build.props({ languages: ['uk'] }).locale ?? {}), ['uk']);
+
+  const missing = defineText({
+    id, slug: 'missingEnglish', type: 'text', params: {},
+    locale: { value: { uk: 'Лише українською' } },
+  });
+  const badQuestion = defineAnswerWithNumber({
+    ...common('answerWithNumber'),
+    params: { ...params, correctAnswers: [4] },
+    locale: { placeholder: 'Number' },
+    content: { question: collection(missing) },
+  });
+  assert.doesNotThrow(() => badQuestion.build.props({ languages: ['uk'] }));
+  assert.throws(() => badQuestion.build.props({ languages: ['en'] }), /ContentBlock publication/);
+});
+
+test('invariant child collections emit no redundant locale files', () => {
+  const question = defineOrderSequence({
+    ...common('orderSequence'), content: { ...prompt, sequence: collection(yes) },
+  });
+  assert.equal(question.build.props({ languages: ['uk', 'en'] }).locale, undefined);
 });
