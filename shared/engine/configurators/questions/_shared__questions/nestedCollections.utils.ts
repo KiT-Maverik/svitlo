@@ -24,6 +24,7 @@ export const snapshotNestedCollection = <T extends NestedCollection>(source: T):
 const validateNested = (collection: NestedCollection, path: string, fields: readonly string[]): void => {
   const issues = validateOrderedKeys(collection, { path });
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+  if (collection.order.length === 0) throw new Error(path + ' must contain at least one item');
   for (const [key, entry] of Object.entries(collection.items)) {
     if (!isRecord(entry) || Object.keys(entry).length !== fields.length ||
       fields.some(field => !Object.hasOwn(entry, field))) {
@@ -78,6 +79,7 @@ const resolveNested = (
   const order = patch?.order ?? source.order;
   const issues = validateOrderedKeys({ items: active, order }, { path, allowDisabled: true });
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
+  if (order.length === 0) throw new Error(path + ' must contain at least one active item');
   const base: Record<string, Plain> = {};
   const locale: Files<Record<string, Plain>> = {};
   for (const key of order) {
