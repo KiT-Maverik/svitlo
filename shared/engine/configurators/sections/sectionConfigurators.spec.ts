@@ -24,6 +24,12 @@ const input = <const Type extends 'content' | 'practice' | 'codingTask' | 'learn
   locale: { title: { en: 'Title', uk: 'Назва' }, navigationLabel: '1' },
   content: { items: { prompt }, order: ['prompt'] },
 });
+const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): string | undefined => {
+  const block = blocks?.[0];
+  if (block?.type !== 'text') return undefined;
+  return (block.locale as { value?: string } | undefined)?.value;
+};
+
 const definitions = [
   () => defineContentSection(input('content')),
   () => definePracticeSection(input('practice')),
@@ -42,7 +48,7 @@ test('every Section publishes ordered JSON-safe ContentBlock Props without mutab
     assert.equal('overrides' in section.config, false);
     const original = section.build.props();
     assert.equal(original.base.content[0]?.slug, 'prompt');
-    assert.equal(original.locale?.uk?.content?.[0]?.locale?.value, 'Питання');
+    assert.equal(textValue(original.locale?.uk?.content), 'Питання');
     assert.deepEqual(original.locale?.uk?.locale, { title: 'Назва' });
     assert.equal(original.locale?.en?.locale?.title, 'Title');
     assert.doesNotThrow(() => JSON.stringify(original));
@@ -59,7 +65,7 @@ test('every Section publishes ordered JSON-safe ContentBlock Props without mutab
     assert.equal(section.build.props().base.content[0]?.slug, 'prompt');
     assert.deepEqual(section.content.order, ['prompt']);
     assert.deepEqual(original.base.content.map(block => block.slug), ['prompt']);
-    assert.equal(section.build.props().locale?.uk?.content?.[0]?.locale?.value, 'Питання');
+    assert.equal(textValue(section.build.props().locale?.uk?.content), 'Питання');
 
     const sparse = section.build.overrides({ locale: { title: { uk: 'Оновлено' } } });
     assert.deepEqual(sparse.base, {});
@@ -84,10 +90,10 @@ test('all Sections remain reusable across independently built override contexts'
     const section = create();
     const one = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Один' } } } } } });
     const two = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Два' } } } } } });
-    assert.equal(one.locale?.uk?.content?.[0]?.locale?.value, 'Один');
-    assert.equal(two.locale?.uk?.content?.[0]?.locale?.value, 'Два');
+    assert.equal(textValue(one.locale?.uk?.content), 'Один');
+    assert.equal(textValue(two.locale?.uk?.content), 'Два');
     const base = section.build.props();
-    assert.equal(base.locale?.uk?.content?.[0]?.locale?.value, 'Питання');
+    assert.equal(textValue(base.locale?.uk?.content), 'Питання');
     if (one.base.content) one.base.content[0]!.slug = 'tampered';
     assert.equal(section.build.props().base.content[0]?.slug, 'prompt');
   }

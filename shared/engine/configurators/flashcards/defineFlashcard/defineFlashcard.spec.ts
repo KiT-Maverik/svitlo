@@ -24,6 +24,16 @@ const extra = defineText({
   type: 'text', id: id('a6'), slug: 'extra', params: {},
   locale: { value: 'More' },
 });
+const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): string | undefined => {
+  const block = blocks?.[0];
+  if (block?.type !== 'text') return undefined;
+  return (block.locale as { value?: string } | undefined)?.value;
+};
+const flagValue = (flags: ({ type: string } & Record<string, unknown>)[] | undefined, index: number): string | undefined => {
+  const flag = flags?.[index];
+  return flag && 'value' in flag ? flag.value as string : undefined;
+};
+
 const source = {
   type: 'flashcard' as const, id: id('a4'), slug: 'lightCard',
   parameters: {
@@ -58,9 +68,9 @@ test('Flashcard composes ordered sides and named flags as JSON-only published Pr
   assert.deepEqual(card.build.props().base.content.front.map(x => x.slug), ['front']);
   assert.deepEqual(card.build.props().base.parameters.flags.map(x => x.type), ['list', 'acronym']);
   assert.deepEqual(card.build.props().base.parameters.relationships?.map(x => x.relationshipId), ['r1']);
-  assert.equal(card.build.props().locale?.uk?.content?.front?.[0]?.locale?.value, 'Що?');
-  assert.equal(card.build.props().locale?.en?.parameters?.flags?.[1]?.value, 'ABC');
-  assert.equal(card.build.props().locale?.uk?.parameters?.flags?.[1]?.value, 'АБВ');
+  assert.equal(textValue(card.build.props().locale?.uk?.content?.front), 'Що?');
+  assert.equal(flagValue(card.build.props().locale?.en?.parameters?.flags, 1), 'ABC');
+  assert.equal(flagValue(card.build.props().locale?.uk?.parameters?.flags, 1), 'АБВ');
   assert.doesNotThrow(() => JSON.stringify(card.build.props()));
   assert.equal(flashcard_Config_Schema.safeParse(source).success, true);
   assert.equal(flashcardConfigurator_Schema.safeParse(card).success, true);
@@ -84,8 +94,8 @@ test('Flashcard applies independent side changes and sparse flag updates without
     },
   });
   assert.deepEqual(second.base.parameters?.tags, ['science']);
-  assert.equal(second.locale?.uk?.parameters?.flags?.[1]?.value, 'НОВЕ');
-  assert.equal(second.locale?.en?.parameters?.flags?.[1]?.value, 'ABC');
+  assert.equal(flagValue(second.locale?.uk?.parameters?.flags, 1), 'НОВЕ');
+  assert.equal(flagValue(second.locale?.en?.parameters?.flags, 1), 'ABC');
   assert.deepEqual(card.build.props().base.parameters.tags, ['math']);
   const reordered = card.build.overrides({
     parameters: { flags: { order: ['acronym', 'list'] } },

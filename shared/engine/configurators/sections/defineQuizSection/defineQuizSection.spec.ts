@@ -53,11 +53,12 @@ test('Quiz preserves named screen references and scoring semantics', () => {
   assert.deepEqual(quiz.build.props().base.params.screen.starting?.content, ['prompt']);
   assert.equal(quiz.build.props().base.params.interaction.retries, 1);
   assert.deepEqual(quiz.build.overrides({ params: { interaction: { retries: 2 } } }).base.params?.interaction, { retries: 2 });
-  assert.deepEqual(
-    quiz.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Читай далі' } } } } } })
-      .locale?.uk?.content?.[0]?.locale?.value,
-    'Читай далі',
-  );
+  const overridden = quiz.build.overrides({
+    content: { items: { prompt: { locale: { value: { uk: 'Читай далі' } } } } },
+  });
+  const firstBlock = overridden.locale?.uk?.content?.[0];
+  assert.equal(firstBlock?.type, 'text');
+  assert.equal((firstBlock?.locale as { value?: string } | undefined)?.value, 'Читай далі');
   assert.equal(quizSection_Config_Schema.safeParse({
     ...quiz.config.base,
     content: quiz.content,

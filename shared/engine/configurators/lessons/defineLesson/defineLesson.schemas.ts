@@ -54,11 +54,10 @@ export type Lesson_Config = z.infer<typeof lesson_Config_Schema>;
 const sectionResolved = z.object({
   id: z.uuid(), slug: z.string().min(1), type: z.enum(sectionTypes),
 }).catchall(z.unknown());
-const flashcardResolved = z.custom<Flashcard_Props>();
 export const lesson_Props_Schema = identity.extend({
   ...addUnifiedLocale({ title: localizationSwitch.props }),
   section: z.array(sectionResolved),
-  flashcards: z.array(flashcardResolved),
+  flashcards: z.array(flashcard_Props_Schema),
   questions: z.partialRecord(z.enum(lessonQuestionTypes), z.array(z.record(z.string(), z.json()))).optional(),
   events: z.record(z.string(), z.json()).optional(),
 });

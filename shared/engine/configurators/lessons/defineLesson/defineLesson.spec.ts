@@ -16,6 +16,11 @@ const section = defineContentSection<'intro', { paragraph: typeof text }, ['en',
   locale: { title: { en: 'Introduction', uk: 'Вступ' }, navigationLabel: '1' },
   content: { items: { paragraph: text }, order: ['paragraph'] },
 });
+const textValue = (blocks: { type: string; locale?: unknown }[] | undefined): string | undefined => {
+  const block = blocks?.[0];
+  if (block?.type !== 'text') return undefined;
+  return (block.locale as { value?: string } | undefined)?.value;
+};
 const makeLesson = () => defineLesson({
   id: id('03'), slug: 'exampleLesson', type: 'lesson', programId: id('04'), skills: [],
   params: {
@@ -36,7 +41,7 @@ test('Lesson emits plain Section Props arrays with correct own and nested locale
   assert.equal(built.base.section[0]?.slug, 'intro');
   assert.equal(built.base.section[0]?.content?.[0]?.slug, 'paragraph');
   assert.equal(built.locale?.uk?.locale?.title, 'Приклад');
-  assert.equal(built.locale?.uk?.section?.[0]?.content?.[0]?.locale?.value, 'Привіт');
+  assert.equal(textValue(built.locale?.uk?.section?.[0]?.content), 'Привіт');
   assert.equal(built.locale?.en?.section?.[0]?.locale?.title, 'Introduction');
   assert.deepEqual(built.base.flashcards, []);
   assert.equal(lessonConfigurator_Schema.safeParse(lesson).success, true);
@@ -57,9 +62,9 @@ test('Lesson independently overrides Sections, nested ContentBlocks, languages a
     locale: { title: { uk: 'Новий заголовок' } },
   });
   assert.deepEqual(updated.base.section?.map(item => item.slug), ['intro']);
-  assert.equal(updated.locale?.uk?.section?.[0]?.content?.[0]?.locale?.value, 'Новий текст');
+  assert.equal(textValue(updated.locale?.uk?.section?.[0]?.content), 'Новий текст');
   assert.deepEqual(updated.locale?.uk?.locale, { title: 'Новий заголовок' });
-  assert.equal(lesson.build.props().locale?.uk?.section?.[0]?.content?.[0]?.locale?.value, 'Привіт');
+  assert.equal(textValue(lesson.build.props().locale?.uk?.section?.[0]?.content), 'Привіт');
 
   const second = defineContentSection<'extra', {}, ['en', 'uk']>({
     type: 'content', id: id('05'), slug: 'extra', params: {},
