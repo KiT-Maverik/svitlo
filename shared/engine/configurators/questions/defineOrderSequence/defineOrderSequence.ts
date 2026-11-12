@@ -2,17 +2,35 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  assertEnabledBlock, cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
-  projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
-  snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
+  assertEnabledBlock,
+  cloneJson,
+  finishFiles,
+  isRecord,
+  ensureQuestionPatchShape,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  resolveCommonContent,
+  resolveBlockCollection,
+  resolveBlockMap,
+  snapshotCommonContent,
+  snapshotBlockCollection,
+  validateBlockCollection,
+  validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
-  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
+  type OrderedBlockPatch,
+  type ResolvableBlockPatch,
+  type QuestionCommonPatch,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
-  orderSequence_Config_Schema, orderSequence_Override_Config_Schema,
+  orderSequence_Config_Schema,
+  orderSequence_Override_Config_Schema,
   type Question_OrderSequence_Config,
   orderSequence_Props_Schema,
   type Question_OrderSequence_Props,
@@ -27,7 +45,8 @@ const validate = (candidate: Question_OrderSequence_Config): void => {
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.sequence, 'content.sequence', true);
   candidate.content.sequence.order.forEach(key =>
-    assertEnabledBlock(candidate.content.sequence.items[key].config.base, 'content.sequence.' + key));
+    assertEnabledBlock(candidate.content.sequence.items[key].config.base, 'content.sequence.' + key),
+  );
 };
 
 type ContentShape = Question_OrderSequence_Config['content'];
@@ -35,12 +54,11 @@ export type Question_OrderSequence_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
-> =
-  Question_OrderSequence_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content, Added, Languages> & {
-      sequence?: OrderedBlockPatch<Content['sequence']['items'], Added, Languages>;
-    };
+> = Question_OrderSequence_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {
+    sequence?: OrderedBlockPatch<Content['sequence']['items'], Added, Languages>;
   };
+};
 
 /** A Question reuses ContentBlocks but never mutates their publication contexts. */
 export const defineOrderSequence = <
@@ -50,9 +68,10 @@ export const defineOrderSequence = <
 >(
   config: Omit<Question_OrderSequence_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      sequence: { items: ChildrenSupporting<Languages, Content['sequence']['items']> };
-    };
+    content: Content &
+      QuestionChildrenSupporting<Languages, Content> & {
+        sequence: { items: ChildrenSupporting<Languages, Content['sequence']['items']> };
+      };
   } & ConfigWithLanguages<Question_OrderSequence_Config, Languages>,
 ) => {
   validate(config);
@@ -70,12 +89,7 @@ export const defineOrderSequence = <
     sequence: snapshotBlockCollection(initialContent.sequence),
   } as Content;
 
-  
-  const extraContent = (
-    source: Content,
-    languages: readonly LanguageCodes[],
-    patch?: ResolvableBlockPatch,
-  ) => {
+  const extraContent = (source: Content, languages: readonly LanguageCodes[], patch?: ResolvableBlockPatch) => {
     const result = resolveBlockCollection(source.sequence, languages, patch, 'content.sequence', true);
     result.base.forEach((block, index) => assertEnabledBlock(block, 'content.sequence[' + index + ']'));
     const locale: Record<string, Record<string, unknown>> = {};
@@ -83,7 +97,9 @@ export const defineOrderSequence = <
     return { base: { sequence: result.base }, locale };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_OrderSequence_Props> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_OrderSequence_Props> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale, languages);
@@ -93,7 +109,10 @@ export const defineOrderSequence = <
     mergeQuestionContent(files, common.locale, extra.locale);
     const resource = {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         locale: own.base,
         content: { ...common.base, ...extra.base },
       },
@@ -129,18 +148,26 @@ export const defineOrderSequence = <
           }
         }
         const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
-        const extra = patch.content.sequence !== undefined ? extraContent(initialContent, languages, patch.content.sequence) : {base:{},locale:{}};
+        const extra =
+          patch.content.sequence !== undefined
+            ? extraContent(initialContent, languages, patch.content.sequence)
+            : { base: {}, locale: {} };
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_OrderSequence_Props>;
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_OrderSequence_Props>;
       validateQuestionPublication(orderSequence_Props_Schema, languages, props(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
-        'Invalid OrderSequence Question overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)),
+        'Invalid OrderSequence Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -148,7 +175,11 @@ export const defineOrderSequence = <
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

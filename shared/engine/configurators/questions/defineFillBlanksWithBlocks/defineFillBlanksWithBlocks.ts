@@ -2,17 +2,38 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ChildSupporting, C
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
-  projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap, resolvePairMap, resolveSlotBlocks,
-  snapshotCommonContent, snapshotBlockCollection, snapshotNestedCollection, validateNestedBlockCollection, validateBlockCollection, validateCommonContent,
+  cloneJson,
+  finishFiles,
+  isRecord,
+  ensureQuestionPatchShape,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  resolveCommonContent,
+  resolveBlockCollection,
+  resolveBlockMap,
+  resolvePairMap,
+  resolveSlotBlocks,
+  snapshotCommonContent,
+  snapshotBlockCollection,
+  snapshotNestedCollection,
+  validateNestedBlockCollection,
+  validateBlockCollection,
+  validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
-  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
+  type OrderedBlockPatch,
+  type ResolvableBlockPatch,
+  type QuestionCommonPatch,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
-  fillBlanksWithBlocks_Config_Schema, fillBlanksWithBlocks_Override_Config_Schema,
+  fillBlanksWithBlocks_Config_Schema,
+  fillBlanksWithBlocks_Override_Config_Schema,
   type Question_FillBlanksWithBlocks_Config,
   fillBlanksWithBlocks_Props_Schema,
   type Question_FillBlanksWithBlocks_Props,
@@ -37,8 +58,10 @@ type SlotBlocksOverride<
   AddedSlots extends Record<string, SlotBlock>,
   Languages extends readonly LanguageCodes[],
 > = {
-  items?: { [Key in keyof Content['slots']['items']]?:
-    { correctAnswer?: Parameters<Content['slots']['items'][Key]['correctAnswer']['build']['overrides']>[0] } | false };
+  items?: {
+    [Key in keyof Content['slots']['items']]?:
+      { correctAnswer?: Parameters<Content['slots']['items'][Key]['correctAnswer']['build']['overrides']>[0] } | false;
+  };
   additionalItems?: AddedSlots & {
     [Key in keyof AddedSlots]: {
       correctAnswer: ChildSupporting<Languages, AddedSlots[Key]['correctAnswer']>;
@@ -51,13 +74,12 @@ export type Question_FillBlanksWithBlocks_Overrides<
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
   AddedSlots extends Record<string, SlotBlock> = {},
-> =
-  Question_FillBlanksWithBlocks_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content, Added, Languages> & {
-      slots?: SlotBlocksOverride<Content, AddedSlots, Languages>;
-distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
-    };
+> = Question_FillBlanksWithBlocks_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {
+    slots?: SlotBlocksOverride<Content, AddedSlots, Languages>;
+    distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
   };
+};
 
 /** A Question reuses ContentBlocks but never mutates their publication contexts. */
 export const defineFillBlanksWithBlocks = <
@@ -67,12 +89,17 @@ export const defineFillBlanksWithBlocks = <
 >(
   config: Omit<Question_FillBlanksWithBlocks_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      slots: { items: { [Key in keyof Content['slots']['items']]: {
-  correctAnswer: ChildSupporting<Languages, Content['slots']['items'][Key]['correctAnswer']>;
-} } };
-distractors: { items: ChildrenSupporting<Languages, Content['distractors']['items']> };
-    };
+    content: Content &
+      QuestionChildrenSupporting<Languages, Content> & {
+        slots: {
+          items: {
+            [Key in keyof Content['slots']['items']]: {
+              correctAnswer: ChildSupporting<Languages, Content['slots']['items'][Key]['correctAnswer']>;
+            };
+          };
+        };
+        distractors: { items: ChildrenSupporting<Languages, Content['distractors']['items']> };
+      };
   } & ConfigWithLanguages<Question_FillBlanksWithBlocks_Config, Languages>,
 ) => {
   validate(config);
@@ -94,7 +121,14 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
   const extraContent = (
     source: Content,
     languages: readonly LanguageCodes[],
-    patch?: { slots?: {items?: Record<string, Record<string, unknown> | false>;additionalItems?: Record<string, {correctAnswer: ContentBlock_Configurator}>;order?: string[]}; distractors?: ResolvableBlockPatch },
+    patch?: {
+      slots?: {
+        items?: Record<string, Record<string, unknown> | false>;
+        additionalItems?: Record<string, { correctAnswer: ContentBlock_Configurator }>;
+        order?: string[];
+      };
+      distractors?: ResolvableBlockPatch;
+    },
   ) => {
     const base: Record<string, unknown> = {};
     const locale: Record<string, Record<string, unknown>> = {};
@@ -111,7 +145,9 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
     return { base, locale };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_FillBlanksWithBlocks_Props> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_FillBlanksWithBlocks_Props> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale, languages);
@@ -121,7 +157,10 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
     mergeQuestionContent(files, common.locale, extra.locale);
     const resource = {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         locale: own.base,
         content: { ...common.base, ...extra.base },
       },
@@ -160,19 +199,26 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
           }
         }
         const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
-        const extra = (patch.content.slots !== undefined || patch.content.distractors !== undefined) ?
-          extraContent(initialContent, languages, patch.content) : {base:{},locale:{}};
+        const extra =
+          patch.content.slots !== undefined || patch.content.distractors !== undefined
+            ? extraContent(initialContent, languages, patch.content)
+            : { base: {}, locale: {} };
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_FillBlanksWithBlocks_Props>;
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_FillBlanksWithBlocks_Props>;
       validateQuestionPublication(fillBlanksWithBlocks_Props_Schema, languages, props(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
-        'Invalid FillBlanksWithBlocks Question overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)),
+        'Invalid FillBlanksWithBlocks Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -180,7 +226,11 @@ distractors: { items: ChildrenSupporting<Languages, Content['distractors']['item
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

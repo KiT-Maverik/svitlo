@@ -2,17 +2,36 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  assertEnabledBlock, isEnabledBlock, cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
-  projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
-  snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
+  assertEnabledBlock,
+  isEnabledBlock,
+  cloneJson,
+  finishFiles,
+  isRecord,
+  ensureQuestionPatchShape,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  resolveCommonContent,
+  resolveBlockCollection,
+  resolveBlockMap,
+  snapshotCommonContent,
+  snapshotBlockCollection,
+  validateBlockCollection,
+  validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
-  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
+  type OrderedBlockPatch,
+  type ResolvableBlockPatch,
+  type QuestionCommonPatch,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
-  selectOneAnswer_Config_Schema, selectOneAnswer_Override_Config_Schema,
+  selectOneAnswer_Config_Schema,
+  selectOneAnswer_Override_Config_Schema,
   type Question_SelectOneAnswer_Config,
   selectOneAnswer_Props_Schema,
   type Question_SelectOneAnswer_Props,
@@ -42,16 +61,15 @@ export type Question_SelectOneAnswer_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
-> =
-  Question_SelectOneAnswer_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content, Added, Languages> & {
-      answers?: {
-    correct?: OrderedBlockPatch<Content['answers']['correct']['items'], Added, Languages>;
-    incorrect?: OrderedBlockPatch<Content['answers']['incorrect']['items'], Added, Languages>;
-    distractors?: OrderedBlockPatch<Content['answers']['distractors']['items'], Added, Languages>;
-  };
+> = Question_SelectOneAnswer_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {
+    answers?: {
+      correct?: OrderedBlockPatch<Content['answers']['correct']['items'], Added, Languages>;
+      incorrect?: OrderedBlockPatch<Content['answers']['incorrect']['items'], Added, Languages>;
+      distractors?: OrderedBlockPatch<Content['answers']['distractors']['items'], Added, Languages>;
     };
   };
+};
 
 /** A Question reuses ContentBlocks but never mutates their publication contexts. */
 export const defineSelectOneAnswer = <
@@ -61,13 +79,14 @@ export const defineSelectOneAnswer = <
 >(
   config: Omit<Question_SelectOneAnswer_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      answers: {
-      correct: { items: ChildrenSupporting<Languages, Content['answers']['correct']['items']> };
-      incorrect: { items: ChildrenSupporting<Languages, Content['answers']['incorrect']['items']> };
-      distractors: { items: ChildrenSupporting<Languages, Content['answers']['distractors']['items']> };
-    };
-    };
+    content: Content &
+      QuestionChildrenSupporting<Languages, Content> & {
+        answers: {
+          correct: { items: ChildrenSupporting<Languages, Content['answers']['correct']['items']> };
+          incorrect: { items: ChildrenSupporting<Languages, Content['answers']['incorrect']['items']> };
+          distractors: { items: ChildrenSupporting<Languages, Content['answers']['distractors']['items']> };
+        };
+      };
   } & ConfigWithLanguages<Question_SelectOneAnswer_Config, Languages>,
 ) => {
   validate(config);
@@ -93,7 +112,6 @@ export const defineSelectOneAnswer = <
     },
   } as Content;
 
-  
   const extraContent = (
     source: Content,
     languages: readonly LanguageCodes[],
@@ -113,7 +131,12 @@ export const defineSelectOneAnswer = <
     const complete = {
       correct: resolveBlockMap(source.answers.correct, languages, patch?.correct, 'content.answers.correct'),
       incorrect: resolveBlockMap(source.answers.incorrect, languages, patch?.incorrect, 'content.answers.incorrect'),
-      distractors: resolveBlockMap(source.answers.distractors, languages, patch?.distractors, 'content.answers.distractors'),
+      distractors: resolveBlockMap(
+        source.answers.distractors,
+        languages,
+        patch?.distractors,
+        'content.answers.distractors',
+      ),
     };
     const correctCount = Object.keys(complete.correct.base).length;
     if (correctCount !== 1) {
@@ -137,7 +160,9 @@ export const defineSelectOneAnswer = <
     return { base, locale };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_SelectOneAnswer_Props> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_SelectOneAnswer_Props> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale, languages);
@@ -147,7 +172,10 @@ export const defineSelectOneAnswer = <
     mergeQuestionContent(files, common.locale, extra.locale);
     const resource = {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         locale: own.base,
         content: { ...common.base, ...extra.base },
       },
@@ -183,18 +211,26 @@ export const defineSelectOneAnswer = <
           }
         }
         const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
-        const extra = patch.content.answers !== undefined ? extraContent(initialContent, languages, patch.content.answers) : {base:{},locale:{}};
+        const extra =
+          patch.content.answers !== undefined
+            ? extraContent(initialContent, languages, patch.content.answers)
+            : { base: {}, locale: {} };
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_SelectOneAnswer_Props>;
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_SelectOneAnswer_Props>;
       validateQuestionPublication(selectOneAnswer_Props_Schema, languages, props(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
-        'Invalid SelectOneAnswer Question overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)),
+        'Invalid SelectOneAnswer Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -202,7 +238,11 @@ export const defineSelectOneAnswer = <
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

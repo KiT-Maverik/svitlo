@@ -16,10 +16,9 @@ export type QuestionPublishedValue<Value> = Value extends readonly [infer First,
   : Value extends readonly (infer Item)[]
     ? QuestionPublishedValue<Item>[]
     : Value extends object
-      ? { [Key in keyof Value as Key extends 'locale' ? never : Key]: QuestionPublishedValue<Value[Key]> } &
-          (Value extends { locale: infer OwnLocale extends object }
-            ? { locale?: Partial<OwnLocale> }
-            : {})
+      ? {
+          [Key in keyof Value as Key extends 'locale' ? never : Key]: QuestionPublishedValue<Value[Key]>;
+        } & (Value extends { locale: infer OwnLocale extends object } ? { locale?: Partial<OwnLocale> } : {})
       : Value;
 
 type QuestionPropsShape = {
@@ -57,10 +56,13 @@ export type QuestionOverridePublication<Props extends QuestionPropsShape> = Ques
 >;
 
 export type QuestionLocaleFiles<Props extends QuestionPropsShape> = Partial<
-  Record<LanguageCodes, {
-    locale?: Partial<Props['locale']>;
-    content?: Partial<QuestionPublishedValue<Props['content']>>;
-  }>
+  Record<
+    LanguageCodes,
+    {
+      locale?: Partial<Props['locale']>;
+      content?: Partial<QuestionPublishedValue<Props['content']>>;
+    }
+  >
 >;
 
 export const projectQuestionLocale = (input: Record<string, unknown>, languages: readonly LanguageCodes[]) => {
@@ -79,7 +81,7 @@ export function ensureQuestionPatchShape(patch: unknown): asserts patch is Recor
       throw new Error('Unknown Question override field: ' + key);
     }
   }
-};
+}
 
 export const validateEffectiveQuestionMetadata = <T extends object>(
   source: T,

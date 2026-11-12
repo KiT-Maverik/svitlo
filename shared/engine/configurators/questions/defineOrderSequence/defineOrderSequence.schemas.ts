@@ -27,10 +27,12 @@ export type Question_OrderSequence_Config = z.infer<typeof orderSequence_Config_
 /** Only the authored Config metadata fields are independently overridable. */
 export type Question_OrderSequence_MetadataOverrides = QuestionMetadataOverrides<Question_OrderSequence_Config>;
 export const orderSequence_Override_Config_Schema: z.ZodType<Question_OrderSequence_MetadataOverrides> = z.deepPartial(
-  deepStrict_Schema(z.object({
-    params: orderSequence_Config_Schema.shape.params,
-    locale: orderSequence_Config_Schema.shape.locale,
-  })),
+  deepStrict_Schema(
+    z.object({
+      params: orderSequence_Config_Schema.shape.params,
+      locale: orderSequence_Config_Schema.shape.locale,
+    }),
+  ),
 );
 
 export const orderSequence_Props_Schema = questionBase.extend({
@@ -39,5 +41,5 @@ export const orderSequence_Props_Schema = questionBase.extend({
   content: questionCommonContent_Props_Schema.extend({ sequence: z.array(contentBlockResolved_Schema).min(1) }),
 });
 export type Question_OrderSequence_Props = Omit<z.infer<typeof orderSequence_Props_Schema>, 'content'> & {
-  content: QuestionPublishedContent<ContentBlock_Props> & {sequence: ContentBlock_Props[]};
+  content: QuestionPublishedContent<ContentBlock_Props> & { sequence: ContentBlock_Props[] };
 };

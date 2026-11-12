@@ -12,9 +12,9 @@ export type PublicationLanguageOptions<Languages extends readonly LanguageCodes[
 };
 
 /** A publication scope is explicit, valid, nonempty and has no duplicate codes. */
-export const resolvePublicationLanguages = (
-  options: { readonly languages: readonly LanguageCodes[] },
-): LanguageCodes[] => {
+export const resolvePublicationLanguages = (options: {
+  readonly languages: readonly LanguageCodes[];
+}): LanguageCodes[] => {
   if (!options || !Array.isArray(options.languages) || options.languages.length === 0) {
     throw new Error('Build requires a nonempty languages array');
   }
@@ -57,7 +57,9 @@ export const validateQuestionPublication = (
       schema.parse(resolved);
     } catch (error) {
       throw new Error(
-        'Invalid Question publication for ' + language + ': ' +
+        'Invalid Question publication for ' +
+          language +
+          ': ' +
           (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );

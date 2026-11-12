@@ -2,17 +2,35 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  assertEnabledBlock, cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
-  projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
-  snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
+  assertEnabledBlock,
+  cloneJson,
+  finishFiles,
+  isRecord,
+  ensureQuestionPatchShape,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  resolveCommonContent,
+  resolveBlockCollection,
+  resolveBlockMap,
+  snapshotCommonContent,
+  snapshotBlockCollection,
+  validateBlockCollection,
+  validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type ResolvableBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
-  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
+  type OrderedBlockPatch,
+  type ResolvableBlockPatch,
+  type QuestionCommonPatch,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
-  buildAnswerWithBlocks_Config_Schema, buildAnswerWithBlocks_Override_Config_Schema,
+  buildAnswerWithBlocks_Config_Schema,
+  buildAnswerWithBlocks_Override_Config_Schema,
   type Question_BuildAnswerWithBlocks_Config,
   buildAnswerWithBlocks_Props_Schema,
   type Question_BuildAnswerWithBlocks_Props,
@@ -27,7 +45,8 @@ const validate = (candidate: Question_BuildAnswerWithBlocks_Config): void => {
   validateCommonContent(candidate.content);
   validateBlockCollection(candidate.content.correctSequence, 'content.correctSequence', true);
   candidate.content.correctSequence.order.forEach(key =>
-    assertEnabledBlock(candidate.content.correctSequence.items[key].config.base, 'content.correctSequence.' + key));
+    assertEnabledBlock(candidate.content.correctSequence.items[key].config.base, 'content.correctSequence.' + key),
+  );
   validateBlockCollection(candidate.content.distractors, 'content.distractors');
 };
 
@@ -36,13 +55,12 @@ export type Question_BuildAnswerWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
-> =
-  Question_BuildAnswerWithBlocks_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content, Added, Languages> & {
-      correctSequence?: OrderedBlockPatch<Content['correctSequence']['items'], Added, Languages>;
-  distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
-    };
+> = Question_BuildAnswerWithBlocks_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {
+    correctSequence?: OrderedBlockPatch<Content['correctSequence']['items'], Added, Languages>;
+    distractors?: OrderedBlockPatch<Content['distractors']['items'], Added, Languages>;
   };
+};
 
 /** A Question reuses ContentBlocks but never mutates their publication contexts. */
 export const defineBuildAnswerWithBlocks = <
@@ -52,10 +70,11 @@ export const defineBuildAnswerWithBlocks = <
 >(
   config: Omit<Question_BuildAnswerWithBlocks_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      correctSequence: { items: ChildrenSupporting<Languages, Content['correctSequence']['items']> };
-    distractors: { items: ChildrenSupporting<Languages, Content['distractors']['items']> };
-    };
+    content: Content &
+      QuestionChildrenSupporting<Languages, Content> & {
+        correctSequence: { items: ChildrenSupporting<Languages, Content['correctSequence']['items']> };
+        distractors: { items: ChildrenSupporting<Languages, Content['distractors']['items']> };
+      };
   } & ConfigWithLanguages<Question_BuildAnswerWithBlocks_Config, Languages>,
 ) => {
   validate(config);
@@ -75,7 +94,6 @@ export const defineBuildAnswerWithBlocks = <
     distractors: snapshotBlockCollection(initialContent.distractors),
   } as Content;
 
-  
   const extraContent = (
     source: Content,
     languages: readonly LanguageCodes[],
@@ -85,7 +103,13 @@ export const defineBuildAnswerWithBlocks = <
     const locale: Record<string, Record<string, unknown>> = {};
     for (const field of ['correctSequence', 'distractors'] as const) {
       if (patch && patch[field] === undefined) continue;
-      const result = resolveBlockCollection(source[field], languages, patch?.[field], 'content.' + field, field === 'correctSequence');
+      const result = resolveBlockCollection(
+        source[field],
+        languages,
+        patch?.[field],
+        'content.' + field,
+        field === 'correctSequence',
+      );
       if (field === 'correctSequence') {
         result.base.forEach((block, index) => assertEnabledBlock(block, 'content.correctSequence[' + index + ']'));
       }
@@ -95,7 +119,9 @@ export const defineBuildAnswerWithBlocks = <
     return { base, locale };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_BuildAnswerWithBlocks_Props> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale, languages);
@@ -105,7 +131,10 @@ export const defineBuildAnswerWithBlocks = <
     mergeQuestionContent(files, common.locale, extra.locale);
     const resource = {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         locale: own.base,
         content: { ...common.base, ...extra.base },
       },
@@ -141,18 +170,26 @@ export const defineBuildAnswerWithBlocks = <
           }
         }
         const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
-        const extra = (patch.content.correctSequence !== undefined || patch.content.distractors !== undefined) ? extraContent(initialContent, languages, patch.content) : {base:{},locale:{}};
+        const extra =
+          patch.content.correctSequence !== undefined || patch.content.distractors !== undefined
+            ? extraContent(initialContent, languages, patch.content)
+            : { base: {}, locale: {} };
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props>;
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_BuildAnswerWithBlocks_Props>;
       validateQuestionPublication(buildAnswerWithBlocks_Props_Schema, languages, props(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
-        'Invalid BuildAnswerWithBlocks Question overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)),
+        'Invalid BuildAnswerWithBlocks Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -160,7 +197,11 @@ export const defineBuildAnswerWithBlocks = <
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

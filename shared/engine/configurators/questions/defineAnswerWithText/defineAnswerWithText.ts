@@ -2,17 +2,34 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
-  projectQuestionLocale, projectAnswerList, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
-  snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
+  cloneJson,
+  finishFiles,
+  isRecord,
+  ensureQuestionPatchShape,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  projectAnswerList,
+  resolveCommonContent,
+  resolveBlockCollection,
+  resolveBlockMap,
+  snapshotCommonContent,
+  snapshotBlockCollection,
+  validateBlockCollection,
+  validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
-  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
+  type OrderedBlockPatch,
+  type QuestionCommonPatch,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
-  answerWithText_Config_Schema, answerWithText_Override_Config_Schema,
+  answerWithText_Config_Schema,
+  answerWithText_Override_Config_Schema,
   type Question_AnswerWithText_Config,
   answerWithText_Props_Schema,
   type Question_AnswerWithText_Props,
@@ -28,7 +45,6 @@ const validate = (candidate: Question_AnswerWithText_Config): void => {
   if (!Object.keys(candidate.locale.correctAnswers).length) {
     throw new Error('AnswerWithText requires at least one correct answer');
   }
-  
 };
 
 type ContentShape = Question_AnswerWithText_Config['content'];
@@ -36,12 +52,9 @@ export type Question_AnswerWithText_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
-> =
-  Question_AnswerWithText_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content, Added, Languages> & {
-      
-    };
-  };
+> = Question_AnswerWithText_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {};
+};
 
 /** A Question reuses ContentBlocks but never mutates their publication contexts. */
 export const defineAnswerWithText = <
@@ -51,9 +64,7 @@ export const defineAnswerWithText = <
 >(
   config: Omit<Question_AnswerWithText_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      
-    };
+    content: Content & QuestionChildrenSupporting<Languages, Content> & {};
   } & ConfigWithLanguages<Question_AnswerWithText_Config, Languages>,
 ) => {
   validate(config);
@@ -63,16 +74,15 @@ export const defineAnswerWithText = <
   const slug = config.slug;
   const initialContent = {
     ...snapshotCommonContent(config.content),
-    
   } as Content;
   // Transitional authored access; never pass these mutable objects into Build.
   const content = {
     ...snapshotCommonContent(initialContent),
-    
   } as Content;
 
-  
-  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_AnswerWithText_Props> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_AnswerWithText_Props> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
     const own = projectQuestionLocale({ placeholder: metadata.locale.placeholder }, languages);
@@ -83,12 +93,15 @@ export const defineAnswerWithText = <
       file.locale = { ...((file.locale ?? {}) as Record<string, unknown>), correctAnswers: values };
     }
     const common = resolveCommonContent(initialContent, languages);
-    const extra = {base:{},locale:{}};
+    const extra = { base: {}, locale: {} };
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
     const resource = {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         locale: own.base,
         content: { ...common.base, ...extra.base },
       },
@@ -139,18 +152,23 @@ export const defineAnswerWithText = <
           }
         }
         const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
-        const extra = {base:{},locale:{}};
+        const extra = { base: {}, locale: {} };
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_AnswerWithText_Props>;
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_AnswerWithText_Props>;
       validateQuestionPublication(answerWithText_Props_Schema, languages, props(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
-        'Invalid AnswerWithText Question overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)),
+        'Invalid AnswerWithText Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -158,7 +176,11 @@ export const defineAnswerWithText = <
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

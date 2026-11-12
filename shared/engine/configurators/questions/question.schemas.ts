@@ -60,10 +60,7 @@ export type QuestionMetadataOverrides<Config extends { params: object; locale: o
 >;
 
 /** Parent language coverage must be a subset of each nested ContentBlock's scope. */
-export type QuestionChildrenSupporting<
-  Languages extends readonly LanguageCodes[],
-  Content extends QuestionContent,
-> = {
+export type QuestionChildrenSupporting<Languages extends readonly LanguageCodes[], Content extends QuestionContent> = {
   question: { items: ChildrenSupporting<Languages, Content['question']['items']> };
   hint?: { items: ChildrenSupporting<Languages, NonNullable<Content['hint']>['items']> };
   explanation?: { items: ChildrenSupporting<Languages, NonNullable<Content['explanation']>['items']> };

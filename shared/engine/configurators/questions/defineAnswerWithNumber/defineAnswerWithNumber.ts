@@ -2,17 +2,33 @@ import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguage
 import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
-  cloneJson, finishFiles, isRecord, ensureQuestionPatchShape, mergeQuestionContent,
-  projectQuestionLocale, resolveCommonContent, resolveBlockCollection, resolveBlockMap,
-  snapshotCommonContent, snapshotBlockCollection, validateBlockCollection, validateCommonContent,
+  cloneJson,
+  finishFiles,
+  isRecord,
+  ensureQuestionPatchShape,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  resolveCommonContent,
+  resolveBlockCollection,
+  resolveBlockMap,
+  snapshotCommonContent,
+  snapshotBlockCollection,
+  validateBlockCollection,
+  validateCommonContent,
   validateEffectiveQuestionMetadata,
-  type OrderedBlockPatch, type QuestionCommonPatch, type QuestionResourcePublication, type QuestionOverridePublication,
-  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
+  type OrderedBlockPatch,
+  type QuestionCommonPatch,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
 import {
-  answerWithNumber_Config_Schema, answerWithNumber_Override_Config_Schema,
+  answerWithNumber_Config_Schema,
+  answerWithNumber_Override_Config_Schema,
   type Question_AnswerWithNumber_Config,
   answerWithNumber_Props_Schema,
   type Question_AnswerWithNumber_Props,
@@ -25,7 +41,6 @@ const metadataSchema = answerWithNumber_Config_Schema.omit({ content: true });
 const validate = (candidate: Question_AnswerWithNumber_Config): void => {
   answerWithNumber_Config_Schema.parse(candidate);
   validateCommonContent(candidate.content);
-  
 };
 
 type ContentShape = Question_AnswerWithNumber_Config['content'];
@@ -33,12 +48,9 @@ export type Question_AnswerWithNumber_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
-> =
-  Question_AnswerWithNumber_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content, Added, Languages> & {
-      
-    };
-  };
+> = Question_AnswerWithNumber_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {};
+};
 
 /** A Question reuses ContentBlocks but never mutates their publication contexts. */
 export const defineAnswerWithNumber = <
@@ -48,9 +60,7 @@ export const defineAnswerWithNumber = <
 >(
   config: Omit<Question_AnswerWithNumber_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      
-    };
+    content: Content & QuestionChildrenSupporting<Languages, Content> & {};
   } & ConfigWithLanguages<Question_AnswerWithNumber_Config, Languages>,
 ) => {
   validate(config);
@@ -60,26 +70,28 @@ export const defineAnswerWithNumber = <
   const slug = config.slug;
   const initialContent = {
     ...snapshotCommonContent(config.content),
-    
   } as Content;
   // Transitional authored access; never pass these mutable objects into Build.
   const content = {
     ...snapshotCommonContent(initialContent),
-    
   } as Content;
 
-  
-  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_AnswerWithNumber_Props> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_AnswerWithNumber_Props> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
     const own = projectQuestionLocale(metadata.locale, languages);
     const common = resolveCommonContent(initialContent, languages);
-    const extra = {base:{},locale:{}};
+    const extra = { base: {}, locale: {} };
     const files = own.files;
     mergeQuestionContent(files, common.locale, extra.locale);
     const resource = {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         locale: own.base,
         content: { ...common.base, ...extra.base },
       },
@@ -115,18 +127,23 @@ export const defineAnswerWithNumber = <
           }
         }
         const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
-        const extra = {base:{},locale:{}};
+        const extra = { base: {}, locale: {} };
         const changed = { ...common.base, ...extra.base };
         if (Object.keys(changed).length) base.content = changed;
         mergeQuestionContent(files, common.locale, extra.locale);
       }
-      const publication = { base, locale: finishFiles(files) } as QuestionOverridePublication<Question_AnswerWithNumber_Props>;
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_AnswerWithNumber_Props>;
       validateQuestionPublication(answerWithNumber_Props_Schema, languages, props(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
-        'Invalid AnswerWithNumber Question overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)),
+        'Invalid AnswerWithNumber Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
@@ -134,7 +151,11 @@ export const defineAnswerWithNumber = <
 
   const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

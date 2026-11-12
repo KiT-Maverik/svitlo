@@ -27,12 +27,15 @@ export type Question_AnswerWithNumber_Config = z.infer<typeof answerWithNumber_C
 
 /** Only the authored Config metadata fields are independently overridable. */
 export type Question_AnswerWithNumber_MetadataOverrides = QuestionMetadataOverrides<Question_AnswerWithNumber_Config>;
-export const answerWithNumber_Override_Config_Schema: z.ZodType<Question_AnswerWithNumber_MetadataOverrides> = z.deepPartial(
-  deepStrict_Schema(z.object({
-    params: answerWithNumber_Config_Schema.shape.params,
-    locale: answerWithNumber_Config_Schema.shape.locale,
-  })),
-);
+export const answerWithNumber_Override_Config_Schema: z.ZodType<Question_AnswerWithNumber_MetadataOverrides> =
+  z.deepPartial(
+    deepStrict_Schema(
+      z.object({
+        params: answerWithNumber_Config_Schema.shape.params,
+        locale: answerWithNumber_Config_Schema.shape.locale,
+      }),
+    ),
+  );
 
 export const answerWithNumber_Props_Schema = questionBase.extend({
   params,

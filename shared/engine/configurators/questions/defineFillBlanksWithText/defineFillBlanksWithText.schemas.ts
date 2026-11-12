@@ -23,10 +23,14 @@ export const fillBlanksWithText_Config_Schema = questionBase.extend({
   ...addUnifiedLocale({ placeholder: localizationSwitch.config }),
   content: questionCommonContent_Config_Schema.extend({
     slots: z.object({
-      items: z.record(z.string(), z.object({
-        correctAnswers: z.record(z.string(), localizationSwitch.config)
-          .refine(value => Object.keys(value).length > 0),
-      })),
+      items: z.record(
+        z.string(),
+        z.object({
+          correctAnswers: z
+            .record(z.string(), localizationSwitch.config)
+            .refine(value => Object.keys(value).length > 0),
+        }),
+      ),
       order: z.array(z.string()),
     }),
   }),
@@ -34,17 +38,24 @@ export const fillBlanksWithText_Config_Schema = questionBase.extend({
 export type Question_FillBlanksWithText_Config = z.infer<typeof fillBlanksWithText_Config_Schema>;
 
 /** Only the authored Config metadata fields are independently overridable. */
-export type Question_FillBlanksWithText_MetadataOverrides = QuestionMetadataOverrides<Question_FillBlanksWithText_Config>;
-export const fillBlanksWithText_Override_Config_Schema: z.ZodType<Question_FillBlanksWithText_MetadataOverrides> = z.deepPartial(
-  deepStrict_Schema(z.object({
-    params: fillBlanksWithText_Config_Schema.shape.params,
-    locale: fillBlanksWithText_Config_Schema.shape.locale,
-  })),
-);
+export type Question_FillBlanksWithText_MetadataOverrides =
+  QuestionMetadataOverrides<Question_FillBlanksWithText_Config>;
+export const fillBlanksWithText_Override_Config_Schema: z.ZodType<Question_FillBlanksWithText_MetadataOverrides> =
+  z.deepPartial(
+    deepStrict_Schema(
+      z.object({
+        params: fillBlanksWithText_Config_Schema.shape.params,
+        locale: fillBlanksWithText_Config_Schema.shape.locale,
+      }),
+    ),
+  );
 
 export const fillBlanksWithText_Props_Schema = questionBase.extend({
   params,
-  ...addUnifiedLocale({ slots: z.array(z.object({ selector: z.string(), correctAnswers: z.array(localizationSwitch.props) })), placeholder: localizationSwitch.props }),
+  ...addUnifiedLocale({
+    slots: z.array(z.object({ selector: z.string(), correctAnswers: z.array(localizationSwitch.props) })),
+    placeholder: localizationSwitch.props,
+  }),
   content: questionCommonContent_Props_Schema,
 });
 export type Question_FillBlanksWithText_Props = Omit<z.infer<typeof fillBlanksWithText_Props_Schema>, 'content'> & {

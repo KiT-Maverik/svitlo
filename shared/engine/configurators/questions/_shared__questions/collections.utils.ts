@@ -30,9 +30,10 @@ export type OrderedBlockPatch<
   Languages extends readonly LanguageCodes[] = [],
 > = {
   items?: { [Key in keyof Children]?: Parameters<Children[Key]['build']['overrides']>[0] | false };
-  additionalItems?: Added & ChildrenSupporting<Languages, Added> & {
-    [Key in keyof Children]?: never;
-  };
+  additionalItems?: Added &
+    ChildrenSupporting<Languages, Added> & {
+      [Key in keyof Children]?: never;
+    };
   order?: Extract<keyof Children | keyof NoInfer<Added>, string>[];
 };
 /** Broad internal runtime input; public OrderedBlockPatch retains literal key and language inference. */
@@ -81,12 +82,13 @@ export const snapshotBlockCollection = <T>(value: OrderedBlocks<T>): OrderedBloc
   order: [...value.order],
 });
 
-export const snapshotCommonContent = <C extends QuestionCommonContent>(value: C): C => ({
-  ...value,
-  question: snapshotBlockCollection(value.question),
-  ...(value.hint !== undefined ? { hint: snapshotBlockCollection(value.hint) } : {}),
-  ...(value.explanation !== undefined ? { explanation: snapshotBlockCollection(value.explanation) } : {}),
-}) as C;
+export const snapshotCommonContent = <C extends QuestionCommonContent>(value: C): C =>
+  ({
+    ...value,
+    question: snapshotBlockCollection(value.question),
+    ...(value.hint !== undefined ? { hint: snapshotBlockCollection(value.hint) } : {}),
+    ...(value.explanation !== undefined ? { explanation: snapshotBlockCollection(value.explanation) } : {}),
+  }) as C;
 
 export function validateBlock(child: unknown, key: string): asserts child is Block {
   const errors = validateSluggedConfiguratorMap({ [key]: child }, contentBlockTypes, {
@@ -95,10 +97,15 @@ export function validateBlock(child: unknown, key: string): asserts child is Blo
   });
   if (errors.length) throw new Error(errors.map(issue => issue.message).join('; '));
   if (
-    !isRecord(child) || !isRecord(child.config) || !isRecord(child.config.base) ||
-    child.config.base.slug !== key || child.config.base.id !== child.id ||
-    child.config.base.type !== child.type || !isRecord(child.build) ||
-    typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function'
+    !isRecord(child) ||
+    !isRecord(child.config) ||
+    !isRecord(child.config.base) ||
+    child.config.base.slug !== key ||
+    child.config.base.id !== child.id ||
+    child.config.base.type !== child.type ||
+    !isRecord(child.build) ||
+    typeof child.build.props !== 'function' ||
+    typeof child.build.overrides !== 'function'
   ) {
     throw new Error('Invalid ContentBlock identity or Build API: ' + key);
   }
@@ -120,11 +127,17 @@ export const validateCommonContent = (content: QuestionCommonContent): void => {
 /** Propagate publication scope. Older ContentBlocks currently ignore extra arguments;
  * the selected-language Props parse below prevents incomplete child translations. */
 const readResource = (child: Block, languages: readonly LanguageCodes[]): BlockResource =>
-  cloneJson((child.build.props as unknown as (options: { languages: readonly LanguageCodes[] }) => BlockResource)({ languages }));
+  cloneJson(
+    (child.build.props as unknown as (options: { languages: readonly LanguageCodes[] }) => BlockResource)({
+      languages,
+    }),
+  );
 const readPatch = (child: Block, patch: unknown, languages: readonly LanguageCodes[]): BlockPatch =>
-  cloneJson((child.build.overrides as unknown as (input: never, options: { languages: readonly LanguageCodes[] }) => BlockPatch)(
-    patch as never, { languages },
-  ));
+  cloneJson(
+    (
+      child.build.overrides as unknown as (input: never, options: { languages: readonly LanguageCodes[] }) => BlockPatch
+    )(patch as never, { languages }),
+  );
 
 const propsSchemas: Record<string, { parse: (value: unknown) => unknown }> = {
   text: text_Props_Schema,
@@ -145,7 +158,11 @@ const validateChildPublication = (value: Fragment, language: LanguageCodes): voi
     schema.parse(value);
   } catch (error) {
     throw new Error(
-      'Invalid ContentBlock publication for ' + language + ' (' + String(value.slug) + '): ' +
+      'Invalid ContentBlock publication for ' +
+        language +
+        ' (' +
+        String(value.slug) +
+        '): ' +
         (error instanceof Error ? error.message : String(error)),
       { cause: error },
     );
@@ -156,9 +173,7 @@ const validateChildPublication = (value: Fragment, language: LanguageCodes): voi
 export const resolveChild = (child: Block, languages: readonly LanguageCodes[], patch?: unknown) => {
   const original = readResource(child, languages);
   const builtPatch = patch === undefined ? undefined : readPatch(child, patch, languages);
-  const base = builtPatch
-    ? mergeForValidation(cloneJson(original.base), builtPatch.base)
-    : cloneJson(original.base);
+  const base = builtPatch ? mergeForValidation(cloneJson(original.base), builtPatch.base) : cloneJson(original.base);
   const locale: Files<Fragment> = {};
   for (const language of languages) {
     const translated = mergeForValidation(cloneJson(original.base), original.locale?.[language] ?? {});
@@ -186,7 +201,8 @@ export const resolveBlockCollection = (
   validateBlockCollection(source, path, nonEmpty);
   if (patch !== undefined && !isRecord(patch)) throw new Error(path + ' override must be an object');
   for (const key of Object.keys(patch ?? {})) {
-    if (!['items', 'additionalItems', 'order'].includes(key)) throw new Error('Unknown ' + path + ' override field: ' + key);
+    if (!['items', 'additionalItems', 'order'].includes(key))
+      throw new Error('Unknown ' + path + ' override field: ' + key);
   }
   const changes = patch?.items ?? {};
   const additions = patch?.additionalItems ?? {};
@@ -215,10 +231,7 @@ export const resolveBlockCollection = (
   if (errors.length) throw new Error(errors.map(issue => issue.path + ': ' + issue.message).join('; '));
   if (nonEmpty && order.length === 0) throw new Error(path + ' must contain at least one active item');
   const entries = order.map(key => resolveChild(items[key] as Block, languages, childPatches[key]));
-  if (
-    nonEmpty &&
-    entries.every(entry => isRecord(entry.base.params) && entry.base.params.disabled === true)
-  ) {
+  if (nonEmpty && entries.every(entry => isRecord(entry.base.params) && entry.base.params.disabled === true)) {
     throw new Error(path + ' must contain an enabled ContentBlock');
   }
   const locale: Files<Fragment[]> = {};
@@ -264,7 +277,13 @@ export const resolveCommonContent = (
     if (patch && patch[field] === undefined) continue;
     const original = source[field] ?? { items: {}, order: [] };
     if (!patch && field !== 'question' && source[field] === undefined) continue;
-    const result = resolveBlockCollection(original, languages, patch?.[field], 'content.' + field, field === 'question');
+    const result = resolveBlockCollection(
+      original,
+      languages,
+      patch?.[field],
+      'content.' + field,
+      field === 'question',
+    );
     base[field] = result.base;
     for (const [language, translated] of Object.entries(result.locale)) {
       (locale[language as LanguageCodes] ??= {})[field] = translated;
@@ -279,7 +298,7 @@ export const addContentLocales = (
   translations: Files<unknown>,
 ): void => {
   for (const [language, translated] of Object.entries(translations)) {
-    ((files[language as LanguageCodes] ??= {}).content ??= {});
+    (files[language as LanguageCodes] ??= {}).content ??= {};
     const content = files[language as LanguageCodes]!.content as Record<string, unknown>;
     content[field] = cloneJson(translated);
   }

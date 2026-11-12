@@ -15,19 +15,23 @@ type Files<T> = Partial<Record<LanguageCodes, T>>;
 type Plain = Record<string, unknown>;
 type NestedResult<T> = { base: T; locale: Files<T> };
 
-export const snapshotNestedCollection = <T extends NestedCollection>(source: T): T => ({
-  ...source,
-  items: Object.fromEntries(Object.entries(source.items).map(([key, item]) => [key, { ...item }])),
-  order: [...source.order],
-}) as T;
+export const snapshotNestedCollection = <T extends NestedCollection>(source: T): T =>
+  ({
+    ...source,
+    items: Object.fromEntries(Object.entries(source.items).map(([key, item]) => [key, { ...item }])),
+    order: [...source.order],
+  }) as T;
 
 const validateNested = (collection: NestedCollection, path: string, fields: readonly string[]): void => {
   const issues = validateOrderedKeys(collection, { path });
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
   if (collection.order.length === 0) throw new Error(path + ' must contain at least one item');
   for (const [key, entry] of Object.entries(collection.items)) {
-    if (!isRecord(entry) || Object.keys(entry).length !== fields.length ||
-      fields.some(field => !Object.hasOwn(entry, field))) {
+    if (
+      !isRecord(entry) ||
+      Object.keys(entry).length !== fields.length ||
+      fields.some(field => !Object.hasOwn(entry, field))
+    ) {
       throw new Error('Invalid nested Question item at ' + path + '.' + key);
     }
     for (const field of fields) {
@@ -86,7 +90,7 @@ const resolveNested = (
   const locale: Files<Record<string, Plain>> = {};
   for (const key of order) {
     const entry = active[key] as Entry;
-    const changes = changed[key] === false ? undefined : changed[key] as Plain | undefined;
+    const changes = changed[key] === false ? undefined : (changed[key] as Plain | undefined);
     const built: Record<string, ReturnType<typeof resolveChild>> = {};
     for (const field of fields) {
       built[field] = resolveChild(entry[field] as Block, languages, changes?.[field]);
@@ -112,14 +116,18 @@ const resolveNested = (
 };
 
 export const resolvePairMap = (
-  source: NestedCollection, languages: readonly LanguageCodes[], patch?: NestedPatch,
+  source: NestedCollection,
+  languages: readonly LanguageCodes[],
+  patch?: NestedPatch,
 ): NestedResult<Record<string, Plain>> => {
   const built = resolveNested(source, languages, patch, ['left', 'right'], 'content.pairs');
   return { base: built.base, locale: built.locale };
 };
 
 export const resolveSlotBlocks = (
-  source: NestedCollection, languages: readonly LanguageCodes[], patch?: NestedPatch,
+  source: NestedCollection,
+  languages: readonly LanguageCodes[],
+  patch?: NestedPatch,
 ): NestedResult<Array<{ selector: string; correctAnswer: Plain }>> => {
   const built = resolveNested(source, languages, patch, ['correctAnswer'], 'content.slots');
   const mapArray = (records: Record<string, Plain>) =>

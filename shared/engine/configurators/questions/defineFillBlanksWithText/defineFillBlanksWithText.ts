@@ -3,12 +3,7 @@ import type { LanguageCodes } from '#schemas';
 import { deepStrict_Schema, camelCase_Schema } from '#schemas';
 import { z } from 'zod';
 
-import {
-  mergeForValidation,
-  onlyLocales,
-  onlyStrings,
-  validateOrderedKeys,
-} from '../../_shared__configurators';
+import { mergeForValidation, onlyLocales, onlyStrings, validateOrderedKeys } from '../../_shared__configurators';
 import {
   cloneJson,
   ensureQuestionPatchShape,
@@ -22,8 +17,11 @@ import {
   validateCommonContent,
   validateEffectiveQuestionMetadata,
   type QuestionCommonPatch,
-  type QuestionResourcePublication, type QuestionOverridePublication,
-  resolvePublicationLanguages, validateQuestionPublication, type PublicationLanguageOptions,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
 } from '../_shared__questions';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import type { QuestionChildrenSupporting } from '../question.schemas';
@@ -48,8 +46,8 @@ type SlotsOverride<
   Languages extends readonly LanguageCodes[],
 > = {
   items?: SlotChanges<Content>;
-  additionalItems?: AddedSlots & RequireLanguages<AddedSlots, Languages> &
-    { [Key in keyof Content['slots']['items']]?: never };
+  additionalItems?: AddedSlots &
+    RequireLanguages<AddedSlots, Languages> & { [Key in keyof Content['slots']['items']]?: never };
   order?: Extract<keyof Content['slots']['items'] | keyof NoInfer<AddedSlots>, string>[];
 };
 export type Question_FillBlanksWithText_Overrides<
@@ -57,12 +55,11 @@ export type Question_FillBlanksWithText_Overrides<
   Added extends Record<string, ContentBlock_Configurator> = {},
   Languages extends readonly LanguageCodes[] = [],
   AddedSlots extends Record<string, Slot> = {},
-> =
-  Question_FillBlanksWithText_MetadataOverrides & {
-    content?: QuestionCommonPatch<Content, Added, Languages> & {
-      slots?: SlotsOverride<Content, AddedSlots, Languages>;
-    };
+> = Question_FillBlanksWithText_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {
+    slots?: SlotsOverride<Content, AddedSlots, Languages>;
   };
+};
 
 const metadataSchema = fillBlanksWithText_Config_Schema.omit({ content: true });
 const slotSchema = fillBlanksWithText_Config_Schema.shape.content.shape.slots.shape.items.valueType;
@@ -92,9 +89,10 @@ export const defineFillBlanksWithText = <
 >(
   config: Omit<Question_FillBlanksWithText_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content & QuestionChildrenSupporting<Languages, Content> & {
-      slots: RequireLanguages<Content['slots'], Languages>;
-    };
+    content: Content &
+      QuestionChildrenSupporting<Languages, Content> & {
+        slots: RequireLanguages<Content['slots'], Languages>;
+      };
   } & ConfigWithLanguages<Question_FillBlanksWithText_Config, Languages>,
 ) => {
   validate(config);
@@ -114,11 +112,14 @@ export const defineFillBlanksWithText = <
     slots: cloneJson(initialContent.slots),
   } as Content;
 
-  const projectSlots = (languages: readonly LanguageCodes[], patch?: {
-    items?: SlotChanges<Content>;
-    additionalItems?: Record<string, Slot>;
-    order?: string[];
-  }) => {
+  const projectSlots = (
+    languages: readonly LanguageCodes[],
+    patch?: {
+      items?: SlotChanges<Content>;
+      additionalItems?: Record<string, Slot>;
+      order?: string[];
+    },
+  ) => {
     if (patch !== undefined && !isRecord(patch)) throw new Error('content.slots must be an object');
     for (const key of Object.keys(patch ?? {})) {
       if (!['items', 'additionalItems', 'order'].includes(key)) {
@@ -149,9 +150,7 @@ export const defineFillBlanksWithText = <
       } else {
         const validated = slotPatchSchema.parse(change);
         translatedChanges[key] = validated;
-        effective[key] = slotSchema.parse(
-          mergeForValidation(cloneJson(initialContent.slots.items[key]), validated),
-        );
+        effective[key] = slotSchema.parse(mergeForValidation(cloneJson(initialContent.slots.items[key]), validated));
       }
     }
     if (structural && patch?.order === undefined) {
@@ -165,23 +164,24 @@ export const defineFillBlanksWithText = <
     if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
     if (order.length === 0) throw new Error('At least one active text slot is required');
 
-    const active: SlotMap = Object.fromEntries(
-      order.map(key => [key, effective[key] as Slot]),
-    );
+    const active: SlotMap = Object.fromEntries(order.map(key => [key, effective[key] as Slot]));
     const resolved = projectSlotList(active, languages, undefined, order);
     if (patch === undefined) return resolved;
 
-    const modifies =
-      Object.keys(changes).length > 0 ||
-      Object.keys(additions).length > 0 ||
-      patch.order !== undefined;
+    const modifies = Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.order !== undefined;
     if (!modifies) return { locale: {}, base: undefined };
 
-    const affected = structural || patch.order !== undefined
-      ? Object.keys(resolved.locale)
-      : Object.keys(
-          projectSlotList(initialContent.slots.items, languages, translatedChanges as never, initialContent.slots.order).locale,
-        );
+    const affected =
+      structural || patch.order !== undefined
+        ? Object.keys(resolved.locale)
+        : Object.keys(
+            projectSlotList(
+              initialContent.slots.items,
+              languages,
+              translatedChanges as never,
+              initialContent.slots.order,
+            ).locale,
+          );
     const locale: typeof resolved.locale = {};
     for (const code of affected) {
       const language = code as LanguageCodes;
@@ -206,7 +206,9 @@ export const defineFillBlanksWithText = <
     return own;
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): QuestionResourcePublication<Question_FillBlanksWithText_Props> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_FillBlanksWithText_Props> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyMetadata();
     const own = ownProps(metadata, languages);
@@ -261,7 +263,7 @@ export const defineFillBlanksWithText = <
         if (patch.content.slots !== undefined) {
           const projected = projectSlots(languages, patch.content.slots);
           if (projected.base !== undefined) {
-            (base.locale ??= {} as Record<string, unknown>);
+            base.locale ??= {} as Record<string, unknown>;
             (base.locale as Record<string, unknown>).slots = projected.base;
           }
           for (const [language, slots] of Object.entries(projected.locale)) {
@@ -272,13 +274,18 @@ export const defineFillBlanksWithText = <
           }
         }
       }
-      const publication = { base, locale: finishFiles(own.files) } as QuestionOverridePublication<Question_FillBlanksWithText_Props>;
+      const publication = {
+        base,
+        locale: finishFiles(own.files),
+      } as QuestionOverridePublication<Question_FillBlanksWithText_Props>;
       validateQuestionPublication(fillBlanksWithText_Props_Schema, languages, props(options), publication);
       return publication;
     } catch (error) {
       throw new Error(
-        'Invalid FillBlanksWithText Question overrides for ' + id + ': ' +
-        (error instanceof Error ? error.message : String(error)),
+        'Invalid FillBlanksWithText Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
