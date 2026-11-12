@@ -85,8 +85,9 @@ export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Override
 );
 
 type ExistingPatches<Items extends Record<string, object>> = {
-  [Key in keyof Items]?: Items[Key] extends { build: { overrides: (patch: infer Patch) => unknown } }
-    ? Patch | false : never;
+  [Key in keyof Items]?: Items[Key] extends { build: { overrides: (...args: never[]) => unknown } }
+    ? Parameters<Items[Key]['build']['overrides']>[0] | false
+    : never;
 };
 export type Lesson_Ordered_Overrides<
   Items extends Record<string, object>,
