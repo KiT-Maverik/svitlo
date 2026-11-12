@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import { defineText } from '../../contentBlocks/defineText/defineText';
 import { defineContentSection } from '../../sections/defineContentSection/defineContentSection';
+import { defineQuizSection } from '../../sections/defineQuizSection/defineQuizSection';
 import { defineLesson } from './defineLesson';
 import { lesson_Config_Schema, lesson_Props_Schema, lessonConfigurator_Schema } from './defineLesson.schemas';
 
@@ -96,4 +97,63 @@ test('Lesson rejects wrong section keys and unsupported child types', () => {
     section: { items: { wrongKey: section }, order: ['wrongKey'] },
     flashcards: { items: {}, order: [] },
   }), /matching .* configurator/);
+});
+
+test('requireQuiz demands an enabled Quiz when authored and after Section overrides', () => {
+  const lessonInput = {
+    id: id('07'), slug: 'quizRequiredLesson', type: 'lesson' as const, skills: [],
+    params: {
+      requireQuiz: true, languages: ['en', 'uk'] as const,
+      sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+    },
+    locale: { title: { en: 'Quiz required', uk: 'Квіз обов’язковий' } },
+    flashcards: { items: {}, order: [] },
+  };
+
+  assert.throws(() => defineLesson({
+    ...lessonInput,
+    section: { items: { intro: section }, order: ['intro'] },
+  }), /at least one enabled Quiz/);
+
+  const quiz = defineQuizSection<'knowledgeQuiz', {}, ['en', 'uk']>({
+    id: id('08'), slug: 'knowledgeQuiz', type: 'quiz',
+    params: {
+      selection: { mode: 'all' },
+      layout: { mode: 'stack' },
+      feedbackMode: 'after-completion',
+      interaction: {
+        retries: 0, showErrors: true, showCorrectAnswers: false,
+        allowExplanations: false, allowDeferring: false,
+        allowQuestionNavigation: false, skippable: false,
+      },
+      results: { visibility: 'after-review', showScore: true },
+    },
+    locale: { title: 'Knowledge check', navigationLabel: 'Quiz' },
+    content: { items: {}, order: [] },
+  });
+  const required = defineLesson({
+    ...lessonInput,
+    section: {
+      items: { intro: section, knowledgeQuiz: quiz },
+      order: ['intro', 'knowledgeQuiz'],
+    },
+  });
+  assert.doesNotThrow(() => required.build.props());
+  assert.throws(() => required.build.overrides({
+    section: { items: { knowledgeQuiz: false }, order: ['intro'] },
+  }), /at least one enabled Quiz/);
+  assert.throws(() => required.build.overrides({
+    section: { items: { knowledgeQuiz: { params: { disabled: true } } } },
+  }), /at least one enabled Quiz/);
+  assert.doesNotThrow(() => required.build.overrides({
+    section: { items: { intro: false }, order: ['knowledgeQuiz'] },
+  }));
+
+  assert.throws(() => defineLesson({
+    ...lessonInput,
+    section: { items: { knowledgeQuiz: quiz }, order: ['knowledgeQuiz'] },
+    // A Quiz that is disabled at authoring time must not satisfy requireQuiz either.
+  }).build.overrides({
+    section: { items: { knowledgeQuiz: { params: { disabled: true } } } },
+  }), /at least one enabled Quiz/);
 });
