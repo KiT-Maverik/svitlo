@@ -20,8 +20,16 @@ const params = questionBase.shape.params;
 
 export const fillBlanksWithText_Config_Schema = questionBase.extend({
   params,
-  ...addUnifiedLocale({ slots: z.record(z.string(), z.object({ correctAnswers: z.record(z.string(), localizationSwitch.config).refine(value => Object.keys(value).length > 0) })), placeholder: localizationSwitch.config }),
-  content: questionCommonContent_Config_Schema,
+  ...addUnifiedLocale({ placeholder: localizationSwitch.config }),
+  content: questionCommonContent_Config_Schema.extend({
+    slots: z.object({
+      items: z.record(z.string(), z.object({
+        correctAnswers: z.record(z.string(), localizationSwitch.config)
+          .refine(value => Object.keys(value).length > 0),
+      })),
+      order: z.array(z.string()),
+    }),
+  }),
 });
 export type Question_FillBlanksWithText_Config = z.infer<typeof fillBlanksWithText_Config_Schema>;
 
