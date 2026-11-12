@@ -163,7 +163,7 @@ export const defineModule = <
     const files: Partial<Record<LanguageCodes, DeepPartial<Module_Props>>> = {};
     for (const [language, fields] of Object.entries(own.locale ?? {})) {
       files[language as LanguageCodes] = {
-        locale: fields as DeepPartial<Module_Locale<'props'>,
+        locale: fields as DeepPartial<Module_Locale<'props'>>,
       };
     }
     return {
