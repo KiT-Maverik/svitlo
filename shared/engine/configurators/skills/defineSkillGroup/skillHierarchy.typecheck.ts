@@ -42,13 +42,13 @@ defineSkillDomain<'invalidDomain', { group: typeof group }, {}, ['en', 'uk']>({
 });
 
 // Existing child patches are keyed strictly by the author's literal slug.
-group.build.overrides({ skills: { items: { both: { name: { uk: 'Двоє' } } } } });
+group.build.overrides({ skills: { items: { both: { name: { uk: 'Двоє' } } } } }, { languages: ['uk'] });
 // @ts-expect-error Identity fields are not overridable.
-both.build.overrides({ slug: 'altered' });
+both.build.overrides({ slug: 'altered' }, { languages: ['en', 'uk'] });
 group.build.overrides({ skills: { items: {
   // @ts-expect-error Unknown Skill child key must be rejected at the type boundary.
   missing: { name: 'Unknown' },
-} } });
+} } }, { languages: ['uk'] });
 defineSkill<'incomplete', ['en', 'uk']>({
   id, slug: 'incomplete',
   // @ts-expect-error Unsupported language cannot be omitted from a complete authored dictionary.
