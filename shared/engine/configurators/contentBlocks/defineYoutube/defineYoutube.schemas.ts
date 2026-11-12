@@ -46,7 +46,7 @@ export const youtube_Override_Config_Schema: z.ZodType<ContentBlock_Youtube_Over
   ),
 );
 
-export type ContentBlock_Youtube_ResourceBase = z.infer<typeof youtubeBase> & {
+export type ContentBlock_Youtube_PropsBase = z.infer<typeof youtubeBase> & {
   locale?: DeepPartial<ContentBlock_Youtube_Locale<'props'>>;
 };
 

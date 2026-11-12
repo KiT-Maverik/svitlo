@@ -7,7 +7,6 @@ import {
   onlyStrings,
   splitLocalizedFields,
   wrapLocale,
-  type ResourceAssembler,
   type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateSceneEntry } from '../_shared__contentBlocks';
@@ -17,13 +16,13 @@ import {
   type ContentBlock_Scene_Config,
   type ContentBlock_Scene_Locale,
   type ContentBlock_Scene_Overrides,
-  type ContentBlock_Scene_ResourceBase,
+  type ContentBlock_Scene_PropsBase,
 } from './defineScene.schemas';
 
 type SceneLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Scene_Locale<'props'>>>>;
 type SceneEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Scene_Locale<'props'>>>;
-type SceneAssembly<Base, LocaleFiles = SceneLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
-type SceneOverrideBase = {
+type ScenePropsPublication<Base, LocaleFiles = SceneLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type SceneOverridePropsBase = {
   params?: ContentBlock_Scene_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>;
 };
@@ -37,7 +36,7 @@ const validate = (config: ContentBlock_Scene_Config): void => {
   parseAndValidate(config);
 };
 
-const assembleScene = (config: ContentBlock_Scene_Config): SceneAssembly<ContentBlock_Scene_ResourceBase> => {
+const buildSceneProps = (config: ContentBlock_Scene_Config): ScenePropsPublication<ContentBlock_Scene_PropsBase> => {
   const { id, type, slug, params } = config;
   const { base: invariant, locale } = splitLocalizedFields(config.locale);
   const base = {
@@ -48,11 +47,11 @@ const assembleScene = (config: ContentBlock_Scene_Config): SceneAssembly<Content
     ...(Object.keys(invariant).length
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
       : {}),
-  } satisfies ContentBlock_Scene_ResourceBase;
+  } satisfies ContentBlock_Scene_PropsBase;
   return { base, locale: locale as unknown as SceneLocaleFiles | undefined };
 };
 
-const assembleScenePatch = (patch: ContentBlock_Scene_Overrides): SceneAssembly<SceneOverrideBase> => {
+const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublication<SceneOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
   return {
     base: {
@@ -75,8 +74,8 @@ const assembleScenePatch = (patch: ContentBlock_Scene_Overrides): SceneAssembly<
  * Runtime localization and translation completeness are handled by publication.
  */
 /**
- * Stateless authored ContentBlock. Assembly validates isolated snapshots and
- * emits either complete resources or exclusively sparse override fields.
+ * Stateless ContentBlock Build API validates isolated snapshots and emits
+ * either complete Props or exclusively sparse override fields.
  */
 export const defineScene = <const Slug extends string>(
   config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug },
@@ -93,25 +92,21 @@ export const defineScene = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Scene_Config>;
 
-  function resource(): SceneAssembly<ContentBlock_Scene_ResourceBase>;
-  function resource(options: { embed: true }): SceneAssembly<ContentBlock_Scene_ResourceBase, SceneEmbeddedLocaleFiles>;
-  function resource(options?: {
+  function props(): ScenePropsPublication<ContentBlock_Scene_PropsBase>;
+  function props(options: { embed: true }): ScenePropsPublication<ContentBlock_Scene_PropsBase, SceneEmbeddedLocaleFiles>;
+  function props(options?: {
     embed?: true;
-  }): SceneAssembly<ContentBlock_Scene_ResourceBase, SceneLocaleFiles | SceneEmbeddedLocaleFiles> {
-    const assembled = assembleScene(copyAuthored());
-    return options?.embed ? { base: assembled.base, locale: wrapLocale(assembled.locale) } : assembled;
+  }): ScenePropsPublication<ContentBlock_Scene_PropsBase, SceneLocaleFiles | SceneEmbeddedLocaleFiles> {
+    const publication = buildSceneProps(parseAndValidate(copyAuthored()));
+    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
   }
-  const resourceApi: ResourceAssembler<
-    ContentBlock_Scene_ResourceBase,
-    DeepPartial<ContentBlock_Scene_Locale<'props'>>
-  > = resource;
 
-  const overrides = (patch: ContentBlock_Scene_Overrides): SceneAssembly<SceneOverrideBase> => {
+  const overrides = (patch: ContentBlock_Scene_Overrides): ScenePropsPublication<SceneOverridePropsBase> => {
     try {
       const parsedPatch = scene_Override_Config_Schema.parse(patch);
       const effective = scene_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return assembleScenePatch(structuredClone(parsedPatch));
+      return buildScenePatch(structuredClone(parsedPatch));
     } catch (error) {
       throw new Error(`Invalid Scene overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,
@@ -123,7 +118,7 @@ export const defineScene = <const Slug extends string>(
     slug,
     type,
     validate,
-    assemble: { resource: resourceApi, overrides },
+    build: { props, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Scene_Locale<'config'>> } => ({

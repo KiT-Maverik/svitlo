@@ -33,7 +33,7 @@ export const markdown_Override_Config_Schema: z.ZodType<ContentBlock_Markdown_Ov
   ),
 );
 
-export type ContentBlock_Markdown_ResourceBase = z.infer<typeof markdownBase> & {
+export type ContentBlock_Markdown_PropsBase = z.infer<typeof markdownBase> & {
   locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
 };
 
