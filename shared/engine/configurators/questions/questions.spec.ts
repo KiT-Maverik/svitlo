@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-
 import { defineText } from '../contentBlocks/defineText';
 import {
   defineSelectOneAnswer,
@@ -12,145 +11,169 @@ import {
   defineBuildAnswerWithBlocks,
   defineFillBlanksWithBlocks,
   defineFillBlanksWithText,
-  selectOneAnswer_Config_Schema,
-  answerWithText_Config_Schema,
+  answerWithNumber_Config_Schema,
   answerWithText_Props_Schema,
 } from './index';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d6a';
-const block = defineText({
-  id,
-  slug: 'promptBlock',
-  type: 'text',
-  params: {},
-  locale: { value: { en: 'Hello', uk: 'Привіт' } },
+const block = <const Slug extends string>(slug: Slug, text: string) =>
+  defineText({ id, slug, type: 'text', params: {}, locale: { value: text } });
+const promptBlock = block('promptBlock', 'Question?');
+const yes = block('yes', 'Yes');
+const no = block('no', 'No');
+const maybe = block('maybe', 'Maybe');
+const extra = block('extra', 'Extra');
+const collection = <T extends { slug: string }>(value: T) => ({
+  items: { [value.slug]: value }, order: [value.slug],
 });
+const prompt = { question: collection(promptBlock) };
 const params = { assessmentMethod: 'retrieval' as const, restrictions: ['dyslexia' as const] };
-const prompt = { question: [block] as [typeof block] };
 const localized = { en: 'Answer', uk: 'Відповідь' } as const;
 const common = <const Type extends string>(type: Type) => ({
-  id,
-  slug: 'questionOne',
-  type,
-  params,
-  locale: {},
-  content: prompt,
+  id, slug: 'questionOne' as const, type, params, locale: {}, content: prompt,
 });
+const answers = {
+  correct: collection(yes),
+  incorrect: collection(no),
+  distractors: collection(maybe),
+};
 
-test('all nine Question configurators expose the same small lifecycle surface', () => {
-  const answers = { correct: { yes: block }, incorrect: { no: block }, distractors: { maybe: block } };
-  const questions = [
+test('all nine Questions expose immutable stateless Build instead of mutable overrides', () => {
+  const instances = [
     defineSelectOneAnswer({ ...common('selectOneAnswer'), content: { ...prompt, answers } }),
     defineSelectMultipleAnswers({ ...common('selectMultipleAnswers'), content: { ...prompt, answers } }),
     defineMatchBlocks({
       ...common('matchBlocks'),
-      content: { ...prompt, pairs: { pair: { left: block, right: block } } },
+      content: { ...prompt, pairs: { items: { pairOne: { left: yes, right: no } }, order: ['pairOne'] } },
     }),
     defineAnswerWithText({
       ...common('answerWithText'),
-      locale: { correctAnswers: [localized], placeholder: localized },
+      locale: { correctAnswers: { first: 'Yes', second: localized }, placeholder: localized },
     }),
     defineAnswerWithNumber({
       ...common('answerWithNumber'),
       params: { ...params, correctAnswers: [42] },
       locale: { placeholder: localized },
     }),
-    defineOrderSequence({ ...common('orderSequence'), content: { ...prompt, sequence: [block] as [typeof block] } }),
+    defineOrderSequence({
+      ...common('orderSequence'), content: { ...prompt, sequence: collection(yes) },
+    }),
     defineBuildAnswerWithBlocks({
-      ...common('buildAnswerWithBlocks'),
-      locale: { placeholder: localized },
-      content: { ...prompt, correctSequence: [block] as [typeof block], distractors: [block] },
+      ...common('buildAnswerWithBlocks'), locale: { placeholder: localized },
+      content: { ...prompt, correctSequence: collection(yes), distractors: collection(no) },
     }),
     defineFillBlanksWithBlocks({
-      ...common('fillBlanksWithBlocks'),
-      locale: { placeholder: localized },
-      content: { ...prompt, slots: [{ selector: 'slot', correctAnswer: block }], distractors: [block] },
+      ...common('fillBlanksWithBlocks'), locale: { placeholder: localized },
+      content: {
+        ...prompt,
+        slots: { items: { slotOne: { correctAnswer: yes } }, order: ['slotOne'] },
+        distractors: collection(no),
+      },
     }),
     defineFillBlanksWithText({
       ...common('fillBlanksWithText'),
-      locale: { slots: [{ selector: 'slot', correctAnswers: [localized] }], placeholder: localized },
+      locale: { slots: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } }, placeholder: localized },
     }),
   ];
 
-  for (const item of questions) {
-    assert.equal(item.id, id);
-    assert.equal(item.slug, 'questionOne');
-    assert.equal(item.type, item.config.base.type);
-    assert.strictEqual(item.content.question[0], block);
-    assert.equal(item.config.base.params.assessmentMethod, 'retrieval');
-    assert.equal(typeof item.config.validate, 'function');
-    assert.equal(typeof item.config.locales, 'function');
-    item.override.params({ restrictions: [] });
-    assert.deepEqual(item.config.overrides.params, { restrictions: [] });
-    item.disable();
-    assert.deepEqual(item.config.overrides.params, { disabled: true });
+  for (const question of instances) {
+    assert.equal(question.id, id);
+    assert.equal(question.slug, 'questionOne');
+    assert.equal(question.config.base.type, question.type);
+    assert.equal(typeof question.build.props, 'function');
+    assert.equal(typeof question.build.overrides, 'function');
+    assert.equal('override' in question, false);
+    assert.equal('disable' in question, false);
+    assert.equal('overrides' in question.config, false);
+    const a = question.build.props();
+    const b = question.build.props();
+    assert.deepEqual(a, b);
+    assert.deepEqual(a.base.content.question[0].slug, 'promptBlock');
+    assert.doesNotThrow(() => JSON.stringify(a));
+    assert.doesNotThrow(() => JSON.stringify(question.build.overrides({ params: { disabled: true } })));
+    assert.throws(() => question.build.overrides({ type: 'modified' } as never), /overrides/);
+    assert.throws(() => question.build.overrides({ locale: { unexpected: 'X' } } as never), /overrides/);
   }
-  assert.strictEqual(questions[0].content.answers.correct.yes, block);
-  questions[0].content.question.push(block);
-  assert.equal(questions[0].content.question.length, 2);
-  assert.strictEqual(questions[2].content.pairs.pair.left, block);
-  assert.strictEqual(questions[5].content.sequence[0], block);
-  assert.strictEqual(questions[6].content.correctSequence[0], block);
-  assert.strictEqual(questions[7].content.slots[0].correctAnswer, block);
+  assert.equal(instances[0].build.props().base.content.answers.correct.yes.slug, 'yes');
+  assert.equal(instances[2].build.props().base.content.pairs.pairOne.left.slug, 'yes');
+  assert.equal(instances[5].build.props().base.content.sequence[0].slug, 'yes');
+  assert.equal(instances[6].build.props().base.content.correctSequence[0].slug, 'yes');
+  assert.equal(instances[7].build.props().base.content.slots[0].selector, 'slotOne');
 });
 
-test('Question metadata validation does not recursively parse ContentBlocks', () => {
-  const content = { ...prompt, answers: { correct: { yes: block }, incorrect: {}, distractors: {} } };
-  const input = { ...common('selectOneAnswer'), content };
-  const question = defineSelectOneAnswer(input);
-  assert.equal(selectOneAnswer_Config_Schema.safeParse(input).success, true);
-  assert.doesNotThrow(() => question.config.validate(input));
-  assert.throws(() => question.config.validate({ ...input, content: { ...content, question: [] as never } }));
-  assert.throws(() =>
-    defineSelectOneAnswer({ ...input, params: { assessmentMethod: 'invalid' as never, restrictions: [] } }),
-  );
-  assert.strictEqual(question.content, input.content);
-  question.content.answers.correct.yes.override.locale({ value: 'Updated' });
-  assert.deepEqual(block.config.overrides.locale, { value: 'Updated' });
+test('Question prompt collections support additions, disables, ordering, and identity guards', () => {
+  const question = defineAnswerWithNumber({
+    ...common('answerWithNumber'), params: { ...params, correctAnswers: [5] },
+    locale: { placeholder: localized },
+  });
+  const override = question.build.overrides({
+    content: {
+      question: {
+        items: { promptBlock: false },
+        additionalItems: { extra },
+        order: ['extra'],
+      },
+    },
+  });
+  assert.deepEqual((override.base.content as {question:{slug:string}[]}).question.map(item => item.slug), ['extra']);
+  assert.throws(() => question.build.overrides({
+    content: { question: { items: { promptBlock: false } } },
+  }), /order/);
+  assert.throws(() => question.build.overrides({
+    content: { question: { order: ['notFound'] } },
+  }), /Unknown slug/);
+  assert.throws(() => question.build.overrides({
+    content: { question: { items: { promptBlock: { id: 'changed' } as never } } },
+  }), /overrides/);
+  assert.deepEqual(question.build.props().base.content.question[0].slug, 'promptBlock');
 });
 
-test('text answer locale data and invariant numeric answers stay separated', () => {
+test('Question localized answers and slots publish full Props-shaped arrays and sparse language patches', () => {
   const text = defineAnswerWithText({
     ...common('answerWithText'),
-    locale: { correctAnswers: ['Fixed', localized], placeholder: localized },
+    locale: { correctAnswers: { first: 'Yes', second: localized }, placeholder: localized },
   });
-  assert.deepEqual(text.config.base.locale.correctAnswers, ['Fixed', {}]);
-  assert.deepEqual(text.config.locales(), {
-    locale: { correctAnswers: [{}, localized], placeholder: localized },
-  });
-  assert.equal(
-    answerWithText_Config_Schema.safeParse({
-      ...common('answerWithText'),
-      locale: { correctAnswers: [localized], placeholder: localized },
-    }).success,
-    true,
-  );
-  assert.equal(
-    answerWithText_Props_Schema.safeParse({
-      ...common('answerWithText'),
-      locale: { correctAnswers: ['Answer'], placeholder: 'Answer' },
-    }).success,
-    true,
-  );
-  text.override.locale({ placeholder: 'Updated' });
-  assert.deepEqual(text.config.overrides.locale, { placeholder: 'Updated' });
+  const props = text.build.props();
+  assert.deepEqual((props.locale?.uk as {locale:{correctAnswers:string[]}}).locale.correctAnswers, ['Yes', 'Відповідь']);
+  assert.deepEqual((props.locale?.en as {locale:{correctAnswers:string[]}}).locale.correctAnswers, ['Yes', 'Answer']);
+  assert.equal(JSON.stringify(props).includes('"first"'), false);
+  const patch = text.build.overrides({ locale: { correctAnswers: { second: { uk: 'Так' } } } });
+  assert.equal(patch.locale?.en, undefined);
+  assert.deepEqual((patch.locale?.uk as {locale:{correctAnswers:string[]}}).locale.correctAnswers, ['Yes', 'Так']);
+  assert.equal(answerWithText_Props_Schema.safeParse({
+    ...props.base, locale: { ...((props.locale?.uk as Record<string, unknown>).locale as object) },
+  }).success, false); // content children have their own complete language resources separately.
 
-  const number = defineAnswerWithNumber({
+  const blanks = defineFillBlanksWithText({
+    ...common('fillBlanksWithText'),
+    locale: { slots: { one: { correctAnswers: { yes: 'Yes', another: localized } } }, placeholder: localized },
+  });
+  assert.deepEqual(
+    (blanks.build.props().locale?.uk as { locale: { slots: unknown[] } }).locale.slots,
+    [{ selector: 'one', correctAnswers: ['Yes', 'Відповідь'] }],
+  );
+  const sparse = blanks.build.overrides({ locale: { slots: { one: { correctAnswers: { another: { uk: 'Так' } } } } } });
+  assert.equal(sparse.locale?.en, undefined);
+  assert.deepEqual(
+    (sparse.locale?.uk as { locale: { slots: unknown[] } }).locale.slots,
+    [{ selector: 'one', correctAnswers: ['Yes', 'Так'] }],
+  );
+});
+
+test('numeric scoring values remain atomic and Question build results are isolated', () => {
+  const input = {
     ...common('answerWithNumber'),
     params: { ...params, correctAnswers: [1, 2] },
     locale: { placeholder: localized },
-  });
-  assert.deepEqual(number.config.base.params.correctAnswers, [1, 2]);
-  assert.deepEqual(number.config.locales(), { locale: { placeholder: localized } });
-});
-
-test('FillBlanksWithText retains selectors in invariant projection and localized answer choices separately', () => {
-  const question = defineFillBlanksWithText({
-    ...common('fillBlanksWithText'),
-    locale: { slots: [{ selector: 'slot', correctAnswers: ['OK', localized] }], placeholder: localized },
-  });
-  assert.deepEqual(question.config.base.locale.slots, [{ selector: 'slot', correctAnswers: ['OK', {}] }]);
-  assert.deepEqual(question.config.locales(), {
-    locale: { slots: [{ correctAnswers: [{}, localized] }], placeholder: localized },
-  });
+  };
+  const question = defineAnswerWithNumber(input);
+  assert.equal(answerWithNumber_Config_Schema.safeParse(input).success, true);
+  const first = question.build.props();
+  const patch = question.build.overrides({ params: { correctAnswers: [7], restrictions: [] } });
+  assert.deepEqual((patch.base.params as { correctAnswers: number[] }).correctAnswers, [7]);
+  (patch.base.params as { correctAnswers: number[] }).correctAnswers.push(8);
+  assert.deepEqual(question.build.props().base.params.correctAnswers, [1, 2]);
+  (first.base.params.correctAnswers as number[]).push(3);
+  assert.deepEqual(question.build.props().base.params.correctAnswers, [1, 2]);
+  assert.throws(() => question.build.overrides({ params: { correctAnswers: ['two'] } } as never));
 });
