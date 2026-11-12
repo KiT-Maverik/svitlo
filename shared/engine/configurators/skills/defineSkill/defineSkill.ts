@@ -24,10 +24,30 @@ const validate = (config: Skill_Config): void => {
 const project = (input: Pick<Skill_Config, 'name' | 'description'>) =>
   splitLocalizedFields(input);
 
+/** Fixed public surface preserves literal Slug and optional language tuple. */
+export type Skill_Configurator<
+  Slug extends string = string,
+  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'skill';
+  readonly validate: typeof validate;
+  readonly build: {
+    props: () => SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }>;
+    overrides: (patch: Skill_Overrides) => SkillPublication<DeepPartial<Skill_Props>>;
+  };
+  readonly config: {
+    base: DeepPartial<Skill_Props> & { id: SkillId; slug: string };
+    validate: typeof validate;
+    locales: () => DeepPartial<Skill_Config>;
+  };
+} & LanguageScope<Languages>;
+
 export function defineSkill<
   const Slug extends string,
   const Languages extends readonly LanguageCodes[] = [],
->(config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>) {
+>(config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>): Skill_Configurator<Slug, Languages> {
   const authored = structuredClone(skill_Config_Schema.parse(config));
   const { id } = authored;
   const slug = config.slug;
@@ -71,7 +91,6 @@ export function defineSkill<
       },
     },
   } as const;
-  return result as typeof result & LanguageScope<Languages>;
+  return result as Skill_Configurator<Slug, Languages>;
 }
 
-export type Skill_Configurator = ReturnType<typeof defineSkill>;
