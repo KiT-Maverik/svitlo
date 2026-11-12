@@ -39,7 +39,7 @@ test('CheckpointItem builds sorted Props without items, order, or configurators'
   assert.deepEqual(built.locale?.en?.answer?.map(child => child.locale), [
     { value: 'Second' }, { value: 'Always visible' },
   ]);
-  assert.deepEqual(item.build.props({ embed: true }), built);
+  assert.deepEqual(item.build.props(), built);
   assert.equal(
     checkpointItem_Props_Schema.safeParse({
       ...built.base,

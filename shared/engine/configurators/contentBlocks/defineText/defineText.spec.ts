@@ -28,38 +28,28 @@ test('Text publishes invariant values in base and no locale files', () => {
   assert.equal(text_Props_Schema.safeParse(output.base).success, true);
 });
 
-test('Text publishes translated values directly as language JSON bodies', () => {
+test('Text publishes translated values as Props-shaped language JSON bodies', () => {
   const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
   const output = text.build.props();
   assert.deepEqual(output, {
     base: { ...identity },
-    locale: { en: { value: 'Welcome' }, uk: { value: 'Привіт' } },
+    locale: { en: { locale: { value: 'Welcome' } }, uk: { locale: { value: 'Привіт' } } },
   });
-  assert.equal(text_Props_Schema.safeParse({ ...output.base, locale: output.locale?.uk }).success, true);
+  assert.equal(text_Props_Schema.safeParse({ ...output.base, ...output.locale?.uk }).success, true);
 });
 
-test('Text embeds translated values as Props-shaped locale fragments', () => {
+test('Text always publishes Props-shaped language files without an embed option', () => {
   const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
   const publication = text.build.props();
-  const embedded = text.build.props({ embed: true });
-
-  assert.deepEqual(embedded, {
-    base: publication.base,
-    locale: {
-      en: { locale: { value: 'Welcome' } },
-      uk: { locale: { value: 'Привіт' } },
-    },
-  });
-  assert.equal(text_Props_Schema.safeParse({ ...embedded.base, ...embedded.locale?.uk }).success, true);
-  assert.deepEqual(text.build.props(), publication);
-
-  if (embedded.locale?.en) embedded.locale.en.locale.value = 'Modified output';
-  assert.deepEqual(text.build.props({ embed: true }).locale?.en, { locale: { value: 'Welcome' } });
+  assert.deepEqual(publication.locale?.en, { locale: { value: 'Welcome' } });
+  assert.equal(text_Props_Schema.safeParse({ ...publication.base, ...publication.locale?.uk }).success, true);
+  if (publication.locale?.en) publication.locale.en.locale.value = 'Mutated output';
+  assert.deepEqual(text.build.props().locale?.en, { locale: { value: 'Welcome' } });
 });
 
-test('Text embedding preserves invariant values without inventing locale files', () => {
+test('Text invariant values require no locale files', () => {
   const text = defineText({ ...identity, locale: { value: 'Universal' } });
-  assert.deepEqual(text.build.props({ embed: true }), {
+  assert.deepEqual(text.build.props(), {
     base: { ...identity, locale: { value: 'Universal' } },
     locale: undefined,
   });
@@ -72,7 +62,7 @@ test('Text publishes only the validated override patch, not inherited properties
 
   assert.deepEqual(text.build.overrides(patch), {
     base: { params: { disabled: true } },
-    locale: { uk: { value: 'Вітаю' } },
+    locale: { uk: { locale: { value: 'Вітаю' } } },
   });
   assert.deepEqual(text.build.overrides({}), { base: {}, locale: undefined });
   assert.deepEqual(text.build.props(), before);
@@ -87,7 +77,7 @@ test('Text permits a one-language override of an invariant or localized text', (
   for (const text of [localized, invariant]) {
     assert.deepEqual(text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }), {
       base: {},
-      locale: { uk: { value: 'Вітаю' } },
+      locale: { uk: { locale: { value: 'Вітаю' } } },
     });
   }
 });
@@ -99,8 +89,8 @@ test('Text publishes invariant overrides as an intentional dictionary replacemen
     locale: undefined,
   });
   assert.deepEqual(text.build.props().locale, {
-    en: { value: 'Welcome' },
-    uk: { value: 'Привіт' },
+    en: { locale: { value: 'Welcome' } },
+    uk: { locale: { value: 'Привіт' } },
   });
 });
 
@@ -121,7 +111,7 @@ test('Text checks semantic variable rules against the temporarily merged config'
     }),
     {
       base: {},
-      locale: { uk: { value: 'Вітаю %_%id: personName; value: Оля%_%' } },
+      locale: { uk: { locale: { value: 'Вітаю %_%id: personName; value: Оля%_%' } } },
     },
   );
   assert.throws(
@@ -233,7 +223,7 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
       ...identity,
       params: { wrap: { enabled: true, typographyProps: { nested: { weight: 'normal' } } } },
     },
-    locale: { en: { value: 'Welcome' } },
+    locale: { en: { locale: { value: 'Welcome' } } },
   });
 
   const assembled = text.build.props();

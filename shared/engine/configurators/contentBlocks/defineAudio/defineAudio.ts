@@ -6,8 +6,6 @@ import {
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
@@ -19,9 +17,8 @@ import {
   type ContentBlock_Audio_PropsBase,
 } from './defineAudio.schemas';
 
-type AudioLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Audio_Locale<'props'>>>>;
-type AudioEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Audio_Locale<'props'>>>;
-type AudioPropsPublication<Base, LocaleFiles = AudioLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type AudioLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Audio_Locale<'props'>> }>>;
+type AudioPropsPublication<Base> = { base: Base; locale: AudioLocaleFiles | undefined };
 type AudioOverridePropsBase = {
   params?: ContentBlock_Audio_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Audio_Locale<'props'>>;
@@ -48,7 +45,10 @@ const buildAudioProps = (config: ContentBlock_Audio_Config): AudioPropsPublicati
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Audio_PropsBase;
-  return { base, locale: locale as unknown as AudioLocaleFiles | undefined };
+  const files = locale
+    ? (Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }])) as AudioLocaleFiles)
+    : undefined;
+  return { base, locale: files };
 };
 
 const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
@@ -60,7 +60,9 @@ const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublica
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Audio_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as AudioLocaleFiles | undefined,
+    locale: locale
+        ? (Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }])) as AudioLocaleFiles)
+        : undefined,
   };
 };
 
@@ -84,16 +86,8 @@ export const defineAudio = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
-  function props(): AudioPropsPublication<ContentBlock_Audio_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): AudioPropsPublication<ContentBlock_Audio_PropsBase, AudioEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): AudioPropsPublication<ContentBlock_Audio_PropsBase, AudioLocaleFiles | AudioEmbeddedLocaleFiles> {
-    const publication = buildAudioProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): AudioPropsPublication<ContentBlock_Audio_PropsBase> =>
+    buildAudioProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
     try {

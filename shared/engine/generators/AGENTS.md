@@ -11,7 +11,7 @@
 
 ## File publication contract
 
-- A completed publication result has `{ base, locale }`. Write `base` as its publication payload. For `locale`, each language key already contains the **direct JSON body** of that language's file; never nest a second `locale` property.
+- A completed publication result has `{ base, locale }`. Serialize `base` and every `locale[language]` body unchanged. Language payloads are already **Props-shaped**, including the entity's own inner `locale` field where applicable (e.g., Text: `{ locale: { value: 'Hello' } }`). Do not insert, unwrap, normalize, or otherwise transform `locale` at publication time.
 - A resource's `base` is complete for the invariant fields; an override's `base` contains **only overridden fields**. Preserve the distinction when generating file paths and names.
 - `locale: undefined` means there is no translated locale file to write for that result. Do not serialize an `undefined` property into JSON or create empty translation files by default. In particular, if a structural override replaces a localized collection with only invariant children, write the replacement array in the override `base` and **do not synthesize locale files**. The Assembler must apply `override.base` after the selected resource locale; see the authoritative precedence and deletion regression in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md).
 - Preserve completed data as supplied. Do not fill missing override fields with original resource values, and do not interpret authoring-only collection markers or flags.

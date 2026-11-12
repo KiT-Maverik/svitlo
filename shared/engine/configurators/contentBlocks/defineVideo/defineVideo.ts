@@ -6,8 +6,6 @@ import {
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
@@ -19,9 +17,8 @@ import {
   type ContentBlock_Video_PropsBase,
 } from './defineVideo.schemas';
 
-type VideoLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Video_Locale<'props'>>>>;
-type VideoEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Video_Locale<'props'>>>;
-type VideoPropsPublication<Base, LocaleFiles = VideoLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type VideoLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Video_Locale<'props'>> }>>;
+type VideoPropsPublication<Base> = { base: Base; locale: VideoLocaleFiles | undefined };
 type VideoOverridePropsBase = {
   params?: ContentBlock_Video_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
@@ -49,7 +46,10 @@ const buildVideoProps = (config: ContentBlock_Video_Config): VideoPropsPublicati
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Video_PropsBase;
-  return { base, locale: locale as unknown as VideoLocaleFiles | undefined };
+  const files = locale
+    ? (Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }])) as VideoLocaleFiles)
+    : undefined;
+  return { base, locale: files };
 };
 
 const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublication<VideoOverridePropsBase> => {
@@ -61,7 +61,9 @@ const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublica
         ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
         : {}),
     },
-    locale: locale as unknown as VideoLocaleFiles | undefined,
+    locale: locale
+        ? (Object.fromEntries(Object.entries(locale).map(([language, fields]) => [language, { locale: fields }])) as VideoLocaleFiles)
+        : undefined,
   };
 };
 
@@ -85,16 +87,8 @@ export const defineVideo = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
-  function props(): VideoPropsPublication<ContentBlock_Video_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): VideoPropsPublication<ContentBlock_Video_PropsBase, VideoEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): VideoPropsPublication<ContentBlock_Video_PropsBase, VideoLocaleFiles | VideoEmbeddedLocaleFiles> {
-    const publication = buildVideoProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): VideoPropsPublication<ContentBlock_Video_PropsBase> =>
+    buildVideoProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Video_Overrides): VideoPropsPublication<VideoOverridePropsBase> => {
     try {

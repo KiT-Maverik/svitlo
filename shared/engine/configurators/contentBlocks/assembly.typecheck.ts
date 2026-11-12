@@ -71,106 +71,78 @@ const youtube = defineYoutube({
 });
 
 const textPublished = text.build.props();
-const textEmbedded = text.build.props({ embed: true });
-void textEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void textPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void textEmbedded.locale?.en?.value;
-// @ts-expect-error The only explicit embed value permitted is true.
-text.build.props({ embed: false });
-// @ts-expect-error Text no longer exposes the assembly API.
-text.build.props();
-// @ts-expect-error Props-shaped nested locale input is not an authored Overrides patch.
+void textPublished.locale?.en?.locale.value;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void textPublished.locale?.en?.value;
+// @ts-expect-error The conditional embed overload has been removed.
+text.build.props({ embed: true });
+
+// @ts-expect-error A nested Props locale is not valid authored Text overrides.
 text.build.overrides({ locale: { value: { locale: { value: 'Hi' } } } });
-// @ts-expect-error Identity ID is not overridable.
+// @ts-expect-error ID is immutable.
 text.build.overrides({ id });
-// @ts-expect-error Identity slug is not overridable.
+// @ts-expect-error Slug is immutable.
 text.build.overrides({ slug: 'renamed' });
-// @ts-expect-error Identity type is not overridable.
+// @ts-expect-error Type is immutable.
 text.build.overrides({ type: 'text' });
-// @ts-expect-error Authored locale values must not contain positional arrays.
+// @ts-expect-error Authored locale fields cannot be positional arrays.
 text.build.overrides({ locale: { value: ['not a locale dictionary'] } });
 
 const audioPublished = audio.build.props();
-const audioEmbedded = audio.build.props({ embed: true });
-void audioEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void audioPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void audioEmbedded.locale?.en?.title;
-// @ts-expect-error The only explicit embed value permitted is true.
-audio.build.props({ embed: false });
+void audioPublished.locale?.en?.locale.title;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void audioPublished.locale?.en?.title;
+// @ts-expect-error The conditional embed overload has been removed.
+audio.build.props({ embed: true });
 
 const carouselPublished = carousel.build.props();
-const carouselEmbedded = carousel.build.props({ embed: true });
-void carouselEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void carouselPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void carouselEmbedded.locale?.en?.slides;
-// @ts-expect-error The only explicit embed value permitted is true.
-carousel.build.props({ embed: false });
+void carouselPublished.locale?.en?.locale.slides;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void carouselPublished.locale?.en?.slides;
+// @ts-expect-error The conditional embed overload has been removed.
+carousel.build.props({ embed: true });
 
 const codePublished = code.build.props();
-const codeEmbedded = code.build.props({ embed: true });
-void codeEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void codePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void codeEmbedded.locale?.en?.variables;
-// @ts-expect-error The only explicit embed value permitted is true.
-code.build.props({ embed: false });
+void codePublished.locale?.en?.locale.variables;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void codePublished.locale?.en?.variables;
+// @ts-expect-error The conditional embed overload has been removed.
+code.build.props({ embed: true });
 
 const imagePublished = image.build.props();
-const imageEmbedded = image.build.props({ embed: true });
-void imageEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void imagePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void imageEmbedded.locale?.en?.alt;
-// @ts-expect-error The only explicit embed value permitted is true.
-image.build.props({ embed: false });
+void imagePublished.locale?.en?.locale.alt;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void imagePublished.locale?.en?.alt;
+// @ts-expect-error The conditional embed overload has been removed.
+image.build.props({ embed: true });
 
 const markdownPublished = markdown.build.props();
-const markdownEmbedded = markdown.build.props({ embed: true });
-void markdownEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void markdownPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void markdownEmbedded.locale?.en?.value;
-// @ts-expect-error The only explicit embed value permitted is true.
-markdown.build.props({ embed: false });
+void markdownPublished.locale?.en?.locale.value;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void markdownPublished.locale?.en?.value;
+// @ts-expect-error The conditional embed overload has been removed.
+markdown.build.props({ embed: true });
 
 const scenePublished = scene.build.props();
-const sceneEmbedded = scene.build.props({ embed: true });
-void sceneEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void scenePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void sceneEmbedded.locale?.en?.value;
-// @ts-expect-error The only explicit embed value permitted is true.
-scene.build.props({ embed: false });
+void scenePublished.locale?.en?.locale.value;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void scenePublished.locale?.en?.value;
+// @ts-expect-error The conditional embed overload has been removed.
+scene.build.props({ embed: true });
 
 const videoPublished = video.build.props();
-const videoEmbedded = video.build.props({ embed: true });
-void videoEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void videoPublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void videoEmbedded.locale?.en?.label;
-// @ts-expect-error The only explicit embed value permitted is true.
-video.build.props({ embed: false });
+void videoPublished.locale?.en?.locale.label;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void videoPublished.locale?.en?.label;
+// @ts-expect-error The conditional embed overload has been removed.
+video.build.props({ embed: true });
 
 const youtubePublished = youtube.build.props();
-const youtubeEmbedded = youtube.build.props({ embed: true });
-void youtubeEmbedded.locale?.en?.locale;
-// @ts-expect-error Published language files do not have a nested locale wrapper.
-void youtubePublished.locale?.en?.locale;
-// @ts-expect-error Embedded locale fragments expose their fields under locale.
-void youtubeEmbedded.locale?.en?.label;
-// @ts-expect-error The only explicit embed value permitted is true.
-youtube.build.props({ embed: false });
+void youtubePublished.locale?.en?.locale.label;
+// @ts-expect-error Published language fields are always below their Props locale field.
+void youtubePublished.locale?.en?.label;
+// @ts-expect-error The conditional embed overload has been removed.
+youtube.build.props({ embed: true });
 
 // @ts-expect-error Audio no longer exposes the legacy assemble API.
 audio.assemble.resource();

@@ -6,8 +6,6 @@ import {
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
-  wrapLocale,
-  type WrappedLocaleFiles,
 } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
@@ -20,12 +18,12 @@ import {
   type ContentBlock_Carousel_PropsBase,
 } from './defineCarousel.schemas';
 
-type CarouselLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Carousel_Locale<'props'>>>>;
-type CarouselEmbeddedLocaleFiles = WrappedLocaleFiles<DeepPartial<ContentBlock_Carousel_Locale<'props'>>>;
-type CarouselPropsPublication<Base, LocaleFiles = CarouselLocaleFiles> = {
+type CarouselLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> }>>;
+type CarouselPropsPublication<Base> = {
   base: Base;
-  locale: LocaleFiles | undefined;
+  locale: CarouselLocaleFiles | undefined;
 };
+type CarouselRawLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Carousel_Locale<'props'>>>>;
 type CarouselOverridePropsBase = {
   params?: ContentBlock_Carousel_Overrides['params'];
   locale?: DeepPartial<ContentBlock_Carousel_Locale<'props'>>;
@@ -41,7 +39,7 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
 };
 
 /** Arrays are atomic, so each published language receives complete slide Props. */
-const validatePublishedSlides = (locale: CarouselLocaleFiles | undefined): void => {
+const validatePublishedSlides = (locale: CarouselRawLocaleFiles | undefined): void => {
   for (const [language, fields] of Object.entries(locale ?? {})) {
     if (fields.slides !== undefined) {
       const parsed = carousel_Props_Schema.shape.locale.shape.slides.safeParse(fields.slides);
@@ -66,8 +64,11 @@ const buildCarouselProps = (
       ? { locale: invariant as unknown as DeepPartial<ContentBlock_Carousel_Locale<'props'>> }
       : {}),
   } satisfies ContentBlock_Carousel_PropsBase;
-  const files = locale as unknown as CarouselLocaleFiles | undefined;
-  validatePublishedSlides(files);
+  const rawFiles = locale as unknown as CarouselRawLocaleFiles | undefined;
+  validatePublishedSlides(rawFiles);
+  const files = rawFiles
+    ? (Object.fromEntries(Object.entries(rawFiles).map(([language, fields]) => [language, { locale: fields }])) as CarouselLocaleFiles)
+    : undefined;
   return { base, locale: files };
 };
 
@@ -75,8 +76,11 @@ const buildCarouselPatch = (
   patch: ContentBlock_Carousel_Overrides,
 ): CarouselPropsPublication<CarouselOverridePropsBase> => {
   const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
-  const files = locale as unknown as CarouselLocaleFiles | undefined;
-  validatePublishedSlides(files);
+  const rawFiles = locale as unknown as CarouselRawLocaleFiles | undefined;
+  validatePublishedSlides(rawFiles);
+  const files = rawFiles
+    ? (Object.fromEntries(Object.entries(rawFiles).map(([language, fields]) => [language, { locale: fields }])) as CarouselLocaleFiles)
+    : undefined;
   return {
     base: {
       ...(patch.params !== undefined ? { params: patch.params } : {}),
@@ -108,16 +112,8 @@ export const defineCarousel = <const Slug extends string>(
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
-  function props(): CarouselPropsPublication<ContentBlock_Carousel_PropsBase>;
-  function props(options: {
-    embed: true;
-  }): CarouselPropsPublication<ContentBlock_Carousel_PropsBase, CarouselEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): CarouselPropsPublication<ContentBlock_Carousel_PropsBase, CarouselLocaleFiles | CarouselEmbeddedLocaleFiles> {
-    const publication = buildCarouselProps(parseAndValidate(copyAuthored()));
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): CarouselPropsPublication<ContentBlock_Carousel_PropsBase> =>
+    buildCarouselProps(parseAndValidate(copyAuthored()));
 
   const overrides = (patch: ContentBlock_Carousel_Overrides): CarouselPropsPublication<CarouselOverridePropsBase> => {
     try {

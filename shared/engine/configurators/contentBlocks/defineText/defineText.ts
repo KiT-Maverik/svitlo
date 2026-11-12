@@ -1,7 +1,7 @@
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales, wrapLocale, type WrappedLocaleFiles } from '../../_shared__configurators';
+import { onlyLocales } from '../../_shared__configurators';
 import {
   text_Config_Schema,
   text_Override_Config_Schema,
@@ -12,9 +12,8 @@ import {
 } from './defineText.schemas';
 import { validateTextVariables } from './defineText.utils';
 
-type TextLocaleFiles = Partial<Record<LanguageCodes, ContentBlock_Text_Locale<'props'>>>;
-type TextEmbeddedLocaleFiles = WrappedLocaleFiles<ContentBlock_Text_Locale<'props'>>;
-type TextPropsPublication<Base, LocaleFiles = TextLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
+type TextLocaleFiles = Partial<Record<LanguageCodes, { locale: ContentBlock_Text_Locale<'props'> }>>;
+type TextPropsPublication<Base> = { base: Base; locale: TextLocaleFiles | undefined };
 type TextOverridePropsBase = {
   params?: ContentBlock_Text_Overrides['params'];
   locale?: Partial<ContentBlock_Text_Locale<'props'>>;
@@ -29,14 +28,14 @@ const validate = (config: ContentBlock_Text_Config): void => {
   parseAndValidate(config);
 };
 
-/** Publish only language dictionaries, with no extra locale wrapper in each file. */
+/** Publish every translation as a Props-shaped language fragment. */
 const buildLocale = (
   value: ContentBlock_Text_Config['locale']['value'] | undefined,
 ): TextLocaleFiles | undefined => {
   const locale: TextLocaleFiles = {};
   if (value && typeof value === 'object') {
     for (const [language, text] of Object.entries(value)) {
-      if (text !== undefined) locale[language as LanguageCodes] = { value: text };
+      if (text !== undefined) locale[language as LanguageCodes] = { locale: { value: text } };
     }
   }
   return Object.keys(locale).length ? locale : undefined;
@@ -112,7 +111,7 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * with no undeclared or malformed fragments.
  *
  * `build.props()` prepares the complete authored resource.
- * `build.props({ embed: true })` wraps translated fields in a Props-shaped `locale` field.
+ * Each published language file already contains a Props-shaped `locale` field.
  * `build.overrides(patch)` strictly checks the sparse patch, validates
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
@@ -126,14 +125,7 @@ export const defineText = <const Slug extends string>(
   const copyAuthored = () => text_Config_Schema.parse(structuredClone(authored));
   const base = { ...buildTextProps(copyAuthored()).base, slug };
 
-  function props(): TextPropsPublication<ContentBlock_Text_PropsBase>;
-  function props(options: { embed: true }): TextPropsPublication<ContentBlock_Text_PropsBase, TextEmbeddedLocaleFiles>;
-  function props(options?: {
-    embed?: true;
-  }): TextPropsPublication<ContentBlock_Text_PropsBase, TextLocaleFiles | TextEmbeddedLocaleFiles> {
-    const publication = buildTextProps(copyAuthored());
-    return options?.embed ? { base: publication.base, locale: wrapLocale(publication.locale) } : publication;
-  }
+  const props = (): TextPropsPublication<ContentBlock_Text_PropsBase> => buildTextProps(copyAuthored());
 
   const overrides = (patch: ContentBlock_Text_Overrides): TextPropsPublication<TextOverridePropsBase> => {
     try {
