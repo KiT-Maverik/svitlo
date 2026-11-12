@@ -160,3 +160,19 @@ test('requireQuiz demands an enabled Quiz when authored and after Section overri
     section: { items: { disabledQuiz }, order: ['disabledQuiz'] },
   }), /at least one enabled Quiz/);
 });
+
+test('Lesson publication language options are mandatory and scoped recursively', () => {
+  const lesson = makeLesson();
+  const single = lesson.build.props({ languages: ['uk'] });
+  assert.deepEqual(single.base.params.languages, ['uk']);
+  assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
+  assert.equal(single.locale?.en, undefined);
+  assert.equal(textValue(single.locale?.uk?.section?.[0]?.content), 'Привіт');
+  const patched = lesson.build.overrides({
+    section: { items: { intro: { locale: { title: { uk: 'Новий' } } } } },
+  }, { languages: ['uk'] });
+  assert.deepEqual(Object.keys(patched.locale ?? {}), ['uk']);
+  assert.throws(() => lesson.build.props({ languages: [] }), /nonempty languages/);
+  assert.throws(() => lesson.build.props({ languages: ['uk', 'uk'] }), /unique/);
+  assert.throws(() => lesson.build.props({ languages: ['pl'] as never }), /does not support publication language/);
+});
