@@ -2,14 +2,23 @@ import { readFileSync, readdirSync } from 'node:fs';
 import type { DeepPartial } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   markdown_Config_Schema,
+  markdown_Override_Config_Schema,
   type ContentBlock_Markdown_Config,
   type ContentBlock_Markdown_Locale,
+  type ContentBlock_Markdown_Overrides,
+  type ContentBlock_Markdown_ResourceBase,
 } from './defineMarkdown.schemas';
-import { validateReplacementVariables } from '../_shared__contentBlocks';
+
+type MarkdownLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Markdown_Locale<'props'>>>>;
+type MarkdownAssembly<Base> = { base: Base; locale: MarkdownLocaleFiles | undefined };
+type MarkdownOverrideBase = {
+  params?: ContentBlock_Markdown_Overrides['params'];
+  locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
+};
 
 type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCodes[] };
 
@@ -51,10 +60,114 @@ function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Rec
   return values;
 }
 
-const validate = (config: ContentBlock_Markdown_Config) => {
-  markdown_Config_Schema.parse(config);
-  const errors = validateReplacementVariables(config.locale.value, config.locale.variables, 'locale.value');
+const parseAndValidate = (config: ContentBlock_Markdown_Config): ContentBlock_Markdown_Config => {
+  const parsed = markdown_Config_Schema.parse(config);
+  const errors = validateReplacementVariables(parsed.locale.value, parsed.locale.variables, 'locale.value');
   if (errors.length) throw new Error('Markdown variables validation failed:\n' + errors.join('\n'));
+  return parsed;
+};
+const validate = (config: ContentBlock_Markdown_Config): void => { parseAndValidate(config); };
+
+const assembleMarkdown = (config: ContentBlock_Markdown_Config): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => {
+  const { id, type, slug, params } = config;
+  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const base = {
+    id, type, slug, params,
+    ...(Object.keys(invariant).length
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
+      : {}),
+  } satisfies ContentBlock_Markdown_ResourceBase;
+  return { base, locale: locale as unknown as MarkdownLocaleFiles | undefined };
+};
+
+const assembleMarkdownPatch = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
+  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  return {
+    base: {
+      ...(patch.params !== undefined ? { params: patch.params } : {}),
+      ...(Object.keys(invariant).length
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
+        : {}),
+    },
+    locale: locale as unknown as MarkdownLocaleFiles | undefined,
+  };
+};
+
+type MarkdownLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Markdown_Locale<'props'>>>>;
+type MarkdownAssembly<Base> = { base: Base; locale: MarkdownLocaleFiles | undefined };
+type MarkdownOverrideBase = { params?: ContentBlock_Markdown_Overrides['params']; locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>; };
+
+type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCodes[] };
+
+type MarkdownInlineConfig<Slug extends string> = Omit<ContentBlock_Markdown_Config, 'slug'> & {
+  slug: Slug;
+  files?: never;
+};
+
+type MarkdownFileConfig<Slug extends string> = Omit<ContentBlock_Markdown_Config, 'slug' | 'locale'> & {
+  slug: Slug;
+  files: MarkdownFiles;
+  locale?: Omit<ContentBlock_Markdown_Locale<'config'>, 'value'>;
+};
+
+function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Record<LanguageCodes, string>> {
+  if (!languages.length || new Set(languages).size !== languages.length) {
+    throw new Error('Markdown files: languages must be a non-empty list without duplicates');
+  }
+
+  const directory = new URL('./locales/', moduleUrl);
+  const expected = new Set(languages);
+  const unexpected = readdirSync(directory).filter(
+    name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCodes),
+  );
+  if (unexpected.length) throw new Error('Unexpected Markdown locale files: ' + unexpected.join(', '));
+
+  const values: Partial<Record<LanguageCodes, string>> = {};
+  for (const language of languages) {
+    const file = new URL(language + '.md', directory);
+    let value: string;
+    try {
+      value = readFileSync(file, 'utf8');
+    } catch (cause) {
+      throw new Error('Missing or unreadable Markdown locale file: ' + file.pathname, { cause });
+    }
+    if (!value.trim()) throw new Error('Empty Markdown locale file: ' + file.pathname);
+    values[language] = value;
+  }
+  return values;
+}
+
+const parseAndValidate = (config: ContentBlock_Markdown_Config): ContentBlock_Markdown_Config => {
+  const parsed = markdown_Config_Schema.parse(config);
+  const errors = validateReplacementVariables(parsed.locale.value, parsed.locale.variables, 'locale.value');
+  if (errors.length) throw new Error('Markdown variables validation failed:\n' + errors.join('\n'));
+  return parsed;
+};
+const validate = (config: ContentBlock_Markdown_Config): void => { parseAndValidate(config); };
+
+const assembleMarkdown = (config: ContentBlock_Markdown_Config): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => {
+  const { id, type, slug, params } = config;
+  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const base = {
+    id, type, slug, params,
+    ...(Object.keys(invariant).length
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
+      : {}),
+  } satisfies ContentBlock_Markdown_ResourceBase;
+  return { base, locale: locale as unknown as MarkdownLocaleFiles | undefined };
+};
+
+const assembleMarkdownPatch = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
+  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  return {
+    base: {
+      ...(patch.params !== undefined ? { params: patch.params } : {}),
+      ...(Object.keys(invariant).length
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Markdown_Locale<'props'>> }
+        : {}),
+    },
+    locale: locale as unknown as MarkdownLocaleFiles | undefined,
+  };
 };
 
 /**
@@ -71,6 +184,10 @@ const validate = (config: ContentBlock_Markdown_Config) => {
  * Each declared variable must occur in every Markdown locale, and localized
  * replacement values must exist for every corresponding language.
  */
+/**
+ * Stateless authored ContentBlock. Assembly validates isolated snapshots and
+ * emits either complete resources or exclusively sparse override fields.
+ */
 export const defineMarkdown = <const Slug extends string>(
   config: MarkdownInlineConfig<Slug> | MarkdownFileConfig<Slug>,
 ) => {
@@ -78,7 +195,6 @@ export const defineMarkdown = <const Slug extends string>(
     'files' in config && config.files
       ? { ...config.locale, value: readMarkdownFiles(config.files) }
       : (config as MarkdownInlineConfig<Slug>).locale;
-
   const resolved: ContentBlock_Markdown_Config = {
     id: config.id,
     slug: config.slug,
@@ -86,37 +202,37 @@ export const defineMarkdown = <const Slug extends string>(
     params: config.params,
     locale,
   };
-  validate(resolved);
-
-  const { id, type, slug, params } = resolved;
-
+  const authored = structuredClone(parseAndValidate(resolved));
+  const { id, type } = authored;
+  const slug = config.slug;
+  const copyAuthored = () => markdown_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id,
-    type,
-    slug,
-    params,
-    locale: onlyStrings(locale),
+    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
-  const overrides: DeepPartial<ContentBlock_Markdown_Config> = {};
-
+  const resource = (): MarkdownAssembly<ContentBlock_Markdown_ResourceBase> => assembleMarkdown(copyAuthored());
+  const overrides = (patch: ContentBlock_Markdown_Overrides): MarkdownAssembly<MarkdownOverrideBase> => {
+    try {
+      const parsedPatch = markdown_Override_Config_Schema.parse(patch);
+      const effective = markdown_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
+      validate(effective);
+      return assembleMarkdownPatch(structuredClone(parsedPatch));
+    } catch (error) {
+      throw new Error(`Invalid Markdown overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
+        cause: error,
+      });
+    }
+  };
   return {
-    id,
-    slug,
-    type,
+    id, slug, type, validate,
+    assemble: { resource, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Markdown_Locale<'config'>> } => ({
-        locale: onlyLocales(locale),
+        locale: onlyLocales(copyAuthored().locale),
       }),
-      overrides,
       validate,
     },
-    override: {
-      params: (newParams: DeepPartial<ContentBlock_Markdown_Config['params']>) => (overrides.params = newParams),
-      locale: (newLocale: DeepPartial<ContentBlock_Markdown_Locale<'config'>>) => (overrides.locale = newLocale),
-    },
-    disable: () => (overrides.params = { disabled: true }),
   } as const;
 };
 

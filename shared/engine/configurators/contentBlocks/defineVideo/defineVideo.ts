@@ -1,54 +1,133 @@
 import type { DeepPartial } from '#types';
+import type { LanguageCodes } from '#schemas';
+
+import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
-
-import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-
 import {
   video_Config_Schema,
+  video_Override_Config_Schema,
   type ContentBlock_Video_Config,
   type ContentBlock_Video_Locale,
+  type ContentBlock_Video_Overrides,
+  type ContentBlock_Video_ResourceBase,
 } from './defineVideo.schemas';
 
-const validate = (config: ContentBlock_Video_Config) => {
-  video_Config_Schema.parse(config);
-  validateLocalAssetPaths(config.locale.fileLocation, 'locale.fileLocation');
-  validateLocalAssetPaths(config.locale.poster, 'locale.poster');
+type VideoLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Video_Locale<'props'>>>>;
+type VideoAssembly<Base> = { base: Base; locale: VideoLocaleFiles | undefined };
+type VideoOverrideBase = {
+  params?: ContentBlock_Video_Overrides['params'];
+  locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>;
 };
 
+const parseAndValidate = (config: ContentBlock_Video_Config): ContentBlock_Video_Config => {
+  const parsed = video_Config_Schema.parse(config);
+  validateLocalAssetPaths(parsed.locale.fileLocation, 'locale.fileLocation');
+  validateLocalAssetPaths(parsed.locale.poster, 'locale.poster');
+  return parsed;
+};
+const validate = (config: ContentBlock_Video_Config): void => { parseAndValidate(config); };
+
+const assembleVideo = (config: ContentBlock_Video_Config): VideoAssembly<ContentBlock_Video_ResourceBase> => {
+  const { id, type, slug, params } = config;
+  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const base = {
+    id, type, slug, params,
+    ...(Object.keys(invariant).length
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
+      : {}),
+  } satisfies ContentBlock_Video_ResourceBase;
+  return { base, locale: locale as unknown as VideoLocaleFiles | undefined };
+};
+
+const assembleVideoPatch = (patch: ContentBlock_Video_Overrides): VideoAssembly<VideoOverrideBase> => {
+  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  return {
+    base: {
+      ...(patch.params !== undefined ? { params: patch.params } : {}),
+      ...(Object.keys(invariant).length
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
+        : {}),
+    },
+    locale: locale as unknown as VideoLocaleFiles | undefined,
+  };
+};
+
+type VideoLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Video_Locale<'props'>>>>;
+type VideoAssembly<Base> = { base: Base; locale: VideoLocaleFiles | undefined };
+type VideoOverrideBase = { params?: ContentBlock_Video_Overrides['params']; locale?: DeepPartial<ContentBlock_Video_Locale<'props'>>; };
+
+const parseAndValidate = (config: ContentBlock_Video_Config): ContentBlock_Video_Config => {
+  const parsed = video_Config_Schema.parse(config);
+  validateLocalAssetPaths(parsed.locale.fileLocation, 'locale.fileLocation');
+  validateLocalAssetPaths(parsed.locale.poster, 'locale.poster');
+  return parsed;
+};
+const validate = (config: ContentBlock_Video_Config): void => { parseAndValidate(config); };
+
+const assembleVideo = (config: ContentBlock_Video_Config): VideoAssembly<ContentBlock_Video_ResourceBase> => {
+  const { id, type, slug, params } = config;
+  const { base: invariant, locale } = splitLocalizedFields(config.locale);
+  const base = {
+    id, type, slug, params,
+    ...(Object.keys(invariant).length
+      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
+      : {}),
+  } satisfies ContentBlock_Video_ResourceBase;
+  return { base, locale: locale as unknown as VideoLocaleFiles | undefined };
+};
+
+const assembleVideoPatch = (patch: ContentBlock_Video_Overrides): VideoAssembly<VideoOverrideBase> => {
+  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
+  return {
+    base: {
+      ...(patch.params !== undefined ? { params: patch.params } : {}),
+      ...(Object.keys(invariant).length
+        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Video_Locale<'props'>> }
+        : {}),
+    },
+    locale: locale as unknown as VideoLocaleFiles | undefined,
+  };
+};
+
+/** Define Video. */
+/**
+ * Stateless authored ContentBlock. Assembly validates isolated snapshots and
+ * emits either complete resources or exclusively sparse override fields.
+ */
 export const defineVideo = <const Slug extends string>(
   config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug },
 ) => {
-  validate(config);
-
-  const { id, type, slug, locale, params } = config;
-
+  const authored = structuredClone(parseAndValidate(config));
+  const { id, type } = authored;
+  const slug = config.slug;
+  const copyAuthored = () => video_Config_Schema.parse(structuredClone(authored));
   const base = {
-    id,
-    type,
-    slug,
-    params,
-    locale: onlyStrings(locale),
+    id, type, slug, params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
-  const overrides: DeepPartial<ContentBlock_Video_Config> = {};
-
+  const resource = (): VideoAssembly<ContentBlock_Video_ResourceBase> => assembleVideo(copyAuthored());
+  const overrides = (patch: ContentBlock_Video_Overrides): VideoAssembly<VideoOverrideBase> => {
+    try {
+      const parsedPatch = video_Override_Config_Schema.parse(patch);
+      const effective = video_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
+      validate(effective);
+      return assembleVideoPatch(structuredClone(parsedPatch));
+    } catch (error) {
+      throw new Error(`Invalid Video overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
+        cause: error,
+      });
+    }
+  };
   return {
-    id,
-    slug,
-    type,
+    id, slug, type, validate,
+    assemble: { resource, overrides },
     config: {
       base,
       locales: (): { locale: DeepPartial<ContentBlock_Video_Locale<'config'>> } => ({
-        locale: onlyLocales(locale),
+        locale: onlyLocales(copyAuthored().locale),
       }),
-      overrides,
       validate,
     },
-    override: {
-      params: (newParams: DeepPartial<ContentBlock_Video_Config['params']>) => (overrides.params = newParams),
-      locale: (newLocale: DeepPartial<ContentBlock_Video_Locale<'config'>>) => (overrides.locale = newLocale),
-    },
-    disable: () => (overrides.params = { disabled: true }),
   } as const;
 };
 
