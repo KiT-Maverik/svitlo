@@ -1,6 +1,6 @@
 # Engine entity configurators
 
-`configurators/` houses the `define*` authoring factories and Zod-backed schemas. The former `definitions/` directory has been folded into this directory. Legacy Course creators live separately in `configurators_old/`.
+`configurators/` contains the `define*` authoring configurators and their Zod-backed schemas. Additional Course creators are located in `configurators_old/`.
 
 **ContentBlock Build API:** The nine flat ContentBlock configurators, `CheckpointItem`, and `Checkpoint` expose `build.props()` for complete resources and `build.overrides(patch)` for validated sparse changes. A Checkpoint composes an ordered collection of CheckpointItems; each item has a Text question and ordered answer blocks. Follow [the configurator rules](./AGENTS.md); [generators](../generators/AGENTS.md) serialize publication results, and [runtime assemblers](../assemblers/AGENTS.md) resolve published fragments into Props.
 
@@ -15,7 +15,7 @@ The new Skill, SkillGroup, SkillDomain and AssessmentMethod factories intentiona
 
 ContentBlock configurators share top-level identity (`id`, `slug`, `type`), nested `params` and `locale`, and Zod-backed `*_Config_Schema` / `*_Props_Schema`. `build.props()` publishes complete `{ base, locale }` resources, and `build.overrides(patch)` publishes sparse fragments in exactly the same Props-shaped language format. For example, Text publishes `locale.uk = { locale: { value: 'Привіт' } }`: the inner `locale` is the ContentBlock Props field, while `uk` identifies the published language file. Invariant values stay in `base`. Flat ContentBlocks also expose `config.base` and `config.locales()` for authored configuration access. Their Build methods are stateless and do not mutate the original configuration or other publication contexts.
 
-Every `define*` directory has an `index.ts` that exports its implementation and schemas; parent barrels export each directory once. Configurators expose `id` and `type` directly, plus `slug` where the authored entity has one. Validation and legacy `config.*` accessors vary during migration; do not infer the mutable override API from the existence of `config.base`. All flat ContentBlocks also expose top-level `validate` and `build` methods.
+Every `define*` directory has an `index.ts` that exports its implementation and schemas; parent barrels export each directory once. Configurators expose `id` and `type` directly, plus `slug` where the authored entity has one. Validation and `config.*` accessors are specific to each entity; the presence of `config.base` does not imply a mutable override API. All flat ContentBlocks also expose top-level `validate` and `build` methods.
 
 `configuratorArrayToSlugMap([defineText(...), ...])` converts a list of configurators into a slug-keyed object, preserving literal slug types. It is useful for AI-authored content because authors need not duplicate slugs as object keys.
 
