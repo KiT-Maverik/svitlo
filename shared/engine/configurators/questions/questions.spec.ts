@@ -182,6 +182,6 @@ test('numeric scoring values remain atomic and Question build results are isolat
   (patch.base.params as { correctAnswers: number[] }).correctAnswers.push(8);
   assert.deepEqual((question.build.props().base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
   (first.base.params as { correctAnswers: number[] }).correctAnswers.push(3);
-  assert.deepEqual(question.build.props().base.params.correctAnswers, [1, 2]);
+  assert.deepEqual((question.build.props().base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
   assert.throws(() => question.build.overrides({ params: { correctAnswers: ['two'] } } as never));
 });
