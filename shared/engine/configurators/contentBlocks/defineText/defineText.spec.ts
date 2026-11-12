@@ -92,7 +92,7 @@ test('Text checks semantic variable rules against the temporarily merged config'
     /missing configured Text fragment "personName"/,
   );
   assert.throws(
-    () => text.assemble.overrides({ params: { variables: { anotherName: { applyColor: 'red' } } } }),
+    () => text.assemble.overrides({ params: { variables: { anotherName: { applyStyle: ['bold'] } } } }),
     /Text variables validation failed/,
   );
   assert.doesNotThrow(() => text.validate({
