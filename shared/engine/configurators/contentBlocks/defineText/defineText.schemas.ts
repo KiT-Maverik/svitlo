@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { createContentBlockBaseSchema, localizationSwitch, textVariables_Schema } from '../_shared__contentBlocks';
-import { Configurator_Mode } from '../../configurator.schemas';
+import type { Configurator_Mode } from '../../configurator.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
 
 const contentBlockBase = createContentBlockBaseSchema('text');
@@ -29,6 +29,11 @@ export type ContentBlock_Text_Locale<Mode extends Configurator_Mode> = z.infer<
 
 export const text_Config_Schema = textBase.extend(addUnifiedLocale(locale('config')));
 export type ContentBlock_Text_Config = z.infer<typeof text_Config_Schema>;
+
+/** Required nonlocalized fields come from the Text base schema. */
+export type ContentBlock_Text_ResourceBase = z.infer<typeof textBase> & {
+  locale?: Partial<ContentBlock_Text_Locale<'props'>>;
+};
 
 export const text_Props_Schema = textBase.extend(addUnifiedLocale(locale('props')));
 export type ContentBlock_Text_Props = z.infer<typeof text_Props_Schema>;

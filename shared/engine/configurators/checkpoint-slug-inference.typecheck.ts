@@ -44,8 +44,8 @@ const checkpoint = defineCheckpoint({
 });
 
 type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
-checkpoint.content.items.whatIsLight.question.override.locale({ value: 'Updated question' });
-checkpoint.content.items.whatIsLight.answer.items.answer.override.locale({ value: 'Updated answer' });
+checkpoint.content.items.whatIsLight.question.assemble.overrides({ locale: { value: 'Updated question' } });
+checkpoint.content.items.whatIsLight.answer.items.answer.assemble.overrides({ locale: { value: 'Updated answer' } });
 checkpoint.content.items.anotherQuestion = {
   question,
   answer: { items: answers, order: ['answer'] },
