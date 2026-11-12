@@ -48,6 +48,33 @@ const validate = (config: SkillGroup_Config): void => {
   if (issues.length) throw new Error('SkillGroup validation failed: ' + issues.map(issue => issue.message).join('; '));
 };
 
+/** Explicit declaration surface avoids TS7056 and retains literal Skill keys. */
+export type SkillGroup_Configurator<
+  Slug extends string = string,
+  Skills extends Record<string, Skill> = Record<string, Skill>,
+  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+> = {
+  readonly id: string;
+  readonly slug: Slug;
+  readonly type: 'skillGroup';
+  readonly skills: { items: Skills; order: string[] };
+  readonly skill: Skills;
+  readonly validate: typeof validate;
+  readonly build: {
+    props: () => SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }>;
+    overrides: <const Added extends Record<string, Skill> = {}>(
+      patch: SkillGroup_Overrides<Skills, Added> & {
+        skills?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
+      },
+    ) => SkillGroupPublication<SkillGroupOverrideBase>;
+  };
+  readonly config: {
+    base: DeepPartial<SkillGroup_Config>;
+    validate: typeof validate;
+    locales: () => SkillGroup_Metadata_Overrides;
+  };
+} & LanguageScope<Languages>;
+
 /** A SkillGroup owns a named, ordered collection of Skill configurators. */
 export function defineSkillGroup<
   const Slug extends string,
@@ -60,7 +87,7 @@ export function defineSkillGroup<
     name: RequireLanguages<SkillGroup_Config['name'], Languages>;
     description: RequireLanguages<SkillGroup_Config['description'], Languages>;
   },
-) {
+): SkillGroup_Configurator<Slug, Skills, Languages> {
   validate(config);
   const metadataSchema = skillGroup_Config_Schema.omit({ skills: true });
   const authored = metadataSchema.parse(config);
@@ -232,7 +259,6 @@ export function defineSkillGroup<
       },
     },
   } as const;
-  return result as typeof result & LanguageScope<Languages>;
+  return result as SkillGroup_Configurator<Slug, Skills, Languages>;
 }
 
-export type SkillGroup_Configurator = ReturnType<typeof defineSkillGroup>;
