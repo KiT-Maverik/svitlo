@@ -9,14 +9,15 @@ import { course_Config_Schema, course_Props_Schema } from './defineCourse.schema
 
 const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
 const languages = ['en', 'uk'] as const;
+const chapterLanguages = ['en', 'uk', 'pl'] as const;
 
 /** Empty Chapter avoids coupling this Agent 3 suite to Agent 1's evolving Lesson API. */
-const chapter = defineChapter<'chapter', {}, typeof languages>({
+const chapter = defineChapter<'chapter', {}, typeof chapterLanguages>({
   id: id('c2'),
   type: 'chapter',
   slug: 'chapter',
   params: { iconKey: 'book' },
-  locale: { title: { en: 'Chapter', uk: 'Розділ' } },
+  locale: { title: { en: 'Chapter', uk: 'Розділ', pl: 'Rozdział' } },
   content: { items: {}, order: [] },
 });
 const module = defineModule<'module', { chapter: typeof chapter }, typeof languages>({
@@ -137,4 +138,25 @@ test('Course, Module and Chapter reject wrong child types and duplicate slugs', 
     }),
     /duplicate Course child ID/,
   );
+});
+
+test('Course scope excludes extra Chapter translations and propagates selected languages', () => {
+  const standalone = chapter.build.props({ languages: ['pl'] });
+  assert.deepEqual(Object.keys(standalone.locale ?? {}), ['pl']);
+  assert.equal(standalone.locale?.pl?.locale?.title, 'Rozdział');
+
+  const resource = course.build.props({ languages: ['uk'] });
+  assert.deepEqual(Object.keys(resource.locale ?? {}), ['uk']);
+  assert.equal(JSON.stringify(resource).includes('Rozdział'), false);
+  assert.equal(JSON.stringify(resource).includes('"pl"'), false);
+  assert.ok(JSON.stringify(resource.locale?.uk).includes('Розділ'));
+
+  const override = course.build.overrides({
+    content: { items: { module: { locale: { title: { uk: 'Розділ модуля', en: 'Hidden' } } } },
+  }, { languages: ['uk'] });
+  assert.deepEqual(Object.keys(override.locale ?? {}), ['uk']);
+  assert.equal(JSON.stringify(override).includes('Hidden'), false);
+
+  assert.throws(() => course.build.props({ languages: ['pl'] } as never), /does not support publication language/);
+  assert.throws(() => course.build.props({ languages: [] }), /nonempty languages/);
 });
