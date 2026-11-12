@@ -58,3 +58,22 @@ defineSkill<'incomplete', ['en', 'uk']>({
 
 const scoped: LanguageScope<['uk']> = domain;
 void scoped;
+
+/** Build publication scopes are statically limited to guaranteed authoring languages. */
+both.build.props({ languages: ['en', 'uk'] });
+both.build.props({ languages: ['uk'] });
+group.build.props({ languages: ['uk'] });
+domain.build.props({ languages: ['uk'] });
+both.build.overrides({ name: { en: 'Updated' } }, { languages: ['uk'] });
+// @ts-expect-error Skill cannot publish an undeclared language.
+both.build.props({ languages: ['de'] });
+// @ts-expect-error Group's guaranteed scope is Ukrainian, despite its child's English.
+group.build.props({ languages: ['en'] });
+// @ts-expect-error Domain's guaranteed scope is Ukrainian.
+domain.build.props({ languages: ['en'] });
+// @ts-expect-error Override publication must obey the same language scope.
+group.build.overrides({}, { languages: ['en'] });
+// @ts-expect-error Explicit publication options are required.
+both.build.props();
+// @ts-expect-error Overrides require publication options as well.
+both.build.overrides({});
