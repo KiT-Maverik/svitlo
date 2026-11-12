@@ -82,9 +82,9 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
         fail('question', path + '.question', 'Question must be a Text configurator');
       } else if (
         isObject(item.question.config) &&
-        [item.question.config.base, item.question.config.overrides].some(
-          state => isObject(state) && isObject(state.params) && state.params.disabled === true,
-        )
+        isObject(item.question.config.base) &&
+        isObject(item.question.config.base.params) &&
+        item.question.config.base.params.disabled === true
       ) {
         fail('question', path + '.question', 'Question must remain enabled');
       }
@@ -127,8 +127,8 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
  * The original `content` stays unchanged. Use `override.content.add(slug, item)`
  * to append a question, `disable(slugs)` to write `false` for existing keys
  * and remove them from order, or `order(slugs)` to replace the complete
- * order. A question's Text configurator must remain enabled, even though it
- * exposes `disable()`. `false` is valid **only in overrides**, never in authored content.
+ * order. A question's Text configurator must remain enabled.
+ * `false` is valid **only in collection overrides**, never in authored content.
  * Overrides are applied during assembly; validate the resolved collection
  * before publication.
  */
