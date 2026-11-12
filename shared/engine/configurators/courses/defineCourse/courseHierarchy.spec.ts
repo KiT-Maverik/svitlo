@@ -147,6 +147,7 @@ test('Course scope excludes extra Chapter translations and propagates selected l
 
   const resource = course.build.props({ languages: ['uk'] });
   assert.deepEqual(Object.keys(resource.locale ?? {}), ['uk']);
+  assert.deepEqual(resource.base.params.languages, ['uk'], 'frontend must not advertise unpublished locales');
   assert.equal(JSON.stringify(resource).includes('Rozdział'), false);
   assert.equal(JSON.stringify(resource).includes('"pl"'), false);
   assert.ok(JSON.stringify(resource.locale?.uk).includes('Розділ'));
