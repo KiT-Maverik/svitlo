@@ -173,6 +173,8 @@ test('Text strictly rejects unknown override fields with cause and identity', ()
   const text = defineText({ ...identity, locale: { value: 'Welcome' } });
   for (const input of [
     { id: identity.id },
+    { slug: identity.slug },
+    { type: identity.type },
     { unknown: true },
     { params: { disabeld: true } },
     { params: { wrap: { unexpected: 1 } } },
@@ -190,6 +192,12 @@ test('Text strictly rejects unknown override fields with cause and identity', ()
       },
     );
   }
+});
+
+test('Text rejects positional arrays in authored locale values and override patches', () => {
+  const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+  assert.throws(() => defineText({ ...identity, locale: { value: ['not a locale dictionary'] } } as never));
+  assert.throws(() => text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never));
 });
 
 test('Text requires typographyProps to be a JSON-compatible object', () => {

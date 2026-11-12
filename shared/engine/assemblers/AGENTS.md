@@ -12,14 +12,14 @@
 ## Resolution rules
 
 - Resolve only the resource and override data associated with the requested publication context. Independently published overrides are not automatically layered on one another.
-- Merge **named plain objects recursively by key** unless an owning field defines atomic replacement. Scalar values replace previous values. **Every array override replaces the entire array** (`order`, `applyStyle`, or another array); never merge by index or concatenate.
+- Merge **named plain objects recursively by key** unless an owning field defines atomic replacement. Scalar values replace previous values. **Every published Props array override replaces the entire array** (for example, `applyStyle` or an already materialized child collection); never merge by index or concatenate. Authoring-only `order` is resolved before publication and is not a runtime field.
 - Apply localized values for the requested language. A locale-specific patch changes the specified language without requiring its siblings. An explicit invariant string for a localized field replaces its dictionary: stale language-specific values from the original resource must not override that decision.
-- Preserve the difference between an absent override field and an explicit supported value. `false` can disable a collection entry only where that collection contract permits it; filter disabled items in the effective result and honor the validated `order`. Do not invent deletion semantics for `null` or `undefined` without a field contract.
-- Parent/child relationships and constraints (such as a Checkpoint requiring an enabled question) remain owned by the relevant entity. Ensure effective Props satisfy those constraints; final `*_Props_Schema` parsing alone may not cover all entity-specific semantic rules.
+- Preserve the difference between an absent override field and an explicit supported value. Disabled-child markers and authoring-only collection metadata (`items`, `order`, `additional*`) must have been resolved by Configurator Build before publication: runtime Assemblers **must not filter disabled children, interpret `false` as a collection deletion, or sort collections**. A legitimate boolean `false` in published Props remains an ordinary field value. Do not invent deletion semantics for `null` or `undefined` without a field contract.
+- Parent/child composition and invariants (such as a Checkpoint requiring an enabled question) are validated during Configurator Build. Runtime Assemblers validate the resolved Props with existing entity `*_Props_Schema`, without rerunning authoring-only collection validation.
 - If a future use case genuinely requires multiple override layers for a **single resolved result**, explicitly specify their precedence and validation rules then. Do not introduce speculative multi-layer composition into the present publication contract.
 
 ## Verification when implemented
 
-- Test every supported locale, invariant-value replacement, sparse locale patches, keyed-object merging, atomic replacement of arrays, disabled collection entries, and final Props validation.
+- Test every supported locale, invariant-value replacement, sparse locale patches, keyed-object merging, complete replacement of published Props arrays, absence of authoring-only collection markers, and final Props validation.
 - Include examples where an original translation must not reappear after an invariant override, and ensure loaders for Web/Mobile/Desktop can supply the same published payload to the pure assembler.
 - Do not describe these checks as implemented until actual assembler code and tests exist.

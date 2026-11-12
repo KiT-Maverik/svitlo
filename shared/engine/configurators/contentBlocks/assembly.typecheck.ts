@@ -83,8 +83,14 @@ text.build.props({ embed: false });
 text.build.props();
 // @ts-expect-error Props-shaped nested locale input is not an authored Overrides patch.
 text.build.overrides({ locale: { value: { locale: { value: 'Hi' } } } });
-// @ts-expect-error Identity is not overridable.
+// @ts-expect-error Identity ID is not overridable.
 text.build.overrides({ id });
+// @ts-expect-error Identity slug is not overridable.
+text.build.overrides({ slug: 'renamed' });
+// @ts-expect-error Identity type is not overridable.
+text.build.overrides({ type: 'text' });
+// @ts-expect-error Authored locale values must not contain positional arrays.
+text.build.overrides({ locale: { value: ['not a locale dictionary'] } });
 
 const audioPublished = audio.build.props();
 const audioEmbedded = audio.build.props({ embed: true });
