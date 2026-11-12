@@ -25,6 +25,12 @@ export type OrderedBlockPatch<
   };
   order?: Extract<keyof Children | keyof NoInfer<Added>, string>[];
 };
+/** Broad internal runtime input; public OrderedBlockPatch retains literal key and language inference. */
+export type ResolvableBlockPatch = {
+  items?: Record<string, unknown>;
+  additionalItems?: Record<string, Block>;
+  order?: string[];
+};
 export type QuestionCommonContent<Child = Block> = {
   question: OrderedBlocks<Child>;
   hint?: OrderedBlocks<Child>;
@@ -122,7 +128,7 @@ export const resolveChild = (child: Block, patch?: unknown) => {
  */
 export const resolveBlockCollection = (
   source: OrderedBlocks,
-  patch?: OrderedBlockPatch,
+  patch?: ResolvableBlockPatch,
   path = 'content',
   nonEmpty = false,
 ): ResolvedCollection<Fragment[]> & { order: string[] } => {
@@ -196,7 +202,7 @@ export const resolveBlockMap = (
 
 export const resolveCommonContent = (
   source: QuestionCommonContent,
-  patch?: QuestionCommonPatch<QuestionCommonContent>,
+  patch?: { question?: ResolvableBlockPatch; hint?: ResolvableBlockPatch; explanation?: ResolvableBlockPatch },
 ): ComposedContent => {
   if (patch !== undefined && !isRecord(patch)) throw new Error('content must be an object');
   const base: Record<string, unknown> = {};
