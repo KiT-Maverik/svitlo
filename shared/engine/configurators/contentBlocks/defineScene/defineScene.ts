@@ -51,42 +51,6 @@ const assembleScenePatch = (patch: ContentBlock_Scene_Overrides): SceneAssembly<
   };
 };
 
-type SceneLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Scene_Locale<'props'>>>>;
-type SceneAssembly<Base> = { base: Base; locale: SceneLocaleFiles | undefined };
-type SceneOverrideBase = { params?: ContentBlock_Scene_Overrides['params']; locale?: DeepPartial<ContentBlock_Scene_Locale<'props'>>; };
-
-const parseAndValidate = (config: ContentBlock_Scene_Config): ContentBlock_Scene_Config => {
-  const parsed = scene_Config_Schema.parse(config);
-  validateSceneEntry(parsed.id);
-  return parsed;
-};
-const validate = (config: ContentBlock_Scene_Config): void => { parseAndValidate(config); };
-
-const assembleScene = (config: ContentBlock_Scene_Config): SceneAssembly<ContentBlock_Scene_ResourceBase> => {
-  const { id, type, slug, params } = config;
-  const { base: invariant, locale } = splitLocalizedFields(config.locale);
-  const base = {
-    id, type, slug, params,
-    ...(Object.keys(invariant).length
-      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
-      : {}),
-  } satisfies ContentBlock_Scene_ResourceBase;
-  return { base, locale: locale as unknown as SceneLocaleFiles | undefined };
-};
-
-const assembleScenePatch = (patch: ContentBlock_Scene_Overrides): SceneAssembly<SceneOverrideBase> => {
-  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
-  return {
-    base: {
-      ...(patch.params !== undefined ? { params: patch.params } : {}),
-      ...(Object.keys(invariant).length
-        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Scene_Locale<'props'>> }
-        : {}),
-    },
-    locale: locale as unknown as SceneLocaleFiles | undefined,
-  };
-};
-
 /**
  * Define a Scene with invariant strings and field-level localized text.
  * Do not use arrays anywhere in the authored Scene locale value. Represent

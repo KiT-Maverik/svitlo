@@ -50,42 +50,6 @@ const assembleYoutubePatch = (patch: ContentBlock_Youtube_Overrides): YoutubeAss
   };
 };
 
-type YoutubeLocaleFiles = Partial<Record<LanguageCodes, DeepPartial<ContentBlock_Youtube_Locale<'props'>>>>;
-type YoutubeAssembly<Base> = { base: Base; locale: YoutubeLocaleFiles | undefined };
-type YoutubeOverrideBase = { params?: ContentBlock_Youtube_Overrides['params']; locale?: DeepPartial<ContentBlock_Youtube_Locale<'props'>>; };
-
-const parseAndValidate = (config: ContentBlock_Youtube_Config): ContentBlock_Youtube_Config => {
-  const parsed = youtube_Config_Schema.parse(config);
-
-  return parsed;
-};
-const validate = (config: ContentBlock_Youtube_Config): void => { parseAndValidate(config); };
-
-const assembleYoutube = (config: ContentBlock_Youtube_Config): YoutubeAssembly<ContentBlock_Youtube_ResourceBase> => {
-  const { id, type, slug, params } = config;
-  const { base: invariant, locale } = splitLocalizedFields(config.locale);
-  const base = {
-    id, type, slug, params,
-    ...(Object.keys(invariant).length
-      ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
-      : {}),
-  } satisfies ContentBlock_Youtube_ResourceBase;
-  return { base, locale: locale as unknown as YoutubeLocaleFiles | undefined };
-};
-
-const assembleYoutubePatch = (patch: ContentBlock_Youtube_Overrides): YoutubeAssembly<YoutubeOverrideBase> => {
-  const { base: invariant, locale } = splitLocalizedFields(patch.locale ?? {});
-  return {
-    base: {
-      ...(patch.params !== undefined ? { params: patch.params } : {}),
-      ...(Object.keys(invariant).length
-        ? { locale: invariant as unknown as DeepPartial<ContentBlock_Youtube_Locale<'props'>> }
-        : {}),
-    },
-    locale: locale as unknown as YoutubeLocaleFiles | undefined,
-  };
-};
-
 /** Define Youtube. */
 /**
  * Stateless authored ContentBlock. Assembly validates isolated snapshots and
