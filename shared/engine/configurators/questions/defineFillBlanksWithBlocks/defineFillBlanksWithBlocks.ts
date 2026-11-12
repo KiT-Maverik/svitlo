@@ -123,8 +123,8 @@ export const defineFillBlanksWithBlocks = <
     languages: readonly LanguageCodes[],
     patch?: {
       slots?: {
-        items?: Record<string, Record<string, unknown> | false>;
-        additionalItems?: Record<string, { correctAnswer: ContentBlock_Configurator }>;
+        items?: Record<string, unknown>;
+        additionalItems?: Record<string, unknown>;
         order?: string[];
       };
       distractors?: ResolvableBlockPatch;

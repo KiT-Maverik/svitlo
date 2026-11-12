@@ -205,9 +205,13 @@ export const defineChapter = <
         const effective = mergeForValidation(withBasePatch, (patch?.locale?.[language] ?? {}) as DeepPartial<typeof withBasePatch>);
         return parseChild(effective);
       });
-      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
-        locale[language] = resolved;
-      }
+      // Inspect the published envelope without recursively expanding nested Lesson unions.
+      const hasTranslatedChild = entries.some(({ resource, patch }) => {
+        const ownLocales: Partial<Record<LanguageCodes, unknown>> | undefined = resource.locale;
+        const patchLocales: Partial<Record<LanguageCodes, unknown>> | undefined = patch?.locale;
+        return ownLocales?.[language] !== undefined || patchLocales?.[language] !== undefined;
+      });
+      if (hasTranslatedChild) locale[language] = resolved;
     }
     return { base, locale };
   };

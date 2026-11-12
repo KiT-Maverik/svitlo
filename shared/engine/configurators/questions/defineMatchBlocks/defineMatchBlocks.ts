@@ -122,8 +122,8 @@ export const defineMatchBlocks = <
     source: Content,
     languages: readonly LanguageCodes[],
     patch?: {
-      items?: Record<string, Record<string, unknown> | false>;
-      additionalItems?: Record<string, { left: ContentBlock_Configurator; right: ContentBlock_Configurator }>;
+      items?: Record<string, unknown>;
+      additionalItems?: Record<string, unknown>;
       order?: string[];
     },
   ) => {
