@@ -76,9 +76,9 @@ const packageMetadataFields = new Set([
 ]);
 
 test('root and workspace package manifests group metadata, scripts, dependencies, devDependencies and other fields', () => {
-  const rootPath = fileURLToPath(new URL('../package.json', import.meta.url));
+  const rootPath = fileURLToPath(new URL('../../package.json', import.meta.url));
   const packages = discoverWorkspaces();
-  const rootDir = fileURLToPath(new URL('../', import.meta.url));
+  const rootDir = fileURLToPath(new URL('../../', import.meta.url));
   const manifestFiles = [rootPath, ...packages.map(pkg => rootDir + pkg.path + '/package.json')];
   for (const path of manifestFiles) {
     const keys = Object.keys(JSON.parse(readFileSync(path, 'utf8')));
@@ -103,7 +103,7 @@ test('root and workspace package manifests group metadata, scripts, dependencies
 });
 
 test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
-  const root = JSON.parse(readFileSync(fileURLToPath(new URL('../package.json', import.meta.url)), 'utf8'));
+  const root = JSON.parse(readFileSync(fileURLToPath(new URL('../../package.json', import.meta.url)), 'utf8'));
   const packages = discoverWorkspaces();
   assert.equal(packages.length, 29);
   assert.equal(Object.hasOwn(root.scripts, 'storybook:start'), false);

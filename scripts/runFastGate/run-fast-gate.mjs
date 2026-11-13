@@ -5,7 +5,7 @@ import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 function assert(ok, message) {
   if (!ok) throw new Error(message);
 }
@@ -44,7 +44,7 @@ function packageFor(file, workspaces) {
 export function chooseChecks(changed, workspaces) {
   const affected = new Set();
   const packages = new Map(workspaces.map(w => [w.name, w]));
-  const global = changed.some(f => f === 'package.json' || f.startsWith('scripts/check-workspaces'));
+  const global = changed.some(f => f === 'package.json' || f.startsWith('scripts/checkWorkspaces/check-workspaces'));
   const lockChange = changed.includes('package-lock.json');
   for (const file of changed) {
     const pkg = packageFor(file, workspaces);
@@ -72,7 +72,7 @@ function runGate(changed) {
   const plan = chooseChecks(changed, workspaces);
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
-  exec('node', ['--test', 'scripts/run-fast-gate.spec.mjs']);
+  exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs']);
   // Validate editorial Course composition independently of unrelated workspace
   // typecheck errors; the Course builder is deterministic repository tooling.
   if (
@@ -83,8 +83,8 @@ function runGate(changed) {
     exec('node', ['--test', 'shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs']);
   }
 
-  if (changed.some(file => file === 'package.json' || file.startsWith('scripts/run-workspace-script.'))) {
-    exec('node', ['--test', 'scripts/run-workspace-script.spec.mjs']);
+  if (changed.some(file => file === 'package.json' || file.startsWith('scripts/runWorkspaceScript/run-workspace-script.'))) {
+    exec('node', ['--test', 'scripts/runWorkspaceScript/run-workspace-script.spec.mjs']);
   }
   if (
     changed.some(
@@ -264,7 +264,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
       runGate(['package.json']);
     } else if (args.length === 2) {
       runGate(changedFiles(args[0], args[1]));
-    } else throw new Error('Usage: node scripts/run-fast-gate.mjs <base-sha> <head-sha> | --all');
+    } else throw new Error('Usage: node scripts/runFastGate/run-fast-gate.mjs <base-sha> <head-sha> | --all');
   } catch (error) {
     console.error(error.message);
     process.exitCode = 1;

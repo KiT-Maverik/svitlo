@@ -13,7 +13,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
-const repositoryRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const repositoryRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const packageRoots = [
   '@svitlo/engine',
   '@svitlo/ui-kit',

@@ -50,7 +50,7 @@ test('unrelated workflow changes do not select subject workspaces', () => {
 
 test('content builds have one dedicated workflow with scoped triggers', () => {
   const workflow = readFileSync(
-    fileURLToPath(new URL('../.github/workflows/content-build.yml', import.meta.url)),
+    fileURLToPath(new URL('../../.github/workflows/content-build.yml', import.meta.url)),
     'utf8',
   );
   assert.match(workflow, /name: Content packages build/);
