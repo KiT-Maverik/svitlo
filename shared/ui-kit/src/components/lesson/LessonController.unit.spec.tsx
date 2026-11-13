@@ -113,10 +113,7 @@ describe('LessonController scoped state and navigation', () => {
         ...fixture.parameters,
         sections: { ...fixture.parameters.sections, allowSkipping },
       },
-      sections: [
-        { ...first, ...(skippable === undefined ? {} : { skippable }) },
-        ...fixture.sections.slice(1),
-      ],
+      sections: [{ ...first, ...(skippable === undefined ? {} : { skippable }) }, ...fixture.sections.slice(1)],
     } as LessonView;
     observed.length = 0;
     render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);

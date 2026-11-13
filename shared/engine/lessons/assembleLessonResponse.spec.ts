@@ -83,7 +83,10 @@ describe('assembleLessonResponse', () => {
   it('preserves explicit Section skip opt-outs and opt-ins in published responses', () => {
     const data = {
       ...lesson,
-      sections: [{ ...quiz('first', false), skippable: false }, { ...quiz('second', false), skippable: true }],
+      sections: [
+        { ...quiz('first', false), skippable: false },
+        { ...quiz('second', false), skippable: true },
+      ],
     };
     const response = assembleLessonResponse(id, 'en', {
       config: { data, localeSources: {} },

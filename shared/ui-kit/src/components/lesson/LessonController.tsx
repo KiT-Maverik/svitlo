@@ -566,8 +566,7 @@ function LessonControllerRuntime({
   );
   const contentLanguage = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === response.locale.code);
   const skippableSteps = useMemo(
-    () =>
-      response.sections.map(item => canSkipSection(item, state.params.sections.allowSkipping)),
+    () => response.sections.map(item => canSkipSection(item, state.params.sections.allowSkipping)),
     [response.sections, state.params.sections.allowSkipping],
   );
   return (
