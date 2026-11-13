@@ -159,6 +159,8 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     'text',
     'markdown',
     'checkpoint',
+    // A Checkpoint publishes nested CheckpointItem Props; these are not top-level blocks.
+    'checkpointItem',
     'code',
     'audio',
     'video',

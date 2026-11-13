@@ -56,6 +56,21 @@ test('discovers only canonical UUID-addressed lessons with actual data files in 
     ]);
   }));
 
+test('discovers composed index.ts Lessons without retired data files', () =>
+  setup(root => {
+    const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
+    const directory = path.join(root, 'content/playground/data/lessons/c', id);
+    fs.mkdirSync(directory, { recursive: true });
+    fs.writeFileSync(path.join(directory, 'index.ts'), 'export const howLightMoves = {};\n');
+    const entries = discoverLessons(root);
+    assert.equal(entries.length, 1);
+    assert.equal(entries[0].source, path.join(directory, 'index.ts'));
+    createGenerator(root);
+    const { result, manifest } = run(root);
+    assert.deepEqual(result, { discoveredLessons: 1, generated: 2, failures: 0 });
+    assert.equal(manifest.generated[0].lesson, 'c/' + id);
+  }));
+
 test('generates locale-specific Markdown and records PR-scoped paths', () =>
   setup(root => {
     createLesson(root);
