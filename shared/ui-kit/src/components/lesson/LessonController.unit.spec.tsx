@@ -132,7 +132,7 @@ describe('Engine Props Lesson Controller', () => {
   it('blocks Next until a required Engine Checkpoint Item is complete', () => {
     showLesson();
     expect(navigationButton('next')).toBeDisabled();
-    fireEvent.click(screen.getByText('What is light?'));
+    fireEvent.click(screen.getByRole('button', { name: /What is light\?/i }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.checkpoint.check }));
     expect(navigationButton('next')).toBeEnabled();
     fireEvent.click(navigationButton('next'));
