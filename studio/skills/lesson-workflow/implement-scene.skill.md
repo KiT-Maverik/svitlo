@@ -1,6 +1,6 @@
 # Implement Scene Skill
 
-**Persona:** [Coding Agent](../../personas/coding-agent.persona.md) — read it fully before any work. Also read applicable root/package `AGENTS.md`, [Lesson Production](../../docs/architecture/lesson-production-workflow.md), [Lesson Content](../../docs/entities/lesson-content.md), accessibility/offline architecture and the **actual current** Contracts, Engine, UI Kit renderer, textbook Scene registry, tests and package scripts.
+**Persona:** [Coding Agent](../../personas/coding-agent.persona.md) — read it fully before any work. Also read applicable root/package `AGENTS.md`, [Lesson Production](../../docs/architecture/lesson-production-workflow.md), [Lesson Content](../../docs/entities/lesson-content.md), accessibility/offline architecture and the **actual current** Engine schemas and UI Kit renderer, textbook Scene registry, tests and package scripts.
 
 **Purpose:** Implement, integrate and test one or a batch of bespoke React Scenes from already-approved Educational Screenwriter specifications. This is an engineering specialization, **not the YAML-to-typed-Lesson generator**.
 
@@ -25,7 +25,7 @@
 
 Read these actual sources in the target branch:
 
-- `shared/contracts/src/types/content/blocks/scene.types.ts`: `ContentBlock_Scene<'data', SupportedLanguages, LocaleShape>` provides **typed** authored `locales`; the response supplies localized `locales` and the stable Scene UUID as `id`. The generic block discriminator is **`type: 'scene'`**, **not** historical `blockType: 'scene'`.
+- [Engine Scene schemas](../../../shared/engine/configurators/contentBlocks/defineScene/defineScene.schemas.ts) define `scene_Config_Schema` and `scene_Props_Schema`. Scene values use field-level localization; published Props retain the stable block identity and `type: 'scene'` discriminator.
 - `shared/engine/src/lessons/createContentBlock.ts`, `createSection.ts` and `createLesson.ts`: typed build-time creator boundaries and sparse locale projection; preserve existing scaffold identity and order. Do not make runtime packages import authored `*.data.ts` unnecessarily.
 - `content/playground/scenes/5/72d22bea-d787-4c6d-9a83-144830c6d325/LightRayDiagram.tsx` and `content/playground/scenes/3/968926d3-7b15-4575-8f57-a5a2a5054783/LightPropagationSimulation.tsx`: examples of **current typed `locales` props** and UI interactions. Treat as references, not a mandatory architecture for every textbook.
 - `content/playground/scenes/createSceneRegistry.ts` and `scripts/textbook-tooling/generate-scenes.mjs`: current lazy Scene registration; use the equivalent existing package setup.
