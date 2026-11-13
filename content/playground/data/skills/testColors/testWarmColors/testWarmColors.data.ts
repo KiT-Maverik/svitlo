@@ -36,7 +36,7 @@ export const testWarmColors_SkillGroup_Data = defineSkillGroup({
     kk: '[TEST kk] Warm colors',
     qm: '[TEST qm] Warm colors',
   },
-  skills: [testRecognizeRed_Skill_Data, testRecognizeOrange_Skill_Data],
+  skills: { items: { testRecognizeRed: testRecognizeRed_Skill_Data, testRecognizeOrange: testRecognizeOrange_Skill_Data }, order: ['testRecognizeRed', 'testRecognizeOrange'] },
   description: {
     methodological: 'Synthetic Playground fixture for testWarmColors; testing only, not curricular content.',
     frontend: {
