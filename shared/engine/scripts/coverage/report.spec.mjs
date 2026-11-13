@@ -4,6 +4,19 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { buildGapReport, collectCoverageTargets, isEngineCoverageTarget, parseLcov } from './report.mjs';
+import { engineTestPatterns } from './engineTestPatterns.mjs';
+
+describe('Engine coverage invocation parsing', () => {
+  it('ignores commands chained after the Node test path list', () => {
+    assert.deepEqual(
+      engineTestPatterns(
+        'tsc -p tsconfig.test.json && node --test .test-build/lessons/*.spec.js scripts/coverage/report.spec.mjs && node ../../scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs',
+      ),
+      ['.test-build/lessons/*.spec.js', 'scripts/coverage/report.spec.mjs'],
+    );
+    assert.throws(() => engineTestPatterns('tsc -p tsconfig.test.json'), /Unsupported Engine test command/);
+  });
+});
 
 describe('Engine gap report', () => {
   it('selects executable modules without counting declarations, tests or obsolete configurators', () => {
