@@ -7,7 +7,7 @@ import {
 } from './assembleLessonProps';
 
 /**
- * The Course generator publishes a Lesson reference, not standalone Lesson
+ * The Course generator publishes a Lesson reference in a slug-keyed hierarchy, not standalone Lesson
  * Props. The sparse overrides come from the Lesson configurator Build API.
  */
 export type CourseLessonEntry = {
