@@ -19,23 +19,23 @@ The existing specialist artifacts are **editorial plans**, each with its own own
 | Course `overrides.yaml` | Shared Course Methodologist/Screenwriter-owned, separately approved Course-specific patch operations | Keep separate from `toc.yaml` and from the basic Course Config tree. Apply only via the separately supported override workflow once the target Lesson's real slugs and source exports are known |
 
 **Never feed the editorial plan directly to a scaffolder as though it were a Config.**
-An authorized integration/editorial handoff creates a **separate Config-shaped YAML draft** following the generated Engine schemas, with provenance back to approved revisions. This is a projection, not a replacement for specialist artifacts. A plan may be approved while its technical projection is still partial. Conversely, a syntactically convertible projection is not pedagogically approved.
+An authorized integration/editorial handoff creates **`lesson.config.yaml`** for Lessons or **`course.yaml`** for Courses: separate Config-shaped YAML drafts following the generated Engine schemas, with provenance back to approved revisions. This is a projection, not a replacement for specialist artifacts. A plan may be approved while its technical projection is still partial. Conversely, a syntactically convertible projection is not pedagogically approved.
 
-The conversion of editorial `key` arrays into `{items, order}`, stable UUID allocation, slug resolution, Quiz parameters, verified Question-field imports and Course Lesson references is **explicit handoff work**; it is not an implicit promise made by the generic Lesson/Course draft scaffolders. Ambiguities return to the responsible author or the integration coordinator, not to invented defaults.
+The conversion of editorial `key` arrays into `{items, order}`, stable UUID allocation, slug resolution, Quiz parameters, verified Question-field imports and Course Lesson references is **explicit handoff work**; it is not an implicit promise made by the generic Lesson/Course draft scaffolders. The Lesson script reads only `lesson.config.yaml` as Config; it can read `documentLanguage` from the separate `content.yaml` editorial provenance or accept `--language <locale>` explicitly. It never reads editorial Question or Flashcard plans as Config. Ambiguities return to the responsible author or the integration coordinator, not to invented defaults.
 
 ## Engine Config shape, not published Props
 
 - Polymorphic nodes **at every nesting level** require `type`: Lesson, Course, Module, Chapter, Episode, Section, ContentBlock, Question, Flashcard and applicable embedded types such as Carousel slides and Checkpoint items. Use the actual `yamlFactoryByType` registry for dispatch; do not infer type from a key or a `kind` field in the editorial plan.
 - Authored ordered child collections use `{ items: { slug: node }, order: [slug] }` even when the editorial plan uses arrays. The map key, child `slug` and ordering must be reconciled. Question banks are grouped by Question type and then slug; their nested block collections use `items/order`.
 - The Engine source for Lesson, Course, Section, Question and Flashcard schemas is under `shared/engine/configurators/`. The seven derived files under `shared/engine/yaml-schemas/` are **editor guidance**, generated with `content:generate:yaml-schemas` and checked with `content:check:yaml-schemas`, not handwritten and not a second validation layer inside the scaffolders.
-- `documentLanguage` belongs to the editorial source/provenance; it is **not** a top-level property of the Engine `defineLesson`/`defineCourse` Config. Place learner-facing copy under `locale.<field>.<documentLanguage>` (such as `locale.title.uk` or `locale.value.en`). Only use scalar invariant text when genuinely language-independent and supported by the Config field.
+- `documentLanguage` belongs to editorial provenance or a CLI `--language` argument; it is **not** a top-level property of the Engine `defineLesson`/`defineCourse` Config. Place learner-facing copy under `locale.<field>.<documentLanguage>` (such as `locale.title.uk` or `locale.value.en`). Only use scalar invariant text when genuinely language-independent and supported by the Config field.
 - `params.languages` expresses the **intended** Lesson/Course languages and can include `en`, `uk`, or other locales whose translations do not yet exist. Initial YAML contains learner-facing values in the **single** document language even where other languages are listed. Do not auto-fill, copy, invent or falsely approve translations. The Course authoring language may differ from a particular Lesson's authoring language.
 - A `type: lesson` Course child contains `lessonId` referencing a real standalone Lesson, **never** an embedded Lesson Config or a newly invented Lesson. The Course's languages must ultimately be supported by referenced Lessons.
 - A schema-shaped YAML draft may still fail Engine validation, TypeScript compilation, reference resolution, accessibility checks, or publication. The scaffolders mechanically emit draft `define*` source and do **not** run Zod/AJV, full TS typechecking, editorial sign-offs, localization completion or `generateLessonProps`/`generateCourseProps`. These remain independent later gates.
 
 ## Partial Lesson Config-shaped YAML example
 
-This is an **illustrative excerpt** using schematic UUIDs and Skill IDs. It shows the nesting and source-language-only copy, not a fully approved or publishable Lesson. `documentLanguage: uk` is editorial provenance **outside** this Config. Check the canonical generated `lesson.schema.json` before adapting to a real Lesson.
+This is an **illustrative `lesson.config.yaml` excerpt** using schematic UUIDs and Skill IDs. It shows the nesting and source-language-only copy, not a fully approved or publishable Lesson. Use `--language uk` or the independently authored Screenwriter `content.yaml` provenance; `documentLanguage: uk` is **outside** this Config. Check the canonical generated `lesson.schema.json` before adapting to a real Lesson.
 
 ```yaml
 id: '11111111-1111-4111-8111-111111111111'
@@ -217,7 +217,7 @@ The Course Config cannot contain editorial `skills` lesson-slot descriptions or 
 ## Ownership and checks
 
 1. Specialists produce and independently review their **own** files, including the Lesson Methodology, Screenwriter plan, Question bank, Flashcards and Course TOC/overrides. Confirm the approved **source revisions** and applicable Lesson/Course Production Issue before technical conversion.
-2. The integration editor/Coding Agent projects those inputs into a Config-shaped **draft** with stable UUIDs and `type` at all polymorphic boundaries. Keep a revision-to-revision handoff note and unresolved mapping decisions. Do not silently rewrite the approved originals.
+2. The integration editor/Coding Agent projects those inputs into a Config-shaped **`lesson.config.yaml` or `course.yaml` draft** with stable UUIDs and `type` at all polymorphic boundaries. Keep a revision-to-revision handoff note and unresolved mapping decisions. Do not silently rewrite the approved originals.
 3. Generate editor JSON Schemas from **Engine** rather than writing Studio copies:
 
    ```sh
