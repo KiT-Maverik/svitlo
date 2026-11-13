@@ -2,7 +2,15 @@ import 'server-only';
 
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { mergeLessonResources } from '@svitlo/engine';
+import {
+  assembleSkills,
+  languageCode_Schema,
+  mergeLessonResources,
+  type SkillDomain_Props,
+  type Skill_Props,
+  type Skills_Publication,
+  type Skills_Props,
+} from '@svitlo/engine';
 import { resolveSkillLanguage } from '@/components/pages/SkillsMindMap/skillsData.client';
 import { slugPattern, type SkillNode, type SkillNodeKind } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
 
@@ -50,16 +58,74 @@ export function parseMergedSkillTree(input: unknown): SkillNode[] {
   return domains;
 }
 
-/** Only the Next.js server loads and deep-merges the two published resources. */
-export async function loadPublishedSkills(language: string, domainSlugs: readonly string[]): Promise<SkillNode[]> {
-  const code = resolveSkillLanguage(language);
+/** Host-specific I/O remains separate from the platform-independent assembler. */
+async function readPublishedSkillFiles(code: string): Promise<{ base: unknown; locale: unknown }> {
   const dir = join(process.cwd(), 'public/data/skills');
   const [base, locale] = await Promise.all([
     readFile(join(dir, 'base.json'), 'utf8').then(JSON.parse),
     readFile(join(dir, code + '.json'), 'utf8').then(JSON.parse),
   ]);
-  const merged = mergeLessonResources(base, locale);
-  const domains = parseMergedSkillTree(merged);
+  return { base, locale };
+}
+
+function publishedResource(base: unknown, locale: unknown, code: string): Skills_Publication {
+  return { base, locale: { [code]: locale } } as Skills_Publication;
+}
+
+/** Reads the two files and returns the new Build API's fully resolved Domain Props. */
+export async function loadPublishedSkillProps(language: string): Promise<Skills_Props> {
+  const code = languageCode_Schema.parse(resolveSkillLanguage(language));
+  const { base, locale } = await readPublishedSkillFiles(code);
+  return assembleSkills(publishedResource(base, locale, code), code);
+}
+
+function skillPropsToNode(skill: Skill_Props): SkillNode {
+  return {
+    id: skill.id,
+    slug: skill.slug,
+    kind: 'skill',
+    name: skill.name,
+    description: skill.description.frontend,
+    children: [],
+  };
+}
+
+function domainPropsToNode(domain: SkillDomain_Props): SkillNode {
+  const children: SkillNode[] = [
+    ...(domain.groups ?? []).map(group => ({
+      id: group.id,
+      slug: group.slug,
+      kind: 'skillGroup' as const,
+      name: group.name,
+      ...(group.description.frontend ? { description: group.description.frontend } : {}),
+      children: group.skills.map(skillPropsToNode),
+    })),
+    ...(domain.skills ?? []).map(skillPropsToNode),
+  ];
+  if (!children.length) throw new Error('Empty Skill Domain ' + domain.slug);
+  return {
+    id: domain.id,
+    slug: domain.slug,
+    kind: 'skillDomain',
+    name: domain.title,
+    ...(domain.description.frontend ? { description: domain.description.frontend } : {}),
+    children,
+  };
+}
+
+/**
+ * Keeps the existing Skills Mind Map functional with the legacy publisher.
+ * Once the Skills generator publishes Build Props, the same host loader uses
+ * assembleSkills without passing any authored or legacy collection metadata.
+ */
+export async function loadPublishedSkills(language: string, domainSlugs: readonly string[]): Promise<SkillNode[]> {
+  const code = languageCode_Schema.parse(resolveSkillLanguage(language));
+  const { base, locale } = await readPublishedSkillFiles(code);
+  const domainMap = record(base, 'root');
+  const legacy = Object.entries(domainMap).every(([slug, entry]) => record(entry, slug).collection === 'skillDomain');
+  const domains = legacy
+    ? parseMergedSkillTree(mergeLessonResources(base, locale))
+    : Object.values(assembleSkills(publishedResource(base, locale, code), code)).map(domainPropsToNode);
   if (
     !domainSlugs.length ||
     new Set(domainSlugs).size !== domainSlugs.length ||
