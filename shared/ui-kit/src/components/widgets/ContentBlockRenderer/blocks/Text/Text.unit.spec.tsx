@@ -50,7 +50,7 @@ describe('Text', () => {
       info: { applyStyle: ['highlight'], tone: 'info' },
       neutral: { applyStyle: ['highlight'], tone: 'neutral' },
       success: { applyStyle: ['highlight'], tone: 'success' },
-    } satisfies NonNullable<ContentBlock_Text_Props['variables']>;
+    } satisfies NonNullable<ContentBlock_Text_Props['params']['variables']>;
     render(<Text {...textResponse(text, variables)} />);
 
     expect(screen.getByText('Default')).toHaveClass(styles.highlight);

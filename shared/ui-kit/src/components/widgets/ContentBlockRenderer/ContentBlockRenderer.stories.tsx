@@ -3,17 +3,25 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import type { ContentBlockRendererProps } from './types';
 
+const textBlock = (id: string, value: string) => ({
+  id, slug: 'textBlock', type: 'text' as const, params: {}, locale: { value },
+});
 const mixedBlocks: NonNullable<ContentBlockRendererProps['blocks']> = [
-  { id: 'intro', type: 'text', value: 'Light travels in straight lines through a uniform medium.' },
+  textBlock('intro', 'Light travels in straight lines through a uniform medium.'),
   {
     id: 'example',
+    slug: 'example',
     type: 'code',
-    language: 'javascript',
-    title: 'Example',
-    codeAsText: 'const speedOfLight = 299_792_458;\nconsole.log(speedOfLight);',
+    params: { language: 'javascript', codeAsText: 'const speedOfLight = 299_792_458;\\nconsole.log(speedOfLight);' },
   },
-  { id: 'markdown-note', type: 'markdown', text: '## Key idea\n\n**Speed** is a distance divided by time.' },
-  { id: 'summary', type: 'text', value: 'Now check your understanding.' },
+  {
+    id: 'markdown-note',
+    slug: 'markdownNote',
+    type: 'markdown',
+    params: {},
+    locale: { value: '## Key idea\\n\\n**Speed** is a distance divided by time.' },
+  },
+  textBlock('summary', 'Now check your understanding.'),
 ];
 
 const meta = {
@@ -47,17 +55,24 @@ export const NestedCheckpoint: Story = {
     blocks: [
       {
         id: 'knowledge-check',
+        slug: 'knowledgeCheck',
         type: 'checkpoint',
-        title: 'Check your knowledge',
-        enableChecks: true,
-        items: [
+        params: { enableChecks: true },
+        locale: { title: 'Check your knowledge' },
+        content: [
           {
-            question: 'How does light travel through a uniform medium?',
-            answer: [{ id: 'answer-one', type: 'text', value: 'In straight lines.' }],
+            id: 'knowledge-item-1',
+            slug: 'knowledgeItemOne',
+            type: 'checkpointItem',
+            question: textBlock('question-one', 'How does light travel through a uniform medium?'),
+            answer: [textBlock('answer-one', 'In straight lines.')],
           },
           {
-            question: 'What is the approximate speed of light in a vacuum?',
-            answer: [{ id: 'answer-two', type: 'text', value: 'About 300,000 km/s.' }],
+            id: 'knowledge-item-2',
+            slug: 'knowledgeItemTwo',
+            type: 'checkpointItem',
+            question: textBlock('question-two', 'What is the approximate speed of light in a vacuum?'),
+            answer: [textBlock('answer-two', 'About 300,000 km/s.')],
           },
         ],
       },
