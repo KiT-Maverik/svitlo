@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '+@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/engine/runtime';
 import { textbook } from '@svitlo/playground';
 
 export type LessonRoute = {
