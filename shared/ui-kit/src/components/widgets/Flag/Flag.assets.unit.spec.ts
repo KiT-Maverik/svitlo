@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { flagCountryByLocale } from './Flag';
 
 const directory = join(process.cwd(), 'assets/flags');
