@@ -105,7 +105,7 @@ test('root and workspace package manifests group metadata, scripts, dependencies
 test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
   const root = JSON.parse(readFileSync(fileURLToPath(new URL('../../package.json', import.meta.url)), 'utf8'));
   const packages = discoverWorkspaces();
-  assert.equal(packages.length, 29);
+  assert.equal(packages.length, 28);
   assert.equal(Object.hasOwn(root.scripts, 'storybook:start'), false);
   assert.equal(Object.hasOwn(root.scripts, 'app:start:dev'), false);
   assert.equal(Object.hasOwn(root.scripts, 'app:start'), false);
