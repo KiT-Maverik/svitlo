@@ -6,7 +6,8 @@ import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const lessonFile = /^([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(base|[a-z]{2})\.json$/;
+const lessonFile =
+  /^([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(base|[a-z]{2})\.json$/;
 
 function validateFiles(files) {
   if (!(files instanceof Map)) throw new Error('Expected a Map of generated Lesson files');
@@ -61,7 +62,10 @@ export function checkLessonProps(root, files) {
   validateFiles(files);
   const actual = currentFiles(root);
   const changed = [...files]
-    .filter(([relative, content]) => !actual.has(relative) || fs.readFileSync(path.join(root, relative), 'utf8') !== content)
+    .filter(
+      ([relative, content]) =>
+        !actual.has(relative) || fs.readFileSync(path.join(root, relative), 'utf8') !== content,
+    )
     .map(([relative]) => relative);
   const stale = [...actual].filter(relative => !files.has(relative));
   if (changed.length || stale.length) {
