@@ -57,7 +57,7 @@ for (const resource of ['assessmentMethods/base.json', 'assessmentMethods/uk.jso
   if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
 }
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/syncFlags.mjs'), desktopRoot]);
-if (!existsSync(join(publicRoot, 'data/pages/lessons')) || !existsSync(join(localeOutput, 'components/uk.json'))) {
+if (!existsSync(join(publicRoot, 'data/lessons')) || !existsSync(join(localeOutput, 'components/uk.json'))) {
   throw new Error('Desktop lesson or UI Kit localization output is missing');
 }
 console.log('Desktop content prepared from compiled package ' + selected.package);

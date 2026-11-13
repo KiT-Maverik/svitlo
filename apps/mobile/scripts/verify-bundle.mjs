@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { basename, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
@@ -9,17 +9,22 @@ const dist = join(root, 'dist');
 const index = JSON.parse(readFileSync(join(dist, 'data/lesson-index.json'), 'utf8'));
 const publication = JSON.parse(readFileSync(join(dist, '.svitlo/publish-playground.json'), 'utf8'));
 assert.equal(publication.textbook, 'playground');
-assert.ok(publication.files.some(name => name.startsWith('data/pages/lessons/')));
+assert.ok(publication.files.some(name => name.startsWith('data/lessons/')));
 assert.ok(publication.files.includes('data/skills/base.json'));
 assert.ok(index.lessons.length > 0, 'The offline textbook has no lessons');
 for (const lesson of index.lessons) {
-  const base = join(dist, 'data/pages/lessons', lesson.id.at(-1), lesson.id);
+  const directory = join(dist, 'data/lessons', lesson.id.at(-1), lesson.id);
+  const baseFile = join(directory, 'base.json');
+  assert.ok(existsSync(baseFile), 'Missing bundled Lesson base: ' + baseFile);
+  const base = JSON.parse(readFileSync(baseFile, 'utf8'));
+  assert.equal(base.id, lesson.id);
+  assert.equal(base.type, 'lesson');
+  assert.deepEqual(base.params.languages, lesson.languages);
+  assert.ok(Array.isArray(base.section));
+  assert.ok(Array.isArray(base.flashcards));
   for (const language of lesson.languages) {
-    for (const kind of ['config', 'questions', 'flashcards']) {
-      const filename = join(base, kind, language + '.json');
-      assert.ok(existsSync(filename), 'Missing bundled lesson resource: ' + filename);
-      JSON.parse(readFileSync(filename, 'utf8'));
-    }
+    const localeFile = join(directory, language + '.json');
+    if (existsSync(localeFile)) JSON.parse(readFileSync(localeFile, 'utf8'));
   }
 }
 for (const language of ['base', 'uk']) {

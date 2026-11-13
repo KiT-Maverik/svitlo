@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /** Build and stage the selected textbook via its public package interfaces. */
 import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
-import { basename, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
@@ -47,7 +47,7 @@ for (const workspace of [
 }
 run(npm, ['run', 'package:build', '--workspace', selection.package]);
 // Resolve Engine only after building the shared workspace from a fresh checkout.
-const { mergeLessonResources } = await import('@svitlo/engine');
+const { assembleLessonProps } = await import('@svitlo/engine');
 const publicRoot = join(mobileRoot, 'public');
 // npm ci may not link a binary generated during build, so execute the
 // published package binary from its validated manifest path directly.
@@ -74,28 +74,35 @@ for (const resource of ['assessmentMethods/base.json', 'assessmentMethods/uk.jso
 }
 run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/syncFlags.mjs')], mobileRoot);
 
-const lessonsRoot = join(publicRoot, 'data/pages/lessons');
+const lessonsRoot = join(publicRoot, 'data/lessons');
 if (!existsSync(lessonsRoot)) throw new Error('No published lessons for ' + id);
 const index = [];
 for (const bucket of readdirSync(lessonsRoot, { withFileTypes: true })) {
   if (!bucket.isDirectory()) continue;
   for (const lesson of readdirSync(join(lessonsRoot, bucket.name), { withFileTypes: true })) {
     if (!lesson.isDirectory()) continue;
-    const configDir = join(lessonsRoot, bucket.name, lesson.name, 'config');
-    if (!existsSync(configDir)) continue;
-    const locales = readdirSync(configDir)
-      .filter(name => name.endsWith('.json') && name !== 'base.json')
-      .map(name => basename(name, '.json'));
-    if (!locales.length) continue;
-    const first = locales.includes('uk') ? 'uk' : locales[0];
-    const base = JSON.parse(readFileSync(join(configDir, 'base.json'), 'utf8'));
-    const localized = JSON.parse(readFileSync(join(configDir, first + '.json'), 'utf8'));
-    const config = mergeLessonResources(base, localized).data;
-    if (config?.id !== lesson.name) throw new Error('Published lesson ID mismatch: ' + lesson.name);
-    index.push({ id: lesson.name, title: config.title, languages: config.parameters.languages });
+    const directory = join(lessonsRoot, bucket.name, lesson.name);
+    const baseFile = join(directory, 'base.json');
+    if (!existsSync(baseFile)) throw new Error('Missing published Lesson base: ' + baseFile);
+    const base = JSON.parse(readFileSync(baseFile, 'utf8'));
+    const languages = base?.params?.languages;
+    if (!Array.isArray(languages) || !languages.length) {
+      throw new Error('Published Lesson is missing languages: ' + lesson.name);
+    }
+    let title;
+    for (const language of languages) {
+      const localeFile = join(directory, language + '.json');
+      const locale = existsSync(localeFile) ? { [language]: JSON.parse(readFileSync(localeFile, 'utf8')) } : undefined;
+      const props = assembleLessonProps({ base, locale }, language);
+      if (props.id !== lesson.name || bucket.name !== lesson.name.at(-1)) {
+        throw new Error('Published Lesson ID mismatch: ' + lesson.name);
+      }
+      if (language === 'uk' || title === undefined) title = props.locale.title;
+    }
+    index.push({ id: lesson.name, title, languages });
   }
 }
-if (!index.length) throw new Error('No publishable lesson configurations for ' + id);
+if (!index.length) throw new Error('No publishable Lesson configurations for ' + id);
 index.sort((a, b) => a.title.localeCompare(b.title));
 writeFileSync(join(publicRoot, 'data/lesson-index.json'), JSON.stringify({ textbook: id, lessons: index }));
 
