@@ -89,7 +89,10 @@ describe('Configurators', () => {
             locale: { placeholder: localized },
             content: {
               ...prompt,
-              slots: { items: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } }, order: ['slotOne'] },
+              slots: {
+                items: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } },
+                order: ['slotOne'],
+              },
             },
           }),
         ];
@@ -268,9 +271,15 @@ describe('Configurators', () => {
         const patch = question.build.overrides({ params: { correctAnswers: [7], restrictions: [] } }, scope);
         assert.deepEqual((patch.base.params as { correctAnswers: number[] }).correctAnswers, [7]);
         (patch.base.params as { correctAnswers: number[] }).correctAnswers.push(8);
-        assert.deepEqual((question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
+        assert.deepEqual(
+          (question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers,
+          [1, 2],
+        );
         (first.base.params as { correctAnswers: number[] }).correctAnswers.push(3);
-        assert.deepEqual((question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers, [1, 2]);
+        assert.deepEqual(
+          (question.build.props(scope).base.params as { correctAnswers: number[] }).correctAnswers,
+          [1, 2],
+        );
         assert.throws(() => question.build.overrides({ params: { correctAnswers: ['two'] } } as never, scope));
       });
 
@@ -337,7 +346,10 @@ describe('Configurators', () => {
         });
         assert.throws(
           () =>
-            sequence.build.overrides({ content: { sequence: { items: { yes: { params: { disabled: true } } } } } }, scope),
+            sequence.build.overrides(
+              { content: { sequence: { items: { yes: { params: { disabled: true } } } } } },
+              scope,
+            ),
           /enabled ContentBlock/,
         );
 
@@ -422,7 +434,8 @@ describe('Configurators', () => {
           'OK',
         ]);
         assert.equal(
-          question.build.overrides({ locale: { correctAnswers: { first: { pl: 'Pewnie' } } } }, { languages: ['uk'] }).locale,
+          question.build.overrides({ locale: { correctAnswers: { first: { pl: 'Pewnie' } } } }, { languages: ['uk'] })
+            .locale,
           undefined,
         );
 
@@ -503,7 +516,8 @@ describe('Configurators', () => {
           { languages: ['uk'] },
         );
         assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
-        const blocks = (patch.locale?.uk as { content: { question: { locale: { value: string } }[] } }).content.question;
+        const blocks = (patch.locale?.uk as { content: { question: { locale: { value: string } }[] } }).content
+          .question;
         assert.equal(blocks[0].locale.value, 'Оновлено');
       });
 

@@ -119,12 +119,18 @@ describe('Configurators', () => {
         );
         assert.throws(
           () =>
-            code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'const a = "%_%EXTRA%_%";' } }),
+            code.config.validate({
+              ...codeConfig,
+              params: { ...codeConfig.params, codeAsText: 'const a = "%_%EXTRA%_%";' },
+            }),
           /variable "EXTRA" is not declared in locale\.variables/,
         );
         assert.throws(
           () =>
-            code.config.validate({ ...codeConfig, params: { ...codeConfig.params, codeAsText: 'console.log("missing");' } }),
+            code.config.validate({
+              ...codeConfig,
+              params: { ...codeConfig.params, codeAsText: 'console.log("missing");' },
+            }),
           /missing configured variable "USER_NAME"/,
         );
       });

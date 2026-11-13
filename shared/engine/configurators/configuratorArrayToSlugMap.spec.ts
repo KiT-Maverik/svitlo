@@ -16,7 +16,10 @@ describe('Configurators', () => {
       });
 
       test('rejects duplicate or missing slugs instead of silently overwriting data', () => {
-        assert.throws(() => configuratorArrayToSlugMap([{ slug: 'same' }, { slug: 'same' }]), /Duplicate configurator slug/);
+        assert.throws(
+          () => configuratorArrayToSlugMap([{ slug: 'same' }, { slug: 'same' }]),
+          /Duplicate configurator slug/,
+        );
         assert.throws(() => configuratorArrayToSlugMap([{ slug: '' }]), /nonempty slug/);
       });
     });

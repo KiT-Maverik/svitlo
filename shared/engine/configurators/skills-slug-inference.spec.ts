@@ -67,7 +67,11 @@ describe('Configurators', () => {
 
       test('nested Skill and SkillGroup collections still reject duplicate slugs', () => {
         const reading = defineSkill({ ...fields, slug: 'reading' });
-        const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: { items: { reading }, order: ['reading'] } });
+        const group = defineSkillGroup({
+          ...fields,
+          slug: 'literacy',
+          skills: { items: { reading }, order: ['reading'] },
+        });
         assert.throws(
           () =>
             defineSkillGroup({

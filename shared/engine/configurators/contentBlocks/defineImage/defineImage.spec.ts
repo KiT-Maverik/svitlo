@@ -9,7 +9,9 @@ describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineImage', () => {
       const config = () => ({
-        id, slug: 'diagram', type: 'image' as const,
+        id,
+        slug: 'diagram',
+        type: 'image' as const,
         params: { width: 640, height: 480 },
         locale: { src: { en: 'https://example.org/en.png', uk: 'https://example.org/uk.png' }, alt: 'Diagram' },
       });

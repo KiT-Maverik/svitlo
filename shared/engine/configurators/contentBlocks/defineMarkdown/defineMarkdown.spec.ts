@@ -86,12 +86,16 @@ describe('Configurators', () => {
         const markdown = defineMarkdown({ ...base, locale });
         assert.doesNotThrow(() => markdown.config.validate({ ...base, locale }));
         assert.throws(
-          () => markdown.config.validate({ ...base, locale: { ...locale, value: { en: '# %_%NAME%_%', uk: '# Вітаю' } } }),
+          () =>
+            markdown.config.validate({ ...base, locale: { ...locale, value: { en: '# %_%NAME%_%', uk: '# Вітаю' } } }),
           /locale\.value\.uk: missing configured variable "NAME"/,
         );
         assert.throws(
           () =>
-            markdown.config.validate({ ...base, locale: { ...locale, value: { en: '# %_%OTHER%_%', uk: '# %_%NAME%_%' } } }),
+            markdown.config.validate({
+              ...base,
+              locale: { ...locale, value: { en: '# %_%OTHER%_%', uk: '# %_%NAME%_%' } },
+            }),
           /locale\.value\.en: variable "OTHER" is not declared/,
         );
         assert.throws(

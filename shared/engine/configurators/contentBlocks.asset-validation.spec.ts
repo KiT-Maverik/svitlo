@@ -30,7 +30,8 @@ describe('Configurators', () => {
         mkdirSync(join(repo, 'shared'), { recursive: true });
         mkdirSync(media, { recursive: true });
         mkdirSync(join(textbook, 'scenes', resolveEntityPath(id)), { recursive: true });
-        for (const file of ['photo.png', 'tone.wav', 'clip.mp4', 'poster.jpg']) writeFileSync(join(media, file), 'fixture');
+        for (const file of ['photo.png', 'tone.wav', 'clip.mp4', 'poster.jpg'])
+          writeFileSync(join(media, file), 'fixture');
         writeFileSync(scene, 'export default function Scene() {}');
 
         try {
@@ -97,7 +98,8 @@ describe('Configurators', () => {
             /Missing local media file at locale.fileLocation.uk/,
           );
           assert.throws(
-            () => video.config.validate({ ...videoConfig, locale: { ...videoConfig.locale, poster: url('missing.jpg') } }),
+            () =>
+              video.config.validate({ ...videoConfig, locale: { ...videoConfig.locale, poster: url('missing.jpg') } }),
             /Missing local media file at locale.poster/,
           );
           assert.throws(

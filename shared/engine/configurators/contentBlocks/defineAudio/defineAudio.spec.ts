@@ -10,7 +10,10 @@ describe('Configurators', () => {
     describe('defineAudio', () => {
       test('publishes only requested translations alongside invariant media', () => {
         const audio = defineAudio({
-          id, slug: 'sample', type: 'audio', params: {},
+          id,
+          slug: 'sample',
+          type: 'audio',
+          params: {},
           locale: { fileLocation: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
         });
         const resource = audio.build.props(scope);
@@ -21,7 +24,10 @@ describe('Configurators', () => {
 
       test('publishes sparse overrides without modifying an independent resource', () => {
         const audio = defineAudio({
-          id, slug: 'sample', type: 'audio', params: {},
+          id,
+          slug: 'sample',
+          type: 'audio',
+          params: {},
           locale: { fileLocation: 'https://example.org/lesson.mp3', title: { en: 'Listen', uk: 'Слухай' } },
         });
         const before = audio.build.props(scope);

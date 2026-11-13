@@ -98,7 +98,10 @@ describe('Configurators', () => {
           );
           assert.equal(textValue(section.build.props({ languages: ['en', 'uk'] }).locale?.uk?.content), 'Питання');
 
-          const sparse = section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, { languages: ['en', 'uk'] });
+          const sparse = section.build.overrides(
+            { locale: { title: { uk: 'Оновлено' } } },
+            { languages: ['en', 'uk'] },
+          );
           assert.deepEqual(sparse.base, {});
           assert.deepEqual(sparse.locale, { uk: { locale: { title: 'Оновлено' } } });
 

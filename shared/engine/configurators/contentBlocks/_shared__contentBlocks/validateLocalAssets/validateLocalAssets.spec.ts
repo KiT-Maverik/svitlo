@@ -32,7 +32,9 @@ describe('Configurators', () => {
 
       test('validates textbook media URLs against book-owned static and public resources', () => {
         withTextbook((cwd, asset) => {
-          assert.doesNotThrow(() => validateLocalAssetPaths('/textbooks/example/media/existing.png', 'locale.src', cwd));
+          assert.doesNotThrow(() =>
+            validateLocalAssetPaths('/textbooks/example/media/existing.png', 'locale.src', cwd),
+          );
           assert.doesNotThrow(() => validateLocalAssetPaths('media/existing.png', 'locale.src', cwd));
           assert.doesNotThrow(() => validateLocalAssetPaths(pathToFileURL(asset).href, 'locale.src', cwd));
           assert.throws(
@@ -42,7 +44,9 @@ describe('Configurators', () => {
           const publicFile = join(cwd, 'public', 'media', 'poster.jpg');
           mkdirSync(join(cwd, 'public', 'media'), { recursive: true });
           writeFileSync(publicFile, 'fixture');
-          assert.doesNotThrow(() => validateLocalAssetPaths('/textbooks/example/media/poster.jpg', 'locale.poster', cwd));
+          assert.doesNotThrow(() =>
+            validateLocalAssetPaths('/textbooks/example/media/poster.jpg', 'locale.poster', cwd),
+          );
         });
       });
 

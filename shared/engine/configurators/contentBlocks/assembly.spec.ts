@@ -37,10 +37,16 @@ describe('Configurators', () => {
         });
         const result = block.build.props({ languages: ['en'] });
         assert.deepEqual(result.locale?.en, { locale: { title: 'Hello' } });
-        assert.deepEqual(block.build.overrides({ locale: { title: { en: 'Updated' } } }, { languages: ['en'] }).locale?.en, {
-          locale: { title: 'Updated' },
-        });
-        assert.equal(block.build.props({ languages: ['en'] }).base.locale?.fileLocation, 'https://example.com/audio.mp3');
+        assert.deepEqual(
+          block.build.overrides({ locale: { title: { en: 'Updated' } } }, { languages: ['en'] }).locale?.en,
+          {
+            locale: { title: 'Updated' },
+          },
+        );
+        assert.equal(
+          block.build.props({ languages: ['en'] }).base.locale?.fileLocation,
+          'https://example.com/audio.mp3',
+        );
       });
 
       test('Audio publishes Props-shaped locale bodies and isolated sparse patches', () => {
@@ -83,7 +89,8 @@ describe('Configurators', () => {
         });
         assert.deepEqual(audio.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
         assert.throws(
-          () => audio.build.overrides({ locale: { fallback: { unknown: 'bad' } } } as never, { languages: ['en', 'uk'] }),
+          () =>
+            audio.build.overrides({ locale: { fallback: { unknown: 'bad' } } } as never, { languages: ['en', 'uk'] }),
           /Invalid Audio overrides/,
         );
         assert.equal('override' in audio, false);
@@ -189,10 +196,13 @@ describe('Configurators', () => {
           fallback: { offline: 'Offline' },
         });
         assert.deepEqual(image.build.props({ languages: ['en', 'uk'] }).locale?.uk, { locale: { alt: 'Схема' } });
-        assert.deepEqual(image.build.overrides({ locale: { alt: { uk: 'Ілюстрація' } } }, { languages: ['en', 'uk'] }), {
-          base: {},
-          locale: { uk: { locale: { alt: 'Ілюстрація' } } },
-        });
+        assert.deepEqual(
+          image.build.overrides({ locale: { alt: { uk: 'Ілюстрація' } } }, { languages: ['en', 'uk'] }),
+          {
+            base: {},
+            locale: { uk: { locale: { alt: 'Ілюстрація' } } },
+          },
+        );
         assert.deepEqual(image.build.overrides({ params: { height: 200 } }, { languages: ['en', 'uk'] }), {
           base: { params: { height: 200 } },
           locale: undefined,
@@ -253,7 +263,13 @@ describe('Configurators', () => {
           },
         });
         assert.deepEqual(scene.build.props({ languages: ['en', 'uk'] }), {
-          base: { id, type: 'scene', slug: 'simulation', params: {}, locale: { value: { panel: { caption: 'Invariant' } } } },
+          base: {
+            id,
+            type: 'scene',
+            slug: 'simulation',
+            params: {},
+            locale: { value: { panel: { caption: 'Invariant' } } },
+          },
           locale: {
             en: { locale: { value: { heading: 'Hello' } } },
             uk: { locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } } },
@@ -263,7 +279,10 @@ describe('Configurators', () => {
           locale: { value: { heading: 'Привіт', panel: { info: 'Деталі' } } },
         });
         assert.deepEqual(
-          scene.build.overrides({ locale: { value: { panel: { caption: { uk: 'Підпис' } } } } }, { languages: ['en', 'uk'] }),
+          scene.build.overrides(
+            { locale: { value: { panel: { caption: { uk: 'Підпис' } } } } },
+            { languages: ['en', 'uk'] },
+          ),
           {
             base: {},
             locale: { uk: { locale: { value: { panel: { caption: 'Підпис' } } } } },
@@ -395,7 +414,10 @@ describe('Configurators', () => {
             type: 'carousel',
             params: {},
             locale: {},
-            slides: { items: { first: slide('first', { src: 'https://example.com/a.png', alt: 'A' }) }, order: ['first'] },
+            slides: {
+              items: { first: slide('first', { src: 'https://example.com/a.png', alt: 'A' }) },
+              order: ['first'],
+            },
           }),
           defineCode({
             id,

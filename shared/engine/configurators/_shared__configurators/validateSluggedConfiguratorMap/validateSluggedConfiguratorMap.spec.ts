@@ -40,7 +40,9 @@ describe('Configurators', () => {
 
       test('rejects invalid camelCase keys and base false, permits false only for overrides', () => {
         assert.ok(validateSluggedConfiguratorMap({ bad_slug: good }, ['text']).some(issue => issue.check === 'slug'));
-        assert.ok(validateSluggedConfiguratorMap({ firstBlock: false }, ['text']).some(issue => issue.check === 'item'));
+        assert.ok(
+          validateSluggedConfiguratorMap({ firstBlock: false }, ['text']).some(issue => issue.check === 'item'),
+        );
         assert.deepEqual(validateSluggedConfiguratorMap({ firstBlock: false }, ['text'], { allowDisabled: true }), []);
       });
     });

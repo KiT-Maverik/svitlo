@@ -9,7 +9,10 @@ describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineYoutube', () => {
       const config = () => ({
-        id, slug: 'watch', type: 'youtube' as const, params: { mode: 'link' as const },
+        id,
+        slug: 'watch',
+        type: 'youtube' as const,
+        params: { mode: 'link' as const },
         locale: {
           href: 'https://www.youtube.com/watch?v=example',
           label: { en: 'Watch lesson', uk: 'Переглянути урок' },

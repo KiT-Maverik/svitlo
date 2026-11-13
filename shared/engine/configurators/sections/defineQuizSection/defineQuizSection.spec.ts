@@ -79,14 +79,22 @@ describe('Configurators', () => {
       test('Quiz preserves named screen references and scoring semantics', () => {
         const quiz = makeQuiz();
         assert.equal(quiz.type, 'quiz');
-        assert.deepEqual(quiz.build.props({ languages: ['en', 'uk'] }).base.params.screen?.starting?.content, ['prompt']);
+        assert.deepEqual(quiz.build.props({ languages: ['en', 'uk'] }).base.params.screen?.starting?.content, [
+          'prompt',
+        ]);
         assert.equal(quiz.build.props({ languages: ['en', 'uk'] }).base.params.interaction.retries, 1);
-        assert.deepEqual(quiz.build.overrides({ params: { skippable: false } }, { languages: ['en', 'uk'] }).base.params, {
-          skippable: false,
-        });
-        assert.deepEqual(quiz.build.overrides({ params: { skippable: true } }, { languages: ['en', 'uk'] }).base.params, {
-          skippable: true,
-        });
+        assert.deepEqual(
+          quiz.build.overrides({ params: { skippable: false } }, { languages: ['en', 'uk'] }).base.params,
+          {
+            skippable: false,
+          },
+        );
+        assert.deepEqual(
+          quiz.build.overrides({ params: { skippable: true } }, { languages: ['en', 'uk'] }).base.params,
+          {
+            skippable: true,
+          },
+        );
         assert.deepEqual(
           quiz.build.overrides({ params: { interaction: { retries: 2 } } }, { languages: ['en', 'uk'] }).base.params
             ?.interaction,

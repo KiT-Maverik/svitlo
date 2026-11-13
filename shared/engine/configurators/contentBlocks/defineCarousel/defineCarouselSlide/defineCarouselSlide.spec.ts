@@ -10,7 +10,9 @@ describe('Configurators', () => {
     describe('defineCarouselSlide', () => {
       test('publishes only the requested alternate text alongside its invariant image', () => {
         const slide = defineCarouselSlide({
-          id, slug: 'opening', type: 'carouselSlide',
+          id,
+          slug: 'opening',
+          type: 'carouselSlide',
           locale: { src: 'https://example.org/slide.png', alt: { en: 'Opening', uk: 'Початок' } },
         });
         const resource = slide.build.props(scope);
@@ -20,14 +22,20 @@ describe('Configurators', () => {
 
       test('publishes sparse patches without changing the source', () => {
         const slide = defineCarouselSlide({
-          id, slug: 'opening', type: 'carouselSlide',
+          id,
+          slug: 'opening',
+          type: 'carouselSlide',
           locale: { src: 'https://example.org/slide.png', alt: { en: 'Opening', uk: 'Початок' } },
         });
         const original = slide.build.props(scope);
         assert.deepEqual(slide.build.overrides({ locale: { alt: { uk: 'Старт' } } }, scope), {
-          base: {}, locale: { uk: { locale: { alt: 'Старт' } } },
+          base: {},
+          locale: { uk: { locale: { alt: 'Старт' } } },
         });
-        assert.throws(() => slide.build.overrides({ slug: 'renamed' } as never, scope), /Invalid Carousel Slide overrides/);
+        assert.throws(
+          () => slide.build.overrides({ slug: 'renamed' } as never, scope),
+          /Invalid Carousel Slide overrides/,
+        );
         assert.deepEqual(slide.build.props(scope), original);
       });
     });

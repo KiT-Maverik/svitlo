@@ -154,7 +154,10 @@ describe('Configurators', () => {
         assert.deepEqual(resource.base.params.languages, ['uk']);
         assert.deepEqual(lesson.build.props(uk).base.params.languages, ['uk']);
         assert.deepEqual(Object.keys(paragraph.build.props({ languages: ['pl'] }).locale ?? {}), ['pl']);
-        assert.throws(() => course.build.props({ languages: ['en'] } as never), /does not support publication language/);
+        assert.throws(
+          () => course.build.props({ languages: ['en'] } as never),
+          /does not support publication language/,
+        );
       });
 
       test('Nested Course override composes a complete, language-scoped atomic tree and leaves authored resources untouched', () => {
@@ -224,7 +227,9 @@ describe('Configurators', () => {
               answerWithNumber: {
                 items: {
                   numeric: {
-                    content: { question: { items: { questionPrompt: { locale: { value: { uk: 'Скільки тепер?' } } } } } },
+                    content: {
+                      question: { items: { questionPrompt: { locale: { value: { uk: 'Скільки тепер?' } } } } },
+                    },
                   },
                 },
               },

@@ -9,8 +9,11 @@ import { defineCheckpointItem, checkpointItem_Config_Schema, checkpointItem_Prop
 describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineCheckpointItem', () => {
-      const makeText = <const Slug extends string>(id: string, slug: Slug, value: string | { en?: string; uk?: string }) =>
-        defineText({ id, slug, type: 'text', params: {}, locale: { value } });
+      const makeText = <const Slug extends string>(
+        id: string,
+        slug: Slug,
+        value: string | { en?: string; uk?: string },
+      ) => defineText({ id, slug, type: 'text', params: {}, locale: { value } });
 
       const questionId = 'b775647f-203d-481a-a1c7-4d331c779d6a';
       const firstId = 'b775647f-203d-481a-a1c7-4d331c779d6b';
@@ -78,7 +81,10 @@ describe('Configurators', () => {
           },
         );
         assert.deepEqual(item.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
-        assert.deepEqual(item.build.overrides({ answer: {} }, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
+        assert.deepEqual(item.build.overrides({ answer: {} }, { languages: ['en', 'uk'] }), {
+          base: {},
+          locale: undefined,
+        });
       });
 
       test('CheckpointItem replaces the whole answer array when an existing child changes', () => {

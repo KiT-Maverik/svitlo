@@ -212,7 +212,9 @@ describe('Configurators', () => {
         const text = defineText({ ...identity, locale: { value: 'Welcome' } });
         assert.throws(() => defineText({ ...identity, locale: { value: ['not a locale dictionary'] } } as never));
         assert.throws(() =>
-          text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, { languages: ['en', 'uk'] }),
+          text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, {
+            languages: ['en', 'uk'],
+          }),
         );
       });
 
@@ -230,9 +232,17 @@ describe('Configurators', () => {
             locale: undefined,
           },
         );
-        for (const value of ['not-an-object', { onClick: () => 42 }, { nested: { invalid: undefined } }, { nested: 1n }]) {
+        for (const value of [
+          'not-an-object',
+          { onClick: () => 42 },
+          { nested: { invalid: undefined } },
+          { nested: 1n },
+        ]) {
           assert.throws(() =>
-            text.build.overrides({ params: { wrap: { typographyProps: value as never } } }, { languages: ['en', 'uk'] }),
+            text.build.overrides(
+              { params: { wrap: { typographyProps: value as never } } },
+              { languages: ['en', 'uk'] },
+            ),
           );
         }
       });
@@ -258,7 +268,8 @@ describe('Configurators', () => {
         });
 
         const assembled = text.build.props({ languages: ['en'] });
-        (assembled.base.params.wrap?.typographyProps as { nested: { weight: string } }).nested.weight = 'mutated output';
+        (assembled.base.params.wrap?.typographyProps as { nested: { weight: string } }).nested.weight =
+          'mutated output';
         assert.deepEqual(text.build.props({ languages: ['en'] }).base.params.wrap?.typographyProps, {
           nested: { weight: 'normal' },
         });

@@ -9,7 +9,10 @@ describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineVideo', () => {
       const config = () => ({
-        id, slug: 'clip', type: 'video' as const, params: {},
+        id,
+        slug: 'clip',
+        type: 'video' as const,
+        params: {},
         locale: {
           fileLocation: 'https://example.org/clip.mp4',
           poster: 'https://example.org/preview.png',

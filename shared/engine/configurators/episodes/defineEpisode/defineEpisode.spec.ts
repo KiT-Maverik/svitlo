@@ -119,7 +119,8 @@ describe('Configurators', () => {
           /Duplicate slug/,
         );
         assert.throws(
-          () => episode.build.overrides({ section: { items: { missing: false } } } as never, { languages: ['en', 'uk'] }),
+          () =>
+            episode.build.overrides({ section: { items: { missing: false } } } as never, { languages: ['en', 'uk'] }),
           /Unknown Episode Section/,
         );
         assert.throws(
@@ -152,7 +153,10 @@ describe('Configurators', () => {
         assert.equal(single.locale?.en, undefined);
         const patched = episode.build.overrides({ locale: { title: { uk: 'Новий' } } }, { languages: ['uk'] });
         assert.deepEqual(patched.locale, { uk: { locale: { title: 'Новий' } } });
-        assert.throws(() => episode.build.props({ languages: ['pl'] as never }), /does not support publication language/);
+        assert.throws(
+          () => episode.build.props({ languages: ['pl'] as never }),
+          /does not support publication language/,
+        );
         assert.throws(() => episode.build.props({ languages: [] }), /nonempty languages/);
         assert.throws(() => episode.build.props({ languages: ['uk', 'uk'] }), /unique/);
       });

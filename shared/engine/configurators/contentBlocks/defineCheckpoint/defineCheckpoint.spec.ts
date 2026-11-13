@@ -118,7 +118,10 @@ describe('Configurators', () => {
           ['second'],
         );
         assert.equal(patch.locale, undefined);
-        const resolved = mergeForValidation(mergeForValidation(source.base, source.locale?.uk as never), patch.base as never);
+        const resolved = mergeForValidation(
+          mergeForValidation(source.base, source.locale?.uk as never),
+          patch.base as never,
+        );
         assert.deepEqual(
           resolved.content.map(item => item.slug),
           ['second'],

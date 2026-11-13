@@ -98,7 +98,10 @@ describe('Configurators', () => {
         );
         assert.equal(textValue(updated.locale?.uk?.section?.[0]?.content), 'Новий текст');
         assert.deepEqual(updated.locale?.uk?.locale, { title: 'Новий заголовок' });
-        assert.equal(textValue(lesson.build.props({ languages: ['en', 'uk'] }).locale?.uk?.section?.[0]?.content), 'Привіт');
+        assert.equal(
+          textValue(lesson.build.props({ languages: ['en', 'uk'] }).locale?.uk?.section?.[0]?.content),
+          'Привіт',
+        );
 
         const second = defineContentSection<'extra', {}, ['en', 'uk']>({
           type: 'content',
@@ -293,7 +296,10 @@ describe('Configurators', () => {
         assert.deepEqual(Object.keys(patched.locale ?? {}), ['uk']);
         assert.throws(() => lesson.build.props({ languages: [] }), /nonempty languages/);
         assert.throws(() => lesson.build.props({ languages: ['uk', 'uk'] }), /unique/);
-        assert.throws(() => lesson.build.props({ languages: ['pl'] as never }), /does not support publication language/);
+        assert.throws(
+          () => lesson.build.props({ languages: ['pl'] as never }),
+          /does not support publication language/,
+        );
       });
     });
   });

@@ -56,7 +56,10 @@ describe('Configurators', () => {
         });
         assert.equal(result.locale?.en?.name, 'Balance');
         assert.equal(JSON.stringify(result).includes('function'), false);
-        assert.equal(skill_Props_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success, true);
+        assert.equal(
+          skill_Props_Schema.safeParse(mergeForValidation(result.base, result.locale?.uk ?? {})).success,
+          true,
+        );
       });
 
       test('Skill overrides are sparse, strict and immutable', () => {
@@ -129,7 +132,10 @@ describe('Configurators', () => {
         );
         assert.throws(
           () =>
-            group.build.overrides({ skills: { items: { balance: false, motion: false }, order: [] } }, { languages: ['uk'] }),
+            group.build.overrides(
+              { skills: { items: { balance: false, motion: false }, order: [] } },
+              { languages: ['uk'] },
+            ),
           /At least one active/,
         );
       });
@@ -237,7 +243,10 @@ describe('Configurators', () => {
         assert.throws(() => balance.build.props({ languages: ['de'] } as never), /Required|expected|Invalid/i);
         assert.throws(() => balance.build.props({ languages: [] }), /nonempty languages/);
         assert.throws(() => balance.build.props({ languages: ['uk', 'uk'] }), /unique/);
-        assert.throws(() => balance.build.props({ languages: ['invalid'] } as never), /Invalid option|invalid|Invalid/i);
+        assert.throws(
+          () => balance.build.props({ languages: ['invalid'] } as never),
+          /Invalid option|invalid|Invalid/i,
+        );
       });
     });
   });

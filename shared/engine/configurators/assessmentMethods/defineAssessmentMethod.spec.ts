@@ -61,7 +61,10 @@ describe('Configurators', () => {
         const onlyUk = method.build.props({ languages: ['uk'] });
         assert.deepEqual(Object.keys(onlyUk.locale ?? {}), ['uk']);
         assert.equal(onlyUk.locale?.uk?.title, 'Усне опитування');
-        const patch = method.build.overrides({ description: { uk: 'Нова', en: 'Not published' } }, { languages: ['uk'] });
+        const patch = method.build.overrides(
+          { description: { uk: 'Нова', en: 'Not published' } },
+          { languages: ['uk'] },
+        );
         assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
         assert.throws(() => method.build.props({ languages: ['de'] } as never), /Required|expected|Invalid/i);
       });

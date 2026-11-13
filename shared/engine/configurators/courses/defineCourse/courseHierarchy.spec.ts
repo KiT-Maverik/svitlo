@@ -74,7 +74,10 @@ describe('Configurators', () => {
       });
 
       test('Course overrides preserve sparse metadata and replace nested ordered child Props atomically', () => {
-        const scalar = course.build.overrides({ locale: { title: { uk: 'Оновлений курс' } } }, { languages: ['en', 'uk'] });
+        const scalar = course.build.overrides(
+          { locale: { title: { uk: 'Оновлений курс' } } },
+          { languages: ['en', 'uk'] },
+        );
         assert.deepEqual(scalar.base, {});
         assert.deepEqual(scalar.locale, { uk: { locale: { title: 'Оновлений курс' } } });
 
@@ -243,7 +246,10 @@ describe('Configurators', () => {
         assert.deepEqual(Object.keys(override.locale ?? {}), ['uk']);
         assert.equal(JSON.stringify(override).includes('Hidden'), false);
 
-        assert.throws(() => course.build.props({ languages: ['pl'] } as never), /does not support publication language/);
+        assert.throws(
+          () => course.build.props({ languages: ['pl'] } as never),
+          /does not support publication language/,
+        );
         assert.throws(() => course.build.props({ languages: [] }), /nonempty languages/);
       });
     });

@@ -9,7 +9,10 @@ describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineScene', () => {
       const config = () => ({
-        id, slug: 'activity', type: 'scene' as const, params: {},
+        id,
+        slug: 'activity',
+        type: 'scene' as const,
+        params: {},
         locale: { value: { en: 'Choose an option', uk: 'Обери варіант' } },
       });
 
@@ -22,8 +25,14 @@ describe('Configurators', () => {
       });
 
       test('rejects positional authored Scene content and identity changes', () => {
-        assert.throws(
-          () => defineScene({ id, slug: 'activity', type: 'scene', params: {}, locale: { value: ['first', 'second'] as never } }),
+        assert.throws(() =>
+          defineScene({
+            id,
+            slug: 'activity',
+            type: 'scene',
+            params: {},
+            locale: { value: ['first', 'second'] as never },
+          }),
         );
         const scene = defineScene(config());
         assert.throws(() => scene.build.overrides({ type: 'image' } as never, scope), /Invalid Scene overrides/);
