@@ -10,9 +10,9 @@ on:
       - 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs'
       - 'scripts/checkBuiltPackageExports/check-built-package-exports.mjs'
       - 'scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs'
-      - 'scripts/ci/build-changed-content.mjs'
-      - 'scripts/ci/build-changed-content.spec.mjs'
-      - 'scripts/ci/skills-agent-owners.json'
+      - 'scripts/ci/buildChangedContent/build-changed-content.mjs'
+      - 'scripts/ci/buildChangedContent/build-changed-content.spec.mjs'
+      - 'scripts/ci/buildChangedContent/skills-agent-owners.json'
       - '.github/workflows/content-build.yml'
   workflow_dispatch:
 
@@ -45,7 +45,7 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           BASE_REF: ${{ github.base_ref }}
           HEAD_REF: ${{ github.head_ref }}
-        run: node scripts/ci/build-changed-content.mjs
+        run: node scripts/ci/buildChangedContent/build-changed-content.mjs
       - name: Manually build every content package
         if: github.event_name == 'workflow_dispatch'
-        run: node scripts/ci/build-changed-content.mjs --all
+        run: node scripts/ci/buildChangedContent/build-changed-content.mjs --all
