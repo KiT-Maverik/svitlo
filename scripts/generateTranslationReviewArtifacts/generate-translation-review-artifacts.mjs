@@ -34,7 +34,7 @@ function unwrap(node) {
   return node;
 }
 function localesFromCode() {
-  const file = path.join(root, 'shared/contracts/src/types/languages.ts');
+  const file = path.join(root, 'shared/engine/schemas/languages.schemas.ts');
   const source = ts.createSourceFile(file, fs.readFileSync(file, 'utf8'), ts.ScriptTarget.Latest, true);
   let locales;
   for (const statement of source.statements) {
