@@ -1,4 +1,4 @@
-export type { DeepPartial } from './deepPartial';
+export type { DeepPartial } from './transformer.types';
 export type { ResolveLocale } from './resolveLocale';
 
 export type {

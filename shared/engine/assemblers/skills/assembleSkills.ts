@@ -3,7 +3,7 @@ import {
   type SkillDomain_Props,
 } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
 import { languageCode_Schema, type LanguageCodes } from '../../schemas/languages.schemas';
-import type { DeepPartial } from '../../types/deepPartial';
+import type { DeepPartial } from '../../types/transformer.types';
 
 /** One published file contains the whole slug-keyed Domain tree. */
 export type Skills_Base = Record<string, DeepPartial<SkillDomain_Props> & Pick<SkillDomain_Props, 'id' | 'slug'>>;

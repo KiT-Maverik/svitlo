@@ -1,5 +1,5 @@
 import { languageCode_Schema, type LanguageCodes } from '../../schemas/languages.schemas';
-import type { DeepPartial } from '../../types/deepPartial';
+import type { DeepPartial } from '../../types/transformer.types';
 import {
   lesson_Props_Schema,
   type Lesson_Props,
