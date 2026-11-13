@@ -89,12 +89,12 @@ function runGate(changed) {
   if (
     changed.some(
       f =>
-        f.startsWith('scripts/generators/data/publish-skills-data.') || f.startsWith('content/playground/data/skills/'),
+        f.startsWith('shared/engine/scripts/generateSkills/') || f.startsWith('content/playground/data/skills/'),
     )
   ) {
     exec('node', [
       '--test',
-      'scripts/generators/data/prepare-skills-publication.spec.mjs',
+      'shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs',
       'shared/engine/generators/skills/publishSkillTree.spec.mjs',
     ]);
   }
@@ -105,11 +105,7 @@ function runGate(changed) {
     exec('node', ['--test', 'shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.spec.mjs']);
   }
   if (
-    changed.some(f =>
-      /^scripts\/(?:implement-skills-taxonomy|generate-skills-taxonomy)(?:\.mjs|\.spec\.mjs|\.roundtrip\.spec\.mjs)$/.test(
-        f,
-      ),
-    )
+    changed.some(f => f.startsWith('shared/engine/scripts/implementSkillsTaxonomy/') || f.startsWith('shared/engine/scripts/generateSkillsTaxonomy/'))
   ) {
     exec('node', [
       '--test',
@@ -131,7 +127,7 @@ function runGate(changed) {
     exec('node', ['--test', 'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.spec.mjs']);
   }
 
-  // Lesson builder is root-owned deterministic tooling: test it only when its
+  // Lesson builder is Engine-owned deterministic tooling: test it only when its
   // implementation, dependency, or canonical editorial input schemas change.
   if (
     changed.some(

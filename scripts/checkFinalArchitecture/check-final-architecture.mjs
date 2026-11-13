@@ -1,7 +1,13 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = process.cwd();
+// Every maintained root script owns a directory for adjacent tests and fixtures.
+for (const entry of readdirSync(resolve(root, 'scripts'), { withFileTypes: true })) {
+  if (entry.isFile() && /\.(?:mjs|cjs|js|ts|tsx)$/.test(entry.name)) {
+    throw new Error('Root script must live in a named directory: scripts/' + entry.name);
+  }
+}
 function assert(ok, message) {
   if (!ok) throw new Error(message);
 }
