@@ -16,6 +16,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 import { loadFactoryRegistry } from '../yamlDraft/loadFactoryRegistry.mjs';
+import { sourceLocaleOnly, sourceFlagValuesOnly } from '../yamlDraft/sourceLanguage.mjs';
 
 const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -98,7 +99,11 @@ function editorialContent(nodes, language, location) {
 }
 
 export function normalizeCourseSource(source, slug) {
-  if (source.type === 'course') return source;
+  if (source.type === 'course') {
+    // documentLanguage is editorial provenance, not an Engine Config field.
+    const { documentLanguage: _sourceLanguage, ...config } = source;
+    return config;
+  }
   if (source.kind !== 'course-toc-plan' || !Array.isArray(source.content)) {
     fail('TYPE', 'course.yaml: missing or unknown Course type discriminator');
   }
@@ -126,12 +131,18 @@ function safeImport(reference) {
     return null;
   }
   const p = reference.path;
+  // A standalone Lesson under data/lessons/ is a sibling of the Course's
+  // data/courses/<bucket>/<uuid> folder. Three '..' segments are necessary
+  // and safe only when followed by the canonical Lesson UUID path.
+  const siblingLesson = /^\.\.\/\.\.\/\.\.\/lessons\/[0-9a-f]\/[0-9a-f-]{36}\/[A-Za-z][A-Za-z0-9_-]*\.data\.ts$/.test(p);
+  const ownedLocal = !p.startsWith('../') &&
+    p.split('/').every(part => part && part !== '.' && part !== '..');
   if (
     p.startsWith('/') ||
     p.includes('\\') ||
     p.includes(':') ||
-    p.split('/').some(part => !part || part === '.' || part === '..') ||
-    !/\.tsx?$/.test(p)
+    !/\.tsx?$/.test(p) ||
+    (!siblingLesson && !ownedLocal)
   ) return null;
   return { path: './' + p.replace(/\.tsx?$/, ''), symbol: reference.export };
 }
@@ -199,11 +210,18 @@ function renderConfigFields(node, state, indent, location) {
   const fields = Object.entries(node);
   return '{\n' + fields.map(([key, value]) => {
     const collection = (typedCollections[node.type] ?? []).includes(key);
+    // Only known localized fields are projected; params.languages and other
+    // authored collections must retain their original values.
+    const authored = key === 'locale'
+      ? sourceLocaleOnly(value, state.language)
+      : node.type === 'flashcard' && key === 'parameters'
+        ? sourceFlagValuesOnly(value, state.language)
+        : value;
     let expression;
     if (node.type === 'checkpointItem' && key === 'question') {
-      expression = renderEntity(value, state, indent + 1, location + '.question');
-    } else if (collection && record(value) && record(value.items)) {
-      const properties = Object.entries(value).map(([field, child]) => {
+      expression = renderEntity(authored, state, indent + 1, location + '.question');
+    } else if (collection && record(authored) && record(authored.items)) {
+      const properties = Object.entries(authored).map(([field, child]) => {
         const rendered = field === 'items'
           ? renderValue(child, state, indent + 2, location + '.' + key + '.items', true)
           : renderValue(child, state, indent + 2, location + '.' + key + '.' + field);
@@ -211,7 +229,7 @@ function renderConfigFields(node, state, indent, location) {
       });
       expression = '{\n' + properties.join('\n') + '\n' + inner + '}';
     } else {
-      expression = renderValue(value, state, indent + 1, location + '.' + key);
+      expression = renderValue(authored, state, indent + 1, location + '.' + key);
     }
     return inner + literal(key) + ': ' + expression + ',';
   }).join('\n') + '\n' + space + '}';
@@ -229,11 +247,11 @@ function exportIdentifier(slug) {
   return IDENTIFIER.test(value) ? value : 'course_' + value;
 }
 
-export function renderCourseSource(source, { slug, outputSlug, overrides } = {}) {
+export function renderCourseSource(source, { slug, outputSlug, overrides, language } = {}) {
   const course = normalizeCourseSource(source, slug);
   const fileSlug = outputSlug ?? slug ?? course.slug ?? (typeof course.id === 'string' ? 'course_' + course.id.slice(0, 8) : 'course_draft');
   const symbol = exportIdentifier(fileSlug) + '_Course';
-  const state = { imports: new Set(), lessonImports: new Map(), unresolved: [] };
+  const state = { imports: new Set(), lessonImports: new Map(), unresolved: [], language: language ?? source.documentLanguage };
   const expression = renderEntity(course, state, 0, 'course');
   const imports = [...state.imports].sort();
   const lines = [
@@ -293,13 +311,14 @@ export function verifyOrWriteGenerated(filename, rendered, action) {
 }
 
 export function parseArguments(args) {
-  let packagePath, courseId, slug, sourceFilename, action;
+  let packagePath, courseId, slug, sourceFilename, action, language;
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--package') packagePath = args[++i];
     else if (arg === '--course') courseId = args[++i];
     else if (arg === '--slug') slug = args[++i];
     else if (arg === '--source') sourceFilename = args[++i];
+    else if (arg === '--language') language = args[++i];
     else if (arg === '--write' || arg === '--check') {
       if (action) fail('ARGS', 'choose exactly one action');
       action = arg;
@@ -309,12 +328,13 @@ export function parseArguments(args) {
     !PACKAGE.test(packagePath ?? '') || !UUID.test(courseId ?? '') ||
     (slug !== undefined && !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(slug)) ||
     (sourceFilename !== undefined && !['toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
+    (language !== undefined && !/^[a-z]{2}(?:-[A-Z]{2})?$/.test(language)) ||
     !action
   ) {
     fail('ARGS', 'usage: --package content/<book> --course <uuid> [--slug <slug>] ' +
-      '[--source toc.yaml|course.yaml] --write|--check');
+      '[--source toc.yaml|course.yaml] [--language <source locale>] --write|--check');
   }
-  return { packagePath, courseId, slug, sourceFilename, action };
+  return { packagePath, courseId, slug, sourceFilename, action, ...(language ? { language } : {}) };
 }
 
 export async function main(args) {
@@ -338,7 +358,7 @@ export async function main(args) {
     (typeof normalized.id === 'string' ? 'course_' + normalized.id.slice(0, 8) : 'course_draft');
   if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(fileSlug)) fail('SLUG', 'unsafe output slug: ' + fileSlug);
   const filename = path.join(courseFolder, fileSlug + '.data.ts');
-  const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides });
+  const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides, language: options.language });
   const changed = verifyOrWriteGenerated(filename, content, options.action);
   console.log((changed ? 'Scaffolded ' : 'Checked ') + filename +
     '; draft requires AI completion (no schema/TS/publication checks)');
