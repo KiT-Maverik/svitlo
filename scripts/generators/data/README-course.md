@@ -15,6 +15,8 @@ import { publishCourse } from './publish-course-data.mjs';
 // courseOverrides: optional nested Course_Overrides authoring patch
 publishCourse(course, {
   packageRoot: '/absolute/path/to/content/playground',
+  // outputRoot: '/absolute/path/to/content/playground/dist/static/data/courses',
+  // Pass outputRoot instead of packageRoot to publish directly to a packed build.
   overrides: courseOverrides,
   // languages: ['uk', 'en'], // default: Course-supported languages
   // check: true,             // compare, never write
@@ -23,7 +25,10 @@ publishCourse(course, {
 
 Output is `<textbook>/public/data/courses/<course-uuid>/base.json` and
 `<language>.json` only for languages that actually change the published Props.
-This directory is a generated output, not an authored resource or a runtime import.
+When `outputRoot` is provided, the files are instead written directly to
+`<outputRoot>/<course-uuid>/` (for example, the compiled textbook's
+`dist/static/data/courses/`). This directory is a generated output, not
+an authored resource or a runtime import.
 
 The Course root, Modules and Chapters carry their full Props-shaped metadata
 and their ordered `content` arrays. Each Lesson appears only as
