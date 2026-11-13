@@ -109,7 +109,7 @@ test('rejects package paths outside textbook directories, including traversal', 
       encoding: 'utf8',
     });
     assert.notEqual(result.status, 0, 'Unexpected success for ' + invalid);
-    assert.match(result.stderr, /Package must be within content\\//, invalid);
+    assert.ok(result.stderr.includes('Package must be within content/'), invalid);
   }
 });
 
