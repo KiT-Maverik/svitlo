@@ -28,10 +28,11 @@ import { MediaVolumeControl } from './MediaVolumeControl';
 import { MediaSettingsProvider } from './MediaSettings';
 import type { LessonProps } from './Lesson';
 import type { Lesson_Props, Section_Props } from '@svitlo/engine';
-const DEFAULT_LESSON_EVENTS = ['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed'] as const;
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { EventSceneHost, LessonEventBusContext, createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import styles from './Lesson.module.css';
+
+const DEFAULT_LESSON_EVENTS = ['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed'] as const;
 
 type SectionParams = Lesson_Props['params']['sections'];
 const EMPTY_EDITABLE: readonly EditableSectionParam[] = [];
@@ -137,7 +138,7 @@ function hasNextBlocker(state: Runtime, step: number): boolean {
   return Object.values(state.nextBlockers).some(registeredStep => registeredStep === step);
 }
 
-function canLeaveSection(state: Runtime, response: LessonView, index: number): boolean {
+function canLeaveSection(state: Runtime, response: Lesson_Props, index: number): boolean {
   const section = response.section[index];
   if (!section) return false;
   if (section.type === 'quiz' && section.params.isBlocker && !state.section.completedQuizIds[section.id])
@@ -145,7 +146,7 @@ function canLeaveSection(state: Runtime, response: LessonView, index: number): b
   return requiredCheckpointIds(section).every(id => state.section.completedCheckpoints[section.id + '/' + id]);
 }
 
-function canMoveTo(state: Runtime, response: LessonView, target: number, direct: boolean): boolean {
+function canMoveTo(state: Runtime, response: Lesson_Props, target: number, direct: boolean): boolean {
   const from = state.section.step;
   if (!Number.isInteger(target) || target < 0 || target >= response.section.length) return false;
   if (target === from) return true;
@@ -161,7 +162,7 @@ function canMoveTo(state: Runtime, response: LessonView, target: number, direct:
 function reduce(
   state: Runtime,
   action: Command,
-  response: LessonView,
+  response: Lesson_Props,
   editable: readonly EditableSectionParam[],
 ): Runtime {
   switch (action.type) {
@@ -483,12 +484,12 @@ function LessonControllerRuntime({
     }),
     [state.section.step, state.section.testDone, response.section.length],
   );
-  const legacyDispatch = useCallback((action: LessonNavigationAction) => {
+  const navigationDispatch = useCallback((action: LessonNavigationAction) => {
     if (action.type === 'visit') dispatch({ type: 'visit', step: action.step });
     else if (action.type === 'restore') dispatch({ type: 'restore', step: action.step, testDone: action.testDone });
     else dispatch({ type: action.type });
   }, []);
-  const legacyNavigation = useMemo(() => ({ progress, dispatch: legacyDispatch }), [progress, legacyDispatch]);
+  const navigationState = useMemo(() => ({ progress, dispatch: navigationDispatch }), [progress, navigationDispatch]);
 
   const paramsValue = useMemo(
     () => ({
@@ -573,7 +574,7 @@ function LessonControllerRuntime({
     <LessonOperationsContext.Provider value={actions}>
       <LessonEventBusContext.Provider value={eventBus}>
         <ParamsContext.Provider value={paramsValue}>
-          <LessonNavigationContext.Provider value={legacyNavigation}>
+          <LessonNavigationContext.Provider value={navigationState}>
             <Layout
               contentLoading={contentLoading}
               contentError={contentError}
