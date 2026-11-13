@@ -56,6 +56,15 @@ test('every Section publishes ordered JSON-safe ContentBlock Props without mutab
     assert.equal('disable' in section, false);
     assert.equal('overrides' in section.config, false);
     const original = section.build.props({ languages: ['en', 'uk'] });
+    assert.equal(original.base.params.skippable, undefined);
+    assert.deepEqual(
+      section.build.overrides({ params: { skippable: false } }, { languages: ['en', 'uk'] }).base.params,
+      { skippable: false },
+    );
+    assert.deepEqual(
+      section.build.overrides({ params: { skippable: true } }, { languages: ['en', 'uk'] }).base.params,
+      { skippable: true },
+    );
     assert.equal(original.base.content[0]?.slug, 'prompt');
     assert.equal(textValue(original.locale?.uk?.content), 'Питання');
     assert.deepEqual(original.locale?.uk?.locale, { title: 'Назва' });
@@ -128,6 +137,12 @@ test('every Section publishes ordered JSON-safe ContentBlock Props without mutab
       /Invalid .* overrides/,
     );
   }
+});
+
+test('Section authoring preserves an explicit opt-out from Lesson skipping', () => {
+  const section = defineContentSection({ ...input('content'), params: { skippable: false } });
+  assert.equal(section.build.props({ languages: ['en'] }).base.params.skippable, false);
+  assert.equal(section.config.base.params.skippable, false);
 });
 
 test('all Sections remain reusable across independently built override contexts', () => {

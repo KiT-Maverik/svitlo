@@ -122,6 +122,16 @@ function requiredCheckpointIds(section: LessonView['sections'][number]): string[
     .map(block => block.id);
 }
 
+/** Lesson permission is inherited unless the Section opts out; Quizzes have extra gates. */
+function canSkipSection(section: LessonView['sections'][number] | undefined, allowSkipping: boolean): boolean {
+  return !!(
+    allowSkipping &&
+    section &&
+    section.skippable !== false &&
+    (section.type !== 'quiz' || (!section.parameters.isBlocker && section.parameters.interaction.skippable))
+  );
+}
+
 function hasNextBlocker(state: Runtime, step: number): boolean {
   return Object.values(state.nextBlockers).some(registeredStep => registeredStep === step);
 }
@@ -220,9 +230,7 @@ function reduce(
       const target = action.type === 'visit' ? action.step : action.type === 'back' ? current - 1 : current + 1;
       if (
         action.type === 'skip' &&
-        (!state.params.sections.allowSkipping ||
-          !response.sections[current]?.skippable ||
-          (response.sections[current]?.type === 'quiz' && response.sections[current].parameters.isBlocker) ||
+        (!canSkipSection(response.sections[current], state.params.sections.allowSkipping) ||
           state.bottomBar.skipDisabled)
       )
         return state;
@@ -507,9 +515,7 @@ function LessonControllerRuntime({
       !canLeaveSection(state, response, state.section.step);
     const skipDisabled =
       state.bottomBar.skipDisabled ||
-      !state.params.sections.allowSkipping ||
-      !current?.skippable ||
-      (current.type === 'quiz' && (current.parameters.isBlocker || !current.parameters.interaction.skippable)) ||
+      !canSkipSection(current, state.params.sections.allowSkipping) ||
       state.section.step >= response.sections.length - 1;
     return { nextDisabled, skipDisabled, backDisabled: state.bottomBar.backDisabled };
   }, [state.bottomBar, state.nextBlockers, state.section, state.params.sections.allowSkipping, response]);
@@ -560,13 +566,7 @@ function LessonControllerRuntime({
   );
   const contentLanguage = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === response.locale.code);
   const skippableSteps = useMemo(
-    () =>
-      response.sections.map(
-        item =>
-          state.params.sections.allowSkipping &&
-          !!item.skippable &&
-          (item.type !== 'quiz' || (!item.parameters.isBlocker && item.parameters.interaction.skippable)),
-      ),
+    () => response.sections.map(item => canSkipSection(item, state.params.sections.allowSkipping)),
     [response.sections, state.params.sections.allowSkipping],
   );
   return (

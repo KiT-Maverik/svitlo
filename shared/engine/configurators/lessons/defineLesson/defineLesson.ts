@@ -169,7 +169,15 @@ const validate = (config: Lesson_Config): void => {
   }
 };
 
-/** Define a Lesson with immutable, stateless Section/Flashcard/Question publication. */
+/**
+ * Define a Lesson with immutable, stateless Section/Flashcard/Question publication.
+ *
+ * @remarks
+ * `params.sections.allowSkipping` is the Lesson-wide permission to skip Sections.
+ * Sections inherit this permission unless `params.skippable: false` explicitly
+ * prohibits skipping. A Section cannot enable skipping when the Lesson disables it.
+ * Quiz blocking and interaction settings may further restrict skipping.
+ */
 export function defineLesson<
   const Slug extends string,
   const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],
