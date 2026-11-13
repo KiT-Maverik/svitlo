@@ -13,14 +13,14 @@ import { episode_Props_Schema, episodeConfigurator_Schema } from './defineEpisod
 const id = (suffix: string) => 'd275647f-203d-481a-a1c7-4d331c779d' + suffix;
 const languages = ['en', 'uk'] as const;
 
-const line = defineText({
+const line = defineText<'line', ['en', 'uk']>({
   id: id('01'),
   slug: 'line',
   type: 'text',
   params: {},
   locale: { value: { en: 'You enter the hall', uk: 'Ви заходите до зали' } },
 });
-const intro = defineContentSection({
+const intro = defineContentSection<'intro', { line: typeof line }, typeof languages>({
   id: id('02'),
   slug: 'intro',
   type: 'content',
@@ -123,7 +123,7 @@ test('Episode respects selected publication languages, validates requested scope
 
 test('Course, Module and Chapter accept Episode without wrapping or converting it to Lesson', () => {
   const episode = makeEpisode();
-  const chapter = defineChapter({
+  const chapter = defineChapter<'chapter', { arrival: typeof episode }, typeof languages>({
     id: id('05'),
     slug: 'chapter',
     type: 'chapter',
@@ -131,7 +131,7 @@ test('Course, Module and Chapter accept Episode without wrapping or converting i
     locale: { title: 'Chapter' },
     content: { items: { arrival: episode }, order: ['arrival'] },
   });
-  const module = defineModule({
+  const module = defineModule<'module', { chapter: typeof chapter; arrival: typeof episode }, typeof languages>({
     id: id('06'),
     slug: 'module',
     type: 'module',
@@ -139,7 +139,7 @@ test('Course, Module and Chapter accept Episode without wrapping or converting i
     locale: { title: 'Module' },
     content: { items: { chapter, arrival: episode }, order: ['chapter', 'arrival'] },
   });
-  const course = defineCourse({
+  const course = defineCourse<'course', typeof languages, { module: typeof module; arrival: typeof episode }>({
     id: id('07'),
     slug: 'course',
     type: 'course',
