@@ -9,15 +9,15 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { allLanguageCodes } from '@svitlo/engine';
-import { loadAuthoredConfigurators } from './load-authored-configurators.mjs';
-import { prepareSkillPublication } from './prepare-skills-publication.mjs';
+import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
+import { prepareSkillPublication } from './prepareSkillsPublication.mjs';
 import {
   renderSkillTree,
   writeSkillFiles,
   checkSkillFiles,
-} from '../../../shared/engine/generators/skills/publishSkillTree.mjs';
+} from '../../generators/skills/publishSkillTree.mjs';
 
-const repo = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)));
+const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] --write|--check';
 
 function options(argv) {

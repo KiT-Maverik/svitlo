@@ -5,8 +5,7 @@
  * This command owns discovery and calls build.props(). The Engine generator
  * receives ONLY completed {base, locale} publication results.
  *
- * Output is intentionally isolated from the legacy pages/lessons pipeline
- * until the runtime assembler migrates to the new Props-shaped JSON format.
+ * Completed Props are written to generated/lessons for textbook publication.
  */
 import fs from 'node:fs';
 import path from 'node:path';

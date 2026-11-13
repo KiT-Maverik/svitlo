@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { mergeCourseProps, renderCourseFiles, publishCourse } from './publish-course-data.mjs';
+import { mergeCourseProps, renderCourseFiles, publishCourse } from './publishCourseData.mjs';
 
 const ids = {
   course: '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67',

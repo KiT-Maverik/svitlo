@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { prepareSkillPublication } from './prepare-skills-publication.mjs';
-import { renderSkillTree } from '../../../shared/engine/generators/skills/publishSkillTree.mjs';
+import { prepareSkillPublication } from './prepareSkillsPublication.mjs';
+import { renderSkillTree } from '../../generators/skills/publishSkillTree.mjs';
 
 function domain(id, slug, translations = true) {
   const calls = [];

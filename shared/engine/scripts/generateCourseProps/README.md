@@ -1,13 +1,13 @@
 # Compact Course resource publisher
 
-`publish-course-data.mjs` publishes compact Course resources built from the new stateless Configurator API.
+`publishCourseData.mjs` publishes compact Course resources built from the new stateless Configurator API.
 
 The build-time caller passes the result of `defineCourse` and, optionally, the
 Course-owned authoring patch accepted by `course.build.overrides`. No standalone
 Lesson resource is built into the resulting Course files.
 
 ```js
-import { publishCourse } from './publish-course-data.mjs';
+import { publishCourse } from './publishCourseData.mjs';
 
 // course: defineCourse(...)
 // courseOverrides: optional nested Course_Overrides authoring patch
@@ -49,4 +49,4 @@ IDs and apply these sparse patches after the Lesson's own locale assembly.
 removes stale files from that directory, preserves other Course directories and
 unrelated public files, and supports read-only `check` mode.
 
-Tests: `node --test scripts/generators/data/publish-course-data.spec.mjs`.
+Tests: `node --test shared/engine/scripts/generateCourseProps/publishCourseData.spec.mjs`.

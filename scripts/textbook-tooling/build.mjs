@@ -148,9 +148,9 @@ rmSync(join(dist, '.declarations'), { recursive: true, force: true });
 // Build authored content once into textbook-owned generated/, then stage
 // the already-published JSON to the portable package's public URL layout.
 for (const [source, generator, staged, target] of [
-  ['data/skills', 'scripts/generators/data/publish-skills-data.mjs', 'skills', 'data/skills'],
-  ['data/lessons', 'scripts/generators/pages/lessons/generate-lesson-props.mjs', 'lessons', 'data/lessons'],
-  ['data/courses', 'scripts/generators/data/generate-course-props.mjs', 'courses', 'data/courses'],
+  ['data/skills', 'shared/engine/scripts/generateSkills/generateSkills.mjs', 'skills', 'data/skills'],
+  ['data/lessons', 'shared/engine/scripts/generateLessonProps/generateLessonProps.mjs', 'lessons', 'data/lessons'],
+  ['data/courses', 'shared/engine/scripts/generateCourseProps/generateCourseProps.mjs', 'courses', 'data/courses'],
 ]) {
   if (!authored(source)) continue;
   run(process.execPath, [generator, '--package', packageDirectory, '--write']);

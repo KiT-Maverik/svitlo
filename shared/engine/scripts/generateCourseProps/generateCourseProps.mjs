@@ -4,10 +4,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { loadAuthoredConfigurators } from './load-authored-configurators.mjs';
-import { renderCourseFiles } from './publish-course-data.mjs';
+import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
+import { renderCourseFiles } from './publishCourseData.mjs';
 
-const repo = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)));
+const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] --write|--check';
 
 function options(argv) {
