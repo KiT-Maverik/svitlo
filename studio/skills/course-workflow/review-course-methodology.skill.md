@@ -4,7 +4,7 @@
 
 ## Purpose and timing
 
-This is the **Course-wide pedagogical and configuration review** performed **after** relevant Lessons have been matched and actually authored, and after Course screenwriting when there is a scenario layer. It is the **mandatory pedagogical review gate before treating Course configuration as approved for generation/publication**. It is independent from the optional [Scenario Review](./review-course-scenario.skill.md) in its criteria and verdict. Do not run it as a substitute for Course Methodology, Course TOC, Lesson Matching, Lesson Production, Lesson-specific QA or the actual deterministic Builder.
+This is the **Course-wide pedagogical and configuration review** performed **after** relevant Lessons have been matched and actually authored, and after Course screenwriting when there is a scenario layer. It is the **mandatory pedagogical review gate before treating Course configuration as approved for final implementation/publication**. It is independent from the optional [Scenario Review](./review-course-scenario.skill.md) in its criteria and verdict. Do not run it as a substitute for Course Methodology, Course TOC, Lesson Matching, Lesson Production, Lesson-specific QA or the actual deterministic Builder.
 
 The Course Methodologist can **author or revise methodological Lesson overrides in this review stage when justified**; a separate mandatory `Create Course Overrides` skill is not required. The reviewer does not self-approve these modifications.
 
@@ -16,7 +16,7 @@ For the specified Course UUID, read the entire current:
 - Actual standalone `Lesson<'data'>` configuration and needed Section/ContentBlock data for every scoped Lesson; verify stable IDs/slugs, supported languages, `requireQuiz`, navigation/skipping settings, Section order and approved assessment intent. Editorial-only Lesson drafts are **not** sufficient to generate final concrete overrides.
 - Current `overrides.yaml` if present, its existing operation order and approvals; linked source paths for Course-owned new Sections/blocks, titles, events and patches.
 - Approved scenario/episode materials if present, with the Scenario Review result and current revision-specific sign-off, or documented reason why the Course has no scenario layer.
-- Course production limitations and Builder validation rules; never assume the Builder checks editorial review reports automatically.
+- Course production limitations and the Engine Config-shaped YAML handoff; the generic draft scaffolder checks **neither** approval status nor editorial review reports.
 
 ## Methodological audit
 
@@ -48,6 +48,6 @@ Create/update `methodology-review.md` **in the Course folder** (distinct from a 
 - Issues by severity, affected source revision and accountable owner; separately record Course language and implementation blockers.
 - Editorial sign-off links for the current source revisions. The review verdict is not self-approval, and a change to the inspected configuration requires a source-specific follow-up check.
 
-**Gate:** Before final Builder use, require authorized approval of the current Course Methodology and TOC, necessary Course-owned content/scenario inputs, current `overrides.yaml` if present, and this methodological review; where scenario content exists also require the applicable Scenario Review. Until then keep generation/publication blocked as a **process rule**. The current Builder validates `approved` YAML status and source constraints, **not** these Markdown sign-off files by itself.
+**Gate:** Before treating a Course as finished or publishable, require authorized approval of current Course Methodology/TOC, necessary Course-owned scenario/content sources, `overrides.yaml` if present and this methodological review; where applicable, require Scenario Review too. This is a **Studio process rule**, not a validation performed by the generic YAML → TypeScript draft scaffolder. Producing an intermediate draft does not bypass approval; final integration/publication remains blocked until sign-off. See [YAML Config handoff](../../docs/architecture/yaml-config-scaffolding.md).
 
 Use a Draft PR, preserve other specialists' ownership, and do not mark a Course ready on the basis of a self-authored review recommendation.
