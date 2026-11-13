@@ -3,6 +3,7 @@ import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguag
 
 import {
   mergeForValidation,
+  validateRequestedPublication,
   onlyLocales,
   resolvePublicationLanguages,
   selectPublicationLocales,
@@ -364,6 +365,8 @@ export const defineCourse = <
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
+      // Reject an override when its four-layer resolved Props are invalid for any requested locale.
+      validateRequestedPublication(course_Props_Schema, props(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(
