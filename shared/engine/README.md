@@ -1,17 +1,10 @@
 # Svitlo Engine
 
-`@svitlo/engine` contains framework-independent entity configurators, localization and publication utilities, validation, and Assessment Method data. Shared content contracts live in `@svitlo/contracts`.
+`@svitlo/engine` has two explicit public entrypoints:
 
-## Source layout
+- **`@svitlo/engine/build`**: Node-only authoring-time configurators, validators and publishers; this API can depend on runtime utilities.
+- **`@svitlo/engine/runtime`**: cross-platform Props schemas, resolved types, pure assemblers and locale helpers. Must never import Node-only APIs, generators, authoring files, or `define*` implementations through its transitive graph.
 
-- `lessons/` contains the existing Lesson, Section, and ContentBlock creators and publication helpers.
-- `configurators/` contains the schema-backed `define*` factories (including the simplified Skill and Assessment Method configurators).
-- `configurators_old/` contains legacy Course/Module/Chapter/Episode builders, kept during migration.
-- `utils/` contains language and publishing utilities; `data/` contains Assessment Method data; `types/` contains internal projection helpers such as `DeepPartial`.
-- Shared language types and the locale catalog live in `@svitlo/contracts`.
+There is deliberately **no root package export**. All consumers must select one of the two APIs. Build-time authored `*.data.ts` modules use `/build`; apps, renderers, adapters and mobile/desktop hosts use `/runtime`. Engine's schema definitions remain the single source of truth for Config and Props validation; runtime reexports the canonical Props schemas without implementing parallel validators.
 
-`index.ts` is the sole public import entrypoint: `@svitlo/engine`. Browser and React Server conditions use `runtime.ts` to exclude Node-only publication utilities, while Node authoring scripts use `index.ts`.
-
-Lesson creators publish invariant base resources and language-specific locale patches; consumers combine them to assemble responses. See [Lesson](../../studio/docs/entities/lesson.md).
-
-Internal aliases are configured in `tsconfig.json` and `package.json`.
+The repository enforces this via a static runtime dependency-graph guard and shared ESLint restrictions for every app. The build-time migration deliberately does not preserve an alias for `@svitlo/engine`.

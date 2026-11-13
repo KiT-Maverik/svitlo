@@ -10,7 +10,7 @@
     "app:build": "node scripts/build.mjs",
     "precode:check:types": "node scripts/prepare.mjs",
     "code:check:types": "tsc -p tsconfig.json --noEmit",
-    "code:lint:check": "npm run code:check:types && node --check scripts/prepare.mjs && node --check scripts/build.mjs",
+    "code:lint:check": "eslint . && npm run code:check:types && node --check scripts/prepare.mjs && node --check scripts/build.mjs",
     "test": "node --test scripts/*.test.mjs",
     "test:e2e": "playwright test",
     "app:sync": "npm run app:build && cap sync",
@@ -19,7 +19,8 @@
     "app:native:add": "cap add android && cap add ios",
     "app:check:bundle": "node scripts/verify-bundle.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
-    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
+    "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore",
+    "code:lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@capacitor/app": "^7.0.0",
@@ -53,6 +54,8 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "esbuild": "^0.28.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "eslint": "^9",
+    "typescript-eslint": "^8.72.0"
   }
 }

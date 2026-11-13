@@ -5,11 +5,10 @@ import { deepStrict_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import {
-  contentBlockLocalizationSwitch,
+  localizationSwitch as contentBlockLocalizationSwitch,
   contentBlockResolved_Schema,
-  type ContentBlock_Configurator,
-  type ContentBlock_Props,
-} from '../../contentBlocks';
+} from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
 
 export const flashcardRelationshipTypes = [
   'reverse',

@@ -1,0 +1,36 @@
+name: One-time Engine entrypoint import migration
+on:
+  push:
+    branches:
+      - fix/engine-build-runtime-exports
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Rewrite tracked Engine imports with the one-time TypeScript AST script
+        run: node temp/migrate-engine-exports.mjs --write
+      - name: Update the workspace lockfile for Mobile ESLint dependencies
+        run: npm install --package-lock-only --ignore-scripts
+      - name: Remove the temporary migration entrypoints
+        run: git rm -f .github/workflows/engine-entrypoint-migration.yml temp/migrate-engine-exports.mjs
+      - name: Commit the migration as one reviewable change
+        run: |
+          git add -A
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Migrate Engine consumers to explicit build and runtime imports'
+          git push origin HEAD:fix/engine-build-runtime-exports

@@ -22,7 +22,7 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "index.ts",
+    "build.ts",
     "runtime.ts",
     "configurators/**/*.ts",
     "assemblers/**/*.ts",

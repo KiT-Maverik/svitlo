@@ -1,7 +1,9 @@
+import { engineRuntimeBoundary } from '../../eslint/engine-runtime-boundary.mjs';
 import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
+  engineRuntimeBoundary,
   { ignores: ['dist-main/**', 'dist-renderer/**', 'public/**', 'release/**', 'node_modules/**'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,

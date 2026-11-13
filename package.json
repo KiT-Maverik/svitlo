@@ -19,7 +19,7 @@
     "app:pack": "node scripts/run-workspace-script.mjs app:pack",
     "storybook:build": "node scripts/run-workspace-script.mjs storybook:build",
     "repo:list:packages": "npm ls --workspaces --depth=0",
-    "repo:check:packages": "node scripts/check-workspaces.mjs && node scripts/check-package-boundaries.mjs && node scripts/check-extraction-readiness.mjs && node scripts/check-final-architecture.mjs && node --test scripts/run-workspace-script.spec.mjs && node scripts/migrate-shared-imports.mjs --check && node --test scripts/migrate-shared-imports.spec.mjs",
+    "repo:check:packages": "node scripts/check-workspaces.mjs && node scripts/check-package-boundaries.mjs && node scripts/check-extraction-readiness.mjs && node scripts/check-final-architecture.mjs && node --test scripts/run-workspace-script.spec.mjs && node scripts/migrate-shared-imports.mjs --check && node --test scripts/migrate-shared-imports.spec.mjs && node scripts/check-engine-runtime-graph.mjs",
     "repo:check:artifacts": "node scripts/check-built-package-exports.mjs",
     "content:generate:lessons": "node scripts/lesson-builder.mjs generate",
     "content:check:lessons": "node scripts/lesson-builder.mjs check",

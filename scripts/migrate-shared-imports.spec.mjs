@@ -79,3 +79,8 @@ test('deduplicates side-effect-only imports safely', () => {
   assert.equal((result.code.match(/import '@svitlo\/indexdb';/g) ?? []).length, 1);
   assert.equal(migrateSharedImports(result.code).changed, false);
 });
+
+test('preserves the explicit Engine build and runtime export subpaths', () => {
+  assert.equal(canonicalSharedSpecifier('@svitlo/engine/build'), '@svitlo/engine/build');
+  assert.equal(canonicalSharedSpecifier('@svitlo/engine/runtime'), '@svitlo/engine/runtime');
+});
