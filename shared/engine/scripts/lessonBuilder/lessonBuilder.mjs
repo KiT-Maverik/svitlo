@@ -8,6 +8,8 @@
  * normal TypeScript diagnostics. No approvals, schemas, content checks,
  * TypeScript typechecks, asset resolution, or publication run here.
  *
+ * Source Config comes from the distinct lesson.config.yaml handoff; the
+ * Screenwriter-owned content.yaml supplies source-language provenance only.
  * Polymorphic children require type for factory dispatch. The only dispatch
  * table is Engine's yamlFactoryByType.ts (read as TypeScript syntax, not
  * executed or validated). Output contains only the source documentLanguage's
