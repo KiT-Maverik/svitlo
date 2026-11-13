@@ -15,8 +15,8 @@ This implementation must also follow [Git-First Typed Content & AI Authoring](..
 1. **Target textbook:** identify the actual `<PackageRoot>` (the specific application package, not the monorepo root), the approved scope (one Skill, Group, Domain, or bounded batch), branch, and relevant repository instructions.
 2. **Editorial authority:** read the **approved** `<PackageRoot>/docs/skills/taxonomy.md`, including each in-scope entity’s heading, approved `Slug: `, `Action: `, `Status: `, explicit `Methodological description: ` (English), `User-friendly description: ` (working-language draft), hierarchy position and Code link. For these **unpromoted** entries, this is the editorial authority; implemented/promoted entries instead use reviewed Code. **No individual Markdown Definitions exist or are required**. Missing, ambiguous, unapproved or contradictory taxonomy entries are blockers; report them rather than inventing semantics or silently revising the taxonomy.
 3. **Entity meanings:** read [SkillDomain](../../docs/entities/skill-domain.md), [SkillGroup](../../docs/entities/skill-group.md), and [Skill](../../docs/entities/skill.md). These are lightweight catalog categories, **not** assessment rubrics, learner results, or lessons.
-4. **Authoritative ownership:** the shared `SkillId` UUID type is exported by `+@svitlo/contracts/content`. Skill, SkillGroup and SkillDomain config types and Zod schemas live under `shared/engine/configurators/skills/`, not in legacy Contracts taxonomy interfaces.
-5. **Authoritative configurators:** import `defineSkill`, `defineSkillGroup` and `defineSkillDomain` from `@svitlo/engine`; inspect their schemas and implementations under `shared/engine/configurators/skills/`. Pass child configurators in arrays, never built child objects or keyed legacy maps.
+4. **Authoritative ownership:** the Skill UUID field is defined by Engine's `Skill_Config['id']` schema. Skill, SkillGroup and SkillDomain config types and Zod schemas live under `shared/engine/configurators/skills/`.
+5. **Authoritative configurators:** import `defineSkill`, `defineSkillGroup` and `defineSkillDomain` from `@svitlo/engine/build`; inspect their schemas and implementations under `shared/engine/configurators/skills/`. Compose children in typed keyed `{ items, order }` collections, not positional authoring arrays or built child Props.
 6. **Reference implementation (read-only example):** inspect the current Mathematics taxonomy in `content/math/data/skills/`:
    - Root `index.ts` exports Domain Data only.
    - `geometry/geometry.data.ts` imports Group Data directly from `./<group>/<group>.data`.
@@ -99,7 +99,7 @@ Use approved lowerCamelCase slugs as directory and file stems; preserve old UUID
 - **Skills:** `<group>/skills/index.ts`, or `<domain>/skills/index.ts` for a direct-Skill Domain, exports immediate Skill Data only, with explicit named exports and no `export *`.
 - **UUIDs:** each entity owns its original UUID literal in its own `*.data.ts`; do not reintroduce separate ID dictionaries, aliases or compatibility re-exports.
 
-Import builders from `@svitlo/engine` where available. Verify actual package export/alias settings. The runtime application must consume published build outputs rather than directly importing authoring source Data.
+Import authoring configurators from `@svitlo/engine/build` according to their public exports. Verify actual package export/alias settings. The runtime application must consume published build outputs rather than directly importing authoring source Data.
 
 ## 4. LOCALIZATION — COMPLETE, LANGUAGE-CODE KEYS
 
