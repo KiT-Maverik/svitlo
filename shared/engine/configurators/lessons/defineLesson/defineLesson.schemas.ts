@@ -3,7 +3,7 @@ import type { DeepPartial } from '#types';
 import { languageCode_Schema, deepStrict_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import { sectionTypes } from '../../sections/section.constants';
 import type { Section_Configurator, Section_Props } from '../../sections/section.types';
 import { flashcard_Props_Schema } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
