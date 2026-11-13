@@ -25,6 +25,28 @@ jobs:
         run: node scripts/migrate-engine-entrypoints.mjs --write
       - name: Verify migration is idempotent
         run: node scripts/migrate-engine-entrypoints.mjs --check
+      - name: Verify Engine API and repository checks
+        run: |
+          failures=0
+          verify() {
+            echo "::group::$*"
+            "$@" || failures=$((failures + 1))
+            echo "::endgroup::"
+          }
+          verify npm run package:build --workspace @svitlo/contracts
+          verify npm run package:build --workspace @svitlo/engine
+          verify node scripts/check-engine-runtime-graph.mjs
+          verify node --test scripts/migrate-engine-entrypoints.spec.mjs scripts/migrate-engine-imports.spec.mjs scripts/migrate-shared-imports.spec.mjs
+          verify node scripts/migrate-engine-imports.mjs --check
+          verify node scripts/migrate-shared-imports.mjs --check
+          verify node scripts/check-package-boundaries.mjs
+          verify node scripts/check-extraction-readiness.mjs
+          verify npm run code:lint:check --workspace @svitlo/desktop
+          verify npm run code:lint:check --workspace @svitlo/platform
+          verify npm run code:lint:check --workspace @svitlo/web
+          verify npm run code:lint:check --workspace @svitlo/mobile
+          echo "Verification failures: $failures"
+          exit "$failures"
       - name: Commit migrated imports
         run: |
           git config user.name 'github-actions[bot]'
