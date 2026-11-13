@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { instrumentsAndMeasurementMethods_SkillGroup_Data } from './instrumentsAndMeasurementMethods/instrumentsAndMeasurementMethods.data';
 import { physicalQuantitiesAndUnits_SkillGroup_Data } from './physicalQuantitiesAndUnits/physicalQuantitiesAndUnits.data';

@@ -46,6 +46,7 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
   function rewriteSpecifier(module, declaration) {
     if (!module || !ts.isStringLiteralLike(module) || !module.text.startsWith(prefix)) return;
     const subpath = module.text.slice(prefix.length);
+    if (subpath === 'build' || subpath === 'runtime') return;
     if (!subpaths.has(subpath)) throw new Error(filename + ': unsupported Engine import ' + module.text);
     const contract =
       subpath === 'content'
@@ -57,7 +58,8 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
             : null;
     const ownedTypes =
       subpath === 'taxonomy' ? taxonomyTypes : subpath === 'localization' ? localizationContracts : null;
-    let target = subpath === 'content' ? contract : '@svitlo/engine';
+    const runtimeSubpaths = new Set(['localization', 'schemas', 'types', 'utils']);
+    let target = subpath === 'content' ? contract : runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build';
 
     if (ownedTypes && declaration) {
       const isImport = ts.isImportDeclaration(declaration);
@@ -92,7 +94,7 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
           replace(
             declaration.getStart(file),
             declaration.end,
-            render(contracts, contract) + '\n' + render(engine, '@svitlo/engine'),
+            render(contracts, contract) + '\n' + render(engine, runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build'),
           );
           return;
         }

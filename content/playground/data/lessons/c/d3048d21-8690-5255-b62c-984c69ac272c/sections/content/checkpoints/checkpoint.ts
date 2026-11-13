@@ -1,4 +1,4 @@
-import { configuratorArrayToSlugMap, defineCheckpoint, defineCheckpointItem, defineText } from '@svitlo/engine';
+import { configuratorArrayToSlugMap, defineCheckpoint, defineCheckpointItem, defineText } from '@svitlo/engine/build';
 
 export const checkpoint = defineCheckpoint({
   id: 'cd65e160-da27-57e1-a58f-38b1276c4346',

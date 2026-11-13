@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { measurementContext_Skill_Data, priceQuantityCost_Skill_Data, workRateTime_Skill_Data } from './skills';
 

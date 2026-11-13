@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { recognizeDenominations_Skill_Data, composeAmount_Skill_Data, compareAmounts_Skill_Data } from './skills';
 

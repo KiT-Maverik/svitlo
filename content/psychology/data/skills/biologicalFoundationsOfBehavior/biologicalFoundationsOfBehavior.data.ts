@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { biologicalDifferencesAndContext_SkillGroup_Data } from './biologicalDifferencesAndContext/biologicalDifferencesAndContext.data';
 import { brainBehaviorRelationships_SkillGroup_Data } from './brainBehaviorRelationships/brainBehaviorRelationships.data';

@@ -1,4 +1,4 @@
-import { defineContentSection, defineMarkdown } from '@svitlo/engine';
+import { defineContentSection, defineMarkdown } from '@svitlo/engine/build';
 import { howLightMoves_languages } from '../../constants';
 import { checkpoint } from './checkpoints/checkpoint';
 import { lightPropagationSimulation } from './scenes/lightPropagationSimulation';

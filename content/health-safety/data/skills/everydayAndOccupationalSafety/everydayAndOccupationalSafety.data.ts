@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { electricityFireAndGas_SkillGroup_Data } from './electricityFireAndGas/electricityFireAndGas.data';
 import { hazardRecognitionAndPrevention_SkillGroup_Data } from './hazardRecognitionAndPrevention/hazardRecognitionAndPrevention.data';

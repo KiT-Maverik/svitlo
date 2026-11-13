@@ -5,7 +5,7 @@ import {
   getLanguageCode,
   isLocale,
   type LessonResponse,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 import type { LanguageCode, Locale } from '@svitlo/contracts/localization';
 
 /** Fetch only build-published lesson data. No Node, Electron or authored *.data.ts at runtime. */

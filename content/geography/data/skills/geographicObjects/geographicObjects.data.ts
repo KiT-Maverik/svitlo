@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { classification_SkillGroup_Data } from './classification/classification.data';
 import { globalGeographicDivisions_SkillGroup_Data } from './globalGeographicDivisions/globalGeographicDivisions.data';

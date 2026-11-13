@@ -5,7 +5,7 @@ import type { Locale } from '@svitlo/contracts/localization';
 import { type UiKitMessages, type Topic, Lesson, ImageRendererProvider, SceneLocaleProvider } from '@svitlo/ui-kit';
 import { NextImageRenderer } from '@svitlo/adapter-nextjs';
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';
-import type { LessonResponse } from '@svitlo/engine';
+import type { LessonResponse } from '@svitlo/engine/runtime';
 import Layout from '@/components/layout/LearningLayout/LearningLayout';
 
 function sceneIds(value: unknown): string[] {

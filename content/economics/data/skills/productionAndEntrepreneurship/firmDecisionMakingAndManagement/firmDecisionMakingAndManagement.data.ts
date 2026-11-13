@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { firmProfitMaximization_Skill_Data, ownersManagersAndWorkers_Skill_Data } from './skills';
 

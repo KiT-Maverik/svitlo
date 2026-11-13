@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { roadAndTransportSafety_SkillGroup_Data } from './roadAndTransportSafety/roadAndTransportSafety.data';
 import { waterSafety_SkillGroup_Data } from './waterSafety/waterSafety.data';

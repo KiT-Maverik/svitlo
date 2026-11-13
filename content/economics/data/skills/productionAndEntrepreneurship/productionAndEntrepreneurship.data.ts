@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { entrepreneurshipAndAccounting_SkillGroup_Data } from './entrepreneurshipAndAccounting/entrepreneurshipAndAccounting.data';
 import { firmDecisionMakingAndManagement_SkillGroup_Data } from './firmDecisionMakingAndManagement/firmDecisionMakingAndManagement.data';

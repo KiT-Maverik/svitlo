@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { areaPerimeterContrast_Skill_Data, perimeterVsArea_Skill_Data } from './skills';
 

@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const recognizeSoundTransmissionThroughAMedium_Skill_Data = defineSkill({
   slug: 'recognizeSoundTransmissionThroughAMedium',

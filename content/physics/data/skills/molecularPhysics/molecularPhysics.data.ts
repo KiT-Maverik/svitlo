@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { diffusionAndMixing_SkillGroup_Data } from './diffusionAndMixing/diffusionAndMixing.data';
 import { gasProperties_SkillGroup_Data } from './gasProperties/gasProperties.data';

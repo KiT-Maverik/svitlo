@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { distinguishOpenSourceFromPubliclyVisibleCode_Skill_Data, explainOpenSource_Skill_Data } from './skills';
 

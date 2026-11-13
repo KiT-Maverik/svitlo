@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { ergonomicsAndSensoryCare_SkillGroup_Data } from './ergonomicsAndSensoryCare/ergonomicsAndSensoryCare.data';
 import { physicalActivity_SkillGroup_Data } from './physicalActivity/physicalActivity.data';

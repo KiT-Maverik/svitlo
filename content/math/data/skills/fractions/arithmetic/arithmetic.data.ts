@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { addLikeDenominators_Skill_Data, subtractLikeDenominators_Skill_Data } from './skills';
 

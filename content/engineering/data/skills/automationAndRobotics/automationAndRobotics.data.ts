@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { drivesAndActuators_SkillGroup_Data } from './drivesAndActuators/drivesAndActuators.data';
 import { feedbackAndControl_SkillGroup_Data } from './feedbackAndControl/feedbackAndControl.data';

@@ -24,6 +24,10 @@ const packageRoots = [
 ];
 
 export function canonicalSharedSpecifier(value) {
+  if (value === '@svitlo/engine/build' || value === '@svitlo/engine/runtime') return value;
+  if (value === '@svitlo/engine' || value.startsWith('@svitlo/engine/')) {
+    throw new Error('Unsupported Engine import ' + value + '; use @svitlo/engine/build or @svitlo/engine/runtime');
+  }
   return packageRoots.find(root => value === root || value.startsWith(root + '/')) ?? value;
 }
 

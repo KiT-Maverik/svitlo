@@ -4,25 +4,25 @@ import { canonicalSharedSpecifier, migrateSharedImports } from './migrate-shared
 
 test('preserves Contracts subpaths and collapses other shared package paths', () => {
   assert.equal(canonicalSharedSpecifier('@svitlo/contracts/content'), '@svitlo/contracts/content');
-  assert.equal(canonicalSharedSpecifier('@svitlo/engine/lessons'), '@svitlo/engine');
+  assert.equal(canonicalSharedSpecifier('@svitlo/indexdb/lessons'), '@svitlo/indexdb');
   assert.equal(canonicalSharedSpecifier('@svitlo/adapter-electron/main'), '@svitlo/adapter-electron');
 });
 
 test('merges duplicate named imports, preserves aliases and runtime/type semantics', () => {
   const source = [
-    "import { createLesson } from '@svitlo/engine/lessons';",
-    "import { getMarkdownLocale as markdown } from '@svitlo/engine';",
-    "import type { LessonResponse } from '@svitlo/engine/types';",
-    "import { createLesson } from '@svitlo/engine';",
+    "import { createLesson } from '@svitlo/indexdb/lessons';",
+    "import { getMarkdownLocale as markdown } from '@svitlo/indexdb';",
+    "import type { LessonResponse } from '@svitlo/indexdb/types';",
+    "import { createLesson } from '@svitlo/indexdb';",
     'export const value = markdown;',
   ].join('\n');
   const result = migrateSharedImports(source);
   assert.equal(result.diagnostics.length, 0);
   assert.match(
     result.code,
-    /import \{ createLesson, getMarkdownLocale as markdown, type LessonResponse \} from '@svitlo\/engine';/,
+    /import \{ createLesson, getMarkdownLocale as markdown, type LessonResponse \} from '@svitlo\/indexdb';/,
   );
-  assert.equal((result.code.match(/from '@svitlo\/engine'/g) ?? []).length, 1);
+  assert.equal((result.code.match(/from '@svitlo\/indexdb'/g) ?? []).length, 1);
   assert.equal(migrateSharedImports(result.code).changed, false);
 });
 
@@ -43,8 +43,8 @@ test('rewrites type-only, dynamic import and re-exports without changing Contrac
 
 test('flags same-local-name collisions rather than silently changing bindings', () => {
   const source = [
-    "import { One as value } from '@svitlo/engine/a';",
-    "import { Two as value } from '@svitlo/engine/b';",
+    "import { One as value } from '@svitlo/indexdb/a';",
+    "import { Two as value } from '@svitlo/indexdb/b';",
   ].join('\n');
   const result = migrateSharedImports(source);
   assert.equal(result.diagnostics.length, 1);
@@ -53,24 +53,24 @@ test('flags same-local-name collisions rather than silently changing bindings', 
 
 test('leaves namespace imports and side-effect-only imports semantically safe', () => {
   const source = [
-    "import * as Engine from '@svitlo/engine/lessons';",
-    "import { createLesson } from '@svitlo/engine/utils';",
-    "import '@svitlo/engine/definitions';",
+    "import * as Engine from '@svitlo/indexdb/lessons';",
+    "import { createLesson } from '@svitlo/indexdb/utils';",
+    "import '@svitlo/indexdb/definitions';",
   ].join('\n');
   const result = migrateSharedImports(source);
-  assert.match(result.code, /import \* as Engine from '@svitlo\/engine';/);
-  assert.match(result.code, /import \{ createLesson \} from '@svitlo\/engine';/);
-  assert.equal((result.code.match(/import '@svitlo\/engine';/g) ?? []).length, 0);
+  assert.match(result.code, /import \* as Engine from '@svitlo\/indexdb';/);
+  assert.match(result.code, /import \{ createLesson \} from '@svitlo\/indexdb';/);
+  assert.equal((result.code.match(/import '@svitlo\/indexdb';/g) ?? []).length, 0);
 });
 
 test('retains side-effect execution when merging type-only imports', () => {
   const source = [
-    "import type { LessonResponse } from '@svitlo/engine/types';",
-    "import '@svitlo/engine/generators';",
+    "import type { LessonResponse } from '@svitlo/indexdb/types';",
+    "import '@svitlo/indexdb/generators';",
   ].join('\n');
   const result = migrateSharedImports(source);
-  assert.match(result.code, /import type \{ LessonResponse \} from '@svitlo\/engine';/);
-  assert.match(result.code, /import '@svitlo\/engine';/);
+  assert.match(result.code, /import type \{ LessonResponse \} from '@svitlo\/indexdb';/);
+  assert.match(result.code, /import '@svitlo\/indexdb';/);
 });
 
 test('deduplicates side-effect-only imports safely', () => {
@@ -78,4 +78,14 @@ test('deduplicates side-effect-only imports safely', () => {
   const result = migrateSharedImports(source);
   assert.equal((result.code.match(/import '@svitlo\/indexdb';/g) ?? []).length, 1);
   assert.equal(migrateSharedImports(result.code).changed, false);
+});
+
+
+test('preserves explicit Engine subpaths while rejecting the removed root and private paths', () => {
+  assert.equal(canonicalSharedSpecifier('@svitlo/engine/build'), '@svitlo/engine/build');
+  assert.equal(canonicalSharedSpecifier('@svitlo/engine/runtime'), '@svitlo/engine/runtime');
+  assert.equal(migrateSharedImports("import { defineSkill } from '@svitlo/engine/build';").changed, false);
+  assert.equal(migrateSharedImports("import { assembleSkills } from '@svitlo/engine/runtime';").changed, false);
+  assert.throws(() => canonicalSharedSpecifier('@svitlo/engine'), /Unsupported Engine import/);
+  assert.throws(() => canonicalSharedSpecifier('@svitlo/engine/configurators'), /Unsupported Engine import/);
 });

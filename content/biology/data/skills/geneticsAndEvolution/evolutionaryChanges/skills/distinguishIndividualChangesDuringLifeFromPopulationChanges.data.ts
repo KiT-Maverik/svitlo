@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const distinguishIndividualChangesDuringLifeFromPopulationChanges_Skill_Data = defineSkill({
   slug: 'distinguishIndividualChangesDuringLifeFromPopulationChanges',

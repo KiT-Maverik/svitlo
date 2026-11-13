@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { chemicalEnergetics_SkillGroup_Data } from './chemicalEnergetics/chemicalEnergetics.data';
 import { chemicalEquilibrium_SkillGroup_Data } from './chemicalEquilibrium/chemicalEquilibrium.data';

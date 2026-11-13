@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const read24HourClock_Skill_Data = defineSkill({
   slug: 'read24HourClock',

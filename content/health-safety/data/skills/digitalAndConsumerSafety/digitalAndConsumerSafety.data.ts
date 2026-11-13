@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { fraudAndDeceptivePressure_SkillGroup_Data } from './fraudAndDeceptivePressure/fraudAndDeceptivePressure.data';
 import { onlineInteractionSafety_SkillGroup_Data } from './onlineInteractionSafety/onlineInteractionSafety.data';

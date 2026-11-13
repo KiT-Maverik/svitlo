@@ -1,4 +1,4 @@
-import { defineSelectOneAnswer, defineText } from '@svitlo/engine';
+import { defineSelectOneAnswer, defineText } from '@svitlo/engine/build';
 
 /** Localized select-one-answer Question with independently defined Text blocks. */
 export const airVacuumSpeed = defineSelectOneAnswer({

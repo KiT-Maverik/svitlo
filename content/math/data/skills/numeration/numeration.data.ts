@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { notation_SkillGroup_Data } from './notation/notation.data';
 import { placeValue_SkillGroup_Data } from './placeValue/placeValue.data';

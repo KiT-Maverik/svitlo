@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { causalityAndExperiments_SkillGroup_Data } from './causalityAndExperiments/causalityAndExperiments.data';
 import { economicIndicators_SkillGroup_Data } from './economicIndicators/economicIndicators.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { historicalExplanations_SkillGroup_Data } from './historicalExplanations/historicalExplanations.data';
 import { historicalGeography_SkillGroup_Data } from './historicalGeography/historicalGeography.data';

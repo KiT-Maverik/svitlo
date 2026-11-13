@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { anatolia_SkillGroup_Data } from './anatolia/anatolia.data';
 import { ancientIranianStates_SkillGroup_Data } from './ancientIranianStates/ancientIranianStates.data';

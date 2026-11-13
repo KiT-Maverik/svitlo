@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { geographicCoordinates_SkillGroup_Data } from './geographicCoordinates/geographicCoordinates.data';
 import { geospatialTechnologies_SkillGroup_Data } from './geospatialTechnologies/geospatialTechnologies.data';

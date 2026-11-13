@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { orientation_SkillGroup_Data } from './orientation/orientation.data';
 import { figures_SkillGroup_Data } from './figures/figures.data';

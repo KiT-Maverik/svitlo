@@ -8,7 +8,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { allLanguageCodes } from '@svitlo/engine';
+import { allLanguageCodes } from '@svitlo/engine/build';
 import { loadAuthoredConfigurators } from './load-authored-configurators.mjs';
 import { prepareSkillPublication } from './prepare-skills-publication.mjs';
 import {

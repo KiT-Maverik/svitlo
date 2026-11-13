@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const reinforcementSchedules_Skill_Data = defineSkill({
   slug: 'reinforcementSchedules',

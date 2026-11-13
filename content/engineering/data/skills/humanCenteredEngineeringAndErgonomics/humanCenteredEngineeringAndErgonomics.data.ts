@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { accessibleEnvironments_SkillGroup_Data } from './accessibleEnvironments/accessibleEnvironments.data';
 import { physicalInteraction_SkillGroup_Data } from './physicalInteraction/physicalInteraction.data';

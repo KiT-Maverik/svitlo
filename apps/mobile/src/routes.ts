@@ -1,5 +1,5 @@
 import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/contracts/localization';
-import { resolveEntityPath } from '@svitlo/engine';
+import { resolveEntityPath } from '@svitlo/engine/runtime';
 
 export const defaultLanguage: LanguageCode = 'uk';
 

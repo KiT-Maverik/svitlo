@@ -1,4 +1,4 @@
-import { defineAssessmentMethod } from '@svitlo/engine';
+import { defineAssessmentMethod } from '@svitlo/engine/build';
 
 export const errorDiagnosis = defineAssessmentMethod({
   id: 'fab328dc-1556-4c0a-994b-d186c5bc75bb',

@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const respondAfterSuspectedFraud_Skill_Data = defineSkill({
   slug: 'respondAfterSuspectedFraud',

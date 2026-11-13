@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { bodyAndChemicalSenses_SkillGroup_Data } from './bodyAndChemicalSenses/bodyAndChemicalSenses.data';
 import { illusionsAndMultisensoryPerception_SkillGroup_Data } from './illusionsAndMultisensoryPerception/illusionsAndMultisensoryPerception.data';

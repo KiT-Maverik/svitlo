@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const humanDevelopmentIndicators_Skill_Data = defineSkill({
   slug: 'humanDevelopmentIndicators',

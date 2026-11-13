@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { DeepPartial, ChildrenSupporting } from '#types';
 import type { LanguageCodes } from '#schemas';
 import { disability_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators';
+import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
 import { contentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../contentBlocks';
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { oxidationAndReduction_SkillGroup_Data } from './oxidationAndReduction/oxidationAndReduction.data';
 import { reactionPatterns_SkillGroup_Data } from './reactionPatterns/reactionPatterns.data';

@@ -1,7 +1,7 @@
 /** Read-only, deterministic review projection of the canonical LessonV2 data model. */
 import fs from 'node:fs';
 import path from 'node:path';
-import { resolveEntityPath } from '@svitlo/engine';
+import { resolveEntityPath } from '@svitlo/engine/build';
 
 const isRecord = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const pointer = parts => '/' + parts.map(part => String(part).replaceAll('~', '~0').replaceAll('/', '~1')).join('/');

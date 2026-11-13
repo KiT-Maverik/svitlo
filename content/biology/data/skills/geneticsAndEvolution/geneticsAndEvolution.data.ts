@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { evolutionaryChanges_SkillGroup_Data } from './evolutionaryChanges/evolutionaryChanges.data';
 import { genetics_SkillGroup_Data } from './genetics/genetics.data';

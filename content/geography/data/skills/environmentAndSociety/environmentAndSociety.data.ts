@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { humanEnvironmentInteractions_SkillGroup_Data } from './humanEnvironmentInteractions/humanEnvironmentInteractions.data';
 import { naturalResources_SkillGroup_Data } from './naturalResources/naturalResources.data';

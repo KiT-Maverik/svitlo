@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const explainAnEchoAsSoundReflection_Skill_Data = defineSkill({
   slug: 'explainAnEchoAsSoundReflection',

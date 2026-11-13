@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { consumerSegmentation_Skill_Data, targetAudience_Skill_Data, testingMarketDemand_Skill_Data } from './skills';
 

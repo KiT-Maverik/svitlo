@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const constructContourDrawing_Skill_Data = defineSkill({
   slug: 'constructContourDrawing',

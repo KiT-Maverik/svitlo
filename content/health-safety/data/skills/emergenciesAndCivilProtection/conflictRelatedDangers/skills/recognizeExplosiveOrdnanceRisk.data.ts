@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const recognizeExplosiveOrdnanceRisk_Skill_Data = defineSkill({
   slug: 'recognizeExplosiveOrdnanceRisk',

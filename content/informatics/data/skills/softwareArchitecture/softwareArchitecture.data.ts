@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { designPrinciples_SkillGroup_Data } from './designPrinciples/designPrinciples.data';
 import { objectModel_SkillGroup_Data } from './objectModel/objectModel.data';

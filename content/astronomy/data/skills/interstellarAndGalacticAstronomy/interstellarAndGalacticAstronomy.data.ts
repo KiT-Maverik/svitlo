@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { activeGalacticNuclei_SkillGroup_Data } from './activeGalacticNuclei/activeGalacticNuclei.data';
 import { galaxiesAndTheirEvolution_SkillGroup_Data } from './galaxiesAndTheirEvolution/galaxiesAndTheirEvolution.data';

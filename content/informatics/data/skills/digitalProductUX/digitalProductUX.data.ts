@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { accessibility_SkillGroup_Data } from './accessibility/accessibility.data';
 import { digitalInteractionDesign_SkillGroup_Data } from './digitalInteractionDesign/digitalInteractionDesign.data';
