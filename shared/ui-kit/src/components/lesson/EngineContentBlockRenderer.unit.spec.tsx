@@ -62,9 +62,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
         messages={enUiKitMessages}
         sceneRegistry={id =>
           id === 'scene'
-            ? ({ locales }) => (
-                <span role="img" aria-label={typeof locales === 'object' ? String(locales.title) : ''} />
-              )
+            ? ({ locales }) => <span role="img" aria-label={typeof locales === 'object' ? String(locales.title) : ''} />
             : undefined
         }
         onCheckpointComplete={complete}
@@ -120,7 +118,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
         params: { language: 'javascript', codeAsText: 'console.log("%_%MESSAGE%_%");' },
         locale: {
           title: { en: 'Snippet', uk: 'Фрагмент' },
-          variables: { MESSAGE: { en: 'Hello', uk: 'Привіт' } },
+          variables: { MESSAGE: 'Привіт' },
         },
       },
       {

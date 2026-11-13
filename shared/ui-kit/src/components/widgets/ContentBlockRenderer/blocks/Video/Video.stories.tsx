@@ -26,14 +26,22 @@ const meta = {
   args: {
     messages: enUiKitMessages.video,
     id: 'video-example',
+    slug: 'videoExample',
     type: 'video',
-
-    fileLocation: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
-    poster,
-    title: 'Flower video example',
-    label: 'Video showing a flower',
+    params: {},
+    locale: {
+      fileLocation: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+      poster,
+      title: 'Flower video example',
+      label: 'Video showing a flower',
+    },
   },
-  argTypes: { id: { control: false }, type: { control: false }, fallback: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    slug: { control: false },
+    type: { control: false },
+    locale: { control: 'object' },
+  },
 } satisfies Meta<typeof Video>;
 
 export default meta;
@@ -41,16 +49,21 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
 
-export const WithoutTitle: Story = { args: { title: undefined } };
+export const WithoutTitle: Story = {
+  args: { locale: { ...meta.args.locale, title: undefined } },
+};
 
 export const MissingFile: Story = {
   args: {
-    fileLocation: '/storybook-video-not-found.mp4',
-    fallback: {
-      unavailable: 'The video is unavailable.',
-      offline: 'This video needs a connection.',
-      playbackError: 'The video could not be played.',
-      retry: 'Retry video',
+    locale: {
+      ...meta.args.locale,
+      fileLocation: '/storybook-video-not-found.mp4',
+      fallback: {
+        unavailable: 'The video is unavailable.',
+        offline: 'This video needs a connection.',
+        playbackError: 'The video could not be played.',
+        retry: 'Retry video',
+      },
     },
   },
 };

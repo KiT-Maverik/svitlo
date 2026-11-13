@@ -29,20 +29,21 @@ const meta = {
   args: {
     messages: enUiKitMessages.image,
     id: 'image-example',
+    slug: 'imageExample',
     type: 'image',
-
-    src: diagram,
-    alt: 'A ray of light travels from a yellow source to the right.',
-    caption: 'Diagram: straight-line propagation of light.',
-    width: 800,
-    height: 450,
-    unoptimized: true,
+    params: { width: 800, height: 450, unoptimized: true },
+    locale: {
+      src: diagram,
+      alt: 'A ray of light travels from a yellow source to the right.',
+      caption: 'Diagram: straight-line propagation of light.',
+    },
   },
   argTypes: {
     id: { control: false },
+    slug: { control: false },
     type: { control: false },
-    src: { control: 'text' },
-    fallback: { control: 'object' },
+    params: { control: 'object' },
+    locale: { control: 'object' },
   },
 } satisfies Meta<typeof Image>;
 
@@ -53,17 +54,23 @@ export const Playground: Story = {};
 
 export const FillCover: Story = {
   args: {
-    fill: true,
-    aspectRatio: 16 / 9,
-    objectFit: 'cover',
-    width: undefined,
-    height: undefined,
+    params: {
+      ...meta.args.params,
+      fill: true,
+      aspectRatio: 16 / 9,
+      objectFit: 'cover',
+      width: undefined,
+      height: undefined,
+    },
   },
 };
 
 export const MissingImage: Story = {
   args: {
-    src: '/storybook-image-not-found.png',
-    fallback: { unavailable: 'This diagram cannot be loaded.', retry: 'Try loading again' },
+    locale: {
+      ...meta.args.locale,
+      src: '/storybook-image-not-found.png',
+      fallback: { unavailable: 'This diagram cannot be loaded.', retry: 'Try loading again' },
+    },
   },
 };

@@ -40,8 +40,10 @@ test('Course detail uses the published nested hierarchy and opens a real Lesson'
   );
 
   await page.goto('/uk/course/' + courseId + '/lesson/uk/' + discoveryId);
+  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', level: 1 })).toHaveCount(1);
   await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
   await page.goto('/uk/lesson/uk/' + discoveryId);
+  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', level: 1 })).toHaveCount(1);
   await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
 });
 

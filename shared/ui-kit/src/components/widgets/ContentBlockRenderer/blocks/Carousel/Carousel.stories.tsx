@@ -34,7 +34,7 @@ const slides = [
     alt: 'The moon over dark blue hills',
     caption: 'Slide 3 · Night',
   },
-] as const;
+];
 
 const meta = {
   title: 'Content blocks/Carousel',
@@ -42,33 +42,33 @@ const meta = {
   tags: ['autodocs'],
   args: {
     id: 'carousel-story',
+    slug: 'carouselStory',
     type: 'carousel',
-    title: 'Light throughout the day',
-    slides,
+    locale: { title: 'Light throughout the day', slides },
     messages: enUiKitMessages,
-    transition: 'slide',
-    transitionDurationMs: 450,
-    autoplay: false,
-    autoplayIntervalMs: 5000,
-    loop: true,
-    aspectRatio: 16 / 9,
-    objectFit: 'cover',
-    showArrows: true,
-    showIndicators: true,
-    allowFullscreen: true,
-    allowSwipe: true,
-    pauseOnHover: true,
-    startIndex: 0,
+    params: {
+      transition: 'slide',
+      transitionDurationMs: 450,
+      autoplay: false,
+      autoplayIntervalMs: 5000,
+      loop: true,
+      aspectRatio: 16 / 9,
+      objectFit: 'cover',
+      showArrows: true,
+      showIndicators: true,
+      allowFullscreen: true,
+      allowSwipe: true,
+      pauseOnHover: true,
+      startIndex: 0,
+    },
   },
   argTypes: {
     id: { control: false },
+    slug: { control: false },
     type: { control: false },
     messages: { control: false },
-    slides: { control: 'object' },
-    transition: { control: 'radio', options: ['slide', 'fade'] },
-    objectFit: { control: 'radio', options: ['cover', 'contain'] },
-    autoplayIntervalMs: { control: { type: 'number', min: 1500, step: 500 } },
-    transitionDurationMs: { control: { type: 'number', min: 0, max: 1500, step: 50 } },
+    locale: { control: 'object' },
+    params: { control: 'object' },
   },
 } satisfies Meta<typeof Carousel>;
 
@@ -76,6 +76,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {};
-export const FadeAutoplay: Story = { args: { transition: 'fade', autoplay: true, autoplayIntervalMs: 3000 } };
-export const Finite: Story = { args: { loop: false, startIndex: 2 } };
-export const Contain: Story = { args: { objectFit: 'contain', aspectRatio: 4 / 3, allowFullscreen: false } };
+export const FadeAutoplay: Story = {
+  args: { params: { ...meta.args.params, transition: 'fade', autoplay: true, autoplayIntervalMs: 3000 } },
+};
+
+export const Finite: Story = {
+  args: { params: { ...meta.args.params, loop: false, startIndex: 2 } },
+};
+
+export const Contain: Story = {
+  args: { params: { ...meta.args.params, objectFit: 'contain', aspectRatio: 4 / 3, allowFullscreen: false } },
+};

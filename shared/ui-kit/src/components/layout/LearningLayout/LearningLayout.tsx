@@ -133,11 +133,19 @@ export function LearningLayoutTopBar({
             </Typography>
             {lessonTitle && (
               <Typography
-                component="span"
+                component="h1"
                 variant="body2"
                 title={lessonTitle}
                 sx={{
-                  display: { xs: 'none', md: 'block' },
+                  // Keep the Lesson's page heading accessible on narrow screens
+                  // without crowding the navigation chrome.
+                  position: { xs: 'absolute', md: 'static' },
+                  width: { xs: '1px', md: 'auto' },
+                  height: { xs: '1px', md: 'auto' },
+                  m: { xs: '-1px', md: 0 },
+                  p: 0,
+                  border: 0,
+                  clipPath: { xs: 'inset(50%)', md: 'none' },
                   color: 'text.primary',
                   maxWidth: 280,
                   overflow: 'hidden',

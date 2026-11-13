@@ -42,7 +42,9 @@ describe('Checkpoint content block', () => {
           block.type === 'text' && block.id === 'question-1' ? (
             <span>{block.locale.value}</span>
           ) : (
-            <span>{block.type}: {block.id}</span>
+            <span>
+              {block.type}: {block.id}
+            </span>
           )
         }
       />,
@@ -121,6 +123,6 @@ describe('Checkpoint configuration and accessibility', () => {
     const title = screen.getByRole('heading', { name: 'اختبر معلوماتك', level: 6 });
     expect(title.closest('section')).toHaveAttribute('dir', 'rtl');
     expect(screen.queryByText('01')).toBeNull();
-    expect(screen.getByText('What is light?').parentElement).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByText('What is light?').closest('[dir]')).toHaveAttribute('dir', 'rtl');
   });
 });

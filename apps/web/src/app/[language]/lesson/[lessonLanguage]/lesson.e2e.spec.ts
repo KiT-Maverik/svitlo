@@ -53,7 +53,7 @@ test('interface language selection does not change the lesson language', async (
   await page.getByRole('option', { name: 'English' }).click();
   await expect(page).toHaveURL(`/en/lesson/uk/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en-US');
-  await expect(page.getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
+  await expect(page.getByRole('main').getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Top learning navigation' })).toBeVisible();
 });
 
