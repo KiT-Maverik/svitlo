@@ -10,8 +10,12 @@ const lessonId = 'f760e7b7-9f77-5027-89ce-4e40d9d031a1';
 const files = JSON.parse(readFileSync(join(root, 'dist/manifest.json'), 'utf8')).files;
 const read = (...segments) => JSON.parse(readFileSync(join(root, 'dist/static', ...segments), 'utf8'));
 const optional = (...segments) => {
-  try { return read(...segments); }
-  catch (error) { if (error.code === 'ENOENT') return undefined; throw error; }
+  try {
+    return read(...segments);
+  } catch (error) {
+    if (error.code === 'ENOENT') return undefined;
+    throw error;
+  }
 };
 const course = language => ({
   base: read('data', 'courses', courseId, 'base.json'),

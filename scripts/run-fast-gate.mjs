@@ -92,7 +92,11 @@ function runGate(changed) {
         f.startsWith('scripts/generators/data/publish-skills-data.') || f.startsWith('content/playground/data/skills/'),
     )
   ) {
-    exec('node', ['--test', 'scripts/generators/data/prepare-skills-publication.spec.mjs', 'shared/engine/generators/skills/publishSkillTree.spec.mjs']);
+    exec('node', [
+      '--test',
+      'scripts/generators/data/prepare-skills-publication.spec.mjs',
+      'shared/engine/generators/skills/publishSkillTree.spec.mjs',
+    ]);
   }
 
   // Run the complete Art preview only when the migration utility changes.

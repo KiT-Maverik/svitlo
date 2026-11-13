@@ -33,9 +33,7 @@ export type LessonPageBindings<Response extends LessonPageResource> = {
  * The only Next.js-specific lesson orchestration. No app-specific imports:
  * standalone textbooks inject their data loader and client-renderer boundary.
  */
-export function createLessonPage<Response extends LessonPageResource>(
-  bindings: LessonPageBindings<Response>,
-) {
+export function createLessonPage<Response extends LessonPageResource>(bindings: LessonPageBindings<Response>) {
   const load = cache(async ({ params }: LessonPageInput) => {
     const { language: code, lessonLanguage: requestedLessonLanguage, lessonId } = await params;
     const descriptor = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === code);

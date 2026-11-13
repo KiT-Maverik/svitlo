@@ -37,7 +37,10 @@ export const testShapes_SkillDomain_Data = defineSkillDomain({
     kk: '[TEST kk] Shape recognition',
     qm: '[TEST qm] Shape recognition',
   },
-  groups: { items: { testRoundShapes: testRoundShapes_SkillGroup_Data, testPolygonShapes: testPolygonShapes_SkillGroup_Data }, order: ['testRoundShapes', 'testPolygonShapes'] },
+  groups: {
+    items: { testRoundShapes: testRoundShapes_SkillGroup_Data, testPolygonShapes: testPolygonShapes_SkillGroup_Data },
+    order: ['testRoundShapes', 'testPolygonShapes'],
+  },
   description: {
     methodological: 'Synthetic Playground fixture for testShapes; testing only, not curricular content.',
     frontend: {

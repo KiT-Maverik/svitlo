@@ -36,7 +36,13 @@ export const testPolygonShapes_SkillGroup_Data = defineSkillGroup({
     kk: '[TEST kk] Polygon shapes',
     qm: '[TEST qm] Polygon shapes',
   },
-  skills: { items: { testRecognizeTriangle: testRecognizeTriangle_Skill_Data, testRecognizeSquare: testRecognizeSquare_Skill_Data }, order: ['testRecognizeTriangle', 'testRecognizeSquare'] },
+  skills: {
+    items: {
+      testRecognizeTriangle: testRecognizeTriangle_Skill_Data,
+      testRecognizeSquare: testRecognizeSquare_Skill_Data,
+    },
+    order: ['testRecognizeTriangle', 'testRecognizeSquare'],
+  },
   description: {
     methodological: 'Synthetic Playground fixture for testPolygonShapes; testing only, not curricular content.',
     frontend: {

@@ -22,8 +22,7 @@ export type CoursePublishedContent = {
 };
 
 export type CoursePublishedNode =
-  | CourseLessonEntry
-  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
+  CourseLessonEntry | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
 
 export type CoursePublishedTree = {
   type: 'course';
@@ -145,10 +144,7 @@ function findLocalizedLesson(
   return parent;
 }
 
-function getOverride(
-  node: Record<string, unknown> | undefined,
-  label: string,
-): PublishedLessonPropsOverride['base'] {
+function getOverride(node: Record<string, unknown> | undefined, label: string): PublishedLessonPropsOverride['base'] {
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
@@ -188,7 +184,11 @@ export function assembleCourseLesson({
   const localeData = course.locale?.[language];
   const localeRoot = localeData === undefined ? undefined : assertCourseRoot(localeData, courseId, language);
   const localeNode = findLocalizedLesson(localeRoot, baseMatch.path, language);
-  if (localeNode && (localeNode.id !== undefined && localeNode.id !== lessonId || localeNode.type !== undefined && localeNode.type !== 'lesson')) {
+  if (
+    localeNode &&
+    ((localeNode.id !== undefined && localeNode.id !== lessonId) ||
+      (localeNode.type !== undefined && localeNode.type !== 'lesson'))
+  ) {
     throw new Error('Localized Lesson identity mismatch');
   }
   const basePatch = getOverride(baseMatch.node, 'base');

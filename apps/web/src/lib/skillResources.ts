@@ -18,11 +18,13 @@ async function readPublishedSkillFiles(code: string): Promise<Skills_Publication
   const dir = join(process.cwd(), 'public/data/skills');
   const [base, locale] = await Promise.all([
     readFile(join(dir, 'base.json'), 'utf8').then(JSON.parse),
-    readFile(join(dir, code + '.json'), 'utf8').then(JSON.parse).catch(error => {
-      // Invariant-only domains produce no locale file.
-      if ((error as NodeJS.ErrnoException).code === 'ENOENT') return {};
-      throw error;
-    }),
+    readFile(join(dir, code + '.json'), 'utf8')
+      .then(JSON.parse)
+      .catch(error => {
+        // Invariant-only domains produce no locale file.
+        if ((error as NodeJS.ErrnoException).code === 'ENOENT') return {};
+        throw error;
+      }),
   ]);
   return { base, locale: { [code]: locale } } as Skills_Publication;
 }

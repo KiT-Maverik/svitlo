@@ -36,7 +36,10 @@ export const testRoundShapes_SkillGroup_Data = defineSkillGroup({
     kk: '[TEST kk] Round shapes',
     qm: '[TEST qm] Round shapes',
   },
-  skills: { items: { testRecognizeCircle: testRecognizeCircle_Skill_Data, testRecognizeOval: testRecognizeOval_Skill_Data }, order: ['testRecognizeCircle', 'testRecognizeOval'] },
+  skills: {
+    items: { testRecognizeCircle: testRecognizeCircle_Skill_Data, testRecognizeOval: testRecognizeOval_Skill_Data },
+    order: ['testRecognizeCircle', 'testRecognizeOval'],
+  },
   description: {
     methodological: 'Synthetic Playground fixture for testRoundShapes; testing only, not curricular content.',
     frontend: {

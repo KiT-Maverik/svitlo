@@ -142,9 +142,7 @@ async function main(args) {
   ) {
     throw new Error('Invalid textbook package');
   }
-  const output = outputName
-    ? path.resolve(repoRoot, outputName)
-    : path.join(packageDirectory, 'generated/lessons');
+  const output = outputName ? path.resolve(repoRoot, outputName) : path.join(packageDirectory, 'generated/lessons');
   const allowedRoot = path.join(packageDirectory, 'generated');
   if (!output.startsWith(allowedRoot + path.sep)) {
     throw new Error('Generated Lesson output must be under textbook generated/');

@@ -212,9 +212,7 @@ export function publishCourse(course, { packageRoot, outputRoot, languages, over
     throw new Error('packageRoot or outputRoot (Course resources parent directory) is required');
   }
   const files = renderCourseFiles(course, { languages, overrides });
-  const root = outputRoot
-    ? path.resolve(outputRoot)
-    : path.join(path.resolve(packageRoot), 'generated', 'courses');
+  const root = outputRoot ? path.resolve(outputRoot) : path.join(path.resolve(packageRoot), 'generated', 'courses');
   const destination = path.join(root, course.id);
 
   if (check) {

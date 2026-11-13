@@ -10,7 +10,7 @@
   children, or reconstruct authoring patches in a serializer.
 - Runtime assemblers accept already-loaded published files and output Props
   validated through the owning `*_Props_Schema`. Host adapters own I/O.
-- Generate a base file and one *direct Props-shaped* file per nonempty locale.
+- Generate a base file and one _direct Props-shaped_ file per nonempty locale.
   Do not add extra `locale` wrappers or synthesize invariant-only files.
   Do not silently fall back to another language.
 
@@ -71,7 +71,7 @@ stay host-independent. Scenes are bundled to JS chunks, not embedded in JSON.
   controls display order.
 - The Course-context Lesson assembler locates a Lesson in the base tree,
   follows its slug path into sparse Course locale JSON, then applies Course
-  overrides *after* the standalone Lesson's locale.
+  overrides _after_ the standalone Lesson's locale.
 - **Published ordinary Props arrays still replace atomically** during deep
   merge. Never merge them by index or concatenate. The Course hierarchy is
   keyed specifically to avoid treating all children as one atomic array.

@@ -48,7 +48,10 @@ async function render(pkg) {
   const files = new Map();
   if (!fs.existsSync(directory)) return files;
   const ids = new Set();
-  for (const name of fs.readdirSync(directory).filter(name => name.endsWith('.data.ts')).sort()) {
+  for (const name of fs
+    .readdirSync(directory)
+    .filter(name => name.endsWith('.data.ts'))
+    .sort()) {
     const source = path.join(directory, name);
     const courses = await loadAuthoredConfigurators(source, 'course');
     if (courses.length !== 1) throw new Error('Expected one Course per source: ' + source);
@@ -108,7 +111,8 @@ async function main(argv) {
   const existing = readCurrent(outputDirectory);
   const missing = [...files].filter(([name, body]) => existing.get(name) !== body).map(([name]) => name);
   const stale = [...existing.keys()].filter(name => !files.has(name));
-  if (missing.length || stale.length) throw new Error('Generated Course files differ: ' + JSON.stringify({ missing, stale }));
+  if (missing.length || stale.length)
+    throw new Error('Generated Course files differ: ' + JSON.stringify({ missing, stale }));
   console.log('Verified ' + files.size + ' Course files in ' + outputDirectory);
 }
 

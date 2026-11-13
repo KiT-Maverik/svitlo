@@ -154,7 +154,10 @@ test('one compact Course base contains complete Course/Module/Chapter Props but 
   assert.deepEqual(assembled.content.order, ['myModule']);
   assert.deepEqual(assembled.content.items.myModule.content.order, ['myChapter']);
   assert.equal(assembled.content.items.myModule.locale.title, 'Модуль');
-  assert.deepEqual(assembled.content.items.myModule.content.items.myChapter.content.items.myLesson, { id: ids.lesson, type: 'lesson' });
+  assert.deepEqual(assembled.content.items.myModule.content.items.myChapter.content.items.myLesson, {
+    id: ids.lesson,
+    type: 'lesson',
+  });
 });
 
 test('Lesson base and locale override Props are stored at the same tree position in separate files', () => {

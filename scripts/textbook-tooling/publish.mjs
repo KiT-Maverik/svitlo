@@ -34,8 +34,11 @@ function owned(name, allowRetiredAnalytics = false) {
     !isAbsolute(name) &&
     (/^(?:data\/(?:skills|lessons|courses)|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(name) ||
       (allowRetiredAnalytics &&
-        /^(?:data\/pages\/(?:skillAnalytics|lessons|courses)\/[a-zA-Z0-9_./-]+|generated\/skills\/[a-z]{2,8}\.json|generated\/skills\/base\.json)$/.test(name))) &&
-    (name.startsWith('data/') || name.startsWith('textbooks/' + id + '/') ||
+        /^(?:data\/pages\/(?:skillAnalytics|lessons|courses)\/[a-zA-Z0-9_./-]+|generated\/skills\/[a-z]{2,8}\.json|generated\/skills\/base\.json)$/.test(
+          name,
+        ))) &&
+    (name.startsWith('data/') ||
+      name.startsWith('textbooks/' + id + '/') ||
       (allowRetiredAnalytics && name.startsWith('generated/skills/'))) &&
     name.split('/').every(part => part && part !== '.' && part !== '..')
   );
