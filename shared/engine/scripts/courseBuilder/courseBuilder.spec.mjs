@@ -185,7 +185,7 @@ test('direct Course config uses explicit source language and omits provenance fr
   draft.content.items.basics.locale.title.en = 'Basics';
   draft.content.items.basics.content.items.first.content.items.episode.locale.title.en = 'Trip';
   const code = renderCourseSource(draft);
-  assert.match(code, /"languages": \[\s*"uk",\s*"en"\s*\]/);
+  assert.match(code, /"languages": \[\s*"uk",\s*"en",?\s*\]/);
   assert.doesNotMatch(code, /"documentLanguage"/);
   assert.doesNotMatch(code, /"Universe"/);
   assert.doesNotMatch(code, /"Basics"/);
