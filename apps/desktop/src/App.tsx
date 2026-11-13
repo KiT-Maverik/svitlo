@@ -7,7 +7,7 @@ import {
   SceneLocaleProvider,
 } from '@svitlo/ui-kit';
 import { type Locale } from '@svitlo/contracts/localization';
-import { getLocaleDirection, type LessonResponse } from '@svitlo/engine/runtime';
+import { getLocaleDirection, type Lesson_Props } from '@svitlo/engine/runtime';
 import { resolveScene } from '@svitlo/playground/scenes';
 import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-electron';
 import { changeLessonLocale, changeContentLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';
@@ -31,7 +31,7 @@ const LessonLayout = createLessonLearningLayout({ useLocale: useDesktopLocale })
 
 type DataState =
   | { status: 'loading' }
-  | { status: 'ready'; response: LessonResponse; messages: UiKitMessages }
+  | { status: 'ready'; response: Lesson_Props; messages: UiKitMessages }
   | { status: 'error'; error: string };
 
 function readRoute(): LessonRoute | null {
@@ -122,6 +122,7 @@ export default function App() {
             <Lesson
               key={lessonHref(route)}
               response={data.response}
+              language={route.lessonLanguage}
               href={lessonHref(route)}
               messages={data.messages}
               layout={LessonLayout}

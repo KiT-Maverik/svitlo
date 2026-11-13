@@ -5,10 +5,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "app:prepare:content": "node scripts/prepare-content.mjs",
-    "app:build:main": "node scripts/build-main.mjs",
+    "app:prepare:content": "node scripts/prepareContent/prepare-content.mjs",
+    "app:build:main": "node scripts/buildMain/build-main.mjs",
     "preapp:start:dev": "npm run app:prepare:content && npm run app:build:main",
-    "app:start:dev": "node scripts/dev.mjs",
+    "app:start:dev": "node scripts/startDev/dev.mjs",
     "preapp:build": "npm run app:prepare:content",
     "app:build": "vite build && npm run app:build:main",
     "app:start": "electron .",

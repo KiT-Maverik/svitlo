@@ -987,7 +987,7 @@ const zh: Locale = {
 
 export type ShowcaseLocale = Locale;
 
-export const showcase = defineScene({
+export const showcase: ReturnType<typeof defineScene<'showcase'>> = defineScene({
   type: 'scene',
   id: '2abe959c-0908-4779-afbb-b2da6c1aa4d4',
   slug: 'showcase',

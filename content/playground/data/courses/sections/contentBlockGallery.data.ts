@@ -1,6 +1,7 @@
 import {
   defineAudio,
   defineCarousel,
+  defineCarouselSlide,
   defineCheckpoint,
   defineCheckpointItem,
   configuratorArrayToSlugMap,
@@ -71,25 +72,41 @@ const localCarousel = defineCarousel({
     autoplay: false,
     allowFullscreen: true,
   },
-  locale: {
-    title: 'CAROUSEL · Interactive image gallery',
-    slides: [
-      {
-        src: '/textbooks/playground/whale.png',
-        alt: 'A friendly cartoon whale on a light background.',
-        caption: 'The Playground whale illustration.',
-      },
-      {
-        src: '/textbooks/playground/carousel-light.svg',
-        alt: 'A glowing yellow sun with light rays against a blue sky.',
-        caption: 'An illustration of a light source.',
-      },
-      {
-        src: '/textbooks/playground/carousel-prism.svg',
-        alt: 'A triangular prism splitting a beam of white light into a rainbow.',
-        caption: 'An illustration of light dispersion.',
-      },
-    ],
+  locale: { title: 'CAROUSEL · Interactive image gallery' },
+  slides: {
+    items: {
+      whale: defineCarouselSlide({
+        id: '7cbc27a9-ed06-552b-a9e4-fb06d08e58cf',
+        slug: 'whale',
+        type: 'carouselSlide',
+        locale: {
+          src: '/textbooks/playground/whale.png',
+          alt: 'A friendly cartoon whale on a light background.',
+          caption: 'The Playground whale illustration.',
+        },
+      }),
+      light: defineCarouselSlide({
+        id: '1ee28a95-6c00-51c0-8c83-e4d1ddd09e02',
+        slug: 'light',
+        type: 'carouselSlide',
+        locale: {
+          src: '/textbooks/playground/carousel-light.svg',
+          alt: 'A glowing yellow sun with light rays against a blue sky.',
+          caption: 'An illustration of a light source.',
+        },
+      }),
+      prism: defineCarouselSlide({
+        id: '43f9c078-914c-57d5-9bc8-72a66483b1c6',
+        slug: 'prism',
+        type: 'carouselSlide',
+        locale: {
+          src: '/textbooks/playground/carousel-prism.svg',
+          alt: 'A triangular prism splitting a beam of white light into a rainbow.',
+          caption: 'An illustration of light dispersion.',
+        },
+      }),
+    },
+    order: ['whale', 'light', 'prism'],
   },
 });
 

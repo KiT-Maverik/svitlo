@@ -1,52 +1,44 @@
 'use client';
 
-import type { UiKitMessages } from '#types/uiKitMessages';
-
-import type { ComponentType } from 'react';
-import { LessonController, type EditableSectionParam } from './LessonController';
-import type { Locale_Languages, Section, SkillId } from '@svitlo/contracts/content';
-import type { LessonEventSceneMap } from './LessonEvents';
+import { useMemo, type ComponentType } from 'react';
 import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { Lesson_Props } from '@svitlo/engine/runtime';
+import type { UiKitMessages } from '#types/uiKitMessages';
+import { LessonController, type EditableSectionParam } from './LessonController';
+import type { LessonEventSceneMap } from './LessonEvents';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
 import type { Topic } from '../layout/LearningLayout/CourseTopicList';
 
-export type LessonView = {
-  id: string;
-  title: string;
-  locale: { code: LanguageCode };
-  parameters: {
-    languages: readonly LanguageCode[];
-    sections: {
-      allowNavigation: boolean;
-      allowSkipping: boolean;
-      showIndexes: boolean;
-    };
-  };
-  events?: LessonEventSceneMap;
-  skills?: readonly SkillId[];
-  sections: readonly Section<'response', Locale_Languages>[];
-};
-
+/** UI Kit accepts only complete, assembled, one-language Engine Props. */
 export type LessonProps = {
-  response: LessonView;
+  response: Lesson_Props;
+  language: LanguageCode;
   href: string;
-  /** Optional Course navigation entries, instead of a single standalone Lesson entry. */
   topics?: readonly Topic[];
   messages: UiKitMessages;
-  /** Host binding: Next.js, Electron, or ordinary React can supply a layout. */
   layout: ComponentType<LessonLearningLayoutProps>;
-  /** Application-owned scene registry never leaks into the shared package. */
   sceneRegistry?: SceneRegistry;
   contentLoading?: boolean;
-  /** Program-level replacement or false suppression of authored event scenes; events still publish. */
   eventOverrides?: LessonEventSceneMap;
-  /** Host-allowed lesson parameter overrides. By default authors control all parameters. */
   editableSectionParams?: readonly EditableSectionParam[];
   contentError?: boolean;
   onRetryContent?: () => void;
 };
 
 export function Lesson(props: LessonProps) {
-  return <LessonController key={props.href + ':' + props.response.id + ':' + props.response.locale.code} {...props} />;
+  const response = useMemo(
+    () => ({
+      ...props.response,
+      section: props.response.section.filter(section => section.params.disabled !== true),
+    }),
+    [props.response],
+  );
+  return (
+    <LessonController
+      key={props.href + ':' + props.response.id + ':' + props.language}
+      {...props}
+      response={response}
+    />
+  );
 }

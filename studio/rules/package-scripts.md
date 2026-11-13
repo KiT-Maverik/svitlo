@@ -147,13 +147,26 @@ npm run app:pack --workspace @svitlo/desktop
 npm run storybook:start --workspace @svitlo/ui-kit
 ```
 
+## Script ownership and named directories
+
+Every maintained executable script belongs to its owning package or to repository-wide tooling. Use one stable, descriptive **named directory for each executable or cohesive script workflow**, with related tests, fixtures, helpers and documentation beside its entrypoint. Do not leave loose `.mjs`, `.js`, `.cjs`, `.ts` or `.tsx` scripts directly inside an owning `scripts/` directory.
+
+- `shared/engine/scripts/<workflow>/`: Engine-owned entity authoring, validation, generation, assembly and editorial conversion.
+- `shared/ui-kit/scripts/<workflow>/`: shared UI Kit build, translation, asset and reference tooling.
+- `apps/<app>/scripts/<workflow>/`: build, preparation, packaging and checks used by one host.
+- `scripts/<workflow>/`: true cross-package repository and CI orchestration. Cross-textbook composition belongs under `scripts/textbook-tooling/<workflow>/`; repository-owned content CI under `scripts/ci/<workflow>/`.
+
+Move all dependents in the same change: npm scripts and lifecycle hooks, GitHub Actions, CLI binaries, publication paths, JavaScript module specifiers, test runners, fixtures and documentation. Recalculate paths based on `import.meta.url` and verify them from the new directory. Generated published CLI entrypoints may retain their output name while the source file moves. **Do not add legacy wrapper scripts or compatibility aliases.** Avoid moving host orchestration into Engine merely because it invokes an Engine generator.
+
+`repo:check:packages` runs a layout guard that rejects loose script entrypoints in the designated script roots. When adding a new script owner, extend that guard.
+
 ## Migration and compatibility
 
 The canonical scripts have been adopted in the root and workspace manifests; the
 repository's GitHub Actions workflows, app-host preparation scripts, content build
 tooling, and documented invocations use the new names.
 
-- Root aggregation is implemented by `scripts/run-workspace-script.mjs`. It
+- Root aggregation is implemented by `scripts/runWorkspaceScript/run-workspace-script.mjs`. It
   discovers eligible workspaces dynamically and orders dependency-sensitive
   operations topologically. See its Node regression tests.
 - Legacy `build`, `typecheck`, `lint`, `dev`, `start`, and

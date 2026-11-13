@@ -51,17 +51,17 @@ jobs:
       - run: npm ci
       - name: Enforce explicit Engine build/runtime entrypoints
         run: |
-          node --test scripts/migrate-engine-imports.spec.mjs
-          node scripts/migrate-engine-imports.mjs --check
-          node --test scripts/migrate-engine-entrypoints.spec.mjs
-          node scripts/migrate-engine-entrypoints.mjs --check
-          node scripts/check-engine-runtime-graph.mjs
+          node --test scripts/migrateEngineImports/migrate-engine-imports.spec.mjs
+          node scripts/migrateEngineImports/migrate-engine-imports.mjs --check
+          node --test scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.spec.mjs
+          node scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.mjs --check
+          node scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs
       - name: Scoped quality checks
         if: github.event_name == 'pull_request'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: node scripts/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
+        run: node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
       - name: Manually requested FastGate
         if: github.event_name == 'workflow_dispatch'
-        run: node scripts/run-fast-gate.mjs --all
+        run: node scripts/runFastGate/run-fast-gate.mjs --all

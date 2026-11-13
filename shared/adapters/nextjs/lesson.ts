@@ -2,10 +2,9 @@ import { cache, createElement, Suspense, type ReactElement } from 'react';
 import path from 'node:path';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { resolveEntityPath, languageCode_Schema, type LessonResponse, type Lesson_Props } from '@svitlo/engine/runtime';
+import { resolveEntityPath, languageCode_Schema, type Lesson_Props } from '@svitlo/engine/runtime';
 import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
-import { loadPublishedLesson } from './publishedLesson';
 import { loadPublishedLessonProps } from './publishedLessonProps';
 import { loadPublishedUiKitMessages } from './publishedUiKitMessages';
 
@@ -90,25 +89,6 @@ export function createLessonPage<Response extends LessonPageResource>(bindings: 
   }
 
   return { Page, generateMetadata };
-}
-
-/** Shared filesystem-backed loader for standalone Next.js textbooks. */
-export { loadPublishedLesson } from './publishedLesson';
-
-/**
- * Zero-boilerplate published-data defaults for standalone Next.js textbooks.
- * A host still owns its scene registry, navigation bindings and client renderer.
- * Custom data sources may override either loader explicitly.
- */
-export function createPublishedLessonPage(
-  bindings: Pick<LessonPageBindings<LessonResponse>, 'renderLesson'> &
-    Partial<Pick<LessonPageBindings<LessonResponse>, 'loadLesson' | 'loadMessages'>>,
-) {
-  return createLessonPage<LessonResponse>({
-    loadLesson: bindings.loadLesson ?? loadPublishedLesson,
-    loadMessages: bindings.loadMessages ?? loadPublishedUiKitMessages,
-    renderLesson: bindings.renderLesson,
-  });
 }
 
 /**

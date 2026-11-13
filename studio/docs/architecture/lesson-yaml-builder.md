@@ -1,7 +1,7 @@
 # Deterministic Lesson YAML → TypeScript Builder
 
 This is Node.js build-time tooling, **not an AI Skill**. Implementation:
-[scripts/lesson-builder.mjs](../../../scripts/lesson-builder.mjs). Sources and
+[shared/engine/scripts/lessonBuilder/lessonBuilder.mjs](../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs). Sources and
 contracts: the three schemas in [Lesson Workflow](../../skills/lesson-workflow/README.md),
 Engine creators, and the canonical content types.
 
@@ -29,8 +29,8 @@ optionally scenes/*.scene-spec.md.
 
 Or run only one authorized Lesson:
 
-    node scripts/lesson-builder.mjs generate --source content/<textbook>/data/lessons/<bucket>/<uuid>
-    node scripts/lesson-builder.mjs check --source content/<textbook>/data/lessons/<bucket>/<uuid>
+    node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<textbook>/data/lessons/<bucket>/<uuid>
+    node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source content/<textbook>/data/lessons/<bucket>/<uuid>
 
 Without a source argument, the root command discovers YAML Lessons across all
 textbook workspaces. Generation requires approved and valid inputs; check is read-only.

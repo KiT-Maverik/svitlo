@@ -19,8 +19,8 @@ import {
   type LessonLearningLayoutProps,
   type UiKitMessages,
 } from '@svitlo/ui-kit';
-import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
-import { getLocaleDirection, type LessonResponse } from '@svitlo/engine/runtime';
+import { type Locale } from '@svitlo/contracts/localization';
+import { getLocaleDirection, type Lesson_Props } from '@svitlo/engine/runtime';
 import { registerNativeBackButton, exitNativeApp } from '@svitlo/adapter-capacitor';
 import { textbook, resolveScene } from './generated/textbook';
 import { loadLesson, loadLessonIndex, loadMessages, type LessonIndex } from './loadLesson';
@@ -109,7 +109,7 @@ function PersistingLessonLayout(props: LessonLearningLayoutProps) {
     </Box>
   );
 }
-type LessonData = { response: LessonResponse; messages: UiKitMessages };
+type LessonData = { response: Lesson_Props; messages: UiKitMessages };
 type LoadState =
   | { status: 'loading' }
   | { status: 'error'; message: string }
@@ -229,6 +229,7 @@ function MobileContent() {
           <Lesson
             key={routeKey}
             response={response}
+            language={route.lessonLanguage}
             href={lessonHref(route.language, response.id, route.lessonLanguage)}
             messages={messages}
             layout={PersistingLessonLayout}

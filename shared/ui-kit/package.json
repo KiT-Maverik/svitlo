@@ -4,7 +4,7 @@
   "private": true,
   "type": "commonjs",
   "scripts": {
-    "package:build": "node scripts/build.mjs",
+    "package:build": "node scripts/buildUiKit/build.mjs",
     "code:check:types": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.data.json --noEmit",
     "test:logic": "npm run code:check:types && npm run test:locales",
     "test:components": "vitest run src",
@@ -12,7 +12,7 @@
     "prepack": "npm run package:build",
     "storybook:start": "storybook dev -p 6006",
     "storybook:build": "storybook build",
-    "test:locales": "vitest run scripts/generateLocales.spec.ts && node --test scripts/syncFlags.spec.mjs",
+    "test:locales": "vitest run scripts/generateLocales/generateLocales.spec.ts && node --test scripts/syncFlags/syncFlags.spec.mjs",
     "code:format:check": "prettier --check . --ignore-path ../../.prettierignore",
     "code:format:fix": "prettier --write . --ignore-path ../../.prettierignore"
   },
@@ -55,7 +55,7 @@
   "files": [
     "dist",
     "assets/flags",
-    "scripts/syncFlags.mjs"
+    "scripts/syncFlags/syncFlags.mjs"
   ],
   "peerDependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -72,6 +72,6 @@
     "rehype-sanitize": "^6.0.0"
   },
   "bin": {
-    "svitlo-sync-flags": "./scripts/syncFlags.mjs"
+    "svitlo-sync-flags": "./scripts/syncFlags/syncFlags.mjs"
   }
 }
