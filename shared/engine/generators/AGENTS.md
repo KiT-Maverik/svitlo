@@ -1,6 +1,6 @@
-# Generator architecture — planned
+# Generator architecture
 
-**Status:** Target contract only. No universal generator is implemented by this document. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
+**Status:** The specific Skill-tree JSON generator lives in [`skills/publishSkillTree.mjs`](skills/publishSkillTree.mjs); no universal generator is implied. The general rules below remain the target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
 
 ## Responsibility
 
