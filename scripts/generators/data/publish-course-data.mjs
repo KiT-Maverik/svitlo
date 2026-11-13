@@ -167,12 +167,15 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
  * Write only this Course's generated directory. No unrelated textbook assets
  * are modified. Check mode is read-only and verifies stale/unexpected files.
  */
-export function publishCourse(course, { packageRoot, languages, overrides, check = false } = {}) {
-  if (typeof packageRoot !== 'string' || !packageRoot.trim()) {
-    throw new Error('packageRoot (textbook directory) is required');
+export function publishCourse(course, { packageRoot, outputRoot, languages, overrides, check = false } = {}) {
+  if ((typeof outputRoot !== 'string' || !outputRoot.trim()) &&
+      (typeof packageRoot !== 'string' || !packageRoot.trim())) {
+    throw new Error('packageRoot or outputRoot (Course resources parent directory) is required');
   }
   const files = renderCourseFiles(course, { languages, overrides });
-  const root = path.join(path.resolve(packageRoot), 'public', 'data', 'courses');
+  const root = outputRoot
+    ? path.resolve(outputRoot)
+    : path.join(path.resolve(packageRoot), 'public', 'data', 'courses');
   const destination = path.join(root, course.id);
 
   if (check) {
