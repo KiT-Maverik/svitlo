@@ -139,6 +139,79 @@ test('modern Config tree dispatches Course, Module, Chapter, Episode, Section, B
   assert.deepEqual(tree.parseDiagnostics, []); // Parsing is NOT typechecking the incomplete draft.
 });
 
+test('recurses into Carousel slides and CheckpointItem question/answer factories', () => {
+  const nested = structuredClone(source);
+  const items = nested.content.items.basics.content.items.first.content.items.episode
+    .section.items.intro.content.items;
+  items.gallery = {
+    type: 'carousel',
+    slug: 'gallery',
+    slides: {
+      order: ['one'],
+      items: { one: { type: 'carouselSlide', slug: 'one', locale: { alt: { uk: 'Слайд' } } } },
+    },
+  };
+  items.check = {
+    type: 'checkpoint',
+    slug: 'check',
+    content: {
+      order: ['task'],
+      items: {
+        task: {
+          type: 'checkpointItem',
+          slug: 'task',
+          question: { type: 'text', slug: 'question', locale: { value: { uk: 'Запитання' } } },
+          answer: {
+            items: { yes: { type: 'text', slug: 'yes', locale: { value: { uk: 'Так' } } } },
+            order: ['yes'],
+          },
+        },
+      },
+    },
+  };
+  const output = renderCourseSource(nested, { language: 'uk' });
+  for (const factory of [
+    'defineCarousel', 'defineCarouselSlide', 'defineCheckpoint',
+    'defineCheckpointItem', 'defineText',
+  ]) assert(output.includes(factory + '('), 'missing nested ' + factory);
+  assert.match(output, /defineCheckpointItem\(\{[\s\S]*?"question": defineText\(/);
+  assert.deepEqual(ts.createSourceFile('nested.ts', output, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+});
+
+test('direct Course config uses explicit source language and omits provenance from emitted factory', () => {
+  const draft = structuredClone(source);
+  draft.documentLanguage = 'uk';
+  draft.locale.title.en = 'Universe';
+  draft.content.items.basics.locale.title.en = 'Basics';
+  draft.content.items.basics.content.items.first.content.items.episode.locale.title.en = 'Trip';
+  const code = renderCourseSource(draft);
+  assert.match(code, /"languages": \[\s*"uk",\s*"en"\s*\]/);
+  assert.doesNotMatch(code, /"documentLanguage"/);
+  assert.doesNotMatch(code, /"Universe"/);
+  assert.doesNotMatch(code, /"Basics"/);
+  assert.doesNotMatch(code, /"Trip"/);
+  assert.match(code, /"uk": "Космос"/);
+});
+
+test('canonical sibling Lesson imports are safe and do not fabricate a new Lesson', () => {
+  const p = '../../../lessons/' + lessonId.slice(-1) + '/' + lessonId + '/lightLesson.data.ts';
+  const yaml = {
+    ...source,
+    content: {
+      items: { intro: { type: 'lesson', lessonId, source: { path: p, export: 'lightLesson_Lesson' } } },
+      order: ['intro'],
+    },
+  };
+  const generated = renderCourseSource(yaml);
+  assert.match(generated, /import \{ lightLesson_Lesson as standaloneLesson0 \}/);
+  assert(generated.includes(p.replace(/\.ts$/, '')));
+  assert(!generated.includes('UNRESOLVED_LESSON_'));
+  assert(!generated.includes('defineLesson('));
+  assert(renderCourseSource({
+    ...yaml, content: { items: { intro: { type: 'lesson', lessonId, source: { path: '../../../apps/web/payload.ts', export: 'injected' } } }, order: ['intro'] },
+  }).includes('UNRESOLVED_LESSON_0'));
+});
+
 test('source-language Course text stays source-only with no invented locales', () => {
   const rendered = renderCourseSource(source);
   assert(rendered.includes('"languages": ['));
