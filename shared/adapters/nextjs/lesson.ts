@@ -13,14 +13,12 @@ export type LessonPageInput = {
   params: Promise<{ language: string; lessonLanguage?: string; lessonId: string }>;
 };
 
-/** The textbook supplies its published JSON loader and scene-bound Lesson renderer. */
-type LessonPageResource = { id: string } & ({ title: string } | { locale: { title: string } });
-
-export type LessonPageBindings<Response extends LessonPageResource> = {
-  loadLesson: (id: string, language: LanguageCode) => Promise<Response>;
+/** The host supplies its published Props loader and scene-bound Lesson renderer. */
+export type LessonPageBindings = {
+  loadLesson: (id: string, language: LanguageCode) => Promise<Lesson_Props>;
   loadMessages: (locale: Locale) => Promise<UiKitMessages>;
   renderLesson: (props: {
-    response: Response;
+    response: Lesson_Props;
     locale: Locale;
     lessonLocale: Locale;
     href: string;
@@ -32,7 +30,7 @@ export type LessonPageBindings<Response extends LessonPageResource> = {
  * The only Next.js-specific lesson orchestration. No app-specific imports:
  * standalone textbooks inject their data loader and client-renderer boundary.
  */
-export function createLessonPage<Response extends LessonPageResource>(bindings: LessonPageBindings<Response>) {
+export function createLessonPage(bindings: LessonPageBindings) {
   const load = cache(async ({ params }: LessonPageInput) => {
     const { language: code, lessonLanguage: requestedLessonLanguage, lessonId } = await params;
     const descriptor = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === code);
@@ -64,7 +62,7 @@ export function createLessonPage<Response extends LessonPageResource>(bindings: 
 
   async function generateMetadata(props: LessonPageInput): Promise<Metadata> {
     const { response } = await load(props);
-    const title = 'title' in response ? response.title : response.locale.title;
+    const title = response.locale.title;
     return { title, description: title };
   }
 
@@ -99,10 +97,10 @@ export function createLessonPage<Response extends LessonPageResource>(bindings: 
  * legacy UI Kit LessonView is performed.
  */
 export function createPublishedLessonPropsPage(
-  bindings: Pick<LessonPageBindings<Lesson_Props>, 'renderLesson'> &
-    Partial<Pick<LessonPageBindings<Lesson_Props>, 'loadLesson' | 'loadMessages'>>,
+  bindings: Pick<LessonPageBindings, 'renderLesson'> &
+    Partial<Pick<LessonPageBindings, 'loadLesson' | 'loadMessages'>>,
 ) {
-  return createLessonPage<Lesson_Props>({
+  return createLessonPage({
     loadLesson:
       bindings.loadLesson ??
       ((id, language) =>
