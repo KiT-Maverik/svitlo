@@ -51,14 +51,14 @@ jobs:
       - run: npm ci
       - name: Enforce the single Engine public entrypoint
         run: |
-          node --test scripts/migrate-engine-imports.spec.mjs
-          node scripts/migrate-engine-imports.mjs --check
+          node --test scripts/migrateEngineImports/migrate-engine-imports.spec.mjs
+          node scripts/migrateEngineImports/migrate-engine-imports.mjs --check
       - name: Scoped quality checks
         if: github.event_name == 'pull_request'
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
-        run: node scripts/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
+        run: node scripts/runFastGate/run-fast-gate.mjs "$BASE_SHA" "$HEAD_SHA"
       - name: Manually requested FastGate
         if: github.event_name == 'workflow_dispatch'
-        run: node scripts/run-fast-gate.mjs --all
+        run: node scripts/runFastGate/run-fast-gate.mjs --all
