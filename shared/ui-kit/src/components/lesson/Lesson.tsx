@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, type ComponentType } from 'react';
-import type { LanguageCode } from '+@svitlo/contracts/localization';
+import type { LanguageCode } from '@svitlo/engine/runtime';
 import type { Lesson_Props } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { LessonController, type EditableSectionParam } from './LessonController';

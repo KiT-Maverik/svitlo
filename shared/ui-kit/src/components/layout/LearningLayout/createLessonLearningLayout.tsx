@@ -3,7 +3,7 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 
 import { useMemo, type ElementType } from 'react';
-import type { Locale } from '+@svitlo/contracts/localization';
+import type { Locale } from '@svitlo/engine/runtime';
 import LearningLayout, { type LearningLayoutProps } from './LearningLayout';
 import NavbarPreferences from './NavbarPreferences/NavbarPreferences';
 import ThemeSwitch from './NavbarPreferences/ThemeSwitch';

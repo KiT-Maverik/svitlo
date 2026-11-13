@@ -9,7 +9,7 @@ import PauseRounded from '@mui/icons-material/PauseRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import VolumeOffRounded from '@mui/icons-material/VolumeOffRounded';
 import VolumeUpRounded from '@mui/icons-material/VolumeUpRounded';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import type { ContentBlock_Audio_Response } from '+@svitlo/contracts/content';
 
 import { Flag } from '../../../Flag/Flag';
