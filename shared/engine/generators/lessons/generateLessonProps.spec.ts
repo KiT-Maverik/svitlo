@@ -4,8 +4,8 @@ import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
 
-import { defineLesson } from '../../../configurators/lessons/defineLesson/defineLesson';
-import { writeLessonFiles } from './generateLessons.utils';
+import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
+import { writeLessonFiles } from '../../utils/generators/lessons/generateLessons.utils';
 import { renderLessonPropsFiles, type LessonPublicationEntry } from './generateLessonProps.utils';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';

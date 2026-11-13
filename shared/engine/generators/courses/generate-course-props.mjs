@@ -4,10 +4,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { loadAuthoredConfigurators } from './load-authored-configurators.mjs';
+import { loadAuthoredConfigurators } from '../load-authored-configurators.mjs';
 import { renderCourseFiles } from './publish-course-data.mjs';
 
-const repo = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)));
+const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] --write|--check';
 
 function options(argv) {
@@ -30,7 +30,7 @@ function options(argv) {
   return { pkg, outputDirectory, action };
 }
 
-function readCurrent(root, prefix = '', files = new Map()) {
+export function readCurrent(root, prefix = '', files = new Map()) {
   if (!fs.existsSync(root)) return files;
   if (fs.lstatSync(root).isSymbolicLink()) throw new Error('Symlink in generated Course output: ' + root);
   for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
@@ -65,7 +65,7 @@ async function render(pkg) {
   return files;
 }
 
-function publish(root, files) {
+export function publish(root, files) {
   const parent = path.dirname(root);
   fs.mkdirSync(parent, { recursive: true });
   if (fs.existsSync(root) && (!fs.lstatSync(root).isDirectory() || fs.lstatSync(root).isSymbolicLink())) {
@@ -100,7 +100,7 @@ function publish(root, files) {
   }
 }
 
-async function main(argv) {
+export async function main(argv) {
   const { pkg, outputDirectory, action } = options(argv);
   const files = await render(pkg);
   if (action === '--write') {

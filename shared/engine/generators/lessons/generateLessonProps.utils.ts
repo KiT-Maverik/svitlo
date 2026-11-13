@@ -1,4 +1,4 @@
-import { resolveEntityPath } from '../../entityPath/resolveEntityPath.utils';
+import { resolveEntityPath } from '../../utils/entityPath/resolveEntityPath.utils';
 
 /**
  * Published Lesson Props. The Configurator has already validated and built this
