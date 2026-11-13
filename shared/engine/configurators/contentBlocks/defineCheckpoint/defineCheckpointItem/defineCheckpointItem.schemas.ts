@@ -1,25 +1,61 @@
 import { z } from 'zod';
 
 import { identityBase_Schema } from '../../../_shared__configurators';
-import { contentBlockConfigurator_Schema } from '../../contentBlock.schemas';
 import { audio_Props_Schema } from '../../defineAudio';
-import type { ContentBlock_Audio_Configurator, ContentBlock_Audio_Props, ContentBlock_Audio_PropsBase } from '../../defineAudio';
+import type {
+  ContentBlock_Audio_Configurator,
+  ContentBlock_Audio_Props,
+  ContentBlock_Audio_PropsBase,
+} from '../../defineAudio';
 import { carousel_Props_Schema } from '../../defineCarousel';
-import type { ContentBlock_Carousel_Configurator, ContentBlock_Carousel_Props, ContentBlock_Carousel_PropsBase } from '../../defineCarousel';
+import type {
+  ContentBlock_Carousel_Configurator,
+  ContentBlock_Carousel_Props,
+  ContentBlock_Carousel_PropsBase,
+} from '../../defineCarousel';
 import { code_Props_Schema } from '../../defineCode';
-import type { ContentBlock_Code_Configurator, ContentBlock_Code_Props, ContentBlock_Code_PropsBase } from '../../defineCode';
+import type {
+  ContentBlock_Code_Configurator,
+  ContentBlock_Code_Props,
+  ContentBlock_Code_PropsBase,
+} from '../../defineCode';
 import { image_Props_Schema } from '../../defineImage';
-import type { ContentBlock_Image_Configurator, ContentBlock_Image_Props, ContentBlock_Image_PropsBase } from '../../defineImage';
+import type {
+  ContentBlock_Image_Configurator,
+  ContentBlock_Image_Props,
+  ContentBlock_Image_PropsBase,
+} from '../../defineImage';
 import { markdown_Props_Schema } from '../../defineMarkdown';
-import type { ContentBlock_Markdown_Configurator, ContentBlock_Markdown_Props, ContentBlock_Markdown_PropsBase } from '../../defineMarkdown';
+import type {
+  ContentBlock_Markdown_Configurator,
+  ContentBlock_Markdown_Props,
+  ContentBlock_Markdown_PropsBase,
+} from '../../defineMarkdown';
 import { scene_Props_Schema } from '../../defineScene';
-import type { ContentBlock_Scene_Configurator, ContentBlock_Scene_Props, ContentBlock_Scene_PropsBase } from '../../defineScene';
+import type {
+  ContentBlock_Scene_Configurator,
+  ContentBlock_Scene_Props,
+  ContentBlock_Scene_PropsBase,
+} from '../../defineScene';
 import { text_Props_Schema } from '../../defineText';
-import type { ContentBlock_Text_Configurator, ContentBlock_Text_Overrides, ContentBlock_Text_Props, ContentBlock_Text_PropsBase } from '../../defineText';
+import type {
+  ContentBlock_Text_Configurator,
+  ContentBlock_Text_Overrides,
+  ContentBlock_Text_Props,
+  ContentBlock_Text_PropsBase,
+} from '../../defineText';
 import { video_Props_Schema } from '../../defineVideo';
-import type { ContentBlock_Video_Configurator, ContentBlock_Video_Props, ContentBlock_Video_PropsBase } from '../../defineVideo';
+import type {
+  ContentBlock_Video_Configurator,
+  ContentBlock_Video_Props,
+  ContentBlock_Video_PropsBase,
+} from '../../defineVideo';
 import { youtube_Props_Schema } from '../../defineYoutube';
-import type { ContentBlock_Youtube_Configurator, ContentBlock_Youtube_Props, ContentBlock_Youtube_PropsBase } from '../../defineYoutube';
+import type {
+  ContentBlock_Youtube_Configurator,
+  ContentBlock_Youtube_Props,
+  ContentBlock_Youtube_PropsBase,
+} from '../../defineYoutube';
 
 export type Checkpoint_Allowed_Configurator =
   | ContentBlock_Audio_Configurator
@@ -59,20 +95,11 @@ const checkpointItemBase = identityBase_Schema.extend({
   check: z.literal(true).optional(),
 });
 
-/** Check only child boundaries here; each child validates its own authored internals. */
-const isAllowedConfigurator = (value: unknown, type?: string): boolean =>
-  contentBlockConfigurator_Schema.safeParse(value).success &&
-  value !== null &&
-  typeof value === 'object' &&
-  'type' in value &&
-  (type === undefined ? value.type !== 'checkpoint' : value.type === type);
-
+/** The owning CheckpointItem.validate() enforces child kinds and identity. */
 export const checkpointItem_Config_Schema = checkpointItemBase.extend({
-  question: z.custom<ContentBlock_Text_Configurator>(value => isAllowedConfigurator(value, 'text')),
+  question: z.custom<ContentBlock_Text_Configurator>(value => value !== undefined && value !== null),
   answer: z.object({
-    items: z.record(z.string(), z.custom<Checkpoint_Allowed_Configurator>(
-      value => isAllowedConfigurator(value),
-    )),
+    items: z.record(z.string(), z.custom<Checkpoint_Allowed_Configurator>()),
     order: z.array(z.string()),
   }),
 });
