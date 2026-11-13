@@ -187,6 +187,8 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
       const type = value.type;
       if (typeof type !== 'string' || !type)
         fail('content.yaml', field + '.type', 'missing type discriminator for ' + context + ' factory dispatch');
+      if (context === 'lesson' && type !== 'lesson')
+        fail('content.yaml', field + '.type', 'expected lesson type for the Lesson entrypoint');
       const factory = factories[type];
       if (!factory)
         fail('content.yaml', field + '.type', 'unknown type "' + type + '"; no Engine define* factory');
