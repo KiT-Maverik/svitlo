@@ -1,0 +1,51 @@
+name: Engine generators
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'shared/engine/generators/**'
+      - 'shared/engine/index.ts'
+      - 'shared/engine/package.json'
+      - 'shared/engine/tsconfig*.json'
+      - 'scripts/generators/data/**'
+      - 'scripts/textbook-tooling/**'
+      - 'package.json'
+      - '.github/workflows/engine-generators.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engine-generators-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generator-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build Contracts
+        run: npm run package:build --workspace @svitlo/contracts
+      - name: Typecheck and execute Engine generator tests
+        run: npm test --workspace @svitlo/engine
+
+  textbook-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build Playground textbook through Engine generators
+        run: npm run package:build --workspace @svitlo/playground
