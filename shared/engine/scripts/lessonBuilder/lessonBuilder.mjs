@@ -87,6 +87,26 @@ function sourceLocaleOnly(value, language) {
 }
 
 /**
+ * Flashcard flags live under parameters.flags rather than locale. Their
+ * acronym/custom values may still be localized by the Config schema.
+ */
+function sourceFlagValuesOnly(parameters, language) {
+  if (!isRecord(parameters) || !isRecord(parameters.flags) || !isRecord(parameters.flags.items)) return parameters;
+  return {
+    ...parameters,
+    flags: {
+      ...parameters.flags,
+      items: Object.fromEntries(Object.entries(parameters.flags.items).map(([slug, flag]) => [
+        slug,
+        isRecord(flag) && ['acronym', 'custom'].includes(flag.type)
+          ? { ...flag, value: sourceLocaleOnly(flag.value, language) }
+          : flag,
+      ])),
+    },
+  };
+}
+
+/**
  * A context is the authoring-contract location, not a schema. Ordinary object
  * fields (including flag.type and params.type) remain plain data.
  */
@@ -184,7 +204,11 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
     if (!entries.length) return '{}';
     return '{\n' + entries.map(([key, raw]) => {
       const next = childContext(context, key, value);
-      const child = key === 'locale' ? sourceLocaleOnly(raw, language) : raw;
+      const child = key === 'locale'
+        ? sourceLocaleOnly(raw, language)
+        : context === 'flashcard' && key === 'parameters'
+          ? sourceFlagValuesOnly(raw, language)
+          : raw;
       return indent(level + 1) + JSON.stringify(key) + ': ' +
         render(child, next, field + '.' + key, level + 1);
     }).join(',\n') + '\n' + indent(level) + '}';
