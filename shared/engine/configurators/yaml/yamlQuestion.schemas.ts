@@ -13,7 +13,7 @@ import { questionBlockCollection_Config_Schema } from '../questions/question.sch
 import { yamlContentBlock_Schema } from './yamlContentBlock.schemas';
 
 /** All Question Config variants own their actual metadata; only child blocks differ. */
-export const yamlQuestionBlocks_Schema = questionBlockCollection_Config_Schema.safeExtend({
+export const yamlQuestionBlocks_Schema = questionBlockCollection_Config_Schema.extend({
   items: z.record(z.string(), yamlContentBlock_Schema),
 });
 const commonContent = {
@@ -22,25 +22,25 @@ const commonContent = {
   explanation: yamlQuestionBlocks_Schema.optional(),
 };
 
-export const yamlAnswerWithNumber_Schema = answerWithNumber_Config_Schema.safeExtend({
-  content: answerWithNumber_Config_Schema.shape.content.safeExtend(commonContent),
+export const yamlAnswerWithNumber_Schema = answerWithNumber_Config_Schema.extend({
+  content: answerWithNumber_Config_Schema.shape.content.extend(commonContent),
 });
-export const yamlAnswerWithText_Schema = answerWithText_Config_Schema.safeExtend({
-  content: answerWithText_Config_Schema.shape.content.safeExtend(commonContent),
+export const yamlAnswerWithText_Schema = answerWithText_Config_Schema.extend({
+  content: answerWithText_Config_Schema.shape.content.extend(commonContent),
 });
 
-export const yamlBuildAnswerWithBlocks_Schema = buildAnswerWithBlocks_Config_Schema.safeExtend({
-  content: buildAnswerWithBlocks_Config_Schema.shape.content.safeExtend({
+export const yamlBuildAnswerWithBlocks_Schema = buildAnswerWithBlocks_Config_Schema.extend({
+  content: buildAnswerWithBlocks_Config_Schema.shape.content.extend({
     ...commonContent,
     correctSequence: yamlQuestionBlocks_Schema,
     distractors: yamlQuestionBlocks_Schema,
   }),
 });
 
-export const yamlFillBlanksWithBlocks_Schema = fillBlanksWithBlocks_Config_Schema.safeExtend({
-  content: fillBlanksWithBlocks_Config_Schema.shape.content.safeExtend({
+export const yamlFillBlanksWithBlocks_Schema = fillBlanksWithBlocks_Config_Schema.extend({
+  content: fillBlanksWithBlocks_Config_Schema.shape.content.extend({
     ...commonContent,
-    slots: fillBlanksWithBlocks_Config_Schema.shape.content.shape.slots.safeExtend({
+    slots: fillBlanksWithBlocks_Config_Schema.shape.content.shape.slots.extend({
       items: z.record(
         z.string(),
         z.object({ correctAnswer: yamlContentBlock_Schema }),
@@ -49,14 +49,14 @@ export const yamlFillBlanksWithBlocks_Schema = fillBlanksWithBlocks_Config_Schem
     distractors: yamlQuestionBlocks_Schema,
   }),
 });
-export const yamlFillBlanksWithText_Schema = fillBlanksWithText_Config_Schema.safeExtend({
-  content: fillBlanksWithText_Config_Schema.shape.content.safeExtend(commonContent),
+export const yamlFillBlanksWithText_Schema = fillBlanksWithText_Config_Schema.extend({
+  content: fillBlanksWithText_Config_Schema.shape.content.extend(commonContent),
 });
 
-export const yamlMatchBlocks_Schema = matchBlocks_Config_Schema.safeExtend({
-  content: matchBlocks_Config_Schema.shape.content.safeExtend({
+export const yamlMatchBlocks_Schema = matchBlocks_Config_Schema.extend({
+  content: matchBlocks_Config_Schema.shape.content.extend({
     ...commonContent,
-    pairs: matchBlocks_Config_Schema.shape.content.shape.pairs.safeExtend({
+    pairs: matchBlocks_Config_Schema.shape.content.shape.pairs.extend({
       items: z.record(
         z.string(),
         z.object({
@@ -68,27 +68,27 @@ export const yamlMatchBlocks_Schema = matchBlocks_Config_Schema.safeExtend({
   }),
 });
 
-export const yamlOrderSequence_Schema = orderSequence_Config_Schema.safeExtend({
-  content: orderSequence_Config_Schema.shape.content.safeExtend({
+export const yamlOrderSequence_Schema = orderSequence_Config_Schema.extend({
+  content: orderSequence_Config_Schema.shape.content.extend({
     ...commonContent,
     sequence: yamlQuestionBlocks_Schema,
   }),
 });
 
-export const yamlSelectMultipleAnswers_Schema = selectMultipleAnswers_Config_Schema.safeExtend({
-  content: selectMultipleAnswers_Config_Schema.shape.content.safeExtend({
+export const yamlSelectMultipleAnswers_Schema = selectMultipleAnswers_Config_Schema.extend({
+  content: selectMultipleAnswers_Config_Schema.shape.content.extend({
     ...commonContent,
-    answers: selectMultipleAnswers_Config_Schema.shape.content.shape.answers.safeExtend({
+    answers: selectMultipleAnswers_Config_Schema.shape.content.shape.answers.extend({
       correct: yamlQuestionBlocks_Schema,
       incorrect: yamlQuestionBlocks_Schema,
       distractors: yamlQuestionBlocks_Schema,
     }),
   }),
 });
-export const yamlSelectOneAnswer_Schema = selectOneAnswer_Config_Schema.safeExtend({
-  content: selectOneAnswer_Config_Schema.shape.content.safeExtend({
+export const yamlSelectOneAnswer_Schema = selectOneAnswer_Config_Schema.extend({
+  content: selectOneAnswer_Config_Schema.shape.content.extend({
     ...commonContent,
-    answers: selectOneAnswer_Config_Schema.shape.content.shape.answers.safeExtend({
+    answers: selectOneAnswer_Config_Schema.shape.content.shape.answers.extend({
       correct: yamlQuestionBlocks_Schema,
       incorrect: yamlQuestionBlocks_Schema,
       distractors: yamlQuestionBlocks_Schema,
