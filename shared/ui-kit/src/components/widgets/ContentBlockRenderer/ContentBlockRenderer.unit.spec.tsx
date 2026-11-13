@@ -1,19 +1,20 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
+import type { ContentBlock_Checkpoint_Props, ContentBlock_Markdown_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
 import type { ContentBlockResponse, SceneRegistry } from './types';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
-const textBlock = (id: string, value: string): ContentBlockResponse => ({
+const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
   id, slug: 'textBlock', type: 'text', params: {}, locale: { value },
 });
 const first = textBlock('first', 'First block');
 const last = textBlock('last', 'Last block');
-const markdown = (id: string, value: string): ContentBlockResponse => ({
+const markdown = (id: string, value: string): ContentBlock_Markdown_Props => ({
   id, slug: 'markdown', type: 'markdown', params: {}, locale: { value },
 });
-const checkpoint = (id: string, question: string, answer: ContentBlockResponse): ContentBlockResponse => ({
+const checkpoint = (id: string, question: string, answer: ContentBlock_Text_Props): ContentBlock_Checkpoint_Props => ({
   id, slug: 'checkpoint', type: 'checkpoint',
   params: {},
   locale: { title: 'Review' },
@@ -83,7 +84,14 @@ describe('ContentBlockRenderer', () => {
 
   it('continues to resolve scenes from the supplied registry', () => {
     const sceneRegistry: SceneRegistry = id =>
-      id === 'diagram' ? ({ locales }) => <div role="img" aria-label={locales.title as string} /> : undefined;
+      id === 'diagram'
+        ? ({ locales }) => (
+            <div
+              role="img"
+              aria-label={typeof locales === 'object' && typeof locales.title === 'string' ? locales.title : undefined}
+            />
+          )
+        : undefined;
     render(
       <ContentBlockRenderer
         messages={enUiKitMessages}
@@ -120,10 +128,10 @@ describe('ContentBlockRenderer guard and state coverage', () => {
 
   it('preserves an expanded and checked checkpoint when a sibling text block changes', () => {
     const originalCheckpoint = checkpoint('persistent-checkpoint', 'What did you learn?', last);
-    const persistentCheckpoint: ContentBlockResponse =
-      originalCheckpoint.type === 'checkpoint'
-        ? { ...originalCheckpoint, params: { enableChecks: true } }
-        : originalCheckpoint;
+    const persistentCheckpoint: ContentBlock_Checkpoint_Props = {
+      ...originalCheckpoint,
+      params: { enableChecks: true },
+    };
     const { rerender } = render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[first, persistentCheckpoint]} />);
     fireEvent.click(screen.getByText('What did you learn?'));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));

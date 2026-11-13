@@ -12,14 +12,14 @@ const mixedBlocks: NonNullable<ContentBlockRendererProps['blocks']> = [
     id: 'example',
     slug: 'example',
     type: 'code',
-    params: { language: 'javascript', codeAsText: 'const speedOfLight = 299_792_458;\\nconsole.log(speedOfLight);' },
+    params: { language: 'javascript', codeAsText: 'const speedOfLight = 299_792_458;\nconsole.log(speedOfLight);' },
   },
   {
     id: 'markdown-note',
     slug: 'markdownNote',
     type: 'markdown',
     params: {},
-    locale: { value: '## Key idea\\n\\n**Speed** is a distance divided by time.' },
+    locale: { value: '## Key idea\n\n**Speed** is a distance divided by time.' },
   },
   textBlock('summary', 'Now check your understanding.'),
 ];
