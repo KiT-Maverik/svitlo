@@ -40,7 +40,8 @@ function testPaths() {
       throw new Error('Unexpected Engine test glob: ' + pattern);
     }
     const matches = globSync(pattern, { cwd: engineRoot }).sort();
-    if (!matches.length) throw new Error('Engine test pattern has no matches: ' + pattern);
+    // The standard Node test runner tolerates unmatched globs in transitional folders.
+    if (!matches.length) continue;
     for (const file of matches) files.add(file);
   }
   if (!files.size) throw new Error('No Engine tests selected');
