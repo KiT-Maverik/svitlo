@@ -8,12 +8,17 @@ import type { Skill_Configurator } from '../defineSkill/defineSkill';
 import { skillGroup_Props_Schema, type SkillGroup_Props } from '../defineSkillGroup/defineSkillGroup.schemas';
 import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
 
+const frontendByMode = {
+  config: localizationSwitch.config.optional(),
+  props: localizationSwitch.props.optional(),
+} as const;
+
 const localized = <const Mode extends 'config' | 'props'>(mode: Mode) => ({
   id: z.uuid(),
   slug: z.string().min(1),
   description: z.object({
     methodological: localeText_Schema,
-    frontend: localizationSwitch[mode].optional(),
+    frontend: frontendByMode[mode],
   }),
   title: localizationSwitch[mode],
 });
