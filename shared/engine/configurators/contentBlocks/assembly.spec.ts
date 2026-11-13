@@ -21,14 +21,14 @@ describe('Configurators', () => {
       const slide = <const Slug extends string>(
         slug: Slug,
         locale: {
-          src: string | Partial<Record<'en' | 'uk', string>>;
-          alt: string | Partial<Record<'en' | 'uk', string>>;
-          caption?: string | Partial<Record<'en' | 'uk', string>>;
+          src: string | Record<'en' | 'uk', string>;
+          alt: string | Record<'en' | 'uk', string>;
+          caption?: string | Record<'en' | 'uk', string>;
         },
-      ) => defineCarouselSlide({ id, slug, type: 'carouselSlide', locale });
+      ) => defineCarouselSlide<Slug, ['en', 'uk']>({ id, slug, type: 'carouselSlide', locale });
 
       test('Published locale bodies already match Props and require no embedding', () => {
-        const block = defineAudio({
+        const block = defineAudio<'localeShape', ['en']>({
           id,
           slug: 'localeShape',
           type: 'audio',
@@ -61,7 +61,7 @@ describe('Configurators', () => {
             fallback: { offline: 'Offline', retry: { uk: 'Повторити' } },
           },
         };
-        const audio = defineAudio(authored);
+        const audio = defineAudio<string, ['en', 'uk']>(authored);
         assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }), {
           base: {
             id,
@@ -112,7 +112,7 @@ describe('Configurators', () => {
           alt: 'Second',
           caption: { en: 'A caption', uk: 'Підпис' },
         });
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<'gallery', { first: typeof first; second: typeof second }, ['en', 'uk']>({
           id,
           type: 'carousel',
           slug: 'gallery',
@@ -142,7 +142,7 @@ describe('Configurators', () => {
         assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale?.en?.locale.slides?.length, 2);
       });
       test('Code applies semantic validation after merging sparse replacement dictionaries', () => {
-        const code = defineCode({
+        const code = defineCode<'example', ['en', 'uk']>({
           id,
           type: 'code',
           slug: 'example',
@@ -180,7 +180,7 @@ describe('Configurators', () => {
       });
 
       test('Image validates merged dimensions and nested sparse localized fields', () => {
-        const image = defineImage({
+        const image = defineImage<'diagram', ['en', 'uk']>({
           id,
           type: 'image',
           slug: 'diagram',
@@ -218,7 +218,7 @@ describe('Configurators', () => {
       });
 
       test('Markdown checks variables on resolved sparse locale overrides', () => {
-        const markdown = defineMarkdown({
+        const markdown = defineMarkdown<'lessonNotes', ['en', 'uk']>({
           id,
           type: 'markdown',
           slug: 'lessonNotes',
@@ -295,7 +295,7 @@ describe('Configurators', () => {
       });
 
       test('Video and YouTube publish media-specific fallback and link fields', () => {
-        const video = defineVideo({
+        const video = defineVideo<'movie', ['en', 'uk']>({
           id,
           type: 'video',
           slug: 'movie',
@@ -316,7 +316,7 @@ describe('Configurators', () => {
           base: {},
           locale: { uk: { locale: { label: 'Фільм' } } },
         });
-        const youtube = defineYoutube({
+        const youtube = defineYoutube<'external', ['en', 'uk']>({
           id,
           type: 'youtube',
           slug: 'external',
@@ -362,11 +362,12 @@ describe('Configurators', () => {
       });
 
       test('Carousel rejects a language lacking complete slide fields', () => {
+        // Deliberately incomplete dictionaries exercise runtime publication validation.
         const mixed = slide('mixed', {
           src: { en: 'https://example.com/en.png' },
           alt: { uk: 'Українською' },
-        });
-        const carousel = defineCarousel({
+        } as never);
+        const carousel = defineCarousel<'mixedSlides', { mixed: typeof mixed }, ['en', 'uk']>({
           id,
           slug: 'mixedSlides',
           type: 'carousel',
@@ -380,7 +381,7 @@ describe('Configurators', () => {
         );
       });
       test('Markdown can override one language of an invariant replacement without losing the others', () => {
-        const markdown = defineMarkdown({
+        const markdown = defineMarkdown<'invariantVariable', ['en', 'uk']>({
           id,
           slug: 'invariantVariable',
           type: 'markdown',
@@ -400,6 +401,7 @@ describe('Configurators', () => {
       });
 
       test('Flat ContentBlocks publish stateless Props without the legacy assemble surface', () => {
+        const invariantSlide = slide('first', { src: 'https://example.com/a.png', alt: 'A' });
         const blocks = [
           defineAudio({
             id,
@@ -408,14 +410,14 @@ describe('Configurators', () => {
             params: {},
             locale: { title: 'Audio', fileLocation: 'https://example.com/a.mp3' },
           }),
-          defineCarousel({
+          defineCarousel<'b', { first: typeof invariantSlide }, ['en', 'uk']>({
             id,
             slug: 'b',
             type: 'carousel',
             params: {},
             locale: {},
             slides: {
-              items: { first: slide('first', { src: 'https://example.com/a.png', alt: 'A' }) },
+              items: { first: invariantSlide },
               order: ['first'],
             },
           }),
@@ -489,7 +491,7 @@ describe('Configurators', () => {
       test('Carousel slide overrides and published output are mutation-isolated', () => {
         const authored = { src: 'https://example.com/a.png', alt: 'Original' };
         const first = slide('first', authored);
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<'atomicSlides', { first: typeof first }, ['en', 'uk']>({
           id,
           slug: 'atomicSlides',
           type: 'carousel',
