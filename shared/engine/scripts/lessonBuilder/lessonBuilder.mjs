@@ -156,15 +156,15 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
 
   function render(value, context, field, level) {
     if (factoryContexts.has(context)) {
-      if (!isRecord(value)) fail('content.yaml', field, 'expected an object with type for factory dispatch');
+      if (!isRecord(value)) fail('lesson.config.yaml', field, 'expected an object with type for factory dispatch');
       const type = value.type;
       if (typeof type !== 'string' || !type)
-        fail('content.yaml', field + '.type', 'missing type discriminator for ' + context + ' factory dispatch');
+        fail('lesson.config.yaml', field + '.type', 'missing type discriminator for ' + context + ' factory dispatch');
       if (context === 'lesson' && type !== 'lesson')
-        fail('content.yaml', field + '.type', 'expected lesson type for the Lesson entrypoint');
+        fail('lesson.config.yaml', field + '.type', 'expected lesson type for the Lesson entrypoint');
       const factory = factories[type];
       if (!factory)
-        fail('content.yaml', field + '.type', 'unknown type "' + type + '"; no Engine define* factory');
+        fail('lesson.config.yaml', field + '.type', 'unknown type "' + type + '"; no Engine define* factory');
       used.add(factory);
       return factory + '(' + renderObject(value, context, field, level) + ')';
     }
@@ -176,7 +176,7 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
     }
     if (isRecord(value)) return renderObject(value, context, field, level);
     if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) return JSON.stringify(value);
-    fail('content.yaml', field, 'unsupported YAML value');
+    fail('lesson.config.yaml', field, 'unsupported YAML value');
   }
 
   function renderObject(value, context, field, level) {
@@ -210,30 +210,26 @@ function targetFor(source, repo) {
   return { root, lessonId: match[3] };
 }
 
-function combineSources(root) {
-  const content = parseYaml(path.join(root, 'content.yaml'), 'content.yaml');
-  const { documentLanguage, ...lesson } = content;
-  if (typeof documentLanguage !== 'string' || !documentLanguage)
-    fail('content.yaml', 'documentLanguage', 'required to select authored source-language locale');
-  const parts = [
-    { filename: 'questions/questions.yaml', property: 'questions' },
-    { filename: 'flashcards/flashcards.yaml', property: 'flashcards' },
-  ];
-  for (const { filename, property } of parts) {
-    const location = path.join(root, filename);
-    if (!fs.existsSync(location)) continue;
-    const parsed = parseYaml(location, filename);
-    const { documentLanguage: _sourceLanguage, ...fields } = parsed;
-    const value = Object.hasOwn(fields, property) ? fields[property] : fields;
-    if (!isRecord(value))
-      fail(filename, property, 'expected a mapping of authored ' + property);
-    if (Object.hasOwn(lesson, property))
-      fail(filename, property, 'already authored in content.yaml; choose one source');
-    lesson[property] = value;
+/**
+ * Config-shaped YAML is a separate integration-editor projection of the
+ * Screenwriter-owned content.yaml editorial plan. Never reinterpret or
+ * overwrite content.yaml, questions/questions.yaml or flashcards/flashcards.yaml
+ * as Config data. They have different schemas, owners and review processes.
+ */
+function combineSources(root, explicitLanguage) {
+  const lesson = parseYaml(path.join(root, 'lesson.config.yaml'), 'lesson.config.yaml');
+  let language = explicitLanguage;
+  if (!language && fs.existsSync(path.join(root, 'content.yaml'))) {
+    // Editorial plan is used *only* for its source-language provenance,
+    // not its pedagogy, Questions, Flashcards or section structure.
+    const editorial = parseYaml(path.join(root, 'content.yaml'), 'content.yaml');
+    language = editorial.documentLanguage;
   }
+  if (typeof language !== 'string' || !language)
+    fail('lesson.config.yaml', 'documentLanguage', 'provide --language or content.yaml documentLanguage');
   if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
-    fail('content.yaml', 'slug', 'a safe camelCase slug is required for the output filename');
-  return { lesson, language: documentLanguage };
+    fail('lesson.config.yaml', 'slug', 'a safe camelCase slug is required for the output filename');
+  return { lesson, language };
 }
 
 function writeDraft(file, content, mode) {
@@ -259,10 +255,10 @@ function writeDraft(file, content, mode) {
   return 1;
 }
 
-export function runOne(source, mode = 'check', repo = repoRoot) {
+export function runOne(source, mode = 'check', repo = repoRoot, explicitLanguage) {
   if (!['generate', 'check'].includes(mode)) throw new Error('Mode must be generate or check');
   const target = targetFor(source, repo);
-  const { lesson, language } = combineSources(target.root);
+  const { lesson, language } = combineSources(target.root, explicitLanguage);
   const draft = renderLessonDraft(lesson, language);
   const entryName = lesson.slug + '.data.ts';
   for (const name of fs.readdirSync(target.root)) {
@@ -291,7 +287,7 @@ function discover(repo) {
         for (const entry of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
           if (!entry.isDirectory()) continue;
           const location = path.join(lessons, bucket.name, entry.name);
-          if (fs.existsSync(path.join(location, 'content.yaml'))) roots.push(location);
+          if (fs.existsSync(path.join(location, 'lesson.config.yaml'))) roots.push(location);
         }
       }
     }
@@ -301,15 +297,22 @@ function discover(repo) {
 
 export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, ...rest] = args;
-  if (!['generate', 'check'].includes(mode) || (rest.length && !(rest.length === 2 && rest[0] === '--source')))
-    throw new Error('Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>]');
-  const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
+  if (!['generate', 'check'].includes(mode))
+    throw new Error('Usage: lessonBuilder.mjs generate|check [--source <Lesson UUID directory>] [--language <source locale>]');
+  let source, language;
+  for (let i = 0; i < rest.length; i++) {
+    if (rest[i] === '--source' && source === undefined && i + 1 < rest.length) source = rest[++i];
+    else if (rest[i] === '--language' && language === undefined && i + 1 < rest.length) language = rest[++i];
+    else throw new Error('Usage: lessonBuilder.mjs generate|check [--source <Lesson UUID directory>] [--language <source locale>]');
+  }
+  const roots = source ? [path.resolve(repo, source)] : discover(repo);
   for (const root of roots) {
-    const result = runOne(root, mode, repo);
+    const result = runOne(root, mode, repo, language);
     console.log(result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'));
   }
   console.log('Processed ' + roots.length + ' Lesson draft source(s)');
 }
+
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
     main();
