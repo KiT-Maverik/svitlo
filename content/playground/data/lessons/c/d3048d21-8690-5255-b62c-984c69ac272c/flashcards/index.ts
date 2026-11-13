@@ -63,8 +63,7 @@ const opaqueObjectShadowFlashcard = defineFlashcard({
   },
 });
 
-export const howLightMovesFlashcards = [
-  lightTravelsStraightFlashcard,
-  fastestMediumFlashcard,
-  opaqueObjectShadowFlashcard,
-];
+export const howLightMovesFlashcards = {
+  items: { lightTravelsStraightFlashcard, fastestMediumFlashcard, opaqueObjectShadowFlashcard },
+  order: ['lightTravelsStraightFlashcard', 'fastestMediumFlashcard', 'opaqueObjectShadowFlashcard'],
+};
