@@ -274,5 +274,5 @@ test('locale files contain sparse slug-keyed Course changes, not repeated siblin
   assert.deepEqual(Object.keys(uk.content.items.myModule.content.items), ['myChapter']);
   assert.equal(Object.hasOwn(uk.content, 'order'), false);
   assert.equal(Object.hasOwn(uk.content.items.myModule, 'params'), false);
-  assert.equal(Object.hasOwn(uk.content.items.myModule.content.items.myChapter.content.items.myLesson, 'id'), false);
+  assert.equal(Object.hasOwn(uk.content.items.myModule.content.items.myChapter, 'content'), false);
 });
