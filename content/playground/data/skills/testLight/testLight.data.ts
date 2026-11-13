@@ -36,7 +36,7 @@ export const testLight_SkillDomain_Data = defineSkillDomain({
     kk: '[TEST kk] Light',
     qm: '[TEST qm] Light',
   },
-  groups: [testLightPropagation_SkillGroup_Data],
+  groups: { items: { testLightPropagation: testLightPropagation_SkillGroup_Data }, order: ['testLightPropagation'] },
   description: {
     methodological: 'Synthetic Playground fixture for testLight; testing only, not curricular content.',
     frontend: {
