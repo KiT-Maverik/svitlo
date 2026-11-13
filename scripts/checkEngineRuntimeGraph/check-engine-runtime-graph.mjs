@@ -36,10 +36,7 @@ export async function checkEngineRuntimeGraph(entry = defaultEntry) {
   const forbiddenEngineImports = Object.values(result.metafile.outputs)
     .flatMap(output => output.imports.map(dependency => dependency.path))
     .filter(
-      path =>
-        path === '@svitlo/engine' ||
-        path === '@svitlo/engine/build' ||
-        path.startsWith('@svitlo/engine/build/'),
+      path => path === '@svitlo/engine' || path === '@svitlo/engine/build' || path.startsWith('@svitlo/engine/build/'),
     );
   if (forbiddenEngineImports.length) {
     throw new Error('Engine build/root imports reached from runtime:\n' + forbiddenEngineImports.join('\n'));
