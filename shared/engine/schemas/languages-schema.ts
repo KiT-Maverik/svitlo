@@ -1,16 +1,188 @@
-/** Supported text direction for a language. */
-export const textDirection = ['ltr', 'rtl'];
-export type TextDirection = typeof textDirection[number];
+import { z } from 'zod';
 
-/** Shape required for every language descriptor. */
-export interface LanguageDefinition {
-  readonly locale: string;
-  readonly language: string;
-  readonly name: string;
-  readonly nativeName: string;
-  readonly nameUk: string;
-  readonly direction: TextDirection;
-}
+export const allLocales = [
+  'en-US',
+  'zh-Hans-CN',
+  'hi-IN',
+  'es-ES',
+  'ar-SA',
+  'fr-FR',
+  'bn-BD',
+  'pt-BR',
+  'ur-PK',
+  'id-ID',
+  'de-DE',
+  'ja-JP',
+  'ko-KR',
+  'tr-TR',
+  'vi-VN',
+  'ta-IN',
+  'te-IN',
+  'mr-IN',
+  'ms-MY',
+  'he-IL',
+  'pl-PL',
+  'uk-UA',
+  'lt-LT',
+  'lv-LV',
+  'et-EE',
+  'be-tarask',
+  'ka-GE',
+  'kk-Cyrl-KZ',
+  'crh-Latn-UA',
+] as const;
+export type Locale = (typeof allLocales)[number];
+export const locale_Schema = z.enum(allLocales);
+
+export const allLanguageCodes = [
+  'ar',
+  'be',
+  'bn',
+  'de',
+  'en',
+  'es',
+  'et',
+  'fr',
+  'he',
+  'hi',
+  'id',
+  'ja',
+  'ka',
+  'kk',
+  'ko',
+  'lt',
+  'lv',
+  'mr',
+  'ms',
+  'pl',
+  'pt',
+  'qm',
+  'ta',
+  'te',
+  'tr',
+  'uk',
+  'ur',
+  'vi',
+  'zh',
+] as const;
+export type LanguageCode = (typeof allLanguageCodes)[number];
+export const languageCode_Schema = z.enum(allLanguageCodes);
+
+export const allLanguageEnglishNames = [
+  'English',
+  'Chinese (Simplified)',
+  'Hindi',
+  'Spanish',
+  'Arabic',
+  'French',
+  'Bengali',
+  'Portuguese (Brazil)',
+  'Urdu',
+  'Indonesian',
+  'German',
+  'Japanese',
+  'Korean',
+  'Turkish',
+  'Vietnamese',
+  'Tamil',
+  'Telugu',
+  'Marathi',
+  'Malay',
+  'Hebrew',
+  'Polish',
+  'Ukrainian',
+  'Lithuanian',
+  'Latvian',
+  'Estonian',
+  'Belarusian (Taraškievica)',
+  'Georgian',
+  'Kazakh (Cyrillic)',
+  'Crimean Tatar',
+] as const;
+export type LanguageName = (typeof allLanguageEnglishNames)[number];
+export const languageName_Schema = z.enum(allLanguageEnglishNames);
+
+export const allLanguagesNativeNames = [
+  'English',
+  '简体中文',
+  'हिन्दी',
+  'Español',
+  'العربية',
+  'Français',
+  'বাংলা',
+  'Português do Brasil',
+  'اردو',
+  'Bahasa Indonesia',
+  'Deutsch',
+  '日本語',
+  '한국어',
+  'Türkçe',
+  'Tiếng Việt',
+  'தமிழ்',
+  'తెలుగు',
+  'मराठी',
+  'Bahasa Melayu',
+  'עברית',
+  'Polski',
+  'Українська',
+  'Lietuvių',
+  'Latviešu',
+  'Eesti',
+  'Беларуская',
+  'ქართული',
+  'Қазақша',
+  'Qırımtatar tili',
+] as const;
+export type NativeName = (typeof allLanguagesNativeNames)[number];
+export const nativeName_Schema = z.enum(allLanguagesNativeNames);
+
+export const allLanguagesUkrainianNames = [
+  'Англійська',
+  'Китайська (спрощене письмо)',
+  'Гінді',
+  'Іспанська',
+  'Арабська',
+  'Французька',
+  'Бенгальська',
+  'Португальська (Бразилія)',
+  'Урду',
+  'Індонезійська',
+  'Німецька',
+  'Японська',
+  'Корейська',
+  'Турецька',
+  'В’єтнамська',
+  'Тамільська',
+  'Телугу',
+  'Маратхі',
+  'Малайська',
+  'Іврит',
+  'Польська',
+  'Українська',
+  'Литовська',
+  'Латиська',
+  'Естонська',
+  'Білоруська (тарашкевиця)',
+  'Грузинська',
+  'Казахська',
+  'Кримськотатарська',
+] as const;
+export type NameUk = (typeof allLanguagesUkrainianNames)[number];
+export const nameUk_Schema = z.enum(allLanguagesUkrainianNames);
+
+export const allTextDirections = ['ltr', 'rtl'] as const;
+export type TextDirection = (typeof allTextDirections)[number];
+export const textDirection_Schema = z.enum(allTextDirections);
+
+export const languageDefinition_Schema = z.strictObject({
+  locale: locale_Schema,
+  language: languageCode_Schema,
+  name: languageName_Schema,
+  nativeName: nativeName_Schema,
+  nameUk: nameUk_Schema,
+  direction: textDirection_Schema,
+});
+export type LanguageDefinition = z.infer<typeof languageDefinition_Schema>;
 
 /** Default language set shipped with the project. */
 export const DEFAULT_SUPPORTED_LANGUAGES = [
@@ -118,27 +290,7 @@ export const DEFAULT_SUPPORTED_LANGUAGES = [
 ] as const satisfies readonly LanguageDefinition[];
 
 export type DefaultSupportedLanguage = (typeof DEFAULT_SUPPORTED_LANGUAGES)[number];
-export type SupportedLanguage = DefaultSupportedLanguage | AdditionalLanguage;
-export type Locale = SupportedLanguage['locale'];
-export type LanguageCode = SupportedLanguage['language'];
 
 /** English is used whenever a requested language is unavailable. */
-export const FALLBACK_LANGUAGE = 'en' as const;
-export const FALLBACK_LOCALE = 'en-US' as const;
-
-export type LanguageFor<L extends Locale> = Extract<SupportedLanguage, { readonly locale: L }>;
-
-export type LocalizedContent<T> = {
-  [L in Locale]: {
-    locale: L;
-    language: LanguageFor<L>;
-    content: T;
-  };
-}[Locale];
-
-export interface LanguageConfiguration {
-  /** Languages are appended after the defaults unless replaceDefaults is true. */
-  additionalLanguages?: readonly LanguageDefinition[];
-  /** When true, use only additionalLanguages and omit the defaults. */
-  replaceDefaults?: boolean;
-}
+export const FALLBACK_LANGUAGE = 'en' satisfies LanguageCode;
+export const FALLBACK_LOCALE = 'en-US' satisfies Locale;
