@@ -73,6 +73,13 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs']);
+  // Engine build-only filesystem use must be distinguished from runtime leakage.
+  // Exercise the canonical package boundary guard when it or Engine changes.
+  if (
+    changed.some(file => file.startsWith('scripts/checkPackageBoundaries/') || file.startsWith('shared/engine/'))
+  ) {
+    exec('node', ['scripts/checkPackageBoundaries/check-package-boundaries.mjs']);
+  }
   // Validate editorial Course composition independently of unrelated workspace
   // typecheck errors; the Course builder is deterministic repository tooling.
   if (
