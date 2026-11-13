@@ -288,5 +288,5 @@ test('requires only dispatch and output essentials, not methodology, review or a
     f.save();
     assert.doesNotThrow(() => runOne(f.lesson, 'generate', f.root));
     assert.ok(calls(fs.readFileSync(f.generated(), 'utf8')).includes('defineImage'));
-    assert.throws(() => main(['check', '--source', path.relative(f.root, f.lesson)], f.root), /up to date|stale draft|missing draft|./, 'CLI should execute without editorial gates');
+    assert.doesNotThrow(() => main(['check', '--source', path.relative(f.root, f.lesson)], f.root));
   }));
