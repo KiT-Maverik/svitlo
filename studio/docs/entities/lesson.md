@@ -1,6 +1,6 @@
 # Lesson
 
-**Entity category:** standalone, Program-neutral educational material.
+**Entity category:** self-contained, Course-neutral educational material. Can be standalone, reused across Courses, or authored under one Course without acquiring narrative responsibilities.
 
 A **Lesson** independently teaches **one or more approved Skills**. It must make sense without a Program, Curriculum, mascot, quest, reward system, external plot or special learner history. The Lesson owns the actual instructional material and its purposeful order of learning experiences; a Program can place it into a larger journey but does not own its pedagogical content.
 
@@ -13,7 +13,7 @@ A **Lesson** independently teaches **one or more approved Skills**. It must make
 
 ## EDITORIAL ARTIFACTS AND IMPLEMENTATION
 
-Lesson files live under `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/`. The [shared UUID addressing rule](../architecture/entity-uuid-addressing.md) determines this path from the permanent Lesson ID. Keep the human-readable camelCase slug in Lesson metadata, not in the directory name. Existing folders do not move when a slug changes.
+Reusable/standalone Lesson files live under `<PackageRoot>/data/lessons/<last-hex-digit>/<uuid>/`. Course-owned (but still pedagogically Course-neutral) Lessons may be authored beneath their owning Course; see [Episode](./episode.md) for Course-owned narrative activities. The [shared UUID addressing rule](../architecture/entity-uuid-addressing.md) determines this path from the permanent Lesson ID. Keep the human-readable camelCase slug in Lesson metadata, not in the directory name. Existing folders do not move when a slug changes.
 
 - `methodology.md` (legacy `methodologist-brief.md`): approved _what/why/for whom_, prerequisite, Skill scope and the Methodologist's explicit `assessmentPlan` (no Quiz, or one/more Quizzes with required `AssessmentMethodKey` values); an editorial-only source **not included in runtime configuration or client bundles**. Its `Target Skills` contains one direct relative Markdown link per Skill **to the canonical Skill `*.data.ts` path under `data/skills/`**, with the full source filename (including extension) as the link label. New Briefs **target `<PackageRoot>/data/skills/`** for Skill `*.data.ts` references. Validate every link to an existing source file. If that package has not migrated, report the gap as a blocker rather than writing broken links or pointing to `src/`.
 - `content.yaml`: Screenwriter-owned **machine-readable** _how to teach_ plan with ordered Sections/ContentBlocks, learner-facing text in the declared `documentLanguage` and explicit assessment/Scene/media dependencies. Legacy `content.md` requires explicit migration; it is not a parallel canonical artifact.
