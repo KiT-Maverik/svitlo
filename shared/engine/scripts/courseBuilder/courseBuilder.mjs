@@ -258,9 +258,9 @@ function exportIdentifier(slug) {
   return IDENTIFIER.test(value) ? value : 'course_' + value;
 }
 
-export function renderCourseSource(source, { slug, overrides } = {}) {
+export function renderCourseSource(source, { slug, outputSlug, overrides } = {}) {
   const course = normalizeCourseSource(source, slug);
-  const fileSlug = slug ?? course.slug ?? (typeof course.id === 'string' ? 'course_' + course.id.slice(0, 8) : 'course_draft');
+  const fileSlug = outputSlug ?? slug ?? course.slug ?? (typeof course.id === 'string' ? 'course_' + course.id.slice(0, 8) : 'course_draft');
   const symbol = exportIdentifier(fileSlug) + '_Course';
   const state = { imports: new Set(), lessonImports: new Map(), unresolved: [] };
   const expression = renderEntity(course, state, 0, 'course');
@@ -367,7 +367,7 @@ export async function main(args) {
     (typeof normalized.id === 'string' ? 'course_' + normalized.id.slice(0, 8) : 'course_draft');
   if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(fileSlug)) fail('SLUG', 'unsafe output slug: ' + fileSlug);
   const filename = path.join(courseFolder, fileSlug + '.data.ts');
-  const content = renderCourseSource(source, { slug: fileSlug, overrides });
+  const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides });
   const changed = verifyOrWriteGenerated(filename, content, options.action);
   console.log((changed ? 'Scaffolded ' : 'Checked ') + filename +
     '; draft requires AI completion (no schema/TS/publication checks)');
