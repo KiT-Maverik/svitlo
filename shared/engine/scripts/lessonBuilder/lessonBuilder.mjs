@@ -21,6 +21,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
 import { loadFactoryRegistry } from '../yamlDraft/loadFactoryRegistry.mjs';
+import { sourceLocaleOnly, sourceFlagValuesOnly } from '../yamlDraft/sourceLanguage.mjs';
 export { loadFactoryRegistry };
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
@@ -73,37 +74,6 @@ function parseYaml(file, relative) {
     if (error instanceof BuilderDiagnostic) throw error;
     fail(relative, '$', error.message);
   }
-}
-
-/** Only trim explicit language dictionaries under locale, never params.languages. */
-function sourceLocaleOnly(value, language) {
-  if (Array.isArray(value)) return value.map(item => sourceLocaleOnly(item, language));
-  if (!isRecord(value)) return value;
-  const entries = Object.entries(value);
-  if (entries.length && entries.every(([key]) => /^[a-z]{2}(?:-[A-Z]{2})?$/.test(key))) {
-    return Object.hasOwn(value, language) ? { [language]: sourceLocaleOnly(value[language], language) } : {};
-  }
-  return Object.fromEntries(entries.map(([key, child]) => [key, sourceLocaleOnly(child, language)]));
-}
-
-/**
- * Flashcard flags live under parameters.flags rather than locale. Their
- * acronym/custom values may still be localized by the Config schema.
- */
-function sourceFlagValuesOnly(parameters, language) {
-  if (!isRecord(parameters) || !isRecord(parameters.flags) || !isRecord(parameters.flags.items)) return parameters;
-  return {
-    ...parameters,
-    flags: {
-      ...parameters.flags,
-      items: Object.fromEntries(Object.entries(parameters.flags.items).map(([slug, flag]) => [
-        slug,
-        isRecord(flag) && ['acronym', 'custom'].includes(flag.type)
-          ? { ...flag, value: sourceLocaleOnly(flag.value, language) }
-          : flag,
-      ])),
-    },
-  };
 }
 
 /**
