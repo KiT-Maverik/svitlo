@@ -1,6 +1,6 @@
 'use client';
 
-import type { ComponentType } from 'react';
+import { useMemo, type ComponentType } from 'react';
 import type { LanguageCode } from '@svitlo/contracts/localization';
 import type { Lesson_Props } from '@svitlo/engine';
 import type { UiKitMessages } from '#types/uiKitMessages';
@@ -27,5 +27,9 @@ export type LessonProps = {
 };
 
 export function Lesson(props: LessonProps) {
-  return <LessonController key={props.href + ':' + props.response.id + ':' + props.language} {...props} />;
+  const response = useMemo(() => ({
+    ...props.response,
+    section: props.response.section.filter(section => section.params.disabled !== true),
+  }), [props.response]);
+  return <LessonController key={props.href + ':' + props.response.id + ':' + props.language} {...props} response={response} />;
 }
