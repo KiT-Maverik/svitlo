@@ -43,7 +43,10 @@ const unscopedOptions: PublicationLanguageOptions<[]> = { languages: ['fr'] };
 
 type English = LanguageScope<['en']>;
 type Bilingual = LanguageScope<['en', 'uk']>;
+type Unscoped = LanguageScope<[]>;
 type LanguageCompatibilityChecks = [
+  Assert<Equal<ChildSupporting<['en', 'uk'], Unscoped>, Unscoped>>,
+  Assert<Equal<ChildSupporting<['en', 'uk'], English>, never>>,
   Assert<Equal<ChildSupporting<['en'], Bilingual>, Bilingual>>,
   Assert<Equal<ChildSupporting<['en', 'uk'], English>, never>>,
   Assert<

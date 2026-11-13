@@ -30,12 +30,18 @@ export type LanguageScope<Languages extends readonly LanguageCodes[]> = {
   readonly __svitloLanguageScope: Languages;
 };
 
-/** The parent cannot advertise a language absent from its child. */
+/**
+ * Explicitly scoped children must cover every language advertised by a parent.
+ * The empty tuple is the established unscoped Build convention: its actual
+ * resolved Props are still validated for every requested language at publish time.
+ */
 export type ChildSupporting<Required extends readonly LanguageCodes[], Child> =
   Child extends LanguageScope<infer Available extends readonly LanguageCodes[]>
-    ? Exclude<Required[number], Available[number]> extends never
+    ? Available extends readonly []
       ? Child
-      : never
+      : Exclude<Required[number], Available[number]> extends never
+        ? Child
+        : never
     : never;
 
 export type ChildrenSupporting<Required extends readonly LanguageCodes[], Children extends Record<string, object>> = {
