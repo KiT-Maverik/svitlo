@@ -279,3 +279,27 @@ test('CLI confines input and output path selection', () => {
     '--package', 'content/math', '--course', courseId, '--source', '../bad.yaml', '--write',
   ]), /ARGS/);
 });
+
+test('ID-derived export filename does not fabricate an absent authored Course slug', () => {
+  const code = renderCourseSource({
+    type: 'course',
+    id: courseId,
+    content: { items: {}, order: [] },
+  }, { outputSlug: 'course_30ecbde1' });
+  assert(code.includes('course_30ecbde1_Course = defineCourse('));
+  assert(!code.includes('"slug":'));
+});
+
+test('YAML-derived unresolved Lesson comments cannot inject TypeScript lines', () => {
+  const code = renderCourseSource({
+    ...source,
+    content: {
+      items: { injected: { type: 'lesson', lessonId: lessonId + '\nexport const injected = true;' } },
+      order: ['injected'],
+    },
+  });
+  assert(!code.includes('\nexport const injected = true;'));
+  assert(code.includes('\\nexport const injected = true;'));
+  const ast = ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true);
+  assert.deepEqual(ast.parseDiagnostics, []);
+});
