@@ -90,6 +90,9 @@ for (const [path, pkg] of workspaces) {
     path === 'shared/engine'
       ? [
           'index.ts',
+          'build.ts',
+          'runtime.ts',
+          'assemblers',
           'builders',
           'configurators',
           'content',

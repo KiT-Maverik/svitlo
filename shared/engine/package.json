@@ -21,8 +21,6 @@
     "@types/node": "^20",
     "esbuild": "^0.28.2"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     "./build": {
       "types": "./dist/build.d.ts",
@@ -31,18 +29,6 @@
     "./runtime": {
       "types": "./dist/runtime.d.ts",
       "default": "./dist/runtime.js"
-    },
-    ".": {
-      "react-server": {
-        "types": "./dist/runtime.d.ts",
-        "default": "./dist/runtime.js"
-      },
-      "browser": {
-        "types": "./dist/runtime.d.ts",
-        "default": "./dist/runtime.js"
-      },
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
     }
   },
   "files": [
