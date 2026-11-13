@@ -94,6 +94,23 @@ describe('assembleLessonResponse', () => {
     assert.equal(response.sections[1]?.skippable, true);
   });
 
+  it('reads Section skipping settings from new configurator params', () => {
+    const data = {
+      ...lesson,
+      sections: [
+        { ...quiz('first', false), params: { skippable: false } },
+        { ...quiz('second', false), params: { skippable: true } },
+      ],
+    };
+    const response = assembleLessonResponse(id, 'en', {
+      config: { data, localeSources: {} },
+      flashcards: { data: [], localeSources: {} },
+      questions,
+    });
+    assert.equal(response.sections[0]?.skippable, false);
+    assert.equal(response.sections[1]?.skippable, true);
+  });
+
   it('rejects legacy nested Quiz ContentBlocks', () => {
     const invalid = { ...lesson, sections: [{ ...quiz('old', true), content: [{ type: 'quiz' }] }] };
     assert.throws(
