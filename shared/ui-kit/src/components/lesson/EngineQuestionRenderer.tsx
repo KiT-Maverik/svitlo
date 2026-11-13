@@ -205,7 +205,7 @@ function QuestionCard({
             />
           ))}
         {question.type === 'matchBlocks' && Object.entries(question.content.pairs).map(([key, pair]) => (
-          <Stack key={key} direction="row" spacing={2} alignItems="center">
+          <Stack key={key} direction="row" spacing={2} sx={{ alignItems: "center" }}>
             <Box sx={{ flex: 1 }}>{renderer([pair.left])}</Box>
             <TextField select label={messages.questionFrame.answerLabel} value={answer[key] ?? ''} onChange={event => respond(key, event.target.value)} disabled={disabled || checked} sx={{ flex: 1 }}>
               {Object.entries(question.content.pairs).map(([candidate, value]) => (
@@ -239,7 +239,7 @@ function QuestionCard({
           return ids.map((id, index) => {
             const block = blocks.find(item => item.id === id);
             if (!block) throw new Error('Quiz sequence references missing ContentBlock: ' + id);
-            return <Stack key={id} direction="row" alignItems="center">
+            return <Stack key={id} direction="row" sx={{ alignItems: "center" }}>
               <Box sx={{ flex: 1 }}>{renderer([block])}</Box>
               <Button disabled={disabled || checked || index === 0} onClick={() => {
                 const next = [...ids]; [next[index], next[index - 1]] = [next[index - 1], next[index]]; setOrder(next);
@@ -253,7 +253,7 @@ function QuestionCard({
         {question.type === 'buildAnswerWithBlocks' && (
           <>
             <Typography>{question.locale.placeholder}</Typography>
-            <Stack direction="row" useFlexGap flexWrap="wrap">
+            <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }}>
               {[...question.content.correctSequence, ...question.content.distractors].map(block => (
                 <Button key={block.id} variant={chosen.includes(block.id) ? 'contained' : 'outlined'}
                   disabled={disabled || checked} onClick={() => setChosen(previous => previous.includes(block.id) ? previous.filter(id => id !== block.id) : [...previous, block.id])}>
@@ -272,7 +272,7 @@ function QuestionCard({
       {checked && parameters.interaction.allowExplanations && question.content.explanation?.length ? (
         <Box component="details"><Box component="summary">{messages.questionFrame.explanation}</Box>{renderer(question.content.explanation)}</Box>
       ) : null}
-      <Stack direction="row" justifyContent="center" sx={{ mt: 2 }}>
+      <Stack direction="row" sx={{ justifyContent: "center", mt: 2 }}>
         {checked && canRetry && !disabled ? (
           <Button onClick={() => { setChecked(false); setAnswer({}); setOrder([]); setChosen([]); onChecked(undefined); }}>
             {messages.questionFrame.retry}
@@ -347,7 +347,7 @@ export function EngineQuestionRenderer({
         </Box>
       ))}
       {stepper && (
-        <Stack direction="row" justifyContent="space-between">
+        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
           <Button disabled={index === 0} onClick={() => setIndex(value => value - 1)}>{messages.learningLayout.actions.previous}</Button>
           <Button disabled={index >= questions.length - 1 || (!section.params.interaction.allowDeferring && !Object.hasOwn(statuses, questions[index].id))}
             onClick={() => setIndex(value => value + 1)}>{messages.learningLayout.actions.next}</Button>
