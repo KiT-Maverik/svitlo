@@ -97,7 +97,7 @@ export const yamlSelectOneAnswer_Schema = selectOneAnswer_Config_Schema.extend({
 });
 
 /** Required question type dispatch with no opaque z.custom children. */
-export const yamlQuestion_Schema = z.discriminatedUnion('type', [
+export const yamlQuestion_Schema: z.ZodType = z.discriminatedUnion('type', [
   yamlAnswerWithNumber_Schema,
   yamlAnswerWithText_Schema,
   yamlBuildAnswerWithBlocks_Schema,
