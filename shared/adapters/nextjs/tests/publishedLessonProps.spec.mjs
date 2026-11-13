@@ -57,7 +57,10 @@ test('rejects missing base, malformed JSON and mismatched Lesson IDs', async t =
 
   await writeFile(path.join(directory, 'base.json'), JSON.stringify(baseLesson()));
   await writeFile(path.join(directory, 'uk.json'), '{bad-json');
-  await assert.rejects(loadPublishedLessonProps({ rootDirectory, id, language: 'uk' }), /Malformed published Lesson JSON/);
+  await assert.rejects(
+    loadPublishedLessonProps({ rootDirectory, id, language: 'uk' }),
+    /Malformed published Lesson JSON/,
+  );
 
   await writeFile(path.join(directory, 'uk.json'), JSON.stringify({ locale: { title: 'Урок' } }));
   await writeFile(path.join(directory, 'base.json'), JSON.stringify(baseLesson(otherId)));
@@ -66,13 +69,8 @@ test('rejects missing base, malformed JSON and mismatched Lesson IDs', async t =
 
 test('rejects unsafe IDs and unsupported language requests', async t => {
   const { rootDirectory } = await fixture(t);
-  await assert.rejects(
-    loadPublishedLessonProps({ rootDirectory, id: '../outside', language: 'uk' }),
-    /canonical UUID/,
-  );
-  await assert.rejects(
-    loadPublishedLessonProps({ rootDirectory, id, language: '../unsafe' }),
-  );
+  await assert.rejects(loadPublishedLessonProps({ rootDirectory, id: '../outside', language: 'uk' }), /canonical UUID/);
+  await assert.rejects(loadPublishedLessonProps({ rootDirectory, id, language: '../unsafe' }));
   await assert.rejects(
     loadPublishedLessonProps({ rootDirectory, id, language: 'pl' }),
     /does not support requested language/,

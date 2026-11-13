@@ -70,7 +70,10 @@ test('Lesson assembler resolves only the requested language and preserves nested
 
   assert.equal(uk.locale.title, 'Українська назва');
   assert.equal(en.locale.title, 'English title');
-  assert.deepEqual(uk.section.map(item => item.slug), ['intro', 'practice']);
+  assert.deepEqual(
+    uk.section.map(item => item.slug),
+    ['intro', 'practice'],
+  );
   assert.equal(uk.section[0].locale?.title, 'Перекладений вступ');
   assert.equal(en.section[0].locale?.title, 'Introduction');
   assert.equal(data.locale?.uk?.locale?.title, 'Українська назва');
@@ -95,9 +98,15 @@ test('resource locale -> override base -> override locale is the required preced
 test('removing a translated child does not resurrect it from the original locale array', () => {
   const patch: PublishedLessonPropsOverride = { base: { section: [second] } } as PublishedLessonPropsOverride;
   const uk = assembleLessonProps(resource(), 'uk', patch);
-  assert.deepEqual(uk.section.map(item => item.slug), ['practice']);
+  assert.deepEqual(
+    uk.section.map(item => item.slug),
+    ['practice'],
+  );
   assert.equal(uk.section[0].locale?.title, 'Practice');
-  assert.deepEqual(assembleLessonProps(resource(), 'en', patch).section.map(item => item.slug), ['practice']);
+  assert.deepEqual(
+    assembleLessonProps(resource(), 'en', patch).section.map(item => item.slug),
+    ['practice'],
+  );
 });
 
 test('reordered and newly added children remain atomic per locale', () => {
@@ -106,11 +115,10 @@ test('reordered and newly added children remain atomic per locale', () => {
     locale: { uk: { section: [{ ...third, locale: { title: 'Повторення' } }, second, first] } },
   } as PublishedLessonPropsOverride;
   for (const language of ['en', 'uk'] as const) {
-    assert.deepEqual(assembleLessonProps(resource(), language, patch).section.map(item => item.slug), [
-      'review',
-      'practice',
-      'intro',
-    ]);
+    assert.deepEqual(
+      assembleLessonProps(resource(), language, patch).section.map(item => item.slug),
+      ['review', 'practice', 'intro'],
+    );
   }
   assert.equal(assembleLessonProps(resource(), 'uk', patch).section[0].locale?.title, 'Повторення');
 });
