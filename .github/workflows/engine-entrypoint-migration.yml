@@ -45,6 +45,11 @@ jobs:
           verify npm run code:lint:check --workspace @svitlo/platform
           verify npm run code:lint:check --workspace @svitlo/web
           verify npm run code:lint:check --workspace @svitlo/mobile
+          verify npm run test --workspace @svitlo/engine
+          verify npm run code:check:types --workspace @svitlo/ui-kit
+          verify npm run code:check:types --workspace @svitlo/adapter-nextjs
+          verify npm run code:check:types --workspace @svitlo/adapter-electron
+          verify npm run code:check:types --workspace @svitlo/adapter-capacitor
           echo "Verification failures: $failures"
           exit "$failures"
       - name: Commit migrated imports
