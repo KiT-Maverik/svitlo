@@ -2,22 +2,24 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Youtube_Response } from '+@svitlo/contracts/content';
+import type { ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
 import { Youtube } from './Youtube';
 import { youtubeEmbedUrl, youtubeVideoId } from './Youtube.utils';
 
-const response: ContentBlock_Youtube_Response = {
+const response: ContentBlock_Youtube_Props = {
   id: 'youtube-1',
+  slug: 'youtube-1',
   type: 'youtube',
-  mode: 'embed',
-
-  href: 'https://youtu.be/M7lc1UVf-VE',
-  title: 'Назва блоку',
-  label: 'Приклад відео',
-  fallback: {
-    offline: 'Немає з’єднання',
-    unavailable: 'Відео не відтворюється',
-    retry: 'Повторити',
+  params: { mode: 'embed' },
+  locale: {
+    href: 'https://youtu.be/M7lc1UVf-VE',
+    title: 'Назва блоку',
+    label: 'Приклад відео',
+    fallback: {
+      offline: 'Немає з’єднання',
+      unavailable: 'Відео не відтворюється',
+      retry: 'Повторити',
+    },
   },
 };
 
@@ -43,13 +45,13 @@ describe('YouTube content block', () => {
 
   it('shows a link only while online', () => {
     setOnline(false);
-    const linkResponse: ContentBlock_Youtube_Response = { ...response, mode: 'link' };
+    const linkResponse: ContentBlock_Youtube_Props = { ...response, params: { ...response.params, mode: 'link' } };
     render(<Youtube messages={enUiKitMessages.youtube} {...linkResponse} />);
     expect(screen.queryByRole('link')).toBeNull();
     expect(screen.getByRole('status')).toHaveTextContent('Немає з’єднання');
 
     act(() => setOnline(true));
-    expect(screen.getByRole('link', { name: 'Приклад відео' })).toHaveAttribute('href', response.href);
+    expect(screen.getByRole('link', { name: 'Приклад відео' })).toHaveAttribute('href', response.locale.href);
   });
 
   it('shows the unavailable placeholder when the YouTube player reports an error', async () => {
@@ -93,20 +95,19 @@ describe('YouTube links, validation, and retry', () => {
       <Youtube
         messages={enUiKitMessages.youtube}
         {...response}
-        mode="link"
-        title={undefined}
-        label="Watch the example"
+        params={{ ...response.params, mode: 'link' }}
+        locale={{ ...response.locale, title: undefined, label: 'Watch the example' }}
       />,
     );
     const link = screen.getByRole('link', { name: 'Watch the example' });
     expect(link).toHaveAttribute('target', '_blank');
     expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-    expect(link).toHaveAttribute('href', response.href);
+    expect(link).toHaveAttribute('href', response.locale.href);
   });
 
   it('keeps the block title separate from the link text', () => {
     setOnline(true);
-    render(<Youtube messages={enUiKitMessages.youtube} {...response} mode="link" />);
+    render(<Youtube messages={enUiKitMessages.youtube} {...response} params={{ ...response.params, mode: 'link' }} />);
     expect(screen.getByRole('link', { name: 'Приклад відео' })).toBeInTheDocument();
     expect(screen.getByText('Назва блоку')).toBeInTheDocument();
   });

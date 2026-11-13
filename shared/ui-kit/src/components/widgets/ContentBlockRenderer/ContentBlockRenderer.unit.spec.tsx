@@ -1,12 +1,31 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 
+import type { ContentBlock_Checkpoint_Props, ContentBlock_Markdown_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
 import type { ContentBlockResponse, SceneRegistry } from './types';
 import { ContentBlockRenderer } from './ContentBlockRenderer';
 import { enUiKitMessages } from '../../../testing/uiKitMessages.unit.fx';
 
-const first: ContentBlockResponse = { id: 'first', type: 'text', value: 'First block' };
-const last: ContentBlockResponse = { id: 'last', type: 'text', value: 'Last block' };
+const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
+  id, slug: 'textBlock', type: 'text', params: {}, locale: { value },
+});
+const first = textBlock('first', 'First block');
+const last = textBlock('last', 'Last block');
+const markdown = (id: string, value: string): ContentBlock_Markdown_Props => ({
+  id, slug: 'markdown', type: 'markdown', params: {}, locale: { value },
+});
+const checkpoint = (id: string, question: string, answer: ContentBlock_Text_Props): ContentBlock_Checkpoint_Props => ({
+  id, slug: 'checkpoint', type: 'checkpoint',
+  params: {},
+  locale: { title: 'Review' },
+  content: [
+    {
+      id: id + '-item', slug: 'checkpointItem', type: 'checkpointItem',
+      question: textBlock(id + '-question', question),
+      answer: [answer],
+    },
+  ],
+});
 
 describe('ContentBlockRenderer', () => {
   it('renders nothing when blocks are absent or empty', () => {
@@ -22,11 +41,7 @@ describe('ContentBlockRenderer', () => {
         messages={enUiKitMessages}
         blocks={[
           first,
-          {
-            id: 'middle',
-            type: 'markdown',
-            text: '**Middle block**',
-          },
+          markdown('middle', '**Middle block**'),
           last,
         ]}
       />,
@@ -44,11 +59,7 @@ describe('ContentBlockRenderer', () => {
         messages={enUiKitMessages}
         language="ar"
         blocks={[
-          {
-            id: 'rtl-markdown',
-            type: 'markdown',
-            text: '# عنوان الدرس\n\n**نص عربي**',
-          },
+          markdown('rtl-markdown', '# عنوان الدرس\n\n**نص عربي**'),
         ]}
       />,
     );
@@ -63,12 +74,7 @@ describe('ContentBlockRenderer', () => {
       <ContentBlockRenderer
         messages={enUiKitMessages}
         blocks={[
-          {
-            id: 'checkpoint',
-            type: 'checkpoint',
-            title: 'Review',
-            items: [{ question: 'What is first?', answer: [first] }],
-          },
+          checkpoint('checkpoint', 'What is first?', first),
         ]}
       />,
     );
@@ -78,7 +84,14 @@ describe('ContentBlockRenderer', () => {
 
   it('continues to resolve scenes from the supplied registry', () => {
     const sceneRegistry: SceneRegistry = id =>
-      id === 'diagram' ? ({ locales }) => <div role="img" aria-label={locales.title as string} /> : undefined;
+      id === 'diagram'
+        ? ({ locales }) => (
+            <div
+              role="img"
+              aria-label={typeof locales === 'object' && typeof locales.title === 'string' ? locales.title : undefined}
+            />
+          )
+        : undefined;
     render(
       <ContentBlockRenderer
         messages={enUiKitMessages}
@@ -86,7 +99,9 @@ describe('ContentBlockRenderer', () => {
           {
             id: 'diagram',
             type: 'scene',
-            locales: { title: 'Diagram' },
+            slug: 'diagram',
+            params: {},
+            locale: { value: { title: 'Diagram' } },
           },
         ]}
         sceneRegistry={sceneRegistry}
@@ -112,20 +127,18 @@ describe('ContentBlockRenderer guard and state coverage', () => {
   });
 
   it('preserves an expanded and checked checkpoint when a sibling text block changes', () => {
-    const checkpoint: ContentBlockResponse = {
-      id: 'persistent-checkpoint',
-      type: 'checkpoint',
-      title: 'Review',
-      enableChecks: true,
-      items: [{ question: 'What did you learn?', answer: [last] }],
+    const originalCheckpoint = checkpoint('persistent-checkpoint', 'What did you learn?', last);
+    const persistentCheckpoint: ContentBlock_Checkpoint_Props = {
+      ...originalCheckpoint,
+      params: { enableChecks: true },
     };
-    const { rerender } = render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[first, checkpoint]} />);
+    const { rerender } = render(<ContentBlockRenderer messages={enUiKitMessages} blocks={[first, persistentCheckpoint]} />);
     fireEvent.click(screen.getByText('What did you learn?'));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
     expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();
 
     rerender(
-      <ContentBlockRenderer messages={enUiKitMessages} blocks={[{ ...first, value: 'Updated opening' }, checkpoint]} />,
+      <ContentBlockRenderer messages={enUiKitMessages} blocks={[textBlock('first', 'Updated opening'), persistentCheckpoint]} />,
     );
     expect(screen.getByText('Updated opening')).toBeVisible();
     expect(screen.getByRole('button', { name: 'Checked' })).toBeDisabled();

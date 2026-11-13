@@ -1,19 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Code_Response } from '+@svitlo/contracts/content';
+import type { ContentBlock_Code_Props } from '@svitlo/engine/runtime';
 
 import { Code } from './Code';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { resolveCodeVariables } from './Code.utils';
 
-const response: ContentBlock_Code_Response = {
+const response: ContentBlock_Code_Props = {
   id: 'code-1',
+  slug: 'code-1',
   type: 'code',
-
-  language: 'typescript',
-  title: 'Приклад',
-  codeAsText: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
-  variables: { GREETING: 'Привіт' },
+  params: {
+    language: 'typescript',
+    codeAsText: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
+  },
+  locale: {
+    title: 'Приклад',
+    variables: { GREETING: 'Привіт' },
+  },
 };
 
 describe('Code content block', () => {
@@ -31,7 +35,7 @@ describe('Code content block', () => {
   });
 
   it('shows unknown languages and missing variables as readable plain text', () => {
-    const { container } = render(<Code {...response} language="made-up" variables={{}} />);
+    const { container } = render(<Code {...response} params={{ ...response.params, language: 'made-up' }} locale={{ ...response.locale, variables: {} }} />);
     expect(container.querySelector('code')).toHaveTextContent('const greeting = "%_%GREETING%_%";');
     expect(container.querySelector('.hljs-keyword')).toBeNull();
   });
@@ -40,7 +44,7 @@ describe('Code content block', () => {
     expect(resolveCodeVariables('const value = "%_%VALUE%_%";', { VALUE: '<script>alert(1)</script>' })).toBe(
       'const value = "<script>alert(1)</script>";',
     );
-    const { container } = render(<Code {...response} variables={{ GREETING: '<script>alert(1)</script>' }} />);
+    const { container } = render(<Code {...response} locale={{ ...response.locale, variables: { GREETING: '<script>alert(1)</script>' } }} />);
     expect(container.querySelector('script')).toBeNull();
     expect(container.querySelector('code')).toHaveTextContent('<script>alert(1)</script>');
   });

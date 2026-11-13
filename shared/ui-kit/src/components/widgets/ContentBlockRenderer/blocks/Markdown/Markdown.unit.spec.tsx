@@ -1,15 +1,17 @@
 import { render, screen, within } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Markdown_Response } from '+@svitlo/contracts/content';
+import type { ContentBlock_Markdown_Props } from '@svitlo/engine/runtime';
 
 import { Markdown } from './Markdown';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
-const response: ContentBlock_Markdown_Response = {
+const response: ContentBlock_Markdown_Props = {
   id: 'markdown-example',
+  slug: 'markdownExample',
   type: 'markdown',
-  text: '# Lesson title\n\n[Reference](https://example.org/lesson)',
+  params: {},
+  locale: { value: '# Lesson title\n\n[Reference](https://example.org/lesson)' },
 };
 
 describe('Markdown content block', () => {
@@ -29,7 +31,7 @@ describe('Markdown content block', () => {
     render(
       <Markdown
         {...response}
-        text={'## Practice\n\n- **First** point\n- *Second* point\n\nUse `const`.\n\n```js\nconst answer = 42;\n```'}
+        locale={{ ...response.locale, value: '## Practice\n\n- **First** point\n- *Second* point\n\nUse `const`.\n\n```js\nconst answer = 42;\n```' }}
       />,
     );
     const article = screen.getByRole('article');
@@ -44,7 +46,7 @@ describe('Markdown content block', () => {
   it('derives language and RTL direction from the selected lesson language', () => {
     render(
       <ContentLanguageContext.Provider value="ar">
-        <Markdown {...response} text={'# عنوان الدرس\n\nنص عربي'} />
+        <Markdown {...response} locale={{ ...response.locale, value: '# عنوان الدرس\n\nنص عربي' }} />
       </ContentLanguageContext.Provider>,
     );
     const article = screen.getByRole('article');
@@ -54,19 +56,19 @@ describe('Markdown content block', () => {
   });
 
   it('replaces Code-style markers before rendering Markdown', () => {
-    render(<Markdown {...response} text="# %_%NAME%_%" variables={{ NAME: 'Ada' }} />);
+    render(<Markdown {...response} locale={{ ...response.locale, value: '# %_%NAME%_%', variables: { NAME: 'Ada' } }} />);
     expect(screen.getByRole('heading', { name: 'Ada' })).toBeVisible();
   });
 
   it('sanitizes HTML supplied through variables', () => {
-    render(<Markdown {...response} text="**%_%VALUE%_%**" variables={{ VALUE: '<script>alert(1)</script>Safe' }} />);
+    render(<Markdown {...response} locale={{ ...response.locale, value: '**%_%VALUE%_%**', variables: { VALUE: '<script>alert(1)</script>Safe' } }} />);
     const article = screen.getByRole('article');
     expect(article.querySelector('script')).toBeNull();
     expect(article).toHaveTextContent('Safe');
   });
 
   it('supports the authored mark and aside elements', () => {
-    render(<Markdown {...response} text="<aside><mark>Highlighted lesson</mark></aside>" />);
+    render(<Markdown {...response} locale={{ ...response.locale, value: "<aside><mark>Highlighted lesson</mark></aside>" }} />);
     expect(screen.getByRole('article').querySelector('aside mark')).toHaveTextContent('Highlighted lesson');
   });
 
@@ -74,9 +76,7 @@ describe('Markdown content block', () => {
     render(
       <Markdown
         {...response}
-        text={
-          '<p onclick="alert(1)">Safe content</p><script>alert(1)</script><img src="image.png" onerror="alert(1)" alt="Example" />'
-        }
+        locale={{ ...response.locale, value: '<p onclick="alert(1)">Safe content</p><script>alert(1)</script><img src="image.png" onerror="alert(1)" alt="Example" />' }}
       />,
     );
     const article = screen.getByRole('article');
@@ -90,7 +90,7 @@ describe('Markdown content block', () => {
     render(
       <Markdown
         {...response}
-        text={'<a href="javascript:alert(1)">Unsafe URL</a> and [safe URL](https://example.org)'}
+        locale={{ ...response.locale, value: '<a href="javascript:alert(1)">Unsafe URL</a> and [safe URL](https://example.org)' }}
       />,
     );
     const article = screen.getByRole('article');
@@ -100,16 +100,16 @@ describe('Markdown content block', () => {
   });
 
   it('updates the rendered content when a response changes', () => {
-    const { rerender } = render(<Markdown {...response} text="**Before**" />);
+    const { rerender } = render(<Markdown {...response} locale={{ ...response.locale, value: "**Before**" }} />);
     expect(screen.getByText('Before').tagName).toBe('STRONG');
 
-    rerender(<Markdown {...response} text="*After*" />);
+    rerender(<Markdown {...response} locale={{ ...response.locale, value: "*After*" }} />);
     expect(screen.getByText('After').tagName).toBe('EM');
     expect(screen.queryByText('Before')).toBeNull();
   });
 
   it('supports an empty Markdown response without producing a placeholder', () => {
-    render(<Markdown {...response} text="" />);
+    render(<Markdown {...response} locale={{ ...response.locale, value: '\n' }} />);
     const article = screen.getByRole('article');
     expect(article).toBeEmptyDOMElement();
     expect(article).toHaveAttribute('lang', 'en-US');
@@ -117,7 +117,7 @@ describe('Markdown content block', () => {
 
   it('renders the same safe Markdown on the server', () => {
     const html = renderToStaticMarkup(
-      <Markdown {...response} text="<aside><mark>Safe note</mark></aside><script>alert(1)</script>" />,
+      <Markdown {...response} locale={{ ...response.locale, value: "<aside><mark>Safe note</mark></aside><script>alert(1)</script>" }} />,
     );
     expect(html).toContain('<article');
     expect(html).toContain('<aside><mark>Safe note</mark></aside>');

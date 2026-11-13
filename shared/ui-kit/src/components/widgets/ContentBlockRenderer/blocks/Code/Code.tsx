@@ -1,19 +1,19 @@
-import type { ContentBlock_Code_Response } from '+@svitlo/contracts/content';
+import type { ContentBlock_Code_Props } from '@svitlo/engine/runtime';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { highlightCode, resolveCodeVariables } from './Code.utils';
 import styles from './Code.module.css';
 
-export const Code = ({ codeAsText, language, title, variables }: ContentBlock_Code_Response) => {
+export const Code = ({ params: { codeAsText, language }, locale }: ContentBlock_Code_Props) => {
   const contentLanguage = useContentLanguage();
-  const value = resolveCodeVariables(codeAsText, variables);
+  const value = resolveCodeVariables(codeAsText, locale?.variables);
   const highlighted = highlightCode(value, language);
 
   return (
     <figure {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.figure}>
       <figcaption className={styles.header}>
-        {title && <span>{title}</span>}
+        {locale?.title && <span>{locale.title}</span>}
         <span className={styles.language}>{language}</span>
       </figcaption>
       <pre className={styles.pre}>
