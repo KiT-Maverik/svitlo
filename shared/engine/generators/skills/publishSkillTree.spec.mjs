@@ -58,10 +58,7 @@ test('one full base tree and one file per supplied locale, never per entity', ()
   assert.deepEqual(Object.keys(JSON.parse(files.get('base.json'))), ['colors', 'shapes']);
   assert.deepEqual(Object.keys(JSON.parse(files.get('uk.json'))), ['colors', 'shapes']);
   assert.equal(JSON.parse(files.get('base.json')).colors.groups[0].skills[1].slug, 'orange');
-  assert.deepEqual(
-    JSON.parse(files.get('uk.json')).colors.groups[0].skills[0].locale,
-    { name: 'Червоний' },
-  );
+  assert.deepEqual(JSON.parse(files.get('uk.json')).colors.groups[0].skills[0].locale, { name: 'Червоний' });
   assert.deepEqual(ready, before, 'Generator may not mutate completed publication data');
   assert.deepEqual(files, renderSkillTree(ready), 'Output must be deterministic');
 });
@@ -80,10 +77,7 @@ test('preserves Props-shaped locale fragments and ordered children without addin
 test('does not synthesize locale files for invariant-only publications', () => {
   const base = publication().base;
   assert.deepEqual([...renderSkillTree({ base }).keys()], ['base.json']);
-  assert.deepEqual(
-    [...renderSkillTree({ base, locale: { uk: undefined } }).keys()],
-    ['base.json'],
-  );
+  assert.deepEqual([...renderSkillTree({ base, locale: { uk: undefined } }).keys()], ['base.json']);
 });
 
 test('rejects malformed outputs and JSON-lossy or unsafe payloads', () => {
@@ -133,7 +127,14 @@ test('refuses traversal filenames and symlink output trees', () => {
   try {
     const output = path.join(temp, 'skills');
     assert.throws(
-      () => writeSkillFiles(output, new Map([['base.json', '{}'], ['../escape.json', '{}']])),
+      () =>
+        writeSkillFiles(
+          output,
+          new Map([
+            ['base.json', '{}'],
+            ['../escape.json', '{}'],
+          ]),
+        ),
       /Invalid Skills output filename/,
     );
     fs.symlinkSync(temp, output, 'dir');

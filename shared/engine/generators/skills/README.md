@@ -16,8 +16,7 @@ The build/publish-time serializer is `publishSkillTree.mjs`. It writes one
   or interprets/merges their Props.
 
 ```js
-import { prepareSkillPublication } from
-  '../../../../scripts/generators/data/prepare-skills-publication.mjs';
+import { prepareSkillPublication } from '../../../../scripts/generators/data/prepare-skills-publication.mjs';
 import { renderSkillTree, writeSkillFiles } from './publishSkillTree.mjs';
 
 const publication = prepareSkillPublication(domains, ['uk', 'en']);

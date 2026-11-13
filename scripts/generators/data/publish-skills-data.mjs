@@ -350,10 +350,7 @@ export function renderSkillFiles(graph, codes) {
   assert(graph.length > 0, 'Skill taxonomy must include at least one Domain');
   const base = Object.fromEntries(graph.map(domain => [domain.slug, baseEntity(domain)]));
   const locale = Object.fromEntries(
-    codes.map(code => [
-      code,
-      Object.fromEntries(graph.map(domain => [domain.slug, localizedEntity(domain, code)])),
-    ]),
+    codes.map(code => [code, Object.fromEntries(graph.map(domain => [domain.slug, localizedEntity(domain, code)]))]),
   );
   return renderSkillTree({ base, locale });
 }
