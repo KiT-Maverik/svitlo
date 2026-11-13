@@ -15,10 +15,10 @@ test('Course and Lessons publish Engine Props files, not legacy TOC and override
   const course = await courseResource.json();
   expect(course.type).toBe('course');
   expect(course.content.order).toEqual(['lightLaboratory']);
-  const module = course.content.items.lightLaboratory;
-  expect(module.type).toBe('module');
+  const courseModule = course.content.items.lightLaboratory;
+  expect(courseModule.type).toBe('module');
   expect(module.content.order).toEqual(['lightFoundations', 'lightExploration']);
-  const chapter = module.content.items.lightFoundations;
+  const chapter = courseModule.content.items.lightFoundations;
   expect(chapter.type).toBe('chapter');
   expect(chapter.content.items.lightDiscovery).toEqual({ type: 'lesson', id: discoveryId });
   expect(chapter.content.items.lightStory.type).toBe('lesson');
