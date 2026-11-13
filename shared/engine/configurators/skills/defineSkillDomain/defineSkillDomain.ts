@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -138,7 +138,7 @@ export function defineSkillDomain<
   const Slug extends string,
   const Groups extends Record<string, Group> = {},
   const Skills extends Record<string, Skill> = {},
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<SkillDomain_Config, 'slug' | 'groups' | 'skills' | 'title' | 'description'> & {
     slug: Slug;

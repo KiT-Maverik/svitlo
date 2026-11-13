@@ -1,5 +1,5 @@
 import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
   cloneJson,
@@ -51,7 +51,7 @@ type ContentShape = Question_AnswerWithText_Config['content'];
 export type Question_AnswerWithText_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCodes[] = [],
+  Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 > = Question_AnswerWithText_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {};
 };
@@ -70,7 +70,7 @@ export type Question_AnswerWithText_Overrides<
 export const defineAnswerWithText = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<Question_AnswerWithText_Config, 'slug' | 'content'> & {
     slug: Slug;

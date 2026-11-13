@@ -32,6 +32,8 @@ export const allLanguageCodes = [
   'zh',
 ] as const;
 
-export type LanguageCodes = (typeof allLanguageCodes)[number];
+/** Canonical nonempty tuple used when authored configurators omit a language subset. */
+export type AllLanguageCodes = typeof allLanguageCodes;
+export type LanguageCodes = AllLanguageCodes[number];
 
 export const languageCode_Schema = z.enum(allLanguageCodes);

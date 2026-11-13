@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import {
   mergeForValidation,
   resolvePublicationLanguages,
@@ -111,7 +111,7 @@ const validate = (config: FlashcardsSection_Config): void => {
 export const defineFlashcardsSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<FlashcardsSection_Config, 'slug' | 'content'> & {
     slug: Slug;

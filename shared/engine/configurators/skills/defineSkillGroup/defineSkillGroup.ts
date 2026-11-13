@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -108,7 +108,7 @@ export type SkillGroup_Configurator<
 export function defineSkillGroup<
   const Slug extends string,
   const Skills extends Record<string, Skill>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<SkillGroup_Config, 'slug' | 'skills' | 'name' | 'description'> & {
     slug: Slug;

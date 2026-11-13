@@ -6,7 +6,7 @@ import type {
   RequireLanguages,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
@@ -240,7 +240,7 @@ export function defineFlashcard<
   const Hint extends Record<string, Block> = {},
   const Flags extends Record<string, Flashcard_Flag_Config> = Record<string, Flashcard_Flag_Config>,
   const Relationships extends Record<string, Flashcard_Relationship> = Record<string, Flashcard_Relationship>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<Flashcard_Config, 'slug' | 'content' | 'parameters'> & {
     slug: Slug;

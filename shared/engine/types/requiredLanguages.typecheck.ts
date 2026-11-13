@@ -7,6 +7,7 @@ import type {
   PublicationLanguageOptions,
   RequireLanguages,
 } from './index';
+import type { AllLanguageCodes } from '../schemas/languages.schemas';
 
 type Assert<Condition extends true> = Condition;
 type Equal<Left, Right> = (<T>() => T extends Left ? 1 : 2) extends <T>() => T extends Right ? 1 : 2 ? true : false;
@@ -27,6 +28,15 @@ const missingRequiredLanguage: RequireLanguages<Authored, ['en', 'uk']> = {
   nested: { label: { en: 'Label', uk: 'Мітка' } },
 };
 
+type AllLanguagesConfig = ConfigWithLanguages<{ locale: { title: { en: string } } }, AllLanguageCodes>;
+const completeAllLanguages: AllLanguagesConfig = { locale: { title: 'Invariant text' } };
+const missingAllLanguages: AllLanguagesConfig = {
+  locale: {
+    // @ts-expect-error Default full language set requires every language in a localized dictionary.
+    title: { en: 'Only English' },
+  },
+};
+
 type Config = ConfigWithLanguages<{ params: { count: number }; locale: Authored }, ['en', 'uk']>;
 const completeConfig: Config = {
   params: { count: 1 },
@@ -39,13 +49,17 @@ const incompleteConfig: Config = { locale: required };
 const options: PublicationLanguageOptions<['en', 'uk']> = { languages: ['uk'] };
 // @ts-expect-error A typed publication scope cannot request an unauthored language.
 const forbiddenOptions: PublicationLanguageOptions<['en', 'uk']> = { languages: ['fr'] };
-const unscopedOptions: PublicationLanguageOptions<[]> = { languages: ['fr'] };
+const allOptions: PublicationLanguageOptions<AllLanguageCodes> = { languages: ['fr'] };
+// @ts-expect-error An empty tuple advertises no languages.
+const emptyOptions: PublicationLanguageOptions<[]> = { languages: ['fr'] };
 
 type English = LanguageScope<['en']>;
 type Bilingual = LanguageScope<['en', 'uk']>;
-type Unscoped = LanguageScope<[]>;
+type FullScope = LanguageScope<AllLanguageCodes>;
+type EmptyScope = LanguageScope<[]>;
 type LanguageCompatibilityChecks = [
-  Assert<Equal<ChildSupporting<['en', 'uk'], Unscoped>, Unscoped>>,
+  Assert<Equal<ChildSupporting<['en', 'uk'], FullScope>, FullScope>>,
+  Assert<Equal<ChildSupporting<['en', 'uk'], EmptyScope>, never>>,
   Assert<Equal<ChildSupporting<['en', 'uk'], English>, never>>,
   Assert<Equal<ChildSupporting<['en'], Bilingual>, Bilingual>>,
   Assert<Equal<ChildSupporting<['en', 'uk'], English>, never>>,
@@ -71,10 +85,13 @@ const invalidPartial: PartialConfig = { nested: { enabled: 'false' } };
 void required;
 void missingRequiredLanguage;
 void completeConfig;
+void completeAllLanguages;
+void missingAllLanguages;
 void incompleteConfig;
 void options;
 void forbiddenOptions;
-void unscopedOptions;
+void allOptions;
+void emptyOptions;
 void partial;
 void invalidPartial;
 

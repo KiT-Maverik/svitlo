@@ -1,5 +1,5 @@
 import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
   assertEnabledBlock,
@@ -60,7 +60,7 @@ type ContentShape = Question_SelectOneAnswer_Config['content'];
 export type Question_SelectOneAnswer_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCodes[] = [],
+  Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 > = Question_SelectOneAnswer_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
     answers?: {
@@ -83,7 +83,7 @@ export type Question_SelectOneAnswer_Overrides<
 export const defineSelectOneAnswer = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<Question_SelectOneAnswer_Config, 'slug' | 'content'> & {
     slug: Slug;

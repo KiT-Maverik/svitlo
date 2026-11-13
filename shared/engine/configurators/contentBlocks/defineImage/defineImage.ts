@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
@@ -79,7 +79,7 @@ const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublica
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineImage = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineImage = <const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
   config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Image_Config,
       Languages

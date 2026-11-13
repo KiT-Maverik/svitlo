@@ -1,5 +1,5 @@
 import type { SkillId } from '@svitlo/contracts/content';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
@@ -62,7 +62,7 @@ export type Skill_Configurator<
   };
 } & LanguageScope<Languages>;
 
-export function defineSkill<const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export function defineSkill<const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
   config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>,
 ): Skill_Configurator<Slug, Languages> {
   const authored = structuredClone(skill_Config_Schema.parse(config));

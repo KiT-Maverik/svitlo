@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
@@ -133,7 +133,7 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
 export const defineCheckpoint = <
   const Slug extends string,
   const Items extends Record<string, CheckpointItem>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
     slug: Slug;

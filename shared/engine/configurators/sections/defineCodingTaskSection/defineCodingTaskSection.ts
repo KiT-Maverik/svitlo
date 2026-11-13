@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import {
   mergeForValidation,
   resolvePublicationLanguages,
@@ -118,7 +118,7 @@ const validate = (config: CodingTaskSection_Config): void => {
 export const defineCodingTaskSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<CodingTaskSection_Config, 'slug' | 'content'> & {
     slug: Slug;

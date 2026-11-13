@@ -6,7 +6,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
@@ -147,7 +147,7 @@ export const defineCheckpointItem = <
   const Slug extends string,
   const Answers extends Record<string, Checkpoint_Allowed_Configurator>,
   const Question extends ContentBlock_CheckpointItem_Config['question'],
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_CheckpointItem_Config, 'slug' | 'answer' | 'question'> & {
     slug: Slug;

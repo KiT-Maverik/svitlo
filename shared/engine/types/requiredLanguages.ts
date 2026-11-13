@@ -31,17 +31,16 @@ export type LanguageScope<Languages extends readonly LanguageCodes[]> = {
 };
 
 /**
- * Explicitly scoped children must cover every language advertised by a parent.
- * The empty tuple is the established unscoped Build convention: its actual
- * resolved Props are still validated for every requested language at publish time.
+ * Every child must cover the parent languages. The default type-level scope
+ * is readonly LanguageCodes[] (all supported languages), not an empty tuple.
+ * Explicitly scoped children may advertise a smaller set. Actual translated
+ * content is still validated when each selected language is published.
  */
 export type ChildSupporting<Required extends readonly LanguageCodes[], Child> =
   Child extends LanguageScope<infer Available extends readonly LanguageCodes[]>
-    ? Available extends readonly []
+    ? Exclude<Required[number], Available[number]> extends never
       ? Child
-      : Exclude<Required[number], Available[number]> extends never
-        ? Child
-        : never
+      : never
     : never;
 
 export type ChildrenSupporting<Required extends readonly LanguageCodes[], Children extends Record<string, object>> = {
@@ -49,14 +48,14 @@ export type ChildrenSupporting<Required extends readonly LanguageCodes[], Childr
 };
 
 /**
- * Languages to materialize for one Build call, limited to an explicit authored tuple.
- * A default/empty tuple is unscoped, and broad readonly LanguageCodes[] is also
- * unscoped. Test for a nonempty tuple rather than checking Languages[number]
- * for never: the latter breaks structural assignability of default [] children
- * to collection configurator constraints under TypeScript's generic variance.
+ * Select one or more languages from the declared scope. Without an explicit
+ * subset, all supported language codes are allowed, and every localized field
+ * is required at authoring time by RequireLanguages. Explicit [] allows none.
  */
 export type PublicationLanguageOptions<Languages extends readonly LanguageCodes[] = readonly LanguageCodes[]> = {
-  readonly languages: readonly (Languages extends readonly [LanguageCodes, ...LanguageCodes[]]
-    ? Languages[number]
-    : LanguageCodes)[];
+  readonly languages: readonly (Languages extends readonly []
+    ? never
+    : Languages extends readonly [LanguageCodes, ...LanguageCodes[]]
+      ? Languages[number]
+      : LanguageCodes)[];
 };

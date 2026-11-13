@@ -6,7 +6,7 @@ import type {
   LanguageScope,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
@@ -190,7 +190,7 @@ const mergeMarkdownForValidation = (
  * Stateless ContentBlock Build API validates isolated snapshots and emits
  * either complete Props or exclusively sparse override fields.
  */
-export const defineMarkdown = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineMarkdown = <const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
   config: MarkdownInlineConfig<Slug, Languages> | MarkdownFileConfig<Slug, Languages>,
 ) => {
   const locale =

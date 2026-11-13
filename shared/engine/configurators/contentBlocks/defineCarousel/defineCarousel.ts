@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCodes } from '#schemas';
 import { z } from 'zod';
 
 import {
@@ -99,7 +99,7 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
 export const defineCarousel = <
   const Slug extends string,
   const Items extends Record<string, Slide>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_Carousel_Config, 'slug' | 'slides'> & {
     slug: Slug;
