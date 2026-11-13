@@ -183,7 +183,7 @@ test('strictly rejects missing translations, slugs and frontend descriptions', (
 test('write/check publishes 30 flat files and removes obsolete per-entity directories', () => {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'skills-public-'));
   try {
-    const output = path.join(temp, 'public/data/skills');
+    const output = path.join(temp, 'generated/skills');
     const { codes, files } = resources();
     assert.equal(checkPublishedFiles(output, files).missing.length, files.size);
     writePublishedFiles(output, files);
