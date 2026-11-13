@@ -101,8 +101,8 @@ function runGate(changed) {
 
   // Run the complete Art preview only when the migration utility changes.
   // It writes to an isolated temporary directory; authored Skills stay untouched.
-  if (changed.some(f => f.startsWith('scripts/migrate-skills-configurators.'))) {
-    exec('node', ['--test', 'scripts/migrate-skills-configurators.spec.mjs']);
+  if (changed.some(f => f.startsWith('shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.'))) {
+    exec('node', ['--test', 'shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.spec.mjs']);
   }
   if (
     changed.some(f =>
@@ -113,9 +113,9 @@ function runGate(changed) {
   ) {
     exec('node', [
       '--test',
-      'scripts/implement-skills-taxonomy.spec.mjs',
-      'scripts/generate-skills-taxonomy.spec.mjs',
-      'scripts/generate-skills-taxonomy.roundtrip.spec.mjs',
+      'shared/engine/scripts/implementSkillsTaxonomy/implement-skills-taxonomy.spec.mjs',
+      'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.spec.mjs',
+      'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.roundtrip.spec.mjs',
     ]);
   }
 

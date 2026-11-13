@@ -6,8 +6,8 @@ on:
     paths:
       - 'content/**'
       - 'scripts/textbook-tooling/**'
-      - 'scripts/check-skills-taxonomy-structure.mjs'
-      - 'scripts/check-skills-taxonomy-structure.spec.mjs'
+      - 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs'
+      - 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs'
       - 'scripts/checkBuiltPackageExports/check-built-package-exports.mjs'
       - 'scripts/checkBuiltPackageExports/check-built-package-exports.spec.mjs'
       - 'scripts/ci/build-changed-content.mjs'
