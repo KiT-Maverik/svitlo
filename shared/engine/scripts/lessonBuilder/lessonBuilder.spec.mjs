@@ -250,6 +250,14 @@ test('missing and unknown polymorphic types produce a local dispatch diagnostic'
     assert.ok(!fs.existsSync(f.generated()));
   }));
 
+test('refuses a non-Lesson root type rather than emitting the wrong factory', () =>
+  fixture(f => {
+    f.content.type = 'text';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /expected lesson type/);
+    assert.ok(!fs.existsSync(f.generated()));
+  }));
+
 test('source-localization filtering leaves unrelated type metadata intact', () => {
   const source = renderLessonDraft({
     slug: 'demo',
