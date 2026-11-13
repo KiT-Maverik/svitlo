@@ -164,7 +164,10 @@ export const Audio = ({
       {failureKind ? (
         <div className={styles.placeholder} role="alert">
           {resolvedTitle && <strong>{resolvedTitle}</strong>}
-          <span>{resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'audio.fallback.' + failureKind) ?? messages[failureKind]}</span>
+          <span>
+            {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'audio.fallback.' + failureKind) ??
+              messages[failureKind]}
+          </span>
           <Button type="button" variant="outlined" onClick={retry}>
             {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'audio.fallback.retry') ?? messages.retry}
           </Button>

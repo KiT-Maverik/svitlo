@@ -82,7 +82,11 @@ export const Youtube = ({
     fallbackKind === 'loading'
       ? messages['loading']
       : fallbackKind
-        ? resolveOptionalLocalizedText(fallbackMessages?.[fallbackKind], contentLanguage, 'youtube.fallback.' + fallbackKind) ?? messages[fallbackKind]
+        ? (resolveOptionalLocalizedText(
+            fallbackMessages?.[fallbackKind],
+            contentLanguage,
+            'youtube.fallback.' + fallbackKind,
+          ) ?? messages[fallbackKind])
         : null;
   const fallback = fallbackKind && (
     <div key="fallback" className={styles.placeholder} role="status">
@@ -90,7 +94,8 @@ export const Youtube = ({
       <span>{fallbackText}</span>
       {fallbackKind === 'unavailable' && (
         <button type="button" onClick={() => setFailedHref(null)}>
-          {resolveOptionalLocalizedText(fallbackMessages?.retry, contentLanguage, 'youtube.fallback.retry') ?? messages.retry}
+          {resolveOptionalLocalizedText(fallbackMessages?.retry, contentLanguage, 'youtube.fallback.retry') ??
+            messages.retry}
         </button>
       )}
     </div>

@@ -59,7 +59,10 @@ export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale
           style={{ aspectRatio: fill ? aspectRatio : `${width} / ${height}` }}
         >
           {alt && <strong>{alt}</strong>}
-          <span>{resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'image.fallback.' + failureKind) ?? messages[failureKind]}</span>
+          <span>
+            {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'image.fallback.' + failureKind) ??
+              messages[failureKind]}
+          </span>
           <Button type="button" variant="outlined" onClick={retry}>
             {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'image.fallback.retry') ?? messages.retry}
           </Button>

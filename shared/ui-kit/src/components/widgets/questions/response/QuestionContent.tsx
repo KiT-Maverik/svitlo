@@ -44,7 +44,9 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
     case 'image':
       return block.locale.alt;
     case 'carousel':
-      return optionalLabelText(block.locale.title, language, 'carousel.title') ?? block.locale.slides[0]?.alt ?? '';
+      return (
+        optionalLabelText(block.locale.title, language, 'carousel.title') ?? block.locale.slides[0]?.alt ?? ''
+      );
     case 'audio':
       return labelText(block.locale.title, language, 'audio.title');
     case 'video':

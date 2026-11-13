@@ -7,7 +7,10 @@ import styles from './Code.module.css';
 
 export const Code = ({ params: { codeAsText, language }, locale }: ContentBlock_Code_Props) => {
   const contentLanguage = useContentLanguage();
-  const value = resolveCodeVariables(codeAsText, resolveLocalizedRecord(locale?.variables, contentLanguage, 'code.variables'));
+  const value = resolveCodeVariables(
+    codeAsText,
+    resolveLocalizedRecord(locale?.variables, contentLanguage, 'code.variables'),
+  );
   const title = resolveOptionalLocalizedText(locale?.title, contentLanguage, 'code.title');
   const highlighted = highlightCode(value, language);
 

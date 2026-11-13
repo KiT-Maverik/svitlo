@@ -12,10 +12,9 @@ describe('ContentBlock locale resolution', () => {
 
   it('selects only the requested translation for optional fields and template variables', () => {
     expect(resolveOptionalLocalizedText({ en: 'Photo', uk: 'Фото' }, 'uk', 'image.caption')).toBe('Фото');
-    expect(resolveLocalizedRecord({ TITLE: { en: 'Light', ar: 'الضوء' }, UNIT: 'm/s' }, 'ar', 'markdown.variables')).toEqual({
-      TITLE: 'الضوء',
-      UNIT: 'm/s',
-    });
+    expect(
+      resolveLocalizedRecord({ TITLE: { en: 'Light', ar: 'الضوء' }, UNIT: 'm/s' }, 'ar', 'markdown.variables'),
+    ).toEqual({ TITLE: 'الضوء', UNIT: 'm/s' });
   });
 
   it('does not silently substitute a different language or stringify missing values', () => {

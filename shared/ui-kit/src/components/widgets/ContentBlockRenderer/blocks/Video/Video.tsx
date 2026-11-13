@@ -72,7 +72,10 @@ export const Video = ({
       {failureKind ? (
         <div className={styles.placeholder} role="alert">
           <strong>{label}</strong>
-          <span>{resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'video.fallback.' + failureKind) ?? messages[failureKind]}</span>
+          <span>
+            {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'video.fallback.' + failureKind) ??
+              messages[failureKind]}
+          </span>
           <Button type="button" variant="outlined" onClick={retry}>
             {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'video.fallback.retry') ?? messages.retry}
           </Button>

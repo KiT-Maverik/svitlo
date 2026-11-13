@@ -1,4 +1,5 @@
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+import type { LanguageCode } from '@svitlo/engine/runtime';
 import type { ContentBlockResponse } from './types';
 
 export const supportedTypes = new Set<string>([
@@ -34,7 +35,6 @@ export function localizedAttributes(response: { locale: { code: string } }) {
 }
 
 /** Authoring dictionaries may remain in transitional Props types; never render one as a React child. */
-import type { LanguageCode } from '@svitlo/engine/runtime';
 
 export type LocalizedText = string | Partial<Record<LanguageCode, string>>;
 
