@@ -162,5 +162,9 @@ export function assembleCourseLesson({
 
   // The published patch is JSON validated above; final field/array semantics
   // are enforced by the canonical Lesson Props assembler.
-  return assembleLessonProps(lesson, language, overrides as unknown as PublishedLessonPropsOverride | undefined);
+  try {
+    return assembleLessonProps(lesson, language, overrides as unknown as PublishedLessonPropsOverride | undefined);
+  } catch (error) {
+    throw new Error('Invalid assembled Course Lesson Props for ' + language, { cause: error });
+  }
 }
