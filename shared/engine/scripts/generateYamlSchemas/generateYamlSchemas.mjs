@@ -43,6 +43,9 @@ export function yamlJsonSchemaDocuments() {
       const jsonSchema = z.toJSONSchema(schema, {
         target: 'draft-2020-12',
         unrepresentable: 'throw',
+        // Extract Zod instances shared between nested Config trees, instead
+        // of recursively inlining them into multi-megabyte JSON documents.
+        reused: 'ref',
       });
       return [
         kind + '.schema.json',
