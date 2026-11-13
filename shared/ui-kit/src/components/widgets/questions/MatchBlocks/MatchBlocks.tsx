@@ -3,7 +3,7 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import type { Question_MatchBlocks, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_MatchBlocks_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
@@ -14,11 +14,11 @@ export function MatchBlocks({
   sceneRegistry,
   messages,
 }: {
-  response: Question_MatchBlocks<'response', Locale_Languages>;
+  response: Question_MatchBlocks_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
-  const pairs = Object.entries(response.pairs).map(([id, blocks]) => ({ id, ...blocks }));
+  const pairs = Object.entries(response.content.pairs).map(([id, blocks]) => ({ id, ...blocks }));
   const right = shuffleItems(pairs, response.id);
   const [pending, setPending] = useState<string | null>(null);
   const attempt = useQuestionAttempt<Record<string, string>>(

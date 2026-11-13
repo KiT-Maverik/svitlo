@@ -1,20 +1,32 @@
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/contracts/content';
+import type { ContentBlock_Checkpoint_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 import { Checkpoint } from './Checkpoint';
 
-const response: ContentBlock_Checkpoint_Response<Locale_Languages> = {
+const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
+  id,
+  slug: 'textBlock',
+  type: 'text',
+  params: {},
+  locale: { value },
+});
+
+const response: ContentBlock_Checkpoint_Props = {
   id: 'checkpoint-1',
+  slug: 'checkpoint',
   type: 'checkpoint',
-  title: 'Check your knowledge',
-  headingLevel: 3,
-  items: [
+  params: { headingLevel: 3 },
+  locale: { title: 'Check your knowledge' },
+  content: [
     {
-      question: 'What is light?',
-      answer: [{ id: 'answer-1', type: 'text', value: 'Electromagnetic radiation' }],
+      id: 'checkpoint-item-1',
+      slug: 'checkpointItem',
+      type: 'checkpointItem',
+      question: textBlock('question-1', 'What is light?'),
+      answer: [textBlock('answer-1', 'Electromagnetic radiation')],
       check: true,
     },
   ],
@@ -26,11 +38,13 @@ describe('Checkpoint content block', () => {
       <Checkpoint
         messages={enUiKitMessages.checkpoint}
         {...response}
-        renderNested={block => (
-          <span>
-            {block.type}: {block.id}
-          </span>
-        )}
+        renderNested={block =>
+          block.type === 'text' && block.id === 'question-1' ? (
+            <span>{block.locale.value}</span>
+          ) : (
+            <span>{block.type}: {block.id}</span>
+          )
+        }
       />,
     );
     expect(screen.getByRole('heading', { name: 'Check your knowledge', level: 3 })).toBeInTheDocument();
@@ -45,8 +59,8 @@ describe('Checkpoint content block', () => {
       <Checkpoint
         messages={enUiKitMessages.checkpoint}
         {...response}
-        items={[{ ...response.items[0], check: undefined }]}
-        renderNested={() => null}
+        content={[{ ...response.content[0], check: undefined }]}
+        renderNested={block => (block.type === 'text' ? block.locale.value : null)}
       />,
     );
     fireEvent.click(screen.getByText('What is light?'));
@@ -60,12 +74,20 @@ describe('Checkpoint configuration and accessibility', () => {
       <Checkpoint
         messages={enUiKitMessages.checkpoint}
         {...response}
-        enableChecks
-        items={[
-          { ...response.items[0], check: undefined },
-          { question: 'What is a ray?', answer: [{ id: 'answer-2', type: 'text', value: 'A model of light' }] },
+        params={{ ...response.params, enableChecks: true }}
+        content={[
+          { ...response.content[0], check: undefined },
+          {
+            id: 'checkpoint-item-2',
+            slug: 'checkpointItem2',
+            type: 'checkpointItem',
+            question: textBlock('question-2', 'What is a ray?'),
+            answer: [textBlock('answer-2', 'A model of light')],
+          },
         ]}
-        renderNested={block => <span>{block.id}</span>}
+        renderNested={block =>
+          block.type === 'text' && block.id.startsWith('question-') ? block.locale.value : <span>{block.id}</span>
+        }
       />,
     );
     fireEvent.click(screen.getByText('What is light?'));
@@ -83,19 +105,22 @@ describe('Checkpoint configuration and accessibility', () => {
         <Checkpoint
           messages={enUiKitMessages.checkpoint}
           {...response}
-          title="اختبر معلوماتك"
-          headingLevel={6}
-          showIndices={false}
-          showChevron={false}
-          showIcon
-          renderAsGroup={false}
-          renderNested={() => null}
+          locale={{ ...response.locale, title: 'اختبر معلوماتك' }}
+          params={{
+            ...response.params,
+            headingLevel: 6,
+            showIndices: false,
+            showChevron: false,
+            showIcon: true,
+            renderAsGroup: false,
+          }}
+          renderNested={block => (block.type === 'text' ? block.locale.value : null)}
         />
       </ContentLanguageContext.Provider>,
     );
     const title = screen.getByRole('heading', { name: 'اختبر معلوماتك', level: 6 });
     expect(title.closest('section')).toHaveAttribute('dir', 'rtl');
     expect(screen.queryByText('01')).toBeNull();
-    expect(screen.getByText('What is light?')).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByText('What is light?').parentElement).toHaveAttribute('dir', 'rtl');
   });
 });

@@ -1,13 +1,9 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
-import type { ContentBlock, Locale_Languages } from '@svitlo/contracts/content';
+import type { ContentBlock_Props } from '@svitlo/engine/runtime';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
-import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRenderer';
+import type { SceneRegistry } from '../../ContentBlockRenderer';
 
-export type QuestionBlock = ContentBlock<'response', Locale_Languages>;
-
-function renderable(block: QuestionBlock): ContentBlockResponse {
-  return block;
-}
+export type QuestionBlock = ContentBlock_Props;
 
 export function QuestionContent({
   blocks,
@@ -19,39 +15,36 @@ export function QuestionContent({
   sceneRegistry?: SceneRegistry;
 }) {
   if (!blocks?.length) return null;
-  return <ContentBlockRenderer blocks={blocks.map(renderable)} sceneRegistry={sceneRegistry} messages={messages} />;
+  return <ContentBlockRenderer blocks={blocks} sceneRegistry={sceneRegistry} messages={messages} />;
 }
 
 /** Plain text is for accessible names only; visual content uses ContentBlockRenderer. */
 export function questionBlockLabel(block: QuestionBlock): string {
   switch (block.type) {
     case 'text':
-      return block.value;
+      return block.locale.value;
     case 'markdown':
-      return block.text.replace(/[*_`#]/gu, '');
+      return block.locale.value.replace(/[*_`#]/gu, '');
     case 'image':
-      return block.alt;
+      return block.locale.alt;
     case 'carousel':
-      return block.title ?? block.slides[0].alt;
+      return block.locale.title ?? block.locale.slides[0]?.alt ?? '';
     case 'audio':
-      return block.title;
+      return block.locale.title;
     case 'video':
-      return block.title ?? '';
     case 'youtube':
-      return block.title ?? block.label;
+      return block.locale.title ?? block.locale.label;
     case 'code':
-      return block.title ?? block.language;
+      return block.locale?.title ?? block.params.language;
     case 'checkpoint':
-      return block.title;
+      return block.locale.title;
     case 'scene': {
-      const title = block.locales.title;
-      if (typeof title === 'string') return title;
-      const scene = block.locales.scene;
-      return typeof scene === 'object' && typeof scene.title === 'string' ? scene.title : '';
+      const value = block.locale.value;
+      if (typeof value === 'string') return value;
+      return typeof value.title === 'string' ? value.title : '';
     }
   }
 }
-
 export function questionLabel(blocks: readonly QuestionBlock[]): string {
   return blocks.map(questionBlockLabel).filter(Boolean).join(' ');
 }

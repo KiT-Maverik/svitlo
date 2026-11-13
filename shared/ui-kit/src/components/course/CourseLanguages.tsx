@@ -3,7 +3,7 @@
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode } from '@svitlo/engine/runtime';
 import { Flag } from '../widgets/Flag';
 
 /** The interface locale wins when available; fallback priorities follow, without duplicates. */

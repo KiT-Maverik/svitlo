@@ -31,7 +31,7 @@ For example:
     "code:check:types": "tsc --noEmit"
   },
   "dependencies": {
-    "@svitlo/contracts": "0.0.0"
+    "@svitlo/engine": "0.0.0"
   },
   "devDependencies": {
     "typescript": "^5"

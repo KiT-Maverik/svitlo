@@ -4,7 +4,7 @@ import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-import type { ContentBlock_Youtube_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import {
@@ -22,13 +22,10 @@ import styles from './Youtube.module.css';
 type FallbackKind = 'loading' | 'offline' | 'unavailable';
 
 export const Youtube = ({
-  href,
-  mode,
-  title,
-  label,
-  fallback: fallbackMessages,
+  params: { mode },
+  locale: { href, title, label, fallback: fallbackMessages },
   messages,
-}: ContentBlock_Youtube_Response & {
+}: ContentBlock_Youtube_Props & {
   messages: Youtube_Locale;
 }) => {
   const contentLanguage = useContentLanguage();

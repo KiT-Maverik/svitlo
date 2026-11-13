@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
 /** Only locale normalization is shared with browser code; Skill JSON is loaded by Next.js. */
 export function resolveSkillLanguage(value: string): string {

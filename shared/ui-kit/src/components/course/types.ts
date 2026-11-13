@@ -1,4 +1,4 @@
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '@svitlo/engine/runtime';
 
 /** Presentation-only view models. Hosts adapt published Course_Toc and course metadata to these props. */
 export type CourseTone = 'sky' | 'amber' | 'sage';

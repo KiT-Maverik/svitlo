@@ -2,7 +2,7 @@ import '@/generated/textbookStyles';
 import type { ReactNode } from 'react';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import type { TextDirection } from '@svitlo/contracts/localization';
+import type { TextDirection } from '@svitlo/engine/runtime';
 import { SvitloThemeProvider } from '@svitlo/ui-kit';
 
 export default function AppDocument({

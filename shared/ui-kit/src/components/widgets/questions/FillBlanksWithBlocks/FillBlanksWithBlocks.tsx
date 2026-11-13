@@ -3,7 +3,7 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 
 import { Box, ButtonBase, Stack, Typography } from '@mui/material';
-import type { Question_FillBlanksWithBlocks, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_FillBlanksWithBlocks_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
@@ -14,26 +14,26 @@ export function FillBlanksWithBlocks({
   sceneRegistry,
   messages,
 }: {
-  response: Question_FillBlanksWithBlocks<'response', Locale_Languages>;
+  response: Question_FillBlanksWithBlocks_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
-  const correct: QuestionItem[] = response.slots.map(slot => ({
+  const correct: QuestionItem[] = response.content.slots.map(slot => ({
     id: 'correct:' + slot.selector,
     block: slot.correctAnswer,
   }));
-  const distractors: QuestionItem[] = response.distractors.map((block, index) => ({
+  const distractors: QuestionItem[] = response.content.distractors.map((block, index) => ({
     id: 'distractor:' + index + ':' + block.id,
     block,
   }));
   const items = shuffleItems([...correct, ...distractors], response.id);
   const attempt = useQuestionAttempt<Record<string, string | null>>(
-    () => Object.fromEntries(response.slots.map(slot => [slot.selector, null])),
-    value => response.slots.every(slot => value[slot.selector] === 'correct:' + slot.selector),
-    value => response.slots.length > 0 && response.slots.every(slot => Boolean(value[slot.selector])),
+    () => Object.fromEntries(response.content.slots.map(slot => [slot.selector, null])),
+    value => response.content.slots.every(slot => value[slot.selector] === 'correct:' + slot.selector),
+    value => response.content.slots.length > 0 && response.content.slots.every(slot => Boolean(value[slot.selector])),
   );
   const used = new Set(Object.values(attempt.value));
-  const nextEmpty = response.slots.find(slot => !attempt.value[slot.selector]);
+  const nextEmpty = response.content.slots.find(slot => !attempt.value[slot.selector]);
   const place = (id: string) => {
     if (!nextEmpty || attempt.checked) return;
     attempt.setValue({ ...attempt.value, [nextEmpty.selector]: id });
@@ -49,7 +49,7 @@ export function FillBlanksWithBlocks({
           role="group"
           aria-label={messages.questionFrame.blanks}
         >
-          {response.slots.map(slot => {
+          {response.content.slots.map(slot => {
             const selected = items.find(item => item.id === attempt.value[slot.selector]);
             const correctSlot = selected?.id === 'correct:' + slot.selector;
             return (
@@ -76,7 +76,7 @@ export function FillBlanksWithBlocks({
                 {selected ? (
                   <QuestionContent blocks={[selected.block]} sceneRegistry={sceneRegistry} messages={messages} />
                 ) : (
-                  <Typography color="text.secondary">{response.placeholder}</Typography>
+                  <Typography color="text.secondary">{response.locale.placeholder}</Typography>
                 )}
               </ButtonBase>
             );

@@ -2,23 +2,26 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { ContentBlock_Audio_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
 import { Audio } from './Audio';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { formatAudioTime } from './Audio.utils';
 
-const response: ContentBlock_Audio_Response = {
+const response: ContentBlock_Audio_Props = {
   id: 'audio-1',
+  slug: 'audio-1',
   type: 'audio',
-
-  fileLocation: '/lesson.mp3',
-  title: 'Запис уроку',
-  description: 'Прослухайте пояснення',
-  fallback: {
-    offline: 'Аудіо недоступне без мережі',
-    unavailable: 'Аудіо не знайдено',
-    playbackError: 'Помилка відтворення',
-    retry: 'Повторити',
+  params: {},
+  locale: {
+    fileLocation: '/lesson.mp3',
+    title: 'Запис уроку',
+    description: 'Прослухайте пояснення',
+    fallback: {
+      offline: 'Аудіо недоступне без мережі',
+      unavailable: 'Аудіо не знайдено',
+      playbackError: 'Помилка відтворення',
+      retry: 'Повторити',
+    },
   },
 };
 
@@ -61,7 +64,7 @@ describe('Audio content block', () => {
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('Аудіо не знайдено');
 
-    rerender(<Audio messages={enUiKitMessages.audio} {...response} fileLocation="/other.mp3" />);
+    rerender(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fileLocation: '/other.mp3' }} />);
     failAudio(container.querySelector('audio')!, 3);
     expect(screen.getByRole('alert')).toHaveTextContent('Помилка відтворення');
   });
@@ -93,14 +96,14 @@ describe('Audio fallback lifecycle', () => {
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Audio messages={enUiKitMessages.audio} {...response} fileLocation="/new-lesson.mp3" />);
+    rerender(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fileLocation: '/new-lesson.mp3' }} />);
     expect(screen.queryByRole('alert')).toBeNull();
     expect(container.querySelector('audio')).toHaveAttribute('src', '/new-lesson.mp3');
   });
 
   it('uses the built-in English fallback without author overrides', () => {
     setOnline(true);
-    const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} fallback={undefined} />);
+    const { container } = render(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fallback: undefined }} />);
     failAudio(container.querySelector('audio')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This audio is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();
@@ -183,7 +186,7 @@ describe('Waveform audio player', () => {
     fireEvent.timeUpdate(Object.assign(media, { currentTime: 60 }));
     expect(screen.getByText(/01:00.*02:00/)).toBeInTheDocument();
 
-    rerender(<Audio messages={enUiKitMessages.audio} {...response} fileLocation="/another.mp3" />);
+    rerender(<Audio messages={enUiKitMessages.audio} {...response} locale={{ ...response.locale, fileLocation: '/another.mp3' }} />);
     expect(screen.getByText(/00:00.*00:00/)).toBeInTheDocument();
     expect(screen.getByRole('slider', { name: 'Playback position' })).toBeDisabled();
   });

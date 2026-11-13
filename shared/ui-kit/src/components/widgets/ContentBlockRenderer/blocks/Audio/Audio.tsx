@@ -9,8 +9,8 @@ import PauseRounded from '@mui/icons-material/PauseRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import VolumeOffRounded from '@mui/icons-material/VolumeOffRounded';
 import VolumeUpRounded from '@mui/icons-material/VolumeUpRounded';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import type { ContentBlock_Audio_Response } from '@svitlo/contracts/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
+import type { ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
 
 import { Flag } from '../../../Flag/Flag';
 import { localizedAttributes } from '../../utils';
@@ -31,12 +31,9 @@ const WAVEFORM_HEIGHTS = Array.from({ length: 72 }, (_, index) => {
 const SPEEDS = [0.75, 1, 1.25, 1.5, 2] as const;
 
 export const Audio = ({
-  fileLocation,
-  title,
-  description,
-  fallback,
+  locale: { fileLocation, title, description, fallback },
   messages,
-}: ContentBlock_Audio_Response & {
+}: ContentBlock_Audio_Props & {
   messages: Audio_Locale;
 }) => {
   const contentLanguage = useContentLanguage();

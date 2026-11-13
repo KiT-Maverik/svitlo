@@ -2,7 +2,7 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { TextField } from '@mui/material';
-import type { Question_AnswerWithNumber, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_AnswerWithNumber_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 
@@ -18,7 +18,7 @@ export function AnswerWithNumber({
   sceneRegistry,
   messages,
 }: {
-  response: Question_AnswerWithNumber<'response', Locale_Languages>;
+  response: Question_AnswerWithNumber_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
@@ -26,7 +26,7 @@ export function AnswerWithNumber({
     () => '',
     value => {
       const number = parseQuestionNumber(value);
-      return number !== null && response.correctAnswers.includes(number);
+      return number !== null && response.params.correctAnswers.includes(number);
     },
     value => parseQuestionNumber(value) !== null,
   );
@@ -35,7 +35,7 @@ export function AnswerWithNumber({
       <TextField
         fullWidth
         label={messages.questionFrame.answerLabel}
-        placeholder={response.placeholder}
+        placeholder={response.locale.placeholder}
         value={attempt.value}
         onChange={event => attempt.setValue(event.target.value)}
         disabled={attempt.checked}
