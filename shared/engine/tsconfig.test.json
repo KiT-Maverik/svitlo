@@ -13,7 +13,8 @@
     "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",
-    "utils/**/*.ts"
+    "utils/**/*.ts",
+    "generators/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", ".test-build", "**/*.typecheck.ts"]
 }

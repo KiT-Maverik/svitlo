@@ -9,7 +9,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { allLanguageCodes } from '@svitlo/engine';
-import { loadAuthoredConfigurators } from './load-authored-configurators.mjs';
+import { loadAuthoredConfigurators } from '../../../shared/engine/generators/load-authored-configurators.mjs';
 import { prepareSkillPublication } from './prepare-skills-publication.mjs';
 import {
   renderSkillTree,

@@ -19,7 +19,8 @@
     "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",
-    "utils/**/*.ts"
+    "utils/**/*.ts",
+    "generators/**/*.ts"
   ],
   "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.unit.spec.ts", "**/*.typecheck.ts"]
 }
