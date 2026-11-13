@@ -1,13 +1,13 @@
 'use client';
 
 import { createContext } from 'react';
-import type { Locale_Languages, Quiz_Parameters } from '+@svitlo/contracts/content';
+import type { QuizSection_Props } from '@svitlo/engine/runtime';
 
 /** Coordinates assessment status, feedback and retry policies across Question widgets. */
 export const QuestionCompletionContext = createContext<{
   markChecked(id: string, correct: boolean): void;
   markUnchecked(id: string): void;
-  parameters?: Quiz_Parameters<'response', Locale_Languages>;
+  parameters?: QuizSection_Props['params'];
   revealFeedback?: boolean;
   locked?: boolean;
 }>({

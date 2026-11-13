@@ -1,7 +1,7 @@
 'use client';
 
 import type { UiKitMessages } from '#types/uiKitMessages';
-import type { Question_OrderSequence, Locale_Languages } from '+@svitlo/contracts/content';
+import type { Question_OrderSequence_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { type QuestionItem, shuffleItems } from '../response/QuestionContent';
@@ -12,11 +12,11 @@ export function OrderSequence({
   sceneRegistry,
   messages,
 }: {
-  response: Question_OrderSequence<'response', Locale_Languages>;
+  response: Question_OrderSequence_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
-  const items: QuestionItem[] = response.sequence.map((block, index) => ({ id: index + ':' + block.id, block }));
+  const items: QuestionItem[] = response.content.sequence.map((block, index) => ({ id: index + ':' + block.id, block }));
   const expected = items.map(item => item.id);
   const initial = () => shuffleItems(items, response.id).map(item => item.id);
   const attempt = useQuestionAttempt<string[]>(

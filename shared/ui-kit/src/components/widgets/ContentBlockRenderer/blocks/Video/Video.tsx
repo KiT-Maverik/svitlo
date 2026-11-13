@@ -4,7 +4,7 @@ import type { Video_Locale } from '../../../../../../data/locale/video';
 
 import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
-import type { ContentBlock_Video_Response } from '+@svitlo/contracts/content';
+import type { ContentBlock_Video_Props } from '@svitlo/engine/runtime';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -15,13 +15,9 @@ import styles from './Video.module.css';
 type VideoFailure = { source: string; kind: VideoFailureKind };
 
 export const Video = ({
-  fileLocation,
-  poster,
-  title,
-  label,
-  fallback,
+  locale: { fileLocation, poster, title, label, fallback },
   messages,
-}: ContentBlock_Video_Response & {
+}: ContentBlock_Video_Props & {
   messages: Video_Locale;
 }) => {
   const contentLanguage = useContentLanguage();

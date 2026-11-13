@@ -1,21 +1,30 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import type { Question_SelectMultipleAnswers, Locale_Languages } from '+@svitlo/contracts/content';
+import type { ContentBlock_Text_Props, Question_SelectMultipleAnswers_Props } from '@svitlo/engine/runtime';
 import { enUiKitMessages } from '../../../../testing/uiKitMessages.unit.fx';
 import { SelectMultipleAnswers } from './SelectMultipleAnswers';
 
-const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
-const response: Question_SelectMultipleAnswers<'response', Locale_Languages> = {
+const text = (slug: string, value: string): ContentBlock_Text_Props => ({
+  id: '00000000-0000-4000-8000-' + Array.from(slug).reduce((sum, char) => sum + char.charCodeAt(0), 1).toString(16).padStart(12, '0'),
+  slug,
+  type: 'text',
+  params: {},
+  locale: { value },
+});
+const response: Question_SelectMultipleAnswers_Props = {
   type: 'selectMultipleAnswers',
-  id: 'multiple-story',
-  assessmentMethod: 'retrieval',
-  restrictions: [],
-  question: [text('prompt', 'Select the prime numbers.')],
-  answers: {
-    correct: { two: text('two', '2'), five: text('five', '5') },
-    incorrect: { four: text('four', '4') },
-    distractors: { six: text('six', '6') },
+  id: '00000000-0000-4000-8000-000000000001',
+  slug: 'multipleStory',
+  params: { assessmentMethod: 'retrieval', restrictions: [] },
+  locale: {},
+  content: {
+    question: [text('prompt', 'Select the prime numbers.')],
+    answers: {
+      correct: { two: text('two', '2'), five: text('five', '5') },
+      incorrect: { four: text('four', '4') },
+      distractors: { six: text('six', '6') },
+    },
+    explanation: [text('explanation', '2 and 5 are prime numbers.')],
   },
-  explanation: [text('explanation', '2 and 5 are prime numbers.')],
 };
 
 const meta = {

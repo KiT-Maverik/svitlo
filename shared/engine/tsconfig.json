@@ -14,7 +14,6 @@
     "baseUrl": ".",
     "paths": {
       "#configurators": ["configurators/index.ts"],
-      "#lessons": ["lessons/index.ts"],
       "#schemas": ["schemas/index.ts"],
       "#utils": ["utils/index.ts"],
       "#types": ["types/index.ts"]
@@ -26,7 +25,6 @@
     "runtime.ts",
     "configurators/**/*.ts",
     "assemblers/**/*.ts",
-    "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",
     "utils/**/*.ts",
