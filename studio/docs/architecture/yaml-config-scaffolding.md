@@ -19,7 +19,7 @@ The existing specialist artifacts are **editorial plans**, each with its own own
 | Course `overrides.yaml` | Shared Course Methodologist/Screenwriter-owned, separately approved Course-specific patch operations | Keep separate from `toc.yaml` and from the basic Course Config tree. Apply only via the separately supported override workflow once the target Lesson's real slugs and source exports are known |
 
 **Never feed the editorial plan directly to a scaffolder as though it were a Config.**
-An authorized integration/editorial handoff creates a **separate Config-shaped YAML draft** following the generated Engine schemas, with provenance back to approved revisions. This is a projection, not a replacement for specialist artifacts. A plan may be approved while its technical projection is still partial. Conversely, a syntactically convertible projection is not pedagogically approved.
+An authorized integration/editorial handoff creates a **separate Config-shaped YAML draft** following the generated Engine schemas, with provenance back to approved revisions. For Lessons the file is **`lesson.config.yaml`**, adjacent to (and distinct from) the Screenwriter-owned `content.yaml`. For Courses, a direct `course.yaml` is a Config-shaped source (or the Course scaffolder can mechanically project an explicitly supported `toc.yaml` plan). This is a projection, not a replacement for specialist artifacts. A plan may be approved while its technical projection is still partial. Conversely, a syntactically convertible projection is not pedagogically approved.
 
 The conversion of editorial `key` arrays into `{items, order}`, stable UUID allocation, slug resolution, Quiz parameters, verified Question-field imports and Course Lesson references is **explicit handoff work**; it is not an implicit promise made by the generic Lesson/Course draft scaffolders. Ambiguities return to the responsible author or the integration coordinator, not to invented defaults.
 
@@ -28,16 +28,17 @@ The conversion of editorial `key` arrays into `{items, order}`, stable UUID allo
 - Polymorphic nodes **at every nesting level** require `type`: Lesson, Course, Module, Chapter, Episode, Section, ContentBlock, Question, Flashcard and applicable embedded types such as Carousel slides and Checkpoint items. Use the actual `yamlFactoryByType` registry for dispatch; do not infer type from a key or a `kind` field in the editorial plan.
 - Authored ordered child collections use `{ items: { slug: node }, order: [slug] }` even when the editorial plan uses arrays. The map key, child `slug` and ordering must be reconciled. Question banks are grouped by Question type and then slug; their nested block collections use `items/order`.
 - The Engine source for Lesson, Course, Section, Question and Flashcard schemas is under `shared/engine/configurators/`. The seven derived files under `shared/engine/yaml-schemas/` are **editor guidance**, generated with `content:generate:yaml-schemas` and checked with `content:check:yaml-schemas`, not handwritten and not a second validation layer inside the scaffolders.
-- `documentLanguage` belongs to the editorial source/provenance; it is **not** a top-level property of the Engine `defineLesson`/`defineCourse` Config. Place learner-facing copy under `locale.<field>.<documentLanguage>` (such as `locale.title.uk` or `locale.value.en`). Only use scalar invariant text when genuinely language-independent and supported by the Config field.
+- `documentLanguage` belongs to the editorial source/provenance; it is **not** a top-level property of the Engine `defineLesson`/`defineCourse` Config. The Lesson scaffolder needs it as a top-level **envelope field in `lesson.config.yaml`**, which is removed before emitting `defineLesson`. The direct Course `course.yaml` may likewise carry `documentLanguage` as removable provenance for source-language filtering. Place learner-facing copy under `locale.<field>.<documentLanguage>` (such as `locale.title.uk` or `locale.value.en`). Only use scalar invariant text when genuinely language-independent and supported by the Config field.
 - `params.languages` expresses the **intended** Lesson/Course languages and can include `en`, `uk`, or other locales whose translations do not yet exist. Initial YAML contains learner-facing values in the **single** document language even where other languages are listed. Do not auto-fill, copy, invent or falsely approve translations. The Course authoring language may differ from a particular Lesson's authoring language.
 - A `type: lesson` Course child contains `lessonId` referencing a real standalone Lesson, **never** an embedded Lesson Config or a newly invented Lesson. The Course's languages must ultimately be supported by referenced Lessons.
 - A schema-shaped YAML draft may still fail Engine validation, TypeScript compilation, reference resolution, accessibility checks, or publication. The scaffolders mechanically emit draft `define*` source and do **not** run Zod/AJV, full TS typechecking, editorial sign-offs, localization completion or `generateLessonProps`/`generateCourseProps`. These remain independent later gates.
 
 ## Partial Lesson Config-shaped YAML example
 
-This is an **illustrative excerpt** using schematic UUIDs and Skill IDs. It shows the nesting and source-language-only copy, not a fully approved or publishable Lesson. `documentLanguage: uk` is editorial provenance **outside** this Config. Check the canonical generated `lesson.schema.json` before adapting to a real Lesson.
+This is an **illustrative excerpt** using schematic UUIDs and Skill IDs. It shows the nesting and source-language-only copy, not a fully approved or publishable Lesson. `documentLanguage: uk` is scaffolder/editorial provenance **outside** the Engine Config, but must be present at the top of the `lesson.config.yaml` file used by the Lesson CLI (it is stripped before TypeScript emission). Check the canonical generated `lesson.schema.json` before adapting to a real Lesson.
 
 ```yaml
+documentLanguage: uk # lesson.config.yaml envelope; removed before defineLesson
 id: '11111111-1111-4111-8111-111111111111'
 slug: additionIntro
 type: lesson
@@ -147,6 +148,7 @@ This Question belongs to the full bank despite `requireQuiz: false`: the example
 The `lessonId` below references the existing Playground `lightDiscovery` Lesson source; real Course editors must verify its availability, locale coverage, intent and authoring imports before using it. Schematic Course/Module/Chapter/Episode IDs are illustrative. The source language is `uk` and only the `uk` locale is authored.
 
 ```yaml
+documentLanguage: uk # optional course.yaml provenance; removed before defineCourse
 id: '11111111-1111-4111-8111-111111111111'
 slug: sampleLightCourse
 type: course
