@@ -13,7 +13,7 @@ describe('Configurators', () => {
   describe('Sections', () => {
     describe('section configurators', () => {
       const id = (suffix: string) => 'e5235ac2-2c44-4c10-8c48-3c7bad6490' + suffix;
-      const prompt = defineText({
+      const prompt = defineText<'prompt', ['en', 'uk']>({
         id: id('01'),
         slug: 'prompt',
         type: 'text',
@@ -31,7 +31,7 @@ describe('Configurators', () => {
         type: Type,
       ) => ({
         id: id('03'),
-        slug: 'unit',
+        slug: 'unit' as const,
         type,
         params: {},
         locale: { title: { en: 'Title', uk: 'Назва' }, navigationLabel: '1' },
@@ -44,11 +44,11 @@ describe('Configurators', () => {
       };
 
       const definitions = [
-        () => defineContentSection(input('content')),
-        () => definePracticeSection(input('practice')),
-        () => defineCodingTaskSection(input('codingTask')),
-        () => defineLearningFlowSection(input('learningFlow')),
-        () => defineFlashcardsSection(input('flashcards')),
+        () => defineContentSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('content')),
+        () => definePracticeSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('practice')),
+        () => defineCodingTaskSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('codingTask')),
+        () => defineLearningFlowSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('learningFlow')),
+        () => defineFlashcardsSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>(input('flashcards')),
       ];
 
       test('every Section publishes ordered JSON-safe ContentBlock Props without mutable override state', () => {
@@ -147,7 +147,7 @@ describe('Configurators', () => {
       });
 
       test('Section authoring preserves an explicit opt-out from Lesson skipping', () => {
-        const section = defineContentSection({ ...input('content'), params: { skippable: false } });
+        const section = defineContentSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>({ ...input('content'), params: { skippable: false } });
         assert.equal(section.build.props({ languages: ['en'] }).base.params.skippable, false);
         assert.equal(section.config.base.params.skippable, false);
       });
