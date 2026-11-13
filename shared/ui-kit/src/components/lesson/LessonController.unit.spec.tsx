@@ -138,6 +138,9 @@ describe('Engine Props Lesson Controller', () => {
     fireEvent.click(navigationButton('next'));
     expect(screen.getByText('Second section content')).toBeVisible();
     fireEvent.click(navigationButton('previous'));
+    // Accordion state is local to the section and resets after navigation.
+    // Reopen it to verify that the completed checkpoint stays disabled.
+    fireEvent.click(screen.getByRole('button', { name: /What is light\?/i }));
     expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
   });
 
