@@ -8,6 +8,7 @@ import type {
 import type { QuestionResponse } from '#types/questions';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
+import { questionBlockLabel } from './questions/response/QuestionContent';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 
 const uuid = (index: number) => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
@@ -184,6 +185,18 @@ describe('Quiz Section presentation', () => {
     } finally {
       vi.useRealTimers();
     }
+  });
+});
+
+describe('accessible Question labels', () => {
+  it('strips Markdown syntax from a choice label using canonical locale Props', () => {
+    expect(questionBlockLabel({
+      id: uuid(100),
+      slug: 'markdownChoice',
+      type: 'markdown',
+      params: {},
+      locale: { value: '**Important** and `code`' },
+    })).toBe('Important and code');
   });
 });
 
