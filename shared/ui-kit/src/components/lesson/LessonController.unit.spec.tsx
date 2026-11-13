@@ -246,7 +246,8 @@ describe('Engine Props Lesson Controller', () => {
       locale: { title: 'Quiz', navigationLabel: 'Quiz' },
       content: [],
     };
-    response.questions = { selectOneAnswer: [question] };
+    // Published Question Props arrive as JSON, without source-only TypeScript metadata.
+    response.questions = { selectOneAnswer: [JSON.parse(JSON.stringify(question))] };
     response.section = [quiz, response.section[1]];
     showLesson(response);
     expect(navigationButton('next')).toBeDisabled();
