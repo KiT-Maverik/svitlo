@@ -1,3 +1,4 @@
+export * from './assemblers';
 export * from './configurators';
 export * from './configurators_old';
 export * from './lessons';

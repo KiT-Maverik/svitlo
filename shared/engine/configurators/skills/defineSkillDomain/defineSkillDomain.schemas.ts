@@ -3,8 +3,10 @@ import type { DeepPartial } from '#types';
 import { deepStrict_Schema, localeText_Schema } from '#schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
-import { skill_Props_Schema, type Skill_Configurator, type Skill_Props } from '../defineSkill';
-import { skillGroup_Props_Schema, type SkillGroup_Configurator, type SkillGroup_Props } from '../defineSkillGroup';
+import { skill_Props_Schema, type Skill_Props } from '../defineSkill/defineSkill.schemas';
+import type { Skill_Configurator } from '../defineSkill/defineSkill';
+import { skillGroup_Props_Schema, type SkillGroup_Props } from '../defineSkillGroup/defineSkillGroup.schemas';
+import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
 
 const localized = (mode: 'config' | 'props') => ({
   id: z.uuid(),
