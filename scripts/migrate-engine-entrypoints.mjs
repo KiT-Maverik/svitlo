@@ -16,6 +16,8 @@ const authoringName = /^(?:define[A-Z]|build[A-Z]|publish[A-Z]|generate[A-Z]|cre
 
 function isAuthoringFile(filename) {
   return filename.startsWith('scripts/') ||
+    filename.startsWith('shared/ui-kit/data/') ||
+    filename.startsWith('shared/ui-kit/scripts/') ||
     (filename.startsWith('content/') && (
       filename.includes('/data/') || filename.endsWith('.data.ts') ||
       filename.endsWith('/textbook.ts')

@@ -24,3 +24,9 @@ test('does not change comments or strings; migration is idempotent',()=>{
   const first=rewriteEngineEntrypoints("import { defineSkill } from '@svitlo/engine';",'content/art/data/skill.data.ts');
   assert.equal(rewriteEngineEntrypoints(first,'content/art/data/skill.data.ts'),first);
 });
+
+test('classifies UI Kit authored assessment method definitions as build-time',()=>{
+  const source="import { defineAssessmentMethod } from '@svitlo/engine';";
+  assert.equal(rewriteEngineEntrypoints(source,'shared/ui-kit/data/definitions/assessmentMethods/example.ts'),
+    "import { defineAssessmentMethod } from '@svitlo/engine/build';");
+});

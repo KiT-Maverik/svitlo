@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
+      - run: npm ci --no-audit --no-fund
       - name: Migrate tracked imports without touching authored values
         run: node scripts/migrate-engine-entrypoints.mjs --write
       - name: Verify migration is idempotent
