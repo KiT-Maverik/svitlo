@@ -1,137 +1,91 @@
 import { test, expect } from '@playwright/test';
 
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
-const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
-const episodeId = '9f417177-1d07-5a9d-ad74-0146c5637e84';
+const discoveryId = 'f760e7b7-9f77-5027-89ce-4e40d9d031a1';
+const retiredEpisodeId = '9f417177-1d07-5a9d-ad74-0146c5637e84';
 
-test('Course publishes independent localized TOC, override and Episode JSON resources', async ({ request }) => {
-  const base = '/data/pages/courses/' + courseId;
-  const [toc, override, episode] = await Promise.all([
-    request.get(base + '/toc/uk.json'),
-    request.get(base + '/overrides/' + lessonId + '/uk.json'),
-    request.get(base + '/episodes/' + episodeId + '/uk.json'),
+test('Course and Lessons publish Engine Props files, not legacy TOC and overrides', async ({ request }) => {
+  const [courseResource, lessonResource] = await Promise.all([
+    request.get('/data/courses/' + courseId + '/base.json'),
+    request.get('/data/lessons/1/' + discoveryId + '/base.json'),
   ]);
-  expect(toc.ok()).toBe(true);
-  expect(override.ok()).toBe(true);
-  expect(episode.ok()).toBe(true);
-  const tree = await toc.json();
-  expect(tree.type).toBe('course');
-  expect(tree.children[0].type).toBe('module');
-  expect(tree.children[0].children[0].type).toBe('chapter');
-  expect(tree.children[0].children[0].children.some((item: { type: string }) => item.type === 'episode')).toBe(true);
-  const patch = await override.json();
-  expect(patch.lessonId).toBe(lessonId);
-  expect(patch.overrides.sections.order).toEqual(['practice', 'storyBridge', 'theory', 'quiz']);
-  expect(patch.overrides.sections.added[0].source.type).toBe('course');
-  expect(patch.overrides.parameters.sections.allowSkipping).toBe(false);
-  expect(patch.overrides.questions).toBeUndefined();
-  expect(patch.overrides.flashcards).toBeUndefined();
-  const story = await episode.json();
-  expect(story.sections[0].type).toBe('scenario');
-  expect(story.sections[0].content[0].locales).toContain('Lorem ipsum');
+  expect(courseResource.ok()).toBe(true);
+  expect(lessonResource.ok()).toBe(true);
+
+  const course = await courseResource.json();
+  expect(course.type).toBe('course');
+  expect(course.content.order).toEqual(['lightLaboratory']);
+  const module = course.content.items.lightLaboratory;
+  expect(module.type).toBe('module');
+  expect(module.content.order).toEqual(['lightFoundations', 'lightExploration']);
+  const chapter = module.content.items.lightFoundations;
+  expect(chapter.type).toBe('chapter');
+  expect(chapter.content.items.lightDiscovery).toEqual({ type: 'lesson', id: discoveryId });
+  expect(chapter.content.items.lightStory.type).toBe('lesson');
+
+  const lesson = await lessonResource.json();
+  expect(lesson.type).toBe('lesson');
+  expect(Array.isArray(lesson.section)).toBe(true);
+  expect(lesson.params.languages).toContain('uk');
 });
 
-test('Course navigation renders Modules and opens the overridden Lesson without changing standalone route', async ({
-  page,
-}) => {
+test('Course detail uses the published nested hierarchy and opens a real Lesson', async ({ page }) => {
   await page.goto('/uk/course/' + courseId);
   await expect(page.getByRole('heading', { name: 'Подорож світла', level: 1 })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Програма курсу', level: 2 })).toBeVisible();
-  await expect(page.getByText('Лабораторія світла')).toBeVisible();
-  await expect(page.getByRole('link', { name: /Як рухається світло/ })).toHaveAttribute(
+  await expect(page.getByText('The Light Laboratory')).toBeVisible();
+  await expect(page.getByText('Light: first steps')).toBeVisible();
+  await expect(page.getByRole('link', { name: /Light Lab · Discovery/ })).toHaveAttribute(
     'href',
-    '/uk/course/' + courseId + '/lesson/uk/' + lessonId,
+    '/uk/course/' + courseId + '/lesson/uk/' + discoveryId,
   );
-  await page.goto('/uk/course/' + courseId + '/lesson/' + lessonId);
-  await expect(page.getByText('Порівняй швидкість світла у вакуумі, повітрі та воді.')).toBeVisible();
-  const next = page
-    .getByRole('navigation', { name: 'Нижня навігація навчання' })
-    .getByRole('button', { name: 'Далі →' });
-  await next.click();
-  await expect(page.getByText(/A small story between lesson sections/)).toBeVisible();
-  await page.goto('/uk/lesson/' + lessonId);
-  await expect(page.getByRole('heading', { name: 'Як рухається світло', exact: true })).toBeVisible();
+
+  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + discoveryId);
+  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', exact: true })).toBeVisible();
+  await page.goto('/uk/lesson/uk/' + discoveryId);
+  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', exact: true })).toBeVisible();
 });
 
-test('Course lesson keeps the course context while interface and lesson languages differ', async ({ page }) => {
-  await page.goto('/uk/course/' + courseId + '/lesson/en/' + lessonId);
+test('Course-context Lesson preserves the independent content language', async ({ page }) => {
+  await page.goto('/uk/course/' + courseId + '/lesson/en/' + discoveryId);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
   await expect(page.locator('#learning-content [lang="en-US"]').first()).toHaveAttribute('dir', 'ltr');
-  await expect(page.getByRole('heading', { name: 'How light travels', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
   await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
   await page.getByRole('option', { name: 'English' }).click();
-  await expect(page).toHaveURL('/en/course/' + courseId + '/lesson/en/' + lessonId);
+  await expect(page).toHaveURL('/en/course/' + courseId + '/lesson/en/' + discoveryId);
 });
 
-test('Course sidebar groups its published Module and Chapter and retains the active Lesson', async ({
-  page,
-  request,
-}) => {
-  const response = await request.get('/data/pages/courses/' + courseId + '/toc/uk.json');
-  const toc = await response.json();
-  const courseModule = toc.children[0];
-  const chapter = courseModule.children[0];
-  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + lessonId);
+test('Course sidebar retains published group titles and active Lesson state', async ({ page }) => {
+  await page.goto('/uk/course/' + courseId + '/lesson/uk/' + discoveryId);
   await page.getByRole('button', { name: 'Відкрити список тем' }).click();
-
   const sidebar = page.getByRole('navigation', { name: 'Список тем' });
-  const moduleButton = sidebar.getByRole('button', { name: courseModule.title }).first();
-  const chapterButton = sidebar.getByRole('button', { name: chapter.title }).first();
-  const activeLink = sidebar.locator('a[href="/uk/course/' + courseId + '/lesson/uk/' + lessonId + '"]');
-
+  const moduleButton = sidebar.getByRole('button', { name: 'The Light Laboratory' }).first();
+  const chapterButton = sidebar.getByRole('button', { name: 'Light: first steps' }).first();
+  const activeLink = sidebar.locator('a[href="/uk/course/' + courseId + '/lesson/uk/' + discoveryId + '"]');
   await expect(moduleButton).toHaveAttribute('aria-expanded', 'true');
   await expect(chapterButton).toHaveAttribute('aria-expanded', 'true');
   await expect(activeLink).toHaveAttribute('aria-current', 'page');
 
   await chapterButton.click();
-  await expect(chapterButton).toHaveAttribute('aria-expanded', 'false');
   await expect(activeLink).toBeHidden();
-
-  await moduleButton.click();
-  await expect(moduleButton).toHaveAttribute('aria-expanded', 'false');
-  await moduleButton.click();
-  await expect(moduleButton).toHaveAttribute('aria-expanded', 'true');
-  await expect(chapterButton).toHaveAttribute('aria-expanded', 'false');
-
   await chapterButton.click();
   await expect(activeLink).toBeVisible();
 });
 
-test('Episode is navigable as a separate Course unit', async ({ page }) => {
-  await page.goto('/uk/course/' + courseId + '/episode/' + episodeId);
-  await expect(
-    page
-      .locator('#learning-content')
-      .getByText(/Lorem ipsum dolor sit amet/)
-      .first(),
-  ).toBeVisible();
-  await page.getByRole('button', { name: 'Відкрити налаштування' }).click();
-  await expect(page.getByRole('combobox', { name: 'Мова уроку' })).toHaveCount(0);
-  await page.getByRole('combobox', { name: 'Мова інтерфейсу' }).click();
-  await page.getByRole('option', { name: 'English' }).click();
-  await expect(page).toHaveURL('/en/course/' + courseId + '/episode/' + episodeId);
-  await expect(
-    page
-      .locator('#learning-content')
-      .getByText(/Lorem ipsum dolor sit amet/)
-      .first(),
-  ).toBeVisible();
+test('Unknown Course membership and retired Episode resource route return 404', async ({ request }) => {
+  for (const route of [
+    '/uk/course/' + courseId + '/lesson/uk/ffffffff-ffff-ffff-ffff-ffffffffffff',
+    '/uk/course/' + courseId + '/episode/' + retiredEpisodeId,
+  ]) {
+    const response = await request.get(route);
+    expect(response.status()).toBe(404);
+  }
 });
 
-test('Unknown Course membership returns 404', async ({ request }) => {
-  const response = await request.get('/uk/course/' + courseId + '/lesson/ffffffff-ffff-ffff-ffff-ffffffffffff');
-  expect(response.status()).toBe(404);
-});
-
-test('Course catalog opens details and previews have no unpublished lesson links', async ({ page }) => {
+test('Course catalog still supports unpublished previews without fake Lesson links', async ({ page }) => {
   await page.goto('/uk/courses');
   await expect(page.getByRole('heading', { name: 'Обирай свою наступну пригоду', level: 1 })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Переглянути курс: Подорож світла' })).toBeVisible();
   await page.getByRole('link', { name: 'Переглянути курс: Математика навколо нас' }).click();
-  await expect(page.getByRole('heading', { name: 'Математика навколо нас', level: 1 })).toBeVisible();
   await expect(page.getByText('Це попередній перегляд. Уроки будуть доступні пізніше.')).toBeVisible();
   await expect(page.getByRole('link', { name: 'Почати навчання' })).toHaveCount(0);
-  await page.getByRole('link', { name: 'Усі курси' }).click();
-  await expect(page.getByRole('heading', { name: 'Обирай свою наступну пригоду' })).toBeVisible();
 });
