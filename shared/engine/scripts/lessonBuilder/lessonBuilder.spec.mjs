@@ -137,9 +137,9 @@ function fixture(callback) {
     }));
     // Specialist-owned editorial files are a different contract and remain
     // untouched by this technical draft scaffolder.
-    fs.writeFileSync(path.join(lesson, 'content.yaml'), 'kind: lesson-content-plan\\nstatus: draft\\n');
-    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), 'kind: lesson-questions-plan\\nstatus: draft\\n');
-    fs.writeFileSync(path.join(lesson, 'flashcards/flashcards.yaml'), 'kind: lesson-flashcards-plan\\nstatus: draft\\n');
+    fs.writeFileSync(path.join(lesson, 'content.yaml'), 'kind: lesson-content-plan\nstatus: draft\n');
+    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), 'kind: lesson-questions-plan\nstatus: draft\n');
+    fs.writeFileSync(path.join(lesson, 'flashcards/flashcards.yaml'), 'kind: lesson-flashcards-plan\nstatus: draft\n');
   };
   const generated = () => path.join(lesson, 'lightLesson.data.ts');
   try {
@@ -327,7 +327,7 @@ test('source locale pruning includes localized Flashcard flag values outside loc
 
 test('Lesson Config is independently discovered without repurposing editorial content', () =>
   fixture(f => {
-    fs.writeFileSync(path.join(f.lesson, 'content.yaml'), 'kind: lesson-content-plan\\nsections: []\\n');
+    fs.writeFileSync(path.join(f.lesson, 'content.yaml'), 'kind: lesson-content-plan\nsections: []\n');
     assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
     assert.match(fs.readFileSync(path.join(f.lesson, 'content.yaml'), 'utf8'), /lesson-content-plan/);
     assert.match(fs.readFileSync(f.generated(), 'utf8'), /defineLesson\(/);
