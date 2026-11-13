@@ -144,14 +144,14 @@ function findLocalizedLesson(
   return parent;
 }
 
-function getOverride(node: Record<string, unknown> | undefined, label: string): PublishedLessonPropsOverride['base'] {
+function getOverride(node: Record<string, unknown> | undefined, label: string): Record<string, unknown> | undefined {
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
     if (!allowedOverrideKeys.has(key)) throw new Error('Forbidden ' + label + ' Lesson override field: ' + key);
   }
   assertJson(node.overrides, label + '/overrides');
-  return node.overrides as PublishedLessonPropsOverride['base'];
+  return node.overrides;
 }
 
 /**
@@ -200,7 +200,7 @@ export function assembleCourseLesson({
       : {
           ...(basePatch !== undefined ? { base: basePatch } : {}),
           ...(localePatch !== undefined ? { locale: { [language]: localePatch } } : {}),
-        };
+        } as unknown as PublishedLessonPropsOverride;
 
   // Reuse the canonical Lesson schema and merge semantics, not a second resolver.
   return assembleLessonProps(lesson, language, overrides);
