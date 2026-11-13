@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 import type { ContentBlock_Image_Props } from '@svitlo/engine/runtime';
 
-import { localizedAttributes } from '../../utils';
+import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { imageUnoptimized, type ImageFailureKind } from './Image.utils';
 import { useImageRenderer } from './ImageRenderer';
@@ -21,6 +21,7 @@ export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale
   const { messages } = props;
   const Renderer = useImageRenderer();
   const contentLanguage = useContentLanguage();
+  const resolvedCaption = resolveOptionalLocalizedText(caption, contentLanguage, 'image.caption');
   const imageRef = useRef<HTMLImageElement>(null);
   const [failure, setFailure] = useState<ImageFailure | null>(null);
   const [attempt, setAttempt] = useState(0);
@@ -58,9 +59,12 @@ export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale
           style={{ aspectRatio: fill ? aspectRatio : `${width} / ${height}` }}
         >
           {alt && <strong>{alt}</strong>}
-          <span>{fallback?.[failureKind] || messages[failureKind]}</span>
+          <span>
+            {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'image.fallback.' + failureKind) ??
+              messages[failureKind]}
+          </span>
           <Button type="button" variant="outlined" onClick={retry}>
-            {fallback?.retry || messages['retry']}
+            {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'image.fallback.retry') ?? messages.retry}
           </Button>
         </div>
       ) : fill ? (
@@ -96,7 +100,7 @@ export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale
           onError={onError}
         />
       )}
-      {caption && <figcaption>{caption}</figcaption>}
+      {resolvedCaption && <figcaption>{resolvedCaption}</figcaption>}
     </figure>
   );
 };

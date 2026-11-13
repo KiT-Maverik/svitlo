@@ -6,7 +6,7 @@ import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
 import Button from '@mui/material/Button';
 import type { ContentBlock_Video_Props } from '@svitlo/engine/runtime';
 
-import { localizedAttributes } from '../../utils';
+import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
 import { classifyVideoError, type VideoFailureKind } from './Video.utils';
@@ -21,6 +21,7 @@ export const Video = ({
   messages: Video_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
+  const resolvedTitle = resolveOptionalLocalizedText(title, contentLanguage, 'video.title');
   const mediaSettings = useOptionalMediaSettings();
   const volume = mediaSettings?.volume ?? 100;
   const muted = mediaSettings?.muted ?? false;
@@ -71,9 +72,12 @@ export const Video = ({
       {failureKind ? (
         <div className={styles.placeholder} role="alert">
           <strong>{label}</strong>
-          <span>{fallback?.[failureKind] || messages[failureKind]}</span>
+          <span>
+            {resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'video.fallback.' + failureKind) ??
+              messages[failureKind]}
+          </span>
           <Button type="button" variant="outlined" onClick={retry}>
-            {fallback?.retry || messages['retry']}
+            {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'video.fallback.retry') ?? messages.retry}
           </Button>
         </div>
       ) : (
@@ -92,7 +96,7 @@ export const Video = ({
           onWaiting={failIfOffline}
         />
       )}
-      {title && <figcaption>{title}</figcaption>}
+      {resolvedTitle && <figcaption>{resolvedTitle}</figcaption>}
     </figure>
   );
 };

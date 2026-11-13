@@ -14,6 +14,7 @@ import {
 } from 'react';
 import Container from '@mui/material/Container';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
+import { ContentLanguageContext } from '../widgets/ContentBlockRenderer/ContentLanguageContext';
 import { EngineQuestionRenderer } from './EngineQuestionRenderer';
 import type {
   LearningLayoutTopBarProps,
@@ -597,7 +598,9 @@ function LessonControllerRuntime({
                       <MemoStepper response={response} messages={messages} />
                     </StepperContext.Provider>
                     <SectionContext.Provider value={section}>
-                      <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
+                      <ContentLanguageContext.Provider value={language}>
+                        <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
+                      </ContentLanguageContext.Provider>
                     </SectionContext.Provider>
                   </>
                 )}

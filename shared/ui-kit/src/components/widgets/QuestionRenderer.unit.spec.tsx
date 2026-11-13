@@ -189,6 +189,18 @@ describe('Quiz Section presentation', () => {
 });
 
 describe('accessible Question labels', () => {
+  it('resolves an accessible media label for the selected content language', () => {
+    const block = {
+      id: uuid(101),
+      slug: 'audioChoice',
+      type: 'audio' as const,
+      params: {},
+      locale: { fileLocation: '/recording.mp3', title: { en: 'Recording', uk: 'Запис' } },
+    };
+    expect(questionBlockLabel(block, 'uk')).toBe('Запис');
+    expect(() => questionBlockLabel(block, 'ar')).toThrow('Missing localized content at audio.title for ar');
+  });
+
   it('strips Markdown syntax from a choice label using canonical locale Props', () => {
     expect(questionBlockLabel({
       id: uuid(100),
