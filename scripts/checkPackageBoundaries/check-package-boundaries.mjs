@@ -252,9 +252,11 @@ for (const file of engineSources) {
         match[1] === 'zod' ||
         (relative(root, file).startsWith('shared/engine/utils/generators/') &&
           (match[1].startsWith('node:') || match[1] === 'esbuild')) ||
-        (relative(root, file).startsWith(
+        ((relative(root, file).startsWith(
           'shared/engine/configurators/contentBlocks/_shared__contentBlocks/validateLocalAssets/',
-        ) && match[1].startsWith('node:')),
+        ) ||
+          relative(root, file).startsWith('shared/engine/configurators/contentBlocks/defineCode/')) &&
+          match[1].startsWith('node:')),
       'Engine must not import runtime, UI or application packages: ' + relative(root, file) + ' -> ' + match[1],
     );
   }
