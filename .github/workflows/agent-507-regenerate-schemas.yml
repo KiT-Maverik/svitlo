@@ -6,6 +6,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
+concurrency:
+  group: yaml-schema-regeneration-agent-507
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -38,5 +42,8 @@ jobs:
           git add shared/engine/yaml-schemas/*.schema.json
           if ! git diff --cached --quiet; then
             git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Regenerate deduplicated Engine YAML editor schemas'
+            # File-only schema commit replays cleanly atop later source/test commits.
+            git fetch origin agent/507-integrate-yaml-scaffolders
+            git rebase origin/agent/507-integrate-yaml-scaffolders
             git push origin HEAD:agent/507-integrate-yaml-scaffolders
           fi
