@@ -13,7 +13,7 @@ import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import type { ContentBlock_Audio_Props } from '@svitlo/engine/runtime';
 
 import { Flag } from '../../../Flag/Flag';
-import { localizedAttributes } from '../../utils';
+import { localizedAttributes, resolveLocalizedText, resolveOptionalLocalizedText } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { useOptionalMediaSettings } from '../../../../lesson/MediaSettings';
 import { classifyAudioError, formatAudioTime, type AudioFailureKind } from './Audio.utils';
@@ -39,6 +39,8 @@ export const Audio = ({
   const contentLanguage = useContentLanguage();
   const mediaSettings = useOptionalMediaSettings();
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === contentLanguage);
+  const resolvedTitle = resolveLocalizedText(title, contentLanguage, 'audio.title');
+  const resolvedDescription = resolveOptionalLocalizedText(description, contentLanguage, 'audio.description');
   const audioRef = useRef<HTMLAudioElement>(null);
   const [failure, setFailure] = useState<AudioFailure | null>(null);
   const [attempt, setAttempt] = useState(0);
@@ -161,10 +163,10 @@ export const Audio = ({
     <figure {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.figure}>
       {failureKind ? (
         <div className={styles.placeholder} role="alert">
-          {title && <strong>{title}</strong>}
-          <span>{fallback?.[failureKind] || messages[failureKind]}</span>
+          {resolvedTitle && <strong>{resolvedTitle}</strong>}
+          <span>{resolveOptionalLocalizedText(fallback?.[failureKind], contentLanguage, 'audio.fallback.' + failureKind) ?? messages[failureKind]}</span>
           <Button type="button" variant="outlined" onClick={retry}>
-            {fallback?.retry || messages.retry}
+            {resolveOptionalLocalizedText(fallback?.retry, contentLanguage, 'audio.fallback.retry') ?? messages.retry}
           </Button>
         </div>
       ) : (
@@ -175,7 +177,7 @@ export const Audio = ({
             className={styles.nativeAudio}
             src={fileLocation}
             preload="metadata"
-            aria-label={title}
+            aria-label={resolvedTitle}
             onError={handleError}
             onStalled={failIfOffline}
             onWaiting={failIfOffline}
@@ -278,7 +280,7 @@ export const Audio = ({
           </div>
         </div>
       )}
-      {description && <figcaption className={styles.caption}>{description}</figcaption>}
+      {resolvedDescription && <figcaption className={styles.caption}>{resolvedDescription}</figcaption>}
     </figure>
   );
 };
