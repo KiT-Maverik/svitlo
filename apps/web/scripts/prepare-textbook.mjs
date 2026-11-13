@@ -54,7 +54,7 @@ run(process.execPath, [join(textbookRoot, manifest.bin[cli[0]]), 'publish', '--o
 // textbook resource ownership, just as it stages UI Kit flags.
 rmSync(join(targetPublic, 'data/uiKit'), { recursive: true, force: true });
 run('node', [
-  'shared/ui-kit/scripts/generateLocales.mjs',
+  'shared/ui-kit/scripts/generateLocales/generateLocales.mjs',
   '--package',
   selection.directory,
   '--output',

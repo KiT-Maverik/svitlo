@@ -62,7 +62,7 @@ run(process.execPath, [
 // not overwrite either, nor the Capacitor app's own static resources.
 rmSync(join(publicRoot, 'data/uiKit'), { recursive: true, force: true });
 run(process.execPath, [
-  'shared/ui-kit/scripts/generateLocales.mjs',
+  'shared/ui-kit/scripts/generateLocales/generateLocales.mjs',
   '--package',
   selection.directory,
   '--output',
@@ -72,7 +72,7 @@ for (const resource of ['assessmentMethods/base.json', 'assessmentMethods/uk.jso
   const filename = join(publicRoot, 'data/uiKit', resource);
   if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
 }
-run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/syncFlags.mjs')], mobileRoot);
+run(process.execPath, [join(repoRoot, 'shared/ui-kit/scripts/syncFlags/syncFlags.mjs')], mobileRoot);
 
 const lessonsRoot = join(publicRoot, 'data/lessons');
 if (!existsSync(lessonsRoot)) throw new Error('No published lessons for ' + id);

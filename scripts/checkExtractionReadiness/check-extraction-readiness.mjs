@@ -185,12 +185,12 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
 }
 
 const kit = readJson('shared/ui-kit/package.json');
-for (const path of ['dist', 'assets/flags', 'scripts/syncFlags.mjs']) {
+for (const path of ['dist', 'assets/flags', 'scripts/syncFlags/syncFlags.mjs']) {
   assert(kit.files && kit.files.includes(path), 'UI Kit package files omit ' + path);
   if (path !== 'dist') assert(existsSync(resolve(root, 'shared/ui-kit', path)), 'Missing asset: ' + path);
 }
 assert(
-  kit.bin?.['svitlo-sync-flags'] === './scripts/syncFlags.mjs' && Object.keys(kit.exports ?? {}).length === 1,
+  kit.bin?.['svitlo-sync-flags'] === './scripts/syncFlags/syncFlags.mjs' && Object.keys(kit.exports ?? {}).length === 1,
   'UI Kit flag sync must remain a bin script, not a public subpath export',
 );
 assert(
