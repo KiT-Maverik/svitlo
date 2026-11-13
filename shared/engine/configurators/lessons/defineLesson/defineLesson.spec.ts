@@ -107,7 +107,7 @@ describe('Configurators', () => {
         assert.doesNotThrow(() => lesson.build.props({ languages: ['uk'] }));
         assert.throws(
           () => lesson.build.props({ languages: ['en', 'uk'] }),
-          /Invalid.*Props/,
+          /Invalid publication for language en/,
           'An unscoped authoring child cannot publish a missing translation to a scoped parent',
         );
       });
