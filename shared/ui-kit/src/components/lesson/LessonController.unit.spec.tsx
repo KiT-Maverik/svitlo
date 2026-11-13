@@ -132,12 +132,15 @@ describe('Engine Props Lesson Controller', () => {
   it('blocks Next until a required Engine Checkpoint Item is complete', () => {
     showLesson();
     expect(navigationButton('next')).toBeDisabled();
-    fireEvent.click(screen.getByText('What is light?'));
+    fireEvent.click(screen.getByRole('button', { name: /What is light\?/i }));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.checkpoint.check }));
     expect(navigationButton('next')).toBeEnabled();
     fireEvent.click(navigationButton('next'));
     expect(screen.getByText('Second section content')).toBeVisible();
     fireEvent.click(navigationButton('previous'));
+    // Accordion state is local to the section and resets after navigation.
+    // Reopen it to verify that the completed checkpoint stays disabled.
+    fireEvent.click(screen.getByRole('button', { name: /What is light\?/i }));
     expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
   });
 
@@ -246,7 +249,8 @@ describe('Engine Props Lesson Controller', () => {
       locale: { title: 'Quiz', navigationLabel: 'Quiz' },
       content: [],
     };
-    response.questions = { selectOneAnswer: [question] };
+    // Published Question Props arrive as JSON, without source-only TypeScript metadata.
+    response.questions = { selectOneAnswer: [JSON.parse(JSON.stringify(question))] };
     response.section = [quiz, response.section[1]];
     showLesson(response);
     expect(navigationButton('next')).toBeDisabled();

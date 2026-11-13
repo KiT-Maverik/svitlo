@@ -330,9 +330,10 @@ test('real Playground Sections and Question Bank use current APIs', () => {
   const root = path.join(repoRoot, 'content/playground/data/lessons/c', lessonId);
   const quiz = fs.readFileSync(path.join(root, 'sections/quiz/index.ts'), 'utf8');
   const catalog = fs.readFileSync(path.join(root, 'questions/index.ts'), 'utf8');
-  assert.match(quiz, /createSectionConfigurator<HowLightMoves_Languages>/);
+  assert.match(quiz, /defineQuizSection\(\{/);
   assert.match(quiz, /questionSlugs:/);
-  assert.match(catalog, /Question_Catalog<'data', HowLightMoves_Languages>/);
+  assert.match(catalog, /export const howLightMovesQuestions = \{/);
+  assert.match(catalog, /selectOneAnswer: \{/);
   assert.equal(fs.existsSync(path.join(root, 'content.yaml')), false);
   // No migration or overwrite of the real Playground TS lesson is performed.
 });
@@ -516,7 +517,7 @@ function writeFlashcards(f, transform = value => value) {
             value: { kind: 'questionField', questionSlug: 'q-one', fieldPath: ['question', 0, 'value'] },
           },
         ],
-        back: [{ type: 'text', value: 'Light travels straight', styling: [{ id: 'light', applyStyle: ['bold'] }] }],
+        back: [{ type: 'text', value: 'Light travels straight' }],
         hint: [],
         tags: ['physics'],
         flags: [{ type: 'warning' }, { type: 'list', count: 2 }],
