@@ -141,18 +141,23 @@ test('one compact Course base contains complete Course/Module/Chapter Props but 
   const files = renderCourseFiles(course);
   assert.deepEqual([...files.keys()], ['base.json', 'uk.json']);
   const base = JSON.parse(files.get('base.json'));
-  const chapter = base.content[0].content[0];
+  const chapter = base.content.items.myModule.content.items.myChapter;
   assert.equal(chapter.locale.title, 'Chapter');
-  assert.deepEqual(chapter.content, [{ id: ids.lesson, type: 'lesson' }]);
-  assert.equal(base.content[0].locale.title, 'Module');
+  assert.deepEqual(chapter.content, { items: { myLesson: { id: ids.lesson, type: 'lesson' } }, order: ['myLesson'] });
+  assert.equal(base.content.items.myModule.locale.title, 'Module');
   assert(![...files.values()].join('').includes('secret-standalone-skill'));
   assert(![...files.values()].join('').includes('standalone-section'));
   assert(![...files.values()].join('').includes('Standalone title'));
   const uk = JSON.parse(files.get('uk.json'));
   const assembled = mergeCourseProps(base, uk);
   assert.equal(assembled.locale.title, 'Курс');
-  assert.equal(assembled.content[0].locale.title, 'Модуль');
-  assert.deepEqual(assembled.content[0].content[0].content[0], { id: ids.lesson, type: 'lesson' });
+  assert.deepEqual(assembled.content.order, ['myModule']);
+  assert.deepEqual(assembled.content.items.myModule.content.order, ['myChapter']);
+  assert.equal(assembled.content.items.myModule.locale.title, 'Модуль');
+  assert.deepEqual(assembled.content.items.myModule.content.items.myChapter.content.items.myLesson, {
+    id: ids.lesson,
+    type: 'lesson',
+  });
 });
 
 test('Lesson base and locale override Props are stored at the same tree position in separate files', () => {
@@ -160,7 +165,7 @@ test('Lesson base and locale override Props are stored at the same tree position
   const files = renderCourseFiles(course, { overrides: authoredPatch });
   assert.equal(getPatchCalls(), 1);
   const base = JSON.parse(files.get('base.json'));
-  const lessonRef = base.content[0].content[0].content[0];
+  const lessonRef = base.content.items.myModule.content.items.myChapter.content.items.myLesson;
   assert.deepEqual(lessonRef, {
     id: ids.lesson,
     type: 'lesson',
@@ -168,7 +173,7 @@ test('Lesson base and locale override Props are stored at the same tree position
   });
   const uk = JSON.parse(files.get('uk.json'));
   const assembled = mergeCourseProps(base, uk);
-  assert.deepEqual(assembled.content[0].content[0].content[0], {
+  assert.deepEqual(assembled.content.items.myModule.content.items.myChapter.content.items.myLesson, {
     id: ids.lesson,
     type: 'lesson',
     overrides: {
@@ -195,10 +200,10 @@ test('invariant child removal wins over a translated pre-override Course array',
   };
   const files = renderCourseFiles(course, { overrides: disable });
   const base = JSON.parse(files.get('base.json'));
-  assert.deepEqual(base.content, []);
+  assert.deepEqual(base.content, { items: {}, order: [] });
   const uk = JSON.parse(files.get('uk.json'));
   assert.equal(Object.hasOwn(uk, 'content'), false, 'old localized child must not reappear');
-  assert.deepEqual(mergeCourseProps(base, uk).content, []);
+  assert.deepEqual(mergeCourseProps(base, uk).content, { items: {}, order: [] });
 });
 
 test('deterministic publication, check mode, stale file cleanup and unrelated assets', () => {
@@ -206,7 +211,7 @@ test('deterministic publication, check mode, stale file cleanup and unrelated as
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-'));
   try {
     const first = publishCourse(course, { packageRoot: home });
-    const destination = path.join(home, 'public/data/courses', ids.course);
+    const destination = path.join(home, 'generated/courses', ids.course);
     assert.equal(first.directory, destination);
     assert.deepEqual(first.files, ['base.json', 'uk.json']);
     publishCourse(course, { packageRoot: home, check: true });
@@ -229,7 +234,7 @@ test('publishes directly to a caller-owned compiled Course output root', () => {
   const { course } = fixture();
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-dist-'));
   try {
-    const outputRoot = path.join(home, 'dist/static/data/courses');
+    const outputRoot = path.join(home, 'generated/courses');
     const result = publishCourse(course, { outputRoot });
     assert.equal(result.directory, path.join(outputRoot, ids.course));
     publishCourse(course, { outputRoot, check: true });
@@ -261,4 +266,16 @@ test('check mode does not create an output directory', () => {
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }
+});
+
+// A translated Chapter must not force a full Course subtree into the locale file.
+test('locale files contain sparse slug-keyed Course changes, not repeated sibling nodes', () => {
+  const { course } = fixture();
+  const files = renderCourseFiles(course);
+  const uk = JSON.parse(files.get('uk.json'));
+  assert.deepEqual(Object.keys(uk.content.items), ['myModule']);
+  assert.deepEqual(Object.keys(uk.content.items.myModule.content.items), ['myChapter']);
+  assert.equal(Object.hasOwn(uk.content, 'order'), false);
+  assert.equal(Object.hasOwn(uk.content.items.myModule, 'params'), false);
+  assert.equal(Object.hasOwn(uk.content.items.myModule.content.items.myChapter, 'content'), false);
 });

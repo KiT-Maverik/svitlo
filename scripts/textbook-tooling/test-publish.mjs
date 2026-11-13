@@ -54,24 +54,24 @@ test('isolated package publishes exactly the manifest resources', t => {
     JSON.parse(readFileSync(join(output, '.svitlo/publish-' + id + '.json'), 'utf8')).files,
     manifest.files,
   );
-  const skillFiles = manifest.files.filter(name => name.startsWith('generated/skills/'));
+  const skillFiles = manifest.files.filter(name => name.startsWith('data/skills/'));
   if (skillFiles.length) {
     assert.equal(skillFiles.length, 30, 'Skills must publish one base and 29 locale files');
-    assert(skillFiles.includes('generated/skills/base.json'));
-    assert(skillFiles.includes('generated/skills/uk.json'));
-    assert(skillFiles.includes('generated/skills/en.json'));
-    assert(skillFiles.includes('generated/skills/qm.json'));
+    assert(skillFiles.includes('data/skills/base.json'));
+    assert(skillFiles.includes('data/skills/uk.json'));
+    assert(skillFiles.includes('data/skills/en.json'));
+    assert(skillFiles.includes('data/skills/qm.json'));
     assert(
       skillFiles.every(
         name =>
-          name.startsWith('generated/skills/') &&
+          name.startsWith('data/skills/') &&
           name.split('/').length === 3 &&
           /^(?:base|[a-z]{2,8})[.]json$/.test(name.split('/')[2]),
       ),
       'Skills must not publish per-entity directories',
     );
-    const base = JSON.parse(readFileSync(join(root, 'dist/static/generated/skills/base.json'), 'utf8'));
-    const uk = JSON.parse(readFileSync(join(root, 'dist/static/generated/skills/uk.json'), 'utf8'));
+    const base = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/base.json'), 'utf8'));
+    const uk = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/uk.json'), 'utf8'));
     assert(Object.keys(base).length > 0, 'Empty published Skill taxonomy');
     assert.deepEqual(Object.keys(uk), Object.keys(base), 'Localized Skill tree must match base domain slugs');
   }
@@ -114,8 +114,8 @@ test('repeat publication cleans only owned stale files and preserves foreign ass
   assert(!existsSync(join(output, retired)), 'retired analytics resource must be removed');
   assert(!JSON.parse(readFileSync(ownershipFile, 'utf8')).files.includes(retired));
   // Upgrade from the former data/skills location without touching foreign files.
-  const oldSkills = 'data/skills/base.json';
-  mkdirSync(join(output, 'data/skills'), { recursive: true });
+  const oldSkills = 'generated/skills/base.json';
+  mkdirSync(join(output, 'generated/skills'), { recursive: true });
   writeFileSync(join(output, oldSkills), '{}');
   const oldOwnership = JSON.parse(readFileSync(ownershipFile, 'utf8'));
   oldOwnership.files.push(oldSkills);
@@ -123,7 +123,7 @@ test('repeat publication cleans only owned stale files and preserves foreign ass
   const migrated = run('publish', '--output', output);
   assert.equal(migrated.status, 0, migrated.stderr);
   assert(!existsSync(join(output, oldSkills)), 'retired Skills file must be removed');
-  assert(existsSync(join(output, 'generated/skills/base.json')), 'new Skills directory must be published');
+  assert(existsSync(join(output, 'data/skills/base.json')), 'new Skills directory must be published');
   assert.equal(readFileSync(join(output, 'flags/uk.svg'), 'utf8'), 'host flag');
   assert.equal(readFileSync(join(output, 'textbooks/other/keep.txt'), 'utf8'), 'other book');
 });

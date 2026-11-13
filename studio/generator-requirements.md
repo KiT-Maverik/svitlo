@@ -1,176 +1,90 @@
-# Generator Requirements
+# Generator Requirements — Build API publications
 
-**Scope:** build-time generators that turn canonical textbook authoring data into
-publishable, runtime-consumable resources. This document is the common contract for
-future data generators; additions should be recorded here before implementation.
+## Boundary
 
-## 1. Separation of authoring and runtime data
+- Authoring `*.data.ts` exports stateless Engine configurators. The application
+  never imports authoring data or invokes `build.props()` at runtime.
+- A build-time orchestration script discovers configurators and invokes their
+  `build.props({ languages })`. The Engine generators consume **completed**
+  `{ base, locale }` publications; do not duplicate validation, reorder
+  children, or reconstruct authoring patches in a serializer.
+- Runtime assemblers accept already-loaded published files and output Props
+  validated through the owning `*_Props_Schema`. Host adapters own I/O.
+- Generate a base file and one _direct Props-shaped_ file per nonempty locale.
+  Do not add extra `locale` wrappers or synthesize invariant-only files.
+  Do not silently fall back to another language.
 
-- Authoring configuration (for example, `data/skills/**/*.data.ts`) remains the
-  single source of truth. Browser code must not import it, execute a builder,
-  or depend directly on its module graph.
-- Generators execute before app development/build and produce deterministic static
-  files. Never modify authoring data as a side effect.
-- Publish one language per file. Never ship multi-language dictionaries to the
-  runtime for one locale; never silently fall back to English or insert placeholders.
-- Fail clearly on missing required translations, invalid entity identities, or
-  unsupported fields. Check mode is read-only; write mode validates before replacing
-  its generated output, preserving unrelated public assets.
+## Output and delivery
 
-## 2. Generated directory convention
-
-- Generated resources belong under `content/<textbook>/public/data/`.
-  **Always use lower-case `data` and `skills` in paths**.
-- The entire `**/public/data/` subtree is Git-ignored and must contain no tracked
-  files. It is regenerated for `predev` and `prebuild`.
-- Entity-oriented generators and tests live under `scripts/generators/data/`.
-  Purpose-built page generators live under
-  `scripts/generators/pages/<camelCasePageName>/`. Paths are relative to each
-  script rather than depending on the current working directory.
-
-## 3. Optional entity-level metadata projection
-
-Only when an entity-oriented runtime consumer specifically requires it, the
-legacy entity-level publisher may publish one directory per Skill, SkillGroup
-and SkillDomain, with:
+All authored textbook JSON publications are generated in a Git-ignored
+directory belonging to that textbook, separate from its hand-authored assets:
 
 ```text
-public/data/skills/<domain>/
-  meta.json
-  uk.json
-  en.json
-  <group>/
-    meta.json
-    uk.json
-    en.json
-    <skill>/
-      meta.json
-      uk.json
-      en.json
+content/<textbook>/generated/
+  skills/{base,<language>}.json
+  lessons/<last-uuid-digit>/<uuid>/{base,<language>}.json
+  courses/<course-uuid>/{base,<language>}.json
 ```
 
-A Domain with direct Skills places their directories directly below the Domain.
-Domains may contain both Groups and direct Skills.
+`scripts/textbook-tooling/build.mjs` invokes the new generators and stages
+their output as `dist/static/data/{skills,lessons,courses}/...`, alongside
+separately compiled Scenes and textbook-owned static media. It records the
+actual output files in `dist/manifest.json`.
 
-- `meta.json` holds only locale-independent values, currently `id`,
-  `collection`, and applicable child-slug lists `groups`/`skills`.
-  These lists describe links to separate child directories, **not embedded
-  localized children or bare UUID foreign keys**.
-- The generator derives `collection` from the canonical entity kind and
-  validates it against the shared `Collection` type
-  (`@svitlo/contracts/content`, exported through `@svitlo/engine/content`).
-  For Skills: `"skill"`; Groups: `"skillGroup"`; Domains: `"skillDomain"`.
-  Authoring builders already supply this discriminator to entity objects;
-  it must also be emitted in each generated `meta.json` automatically.
-- `<language>.json` holds only locale-dependent values: `name` and, where
-  authored for frontend display, `description`.
-- The original `description.methodological` is editorial-only. For runtime
-  copy, select exactly `description.frontend[language]`; this is mandatory
-  for Skill and optional for Group/Domain.
-- Never duplicate `id`, `collection`, child structure, or other invariant
-  fields in locale files. Never include a `language` field (filename provides
-  it) or a `slug` field (directory path provides it) in **any** published JSON.
-- Validate authored `slug` against the corresponding `*.data.ts` basename,
-  even though it is not serialized. Keep UUID globally unique within a textbook.
+`scripts/textbook-tooling/publish.mjs` consumes only the compiled manifest,
+copies static resources to a host's `public/data/` and cleans files owned by
+the textbook's previous manifest. It never runs generators. Other hosts
+(Electron/Capacitor) may use the same packaged resources; runtime assemblers
+stay host-independent. Scenes are bundled to JS chunks, not embedded in JSON.
 
-Example `meta.json` for a Group:
+## Skills
 
-```json
-{
-  "id": "00000000-0000-4000-8000-000000000003",
-  "collection": "skillGroup",
-  "skills": ["testRecognizeRed", "testRecognizeOrange"]
-}
-```
+- Exactly one full Domain tree is stored in `base.json`; each locale file
+  contains only translated Props-shaped tree fragments, keyed by Domain slug.
+- `SkillDomain.build.props()` and its child configurators own the array order,
+  identities, localization, and validation.
+- `prepareSkillPublication` composes independent Domain results; the
+  `publishSkillTree` Engine serializer writes already-built data unchanged.
+- The Web loader reads the selected locale if it exists; invariant-only
+  publications may have no locale file.
 
-Example `uk.json` for the same Group:
+## Lessons
 
-```json
-{ "name": "Теплі кольори" }
-```
+- UUID is immutable. The output bucket is the final hexadecimal digit of the
+  canonical lowercase Lesson UUID. Reject duplicate UUIDs across textbook
+  workspaces, including `content/languages/*` and editorial draft locations.
+- `defineLesson.build.props()` resolves authored collections into Props-shaped
+  arrays. The generator serializes the result without interpreting nested
+  Section, ContentBlock, Flashcard, or Question entities.
+- The standalone Lesson assembler resolves resource base, selected locale,
+  optional override base, and selected override locale in that order.
 
-## 4. No generated catalog index for entity projections
+## Courses
 
-- Do **not** generate `public/data/skills/index.json`: no `version`,
-  no `languages` list, and no `domains` list in published resources.
-- Supported languages come from the shared localization types/registry; the
-  language code in the filename is the registry's `language` field.
-  Thus `be-tarask` uses `be.json`, without treating it as a separate
-  unsupported locale or silently swapping its orthography.
-- The textbook declares its root SkillDomain slugs in its own typed page/config
-  boundary, which may be passed to a reusable UI Kit component later.
-  Do not import authoring `*.data.ts` to discover root domains in browser code.
-- An entity-level loader, when used, traverses child path segments from
-  `meta.json`, fetches the requested locale for each node, validates the
-  runtime schema and reconstructs entities in memory. **The current
-  skillAnalytics page intentionally does not use this projection**: its own
-  generator publishes one complete localized page JSON instead. Missing
-  files or unknown Collection values remain hard errors.
-- Offline packs may cache shared `meta.json` once and only the selected locales.
-  Browser caches are independent of source-control tracking.
+- A Course is one publication context: Course/Module/Chapter metadata is
+  preserved, while each Lesson is a compact `{ type: 'lesson', id, overrides? }`
+  reference. Course-owned overrides are sparse and never copied into the
+  standalone Lesson publication.
+- Published Course/Module/Chapter hierarchy uses `content: { items, order }`,
+  keyed by immutable child slug. Only changed nested keys are emitted in locale
+  files; translated siblings are not repeated. The separate order array
+  controls display order.
+- The Course-context Lesson assembler locates a Lesson in the base tree,
+  follows its slug path into sparse Course locale JSON, then applies Course
+  overrides _after_ the standalone Lesson's locale.
+- **Published ordinary Props arrays still replace atomically** during deep
+  merge. Never merge them by index or concatenate. The Course hierarchy is
+  keyed specifically to avoid treating all children as one atomic array.
 
-## 5. Verification and shared component boundary
+## Quality gates
 
-- Test deterministic generation, malformed/duplicate identity, missing
-  translations, mixed Domain child types, stale output cleanup, and strict
-  read-only check mode.
-- Verify generated schemas against the runtime loader (including slug from
-  path, language from filename and `collection` from metadata).
-- The Playground Skills page is a prototype, but its data transport and map
-  must depend on an injected textbook Domain list and generic published
-  resources, so moving the view to `shared/ui-kit` does not bring
-  Playground-only fixtures or other textbook authoring data into the kit.
-
-## 6. Page-specific publication
-
-- Each page can have its own generator at
-  `scripts/generators/pages/<camelCasePageName>/`, with lowercase `pages`.
-  `skillAnalytics` is the page name, not `mindMap`.
-- Emit exactly one self-contained `public/data/pages/<camelCasePageName>/<language>.json`
-  per locale, containing only the fields that the page consumes.
-  Do not add speculative fields to global entity metadata.
-- The skillAnalytics projection contains the complete localized
-  Domain → Group → Skill tree with canonical UUIDs, slugs, shared Collection
-  discriminators and user-facing text. Slugs are retained inside this payload
-  because nested items do not have individual file paths.
-- Progress, mastery and profile-specific analytics are joined at runtime
-  by UUID and must never appear in public generated files.
-- Subject and Program views are separate filters: Program membership must
-  derive from verified Program-to-Skill relationships, not guesses.
-- Keep the page loader and view generic for later extraction to UI Kit;
-  authoring `*.data.ts` may only be read at build time.
-- Report sizes for **all** supported locales (UTF-8, gzip, Brotli) and test
-  stable output, missing translations and locale isolation.
-
-## 7. Compact Course publications (new Build API)
-
-The new Course configurator publisher is
-`scripts/generators/data/publish-course-data.mjs`. Its caller supplies a
-`defineCourse` configurator and, optionally, one separate Course-owned
-`build.overrides` authoring patch. The publication target for each textbook
-is `public/data/courses/<courseId>/base.json` and sparse
-`public/data/courses/<courseId>/<language>.json` files.
-
-This is a **single publication context per Course**, not a standalone Lesson
-publication. Course, Module and Chapter keep complete Props in their ordered
-hierarchy; a Lesson leaf contains only its UUID, `type: 'lesson'`, and optional
-`overrides` with sparse already-built Props. Never duplicate the Lesson's
-full resource or serialize authoring Config, Build methods or internal
-collection markers into Course files. Locale-only overrides live in the
-language file and invariant overrides in base. Because published child arrays
-replace atomically, translated arrays must repeat the full effective array
-(including invariant sibling values) to avoid losing base overrides.
-
-The Course's existing `build.props` and `build.overrides` validate and
-materialize authoring data; the publisher only projects their completed
-Props and the separately built Lesson patches. The compact Course resource
-is intentionally not a full standalone `course_Props_Schema` response:
-Course runtime assemblers must later resolve Lesson IDs and apply these
-patches after the Lesson base and selected locale. This is distinct from the
-legacy per-TOC/episode/override publisher still used by existing Playground
-routes; do not silently switch those consumers until they support this format.
-
-A Course write replaces only its own generated directory; read-only
-check mode detects changed, missing or stale files. Tests must verify
-locale isolation, four-layer Course resolution, full replacement of arrays,
-independent Lesson overrides, deterministic reruns and duplicate IDs.
+- Generation must be deterministic and check mode must not write.
+- Write via staged atomic replacement; detect and clean stale owned files;
+  preserve unrelated textbook and host assets. Reject symlink paths and unsafe
+  output roots.
+- Validate source and published entity identities, duplicate keys/IDs,
+  unsupported language scopes, missing translations, and unsafe JSON.
+- Test full generator → packed file → host loader → assembler flow, not just
+  individual serializer mocks. Include locale isolation, Course patch precedence,
+  deleted child regression, atomic replacement of other Props arrays, and
+  malformed or absent optional locale files.

@@ -28,14 +28,17 @@ const course = () => ({
   id: courseId,
   type: 'course',
   params: { languages: ['uk', 'en'] },
-  content: [{ id: lessonId, type: 'lesson', overrides: { locale: { title: 'Course invariant' } } }],
+  content: {
+    items: { sampleLesson: { id: lessonId, type: 'lesson', overrides: { locale: { title: 'Course invariant' } } } },
+    order: ['sampleLesson'],
+  },
 });
 
 async function setup(t, { withCourseLocale = true } = {}) {
   const root = await mkdtemp(path.join(tmpdir(), 'svitlo-course-lesson-'));
   t.after(() => rm(root, { recursive: true, force: true }));
-  const lessonsRoot = path.join(root, 'generated', 'lessons');
-  const coursesRoot = path.join(root, 'courses');
+  const lessonsRoot = path.join(root, 'data', 'lessons');
+  const coursesRoot = path.join(root, 'data', 'courses');
   const lessonDir = path.join(lessonsRoot, lessonId.slice(-1), lessonId);
   const courseDir = path.join(coursesRoot, courseId);
   await Promise.all([mkdir(lessonDir, { recursive: true }), mkdir(courseDir, { recursive: true })]);
@@ -45,9 +48,12 @@ async function setup(t, { withCourseLocale = true } = {}) {
     writeFile(path.join(courseDir, 'base.json'), JSON.stringify(course())),
   ]);
   if (withCourseLocale) {
-    await writeFile(path.join(courseDir, 'uk.json'), JSON.stringify({
-      content: [{ id: lessonId, type: 'lesson', overrides: { locale: { title: 'Назва програми' } } }],
-    }));
+    await writeFile(
+      path.join(courseDir, 'uk.json'),
+      JSON.stringify({
+        content: { items: { sampleLesson: { overrides: { locale: { title: 'Назва програми' } } } } },
+      }),
+    );
   }
   return { lessonsRoot, coursesRoot, lessonDir, courseDir };
 }
@@ -68,10 +74,13 @@ test('missing Course locale applies the invariant override after the standalone 
 
 test('Course with no overrides returns the localized standalone Lesson', async t => {
   const roots = await setup(t, { withCourseLocale: false });
-  await writeFile(path.join(roots.courseDir, 'base.json'), JSON.stringify({
-    ...course(),
-    content: [{ type: 'lesson', id: lessonId }],
-  }));
+  await writeFile(
+    path.join(roots.courseDir, 'base.json'),
+    JSON.stringify({
+      ...course(),
+      content: { items: { sampleLesson: { type: 'lesson', id: lessonId } }, order: ['sampleLesson'] },
+    }),
+  );
   const result = await loadPublishedCourseLessonProps(courseId, lessonId, 'uk', roots);
   assert.equal(result.locale.title, 'Назва уроку');
 });
@@ -79,13 +88,19 @@ test('Course with no overrides returns the localized standalone Lesson', async t
 test('rejects missing and malformed Course JSON and mismatched publication IDs', async t => {
   const roots = await setup(t);
   await rm(path.join(roots.courseDir, 'base.json'));
-  await assert.rejects(loadPublishedCourseLessonProps(courseId, lessonId, 'uk', roots), /Cannot read published resource/);
+  await assert.rejects(
+    loadPublishedCourseLessonProps(courseId, lessonId, 'uk', roots),
+    /Cannot read published resource/,
+  );
 
   await writeFile(path.join(roots.courseDir, 'base.json'), '{not-json');
   await assert.rejects(loadPublishedCourseLessonProps(courseId, lessonId, 'uk', roots), /Invalid published JSON/);
 
   await writeFile(path.join(roots.courseDir, 'base.json'), JSON.stringify({ ...course(), id: lessonId }));
-  await assert.rejects(loadPublishedCourseLessonProps(courseId, lessonId, 'uk', roots), /Course publication ID mismatch/);
+  await assert.rejects(
+    loadPublishedCourseLessonProps(courseId, lessonId, 'uk', roots),
+    /Course publication ID mismatch/,
+  );
 });
 
 test('rejects invalid language and unsafe IDs before reading files', async t => {
