@@ -1,4 +1,7 @@
-import { skillDomain_Props_Schema, type SkillDomain_Props } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
+import {
+  skillDomain_Props_Schema,
+  type SkillDomain_Props,
+} from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
 import { languageCode_Schema, type LanguageCodes } from '../../schemas/languages.schemas';
 import type { DeepPartial } from '../../types/deepPartial';
 
