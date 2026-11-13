@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 import { identityBase_Schema } from '../../../_shared__configurators/common.schemas';
-import { localizationSwitch } from '../../_shared__contentBlocks';
+import { localizationSwitch } from '../../contentBlock.schemas';
 
 const base = identityBase_Schema.extend({ type: z.literal('carouselSlide') });
 

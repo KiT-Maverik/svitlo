@@ -5,7 +5,7 @@ export * from './configurators/_shared__configurators/common.schemas';
 export * from './configurators/assessmentMethods/defineAssessmentMethod.schemas';
 export * from './configurators/configurator.schemas';
 export * from './configurators/contentBlocks/_shared__contentBlocks/text.schemas';
-export * from './configurators/contentBlocks/contentBlock.schemas';
+export { createContentBlockBaseSchema, contentBlockResolved_Schema, localizationSwitch as contentBlockLocalizationSwitch } from './configurators/contentBlocks/contentBlock.schemas';
 export * from './configurators/contentBlocks/defineAudio/defineAudio.schemas';
 export * from './configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
 export * from './configurators/contentBlocks/defineCarousel/defineCarouselSlide/defineCarouselSlide.schemas';

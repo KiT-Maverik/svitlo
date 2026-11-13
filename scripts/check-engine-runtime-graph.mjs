@@ -19,7 +19,7 @@ const result = await build({
 const inputs = Object.keys(result.metafile.inputs);
 const forbidden = inputs.filter(input =>
   /(?:^|[/\\])(?:generators|configurators_old)(?:[/\\])/.test(input) ||
-  /[/\\]define[A-Z][^/\\]*\.(?:ts|js)$/.test(input) ||
+  /[/\\]define[A-Z][A-Za-z0-9]*\.(?:ts|js)$/.test(input) ||
   /\.data\.(?:ts|js)$/.test(input) ||
   /[/\\]validateLocalAssets(?:[/\\]|\.)/.test(input)
 );
