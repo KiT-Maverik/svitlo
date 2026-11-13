@@ -55,7 +55,7 @@ export async function loadPublishedCourseLessonProps(
   roots: CourseLessonPublicationRoots = {},
 ): Promise<Lesson_Props> {
   const selectedLanguage = languageCode_Schema.parse(language);
-  const lessonsRoot = roots.lessonsRoot ?? path.join(process.cwd(), 'public/data/generated/lessons');
+  const lessonsRoot = roots.lessonsRoot ?? path.join(process.cwd(), 'public/data/lessons');
   const coursesRoot = roots.coursesRoot ?? path.join(process.cwd(), 'public/data/courses');
   const lessonDirectory = path.join(lessonsRoot, ...resolveEntityPath(lessonId).split('/'));
   const courseDirectory = path.join(coursesRoot, resolveEntityPath(courseId).split('/')[1]);
