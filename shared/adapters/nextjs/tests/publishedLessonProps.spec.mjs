@@ -76,3 +76,43 @@ test('rejects unsafe IDs and unsupported language requests', async t => {
     /does not support requested language/,
   );
 });
+
+test('loads localized Engine Section and ContentBlock Props without legacy response flattening', async t => {
+  const section = {
+    id: '663572e7-bd85-4516-86e2-3de07d209e05',
+    slug: 'introduction',
+    type: 'content',
+    params: {},
+    locale: { title: 'Introduction', navigationLabel: 'Start' },
+    content: [{
+      id: '663572e7-bd85-4516-86e2-3de07d209e06',
+      slug: 'introText',
+      type: 'text',
+      params: {},
+      locale: { value: 'Light travels in straight lines' },
+    }],
+  };
+  const translatedSection = {
+    ...section,
+    locale: { title: 'Вступ', navigationLabel: 'Початок' },
+    content: [{ ...section.content[0], locale: { value: 'Світло поширюється прямолінійно' } }],
+  };
+  const { rootDirectory } = await fixture(
+    t,
+    { ...baseLesson(), section: [section] },
+    { locale: { title: 'Урок про світло' }, section: [translatedSection] },
+  );
+
+  const ukrainian = await loadPublishedLessonProps({ rootDirectory, id, language: 'uk' });
+  assert.equal(ukrainian.locale.title, 'Урок про світло');
+  assert.equal(ukrainian.section[0].type, 'content');
+  assert.equal(ukrainian.section[0].locale.title, 'Вступ');
+  assert.equal(ukrainian.section[0].content[0].locale.value, 'Світло поширюється прямолінійно');
+  assert.equal(ukrainian.section[0].content[0].params.disabled, undefined);
+  assert.equal('sections' in ukrainian, false);
+  assert.equal('parameters' in ukrainian, false);
+
+  const english = await loadPublishedLessonProps({ rootDirectory, id, language: 'en' });
+  assert.equal(english.section[0].locale.title, 'Introduction');
+  assert.equal(english.section[0].content[0].locale.value, 'Light travels in straight lines');
+});
