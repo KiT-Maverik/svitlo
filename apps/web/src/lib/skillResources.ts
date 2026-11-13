@@ -53,7 +53,7 @@ export function parseMergedSkillTree(input: unknown): SkillNode[] {
 /** Only the Next.js server loads and deep-merges the two published resources. */
 export async function loadPublishedSkills(language: string, domainSlugs: readonly string[]): Promise<SkillNode[]> {
   const code = resolveSkillLanguage(language);
-  const dir = join(process.cwd(), 'public/data/skills');
+  const dir = join(process.cwd(), 'public/generated/skills');
   const [base, locale] = await Promise.all([
     readFile(join(dir, 'base.json'), 'utf8').then(JSON.parse),
     readFile(join(dir, code + '.json'), 'utf8').then(JSON.parse),

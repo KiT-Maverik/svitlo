@@ -8,7 +8,7 @@
     "code:lint:check": "node scripts/run-workspace-script.mjs code:lint:check",
     "code:lint:fix": "node scripts/run-workspace-script.mjs code:lint:fix",
     "code:check:types": "node scripts/run-workspace-script.mjs code:check:types",
-    "test": "node scripts/run-workspace-script.mjs test && node --test scripts/course-builder/build-course.spec.mjs && node --test scripts/lesson-builder.spec.mjs",
+    "test": "node scripts/run-workspace-script.mjs test && node --test scripts/course-builder/build-course.spec.mjs && node --test scripts/lesson-builder.spec.mjs && node --test scripts/generators/data/prepare-skills-publication.spec.mjs && node --test scripts/generators/data/publish-skills-data.spec.mjs",
     "test:e2e": "node scripts/run-workspace-script.mjs test:e2e",
     "test:components": "node scripts/run-workspace-script.mjs test:components",
     "test:components:coverage": "node scripts/run-workspace-script.mjs test:components:coverage",

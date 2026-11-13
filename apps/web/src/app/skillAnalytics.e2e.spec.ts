@@ -4,8 +4,8 @@ const redSkillId = '00000000-0000-4000-8000-000000000001';
 
 test('Skill Analytics renders from the published base tree and requested locale', async ({ page, request }) => {
   const [baseResponse, localeResponse] = await Promise.all([
-    request.get('/data/skills/base.json'),
-    request.get('/data/skills/uk.json'),
+    request.get('/generated/skills/base.json'),
+    request.get('/generated/skills/uk.json'),
   ]);
   expect(baseResponse.ok()).toBe(true);
   expect(localeResponse.ok()).toBe(true);
@@ -17,7 +17,7 @@ test('Skill Analytics renders from the published base tree and requested locale'
 
   const requested: string[] = [];
   page.on('request', resource => {
-    if (resource.url().includes('/data/skills/')) requested.push(new URL(resource.url()).pathname);
+    if (resource.url().includes('/generated/skills/')) requested.push(new URL(resource.url()).pathname);
   });
   await page.goto('/skillAnalytics?lang=uk');
   await expect(page.getByTestId('skill-node-testColors')).toBeVisible();

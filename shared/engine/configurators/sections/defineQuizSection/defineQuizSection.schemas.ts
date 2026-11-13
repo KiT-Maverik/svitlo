@@ -10,7 +10,7 @@ import type { Configurator_Mode } from '../../configurator.schemas';
 const sectionBase = identityBase_Schema.extend({
   type: z.literal('quiz'),
   params: paramsBase_Schema.shape.params.extend({
-    skippable: z.literal(true).optional(),
+    skippable: z.boolean().optional(),
   }),
 });
 

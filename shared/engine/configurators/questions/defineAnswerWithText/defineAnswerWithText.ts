@@ -56,7 +56,17 @@ export type Question_AnswerWithText_Overrides<
   content?: QuestionCommonPatch<Content, Added, Languages> & {};
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Ask learners to type a short text answer.
+ *
+ * @remarks
+ * Author acceptable wordings/spellings in `locale.correctAnswers` as
+ * a map of named variants, such as
+ * `{ preferred: 'colour', alternate: 'color' }`.
+ * Those names organize authoring; the published answer key is an array
+ * of accepted strings for the selected language.
+ * `locale.placeholder` only guides input; it is not the answer key.
+ */
 export const defineAnswerWithText = <
   const Slug extends string,
   const Content extends ContentShape,
