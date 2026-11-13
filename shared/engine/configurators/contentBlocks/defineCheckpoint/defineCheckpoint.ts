@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -40,7 +40,7 @@ type CheckpointLocaleBody = {
   locale?: DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>;
   content?: ContentBlock_CheckpointItem_Props[];
 };
-type CheckpointLocaleFiles = Partial<Record<LanguageCodes, CheckpointLocaleBody>>;
+type CheckpointLocaleFiles = Partial<Record<LanguageCode, CheckpointLocaleBody>>;
 type CheckpointPublication<Base> = { base: Base; locale: CheckpointLocaleFiles | undefined };
 type CheckpointOverrideBase = {
   params?: Checkpoint_Metadata_Overrides['params'];
@@ -133,7 +133,7 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
 export const defineCheckpoint = <
   const Slug extends string,
   const Items extends Record<string, CheckpointItem>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCode[] = [],
 >(
   config: Omit<ContentBlock_Checkpoint_Config, 'slug' | 'content'> & {
     slug: Slug;
@@ -164,7 +164,7 @@ export const defineCheckpoint = <
     const { base: invariant, locale } = splitLocalizedFields(input);
     const files: CheckpointLocaleFiles = {};
     for (const [language, fields] of Object.entries(locale ?? {})) {
-      files[language as LanguageCodes] = {
+      files[language as LanguageCode] = {
         locale: fields as DeepPartial<ContentBlock_Checkpoint_Locale<'props'>>,
       };
     }
@@ -181,7 +181,7 @@ export const defineCheckpoint = <
   const buildContent = (
     items: Record<string, CheckpointItem>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -207,7 +207,7 @@ export const defineCheckpoint = <
       ),
     );
 
-    const locales: Partial<Record<LanguageCodes, ContentBlock_CheckpointItem_Props[]>> = {};
+    const locales: Partial<Record<LanguageCode, ContentBlock_CheckpointItem_Props[]>> = {};
     for (const language of translatedLanguages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(
@@ -237,7 +237,7 @@ export const defineCheckpoint = <
     const built = buildContent(initialItems, initialOrder, languages);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(built.locales)) {
-      (files[language as LanguageCodes] ??= {}).content = entries;
+      (files[language as LanguageCode] ??= {}).content = entries;
     }
     const result = {
       base: {
@@ -352,7 +352,7 @@ export const defineCheckpoint = <
         const built = buildContent(enabled, order, languages, childPatches);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
-          (files[language as LanguageCodes] ??= {}).content = entries;
+          (files[language as LanguageCode] ??= {}).content = entries;
         }
       }
 

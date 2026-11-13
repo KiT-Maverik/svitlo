@@ -1,14 +1,14 @@
 import type { DeepPartial } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import { mergeForValidation } from './assemblyFields.utils';
 
 /** Validate the effective Props for every explicitly selected publication locale. */
 export const validateRequestedPublication = (
   schema: { parse(value: unknown): unknown },
-  resource: { base: unknown; locale?: Partial<Record<LanguageCodes, unknown>> },
-  languages: readonly LanguageCodes[],
-  patch?: { base: unknown; locale?: Partial<Record<LanguageCodes, unknown>> },
+  resource: { base: unknown; locale?: Partial<Record<LanguageCode, unknown>> },
+  languages: readonly LanguageCode[],
+  patch?: { base: unknown; locale?: Partial<Record<LanguageCode, unknown>> },
 ): void => {
   for (const language of languages) {
     const original = mergeForValidation(resource.base, (resource.locale?.[language] ?? {}) as DeepPartial<unknown>);
