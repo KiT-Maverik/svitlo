@@ -25,7 +25,12 @@ describe('Configurators', () => {
         const question = makeText(questionId, 'question', { en: 'Question?', uk: 'Питання?' });
         const first = makeText(firstId, 'first', 'Always visible');
         const second = makeText(secondId, 'second', { en: 'Second', uk: 'Другий' });
-        const item = defineCheckpointItem<'example', { first: typeof first; second: typeof second }, typeof question, ['en', 'uk']>({
+        const item = defineCheckpointItem<
+          'example',
+          { first: typeof first; second: typeof second },
+          typeof question,
+          ['en', 'uk']
+        >({
           id: itemId,
           slug: 'example',
           type: 'checkpointItem',

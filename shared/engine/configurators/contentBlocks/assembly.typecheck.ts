@@ -13,7 +13,13 @@ import {
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 
-const text = defineText<'text', ['en']>({ id, slug: 'text', type: 'text', params: {}, locale: { value: { en: 'Hi' } } });
+const text = defineText<'text', ['en']>({
+  id,
+  slug: 'text',
+  type: 'text',
+  params: {},
+  locale: { value: { en: 'Hi' } },
+});
 const audio = defineAudio<'audio', ['en']>({
   id,
   slug: 'audio',

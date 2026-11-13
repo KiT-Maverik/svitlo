@@ -101,12 +101,12 @@ describe('Configurators', () => {
           },
           locale: { title: 'Lesson' },
           section: {
-             items: {
-               // @ts-expect-error Intentionally bypass the incompatible child scope to test runtime validation.
-               unscoped: unscopedSection,
-             },
-             order: ['unscoped'],
-           },
+            items: {
+              // @ts-expect-error Intentionally bypass the incompatible child scope to test runtime validation.
+              unscoped: unscopedSection,
+            },
+            order: ['unscoped'],
+          },
           flashcards: { items: {}, order: [] },
         });
 

@@ -147,7 +147,10 @@ describe('Configurators', () => {
       });
 
       test('Section authoring preserves an explicit opt-out from Lesson skipping', () => {
-        const section = defineContentSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>({ ...input('content'), params: { skippable: false } });
+        const section = defineContentSection<'unit', { prompt: typeof prompt }, ['en', 'uk']>({
+          ...input('content'),
+          params: { skippable: false },
+        });
         assert.equal(section.build.props({ languages: ['en'] }).base.params.skippable, false);
         assert.equal(section.config.base.params.skippable, false);
       });

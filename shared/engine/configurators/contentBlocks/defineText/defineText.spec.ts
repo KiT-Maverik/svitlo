@@ -33,7 +33,10 @@ describe('Configurators', () => {
       });
 
       test('Text publishes translated values as Props-shaped language JSON bodies', () => {
-        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({
+          ...identity,
+          locale: { value: { en: 'Welcome', uk: 'Привіт' } },
+        });
         const output = text.build.props({ languages: ['en', 'uk'] });
         assert.deepEqual(output, {
           base: { ...identity },
@@ -43,7 +46,10 @@ describe('Configurators', () => {
       });
 
       test('Text always publishes Props-shaped locale fragments', () => {
-        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({
+          ...identity,
+          locale: { value: { en: 'Welcome', uk: 'Привіт' } },
+        });
         const publication = text.build.props({ languages: ['en', 'uk'] });
         const embedded = text.build.props({ languages: ['en', 'uk'] });
 
@@ -70,7 +76,10 @@ describe('Configurators', () => {
       });
 
       test('Text publishes only the validated override patch, not inherited properties', () => {
-        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({
+          ...identity,
+          locale: { value: { en: 'Welcome', uk: 'Привіт' } },
+        });
         const before = text.build.props({ languages: ['en', 'uk'] });
         const patch = { params: { disabled: true as const }, locale: { value: { uk: 'Вітаю' } } };
 
@@ -86,7 +95,10 @@ describe('Configurators', () => {
       });
 
       test('Text permits a one-language override of an invariant or localized text', () => {
-        const localized = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const localized = defineText<'intro', ['en', 'uk']>({
+          ...identity,
+          locale: { value: { en: 'Welcome', uk: 'Привіт' } },
+        });
         const invariant = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         for (const text of [localized, invariant]) {
           assert.deepEqual(text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }, { languages: ['en', 'uk'] }), {
@@ -97,7 +109,10 @@ describe('Configurators', () => {
       });
 
       test('Text publishes invariant overrides as an intentional dictionary replacement', () => {
-        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({
+          ...identity,
+          locale: { value: { en: 'Welcome', uk: 'Привіт' } },
+        });
         assert.deepEqual(text.build.overrides({ locale: { value: 'Universal' } }, { languages: ['en', 'uk'] }), {
           base: { locale: { value: 'Universal' } },
           locale: undefined,
@@ -210,7 +225,9 @@ describe('Configurators', () => {
 
       test('Text rejects positional arrays in authored locale values and override patches', () => {
         const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
-        assert.throws(() => defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: ['not a locale dictionary'] } } as never));
+        assert.throws(() =>
+          defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: ['not a locale dictionary'] } } as never),
+        );
         assert.throws(() =>
           text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, {
             languages: ['en', 'uk'],

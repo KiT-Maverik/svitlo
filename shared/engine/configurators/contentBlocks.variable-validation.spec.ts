@@ -191,7 +191,11 @@ describe('Configurators', () => {
 
       test('Code validates static source text during definition', () => {
         assert.throws(
-          () => defineCode<'exampleCode', ['en']>({ ...codeConfig, params: { ...codeConfig.params, codeAsText: '%_%UNDECLARED%_%' } }),
+          () =>
+            defineCode<'exampleCode', ['en']>({
+              ...codeConfig,
+              params: { ...codeConfig.params, codeAsText: '%_%UNDECLARED%_%' },
+            }),
           /variable "UNDECLARED" is not declared/,
         );
         assert.throws(
