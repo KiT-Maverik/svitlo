@@ -1,16 +1,10 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageDefinition } from '+@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '#schemas';
 import { getLanguageCode, getLocaleDirection, getSupportedLanguages, isLocale } from './index';
 
-const customLanguage: LanguageDefinition = {
-  locale: 'cs-CZ',
-  language: 'cs',
-  name: 'Czech',
-  nativeName: 'Čeština',
-  nameUk: 'Чеська',
-  direction: 'ltr',
-};
+// Exercise custom catalog views without introducing an unsupported Czech locale.
+const customLanguage = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === 'uk')!;
 
 describe('Engine language utilities', () => {
   describe('getLanguageCode', () => {
@@ -58,9 +52,9 @@ describe('Engine language utilities', () => {
     });
 
     it('uses the provided catalog rather than silently falling back to defaults', () => {
-      assert.equal(isLocale('cs-CZ', [customLanguage]), true);
+      assert.equal(isLocale('uk-UA', [customLanguage]), true);
       assert.equal(isLocale('en-US', [customLanguage]), false);
-      assert.equal(isLocale('cs-CZ'), false);
+      assert.equal(isLocale('en-US'), true);
     });
   });
 });
