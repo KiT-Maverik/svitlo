@@ -5,7 +5,7 @@ import {
   assembleLessonProps,
   languageCode_Schema,
   resolveEntityPath,
-  type LanguageCodes,
+  type LanguageCode,
   type Lesson_Props,
   type LessonPropsFragment,
   type PublishedLessonPropsOverride,
@@ -16,7 +16,7 @@ export type LoadPublishedLessonPropsOptions = {
   /** Folder containing the 0-f/UUID Lesson directory hierarchy. */
   rootDirectory: string;
   id: string;
-  language: LanguageCodes;
+  language: LanguageCode;
   override?: PublishedLessonPropsOverride;
 };
 

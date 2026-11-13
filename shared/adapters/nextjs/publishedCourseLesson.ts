@@ -4,7 +4,7 @@ import {
   assembleCourseLesson,
   resolveEntityPath,
   languageCode_Schema,
-  type LanguageCodes,
+  type LanguageCode,
   type Lesson_Props,
   type PublishedLessonPropsResource,
   type PublishedCoursePropsFiles,
@@ -31,7 +31,7 @@ async function readPublishedJson(filename: string, optional: boolean): Promise<u
   }
 }
 
-async function readPublication(directory: string, language: LanguageCodes) {
+async function readPublication(directory: string, language: LanguageCode) {
   const [base, localized] = await Promise.all([
     readPublishedJson(path.join(directory, 'base.json'), false),
     readPublishedJson(path.join(directory, language + '.json'), true),
@@ -46,12 +46,11 @@ async function readPublication(directory: string, language: LanguageCodes) {
  * Both contain base.json and optional <language>.json files. The Course file contains a hierarchy of
  * full Course/Module/Chapter Props and sparse Lesson overrides.
  *
- * Legacy published LessonResponse / Course TOC resources remain separate.
  */
 export async function loadPublishedCourseLessonProps(
   courseId: string,
   lessonId: string,
-  language: LanguageCodes,
+  language: LanguageCode,
   roots: CourseLessonPublicationRoots = {},
 ): Promise<Lesson_Props> {
   const selectedLanguage = languageCode_Schema.parse(language);
