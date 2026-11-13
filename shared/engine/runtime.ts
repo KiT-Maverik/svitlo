@@ -1,9 +1,9 @@
-export * from './assemblers';
 /**
  * Browser and React Server Components share the pure Engine runtime.
  * Node authoring and publishing helpers remain available from the default
  * root condition without entering client/server rendering bundles.
  */
+export * from './assemblers';
 export * from './configurators';
 export * from './lessons';
 export * from './schemas';

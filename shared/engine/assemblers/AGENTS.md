@@ -1,6 +1,6 @@
 # Runtime assembler architecture
 
-**Status:** Skills runtime assembly is implemented in `skills/assembleSkills.ts`. Other entity assemblers remain planned. The rules below are the cross-entity target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
+**Status:** Skills runtime assembly is implemented in `skills/assembleSkills.ts`; Lesson Props assembly is implemented in `assembleLessonProps.ts`. Other entity assemblers remain planned. The rules below are the cross-entity target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
 
 ## Responsibility and dependency boundary
 
@@ -21,7 +21,7 @@
 - Parent/child composition and invariants (such as a Checkpoint requiring an enabled question) are validated during Configurator Build. Runtime Assemblers validate the resolved Props with existing entity `*_Props_Schema`, without rerunning authoring-only collection validation.
 - If a future use case genuinely requires multiple override layers for a **single resolved result**, explicitly specify their precedence and validation rules then. Do not introduce speculative multi-layer composition into the present publication contract.
 
-## Verification when implemented
+## Verification
 
 - Test every supported locale, invariant-value replacement, sparse locale patches, keyed-object merging, complete replacement of published Props arrays, absence of authoring-only collection markers, and final Props validation.
 - Include the exact localized `A` + invariant `B` deletion regression above (including no override locale file), and separate per-locale tests for reordered and added collection entries.
