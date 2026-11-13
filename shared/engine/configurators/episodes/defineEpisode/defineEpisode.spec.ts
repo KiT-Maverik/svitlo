@@ -121,23 +121,43 @@ test('Episode respects selected publication languages, validates requested scope
   assert.throws(() => episode.build.props({ languages: ['uk', 'uk'] }), /unique/);
 });
 
-test('Course, Module and Chapter accept Episode without wrapping or converting it to Lesson', () => {
+test('Course, Module and Chapter accept separately owned Episodes as direct children', () => {
   const episode = makeEpisode();
-  const chapter = defineChapter<'chapter', { arrival: typeof episode }, typeof languages>({
+  const chapterEpisode = defineEpisode({
+    id: id('08'),
+    slug: 'chapterScene',
+    type: 'episode',
+    params: { languages },
+    locale: { title: 'Chapter scene' },
+    section: { items: {}, order: [] },
+  });
+  const moduleEpisode = defineEpisode({
+    id: id('09'),
+    slug: 'moduleScene',
+    type: 'episode',
+    params: { languages },
+    locale: { title: 'Module scene' },
+    section: { items: {}, order: [] },
+  });
+  const chapter = defineChapter<'chapter', { chapterScene: typeof chapterEpisode }, typeof languages>({
     id: id('05'),
     slug: 'chapter',
     type: 'chapter',
     params: {},
     locale: { title: 'Chapter' },
-    content: { items: { arrival: episode }, order: ['arrival'] },
+    content: { items: { chapterScene: chapterEpisode }, order: ['chapterScene'] },
   });
-  const module = defineModule<'module', { chapter: typeof chapter; arrival: typeof episode }, typeof languages>({
+  const module = defineModule<
+    'module',
+    { chapter: typeof chapter; moduleScene: typeof moduleEpisode },
+    typeof languages
+  >({
     id: id('06'),
     slug: 'module',
     type: 'module',
     params: {},
     locale: { title: 'Module' },
-    content: { items: { chapter, arrival: episode }, order: ['chapter', 'arrival'] },
+    content: { items: { chapter, moduleScene: moduleEpisode }, order: ['chapter', 'moduleScene'] },
   });
   const course = defineCourse<'course', typeof languages, { module: typeof module; arrival: typeof episode }>({
     id: id('07'),
@@ -149,8 +169,8 @@ test('Course, Module and Chapter accept Episode without wrapping or converting i
   });
   const resource = course.build.props({ languages: ['en', 'uk'] });
   assert.equal(course.content.items.arrival, episode);
-  assert.equal(chapter.content.items.arrival, episode);
-  assert.equal(module.content.items.arrival, episode);
+  assert.equal(chapter.content.items.chapterScene, chapterEpisode);
+  assert.equal(module.content.items.moduleScene, moduleEpisode);
   assert.equal(resource.base.content[1]?.type, 'episode');
   assert.ok(JSON.stringify(resource.locale?.uk).includes('Прибуття'));
   const override = course.build.overrides({
