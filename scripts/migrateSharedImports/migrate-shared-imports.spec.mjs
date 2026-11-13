@@ -2,8 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { canonicalSharedSpecifier, migrateSharedImports } from './migrate-shared-imports.mjs';
 
-test('preserves Contracts subpaths and collapses other shared package paths', () => {
-  assert.equal(canonicalSharedSpecifier('@svitlo/contracts/content'), '@svitlo/contracts/content');
+test('preserves Engine public entrypoints and collapses other shared package paths', () => {
+  assert.equal(canonicalSharedSpecifier('@svitlo/engine/runtime'), '@svitlo/engine/runtime');
   assert.equal(canonicalSharedSpecifier('@svitlo/indexdb/lessons'), '@svitlo/indexdb');
   assert.equal(canonicalSharedSpecifier('@svitlo/adapter-electron/main'), '@svitlo/adapter-electron');
 });
@@ -26,19 +26,19 @@ test('merges duplicate named imports, preserves aliases and runtime/type semanti
   assert.equal(migrateSharedImports(result.code).changed, false);
 });
 
-test('rewrites type-only, dynamic import and re-exports without changing Contracts', () => {
+test('rewrites type-only, dynamic import and re-exports while preserving Engine runtime imports', () => {
   const source = [
     "import type { One } from '@svitlo/indexdb/controllers';",
     "import type { Two } from '@svitlo/indexdb/config';",
     "export { Widget } from '@svitlo/ui-kit/widgets';",
     "const mod = import('@svitlo/adapter-nextjs/image');",
-    "import type { Lesson } from '@svitlo/contracts/content';",
+    "import type { Lesson_Props } from '@svitlo/engine/runtime';",
   ].join('\n');
   const result = migrateSharedImports(source);
   assert.match(result.code, /import type \{ One, Two \} from '@svitlo\/indexdb';/);
   assert.match(result.code, /export \{ Widget \} from '@svitlo\/ui-kit';/);
   assert.match(result.code, /import\('@svitlo\/adapter-nextjs'\)/);
-  assert.match(result.code, /'@svitlo\/contracts\/content'/);
+  assert.match(result.code, /'@svitlo\/engine\/runtime'/);
 });
 
 test('flags same-local-name collisions rather than silently changing bindings', () => {

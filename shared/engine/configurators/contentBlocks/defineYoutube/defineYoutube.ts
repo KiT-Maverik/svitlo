@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -20,7 +20,7 @@ import {
   type ContentBlock_Youtube_PropsBase,
 } from './defineYoutube.schemas';
 
-type YoutubeLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Youtube_Locale<'props'>> }>>;
+type YoutubeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Youtube_Locale<'props'>> }>>;
 type YoutubePropsPublication<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type YoutubeOverridePropsBase = {
   params?: ContentBlock_Youtube_Overrides['params'];
@@ -86,7 +86,7 @@ const buildYoutubePatch = (
  * identifies the video for the iframe/link and fallback UI.
  * `locale.title` is an optional visible heading, not its accessible label.
  */
-export const defineYoutube = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineYoutube = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Youtube_Config,
       Languages

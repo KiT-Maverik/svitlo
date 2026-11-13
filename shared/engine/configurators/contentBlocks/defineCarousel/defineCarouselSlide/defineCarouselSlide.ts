@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import {
   mergeForValidation,
   onlyLocales,
@@ -20,7 +20,7 @@ import {
 } from './defineCarouselSlide.schemas';
 
 type SlideLocaleBody = { locale: Partial<ContentBlock_CarouselSlide_Fields> };
-type SlideLocaleFiles = Partial<Record<LanguageCodes, SlideLocaleBody>>;
+type SlideLocaleFiles = Partial<Record<LanguageCode, SlideLocaleBody>>;
 type SlideBase = Pick<ContentBlock_CarouselSlide_Config, 'id' | 'slug' | 'type'> & {
   locale?: Partial<ContentBlock_CarouselSlide_Fields>;
 };
@@ -47,7 +47,7 @@ const publishLocale = (input: DeepPartial<ContentBlock_CarouselSlide_Config['loc
 };
 
 /** Slide identity never appears in the Carousel's UI slides array. */
-export const defineCarouselSlide = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineCarouselSlide = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<ContentBlock_CarouselSlide_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_CarouselSlide_Config,
       Languages

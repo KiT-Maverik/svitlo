@@ -7,7 +7,7 @@
 | Stage | Status in stacked branch              | Evidence / owner                                                                                       |
 | ----- | ------------------------------------- | ------------------------------------------------------------------------------------------------------ |
 | 0–1   | Earlier foundation and content split  | Math owns its taxonomy and docs; Playground owns its demo fixtures                                     |
-| 2     | Contracts split                       | `shared/contracts` provides canonical content/locale/state contracts and assessment IDs                |
+| 2     | Common type extraction               | Initial shared content, locale and state definitions                                                   |
 | 3     | Engine utilities + assessment methods | `shared/engine` owns generic builders and the 16 methods                                               |
 | 4     | IndexedDB extraction                  | `shared/indexdb` owns CRUD, schemas and database configuration; original app `src/db` removed          |
 | 5     | Browser integration tests             | `shared/indexdb/testing` owns Chromium harness/commands/Playwright suite; app Vitest setup retained    |
@@ -20,7 +20,7 @@
 - **Workspace set:** eight packages, including the not-yet-implemented `@svitlo/server` placeholder, verified against `package.json` and `package-lock.json`.
 - **Known cloned application files:** 67 exact same-relative-path `content/math/src` ↔ `content/playground/src` blob pairs at audit time. See `scripts/known-app-duplicates.json`. Most are lesson composition, demo/API pages, locale adapters and related tests. **Not fully deduplicated.** New identical paths outside the reviewed baseline must fail `repo:check:packages`.
 - **No obsolete owners:** `src/db`, app-local NavbarPreferences and app-local DB-browser harness/config should not reappear.
-- **Dependency graph:** Contracts → Engine and IndexDB; UI Kit → Engine; apps consume public interfaces, not each other's sources. Platform has no `@svitlo/*` runtime dependencies; Server is a manifest-only placeholder.
+- **Dependency graph:** Engine supplies shared build/runtime APIs; UI Kit and IndexedDB consume public runtime interfaces; apps do not import each other's sources. Platform has no `@svitlo/*` runtime dependencies; Server is a manifest-only placeholder.
 - **Data compatibility:** IndexedDB `svitlo-progress` version 1, `lessonStates` and `quizStates` are unchanged across extraction.
 - **CI coverage:** Questions quality runs typecheck, tests, lint, builds, E2E (including Platform); IndexedDB workflow runs native Chromium twice and general Playwright; Storybook has its own independent workflow. Built-artifact guard verifies dist JS/typings after build.
 

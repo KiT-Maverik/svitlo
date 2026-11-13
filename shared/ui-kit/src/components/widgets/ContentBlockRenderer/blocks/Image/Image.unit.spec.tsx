@@ -2,24 +2,25 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Image_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Image_Props } from '@svitlo/engine/runtime';
 import { Image } from './Image';
 import { ImageRendererProvider, type ImageRendererProps } from './ImageRenderer';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
-const response: ContentBlock_Image_Response = {
+const response: ContentBlock_Image_Props = {
   id: 'image-1',
+  slug: 'image-1',
   type: 'image',
-
-  src: '/diagram.png',
-  alt: 'Схема руху світла',
-  caption: 'Напрямок променя',
-  width: 800,
-  height: 450,
-  fallback: {
-    offline: 'Зображення не збережено офлайн',
-    unavailable: 'Зображення не знайдено',
-    retry: 'Повторити',
+  params: { width: 800, height: 450 },
+  locale: {
+    src: '/diagram.png',
+    alt: 'Схема руху світла',
+    caption: 'Напрямок променя',
+    fallback: {
+      offline: 'Зображення не збережено офлайн',
+      unavailable: 'Зображення не знайдено',
+      retry: 'Повторити',
+    },
   },
 };
 
@@ -66,20 +67,18 @@ describe('Image content block', () => {
 
   it('preserves external image URLs unless their host is configured for optimization', () => {
     setOnline(true);
-    render(<Image messages={enUiKitMessages.image} {...response} src="https://cdn.example.com/diagram.png" />);
+    render(<Image messages={enUiKitMessages.image} {...response} locale={{ ...response.locale, src: 'https://cdn.example.com/diagram.png' }} />);
     expect(screen.getByAltText('Схема руху світла')).toHaveAttribute('src', 'https://cdn.example.com/diagram.png');
   });
 
   it('renders fill mode within an aspect-ratio container', () => {
     setOnline(true);
-    const fillResponse: ContentBlock_Image_Response = {
+    const fillResponse: ContentBlock_Image_Props = {
       id: response.id,
+      slug: response.slug,
       type: 'image',
-      src: response.src,
-      alt: response.alt,
-      fill: true,
-      aspectRatio: 16 / 9,
-      objectFit: 'cover',
+      params: { fill: true, aspectRatio: 16 / 9, objectFit: 'cover' },
+      locale: { src: response.locale.src, alt: response.locale.alt },
     };
     render(<Image messages={enUiKitMessages.image} {...fillResponse} />);
     const image = screen.getByAltText('Схема руху світла');
@@ -128,14 +127,14 @@ describe('Image fallback lifecycle', () => {
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Image messages={enUiKitMessages.image} {...response} src="/alternate-diagram.png" />);
+    rerender(<Image messages={enUiKitMessages.image} {...response} locale={{ ...response.locale, src: '/alternate-diagram.png' }} />);
     expect(screen.queryByRole('alert')).toBeNull();
     expect(screen.getByAltText('Схема руху світла').getAttribute('src')).toContain('alternate-diagram.png');
   });
 
   it('uses its built-in fallback when localized overrides are absent', () => {
     setOnline(true);
-    render(<Image messages={enUiKitMessages.image} {...response} fallback={undefined} />);
+    render(<Image messages={enUiKitMessages.image} {...response} locale={{ ...response.locale, fallback: undefined }} />);
     fireEvent.error(screen.getByAltText('Схема руху світла'));
     expect(screen.getByRole('alert')).toHaveTextContent('This image is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();

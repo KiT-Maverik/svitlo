@@ -9,33 +9,61 @@ test('moves former taxonomy configurators to the Engine build entrypoint', () =>
   );
 });
 
-test('moves Contracts-owned taxonomy types to Contracts', () => {
-  assert.equal(
-    rewriteEngineImports("import type { SkillId } from '@svitlo/engine/taxonomy';"),
-    "import type { SkillId } from '@svitlo/contracts/taxonomy';",
+test('rejects taxonomy types with no canonical Engine export', () => {
+  assert.throws(
+    () => rewriteEngineImports("import type { SkillId } from '@svitlo/engine/taxonomy';"),
+    /manual migration required for SkillId/,
   );
 });
 
-test('splits mixed value and type imports without changing imported names', () => {
-  assert.equal(
-    rewriteEngineImports("import { type SkillId, defineSkill } from '@svitlo/engine/taxonomy';"),
-    "import { type SkillId } from '@svitlo/contracts/taxonomy';\nimport { defineSkill } from '@svitlo/engine/build';",
+test('rejects a mixed taxonomy import when one symbol needs a manual migration', () => {
+  assert.throws(
+    () => rewriteEngineImports("import { type SkillId, defineSkill } from '@svitlo/engine/taxonomy';"),
+    /manual migration required for SkillId/,
   );
 });
 
-test('routes localization types to Contracts and helpers to Engine', () => {
+test('routes supported localization types and helpers together to Engine runtime', () => {
   assert.equal(
     rewriteEngineImports(
       "import { type LanguageCode, createLocalizedFileLocations } from '@svitlo/engine/localization';",
     ),
-    "import { type LanguageCode } from '@svitlo/contracts/localization';\nimport { createLocalizedFileLocations } from '@svitlo/engine/runtime';",
+    "import { type LanguageCode, createLocalizedFileLocations } from '@svitlo/engine/runtime';",
   );
 });
 
-test('removes Contracts-only content proxy exports', () => {
-  assert.equal(
-    rewriteEngineImports("export type { Course_Toc } from '@svitlo/engine/content';"),
-    "export type { Course_Toc } from '@svitlo/contracts/content';",
+test('rejects localization interfaces that have no canonical Engine counterpart', () => {
+  assert.throws(
+    () => rewriteEngineImports("import type { LanguageConfiguration } from '@svitlo/engine/localization';"),
+    /manual migration required for LanguageConfiguration/,
+  );
+});
+
+test('rejects ambiguous content proxy exports instead of generating deleted package imports', () => {
+  assert.throws(
+    () => rewriteEngineImports("export type { Course_Toc } from '@svitlo/engine/content';"),
+    /manual migration required for @svitlo\/engine\/content/,
+  );
+});
+
+test('rejects wildcard re-exports of legacy localization types', () => {
+  assert.throws(
+    () => rewriteEngineImports("export * from '@svitlo/engine/localization';"),
+    /manual migration required for wildcard namespace/,
+  );
+});
+
+test('rejects namespace imports of unresolved taxonomy symbols', () => {
+  assert.throws(
+    () => rewriteEngineImports("import * as taxonomy from '@svitlo/engine/taxonomy';"),
+    /manual migration required for wildcard namespace/,
+  );
+});
+
+test('rejects namespace re-exports of unresolved localization symbols', () => {
+  assert.throws(
+    () => rewriteEngineImports("export * as locale from '@svitlo/engine/localization';"),
+    /manual migration required for wildcard namespace/,
   );
 });
 

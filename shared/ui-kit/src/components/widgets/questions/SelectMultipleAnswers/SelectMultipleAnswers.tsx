@@ -2,7 +2,7 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack } from '@mui/material';
-import type { Question_SelectMultipleAnswers, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_SelectMultipleAnswers_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
@@ -13,22 +13,22 @@ export function SelectMultipleAnswers({
   sceneRegistry,
   messages,
 }: {
-  response: Question_SelectMultipleAnswers<'response', Locale_Languages>;
+  response: Question_SelectMultipleAnswers_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
   const options = [
-    ...Object.entries(response.answers.correct).map(([slug, block]) => ({
+    ...Object.entries(response.content.answers.correct).map(([slug, block]) => ({
       id: 'correct:' + slug,
       block,
       correct: true,
     })),
-    ...Object.entries(response.answers.incorrect).map(([slug, block]) => ({
+    ...Object.entries(response.content.answers.incorrect).map(([slug, block]) => ({
       id: 'incorrect:' + slug,
       block,
       correct: false,
     })),
-    ...Object.entries(response.answers.distractors).map(([slug, block]) => ({
+    ...Object.entries(response.content.answers.distractors).map(([slug, block]) => ({
       id: 'distractor:' + slug,
       block,
       correct: false,
@@ -42,7 +42,7 @@ export function SelectMultipleAnswers({
   );
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
-      <Stack spacing={1} role="group" aria-label={questionLabel(response.question) || response.id}>
+      <Stack spacing={1} role="group" aria-label={questionLabel(response.content.question) || response.id}>
         {options.map(option => {
           const selected = attempt.value.includes(option.id);
           const feedback = attempt.checked

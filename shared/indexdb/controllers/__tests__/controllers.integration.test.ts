@@ -2,7 +2,7 @@ import 'fake-indexeddb/auto';
 
 import assert from 'node:assert/strict';
 import { afterEach, beforeEach, describe, it } from 'node:test';
-import type { LessonState, QuizState } from '@svitlo/contracts/content';
+import type { LessonState, QuizState } from '../../schemas';
 import {
   completeQuiz,
   createLessonState,

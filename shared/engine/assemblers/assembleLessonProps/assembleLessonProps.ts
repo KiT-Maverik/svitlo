@@ -1,5 +1,5 @@
-import { languageCode_Schema, type LanguageCodes } from '../../schemas/languages.schemas';
-import type { DeepPartial } from '../../types/deepPartial';
+import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
+import type { DeepPartial } from '../../types/transformer.types';
 import {
   lesson_Props_Schema,
   type Lesson_Props,
@@ -11,7 +11,7 @@ export type LessonPropsFragment = DeepPartial<Lesson_Props>;
 
 export type PublishedLessonPropsResource = {
   base: Lesson_PropsBase;
-  locale?: Partial<Record<LanguageCodes, LessonPropsFragment>>;
+  locale?: Partial<Record<LanguageCode, LessonPropsFragment>>;
 };
 
 /** Build-time overrides have no right to replace the Lesson's immutable identity. */
@@ -19,7 +19,7 @@ type LessonOverrideFragment = Omit<LessonPropsFragment, 'id' | 'slug' | 'type'>;
 
 export type PublishedLessonPropsOverride = {
   base?: LessonOverrideFragment;
-  locale?: Partial<Record<LanguageCodes, LessonOverrideFragment>>;
+  locale?: Partial<Record<LanguageCode, LessonOverrideFragment>>;
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -64,7 +64,7 @@ function checkFragment(fragment: unknown, label: string): void {
  */
 export function assembleLessonProps(
   resource: PublishedLessonPropsResource,
-  language: LanguageCodes,
+  language: LanguageCode,
   override?: PublishedLessonPropsOverride,
 ): Lesson_Props {
   const selected = languageCode_Schema.parse(language);

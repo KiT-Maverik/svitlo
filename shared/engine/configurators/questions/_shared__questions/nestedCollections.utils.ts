@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type { ContentBlock_Configurator } from '../../contentBlocks';
 import { validateOrderedKeys } from '../../_shared__configurators';
 import { assertEnabledBlock, cloneJson, isRecord, resolveChild, validateBlock } from './collections.utils';
@@ -11,7 +11,7 @@ type NestedPatch = {
   additionalItems?: Record<string, unknown>;
   order?: string[];
 };
-type Files<T> = Partial<Record<LanguageCodes, T>>;
+type Files<T> = Partial<Record<LanguageCode, T>>;
 type Plain = Record<string, unknown>;
 type NestedResult<T> = { base: T; locale: Files<T> };
 
@@ -50,7 +50,7 @@ export const validateNestedBlockCollection = validateNested;
  */
 const resolveNested = (
   source: NestedCollection,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch: NestedPatch | undefined,
   fields: readonly string[],
   path: string,
@@ -98,9 +98,9 @@ const resolveNested = (
       assertEnabledBlock(built[field].base, path + '.' + key + '.' + field);
     }
     base[key] = Object.fromEntries(fields.map(field => [field, built[field].base]));
-    const translatedLanguages = new Set<LanguageCodes>();
+    const translatedLanguages = new Set<LanguageCode>();
     for (const field of fields) {
-      for (const language of Object.keys(built[field].locale)) translatedLanguages.add(language as LanguageCodes);
+      for (const language of Object.keys(built[field].locale)) translatedLanguages.add(language as LanguageCode);
     }
     for (const language of translatedLanguages) {
       (locale[language] ??= {})[key] = Object.fromEntries(
@@ -109,7 +109,7 @@ const resolveNested = (
     }
   }
   // A language-specific collection is atomic: include every member and its fallback base.
-  for (const language of Object.keys(locale) as LanguageCodes[]) {
+  for (const language of Object.keys(locale) as LanguageCode[]) {
     const records = locale[language]!;
     for (const key of order) records[key] ??= cloneJson(base[key]);
   }
@@ -118,7 +118,7 @@ const resolveNested = (
 
 export const resolvePairMap = (
   source: NestedCollection,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch?: NestedPatch,
 ): NestedResult<Record<string, Plain>> => {
   const built = resolveNested(source, languages, patch, ['left', 'right'], 'content.pairs');
@@ -127,7 +127,7 @@ export const resolvePairMap = (
 
 export const resolveSlotBlocks = (
   source: NestedCollection,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch?: NestedPatch,
 ): NestedResult<Array<{ selector: string; correctAnswer: Plain }>> => {
   const built = resolveNested(source, languages, patch, ['correctAnswer'], 'content.slots');
@@ -135,7 +135,7 @@ export const resolveSlotBlocks = (
     built.order.map(selector => ({ selector, correctAnswer: records[selector].correctAnswer as Plain }));
   const locale: Files<Array<{ selector: string; correctAnswer: Plain }>> = {};
   for (const [language, records] of Object.entries(built.locale)) {
-    locale[language as LanguageCodes] = mapArray(records);
+    locale[language as LanguageCode] = mapArray(records);
   }
   return { base: mapArray(built.base), locale };
 };

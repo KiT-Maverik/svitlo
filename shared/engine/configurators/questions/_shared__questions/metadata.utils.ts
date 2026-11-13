@@ -1,10 +1,10 @@
 import type { DeepPartial } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import { mergeForValidation, splitLocalizedFields } from '../../_shared__configurators';
 import { cloneJson, isRecord } from './collections.utils';
 import { selectPublicationLocales } from './publicationLanguages.utils';
 
-export type QuestionFiles = Partial<Record<LanguageCodes, Record<string, unknown>>>;
+export type QuestionFiles = Partial<Record<LanguageCode, Record<string, unknown>>>;
 export type QuestionPublication<Base, Locales = QuestionFiles> = {
   base: Base;
   locale: Locales | undefined;
@@ -57,7 +57,7 @@ export type QuestionOverridePublication<Props extends QuestionPropsShape> = Ques
 
 export type QuestionLocaleFiles<Props extends QuestionPropsShape> = Partial<
   Record<
-    LanguageCodes,
+    LanguageCode,
     {
       locale?: Partial<Props['locale']>;
       content?: Partial<QuestionPublishedValue<Props['content']>>;
@@ -65,11 +65,11 @@ export type QuestionLocaleFiles<Props extends QuestionPropsShape> = Partial<
   >
 >;
 
-export const projectQuestionLocale = (input: Record<string, unknown>, languages: readonly LanguageCodes[]) => {
+export const projectQuestionLocale = (input: Record<string, unknown>, languages: readonly LanguageCode[]) => {
   const own = splitLocalizedFields(input);
   const files: QuestionFiles = {};
   for (const [language, fields] of Object.entries(selectPublicationLocales(own.locale, languages) ?? {})) {
-    files[language as LanguageCodes] = { locale: cloneJson(fields) };
+    files[language as LanguageCode] = { locale: cloneJson(fields) };
   }
   return { base: cloneJson(own.base), files };
 };
@@ -97,10 +97,10 @@ export const mergeQuestionContent = (
   extra: Record<string, unknown> = {},
 ): void => {
   for (const [language, fields] of Object.entries(own)) {
-    (files[language as LanguageCodes] ??= {}).content = cloneJson(fields);
+    (files[language as LanguageCode] ??= {}).content = cloneJson(fields);
   }
   for (const [language, fields] of Object.entries(extra)) {
-    const file = (files[language as LanguageCodes] ??= {});
+    const file = (files[language as LanguageCode] ??= {});
     file.content = mergeForValidation(
       (file.content ?? {}) as Record<string, unknown>,
       fields as DeepPartial<Record<string, unknown>>,

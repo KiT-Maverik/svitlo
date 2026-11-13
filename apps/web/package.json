@@ -34,7 +34,6 @@
     "@mui/material": "^9.5.0",
     "@mui/material-nextjs": "^9.5.0",
     "@svitlo/adapter-nextjs": "0.0.0",
-    "@svitlo/contracts": "0.0.0",
     "@svitlo/engine": "0.0.0",
     "@svitlo/indexdb": "0.0.0",
     "@svitlo/playground": "0.0.0",

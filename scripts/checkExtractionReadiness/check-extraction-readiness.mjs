@@ -8,7 +8,6 @@ const readJson = name => JSON.parse(readFileSync(resolve(root, name), 'utf8'));
 const builtins = new Set(builtinModules.map(name => name.replace(/^node:/, '')));
 const workspaces = [
   ['apps/web', readJson('apps/web/package.json')],
-  ['shared/contracts', readJson('shared/contracts/package.json')],
   ['shared/engine', readJson('shared/engine/package.json')],
   ['shared/indexdb', readJson('shared/indexdb/package.json')],
   ['shared/ui-kit', readJson('shared/ui-kit/package.json')],
@@ -150,8 +149,8 @@ for (const [path, pkg] of workspaces) {
         assert(!specifier.startsWith('@svitlo/'), 'Unknown Svitlo workspace: ' + description);
         assert(declared.has(name), 'Undeclared production dependency: ' + description);
         assert(
-          (path !== 'shared/engine' || name === 'zod') && path !== 'shared/contracts',
-          'Engine and Contracts cannot depend on external runtime modules: ' + description,
+          path !== 'shared/engine' || name === 'zod',
+          'Engine cannot depend on external runtime modules: ' + description,
         );
         assert(
           path !== 'shared/ui-kit' || name !== 'next',
@@ -174,8 +173,9 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
         target.startsWith('./dist/') && target.endsWith('.js'),
         'Invalid compiled entrypoint: ' + pkg.name + subpath,
       );
+      // Engine and IndexedDB compile from the package root; other shared packages compile from src/.
       const sourcePath =
-        path === 'shared/engine'
+        path === 'shared/engine' || path === 'shared/indexdb'
           ? target.replace(/^\.\/dist\//, '').replace(/\.js$/, '')
           : target.replace(/^\.\/dist\/(?:src\/)?/, 'src/').replace(/\.js$/, '');
       assert(

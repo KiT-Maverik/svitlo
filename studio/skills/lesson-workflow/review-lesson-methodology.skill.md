@@ -24,7 +24,7 @@ Assess every Section against the original approved goals and verified references
 6. **Accessibility/localization relevance:** meaningful learner outcomes remain attainable through the specified accommodations and language plan; note conceptual/cultural assumptions, but leave UI/engineering QA to specialists.
 7. **Production gaps:** missing media and scenes may remain explicit production dependencies when the educational specification is complete. Do not reject a draft merely because the asset does not exist yet. Do flag assets whose educational meaning, accuracy or acceptance criteria are too vague to implement.
 
-Review actual `AssessmentMethodKey` definitions in Contracts and the generated `.agent-ci-artifacts/assessment-methods/en.md` reference if it exists; the reference is **optional and derived**, never an authority that overrides canonical source. Do not invent unsupported Assessment Method IDs.
+Review actual `AssessmentMethodKey` definitions in Engine and the generated `.agent-ci-artifacts/assessment-methods/en.md` reference if it exists; the reference is **optional and derived**, never an authority that overrides canonical source. Do not invent unsupported Assessment Method IDs.
 
 ## Output
 

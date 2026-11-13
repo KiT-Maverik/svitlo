@@ -5,6 +5,7 @@ import type { UiKitMessages } from '#types/uiKitMessages';
 import { Box, ButtonBase } from '@mui/material';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionContent, questionBlockLabel, type QuestionBlock } from './QuestionContent';
+import { useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 
 export type ChoiceFeedback = 'correct' | 'incorrect' | 'missed' | undefined;
 
@@ -25,13 +26,14 @@ export function QuestionChoice({
   feedback?: ChoiceFeedback;
   sceneRegistry?: SceneRegistry;
 }) {
+  const language = useContentLanguage();
   const tone =
     feedback === 'correct' ? 'success' : feedback === 'incorrect' ? 'error' : feedback === 'missed' ? 'warning' : null;
   return (
     <ButtonBase
       component="div"
       role="button"
-      aria-label={questionBlockLabel(block) || block.id}
+      aria-label={questionBlockLabel(block, language) || block.id}
       aria-pressed={selected}
       aria-description={
         feedback === 'correct'

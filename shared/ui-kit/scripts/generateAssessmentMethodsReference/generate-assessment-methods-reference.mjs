@@ -17,7 +17,7 @@ import ts from 'typescript';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const sourcePaths = Object.freeze({
-  languages: 'shared/contracts/src/types/languages.ts',
+  languages: 'shared/engine/schemas/languages.schemas.ts',
   descriptions: 'shared/ui-kit/data/definitions/assessmentMethods',
 });
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

@@ -52,7 +52,7 @@ export function chooseChecks(changed, workspaces) {
   }
   if (global) for (const name of packages.keys()) affected.add(name);
   if (lockChange)
-    for (const name of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
+    for (const name of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
       if (packages.has(name)) affected.add(name);
     }
   const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
@@ -73,6 +73,10 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs']);
+  // A migration helper must never reintroduce deleted package imports.
+  if (changed.some(file => file.startsWith('scripts/migrateEngineImports/'))) {
+    exec('node', ['--test', 'scripts/migrateEngineImports/migrate-engine-imports.spec.mjs']);
+  }
   // Engine build-only filesystem use must be distinguished from runtime leakage.
   // Exercise the canonical package boundary guard when it or Engine changes.
   if (
@@ -138,8 +142,7 @@ function runGate(changed) {
           'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.',
         ) ||
         file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
-        file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/') ||
-        file === 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
+        file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/'),
     )
   ) {
     exec('node', [
@@ -183,7 +186,6 @@ function runGate(changed) {
   // Validate the foundational runtime first. An unrelated textbook's unfinished
   // content translations must not hide failures in a changed shared package.
   const priority = [
-    '@svitlo/contracts',
     '@svitlo/engine',
     '@svitlo/indexdb',
     '@svitlo/ui-kit',

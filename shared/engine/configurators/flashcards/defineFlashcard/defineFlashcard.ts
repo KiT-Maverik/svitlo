@@ -5,7 +5,7 @@ import type {
   RequireLanguages,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -35,18 +35,18 @@ type Block = ContentBlock_Configurator;
 type Side = 'front' | 'back' | 'hint';
 type BlockResource = {
   base: Record<string, unknown>;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type BlockPatch = {
   base: DeepPartial<Record<string, unknown>>;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type FlagFragment = Flashcard_PropsBase['parameters']['flags'][number];
 type LocaleBody = {
   parameters?: { flags?: FlagFragment[] };
   content?: Partial<Record<Side, Flashcard_PropsBase['content']['front']>>;
 };
-type Files = Partial<Record<LanguageCodes, LocaleBody>>;
+type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   parameters?: DeepPartial<Flashcard_PropsBase['parameters']>;
@@ -64,7 +64,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 /** Ensure each requested language materializes a complete Flashcard, not a partial UI value. */
 const validatePublication = (
   resource: Publication<unknown>,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
 ): void => {
   for (const language of languages) {
@@ -239,7 +239,7 @@ export function defineFlashcard<
   const Hint extends Record<string, Block> = {},
   const Flags extends Record<string, Flashcard_Flag_Config> = Record<string, Flashcard_Flag_Config>,
   const Relationships extends Record<string, Flashcard_Relationship> = Record<string, Flashcard_Relationship>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCode[] = [],
 >(
   config: Omit<Flashcard_Config, 'slug' | 'content' | 'parameters'> & {
     slug: Slug;
@@ -296,7 +296,7 @@ export function defineFlashcard<
   const buildSide = (
     items: Record<string, Block>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     changes: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -313,7 +313,7 @@ export function defineFlashcard<
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     ) as Flashcard_PropsBase['content']['front'];
-    const locales: Partial<Record<LanguageCodes, Flashcard_PropsBase['content']['front']>> = {};
+    const locales: Partial<Record<LanguageCode, Flashcard_PropsBase['content']['front']>> = {};
     for (const code of languages) {
       if (
         !entries.some(
@@ -333,10 +333,10 @@ export function defineFlashcard<
     return { bases, locales };
   };
 
-  const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCodes[]) => {
+  const buildFlags = (flags: Flashcard_Config['parameters']['flags'], languages: readonly LanguageCode[]) => {
     const entries = flags.order.map(key => splitLocalizedFields(flags.items[key]));
     const bases = entries.map(entry => entry.base) as FlagFragment[];
-    const locales: Partial<Record<LanguageCodes, FlagFragment[]>> = {};
+    const locales: Partial<Record<LanguageCode, FlagFragment[]>> = {};
     for (const code of languages) {
       if (!entries.some(entry => entry.locale?.[code] !== undefined)) continue;
       locales[code] = entries.map(entry =>
@@ -351,12 +351,12 @@ export function defineFlashcard<
 
   const addSideFiles = (files: Files, side: Side, built: ReturnType<typeof buildSide>) => {
     for (const [code, values] of Object.entries(built.locales)) {
-      ((files[code as LanguageCodes] ??= {}).content ??= {})[side] = values;
+      ((files[code as LanguageCode] ??= {}).content ??= {})[side] = values;
     }
   };
   const addFlagFiles = (files: Files, built: ReturnType<typeof buildFlags>) => {
     for (const [code, values] of Object.entries(built.locales)) {
-      (files[code as LanguageCodes] ??= {}).parameters = { flags: values };
+      (files[code as LanguageCode] ??= {}).parameters = { flags: values };
     }
   };
 

@@ -17,8 +17,7 @@
     "code:lint:fix": "eslint textbook.ts data/homeCopy.ts --fix"
   },
   "dependencies": {
-    "@svitlo/engine": "0.0.0",
-    "@svitlo/contracts": "0.0.0"
+    "@svitlo/engine": "0.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

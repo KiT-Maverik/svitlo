@@ -1,17 +1,17 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import { mergeForValidation } from '../../_shared__configurators';
 export { resolvePublicationLanguages, selectPublicationLocales } from '../../_shared__configurators';
 export type { PublicationLanguageOptions } from '#types';
 
 type Publication = {
   base: object;
-  locale: Partial<Record<LanguageCodes, object>> | undefined;
+  locale: Partial<Record<LanguageCode, object>> | undefined;
 };
 
 /** Validate each requested effective Props value, not only the authoring metadata. */
 export const validateQuestionPublication = (
   schema: { parse(value: unknown): unknown },
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   resource: Publication,
   patch?: Publication,
 ): void => {

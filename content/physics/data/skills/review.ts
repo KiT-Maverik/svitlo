@@ -1,5 +1,3 @@
-import type { Review } from '@svitlo/contracts/content';
-
-export const skills_Review: Review = {
+export const skills_Review = {
   ai: 229,
-};
+} satisfies Record<string, number>;

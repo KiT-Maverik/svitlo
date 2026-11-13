@@ -4,8 +4,8 @@ import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-import type { ContentBlock_Youtube_Response } from '@svitlo/contracts/content';
-import { localizedAttributes } from '../../utils';
+import type { ContentBlock_Youtube_Props } from '@svitlo/engine/runtime';
+import { localizedAttributes, resolveOptionalLocalizedText } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import {
   createYoutubeIframe,
@@ -22,16 +22,14 @@ import styles from './Youtube.module.css';
 type FallbackKind = 'loading' | 'offline' | 'unavailable';
 
 export const Youtube = ({
-  href,
-  mode,
-  title,
-  label,
-  fallback: fallbackMessages,
+  params: { mode },
+  locale: { href, title, label, fallback: fallbackMessages },
   messages,
-}: ContentBlock_Youtube_Response & {
+}: ContentBlock_Youtube_Props & {
   messages: Youtube_Locale;
 }) => {
   const contentLanguage = useContentLanguage();
+  const resolvedTitle = resolveOptionalLocalizedText(title, contentLanguage, 'youtube.title');
   const online = useSyncExternalStore(subscribeConnectionChange, getConnectionSnapshot, getServerConnectionSnapshot);
   const playerHost = useRef<HTMLDivElement>(null);
   const [failedHref, setFailedHref] = useState<string | null>(null);
@@ -84,7 +82,11 @@ export const Youtube = ({
     fallbackKind === 'loading'
       ? messages['loading']
       : fallbackKind
-        ? fallbackMessages?.[fallbackKind] || messages[fallbackKind]
+        ? (resolveOptionalLocalizedText(
+            fallbackMessages?.[fallbackKind],
+            contentLanguage,
+            'youtube.fallback.' + fallbackKind,
+          ) ?? messages[fallbackKind])
         : null;
   const fallback = fallbackKind && (
     <div key="fallback" className={styles.placeholder} role="status">
@@ -92,7 +94,8 @@ export const Youtube = ({
       <span>{fallbackText}</span>
       {fallbackKind === 'unavailable' && (
         <button type="button" onClick={() => setFailedHref(null)}>
-          {fallbackMessages?.retry || messages['retry']}
+          {resolveOptionalLocalizedText(fallbackMessages?.retry, contentLanguage, 'youtube.fallback.retry') ??
+            messages.retry}
         </button>
       )}
     </div>
@@ -108,7 +111,7 @@ export const Youtube = ({
             {label}
           </a>
         )}
-        {title && <figcaption>{title}</figcaption>}
+        {resolvedTitle && <figcaption>{resolvedTitle}</figcaption>}
       </figure>
     );
   }
@@ -116,7 +119,7 @@ export const Youtube = ({
   return (
     <figure {...attributes} className={styles.figure}>
       {fallback || <div key="player" ref={playerHost} className={styles.player} />}
-      {title && <figcaption>{title}</figcaption>}
+      {resolvedTitle && <figcaption>{resolvedTitle}</figcaption>}
     </figure>
   );
 };

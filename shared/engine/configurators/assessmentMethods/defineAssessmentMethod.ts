@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
@@ -19,7 +19,7 @@ import {
 
 type AssessmentMethodPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<AssessmentMethod_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<AssessmentMethod_Props>>> | undefined;
 };
 
 const validate = (config: AssessmentMethod_Config): void => {
@@ -31,14 +31,14 @@ const project = (source: DeepPartial<Pick<AssessmentMethod_Config, 'title' | 'de
   const split = splitLocalizedFields(source);
   return {
     base: split.base as DeepPartial<AssessmentMethod_Props>,
-    locale: split.locale as Partial<Record<LanguageCodes, DeepPartial<AssessmentMethod_Props>>> | undefined,
+    locale: split.locale as Partial<Record<LanguageCode, DeepPartial<AssessmentMethod_Props>>> | undefined,
   };
 };
 
 /** Explicit Props/Override return types keep declaration output compact. */
 export type AssessmentMethod_Configurator<
   Slug extends string = string,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -63,7 +63,7 @@ export type AssessmentMethod_Configurator<
 /** Assessment method descriptions and labels retain their authored semantics. */
 export function defineAssessmentMethod<
   const Slug extends string,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCode[] = [],
 >(
   config: Omit<AssessmentMethod_Config, 'slug'> & { slug: Slug } & RequireLanguages<AssessmentMethod_Config, Languages>,
 ): AssessmentMethod_Configurator<Slug, Languages> {

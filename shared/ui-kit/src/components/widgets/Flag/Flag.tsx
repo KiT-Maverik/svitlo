@@ -1,5 +1,5 @@
 import type { ImgHTMLAttributes } from 'react';
-import type { DefaultSupportedLanguage } from '@svitlo/contracts/localization';
+import type { DefaultSupportedLanguage } from '@svitlo/engine/runtime';
 
 /** Only locales registered in the app have a flag dispatch entry. */
 export type FlagLocale = DefaultSupportedLanguage['locale'];

@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '../../schemas';
+import type { LanguageCode } from '../../schemas';
 import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
 import {
   assembleLessonProps,
@@ -29,19 +29,19 @@ export type CoursePublishedNode =
 export type CoursePublishedTree = {
   type: 'course';
   id: string;
-  params: { languages: readonly LanguageCodes[] };
+  params: { languages: readonly LanguageCode[] };
   content: CoursePublishedContent;
 };
 
 export type PublishedCoursePropsFiles = {
   base: CoursePublishedTree;
-  locale?: Partial<Record<LanguageCodes, unknown>>;
+  locale?: Partial<Record<LanguageCode, unknown>>;
 };
 
 export type AssembleCourseLessonInput = {
   courseId: string;
   lessonId: string;
-  language: LanguageCodes;
+  language: LanguageCode;
   lesson: PublishedLessonPropsResource;
   course: PublishedCoursePropsFiles;
 };

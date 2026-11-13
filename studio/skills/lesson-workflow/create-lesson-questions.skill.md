@@ -144,7 +144,7 @@ IDs and educational claims above are illustrative placeholders, **never permissi
 
 Validate machine-readable YAML against the schema plus **semantic checks** (a schema alone cannot establish correctness):
 
-1. Every Question type and method exists in current canonical Contracts, and required type-specific answer fields are complete.
+1. Every Question type and method exists in current canonical Engine schemas, and required type-specific answer fields are complete.
 2. Every `targetSkills` value belongs to the Lesson's approved Skill set. Every `assessmentPlanKey` exists in both sources. All explicitly assigned `selection.questionSlugs` exist, are unique within a Quiz, and reference eligible bank Questions; unassigned Questions are allowed and preserved for additional practice.
 3. Every default Quiz has a deliberate, proportionate **subset** with a nonempty explicit `questionSlugs` list, and each required Quiz `targetSkill`/`requiredAssessmentMethods` pair has meaningful coverage **in the actual selected set** (not merely somewhere in the full bank). For `sample` mode, assess every possible sample or document a safe selection strategy; never rely on accidental coverage. `coverage` matches the actual Question assignments.
 4. Every item has a distinctness case, correct answer and evidence target. Reject near-duplicates and superficial type-diversity inflation.

@@ -2,8 +2,8 @@ import {
   skillDomain_Props_Schema,
   type SkillDomain_Props,
 } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
-import { languageCode_Schema, type LanguageCodes } from '../../schemas/languages.schemas';
-import type { DeepPartial } from '../../types/deepPartial';
+import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
+import type { DeepPartial } from '../../types/transformer.types';
 
 /** One published file contains the whole slug-keyed Domain tree. */
 export type Skills_Base = Record<string, DeepPartial<SkillDomain_Props> & Pick<SkillDomain_Props, 'id' | 'slug'>>;
@@ -11,12 +11,12 @@ export type Skills_Locale = Record<string, DeepPartial<SkillDomain_Props>>;
 
 export type Skills_Publication = {
   base: Skills_Base;
-  locale?: Partial<Record<LanguageCodes, Skills_Locale>>;
+  locale?: Partial<Record<LanguageCode, Skills_Locale>>;
 };
 
 export type Skills_Overrides = {
   base?: Skills_Locale;
-  locale?: Partial<Record<LanguageCodes, Skills_Locale>>;
+  locale?: Partial<Record<LanguageCode, Skills_Locale>>;
 };
 
 export type Skills_Props = Record<string, SkillDomain_Props>;
@@ -88,7 +88,7 @@ function checkLayerKeys(base: Record<string, unknown>, layer: Record<string, unk
  */
 export function assembleSkills(
   resource: Skills_Publication,
-  language: LanguageCodes,
+  language: LanguageCode,
   overrides?: Skills_Overrides,
 ): Skills_Props {
   languageCode_Schema.parse(language);
