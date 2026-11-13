@@ -12,6 +12,12 @@ generated drafts as an acceptance criterion for this script.
 
 ## Source shapes
 
+The script accepts either. The Config form can include an optional
+top-level `documentLanguage` provenance marker; it is removed from the
+emitted `defineCourse` Config and used to keep only source-language localized
+values (including nested values). Without this marker, already-authored
+localization maps are preserved rather than guessing an authoring locale.
+
 The script accepts either:
 
 - A direct Config-shaped course.yaml with type: course, slug,
@@ -27,6 +33,11 @@ The script accepts either:
   description is fabricated. Planning-only fields (skills, objectives, etc.)
   stay in the original YAML for the subsequent editor to consult.
 
+Every polymorphic node is dispatched via the **single canonical Engine
+`shared/engine/configurators/yaml/yamlFactoryByType.ts` registry**. Nested
+Carousel slides, Checkpoint items, their mandatory Text questions and answer
+collections also become `define*` calls, not plain child objects.
+
 All polymorphic children must provide type. Unknown or absent discriminators
 fail with a path-specific diagnostic. No schema/semantic, approval or Lesson
 existence checks run here. The current Engine authoring schemas are defined in
@@ -37,7 +48,10 @@ imported from @svitlo/engine/build.
 
 A type: lesson Course child is a **reference** to a previously authored,
 reusable Lesson, identified by lessonId. It does not become defineLesson.
-When YAML supplies safe, explicit relative import coordinates:
+When YAML supplies safe, explicit relative import coordinates **bounded
+to the owning textbook's `data/lessons/` or the current Course directory**
+(including legitimate `../../../lessons/...` relative paths from its UUID
+folder), the script emits the import without an existence check:
 
 ~~~yaml
 type: lesson
