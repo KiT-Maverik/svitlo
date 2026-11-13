@@ -1,5 +1,6 @@
 /** Supported text direction for a language. */
-export type TextDirection = 'ltr' | 'rtl';
+export const textDirection = ['ltr', 'rtl'];
+export type TextDirection = typeof textDirection[number];
 
 /** Shape required for every language descriptor. */
 export interface LanguageDefinition {
@@ -10,28 +11,6 @@ export interface LanguageDefinition {
   readonly nameUk: string;
   readonly direction: TextDirection;
 }
-
-/**
- * Extension point for consumers that add languages through module augmentation.
- *
- * Example:
- * declare module '@svitlo/contracts/localization' {
- *   interface AdditionalLanguages {
- *     cs: {
- *       locale: 'cs-CZ';
- *       language: 'cs';
- *       name: 'Czech';
- *       nativeName: 'Čeština';
- *       nameUk: 'Чеська';
- *       direction: 'ltr';
- *     };
- *   }
- * }
- */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface AdditionalLanguages {}
-
-export type AdditionalLanguage = AdditionalLanguages[keyof AdditionalLanguages];
 
 /** Default language set shipped with the project. */
 export const DEFAULT_SUPPORTED_LANGUAGES = [
