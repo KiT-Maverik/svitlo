@@ -1,5 +1,5 @@
 import type { SkillId } from '@svitlo/contracts/content';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
@@ -20,7 +20,7 @@ import {
 
 type SkillPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Skill_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Skill_Props>>> | undefined;
 };
 
 const validate = (config: Skill_Config): void => {
@@ -33,14 +33,14 @@ const project = (input: DeepPartial<Pick<Skill_Config, 'name' | 'description'>>)
   return {
     base: split.base as DeepPartial<Pick<Skill_Props, 'name' | 'description'>>,
     locale: split.locale as
-      Partial<Record<LanguageCodes, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
+      Partial<Record<LanguageCode, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
   };
 };
 
 /** Fixed public surface preserves literal Slug and optional language tuple. */
 export type Skill_Configurator<
   Slug extends string = string,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -62,7 +62,7 @@ export type Skill_Configurator<
   };
 } & LanguageScope<Languages>;
 
-export function defineSkill<const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export function defineSkill<const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>,
 ): Skill_Configurator<Slug, Languages> {
   const authored = structuredClone(skill_Config_Schema.parse(config));

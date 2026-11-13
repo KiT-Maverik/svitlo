@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -34,11 +34,11 @@ type Group = SkillGroup_Configurator;
 type Child = Skill | Group;
 type ChildPatch = {
   base: DeepPartial<Skill_Props | SkillGroup_Props>;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Skill_Props | SkillGroup_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Skill_Props | SkillGroup_Props>>> | undefined;
 };
 type SkillDomainPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<SkillDomain_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<SkillDomain_Props>>> | undefined;
 };
 type SkillDomainOverrideBase = SkillDomain_Metadata_Overrides & {
   skills?: DeepPartial<Skill_Props>[];
@@ -101,7 +101,7 @@ export type SkillDomain_Configurator<
   Slug extends string = string,
   Groups extends Record<string, Group> = Record<string, Group>,
   Skills extends Record<string, Skill> = Record<string, Skill>,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -138,7 +138,7 @@ export function defineSkillDomain<
   const Slug extends string,
   const Groups extends Record<string, Group> = {},
   const Skills extends Record<string, Skill> = {},
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCode[] = [],
 >(
   config: Omit<SkillDomain_Config, 'slug' | 'groups' | 'skills' | 'title' | 'description'> & {
     slug: Slug;
@@ -165,7 +165,7 @@ export function defineSkillDomain<
     const own = splitLocalizedFields(input);
     return {
       base: own.base as SkillDomain_Metadata_Overrides,
-      locale: (own.locale ?? {}) as Partial<Record<LanguageCodes, DeepPartial<SkillDomain_Props>>>,
+      locale: (own.locale ?? {}) as Partial<Record<LanguageCode, DeepPartial<SkillDomain_Props>>>,
     };
   };
 
@@ -174,7 +174,7 @@ export function defineSkillDomain<
     items: Record<string, Child>,
     order: readonly string[],
     parse: (value: unknown) => Props,
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const seen = new Set<string>();
@@ -198,7 +198,7 @@ export function defineSkillDomain<
     const base = entries.map(({ resource, patch }) =>
       mergeForValidation(resource.base, (patch?.base ?? {}) as DeepPartial<typeof resource.base>),
     ) as DeepPartial<Props>[];
-    const locale: Partial<Record<LanguageCodes, Props[]>> = {};
+    const locale: Partial<Record<LanguageCode, Props[]>> = {};
     for (const language of languages) {
       const resolved = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
@@ -228,13 +228,13 @@ export function defineSkillDomain<
       const built = buildChildren(initialSkills, skillOrder, value => skill_Props_Schema.parse(value), languages);
       base.skills = built.base;
       for (const [language, values] of Object.entries(built.locale))
-        (files[language as LanguageCodes] ??= {}).skills = values;
+        (files[language as LanguageCode] ??= {}).skills = values;
     }
     if (groups) {
       const built = buildChildren(initialGroups, groupOrder, value => skillGroup_Props_Schema.parse(value), languages);
       base.groups = built.base;
       for (const [language, values] of Object.entries(built.locale))
-        (files[language as LanguageCodes] ??= {}).groups = values;
+        (files[language as LanguageCode] ??= {}).groups = values;
     }
     const result = { base, locale: Object.keys(files).length ? files : undefined };
     for (const language of languages) {
@@ -350,7 +350,7 @@ export function defineSkillDomain<
         const built = buildChildren(enabled, order, parse, languages, childPatches);
         (output.base as Record<string, unknown>)[key] = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
-          ((files[language as LanguageCodes] ??= {}) as Record<string, unknown>)[key] = values;
+          ((files[language as LanguageCode] ??= {}) as Record<string, unknown>)[key] = values;
         }
       };
 
