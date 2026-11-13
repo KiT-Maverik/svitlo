@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
 import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
-import { courseHasLesson, loadCourseLesson, loadCourseToc } from '@/lib/courseResources';
+import { loadPublishedCourseLessonProps, loadPublishedUiKitMessages } from '@svitlo/adapter-nextjs';
+import { courseHasLesson, loadCourseLessonTitles, loadCourseTree } from '@/lib/courseResources';
+import { coursePropsToTopics } from '@/lib/courseNavigation';
 import WebLesson from '@/components/pages/Lesson/Lesson';
-import { courseTocToTopics } from '@/lib/courseNavigation';
 
 type Props = { params: Promise<{ language: string; courseId: string; lessonLanguage: string; lessonId: string }> };
 
@@ -14,19 +14,20 @@ async function Content({ params }: Props) {
   const lessonDescriptor = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === lessonLanguage);
   if (!descriptor || !lessonDescriptor) notFound();
 
-  let toc;
+  let course;
   try {
-    toc = await loadCourseToc(courseId, descriptor.language);
+    course = await loadCourseTree(courseId, lessonDescriptor.language);
   } catch {
     notFound();
   }
-  if (!courseHasLesson(toc, lessonId)) notFound();
+  if (!courseHasLesson(course, lessonId)) notFound();
 
-  const [lesson, messages] = await Promise.all([
-    loadPublishedLesson(lessonId, lessonDescriptor.language),
+  const [response, messages, titles] = await Promise.all([
+    loadPublishedCourseLessonProps(courseId, lessonId, lessonDescriptor.language),
     loadPublishedUiKitMessages(descriptor.locale),
+    loadCourseLessonTitles(course, lessonDescriptor.language),
   ]);
-  const response = await loadCourseLesson(courseId, lesson, lessonDescriptor.language);
+
   const href = '/' + language + '/course/' + courseId + '/lesson/' + lessonLanguage + '/' + lessonId;
   return (
     <WebLesson
@@ -35,7 +36,7 @@ async function Content({ params }: Props) {
       lessonLocale={lessonDescriptor.locale}
       href={href}
       messages={messages}
-      topics={courseTocToTopics(toc, language, lessonLanguage)}
+      topics={coursePropsToTopics(course, language, lessonLanguage, titles)}
     />
   );
 }
