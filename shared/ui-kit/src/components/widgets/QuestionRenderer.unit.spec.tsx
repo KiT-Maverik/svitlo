@@ -24,7 +24,7 @@ const common = {
   slug: 'question1',
   params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
   locale: {},
-  content: { question: [text('prompt', 'What is the answer?')] as [ContentBlock_Text_Props] },
+  content: { question: [text('prompt', 'What is the answer?')] satisfies [ContentBlock_Text_Props] },
 };
 const one: Question_SelectOneAnswer_Props = {
   ...common,
