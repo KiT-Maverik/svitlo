@@ -1,0 +1,44 @@
+name: Temporary YAML scaffolders merge diagnosis
+
+on:
+  push:
+    branches:
+      - integration/yaml-ts-scaffolders
+    paths:
+      - .github/workflows/yaml-merge-diagnosis.yml
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Inspect three-way merge against latest main without making changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          echo "Integration head: $(git rev-parse HEAD)"
+          echo "Main head: $(git rev-parse origin/main)"
+          set +e
+          git merge --no-commit --no-ff origin/main > /tmp/svitlo-merge.log 2>&1
+          status=$?
+          set -e
+          echo "merge exit status: $status"
+          cat /tmp/svitlo-merge.log
+          echo "===== unresolved paths ====="
+          git diff --name-only --diff-filter=U
+          echo "===== unmerged stage entries ====="
+          git ls-files -u | head -100
+          echo "===== conflict count ====="
+          git diff --name-only --diff-filter=U | wc -l
+          if [ "$status" -eq 0 ]; then
+            echo "MERGE CLEAN"
+          fi
+          git merge --abort || true
