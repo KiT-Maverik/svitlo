@@ -112,7 +112,11 @@ test('renders deterministic, isolated publication snapshots with canonical relat
 
   assert.notStrictEqual(first, second, 'Each render owns its output map');
   assert.deepEqual([...first], [...second], 'Rebuilding the same Lesson produces identical bytes');
-  assert.deepEqual([...second.keys()], [relative + '/base.json', relative + '/en.json', relative + '/uk.json']);
+  assert.deepEqual([...second.keys()], [
+    relative + '/base.json',
+    relative + '/en.json',
+    relative + '/uk.json',
+  ]);
 
   for (const [filename, body] of second) {
     assert.match(filename, /^[0-9a-f]\/[0-9a-f-]{36}\/(?:base|[a-z]{2})\.json$/);
