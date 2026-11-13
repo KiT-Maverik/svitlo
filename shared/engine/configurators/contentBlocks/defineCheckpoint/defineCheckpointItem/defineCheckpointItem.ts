@@ -135,7 +135,15 @@ type ItemOverrideBase = {
   answer?: Checkpoint_Allowed_PropsBase[];
 };
 
-/** Define one Checkpoint item with a mandatory Text question and ordered answers. */
+/**
+ * Define one Checkpoint prompt and its answer ContentBlocks.
+ *
+ * @remarks
+ * `question` must be a `defineText` configurator and cannot be disabled.
+ * `answer.items` contains the answer material in the intended order.
+ * At least one answer ContentBlock must remain enabled, and answers cannot
+ * contain another Checkpoint.
+ */
 export const defineCheckpointItem = <
   const Slug extends string,
   const Answers extends Record<string, Checkpoint_Allowed_Configurator>,

@@ -169,7 +169,19 @@ const validate = (config: Lesson_Config): void => {
   }
 };
 
-/** Define a Lesson with immutable, stateless Section/Flashcard/Question publication. */
+/**
+ * Author a reusable Lesson with Sections, Flashcards and a separate Question Bank.
+ *
+ * @remarks
+ * `questions` is a bank keyed first by Question type and then by Question
+ * slug. Quiz Sections choose entries via `params.selection`, so a Question
+ * can appear in multiple Quizzes without duplicating its authoring content.
+ * Questions are not ordinary Section ContentBlocks.
+ *
+ * Use `section` to organize the learning sequence and `flashcards` for
+ * independent recall material. Enable `params.requireQuiz` when at least
+ * one enabled Quiz Section must be retained.
+ */
 export function defineLesson<
   const Slug extends string,
   const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],

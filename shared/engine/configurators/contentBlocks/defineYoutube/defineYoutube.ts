@@ -77,10 +77,14 @@ const buildYoutubePatch = (
   };
 };
 
-/** Define Youtube. */
 /**
- * Stateless ContentBlock Build API validates isolated snapshots and emits
- * either complete Props or exclusively sparse override fields.
+ * Reference a YouTube video as either a link or an embedded player.
+ *
+ * @remarks
+ * Set `params.mode` to `'embed'` for inline viewing or `'link'` for
+ * navigation to the video in `locale.href`. The required `locale.label`
+ * identifies the video for the iframe/link and fallback UI.
+ * `locale.title` is an optional visible heading, not its accessible label.
  */
 export const defineYoutube = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
   config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
