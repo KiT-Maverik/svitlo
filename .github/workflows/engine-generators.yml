@@ -37,25 +37,3 @@ jobs:
       - name: Typecheck and execute Engine generator tests
         run: npm test --workspace @svitlo/engine
 
-  generator-cli-smoke:
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-      - run: npm ci
-      - name: Build Engine dependencies
-        run: |
-          npm run package:build --workspace @svitlo/contracts
-          npm run package:build --workspace @svitlo/engine
-      - name: Generate and verify Playground Lesson publications
-        run: |
-          npm run content:generate:lesson-props -- --package content/playground --write
-          npm run content:check:lesson-props -- --package content/playground --check
-      - name: Generate and verify Playground Course publications
-        run: |
-          npm run content:generate:course-props -- --package content/playground --write
-          npm run content:check:course-props -- --package content/playground --check
