@@ -339,7 +339,7 @@ function testSuite() {
       const packageDirectory = path.join(root, 'content/playground');
       const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
       const directory = path.join(packageDirectory, 'data/lessons/c', lessonId);
-      const source = path.join(directory, 'index.ts');
+      const source = path.join(directory, 'howLightMoves.data.ts');
       const actual = await loadLesson(source, packageDirectory);
       assert.equal(actual.id, lessonId);
       const markdown = await generate(
