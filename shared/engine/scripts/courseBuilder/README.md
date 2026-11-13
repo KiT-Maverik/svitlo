@@ -7,7 +7,6 @@ This is **not** an AI authoring skill and does **not** generate standalone Lesso
 From the monorepo root after installing and building the existing Contracts/Engine workspaces:
 
 ```sh
-npm run package:build --workspace +@svitlo/contracts
 npm run package:build --workspace @svitlo/engine
 
 node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
