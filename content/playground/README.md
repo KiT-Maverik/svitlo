@@ -17,9 +17,9 @@ npm run test:portability --workspace @svitlo/playground
 npm run test:publish --workspace @svitlo/playground
 ```
 
-The build runs the existing shared Engine-based Lesson and Skills Analytics
-generators, emits ESM + declarations with esbuild/TypeScript, and packages CSS
-Modules from lazy Scene chunks. It produces:
+The build invokes the new stateless Skill/Lesson/Course Build API generators,
+stages generated JSON from `generated/` into portable `dist/static/data/`,
+emits ESM + declarations with esbuild/TypeScript, and packages CSS Modules from lazy Scene chunks. It produces:
 
 ```text
 dist/
@@ -27,8 +27,9 @@ dist/
   scenes/index.js, index.d.ts, sceneLoader.d.ts
   chunks/*                 # statically analyzable lazy Scenes
   styles.css               # public stylesheet referencing Scene CSS bundles
-  static/data/pages/lessons/<uuid-bucket>/<uuid>/{config,questions,flashcards}/<lang>.json
-  static/generated/skills/{base,<language>}.json # one full taxonomy tree per file
+  static/data/lessons/<uuid-bucket>/<uuid>/{base,<language>}.json
+  static/data/skills/{base,<language>}.json # one full taxonomy tree per file
+  static/data/courses/<course-uuid>/{base,<language>}.json
   static/textbooks/playground/*  # textbook-owned public media (when present)
   manifest.json            # source of truth for owned resources
 ```
@@ -62,8 +63,8 @@ at `/textbooks/playground/<filename>`. An identical path in both source folders
 is rejected instead of silently overwritten. YouTube embeds require external
 connectivity; the other gallery media are distributed with the package.
 
-Book resources use `/data/pages/lessons`, `/generated/skills` (one base
-and one localized Skill tree per language) and `/textbooks/playground`.
+Book resources use `/data/lessons`, `/data/courses`, `/data/skills` (one base
+and optional localized Skill tree per language) and `/textbooks/playground`.
 UI Kit global message JSON and SVG flags remain host-staged from the UI Kit package.
 
 The pack/React DOM portability harness creates a real npm tarball, extracts it
@@ -79,35 +80,22 @@ real-device accessibility/launch checks remain host-specific release gates.
 
 ## Playground Course integration example
 
-The Playground textbook now also authors a demo Course in
-`data/courses/playgroundLightCourse.data.ts` with two lightweight Lesson copies,
-a Module, a Chapter, a narrative Episode, and a course-local section reorder
-for the existing `howLightMoves` Lesson. The Lesson's canonical files and
-Definition are not modified. The Course-only override also inserts a
-`contentBlockGallery` Section that exercises all ten supported ContentBlock
-renderers: text, Markdown, code, image, carousel, video, audio, YouTube, Scene and checkpoint.
-The standalone Lesson retains its original three Sections.
+The Playground Course is authored with `defineCourse`, `defineModule` and
+`defineChapter`. Each of their `content` collections uses slug-keyed
+`items` plus `order`. The Course publisher emits a compact nested
+`content: { items, order }` hierarchy, storing Lesson UUID references and
+only Course-owned sparse Lesson overrides. No complete nested Lesson Props
+or legacy TOC/Episode files are published.
 
-The shared build pipeline automatically emits **separate** Course resources:
+Generated Course and Lesson data are independently staged in
+`content/playground/generated/`, then packaged under:
 
 ```text
-dist/static/data/pages/courses/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/
-  toc/<language>.json
-  overrides/d3048d21-8690-5255-b62c-984c69ac272c/<language>.json
-  episodes/9f417177-1d07-5a9d-ad74-0146c5637e84/<language>.json
+dist/static/data/courses/<course-uuid>/{base,<language>}.json
+dist/static/data/lessons/<bucket>/<lesson-uuid>/{base,<language>}.json
 ```
 
-The published TOC provides the navigation tree. The override resource
-contains only changed fields and slug-keyed ordering operations, and is
-applied **only** in the Course context. Episode resources are separate from
-the Lesson content. All three are included in `dist/manifest.json` and
-published by the existing `svitlo-playground publish` CLI.
-
-Open:
-
-- `/uk/course/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67` — Course TOC
-- `/uk/course/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/lesson/d3048d21-8690-5255-b62c-984c69ac272c` — overridden Lesson
-- `/uk/course/30ecbde1-97fd-5fe7-a353-ea89b9ef4a67/episode/9f417177-1d07-5a9d-ad74-0146c5637e84` — Lorem Ipsum Episode
-
-The existing standalone Lesson URL remains unchanged. This is a
-test-only content arrangement, not a production learning program.
+The Course-context Lesson assembler resolves the selected Lesson base and
+locale first, then applies Course invariant and selected-locale overrides.
+Ordinary Props arrays remain atomic; Course hierarchy uses keyed objects so
+a translated Chapter need not duplicate sibling Modules or Lessons.
