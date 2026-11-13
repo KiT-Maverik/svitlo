@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -21,7 +21,7 @@ import {
   type ContentBlock_Scene_PropsBase,
 } from './defineScene.schemas';
 
-type SceneLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Scene_Locale<'props'>> }>>;
+type SceneLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Scene_Locale<'props'>> }>>;
 type ScenePropsPublication<Base, LocaleFiles = SceneLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type SceneOverridePropsBase = {
   params?: ContentBlock_Scene_Overrides['params'];
@@ -88,7 +88,7 @@ const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublica
  * single-language props. Implementing the visual interaction and registering
  * its Scene entrypoint are separate from authoring this configurator.
  */
-export const defineScene = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineScene = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Scene_Config,
       Languages

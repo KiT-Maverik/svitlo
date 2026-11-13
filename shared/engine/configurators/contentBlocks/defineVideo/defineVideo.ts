@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -21,7 +21,7 @@ import {
   type ContentBlock_Video_PropsBase,
 } from './defineVideo.schemas';
 
-type VideoLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Video_Locale<'props'>> }>>;
+type VideoLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Video_Locale<'props'>> }>>;
 type VideoPropsPublication<Base, LocaleFiles = VideoLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type VideoOverridePropsBase = {
   params?: ContentBlock_Video_Overrides['params'];
@@ -85,7 +85,7 @@ const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublica
  * are checked where the textbook can be resolved.
  * Author fallback messages for offline/unavailable playback when appropriate.
  */
-export const defineVideo = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineVideo = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Video_Config,
       Languages

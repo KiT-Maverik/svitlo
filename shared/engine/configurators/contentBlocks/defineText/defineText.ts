@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   onlyLocales,
@@ -18,7 +18,7 @@ import {
 } from './defineText.schemas';
 import { validateTextVariables } from './defineText.utils';
 
-type TextLocaleFiles = Partial<Record<LanguageCodes, { locale: ContentBlock_Text_Locale<'props'> }>>;
+type TextLocaleFiles = Partial<Record<LanguageCode, { locale: ContentBlock_Text_Locale<'props'> }>>;
 type TextPropsPublication<Base, LocaleFiles = TextLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type TextOverridePropsBase = {
   params?: ContentBlock_Text_Overrides['params'];
@@ -39,7 +39,7 @@ const buildLocale = (value: ContentBlock_Text_Config['locale']['value'] | undefi
   const locale: TextLocaleFiles = {};
   if (value && typeof value === 'object') {
     for (const [language, text] of Object.entries(value)) {
-      if (text !== undefined) locale[language as LanguageCodes] = { locale: { value: text } };
+      if (text !== undefined) locale[language as LanguageCode] = { locale: { value: text } };
     }
   }
   return Object.keys(locale).length ? locale : undefined;
@@ -120,7 +120,7 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
  */
-export const defineText = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineText = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Text_Config,
       Languages
