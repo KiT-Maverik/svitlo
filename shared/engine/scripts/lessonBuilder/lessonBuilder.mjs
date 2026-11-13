@@ -12,8 +12,7 @@
  * table is Engine's yamlFactoryByType.ts (read as TypeScript syntax, not
  * executed or validated). Output contains only the source documentLanguage's
  * authored locale values; other languages are never invented.
- * Reads separate lesson.config.yaml; the Screenwriter-owned content.yaml is
- * a different editorial plan and is never repurposed or modified.
+ * Reads lesson.config.yaml, not Screenwriter-owned editorial content.yaml.
  *
  * The separate generateLessonProps publisher is not invoked by this script.
  */
@@ -181,7 +180,7 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
     }).join(',\n') + '\n' + indent(level) + '}';
   }
 
-  const call = render(sourceAuthoringCopy(lesson, language), 'lesson', '
+  const call = render(sourceAuthoringCopy(lesson, language), 'lesson', '$', 0);
   const imports = [...used].sort((a, b) => a.localeCompare(b));
   const name = lesson.slug + '_Lesson';
   return 'import { ' + imports.join(', ') + " } from '@svitlo/engine/build';\n\n" +
@@ -201,16 +200,12 @@ function targetFor(source, repo) {
   return { root, lessonId: match[3] };
 }
 
-/**
- * A separate technical Config YAML draft is produced from reviewed Studio
- * editorial sources. Never overwrite or reinterpret the Screenwriter's
- * canonical content.yaml / Question Bank / Flashcard editorial plans.
- */
+/** Technical Config is a separate projection of Studio editorial plans. */
 function combineSources(root) {
   const config = parseYaml(path.join(root, 'lesson.config.yaml'), 'lesson.config.yaml');
   const { documentLanguage, ...lesson } = config;
   if (typeof documentLanguage !== 'string' || !documentLanguage)
-    fail('lesson.config.yaml', 'documentLanguage', 'required provenance for source-language copying');
+    fail('lesson.config.yaml', 'documentLanguage', 'required source-language provenance');
   if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
     fail('lesson.config.yaml', 'slug', 'a safe camelCase slug is required for the output filename');
   return { lesson, language: documentLanguage };
@@ -272,134 +267,6 @@ function discover(repo) {
           if (!entry.isDirectory()) continue;
           const location = path.join(lessons, bucket.name, entry.name);
           if (fs.existsSync(path.join(location, 'lesson.config.yaml'))) roots.push(location);
-        }
-      }
-    }
-  }
-  return roots.sort();
-}
-
-export function main(args = process.argv.slice(2), repo = repoRoot) {
-  const [mode, ...rest] = args;
-  if (!['generate', 'check'].includes(mode) || (rest.length && !(rest.length === 2 && rest[0] === '--source')))
-    throw new Error('Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>] (requires lesson.config.yaml)');
-  const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
-  for (const root of roots) {
-    const result = runOne(root, mode, repo);
-    console.log(result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'));
-  }
-  console.log('Processed ' + roots.length + ' Lesson draft source(s)');
-}
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  try {
-    main();
-  } catch (error) {
-    console.error(error.message);
-    process.exitCode = 1;
-  }
-}
-, 0);
-  const imports = [...used].sort((a, b) => a.localeCompare(b));
-  const name = lesson.slug + '_Lesson';
-  return 'import { ' + imports.join(', ') + " } from '@svitlo/engine/build';\n\n" +
-    'export const ' + name + ' = ' + call + ';\n';
-}
-
-/** The UUID path is an output-safety boundary, not editorial validation. */
-function targetFor(source, repo) {
-  const root = path.resolve(source);
-  noSymlinks(root);
-  const relative = path.relative(path.resolve(repo), root).split(path.sep).join('/');
-  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})$/.exec(relative);
-  if (!match || !uuidPattern.test(match[3]) || match[3].slice(-1) !== match[2])
-    throw new Error('Expected content/<book>/data/lessons/<last-uuid-hex>/<uuid>: ' + relative);
-  if (!fs.existsSync(path.join(repo, 'content', match[1], 'package.json')))
-    throw new Error('Expected a textbook workspace for ' + relative);
-  return { root, lessonId: match[3] };
-}
-
-function combineSources(root) {
-  const content = parseYaml(path.join(root, 'content.yaml'), 'content.yaml');
-  const { documentLanguage, ...lesson } = content;
-  if (typeof documentLanguage !== 'string' || !documentLanguage)
-    fail('content.yaml', 'documentLanguage', 'required to select authored source-language locale');
-  const parts = [
-    { filename: 'questions/questions.yaml', property: 'questions' },
-    { filename: 'flashcards/flashcards.yaml', property: 'flashcards' },
-  ];
-  for (const { filename, property } of parts) {
-    const location = path.join(root, filename);
-    if (!fs.existsSync(location)) continue;
-    const parsed = parseYaml(location, filename);
-    const { documentLanguage: _sourceLanguage, ...fields } = parsed;
-    const value = Object.hasOwn(fields, property) ? fields[property] : fields;
-    if (!isRecord(value))
-      fail(filename, property, 'expected a mapping of authored ' + property);
-    if (Object.hasOwn(lesson, property))
-      fail(filename, property, 'already authored in content.yaml; choose one source');
-    lesson[property] = value;
-  }
-  if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
-    fail('content.yaml', 'slug', 'a safe camelCase slug is required for the output filename');
-  return { lesson, language: documentLanguage };
-}
-
-function writeDraft(file, content, mode) {
-  const body = content;
-  const rendered = header + checksumLabel + digest(body) + '\n' + body;
-  noSymlinks(file);
-  if (fs.existsSync(file)) {
-    const original = fs.readFileSync(file, 'utf8');
-    const expectedHeader = header + checksumLabel;
-    if (!original.startsWith(expectedHeader))
-      fail(path.basename(file), '$', 'refusing to overwrite a manually authored file');
-    const split = original.indexOf('\n', expectedHeader.length);
-    const checksum = original.slice(expectedHeader.length, split);
-    if (split < 0 || !/^[a-f0-9]{64}$/.test(checksum) || digest(original.slice(split + 1)) !== checksum)
-      fail(path.basename(file), '$', 'generated file was modified manually');
-    if (original === rendered) return 0;
-    if (mode === 'check') fail(path.basename(file), '$', 'stale draft; run content:generate:lessons');
-    fs.writeFileSync(file, rendered);
-    return 1;
-  }
-  if (mode === 'check') fail(path.basename(file), '$', 'missing draft; run content:generate:lessons');
-  fs.writeFileSync(file, rendered, { flag: 'wx' });
-  return 1;
-}
-
-export function runOne(source, mode = 'check', repo = repoRoot) {
-  if (!['generate', 'check'].includes(mode)) throw new Error('Mode must be generate or check');
-  const target = targetFor(source, repo);
-  const { lesson, language } = combineSources(target.root);
-  const draft = renderLessonDraft(lesson, language);
-  const entryName = lesson.slug + '.data.ts';
-  for (const name of fs.readdirSync(target.root)) {
-    if (name.endsWith('.data.ts') && name !== entryName)
-      fail(name, '$', 'competing Lesson data entrypoint; refusing to create another');
-  }
-  const changed = writeDraft(path.join(target.root, entryName), draft, mode);
-  return { changed, files: [entryName], lessonId: target.lessonId };
-}
-
-function discover(repo) {
-  const content = path.join(repo, 'content');
-  if (!fs.existsSync(content)) return [];
-  const roots = [];
-  for (const entry of fs.readdirSync(content, { withFileTypes: true })) {
-    if (!entry.isDirectory()) continue;
-    const folder = path.join(content, entry.name);
-    const workspaces = entry.name === 'languages'
-      ? fs.readdirSync(folder, { withFileTypes: true }).filter(item => item.isDirectory()).map(item => path.join(folder, item.name))
-      : [folder];
-    for (const workspace of workspaces) {
-      const lessons = path.join(workspace, 'data/lessons');
-      if (!fs.existsSync(lessons)) continue;
-      for (const bucket of fs.readdirSync(lessons, { withFileTypes: true })) {
-        if (!bucket.isDirectory() || !/^[0-9a-f]$/.test(bucket.name)) continue;
-        for (const entry of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
-          if (!entry.isDirectory()) continue;
-          const location = path.join(lessons, bucket.name, entry.name);
-          if (fs.existsSync(path.join(location, 'content.yaml'))) roots.push(location);
         }
       }
     }
