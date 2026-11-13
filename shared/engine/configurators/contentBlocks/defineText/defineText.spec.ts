@@ -10,20 +10,20 @@ describe('Configurators', () => {
     describe('defineText', () => {
       const identity = {
         id: 'c2cc84f3-f057-493d-b1b6-1880aad8023b',
-        slug: 'intro',
+        slug: 'intro' as const,
         type: 'text' as const,
         params: {},
       };
 
       test('Text exposes only the new build publication API', () => {
-        const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         assert.equal('assemble' in text, false);
         assert.equal(typeof text.build.props, 'function');
         assert.equal(typeof text.build.overrides, 'function');
       });
 
       test('Text publishes invariant values in base and no locale files', () => {
-        const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         const output = text.build.props({ languages: ['en', 'uk'] });
         assert.deepEqual(output, {
           base: { ...identity, locale: { value: 'Welcome' } },
@@ -33,7 +33,7 @@ describe('Configurators', () => {
       });
 
       test('Text publishes translated values as Props-shaped language JSON bodies', () => {
-        const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
         const output = text.build.props({ languages: ['en', 'uk'] });
         assert.deepEqual(output, {
           base: { ...identity },
@@ -43,7 +43,7 @@ describe('Configurators', () => {
       });
 
       test('Text always publishes Props-shaped locale fragments', () => {
-        const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
         const publication = text.build.props({ languages: ['en', 'uk'] });
         const embedded = text.build.props({ languages: ['en', 'uk'] });
 
@@ -62,7 +62,7 @@ describe('Configurators', () => {
       });
 
       test('Text preserves invariant values without inventing locale files', () => {
-        const text = defineText({ ...identity, locale: { value: 'Universal' } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Universal' } });
         assert.deepEqual(text.build.props({ languages: ['en', 'uk'] }), {
           base: { ...identity, locale: { value: 'Universal' } },
           locale: undefined,
@@ -70,7 +70,7 @@ describe('Configurators', () => {
       });
 
       test('Text publishes only the validated override patch, not inherited properties', () => {
-        const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
         const before = text.build.props({ languages: ['en', 'uk'] });
         const patch = { params: { disabled: true as const }, locale: { value: { uk: 'Вітаю' } } };
 
@@ -86,8 +86,8 @@ describe('Configurators', () => {
       });
 
       test('Text permits a one-language override of an invariant or localized text', () => {
-        const localized = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
-        const invariant = defineText({ ...identity, locale: { value: 'Welcome' } });
+        const localized = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const invariant = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         for (const text of [localized, invariant]) {
           assert.deepEqual(text.build.overrides({ locale: { value: { uk: 'Вітаю' } } }, { languages: ['en', 'uk'] }), {
             base: {},
@@ -97,7 +97,7 @@ describe('Configurators', () => {
       });
 
       test('Text publishes invariant overrides as an intentional dictionary replacement', () => {
-        const text = defineText({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: { en: 'Welcome', uk: 'Привіт' } } });
         assert.deepEqual(text.build.overrides({ locale: { value: 'Universal' } }, { languages: ['en', 'uk'] }), {
           base: { locale: { value: 'Universal' } },
           locale: undefined,
@@ -109,7 +109,7 @@ describe('Configurators', () => {
       });
 
       test('Text checks semantic variable rules against the temporarily merged config', () => {
-        const text = defineText({
+        const text = defineText<'intro', ['en', 'uk']>({
           ...identity,
           params: { variables: { personName: { applyStyle: ['bold'] } } },
           locale: {
@@ -153,7 +153,7 @@ describe('Configurators', () => {
       });
 
       test('Text allows deep-partial nested patches and publishes only those keys', () => {
-        const text = defineText({
+        const text = defineText<'intro', ['en', 'uk']>({
           ...identity,
           params: {
             wrap: { enabled: true, typographyProps: { weight: 'normal' } },
@@ -184,7 +184,7 @@ describe('Configurators', () => {
       });
 
       test('Text strictly rejects unknown override fields with cause and identity', () => {
-        const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         for (const input of [
           { id: identity.id },
           { slug: identity.slug },
@@ -209,8 +209,8 @@ describe('Configurators', () => {
       });
 
       test('Text rejects positional arrays in authored locale values and override patches', () => {
-        const text = defineText({ ...identity, locale: { value: 'Welcome' } });
-        assert.throws(() => defineText({ ...identity, locale: { value: ['not a locale dictionary'] } } as never));
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
+        assert.throws(() => defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: ['not a locale dictionary'] } } as never));
         assert.throws(() =>
           text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, {
             languages: ['en', 'uk'],
@@ -219,7 +219,7 @@ describe('Configurators', () => {
       });
 
       test('Text requires typographyProps to be a JSON-compatible object', () => {
-        const text = defineText({ ...identity, locale: { value: 'Welcome' } });
+        const text = defineText<'intro', ['en', 'uk']>({ ...identity, locale: { value: 'Welcome' } });
         assert.deepEqual(
           text.build.overrides(
             {
@@ -254,7 +254,7 @@ describe('Configurators', () => {
           params: { wrap: { enabled: true, typographyProps: props } },
           locale: { value: { en: 'Welcome' } },
         };
-        const text = defineText(config);
+        const text = defineText<'intro', ['en']>({ ...config, locale: { value: { en: 'Welcome' } } });
         props.nested.weight = 'mutated caller';
         config.locale.value = 'Other';
         config.params.disabled = true;
@@ -300,7 +300,7 @@ describe('Configurators', () => {
         assert.throws(() => text.build.props({ languages: [] }), /nonempty languages/);
         assert.throws(() => text.build.props({ languages: ['uk', 'uk'] }), /unique/);
         assert.throws(() => text.build.props({ languages: ['bogus'] as never }));
-        const partial = defineText({ ...identity, locale: { value: { en: 'Only English' } } });
+        const partial = defineText<'intro', ['en']>({ ...identity, locale: { value: { en: 'Only English' } } });
         assert.doesNotThrow(() => partial.build.props({ languages: ['en'] }));
         assert.throws(() => partial.build.props({ languages: ['uk'] }), /Invalid publication for language uk/);
       });

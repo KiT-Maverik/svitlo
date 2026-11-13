@@ -80,7 +80,7 @@ describe('Configurators', () => {
           };
 
           const image = defineImage(imageConfig);
-          const audio = defineAudio(audioConfig);
+          const audio = defineAudio<'audio', ['en', 'uk']>(audioConfig);
           const video = defineVideo(videoConfig);
           const carousel = defineCarousel(carouselConfig);
           const sceneBlock = defineScene(sceneConfig);

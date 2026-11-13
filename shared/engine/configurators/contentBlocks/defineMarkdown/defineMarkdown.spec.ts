@@ -13,7 +13,7 @@ describe('Configurators', () => {
     describe('defineMarkdown', () => {
       const base = {
         id: 'c2cc84f3-f057-493d-b1b6-1880aad8023b',
-        slug: 'example',
+        slug: 'example' as const,
         type: 'markdown' as const,
         params: {},
       };
@@ -34,7 +34,7 @@ describe('Configurators', () => {
           writeFileSync(join(directory, 'en.md'), '# Hello %_%NAME%_%\n');
           writeFileSync(join(directory, 'uk.md'), '# Привіт %_%NAME%_%\n');
 
-          const markdown = defineMarkdown({
+          const markdown = defineMarkdown<'example', ['en', 'uk']>({
             ...base,
             files: { moduleUrl, languages: ['en', 'uk'] },
             locale: { variables: { NAME: { en: 'Ada', uk: 'Ада' } } },
@@ -83,7 +83,7 @@ describe('Configurators', () => {
           value: { en: '# %_%NAME%_%', uk: '# %_%NAME%_%' },
           variables: { NAME: { en: 'Ada', uk: 'Ада' } },
         };
-        const markdown = defineMarkdown({ ...base, locale });
+        const markdown = defineMarkdown<'example', ['en', 'uk']>({ ...base, locale });
         assert.doesNotThrow(() => markdown.config.validate({ ...base, locale }));
         assert.throws(
           () =>
@@ -113,7 +113,7 @@ describe('Configurators', () => {
       });
 
       test('Markdown accepts a sparse localized source override with originally invariant text and multilingual variables', () => {
-        const markdown = defineMarkdown({
+        const markdown = defineMarkdown<'example', ['en', 'uk']>({
           ...base,
           locale: {
             value: 'Hello %_%NAME%_%',

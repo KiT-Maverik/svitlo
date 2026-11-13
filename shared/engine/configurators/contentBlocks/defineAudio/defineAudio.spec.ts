@@ -9,7 +9,7 @@ describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineAudio', () => {
       test('publishes only requested translations alongside invariant media', () => {
-        const audio = defineAudio({
+        const audio = defineAudio<'sample', ['en', 'uk']>({
           id,
           slug: 'sample',
           type: 'audio',
@@ -23,7 +23,7 @@ describe('Configurators', () => {
       });
 
       test('publishes sparse overrides without modifying an independent resource', () => {
-        const audio = defineAudio({
+        const audio = defineAudio<'sample', ['en', 'uk']>({
           id,
           slug: 'sample',
           type: 'audio',

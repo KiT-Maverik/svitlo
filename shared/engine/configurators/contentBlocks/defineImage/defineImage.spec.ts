@@ -17,7 +17,7 @@ describe('Configurators', () => {
       });
 
       test('publishes translated source and invariant alternative text', () => {
-        const image = defineImage(config());
+        const image = defineImage<'diagram', ['en', 'uk']>(config());
         const resource = image.build.props(scope);
         assert.deepEqual(resource.base.params, { width: 640, height: 480 });
         assert.equal(resource.base.locale?.alt, 'Diagram');
@@ -25,7 +25,7 @@ describe('Configurators', () => {
       });
 
       test('checks dimension constraints after sparse overrides', () => {
-        const image = defineImage(config());
+        const image = defineImage<'diagram', ['en', 'uk']>(config());
         assert.throws(() => image.build.overrides({ params: { fill: true } }, scope), /Invalid Image overrides/);
         const original = image.build.props(scope);
         const patch = image.build.overrides({ params: { fill: true, aspectRatio: 1.5 } }, scope);
