@@ -10,7 +10,7 @@ describe('Configurators', () => {
     describe('defineVideo', () => {
       const config = () => ({
         id,
-        slug: 'clip',
+        slug: 'clip' as const,
         type: 'video' as const,
         params: {},
         locale: {

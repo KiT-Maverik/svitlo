@@ -10,7 +10,7 @@ describe('Configurators', () => {
     describe('defineYoutube', () => {
       const config = () => ({
         id,
-        slug: 'watch',
+        slug: 'watch' as const,
         type: 'youtube' as const,
         params: { mode: 'link' as const },
         locale: {

@@ -227,7 +227,8 @@ describe('Configurators', () => {
               parameters: {
                 ...source.parameters,
                 flags: {
-                  items: { ...source.parameters.flags.items, duplicate: { type: 'list', count: 3 } },
+                  // Intentionally add an invalid duplicate flag to exercise the runtime validator.
+                  items: { ...source.parameters.flags.items, duplicate: { type: 'list', count: 3 } } as never,
                   order: ['list', 'acronym', 'duplicate'],
                 },
               },

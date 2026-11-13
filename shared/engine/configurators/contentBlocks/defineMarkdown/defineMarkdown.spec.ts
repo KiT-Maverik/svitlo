@@ -158,7 +158,7 @@ describe('Configurators', () => {
           /variable "UNKNOWN" is not declared/,
         );
         assert.doesNotThrow(() =>
-          defineMarkdown({
+          defineMarkdown<'example', ['en', 'uk']>({
             ...base,
             locale: { value: { en: '%_%NAME%_% %_%NAME%_%', uk: '%_%NAME%_%' }, variables },
           }),

@@ -302,7 +302,8 @@ describe('Configurators', () => {
         assert.throws(() => text.build.props({ languages: ['bogus'] as never }));
         const partial = defineText<'intro', ['en']>({ ...identity, locale: { value: { en: 'Only English' } } });
         assert.doesNotThrow(() => partial.build.props({ languages: ['en'] }));
-        assert.throws(() => partial.build.props({ languages: ['uk'] }), /Invalid publication for language uk/);
+        // Explicitly request an unsupported locale to assert the runtime publication guard.
+        assert.throws(() => partial.build.props({ languages: ['uk' as never] }), /Invalid publication for language uk/);
       });
     });
   });

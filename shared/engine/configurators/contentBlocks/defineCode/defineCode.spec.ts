@@ -10,7 +10,7 @@ describe('Configurators', () => {
     describe('defineCode', () => {
       const config = () => ({
         id,
-        slug: 'sample',
+        slug: 'sample' as const,
         type: 'code' as const,
         params: { language: 'python', codeAsText: 'print(%_%NAME%_%)' },
         locale: { variables: { NAME: { en: "'Ada'", uk: "'Ада'" } } },

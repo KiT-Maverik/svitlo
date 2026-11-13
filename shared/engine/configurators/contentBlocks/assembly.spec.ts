@@ -58,7 +58,7 @@ describe('Configurators', () => {
           locale: {
             title: 'Narration',
             fileLocation: { en: 'https://example.com/en.mp3', uk: 'https://example.com/uk.mp3' },
-            fallback: { offline: 'Offline', retry: { uk: 'Повторити' } },
+            fallback: { offline: 'Offline', retry: { en: 'Retry', uk: 'Повторити' } },
           },
         };
         const audio = defineAudio<string, ['en', 'uk']>(authored);
@@ -71,14 +71,14 @@ describe('Configurators', () => {
             locale: { title: 'Narration', fallback: { offline: 'Offline' } },
           },
           locale: {
-            en: { locale: { fileLocation: 'https://example.com/en.mp3' } },
+            en: { locale: { fileLocation: 'https://example.com/en.mp3', fallback: { retry: 'Retry' } } },
             uk: { locale: { fileLocation: 'https://example.com/uk.mp3', fallback: { retry: 'Повторити' } } },
           },
         });
         assert.deepEqual(audio.build.props({ languages: ['en', 'uk'] }), {
           base: audio.build.props({ languages: ['en', 'uk'] }).base,
           locale: {
-            en: { locale: { fileLocation: 'https://example.com/en.mp3' } },
+            en: { locale: { fileLocation: 'https://example.com/en.mp3', fallback: { retry: 'Retry' } } },
             uk: { locale: { fileLocation: 'https://example.com/uk.mp3', fallback: { retry: 'Повторити' } } },
           },
         });

@@ -45,7 +45,7 @@ describe('Configurators', () => {
           };
           const audioConfig = {
             id,
-            slug: 'audio',
+            slug: 'audio' as const,
             type: 'audio' as const,
             params: {},
             locale: { fileLocation: { en: url('tone.wav'), uk: url('tone.wav') }, title: 'Tone' },

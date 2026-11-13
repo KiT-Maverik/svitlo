@@ -10,7 +10,7 @@ describe('Configurators', () => {
     describe('defineImage', () => {
       const config = () => ({
         id,
-        slug: 'diagram',
+        slug: 'diagram' as const,
         type: 'image' as const,
         params: { width: 640, height: 480 },
         locale: { src: { en: 'https://example.org/en.png', uk: 'https://example.org/uk.png' }, alt: 'Diagram' },

@@ -176,11 +176,11 @@ describe('Configurators', () => {
       });
 
       test('Code checks placeholder integrity even without configured variables', () => {
-        const config: ContentBlock_Code_Config = {
+        const config = {
           ...codeConfig,
           params: { ...codeConfig.params, codeAsText: 'const a = 1;' },
           locale: {},
-        };
+        } satisfies ContentBlock_Code_Config;
         const code = defineCode<'exampleCode', ['en']>(config);
         assert.throws(() => code.config.validate({ ...config, params: { ...config.params, codeAsText: '%_%BROKEN' } }));
         assert.throws(
