@@ -1,3 +1,4 @@
+export * from './assemblers';
 /**
  * Browser and React Server Components share the pure Engine runtime.
  * Node authoring and publishing helpers remain available from the default
