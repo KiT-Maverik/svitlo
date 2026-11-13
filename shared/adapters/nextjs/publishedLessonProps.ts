@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import {
   assembleLessonProps,
+  languageCode_Schema,
   resolveEntityPath,
   type LanguageCodes,
   type Lesson_Props,
@@ -50,19 +51,20 @@ export async function loadPublishedLessonProps({
     throw new Error('A published Lesson rootDirectory is required');
   }
 
+  const selectedLanguage = languageCode_Schema.parse(language);
   const relative = resolveEntityPath(id);
   const normalizedId = relative.split('/')[1];
   const directory = path.join(path.resolve(rootDirectory), ...relative.split('/'));
   const [base, locale] = await Promise.all([
     readPublishedJson(path.join(directory, 'base.json'), true),
-    readPublishedJson(path.join(directory, language + '.json'), false),
+    readPublishedJson(path.join(directory, selectedLanguage + '.json'), false),
   ]);
 
   const resource: PublishedLessonPropsResource = {
     base: base as PublishedLessonPropsResource['base'],
-    ...(locale !== undefined ? { locale: { [language]: locale as LessonPropsFragment } } : {}),
+    ...(locale !== undefined ? { locale: { [selectedLanguage]: locale as LessonPropsFragment } } : {}),
   };
-  const result = assembleLessonProps(resource, language, override);
+  const result = assembleLessonProps(resource, selectedLanguage, override);
   if (result.id.toLowerCase() !== normalizedId) {
     throw new Error('Published Lesson ID does not match the requested folder: ' + normalizedId);
   }

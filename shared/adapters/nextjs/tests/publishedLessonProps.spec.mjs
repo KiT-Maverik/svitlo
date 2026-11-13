@@ -32,7 +32,7 @@ async function fixture(t, lesson = baseLesson(), locale = { locale: { title: 'У
   const directory = path.join(rootDirectory, id.slice(-1), id);
   await mkdir(directory, { recursive: true });
   await writeFile(path.join(directory, 'base.json'), JSON.stringify(lesson));
-  if (locale !== undefined) await writeFile(path.join(directory, 'uk.json'), JSON.stringify(locale));
+  if (locale !== null) await writeFile(path.join(directory, 'uk.json'), JSON.stringify(locale));
   return { rootDirectory, directory };
 }
 
@@ -45,7 +45,7 @@ test('loads one UUID-bucketed base and the selected locale from an explicit root
 });
 
 test('allows a missing sparse locale file when invariant Props are complete', async t => {
-  const { rootDirectory } = await fixture(t, baseLesson(), undefined);
+  const { rootDirectory } = await fixture(t, baseLesson(), null);
   const data = await loadPublishedLessonProps({ rootDirectory, id, language: 'uk' });
   assert.equal(data.locale.title, 'Invariant lesson');
 });
@@ -69,6 +69,9 @@ test('rejects unsafe IDs and unsupported language requests', async t => {
   await assert.rejects(
     loadPublishedLessonProps({ rootDirectory, id: '../outside', language: 'uk' }),
     /canonical UUID/,
+  );
+  await assert.rejects(
+    loadPublishedLessonProps({ rootDirectory, id, language: '../unsafe' }),
   );
   await assert.rejects(
     loadPublishedLessonProps({ rootDirectory, id, language: 'pl' }),
