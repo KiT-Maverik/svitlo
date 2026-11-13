@@ -18,6 +18,11 @@ import { defineSkillDomain, skillDomain_Props_Schema } from './skills/defineSkil
 const id = (suffix: string) => '663572e7-bd85-4516-86e2-3de07d209e' + suffix;
 const uk = { languages: ['uk'] as const };
 
+// Test-only boundary: published resources and patches are JSON objects; avoid
+// expanding every nested configurator's generic type in merge assertions.
+const mergeObjects = (base: unknown, patch: unknown): Record<string, unknown> =>
+  mergeForValidation(base as Record<string, unknown>, patch as Record<string, unknown>);
+
 const paragraph = defineText<'paragraph', ['uk', 'en', 'pl']>({
   id: id('01'), slug: 'paragraph', type: 'text', params: {},
   locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
@@ -38,7 +43,7 @@ const questionContent = {
 const numeric = defineAnswerWithNumber<'numeric', typeof questionContent, ['uk', 'en']>({
   id: id('04'), slug: 'numeric', type: 'answerWithNumber',
   params: { assessmentMethod: 'retrieval', restrictions: ['dyslexia'], correctAnswers: [2] },
-  locale: {}, content: questionContent,
+  locale: { placeholder: 'Enter a number' }, content: questionContent,
 });
 
 const front = defineText<'front', ['uk', 'en']>({
@@ -50,10 +55,10 @@ const back = defineText<'back', ['uk', 'en']>({
   locale: { value: { uk: 'Відповідь', en: 'Answer' } },
 });
 const card = defineFlashcard<
-  'card', { front: typeof front }, { back: typeof back }, {}, {}, {}, ['uk', 'en']
+  'card', { front: typeof front }, { back: typeof back }, {}, { warningFlag: { type: 'warning' } }, {}, ['uk', 'en']
 >({
   id: id('07'), slug: 'card', type: 'flashcard',
-  parameters: { tags: [], flags: { items: {}, order: [] } },
+  parameters: { tags: [], flags: { items: { warningFlag: { type: 'warning' } }, order: ['warningFlag'] } },
   content: {
     front: { items: { front }, order: ['front'] },
     back: { items: { back }, order: ['back'] },
@@ -102,7 +107,7 @@ test('Course → Module → Chapter → Lesson → Section → ContentBlock and 
   assert.equal(json.includes('"order"'), false);
   assert.equal(json.includes('"build"'), false);
 
-  const resolved = mergeForValidation(resource.base, resource.locale?.uk ?? {});
+  const resolved = mergeObjects(resource.base, resource.locale?.uk ?? {});
   assert.doesNotThrow(() => course_Props_Schema.parse(resolved));
   assert.deepEqual(resource.base.params.languages, ['uk']);
   assert.deepEqual(lesson.build.props(uk).base.params.languages, ['uk']);
@@ -143,9 +148,9 @@ test('Nested Course override composes a complete, language-scoped atomic tree an
   assert.equal(JSON.stringify(patch).includes('Cześć'), false);
 
   const original = course.build.props(uk);
-  const withResourceLocale = mergeForValidation(original.base, original.locale?.uk ?? {});
-  const withOverrideBase = mergeForValidation(withResourceLocale, patch.base);
-  const effective = mergeForValidation(withOverrideBase, patch.locale?.uk ?? {});
+  const withResourceLocale = mergeObjects(original.base, original.locale?.uk ?? {});
+  const withOverrideBase = mergeObjects(withResourceLocale, patch.base);
+  const effective = mergeObjects(withOverrideBase, patch.locale?.uk ?? {});
   assert.doesNotThrow(() => course_Props_Schema.parse(effective));
   assert.ok(JSON.stringify(effective).includes('Оновлений текст'));
   assert.ok(JSON.stringify(course.build.props(uk)).includes('Привіт'));
@@ -157,8 +162,8 @@ test('Nested Course override composes a complete, language-scoped atomic tree an
   assert.deepEqual(removed.base.section, []);
   assert.equal(removed.locale?.uk?.section, undefined);
   const lessonResource = lesson.build.props(uk);
-  const lessonResult = mergeForValidation(
-    mergeForValidation(mergeForValidation(lessonResource.base, lessonResource.locale?.uk ?? {}), removed.base),
+  const lessonResult = mergeObjects(
+    mergeObjects(mergeObjects(lessonResource.base, lessonResource.locale?.uk ?? {}), removed.base),
     removed.locale?.uk ?? {},
   );
   assert.deepEqual(lesson_Props_Schema.parse(lessonResult).section, []);
@@ -203,8 +208,8 @@ test('SkillDomain → SkillGroup → Skill validates resolved multilingual neste
   const patch = domain.build.overrides({
     groups: { items: { mechanics: { skills: { items: { balance: { name: { uk: 'Баланс' } } } } } } },
   }, uk);
-  const effective = mergeForValidation(
-    mergeForValidation(mergeForValidation(resource.base, resource.locale?.uk ?? {}), patch.base),
+  const effective = mergeObjects(
+    mergeObjects(mergeObjects(resource.base, resource.locale?.uk ?? {}), patch.base),
     patch.locale?.uk ?? {},
   );
   assert.doesNotThrow(() => skillDomain_Props_Schema.parse(effective));
