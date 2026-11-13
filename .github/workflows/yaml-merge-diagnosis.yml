@@ -107,11 +107,6 @@ jobs:
           }
           NODE
           fi
-          if git ls-files -u | grep -q .; then
-            echo "::error::Unresolved conflict stages remain"
-            git ls-files -u
-            exit 1
-          fi
           if grep -R -nE "from ['\x22]@svitlo/contracts|require\(['\x22]@svitlo/contracts" \
             shared/engine/scripts/lessonBuilder shared/engine/scripts/courseBuilder \
             shared/engine/scripts/yamlScaffolding; then
@@ -126,6 +121,11 @@ jobs:
             studio/docs/entities/lesson.md \
             studio/docs/entities/section.md \
             studio/skills/lesson-workflow/create-lesson-content.skill.md
+          if git ls-files -u | grep -q .; then
+            echo "::error::Unresolved conflict stages remain"
+            git ls-files -u
+            exit 1
+          fi
           git diff --cached --check
           echo "Merge-index paths: $(git diff --cached --name-only | wc -l)"
       - uses: actions/setup-node@v4
