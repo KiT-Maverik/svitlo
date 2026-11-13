@@ -117,6 +117,9 @@ const hasEnabledQuiz = (sections: readonly { type: string; params?: { disabled?:
 
 /** Validate ownership/identity only; children handle their own schemas and semantics. */
 const validate = (config: Lesson_Config): void => {
+  if (Object.hasOwn(config, 'programId')) {
+    throw new Error('Lesson must not declare programId; Course ownership is defined by authoring composition');
+  }
   lesson_Config_Schema.parse(config);
   for (const [name, collection, kinds] of [
     ['section', config.section, sectionTypes],
