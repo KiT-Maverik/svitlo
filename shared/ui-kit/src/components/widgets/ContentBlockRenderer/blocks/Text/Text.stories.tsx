@@ -14,16 +14,12 @@ const meta = {
   },
   args: {
     id: 'text-example',
+    slug: 'textExample',
     type: 'text',
-
-    value: 'Light travels in a straight line.',
+    params: {},
+    locale: { value: 'Light travels in a straight line.' },
   },
-  argTypes: {
-    id: { control: false },
-    type: { control: false },
-    variables: { control: 'object' },
-    wrap: { control: 'object' },
-  },
+  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, params: { control: 'object' }, locale: { control: 'object' } },
 } satisfies Meta<typeof Text>;
 
 export default meta;
@@ -33,18 +29,25 @@ export const Playground: Story = {};
 
 export const StyledFragments: Story = {
   args: {
-    value: 'A %_%id: wave; value: light wave%_% can be described by its %_%id: speed; value: speed%_%.',
-    variables: {
-      wave: { applyStyle: ['bold', 'highlight'], tone: 'info' },
-      speed: { applyStyle: ['variable', 'underscore'], applyColor: '#1565c0' },
+    locale: {
+      value: 'A %_%id: wave; value: light wave%_% can be described by its %_%id: speed; value: speed%_%.',
+    },
+    params: {
+      variables: {
+        wave: { applyStyle: ['bold', 'highlight'], tone: 'info' },
+        speed: { applyStyle: ['variable', 'underscore'], applyColor: '#1565c0' },
+      },
     },
   },
 };
 
 export const Heading: Story = {
-  args: { value: 'How light moves', wrap: { typographyProps: { component: 'h3', variant: 'h5' } } },
+  args: {
+    locale: { value: 'How light moves' },
+    params: { wrap: { enabled: true, typographyProps: { component: 'h3', variant: 'h5' } } },
+  },
 };
 
-export const WithoutWrapper: Story = {
-  args: { value: 'Inline content without a paragraph', wrap: { enabled: false } },
+export const DefaultTypography: Story = {
+  args: { locale: { value: 'Plain text with the default paragraph wrapper' } },
 };

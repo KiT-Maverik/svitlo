@@ -18,19 +18,16 @@ const meta = {
   args: {
     messages: enUiKitMessages.youtube,
     id: 'youtube-example',
+    slug: 'youtubeExample',
     type: 'youtube',
-
-    href: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
-    mode: 'link',
-    title: 'YouTube link example',
-    label: 'Watch the YouTube IFrame API demonstration',
+    params: { mode: 'link' },
+    locale: {
+      href: 'https://www.youtube.com/watch?v=M7lc1UVf-VE',
+      title: 'YouTube link example',
+      label: 'Watch the YouTube IFrame API demonstration',
+    },
   },
-  argTypes: {
-    id: { control: false },
-    type: { control: false },
-    mode: { control: 'radio', options: ['link', 'embed'] },
-    fallback: { control: 'object' },
-  },
+  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, params: { control: 'object' }, locale: { control: 'object' } },
 } satisfies Meta<typeof Youtube>;
 
 export default meta;
@@ -40,9 +37,8 @@ export const Playground: Story = {};
 
 export const Embedded: Story = {
   args: {
-    mode: 'embed',
-    title: 'Embedded player example',
-    label: 'YouTube player demonstration',
+    params: { mode: 'embed' },
+    locale: { ...meta.args.locale, title: 'Embedded player example', label: 'YouTube player demonstration' },
   },
 };
 
@@ -55,10 +51,12 @@ export const WithLocalizedFallback: Story = {
     ),
   ],
   args: {
-    mode: 'embed',
-
-    title: 'Демонстрація YouTube',
-    label: 'Відеодемонстрація',
-    fallback: { offline: 'Немає доступу до інтернету.', unavailable: 'Відео недоступне.', retry: 'Повторити' },
+    params: { mode: 'embed' },
+    locale: {
+      ...meta.args.locale,
+      title: 'Демонстрація YouTube',
+      label: 'Відеодемонстрація',
+      fallback: { offline: 'Немає доступу до інтернету.', unavailable: 'Відео недоступне.', retry: 'Повторити' },
+    },
   },
 };
