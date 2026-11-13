@@ -19,7 +19,6 @@ const json = (value: unknown, source: string): string => {
     value,
     (_key, entry: unknown) => {
       if (
-        entry === undefined ||
         typeof entry === 'function' ||
         typeof entry === 'symbol' ||
         typeof entry === 'bigint' ||
@@ -68,7 +67,7 @@ export function renderLessonPropsFiles(entries: readonly LessonPublicationEntry[
       throw new Error('Invalid Lesson locale publication: ' + source);
     }
 
-    for (const [language, body] of Object.entries(publication.locale).sort(([a], [b]) => a.localeCompare(b))) {
+    for (const [language, body] of Object.entries(publication.locale).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) {
       // Language codes are two-letter lower-case codes in the current Engine contract.
       if (!/^[a-z]{2}$/.test(language)) {
         throw new Error('Invalid Lesson language file name: ' + language + ' (' + source + ')');
