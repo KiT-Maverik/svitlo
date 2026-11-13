@@ -21,7 +21,7 @@ test('recognizes nested language workspaces', () => {
   ]);
 });
 test('shared textbook tooling runs representative smoke builds', () => {
-  assert.deepEqual(selectContentBuilds(['scripts/textbook-tooling/build.mjs'], packages), [
+  assert.deepEqual(selectContentBuilds(['scripts/textbook-tooling/buildTextbook/build.mjs'], packages), [
     'content/math',
     'content/playground',
     'content/art',

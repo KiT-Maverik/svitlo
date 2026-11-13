@@ -225,7 +225,7 @@ function runGate(changed) {
       exec('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
       built.add('@svitlo/engine');
     }
-    exec('node', ['--test', 'scripts/textbook-tooling/generate-scenes.spec.mjs']);
+    exec('node', ['--test', 'scripts/textbook-tooling/generateScenes/generate-scenes.spec.mjs']);
   }
   if (
     changed.some(

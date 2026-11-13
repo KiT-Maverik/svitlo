@@ -68,7 +68,7 @@ for (const [workspace, compiled] of [
 // Some textbooks expose placeholder Scene registries before authoring real Scenes.
 // Enable generated-registry verification explicitly via the shared npm check.
 if (hasScenes && pkg.scripts?.['content:check:scenes']) {
-  run(process.execPath, [join(repo, 'scripts/textbook-tooling/generate-scenes.mjs'), '--check'], root);
+  run(process.execPath, [join(repo, 'scripts/textbook-tooling/generateScenes/generate-scenes.mjs'), '--check'], root);
 }
 
 rmSync(dist, { recursive: true, force: true });
@@ -206,7 +206,7 @@ for (const name of filesUnder(dist).filter(name => name.endsWith('.js'))) {
   }
 }
 // Self-contained CLI is copied into the package, not imported from the monorepo.
-copyFileSync(join(repo, 'scripts/textbook-tooling/publish.mjs'), join(dist, 'publish.mjs'));
+copyFileSync(join(repo, 'scripts/textbook-tooling/publishTextbook/publish.mjs'), join(dist, 'publish.mjs'));
 chmodSync(join(dist, 'publish.mjs'), 0o755);
 console.log(
   'Compiled ' +
