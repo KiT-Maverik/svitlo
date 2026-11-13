@@ -1,9 +1,10 @@
-export type NonEmptyArray<T> = [T, ...T[]];
-
-/** Require each entry's slug to match its key while preserving the entry's other fields. */
-export type DefineValidKeysFromSlugs<Keys extends string, Value extends { slug: string } = { slug: string }> = {
-  [Key in Keys]: Omit<Value, 'slug'> & { slug: Key };
-};
-
-/** Catalog collection discriminator, supplied by the corresponding builder. */
-export type Collection = 'skill' | 'skillGroup' | 'skillDomain' | 'lesson' | 'lessonSection';
+/**
+ * Deep compile-time immutability for authoring Data builder output.
+ * Recursively marks nested objects, tuples and arrays readonly while retaining functions.
+ * This is a TypeScript guarantee, not runtime Object.freeze.
+ */
+export type DeepReadonly<T> = T extends (...args: never[]) => unknown
+  ? T
+  : T extends object
+    ? { readonly [K in keyof T]: DeepReadonly<T[K]> }
+    : T;
