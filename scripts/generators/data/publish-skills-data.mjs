@@ -6,15 +6,22 @@
  *   node scripts/generators/data/publish-skills-data.mjs --package content/playground --write
  *   node scripts/generators/data/publish-skills-data.mjs --package content/playground --check
  *
- * This deliberately parses authoring data without importing/evaluating textbook code.
- * Only the dedicated skills output directory is replaced during --write.
+ * Transitional adapter for the existing source taxonomy. It prepares a complete
+ * tree from legacy authored .data.ts files without evaluating them; the Engine
+ * generator owns publication of already-prepared { base, locale } results.
+ * Once textbooks migrate their authored Skill collections to the Build API,
+ * replace this adapter with a build.props({ languages }) preparation step.
  */
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 import { checkTaxonomy } from '../../check-skills-taxonomy-structure.mjs';
+import {
+  renderSkillTree,
+  writeSkillFiles,
+  checkSkillFiles,
+} from '../../../shared/engine/generators/skills/publishSkillTree.mjs';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
 const slugPattern = /^[a-z][a-zA-Z0-9]*$/;
@@ -341,80 +348,20 @@ export function renderSkillFiles(graph, codes) {
   }
 
   assert(graph.length > 0, 'Skill taxonomy must include at least one Domain');
-  const files = new Map();
   const base = Object.fromEntries(graph.map(domain => [domain.slug, baseEntity(domain)]));
-  files.set('base.json', JSON.stringify(base, null, 2) + '\n');
-  for (const code of codes) {
-    const locale = Object.fromEntries(graph.map(domain => [domain.slug, localizedEntity(domain, code)]));
-    assert(!files.has(code + '.json'), 'Duplicate Skill locale: ' + code);
-    files.set(code + '.json', JSON.stringify(locale, null, 2) + '\n');
-  }
-  return files;
-}
-
-function currentFiles(root) {
-  const files = new Map();
-  if (!fs.existsSync(root)) return files;
-  assert(
-    fs.statSync(root).isDirectory() && !fs.lstatSync(root).isSymbolicLink(),
-    'Published Skills output must be a real directory: ' + root,
+  const locale = Object.fromEntries(
+    codes.map(code => [
+      code,
+      Object.fromEntries(graph.map(domain => [domain.slug, localizedEntity(domain, code)])),
+    ]),
   );
-  function visit(dir, relative) {
-    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-      assert(!entry.isSymbolicLink(), 'Symlinks are not permitted in generated output');
-      const name = relative ? relative + '/' + entry.name : entry.name;
-      if (entry.isDirectory()) visit(path.join(dir, entry.name), name);
-      else {
-        assert(entry.isFile(), 'Non-file in generated output: ' + name);
-        files.set(name, fs.readFileSync(path.join(dir, entry.name), 'utf8'));
-      }
-    }
-  }
-  visit(root, '');
-  return files;
+  return renderSkillTree({ base, locale });
 }
 
-export function checkPublishedFiles(root, expected) {
-  const actual = currentFiles(root);
-  const missing = [...expected.keys()].filter(name => !actual.has(name));
-  const changed = [...expected.keys()].filter(name => actual.has(name) && actual.get(name) !== expected.get(name));
-  const stale = [...actual.keys()].filter(name => !expected.has(name));
-  return { missing, changed, stale };
-}
-
-/** Validate everything before writing, then replace only the dedicated output tree. */
-export function writePublishedFiles(root, files) {
-  const parent = path.dirname(root);
-  fs.mkdirSync(parent, { recursive: true });
-  assert(
-    !fs.existsSync(root) || (fs.statSync(root).isDirectory() && !fs.lstatSync(root).isSymbolicLink()),
-    'Refusing to replace a non-directory or symlink: ' + root,
-  );
-  const staging = fs.mkdtempSync(path.join(parent, '.Skills-staging-'));
-  const backup = path.join(parent, '.Skills-backup-' + crypto.randomUUID());
-  let backedUp = false;
-  try {
-    for (const [name, content] of files) {
-      const target = path.join(staging, ...name.split('/'));
-      fs.mkdirSync(path.dirname(target), { recursive: true });
-      fs.writeFileSync(target, content, 'utf8');
-    }
-    if (fs.existsSync(root)) {
-      fs.renameSync(root, backup);
-      backedUp = true;
-    }
-    try {
-      fs.renameSync(staging, root);
-    } catch (error) {
-      if (backedUp) fs.renameSync(backup, root);
-      backedUp = false;
-      throw error;
-    }
-    if (backedUp) fs.rmSync(backup, { recursive: true, force: true });
-  } finally {
-    if (fs.existsSync(staging)) fs.rmSync(staging, { recursive: true, force: true });
-  }
-}
+// Compatibility exports used by the existing taxonomy fixtures and CLI.
+// File serialization and filesystem ownership now live in the Engine generator.
+export const writePublishedFiles = writeSkillFiles;
+export const checkPublishedFiles = checkSkillFiles;
 
 function options(args) {
   let packageName;
