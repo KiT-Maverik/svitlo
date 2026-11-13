@@ -39,20 +39,30 @@ const createInput = (): AssembleCourseLessonInput => ({
       id: courseId,
       type: 'course',
       params: { languages: ['en', 'uk'] },
-      content: [
-        {
-          id: moduleId,
-          type: 'module',
-          content: [{ id: lessonId, type: 'lesson', overrides: {} }],
+      content: {
+        items: {
+          laboratory: {
+            id: moduleId,
+            type: 'module',
+            content: {
+              items: { demo: { id: lessonId, type: 'lesson', overrides: {} } },
+              order: ['demo'],
+            },
+          },
         },
-      ],
+        order: ['laboratory'],
+      },
     },
   },
 } as unknown as AssembleCourseLessonInput);
 
 const baseLesson = (input: AssembleCourseLessonInput) =>
-  ((input.course.base as unknown as { content: { content: { overrides: Record<string, unknown> }[] }[] }).content[0]
-    .content[0].overrides);
+  ((input.course.base.content.items.laboratory as { content: { items: { demo: { overrides: Record<string, unknown> } } } })
+    .content.items.demo.overrides);
+
+const localeOverride = (overrides: Record<string, unknown>) => ({
+  content: { items: { laboratory: { content: { items: { demo: { overrides } } } } } },
+});
 
 test('assembles a course-neutral Lesson when the Course has no patches', () => {
   const input = createInput();
@@ -71,24 +81,8 @@ test('fixed four-layer precedence favors the selected Course locale', () => {
   baseLesson(input).locale = { title: 'Invariant Course title' };
   baseLesson(input).params = { sections: { allowSkipping: false } };
   input.course.locale = {
-    uk: {
-      content: [
-        {
-          id: moduleId,
-          type: 'module',
-          content: [{ id: lessonId, type: 'lesson', overrides: { locale: { title: 'Назва від програми' } } }],
-        },
-      ],
-    },
-    en: {
-      content: [
-        {
-          id: moduleId,
-          type: 'module',
-          content: [{ id: lessonId, type: 'lesson', overrides: { locale: { title: 'Course title' } } }],
-        },
-      ],
-    },
+    uk: localeOverride({ locale: { title: 'Назва від програми' } }),
+    en: localeOverride({ locale: { title: 'Course title' } }),
   };
 
   const uk = assembleCourseLesson(input);
@@ -118,11 +112,7 @@ test('Course localized override replaces an invariant collection rather than mer
   const input = createInput();
   baseLesson(input).section = [sectionB];
   input.course.locale = {
-    uk: {
-      content: [
-        { id: lessonId, type: 'lesson', overrides: { section: [sectionC] } },
-      ],
-    },
+    uk: localeOverride({ section: [sectionC] }),
   };
   assert.deepEqual(assembleCourseLesson(input).section.map(section => section.slug), ['summary']);
 });
@@ -139,12 +129,13 @@ test('validates course membership, identities, duplicates and supported language
   );
 
   const missing = createInput();
-  (missing.course.base as { content: unknown[] }).content = [];
+  (missing.course.base as unknown as { content: unknown }).content = { items: {}, order: [] };
   assert.throws(() => assembleCourseLesson(missing), /does not belong/);
 
   const duplicate = createInput();
-  const content = (duplicate.course.base as { content: unknown[] }).content;
-  content.push({ id: lessonId, type: 'lesson', overrides: {} });
+  const content = duplicate.course.base.content as unknown as { items: Record<string, unknown>; order: string[] };
+  content.items.duplicate = { id: lessonId, type: 'lesson', overrides: {} };
+  content.order.push('duplicate');
   assert.throws(() => assembleCourseLesson(duplicate), /Duplicate Lesson ID/);
 
   const unsupported = createInput();
@@ -174,7 +165,7 @@ test('rejects dangerous JSON keys and invalid Course JSON trees', () => {
 
   const invalid = createInput();
   invalid.course.locale = {
-    uk: { content: [{ id: moduleId, type: 'module', content: { invalid: true } }] },
+    uk: { content: { items: { laboratory: { content: { invalid: true } } } } },
   };
   assert.throws(() => assembleCourseLesson(invalid), /Invalid Course content/);
 });
