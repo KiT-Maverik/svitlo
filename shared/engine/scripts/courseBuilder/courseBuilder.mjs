@@ -337,9 +337,9 @@ export function parseArguments(args) {
   return { packagePath, courseId, slug, sourceFilename, action, ...(language ? { language } : {}) };
 }
 
-export async function main(args) {
+export async function main(args, projectRoot = repoRoot) {
   const options = parseArguments(args);
-  const courseFolder = path.join(repoRoot, options.packagePath, 'data/courses',
+  const courseFolder = path.join(projectRoot, options.packagePath, 'data/courses',
     options.courseId.at(-1), options.courseId);
   noSymlinkComponents(courseFolder);
   const sourceFilename = options.sourceFilename ??
