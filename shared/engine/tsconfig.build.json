@@ -23,11 +23,5 @@
     "utils/**/*.ts",
     "generators/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.spec.ts",
-    "**/*.unit.spec.ts",
-    "**/*.typecheck.ts"
-  ]
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.unit.spec.ts", "**/*.typecheck.ts"]
 }
