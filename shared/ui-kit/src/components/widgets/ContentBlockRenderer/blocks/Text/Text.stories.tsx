@@ -19,7 +19,13 @@ const meta = {
     params: {},
     locale: { value: 'Light travels in a straight line.' },
   },
-  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, params: { control: 'object' }, locale: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    slug: { control: false },
+    type: { control: false },
+    params: { control: 'object' },
+    locale: { control: 'object' },
+  },
 } satisfies Meta<typeof Text>;
 
 export default meta;

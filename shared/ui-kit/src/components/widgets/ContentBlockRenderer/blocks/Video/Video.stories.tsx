@@ -36,7 +36,12 @@ const meta = {
       label: 'Video showing a flower',
     },
   },
-  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, locale: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    slug: { control: false },
+    type: { control: false },
+    locale: { control: 'object' },
+  },
 } satisfies Meta<typeof Video>;
 
 export default meta;

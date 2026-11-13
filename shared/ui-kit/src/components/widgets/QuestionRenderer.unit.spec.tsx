@@ -65,28 +65,63 @@ describe('QuestionRenderer — published Engine Props', () => {
     const block = text('answer', 'Answer');
     const definitions: QuestionResponse[] = [
       one,
-      { ...common, type: 'selectMultipleAnswers', content: {
-        ...common.content, answers: { correct: { a: block }, incorrect: {}, distractors: {} },
-      } },
-      { ...common, type: 'matchBlocks', content: {
-        ...common.content, pairs: { first: { left: block, right: text('right', 'Right') } },
-      } },
+      {
+        ...common,
+        type: 'selectMultipleAnswers',
+        content: {
+          ...common.content,
+          answers: { correct: { a: block }, incorrect: {}, distractors: {} },
+        },
+      },
+      {
+        ...common,
+        type: 'matchBlocks',
+        content: {
+          ...common.content,
+          pairs: { first: { left: block, right: text('right', 'Right') } },
+        },
+      },
       { ...common, type: 'answerWithText', locale: { correctAnswers: ['Answer'], placeholder: 'Write' } },
-      { ...common, type: 'answerWithNumber', params: { ...common.params, correctAnswers: [1, 2] },
-        locale: { placeholder: 'Number' } },
+      {
+        ...common,
+        type: 'answerWithNumber',
+        params: { ...common.params, correctAnswers: [1, 2] },
+        locale: { placeholder: 'Number' },
+      },
       { ...common, type: 'orderSequence', content: { ...common.content, sequence: [block] } },
-      { ...common, type: 'buildAnswerWithBlocks', content: {
-        ...common.content, correctSequence: [block], distractors: [],
-      }, locale: { placeholder: 'Build' } },
-      { ...common, type: 'fillBlanksWithBlocks', content: {
-        ...common.content, slots: [{ selector: 'first', correctAnswer: block }], distractors: [],
-      }, locale: { placeholder: 'Choose' } },
-      { ...common, type: 'fillBlanksWithText', locale: {
-        slots: [{ selector: 'first', correctAnswers: ['Answer'] }], placeholder: 'Fill',
-      } },
+      {
+        ...common,
+        type: 'buildAnswerWithBlocks',
+        content: {
+          ...common.content,
+          correctSequence: [block],
+          distractors: [],
+        },
+        locale: { placeholder: 'Build' },
+      },
+      {
+        ...common,
+        type: 'fillBlanksWithBlocks',
+        content: {
+          ...common.content,
+          slots: [{ selector: 'first', correctAnswer: block }],
+          distractors: [],
+        },
+        locale: { placeholder: 'Choose' },
+      },
+      {
+        ...common,
+        type: 'fillBlanksWithText',
+        locale: {
+          slots: [{ selector: 'first', correctAnswers: ['Answer'] }],
+          placeholder: 'Fill',
+        },
+      },
     ];
     const questions = definitions.map((question, index) => ({
-      ...question, id: uuid(index + 1), slug: 'question' + (index + 1),
+      ...question,
+      id: uuid(index + 1),
+      slug: 'question' + (index + 1),
     }));
     const { container } = render(<QuestionRenderer messages={enUiKitMessages} questions={questions} />);
     expect(within(container).getAllByRole('region')).toHaveLength(9);
@@ -96,7 +131,9 @@ describe('QuestionRenderer — published Engine Props', () => {
   it('signals completion only after every question has been checked', async () => {
     const onComplete = vi.fn();
     const another: Question_SelectOneAnswer_Props = {
-      ...one, id: uuid(2), slug: 'question2',
+      ...one,
+      id: uuid(2),
+      slug: 'question2',
       content: { ...one.content, question: [text('secondPrompt', 'Another question')] },
     };
     render(<QuestionRenderer messages={enUiKitMessages} questions={[one, another]} onComplete={onComplete} />);
@@ -115,10 +152,14 @@ describe('QuestionRenderer — published Engine Props', () => {
     rerender(
       <QuestionRenderer
         messages={enUiKitMessages}
-        questions={[{
-          ...one, id: uuid(80), slug: 'replacementQuestion',
-          content: { ...one.content, question: [text('other', 'Replacement prompt')] },
-        }]}
+        questions={[
+          {
+            ...one,
+            id: uuid(80),
+            slug: 'replacementQuestion',
+            content: { ...one.content, question: [text('other', 'Replacement prompt')] },
+          },
+        ]}
       />,
     );
     expect(screen.queryByText('What is the answer?')).toBeNull();
@@ -127,10 +168,7 @@ describe('QuestionRenderer — published Engine Props', () => {
   });
 });
 
-const quizSettings = (
-  layout: 'stack' | 'stepper',
-  timeLimitSeconds?: number,
-): QuizSection_Props['params'] => ({
+const quizSettings = (layout: 'stack' | 'stepper', timeLimitSeconds?: number): QuizSection_Props['params'] => ({
   selection: { mode: 'all' },
   layout: { mode: layout, showProgress: true },
   feedbackMode: 'immediate',
@@ -151,10 +189,14 @@ const quizSettings = (
 describe('Quiz Section presentation', () => {
   it('supports stepper layout with one visible question and per-question progress', () => {
     const second: Question_SelectOneAnswer_Props = {
-      ...one, id: uuid(2), slug: 'question2',
+      ...one,
+      id: uuid(2),
+      slug: 'question2',
       content: { ...one.content, question: [text('q2', 'Another question')] },
     };
-    render(<QuestionRenderer messages={enUiKitMessages} questions={[one, second]} parameters={quizSettings('stepper')} />);
+    render(
+      <QuestionRenderer messages={enUiKitMessages} questions={[one, second]} parameters={quizSettings('stepper')} />,
+    );
     expect(screen.getByRole('list', { name: enUiKitMessages.lesson.questionProgress.navigation })).toBeVisible();
     expect(screen.getByText('What is the answer?')).toBeVisible();
     expect(screen.getByText('Another question')).not.toBeVisible();
@@ -207,13 +249,15 @@ describe('accessible Question labels', () => {
   });
 
   it('strips Markdown syntax from a choice label using canonical locale Props', () => {
-    expect(questionBlockLabel({
-      id: uuid(100),
-      slug: 'markdownChoice',
-      type: 'markdown',
-      params: {},
-      locale: { value: '**Important** and `code`' },
-    })).toBe('Important and code');
+    expect(
+      questionBlockLabel({
+        id: uuid(100),
+        slug: 'markdownChoice',
+        type: 'markdown',
+        params: {},
+        locale: { value: '**Important** and `code`' },
+      }),
+    ).toBe('Important and code');
   });
 });
 

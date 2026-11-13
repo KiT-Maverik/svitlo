@@ -42,7 +42,9 @@ describe('Checkpoint content block', () => {
           block.type === 'text' && block.id === 'question-1' ? (
             <span>{block.locale.value}</span>
           ) : (
-            <span>{block.type}: {block.id}</span>
+            <span>
+              {block.type}: {block.id}
+            </span>
           )
         }
       />,

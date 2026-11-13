@@ -62,9 +62,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
         messages={enUiKitMessages}
         sceneRegistry={id =>
           id === 'scene'
-            ? ({ locales }) => (
-                <span role="img" aria-label={typeof locales === 'object' ? String(locales.title) : ''} />
-              )
+            ? ({ locales }) => <span role="img" aria-label={typeof locales === 'object' ? String(locales.title) : ''} />
             : undefined
         }
         onCheckpointComplete={complete}

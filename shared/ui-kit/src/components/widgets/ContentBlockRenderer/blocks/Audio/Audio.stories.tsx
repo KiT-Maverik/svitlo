@@ -27,7 +27,12 @@ const meta = {
       description: 'Play the audio recording.',
     },
   },
-  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, locale: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    slug: { control: false },
+    type: { control: false },
+    locale: { control: 'object' },
+  },
 } satisfies Meta<typeof Audio>;
 
 export default meta;

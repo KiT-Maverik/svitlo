@@ -23,7 +23,13 @@ const meta = {
     },
     locale: { title: 'Greeting', variables: { GREETING: 'Hello!' } },
   },
-  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, params: { control: 'object' }, locale: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    slug: { control: false },
+    type: { control: false },
+    params: { control: 'object' },
+    locale: { control: 'object' },
+  },
 } satisfies Meta<typeof Code>;
 
 export default meta;

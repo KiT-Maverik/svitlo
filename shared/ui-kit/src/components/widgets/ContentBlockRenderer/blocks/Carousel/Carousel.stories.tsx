@@ -62,7 +62,14 @@ const meta = {
       startIndex: 0,
     },
   },
-  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, messages: { control: false }, locale: { control: 'object' }, params: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    slug: { control: false },
+    type: { control: false },
+    messages: { control: false },
+    locale: { control: 'object' },
+    params: { control: 'object' },
+  },
 } satisfies Meta<typeof Carousel>;
 
 export default meta;

@@ -27,7 +27,13 @@ const meta = {
       label: 'Watch the YouTube IFrame API demonstration',
     },
   },
-  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, params: { control: 'object' }, locale: { control: 'object' } },
+  argTypes: {
+    id: { control: false },
+    slug: { control: false },
+    type: { control: false },
+    params: { control: 'object' },
+    locale: { control: 'object' },
+  },
 } satisfies Meta<typeof Youtube>;
 
 export default meta;
