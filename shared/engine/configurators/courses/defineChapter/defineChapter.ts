@@ -19,6 +19,7 @@ import {
   validateSluggedConfiguratorMap,
 } from '../../_shared__configurators';
 import { lesson_Props_Schema } from '../../lessons/defineLesson';
+import { episode_Props_Schema } from '../../episodes/defineEpisode';
 import {
   chapter_Config_Schema,
   chapter_Override_Config_Schema,
@@ -57,7 +58,7 @@ type ChapterConfigBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'>
   locale: DeepPartial<Chapter_Locale<'config'>>;
 };
 
-const allowedChildren = ['lesson'] as const;
+const allowedChildren = ['lesson', 'episode'] as const;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
@@ -107,6 +108,11 @@ const parseChild = (value: unknown): Chapter_Child_Props => {
   switch (value.type) {
     case 'lesson': {
       const parsed = lesson_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
+      return structuredClone(value) as Chapter_Child_Props;
+    }
+    case 'episode': {
+      const parsed = episode_Props_Schema.safeParse(value);
       if (!parsed.success) throw new Error('Invalid Chapter child Props: ' + parsed.error.message);
       return structuredClone(value) as Chapter_Child_Props;
     }
