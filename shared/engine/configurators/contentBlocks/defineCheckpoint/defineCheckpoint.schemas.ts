@@ -2,10 +2,11 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 
-import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
+import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
+
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { addUnifiedLocale } from '../../_shared__configurators';
-import { checkpointItem_Props_Schema } from './defineCheckpointItem';
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { checkpointItem_Props_Schema } from './defineCheckpointItem/defineCheckpointItem.schemas';
 import type {
   ContentBlock_CheckpointItem_Configurator,
   ContentBlock_CheckpointItem_Props,

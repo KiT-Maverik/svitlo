@@ -1,11 +1,16 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { lesson_Props_Schema, type Lesson_Configurator, type Lesson_Props } from '../../lessons/defineLesson';
-import { episode_Props_Schema, type Episode_Configurator, type Episode_Props } from '../../episodes/defineEpisode';
+import { lesson_Props_Schema } from '../../lessons/defineLesson/defineLesson.schemas';
+import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
+import type { Lesson_Props } from '../../lessons/defineLesson/defineLesson.schemas';
+import { episode_Props_Schema } from '../../episodes/defineEpisode/defineEpisode.schemas';
+import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
+import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
 
 const params = paramsBase_Schema.shape.params.extend({
   iconKey: z.string().optional(),

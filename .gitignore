@@ -53,6 +53,7 @@ next-env.d.ts
 **/.turbo/
 **/dist/
 **/coverage/
+**/.coverage-engine/
 **/.test-build/
 **/test-results/
 **/playwright-report/
