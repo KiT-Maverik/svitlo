@@ -136,6 +136,20 @@ test('Lesson independently overrides Sections, nested ContentBlocks, languages a
   );
 });
 
+test('Lesson rejects obsolete programId ownership metadata', () => {
+  const lesson = makeLesson();
+  assert.throws(
+    () => defineLesson({
+      ...lesson.config.base,
+      programId: id('04'),
+      locale: { title: 'Legacy' },
+      section: { items: { intro: section }, order: ['intro'] },
+      flashcards: { items: {}, order: [] },
+    } as never),
+    /programId/,
+  );
+});
+
 test('Lesson rejects wrong section keys and unsupported child types', () => {
   assert.throws(
     () =>
