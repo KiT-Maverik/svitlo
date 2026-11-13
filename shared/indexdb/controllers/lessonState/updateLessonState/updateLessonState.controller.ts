@@ -1,4 +1,4 @@
-import type { LessonState } from '+@svitlo/contracts/content';
+import type { LessonState } from '../../../schemas';
 import { lessonState_Schema } from '../../../schemas/lessonState/lessonState.schema';
 import { updateState } from '../../../utils';
 
