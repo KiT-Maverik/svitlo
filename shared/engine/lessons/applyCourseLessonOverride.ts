@@ -49,7 +49,7 @@ function normalizedSection(raw: Record<string, unknown>): Section {
     type: raw.type as Exclude<Section['type'], 'quiz'>,
     title: raw.title,
     navigationLabel: raw.navigationLabel,
-    ...(raw.skippable === true ? { skippable: true as const } : {}),
+    ...(typeof raw.skippable === 'boolean' ? { skippable: raw.skippable } : {}),
     content: raw.content.map(value => asBlock(value as Record<string, unknown>)),
   };
 }
@@ -111,8 +111,7 @@ function changedSections(sections: readonly Section[], changes: Record<string, u
       ...section,
       ...(patch.title !== undefined ? { title: patch.title as string } : {}),
       ...(patch.navigationLabel !== undefined ? { navigationLabel: patch.navigationLabel as string } : {}),
-      ...(patch.skippable === false ? { skippable: undefined } : {}),
-      ...(patch.skippable === true ? { skippable: true as const } : {}),
+      ...(typeof patch.skippable === 'boolean' ? { skippable: patch.skippable } : {}),
     };
     if (section.type === 'quiz') {
       items.set(slug, metadata as Section);

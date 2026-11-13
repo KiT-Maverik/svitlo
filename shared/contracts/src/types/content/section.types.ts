@@ -24,7 +24,8 @@ type Section_Meta<Languages extends Locale_Languages> = {
   slug: string;
   title: Locale_Options<Languages>;
   navigationLabel: Locale_Options<Languages>;
-  skippable?: true;
+  /** Omitted: inherit Lesson allowSkipping; false: explicitly prohibit skipping. */
+  skippable?: boolean;
 };
 
 type Section_Data<Languages extends Locale_Languages> = Section_Meta<Languages> &

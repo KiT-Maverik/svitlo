@@ -170,17 +170,21 @@ const validate = (config: Lesson_Config): void => {
 };
 
 /**
- * Author a reusable Lesson with Sections, Flashcards and a separate Question Bank.
+ * Author a reusable, Course-neutral Lesson with Sections, Flashcards and a Question Bank.
  *
  * @remarks
- * `questions` is a bank keyed first by Question type and then by Question
- * slug. Quiz Sections choose entries via `params.selection`, so a Question
- * can appear in multiple Quizzes without duplicating its authoring content.
- * Questions are not ordinary Section ContentBlocks.
+ * `questions` is a separate bank keyed first by Question type and then by
+ * Question slug. Quiz Sections select from this bank through `params.selection`,
+ * allowing a Question to be reused without duplicating its content. Questions
+ * are not Section ContentBlocks. Use `section` to organize the instructional
+ * sequence and `flashcards` for independent recall material. Enable
+ * `params.requireQuiz` when at least one enabled Quiz Section is mandatory.
  *
- * Use `section` to organize the learning sequence and `flashcards` for
- * independent recall material. Enable `params.requireQuiz` when at least
- * one enabled Quiz Section must be retained.
+ * `params.sections.allowSkipping` controls whether Sections may be skipped
+ * throughout the Lesson. Sections inherit that permission unless their own
+ * `params.skippable: false` prohibits skipping. A Section cannot enable
+ * skipping when the Lesson disallows it. Blocking Quizzes and Quiz interaction
+ * settings may further restrict skipping.
  */
 export function defineLesson<
   const Slug extends string,
