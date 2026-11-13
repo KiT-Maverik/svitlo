@@ -17,7 +17,8 @@ The script accepts either:
 - A direct Config-shaped course.yaml with type: course, slug,
   params.languages, locale, and content: { items, order } when authored;
   recursively nested Module/Chapter/Episode/Section items are converted to
-  matching define* calls.
+  matching define* calls, including Carousel slides and Checkpoint items,
+  question and answer ContentBlocks.
 - The existing Studio toc.yaml editorial Course plan (kind:
   course-toc-plan, with content arrays and children). Its courseId
   becomes Config id, supportedLanguages becomes params.languages,
@@ -37,17 +38,19 @@ imported from @svitlo/engine/build.
 
 A type: lesson Course child is a **reference** to a previously authored,
 reusable Lesson, identified by lessonId. It does not become defineLesson.
-When YAML supplies safe, explicit relative import coordinates:
+When YAML supplies safe, explicit relative import coordinates (including the canonical sibling Lesson directory):
 
 ~~~yaml
 type: lesson
 lessonId: d3048d21-8690-5255-b62c-984c69ac272c
 source:
-  path: lessons/intro.data.ts
+  path: ../../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/intro.data.ts
   export: intro_Lesson
 ~~~
 
-the draft includes that import. Otherwise it includes a clearly named
+the draft includes that import. The three leading `../` segments are
+restricted to the canonical `data/lessons/<bucket>/<uuid>/<slug>.data.ts`
+shape so they cannot escape to arbitrary packages. Otherwise it includes a clearly named
 UNRESOLVED_LESSON_N and a TODO recording the original UUID and location.
 The editor must resolve the actual import; no Lesson is fabricated and no
 implementation lookup is performed. Such unfinished drafts may not typecheck.
@@ -75,12 +78,14 @@ node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --package content/<textbook> \
   --course <course-uuid> \
   --slug <courseSlug> \
+  --language uk \
   --write
 
 node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --package content/<textbook> \
   --course <course-uuid> \
   --slug <courseSlug> \
+  --language uk \
   --check
 
 node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
@@ -89,7 +94,11 @@ node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
 --slug is optional when the YAML has its own safe slug. For old TOC input
 without an authored slug, supplying --slug names the output and explicitly
 provides the draft Config slug. Otherwise an ID-derived **filename only** is
-used and the required Config slug stays unfilled. An optional
+used and the required Config slug stays unfilled. An optional `--language uk` restricts direct Config YAML localization dictionaries
+to the authored source language; editorial TOC already carries its
+`documentLanguage`. A direct `course.yaml` may also carry
+`documentLanguage` as provenance, but that field is stripped before calling
+`defineCourse`. An optional
 --source course.yaml|toc.yaml selects the source; by default course.yaml
 wins if present, otherwise toc.yaml.
 
