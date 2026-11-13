@@ -245,7 +245,7 @@ export function defineFlashcard<
   config: Omit<Flashcard_Config, 'slug' | 'content' | 'parameters'> & {
     slug: Slug;
     parameters: Omit<Flashcard_Config['parameters'], 'flags' | 'relationships'> & {
-      flags: { items: Flags & RequireLanguages<Flags, Languages>; order: string[] };
+      flags: { items: Flags & { [Key in keyof Flags]: RequireLanguages<Flags[Key], Languages> }; order: string[] };
       relationships?: { items: Relationships; order: string[] };
     };
     content: {

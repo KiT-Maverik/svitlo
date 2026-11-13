@@ -104,6 +104,22 @@ describe('Configurators', () => {
           ['en', 'uk']
         >(config);
 
+      test('Flashcard accepts empty flags without weakening the default all-language scope', () => {
+        const card = defineFlashcard({
+          id: id('a7'),
+          slug: 'invariantFlashcard',
+          type: 'flashcard',
+          parameters: { tags: [], flags: { items: {}, order: [] } },
+          content: {
+            front: { items: { extra }, order: ['extra'] },
+            back: { items: { extra }, order: ['extra'] },
+          },
+        });
+        const resource = card.build.props({ languages: ['en', 'uk'] });
+        assert.deepEqual(resource.base.parameters.flags, []);
+        assert.equal(resource.locale, undefined);
+      });
+
       test('Flashcard composes ordered sides and named flags as JSON-only published Props', () => {
         const card = defineBilingualFlashcard(source);
         assert.equal(card.content.front.items.front, front);
