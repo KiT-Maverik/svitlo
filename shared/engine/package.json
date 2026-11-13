@@ -40,5 +40,15 @@
     "#schemas": "./dist/schemas/index.js",
     "#utils": "./dist/utils/index.js",
     "#types": "./dist/types/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "build": [
+        "dist/build.d.ts"
+      ],
+      "runtime": [
+        "dist/runtime.d.ts"
+      ]
+    }
   }
 }

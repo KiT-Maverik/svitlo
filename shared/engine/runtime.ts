@@ -2,7 +2,14 @@
 export * from './assemblers';
 export * from './schemas';
 // Types are erased in JS and must not pull authoring factories into runtime.
-export type * from './configurators';
+export type { Lesson_Props, Lesson_PropsBase } from './configurators/lessons/defineLesson/defineLesson.schemas';
+export type { Section_Props } from './configurators/sections/section.types';
+export type { ContentBlock_Props } from './configurators/contentBlocks/contentBlock.types';
+export type { Flashcard_Props } from './configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+export type { AssessmentMethod_Props } from './configurators/assessmentMethods/defineAssessmentMethod.schemas';
+export type { Skill_Props } from './configurators/skills/defineSkill/defineSkill.schemas';
+export type { SkillGroup_Props } from './configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
+export type { SkillDomain_Props } from './configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
 export type { ResolveLocale } from './types';
 
 export { lesson_Props_Schema } from './configurators/lessons/defineLesson/defineLesson.schemas';

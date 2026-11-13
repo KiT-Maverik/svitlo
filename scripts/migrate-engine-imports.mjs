@@ -46,6 +46,7 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
   function rewriteSpecifier(module, declaration) {
     if (!module || !ts.isStringLiteralLike(module) || !module.text.startsWith(prefix)) return;
     const subpath = module.text.slice(prefix.length);
+    if (subpath === 'build' || subpath === 'runtime') return;
     if (!subpaths.has(subpath)) throw new Error(filename + ': unsupported Engine import ' + module.text);
     const contract =
       subpath === 'content'
