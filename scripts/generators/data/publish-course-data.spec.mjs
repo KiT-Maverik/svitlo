@@ -201,6 +201,20 @@ test('deterministic publication, check mode, stale file cleanup and unrelated as
   }
 });
 
+test('publishes directly to a caller-owned compiled Course output root', () => {
+  const { course } = fixture();
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-dist-'));
+  try {
+    const outputRoot = path.join(home, 'dist/static/data/courses');
+    const result = publishCourse(course, { outputRoot });
+    assert.equal(result.directory, path.join(outputRoot, ids.course));
+    publishCourse(course, { outputRoot, check: true });
+    assert.deepEqual(fs.readdirSync(result.directory).sort(), ['base.json', 'uk.json']);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
+
 test('rejects duplicate nested IDs without serializing anything', () => {
   const { course } = fixture();
   course.content.items.myModule.content.items.myChapter.id = ids.module;
