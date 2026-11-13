@@ -4,12 +4,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import os from 'node:os';
-import { checkTaxonomy } from './check-skills-taxonomy-structure.mjs';
+import { checkTaxonomy } from '../checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const slugPattern = /^[a-z][A-Za-z0-9]*$/;
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const errors = [];

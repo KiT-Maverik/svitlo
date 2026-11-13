@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const kinds = {
   Skill: { old: 'buildSkillConfig', next: 'defineSkill' },
   SkillGroup: { old: 'buildSkillGroupConfig', next: 'defineSkillGroup' },

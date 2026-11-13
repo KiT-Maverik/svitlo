@@ -100,7 +100,7 @@ test('unknown field refuses destructive conversion', () => {
   });
 });
 
-const art = path.resolve(import.meta.dirname, '../content/art/data/skills');
+const art = path.resolve(import.meta.dirname, '../../../../content/art/data/skills');
 test(
   'real Art taxonomy: complete non-destructive preview retains entity identities and dictionaries',
   { skip: !fs.existsSync(art) },

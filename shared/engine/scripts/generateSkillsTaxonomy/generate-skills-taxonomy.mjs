@@ -14,7 +14,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import ts from 'typescript';
-import { checkTaxonomy } from './check-skills-taxonomy-structure.mjs';
+import { checkTaxonomy } from '../checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs';
 
 function fail(message) {
   throw new Error(message);

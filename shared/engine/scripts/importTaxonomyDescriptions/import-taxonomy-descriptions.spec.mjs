@@ -5,7 +5,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import process from 'node:process';
 
-const root = path.resolve(import.meta.dirname, '..');
+const root = path.resolve(import.meta.dirname, '../../../..');
 const fixture = fs.mkdtempSync(path.join(root, 'content', '.taxonomy-import-fixture-'));
 const docs = path.join(fixture, 'docs/skills/taxonomy.md');
 const entity = path.join(fixture, 'src/data/skillsTaxonomy/a/a.data.ts');
@@ -25,7 +25,7 @@ const run = (write = false) =>
   spawnSync(
     process.execPath,
     [
-      path.join(root, 'scripts/import-taxonomy-descriptions.mjs'),
+      path.join(root, 'shared/engine/scripts/importTaxonomyDescriptions/import-taxonomy-descriptions.mjs'),
       '--package',
       path.relative(root, fixture),
       ...(write ? ['--write'] : []),
