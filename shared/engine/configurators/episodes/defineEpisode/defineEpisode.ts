@@ -106,7 +106,8 @@ export const defineEpisode = <
 ) => {
   validate(config as unknown as Episode_Config);
   const metadataSchema = episode_Config_Schema.omit({ section: true });
-  const authored = structuredClone(metadataSchema.parse(config));
+  const { section: _section, ...metadataInput } = config;
+  const authored = structuredClone(metadataSchema.parse(metadataInput));
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
   const { id, slug, type } = authored;
   const initialSections: Sections = { ...config.section.items };
