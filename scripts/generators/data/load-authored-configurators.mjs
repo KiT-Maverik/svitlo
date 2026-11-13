@@ -24,9 +24,9 @@ export async function loadAuthoredConfigurators(source, type) {
         {
           name: 'preserve-import-meta-url',
           setup(builder) {
-            builder.onLoad({ filter: /\\.tsx?$/ }, async args => ({
+            builder.onLoad({ filter: /[.]tsx?$/ }, async args => ({
               contents: (await fs.promises.readFile(args.path, 'utf8')).replace(
-                /\\bimport\\.meta\\.url\\b/g,
+                /\bimport[.]meta[.]url\b/g,
                 JSON.stringify(pathToFileURL(args.path).href),
               ),
               loader: args.path.endsWith('.tsx') ? 'tsx' : 'ts',
