@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { length_SkillGroup_Data } from './length/length.data';
 import { mass_SkillGroup_Data } from './mass/mass.data';

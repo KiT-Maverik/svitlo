@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { conditionsForLife_SkillGroup_Data } from './conditionsForLife/conditionsForLife.data';
 import { evidenceOfLife_SkillGroup_Data } from './evidenceOfLife/evidenceOfLife.data';

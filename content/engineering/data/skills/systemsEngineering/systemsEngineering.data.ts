@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { functionalArchitecture_SkillGroup_Data } from './functionalArchitecture/functionalArchitecture.data';
 import { interfacesAndInterdependencies_SkillGroup_Data } from './interfacesAndInterdependencies/interfacesAndInterdependencies.data';

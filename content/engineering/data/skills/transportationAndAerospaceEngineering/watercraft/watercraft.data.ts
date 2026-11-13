@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { hullDesignChoices_Skill_Data, marinePropulsion_Skill_Data, marineSteering_Skill_Data } from './skills';
 

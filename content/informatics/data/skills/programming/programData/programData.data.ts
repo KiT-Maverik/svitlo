@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { updateProgramState_Skill_Data, useAVariable_Skill_Data, useInputData_Skill_Data } from './skills';
 

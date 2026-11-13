@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { databases_SkillGroup_Data } from './databases/databases.data';
 import { dataCollectionAndOrganization_SkillGroup_Data } from './dataCollectionAndOrganization/dataCollectionAndOrganization.data';

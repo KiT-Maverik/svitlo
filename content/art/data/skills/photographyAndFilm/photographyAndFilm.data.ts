@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { animation_SkillGroup_Data } from './animation/animation.data';
 import { filmLanguage_SkillGroup_Data } from './filmLanguage/filmLanguage.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { compositionAndImprovisation_SkillGroup_Data } from './compositionAndImprovisation/compositionAndImprovisation.data';
 import { instrumentAndEnsemblePerformance_SkillGroup_Data } from './instrumentAndEnsemblePerformance/instrumentAndEnsemblePerformance.data';

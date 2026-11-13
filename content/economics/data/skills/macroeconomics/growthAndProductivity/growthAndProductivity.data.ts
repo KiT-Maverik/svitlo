@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { driversOfLongTermGrowth_Skill_Data, economicGrowth_Skill_Data, potentialOutput_Skill_Data } from './skills';
 

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { biomesAndHabitats_SkillGroup_Data } from './biomesAndHabitats/biomesAndHabitats.data';
 import { ecosystems_SkillGroup_Data } from './ecosystems/ecosystems.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { starFormation_SkillGroup_Data } from './starFormation/starFormation.data';
 import { stellarAndSubstellarClassification_SkillGroup_Data } from './stellarAndSubstellarClassification/stellarAndSubstellarClassification.data';

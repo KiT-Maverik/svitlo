@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { aIFundamentals_SkillGroup_Data } from './aIFundamentals/aIFundamentals.data';
 import { imitationAndUnderstanding_SkillGroup_Data } from './imitationAndUnderstanding/imitationAndUnderstanding.data';

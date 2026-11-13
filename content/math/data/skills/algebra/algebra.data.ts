@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { equalities_SkillGroup_Data } from './equalities/equalities.data';
 import { expressions_SkillGroup_Data } from './expressions/expressions.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { advertisingAndCommunications_SkillGroup_Data } from './advertisingAndCommunications/advertisingAndCommunications.data';
 import { marketResearch_SkillGroup_Data } from './marketResearch/marketResearch.data';

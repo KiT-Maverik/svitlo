@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import {
   distinguishMisinformationFromDeliberateDeceptionClaims_Skill_Data,

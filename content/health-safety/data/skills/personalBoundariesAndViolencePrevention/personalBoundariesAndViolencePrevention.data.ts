@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { bodilyAutonomyAndConsent_SkillGroup_Data } from './bodilyAutonomyAndConsent/bodilyAutonomyAndConsent.data';
 import { pressureAndManipulation_SkillGroup_Data } from './pressureAndManipulation/pressureAndManipulation.data';

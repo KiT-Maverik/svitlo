@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { concentration_SkillGroup_Data } from './concentration/concentration.data';
 import { dissolutionAndSolubility_SkillGroup_Data } from './dissolutionAndSolubility/dissolutionAndSolubility.data';

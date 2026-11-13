@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const evaluateTheoriesOfLegalInterpretation_Skill_Data = defineSkill({
   slug: 'evaluateTheoriesOfLegalInterpretation',

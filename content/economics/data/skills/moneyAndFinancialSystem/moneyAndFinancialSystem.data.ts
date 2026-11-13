@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { banksAndCreditIntermediation_SkillGroup_Data } from './banksAndCreditIntermediation/banksAndCreditIntermediation.data';
 import { financialMarkets_SkillGroup_Data } from './financialMarkets/financialMarkets.data';

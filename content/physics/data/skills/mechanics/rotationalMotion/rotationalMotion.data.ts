@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import {
   distinguishRotationAboutAnAxisFromMotionAlongACircle_Skill_Data,

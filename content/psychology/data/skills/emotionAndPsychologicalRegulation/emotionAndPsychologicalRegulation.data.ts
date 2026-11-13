@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { emotionalProcesses_SkillGroup_Data } from './emotionalProcesses/emotionalProcesses.data';
 import { recognitionAndExpression_SkillGroup_Data } from './recognitionAndExpression/recognitionAndExpression.data';

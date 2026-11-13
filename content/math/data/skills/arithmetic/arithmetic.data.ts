@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { addition_SkillGroup_Data } from './addition/addition.data';
 import { subtraction_SkillGroup_Data } from './subtraction/subtraction.data';

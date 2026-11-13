@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const ancientAboriginalAustralianSocieties_Skill_Data = defineSkill({
   slug: 'ancientAboriginalAustralianSocieties',

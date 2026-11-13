@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { assistiveAndMedicalProducts_SkillGroup_Data } from './assistiveAndMedicalProducts/assistiveAndMedicalProducts.data';
 import { medicalMeasurementDevices_SkillGroup_Data } from './medicalMeasurementDevices/medicalMeasurementDevices.data';

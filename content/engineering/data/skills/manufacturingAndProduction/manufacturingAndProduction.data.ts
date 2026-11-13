@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { assemblyAndQuality_SkillGroup_Data } from './assemblyAndQuality/assemblyAndQuality.data';
 import { materialShaping_SkillGroup_Data } from './materialShaping/materialShaping.data';

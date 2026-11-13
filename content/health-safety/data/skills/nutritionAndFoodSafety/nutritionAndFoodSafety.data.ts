@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { foodborneHazards_SkillGroup_Data } from './foodborneHazards/foodborneHazards.data';
 import { foodChoicesAndInformation_SkillGroup_Data } from './foodChoicesAndInformation/foodChoicesAndInformation.data';

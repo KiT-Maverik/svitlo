@@ -1,4 +1,4 @@
-import { assessmentMethod_Props_Schema, type AssessmentMethod_Props } from '@svitlo/engine';
+import { assessmentMethod_Props_Schema, type AssessmentMethod_Props } from '@svitlo/engine/runtime';
 
 /** Invariant and locale-specific JSON shapes published under data/uiKit/assessmentMethods/. */
 export type AssessmentMethodBase = Pick<AssessmentMethod_Props, 'id' | 'slug'>;

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { particleBehavior_SkillGroup_Data } from './particleBehavior/particleBehavior.data';
 import { phasesAndTransitions_SkillGroup_Data } from './phasesAndTransitions/phasesAndTransitions.data';

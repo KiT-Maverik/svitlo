@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { astronomicalTime_SkillGroup_Data } from './astronomicalTime/astronomicalTime.data';
 import { observationPractice_SkillGroup_Data } from './observationPractice/observationPractice.data';

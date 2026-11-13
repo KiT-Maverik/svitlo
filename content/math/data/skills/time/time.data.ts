@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { calendar_SkillGroup_Data } from './calendar/calendar.data';
 import { clock_SkillGroup_Data } from './clock/clock.data';

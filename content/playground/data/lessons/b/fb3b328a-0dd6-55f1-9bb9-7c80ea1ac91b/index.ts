@@ -1,4 +1,4 @@
-import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine';
+import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine/build';
 import { howLightMoves, howLightMovesTitle } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c';
 import { contentBlockGallery } from '../../../courses/sections/contentBlockGallery.data';
 

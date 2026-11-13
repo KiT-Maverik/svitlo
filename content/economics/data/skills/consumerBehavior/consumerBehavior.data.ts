@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { behavioralFactorsInChoice_SkillGroup_Data } from './behavioralFactorsInChoice/behavioralFactorsInChoice.data';
 import { consumerInformationAndRights_SkillGroup_Data } from './consumerInformationAndRights/consumerInformationAndRights.data';

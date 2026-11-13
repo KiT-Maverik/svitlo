@@ -1,5 +1,5 @@
 // Synthetic Playground fixtures. Locale-tagged strings are test placeholders, not translations.
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 import { testRoundShapes_SkillGroup_Data } from './testRoundShapes/testRoundShapes.data';
 import { testPolygonShapes_SkillGroup_Data } from './testPolygonShapes/testPolygonShapes.data';
 

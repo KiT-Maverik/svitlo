@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { basicLifeSupport_SkillGroup_Data } from './basicLifeSupport/basicLifeSupport.data';
 import { bleedingAndInjuries_SkillGroup_Data } from './bleedingAndInjuries/bleedingAndInjuries.data';

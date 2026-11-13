@@ -2,7 +2,7 @@ import { cache, createElement, Suspense, type ReactElement } from 'react';
 import path from 'node:path';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { resolveEntityPath, languageCode_Schema, type LessonResponse, type Lesson_Props } from '@svitlo/engine';
+import { resolveEntityPath, languageCode_Schema, type LessonResponse, type Lesson_Props } from '@svitlo/engine/runtime';
 import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 import { loadPublishedLesson } from './publishedLesson';

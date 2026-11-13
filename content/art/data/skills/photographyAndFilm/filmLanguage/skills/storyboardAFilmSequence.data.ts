@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const storyboardAFilmSequence_Skill_Data = defineSkill({
   slug: 'storyboardAFilmSequence',

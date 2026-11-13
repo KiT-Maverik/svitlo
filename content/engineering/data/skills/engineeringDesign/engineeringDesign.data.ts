@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { conceptSelection_SkillGroup_Data } from './conceptSelection/conceptSelection.data';
 import { problemDefinition_SkillGroup_Data } from './problemDefinition/problemDefinition.data';

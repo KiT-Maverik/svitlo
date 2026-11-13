@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { aestheticPerception_SkillGroup_Data } from './aestheticPerception/aestheticPerception.data';
 import { artisticCollaborationAndEthics_SkillGroup_Data } from './artisticCollaborationAndEthics/artisticCollaborationAndEthics.data';

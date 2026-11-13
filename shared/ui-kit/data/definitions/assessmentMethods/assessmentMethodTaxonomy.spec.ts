@@ -4,7 +4,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { ASSESSMENT_METHOD_KEYS, type AssessmentMethodKey } from '@svitlo/contracts/content';
-import { assessmentMethod_Props_Schema } from '@svitlo/engine';
+import { assessmentMethod_Props_Schema } from '@svitlo/engine/build';
 import * as methods from './index';
 
 const directory = fileURLToPath(new URL('./', import.meta.url));
