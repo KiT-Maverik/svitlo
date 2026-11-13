@@ -39,7 +39,7 @@ function options(args) {
     fail('Provide --package and choose at most one of --check, --stdout');
   return result;
 }
-const repositoryRoot = path.resolve(import.meta.dirname, '..');
+const repositoryRoot = path.resolve(import.meta.dirname, '../../../..');
 const opts = options(process.argv.slice(2));
 const packageRoot = path.resolve(repositoryRoot, opts.package);
 if (!packageRoot.startsWith(path.join(repositoryRoot, 'content') + path.sep)) fail('Package must be within content/');
@@ -88,7 +88,7 @@ function dictionary(object, field, file) {
   return pairs;
 }
 function supportedLocales() {
-  const file = path.join(repositoryRoot, 'shared/contracts/src/types/languages.ts');
+  const file = path.join(repositoryRoot, 'shared/engine/schemas/languages.schemas.ts');
   let found;
   for (const node of parse(file).statements) {
     if (!ts.isVariableStatement(node)) continue;

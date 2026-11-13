@@ -51,12 +51,6 @@ export type { ContentBlock_Props, ContentBlock_Configurator } from './configurat
 export type { Section_Props, Section_Configurator } from './configurators/sections/section.types';
 export type { Question_Configurator } from './configurators/questions/question.types';
 export type { ResolveLocale } from './types';
-export * from './lessons/assembleLessonResponse';
-export * from './lessons/applyCourseLessonOverride';
-export * from './lessons/mergeLessonResources';
-export * from './lessons/prepareQuizQuestions';
-export * from './lessons/splitLessonValue';
-export * from './lessons/linkFlashcards';
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './utils/languages';
 export { resolveEntityPath } from './utils/entityPath/resolveEntityPath.utils';
 export { createLocalizedFileLocations } from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';

@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -30,7 +30,7 @@ import {
 
 type SectionResource = {
   base: Record<string, unknown>;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type SectionBuild = {
   build: {
@@ -39,7 +39,7 @@ type SectionBuild = {
   };
 };
 type LocaleBody = { locale?: { title?: string }; section?: Episode_PropsBase['section'] };
-type Files = Partial<Record<LanguageCodes, LocaleBody>>;
+type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: DeepPartial<Omit<Episode_Config['params'], 'languages'>>;
@@ -94,7 +94,7 @@ const validate = (config: Episode_Config): void => {
  */
 export const defineEpisode = <
   const Slug extends string,
-  const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Sections extends Record<string, Section_Configurator>,
 >(
   config: Omit<Episode_Config, 'slug' | 'params' | 'locale' | 'section'> & {
@@ -127,7 +127,7 @@ export const defineEpisode = <
     const split = splitLocalizedFields(value);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
-      files[language as LanguageCodes] = { locale: fields as LocaleBody['locale'] };
+      files[language as LanguageCode] = { locale: fields as LocaleBody['locale'] };
     }
     return { invariant: split.base as { title?: string }, files };
   };
@@ -135,7 +135,7 @@ export const defineEpisode = <
   const buildSections = (
     items: Record<string, Section_Configurator>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -149,7 +149,7 @@ export const defineEpisode = <
     const base = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     ) as Episode_PropsBase['section'];
-    const locale: Partial<Record<LanguageCodes, Episode_PropsBase['section']>> = {};
+    const locale: Partial<Record<LanguageCode, Episode_PropsBase['section']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -185,7 +185,7 @@ export const defineEpisode = <
     const children = buildSections(initialSections, initialOrder, languages);
     const files = selectPublicationLocales(translated.files, languages) ?? {};
     for (const [language, values] of Object.entries(children.locale)) {
-      (files[language as LanguageCodes] ??= {}).section = values;
+      (files[language as LanguageCode] ??= {}).section = values;
     }
     const result: Publication<Episode_PropsBase> = structuredClone({
       base: {
@@ -280,7 +280,7 @@ export const defineEpisode = <
           const sections = buildSections(enabled, order, languages, childPatches);
           output.base.section = sections.base;
           for (const [language, values] of Object.entries(sections.locale)) {
-            (files[language as LanguageCodes] ??= {}).section = values;
+            (files[language as LanguageCode] ??= {}).section = values;
           }
         }
       }

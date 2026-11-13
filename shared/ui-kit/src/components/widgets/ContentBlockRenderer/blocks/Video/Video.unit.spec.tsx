@@ -2,22 +2,25 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { ContentBlock_Video_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Video_Props } from '@svitlo/engine/runtime';
 import { Video } from './Video';
 
-const response: ContentBlock_Video_Response = {
+const response: ContentBlock_Video_Props = {
   id: 'video-1',
+  slug: 'video-1',
   type: 'video',
-
-  fileLocation: '/lesson.mp4',
-  poster: '/poster.png',
-  title: 'Назва блоку',
-  label: 'Приклад відео',
-  fallback: {
-    offline: 'Відео недоступне без мережі',
-    unavailable: 'Відео не знайдено',
-    playbackError: 'Помилка відтворення',
-    retry: 'Повторити',
+  params: {},
+  locale: {
+    fileLocation: '/lesson.mp4',
+    poster: '/poster.png',
+    title: 'Назва блоку',
+    label: 'Приклад відео',
+    fallback: {
+      offline: 'Відео недоступне без мережі',
+      unavailable: 'Відео не знайдено',
+      playbackError: 'Помилка відтворення',
+      retry: 'Повторити',
+    },
   },
 };
 
@@ -59,7 +62,7 @@ describe('Video content block', () => {
 
   it('retains an accessible label without an optional visible title', () => {
     setOnline(true);
-    const { container } = render(<Video messages={enUiKitMessages.video} {...response} title={undefined} />);
+    const { container } = render(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, title: undefined }} />);
     expect(container.querySelector('video')).toHaveAttribute('aria-label', 'Приклад відео');
     expect(container.querySelector('figcaption')).toBeNull();
   });
@@ -70,7 +73,7 @@ describe('Video content block', () => {
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('Відео не знайдено');
 
-    rerender(<Video messages={enUiKitMessages.video} {...response} fileLocation="/other.mp4" />);
+    rerender(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, fileLocation: '/other.mp4' }} />);
     failVideo(container.querySelector('video')!, 3);
     expect(screen.getByRole('alert')).toHaveTextContent('Помилка відтворення');
   });
@@ -102,14 +105,14 @@ describe('Video fallback lifecycle', () => {
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toBeInTheDocument();
 
-    rerender(<Video messages={enUiKitMessages.video} {...response} fileLocation="/another.mp4" />);
+    rerender(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, fileLocation: '/another.mp4' }} />);
     expect(screen.queryByRole('alert')).toBeNull();
     expect(container.querySelector('video')).toHaveAttribute('src', '/another.mp4');
   });
 
   it('shows default English fallback copy when no custom fallback exists', () => {
     setOnline(true);
-    const { container } = render(<Video messages={enUiKitMessages.video} {...response} fallback={undefined} />);
+    const { container } = render(<Video messages={enUiKitMessages.video} {...response} locale={{ ...response.locale, fallback: undefined }} />);
     failVideo(container.querySelector('video')!, 4);
     expect(screen.getByRole('alert')).toHaveTextContent('This video is unavailable.');
     expect(screen.getByRole('button', { name: 'Try again' })).toBeVisible();

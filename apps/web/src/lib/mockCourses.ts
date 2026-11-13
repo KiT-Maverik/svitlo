@@ -1,10 +1,10 @@
-import type { Course_Toc, Course_TocContent } from '@svitlo/contracts/content';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import type { CourseMessages, CourseOutlineItem, CoursePreview } from '@svitlo/ui-kit';
 
 type MockCourse = {
   preview: CoursePreview;
-  toc: Course_Toc;
+  /** Mock-only presentation tree, not the Engine Course publication format. */
+  toc: { type: 'course'; id: string; title: string; children: readonly CourseOutlineItem[] };
   /** Only Playground's sample Course currently has published Lesson/Episode routes. */
   published: boolean;
 };
@@ -212,7 +212,7 @@ export function getMockCourse(id: string, language: string): MockCourse | undefi
 
 export function mockCourseOutline(course: MockCourse, language: string): readonly CourseOutlineItem[] {
   const root = `/${language}/course/${course.preview.id}`;
-  const toItem = (node: Course_TocContent): CourseOutlineItem => ({
+  const toItem = (node: CourseOutlineItem): CourseOutlineItem => ({
     id: node.id,
     type: node.type,
     title: node.title,

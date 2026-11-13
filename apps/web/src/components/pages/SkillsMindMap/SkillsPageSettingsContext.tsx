@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/runtime';
 import { getLocaleDirection } from '@svitlo/engine/runtime';
 
 export interface SkillsPageSettings {

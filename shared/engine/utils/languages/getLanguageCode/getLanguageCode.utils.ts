@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '#schemas';
 
 /** Convert a validated BCP 47 locale tag to the language key used by content dictionaries. */
 export function getLanguageCode(locale: Locale): LanguageCode {

@@ -2,7 +2,7 @@ import { describe } from 'node:test';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { allLanguageCodes, type LanguageCodes } from '../schemas/languages.schemas';
+import { allLanguageCodes, type LanguageCode } from '../schemas/languages.schemas';
 import { defineSkill } from './skills/defineSkill/defineSkill';
 import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
 import { defineSkillDomain } from './skills/defineSkillDomain/defineSkillDomain';
@@ -11,7 +11,7 @@ describe('Configurators', () => {
   describe('Skills', () => {
     describe('slug inference', () => {
       const localized = Object.fromEntries(allLanguageCodes.map(code => [code, 'Localized text'])) as Record<
-        LanguageCodes,
+        LanguageCode,
         string
       >;
 

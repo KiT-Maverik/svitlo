@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/runtime';
 import { type UiKitMessages, type Topic, Lesson, ImageRendererProvider, SceneLocaleProvider } from '@svitlo/ui-kit';
 import { NextImageRenderer } from '@svitlo/adapter-nextjs';
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';

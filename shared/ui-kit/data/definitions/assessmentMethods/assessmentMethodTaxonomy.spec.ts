@@ -2,15 +2,19 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import { ASSESSMENT_METHOD_KEYS, type AssessmentMethodKey } from '@svitlo/contracts/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { assessmentMethod_Props_Schema } from '@svitlo/engine/build';
 import * as methods from './index';
 
 const directory = fileURLToPath(new URL('./', import.meta.url));
 const names = Object.keys(methods).sort();
-const typedMethods: Record<AssessmentMethodKey, (typeof methods)[keyof typeof methods]> = methods;
-void typedMethods;
+const ASSESSMENT_METHOD_KEYS = [
+  'analogicalReasoning', 'application', 'classification', 'errorDiagnosis',
+  'interpretation', 'justification', 'knowledgeConstruction', 'knowledgeTransfer',
+  'missingInformationInference', 'patternGeneralization', 'prediction',
+  'relationshipMapping', 'representationTranslation', 'retrieval',
+  'structuralAnalysis', 'verification',
+] as const satisfies readonly (keyof typeof methods)[];
 const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
 
 describe('Assessment Method authored definitions', () => {

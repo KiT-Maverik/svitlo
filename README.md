@@ -11,7 +11,6 @@ Svitlo is a modular interactive-learning project. The repository contains textbo
 | `apps/mobile`, `apps/desktop`     | Mobile and desktop host workspaces                                             |
 | `content/playground`              | React DOM textbook package with authored data, Scenes, and generated resources |
 | `content/math`, other `content/*` | Subject-specific textbook packages and scaffolds                               |
-| `shared/contracts`                | Shared content, localization, and state contracts                              |
 | `shared/engine`                   | Content builders, validation, generation, and assessment-method data           |
 | `shared/indexdb`                  | Browser persistence                                                            |
 | `shared/ui-kit`                   | Shared React UI and assets                                                     |

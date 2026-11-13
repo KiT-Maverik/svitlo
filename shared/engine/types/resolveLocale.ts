@@ -1,10 +1,10 @@
-import type { LanguageCodes } from '../schemas/languages.schemas';
+import type { LanguageCode } from '../schemas/languages.schemas';
 
 /** A locale dictionary contains only supported language keys and string values. */
 type IsLocalizedText<T> = keyof T extends never
   ? false
-  : Exclude<keyof T, LanguageCodes> extends never
-    ? T extends Partial<Record<LanguageCodes, string>>
+  : Exclude<keyof T, LanguageCode> extends never
+    ? T extends Partial<Record<LanguageCode, string>>
       ? true
       : false
     : false;

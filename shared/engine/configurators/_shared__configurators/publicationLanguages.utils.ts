@@ -1,9 +1,9 @@
-import { languageCode_Schema, type LanguageCodes } from '#schemas';
+import { languageCode_Schema, type LanguageCode } from '#schemas';
 
 /** Explicit runtime publication scope; authoring tuple constraints remain TypeScript-only. */
 export const resolvePublicationLanguages = (options: {
-  readonly languages: readonly LanguageCodes[];
-}): LanguageCodes[] => {
+  readonly languages: readonly LanguageCode[];
+}): LanguageCode[] => {
   if (!options || !Array.isArray(options.languages) || !options.languages.length) {
     throw new Error('Build requires a nonempty languages array');
   }
@@ -16,11 +16,11 @@ export const resolvePublicationLanguages = (options: {
 
 /** Never emit locale files for languages outside the requested publication scope. */
 export const selectPublicationLocales = <Value>(
-  locale: Partial<Record<LanguageCodes, Value>> | undefined,
-  languages: readonly LanguageCodes[],
-): Partial<Record<LanguageCodes, Value>> | undefined => {
+  locale: Partial<Record<LanguageCode, Value>> | undefined,
+  languages: readonly LanguageCode[],
+): Partial<Record<LanguageCode, Value>> | undefined => {
   if (!locale) return undefined;
-  const selected: Partial<Record<LanguageCodes, Value>> = {};
+  const selected: Partial<Record<LanguageCode, Value>> = {};
   for (const language of languages) {
     if (locale[language] !== undefined) selected[language] = locale[language];
   }

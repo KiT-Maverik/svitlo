@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -35,7 +35,7 @@ import {
 
 type ChildResource = {
   base: DeepPartial<Chapter_Child_Props>;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Chapter_Child_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Child_Props>>> | undefined;
 };
 type BuildChild = {
   build: {
@@ -45,7 +45,7 @@ type BuildChild = {
 };
 type ChapterPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Chapter_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Chapter_Props>>> | undefined;
 };
 type ChapterPropsBase = Pick<Chapter_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Chapter_Locale<'props'>>;
@@ -128,7 +128,7 @@ const parseChild = (value: unknown): Chapter_Child_Props => {
 export type Chapter_Configurator<
   Slug extends string = string,
   Items extends Record<string, Chapter_Child> = Record<string, Chapter_Child>,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -155,7 +155,7 @@ export type Chapter_Configurator<
 export const defineChapter = <
   const Slug extends string,
   const Items extends Record<string, Chapter_Child>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCode[] = [],
 >(
   config: Omit<Chapter_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;
@@ -175,9 +175,9 @@ export const defineChapter = <
 
   const splitOwnLocale = (value: DeepPartial<Chapter_Config['locale']>) => {
     const own = splitLocalizedFields(value);
-    const files: Partial<Record<LanguageCodes, DeepPartial<Chapter_Props>>> = {};
+    const files: Partial<Record<LanguageCode, DeepPartial<Chapter_Props>>> = {};
     for (const [language, fields] of Object.entries(own.locale ?? {})) {
-      files[language as LanguageCodes] = {
+      files[language as LanguageCode] = {
         locale: fields as DeepPartial<Chapter_Locale<'props'>>,
       };
     }
@@ -190,7 +190,7 @@ export const defineChapter = <
   const buildContent = (
     items: Record<string, Chapter_Child>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const ids = new Set<string>();
@@ -218,7 +218,7 @@ export const defineChapter = <
         (patch?.base ?? {}) as Record<string, unknown>,
       ),
     );
-    const locale: Partial<Record<LanguageCodes, Chapter_Child_Props[]>> = {};
+    const locale: Partial<Record<LanguageCode, Chapter_Child_Props[]>> = {};
     for (const language of languages) {
       const resolved = entries.map(({ resource, patch }) => {
         const original = mergeForValidation<Record<string, unknown>>(
@@ -237,8 +237,8 @@ export const defineChapter = <
       });
       // Inspect the published envelope without recursively expanding nested Lesson unions.
       const hasTranslatedChild = entries.some(({ resource, patch }) => {
-        const ownLocales: Partial<Record<LanguageCodes, unknown>> | undefined = resource.locale;
-        const patchLocales: Partial<Record<LanguageCodes, unknown>> | undefined = patch?.locale;
+        const ownLocales: Partial<Record<LanguageCode, unknown>> | undefined = resource.locale;
+        const patchLocales: Partial<Record<LanguageCode, unknown>> | undefined = patch?.locale;
         return ownLocales?.[language] !== undefined || patchLocales?.[language] !== undefined;
       });
       if (hasTranslatedChild) locale[language] = resolved;
@@ -262,7 +262,7 @@ export const defineChapter = <
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locale)) {
       // Publication fragments are parsed against the concrete Props schema below.
-      const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+      const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
       destination.content = entries;
     }
     const result: ChapterPublication<ChapterPropsBase> = {
@@ -376,7 +376,7 @@ export const defineChapter = <
         output.base.content = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           // Keep the atomic child array as a runtime publication fragment; validate it through Props.
-          const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+          const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
           destination.content = values;
         }
       }

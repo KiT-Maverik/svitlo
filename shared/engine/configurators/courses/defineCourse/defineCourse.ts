@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -37,7 +37,7 @@ import {
 
 type ChildResource = {
   base: DeepPartial<Course_Child_Props>;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Course_Child_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Course_Child_Props>>> | undefined;
 };
 type BuildChild = {
   build: {
@@ -47,7 +47,7 @@ type BuildChild = {
 };
 type CoursePublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Course_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Course_Props>>> | undefined;
 };
 type CoursePropsBase = Pick<Course_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Course_Locale<'props'>>;
@@ -140,7 +140,7 @@ const parseChild = (value: unknown): Course_Child_Props => {
 export type Course_Configurator<
   Slug extends string = string,
   Items extends Record<string, Course_Child> = Record<string, Course_Child>,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -166,7 +166,7 @@ export type Course_Configurator<
 /** Define a Course with immutable ordered child configurators and stateless Build. */
 export const defineCourse = <
   const Slug extends string,
-  const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Items extends Record<string, Course_Child>,
 >(
   config: Omit<Course_Config, 'slug' | 'content' | 'params' | 'locale'> & {
@@ -188,9 +188,9 @@ export const defineCourse = <
 
   const splitOwnLocale = (value: DeepPartial<Course_Config['locale']>) => {
     const own = splitLocalizedFields(value);
-    const files: Partial<Record<LanguageCodes, DeepPartial<Course_Props>>> = {};
+    const files: Partial<Record<LanguageCode, DeepPartial<Course_Props>>> = {};
     for (const [language, fields] of Object.entries(own.locale ?? {})) {
-      files[language as LanguageCodes] = {
+      files[language as LanguageCode] = {
         locale: fields as DeepPartial<Course_Locale<'props'>>,
       };
     }
@@ -203,7 +203,7 @@ export const defineCourse = <
   const buildContent = (
     items: Record<string, Course_Child>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const ids = new Set<string>();
@@ -231,7 +231,7 @@ export const defineCourse = <
         (patch?.base ?? {}) as Record<string, unknown>,
       ),
     );
-    const locale: Partial<Record<LanguageCodes, Course_Child_Props[]>> = {};
+    const locale: Partial<Record<LanguageCode, Course_Child_Props[]>> = {};
     for (const language of languages) {
       const resolved = entries.map(({ resource, patch }) => {
         const original = mergeForValidation<Record<string, unknown>>(
@@ -280,7 +280,7 @@ export const defineCourse = <
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locale)) {
       // Publication fragments are parsed against the concrete Props schema below.
-      const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+      const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
       destination.content = entries;
     }
     const result: CoursePublication<CoursePropsBase> = {
@@ -399,7 +399,7 @@ export const defineCourse = <
         output.base.content = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           // Keep the atomic child array as a runtime publication fragment; validate it through Props.
-          const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+          const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
           destination.content = values;
         }
       }

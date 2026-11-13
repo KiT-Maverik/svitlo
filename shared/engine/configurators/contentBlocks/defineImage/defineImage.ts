@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -21,7 +21,7 @@ import {
   type ContentBlock_Image_PropsBase,
 } from './defineImage.schemas';
 
-type ImageLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Image_Locale<'props'>> }>>;
+type ImageLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Image_Locale<'props'>> }>>;
 type ImagePropsPublication<Base, LocaleFiles = ImageLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type ImageOverridePropsBase = {
   params?: ContentBlock_Image_Overrides['params'];
@@ -79,7 +79,7 @@ const buildImagePatch = (patch: ContentBlock_Image_Overrides): ImagePropsPublica
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineImage = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export const defineImage = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<ContentBlock_Image_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Image_Config,
       Languages

@@ -54,7 +54,6 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 │   ├── math/             # @svitlo/math — standalone textbook and its docs/content
 │   └── playground/       # @svitlo/playground — demo and test app, not a shared library
 ├── shared/
-│   ├── contracts/        # @svitlo/contracts — framework-free types, IDs, locales
 │   ├── engine/           # @svitlo/engine — builders, validation, generators, data
 │   ├── indexdb/          # @svitlo/indexdb — IndexedDB CRUD, schemas, persistence
 │   ├── ui-kit/           # @svitlo/ui-kit — reusable framework-agnostic React/MUI UI and Lesson
@@ -67,14 +66,15 @@ See the canonical [Cross-Platform Lesson Runtime](./cross-platform-lesson-runtim
 └── turbo.json            # task graph reference; not used by GitHub Actions
 ```
 
-**Concrete source roots:** `shared/contracts`, `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `apps/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
+**Concrete source roots:** `shared/engine`, `shared/indexdb`, `shared/ui-kit`, `content/geography`, `content/informatics`, `content/physics`, `content/math`, `content/playground`, `apps/platform`, `backend/server`. These paths are actual package folders; diagrams above use abbreviated names.
 
-Representative current workspaces include `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/contracts`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `apps/*`, `content/*`, `shared/*`, `shared/adapters/*`. The server is deliberately not claimed to be executable yet.
+Representative current workspaces include `@svitlo/server`, `@svitlo/platform`, `@svitlo/geography`, `@svitlo/informatics`, `@svitlo/physics`, `@svitlo/math`, `@svitlo/playground`, `@svitlo/engine`, `@svitlo/indexdb`, `@svitlo/ui-kit`. Patterns in root `package.json` and lockfile: `backend/*`, `apps/*`, `content/*`, `shared/*`, `shared/adapters/*`. The server is deliberately not claimed to be executable yet.
 
 ## Dependency direction and ownership
 
 ```text
-@svitlo/contracts ──────────┬──> @svitlo/engine ───> @svitlo/ui-kit
+@svitlo/engine/build ───────> authored textbook content
+@svitlo/engine/runtime ─────┬──> @svitlo/ui-kit
                             └──> @svitlo/indexdb
 
 @svitlo/math ──────────────┐
@@ -88,9 +88,8 @@ Arrows above summarize **allowed consumption**, not a promise that every app imp
 
 | Package                       | Owns                                                                                        | Direct production dependencies / boundaries                                                            |
 | ----------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Contracts                     | Common content/state/taxonomy types, stable IDs and language descriptors                    | No runtime dependencies on Engine, UI, Next.js or apps                                                 |
-| Engine                        | Builders, generation, assessment methods, localization logic                                | Depends on Contracts; no React, Next, MUI or app imports                                               |
-| IndexDB                       | `svitlo-progress` v1 persistence, Zod state validation, browser controllers                 | Depends on Contracts and Zod; production does not depend on Engine/React/Next                          |
+| Engine                        | Authored configurators, generated Props, type/locale schemas and runtime assemblers           | Separate build and runtime exports; no React, Next, MUI or app imports                                  |
+| IndexDB                       | `svitlo-progress` v1 persistence, Zod state validation, browser controllers                 | Depends on Engine runtime APIs and Zod; no React/Next runtime imports                                  |
 | UI Kit                        | Framework-independent React UI, Lesson, Flag assets, LearningLayout and locale dictionaries | Depends on Engine and React/MUI peer dependencies; no Next.js/application imports in production source |
 | Next.js Adapter               | Next.js App Router integration, lesson SSR composition and metadata                         | Depends on public Engine and UI Kit APIs; injects app-owned lesson loader and renderer                 |
 | Informatics / Physics         | Standalone Next.js textbook scaffolds, subject content in separate reviews                  | No application-to-application imports                                                                  |
@@ -114,7 +113,7 @@ Geography has its own independently configured application shell and localized l
 
 **Current implementation (before the proposed host/module migration):** Each `content/<subject>` owns its own `package.json`, `tsconfig.json`, Next.js config, `src/app` routes, `src/data` authored content, `public` media where required, package-owned `docs/` and tests. Reusable code is accessed through declared public `@svitlo/*` exports, never `shared/*/src`, another app's `src`, aliases resolved outside the package, or `../` paths crossing package roots. The `@/*` alias is local to that package.
 
-Git-backed typed content and authoring IDs are **not** stored in runtime user databases. `@svitlo/contracts/content` defines structural contracts; Engine supplies operations, UI Kit presentation, IndexDB persistence, each textbook its curriculum. See [Git-first typed content](./git-first-typed-content.md), [system boundaries](./system-boundaries.md), [accessibility/localization](./internationalization-and-accessibility.md) and [offline roadmap](./offline-first-and-device-compatibility.md). Do not claim offline/PWA or backend account features are implemented merely because planned in Studio.
+Git-backed typed content and authoring IDs are **not** stored in runtime user databases. Engine defines content/configuration schemas and runtime Props, UI Kit owns presentation, IndexDB owns persistence, and each textbook owns its curriculum. See [Git-first typed content](./git-first-typed-content.md), [system boundaries](./system-boundaries.md), [accessibility/localization](./internationalization-and-accessibility.md) and [offline roadmap](./offline-first-and-device-compatibility.md). Do not claim offline/PWA or backend account features are implemented merely because planned in Studio.
 
 ## Development and CI
 

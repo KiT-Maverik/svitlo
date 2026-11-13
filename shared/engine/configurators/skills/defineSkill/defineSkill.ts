@@ -1,5 +1,4 @@
-import type { SkillId } from '@svitlo/contracts/content';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
 import {
@@ -20,7 +19,7 @@ import {
 
 type SkillPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Skill_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Skill_Props>>> | undefined;
 };
 
 const validate = (config: Skill_Config): void => {
@@ -33,14 +32,14 @@ const project = (input: DeepPartial<Pick<Skill_Config, 'name' | 'description'>>)
   return {
     base: split.base as DeepPartial<Pick<Skill_Props, 'name' | 'description'>>,
     locale: split.locale as
-      Partial<Record<LanguageCodes, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
+      Partial<Record<LanguageCode, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
   };
 };
 
 /** Fixed public surface preserves literal Slug and optional language tuple. */
 export type Skill_Configurator<
   Slug extends string = string,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -49,20 +48,20 @@ export type Skill_Configurator<
   readonly build: {
     props(
       options: PublicationLanguageOptions<Languages>,
-    ): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }>;
+    ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }>;
     overrides(
       patch: Skill_Overrides,
       options: PublicationLanguageOptions<Languages>,
     ): SkillPublication<DeepPartial<Skill_Props>>;
   };
   readonly config: {
-    base: DeepPartial<Skill_Props> & { id: SkillId; slug: string };
+    base: DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string };
     validate: typeof validate;
     locales: () => DeepPartial<Skill_Config>;
   };
 } & LanguageScope<Languages>;
 
-export function defineSkill<const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+export function defineSkill<const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
   config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>,
 ): Skill_Configurator<Slug, Languages> {
   const authored = structuredClone(skill_Config_Schema.parse(config));
@@ -72,12 +71,12 @@ export function defineSkill<const Slug extends string, const Languages extends r
 
   const props = (
     options: PublicationLanguageOptions<Languages>,
-  ): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> => {
+  ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = project({ name: current.name, description: current.description });
-    const result: SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> = {
-      base: { id: id as SkillId, slug, ...own.base },
+    const result: SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> = {
+      base: { id: id as Skill_Config['id'], slug, ...own.base },
       locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
     };
     for (const language of languages) {
@@ -121,7 +120,7 @@ export function defineSkill<const Slug extends string, const Languages extends r
     validate,
     build: { props, overrides },
     config: {
-      base: { id: id as SkillId, slug, ...project({ name: authored.name, description: authored.description }).base },
+      base: { id: id as Skill_Config['id'], slug, ...project({ name: authored.name, description: authored.description }).base },
       validate,
       locales: (): DeepPartial<Skill_Config> => {
         const current = copyAuthored();

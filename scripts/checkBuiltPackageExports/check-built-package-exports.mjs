@@ -6,7 +6,6 @@ function assert(ok, detail) {
   if (!ok) throw new Error(detail);
 }
 const packages = [
-  'shared/contracts',
   'shared/engine',
   'shared/indexdb',
   'shared/ui-kit',

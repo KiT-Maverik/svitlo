@@ -2,7 +2,7 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { TextField } from '@mui/material';
-import type { Question_AnswerWithText, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_AnswerWithText_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { normalizedAnswer } from '../response/QuestionContent';
@@ -12,13 +12,13 @@ export function AnswerWithText({
   sceneRegistry,
   messages,
 }: {
-  response: Question_AnswerWithText<'response', Locale_Languages>;
+  response: Question_AnswerWithText_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
   const attempt = useQuestionAttempt(
     () => '',
-    value => response.correctAnswers.some(correct => normalizedAnswer(correct) === normalizedAnswer(value)),
+    value => response.locale.correctAnswers.some(correct => normalizedAnswer(correct) === normalizedAnswer(value)),
     value => value.trim().length > 0,
   );
   return (
@@ -26,7 +26,7 @@ export function AnswerWithText({
       <TextField
         fullWidth
         label={messages.questionFrame.answerLabel}
-        placeholder={response.placeholder}
+        placeholder={response.locale.placeholder}
         value={attempt.value}
         onChange={event => attempt.setValue(event.target.value)}
         disabled={attempt.checked}

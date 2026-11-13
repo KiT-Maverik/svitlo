@@ -1,4 +1,4 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -36,7 +36,7 @@ import {
 
 type ChildResource = {
   base: DeepPartial<Module_Child_Props>;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Module_Child_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Module_Child_Props>>> | undefined;
 };
 type BuildChild = {
   build: {
@@ -46,7 +46,7 @@ type BuildChild = {
 };
 type ModulePublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<Module_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<Module_Props>>> | undefined;
 };
 type ModulePropsBase = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> & {
   locale?: DeepPartial<Module_Locale<'props'>>;
@@ -134,7 +134,7 @@ const parseChild = (value: unknown): Module_Child_Props => {
 export type Module_Configurator<
   Slug extends string = string,
   Items extends Record<string, Module_Child> = Record<string, Module_Child>,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -161,7 +161,7 @@ export type Module_Configurator<
 export const defineModule = <
   const Slug extends string,
   const Items extends Record<string, Module_Child>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCode[] = [],
 >(
   config: Omit<Module_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;
@@ -181,9 +181,9 @@ export const defineModule = <
 
   const splitOwnLocale = (value: DeepPartial<Module_Config['locale']>) => {
     const own = splitLocalizedFields(value);
-    const files: Partial<Record<LanguageCodes, DeepPartial<Module_Props>>> = {};
+    const files: Partial<Record<LanguageCode, DeepPartial<Module_Props>>> = {};
     for (const [language, fields] of Object.entries(own.locale ?? {})) {
-      files[language as LanguageCodes] = {
+      files[language as LanguageCode] = {
         locale: fields as DeepPartial<Module_Locale<'props'>>,
       };
     }
@@ -196,7 +196,7 @@ export const defineModule = <
   const buildContent = (
     items: Record<string, Module_Child>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const ids = new Set<string>();
@@ -224,7 +224,7 @@ export const defineModule = <
         (patch?.base ?? {}) as Record<string, unknown>,
       ),
     );
-    const locale: Partial<Record<LanguageCodes, Module_Child_Props[]>> = {};
+    const locale: Partial<Record<LanguageCode, Module_Child_Props[]>> = {};
     for (const language of languages) {
       const resolved = entries.map(({ resource, patch }) => {
         const original = mergeForValidation<Record<string, unknown>>(
@@ -268,7 +268,7 @@ export const defineModule = <
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locale)) {
       // Publication fragments are parsed against the concrete Props schema below.
-      const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+      const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
       destination.content = entries;
     }
     const result: ModulePublication<ModulePropsBase> = {
@@ -382,7 +382,7 @@ export const defineModule = <
         output.base.content = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
           // Keep the atomic child array as a runtime publication fragment; validate it through Props.
-          const destination = (files[language as LanguageCodes] ??= {}) as Record<string, unknown>;
+          const destination = (files[language as LanguageCode] ??= {}) as Record<string, unknown>;
           destination.content = values;
         }
       }

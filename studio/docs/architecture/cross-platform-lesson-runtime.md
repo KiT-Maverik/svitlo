@@ -35,7 +35,7 @@ Write the Lesson UI, its React Context providers, session operations, question w
 | Mobile host               | One React + Capacitor source app with iOS and Android native projects; device APIs via adapters    |
 | Desktop host              | React + Electron source app; desktop integrations via adapters                                     |
 | Textbook module           | Authored content/configs, locale resources/assets, React DOM Scenes and generated Scene registry   |
-| Shared Contracts/Engine   | Versioned content/state contracts, builders, validators and build-time JSON publishing             |
+| Shared Engine            | Typed build/configuration APIs, runtime Props schemas, assemblers and JSON publishing             |
 | Shared UI Kit / Lesson UI | Platform-neutral React DOM rendering, accessible UI, state views and operations integration        |
 | Backend/content delivery  | Access control, licensed delivery and sync where applicable; not React rendering logic             |
 

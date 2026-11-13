@@ -31,6 +31,7 @@ function renderBlock(
   isCheckpointCompleted?: (checkpointId: string) => boolean,
 ): ReactNode {
   requireTaggedResponse(response);
+  if (response.params.disabled) return null;
   const nested = (block: ContentBlockResponse) =>
     renderBlock(block, messages, sceneRegistry, onCheckpointComplete, isCheckpointCompleted);
 

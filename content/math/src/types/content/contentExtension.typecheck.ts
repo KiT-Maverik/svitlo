@@ -1,24 +1,28 @@
-import type { Lesson, Question, ContentBlock, AssessmentMethodKey, Locale_Languages } from '@svitlo/contracts/content';
+import type {
+  Lesson_Props,
+  Question_SelectOneAnswer_Props,
+  ContentBlock_Text_Props,
+  AssessmentMethodSlug,
+} from '@svitlo/engine/runtime';
 
-// A textbook can extend canonical response contracts without redefining them.
-type MathLesson = Lesson<'response', Locale_Languages> & { readonly subject: 'math' };
-type MathQuestion = Question<'response', Locale_Languages> & { readonly difficulty: 'advanced' };
+// A textbook can extend published Engine Props without redefining their contracts.
+type MathLesson = Lesson_Props & { readonly subject: 'math' };
+type MathQuestion = Question_SelectOneAnswer_Props & { readonly difficulty: 'advanced' };
 
 type Assert<T extends true> = T;
 type Extends<A, B> = [A] extends [B] ? true : false;
 
-type LessonExtensionPreservesBase = Assert<Extends<MathLesson, Lesson<'response', Locale_Languages>>>;
-type QuestionExtensionPreservesBase = Assert<Extends<MathQuestion, Question<'response', Locale_Languages>>>;
-type TextBlock = Extract<ContentBlock<'response', Locale_Languages>, { type: 'text' }>;
-type TextBlockHasValue = Assert<'value' extends keyof TextBlock ? true : false>;
+type LessonExtensionPreservesBase = Assert<Extends<MathLesson, Lesson_Props>>;
+type QuestionExtensionPreservesBase = Assert<Extends<MathQuestion, Question_SelectOneAnswer_Props>>;
+type TextBlockHasLocaleValue = Assert<'value' extends keyof ContentBlock_Text_Props['locale'] ? true : false>;
 
 void (undefined as unknown as LessonExtensionPreservesBase);
 void (undefined as unknown as QuestionExtensionPreservesBase);
-void (undefined as unknown as TextBlockHasValue);
+void (undefined as unknown as TextBlockHasLocaleValue);
 
-const method: AssessmentMethodKey = 'verification';
+const method: AssessmentMethodSlug = 'verification';
 void method;
 
-// @ts-expect-error Assessment Method references must be known slugs, not UUIDs.
-const unknownMethod: AssessmentMethodKey = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
+// @ts-expect-error Assessment Methods must be known slugs, not UUIDs.
+const unknownMethod: AssessmentMethodSlug = 'aaaaaaaa-aaaa-4aaa-aaaa-aaaaaaaaaaaa';
 void unknownMethod;
