@@ -115,8 +115,8 @@ test('renders deterministic, isolated publication snapshots with canonical relat
   assert.deepEqual([...second.keys()], [relative + '/base.json', relative + '/en.json', relative + '/uk.json']);
 
   for (const [filename, body] of second) {
-    assert.match(filename, /^[0-9a-f]\\/[0-9a-f-]{36}\\/(?:base|[a-z]{2})\\.json$/);
-    assert.equal(body.endsWith('\\n'), true, 'Publication JSON must end in a newline');
+    assert.match(filename, /^[0-9a-f]\/[0-9a-f-]{36}\/(?:base|[a-z]{2})\.json$/);
+    assert.equal(body.endsWith('\n'), true, 'Publication JSON must end in a newline');
   }
 
   first.clear();
