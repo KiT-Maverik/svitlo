@@ -164,7 +164,7 @@ export function defineSkillDomain<
   const splitOwn = (input: SkillDomain_Metadata_Overrides) => {
     const own = splitLocalizedFields(input);
     return {
-      base: own.base as SkillDomain_Metadata_Overrides,
+      base: own.base as DeepPartial<Pick<SkillDomain_Props, 'title' | 'description'>>,
       locale: (own.locale ?? {}) as Partial<Record<LanguageCodes, DeepPartial<SkillDomain_Props>>>,
     };
   };

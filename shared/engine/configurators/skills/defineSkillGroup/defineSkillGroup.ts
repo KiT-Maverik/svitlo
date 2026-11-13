@@ -131,7 +131,7 @@ export function defineSkillGroup<
   const splitOwn = (value: SkillGroup_Metadata_Overrides) => {
     const own = splitLocalizedFields(value);
     return {
-      base: own.base as SkillGroup_Metadata_Overrides,
+      base: own.base as DeepPartial<Pick<SkillGroup_Props, 'name' | 'description'>>,
       locale: (own.locale ?? {}) as Partial<Record<LanguageCodes, DeepPartial<SkillGroup_Props>>>,
     };
   };
