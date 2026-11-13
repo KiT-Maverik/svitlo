@@ -1,20 +1,20 @@
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import { camelCase_Schema, languageCode_Schema } from '#schemas';
 import { mergeForValidation } from '../../_shared__configurators';
 import { cloneJson, isRecord } from './collections.utils';
 
-export type LocalizedText = string | Partial<Record<LanguageCodes, string>>;
+export type LocalizedText = string | Partial<Record<LanguageCode, string>>;
 export type LocalizedTextList = Record<string, LocalizedText>;
 export type LocalizedSlotList = Record<string, { correctAnswers: LocalizedTextList }>;
-type Files<T> = Partial<Record<LanguageCodes, T>>;
+type Files<T> = Partial<Record<LanguageCode, T>>;
 type Projection<T> = { base?: T; locale: Files<T> };
 
-const knownLanguages = (source: unknown): LanguageCodes[] => {
-  const out = new Set<LanguageCodes>();
+const knownLanguages = (source: unknown): LanguageCode[] => {
+  const out = new Set<LanguageCode>();
   const walk = (value: unknown): void => {
     if (!isRecord(value)) return;
     if (Object.keys(value).length && Object.keys(value).every(key => languageCode_Schema.safeParse(key).success)) {
-      for (const key of Object.keys(value)) out.add(key as LanguageCodes);
+      for (const key of Object.keys(value)) out.add(key as LanguageCode);
       return;
     }
     for (const nested of Object.values(value)) walk(nested);
@@ -22,7 +22,7 @@ const knownLanguages = (source: unknown): LanguageCodes[] => {
   walk(source);
   return [...out];
 };
-const resolve = (value: LocalizedText, language: LanguageCodes): string | undefined =>
+const resolve = (value: LocalizedText, language: LanguageCode): string | undefined =>
   typeof value === 'string' ? value : value[language];
 
 /**
@@ -31,7 +31,7 @@ const resolve = (value: LocalizedText, language: LanguageCodes): string | undefi
  */
 export const projectAnswerList = (
   original: LocalizedTextList,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch?: Partial<LocalizedTextList>,
 ): Projection<string[]> => {
   const effective = patch ? mergeForValidation(cloneJson(original), patch) : cloneJson(original);
@@ -69,7 +69,7 @@ export const projectAnswerList = (
 /** Named slot selectors and accepted values become resolved positional UI props only after Build. */
 export const projectSlotList = (
   original: LocalizedSlotList,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch?: Partial<LocalizedSlotList>,
   order?: readonly string[],
 ): Projection<Array<{ selector: string; correctAnswers: string[] }>> => {
@@ -86,7 +86,7 @@ export const projectSlotList = (
       throw new Error('Invalid named text slot: ' + selector);
     }
   }
-  const toArray = (language?: LanguageCodes) =>
+  const toArray = (language?: LanguageCode) =>
     entries.map(([selector, slot]) => ({
       selector,
       correctAnswers: Object.values(slot.correctAnswers).map(value => {
