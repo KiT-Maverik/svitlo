@@ -1,4 +1,6 @@
 export { Lesson } from './Lesson';
+export { EngineLesson } from './EngineLesson';
+export type { EngineLessonProps } from './EngineLesson';
 export {
   EventSceneHost,
   createLessonEventBus,
