@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import type { LessonState, QuizState } from '../schemas';
+import type { LessonState, QuizState } from '@svitlo/indexdb';
 import {
   createLessonState,
   deleteLessonState,
