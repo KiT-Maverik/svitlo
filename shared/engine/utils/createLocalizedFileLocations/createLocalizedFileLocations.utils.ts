@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '#schemas';
 
 export interface CreateLocalizedFileLocationsOptions {
   only?: readonly Locale[];

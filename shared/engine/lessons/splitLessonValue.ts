@@ -1,5 +1,5 @@
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 type Partition = {
   base: unknown | typeof OMIT;

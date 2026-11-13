@@ -1,4 +1,3 @@
-import type { SkillId } from '@svitlo/contracts/content';
 import type { LanguageCode } from '#schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
@@ -49,14 +48,14 @@ export type Skill_Configurator<
   readonly build: {
     props(
       options: PublicationLanguageOptions<Languages>,
-    ): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }>;
+    ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }>;
     overrides(
       patch: Skill_Overrides,
       options: PublicationLanguageOptions<Languages>,
     ): SkillPublication<DeepPartial<Skill_Props>>;
   };
   readonly config: {
-    base: DeepPartial<Skill_Props> & { id: SkillId; slug: string };
+    base: DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string };
     validate: typeof validate;
     locales: () => DeepPartial<Skill_Config>;
   };
@@ -72,12 +71,12 @@ export function defineSkill<const Slug extends string, const Languages extends r
 
   const props = (
     options: PublicationLanguageOptions<Languages>,
-  ): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> => {
+  ): SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = project({ name: current.name, description: current.description });
-    const result: SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> = {
-      base: { id: id as SkillId, slug, ...own.base },
+    const result: SkillPublication<DeepPartial<Skill_Props> & { id: Skill_Config['id']; slug: string }> = {
+      base: { id: id as Skill_Config['id'], slug, ...own.base },
       locale: selectPublicationLocales(own.locale as SkillPublication<DeepPartial<Skill_Props>>['locale'], languages),
     };
     for (const language of languages) {
@@ -121,7 +120,7 @@ export function defineSkill<const Slug extends string, const Languages extends r
     validate,
     build: { props, overrides },
     config: {
-      base: { id: id as SkillId, slug, ...project({ name: authored.name, description: authored.description }).base },
+      base: { id: id as Skill_Config['id'], slug, ...project({ name: authored.name, description: authored.description }).base },
       validate,
       locales: (): DeepPartial<Skill_Config> => {
         const current = copyAuthored();
