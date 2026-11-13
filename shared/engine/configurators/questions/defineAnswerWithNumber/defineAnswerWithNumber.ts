@@ -52,7 +52,14 @@ export type Question_AnswerWithNumber_Overrides<
   content?: QuestionCommonPatch<Content, Added, Languages> & {};
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Ask learners for a numeric result.
+ *
+ * @remarks
+ * Put acceptable numeric values in `params.correctAnswers`, not localized
+ * text strings. The localized placeholder describes the expected input,
+ * but it does not define an accepted answer.
+ */
 export const defineAnswerWithNumber = <
   const Slug extends string,
   const Content extends ContentShape,

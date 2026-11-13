@@ -60,7 +60,14 @@ export type Question_OrderSequence_Overrides<
   };
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Ask learners to reconstruct the correct order of ContentBlocks.
+ *
+ * @remarks
+ * Author `content.sequence.order` in the actual correct sequence.
+ * That order is the answer key; do not shuffle it in the authoring data.
+ * Keep at least one active item.
+ */
 export const defineOrderSequence = <
   const Slug extends string,
   const Content extends ContentShape,

@@ -75,17 +75,18 @@ const buildScenePatch = (patch: ContentBlock_Scene_Overrides): ScenePropsPublica
 };
 
 /**
- * Define a Scene with invariant strings and field-level localized text.
- * Do not use arrays anywhere in the authored Scene locale value. Represent
- * collections as objects with stable, descriptive keys instead, so sparse
- * locale patches can be deep-merged deterministically without array indexes.
- * Scene components may convert resolved keyed objects into arrays when needed.
- * Derive the component's single-language value type with `ResolveLocale<typeof value>`.
- * Runtime localization and translation completeness are handled by publication.
- */
-/**
- * Stateless ContentBlock Build API validates isolated snapshots and emits
- * either complete Props or exclusively sparse override fields.
+ * Provide localized input data for an interactive Scene.
+ *
+ * @remarks
+ * `locale.value` supports invariant strings, language dictionaries and
+ * nested objects with stable, descriptive keys. Never author arrays inside
+ * the Scene's locale value: keyed collections allow sparse translations
+ * to merge without positional ambiguity. The Scene component may construct
+ * arrays from those resolved objects at rendering time.
+ *
+ * Use `ResolveLocale<typeof value>` for the Scene component's
+ * single-language props. Implementing the visual interaction and registering
+ * its Scene entrypoint are separate from authoring this configurator.
  */
 export const defineScene = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
   config: Omit<ContentBlock_Scene_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<

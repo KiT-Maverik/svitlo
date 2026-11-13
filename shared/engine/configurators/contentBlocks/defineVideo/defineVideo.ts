@@ -75,10 +75,15 @@ const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublica
   };
 };
 
-/** Define Video. */
 /**
- * Stateless ContentBlock Build API validates isolated snapshots and emits
- * either complete Props or exclusively sparse override fields.
+ * Add a video as an instructional ContentBlock.
+ *
+ * @remarks
+ * `locale.fileLocation` points to the video and `locale.poster` to its preview.
+ * `locale.label` names the player accessibly; `locale.title` is an optional
+ * visible heading, not a substitute for the label. Local textbook assets
+ * are checked where the textbook can be resolved.
+ * Author fallback messages for offline/unavailable playback when appropriate.
  */
 export const defineVideo = <const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
   config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<

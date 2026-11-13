@@ -135,7 +135,19 @@ const validate = (config: QuizSection_Config): void => {
   validateScreenReferences(config.params.screen, new Set(Object.keys(config.content.items)), authoredDisabled);
 };
 
-/** Stateless Section authoring with ordered ContentBlock children. */
+/**
+ * Configure a Quiz that selects Questions from its parent Lesson's Question Bank.
+ *
+ * @remarks
+ * Do not place Question configurators inside this Section's `content`.
+ * Use `params.selection` to choose which bank questions to assess and
+ * whether to use all of them or a sample.
+ *
+ * The Section's ContentBlocks are available for starting and ending screens.
+ * `params.screen` references their active, enabled slugs, not Question slugs.
+ * A blocking Quiz cannot be skipped; for a nonblocking Quiz, skipping also
+ * depends on `interaction.skippable` and the Lesson/Section policy.
+ */
 export const defineQuizSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,
