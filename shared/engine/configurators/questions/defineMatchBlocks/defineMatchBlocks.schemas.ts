@@ -22,7 +22,10 @@ export const matchBlocks_Config_Schema = questionBase.extend({
   ...addUnifiedLocale({}),
   content: questionCommonContent_Config_Schema.extend({
     pairs: z.object({
-      items: z.record(z.string(), z.object({ left: z.custom<ContentBlock_Configurator>(), right: z.custom<ContentBlock_Configurator>() })),
+      items: z.record(
+        z.string(),
+        z.object({ left: z.custom<ContentBlock_Configurator>(), right: z.custom<ContentBlock_Configurator>() }),
+      ),
       order: z.array(z.string()),
     }),
   }),
