@@ -121,6 +121,6 @@ describe('Checkpoint configuration and accessibility', () => {
     const title = screen.getByRole('heading', { name: 'اختبر معلوماتك', level: 6 });
     expect(title.closest('section')).toHaveAttribute('dir', 'rtl');
     expect(screen.queryByText('01')).toBeNull();
-    expect(screen.getByText('What is light?').parentElement).toHaveAttribute('dir', 'rtl');
+    expect(screen.getByText('What is light?').closest('[dir]')).toHaveAttribute('dir', 'rtl');
   });
 });
