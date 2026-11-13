@@ -562,7 +562,7 @@ export async function main(args) {
   const { packagePath, courseId, action } = parseArguments(args);
   const root = path.join(repoRoot, packagePath);
   const { resolveEntityPath } = await import('@svitlo/engine/build');
-  const { DEFAULT_SUPPORTED_LANGUAGES } = await import('+@svitlo/contracts/localization');
+  const { DEFAULT_SUPPORTED_LANGUAGES } = await import('@svitlo/engine/runtime');
   const folder = path.join(root, 'data/courses', resolveEntityPath(courseId));
   const overridesFilename = path.join(folder, 'overrides.yaml');
   const methodology = path.join(folder, 'methodology.md');

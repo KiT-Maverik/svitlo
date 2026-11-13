@@ -1,4 +1,4 @@
-import type { LanguageCode } from '+@svitlo/contracts/localization';
+import type { LanguageCode } from '#schemas';
 import {
   SECTION_TYPES,
   type ContentBlock,
