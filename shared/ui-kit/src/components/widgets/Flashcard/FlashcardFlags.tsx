@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from 'react';
 import type { ChipProps } from '@mui/material/Chip';
-import type { FlashcardFlag, FlashcardFlagIcon, Locale_Languages } from '+@svitlo/contracts/content';
+import type { Flashcard_Flag_Props, Flashcard_Flag_Icon } from '@svitlo/engine/runtime';
 import type { Flashcard_Locale } from '../../../../data/locale/flashcard';
 import ListOutlined from '@mui/icons-material/ListOutlined';
 import PriorityHighOutlined from '@mui/icons-material/PriorityHighOutlined';
@@ -29,11 +29,11 @@ const iconByName = {
   lightbulb: <LightbulbOutlined />,
   code: <CodeOutlined />,
   check: <CheckOutlined />,
-} satisfies Record<FlashcardFlagIcon, ReactElement>;
+} satisfies Record<Flashcard_Flag_Icon, ReactElement>;
 
 /** Convert typed, JSON-safe Flashcard metadata into MUI presentation props. */
 export function toFlashcardLabel(
-  flag: FlashcardFlag<'response', Locale_Languages>,
+  flag: Flashcard_Flag_Props,
   messages: Flashcard_Locale,
 ): FlashcardLabel {
   switch (flag.type) {

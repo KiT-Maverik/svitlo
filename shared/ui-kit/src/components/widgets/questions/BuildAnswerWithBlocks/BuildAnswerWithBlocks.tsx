@@ -2,7 +2,7 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack, Typography } from '@mui/material';
-import type { Question_BuildAnswerWithBlocks, Locale_Languages } from '+@svitlo/contracts/content';
+import type { Question_BuildAnswerWithBlocks_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
@@ -14,15 +14,15 @@ export function BuildAnswerWithBlocks({
   sceneRegistry,
   messages,
 }: {
-  response: Question_BuildAnswerWithBlocks<'response', Locale_Languages>;
+  response: Question_BuildAnswerWithBlocks_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
-  const correct: QuestionItem[] = response.correctSequence.map((block, index) => ({
+  const correct: QuestionItem[] = response.content.correctSequence.map((block, index) => ({
     id: 'correct:' + index + ':' + block.id,
     block,
   }));
-  const distractors: QuestionItem[] = response.distractors.map((block, index) => ({
+  const distractors: QuestionItem[] = response.content.distractors.map((block, index) => ({
     id: 'distractor:' + index + ':' + block.id,
     block,
   }));
@@ -37,7 +37,7 @@ export function BuildAnswerWithBlocks({
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
       <Stack spacing={2}>
         <Typography variant="subtitle2" sx={{ textAlign: 'center' }}>
-          {response.placeholder}
+          {response.locale.placeholder}
         </Typography>
         <QuestionSortable
           items={items}

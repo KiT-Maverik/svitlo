@@ -1,5 +1,3 @@
-import type { ContentBlock, Locale_Languages, Locale_Options, NonEmptyArray } from '+@svitlo/contracts/content';
-
 export type DynamicQuestion_ArgumentType = 'string' | 'number' | 'boolean';
 
 type DynamicQuestion_ArgumentBase<TType extends DynamicQuestion_ArgumentType> = {
@@ -70,21 +68,13 @@ export interface DynamicQuestion_ArgumentValidation {
   constraints: Record<string, boolean>;
 }
 
-export interface DynamicQuestion_Config<
-  TArguments extends DynamicQuestion_Arguments,
-  SupportedLanguages extends Locale_Languages,
-> {
+/** Pure argument/variant config. Authored content belongs to the Question configurators. */
+export interface DynamicQuestion_Config<TArguments extends DynamicQuestion_Arguments> {
   arguments: TArguments;
   buildVariants: (
-    config: DynamicQuestion_Config<TArguments, SupportedLanguages>,
+    config: DynamicQuestion_Config<TArguments>,
   ) => DynamicQuestion_Variant<TArguments>[];
   checkConstraints: (variant: DynamicQuestion_Variant<TArguments>) => boolean;
-  content: {
-    question: NonEmptyArray<ContentBlock<'data', SupportedLanguages>[]>;
-    explanation: NonEmptyArray<ContentBlock<'data', SupportedLanguages>[]>;
-    answer: NonEmptyArray<ContentBlock<'data', SupportedLanguages>[]>;
-  };
-  name: Locale_Options<SupportedLanguages>;
 }
 
 export interface DynamicQuestion<TArguments extends DynamicQuestion_Arguments = DynamicQuestion_Arguments> {
