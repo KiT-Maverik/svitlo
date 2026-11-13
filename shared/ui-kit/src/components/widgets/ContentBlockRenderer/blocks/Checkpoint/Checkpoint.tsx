@@ -112,11 +112,23 @@ export const Checkpoint = ({
                 aria-controls={`${domId}-answer-${index}`}
                 aria-describedby={needsCheck ? `${domId}-status-${index}` : undefined}
               >
-                <div className={styles.summaryRow}>
+                <span className={styles.summaryRow}>
                   <span className={styles.adornment}>{side('left')}</span>
-                  <div className={styles.question} dir={direction}>
-                    {renderNested(item.question)}
-                  </div>
+                  <span className={styles.question} dir={direction}>
+                    {renderNested({
+                      ...item.question,
+                      params: {
+                        ...item.question.params,
+                        wrap: {
+                          enabled: true,
+                          typographyProps: {
+                            ...item.question.params.wrap?.typographyProps,
+                            component: 'span',
+                          },
+                        },
+                      },
+                    })}
+                  </span>
                   <span className={styles.adornment}>
                     {side('right')}
                     {needsCheck && (
@@ -129,7 +141,7 @@ export const Checkpoint = ({
                       </span>
                     )}
                   </span>
-                </div>
+                </span>
                 {needsCheck && (
                   <span className={styles.visuallyHidden} id={`${domId}-status-${index}`}>
                     {isChecked ? messages.checked : messages.check}
