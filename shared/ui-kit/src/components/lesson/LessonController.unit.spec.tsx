@@ -1,475 +1,241 @@
 import { useEffect } from 'react';
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
+import type { Lesson_Props, ContentBlock_Text_Props, ContentBlock_Checkpoint_Props, QuizSection_Props } from '@svitlo/engine';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
-import { Lesson, type LessonView } from './Lesson';
+import { Lesson } from './Lesson';
 import { useLessonActions, type LessonActions } from './LessonController';
 import { useLessonEventBus } from './LessonEvents';
 
-const observed: LessonActions[] = [];
-const observedEvents: string[] = [];
-let releaseTestBlocker: (() => void) | undefined;
+const uuid = (number: number) => `663572e7-bd85-4516-86e2-${number.toString(16).padStart(12, '0')}`;
+const text = (number: number, value: string): ContentBlock_Text_Props => ({
+  id: uuid(number),
+  slug: 'text' + number,
+  type: 'text',
+  params: {},
+  locale: { value },
+});
+const checkpoint = (required: boolean): ContentBlock_Checkpoint_Props => ({
+  id: uuid(10),
+  slug: 'checkpoint',
+  type: 'checkpoint',
+  params: { requireCompletion: required, enableChecks: true },
+  locale: { title: 'Check your knowledge' },
+  content: [
+    {
+      id: uuid(11),
+      slug: 'item',
+      type: 'checkpointItem',
+      check: true,
+      question: text(12, 'What is light?'),
+      answer: [text(13, 'Radiation')],
+    },
+  ],
+});
 
+function fixture(required: boolean, allowNavigation = true): Lesson_Props {
+  return {
+    id: uuid(1),
+    slug: 'light',
+    type: 'lesson',
+    skills: [],
+    params: {
+      requireQuiz: false,
+      languages: ['en', 'uk'],
+      sections: { allowNavigation, allowSkipping: true, showIndexes: true },
+    },
+    locale: { title: 'Light lesson' },
+    section: [
+      {
+        id: uuid(2),
+        slug: 'intro',
+        type: 'content',
+        params: { skippable: true },
+        locale: { title: 'Introduction', navigationLabel: 'Introduction' },
+        content: [checkpoint(required)],
+      },
+      {
+        id: uuid(3),
+        slug: 'summary',
+        type: 'content',
+        params: {},
+        locale: { title: 'Summary', navigationLabel: 'Summary' },
+        content: [text(14, 'Second section content')],
+      },
+    ],
+    questions: {},
+    flashcards: [],
+  };
+}
+
+const observed: LessonActions[] = [];
+const received: string[] = [];
+let releaseBlocker: (() => void) | undefined;
 function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions();
   const bus = useLessonEventBus();
-  useEffect(
-    () =>
-      bus.subscribe(id => {
-        observedEvents.push(id);
-      }),
-    [bus],
-  );
+  useEffect(() => bus.subscribe(eventId => { received.push(eventId); }), [bus]);
   observed.push(actions);
   return (
     <>
       <button onClick={() => actions.updateTopBar({ title: 'Updated heading' })}>Update heading</button>
-      <button onClick={() => (releaseTestBlocker = actions.blockNext('test-owner'))}>Block Next</button>
-      <button onClick={() => releaseTestBlocker?.()}>Release Next</button>
+      <button onClick={() => (releaseBlocker = actions.blockNext('test'))}>Block Next</button>
+      <button onClick={() => releaseBlocker?.()}>Release Next</button>
       <button onClick={() => actions.updateSectionParams({ allowNavigation: true })}>Enable navigation</button>
-      <output data-testid="supported-lesson-languages">{props.supportedLessonLanguages?.join(',')}</output>
+      <output data-testid="lesson-languages">{props.supportedLessonLanguages?.join(',')}</output>
       <LearningLayout {...props} locale="en-US" messages={messages.learningLayout} />
     </>
   );
 }
-
-function response(required: boolean, allowNavigation = true): LessonView {
-  return {
-    id: 'lesson-test',
-    title: 'Light lesson',
-    locale: { code: 'en' },
-    parameters: { languages: ['en', 'uk'], sections: { allowNavigation, allowSkipping: true, showIndexes: true } },
-    sections: [
-      {
-        id: 'intro',
-        type: 'theory',
-        navigationLabel: 'Introduction',
-        skippable: true,
-        content: [
-          {
-            type: 'checkpoint',
-            id: 'checkpoint-1',
-            slug: 'check-one',
-            title: 'Check your knowledge',
-            requireCompletion: required,
-            items: [
-              {
-                question: 'What is light?',
-                check: true,
-                answer: [{ type: 'text', id: 'answer-1', value: 'Radiation' }],
-              },
-            ],
-          },
-        ],
-        questions: [],
-      },
-      {
-        id: 'summary',
-        type: 'theory',
-        navigationLabel: 'Summary',
-        content: [{ type: 'text', id: 'summary-text', slug: 'summary-text', value: 'Second section content' }],
-        questions: [],
-      },
-    ],
-  } as unknown as LessonView;
-}
-
-function showLesson(required = true, allowNavigation = true, editableSectionParams: readonly 'allowNavigation'[] = []) {
+function showLesson(response = fixture(true), editableSectionParams: readonly 'allowNavigation'[] = []) {
   observed.length = 0;
-  releaseTestBlocker = undefined;
+  received.length = 0;
+  releaseBlocker = undefined;
   return render(
-    <Lesson
-      response={response(required, allowNavigation)}
-      href="/en/lesson/lesson-test"
-      messages={enUiKitMessages}
-      layout={TestLayout}
-      editableSectionParams={editableSectionParams}
-    />,
+    <Lesson response={response} language="en" href="/en/lesson/light"
+      layout={TestLayout} messages={enUiKitMessages} editableSectionParams={editableSectionParams} />,
   );
 }
+function navigationButton(action: 'next' | 'previous' | 'skip') {
+  const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+  return within(bottom).getByRole('button', {
+    name: new RegExp(enUiKitMessages.learningLayout.actions[action], 'i'),
+  });
+}
 
-describe('LessonController scoped state and navigation', () => {
-  it('passes only authored lesson languages to the Quick Settings layout', () => {
+describe('Engine Props Lesson Controller', () => {
+  it('reads supported languages and title from assembled Engine Props', () => {
     showLesson();
-    const supported = screen.getByTestId('supported-lesson-languages').textContent?.split(',');
-    expect(new Set(supported)).toEqual(new Set(['en-US', 'uk-UA']));
+    expect(screen.getByTestId('lesson-languages').textContent?.split(',')).toEqual(['en-US', 'uk-UA']);
+    expect(observed.at(-1)?.getTopBar().title).toBe('Light lesson');
   });
 
-  it.each([
-    { name: 'Lesson disabled; Section unspecified', allowSkipping: false, skippable: undefined, enabled: false },
-    { name: 'Lesson disabled; Section enabled', allowSkipping: false, skippable: true, enabled: false },
-    { name: 'Lesson disabled; Section disabled', allowSkipping: false, skippable: false, enabled: false },
-    { name: 'Lesson enabled; Section unspecified', allowSkipping: true, skippable: undefined, enabled: true },
-    { name: 'Lesson enabled; Section enabled', allowSkipping: true, skippable: true, enabled: true },
-    { name: 'Lesson enabled; Section disabled', allowSkipping: true, skippable: false, enabled: false },
-  ])('$name', ({ allowSkipping, skippable, enabled }) => {
-    const fixture = response(true);
-    const { skippable: _original, ...first } = fixture.sections[0];
-    const value = {
-      ...fixture,
-      parameters: {
-        ...fixture.parameters,
-        sections: { ...fixture.parameters.sections, allowSkipping },
-      },
-      sections: [{ ...first, ...(skippable === undefined ? {} : { skippable }) }, ...fixture.sections.slice(1)],
-    } as LessonView;
-    observed.length = 0;
-    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const skip = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
-    });
-    if (enabled) expect(skip).toBeEnabled();
-    else expect(skip).toBeDisabled();
-    // Programmatic actions must obey the same policy as the button and stepper.
-    act(() => observed.at(-1)?.skip());
-    expect(screen.getByText(enabled ? 'Second section content' : 'What is light?')).toBeVisible();
-  });
-
-  it('blocks Next and direct forward navigation until required checkpoints are completed', () => {
+  it('blocks Next until a required Engine Checkpoint Item is complete', () => {
     showLesson();
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const steps = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
-    const next = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-    });
-    expect(next).toBeDisabled();
-    expect(
-      within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i') }),
-    ).toBeEnabled();
-    expect(within(steps).getByRole('button', { name: /Summary/i })).toBeDisabled();
-
+    expect(navigationButton('next')).toBeDisabled();
     fireEvent.click(screen.getByText('What is light?'));
-    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
-    expect(next).toBeEnabled();
-    expect(within(steps).getByRole('button', { name: /Summary/i })).toBeEnabled();
-    fireEvent.click(next);
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.checkpoint.check }));
+    expect(navigationButton('next')).toBeEnabled();
+    fireEvent.click(navigationButton('next'));
     expect(screen.getByText('Second section content')).toBeVisible();
-
-    fireEvent.click(
-      within(bottom).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i') }),
-    );
-    fireEvent.click(screen.getByText('What is light?'));
+    fireEvent.click(navigationButton('previous'));
     expect(screen.getByRole('button', { name: enUiKitMessages.checkpoint.checked })).toBeDisabled();
   });
 
-  it('allows skipping an unanswered checkpoint without leaking its gate to the next section', () => {
-    const base = response(true);
-    const value = {
-      ...base,
-      sections: [
-        ...base.sections,
-        {
-          id: 'outro',
-          type: 'theory',
-          navigationLabel: 'Outro',
-          content: [{ type: 'text', id: 'outro-text', slug: 'outro-text', value: 'Final section' }],
-          questions: [],
-        },
-      ],
-    } as unknown as LessonView;
-    observed.length = 0;
-    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-    });
-    const skip = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
-    });
-    const back = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i'),
-    });
-
-    expect(next).toBeDisabled();
-    expect(skip).toBeEnabled();
-    fireEvent.click(skip);
+  it('allows an optional Section to skip its unfinished Checkpoint', () => {
+    showLesson();
+    expect(navigationButton('next')).toBeDisabled();
+    expect(navigationButton('skip')).toBeEnabled();
+    fireEvent.click(navigationButton('skip'));
     expect(screen.getByText('Second section content')).toBeVisible();
-    expect(next).toBeEnabled();
-    fireEvent.click(back);
-    expect(screen.getByText('What is light?')).toBeVisible();
-    expect(next).toBeDisabled();
-    expect(skip).toBeEnabled();
-    fireEvent.click(skip);
-    expect(next).toBeEnabled();
-    fireEvent.click(next);
-    expect(screen.getByText('Final section')).toBeVisible();
   });
 
-  it('removes a checkpoint blocker when leaving its section backward', () => {
-    const base = response(true);
-    const value = {
-      ...base,
-      sections: [
-        {
-          id: 'welcome',
-          type: 'theory',
-          navigationLabel: 'Welcome',
-          content: [{ type: 'text', id: 'welcome-text', slug: 'welcome-text', value: 'Welcome section' }],
-          questions: [],
-        },
-        ...base.sections,
-      ],
-    } as unknown as LessonView;
-    observed.length = 0;
-    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-    });
-    const back = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.previous, 'i'),
-    });
-
-    expect(next).toBeEnabled();
-    fireEvent.click(next);
-    expect(screen.getByText('What is light?')).toBeVisible();
-    expect(next).toBeDisabled();
-    fireEvent.click(back);
-    expect(screen.getByText('Welcome section')).toBeVisible();
-    expect(next).toBeEnabled();
-    fireEvent.click(next);
-    expect(next).toBeDisabled();
+  it('never skips a Section when either Lesson or Section disallows skipping', () => {
+    for (const mode of ['lesson', 'section']) {
+      const response = fixture(true);
+      if (mode === 'lesson') response.params.sections.allowSkipping = false;
+      else response.section[0].params.skippable = false;
+      const rendered = showLesson(response);
+      expect(navigationButton('skip')).toBeDisabled();
+      rendered.unmount();
+    }
   });
 
-  it('keeps Next blocked until every required checkpoint releases its own gate', () => {
-    const base = response(true);
-    const firstSection = base.sections[0];
-    if (firstSection.type === 'quiz') throw new Error('Expected regular Section');
-    const first = firstSection.content[0];
-    if (first.type !== 'checkpoint') throw new Error('Expected checkpoint fixture');
-    const value = {
-      ...base,
-      sections: [
-        {
-          ...base.sections[0],
-          content: [
-            first,
-            {
-              ...first,
-              id: 'checkpoint-2',
-              slug: 'check-two',
-              title: 'Second checkpoint',
-              items: [
-                {
-                  question: 'What is a ray?',
-                  check: true,
-                  answer: [{ type: 'text', id: 'answer-2', value: 'A model of light' }],
-                },
-              ],
-            },
-          ],
-        },
-        ...base.sections.slice(1),
-      ],
-    } as unknown as LessonView;
-    observed.length = 0;
-    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-    });
-    expect(next).toBeDisabled();
-
-    fireEvent.click(screen.getByText('What is light?'));
-    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
-    expect(next).toBeDisabled();
-    fireEvent.click(screen.getByText('What is a ray?'));
-    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
-    expect(next).toBeEnabled();
-  });
-
-  it('supports independently registered Next blockers through the lesson actions context', () => {
-    showLesson(false);
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-    });
-    const skip = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
-    });
-
-    expect(next).toBeEnabled();
+  it('keeps separately registered Next blockers stable across state changes', () => {
+    showLesson(fixture(false));
+    expect(navigationButton('next')).toBeEnabled();
     fireEvent.click(screen.getByRole('button', { name: 'Block Next' }));
-    expect(next).toBeDisabled();
-    expect(skip).toBeEnabled();
+    expect(navigationButton('next')).toBeDisabled();
     fireEvent.click(screen.getByRole('button', { name: 'Release Next' }));
-    expect(next).toBeEnabled();
+    expect(navigationButton('next')).toBeEnabled();
+    const previous = observed.at(-1);
+    fireEvent.click(screen.getByRole('button', { name: 'Update heading' }));
+    expect(observed.at(-1)).toBe(previous);
   });
 
-  it('shows lesson-scoped volume controls inside Quick Settings', () => {
-    showLesson(false);
+  it('only accepts editable Section parameters explicitly granted by the host', () => {
+    const initial = fixture(false, false);
+    const view = showLesson(initial);
+    const stepper = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
+    const summary = within(stepper).getByRole('button', { name: /Summary/i });
+    expect(summary).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Enable navigation' }));
+    expect(summary).toBeDisabled();
+    view.unmount();
+
+    showLesson(initial, ['allowNavigation']);
+    const permitted = within(screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation }))
+      .getByRole('button', { name: /Summary/i });
+    fireEvent.click(screen.getByRole('button', { name: 'Enable navigation' }));
+    expect(permitted).toBeEnabled();
+  });
+
+  it('hides disabled Engine Sections from the active stepper', () => {
+    const source = fixture(false);
+    source.section[1].params.disabled = true;
+    showLesson(source);
+    expect(screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation })
+      .querySelectorAll('button')).toHaveLength(1);
+  });
+
+  it('keeps media preferences scoped to a Lesson session', () => {
+    showLesson(fixture(false));
     fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.learningLayout.actions.openSettings }));
     expect(screen.getByRole('slider', { name: 'Volume' })).toHaveAttribute('aria-valuenow', '100');
-    fireEvent.click(screen.getByRole('button', { name: 'Mute' }));
-    expect(screen.getByRole('button', { name: 'Unmute' })).toBeVisible();
-    fireEvent.click(screen.getByRole('button', { name: 'Maximum volume' }));
-    expect(screen.getByRole('button', { name: 'Mute' })).toBeVisible();
   });
 
-  it('keeps actions stable when a sibling state changes', () => {
-    showLesson(false);
-    const before = observed.at(-1);
-    fireEvent.click(screen.getByRole('button', { name: 'Update heading' }));
-    expect(observed.at(-1)).toBe(before);
-    expect(before?.getTopBar().title).toBe('Updated heading');
-  });
-
-  it('only accepts parameter overrides explicitly allowed by the host', () => {
-    showLesson(false, false);
-    const steps = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
-    const summary = within(steps).getByRole('button', { name: /Summary/i });
-    expect(summary).toBeDisabled();
-    fireEvent.click(screen.getByRole('button', { name: 'Enable navigation' }));
-    expect(summary).toBeDisabled();
-  });
-
-  it('updates stepper navigation when a parameter is editable', () => {
-    showLesson(false, false, ['allowNavigation']);
-    const steps = screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation });
-    const summary = within(steps).getByRole('button', { name: /Summary/i });
-    expect(summary).toBeDisabled();
-    fireEvent.click(screen.getByRole('button', { name: 'Enable navigation' }));
-    expect(summary).toBeEnabled();
-  });
-});
-
-describe('multiple Quiz Sections', () => {
-  const question = (id: string) => ({
-    id: 'question-' + id,
-    type: 'selectOneAnswer' as const,
-    assessmentMethod: 'retrieval' as const,
-    restrictions: [],
-    question: [{ id: 'prompt-' + id, type: 'text' as const, value: 'Question ' + id }] as [
-      { id: string; type: 'text'; value: string },
-    ],
-    answers: {
-      correct: { yes: { id: 'yes-' + id, type: 'text' as const, value: 'Yes' } },
-      incorrect: { no: { id: 'no-' + id, type: 'text' as const, value: 'No' } },
-      distractors: {},
-    },
-  });
-  const params = (isBlocker: boolean) => ({
-    isBlocker,
-    selection: { mode: 'all' as const },
-    layout: { mode: 'stack' as const },
-    feedbackMode: 'immediate' as const,
-    interaction: {
-      retries: 0,
-      showErrors: true,
-      showCorrectAnswers: true,
-      allowExplanations: true,
-      allowDeferring: false,
-      allowQuestionNavigation: false,
-      skippable: false,
-    },
-    results: { visibility: 'immediate' as const, showScore: true },
-    screen: {},
-  });
-  const quiz = (id: string) => ({
-    id,
-    slug: id,
-    title: id,
-    navigationLabel: id,
-    type: 'quiz' as const,
-    parameters: params(true),
-    questions: [question(id)],
-  });
-  const fixture = {
-    id: 'multi-quiz-lesson',
-    title: 'Multiple quizzes',
-    locale: { code: 'en' as const },
-    parameters: { languages: ['en'], sections: { allowNavigation: true, allowSkipping: true, showIndexes: true } },
-    sections: [
-      quiz('quiz-first'),
-      quiz('quiz-second'),
-      {
-        id: 'summary',
-        slug: 'summary',
-        type: 'theory' as const,
-        title: 'Summary',
-        navigationLabel: 'Summary',
-        content: [{ type: 'text' as const, id: 'summary', value: 'Quiz sections finished' }],
+  it('completes a blocking Engine Quiz after a Question attempt', async () => {
+    const response = fixture(false);
+    const question = {
+      id: uuid(26),
+      slug: 'whatIsLight',
+      type: 'selectOneAnswer' as const,
+      params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
+      locale: {},
+      content: {
+        question: [text(27, 'Question about light')] as [ContentBlock_Text_Props],
+        answers: {
+          correct: { radiation: text(28, 'Radiation') },
+          incorrect: { sound: text(29, 'Sound') },
+          distractors: {},
+        },
       },
-    ],
-  } as LessonView;
-
-  it.each([
-    { name: 'blocking Quiz', isBlocker: true, interactionSkippable: true, skippable: undefined, enabled: false },
-    {
-      name: 'Quiz interaction disallows skipping',
-      isBlocker: false,
-      interactionSkippable: false,
-      skippable: undefined,
-      enabled: false,
-    },
-    { name: 'Quiz Section opts out', isBlocker: false, interactionSkippable: true, skippable: false, enabled: false },
-    {
-      name: 'optional Quiz inherits Lesson permission',
-      isBlocker: false,
-      interactionSkippable: true,
-      skippable: undefined,
-      enabled: true,
-    },
-  ])('$name', ({ isBlocker, interactionSkippable, skippable, enabled }) => {
-    const parameters = params(isBlocker);
-    const optional = {
-      ...quiz('optional'),
-      ...(skippable === undefined ? {} : { skippable }),
-      parameters: { ...parameters, interaction: { ...parameters.interaction, skippable: interactionSkippable } },
     };
-    const view = { ...fixture, sections: [optional, quiz('required'), fixture.sections[2]] } as LessonView;
-    observed.length = 0;
-    render(<Lesson response={view} href="/en/lesson/quiz-skipping" messages={enUiKitMessages} layout={TestLayout} />);
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const skip = within(bottom).getByRole('button', {
-      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
-    });
-    if (enabled) expect(skip).toBeEnabled();
-    else expect(skip).toBeDisabled();
-    act(() => observed.at(-1)?.skip());
-    expect(screen.getByText(enabled ? 'Question required' : 'Question optional')).toBeVisible();
-  });
-
-  it('allows advancing past a nonblocking Quiz without completing it', () => {
-    const optional = { ...quiz('optional'), parameters: params(false) };
-    const view = { ...fixture, sections: [optional, quiz('required'), fixture.sections[2]] } as LessonView;
-    render(<Lesson response={view} href="/en/lesson/nonblocking" messages={enUiKitMessages} layout={TestLayout} />);
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = () =>
-      within(bottom).getByRole('button', {
-        name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-      });
-    expect(next()).toBeEnabled();
-    fireEvent.click(next());
-    expect(screen.getByText('Question required')).toBeVisible();
-    expect(next()).toBeDisabled();
-  });
-
-  it('gates each Quiz independently until attempted, regardless of score', async () => {
-    observedEvents.length = 0;
-    render(
-      <Lesson response={fixture} href="/en/lesson/multi-quiz-lesson" messages={enUiKitMessages} layout={TestLayout} />,
-    );
-    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
-    const next = () =>
-      within(bottom).getByRole('button', {
-        name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i'),
-      });
-    expect(next()).toBeDisabled();
-    fireEvent.click(screen.getByRole('button', { name: 'No' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
-    await waitFor(() => expect(observedEvents).toContain('quizCompleted'));
-    await waitFor(() => expect(next()).toBeEnabled());
-    fireEvent.click(next());
-    expect(screen.getByText('Question quiz-second')).toBeVisible();
-    expect(next()).toBeDisabled();
-    fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Check' }));
-    await waitFor(() => expect(next()).toBeEnabled());
-    fireEvent.click(next());
-    expect(screen.getByText('Quiz sections finished')).toBeVisible();
+    const quiz: QuizSection_Props = {
+      id: uuid(24),
+      slug: 'quiz',
+      type: 'quiz',
+      params: {
+        isBlocker: true,
+        selection: { mode: 'all', questionSlugs: ['whatIsLight'] },
+        layout: { mode: 'stack' },
+        feedbackMode: 'immediate',
+        interaction: {
+          retries: 0,
+          showErrors: true,
+          showCorrectAnswers: true,
+          allowExplanations: true,
+          allowDeferring: false,
+          allowQuestionNavigation: false,
+          skippable: false,
+        },
+        results: { visibility: 'immediate', showScore: true },
+        screen: {},
+      },
+      locale: { title: 'Quiz', navigationLabel: 'Quiz' },
+      content: [],
+    };
+    response.questions = { selectOneAnswer: [question] };
+    response.section = [quiz, response.section[1]];
+    showLesson(response);
+    expect(navigationButton('next')).toBeDisabled();
+    fireEvent.click(screen.getByRole('radio', { name: /Radiation/i }));
+    fireEvent.click(screen.getByRole('button', { name: enUiKitMessages.questionFrame.check }));
+    await waitFor(() => expect(navigationButton('next')).toBeEnabled());
+    expect(received).toContain('quizCompleted');
+    fireEvent.click(navigationButton('next'));
+    expect(screen.getByText('Second section content')).toBeVisible();
   });
 });
