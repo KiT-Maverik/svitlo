@@ -4,23 +4,23 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import ts from 'typescript';
 
-const taxonomyTypes = new Set(['SkillId']);
-const localizationContracts = new Set([
-  'DEFAULT_SUPPORTED_LANGUAGES',
-  'FALLBACK_LANGUAGE',
-  'FALLBACK_LOCALE',
-  'TextDirection',
-  'LanguageDefinition',
-  'AdditionalLanguages',
-  'AdditionalLanguage',
-  'DefaultSupportedLanguage',
-  'SupportedLanguage',
-  'Locale',
-  'LanguageCode',
-  'LanguageFor',
-  'LocalizedContent',
-  'LanguageConfiguration',
+// Symbols without canonical Engine exports must be migrated by their owners.
+// Never generate a reference to an unavailable package or fabricate an alias.
+const unresolvedLegacySymbols = new Map([
+  ['taxonomy', new Set(['SkillId'])],
+  [
+    'localization',
+    new Set([
+      'AdditionalLanguages',
+      'AdditionalLanguage',
+      'SupportedLanguage',
+      'LanguageFor',
+      'LocalizedContent',
+      'LanguageConfiguration',
+    ]),
+  ],
 ]);
+const runtimeSubpaths = new Set(['localization', 'schemas', 'types', 'utils']);
 const subpaths = new Set([
   'builders',
   'content',
@@ -48,66 +48,36 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
     const subpath = module.text.slice(prefix.length);
     if (subpath === 'build' || subpath === 'runtime') return;
     if (!subpaths.has(subpath)) throw new Error(filename + ': unsupported Engine import ' + module.text);
-    const contract =
-      subpath === 'content'
-        ? '@svitlo/contracts/content'
-        : subpath === 'taxonomy'
-          ? '@svitlo/contracts/taxonomy'
-          : subpath === 'localization'
-            ? '@svitlo/contracts/localization'
-            : null;
-    const ownedTypes =
-      subpath === 'taxonomy' ? taxonomyTypes : subpath === 'localization' ? localizationContracts : null;
-    const runtimeSubpaths = new Set(['localization', 'schemas', 'types', 'utils']);
-    let target =
-      subpath === 'content'
-        ? contract
-        : runtimeSubpaths.has(subpath)
-          ? '@svitlo/engine/runtime'
-          : '@svitlo/engine/build';
+    // The former content subpath exposed contracts that are not all part of
+    // today's Engine API. Their individual consumers need deliberate migration.
+    if (subpath === 'content') {
+      throw new Error(filename + ': manual migration required for ' + module.text);
+    }
 
-    if (ownedTypes && declaration) {
-      const isImport = ts.isImportDeclaration(declaration);
-      const members = isImport ? declaration.importClause?.namedBindings : declaration.exportClause;
-      const named = members && (ts.isNamedImports(members) || ts.isNamedExports(members)) ? members.elements : null;
-      if (named) {
-        const contracts = [];
-        const engine = [];
-        for (const element of named) {
-          const name = (element.propertyName ?? element.name).text;
-          (ownedTypes.has(name) ? contracts : engine).push(element);
+    const isImport = declaration && ts.isImportDeclaration(declaration);
+    const members = declaration
+      ? isImport
+        ? declaration.importClause?.namedBindings
+        : ts.isExportDeclaration(declaration)
+          ? declaration.exportClause
+          : null
+      : null;
+    const named = members && (ts.isNamedImports(members) || ts.isNamedExports(members)) ? members.elements : null;
+    const unresolved = unresolvedLegacySymbols.get(subpath);
+    if (named && unresolved) {
+      for (const element of named) {
+        const name = (element.propertyName ?? element.name).text;
+        if (unresolved.has(name)) {
+          throw new Error(filename + ': manual migration required for ' + name + ' from ' + module.text);
         }
-        if (contracts.length && engine.length) {
-          if (isImport && declaration.importClause?.name) {
-            throw new Error(filename + ': unsupported mixed default import from ' + module.text);
-          }
-          const allType = isImport ? declaration.importClause?.isTypeOnly : declaration.isTypeOnly;
-          const verb = isImport ? 'import' : 'export';
-          const render = (members, path) =>
-            verb +
-            ' ' +
-            (allType ? 'type ' : '') +
-            '{ ' +
-            members
-              .map(item => (allType ? item.getText(file).replace(/^type\s+/, '') : item.getText(file)))
-              .join(', ') +
-            ' } from ' +
-            source[module.getStart(file)] +
-            path +
-            source[module.end - 1] +
-            ';';
-          replace(
-            declaration.getStart(file),
-            declaration.end,
-            render(contracts, contract) +
-              '\n' +
-              render(engine, runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build'),
-          );
-          return;
-        }
-        if (contracts.length && !engine.length) target = contract;
       }
     }
+    // Re-exporting the entire legacy namespace cannot prove which individual
+    // types are supported by the new public surface.
+    if (unresolved && declaration && ts.isExportDeclaration(declaration) && !declaration.exportClause) {
+      throw new Error(filename + ': manual migration required for wildcard export from ' + module.text);
+    }
+    const target = runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build';
     replace(module.getStart(file) + 1, module.end - 1, target);
   }
 
