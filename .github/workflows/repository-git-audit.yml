@@ -1,0 +1,53 @@
+name: Repository Git audit
+
+# Opt-in diagnostics only: Actions UI or an authorized /repo-audit issue/PR comment.
+on:
+  workflow_dispatch:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-git-audit-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    name: Repository Git audit / report
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'issue_comment' &&
+       github.event.comment.body == '/repo-audit' &&
+       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out full default-branch history and refs
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Verify the read-only audit collector
+        run: node --test scripts/gitAudit/git-audit.spec.mjs
+
+      - name: Analyze reachable objects and snapshot history
+        run: node scripts/gitAudit/git-audit.mjs --output "$RUNNER_TEMP/git-audit"
+
+      - name: Publish human-readable run summary
+        run: cat "$RUNNER_TEMP/git-audit/git-audit.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload full JSON and Markdown reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: repository-git-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/git-audit/
+          if-no-files-found: error
+          retention-days: 7
