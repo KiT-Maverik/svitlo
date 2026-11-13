@@ -1,17 +1,14 @@
 # Svitlo Engine
 
-`@svitlo/engine` contains framework-independent entity configurators, localization and publication utilities, validation, and Assessment Method data. Shared content contracts live in `@svitlo/contracts`.
+Engine publishes two distinct responsibilities:
 
-## Source layout
+- `@svitlo/engine/build` — Node/build-time authoring, `define*` factories, validation and publication.
+- `@svitlo/engine/runtime` — framework-independent runtime assemblers, schemas, types and pure helpers.
 
-- `lessons/` contains the existing Lesson, Section, and ContentBlock creators and publication helpers.
-- `configurators/` contains the schema-backed `define*` factories (including the simplified Skill and Assessment Method configurators).
-- `configurators_old/` contains legacy Course/Module/Chapter/Episode builders, kept during migration.
-- `utils/` contains language and publishing utilities; `data/` contains Assessment Method data; `types/` contains internal projection helpers such as `DeepPartial`.
-- Shared language types and the locale catalog live in `@svitlo/contracts`.
+Published JSON resources are assembled at runtime without loading authoring factories. Build may import runtime definitions; runtime must not import build factories, generators, `*.data.ts` or Node filesystem APIs.
 
-`index.ts` is the sole public import entrypoint: `@svitlo/engine`. Browser and React Server conditions use `runtime.ts` to exclude Node-only publication utilities, while Node authoring scripts use `index.ts`.
+Use `import { defineSkill } from '@svitlo/engine/build'` in authored textbook files and `import { assembleSkills } from '@svitlo/engine/runtime'` in applications. The shared app ESLint configuration rejects `/build` imports.
 
-Lesson creators publish invariant base resources and language-specific locale patches; consumers combine them to assemble responses. See [Lesson](../../studio/docs/entities/lesson.md).
+The browser graph check `node scripts/check-engine-runtime-graph.mjs` bundles `shared/engine/runtime.ts` for the browser, rejecting Node dependencies and build-only input modules. The Engine test script invokes this guard.
 
-Internal aliases are configured in `tsconfig.json` and `package.json`.
+Migration from legacy root imports is provided by `node scripts/migrate-engine-entrypoints.mjs --write`, with `--check` for verification. The root export is temporarily retained in the in-progress Draft branch until all consumers are migrated; it must be removed before merging #474.
