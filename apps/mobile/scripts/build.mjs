@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import * as esbuild from 'esbuild';
 import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, relative, resolve, join } from 'node:path';
+import { relative, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const mobileRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
