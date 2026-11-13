@@ -32,7 +32,7 @@ function run(command, args) {
     throw new Error(command + ' ' + args.join(' ') + ' failed: ' + (result.error?.message ?? result.status));
   }
 }
-for (const workspace of ['+@svitlo/contracts', '@svitlo/engine', '@svitlo/ui-kit', '@svitlo/adapter-electron']) {
+for (const workspace of ['@svitlo/engine', '@svitlo/ui-kit', '@svitlo/adapter-electron']) {
   run(npm, ['run', 'package:build', '--workspace', workspace]);
 }
 run(npm, ['run', 'package:build', '--workspace', selected.package]);

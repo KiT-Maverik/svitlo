@@ -10,7 +10,6 @@
     "runtime.ts",
     "configurators/**/*.ts",
     "assemblers/**/*.ts",
-    "configurators_old/**/*.ts",
     "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",
