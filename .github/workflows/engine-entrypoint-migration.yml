@@ -41,6 +41,7 @@ jobs:
           verify node scripts/migrate-shared-imports.mjs --check
           verify node scripts/check-package-boundaries.mjs
           verify node scripts/check-extraction-readiness.mjs
+          verify node --test apps/desktop/tests/engine-runtime-imports.spec.mjs
           verify npm run code:lint:check --workspace @svitlo/desktop
           verify npm run code:lint:check --workspace @svitlo/platform
           verify npm run code:lint:check --workspace @svitlo/web
