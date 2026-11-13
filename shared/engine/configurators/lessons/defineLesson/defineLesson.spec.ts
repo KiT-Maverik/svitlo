@@ -74,14 +74,14 @@ describe('Configurators', () => {
       });
 
       test('Unscoped children still validate each requested language before publishing Lesson Props', () => {
-        const sparseText = defineText({
+        const sparseText = defineText<'sparseText', ['uk']>({
           id: id('81'),
           slug: 'sparseText',
           type: 'text',
           params: {},
           locale: { value: { uk: 'Тільки українська' } },
         });
-        const unscopedSection = defineContentSection({
+        const unscopedSection = defineContentSection<'unscoped', { sparseText: typeof sparseText }, ['uk']>({
           id: id('82'),
           slug: 'unscoped',
           type: 'content',
@@ -100,7 +100,13 @@ describe('Configurators', () => {
             sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
           },
           locale: { title: 'Lesson' },
-          section: { items: { unscoped: unscopedSection }, order: ['unscoped'] },
+          section: {
+            items: {
+              // @ts-expect-error Intentionally bypass the incompatible child scope to test runtime validation.
+              unscoped: unscopedSection,
+            },
+            order: ['unscoped'],
+          },
           flashcards: { items: {}, order: [] },
         });
 

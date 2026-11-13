@@ -12,11 +12,11 @@ describe('Configurators', () => {
         slug: Slug,
         id: string,
         locale: {
-          src: string | Partial<Record<'en' | 'uk', string>>;
-          alt: string | Partial<Record<'en' | 'uk', string>>;
-          caption?: string | Partial<Record<'en' | 'uk', string>>;
+          src: string | Record<'en' | 'uk', string>;
+          alt: string | Record<'en' | 'uk', string>;
+          caption?: string | Record<'en' | 'uk', string>;
         },
-      ) => defineCarouselSlide({ id, slug, type: 'carouselSlide', locale });
+      ) => defineCarouselSlide<Slug, ['en', 'uk']>({ id, slug, type: 'carouselSlide', locale });
 
       const example = () => {
         const first = slide('first', ids[1], {
@@ -24,7 +24,7 @@ describe('Configurators', () => {
           alt: 'First',
         });
         const second = slide('second', ids[2], { src: 'https://example.com/b.png', alt: 'Second' });
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<'gallery', { first: typeof first; second: typeof second }, ['en', 'uk']>({
           id: ids[0],
           slug: 'gallery',
           type: 'carousel',
@@ -61,7 +61,7 @@ describe('Configurators', () => {
 
       test('Carousel keeps invariant slides in base with no redundant locale arrays', () => {
         const first = slide('first', ids[1], { src: 'https://example.com/base.png', alt: 'Base' });
-        const carousel = defineCarousel({
+        const carousel = defineCarousel<'gallery', { first: typeof first }, ['en', 'uk']>({
           id: ids[0],
           slug: 'gallery',
           type: 'carousel',
@@ -134,7 +134,7 @@ describe('Configurators', () => {
         const { carousel, first } = example();
         assert.throws(
           () =>
-            defineCarousel({
+            defineCarousel<'invalid', { different: typeof first }, ['en', 'uk']>({
               id: ids[0],
               slug: 'invalid',
               type: 'carousel',

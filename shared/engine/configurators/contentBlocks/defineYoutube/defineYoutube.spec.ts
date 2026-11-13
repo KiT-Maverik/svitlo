@@ -10,7 +10,7 @@ describe('Configurators', () => {
     describe('defineYoutube', () => {
       const config = () => ({
         id,
-        slug: 'watch',
+        slug: 'watch' as const,
         type: 'youtube' as const,
         params: { mode: 'link' as const },
         locale: {
@@ -20,7 +20,7 @@ describe('Configurators', () => {
       });
 
       test('retains the mode and the requested accessible link label', () => {
-        const youtube = defineYoutube(config());
+        const youtube = defineYoutube<'watch', ['en', 'uk']>(config());
         const resource = youtube.build.props(scope);
         assert.equal(resource.base.params.mode, 'link');
         assert.equal(resource.base.locale?.href, 'https://www.youtube.com/watch?v=example');
@@ -28,7 +28,7 @@ describe('Configurators', () => {
       });
 
       test('allows a valid mode override but rejects invalid values', () => {
-        const youtube = defineYoutube(config());
+        const youtube = defineYoutube<'watch', ['en', 'uk']>(config());
         const before = youtube.build.props(scope);
         const patch = youtube.build.overrides({ params: { mode: 'embed' } }, scope);
         assert.deepEqual(patch, { base: { params: { mode: 'embed' } }, locale: undefined });

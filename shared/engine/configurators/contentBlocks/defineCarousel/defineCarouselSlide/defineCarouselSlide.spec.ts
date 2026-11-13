@@ -9,7 +9,7 @@ describe('Configurators', () => {
   describe('ContentBlocks', () => {
     describe('defineCarouselSlide', () => {
       test('publishes only the requested alternate text alongside its invariant image', () => {
-        const slide = defineCarouselSlide({
+        const slide = defineCarouselSlide<'opening', ['en', 'uk']>({
           id,
           slug: 'opening',
           type: 'carouselSlide',
@@ -21,7 +21,7 @@ describe('Configurators', () => {
       });
 
       test('publishes sparse patches without changing the source', () => {
-        const slide = defineCarouselSlide({
+        const slide = defineCarouselSlide<'opening', ['en', 'uk']>({
           id,
           slug: 'opening',
           type: 'carouselSlide',

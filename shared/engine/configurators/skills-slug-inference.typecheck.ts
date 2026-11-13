@@ -1,13 +1,12 @@
 import { configuratorArrayToSlugMap } from './configuratorArrayToSlugMap';
 import { defineSkill, type Skill_Configurator } from './skills/defineSkill/defineSkill';
-import type { Skill_Config } from './skills/defineSkill/defineSkill.schemas';
 import { defineSkillGroup } from './skills/defineSkillGroup/defineSkillGroup';
 import { defineSkillDomain } from './skills/defineSkillDomain/defineSkillDomain';
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 type Expect<T extends true> = T;
 
-declare const localized: Skill_Config['name'];
+declare const localized: string;
 declare const dynamicSlug: string;
 
 const fields = {

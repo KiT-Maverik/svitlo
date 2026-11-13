@@ -10,7 +10,7 @@ describe('Configurators', () => {
   describe('Sections', () => {
     describe('defineQuizSection', () => {
       const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
-      const prompt = defineText({
+      const prompt = defineText<'prompt', ['en', 'uk']>({
         id: id('b1'),
         slug: 'prompt',
         type: 'text',
@@ -34,7 +34,7 @@ describe('Configurators', () => {
         screen: { starting: { content: ['prompt'] } },
       };
       const makeQuiz = () =>
-        defineQuizSection({
+        defineQuizSection<'quiz', { prompt: typeof prompt }, ['en', 'uk']>({
           type: 'quiz',
           id: id('b4'),
           slug: 'quiz',
@@ -44,7 +44,7 @@ describe('Configurators', () => {
         });
 
       test('Content Section rejects authored raw blocks and allows valid build overrides', () => {
-        const section = defineContentSection({
+        const section = defineContentSection<'intro', { prompt: typeof prompt }, ['en', 'uk']>({
           type: 'content',
           id: id('b2'),
           slug: 'intro',
@@ -140,7 +140,7 @@ describe('Configurators', () => {
         );
         assert.throws(
           () =>
-            defineQuizSection({
+            defineQuizSection<'badQuiz', { prompt: typeof prompt }, ['en', 'uk']>({
               type: 'quiz',
               id: id('b5'),
               slug: 'badQuiz',
@@ -162,7 +162,7 @@ describe('Configurators', () => {
         });
         assert.throws(
           () =>
-            defineQuizSection({
+            defineQuizSection<'badDisabledQuiz', { prompt: typeof disabledPrompt }, ['en', 'uk']>({
               type: 'quiz',
               id: id('b8'),
               slug: 'badDisabledQuiz',
@@ -221,7 +221,7 @@ describe('Configurators', () => {
           params: {},
           locale: { value: 'Unreferenced' },
         });
-        const quiz = defineQuizSection({
+        const quiz = defineQuizSection<'withExtra', { prompt: typeof prompt; other: typeof other }, ['en', 'uk']>({
           type: 'quiz',
           id: id('b9'),
           slug: 'withExtra',
@@ -241,7 +241,7 @@ describe('Configurators', () => {
 
       test('Quiz ending success/fail/retry screens must not target effectively disabled ContentBlocks', () => {
         for (const location of ['success', 'fail', 'retry'] as const) {
-          const quiz = defineQuizSection({
+          const quiz = defineQuizSection<'endingQuiz', { prompt: typeof prompt }, ['en', 'uk']>({
             type: 'quiz',
             id: id('c1'),
             slug: 'endingQuiz',

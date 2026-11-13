@@ -10,7 +10,7 @@ describe('Configurators', () => {
     describe('defineVideo', () => {
       const config = () => ({
         id,
-        slug: 'clip',
+        slug: 'clip' as const,
         type: 'video' as const,
         params: {},
         locale: {
@@ -21,7 +21,7 @@ describe('Configurators', () => {
       });
 
       test('keeps accessible labels localized and media paths invariant', () => {
-        const video = defineVideo(config());
+        const video = defineVideo<'clip', ['en', 'uk']>(config());
         const resource = video.build.props(scope);
         assert.equal(resource.base.locale?.fileLocation, 'https://example.org/clip.mp4');
         assert.equal(resource.base.locale?.poster, 'https://example.org/preview.png');
@@ -29,7 +29,7 @@ describe('Configurators', () => {
       });
 
       test('keeps a localized label override sparse and identity immutable', () => {
-        const video = defineVideo(config());
+        const video = defineVideo<'clip', ['en', 'uk']>(config());
         const before = video.build.props(scope);
         const patch = video.build.overrides({ locale: { label: { uk: 'Відеоурок' } } }, scope);
         assert.deepEqual(patch, { base: {}, locale: { uk: { locale: { label: 'Відеоурок' } } } });

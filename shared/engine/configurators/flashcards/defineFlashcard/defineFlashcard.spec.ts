@@ -14,21 +14,21 @@ describe('Configurators', () => {
   describe('Flashcards', () => {
     describe('defineFlashcard', () => {
       const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
-      const front = defineText({
+      const front = defineText<'front', ['en', 'uk']>({
         type: 'text',
         id: id('a1'),
         slug: 'front',
         params: {},
         locale: { value: { en: 'What?', uk: 'Що?' } },
       });
-      const back = defineText({
+      const back = defineText<'back', ['en', 'uk']>({
         type: 'text',
         id: id('a2'),
         slug: 'back',
         params: {},
         locale: { value: { en: 'Answer', uk: 'Відповідь' } },
       });
-      const hint = defineText({
+      const hint = defineText<'hint', ['en', 'uk']>({
         type: 'text',
         id: id('a3'),
         slug: 'hint',
@@ -57,7 +57,7 @@ describe('Configurators', () => {
       const source = {
         type: 'flashcard' as const,
         id: id('a4'),
-        slug: 'lightCard',
+        slug: 'lightCard' as const,
         parameters: {
           tags: ['math'],
           flags: {
@@ -85,8 +85,27 @@ describe('Configurators', () => {
           hint: { items: { hint }, order: ['hint'] },
         },
       };
+      const defineBilingualFlashcard = (
+        config: Omit<typeof source, 'content'> & {
+          content: {
+            front: typeof source.content.front;
+            back: typeof source.content.back;
+            hint?: typeof source.content.hint;
+          };
+        },
+      ) =>
+        defineFlashcard<
+          typeof source.slug,
+          typeof source.content.front.items,
+          typeof source.content.back.items,
+          typeof source.content.hint.items,
+          typeof source.parameters.flags.items,
+          typeof source.parameters.relationships.items,
+          ['en', 'uk']
+        >(config);
+
       test('Flashcard composes ordered sides and named flags as JSON-only published Props', () => {
-        const card = defineFlashcard(source);
+        const card = defineBilingualFlashcard(source);
         assert.equal(card.content.front.items.front, front);
         assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.slug, 'lightCard');
         assert.deepEqual(
@@ -113,7 +132,7 @@ describe('Configurators', () => {
       });
 
       test('Flashcard applies independent side changes and sparse flag updates without mutating authored input', () => {
-        const card = defineFlashcard(source);
+        const card = defineBilingualFlashcard(source);
         const first = card.build.overrides(
           {
             content: { front: { items: { front: false }, additionalItems: { extra }, order: ['extra'] } },
@@ -156,7 +175,7 @@ describe('Configurators', () => {
       });
 
       test('Flashcard rejects invalid metadata, identity, duplicate flags, orphan ordering and empty mandatory side', () => {
-        const card = defineFlashcard(source);
+        const card = defineBilingualFlashcard(source);
         assert.throws(
           () => card.build.overrides({ slug: 'wrong' } as never, { languages: ['en', 'uk'] }),
           /Invalid Flashcard overrides/,
@@ -203,12 +222,13 @@ describe('Configurators', () => {
         );
         assert.throws(
           () =>
-            defineFlashcard({
+            defineBilingualFlashcard({
               ...source,
               parameters: {
                 ...source.parameters,
                 flags: {
-                  items: { ...source.parameters.flags.items, duplicate: { type: 'list', count: 3 } },
+                  // Intentionally add an invalid duplicate flag to exercise the runtime validator.
+                  items: { ...source.parameters.flags.items, duplicate: { type: 'list', count: 3 } } as never,
                   order: ['list', 'acronym', 'duplicate'],
                 },
               },
@@ -216,7 +236,7 @@ describe('Configurators', () => {
           /Duplicate built-in Flashcard flag/,
         );
         assert.throws(() =>
-          defineFlashcard({
+          defineBilingualFlashcard({
             ...source,
             content: {
               ...source.content,
@@ -232,7 +252,7 @@ describe('Configurators', () => {
 
       test('Flashcard permits absent hint and provides independent detached results', () => {
         const { hint: _hint, ...requiredContent } = source.content;
-        const card = defineFlashcard({ ...source, content: requiredContent });
+        const card = defineBilingualFlashcard({ ...source, content: requiredContent });
         assert.equal(card.build.props({ languages: ['en', 'uk'] }).base.content.hint, undefined);
         const original = card.build.props({ languages: ['en', 'uk'] });
         const changed = card.build.overrides({ parameters: { tags: ['other'] } }, { languages: ['en', 'uk'] });
@@ -242,7 +262,7 @@ describe('Configurators', () => {
       });
 
       test('Flashcard publishes selected languages only and checks each requested resolved Props', () => {
-        const card = defineFlashcard(source);
+        const card = defineBilingualFlashcard(source);
         const single = card.build.props({ languages: ['uk'] });
         assert.deepEqual(Object.keys(single.locale ?? {}), ['uk']);
         assert.equal(single.locale?.en, undefined);

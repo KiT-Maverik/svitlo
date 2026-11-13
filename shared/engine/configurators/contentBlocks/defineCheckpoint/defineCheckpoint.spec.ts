@@ -12,7 +12,7 @@ describe('Configurators', () => {
     describe('defineCheckpoint', () => {
       const ids = Array.from({ length: 10 }, (_, i) => 'b775647f-203d-481a-a1c7-4d331c779d6' + i);
       const text = <const Slug extends string>(id: string, slug: Slug, value: string | { en: string; uk: string }) =>
-        defineText({ id, slug, type: 'text', params: {}, locale: { value } });
+        defineText<Slug, ['en', 'uk']>({ id, slug, type: 'text', params: {}, locale: { value } });
 
       const makeItem = <const Slug extends string>(
         slug: Slug,
@@ -22,11 +22,12 @@ describe('Configurators', () => {
         value: string | { en: string; uk: string },
       ) => {
         const answer = text(answerId, 'answer', 'Invariant answer');
-        return defineCheckpointItem({
+        const question = text(questionId, 'question', value);
+        return defineCheckpointItem<Slug, { answer: typeof answer }, typeof question, ['en', 'uk']>({
           id,
           slug,
           type: 'checkpointItem',
-          question: text(questionId, 'question', value),
+          question,
           answer: { items: configuratorArrayToSlugMap([answer]), order: ['answer'] },
         });
       };
@@ -34,7 +35,7 @@ describe('Configurators', () => {
       const example = () => {
         const first = makeItem('first', ids[1], ids[2], ids[3], { en: 'First?', uk: 'Перше?' });
         const second = makeItem('second', ids[4], ids[5], ids[6], 'Second?');
-        const checkpoint = defineCheckpoint({
+        const checkpoint = defineCheckpoint<'review', { first: typeof first; second: typeof second }, ['en', 'uk']>({
           id: ids[0],
           slug: 'review',
           type: 'checkpoint',
@@ -192,7 +193,7 @@ describe('Configurators', () => {
         const base = { id: ids[0], slug: 'bad', type: 'checkpoint' as const, params: {}, locale: { title: 'Review' } };
         assert.throws(
           () =>
-            defineCheckpoint({
+            defineCheckpoint<string, { first: typeof first; second: typeof second }, ['en', 'uk']>({
               ...base,
               content: { items: configuratorArrayToSlugMap([first, second]), order: ['first'] },
             }),
@@ -200,7 +201,7 @@ describe('Configurators', () => {
         );
         assert.throws(
           () =>
-            defineCheckpoint({
+            defineCheckpoint<string, { first: typeof first }, ['en', 'uk']>({
               ...base,
               content: { items: { first }, order: [] },
             }),

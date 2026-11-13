@@ -12,8 +12,8 @@ describe('Configurators', () => {
       const makeText = <const Slug extends string>(
         id: string,
         slug: Slug,
-        value: string | { en?: string; uk?: string },
-      ) => defineText({ id, slug, type: 'text', params: {}, locale: { value } });
+        value: string | { en: string; uk: string },
+      ) => defineText<Slug, ['en', 'uk']>({ id, slug, type: 'text', params: {}, locale: { value } });
 
       const questionId = 'b775647f-203d-481a-a1c7-4d331c779d6a';
       const firstId = 'b775647f-203d-481a-a1c7-4d331c779d6b';
@@ -25,7 +25,12 @@ describe('Configurators', () => {
         const question = makeText(questionId, 'question', { en: 'Question?', uk: 'Питання?' });
         const first = makeText(firstId, 'first', 'Always visible');
         const second = makeText(secondId, 'second', { en: 'Second', uk: 'Другий' });
-        const item = defineCheckpointItem({
+        const item = defineCheckpointItem<
+          'example',
+          { first: typeof first; second: typeof second },
+          typeof question,
+          ['en', 'uk']
+        >({
           id: itemId,
           slug: 'example',
           type: 'checkpointItem',
