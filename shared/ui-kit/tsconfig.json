@@ -24,6 +24,6 @@
     "jsx": "react-jsx",
     "types": ["node", "vitest/globals"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "scripts/generateLocales.spec.ts"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "scripts/generateLocales/generateLocales.spec.ts"],
   "exclude": ["node_modules", "dist", ".test-build", "**/*.e2e.spec.ts"]
 }
