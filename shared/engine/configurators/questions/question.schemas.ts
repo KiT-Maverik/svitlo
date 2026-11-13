@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { DeepPartial, ChildrenSupporting } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import { disability_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators/common.schemas';
 import { contentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
@@ -56,7 +56,7 @@ export type QuestionMetadataOverrides<Config extends { params: object; locale: o
 >;
 
 /** Parent language coverage must be a subset of each nested ContentBlock's scope. */
-export type QuestionChildrenSupporting<Languages extends readonly LanguageCodes[], Content extends QuestionContent> = {
+export type QuestionChildrenSupporting<Languages extends readonly LanguageCode[], Content extends QuestionContent> = {
   question: { items: ChildrenSupporting<Languages, Content['question']['items']> };
   hint?: { items: ChildrenSupporting<Languages, NonNullable<Content['hint']>['items']> };
   explanation?: { items: ChildrenSupporting<Languages, NonNullable<Content['explanation']>['items']> };

@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 import {
   mergeForValidation,
   resolvePublicationLanguages,
@@ -31,17 +31,17 @@ import {
 type Block = ContentBlock_Configurator;
 type ChildResource = {
   base: Record<string, unknown>;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type LocaleBody = {
   locale?: DeepPartial<CodingTaskSection_Locale<'props'>>;
   content?: CodingTaskSection_PropsBase['content'];
 };
-type Files = Partial<Record<LanguageCodes, LocaleBody>>;
+type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: CodingTaskSection_MetadataOverrides['params'];
@@ -54,7 +54,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 /** Validate the effective Props for each explicitly requested publication locale. */
 const validateResolvedProps = (
   resource: Publication<unknown>,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
 ): void => {
   for (const language of languages) {
@@ -118,7 +118,7 @@ const validate = (config: CodingTaskSection_Config): void => {
 export const defineCodingTaskSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,
-  const Languages extends readonly LanguageCodes[] = [],
+  const Languages extends readonly LanguageCode[] = [],
 >(
   config: Omit<CodingTaskSection_Config, 'slug' | 'content'> & {
     slug: Slug;
@@ -147,7 +147,7 @@ export const defineCodingTaskSection = <
     const split = splitLocalizedFields(input);
     const files: Files = {};
     for (const [language, fields] of Object.entries(split.locale ?? {})) {
-      files[language as LanguageCodes] = { locale: fields as DeepPartial<CodingTaskSection_Locale<'props'>> };
+      files[language as LanguageCode] = { locale: fields as DeepPartial<CodingTaskSection_Locale<'props'>> };
     }
     return { invariant: split.base as DeepPartial<CodingTaskSection_Locale<'props'>>, files };
   };
@@ -155,7 +155,7 @@ export const defineCodingTaskSection = <
   const buildContent = (
     items: Record<string, Block>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -172,7 +172,7 @@ export const defineCodingTaskSection = <
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     ) as CodingTaskSection_PropsBase['content'];
-    const locales: Partial<Record<LanguageCodes, CodingTaskSection_PropsBase['content']>> = {};
+    const locales: Partial<Record<LanguageCode, CodingTaskSection_PropsBase['content']>> = {};
     for (const language of languages) {
       if (
         !entries.some(
@@ -199,7 +199,7 @@ export const defineCodingTaskSection = <
     const children = buildContent(initialItems, initialOrder, languages);
     const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(children.locales)) {
-      (files[language as LanguageCodes] ??= {}).content = entries;
+      (files[language as LanguageCode] ??= {}).content = entries;
     }
     const result = structuredClone({
       base: {
@@ -306,7 +306,7 @@ export const defineCodingTaskSection = <
         const built = buildContent(enabled, order, languages, childPatches);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
-          (files[language as LanguageCodes] ??= {}).content = entries;
+          (files[language as LanguageCode] ??= {}).content = entries;
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;
