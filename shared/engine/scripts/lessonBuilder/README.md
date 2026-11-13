@@ -82,6 +82,7 @@ From the repository root:
 npm run content:generate:lessons
 npm run content:check:lessons
 npm run test:unit:lesson-builder
+npm run content:check:yaml-schemas --workspace @svitlo/engine
 
 node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<book>/data/lessons/<bucket>/<uuid>
 node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source content/<book>/data/lessons/<bucket>/<uuid>
