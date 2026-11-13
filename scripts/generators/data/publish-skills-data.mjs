@@ -386,7 +386,7 @@ function options(args) {
     pkg.startsWith(path.join(repositoryRoot, 'content') + path.sep) && fs.existsSync(path.join(pkg, 'package.json')),
     'Expected a textbook package under content/',
   );
-  const output = outputOverride ? path.resolve(repositoryRoot, outputOverride) : path.join(pkg, 'public/data/skills');
+  const output = outputOverride ? path.resolve(repositoryRoot, outputOverride) : path.join(pkg, 'generated/skills');
   assert(output.startsWith(repositoryRoot + path.sep), 'Output must stay inside the repository');
   return { pkg, action, output };
 }
