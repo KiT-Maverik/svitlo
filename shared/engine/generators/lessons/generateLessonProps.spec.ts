@@ -1,11 +1,7 @@
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
-import os from 'node:os';
-import path from 'node:path';
 import test from 'node:test';
 
 import { defineLesson } from '../../configurators/lessons/defineLesson/defineLesson';
-import { writeLessonFiles } from '../../utils/generators/lessons/generateLessons.utils';
 import { renderLessonPropsFiles, type LessonPublicationEntry } from './generateLessonProps.utils';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
@@ -110,19 +106,23 @@ test('rejects malformed identities, malformed language keys, and broken locale b
   );
 });
 
-test('writes a complete publication atomically and clears stale files', () => {
-  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-props-lessons-'));
-  const output = path.join(root, 'generated', 'lessons');
-  try {
-    const files = renderLessonPropsFiles([entry()]);
-    fs.mkdirSync(output, { recursive: true });
-    fs.writeFileSync(path.join(output, 'stale.json'), '{}');
-    writeLessonFiles(output, files);
-    assert.equal(fs.existsSync(path.join(output, 'stale.json')), false);
-    assert.equal(fs.readFileSync(path.join(output, relative, 'uk.json'), 'utf8'), files.get(relative + '/uk.json'));
-    writeLessonFiles(output, files);
-    assert.equal(fs.readFileSync(path.join(output, relative, 'base.json'), 'utf8'), files.get(relative + '/base.json'));
-  } finally {
-    fs.rmSync(root, { recursive: true, force: true });
+test('renders deterministic, isolated publication snapshots with canonical relative paths', () => {
+  const first = renderLessonPropsFiles([entry()]);
+  const second = renderLessonPropsFiles([entry()]);
+
+  assert.notStrictEqual(first, second, 'Each render owns its output map');
+  assert.deepEqual([...first], [...second], 'Rebuilding the same Lesson produces identical bytes');
+  assert.deepEqual([...second.keys()], [
+    relative + '/base.json',
+    relative + '/en.json',
+    relative + '/uk.json',
+  ]);
+
+  for (const [filename, body] of second) {
+    assert.match(filename, /^[0-9a-f]\/[0-9a-f-]{36}\/(?:base|[a-z]{2})\.json$/);
+    assert.equal(body.endsWith('\n'), true, 'Publication JSON must end in a newline');
   }
+
+  first.clear();
+  assert.equal(second.size, 3, 'A previously returned map cannot mutate a later publication');
 });
