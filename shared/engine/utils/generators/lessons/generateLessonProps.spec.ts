@@ -35,11 +35,7 @@ const entry = (source = 'content/playground/first.ts'): LessonPublicationEntry =
 test('emits one base and Props-shaped language fragments at canonical UUID paths', () => {
   const publication = makeLesson().build.props({ languages: ['en', 'uk'] });
   const files = renderLessonPropsFiles([{ source: 'lesson.ts', publication }]);
-  assert.deepEqual([...files.keys()], [
-    relative + '/base.json',
-    relative + '/en.json',
-    relative + '/uk.json',
-  ]);
+  assert.deepEqual([...files.keys()], [relative + '/base.json', relative + '/en.json', relative + '/uk.json']);
   const base = JSON.parse(files.get(relative + '/base.json')!);
   assert.equal(base.id, id);
   assert.equal(base.type, 'lesson');
@@ -123,10 +119,7 @@ test('writes a complete publication atomically and clears stale files', () => {
     fs.writeFileSync(path.join(output, 'stale.json'), '{}');
     writeLessonFiles(output, files);
     assert.equal(fs.existsSync(path.join(output, 'stale.json')), false);
-    assert.equal(
-      fs.readFileSync(path.join(output, relative, 'uk.json'), 'utf8'),
-      files.get(relative + '/uk.json'),
-    );
+    assert.equal(fs.readFileSync(path.join(output, relative, 'uk.json'), 'utf8'), files.get(relative + '/uk.json'));
     writeLessonFiles(output, files);
     assert.equal(fs.readFileSync(path.join(output, relative, 'base.json'), 'utf8'), files.get(relative + '/base.json'));
   } finally {

@@ -59,15 +59,13 @@ export function renderLessonPropsFiles(entries: readonly LessonPublicationEntry[
 
     files.set(relative + '/base.json', json(publication.base, source + '/base'));
     if (publication.locale === undefined) continue;
-    if (
-      publication.locale === null ||
-      typeof publication.locale !== 'object' ||
-      Array.isArray(publication.locale)
-    ) {
+    if (publication.locale === null || typeof publication.locale !== 'object' || Array.isArray(publication.locale)) {
       throw new Error('Invalid Lesson locale publication: ' + source);
     }
 
-    for (const [language, body] of Object.entries(publication.locale).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))) {
+    for (const [language, body] of Object.entries(publication.locale).sort(([a], [b]) =>
+      a < b ? -1 : a > b ? 1 : 0,
+    )) {
       // Language codes are two-letter lower-case codes in the current Engine contract.
       if (!/^[a-z]{2}$/.test(language)) {
         throw new Error('Invalid Lesson language file name: ' + language + ' (' + source + ')');

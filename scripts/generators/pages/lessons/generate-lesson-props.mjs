@@ -11,12 +11,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import {
-  loadLessonData,
-  renderLessonPropsFiles,
-  resolveEntityPath,
-  writeLessonFiles,
-} from '@svitlo/engine';
+import { loadLessonData, renderLessonPropsFiles, resolveEntityPath, writeLessonFiles } from '@svitlo/engine';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage = 'Usage: --package content/<textbook> [--output <repo-relative-dir>] --write|--check';
@@ -114,10 +109,12 @@ function check(output, files) {
     }
   };
   visit(output);
-  const changed = [...files].filter(
-    ([relative, content]) =>
-      !actual.has(relative) || fs.readFileSync(path.join(output, relative), 'utf8') !== content,
-  ).map(([name]) => name);
+  const changed = [...files]
+    .filter(
+      ([relative, content]) =>
+        !actual.has(relative) || fs.readFileSync(path.join(output, relative), 'utf8') !== content,
+    )
+    .map(([name]) => name);
   const stale = [...actual].filter(name => !files.has(name));
   if (changed.length || stale.length) {
     throw new Error('Generated Lessons differ: ' + JSON.stringify({ changed, stale }));
