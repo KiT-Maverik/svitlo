@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import type { ContentBlock_Configurator } from './contentBlock.types';
 
 import { languageCode_Schema, localeText_Schema, nonTranslatableText_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators';
@@ -55,9 +54,3 @@ export const contentBlockConfigurator_Schema = z.custom<{
   },
   { message: 'Expected a ContentBlock configurator returned by define*, not a raw config' },
 );
-
-// The Checkpoint schema uses the structural type to avoid a recursive type alias.
-export const contentBlockChild_Schema = contentBlockConfigurator_Schema as unknown as z.ZodType<
-  ContentBlock_Configurator,
-  ContentBlock_Configurator
->;
