@@ -2,9 +2,10 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 
-import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
+import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
+
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { addUnifiedLocale } from '../../_shared__configurators';
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 
 type SceneValue = string | { [key: string]: SceneValue };
 
