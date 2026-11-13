@@ -15,3 +15,7 @@
 Lesson creators publish invariant base resources and language-specific locale patches; consumers combine them to assemble responses. See [Lesson](../../studio/docs/entities/lesson.md).
 
 Internal aliases are configured in `tsconfig.json` and `package.json`.
+
+## Resource generators
+
+Build-time Lesson and Course CLIs, serializers, and tests reside in `generators/lessons/` and `generators/courses/`. The textbook build invokes them directly. Root `scripts/generators/` only retains separate Skills orchestration until the Skills pipeline is consolidated; it must not duplicate the Lesson/Course CLIs. Node-only CLIs are not exposed through runtime package exports.

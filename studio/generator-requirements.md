@@ -4,8 +4,8 @@
 
 - Authoring `*.data.ts` exports stateless Engine configurators. The application
   never imports authoring data or invokes `build.props()` at runtime.
-- A build-time orchestration script discovers configurators and invokes their
-  `build.props({ languages })`. The Engine generators consume **completed**
+- An Engine-owned build-time CLI discovers configurators and invokes their
+  `build.props({ languages })`. Pure Engine serializers consume **completed**
   `{ base, locale }` publications; do not duplicate validation, reorder
   children, or reconstruct authoring patches in a serializer.
 - Runtime assemblers accept already-loaded published files and output Props
@@ -26,7 +26,7 @@ content/<textbook>/generated/
   courses/<course-uuid>/{base,<language>}.json
 ```
 
-`scripts/textbook-tooling/build.mjs` invokes the new generators and stages
+`scripts/textbook-tooling/build.mjs` invokes the Engine-owned generator CLIs and stages
 their output as `dist/static/data/{skills,lessons,courses}/...`, alongside
 separately compiled Scenes and textbook-owned static media. It records the
 actual output files in `dist/manifest.json`.

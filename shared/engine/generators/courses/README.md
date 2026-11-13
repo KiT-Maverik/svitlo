@@ -50,3 +50,5 @@ removes stale files from that directory, preserves other Course directories and
 unrelated public files, and supports read-only `check` mode.
 
 Tests: `node --test scripts/generators/data/publish-course-data.spec.mjs`.
+
+The CLI is Engine-owned at `shared/engine/generators/courses/generate-course-props.mjs`. It discovers authored Course configurations and invokes the renderer; there is no duplicate root `scripts/generators/` wrapper.

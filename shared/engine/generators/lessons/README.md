@@ -47,3 +47,5 @@ files without writing.
 
 The host copies the published files into `public/data/lessons` and the
 runtime assembler consumes one base file plus the selected locale file.
+
+The CLI is Engine-owned at `shared/engine/generators/lessons/generate-lesson-props.mjs`; there is no duplicate root `scripts/generators/` wrapper. The published JSON is staged by the textbook build.
