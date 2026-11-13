@@ -1,7 +1,6 @@
 import { z } from 'zod';
 
 import { identityBase_Schema } from '../../../_shared__configurators';
-import { contentBlockConfigurator_Schema } from '../../contentBlock.schemas';
 import { audio_Props_Schema } from '../../defineAudio';
 import type { ContentBlock_Audio_Configurator, ContentBlock_Audio_Props, ContentBlock_Audio_PropsBase } from '../../defineAudio';
 import { carousel_Props_Schema } from '../../defineCarousel';
@@ -59,20 +58,11 @@ const checkpointItemBase = identityBase_Schema.extend({
   check: z.literal(true).optional(),
 });
 
-/** Check only child boundaries here; each child validates its own authored internals. */
-const isAllowedConfigurator = (value: unknown, type?: string): boolean =>
-  contentBlockConfigurator_Schema.safeParse(value).success &&
-  value !== null &&
-  typeof value === 'object' &&
-  'type' in value &&
-  (type === undefined ? value.type !== 'checkpoint' : value.type === type);
-
+/** The owning CheckpointItem.validate() enforces child kinds and identity. */
 export const checkpointItem_Config_Schema = checkpointItemBase.extend({
-  question: z.custom<ContentBlock_Text_Configurator>(value => isAllowedConfigurator(value, 'text')),
+  question: z.custom<ContentBlock_Text_Configurator>(),
   answer: z.object({
-    items: z.record(z.string(), z.custom<Checkpoint_Allowed_Configurator>(
-      value => isAllowedConfigurator(value),
-    )),
+    items: z.record(z.string(), z.custom<Checkpoint_Allowed_Configurator>()),
     order: z.array(z.string()),
   }),
 });
