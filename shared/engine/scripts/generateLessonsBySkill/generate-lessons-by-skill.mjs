@@ -14,9 +14,9 @@ import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
-import { discoverLessons } from './generate-lesson-review-artifacts.mjs';
+import { discoverLessons } from '../generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs';
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const isUuid = value => typeof value === 'string' && UUID.test(value);

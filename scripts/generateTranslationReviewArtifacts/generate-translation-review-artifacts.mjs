@@ -11,16 +11,16 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 import ts from 'typescript';
-import { discoverLessons, generateLessonReviewArtifacts } from './generate-lesson-review-artifacts.mjs';
-import { generate as generateLessonsBySkill } from './generate-lessons-by-skill.mjs';
-import { generateAssessmentMethodsReviewArtifacts } from './generate-assessment-methods-reference.mjs';
+import { discoverLessons, generateLessonReviewArtifacts } from '../../shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs';
+import { generate as generateLessonsBySkill } from '../../shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs';
+import { generateAssessmentMethodsReviewArtifacts } from '../../shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs';
 
-const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.join(root, '.agent-ci-artifacts');
-const generator = path.join(root, 'scripts/generate-skills-taxonomy.mjs');
+const generator = path.join(root, 'shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs');
 
 if (process.argv.length !== 2) {
-  throw new Error('No modes or arguments: run "node scripts/generate-translation-review-artifacts.mjs"');
+  throw new Error('No modes or arguments: run "node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs"');
 }
 function unwrap(node) {
   while (node && (ts.isAsExpression(node) || ts.isSatisfiesExpression(node) || ts.isParenthesizedExpression(node))) {

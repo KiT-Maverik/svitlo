@@ -2,9 +2,9 @@
 /**
  * Read-only typed Lesson data → review Markdown. No published JSON or authored data changes.
  *
- * node scripts/generate-lessons-markdown.mjs --package content/playground \
+ * node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/playground \
  *   --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout
- * node scripts/generate-lessons-markdown.mjs --package content/playground \
+ * node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/playground \
  *   --locale uk --output .agent-ci-artifacts/lessons
  */
 import fs from 'node:fs';
@@ -13,10 +13,10 @@ import process from 'node:process';
 import Module from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lib/lesson-markdown.mjs';
+import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lesson-markdown.mjs';
 import { resolveEntityPath } from '@svitlo/engine';
 
-const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage =
   'Usage: --package content/<textbook> [--lesson <uuid>] --locale <language> (--stdout | --output <directory>)';
 

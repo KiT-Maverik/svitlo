@@ -3,8 +3,8 @@
  * PR-scoped Assessment Methods reference, statically assembled from canonical
  * UI Kit authored Assessment Method definitions.
  *
- * node scripts/generate-assessment-methods-reference.mjs --locale uk --stdout
- * node scripts/generate-assessment-methods-reference.mjs --locale uk \
+ * node shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs --locale uk --stdout
+ * node shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs --locale uk \
  *   --output .agent-ci-artifacts/assessment-methods
  *
  * This script does not execute authored TypeScript and never falls back to en.
@@ -15,7 +15,7 @@ import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const sourcePaths = Object.freeze({
   languages: 'shared/contracts/src/types/languages.ts',
   descriptions: 'shared/ui-kit/data/definitions/assessmentMethods',

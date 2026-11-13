@@ -10,7 +10,7 @@ import { describe, it } from 'node:test';
 
 import { discoverLessons, generate, loadLesson, parseArguments } from './generate-lessons-markdown.mjs';
 
-import { localizeReviewValue, renderLessonMarkdown, sourceIndex, supportedLanguages } from './lib/lesson-markdown.mjs';
+import { localizeReviewValue, renderLessonMarkdown, sourceIndex, supportedLanguages } from './lesson-markdown.mjs';
 
 function fixture() {
   const localized = (en, uk) => ({ en, uk });

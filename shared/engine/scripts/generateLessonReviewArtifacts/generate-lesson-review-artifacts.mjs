@@ -56,12 +56,12 @@ export function discoverLessons(root) {
 
 /**
  * Markdown generator contract (Agent 4):
- * node scripts/generate-lessons-markdown.mjs --package content/<book>
+ * node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/<book>
  *   --lesson <uuid> --locale <code> --stdout
  */
 export function generateLessonReviewArtifacts({ root, output, languages, manifest, saveManifest, run = spawnSync }) {
   const lessons = discoverLessons(root);
-  const generator = path.join(root, 'scripts/generate-lessons-markdown.mjs');
+  const generator = path.join(root, 'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs');
   const generatorAvailable = fs.existsSync(generator) && fs.lstatSync(generator).isFile();
   const result = { discoveredLessons: lessons.length, generated: 0, failures: 0 };
   fs.mkdirSync(path.join(output, 'lessons'), { recursive: true });
@@ -69,7 +69,7 @@ export function generateLessonReviewArtifacts({ root, output, languages, manifes
   if (lessons.length && !generatorAvailable) {
     manifest.failures.push({
       kind: 'lesson',
-      error: 'Missing scripts/generate-lessons-markdown.mjs (Agent 4 dependency)',
+      error: 'Missing shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs (Agent 4 dependency)',
     });
     saveManifest();
     result.failures++;

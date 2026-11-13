@@ -19,7 +19,7 @@ function createLesson(root, app = 'playground', id = 'd3048d21-8690-5255-b62c-98
   fs.writeFileSync(path.join(dir, `${slug}.data.ts`), 'export const lesson = {};\n');
 }
 function createGenerator(root) {
-  const dir = path.join(root, 'scripts');
+  const dir = path.join(root, 'shared/engine/scripts/generateLessonsMarkdown');
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(
     path.join(dir, 'generate-lessons-markdown.mjs'),

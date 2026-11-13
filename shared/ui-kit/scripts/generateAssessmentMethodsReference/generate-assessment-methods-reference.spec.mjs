@@ -12,7 +12,7 @@ import {
   supportedAssessmentMethodLocales,
 } from './generate-assessment-methods-reference.mjs';
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const definitionRoot = 'shared/ui-kit/data/definitions/assessmentMethods';
 const definitions = fs
   .readdirSync(path.join(repoRoot, definitionRoot))
@@ -110,7 +110,7 @@ test('generation is byte-for-byte deterministic and --stdout creates no artifact
   assert.equal(before, after);
   const output = execFileSync(
     process.execPath,
-    ['scripts/generate-assessment-methods-reference.mjs', '--locale', 'uk', '--stdout'],
+    ['shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs', '--locale', 'uk', '--stdout'],
     { cwd: repoRoot, encoding: 'utf8' },
   );
   assert.equal(output, before);
@@ -209,7 +209,7 @@ test('PR-artifact manifest records success, failures and only allowed temporary 
   }));
 
 test('temporary paths are governed by existing Agent CI Artifacts cleanup, not a new workflow', () => {
-  const generator = fs.readFileSync(path.join(repoRoot, 'scripts/generate-translation-review-artifacts.mjs'), 'utf8');
+  const generator = fs.readFileSync(path.join(repoRoot, 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs'), 'utf8');
   const guard = fs.readFileSync(path.join(repoRoot, '.github/workflows/agent-ci-artifacts-guard.yml'), 'utf8');
   assert.match(generator, /generateAssessmentMethodsReviewArtifacts/);
   assert.match(generator, /assessmentMethodDocuments:/);
