@@ -81,7 +81,15 @@ export type Question_FillBlanksWithBlocks_Overrides<
   };
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Author named gaps whose correct answers are ContentBlocks.
+ *
+ * @remarks
+ * Each entry in `content.slots.items` owns one `correctAnswer`
+ * configurator. Use `content.distractors` for plausible incorrect blocks.
+ * The slots define where the correct blocks belong, so keep at least one
+ * active slot and use meaningful stable slot names.
+ */
 export const defineFillBlanksWithBlocks = <
   const Slug extends string,
   const Content extends ContentShape,

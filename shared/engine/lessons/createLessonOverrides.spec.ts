@@ -98,6 +98,11 @@ describe('createLessonOverrides', () => {
     assert.doesNotThrow(() => JSON.stringify(result));
   });
 
+  it('retains an explicit skippable: false in Section authoring overrides', () => {
+    const customized = createLessonOverrides(lesson).sections.bySlug.theory.set({ skippable: false });
+    assert.deepEqual(customized.build().overrides.sections?.bySlug?.theory, { skippable: false });
+  });
+
   it('updates the active collection after removal and allows reinsertion via setOrder', () => {
     const customized = createLessonOverrides(lesson)
       .sections.remove('practice')

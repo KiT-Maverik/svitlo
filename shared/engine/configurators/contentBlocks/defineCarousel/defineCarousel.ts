@@ -81,8 +81,20 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
 };
 
 /**
- * A Carousel owns ordered slide configurators; the UI still receives plain
- * sorted slide Props. Locale arrays are atomic and contain complete slides.
+ * Display several instructional images in a single ordered Carousel.
+ *
+ * @remarks
+ * Author each slide with `defineCarouselSlide`, including its accessible
+ * alternative text and optional caption. `slides.order` controls the
+ * pedagogical sequence; at least one slide must remain enabled.
+ *
+ * @example
+ * ```ts
+ * slides: {
+ *   items: configuratorArrayToSlugMap([firstSlide, secondSlide]),
+ *   order: ['firstSlide', 'secondSlide'],
+ * }
+ * ```
  */
 export const defineCarousel = <
   const Slug extends string,

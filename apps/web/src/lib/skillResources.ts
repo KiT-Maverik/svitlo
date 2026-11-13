@@ -60,7 +60,7 @@ export function parseMergedSkillTree(input: unknown): SkillNode[] {
 
 /** Host-specific I/O remains separate from the platform-independent assembler. */
 async function readPublishedSkillFiles(code: string): Promise<{ base: unknown; locale: unknown }> {
-  const dir = join(process.cwd(), 'public/data/skills');
+  const dir = join(process.cwd(), 'public/generated/skills');
   const [base, locale] = await Promise.all([
     readFile(join(dir, 'base.json'), 'utf8').then(JSON.parse),
     readFile(join(dir, code + '.json'), 'utf8').then(JSON.parse),
