@@ -11,9 +11,9 @@ import {
   renderCourseSource,
   resolveCourseSource,
   verifyOrWriteGenerated,
-} from './build-course.mjs';
+} from './courseBuilder.mjs';
 
-const root = path.resolve(fileURLToPath(new URL('../..', import.meta.url)));
+const root = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const schema = JSON.parse(
   fs.readFileSync(path.join(root, 'studio/skills/course-workflow/course-toc.schema.json'), 'utf8'),
 );

@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import yaml from 'yaml';
 import ts from 'typescript';
-import { runOne, repoRoot } from './lesson-builder.mjs';
+import { runOne, repoRoot } from './lessonBuilder.mjs';
 
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const skillId = '00000000-0000-4000-8000-000000000015';

@@ -77,10 +77,10 @@ function runGate(changed) {
   // typecheck errors; the Course builder is deterministic repository tooling.
   if (
     changed.some(
-      f => f.startsWith('scripts/course-builder/') || f === 'studio/skills/course-workflow/course-toc.schema.json',
+      f => f.startsWith('shared/engine/scripts/courseBuilder/') || f === 'studio/skills/course-workflow/course-toc.schema.json',
     )
   ) {
-    exec('node', ['--test', 'scripts/course-builder/build-course.spec.mjs']);
+    exec('node', ['--test', 'shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs']);
   }
 
   if (changed.some(file => file === 'package.json' || file.startsWith('scripts/run-workspace-script.'))) {
@@ -136,7 +136,7 @@ function runGate(changed) {
   if (
     changed.some(
       file =>
-        file.startsWith('scripts/lesson-builder.') ||
+        file.startsWith('shared/engine/scripts/lessonBuilder/') ||
         file === 'package.json' ||
         file === 'package-lock.json' ||
         /^studio\/skills\/lesson-workflow\/lesson-(?:content|questions|methodology-frontmatter)\.schema\.json$/.test(
@@ -144,7 +144,7 @@ function runGate(changed) {
         ),
     )
   ) {
-    exec('node', ['--test', 'scripts/lesson-builder.spec.mjs']);
+    exec('node', ['--test', 'shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs']);
   }
 
   const built = new Set();

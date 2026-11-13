@@ -10,17 +10,17 @@ From the monorepo root after installing and building the existing Contracts/Engi
 npm run package:build --workspace @svitlo/contracts
 npm run package:build --workspace @svitlo/engine
 
-node scripts/course-builder/build-course.mjs \
+node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --package content/<textbook> \
   --course <course-uuid> \
   --write
 
-node scripts/course-builder/build-course.mjs \
+node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --package content/<textbook> \
   --course <course-uuid> \
   --check
 
-node --test scripts/course-builder/build-course.spec.mjs
+node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
 ```
 
 The builder looks for existing approved input only at:
