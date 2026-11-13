@@ -108,7 +108,7 @@ test('rejects malformed identities, malformed language keys, and broken locale b
   assert.throws(
     () =>
       renderLessonPropsFiles([
-        { source: 'bad', publication: { base: { id, type: 'lesson', invalid: () => false } } },
+        { source: 'bad', publication: { base: { id, type: 'lesson', invalid: () => false } as never } },
       ]),
     /Non-JSON value/,
   );
