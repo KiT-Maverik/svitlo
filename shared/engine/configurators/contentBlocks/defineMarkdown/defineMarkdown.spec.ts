@@ -112,16 +112,23 @@ test('Markdown accepts a sparse localized source override with originally invari
       variables: { NAME: { en: 'Ada', uk: 'Ада' } },
     },
   });
-  const before = markdown.build.props();
-  const patch = markdown.build.overrides({ locale: { value: { uk: 'Вітаю %_%NAME%_%' } } });
+  const before = markdown.build.props({ languages: ['en', 'uk'] });
+  const patch = markdown.build.overrides(
+    { locale: { value: { uk: 'Вітаю %_%NAME%_%' } } },
+    { languages: ['en', 'uk'] },
+  );
   assert.deepEqual(patch, { base: {}, locale: { uk: { locale: { value: 'Вітаю %_%NAME%_%' } } } });
-  assert.deepEqual(markdown.build.props(), before);
+  assert.deepEqual(markdown.build.props({ languages: ['en', 'uk'] }), before);
   assert.throws(
-    () => markdown.build.overrides({ locale: { value: { uk: 'Вітаю' } } }),
+    () => markdown.build.overrides({ locale: { value: { uk: 'Вітаю' } } }, { languages: ['en', 'uk'] }),
     /missing configured variable "NAME"/,
   );
   assert.throws(
-    () => markdown.build.overrides({ locale: { variables: { NAME: { uk: 'Ада' } }, value: { uk: '%_%UNKNOWN%_%' } } }),
+    () =>
+      markdown.build.overrides(
+        { locale: { variables: { NAME: { uk: 'Ада' } }, value: { uk: '%_%UNKNOWN%_%' } } },
+        { languages: ['en', 'uk'] },
+      ),
     /variable "UNKNOWN" is not declared/,
   );
 });

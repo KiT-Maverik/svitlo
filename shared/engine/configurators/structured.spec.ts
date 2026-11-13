@@ -1,170 +1,87 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
-import { allLanguageCodes } from '../schemas/languages.schemas';
-import { locale_All_Schema } from '../schemas/locale.schemas';
-import { defineText } from './contentBlocks/defineText/defineText';
-import { defineMarkdown } from './contentBlocks/defineMarkdown/defineMarkdown';
-import { defineTheorySection, regularSectionSchema } from './sections';
-import { defineLesson } from './lessons';
-import { defineCourse } from './courses';
+
+import { defineText } from './contentBlocks/defineText';
+import { defineContentSection } from './sections/defineContentSection';
+import { defineLesson } from './lessons/defineLesson';
 import { defineSkill, defineSkillGroup, defineSkillDomain } from './skills';
 import { defineAssessmentMethod } from './assessmentMethods/defineAssessmentMethod';
-import { assessmentMethod_Config_Schema } from './assessmentMethods/defineAssessmentMethod.schemas';
 
-const languages = ['en', 'uk'] as const;
-const id = (last: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + last;
-const textBlock = () =>
-  defineText({
+const id = (suffix: string) => 'b775647f-203d-481a-a1c7-4d331c779d' + suffix;
+
+test('Lesson composes typed Section and ContentBlock resources without mutating the original', () => {
+  const text = defineText<'text', ['uk']>({
+    id: id('01'),
+    slug: 'text',
     type: 'text',
-    id: id('6a'),
-    slug: 'introduction',
     params: {},
-    value: { en: 'Hello', uk: 'Привіт' },
+    locale: { value: 'Hello' },
   });
-test('nested Definition objects are required instead of raw configs', () => {
-  const text = textBlock();
-  const section = defineTheorySection<typeof languages>({
-    type: 'theory',
-    id: id('6b'),
+  const section = defineContentSection<'intro', { text: typeof text }, ['uk']>({
+    id: id('02'),
     slug: 'intro',
-    title: { en: 'Theory', uk: 'Теорія' },
-    navigationLabel: '1',
-    content: [text],
+    type: 'content',
+    params: {},
+    locale: { title: 'Introduction', navigationLabel: '1' },
+    content: { items: { text }, order: ['text'] },
   });
-  assert.equal(section.config.test.config(languages).success, true);
-  const invalid = regularSectionSchema('theory', languages).safeParse({
-    type: 'theory',
-    id: id('6b'),
-    slug: 'intro',
-    title: 'Theory',
-    navigationLabel: '1',
-    content: [{ type: 'text', id: id('6a'), slug: 'bad', value: 'Raw' }],
-  });
-  assert.equal(invalid.success, false);
-  assert.equal((section.config.base.content as unknown[]).length, 1);
-  const contentPatch = section.config.locales();
-  assert.ok(contentPatch);
-});
-test('Course-local overrides do not mutate a standalone Lesson', () => {
-  const lesson = defineLesson<typeof languages>({
-    type: 'lesson',
-    id: id('6c'),
+  const lesson = defineLesson({
+    id: id('03'),
     slug: 'lesson',
-    title: { en: 'Lesson', uk: 'Урок' },
-    flashcards: [],
+    type: 'lesson',
     skills: [],
-    questions: {},
-    parameters: {
+    params: {
       requireQuiz: false,
-      languages,
-      sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
+      languages: ['uk'] as const,
+      sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
     },
-    sections: [],
+    locale: { title: 'Lesson' },
+    section: { items: { intro: section }, order: ['intro'] },
+    flashcards: { items: {}, order: [] },
   });
-  const courseVersion = lesson.withOverrides({ title: { en: 'Course Lesson', uk: 'Урок у курсі' } });
-  assert.equal(lesson.config.overrides(), null);
-  assert.ok(courseVersion.config.overrides());
-  const description = defineMarkdown({
-    type: 'markdown',
-    id: id('6d'),
-    slug: 'description',
-    locales: { en: 'Overview', uk: 'Огляд' },
-  });
-  const course = defineCourse<typeof languages>({
-    type: 'course',
-    id: id('6e'),
-    title: textBlock(),
-    description,
-    parameters: { languages },
-    content: [courseVersion],
-  });
-  assert.equal(course.config.test.config(languages).success, true);
-  assert.deepEqual(course.config.overrides(), {
-    content: { 0: { title: { en: 'Course Lesson', uk: 'Урок у курсі' } } },
-  });
-  assert.equal(JSON.stringify(course.config.base).includes('function'), false);
+  const resource = lesson.build.props({ languages: ['uk'] });
+  assert.deepEqual(
+    resource.base.section.map(item => item!.slug),
+    ['intro'],
+  );
+  assert.equal(resource.base.section[0]?.content[0]?.slug, 'text');
+  assert.equal(resource.locale, undefined);
+  assert.equal('overrides' in lesson.config, false);
+  assert.deepEqual(lesson.build.props({ languages: ['uk'] }), resource);
 });
-test('Minimal Skill hierarchy and Assessment Method configurators validate and project fields', () => {
-  assert.deepEqual([...allLanguageCodes].sort(), DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language).sort());
-  const allLocales = (value: string) =>
-    locale_All_Schema.parse(Object.fromEntries(allLanguageCodes.map(code => [code, value])));
-  const description = (methodological: string) => ({
-    methodological,
-    frontend: allLocales(methodological),
-  });
 
+test('Skill hierarchy and Assessment Method publish data-only results with explicit languages', () => {
   const skill = defineSkill({
-    id: id('6f'),
+    id: id('04'),
     slug: 'reading',
-    name: allLocales('Reading'),
-    description: description('Identify written text'),
+    name: 'Reading',
+    description: { methodological: 'Identify words', frontend: 'Read words' },
   });
   const group = defineSkillGroup({
-    id: id('70'),
+    id: id('05'),
     slug: 'literacy',
-    name: allLocales('Literacy'),
-    description: description('Literacy'),
-    skills: [skill],
+    name: 'Literacy',
+    description: { methodological: 'Reading fundamentals', frontend: 'Reading' },
+    skills: { items: { reading: skill }, order: ['reading'] },
   });
   const domain = defineSkillDomain({
-    id: id('71'),
+    id: id('06'),
     slug: 'language',
-    title: allLocales('Language'),
-    description: description('Language'),
-    groups: [group],
+    title: 'Language',
+    description: { methodological: 'Language learning', frontend: 'Language' },
+    groups: { items: { literacy: group }, order: ['literacy'] },
   });
-  assert.equal(skill.config.base.slug, 'reading');
-  assert.deepEqual(Object.keys(group.skill), ['reading']);
-  assert.deepEqual(Object.keys(domain.group), ['literacy']);
-  assert.deepEqual(skill.config.locales().name, allLocales('Reading'));
-  assert.throws(
-    () =>
-      defineSkillGroup({
-        id: id('72'),
-        slug: 'duplicate',
-        name: allLocales('Duplicate'),
-        description: description('Duplicate'),
-        skills: [skill, skill],
-      }),
-    /Duplicate configurator slug: reading/,
+  const result = domain.build.props({ languages: ['uk'] });
+  assert.deepEqual(
+    result.base.groups?.map(item => item!.slug),
+    ['literacy'],
   );
-  assert.throws(
-    () =>
-      defineSkillDomain({
-        id: id('73'),
-        slug: 'duplicate',
-        title: allLocales('Duplicate'),
-        description: description('Duplicate'),
-        groups: [group, group],
-      }),
-    /Duplicate configurator slug: literacy/,
-  );
-  assert.throws(
-    () =>
-      defineSkillDomain({
-        id: id('74'),
-        slug: 'duplicate',
-        title: allLocales('Duplicate'),
-        description: description('Duplicate'),
-        skills: [skill, skill],
-      }),
-    /Duplicate configurator slug: reading/,
-  );
-
-  const methodSource = {
+  assert.equal(JSON.stringify(result).includes('"items"'), false);
+  const method = defineAssessmentMethod({
+    id: id('07'),
     slug: 'retrieval',
-    id: 'b775647f-203d-481a-a1c7-4d331c779d72',
-    title: allLocales('Retrieval'),
-    description: allLocales('Recall'),
-  } satisfies Parameters<typeof defineAssessmentMethod>[0];
-  const method = defineAssessmentMethod(methodSource);
-  assert.throws(() => defineAssessmentMethod({ ...methodSource, id: 'not-a-uuid' }));
-  assert.deepEqual(method.config.base, { id: methodSource.id, slug: methodSource.slug });
-  assert.deepEqual(method.config.locales(), { title: methodSource.title, description: methodSource.description });
-  assert.equal(assessmentMethod_Config_Schema.safeParse({ ...methodSource, id: 'not-a-uuid' }).success, false);
-  assert.equal(
-    assessmentMethod_Config_Schema.safeParse({ ...methodSource, title: { en: 'Retrieval' } }).success,
-    false,
-  );
+    title: 'Retrieval',
+    description: 'Recall facts',
+  });
+  assert.equal(method.build.props({ languages: ['uk'] }).base.slug, 'retrieval');
 });

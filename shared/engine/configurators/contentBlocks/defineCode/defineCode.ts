@@ -1,10 +1,19 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   code_Config_Schema,
+  code_Props_Schema,
   code_Override_Config_Schema,
   type ContentBlock_Code_Config,
   type ContentBlock_Code_Locale,
@@ -121,15 +130,27 @@ export const defineCode = <const Slug extends string, const Languages extends re
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Code_Config>;
 
-  const props = (): CodePropsPublication<ContentBlock_Code_PropsBase> =>
-    buildCodeProps(parseAndValidate(copyAuthored()));
+  const props = (options: PublicationLanguageOptions<Languages>): CodePropsPublication<ContentBlock_Code_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
+    const result = buildCodeProps(parseAndValidate(copyAuthored()));
+    result.locale = selectPublicationLocales(result.locale, languages);
+    validateRequestedPublication(code_Props_Schema, result, languages);
+    return result;
+  };
 
-  const overrides = (patch: ContentBlock_Code_Overrides): CodePropsPublication<CodeOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Code_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): CodePropsPublication<CodeOverridePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = code_Override_Config_Schema.parse(patch);
       const effective = code_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return buildCodePatch(structuredClone(parsedPatch));
+      const output = buildCodePatch(structuredClone(parsedPatch));
+      output.locale = selectPublicationLocales(output.locale, languages);
+      validateRequestedPublication(code_Props_Schema, props(options), languages, output);
+      return output;
     } catch (error) {
       throw new Error(`Invalid Code overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,

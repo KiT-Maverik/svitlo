@@ -23,7 +23,11 @@ const numeracy = defineSkill({ ...fields, slug: 'numeracy' });
 
 type ReadingSlug = Expect<Equal<typeof reading.slug, 'reading'>>;
 
-const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: [reading, writing] });
+const group = defineSkillGroup({
+  ...fields,
+  slug: 'literacy',
+  skills: { items: { reading, writing }, order: ['reading', 'writing'] },
+});
 type GroupSlug = Expect<Equal<typeof group.slug, 'literacy'>>;
 type GroupKeys = Expect<Equal<keyof typeof group.skill, 'reading' | 'writing'>>;
 type ReadingValue = Expect<Equal<typeof group.skill.reading, typeof reading>>;
@@ -36,8 +40,8 @@ const domain = defineSkillDomain({
   slug: 'language',
   title: localized,
   description: fields.description,
-  groups: [group],
-  skills: [numeracy],
+  groups: { items: { literacy: group }, order: ['literacy'] },
+  skills: { items: { numeracy }, order: ['numeracy'] },
 });
 type DomainSlug = Expect<Equal<typeof domain.slug, 'language'>>;
 type DomainGroupKeys = Expect<Equal<keyof typeof domain.group, 'literacy'>>;
@@ -63,7 +67,11 @@ type EmptyGroupKeys = Expect<Equal<keyof typeof emptyDomain.group, never>>;
 type EmptySkillKeys = Expect<Equal<keyof typeof emptyDomain.skill, never>>;
 
 const readonlySkills = [reading, writing] as const;
-const readonlyGroup = defineSkillGroup({ ...fields, slug: 'readonly', skills: readonlySkills });
+const readonlyGroup = defineSkillGroup({
+  ...fields,
+  slug: 'readonly',
+  skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading', 'writing'] },
+});
 type ReadonlyKeys = Expect<Equal<keyof typeof readonlyGroup.skill, 'reading' | 'writing'>>;
 
 const readonlyDomain = defineSkillDomain({
@@ -71,8 +79,8 @@ const readonlyDomain = defineSkillDomain({
   slug: 'readonly-domain',
   title: localized,
   description: fields.description,
-  groups: [group] as const,
-  skills: readonlySkills,
+  groups: { items: { literacy: group }, order: ['literacy'] },
+  skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading', 'writing'] },
 });
 type ReadonlyDomainGroupKeys = Expect<Equal<keyof typeof readonlyDomain.group, 'literacy'>>;
 type ReadonlyDomainSkillKeys = Expect<Equal<keyof typeof readonlyDomain.skill, 'reading' | 'writing'>>;

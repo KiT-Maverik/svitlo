@@ -1,9 +1,18 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../../_shared__configurators';
 import { validateLocalAssetPaths } from '../../_shared__contentBlocks';
 import {
   carouselSlide_Config_Schema,
+  carouselSlide_Props_Schema,
   carouselSlide_Override_Config_Schema,
   type ContentBlock_CarouselSlide_Config,
   type ContentBlock_CarouselSlide_Overrides,
@@ -49,22 +58,31 @@ export const defineCarouselSlide = <const Slug extends string, const Languages e
   const slug = config.slug;
   const copyAuthored = () => carouselSlide_Config_Schema.parse(structuredClone(authored));
 
-  const props = (): SlidePublication<SlideBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): SlidePublication<SlideBase> => {
+    const languages = resolvePublicationLanguages(options);
     const own = publishLocale(copyAuthored().locale);
-    return {
+    const result = {
       base: { id, slug, type, ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}) },
-      locale: own.files,
+      locale: selectPublicationLocales(own.files, languages),
     };
+    validateRequestedPublication(carouselSlide_Props_Schema, result, languages);
+    return result;
   };
-  const overrides = (patch: ContentBlock_CarouselSlide_Overrides): SlidePublication<SlideOverrideBase> => {
+  const overrides = (
+    patch: ContentBlock_CarouselSlide_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): SlidePublication<SlideOverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       const parsed = carouselSlide_Override_Config_Schema.parse(patch);
       parseAndValidate(carouselSlide_Config_Schema.parse(mergeForValidation(copyAuthored(), parsed)));
       const own = publishLocale(parsed.locale ?? {});
-      return {
+      const result = {
         base: Object.keys(own.invariant).length ? { locale: own.invariant } : {},
-        locale: own.files,
+        locale: selectPublicationLocales(own.files, languages),
       };
+      validateRequestedPublication(carouselSlide_Props_Schema, props(options), languages, result);
+      return result;
     } catch (error) {
       throw new Error(
         'Invalid Carousel Slide overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),

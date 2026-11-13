@@ -1,55 +1,194 @@
-import type { DeepPartial } from '#types';
+import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
+import type { LanguageCodes } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
-import { answerWithText_Config_Schema, type Question_AnswerWithText_Config } from './defineAnswerWithText.schemas';
+import {
+  cloneJson,
+  finishFiles,
+  isRecord,
+  ensureQuestionPatchShape,
+  mergeQuestionContent,
+  projectQuestionLocale,
+  projectAnswerList,
+  resolveCommonContent,
+  resolveBlockCollection,
+  resolveBlockMap,
+  snapshotCommonContent,
+  snapshotBlockCollection,
+  validateBlockCollection,
+  validateCommonContent,
+  validateEffectiveQuestionMetadata,
+  type OrderedBlockPatch,
+  type QuestionCommonPatch,
+  type QuestionResourcePublication,
+  type QuestionOverridePublication,
+  resolvePublicationLanguages,
+  validateQuestionPublication,
+  type PublicationLanguageOptions,
+} from '../_shared__questions';
+import type { ContentBlock_Configurator } from '../../contentBlocks';
+import type { QuestionChildrenSupporting } from '../question.schemas';
+import {
+  answerWithText_Config_Schema,
+  answerWithText_Override_Config_Schema,
+  type Question_AnswerWithText_Config,
+  answerWithText_Props_Schema,
+  type Question_AnswerWithText_Props,
+  type Question_AnswerWithText_MetadataOverrides,
+} from './defineAnswerWithText.schemas';
 
+const metadataSchema = answerWithText_Config_Schema.omit({ content: true });
+
+/** Validate authored Question metadata and owned child collection boundaries. */
 const validate = (candidate: Question_AnswerWithText_Config): void => {
-  const { content, ...metadata } = candidate;
-  answerWithText_Config_Schema.parse(metadata);
-  if (!Array.isArray(content?.question) || content.question.length === 0) {
-    throw new Error('Question content.question must contain at least one ContentBlock');
+  answerWithText_Config_Schema.parse(candidate);
+  validateCommonContent(candidate.content);
+  if (!Object.keys(candidate.locale.correctAnswers).length) {
+    throw new Error('AnswerWithText requires at least one correct answer');
   }
 };
 
-/** Define answerWithText with independently validated child ContentBlocks. */
+type ContentShape = Question_AnswerWithText_Config['content'];
+export type Question_AnswerWithText_Overrides<
+  Content extends ContentShape = ContentShape,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+  Languages extends readonly LanguageCodes[] = [],
+> = Question_AnswerWithText_MetadataOverrides & {
+  content?: QuestionCommonPatch<Content, Added, Languages> & {};
+};
+
+/** A Question reuses ContentBlocks but never mutates their publication contexts. */
 export const defineAnswerWithText = <
   const Slug extends string,
-  const Content extends Question_AnswerWithText_Config['content'],
+  const Content extends ContentShape,
+  const Languages extends readonly LanguageCodes[] = [],
 >(
   config: Omit<Question_AnswerWithText_Config, 'slug' | 'content'> & {
     slug: Slug;
-    content: Content;
-  },
+    content: Content & QuestionChildrenSupporting<Languages, Content> & {};
+  } & ConfigWithLanguages<Question_AnswerWithText_Config, Languages>,
 ) => {
   validate(config);
-  const { id, slug, type, params, locale, content } = config;
-  const base = {
-    id,
-    slug,
-    type,
-    params,
-    locale: onlyStrings(locale),
-  } satisfies DeepPartial<Question_AnswerWithText_Config>;
-  const overrides: DeepPartial<Question_AnswerWithText_Config> = {};
+  const authored = cloneJson(metadataSchema.parse(config));
+  const copyMetadata = () => cloneJson(authored);
+  const { id, type } = authored;
+  const slug = config.slug;
+  const initialContent = {
+    ...snapshotCommonContent(config.content),
+  } as Content;
+  // Transitional authored access; never pass these mutable objects into Build.
+  const content = {
+    ...snapshotCommonContent(initialContent),
+  } as Content;
 
-  return {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionResourcePublication<Question_AnswerWithText_Props> => {
+    const languages = resolvePublicationLanguages(options);
+    const metadata = copyMetadata();
+    const own = projectQuestionLocale({ placeholder: metadata.locale.placeholder }, languages);
+    const localized = projectAnswerList(metadata.locale.correctAnswers, languages);
+    if (localized.base !== undefined) own.base.correctAnswers = localized.base;
+    for (const [language, values] of Object.entries(localized.locale)) {
+      const file = (own.files[language as LanguageCodes] ??= {});
+      file.locale = { ...((file.locale ?? {}) as Record<string, unknown>), correctAnswers: values };
+    }
+    const common = resolveCommonContent(initialContent, languages);
+    const extra = { base: {}, locale: {} };
+    const files = own.files;
+    mergeQuestionContent(files, common.locale, extra.locale);
+    const resource = {
+      base: {
+        id,
+        slug,
+        type,
+        params: metadata.params,
+        locale: own.base,
+        content: { ...common.base, ...extra.base },
+      },
+      locale: finishFiles(files),
+    } as unknown as QuestionResourcePublication<Question_AnswerWithText_Props>;
+    validateQuestionPublication(answerWithText_Props_Schema, languages, resource);
+    return resource;
+  };
+
+  const overrides = <const Added extends Record<string, ContentBlock_Configurator> = {}>(
+    patch: Question_AnswerWithText_Overrides<Content, Added, Languages>,
+    options: PublicationLanguageOptions<Languages>,
+  ): QuestionOverridePublication<Question_AnswerWithText_Props> => {
+    try {
+      const languages = resolvePublicationLanguages(options);
+      ensureQuestionPatchShape(patch);
+      const metadataPatch = answerWithText_Override_Config_Schema.parse({
+        ...(patch.params !== undefined ? { params: patch.params } : {}),
+        ...(patch.locale !== undefined ? { locale: patch.locale } : {}),
+      });
+      validateEffectiveQuestionMetadata(copyMetadata(), metadataPatch, candidate => metadataSchema.parse(candidate));
+      const own = projectQuestionLocale(
+        metadataPatch.locale?.placeholder === undefined ? {} : { placeholder: metadataPatch.locale.placeholder },
+        languages,
+      );
+      if (metadataPatch.locale?.correctAnswers !== undefined) {
+        const localized = projectAnswerList(
+          authored.locale.correctAnswers,
+          languages,
+          metadataPatch.locale.correctAnswers as never,
+        );
+        if (localized.base !== undefined) own.base.correctAnswers = localized.base;
+        for (const [language, values] of Object.entries(localized.locale)) {
+          const file = (own.files[language as LanguageCodes] ??= {});
+          file.locale = { ...((file.locale ?? {}) as Record<string, unknown>), correctAnswers: values };
+        }
+      }
+      const files = own.files;
+      const base: Record<string, unknown> = {
+        ...(metadataPatch.params !== undefined ? { params: cloneJson(metadataPatch.params) } : {}),
+        ...(Object.keys(own.base).length ? { locale: own.base } : {}),
+      };
+      if (patch.content !== undefined) {
+        if (!isRecord(patch.content)) throw new Error('content must be a plain object');
+        for (const key of Object.keys(patch.content)) {
+          if (!['question', 'hint', 'explanation'].includes(key)) {
+            throw new Error('Unknown Question content override field: ' + key);
+          }
+        }
+        const common = resolveCommonContent(initialContent, languages, patch.content as QuestionCommonPatch<Content>);
+        const extra = { base: {}, locale: {} };
+        const changed = { ...common.base, ...extra.base };
+        if (Object.keys(changed).length) base.content = changed;
+        mergeQuestionContent(files, common.locale, extra.locale);
+      }
+      const publication = {
+        base,
+        locale: finishFiles(files),
+      } as QuestionOverridePublication<Question_AnswerWithText_Props>;
+      validateQuestionPublication(answerWithText_Props_Schema, languages, props(options), publication);
+      return publication;
+    } catch (error) {
+      throw new Error(
+        'Invalid AnswerWithText Question overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
+    }
+  };
+
+  const base = { id, slug, type, params: cloneJson(authored.params), locale: onlyStrings(authored.locale) };
+  const result = {
     id,
     slug,
     type,
+    content,
+    validate,
+    build: { props, overrides },
     config: {
       base,
-      locales: (): { locale: DeepPartial<Question_AnswerWithText_Config['locale']> } => ({
-        locale: onlyLocales(locale),
-      }),
-      overrides,
+      locales: () => ({ locale: onlyLocales(copyMetadata().locale) }),
       validate,
     },
-    content,
-    override: {
-      params: (value: DeepPartial<Question_AnswerWithText_Config['params']>) => (overrides.params = value),
-      locale: (value: DeepPartial<Question_AnswerWithText_Config['locale']>) => (overrides.locale = value),
-    },
-    disable: () => (overrides.params = { disabled: true }),
   } as const;
+  return result as typeof result & LanguageScope<Languages>;
 };
 
 export type Question_AnswerWithText_Configurator = ReturnType<typeof defineAnswerWithText>;

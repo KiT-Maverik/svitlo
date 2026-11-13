@@ -1,9 +1,18 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import {
   youtube_Config_Schema,
+  youtube_Props_Schema,
   youtube_Override_Config_Schema,
   type ContentBlock_Youtube_Config,
   type ContentBlock_Youtube_Locale,
@@ -91,15 +100,29 @@ export const defineYoutube = <const Slug extends string, const Languages extends
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Youtube_Config>;
 
-  const props = (): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> =>
-    buildYoutubeProps(parseAndValidate(copyAuthored()));
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): YoutubePropsPublication<ContentBlock_Youtube_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
+    const result = buildYoutubeProps(parseAndValidate(copyAuthored()));
+    result.locale = selectPublicationLocales(result.locale, languages);
+    validateRequestedPublication(youtube_Props_Schema, result, languages);
+    return result;
+  };
 
-  const overrides = (patch: ContentBlock_Youtube_Overrides): YoutubePropsPublication<YoutubeOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Youtube_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): YoutubePropsPublication<YoutubeOverridePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = youtube_Override_Config_Schema.parse(patch);
       const effective = youtube_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return buildYoutubePatch(structuredClone(parsedPatch));
+      const output = buildYoutubePatch(structuredClone(parsedPatch));
+      output.locale = selectPublicationLocales(output.locale, languages);
+      validateRequestedPublication(youtube_Props_Schema, props(options), languages, output);
+      return output;
     } catch (error) {
       throw new Error(
         `Invalid Youtube overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`,

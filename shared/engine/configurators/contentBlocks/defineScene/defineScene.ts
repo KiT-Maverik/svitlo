@@ -1,10 +1,19 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateSceneEntry } from '../_shared__contentBlocks';
 import {
   scene_Config_Schema,
+  scene_Props_Schema,
   scene_Override_Config_Schema,
   type ContentBlock_Scene_Config,
   type ContentBlock_Scene_Locale,
@@ -96,15 +105,29 @@ export const defineScene = <const Slug extends string, const Languages extends r
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Scene_Config>;
 
-  const props = (): ScenePropsPublication<ContentBlock_Scene_PropsBase> =>
-    buildSceneProps(parseAndValidate(copyAuthored()));
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): ScenePropsPublication<ContentBlock_Scene_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
+    const result = buildSceneProps(parseAndValidate(copyAuthored()));
+    result.locale = selectPublicationLocales(result.locale, languages);
+    validateRequestedPublication(scene_Props_Schema, result, languages);
+    return result;
+  };
 
-  const overrides = (patch: ContentBlock_Scene_Overrides): ScenePropsPublication<SceneOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Scene_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): ScenePropsPublication<SceneOverridePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = scene_Override_Config_Schema.parse(patch);
       const effective = scene_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return buildScenePatch(structuredClone(parsedPatch));
+      const output = buildScenePatch(structuredClone(parsedPatch));
+      output.locale = selectPublicationLocales(output.locale, languages);
+      validateRequestedPublication(scene_Props_Schema, props(options), languages, output);
+      return output;
     } catch (error) {
       throw new Error(`Invalid Scene overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,

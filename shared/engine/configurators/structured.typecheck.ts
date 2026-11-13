@@ -1,54 +1,37 @@
-import { defineText } from './contentBlocks/defineText/defineText';
-import { defineTheorySection } from './sections';
-import { defineLesson } from './lessons';
-import { defineSkill, defineSkillGroup, type Skill_Config } from './skills';
-import { allLanguageCodes } from '../schemas/languages.schemas';
+import { defineText } from './contentBlocks/defineText';
+import { defineContentSection } from './sections/defineContentSection';
+import { defineSkill, defineSkillGroup } from './skills';
 
-const languages = ['en', 'uk'] as const;
-const validText = defineText({
+const text = defineText<'greeting', ['en', 'uk']>({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d61',
+  slug: 'greeting',
   type: 'text',
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6a',
-  slug: 'intro',
   params: {},
-  value: 'Hello',
+  locale: { value: { en: 'Hello', uk: 'Привіт' } },
 });
-defineTheorySection<typeof languages>({
-  type: 'theory',
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
-  slug: 'theory',
-  title: 'Theory',
-  navigationLabel: '1',
-  content: [validText],
+const section = defineContentSection<'intro', { greeting: typeof text }, ['uk']>({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d62',
+  slug: 'intro',
+  type: 'content',
+  params: {},
+  locale: { title: 'Introduction', navigationLabel: '1' },
+  content: { items: { greeting: text }, order: ['greeting'] },
 });
-defineTheorySection<typeof languages>({
-  type: 'theory',
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
-  slug: 'bad',
-  title: 'Theory',
-  navigationLabel: '1',
-  // @ts-expect-error Nested blocks must be Definition objects, not raw configs.
-  content: [{ type: 'text', id: 'b775647f-203d-481a-a1c7-4d331c779d6a', slug: 'raw', value: 'Raw' }],
-});
-const allLocales = Object.fromEntries(allLanguageCodes.map(code => [code, 'Reading'])) as Skill_Config['name'];
+section.build.props({ languages: ['uk'] });
+// @ts-expect-error A Section with only Ukrainian support cannot publish English.
+section.build.props({ languages: ['en'] });
+
 const skill = defineSkill({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6a',
+  id: 'b775647f-203d-481a-a1c7-4d331c779d63',
   slug: 'reading',
-  name: allLocales,
-  description: { methodological: 'Reading', frontend: allLocales },
+  name: 'Reading',
+  description: { methodological: 'Reading', frontend: 'Read' },
 });
-defineSkillGroup({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
+const group = defineSkillGroup({
+  id: 'b775647f-203d-481a-a1c7-4d331c779d64',
   slug: 'literacy',
-  name: allLocales,
-  description: { methodological: 'Literacy', frontend: allLocales },
-  skills: [skill],
+  name: 'Literacy',
+  description: { methodological: 'Foundations', frontend: 'Learning' },
+  skills: { items: { reading: skill }, order: ['reading'] },
 });
-defineSkillGroup({
-  id: 'b775647f-203d-481a-a1c7-4d331c779d6b',
-  slug: 'invalid',
-  name: allLocales,
-  description: { methodological: 'Literacy', frontend: allLocales },
-  // @ts-expect-error A raw Skill configuration is not a child configurator.
-  skills: [{ id: 'x', slug: 'x', name: allLocales }],
-});
-void defineLesson;
+group.build.props({ languages: ['uk'] });

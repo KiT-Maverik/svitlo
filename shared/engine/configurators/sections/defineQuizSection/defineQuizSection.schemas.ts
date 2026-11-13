@@ -1,9 +1,11 @@
 import { z } from 'zod';
+import type { DeepPartial } from '#types';
+import { deepStrict_Schema } from '#schemas';
 import { camelCase_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
-import { contentBlockLocalizationSwitch } from '../../contentBlocks';
+import { contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import type { Section_Config_Content, Section_Props_Content } from '../_shared__sections';
 
 const sectionBase = identityBase_Schema.extend({
   type: z.literal('quiz'),
@@ -82,8 +84,49 @@ const params = sectionBase.shape.params.extend({
     .optional(),
 });
 
-export const quizSection_Config_Schema = sectionBase.extend({ params }).extend(addUnifiedLocale(locale('config')));
-export type QuizSection_Config = z.infer<typeof quizSection_Config_Schema> & Section_Config_Content;
+export const quizSection_Config_Schema = sectionBase.extend({
+  params,
+  ...addUnifiedLocale(locale('config')),
+  content: z.object({
+    items: z.record(z.string(), z.custom<ContentBlock_Configurator>()),
+    order: z.array(z.string()),
+  }),
+});
+export type QuizSection_Config = z.infer<typeof quizSection_Config_Schema>;
 
-export const quizSection_Props_Schema = sectionBase.extend({ params }).extend(addUnifiedLocale(locale('props')));
-export type QuizSection_Props = z.infer<typeof quizSection_Props_Schema> & Section_Props_Content;
+export const quizSection_Props_Schema = sectionBase.extend({
+  params,
+  ...addUnifiedLocale(locale('props')),
+  content: z.array(contentBlockResolved_Schema),
+});
+export type QuizSection_Props = Omit<z.infer<typeof quizSection_Props_Schema>, 'content'> & {
+  content: ContentBlock_Props[];
+};
+
+/** The complete base may omit translated child fields, which live in locale files. */
+export type QuizSection_PropsBase = Pick<QuizSection_Props, 'id' | 'slug' | 'type' | 'params'> & {
+  locale?: DeepPartial<QuizSection_Locale<'props'>>;
+  content: ReturnType<ContentBlock_Configurator['build']['props']>['base'][];
+};
+
+/** Identity and authored collection organization cannot be changed via metadata patches. */
+export type QuizSection_MetadataOverrides = DeepPartial<Pick<QuizSection_Config, 'params' | 'locale'>>;
+export const quizSection_Override_Config_Schema: z.ZodType<QuizSection_MetadataOverrides> = z.deepPartial(
+  deepStrict_Schema(
+    z.object({
+      params: quizSection_Config_Schema.shape.params,
+      locale: quizSection_Config_Schema.shape.locale,
+    }),
+  ),
+);
+
+export type QuizSection_Overrides<
+  Items extends Record<string, ContentBlock_Configurator>,
+  Added extends Record<string, ContentBlock_Configurator> = {},
+> = QuizSection_MetadataOverrides & {
+  content?: {
+    items?: { [Key in keyof Items]?: Parameters<Items[Key]['build']['overrides']>[0] | false };
+    additionalItems?: Added & { [Key in keyof Items]?: never };
+    order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
+  };
+};

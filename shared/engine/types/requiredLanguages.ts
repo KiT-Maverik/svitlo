@@ -41,3 +41,16 @@ export type ChildSupporting<Required extends readonly LanguageCodes[], Child> =
 export type ChildrenSupporting<Required extends readonly LanguageCodes[], Children extends Record<string, object>> = {
   [Key in keyof Children]: ChildSupporting<Required, Children[Key]>;
 };
+
+/**
+ * Languages to materialize for one Build call, limited to an explicit authored tuple.
+ * A default/empty tuple is unscoped, and broad readonly LanguageCodes[] is also
+ * unscoped. Test for a nonempty tuple rather than checking Languages[number]
+ * for never: the latter breaks structural assignability of default [] children
+ * to collection configurator constraints under TypeScript's generic variance.
+ */
+export type PublicationLanguageOptions<Languages extends readonly LanguageCodes[] = readonly LanguageCodes[]> = {
+  readonly languages: readonly (Languages extends readonly [LanguageCodes, ...LanguageCodes[]]
+    ? Languages[number]
+    : LanguageCodes)[];
+};

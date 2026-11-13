@@ -1,8 +1,16 @@
-import type { DeepPartial, LanguageScope, ChildSupporting, ChildrenSupporting } from '#types';
+import type {
+  DeepPartial,
+  LanguageScope,
+  ChildSupporting,
+  ChildrenSupporting,
+  PublicationLanguageOptions,
+} from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
+  resolvePublicationLanguages,
+  validateRequestedPublication,
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../../_shared__configurators';
@@ -10,6 +18,7 @@ import { contentBlockConfigurator_Schema } from '../../contentBlock.schemas';
 import { contentBlockTypes } from '../../contentBlock.constants';
 import {
   checkpointItem_Config_Schema,
+  checkpointItem_Props_Schema,
   type Checkpoint_Allowed_Configurator,
   type Checkpoint_Allowed_PropsBase,
   type CheckpointItem_Overrides,
@@ -153,11 +162,18 @@ export const defineCheckpointItem = <
     ...(check !== undefined ? { check } : {}),
   } satisfies DeepPartial<ContentBlock_CheckpointItem_Config>;
 
-  const buildChild = (child: Checkpoint_Allowed_Configurator): ChildPublication =>
-    child.build.props() as unknown as ChildPublication;
+  const buildChild = (child: Checkpoint_Allowed_Configurator, languages: readonly LanguageCodes[]): ChildPublication =>
+    child.build.props({ languages }) as unknown as ChildPublication;
 
-  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown): ChildPatchPublication =>
-    (child.build.overrides as (patch: never) => ChildPatchPublication)(patch as never);
+  const buildChildPatch = (
+    child: Checkpoint_Allowed_Configurator,
+    patch: unknown,
+    languages: readonly LanguageCodes[],
+  ): ChildPatchPublication =>
+    (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ChildPatchPublication)(
+      patch as never,
+      { languages },
+    );
 
   /**
    * A published answer collection is always a complete, already sorted array.
@@ -166,24 +182,25 @@ export const defineCheckpointItem = <
   const buildAnswers = (
     items: Record<string, Checkpoint_Allowed_Configurator>,
     order: readonly string[],
+    languages: readonly LanguageCodes[],
     patches: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
       const child = items[key];
-      const original = buildChild(child);
-      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key]) : undefined;
+      const original = buildChild(child, languages);
+      const patch = Object.hasOwn(patches, key) ? buildChildPatch(child, patches[key], languages) : undefined;
       return { original, patch };
     });
     const bases = entries.map(({ original, patch }) =>
       patch ? mergeForValidation(original.base, patch.base) : original.base,
     );
-    const languages = new Set<LanguageCodes>();
-    for (const { original, patch } of entries) {
-      for (const language of Object.keys(original.locale ?? {})) languages.add(language as LanguageCodes);
-      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
-    }
+    const translatedLanguages = languages.filter(language =>
+      entries.some(
+        ({ original, patch }) => original.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+      ),
+    );
     const locales: ItemLocaleFiles = {};
-    for (const language of languages) {
+    for (const language of translatedLanguages) {
       locales[language] = {
         answer: entries.map(({ original, patch }) => {
           const originalLocale = original.locale?.[language] ?? {};
@@ -198,15 +215,16 @@ export const defineCheckpointItem = <
     return { bases, locales };
   };
 
-  const props = (): ItemPublication<ItemBase> => {
+  const props = (options: PublicationLanguageOptions<Languages>): ItemPublication<ItemBase> => {
+    const languages = resolvePublicationLanguages(options);
     // Children already produce Props-shaped locale fragments.
-    const builtQuestion = question.build.props();
-    const builtAnswers = buildAnswers(initialItems, initialOrder);
+    const builtQuestion = question.build.props({ languages });
+    const builtAnswers = buildAnswers(initialItems, initialOrder, languages);
     const locale = { ...builtAnswers.locales };
     for (const [language, fields] of Object.entries(builtQuestion.locale ?? {})) {
       (locale[language as LanguageCodes] ??= {}).question = fields;
     }
-    return {
+    const result = {
       base: {
         id,
         slug,
@@ -217,14 +235,18 @@ export const defineCheckpointItem = <
       },
       locale: Object.keys(locale).length ? locale : undefined,
     };
+    validateRequestedPublication(checkpointItem_Props_Schema, result, languages);
+    return result;
   };
 
   const overrides = <const Added extends Record<string, Checkpoint_Allowed_Configurator> = {}>(
     patch: CheckpointItem_Overrides<Answers, Added> & {
       answer?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): ItemPublication<ItemOverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       if (!isObject(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
         if (!['check', 'question', 'answer'].includes(key)) {
@@ -240,7 +262,7 @@ export const defineCheckpointItem = <
         if (isObject(patch.question.params) && Object.hasOwn(patch.question.params, 'disabled')) {
           throw new Error('The mandatory Checkpoint question cannot be disabled');
         }
-        const built = question.build.overrides(patch.question);
+        const built = question.build.overrides(patch.question, { languages });
         if (Object.keys(built.base).length) output.base.question = built.base;
         for (const [language, fields] of Object.entries(built.locale ?? {})) {
           (locales[language as LanguageCodes] ??= {}).question = fields;
@@ -321,13 +343,14 @@ export const defineCheckpointItem = <
             (entry): entry is [string, Checkpoint_Allowed_Configurator] => entry[1] !== false,
           ),
         );
-        const built = buildAnswers(active, order, patches);
+        const built = buildAnswers(active, order, languages, patches);
         output.base.answer = built.bases;
         for (const [language, fragment] of Object.entries(built.locales)) {
           (locales[language as LanguageCodes] ??= {}).answer = fragment.answer;
         }
       }
       output.locale = Object.keys(locales).length ? locales : undefined;
+      validateRequestedPublication(checkpointItem_Props_Schema, props(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(

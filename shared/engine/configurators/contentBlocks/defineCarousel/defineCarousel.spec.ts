@@ -33,7 +33,7 @@ const example = () => {
 
 test('Carousel publishes ordered UI slide arrays, never child configurators or slug maps', () => {
   const { carousel } = example();
-  const resource = carousel.build.props();
+  const resource = carousel.build.props({ languages: ['en', 'uk'] });
   assert.equal(resource.base.locale?.slides, undefined);
   assert.deepEqual(resource.locale?.en?.locale.slides, [
     { src: 'https://example.com/b.png', alt: 'Second' },
@@ -65,9 +65,11 @@ test('Carousel keeps invariant slides in base with no redundant locale arrays', 
     locale: {},
     slides: { items: { first }, order: ['first'] },
   });
-  assert.deepEqual(carousel.build.props().base.locale?.slides, [{ src: 'https://example.com/base.png', alt: 'Base' }]);
-  assert.equal(carousel.build.props().locale, undefined);
-  assert.deepEqual(carousel.build.overrides({}), { base: {}, locale: undefined });
+  assert.deepEqual(carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides, [
+    { src: 'https://example.com/base.png', alt: 'Base' },
+  ]);
+  assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale, undefined);
+  assert.deepEqual(carousel.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
 });
 
 test('Carousel adds, disables, reorders, and overrides slides using complete Props replacements', () => {
@@ -76,7 +78,7 @@ test('Carousel adds, disables, reorders, and overrides slides using complete Pro
     src: 'https://example.com/c.png',
     alt: { en: 'Later', uk: 'Пізніше' },
   });
-  const before = carousel.build.props();
+  const before = carousel.build.props({ languages: ['en', 'uk'] });
   const patch = {
     slides: {
       items: { first: false as const, second: { locale: { alt: { uk: 'Другий' } } } },
@@ -84,7 +86,7 @@ test('Carousel adds, disables, reorders, and overrides slides using complete Pro
       order: ['later', 'second'] as ('later' | 'second')[],
     },
   };
-  const built = carousel.build.overrides(patch);
+  const built = carousel.build.overrides(patch, { languages: ['en', 'uk'] });
   assert.deepEqual(built.locale?.uk?.locale.slides, [
     { src: 'https://example.com/c.png', alt: 'Пізніше' },
     { src: 'https://example.com/b.png', alt: 'Другий' },
@@ -93,8 +95,8 @@ test('Carousel adds, disables, reorders, and overrides slides using complete Pro
     { src: 'https://example.com/c.png', alt: 'Later' },
     { src: 'https://example.com/b.png', alt: 'Second' },
   ]);
-  assert.deepEqual(carousel.build.props(), before);
-  assert.deepEqual(carousel.build.overrides(patch), built);
+  assert.deepEqual(carousel.build.props({ languages: ['en', 'uk'] }), before);
+  assert.deepEqual(carousel.build.overrides(patch, { languages: ['en', 'uk'] }), built);
   assert.equal(JSON.stringify(built).includes('"additionalItems"'), false);
   assert.equal(JSON.stringify(built).includes('"items"'), false);
   assert.equal(JSON.stringify(built).includes('"order"'), false);
@@ -120,7 +122,7 @@ test('Carousel rejects invalid collection boundaries, unknown fields, and identi
     [{ type: 'carousel' }, /Unknown Carousel override field/],
   ];
   for (const [patch, reason] of invalid) {
-    assert.throws(() => carousel.build.overrides(patch as never), reason);
+    assert.throws(() => carousel.build.overrides(patch as never, { languages: ['en', 'uk'] }), reason);
   }
 });
 
@@ -138,11 +140,11 @@ test('Carousel rejects invalid authored slugs and preserves its snapshot', () =>
       }),
     /key does not match configurator slug/,
   );
-  const resource = carousel.build.props();
+  const resource = carousel.build.props({ languages: ['en', 'uk'] });
   carousel.slides.order.reverse();
   const exposed = carousel.slides as { items: Record<string, unknown>; order: string[] };
   exposed.items.first = exposed.items.second;
-  assert.deepEqual(carousel.build.props(), resource);
+  assert.deepEqual(carousel.build.props({ languages: ['en', 'uk'] }), resource);
 });
 
 test('Carousel child patches cannot modify slide identity and support sparse locale overrides', () => {
@@ -150,11 +152,14 @@ test('Carousel child patches cannot modify slide identity and support sparse loc
     src: 'https://example.com/one.png',
     alt: { en: 'One', uk: 'Один' },
   });
-  assert.deepEqual(child.build.overrides({ locale: { alt: { uk: 'Перший' } } }), {
+  assert.deepEqual(child.build.overrides({ locale: { alt: { uk: 'Перший' } } }, { languages: ['en', 'uk'] }), {
     base: {},
     locale: { uk: { locale: { alt: 'Перший' } } },
   });
   for (const patch of [{ id: ids[2] }, { slug: 'changed' }, { type: 'carouselSlide' }]) {
-    assert.throws(() => child.build.overrides(patch as never), /Invalid Carousel Slide overrides/);
+    assert.throws(
+      () => child.build.overrides(patch as never, { languages: ['en', 'uk'] }),
+      /Invalid Carousel Slide overrides/,
+    );
   }
 });

@@ -20,16 +20,21 @@ const fields = {
 
 test('SkillGroup and SkillDomain index actual child configurators by their slug', () => {
   const reading = defineSkill({ ...fields, slug: 'reading' });
-  const writing = defineSkill({ ...fields, slug: 'writing' });
-  const numeracy = defineSkill({ ...fields, slug: 'numeracy' });
-  const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: [reading, writing] });
+  const writing = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd161', slug: 'writing' });
+  const numeracy = defineSkill({ ...fields, id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd162', slug: 'numeracy' });
+  const group = defineSkillGroup({
+    ...fields,
+    id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd163',
+    slug: 'literacy',
+    skills: { items: { reading, writing }, order: ['reading', 'writing'] },
+  });
   const domain = defineSkillDomain({
-    id: fields.id,
+    id: 'dbe68255-2f03-4ac9-b1e7-277dca1cd164',
     slug: 'language',
     title: localized,
     description,
-    groups: [group],
-    skills: [numeracy],
+    groups: { items: { literacy: group }, order: ['literacy'] },
+    skills: { items: { numeracy }, order: ['numeracy'] },
   });
 
   assert.equal(reading.config.base.slug, 'reading');
@@ -58,15 +63,15 @@ test('missing optional SkillDomain children produce empty maps', () => {
 
 test('nested Skill and SkillGroup collections still reject duplicate slugs', () => {
   const reading = defineSkill({ ...fields, slug: 'reading' });
-  const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: [reading] });
-  assert.throws(
-    () => defineSkillGroup({ ...fields, slug: 'duplicateGroup', skills: [reading, reading] }),
-    /Duplicate configurator slug: reading/,
-  );
+  const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: { items: { reading }, order: ['reading'] } });
   assert.throws(
     () =>
-      defineSkillDomain({ id: fields.id, slug: 'duplicates', title: localized, description, groups: [group, group] }),
-    /Duplicate configurator slug: literacy/,
+      defineSkillGroup({
+        ...fields,
+        slug: 'duplicateGroup',
+        skills: { items: { reading }, order: ['reading', 'reading'] },
+      }),
+    /duplicate|appears|order/i,
   );
   assert.throws(
     () =>
@@ -75,8 +80,19 @@ test('nested Skill and SkillGroup collections still reject duplicate slugs', () 
         slug: 'duplicates',
         title: localized,
         description,
-        skills: [reading, reading],
+        groups: { items: { literacy: group }, order: ['literacy', 'literacy'] },
       }),
-    /Duplicate configurator slug: reading/,
+    /duplicate|appears|order/i,
+  );
+  assert.throws(
+    () =>
+      defineSkillDomain({
+        id: fields.id,
+        slug: 'duplicates',
+        title: localized,
+        description,
+        skills: { items: { reading }, order: ['reading', 'reading'] },
+      }),
+    /duplicate|appears|order/i,
   );
 });

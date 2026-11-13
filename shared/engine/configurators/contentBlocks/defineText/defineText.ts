@@ -1,9 +1,15 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales } from '../../_shared__configurators';
+import {
+  onlyLocales,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import {
   text_Config_Schema,
+  text_Props_Schema,
   text_Override_Config_Schema,
   type ContentBlock_Text_Config,
   type ContentBlock_Text_Locale,
@@ -108,9 +114,9 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * Every configured variable ID must appear in every supplied locale value,
  * with no undeclared or malformed fragments.
  *
- * `build.props()` prepares the complete authored resource.
+ * `build.props({ languages })` prepares the complete authored resource.
  * Every translated file is a Props-shaped fragment, including its own `locale` field.
- * `build.overrides(patch)` strictly checks the sparse patch, validates
+ * `build.overrides(patch, { languages })` strictly checks the sparse patch, validates
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
  */
@@ -126,9 +132,19 @@ export const defineText = <const Slug extends string, const Languages extends re
   const copyAuthored = () => text_Config_Schema.parse(structuredClone(authored));
   const base = { ...buildTextProps(copyAuthored()).base, slug };
 
-  const props = (): TextPropsPublication<ContentBlock_Text_PropsBase> => buildTextProps(copyAuthored());
+  const props = (options: PublicationLanguageOptions<Languages>): TextPropsPublication<ContentBlock_Text_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
+    const result = buildTextProps(copyAuthored());
+    result.locale = selectPublicationLocales(result.locale, languages);
+    validateRequestedPublication(text_Props_Schema, result, languages);
+    return result;
+  };
 
-  const overrides = (patch: ContentBlock_Text_Overrides): TextPropsPublication<TextOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Text_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): TextPropsPublication<TextOverridePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     try {
       // Structural: reject unknown fields, bad types, and invalid locale keys.
       const validatedPatch = text_Override_Config_Schema.parse(patch);
@@ -137,7 +153,10 @@ export const defineText = <const Slug extends string, const Languages extends re
       const resolved = text_Config_Schema.parse(mergeTextOverride(copyAuthored(), validatedPatch));
       validate(resolved);
 
-      return buildTextPatch(structuredClone(validatedPatch));
+      const output = buildTextPatch(structuredClone(validatedPatch));
+      output.locale = selectPublicationLocales(output.locale, languages);
+      validateRequestedPublication(text_Props_Schema, props(options), languages, output);
+      return output;
     } catch (error) {
       throw new Error(`Invalid Text overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,

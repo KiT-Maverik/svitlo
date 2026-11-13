@@ -44,5 +44,7 @@ export type ContentBlock_Code_PropsBase = z.infer<typeof codeBase> & {
   locale?: DeepPartial<ContentBlock_Code_Locale<'props'>>;
 };
 
-export const code_Props_Schema = codeBase.extend(addUnifiedLocale(locale('props')));
+// Code can contain only params.codeAsText, with neither title nor replacements.
+// An invariant-only resource therefore legitimately omits its optional locale.
+export const code_Props_Schema = codeBase.extend({ locale: z.object(locale('props')).optional() });
 export type ContentBlock_Code_Props = z.infer<typeof code_Props_Schema>;

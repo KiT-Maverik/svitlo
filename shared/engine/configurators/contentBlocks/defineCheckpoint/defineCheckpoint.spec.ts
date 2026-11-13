@@ -54,12 +54,12 @@ test('Checkpoint accepts valid CheckpointItem configurators without treating the
     }).success,
     true,
   );
-  assert.equal(checkpoint.build.props().base.content[0].type, 'checkpointItem');
+  assert.equal(checkpoint.build.props({ languages: ['en', 'uk'] }).base.content[0].type, 'checkpointItem');
 });
 
 test('Checkpoint publishes sorted nested Props, not authoring maps', () => {
   const { checkpoint } = example();
-  const result = checkpoint.build.props();
+  const result = checkpoint.build.props({ languages: ['en', 'uk'] });
   assert.deepEqual(
     result.base.content.map(item => item.slug),
     ['first', 'second'],
@@ -84,25 +84,31 @@ test('Checkpoint publishes sorted nested Props, not authoring maps', () => {
 
 test('Checkpoint publishes only validated, sparse metadata overrides', () => {
   const { checkpoint } = example();
-  const before = checkpoint.build.props();
-  assert.deepEqual(checkpoint.build.overrides({}), { base: {}, locale: undefined });
+  const before = checkpoint.build.props({ languages: ['en', 'uk'] });
+  assert.deepEqual(checkpoint.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
   assert.deepEqual(
-    checkpoint.build.overrides({
-      params: { disabled: true },
-      locale: { title: { uk: 'Огляд' } },
-    }),
+    checkpoint.build.overrides(
+      {
+        params: { disabled: true },
+        locale: { title: { uk: 'Огляд' } },
+      },
+      { languages: ['en', 'uk'] },
+    ),
     {
       base: { params: { disabled: true } },
       locale: { uk: { locale: { title: 'Огляд' } } },
     },
   );
-  assert.deepEqual(checkpoint.build.props(), before);
+  assert.deepEqual(checkpoint.build.props({ languages: ['en', 'uk'] }), before);
 });
 
 test('Removing a localized item does not generate a redundant locale array', () => {
   const { checkpoint } = example();
-  const source = checkpoint.build.props();
-  const patch = checkpoint.build.overrides({ content: { items: { first: false }, order: ['second'] } });
+  const source = checkpoint.build.props({ languages: ['en', 'uk'] });
+  const patch = checkpoint.build.overrides(
+    { content: { items: { first: false }, order: ['second'] } },
+    { languages: ['en', 'uk'] },
+  );
   assert.deepEqual(
     patch.base.content?.map(item => item.slug),
     ['second'],
@@ -125,8 +131,8 @@ test('Checkpoint can add, disable, reorder, and deeply override existing items',
       order: ['later', 'second'] as ('later' | 'second')[],
     },
   };
-  const original = checkpoint.build.props();
-  const built = checkpoint.build.overrides(patch);
+  const original = checkpoint.build.props({ languages: ['en', 'uk'] });
+  const built = checkpoint.build.overrides(patch, { languages: ['en', 'uk'] });
   assert.deepEqual(
     built.base.content?.map(item => item.slug),
     ['later', 'second'],
@@ -139,8 +145,8 @@ test('Checkpoint can add, disable, reorder, and deeply override existing items',
   assert.equal(built.locale?.uk?.content?.[1].question.locale.value, 'Інакше?');
   assert.equal(JSON.stringify(built).includes('additionalItems'), false);
   assert.equal(JSON.stringify(built).includes('"order"'), false);
-  assert.deepEqual(checkpoint.build.props(), original);
-  assert.deepEqual(checkpoint.build.overrides(patch), built);
+  assert.deepEqual(checkpoint.build.props({ languages: ['en', 'uk'] }), original);
+  assert.deepEqual(checkpoint.build.overrides(patch, { languages: ['en', 'uk'] }), built);
 });
 
 test('Checkpoint requires exactly all active item slugs, once each', () => {
@@ -170,7 +176,7 @@ test('Checkpoint requires exactly all active item slugs, once each', () => {
     ],
   ];
   for (const [patch, message] of invalid) {
-    assert.throws(() => checkpoint.build.overrides(patch as never), message);
+    assert.throws(() => checkpoint.build.overrides(patch as never, { languages: ['en', 'uk'] }), message);
   }
 });
 
@@ -193,10 +199,10 @@ test('Checkpoint rejects invalid authored collections and preserves authored sna
       }),
     /At least one active Checkpoint item/,
   );
-  const original = checkpoint.build.props();
+  const original = checkpoint.build.props({ languages: ['en', 'uk'] });
   checkpoint.content.order.reverse();
   checkpoint.content.items.first = checkpoint.content.items.second as never;
-  const modifiedOutput = checkpoint.build.props();
+  const modifiedOutput = checkpoint.build.props({ languages: ['en', 'uk'] });
   modifiedOutput.base.content.reverse();
-  assert.deepEqual(checkpoint.build.props(), original);
+  assert.deepEqual(checkpoint.build.props({ languages: ['en', 'uk'] }), original);
 });

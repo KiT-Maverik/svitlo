@@ -1,8 +1,17 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, ChildrenSupporting } from '#types';
+import type {
+  DeepPartial,
+  ConfigWithLanguages,
+  LanguageScope,
+  ChildrenSupporting,
+  PublicationLanguageOptions,
+} from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
   mergeForValidation,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
   onlyLocales,
   onlyStrings,
   splitLocalizedFields,
@@ -15,6 +24,7 @@ import type {
 } from './defineCheckpointItem';
 import {
   checkpoint_Config_Schema,
+  checkpoint_Props_Schema,
   checkpoint_Override_Config_Schema,
   type Checkpoint_Metadata_Overrides,
   type Checkpoint_Overrides,
@@ -162,13 +172,17 @@ export const defineCheckpoint = <
   const buildContent = (
     items: Record<string, CheckpointItem>,
     order: readonly string[],
+    languages: readonly LanguageCodes[],
     patches: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
       const child = items[key];
-      const resource = child.build.props();
+      const resource = child.build.props({ languages });
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (patch: never) => ItemOverride)(patches[key] as never)
+        ? (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ItemOverride)(
+            patches[key] as never,
+            { languages },
+          )
         : undefined;
       return { resource, patch };
     });
@@ -178,14 +192,14 @@ export const defineCheckpoint = <
         : resource.base,
     );
 
-    const languages = new Set<LanguageCodes>();
-    for (const { resource, patch } of entries) {
-      for (const language of Object.keys(resource.locale ?? {})) languages.add(language as LanguageCodes);
-      for (const language of Object.keys(patch?.locale ?? {})) languages.add(language as LanguageCodes);
-    }
+    const translatedLanguages = languages.filter(language =>
+      entries.some(
+        ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+      ),
+    );
 
     const locales: Partial<Record<LanguageCodes, ContentBlock_CheckpointItem_Props[]>> = {};
-    for (const language of languages) {
+    for (const language of translatedLanguages) {
       locales[language] = entries.map(({ resource, patch }) => {
         const original = mergeForValidation(
           resource.base,
@@ -205,15 +219,18 @@ export const defineCheckpoint = <
     return { bases, locales };
   };
 
-  const props = (): CheckpointPublication<ContentBlock_Checkpoint_PropsBase> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): CheckpointPublication<ContentBlock_Checkpoint_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);
-    const built = buildContent(initialItems, initialOrder);
-    const files = own.files;
+    const built = buildContent(initialItems, initialOrder, languages);
+    const files = selectPublicationLocales(own.files, languages) ?? {};
     for (const [language, entries] of Object.entries(built.locales)) {
       (files[language as LanguageCodes] ??= {}).content = entries;
     }
-    return {
+    const result = {
       base: {
         id,
         slug,
@@ -224,14 +241,18 @@ export const defineCheckpoint = <
       },
       locale: Object.keys(files).length ? files : undefined,
     };
+    validateRequestedPublication(checkpoint_Props_Schema, result, languages);
+    return result;
   };
 
   const overrides = <const Added extends Record<string, CheckpointItem> = {}>(
     patch: Checkpoint_Overrides<Items, Added> & {
       content?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
     },
+    options: PublicationLanguageOptions<Languages>,
   ): CheckpointPublication<CheckpointOverrideBase> => {
     try {
+      const languages = resolvePublicationLanguages(options);
       if (!isObject(patch)) throw new Error('Expected an overrides object');
       for (const key of Object.keys(patch)) {
         if (!['params', 'locale', 'content'].includes(key)) {
@@ -251,7 +272,7 @@ export const defineCheckpoint = <
         },
         locale: undefined,
       };
-      const files = own.files;
+      const files = selectPublicationLocales(own.files, languages) ?? {};
 
       if (patch.content !== undefined && !isObject(patch.content)) {
         throw new Error('content must be an object');
@@ -319,7 +340,7 @@ export const defineCheckpoint = <
         const enabled = Object.fromEntries(
           Object.entries(active).filter((entry): entry is [string, CheckpointItem] => entry[1] !== false),
         );
-        const built = buildContent(enabled, order, childPatches);
+        const built = buildContent(enabled, order, languages, childPatches);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
           (files[language as LanguageCodes] ??= {}).content = entries;
@@ -327,6 +348,7 @@ export const defineCheckpoint = <
       }
 
       output.locale = Object.keys(files).length ? files : undefined;
+      validateRequestedPublication(checkpoint_Props_Schema, props(options), languages, output);
       return output;
     } catch (error) {
       throw new Error(

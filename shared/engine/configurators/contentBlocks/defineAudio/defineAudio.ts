@@ -1,10 +1,19 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope } from '#types';
+import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   audio_Config_Schema,
+  audio_Props_Schema,
   audio_Override_Config_Schema,
   type ContentBlock_Audio_Config,
   type ContentBlock_Audio_Locale,
@@ -88,15 +97,29 @@ export const defineAudio = <const Slug extends string, const Languages extends r
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
-  const props = (): AudioPropsPublication<ContentBlock_Audio_PropsBase> =>
-    buildAudioProps(parseAndValidate(copyAuthored()));
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): AudioPropsPublication<ContentBlock_Audio_PropsBase> => {
+    const languages = resolvePublicationLanguages(options);
+    const result = buildAudioProps(parseAndValidate(copyAuthored()));
+    result.locale = selectPublicationLocales(result.locale, languages);
+    validateRequestedPublication(audio_Props_Schema, result, languages);
+    return result;
+  };
 
-  const overrides = (patch: ContentBlock_Audio_Overrides): AudioPropsPublication<AudioOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Audio_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): AudioPropsPublication<AudioOverridePropsBase> => {
+    const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = audio_Override_Config_Schema.parse(patch);
       const effective = audio_Config_Schema.parse(mergeForValidation(copyAuthored(), parsedPatch));
       validate(effective);
-      return buildAudioPatch(structuredClone(parsedPatch));
+      const output = buildAudioPatch(structuredClone(parsedPatch));
+      output.locale = selectPublicationLocales(output.locale, languages);
+      validateRequestedPublication(audio_Props_Schema, props(options), languages, output);
+      return output;
     } catch (error) {
       throw new Error(`Invalid Audio overrides for ${id}: ${error instanceof Error ? error.message : String(error)}`, {
         cause: error,
