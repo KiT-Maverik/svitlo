@@ -1,40 +1,55 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { Question, Locale_Languages, Quiz_Parameters } from '+@svitlo/contracts/content';
+import type {
+  ContentBlock_Text_Props,
+  Question_SelectOneAnswer_Props,
+  QuizSection_Props,
+} from '@svitlo/engine/runtime';
+import type { QuestionResponse } from '#types/questions';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 
-const text = (id: string, value: string) => ({ id, type: 'text' as const, value });
+const uuid = (index: number) => '00000000-0000-4000-8000-' + String(index).padStart(12, '0');
+const text = (slug: string, value: string): ContentBlock_Text_Props => ({
+  id: uuid(Array.from(slug).reduce((sum, char) => sum + char.charCodeAt(0), 1)),
+  slug: slug.replace(/-([a-z])/gu, (_, letter: string) => letter.toUpperCase()),
+  type: 'text',
+  params: {},
+  locale: { value },
+});
 const common = {
-  id: 'question-1',
-  assessmentMethod: 'retrieval' as const,
-  restrictions: [],
-  question: [text('prompt', 'What is the answer?')] as [ReturnType<typeof text>],
+  id: uuid(1),
+  slug: 'question1',
+  params: { assessmentMethod: 'retrieval' as const, restrictions: [] },
+  locale: {},
+  content: { question: [text('prompt', 'What is the answer?')] as [ContentBlock_Text_Props] },
 };
-const one: Question<'response', Locale_Languages> = {
+const one: Question_SelectOneAnswer_Props = {
   ...common,
   type: 'selectOneAnswer',
-  answers: {
-    correct: { yes: text('yes', 'Yes') },
-    incorrect: { no: text('no', 'No') },
-    distractors: {},
+  content: {
+    ...common.content,
+    answers: {
+      correct: { yes: text('yes', 'Yes') },
+      incorrect: { no: text('no', 'No') },
+      distractors: {},
+    },
+    hint: [text('hint', 'Helpful hint')],
+    explanation: [text('explanation', 'Because it is yes.')],
   },
-  hint: [text('hint', 'Helpful hint')],
-  explanation: [text('explanation', 'Because it is yes.')],
 };
 
-describe('QuestionRenderer — contract responses', () => {
+describe('QuestionRenderer — published Engine Props', () => {
   it('renders nothing for an empty array', () => {
     const { container } = render(<QuestionRenderer messages={enUiKitMessages} questions={[]} />);
     expect(container).toBeEmptyDOMElement();
   });
 
-  it('renders prompts, hints, choices and explanations without converting to legacy questions', () => {
+  it('renders prompts, hints, choices and explanations without reshaping the Props', () => {
     render(<QuestionRenderer messages={enUiKitMessages} questions={[one]} />);
     expect(screen.getByText('What is the answer?')).toBeVisible();
-    const hint = screen.getByText('Hint');
-    fireEvent.click(hint);
+    fireEvent.click(screen.getByText('Hint'));
     expect(screen.getByText('Helpful hint')).toBeVisible();
     fireEvent.click(screen.getByRole('button', { name: 'Yes' }));
     fireEvent.click(screen.getByRole('button', { name: 'Check' }));
@@ -45,42 +60,43 @@ describe('QuestionRenderer — contract responses', () => {
     expect(screen.queryByRole('status')).not.toBeInTheDocument();
   });
 
-  it('renders every contract question type and keeps attempts independent', () => {
+  it('renders all nine canonical Question Props variants with independent attempts', () => {
     const block = text('answer', 'Answer');
-    const definitions: Question<'response', Locale_Languages>[] = [
+    const definitions: QuestionResponse[] = [
       one,
-      { ...common, type: 'selectMultipleAnswers', answers: { correct: { a: block }, incorrect: {}, distractors: {} } },
-      { ...common, type: 'matchBlocks', pairs: { first: { left: block, right: text('right', 'Right') } } },
-      { ...common, type: 'answerWithText', correctAnswers: ['Answer'], placeholder: 'Write' },
-      { ...common, type: 'answerWithNumber', correctAnswers: [1, 2], placeholder: 'Number' },
-      { ...common, type: 'orderSequence', sequence: [block] },
-      { ...common, type: 'buildAnswerWithBlocks', correctSequence: [block], distractors: [], placeholder: 'Build' },
-      {
-        ...common,
-        type: 'fillBlanksWithBlocks',
-        slots: [{ selector: 'first', correctAnswer: block }],
-        distractors: [],
-        placeholder: 'Choose',
-      },
-      {
-        ...common,
-        type: 'fillBlanksWithText',
-        slots: [{ selector: 'first', correctAnswers: ['Answer'] }],
-        placeholder: 'Fill',
-      },
+      { ...common, type: 'selectMultipleAnswers', content: {
+        ...common.content, answers: { correct: { a: block }, incorrect: {}, distractors: {} },
+      } },
+      { ...common, type: 'matchBlocks', content: {
+        ...common.content, pairs: { first: { left: block, right: text('right', 'Right') } },
+      } },
+      { ...common, type: 'answerWithText', locale: { correctAnswers: ['Answer'], placeholder: 'Write' } },
+      { ...common, type: 'answerWithNumber', params: { ...common.params, correctAnswers: [1, 2] },
+        locale: { placeholder: 'Number' } },
+      { ...common, type: 'orderSequence', content: { ...common.content, sequence: [block] } },
+      { ...common, type: 'buildAnswerWithBlocks', content: {
+        ...common.content, correctSequence: [block], distractors: [],
+      }, locale: { placeholder: 'Build' } },
+      { ...common, type: 'fillBlanksWithBlocks', content: {
+        ...common.content, slots: [{ selector: 'first', correctAnswer: block }], distractors: [],
+      }, locale: { placeholder: 'Choose' } },
+      { ...common, type: 'fillBlanksWithText', locale: {
+        slots: [{ selector: 'first', correctAnswers: ['Answer'] }], placeholder: 'Fill',
+      } },
     ];
-    const questions = definitions.map((question, index) => ({ ...question, id: 'question-' + index }));
+    const questions = definitions.map((question, index) => ({
+      ...question, id: uuid(index + 1), slug: 'question' + (index + 1),
+    }));
     const { container } = render(<QuestionRenderer messages={enUiKitMessages} questions={questions} />);
     expect(within(container).getAllByRole('region')).toHaveLength(9);
     expect(within(container).getAllByRole('button', { name: 'Check' })).toHaveLength(9);
   });
 
-  it('signals completion only after every contract response has been checked', async () => {
+  it('signals completion only after every question has been checked', async () => {
     const onComplete = vi.fn();
-    const another: Question<'response', Locale_Languages> = {
-      ...one,
-      id: 'question-2',
-      question: [text('second-prompt', 'Another question')],
+    const another: Question_SelectOneAnswer_Props = {
+      ...one, id: uuid(2), slug: 'question2',
+      content: { ...one.content, question: [text('secondPrompt', 'Another question')] },
     };
     render(<QuestionRenderer messages={enUiKitMessages} questions={[one, another]} onComplete={onComplete} />);
     const yesButtons = screen.getAllByRole('button', { name: 'Yes' });
@@ -98,7 +114,10 @@ describe('QuestionRenderer — contract responses', () => {
     rerender(
       <QuestionRenderer
         messages={enUiKitMessages}
-        questions={[{ ...one, id: 'another-id', question: [text('other', 'Replacement prompt')] }]}
+        questions={[{
+          ...one, id: uuid(80), slug: 'replacementQuestion',
+          content: { ...one.content, question: [text('other', 'Replacement prompt')] },
+        }]}
       />,
     );
     expect(screen.queryByText('What is the answer?')).toBeNull();
@@ -110,7 +129,7 @@ describe('QuestionRenderer — contract responses', () => {
 const quizSettings = (
   layout: 'stack' | 'stepper',
   timeLimitSeconds?: number,
-): Quiz_Parameters<'response', Locale_Languages> => ({
+): QuizSection_Props['params'] => ({
   selection: { mode: 'all' },
   layout: { mode: layout, showProgress: true },
   feedbackMode: 'immediate',
@@ -130,14 +149,11 @@ const quizSettings = (
 
 describe('Quiz Section presentation', () => {
   it('supports stepper layout with one visible question and per-question progress', () => {
-    const second = {
-      ...one,
-      id: 'question-2',
-      question: [text('q2', 'Another question')] as [ReturnType<typeof text>],
+    const second: Question_SelectOneAnswer_Props = {
+      ...one, id: uuid(2), slug: 'question2',
+      content: { ...one.content, question: [text('q2', 'Another question')] },
     };
-    render(
-      <QuestionRenderer messages={enUiKitMessages} questions={[one, second]} parameters={quizSettings('stepper')} />,
-    );
+    render(<QuestionRenderer messages={enUiKitMessages} questions={[one, second]} parameters={quizSettings('stepper')} />);
     expect(screen.getByRole('list', { name: enUiKitMessages.lesson.questionProgress.navigation })).toBeVisible();
     expect(screen.getByText('What is the answer?')).toBeVisible();
     expect(screen.getByText('Another question')).not.toBeVisible();
@@ -148,7 +164,7 @@ describe('Quiz Section presentation', () => {
     expect(screen.getByText('What is the answer?')).not.toBeVisible();
   });
 
-  it('ends the whole Quiz on timeout and reports a failed attempt', () => {
+  it('ends the Quiz on timeout and reports a failed attempt', () => {
     vi.useFakeTimers();
     try {
       const onComplete = vi.fn();
