@@ -89,7 +89,8 @@ for (const [path, pkg] of workspaces) {
   const sourceRoots =
     path === 'shared/engine'
       ? [
-          'index.ts',
+          'build.ts',
+          'runtime.ts',
           'builders',
           'configurators',
           'content',

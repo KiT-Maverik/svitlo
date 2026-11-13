@@ -57,7 +57,7 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
             : null;
     const ownedTypes =
       subpath === 'taxonomy' ? taxonomyTypes : subpath === 'localization' ? localizationContracts : null;
-    let target = subpath === 'content' ? contract : '@svitlo/engine';
+    let target = subpath === 'content' ? contract : '@svitlo/engine/build';
 
     if (ownedTypes && declaration) {
       const isImport = ts.isImportDeclaration(declaration);
@@ -92,7 +92,7 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
           replace(
             declaration.getStart(file),
             declaration.end,
-            render(contracts, contract) + '\n' + render(engine, '@svitlo/engine'),
+            render(contracts, contract) + '\n' + render(engine, '@svitlo/engine/build'),
           );
           return;
         }

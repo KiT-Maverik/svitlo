@@ -180,10 +180,13 @@ assert(uiKit.dependencies?.[engine.name] === engine.version, 'UI Kit must consum
 assert(engine.scripts?.['package:build'] && engine.files?.includes('dist'), 'Engine must publish compiled artifacts');
 assert(
   engine.exports &&
-    Object.keys(engine.exports).length === 1 &&
-    engine.exports['.']?.types === './dist/index.d.ts' &&
-    engine.exports['.']?.default === './dist/index.js',
-  'Engine must expose only the compiled root entrypoint',
+    Object.keys(engine.exports).length === 2 &&
+    engine.exports['./build']?.types === './dist/build.d.ts' &&
+    engine.exports['./build']?.default === './dist/build.js' &&
+    engine.exports['./runtime']?.types === './dist/runtime.d.ts' &&
+    engine.exports['./runtime']?.default === './dist/runtime.js' &&
+    !Object.hasOwn(engine.exports, '.'),
+  'Engine must expose only explicit build and runtime entrypoints',
 );
 const assessmentMethodsRoot = resolve(root, 'shared/ui-kit/data/definitions/assessmentMethods');
 assert(
@@ -238,7 +241,8 @@ const engineRoots = [
   'utils',
 ];
 const engineSources = [
-  resolve(root, 'shared/engine/index.ts'),
+  resolve(root, 'shared/engine/build.ts'),
+  resolve(root, 'shared/engine/runtime.ts'),
   ...engineRoots.flatMap(dir => walk(resolve(root, 'shared/engine', dir))),
 ].filter(file => file.endsWith('.ts') && !/\.(?:spec|typecheck)\.ts$/.test(file));
 for (const file of engineSources) {
