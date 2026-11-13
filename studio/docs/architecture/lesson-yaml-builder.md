@@ -13,11 +13,17 @@ Specialists own separate, independently reviewed editorial sources beneath the i
 - `questions/questions.yaml`: Assessment Architect's complete Question bank and curated Quiz selections.
 - `flashcards/flashcards.yaml`: optional, separately approved recall bank, downstream of the approved Questions.
 
-These files have their **own editorial schemas** and are **not** direct `defineLesson` Config YAML. An authorized technical handoff projects their relevant, independently reviewed data into **Config-shaped YAML** with permanent IDs, camelCase slugs, `type` at each polymorphic level, nested `{items,order}` collections, type-specific Question content, and explicitly resolved Question references. In particular, approved Quiz selections must be deliberately transferred into their Quiz Section `params.selection`; the scaffolder does not discover or approve that selection. Unresolved authoring and identity decisions remain explicit handoff blockers.
+These files have their **own editorial schemas** and are **not** direct `defineLesson` Config YAML. An authorized technical handoff projects their relevant, independently reviewed data into a distinct **`lesson.config.yaml`** with permanent IDs, camelCase slugs, `type` at each polymorphic level, nested `{items,order}` collections, type-specific Question content, and explicitly resolved Question references. In particular, approved Quiz selections must be deliberately transferred into their Quiz Section `params.selection`; the scaffolder does not discover or approve that selection. Unresolved authoring and identity decisions remain explicit handoff blockers.
 
 The generated JSON Schemas are derived from **current Engine** Zod Config compositions; they must not be independently recreated in Studio or invoked as runtime validation by the scaffolder.
 
 ## Output and non-goals
+
+The actual Lesson CLI reads `lesson.config.yaml` as Engine Config and never
+treats specialist-owned `content.yaml`, `questions/questions.yaml` or
+`flashcards/flashcards.yaml` as Config. Source-language provenance comes from
+`content.yaml.documentLanguage` or explicit `--language <locale>`, while
+that field is deliberately absent from the `defineLesson` Config payload.
 
 The Lesson scaffolder's output is **draft TypeScript source** calling the current build-time `defineLesson`, `define*` Section/ContentBlock/Question/Flashcard factories, where the Config-shaped input supports them. It may contain deliberately incomplete fields or only the editorial source locale; later Coding Agent completion remains necessary. Generated TS is **not promised to typecheck**, nor does it attest that a Lesson is pedagogically correct, reviewed, complete, localized or publishable. Actual supported CLI flags, input paths and output file naming must be read from the **current `shared/engine/scripts/lessonBuilder/` implementation and tests**, not inferred from the historical generator commands formerly listed in this document.
 
