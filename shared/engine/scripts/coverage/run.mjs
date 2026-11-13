@@ -33,7 +33,9 @@ function testPaths() {
   const marker = ' && node --test ';
   const index = command.indexOf(marker);
   if (index < 0) throw new Error('Unsupported Engine test command: expected existing node --test invocation');
-  const patterns = command.slice(index + marker.length).trim().split(/\s+/);
+  // Only the first node --test invocation contains test globs. Commands after
+  // a subsequent && (for example the runtime graph check) are not test paths.
+  const patterns = command.slice(index + marker.length).split(' && ')[0].trim().split(/\s+/);
   const files = new Set();
   for (const pattern of patterns) {
     if (!/^(?:\.test-build|generators|scripts)\/[a-zA-Z0-9_.*\/-]+\.spec\.(?:js|mjs)$/.test(pattern)) {
