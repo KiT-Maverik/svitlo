@@ -38,5 +38,19 @@ jobs:
       - run: npm ci
       - name: Build Contracts
         run: npm run package:build --workspace @svitlo/contracts
-      - name: Typecheck and execute Engine generator tests
-        run: npm test --workspace @svitlo/engine
+      - name: Build Engine
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Typecheck Engine and compile generator tests
+        run: |
+          npm run code:check:types --workspace @svitlo/engine
+          npx tsc -p shared/engine/tsconfig.test.json
+      - name: Run targeted generator and CLI regression tests
+        run: |
+          node --test \
+            shared/engine/.test-build/generators/lessons/*.spec.js \
+            shared/engine/generators/courses/publishCourseData.spec.mjs \
+            shared/engine/generators/skills/publishSkillTree.spec.mjs \
+            shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs \
+            shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
+            shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
+            shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs
