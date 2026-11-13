@@ -185,7 +185,7 @@ export function assembleLessonResponse(
       slug: sectionSlug,
       title: string(section.title, where + '.title'),
       navigationLabel: string(section.navigationLabel, where + '.navigationLabel'),
-      ...(section.skippable === true ? { skippable: true as const } : {}),
+      ...(typeof section.skippable === 'boolean' ? { skippable: section.skippable } : {}),
     };
     if (sectionType === 'quiz') {
       if (section.content !== undefined) throw new Error('Quiz must not contain ContentBlocks at ' + sectionSlug);
