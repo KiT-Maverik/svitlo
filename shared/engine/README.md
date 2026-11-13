@@ -11,4 +11,4 @@ Use `import { defineSkill } from '@svitlo/engine/build'` in authored textbook fi
 
 The browser graph check `node scripts/check-engine-runtime-graph.mjs` bundles `shared/engine/runtime.ts` for the browser, rejecting Node dependencies and build-only input modules. The Engine test script invokes this guard.
 
-Migration from legacy root imports is provided by `node scripts/migrate-engine-entrypoints.mjs --write`, with `--check` for verification. The root export is temporarily retained in the in-progress Draft branch until all consumers are migrated; it must be removed before merging #474.
+Migration from legacy root imports is provided by `node scripts/migrate-engine-entrypoints.mjs --write`, with `--check` for verification. The legacy package root is not exported. App code must depend on the runtime entrypoint; authored content imports the build entrypoint.
