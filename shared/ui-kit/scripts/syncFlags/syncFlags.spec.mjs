@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
 const script = fileURLToPath(new URL('./syncFlags.mjs', import.meta.url));
-const repoRoot = resolve(fileURLToPath(new URL('../../../', import.meta.url)));
+const repoRoot = resolve(fileURLToPath(new URL('../../../../', import.meta.url)));
 
 test('flag synchronization refuses to create a root public folder', () => {
   const command = spawnSync(process.execPath, [script], { cwd: repoRoot, encoding: 'utf8' });

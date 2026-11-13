@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 // The UI Kit owns the canonical files. Each platform host owns its deployed
 // copies, e.g. apps/web/public/flags. Never publish into the repository root.
-const source = resolve(dirname(fileURLToPath(import.meta.url)), '../assets/flags');
+const source = resolve(dirname(fileURLToPath(import.meta.url)), '../../assets/flags');
 
 export function syncFlags(targetRoot) {
   const root = resolve(targetRoot);

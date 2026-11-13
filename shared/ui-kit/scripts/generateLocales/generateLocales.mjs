@@ -10,7 +10,7 @@ import { createRequire, Module } from 'node:module';
 import ts from 'typescript';
 
 const require = createRequire(import.meta.url);
-const repoRoot = fileURLToPath(new URL('../../../', import.meta.url));
+const repoRoot = fileURLToPath(new URL('../../../../', import.meta.url));
 const dataRoot = join(repoRoot, 'shared/ui-kit/data/locale');
 const methodsRoot = join(repoRoot, 'shared/ui-kit/data/definitions/assessmentMethods');
 const targetFlag = process.argv.indexOf('--package');

@@ -9,9 +9,9 @@ import { z } from 'zod';
 
 import { allLanguageCodes, assessmentMethod_Props_Schema } from '@svitlo/engine';
 
-import * as assessmentMethods from '../data/definitions/assessmentMethods';
+import * as assessmentMethods from '../../data/definitions/assessmentMethods';
 
-const root = fileURLToPath(new URL('../../../', import.meta.url));
+const root = fileURLToPath(new URL('../../../../', import.meta.url));
 const output = path.join(root, 'content/playground/public/data/uiKit');
 const methods = z.enum(Object.keys(assessmentMethods));
 const baseSchema = z.record(methods, assessmentMethod_Props_Schema.pick({ id: true, slug: true }).strict());
@@ -21,7 +21,7 @@ const readJson = (filename: string): unknown => JSON.parse(readFileSync(filename
 beforeAll(() => {
   const result = spawnSync(
     process.execPath,
-    [path.join(root, 'shared/ui-kit/scripts/generateLocales.mjs'), '--package', 'content/playground'],
+    [path.join(root, 'shared/ui-kit/scripts/generateLocales/generateLocales.mjs'), '--package', 'content/playground'],
     { cwd: root, encoding: 'utf8' },
   );
   assert.equal(result.status, 0, result.stderr);
