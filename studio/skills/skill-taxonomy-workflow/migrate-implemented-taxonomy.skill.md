@@ -4,7 +4,7 @@
 
 ## GOAL
 
-Walk the existing `<PackageRoot>/docs/skills/taxonomy.md` from **top to bottom**, in Domain → Group → Skill order (or direct Domain → Skill). For each authored item with a link to actual Code, verify that its **approved meaning, name, description, classification, complete localized names and mandatory complete Skill frontend coverage (optional complete Group/Domain frontend)** are preserved in the proper `*.data.ts` object. After explicit editor approval, remove the item's editable Markdown definition **without losing any unpromoted child**. It must become reproducible via [Code-to-Markdown generator](../../../scripts/generate-skills-taxonomy.mjs).
+Walk the existing `<PackageRoot>/docs/skills/taxonomy.md` from **top to bottom**, in Domain → Group → Skill order (or direct Domain → Skill). For each authored item with a link to actual Code, verify that its **approved meaning, name, description, classification, complete localized names and mandatory complete Skill frontend coverage (optional complete Group/Domain frontend)** are preserved in the proper `*.data.ts` object. After explicit editor approval, remove the item's editable Markdown definition **without losing any unpromoted child**. It must become reproducible via [Code-to-Markdown generator](../../../shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs).
 
 ## REQUIRED INPUT
 

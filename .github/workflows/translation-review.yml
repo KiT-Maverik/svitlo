@@ -139,7 +139,7 @@ jobs:
       - name: Generate Skills and Lesson Markdown in every supported language
         run: |
           node --check scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
-          node --check scripts/generate-skills-taxonomy.mjs
+          node --check shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs
           node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
       - name: Upload isolated CI result for trusted publish job
         if: success()
