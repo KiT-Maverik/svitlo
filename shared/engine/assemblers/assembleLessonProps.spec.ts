@@ -12,9 +12,30 @@ const firstId = '663572e7-bd85-4516-86e2-3de07d209e02';
 const secondId = '663572e7-bd85-4516-86e2-3de07d209e04';
 const thirdId = '663572e7-bd85-4516-86e2-3de07d209e05';
 
-const first = { id: firstId, slug: 'intro', type: 'content' };
-const second = { id: secondId, slug: 'practice', type: 'content' };
-const third = { id: thirdId, slug: 'review', type: 'content' };
+const first = {
+  id: firstId,
+  slug: 'intro',
+  type: 'content' as const,
+  params: {},
+  locale: { title: 'Introduction', navigationLabel: '1' },
+  content: [],
+};
+const second = {
+  id: secondId,
+  slug: 'practice',
+  type: 'content' as const,
+  params: {},
+  locale: { title: 'Practice', navigationLabel: '2' },
+  content: [],
+};
+const third = {
+  id: thirdId,
+  slug: 'review',
+  type: 'content' as const,
+  params: {},
+  locale: { title: 'Review', navigationLabel: '3' },
+  content: [],
+};
 
 function resource(): PublishedLessonPropsResource {
   return {
@@ -51,7 +72,7 @@ test('Lesson assembler resolves only the requested language and preserves nested
   assert.equal(en.locale.title, 'English title');
   assert.deepEqual(uk.section.map(item => item.slug), ['intro', 'practice']);
   assert.equal(uk.section[0].locale?.title, 'Перекладений вступ');
-  assert.equal(en.section[0].locale?.title, undefined);
+  assert.equal(en.section[0].locale?.title, 'Introduction');
   assert.equal(data.locale?.uk?.locale?.title, 'Українська назва');
 
   uk.section[0].slug = 'changed';
@@ -75,7 +96,7 @@ test('removing a translated child does not resurrect it from the original locale
   const patch: PublishedLessonPropsOverride = { base: { section: [second] } } as PublishedLessonPropsOverride;
   const uk = assembleLessonProps(resource(), 'uk', patch);
   assert.deepEqual(uk.section.map(item => item.slug), ['practice']);
-  assert.equal(uk.section[0].locale?.title, undefined);
+  assert.equal(uk.section[0].locale?.title, 'Practice');
   assert.deepEqual(assembleLessonProps(resource(), 'en', patch).section.map(item => item.slug), ['practice']);
 });
 
