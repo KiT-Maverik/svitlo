@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -79,7 +79,10 @@ const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublica
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineAudio = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
+export const defineAudio = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Audio_Config,
       Languages

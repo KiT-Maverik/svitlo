@@ -4,6 +4,8 @@ import test from 'node:test';
 import { defineSkill } from '../../configurators/skills/defineSkill';
 import { defineSkillGroup } from '../../configurators/skills/defineSkillGroup';
 import { defineSkillDomain } from '../../configurators/skills/defineSkillDomain';
+import { skillDomain_Props_Schema } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
+import { skillGroup_Props_Schema } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
 import { assembleSkills, type Skills_Publication } from './assembleSkills';
 
 const id = (n: string) => '00000000-0000-4000-8000-0000000000' + n;
@@ -180,4 +182,19 @@ test('consumes actual SkillDomain Build output without a second translation wrap
   assert.equal(result.physics.groups?.[0].name, 'Механіка');
   assert.equal(result.physics.groups?.[0].skills[0].name, 'Рівновага');
   assert.equal(result.physics.groups?.[0].skills[0].description.frontend, 'Вивчай рівновагу');
+});
+
+test('published Skill Props reject unresolved locale dictionaries at domain and group levels', () => {
+  const domain = assembleSkills(publication(), 'uk').physics;
+  const group = domain.groups?.[0];
+  assert.ok(group);
+  assert.equal(skillDomain_Props_Schema.safeParse({ ...domain, title: { uk: 'Фізика' } }).success, false);
+  assert.equal(skillGroup_Props_Schema.safeParse({ ...group, name: { uk: 'Механіка' } }).success, false);
+  assert.equal(
+    skillGroup_Props_Schema.safeParse({
+      ...group,
+      description: { ...group.description, frontend: { uk: 'Вивчай механіку' } },
+    }).success,
+    false,
+  );
 });

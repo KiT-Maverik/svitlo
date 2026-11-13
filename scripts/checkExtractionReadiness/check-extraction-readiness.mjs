@@ -173,13 +173,13 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
         target.startsWith('./dist/') && target.endsWith('.js'),
         'Invalid compiled entrypoint: ' + pkg.name + subpath,
       );
-      // Engine and IndexedDB compile from the package root; other shared packages compile from src/.
-      const sourcePath =
-        path === 'shared/engine' || path === 'shared/indexdb'
-          ? target.replace(/^\.\/dist\//, '').replace(/\.js$/, '')
-          : target.replace(/^\.\/dist\/(?:src\/)?/, 'src/').replace(/\.js$/, '');
+      // Shared package entrypoints may live at the package root (Engine,
+      // IndexedDB, adapters) or in src/ (UI Kit). Match the emitted relative path
+      // without assuming that every workspace uses a src/ directory.
+      const source = target.replace(/^\.\/dist\//, '').replace(/\.js$/, '');
+      const candidates = path === 'shared/engine' ? [source] : [source, 'src/' + source.replace(/^src\//, '')];
       assert(
-        ['.ts', '.tsx'].some(ext => existsSync(resolve(root, path, sourcePath + ext))),
+        candidates.some(candidate => ['.ts', '.tsx'].some(ext => existsSync(resolve(root, path, candidate + ext)))),
         'Missing public entrypoint source: ' + pkg.name + subpath,
       );
       assert(entry.types === target.replace(/\.js$/, '.d.ts'), 'Mismatched declarations: ' + pkg.name + subpath);

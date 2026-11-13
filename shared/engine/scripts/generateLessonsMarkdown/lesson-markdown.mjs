@@ -122,7 +122,7 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
   const textbook = packagePath.slice('content/'.length);
   const relative = resolveEntityPath(canonical(lesson.id));
   const slug = segment(lesson.slug, 'lesson slug');
-  const supported = lesson.parameters?.languages;
+  const supported = lesson.params?.languages;
   if (
     !Array.isArray(supported) ||
     !supported.length ||
@@ -132,15 +132,22 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     throw new Error('Missing, duplicate or unsupported lesson languages');
   }
   if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (!Array.isArray(lesson.sections) || !record(lesson.questions) || !Array.isArray(lesson.flashcards)) {
-    throw new Error('Lesson is missing sections, question catalog or flashcards');
+  if (
+    !Array.isArray(lesson.section) ||
+    !Array.isArray(lesson.flashcards) ||
+    (lesson.questions !== undefined && !record(lesson.questions))
+  ) {
+    throw new Error('Lesson is missing Section or Flashcard Props arrays or has an invalid Question Bank');
   }
-  const localized = localizeReviewValue(lesson, locale, supported, languages).value;
+  if (!record(lesson.locale) || typeof lesson.locale.title !== 'string' || !lesson.locale.title.trim()) {
+    throw new Error('Lesson Props must contain a resolved locale.title');
+  }
+  const localized = lesson;
   const lessonRoot = `${packagePath}/data/lessons/${relative}`;
   const files = sourceFiles?.files ?? [];
   const quoteRef = encodeURIComponent(sourceRef);
   const link = file =>
-    `https://github.com/KiT-Maverik/svitlo-web/blob/${quoteRef}/${file.split('/').map(encodeURIComponent).join('/')}`;
+    `https://github.com/KiT-Maverik/svitlo/blob/${quoteRef}/${file.split('/').map(encodeURIComponent).join('/')}`;
   const source = (id, fallback) => {
     const found = files.find(file => file.text.includes(`'${id}'`) || file.text.includes(`"${id}"`));
     const target =
@@ -156,6 +163,8 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     'text',
     'markdown',
     'checkpoint',
+    // A Checkpoint publishes nested CheckpointItem Props; these are not top-level blocks.
+    'checkpointItem',
     'code',
     'audio',
     'video',
@@ -165,7 +174,7 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     'scene',
   ]);
   const mediaTypes = new Set(['image', 'audio', 'video', 'youtube', 'carousel']);
-  const sourceEntry = `${lessonRoot}/${slug}.data.ts`;
+  const sourceEntry = `${lessonRoot}/index.ts`;
   function writeValue(label, value, depth = 0, fallback = sourceEntry) {
     const prefix = '  '.repeat(depth);
     const title = escape(label);
@@ -218,7 +227,7 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     throw new Error(`Unsupported Lesson field: ${label}`);
   }
 
-  add(`# ${headingText(localized.title)}`);
+  add(`# ${headingText(localized.locale.title)}`);
   add('');
   add(`- Lesson: \`${lesson.id}\` (${headingText(slug)})`);
   add(`- Language: \`${locale}\` (supported: ${supported.map(code => `\`${code}\``).join(', ')})`);
@@ -226,29 +235,32 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
   add('- **Media representations:** descriptive metadata only; binary media and interactive Scenes are not rendered.');
   add('');
   if (localized.skills?.length) writeValue('Target Skills', localized.skills);
-  if (localized.parameters) writeValue('Lesson parameters', { ...localized.parameters, languages: undefined });
+  if (localized.params) writeValue('Lesson parameters', { ...localized.params, languages: undefined });
   add('');
   add('## Lesson');
   add('');
-  for (const [index, section] of localized.sections.entries()) {
+  for (const [index, section] of localized.section.entries()) {
     if (!record(section) || typeof section.id !== 'string' || typeof section.slug !== 'string') {
       throw new Error(`Invalid section ${index + 1}`);
     }
+    if (!record(section.locale) || typeof section.locale.title !== 'string') {
+      throw new Error(`Section ${section.slug} is missing resolved locale.title`);
+    }
     add(
-      `### ${index + 1}. ${headingText(section.title)} · ${headingText(section.slug)} (${headingText(section.type)})`,
+      `### ${index + 1}. ${headingText(section.locale.title)} · ${headingText(section.slug)} (${headingText(section.type)})`,
     );
     add('');
     add(`- ID: \`${section.id}\``);
-    add(`- Navigation: ${headingText(section.navigationLabel)}`);
+    add(`- Navigation: ${headingText(section.locale.navigationLabel)}`);
     add(`- Canonical: ${source(section.id, sourceEntry)}`);
     for (const [key, value] of Object.entries(section)) {
-      if (['id', 'slug', 'title', 'navigationLabel', 'type', 'content', 'parameters'].includes(key)) continue;
+      if (['id', 'slug', 'type', 'content', 'params'].includes(key)) continue;
       writeValue(key, value);
     }
     if (section.type === 'quiz') {
-      if (!record(section.parameters)) throw new Error(`Quiz Section ${section.slug} is missing parameters`);
+      if (!record(section.params)) throw new Error(`Quiz Section ${section.slug} is missing params`);
       add('- **Quiz uses references into the Question Bank below; content is not repeated here.**');
-      writeValue('Quiz parameters and selected Question slugs', section.parameters);
+      writeValue('Quiz parameters and selected Question slugs', section.params);
     } else {
       if (!Array.isArray(section.content)) throw new Error(`Section ${section.slug} is missing content`);
       section.content.forEach((block, i) => writeValue(`Block ${i + 1}`, block));
@@ -258,13 +270,15 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
   add('## Question Bank');
   add('');
   let questionCount = 0;
-  for (const [type, catalog] of Object.entries(localized.questions)) {
-    if (!record(catalog)) throw new Error(`Invalid question catalog ${type}`);
-    for (const [key, question] of Object.entries(catalog)) {
+  for (const [type, catalog] of Object.entries(localized.questions ?? {})) {
+    if (!Array.isArray(catalog)) throw new Error(`Invalid question catalog ${type}`);
+    for (const question of catalog) {
+      const key = question?.slug;
       if (
         !record(question) ||
         typeof question.id !== 'string' ||
-        !Array.isArray(question.question) ||
+        !record(question.content) ||
+        !Array.isArray(question.content.question) ||
         question.type !== type
       )
         throw new Error(`Invalid question ${type}/${key}`);
@@ -287,9 +301,10 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     if (
       !record(card) ||
       typeof card.id !== 'string' ||
-      !Array.isArray(card.front) ||
-      !Array.isArray(card.back) ||
-      !Array.isArray(card.hint)
+      !record(card.content) ||
+      !Array.isArray(card.content.front) ||
+      !Array.isArray(card.content.back) ||
+      (card.content.hint !== undefined && !Array.isArray(card.content.hint))
     )
       throw new Error(`Invalid Flashcard ${index + 1}`);
     add(`### Flashcard ${index + 1}`);

@@ -13,8 +13,14 @@ import {
 
 const id = 'c2cc84f3-f057-493d-b1b6-1880aad8023b';
 
-const text = defineText({ id, slug: 'text', type: 'text', params: {}, locale: { value: { en: 'Hi' } } });
-const audio = defineAudio({
+const text = defineText<'text', ['en']>({
+  id,
+  slug: 'text',
+  type: 'text',
+  params: {},
+  locale: { value: { en: 'Hi' } },
+});
+const audio = defineAudio<'audio', ['en']>({
   id,
   slug: 'audio',
   type: 'audio',
@@ -39,35 +45,35 @@ const carousel = defineCarousel({
     order: ['first'],
   },
 });
-const code = defineCode({
+const code = defineCode<'code', ['en']>({
   id,
   slug: 'code',
   type: 'code',
   params: { language: 'python', codeAsText: 'print(1)' },
   locale: { title: { en: 'Code' } },
 });
-const image = defineImage({
+const image = defineImage<'image', ['en']>({
   id,
   slug: 'image',
   type: 'image',
   params: { width: 100, height: 100 },
   locale: { src: 'https://example.com/image.png', alt: { en: 'Diagram' } },
 });
-const markdown = defineMarkdown({
+const markdown = defineMarkdown<'markdown', ['en']>({
   id,
   slug: 'markdown',
   type: 'markdown',
   params: {},
   locale: { value: { en: 'Hello' } },
 });
-const scene = defineScene({
+const scene = defineScene<'scene', ['en']>({
   id,
   slug: 'scene',
   type: 'scene',
   params: {},
   locale: { value: { heading: { en: 'Hello' } } },
 });
-const video = defineVideo({
+const video = defineVideo<'video', ['en']>({
   id,
   slug: 'video',
   type: 'video',
@@ -78,7 +84,7 @@ const video = defineVideo({
     label: { en: 'Movie' },
   },
 });
-const youtube = defineYoutube({
+const youtube = defineYoutube<'youtube', ['en']>({
   id,
   slug: 'youtube',
   type: 'youtube',

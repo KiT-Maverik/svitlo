@@ -43,10 +43,15 @@ export function discoverLessons(root) {
         if (relative !== `${bucket}/${id}`) throw new Error('Lesson path mismatch: ' + relative);
         const directory = path.join(rootDirectory, bucket, id);
         const candidates = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
-        if (!candidates.length) continue;
-        if (candidates.length !== 1) throw new Error('Ambiguous Lesson data in ' + directory);
-        const source = path.join(directory, candidates[0]);
-        if (!fs.lstatSync(source).isFile()) continue;
+        if (candidates.length > 1) throw new Error('Ambiguous Lesson data in ' + directory);
+        const index = path.join(directory, 'index.ts');
+        const source = fs.existsSync(index)
+          ? index
+          : candidates.length === 1
+            ? path.join(directory, candidates[0])
+            : null;
+        if (!source) continue;
+        if (fs.lstatSync(source).isSymbolicLink() || !fs.lstatSync(source).isFile()) continue;
         lessons.push({ textbook: app, package: `content/${app}`, id, relative, source });
       }
     }

@@ -74,7 +74,7 @@ for (const path of selected) {
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
     assert(manifest.textbook === 'playground' && Array.isArray(manifest.files), 'Invalid textbook build manifest');
     assert(
-      manifest.files.some(file => file.startsWith('data/pages/lessons/')),
+      manifest.files.some(file => file.startsWith('data/lessons/')),
       'Compiled lesson JSON missing',
     );
     assert(
@@ -143,7 +143,7 @@ for (const path of selected) {
       'Missing authored Skill taxonomy: ' + name,
     );
     assert(
-      !manifest.files.some(file => file.startsWith('data/pages/lessons/')),
+      !manifest.files.some(file => file.startsWith('data/lessons/')),
       'Unexpected non-authored Lesson JSON: ' + name,
     );
     for (const file of manifest.files)

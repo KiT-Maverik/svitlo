@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import {
   mergeForValidation,
   onlyLocales,
@@ -47,7 +47,10 @@ const publishLocale = (input: DeepPartial<ContentBlock_CarouselSlide_Config['loc
 };
 
 /** Slide identity never appears in the Carousel's UI slides array. */
-export const defineCarouselSlide = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
+export const defineCarouselSlide = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_CarouselSlide_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_CarouselSlide_Config,
       Languages

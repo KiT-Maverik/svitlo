@@ -73,3 +73,43 @@ test('a missing built artifact in the selected workspace fails the scoped check'
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /ENOENT/);
 });
+
+test('validates the current Playground Props publication paths rather than legacy page Lessons', t => {
+  const root = mkdtempSync(join(tmpdir(), 'svitlo-playground-artifacts-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const workspace = join(root, 'content/playground');
+  const lesson = 'data/lessons/3/663572e7-bd85-4516-86e2-3de07d209e03/base.json';
+  const skill = 'data/skills/base.json';
+
+  for (const file of [
+    'dist/textbook/index.js',
+    'dist/textbook/index.d.ts',
+    'dist/publish.mjs',
+    'dist/static/' + lesson,
+    'dist/static/' + skill,
+  ]) {
+    const target = join(workspace, file);
+    mkdirSync(dirname(target), { recursive: true });
+    writeFileSync(target, file.endsWith('.json') ? '{}' : '');
+  }
+  writeFileSync(
+    join(workspace, 'package.json'),
+    JSON.stringify({
+      name: '@svitlo/playground',
+      bin: { 'svitlo-playground': './dist/publish.mjs' },
+      exports: { '.': { default: './dist/textbook/index.js', types: './dist/textbook/index.d.ts' } },
+    }),
+  );
+  const manifestPath = join(workspace, 'dist/manifest.json');
+  const verify = () =>
+    spawnSync(process.execPath, [script, '--packages', 'content/playground'], { cwd: root, encoding: 'utf8' });
+
+  writeFileSync(manifestPath, JSON.stringify({ version: 1, textbook: 'playground', files: [lesson, skill] }));
+  const valid = verify();
+  assert.equal(valid.status, 0, valid.stderr);
+
+  writeFileSync(manifestPath, JSON.stringify({ version: 1, textbook: 'playground', files: [skill] }));
+  const incomplete = verify();
+  assert.notEqual(incomplete.status, 0);
+  assert.match(incomplete.stderr, /Compiled lesson JSON missing/);
+});

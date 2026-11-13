@@ -1,3 +1,4 @@
+import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import type {
   DeepPartial,
   LanguageScope,
@@ -5,7 +6,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -146,7 +147,7 @@ export const defineCheckpointItem = <
   const Slug extends string,
   const Answers extends Record<string, Checkpoint_Allowed_Configurator>,
   const Question extends ContentBlock_CheckpointItem_Config['question'],
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_CheckpointItem_Config, 'slug' | 'answer' | 'question'> & {
     slug: Slug;
@@ -384,4 +385,4 @@ export const defineCheckpointItem = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type ContentBlock_CheckpointItem_Configurator = ReturnType<typeof defineCheckpointItem>;
+export type ContentBlock_CheckpointItem_Configurator = ConfiguratorChild<ReturnType<typeof defineCheckpointItem>>;

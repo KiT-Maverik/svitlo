@@ -65,6 +65,8 @@ export const allLanguageCodes = [
   'vi',
   'zh',
 ] as const;
+/** Canonical nonempty language tuple for default authoring scopes. */
+export type AllLanguageCodes = typeof allLanguageCodes;
 export type LanguageCode = (typeof allLanguageCodes)[number];
 export const languageCode_Schema = z.enum(allLanguageCodes);
 

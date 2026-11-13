@@ -20,14 +20,14 @@ text.build.props({ languages: ['pl'] });
 // @ts-expect-error The publication scope is mandatory.
 text.build.props();
 
-const item = defineCheckpointItem({
+const item = defineCheckpointItem<'item', { intro: typeof text }, typeof text, ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d62',
   type: 'checkpointItem',
   slug: 'item',
   question: text,
   answer: { items: { intro: text }, order: ['intro'] },
 });
-const checkpoint = defineCheckpoint({
+const checkpoint = defineCheckpoint<'review', { item: typeof item }, ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d63',
   type: 'checkpoint',
   slug: 'review',

@@ -30,7 +30,12 @@ export type LanguageScope<Languages extends readonly LanguageCode[]> = {
   readonly __svitloLanguageScope: Languages;
 };
 
-/** The parent cannot advertise a language absent from its child. */
+/**
+ * Every child must cover the parent languages. The default type-level scope
+ * is readonly LanguageCode[] (all supported languages), not an empty tuple.
+ * Explicitly scoped children may advertise a smaller set. Actual translated
+ * content is still validated when each selected language is published.
+ */
 export type ChildSupporting<Required extends readonly LanguageCode[], Child> =
   Child extends LanguageScope<infer Available extends readonly LanguageCode[]>
     ? Exclude<Required[number], Available[number]> extends never
@@ -43,14 +48,14 @@ export type ChildrenSupporting<Required extends readonly LanguageCode[], Childre
 };
 
 /**
- * Languages to materialize for one Build call, limited to an explicit authored tuple.
- * A default/empty tuple is unscoped, and broad readonly LanguageCode[] is also
- * unscoped. Test for a nonempty tuple rather than checking Languages[number]
- * for never: the latter breaks structural assignability of default [] children
- * to collection configurator constraints under TypeScript's generic variance.
+ * Select one or more languages from the declared scope. Without an explicit
+ * subset, all supported language codes are allowed, and every localized field
+ * is required at authoring time by RequireLanguages. Explicit [] allows none.
  */
 export type PublicationLanguageOptions<Languages extends readonly LanguageCode[] = readonly LanguageCode[]> = {
-  readonly languages: readonly (Languages extends readonly [LanguageCode, ...LanguageCode[]]
-    ? Languages[number]
-    : LanguageCode)[];
+  readonly languages: readonly (Languages extends readonly []
+    ? never
+    : Languages extends readonly [LanguageCode, ...LanguageCode[]]
+      ? Languages[number]
+      : LanguageCode)[];
 };

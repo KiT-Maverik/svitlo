@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -112,7 +112,10 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineCode = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
+export const defineCode = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Code_Config,
       Languages

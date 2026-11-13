@@ -10,14 +10,14 @@ describe('Configurators', () => {
     describe('defineCode', () => {
       const config = () => ({
         id,
-        slug: 'sample',
+        slug: 'sample' as const,
         type: 'code' as const,
         params: { language: 'python', codeAsText: 'print(%_%NAME%_%)' },
         locale: { variables: { NAME: { en: "'Ada'", uk: "'Ада'" } } },
       });
 
       test('publishes original source and requested replacement values', () => {
-        const code = defineCode(config());
+        const code = defineCode<'sample', ['en', 'uk']>(config());
         const resource = code.build.props(scope);
         assert.equal(resource.base.params.codeAsText, 'print(%_%NAME%_%)');
         assert.deepEqual(resource.locale, { uk: { locale: { variables: { NAME: "'Ада'" } } } });
@@ -25,7 +25,7 @@ describe('Configurators', () => {
       });
 
       test('validates placeholder references against the effective overridden template', () => {
-        const code = defineCode(config());
+        const code = defineCode<'sample', ['en', 'uk']>(config());
         assert.throws(
           () => code.build.overrides({ params: { codeAsText: 'print(%_%UNKNOWN%_%)' } }, scope),
           /Invalid Code overrides/,

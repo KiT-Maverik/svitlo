@@ -1,4 +1,4 @@
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -138,7 +138,7 @@ export function defineSkillDomain<
   const Slug extends string,
   const Groups extends Record<string, Group> = {},
   const Skills extends Record<string, Skill> = {},
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<SkillDomain_Config, 'slug' | 'groups' | 'skills' | 'title' | 'description'> & {
     slug: Slug;
@@ -164,7 +164,7 @@ export function defineSkillDomain<
   const splitOwn = (input: SkillDomain_Metadata_Overrides) => {
     const own = splitLocalizedFields(input);
     return {
-      base: own.base as SkillDomain_Metadata_Overrides,
+      base: own.base as DeepPartial<Pick<SkillDomain_Props, 'title' | 'description'>>,
       locale: (own.locale ?? {}) as Partial<Record<LanguageCode, DeepPartial<SkillDomain_Props>>>,
     };
   };

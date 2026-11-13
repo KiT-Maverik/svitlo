@@ -1,3 +1,4 @@
+import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type {
   DeepPartial,
   LanguageScope,
@@ -5,7 +6,7 @@ import type {
   RequireLanguages,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -239,12 +240,12 @@ export function defineFlashcard<
   const Hint extends Record<string, Block> = {},
   const Flags extends Record<string, Flashcard_Flag_Config> = Record<string, Flashcard_Flag_Config>,
   const Relationships extends Record<string, Flashcard_Relationship> = Record<string, Flashcard_Relationship>,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Flashcard_Config, 'slug' | 'content' | 'parameters'> & {
     slug: Slug;
     parameters: Omit<Flashcard_Config['parameters'], 'flags' | 'relationships'> & {
-      flags: { items: Flags & RequireLanguages<Flags, Languages>; order: string[] };
+      flags: { items: Flags & { [Key in keyof Flags]: RequireLanguages<Flags[Key], Languages> }; order: string[] };
       relationships?: { items: Relationships; order: string[] };
     };
     content: {
@@ -626,4 +627,4 @@ export function defineFlashcard<
   return result as typeof result & LanguageScope<Languages>;
 }
 
-export type Flashcard_Configurator = ReturnType<typeof defineFlashcard>;
+export type Flashcard_Configurator = ConfiguratorChild<ReturnType<typeof defineFlashcard>>;

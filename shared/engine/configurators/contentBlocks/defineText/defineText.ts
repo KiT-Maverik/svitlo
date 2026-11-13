@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   onlyLocales,
@@ -120,7 +120,10 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
  */
-export const defineText = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
+export const defineText = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Text_Config,
       Languages

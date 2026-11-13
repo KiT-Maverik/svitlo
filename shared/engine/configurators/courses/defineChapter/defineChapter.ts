@@ -1,4 +1,4 @@
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -155,7 +155,7 @@ export type Chapter_Configurator<
 export const defineChapter = <
   const Slug extends string,
   const Items extends Record<string, Chapter_Child>,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Chapter_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;

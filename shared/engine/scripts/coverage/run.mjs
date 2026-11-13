@@ -10,6 +10,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { buildGapReport, collectCoverageTargets } from './report.mjs';
+import { engineTestPatterns } from './engineTestPatterns.mjs';
 
 const engineRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const output = path.join(engineRoot, '.coverage-engine');
@@ -28,14 +29,7 @@ function run(executable, args) {
 
 function testPaths() {
   const packageJson = JSON.parse(fs.readFileSync(path.join(engineRoot, 'package.json'), 'utf8'));
-  const command = packageJson.scripts?.test;
-  if (typeof command !== 'string') throw new Error('Missing Engine test command');
-  const marker = ' && node --test ';
-  const index = command.indexOf(marker);
-  if (index < 0) throw new Error('Unsupported Engine test command: expected existing node --test invocation');
-  // Only the first node --test invocation contains test globs. Commands after
-  // a subsequent && (for example the runtime graph check) are not test paths.
-  const patterns = command.slice(index + marker.length).split(' && ')[0].trim().split(/\s+/);
+  const patterns = engineTestPatterns(packageJson.scripts?.test);
   const files = new Set();
   for (const pattern of patterns) {
     if (!/^(?:\.test-build|generators|scripts)\/[a-zA-Z0-9_.*\/-]+\.spec\.(?:js|mjs)$/.test(pattern)) {

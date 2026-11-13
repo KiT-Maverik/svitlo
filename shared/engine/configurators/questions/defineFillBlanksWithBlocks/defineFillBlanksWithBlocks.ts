@@ -1,5 +1,5 @@
 import type { DeepPartial, LanguageScope, ChildrenSupporting, ChildSupporting, ConfigWithLanguages } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
   cloneJson,
@@ -72,7 +72,7 @@ type SlotBlocksOverride<
 export type Question_FillBlanksWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCode[] = [],
+  Languages extends readonly LanguageCode[] = AllLanguageCodes,
   AddedSlots extends Record<string, SlotBlock> = {},
 > = Question_FillBlanksWithBlocks_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
@@ -93,7 +93,7 @@ export type Question_FillBlanksWithBlocks_Overrides<
 export const defineFillBlanksWithBlocks = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Question_FillBlanksWithBlocks_Config, 'slug' | 'content'> & {
     slug: Slug;

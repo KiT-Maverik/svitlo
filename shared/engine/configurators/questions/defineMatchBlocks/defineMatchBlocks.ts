@@ -1,5 +1,5 @@
 import type { DeepPartial, LanguageScope, ChildrenSupporting, ChildSupporting, ConfigWithLanguages } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
   cloneJson,
@@ -75,7 +75,7 @@ type PairsOverride<
 export type Question_MatchBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCode[] = [],
+  Languages extends readonly LanguageCode[] = AllLanguageCodes,
   AddedPairs extends Record<string, Pair> = {},
 > = Question_MatchBlocks_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
@@ -94,7 +94,7 @@ export type Question_MatchBlocks_Overrides<
 export const defineMatchBlocks = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Question_MatchBlocks_Config, 'slug' | 'content'> & {
     slug: Slug;

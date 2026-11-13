@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import {
   mergeForValidation,
   resolvePublicationLanguages,
@@ -151,7 +151,7 @@ const validate = (config: QuizSection_Config): void => {
 export const defineQuizSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<QuizSection_Config, 'slug' | 'content'> & {
     slug: Slug;

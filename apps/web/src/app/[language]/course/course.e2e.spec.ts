@@ -15,10 +15,10 @@ test('Course and Lessons publish Engine Props files, not legacy TOC and override
   const course = await courseResource.json();
   expect(course.type).toBe('course');
   expect(course.content.order).toEqual(['lightLaboratory']);
-  const module = course.content.items.lightLaboratory;
-  expect(module.type).toBe('module');
-  expect(module.content.order).toEqual(['lightFoundations', 'lightExploration']);
-  const chapter = module.content.items.lightFoundations;
+  const courseModule = course.content.items.lightLaboratory;
+  expect(courseModule.type).toBe('module');
+  expect(courseModule.content.order).toEqual(['lightFoundations', 'lightExploration']);
+  const chapter = courseModule.content.items.lightFoundations;
   expect(chapter.type).toBe('chapter');
   expect(chapter.content.items.lightDiscovery).toEqual({ type: 'lesson', id: discoveryId });
   expect(chapter.content.items.lightStory.type).toBe('lesson');
@@ -40,9 +40,9 @@ test('Course detail uses the published nested hierarchy and opens a real Lesson'
   );
 
   await page.goto('/uk/course/' + courseId + '/lesson/uk/' + discoveryId);
-  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
   await page.goto('/uk/lesson/uk/' + discoveryId);
-  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
 });
 
 test('Course-context Lesson preserves the independent content language', async ({ page }) => {
@@ -86,6 +86,6 @@ test('Course catalog still supports unpublished previews without fake Lesson lin
   await page.goto('/uk/courses');
   await expect(page.getByRole('heading', { name: 'Обирай свою наступну пригоду', level: 1 })).toBeVisible();
   await page.getByRole('link', { name: 'Переглянути курс: Математика навколо нас' }).click();
-  await expect(page.getByText('Це попередній перегляд. Уроки будуть доступні пізніше.')).toBeVisible();
+  await expect(page.getByText('Це попередній перегляд. Уроки будуть доступні пізніше.').first()).toBeVisible();
   await expect(page.getByRole('link', { name: 'Почати навчання' })).toHaveCount(0);
 });

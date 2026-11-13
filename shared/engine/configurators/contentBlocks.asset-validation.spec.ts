@@ -45,7 +45,7 @@ describe('Configurators', () => {
           };
           const audioConfig = {
             id,
-            slug: 'audio',
+            slug: 'audio' as const,
             type: 'audio' as const,
             params: {},
             locale: { fileLocation: { en: url('tone.wav'), uk: url('tone.wav') }, title: 'Tone' },
@@ -80,7 +80,7 @@ describe('Configurators', () => {
           };
 
           const image = defineImage(imageConfig);
-          const audio = defineAudio(audioConfig);
+          const audio = defineAudio<'audio', ['en', 'uk']>(audioConfig);
           const video = defineVideo(videoConfig);
           const carousel = defineCarousel(carouselConfig);
           const sceneBlock = defineScene(sceneConfig);

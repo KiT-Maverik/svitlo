@@ -1,5 +1,5 @@
 import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
   assertEnabledBlock,
@@ -54,7 +54,7 @@ type ContentShape = Question_BuildAnswerWithBlocks_Config['content'];
 export type Question_BuildAnswerWithBlocks_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCode[] = [],
+  Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = Question_BuildAnswerWithBlocks_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
     correctSequence?: OrderedBlockPatch<Content['correctSequence']['items'], Added, Languages>;
@@ -73,7 +73,7 @@ export type Question_BuildAnswerWithBlocks_Overrides<
 export const defineBuildAnswerWithBlocks = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Question_BuildAnswerWithBlocks_Config, 'slug' | 'content'> & {
     slug: Slug;

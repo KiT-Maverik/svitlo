@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
-import type { LessonState, QuizState } from '@svitlo/indexdb';
 import {
+  type LessonState,
+  type QuizState,
   createLessonState,
   deleteLessonState,
   getLessonState,

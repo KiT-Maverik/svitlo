@@ -81,7 +81,7 @@ describe('Configurators', () => {
           ['literacy'],
         );
         assert.equal(JSON.stringify(result).includes('"items"'), false);
-        const method = defineAssessmentMethod({
+        const method = defineAssessmentMethod<'retrieval', ['uk']>({
           id: id('07'),
           slug: 'retrieval',
           title: 'Retrieval',

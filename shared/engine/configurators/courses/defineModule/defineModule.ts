@@ -1,4 +1,4 @@
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -161,7 +161,7 @@ export type Module_Configurator<
 export const defineModule = <
   const Slug extends string,
   const Items extends Record<string, Module_Child>,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Module_Config, 'slug' | 'content' | 'locale'> & {
     slug: Slug;

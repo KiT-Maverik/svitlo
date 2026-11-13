@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -86,7 +86,10 @@ const buildYoutubePatch = (
  * identifies the video for the iframe/link and fallback UI.
  * `locale.title` is an optional visible heading, not its accessible label.
  */
-export const defineYoutube = <const Slug extends string, const Languages extends readonly LanguageCode[] = []>(
+export const defineYoutube = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Youtube_Config,
       Languages

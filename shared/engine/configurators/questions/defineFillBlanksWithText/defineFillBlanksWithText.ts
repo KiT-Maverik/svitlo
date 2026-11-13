@@ -1,5 +1,5 @@
 import type { ConfigWithLanguages, DeepPartial, LanguageScope, RequireLanguages } from '#types';
-import type { LanguageCode } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { deepStrict_Schema, camelCase_Schema } from '#schemas';
 import { z } from 'zod';
 
@@ -54,7 +54,7 @@ type SlotsOverride<
 export type Question_FillBlanksWithText_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCode[] = [],
+  Languages extends readonly LanguageCode[] = AllLanguageCodes,
   AddedSlots extends Record<string, Slot> = {},
 > = Question_FillBlanksWithText_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
@@ -95,7 +95,7 @@ const validate = (candidate: Question_FillBlanksWithText_Config): void => {
 export const defineFillBlanksWithText = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCode[] = [],
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Question_FillBlanksWithText_Config, 'slug' | 'content'> & {
     slug: Slug;
