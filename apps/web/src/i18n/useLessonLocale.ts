@@ -2,7 +2,7 @@
 
 import { useCallback } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '+@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/engine/runtime';
 
 function languageForCode(code: string) {
   const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.language === code);
