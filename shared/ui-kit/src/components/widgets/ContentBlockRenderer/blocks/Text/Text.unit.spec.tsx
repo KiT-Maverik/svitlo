@@ -1,15 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import type { ContentBlock_Text_Response } from '+@svitlo/contracts/content';
+import type { ContentBlock_Text_Props } from '@svitlo/engine/runtime';
 import { Text } from './Text';
 import styles from '#utils/styledText/StyledText.module.css';
 
 const textResponse = (
   value: string,
-  variables?: ContentBlock_Text_Response['variables'],
-  wrap?: ContentBlock_Text_Response['wrap'],
-): ContentBlock_Text_Response => ({ id: 'text-id', type: 'text', value, variables, wrap });
+  variables?: ContentBlock_Text_Props['params']['variables'],
+  wrap?: ContentBlock_Text_Props['params']['wrap'],
+): ContentBlock_Text_Props => ({
+  id: 'text-id',
+  slug: 'textId',
+  type: 'text',
+  params: { variables, wrap },
+  locale: { value },
+});
 
 describe('Text', () => {
   it('renders marker values without service syntax when no variables are supplied', () => {
@@ -44,7 +50,7 @@ describe('Text', () => {
       info: { applyStyle: ['highlight'], tone: 'info' },
       neutral: { applyStyle: ['highlight'], tone: 'neutral' },
       success: { applyStyle: ['highlight'], tone: 'success' },
-    } satisfies NonNullable<ContentBlock_Text_Response['variables']>;
+    } satisfies NonNullable<ContentBlock_Text_Props['variables']>;
     render(<Text {...textResponse(text, variables)} />);
 
     expect(screen.getByText('Default')).toHaveClass(styles.highlight);
@@ -78,13 +84,13 @@ describe('Text', () => {
     expect(container.querySelector('span')).toBeNull();
   });
 
-  it('supports unwrapped output and Typography props', () => {
+  it('wraps text by default and supports Typography props', () => {
     const { container, rerender } = render(
-      <Text {...textResponse('Bare %_%id: name; value: John%_%', undefined, { enabled: false })} />,
+      <Text {...textResponse('Bare %_%id: name; value: John%_%')} />,
     );
     expect(container.textContent).toBe('Bare John');
-    expect(container.querySelector('p')).toBeNull();
-    rerender(<Text {...textResponse('Wrapped', undefined, { typographyProps: { component: 'h2', id: 'title' } })} />);
+    expect(container.querySelector('p')).toBeInTheDocument();
+    rerender(<Text {...textResponse('Wrapped', undefined, { enabled: true, typographyProps: { component: 'h2', id: 'title' } })} />);
     expect(screen.getByRole('heading', { level: 2, name: 'Wrapped' })).toHaveAttribute('id', 'title');
   });
 

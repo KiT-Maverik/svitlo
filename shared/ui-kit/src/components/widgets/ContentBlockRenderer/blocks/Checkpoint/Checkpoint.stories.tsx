@@ -1,10 +1,28 @@
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import type { Meta, StoryObj } from '@storybook/nextjs';
-import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '+@svitlo/contracts/content';
+import type { ContentBlock_Checkpoint_Props, ContentBlock_Text_Props } from '@svitlo/engine/runtime';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 
-function CheckpointStory(props: ContentBlock_Checkpoint_Response<Locale_Languages>) {
+const textBlock = (id: string, value: string): ContentBlock_Text_Props => ({
+  id,
+  slug: 'textBlock',
+  type: 'text',
+  params: {},
+  locale: { value },
+});
+
+function checkpointItem(id: string, question: string, answer: string) {
+  return {
+    id,
+    slug: 'checkpointItem',
+    type: 'checkpointItem' as const,
+    question: textBlock(id + '-question', question),
+    answer: [textBlock(id + '-answer', answer)],
+  };
+}
+
+function CheckpointStory(props: ContentBlock_Checkpoint_Props) {
   // Use the real dispatcher so the answers render as regular content blocks.
   return <ContentBlockRenderer messages={enUiKitMessages} blocks={[props]} />;
 }
@@ -23,33 +41,29 @@ const meta = {
   },
   args: {
     id: 'checkpoint-example',
+    slug: 'checkpointExample',
     type: 'checkpoint',
-    title: 'Check your knowledge',
-    headingLevel: 2,
-    showIndices: true,
-    showChevron: true,
-    showIcon: false,
-    enableChecks: false,
-    renderAsGroup: true,
-    items: [
-      {
-        question: 'How does light travel?',
-        answer: [{ id: 'answer-light', type: 'text', value: 'In a straight line through a uniform medium.' }],
-      },
-      {
-        question: 'What can a prism do to white light?',
-        answer: [{ id: 'answer-prism', type: 'text', value: 'Separate it into different colors.' }],
-      },
+    params: {
+      headingLevel: 2,
+      showIndices: true,
+      showChevron: true,
+      showIcon: false,
+      enableChecks: false,
+      renderAsGroup: true,
+    },
+    locale: { title: 'Check your knowledge' },
+    content: [
+      checkpointItem('item-light', 'How does light travel?', 'In a straight line through a uniform medium.'),
+      checkpointItem('item-prism', 'What can a prism do to white light?', 'Separate it into different colors.'),
     ],
   },
   argTypes: {
     id: { control: false },
+    slug: { control: false },
     type: { control: false },
-    items: { control: 'object' },
-    headingLevel: { control: { type: 'select' }, options: [1, 2, 3, 4, 5, 6] },
-    indexPosition: { control: 'radio', options: ['left', 'right'] },
-    iconPosition: { control: 'radio', options: ['left', 'right'] },
-    chevronPosition: { control: 'radio', options: ['left', 'right'] },
+    content: { control: 'object' },
+    params: { control: 'object' },
+    locale: { control: 'object' },
   },
 } satisfies Meta<typeof CheckpointStory>;
 
@@ -59,11 +73,11 @@ type Story = StoryObj<typeof meta>;
 export const Playground: Story = {};
 
 export const WithChecks: Story = {
-  args: { enableChecks: true, showIcon: true },
+  args: { params: { enableChecks: true, showIcon: true } },
 };
 
 export const SeparateItems: Story = {
-  args: { renderAsGroup: false, showIndices: false, showIcon: true, iconPosition: 'right' },
+  args: { params: { renderAsGroup: false, showIndices: false, showIcon: true, iconPosition: 'right' } },
 };
 
 export const RightToLeft: Story = {
@@ -75,13 +89,10 @@ export const RightToLeft: Story = {
     ),
   ],
   args: {
-    title: 'اختبر معلوماتك',
-    enableChecks: true,
-    items: [
-      {
-        question: 'كيف ينتقل الضوء في وسط متجانس؟',
-        answer: [{ id: 'arabic-answer', type: 'text', value: 'ينتقل الضوء في خطوط مستقيمة.' }],
-      },
+    locale: { title: 'اختبر معلوماتك' },
+    params: { enableChecks: true },
+    content: [
+      checkpointItem('arabic-item', 'كيف ينتقل الضوء في وسط متجانس؟', 'ينتقل الضوء في خطوط مستقيمة.'),
     ],
   },
 };
