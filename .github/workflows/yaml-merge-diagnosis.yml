@@ -1,4 +1,4 @@
-name: Temporary YAML scaffolders merge diagnosis
+name: Temporary YAML scaffolders integration reconciliation
 
 on:
   push:
@@ -8,39 +8,146 @@ on:
       - .github/workflows/yaml-merge-diagnosis.yml
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: svitlo-yaml-integration-merge
+  cancel-in-progress: true
 
 jobs:
-  inspect:
+  reconcile:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: integration/yaml-ts-scaffolders
           fetch-depth: 0
-          persist-credentials: false
-      - name: Inspect three-way merge against latest main without making changes
+          persist-credentials: true
+      - name: Merge main with explicitly reviewed conflict choices
         shell: bash
         run: |
           set -euo pipefail
-          git config user.name 'svitlo-merge-audit'
-          git config user.email 'svitlo-merge-audit@users.noreply.github.com'
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin main
-          echo "Integration head: $(git rev-parse HEAD)"
-          echo "Main head: $(git rev-parse origin/main)"
+          echo "PR integration parent: $(git rev-parse HEAD)"
+          echo "Upstream main: $(git rev-parse origin/main)"
           set +e
-          git merge --no-commit --no-ff origin/main > /tmp/svitlo-merge.log 2>&1
+          git merge --no-commit --no-ff origin/main
           status=$?
           set -e
-          echo "merge exit status: $status"
-          cat /tmp/svitlo-merge.log
-          echo "===== unresolved paths ====="
-          git diff --name-only --diff-filter=U
-          echo "===== unmerged stage entries ====="
-          git ls-files -u | head -100
-          echo "===== conflict count ====="
-          git diff --name-only --diff-filter=U | wc -l
           if [ "$status" -eq 0 ]; then
-            echo "MERGE CLEAN"
+            echo "No remaining conflicts in this main revision"
+          else
+            git diff --name-only --diff-filter=U | sort > /tmp/actual-conflicts.txt
+            cat > /tmp/expected-conflicts.txt <<'EOF'
+          shared/engine/package.json
+          shared/engine/scripts/courseBuilder/README.md
+          shared/engine/scripts/courseBuilder/courseBuilder.mjs
+          shared/engine/scripts/lessonBuilder/lessonBuilder.mjs
+          shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs
+          studio/docs/entities/lesson.md
+          studio/docs/entities/section.md
+          studio/skills/lesson-workflow/create-lesson-content.skill.md
+          EOF
+            if ! diff -u /tmp/expected-conflicts.txt /tmp/actual-conflicts.txt; then
+              echo "::error::New or missing conflicts: refusing unreviewed auto-resolution"
+              exit 1
+            fi
+            # Retain the draft scaffolders, not old validation-based builders.
+            git checkout --ours -- \
+              shared/engine/scripts/courseBuilder/README.md \
+              shared/engine/scripts/courseBuilder/courseBuilder.mjs \
+              shared/engine/scripts/lessonBuilder/lessonBuilder.mjs \
+              shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
+              studio/skills/lesson-workflow/create-lesson-content.skill.md
+            # Keep the new Engine entity publication contracts and runtime links.
+            git checkout --theirs -- \
+              shared/engine/package.json \
+              studio/docs/entities/lesson.md \
+              studio/docs/entities/section.md
+            node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          // Retain the post-Contracts Engine test script, only adding new
+          // YAML codegen tests and build-time generator commands.
+          const manifestPath = 'shared/engine/package.json';
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+          const prefix = ' && node ../../scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs';
+          if (!manifest.scripts.test.includes(prefix)) throw new Error('Engine test command changed unexpectedly');
+          for (const testFile of [
+            'scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs',
+            'scripts/yamlScaffolding/yamlScaffolding.spec.mjs',
+          ]) {
+            if (!manifest.scripts.test.includes(testFile)) {
+              manifest.scripts.test = manifest.scripts.test.replace(prefix, ' ' + testFile + prefix);
+            }
+          }
+          manifest.scripts['content:generate:yaml-schemas'] =
+            'node scripts/generateYamlSchemas/generateYamlSchemas.mjs --write';
+          manifest.scripts['content:check:yaml-schemas'] =
+            'node scripts/generateYamlSchemas/generateYamlSchemas.mjs --check';
+          fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+
+          // Keep main's accurate post-migration contract descriptions and add
+          // only new source-YAML-to-Config scaffold handoff information.
+          const additions = [
+            ['studio/docs/entities/lesson.md',
+              '\n## YAML TypeScript draft authoring handoff\n\nThe Screenwriter-owned `content.yaml` is an editorial plan; the independent `lesson.config.yaml` technical projection carries the authored Engine `defineLesson` Config tree, plus a removable source-language `documentLanguage` provenance field. The Engine YAML draft scaffolder converts it to incomplete named `*.data.ts` source using `@svitlo/engine/build` factories without validating, translating, typechecking or publishing. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md). The published Props pipeline remains separate.\n'],
+            ['studio/docs/entities/section.md',
+              '\n## YAML Config draft authoring\n\nThe technical `lesson.config.yaml` uses explicit `type` for each Section and its ContentBlocks, with slug-keyed `content: { items, order }` collections. Its editor schema is generated from Engine Config schemas; the TypeScript draft scaffolder emits nested `define*Section` and `define*` calls but does not verify editorial approval or publish Props. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md).\n'],
+          ];
+          for (const [filename, section] of additions) {
+            const doc = fs.readFileSync(filename, 'utf8');
+            if (!doc.includes('## YAML TypeScript draft authoring handoff') &&
+                !doc.includes('## YAML Config draft authoring')) {
+              fs.appendFileSync(filename, section);
+            }
+          }
+          NODE
           fi
-          git merge --abort || true
+          if git ls-files -u | grep -q .; then
+            echo "::error::Unresolved conflict stages remain"
+            git ls-files -u
+            exit 1
+          fi
+          if grep -R -nE "from ['\x22]@svitlo/contracts|require\(['\x22]@svitlo/contracts" \
+            shared/engine/scripts/lessonBuilder shared/engine/scripts/courseBuilder \
+            shared/engine/scripts/yamlScaffolding; then
+            echo "::error::Obsolete Contracts imports found in scaffolders"
+            exit 1
+          fi
+          git add -- shared/engine/package.json \
+            shared/engine/scripts/courseBuilder/README.md \
+            shared/engine/scripts/courseBuilder/courseBuilder.mjs \
+            shared/engine/scripts/lessonBuilder/lessonBuilder.mjs \
+            shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs \
+            studio/docs/entities/lesson.md \
+            studio/docs/entities/section.md \
+            studio/skills/lesson-workflow/create-lesson-content.skill.md
+          git diff --cached --check
+          echo "Merge-index paths: $(git diff --cached --name-only | wc -l)"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install dependencies and verify Engine on resolved merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm run package:build --workspace @svitlo/engine
+          npm run code:check:types --workspace @svitlo/engine
+          npm run test --workspace @svitlo/engine
+          npm run content:check:yaml-schemas --workspace @svitlo/engine
+          node scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs
+      - name: Finalize merge (remove one-off workflow and push to #508)
+        shell: bash
+        run: |
+          set -euo pipefail
+          git rm -- .github/workflows/yaml-merge-diagnosis.yml
+          git add -A
+          git diff --cached --check
+          git commit -m "Merge main Contracts migration into YAML draft scaffolders"
+          git push origin HEAD:refs/heads/integration/yaml-ts-scaffolders
