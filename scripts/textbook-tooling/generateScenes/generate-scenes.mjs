@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 import { format, resolveConfig } from 'prettier';
 import { resolveEntityPath } from '@svitlo/engine';
 
-const repoRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
+const repoRoot = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 
 /** Run with an explicit textbook root to support isolated generator tests. */
 export async function syncSceneRegistry(root, mode, packageName = 'the selected textbook') {

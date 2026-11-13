@@ -79,7 +79,7 @@ test('rejects missing Scenes and unsupported modes', async t => {
 
 test('CLI refuses invocation outside a textbook workspace', () => {
   const result = spawnSync(process.execPath, [cli, '--check'], {
-    cwd: dirname(dirname(dirname(cli))),
+    cwd: dirname(dirname(dirname(dirname(cli)))),
     encoding: 'utf8',
   });
   assert.notEqual(result.status, 0);

@@ -11,7 +11,7 @@ import { build } from 'esbuild';
 const root = resolve(process.cwd());
 const pkg = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8'));
 const id = pkg.name?.match(/^@svitlo\/([a-z][a-z-]*)$/)?.[1];
-const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
+const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 if (!id || !/^content\/(?:[a-z][a-z-]*|languages\/[a-z][a-z-]*)$/.test(relative(repo, root).split(sep).join('/'))) {
   throw new Error('Run test:portability from a textbook workspace');
 }

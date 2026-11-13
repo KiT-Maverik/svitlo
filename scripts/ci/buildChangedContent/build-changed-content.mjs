@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
+const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 const readJson = name => JSON.parse(readFileSync(join(repo, name), 'utf8'));
 
 function run(command, args, cwd = repo) {

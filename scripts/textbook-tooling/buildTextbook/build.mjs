@@ -20,7 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 
 const root = resolve(process.cwd());
-const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
+const repo = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 const id = root.split(sep).at(-1);
 const packageDirectory = relative(repo, root).split(sep).join('/');
 if (!/^content\/(?:[a-z][a-z-]*|languages\/[a-z][a-z-]*)$/.test(packageDirectory) || !/^[a-z][a-z-]*$/.test(id)) {
