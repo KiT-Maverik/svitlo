@@ -37,7 +37,7 @@ export const testColors_SkillDomain_Data = defineSkillDomain({
     kk: '[TEST kk] Color recognition',
     qm: '[TEST qm] Color recognition',
   },
-  groups: [testWarmColors_SkillGroup_Data, testCoolColors_SkillGroup_Data],
+  groups: { items: { testWarmColors: testWarmColors_SkillGroup_Data, testCoolColors: testCoolColors_SkillGroup_Data }, order: ['testWarmColors', 'testCoolColors'] },
   description: {
     methodological: 'Synthetic Playground fixture for testColors; testing only, not curricular content.',
     frontend: {
