@@ -3,7 +3,7 @@
  * Migrate shared workspace package subpath imports to public root entrypoints.
  * Usage: node scripts/migrateSharedImports/migrate-shared-imports.mjs --write|--check
  *
- * Only @svitlo/contracts retains public subpath exports.
+ * Engine's public imports are restricted to /build and /runtime.
  * Package CLIs (for example svitlo-sync-flags) must be invoked as commands,
  * not imported through package subpaths.
  */

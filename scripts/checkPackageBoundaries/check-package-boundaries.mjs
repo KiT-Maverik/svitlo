@@ -72,7 +72,7 @@ for (const path of ['src/app/layout.tsx', 'src/app/page.tsx', 'playwright.config
 }
 assert(engine.name === '@svitlo/engine', 'Unexpected engine package name');
 assert(indexdb.name === '@svitlo/indexdb', 'Unexpected IndexedDB package name');
-assert(!indexdb.dependencies?.[engine.name], 'IndexedDB cannot depend on Engine');
+assert(indexdb.dependencies?.[engine.name] === engine.version, 'IndexedDB must depend on Engine runtime contracts');
 assert(indexdb.dependencies?.zod, 'IndexedDB must declare its Zod schema dependency');
 assert(
   Object.keys(indexdb.exports ?? {}).length === 1 && Object.hasOwn(indexdb.exports ?? {}, '.'),

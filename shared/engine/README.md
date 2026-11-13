@@ -20,7 +20,7 @@ Migration from legacy root imports is provided by `node scripts/migrate-engine-e
 `shared/engine/.coverage-engine/`: `engine-gaps.md` (short review) and
 `engine-gaps.json` (machine-readable missing lines, branches and functions).
 Neither output lists fully covered source files. The temporary raw LCOV is not
-uploaded to the PR. Run the Contracts and Engine package builds before this command.
+uploaded to the PR. Run the Engine package build before this command.
 
 The target selection is implemented and tested in
 `scripts/coverage/report.mjs`. It includes `*.utils.ts`/`*.util.ts` helpers,
