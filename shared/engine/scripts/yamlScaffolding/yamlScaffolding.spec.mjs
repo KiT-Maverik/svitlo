@@ -47,7 +47,7 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
             slides: group({ slide: { id: id(4), type: 'carouselSlide', slug: 'slide' } }) },
           checkpoint: { id: id(5), type: 'checkpoint', slug: 'checkpoint', content: group({
             item: { id: id(6), type: 'checkpointItem', slug: 'item',
-              question: sourceBlock, answer: group({ correct: sourceBlock }) },
+              question: { ...sourceBlock }, answer: group({ correct: { ...sourceBlock } }) },
           }) },
         }) },
       }),
