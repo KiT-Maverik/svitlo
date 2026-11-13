@@ -211,13 +211,14 @@ function projectQuestionBank(lesson: Lesson_Props): Record<string, Record<string
   for (const [kind, entries] of Object.entries(lesson.questions ?? {})) {
     const group: Record<string, QuestionResponse> = Object.create(null);
     for (const raw of entries ?? []) {
-      const question = projectQuestion(parseQuestion(raw));
-      if (question.type !== kind) throw new Error('Question Bank type mismatch: ' + kind + ':' + question.id);
-      if (!question.slug || usedSlugs.has(question.slug)) {
-        throw new Error('Duplicate or missing Lesson Question slug: ' + String(question.slug));
+      const source = parseQuestion(raw);
+      const question = projectQuestion(source);
+      if (source.type !== kind) throw new Error('Question Bank type mismatch: ' + kind + ':' + source.id);
+      if (!source.slug || usedSlugs.has(source.slug)) {
+        throw new Error('Duplicate or missing Lesson Question slug: ' + String(source.slug));
       }
-      usedSlugs.add(question.slug);
-      group[question.slug] = question;
+      usedSlugs.add(source.slug);
+      group[source.slug] = question;
     }
     bank[kind] = group;
   }
