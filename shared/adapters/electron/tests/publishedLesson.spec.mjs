@@ -56,9 +56,7 @@ test('Electron resolves new Lesson Props base and sparse locale without legacy r
 test('Electron accepts missing locale file only when invariant Lesson Props are complete', async t => {
   const data = resources();
   t.mock.method(globalThis, 'fetch', async url =>
-    url === path + '/base.json'
-      ? { ok: true, status: 200, json: async () => data.base }
-      : { ok: false, status: 404 },
+    url === path + '/base.json' ? { ok: true, status: 200, json: async () => data.base } : { ok: false, status: 404 },
   );
   const lesson = await loadPublishedLesson(id, 'en');
   assert.equal(lesson.locale.title, 'Shared title');
@@ -68,9 +66,7 @@ test('Electron accepts missing locale file only when invariant Lesson Props are 
 test('Electron rejects missing base, invalid locale payload and unsupported languages', async t => {
   const data = resources();
   t.mock.method(globalThis, 'fetch', async url =>
-    url === path + '/base.json'
-      ? { ok: true, status: 200, json: async () => data.base }
-      : { ok: false, status: 404 },
+    url === path + '/base.json' ? { ok: true, status: 200, json: async () => data.base } : { ok: false, status: 404 },
   );
   await assert.rejects(loadPublishedLesson(id, 'pl'), /does not support requested language/);
   t.mock.restoreAll();
@@ -80,7 +76,7 @@ test('Electron rejects missing base, invalid locale payload and unsupported lang
   t.mock.method(globalThis, 'fetch', async url => ({
     ok: true,
     status: 200,
-    json: async () => url.endsWith('/base.json') ? data.base : { locale: { title: 42 } },
+    json: async () => (url.endsWith('/base.json') ? data.base : { locale: { title: 42 } }),
   }));
   await assert.rejects(loadPublishedLesson(id, 'uk'), /Invalid assembled Lesson Props/);
 });

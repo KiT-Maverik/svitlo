@@ -104,10 +104,7 @@ assert(biology.name === '@svitlo/biology', 'Unexpected Biology package name');
 for (const name of ['content/math', 'content/playground']) {
   assert(!existsSync(resolve(root, name, 'src/db')), name + ' must not own duplicate IndexedDB controllers');
 }
-assert(
-  existsSync(resolve(root, 'shared/indexdb/controllers/index.ts')),
-  'Shared IndexedDB controllers are missing',
-);
+assert(existsSync(resolve(root, 'shared/indexdb/controllers/index.ts')), 'Shared IndexedDB controllers are missing');
 assert(
   existsSync(resolve(root, 'shared/indexdb/schemas/lessonState/lessonState.schema.ts')),
   'Shared IndexedDB LessonState schema is missing',

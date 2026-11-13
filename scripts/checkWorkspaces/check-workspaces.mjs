@@ -153,9 +153,7 @@ for (const { path, name } of expected) {
     ]).has(name)
   ) {
     assert(
-      name === '@svitlo/engine' ||
-      name === '@svitlo/indexdb' ||
-      name === '@svitlo/adapter-nextjs'
+      name === '@svitlo/engine' || name === '@svitlo/indexdb' || name === '@svitlo/adapter-nextjs'
         ? !Object.keys(tsconfig.compilerOptions?.paths || {}).some(alias => alias.includes('*'))
         : tsconfig.compilerOptions?.paths?.['@/*']?.[0] === 'src/*',
       'Invalid local aliases in ' + tsconfigPath,

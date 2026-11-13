@@ -175,7 +175,9 @@ function transformFile(root, file, content) {
       edits.push({ start: name.getStart(source), end: name.getEnd(), value: 'title' });
     }
     const candidates = source.statements.filter(
-      statement => ts.isImportDeclaration(statement) && ['@svitlo/engine', '@svitlo/engine/build'].includes(statement.moduleSpecifier.text),
+      statement =>
+        ts.isImportDeclaration(statement) &&
+        ['@svitlo/engine', '@svitlo/engine/build'].includes(statement.moduleSpecifier.text),
     );
     let found = 0;
     for (const statement of candidates) {

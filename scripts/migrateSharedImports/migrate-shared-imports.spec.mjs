@@ -80,7 +80,6 @@ test('deduplicates side-effect-only imports safely', () => {
   assert.equal(migrateSharedImports(result.code).changed, false);
 });
 
-
 test('preserves explicit Engine subpaths while rejecting the removed root and private paths', () => {
   assert.equal(canonicalSharedSpecifier('@svitlo/engine/build'), '@svitlo/engine/build');
   assert.equal(canonicalSharedSpecifier('@svitlo/engine/runtime'), '@svitlo/engine/runtime');

@@ -64,7 +64,10 @@ export function resolveAgentScope(baseRef, headRef, changed, workspaces, owners)
 }
 function validateAgent({ workspace, domains }) {
   // Preserve strict ownership checks for incomplete agent integration branches.
-  run('node', ['shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs', workspace.path + '/data/skills']);
+  run('node', [
+    'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs',
+    workspace.path + '/data/skills',
+  ]);
   run('npm', ['run', 'package:build', '--workspace', '@svitlo/contracts']);
   run('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
   const file = join(repo, workspace.path, 'tsconfig.agent-ci.tmp.json');
@@ -111,7 +114,10 @@ function verifyPackage(pkg, changed) {
 function execute(changed, all, baseRef, headRef) {
   run('node', ['--test', 'scripts/ci/buildChangedContent/build-changed-content.spec.mjs']);
   if (changed.some(f => /^scripts\/check-skills-taxonomy-structure(?:\.mjs|\.spec\.mjs)$/.test(f))) {
-    run('node', ['--test', 'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs']);
+    run('node', [
+      '--test',
+      'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.spec.mjs',
+    ]);
   }
   const workspaces = contentWorkspaces();
   const agent = resolveAgentScope(

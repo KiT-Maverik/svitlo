@@ -59,7 +59,12 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
     const ownedTypes =
       subpath === 'taxonomy' ? taxonomyTypes : subpath === 'localization' ? localizationContracts : null;
     const runtimeSubpaths = new Set(['localization', 'schemas', 'types', 'utils']);
-    let target = subpath === 'content' ? contract : runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build';
+    let target =
+      subpath === 'content'
+        ? contract
+        : runtimeSubpaths.has(subpath)
+          ? '@svitlo/engine/runtime'
+          : '@svitlo/engine/build';
 
     if (ownedTypes && declaration) {
       const isImport = ts.isImportDeclaration(declaration);
@@ -94,7 +99,9 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
           replace(
             declaration.getStart(file),
             declaration.end,
-            render(contracts, contract) + '\n' + render(engine, runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build'),
+            render(contracts, contract) +
+              '\n' +
+              render(engine, runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build'),
           );
           return;
         }

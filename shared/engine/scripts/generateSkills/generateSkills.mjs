@@ -11,11 +11,7 @@ import { fileURLToPath } from 'node:url';
 import { allLanguageCodes } from '@svitlo/engine/build';
 import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
 import { prepareSkillPublication } from './prepareSkillsPublication.mjs';
-import {
-  renderSkillTree,
-  writeSkillFiles,
-  checkSkillFiles,
-} from '../../generators/skills/publishSkillTree.mjs';
+import { renderSkillTree, writeSkillFiles, checkSkillFiles } from '../../generators/skills/publishSkillTree.mjs';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] --write|--check';

@@ -77,19 +77,22 @@ function runGate(changed) {
   // typecheck errors; the Course builder is deterministic repository tooling.
   if (
     changed.some(
-      f => f.startsWith('shared/engine/scripts/courseBuilder/') || f === 'studio/skills/course-workflow/course-toc.schema.json',
+      f =>
+        f.startsWith('shared/engine/scripts/courseBuilder/') ||
+        f === 'studio/skills/course-workflow/course-toc.schema.json',
     )
   ) {
     exec('node', ['--test', 'shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs']);
   }
 
-  if (changed.some(file => file === 'package.json' || file.startsWith('scripts/runWorkspaceScript/run-workspace-script.'))) {
+  if (
+    changed.some(file => file === 'package.json' || file.startsWith('scripts/runWorkspaceScript/run-workspace-script.'))
+  ) {
     exec('node', ['--test', 'scripts/runWorkspaceScript/run-workspace-script.spec.mjs']);
   }
   if (
     changed.some(
-      f =>
-        f.startsWith('shared/engine/scripts/generateSkills/') || f.startsWith('content/playground/data/skills/'),
+      f => f.startsWith('shared/engine/scripts/generateSkills/') || f.startsWith('content/playground/data/skills/'),
     )
   ) {
     exec('node', [
@@ -101,11 +104,17 @@ function runGate(changed) {
 
   // Run the complete Art preview only when the migration utility changes.
   // It writes to an isolated temporary directory; authored Skills stay untouched.
-  if (changed.some(f => f.startsWith('shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.'))) {
+  if (
+    changed.some(f => f.startsWith('shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.'))
+  ) {
     exec('node', ['--test', 'shared/engine/scripts/migrateSkillsConfigurators/migrate-skills-configurators.spec.mjs']);
   }
   if (
-    changed.some(f => f.startsWith('shared/engine/scripts/implementSkillsTaxonomy/') || f.startsWith('shared/engine/scripts/generateSkillsTaxonomy/'))
+    changed.some(
+      f =>
+        f.startsWith('shared/engine/scripts/implementSkillsTaxonomy/') ||
+        f.startsWith('shared/engine/scripts/generateSkillsTaxonomy/'),
+    )
   ) {
     exec('node', [
       '--test',
@@ -118,13 +127,18 @@ function runGate(changed) {
   if (
     changed.some(
       file =>
-        file.startsWith('shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.') ||
+        file.startsWith(
+          'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.',
+        ) ||
         file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
         file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/') ||
         file === 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
     )
   ) {
-    exec('node', ['--test', 'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.spec.mjs']);
+    exec('node', [
+      '--test',
+      'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.spec.mjs',
+    ]);
   }
 
   // Lesson builder is Engine-owned deterministic tooling: test it only when its
