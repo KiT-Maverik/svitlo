@@ -1,0 +1,42 @@
+# Temporary build-time verification and schema regeneration for child PR #523.
+# Remove this workflow after the generated documents are committed.
+name: Regenerate YAML Schema Refs (temporary)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'agent/507-integrate-yaml-scaffolders'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          persist-credentials: true
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run package:build --workspace @svitlo/contracts
+      - run: npm run package:build --workspace @svitlo/engine
+      - run: npm run content:generate:yaml-schemas --workspace @svitlo/engine
+      - run: npm run content:check:yaml-schemas --workspace @svitlo/engine
+      - run: node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
+      - name: Report and commit generated schema changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          du -h shared/engine/yaml-schemas/*.schema.json
+          git add shared/engine/yaml-schemas/*.schema.json
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Regenerate deduplicated Engine YAML editor schemas'
+            git push origin HEAD:agent/507-integrate-yaml-scaffolders
+          fi
