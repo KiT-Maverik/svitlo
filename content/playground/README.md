@@ -28,7 +28,7 @@ dist/
   chunks/*                 # statically analyzable lazy Scenes
   styles.css               # public stylesheet referencing Scene CSS bundles
   static/data/pages/lessons/<uuid-bucket>/<uuid>/{config,questions,flashcards}/<lang>.json
-  static/data/pages/skillAnalytics/<lang>.json
+  static/generated/skills/{base,<language>}.json # one full taxonomy tree per file
   static/textbooks/playground/*  # textbook-owned public media (when present)
   manifest.json            # source of truth for owned resources
 ```
@@ -62,8 +62,8 @@ at `/textbooks/playground/<filename>`. An identical path in both source folders
 is rejected instead of silently overwritten. YouTube embeds require external
 connectivity; the other gallery media are distributed with the package.
 
-Book resources use `/data/pages/lessons`,
-`/data/pages/skillAnalytics` and `/textbooks/playground`.
+Book resources use `/data/pages/lessons`, `/generated/skills` (one base
+and one localized Skill tree per language) and `/textbooks/playground`.
 UI Kit global message JSON and SVG flags remain host-staged from the UI Kit package.
 
 The pack/React DOM portability harness creates a real npm tarball, extracts it
