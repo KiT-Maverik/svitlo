@@ -64,7 +64,7 @@ const forbiddenFile = path =>
   /(?:^|\/)generators\//.test(path) ||
   /(?:^|\/)configurators_old\//.test(path) ||
   /\.data\.[cm]?[jt]sx?$/.test(path) ||
-  /\/configurators\/.*\/define[A-Z][^/]*\.(?:ts|tsx)$/.test(path) ||
+  /\/configurators\/(?:.*\/)?define[A-Z][A-Za-z0-9]*\.(?:ts|tsx)$/.test(path) ||
   /\/lessons\/(?:createLesson|createSection|createContentBlock|createLessonOverrides)\.ts$/.test(path);
 
 export function checkRuntimeImports(entry = join(engineRoot, 'runtime.ts')) {
