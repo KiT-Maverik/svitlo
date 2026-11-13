@@ -2,10 +2,23 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 
 const root = process.cwd();
-// Every maintained root script owns a directory for adjacent tests and fixtures.
-for (const entry of readdirSync(resolve(root, 'scripts'), { withFileTypes: true })) {
-  if (entry.isFile() && /\.(?:mjs|cjs|js|ts|tsx)$/.test(entry.name)) {
-    throw new Error('Root script must live in a named directory: scripts/' + entry.name);
+// Each executable script lives in a named workflow directory alongside tests and fixtures.
+for (const scriptRoot of [
+  'scripts',
+  'scripts/ci',
+  'scripts/textbook-tooling',
+  'shared/engine/scripts',
+  'shared/ui-kit/scripts',
+  'apps/web/scripts',
+  'apps/mobile/scripts',
+  'apps/desktop/scripts',
+]) {
+  const directory = resolve(root, scriptRoot);
+  if (!existsSync(directory)) continue;
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    if (entry.isFile() && /\.(?:mjs|cjs|js|ts|tsx)$/.test(entry.name)) {
+      throw new Error('Script must live in a named workflow directory: ' + scriptRoot + '/' + entry.name);
+    }
   }
 }
 function assert(ok, message) {
