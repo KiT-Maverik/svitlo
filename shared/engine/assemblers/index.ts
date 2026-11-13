@@ -1,8 +1,8 @@
 export * from './skills';
-export { assembleLessonProps } from './assembleLessonProps';
+export { assembleLessonProps } from './assembleLessonProps/assembleLessonProps';
 export type {
   LessonPropsFragment,
   PublishedLessonPropsResource,
   PublishedLessonPropsOverride,
-} from './assembleLessonProps';
-export * from './assembleCourseLesson';
+} from './assembleLessonProps/assembleLessonProps';
+export * from './assembleCourseLesson/assembleCourseLesson';

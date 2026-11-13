@@ -1,10 +1,10 @@
-import type { LanguageCodes } from '../schemas';
-import type { Lesson_Props } from '../configurators/lessons/defineLesson';
+import type { LanguageCodes } from '../../schemas';
+import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
 import {
   assembleLessonProps,
   type PublishedLessonPropsOverride,
   type PublishedLessonPropsResource,
-} from './assembleLessonProps';
+} from '../assembleLessonProps/assembleLessonProps';
 
 /**
  * The Course generator publishes a Lesson reference in a slug-keyed hierarchy, not standalone Lesson
