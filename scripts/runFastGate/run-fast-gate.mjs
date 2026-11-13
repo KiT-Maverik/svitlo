@@ -138,7 +138,7 @@ function runGate(changed) {
           'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.',
         ) ||
         file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
-        file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/') ||
+        file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/'),
     )
   ) {
     exec('node', [

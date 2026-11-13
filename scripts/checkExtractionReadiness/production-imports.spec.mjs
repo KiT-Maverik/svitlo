@@ -31,9 +31,9 @@ test('detect real imports and re-exports, including multiline and type-only form
   assert.deepEqual(
     importedModules(source, 'example.ts').sort(),
     [
-      '@svitlo/engine/taxonomy',
+      '@svitlo/engine/build',
       './side-effect',
-      '@svitlo/contracts/taxonomy',
+      '@svitlo/engine/runtime',
       './helper',
       'legacy-module',
       'type-only-module',
