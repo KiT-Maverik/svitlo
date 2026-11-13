@@ -1,6 +1,6 @@
 # Runtime assembler architecture
 
-**Status:** Lesson Props resolution is implemented in `assembleLessonProps`; other entity assemblers remain planned. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
+**Status:** Skills runtime assembly is implemented in `skills/assembleSkills.ts`; Lesson Props assembly is implemented in `assembleLessonProps.ts`. Other entity assemblers remain planned. The rules below are the cross-entity target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
 
 ## Responsibility and dependency boundary
 

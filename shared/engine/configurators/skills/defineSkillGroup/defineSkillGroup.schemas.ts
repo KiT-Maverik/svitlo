@@ -3,7 +3,8 @@ import type { DeepPartial } from '#types';
 import { deepStrict_Schema, localeText_Schema } from '#schemas';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 
-import { skill_Props_Schema, type Skill_Props, type Skill_Configurator } from '../defineSkill';
+import { skill_Props_Schema, type Skill_Props } from '../defineSkill/defineSkill.schemas';
+import type { Skill_Configurator } from '../defineSkill/defineSkill';
 
 const localized = (mode: 'config' | 'props') => ({
   id: z.uuid(),

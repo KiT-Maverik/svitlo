@@ -6,9 +6,9 @@
   },
   "include": [
     "index.ts",
-    "assemblers/**/*.ts",
     "runtime.ts",
     "configurators/**/*.ts",
+    "assemblers/**/*.ts",
     "configurators_old/**/*.ts",
     "lessons/**/*.ts",
     "schemas/**/*.ts",

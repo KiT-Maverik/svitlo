@@ -1,3 +1,4 @@
+export * from './skills';
 export { assembleLessonProps } from './assembleLessonProps';
 export type {
   LessonPropsFragment,
