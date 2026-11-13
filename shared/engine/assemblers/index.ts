@@ -5,3 +5,4 @@ export type {
   PublishedLessonPropsResource,
   PublishedLessonPropsOverride,
 } from './assembleLessonProps';
+export * from './assembleCourseLesson';
