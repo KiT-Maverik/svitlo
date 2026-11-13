@@ -28,3 +28,29 @@ export const contentBlockResolved_Schema = z
   })
   .catchall(z.unknown());
 
+/** Nest configurators, not authored child configs. */
+export const contentBlockConfigurator_Schema = z.custom<{
+  readonly config: {
+    readonly base: { readonly id: string; readonly slug: string; readonly type: ContentBlock_Type };
+    readonly locales: () => unknown;
+  };
+}>(
+  value => {
+    if (value === null || typeof value !== 'object' || !('config' in value)) return false;
+    const config = value.config;
+    if (config === null || typeof config !== 'object' || !('base' in config) || !('locales' in config)) return false;
+    const base = config.base;
+    return (
+      typeof config.locales === 'function' &&
+      base !== null &&
+      typeof base === 'object' &&
+      'id' in base &&
+      typeof base.id === 'string' &&
+      'slug' in base &&
+      typeof base.slug === 'string' &&
+      'type' in base &&
+      contentBlockTypes.includes(base.type as ContentBlock_Type)
+    );
+  },
+  { message: 'Expected a ContentBlock configurator returned by define*, not a raw config' },
+);
