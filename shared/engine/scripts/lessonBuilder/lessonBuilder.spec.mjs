@@ -132,9 +132,22 @@ function fixture(callback) {
   const questions = makeQuestions();
   const flashcards = makeFlashcards();
   const save = () => {
-    fs.writeFileSync(path.join(lesson, 'content.yaml'), yaml.stringify(content));
-    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), yaml.stringify(questions));
-    fs.writeFileSync(path.join(lesson, 'flashcards/flashcards.yaml'), yaml.stringify(flashcards));
+    // The Screenwriter's canonical plan is *not* a defineLesson Config.
+    fs.writeFileSync(path.join(lesson, 'content.yaml'), yaml.stringify({
+      kind: 'lesson-content-plan',
+      documentLanguage: content.documentLanguage,
+      sections: [{ key: 'screenwriterOnly', blocks: [] }],
+    }));
+    const { documentLanguage: _editorialProvenance, ...config } = content;
+    if (fs.existsSync(path.join(lesson, 'questions'))) {
+      fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), yaml.stringify(questions));
+      config.questions = questions.questions;
+    }
+    if (fs.existsSync(path.join(lesson, 'flashcards'))) {
+      fs.writeFileSync(path.join(lesson, 'flashcards/flashcards.yaml'), yaml.stringify(flashcards));
+      config.flashcards = flashcards.flashcards;
+    }
+    fs.writeFileSync(path.join(lesson, 'lesson.config.yaml'), yaml.stringify(config));
   };
   const generated = () => path.join(lesson, 'lightLesson.data.ts');
   try {
@@ -165,6 +178,29 @@ test('reads the exhaustive factory registry from the Engine source of truth', ()
   assert.equal(factories.selectOneAnswer, 'defineSelectOneAnswer');
   assert.equal(factories.flashcard, 'defineFlashcard');
 });
+
+test('does not treat Screenwriter content.yaml or editorial question files as a Config tree', () =>
+  fixture(f => {
+    f.save();
+    const result = runOne(f.lesson, 'generate', f.root);
+    assert.equal(result.changed, 1);
+    const code = fs.readFileSync(f.generated(), 'utf8');
+    assert.match(code, /defineLesson\(/);
+    assert.doesNotMatch(code, /screenwriterOnly/);
+    assert.doesNotMatch(code, /lesson-content-plan/);
+    assert.match(code, /defineFlashcard\(/);
+    assert.match(code, /defineSelectOneAnswer\(/);
+    fs.rmSync(path.join(f.lesson, 'lesson.config.yaml'));
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /ENOENT/);
+  }));
+
+test('can select source language explicitly without requiring an editorial input file', () =>
+  fixture(f => {
+    fs.rmSync(path.join(f.lesson, 'content.yaml'));
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /provide --language/);
+    assert.equal(runOne(f.lesson, 'generate', f.root, 'uk').changed, 1);
+    assert.doesNotMatch(fs.readFileSync(f.generated(), 'utf8'), /"en": "Light"/);
+  }));
 
 test('emits named Lesson TS and nested factories, including all Question and Flashcard collections', () =>
   fixture(f => {
@@ -206,7 +242,10 @@ test('preserves partial YAML instead of inventing required fields, locale values
     delete f.content.flashcards;
     fs.rmSync(path.join(f.lesson, 'questions'), { recursive: true });
     fs.rmSync(path.join(f.lesson, 'flashcards'), { recursive: true });
-    f.save = () => fs.writeFileSync(path.join(f.lesson, 'content.yaml'), yaml.stringify(f.content));
+    f.save = () => {
+      const { documentLanguage: _provenance, ...config } = f.content;
+      fs.writeFileSync(path.join(f.lesson, 'lesson.config.yaml'), yaml.stringify(config));
+    };
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const code = fs.readFileSync(f.generated(), 'utf8');
