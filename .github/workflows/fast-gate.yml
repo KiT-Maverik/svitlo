@@ -55,6 +55,7 @@ jobs:
           node scripts/migrateEngineImports/migrate-engine-imports.mjs --check
           node --test scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.spec.mjs
           node scripts/migrateEngineEntrypoints/migrate-engine-entrypoints.mjs --check
+          node --test scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.spec.mjs
           node scripts/checkEngineRuntimeGraph/check-engine-runtime-graph.mjs
       - name: Scoped quality checks
         if: github.event_name == 'pull_request'
