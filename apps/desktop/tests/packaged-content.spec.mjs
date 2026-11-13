@@ -19,12 +19,12 @@ test('renderer has no Next.js server or external entrypoint', () => {
 test('build bundles the complete Lesson Props base and sparse selected locale', () => {
   const baseFile = join(resources, 'base.json');
   assert.ok(existsSync(baseFile), baseFile);
-  const base = JSON.parse(readFileSync(baseFile, 'utf8'));
-  assert.equal(base.id, id);
-  assert.equal(base.type, 'lesson');
-  assert.ok(Array.isArray(base.section));
-  assert.ok(Array.isArray(base.flashcards));
-  assert.ok(base.params.languages.includes('uk'));
+  const lessonBase = JSON.parse(readFileSync(baseFile, 'utf8'));
+  assert.equal(lessonBase.id, id);
+  assert.equal(lessonBase.type, 'lesson');
+  assert.ok(Array.isArray(lessonBase.section));
+  assert.ok(Array.isArray(lessonBase.flashcards));
+  assert.ok(lessonBase.params.languages.includes('uk'));
   const ukFile = join(resources, 'uk.json');
   if (existsSync(ukFile)) assert.ok(JSON.parse(readFileSync(ukFile, 'utf8')));
   assert.ok(existsSync(join(renderer, 'data/uiKit/components/uk.json')));
