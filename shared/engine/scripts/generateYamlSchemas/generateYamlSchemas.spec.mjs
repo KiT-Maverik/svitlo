@@ -93,3 +93,16 @@ test('generator write/check is deterministic and rejects stale files', () => {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
+
+test('reused nested Config schemas are shared by reference instead of expanded copies', () => {
+  const docs = yamlJsonSchemaDocuments();
+  for (const kind of ['lesson', 'course', 'question']) {
+    const schema = JSON.parse(docs[kind + '.schema.json']);
+    assert(Object.keys(schema.$defs ?? {}).length > 0, kind + ' should reuse nested definitions');
+    assert(docs[kind + '.schema.json'].includes('"$ref"'), kind + ' should reference shared schemas');
+  }
+});
+
+test('checked-in editor schemas match the current Engine Zod source', () => {
+  assert.equal(generateYamlSchemas('--check').length, 7);
+});
