@@ -1,4 +1,6 @@
-# Course content, creators and Lesson composition
+# Course content, creators, Lessons and Episodes
+
+**Current authoring rule (Episode configurator migration):** A Course, Module or Chapter may contain independent `defineEpisode` children alongside `defineLesson` children. Episodes own narrative Sections and are not Lesson subtypes. A Lesson remains pedagogically Course-neutral even if physically authored under one Course. The legacy creator/publication details below describe historical APIs and need separate runtime migration.
 
 **Status:** Authored Course contracts, creator APIs and a Playground-only Course publication/navigation prototype are implemented. Course-owned React Scene registry generation, full publisher hardening, and progression/persistence remain future integration work.
 

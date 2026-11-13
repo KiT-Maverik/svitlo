@@ -13,7 +13,7 @@ import {
 export type CourseLessonEntry = {
   type: 'lesson';
   id: string;
-  overrides?: PublishedLessonPropsOverride['base'];
+  overrides?: Record<string, unknown>;
 };
 
 export type CoursePublishedContent = {
@@ -22,7 +22,9 @@ export type CoursePublishedContent = {
 };
 
 export type CoursePublishedNode =
-  CourseLessonEntry | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
+  | CourseLessonEntry
+  | { type: 'episode'; id: string }
+  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
 
 export type CoursePublishedTree = {
   type: 'course';
@@ -115,6 +117,9 @@ function findLesson(
         }
       } else if (raw.type === 'module' || raw.type === 'chapter') {
         visit(raw.content, location + '/content', [...prefix, slug]);
+      } else if (raw.type === 'episode') {
+        // Episode is Course-owned narrative content, not a Lesson reference.
+        continue;
       } else {
         throw new Error('Unsupported Course child type at ' + location);
       }
@@ -144,14 +149,17 @@ function findLocalizedLesson(
   return parent;
 }
 
-function getOverride(node: Record<string, unknown> | undefined, label: string): PublishedLessonPropsOverride['base'] {
+function getOverride(node: Record<string, unknown> | undefined, label: string): Record<string, unknown> | undefined {
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
     if (!allowedOverrideKeys.has(key)) throw new Error('Forbidden ' + label + ' Lesson override field: ' + key);
   }
+  if (isRecord(node.overrides.params) && Object.hasOwn(node.overrides.params, 'languages')) {
+    throw new Error('Course Lesson overrides cannot override Lesson supported languages');
+  }
   assertJson(node.overrides, label + '/overrides');
-  return node.overrides as PublishedLessonPropsOverride['base'];
+  return node.overrides;
 }
 
 /**
@@ -194,7 +202,7 @@ export function assembleCourseLesson({
   const basePatch = getOverride(baseMatch.node, 'base');
   const localePatch = getOverride(localeNode, language);
 
-  const overrides: PublishedLessonPropsOverride | undefined =
+  const overrides =
     basePatch === undefined && localePatch === undefined
       ? undefined
       : {
@@ -202,6 +210,10 @@ export function assembleCourseLesson({
           ...(localePatch !== undefined ? { locale: { [language]: localePatch } } : {}),
         };
 
-  // Reuse the canonical Lesson schema and merge semantics, not a second resolver.
-  return assembleLessonProps(lesson, language, overrides);
+  // Reuse the canonical Lesson Props validator with the published keyed Course hierarchy.
+  try {
+    return assembleLessonProps(lesson, language, overrides as unknown as PublishedLessonPropsOverride | undefined);
+  } catch (error) {
+    throw new Error('Invalid assembled Course Lesson Props for ' + language, { cause: error });
+  }
 }

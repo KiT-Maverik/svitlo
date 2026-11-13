@@ -20,6 +20,7 @@ import {
 } from '../../_shared__configurators';
 import { chapter_Props_Schema } from '../defineChapter';
 import { lesson_Props_Schema } from '../../lessons/defineLesson';
+import { episode_Props_Schema } from '../../episodes/defineEpisode';
 import {
   module_Config_Schema,
   module_Override_Config_Schema,
@@ -58,7 +59,7 @@ type ModuleConfigBase = Pick<Module_Config, 'id' | 'slug' | 'type' | 'params'> &
   locale: DeepPartial<Module_Locale<'config'>>;
 };
 
-const allowedChildren = ['chapter', 'lesson'] as const;
+const allowedChildren = ['chapter', 'lesson', 'episode'] as const;
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
@@ -113,6 +114,11 @@ const parseChild = (value: unknown): Module_Child_Props => {
     }
     case 'lesson': {
       const parsed = lesson_Props_Schema.safeParse(value);
+      if (!parsed.success) throw new Error('Invalid Module child Props: ' + parsed.error.message);
+      return structuredClone(value) as Module_Child_Props;
+    }
+    case 'episode': {
+      const parsed = episode_Props_Schema.safeParse(value);
       if (!parsed.success) throw new Error('Invalid Module child Props: ' + parsed.error.message);
       return structuredClone(value) as Module_Child_Props;
     }
