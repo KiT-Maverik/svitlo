@@ -141,3 +141,36 @@ Example `uk.json` for the same Group:
   authoring `*.data.ts` may only be read at build time.
 - Report sizes for **all** supported locales (UTF-8, gzip, Brotli) and test
   stable output, missing translations and locale isolation.
+
+## 7. Compact Course publications (new Build API)
+
+The new Course configurator publisher is
+`scripts/generators/data/publish-course-data.mjs`. Its caller supplies a
+`defineCourse` configurator and, optionally, one separate Course-owned
+`build.overrides` authoring patch. The publication target for each textbook
+is `public/data/courses/<courseId>/base.json` and sparse
+`public/data/courses/<courseId>/<language>.json` files.
+
+This is a **single publication context per Course**, not a standalone Lesson
+publication. Course, Module and Chapter keep complete Props in their ordered
+hierarchy; a Lesson leaf contains only its UUID, `type: 'lesson'`, and optional
+`overrides` with sparse already-built Props. Never duplicate the Lesson's
+full resource or serialize authoring Config, Build methods or internal
+collection markers into Course files. Locale-only overrides live in the
+language file and invariant overrides in base. Because published child arrays
+replace atomically, translated arrays must repeat the full effective array
+(including invariant sibling values) to avoid losing base overrides.
+
+The Course's existing `build.props` and `build.overrides` validate and
+materialize authoring data; the publisher only projects their completed
+Props and the separately built Lesson patches. The compact Course resource
+is intentionally not a full standalone `course_Props_Schema` response:
+Course runtime assemblers must later resolve Lesson IDs and apply these
+patches after the Lesson base and selected locale. This is distinct from the
+legacy per-TOC/episode/override publisher still used by existing Playground
+routes; do not silently switch those consumers until they support this format.
+
+A Course write replaces only its own generated directory; read-only
+check mode detects changed, missing or stale files. Tests must verify
+locale isolation, four-layer Course resolution, full replacement of arrays,
+independent Lesson overrides, deterministic reruns and duplicate IDs.
