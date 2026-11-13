@@ -54,24 +54,24 @@ test('isolated package publishes exactly the manifest resources', t => {
     JSON.parse(readFileSync(join(output, '.svitlo/publish-' + id + '.json'), 'utf8')).files,
     manifest.files,
   );
-  const skillFiles = manifest.files.filter(name => name.startsWith('data/skills/'));
+  const skillFiles = manifest.files.filter(name => name.startsWith('generated/skills/'));
   if (skillFiles.length) {
     assert.equal(skillFiles.length, 30, 'Skills must publish one base and 29 locale files');
-    assert(skillFiles.includes('data/skills/base.json'));
-    assert(skillFiles.includes('data/skills/uk.json'));
-    assert(skillFiles.includes('data/skills/en.json'));
-    assert(skillFiles.includes('data/skills/qm.json'));
+    assert(skillFiles.includes('generated/skills/base.json'));
+    assert(skillFiles.includes('generated/skills/uk.json'));
+    assert(skillFiles.includes('generated/skills/en.json'));
+    assert(skillFiles.includes('generated/skills/qm.json'));
     assert(
       skillFiles.every(
         name =>
-          name.startsWith('data/skills/') &&
+          name.startsWith('generated/skills/') &&
           name.split('/').length === 3 &&
           /^(?:base|[a-z]{2,8})[.]json$/.test(name.split('/')[2]),
       ),
       'Skills must not publish per-entity directories',
     );
-    const base = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/base.json'), 'utf8'));
-    const uk = JSON.parse(readFileSync(join(root, 'dist/static/data/skills/uk.json'), 'utf8'));
+    const base = JSON.parse(readFileSync(join(root, 'dist/static/generated/skills/base.json'), 'utf8'));
+    const uk = JSON.parse(readFileSync(join(root, 'dist/static/generated/skills/uk.json'), 'utf8'));
     assert(Object.keys(base).length > 0, 'Empty published Skill taxonomy');
     assert.deepEqual(Object.keys(uk), Object.keys(base), 'Localized Skill tree must match base domain slugs');
   }
