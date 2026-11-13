@@ -33,6 +33,6 @@ export type Section_Override<SupportedLanguages extends Lesson_Locale> = Partial
 > & {
   /** Only non-Quiz Sections have content. Quiz configuration lives in parameters. */
   content?: Extract<Section<'data', SupportedLanguages>, { content: readonly unknown[] }>['content'];
-  /** false means omit skippable in the resolved Section (which only accepts true). */
+  /** false explicitly prohibits skipping; omission inherits the Lesson-level permission. */
   skippable?: boolean;
 };

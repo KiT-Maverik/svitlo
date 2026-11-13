@@ -399,6 +399,43 @@ describe('multiple Quiz Sections', () => {
     ],
   } as LessonView;
 
+  it.each([
+    { name: 'blocking Quiz', isBlocker: true, interactionSkippable: true, skippable: undefined, enabled: false },
+    {
+      name: 'Quiz interaction disallows skipping',
+      isBlocker: false,
+      interactionSkippable: false,
+      skippable: undefined,
+      enabled: false,
+    },
+    { name: 'Quiz Section opts out', isBlocker: false, interactionSkippable: true, skippable: false, enabled: false },
+    {
+      name: 'optional Quiz inherits Lesson permission',
+      isBlocker: false,
+      interactionSkippable: true,
+      skippable: undefined,
+      enabled: true,
+    },
+  ])('$name', ({ isBlocker, interactionSkippable, skippable, enabled }) => {
+    const parameters = params(isBlocker);
+    const optional = {
+      ...quiz('optional'),
+      ...(skippable === undefined ? {} : { skippable }),
+      parameters: { ...parameters, interaction: { ...parameters.interaction, skippable: interactionSkippable } },
+    };
+    const view = { ...fixture, sections: [optional, quiz('required'), fixture.sections[2]] } as LessonView;
+    observed.length = 0;
+    render(<Lesson response={view} href="/en/lesson/quiz-skipping" messages={enUiKitMessages} layout={TestLayout} />);
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const skip = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
+    });
+    if (enabled) expect(skip).toBeEnabled();
+    else expect(skip).toBeDisabled();
+    act(() => observed.at(-1)?.skip());
+    expect(screen.getByText(enabled ? 'Question required' : 'Question optional')).toBeVisible();
+  });
+
   it('allows advancing past a nonblocking Quiz without completing it', () => {
     const optional = { ...quiz('optional'), parameters: params(false) };
     const view = { ...fixture, sections: [optional, quiz('required'), fixture.sections[2]] } as LessonView;
