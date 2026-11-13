@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { cosmicStructureFormation_Skill_Data, cosmicWeb_Skill_Data } from './skills';
 

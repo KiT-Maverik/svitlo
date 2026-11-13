@@ -1,10 +1,10 @@
 # Generator architecture
 
-**Status:** Skills, Lesson and Course publication tooling lives under Engine `generators/{skills,lessons,courses}/`. No universal serializer is implied. The general rules below remain the target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
+**Status:** Skills, Lesson and Course publication modules are in `generators/{skills,lessons,courses}/`; Lesson/Course build-time CLIs stay in named `scripts/{generateLessonProps,generateCourseProps}/` directories with their tests. No universal serializer is implied. The general rules below remain the target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
 
 ## Responsibility
 
-- Pure serializer functions run at **build/publish time**, accept completed publication results (`{ base, locale }`) and destination information, and serialize them. They never invoke configurators. Engine-owned Node CLI entrypoints may discover authored content and call `build.props()` before delegating to the serializer; keep these responsibilities distinct.
+- Generators run at **build/publish time**, accept completed publication results (`{ base, locale }`) and destination information, and serialize those results. They do not accept configurators or invoke `build`/`assemble` methods.
 - Configurators own entity validation, override resolution, nested composition, disabled-item filtering, ordering, and Props preparation. Generators **must not interpret Config/Overrides, filter or sort children, recreate schemas, or build Props**.
 - Treat each independently prepared override context as its own publication artifact. Never mutate supplied payloads or combine unrelated publication contexts merely because they refer to the same original resource.
 - Define paths, file naming, ownership and cleanup rules with the actual resource/index contracts before implementing a generator. Do not invent a universal directory layout from this document alone.
@@ -23,8 +23,9 @@
 - The separate [runtime assemblers](../assemblers/AGENTS.md) consume the **published data**, not configurators. Their merge behavior is not a generator responsibility.
 - When this layer is implemented, test exact output contents and paths, multiple independent publication contexts, locales, omissions, deterministic reruns, and stale-file handling according to the chosen publication layout. These are future verification requirements, not claims of existing tests.
 
-## Engine-owned CLI entrypoints
+## Build-time ownership
 
-- Lesson/Course build-time Node CLIs live beside their serializers and tests under `generators/`.
-- `scripts/textbook-tooling/build.mjs` invokes Engine CLIs directly and owns textbook-level staging and manifest creation. Do not keep duplicate per-resource wrappers under root `scripts/generators/`.
-- CLIs are build-only and must never appear in `runtime.ts` exports or browser bundles.
+- The textbook build in `scripts/textbook-tooling/buildTextbook/build.mjs` invokes the Engine-owned named CLIs directly; do not reintroduce root-level per-resource wrappers.
+- The CLIs discover authored configurators and call `build.props()`, then delegate to the publication code. They are not runtime imports.
+- The existing compact Course publisher also performs Course-context projection using the Course Build API; this refactor preserves that established behavior rather than changing the Course contract.
+- The runtime `@svitlo/engine/runtime` entrypoint must remain free of build-only generators, Node APIs and authored configurators.

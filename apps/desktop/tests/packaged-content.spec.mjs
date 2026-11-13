@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const renderer = join(root, 'dist-renderer');
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
-const resources = join(renderer, 'data/pages/lessons/c', id);
+const resources = join(renderer, 'data/lessons/c', id);
 
 test('renderer has no Next.js server or external entrypoint', () => {
   const html = readFileSync(join(renderer, 'index.html'), 'utf8');
@@ -16,14 +16,17 @@ test('renderer has no Next.js server or external entrypoint', () => {
   assert.doesNotMatch(html, /https?:\/\/(?:localhost|127\.0\.0\.1)/);
   assert.ok(existsSync(join(root, 'dist-main/main.cjs')));
 });
-test('build bundles the real lesson and localized config, flashcards and questions', () => {
-  for (const kind of ['config', 'flashcards', 'questions']) {
-    for (const language of ['base', 'uk']) {
-      const filename = join(resources, kind, language + '.json');
-      assert.ok(existsSync(filename), filename);
-      assert.ok(JSON.parse(readFileSync(filename, 'utf8')).data !== undefined);
-    }
-  }
+test('build bundles the complete Lesson Props base and sparse selected locale', () => {
+  const baseFile = join(resources, 'base.json');
+  assert.ok(existsSync(baseFile), baseFile);
+  const lessonBase = JSON.parse(readFileSync(baseFile, 'utf8'));
+  assert.equal(lessonBase.id, id);
+  assert.equal(lessonBase.type, 'lesson');
+  assert.ok(Array.isArray(lessonBase.section));
+  assert.ok(Array.isArray(lessonBase.flashcards));
+  assert.ok(lessonBase.params.languages.includes('uk'));
+  const ukFile = join(resources, 'uk.json');
+  if (existsSync(ukFile)) assert.ok(JSON.parse(readFileSync(ukFile, 'utf8')));
   assert.ok(existsSync(join(renderer, 'data/uiKit/components/uk.json')));
   const methodsRoot = join(renderer, 'data/uiKit/assessmentMethods');
   const base = JSON.parse(readFileSync(join(methodsRoot, 'base.json'), 'utf8'));
@@ -52,7 +55,7 @@ test('build bundles the real lesson and localized config, flashcards and questio
   assert.ok(existsSync(join(renderer, 'flags/ua.svg')));
   const published = JSON.parse(readFileSync(join(renderer, '.svitlo/publish-playground.json'), 'utf8'));
   assert.equal(published.textbook, 'playground');
-  assert.ok(published.files.some(name => name.startsWith('data/pages/lessons/')));
+  assert.ok(published.files.some(name => name.startsWith('data/lessons/')));
   assert.ok(published.files.includes('data/skills/base.json'));
   assert.ok(published.files.includes('data/skills/uk.json'));
 });

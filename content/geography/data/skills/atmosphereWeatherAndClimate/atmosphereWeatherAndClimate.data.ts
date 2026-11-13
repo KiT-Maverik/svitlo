@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { atmosphericHazards_SkillGroup_Data } from './atmosphericHazards/atmosphericHazards.data';
 import { atmosphericProcesses_SkillGroup_Data } from './atmosphericProcesses/atmosphericProcesses.data';

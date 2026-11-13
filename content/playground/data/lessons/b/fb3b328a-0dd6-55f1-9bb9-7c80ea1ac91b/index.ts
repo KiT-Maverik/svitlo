@@ -1,4 +1,4 @@
-import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine';
+import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine/build';
 import { howLightMoves, howLightMovesTitle } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c';
 import { contentBlockGallery } from '../../../courses/sections/contentBlockGallery.data';
 
@@ -35,7 +35,6 @@ export const courseHowLightMoves = defineLesson({
   id: 'fb3b328a-0dd6-55f1-9bb9-7c80ea1ac91b',
   slug: 'courseHowLightMoves',
   type: 'lesson',
-  programId: '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67',
   skills: howLightMoves.config.base.skills,
   params: {
     ...howLightMoves.config.base.params,

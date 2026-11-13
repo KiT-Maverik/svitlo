@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const manageADigitalFootprint_Skill_Data = defineSkill({
   slug: 'manageADigitalFootprint',

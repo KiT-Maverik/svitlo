@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { atmospheresAndWeather_SkillGroup_Data } from './atmospheresAndWeather/atmospheresAndWeather.data';
 import { interiorsAndVolatiles_SkillGroup_Data } from './interiorsAndVolatiles/interiorsAndVolatiles.data';

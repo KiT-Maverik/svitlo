@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { jointsAndFasteners_SkillGroup_Data } from './jointsAndFasteners/jointsAndFasteners.data';
 import { materialSelection_SkillGroup_Data } from './materialSelection/materialSelection.data';

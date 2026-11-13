@@ -21,8 +21,8 @@ const required: RequireLanguages<Authored, ['en', 'uk']> = {
   nested: { label: { en: 'Label', uk: 'Мітка' } },
 };
 
-// @ts-expect-error Authored locale dictionaries must include every required language.
 const missingRequiredLanguage: RequireLanguages<Authored, ['en', 'uk']> = {
+  // @ts-expect-error Authored locale dictionaries must include every required language.
   title: { en: 'Title' },
   nested: { label: { en: 'Label', uk: 'Мітка' } },
 };

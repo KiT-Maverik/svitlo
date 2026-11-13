@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { competitiveMarketStructures_SkillGroup_Data } from './competitiveMarketStructures/competitiveMarketStructures.data';
 import { demand_SkillGroup_Data } from './demand/demand.data';

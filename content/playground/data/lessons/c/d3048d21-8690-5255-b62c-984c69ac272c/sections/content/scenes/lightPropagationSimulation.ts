@@ -1,4 +1,4 @@
-import { defineScene } from '@svitlo/engine';
+import { defineScene } from '@svitlo/engine/build';
 
 const en = {
   scene: {
@@ -683,7 +683,7 @@ const zh: Locale = {
 
 export type LightPropagationSimulationLocale = Locale;
 
-export const lightPropagationSimulation = defineScene({
+export const lightPropagationSimulation: ReturnType<typeof defineScene<'lightPropagationSimulation'>> = defineScene({
   type: 'scene',
   id: '968926d3-7b15-4575-8f57-a5a2a5054783',
   slug: 'lightPropagationSimulation',

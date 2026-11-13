@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { digitalProducts_SkillGroup_Data } from './digitalProducts/digitalProducts.data';
 import { financialTechnology_SkillGroup_Data } from './financialTechnology/financialTechnology.data';

@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { checkReasonableness_Skill_Data, verifyWithSecondMethod_Skill_Data } from './skills';
 

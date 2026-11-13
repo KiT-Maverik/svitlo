@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const seekProtectionAfterViolence_Skill_Data = defineSkill({
   slug: 'seekProtectionAfterViolence',

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { commonPoolResources_SkillGroup_Data } from './commonPoolResources/commonPoolResources.data';
 import { environmentalIncentivesAndPolicy_SkillGroup_Data } from './environmentalIncentivesAndPolicy/environmentalIncentivesAndPolicy.data';

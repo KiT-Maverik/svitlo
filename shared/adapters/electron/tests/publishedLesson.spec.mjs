@@ -3,76 +3,80 @@ import { test } from 'node:test';
 import { loadPublishedLesson } from '../dist/renderer.js';
 
 const id = 'd3048d21-8690-5255-b62c-984c69ac272c';
-const path = '/data/pages/lessons/c/' + id;
-const kinds = ['config', 'flashcards', 'questions'];
+const sectionId = '663572e7-bd85-4516-86e2-3de07d209e02';
+const path = '/data/lessons/c/' + id;
 
 function resources() {
+  const section = {
+    id: sectionId,
+    slug: 'intro',
+    type: 'content',
+    params: {},
+    locale: { title: 'Introduction', navigationLabel: '1' },
+    content: [],
+  };
   return {
-    config: {
-      base: {
-        data: {
-          id,
-          slug: 'lesson',
-          skills: [],
-          title: null,
-          parameters: {
-            languages: ['uk'],
-            requireQuiz: false,
-            sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
-          },
-          sections: [
-            {
-              id: 'section',
-              slug: 'intro',
-              type: 'theory',
-              title: null,
-              navigationLabel: null,
-              content: [],
-            },
-          ],
-        },
-        localeSources: {},
+    base: {
+      id,
+      slug: 'lesson',
+      type: 'lesson',
+      skills: [],
+      locale: { title: 'Shared title' },
+      params: {
+        languages: ['en', 'uk'],
+        requireQuiz: false,
+        sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
       },
-      uk: {
-        data: {
-          title: 'Світло',
-          sections: { 0: { title: 'Вступ', navigationLabel: 'Початок' } },
-        },
-        localeSources: { title: { code: 'uk' } },
-      },
+      section: [section],
+      flashcards: [],
     },
-    flashcards: { base: { data: [], localeSources: {} }, uk: { data: {}, localeSources: {} } },
-    questions: { base: { data: {}, localeSources: {} }, uk: { data: {}, localeSources: {} } },
+    uk: {
+      locale: { title: 'Світло' },
+      section: [{ ...section, locale: { title: 'Вступ', navigationLabel: 'Початок' } }],
+    },
   };
 }
 
-test('Electron resolves base and sparse locale resources before lesson assembly', async t => {
+test('Electron resolves new Lesson Props base and sparse locale without legacy response projection', async t => {
   const data = resources();
   const requested = [];
   t.mock.method(globalThis, 'fetch', async url => {
     requested.push(url);
-    const match = new RegExp('^' + path + '/(config|flashcards|questions)/(base|uk)\\.json$').exec(url);
-    if (!match) return { ok: false, status: 404 };
-    return { ok: true, json: async () => data[match[1]][match[2]] };
+    const key = url === path + '/base.json' ? 'base' : url === path + '/uk.json' ? 'uk' : null;
+    return key ? { ok: true, status: 200, json: async () => data[key] } : { ok: false, status: 404 };
   });
   const lesson = await loadPublishedLesson(id, 'uk');
   assert.equal(lesson.id, id);
-  assert.equal(lesson.title, 'Світло');
-  assert.equal(lesson.sections[0].title, 'Вступ');
-  assert.equal(lesson.sections[0].navigationLabel, 'Початок');
-  assert.equal(lesson.locale.code, 'uk');
-  assert.deepEqual(
-    requested.sort(),
-    kinds.flatMap(kind => [path + '/' + kind + '/base.json', path + '/' + kind + '/uk.json']).sort(),
-  );
+  assert.equal(lesson.locale.title, 'Світло');
+  assert.equal(lesson.section[0].locale.title, 'Вступ');
+  assert.equal(lesson.section[0].locale.navigationLabel, 'Початок');
+  assert.deepEqual(requested.sort(), [path + '/base.json', path + '/uk.json'].sort());
 });
 
-test('Electron rejects missing locale patches rather than falling back silently', async t => {
+test('Electron accepts missing locale file only when invariant Lesson Props are complete', async t => {
   const data = resources();
-  t.mock.method(globalThis, 'fetch', async url => {
-    if (url.endsWith('/questions/uk.json')) return { ok: false, status: 404 };
-    const match = /\/(config|flashcards|questions)\/(base|uk)\.json$/.exec(url);
-    return { ok: true, json: async () => data[match[1]][match[2]] };
-  });
+  t.mock.method(globalThis, 'fetch', async url =>
+    url === path + '/base.json' ? { ok: true, status: 200, json: async () => data.base } : { ok: false, status: 404 },
+  );
+  const lesson = await loadPublishedLesson(id, 'en');
+  assert.equal(lesson.locale.title, 'Shared title');
+  assert.equal(lesson.section[0].locale.title, 'Introduction');
+});
+
+test('Electron rejects missing base, invalid locale payload and unsupported languages', async t => {
+  const data = resources();
+  t.mock.method(globalThis, 'fetch', async url =>
+    url === path + '/base.json' ? { ok: true, status: 200, json: async () => data.base } : { ok: false, status: 404 },
+  );
+  await assert.rejects(loadPublishedLesson(id, 'pl'), /does not support requested language/);
+  t.mock.restoreAll();
+  t.mock.method(globalThis, 'fetch', async () => ({ ok: false, status: 404 }));
   await assert.rejects(loadPublishedLesson(id, 'uk'), /Missing packaged textbook resource/);
+  t.mock.restoreAll();
+  t.mock.method(globalThis, 'fetch', async url => ({
+    ok: true,
+    status: 200,
+    json: async () => (url.endsWith('/base.json') ? data.base : { locale: { title: 42 } }),
+  }));
+  await assert.rejects(loadPublishedLesson(id, 'uk'), /Invalid assembled Lesson Props/);
 });

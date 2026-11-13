@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { heatTransferMechanisms_SkillGroup_Data } from './heatTransferMechanisms/heatTransferMechanisms.data';
 import { phaseTransitions_SkillGroup_Data } from './phaseTransitions/phaseTransitions.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { conditions_SkillGroup_Data } from './conditions/conditions.data';
 import { models_SkillGroup_Data } from './models/models.data';

@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const explainHowMagmaReachesEarthsSurface_Skill_Data = defineSkill({
   slug: 'explainHowMagmaReachesEarthsSurface',

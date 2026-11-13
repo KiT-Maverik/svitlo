@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import type { Locale } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
 import { type UiKitMessages, type Topic, Lesson, ImageRendererProvider, SceneLocaleProvider } from '@svitlo/ui-kit';
 import { NextImageRenderer } from '@svitlo/adapter-nextjs';
 import { preloadScene, resolveScene } from '@/generated/textbookScenes';
-import type { LessonResponse } from '@svitlo/engine';
+import type { Lesson_Props } from '@svitlo/engine/runtime';
 import Layout from '@/components/layout/LearningLayout/LearningLayout';
 
 function sceneIds(value: unknown): string[] {
@@ -33,7 +33,7 @@ export default function WebLesson({
   messages,
   topics,
 }: {
-  response: LessonResponse;
+  response: Lesson_Props;
   locale: Locale;
   lessonLocale?: Locale;
   href: string;
@@ -41,7 +41,9 @@ export default function WebLesson({
   topics?: readonly Topic[];
 }) {
   const contentLocale = lessonLocale ?? locale;
-  const ids = useMemo(() => sceneIds([response.sections, response.events]), [response.sections, response.events]);
+  const language = DEFAULT_SUPPORTED_LANGUAGES.find(entry => entry.locale === contentLocale)?.language;
+  if (!language) throw new Error('Unsupported Lesson language: ' + contentLocale);
+  const ids = useMemo(() => sceneIds([response.section, response.events]), [response.section, response.events]);
   const requestKey = `${href}:${response.id}:${contentLocale}`;
   const [prepared, setPrepared] = useState<{
     key: string;
@@ -77,6 +79,7 @@ export default function WebLesson({
       <ImageRendererProvider renderer={NextImageRenderer}>
         <Lesson
           response={response}
+          language={language}
           href={href}
           messages={messages}
           topics={topics}

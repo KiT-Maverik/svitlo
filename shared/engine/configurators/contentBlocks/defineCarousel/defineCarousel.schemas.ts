@@ -2,13 +2,12 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 
-import { createContentBlockBaseSchema, localizationSwitch } from '../_shared__contentBlocks';
-import { addUnifiedLocale } from '../../_shared__configurators';
-import {
-  carouselSlide_Published_Schema,
-  type ContentBlock_CarouselSlide_Configurator,
-  type ContentBlock_CarouselSlide_Fields,
-} from './defineCarouselSlide';
+import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
+
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { carouselSlide_Published_Schema } from './defineCarouselSlide/defineCarouselSlide.schemas';
+import type { ContentBlock_CarouselSlide_Fields } from './defineCarouselSlide/defineCarouselSlide.schemas';
+import type { ContentBlock_CarouselSlide_Configurator } from './defineCarouselSlide/defineCarouselSlide';
 
 const contentBlockBase = createContentBlockBaseSchema('carousel');
 

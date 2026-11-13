@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { assembleCourseLesson } from '@svitlo/engine';
+import { assembleCourseLesson } from '@svitlo/engine/runtime';
 
 const root = process.cwd();
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';

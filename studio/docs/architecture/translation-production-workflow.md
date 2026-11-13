@@ -46,9 +46,9 @@ Review agents are **independent** of original translators for their scope where 
 
 For **each entity type in scope**, review coordinator and review agents MUST verify that an installed, working **Code → localized Markdown generator** supports those exact entities, locales and current file layout. The current Agent CI Artifacts infrastructure includes:
 
-- Skills: `scripts/generate-skills-taxonomy.mjs`, reviewed from `.agent-ci-artifacts/taxonomies/<textbook>/<language>.md`.
-- Lessons: `scripts/generate-lessons-markdown.mjs`, reviewed from `.agent-ci-artifacts/lessons/<textbook>/<bucket>/<lesson-slug>/<language>.md` or the actual path present in the current manifest. Verify support for the nested Lesson content being reviewed.
-- Assessment Methods: `scripts/generate-assessment-methods-reference.mjs`, reviewed from `.agent-ci-artifacts/assessment-methods/<language>.md`.
+- Skills: `shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs`, reviewed from `.agent-ci-artifacts/taxonomies/<textbook>/<language>.md`.
+- Lessons: `shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs`, reviewed from `.agent-ci-artifacts/lessons/<textbook>/<bucket>/<lesson-slug>/<language>.md` or the actual path present in the current manifest. Verify support for the nested Lesson content being reviewed.
+- Assessment Methods: `shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.mjs`, reviewed from `.agent-ci-artifacts/assessment-methods/<language>.md`.
 
 These are **known generator families, not guarantees** for every target subtype, locale or revision. Courses, UI Kit dictionaries and other entities require verified matching generators before review. The existing CI wrapper may generate all locales rather than accepting selective locale arguments; reviewers simply select assigned documents.
 

@@ -1,13 +1,13 @@
 # Compact Course resource publisher
 
-`publish-course-data.mjs` publishes compact Course resources built from the new stateless Configurator API.
+`publishCourseData.mjs` publishes compact Course resources built from the new stateless Configurator API.
 
 The build-time caller passes the result of `defineCourse` and, optionally, the
 Course-owned authoring patch accepted by `course.build.overrides`. No standalone
 Lesson resource is built into the resulting Course files.
 
 ```js
-import { publishCourse } from './publish-course-data.mjs';
+import { publishCourse } from './publishCourseData.mjs';
 
 // course: defineCourse(...)
 // courseOverrides: optional nested Course_Overrides authoring patch
@@ -51,4 +51,4 @@ unrelated public files, and supports read-only `check` mode.
 
 Tests: `npm test --workspace @svitlo/engine` (Course publication, CLI, and Lesson generator suites).
 
-The CLI is Engine-owned at `shared/engine/generators/courses/generate-course-props.mjs`. It discovers authored Course configurations and invokes the renderer; there is no duplicate root `scripts/generators/` wrapper.
+The CLI lives at `shared/engine/scripts/generateCourseProps/generateCourseProps.mjs`, with its CLI tests beside it. It discovers authored Course configurations and invokes the renderer; there is no duplicate root `scripts/generators/` wrapper.

@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { explainSearlesChineseRoom_Skill_Data, explainTheTuringTest_Skill_Data } from './skills';
 

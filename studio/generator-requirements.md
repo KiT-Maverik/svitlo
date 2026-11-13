@@ -4,8 +4,8 @@
 
 - Authoring `*.data.ts` exports stateless Engine configurators. The application
   never imports authoring data or invokes `build.props()` at runtime.
-- An Engine-owned build-time CLI discovers configurators and invokes their
-  `build.props({ languages })`. Pure Engine serializers consume **completed**
+- A build-time orchestration script discovers configurators and invokes their
+  `build.props({ languages })`. The Engine generators consume **completed**
   `{ base, locale }` publications; do not duplicate validation, reorder
   children, or reconstruct authoring patches in a serializer.
 - Runtime assemblers accept already-loaded published files and output Props
@@ -26,12 +26,12 @@ content/<textbook>/generated/
   courses/<course-uuid>/{base,<language>}.json
 ```
 
-`scripts/textbook-tooling/build.mjs` invokes the Engine-owned generator CLIs and stages
+`scripts/textbook-tooling/buildTextbook/build.mjs` invokes the new generators and stages
 their output as `dist/static/data/{skills,lessons,courses}/...`, alongside
 separately compiled Scenes and textbook-owned static media. It records the
 actual output files in `dist/manifest.json`.
 
-`scripts/textbook-tooling/publish.mjs` consumes only the compiled manifest,
+`scripts/textbook-tooling/publishTextbook/publish.mjs` consumes only the compiled manifest,
 copies static resources to a host's `public/data/` and cleans files owned by
 the textbook's previous manifest. It never runs generators. Other hosts
 (Electron/Capacitor) may use the same packaged resources; runtime assemblers
@@ -88,3 +88,7 @@ stay host-independent. Scenes are bundled to JS chunks, not embedded in JSON.
   individual serializer mocks. Include locale isolation, Course patch precedence,
   deleted child regression, atomic replacement of other Props arrays, and
   malformed or absent optional locale files.
+
+## Engine generator ownership
+
+The Lesson and Course CLI entrypoints and their CLI tests live in `shared/engine/scripts/generateLessonProps/` and `shared/engine/scripts/generateCourseProps/`. Engine publication modules and their tests live in `shared/engine/generators/{lessons,courses}/`. The textbook build calls the Engine scripts directly and only stages their output. Build-time entrypoints use `@svitlo/engine/build`; runtime consumers use `@svitlo/engine/runtime`.

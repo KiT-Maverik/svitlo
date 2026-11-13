@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { acidBaseModels_Skill_Data, acidStrength_Skill_Data, pH_Skill_Data } from './skills';
 

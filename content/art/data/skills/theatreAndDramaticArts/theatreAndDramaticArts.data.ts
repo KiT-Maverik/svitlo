@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { acting_SkillGroup_Data } from './acting/acting.data';
 import { dramaturgyAndDirection_SkillGroup_Data } from './dramaturgyAndDirection/dramaturgyAndDirection.data';

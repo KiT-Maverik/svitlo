@@ -1,4 +1,4 @@
-import { defineFlashcard } from '@svitlo/engine';
+import { defineFlashcard } from '@svitlo/engine/build';
 import { lightTravelsStraight } from '../questions/lightTravelsStraight';
 import { fastestMedium } from '../questions/fastestMedium';
 import { opaqueObjectShadow } from '../questions/opaqueObjectShadow';
@@ -13,11 +13,11 @@ const lightTravelsStraightFlashcard = defineFlashcard({
   },
   content: {
     front: {
-      items: { question: lightTravelsStraight.content.question[0] },
+      items: { question: lightTravelsStraight.content.question.items.question },
       order: ['question'],
     },
     back: {
-      items: { straightLine: lightTravelsStraight.content.answers.correct.straightLine },
+      items: { straightLine: lightTravelsStraight.content.answers.correct.items.straightLine },
       order: ['straightLine'],
     },
   },
@@ -33,11 +33,11 @@ const fastestMediumFlashcard = defineFlashcard({
   },
   content: {
     front: {
-      items: { question: fastestMedium.content.question[0] },
+      items: { question: fastestMedium.content.question.items.question },
       order: ['question'],
     },
     back: {
-      items: { vacuum: fastestMedium.content.answers.correct.vacuum },
+      items: { vacuum: fastestMedium.content.answers.correct.items.vacuum },
       order: ['vacuum'],
     },
   },
@@ -53,18 +53,17 @@ const opaqueObjectShadowFlashcard = defineFlashcard({
   },
   content: {
     front: {
-      items: { question: opaqueObjectShadow.content.question[0] },
+      items: { question: opaqueObjectShadow.content.question.items.question },
       order: ['question'],
     },
     back: {
-      items: { shadow: opaqueObjectShadow.content.answers.correct.shadow },
+      items: { shadow: opaqueObjectShadow.content.answers.correct.items.shadow },
       order: ['shadow'],
     },
   },
 });
 
-export const howLightMovesFlashcards = [
-  lightTravelsStraightFlashcard,
-  fastestMediumFlashcard,
-  opaqueObjectShadowFlashcard,
-];
+export const howLightMovesFlashcards = {
+  items: { lightTravelsStraightFlashcard, fastestMediumFlashcard, opaqueObjectShadowFlashcard },
+  order: ['lightTravelsStraightFlashcard', 'fastestMediumFlashcard', 'opaqueObjectShadowFlashcard'],
+};

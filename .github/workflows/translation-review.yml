@@ -121,26 +121,26 @@ jobs:
           npm run package:build --workspace @svitlo/engine
       - name: Validate Lesson artifact adapter
         run: |
-          node --check scripts/generate-lesson-review-artifacts.mjs
-          node --test scripts/generate-lesson-review-artifacts.spec.mjs
-          node --check scripts/generate-lessons-markdown.mjs
-          node --check scripts/lib/lesson-markdown.mjs
-          node --test scripts/generate-lessons-markdown.spec.mjs
-          node --check scripts/generate-lessons-by-skill.mjs
-          node --test scripts/generate-lessons-by-skill.spec.mjs
+          node --check shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.mjs
+          node --test shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs
+          node --check shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs
+          node --check shared/engine/scripts/generateLessonsMarkdown/lesson-markdown.mjs
+          node --test shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs
+          node --check shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs
+          node --test shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.spec.mjs
       - name: Smoke-test actual Playground Lesson Markdown
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/generate-lessons-markdown.mjs --package content/playground --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout > "$RUNNER_TEMP/lesson-uk.md"
+          node shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.mjs --package content/playground --lesson d3048d21-8690-5255-b62c-984c69ac272c --locale uk --stdout > "$RUNNER_TEMP/lesson-uk.md"
           grep -q '## Question Bank' "$RUNNER_TEMP/lesson-uk.md"
           grep -q '## Flashcard Bank' "$RUNNER_TEMP/lesson-uk.md"
           grep -q 'Quiz uses references' "$RUNNER_TEMP/lesson-uk.md"
       - name: Generate Skills and Lesson Markdown in every supported language
         run: |
-          node --check scripts/generate-translation-review-artifacts.mjs
-          node --check scripts/generate-skills-taxonomy.mjs
-          node scripts/generate-translation-review-artifacts.mjs
+          node --check scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
+          node --check shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs
+          node scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs
       - name: Upload isolated CI result for trusted publish job
         if: success()
         uses: actions/upload-artifact@v4

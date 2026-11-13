@@ -13,8 +13,8 @@ import {
   useState,
 } from 'react';
 import Container from '@mui/material/Container';
-import { ContentBlockRenderer } from '../widgets/ContentBlockRenderer';
-import { QuestionRenderer } from '../widgets/questions';
+import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
+import { EngineQuestionRenderer } from './EngineQuestionRenderer';
 import type {
   LearningLayoutTopBarProps,
   LearningLayoutBottomBarProps,
@@ -26,13 +26,15 @@ import { LessonOperationsContext } from './LessonOperationsContext';
 import { LessonSteps } from './LessonSteps';
 import { MediaVolumeControl } from './MediaVolumeControl';
 import { MediaSettingsProvider } from './MediaSettings';
-import type { LessonProps, LessonView } from './Lesson';
-import { DEFAULT_LESSON_EVENTS } from '@svitlo/contracts/content';
+import type { LessonProps } from './Lesson';
+import type { Lesson_Props, Section_Props } from '@svitlo/engine/runtime';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { EventSceneHost, LessonEventBusContext, createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import styles from './Lesson.module.css';
 
-type SectionParams = LessonView['parameters']['sections'];
+const DEFAULT_LESSON_EVENTS = ['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed'] as const;
+
+type SectionParams = Lesson_Props['params']['sections'];
 const EMPTY_EDITABLE: readonly EditableSectionParam[] = [];
 export type EditableSectionParam = keyof SectionParams;
 type TopBarState = { title: string };
@@ -45,7 +47,7 @@ type SectionState = {
 };
 type BottomBarState = { nextDisabled: boolean; backDisabled: boolean; skipDisabled: boolean };
 type Runtime = {
-  params: LessonView['parameters'];
+  params: Lesson_Props['params'];
   topBar: TopBarState;
   stepper: StepperState;
   section: SectionState;
@@ -83,14 +85,14 @@ export type LessonActions<CustomEvents extends string = never> = {
   publishEvent: (eventId: CustomEvents) => void;
   completeCheckpoint: (sectionId: string, checkpointId: string) => void;
   /** Event-time snapshot readers; these are NOT reactive subscriptions. */
-  getParams: () => LessonView['parameters'];
+  getParams: () => Lesson_Props['params'];
   getTopBar: () => TopBarState;
   getSection: () => SectionState;
   getBottomBar: () => BottomBarState;
 };
 
 const ParamsContext = createContext<{
-  values: LessonView['parameters'];
+  values: Lesson_Props['params'];
   editable: readonly EditableSectionParam[];
 } | null>(null);
 const TopBarContext = createContext<TopBarState | null>(null);
@@ -110,25 +112,25 @@ const BottomBarContext = createContext<{ nextDisabled: boolean; backDisabled: bo
   null,
 );
 
-function requiredCheckpointIds(section: LessonView['sections'][number]): string[] {
+function requiredCheckpointIds(section: Section_Props): string[] {
   if (section.type === 'quiz') return [];
   return section.content
     .filter(
       block =>
         block.type === 'checkpoint' &&
-        block.requireCompletion &&
-        block.items.some(item => item.check ?? block.enableChecks ?? false),
+        block.params.requireCompletion &&
+        block.content.some(item => item.check ?? block.params.enableChecks ?? false),
     )
     .map(block => block.id);
 }
 
 /** Lesson permission is inherited unless the Section opts out; Quizzes have extra gates. */
-function canSkipSection(section: LessonView['sections'][number] | undefined, allowSkipping: boolean): boolean {
+function canSkipSection(section: Section_Props | undefined, allowSkipping: boolean): boolean {
   return !!(
     allowSkipping &&
     section &&
-    section.skippable !== false &&
-    (section.type !== 'quiz' || (!section.parameters.isBlocker && section.parameters.interaction.skippable))
+    section.params.skippable !== false &&
+    (section.type !== 'quiz' || (!section.params.isBlocker && section.params.interaction.skippable))
   );
 }
 
@@ -136,17 +138,16 @@ function hasNextBlocker(state: Runtime, step: number): boolean {
   return Object.values(state.nextBlockers).some(registeredStep => registeredStep === step);
 }
 
-function canLeaveSection(state: Runtime, response: LessonView, index: number): boolean {
-  const section = response.sections[index];
+function canLeaveSection(state: Runtime, response: Lesson_Props, index: number): boolean {
+  const section = response.section[index];
   if (!section) return false;
-  if (section.type === 'quiz' && section.parameters.isBlocker && !state.section.completedQuizIds[section.id])
-    return false;
+  if (section.type === 'quiz' && section.params.isBlocker && !state.section.completedQuizIds[section.id]) return false;
   return requiredCheckpointIds(section).every(id => state.section.completedCheckpoints[section.id + '/' + id]);
 }
 
-function canMoveTo(state: Runtime, response: LessonView, target: number, direct: boolean): boolean {
+function canMoveTo(state: Runtime, response: Lesson_Props, target: number, direct: boolean): boolean {
   const from = state.section.step;
-  if (!Number.isInteger(target) || target < 0 || target >= response.sections.length) return false;
+  if (!Number.isInteger(target) || target < 0 || target >= response.section.length) return false;
   if (target === from) return true;
   if (direct && !state.params.sections.allowNavigation) return false;
   if (target < from) return true;
@@ -160,7 +161,7 @@ function canMoveTo(state: Runtime, response: LessonView, target: number, direct:
 function reduce(
   state: Runtime,
   action: Command,
-  response: LessonView,
+  response: Lesson_Props,
   editable: readonly EditableSectionParam[],
 ): Runtime {
   switch (action.type) {
@@ -192,16 +193,16 @@ function reduce(
     case 'testDone':
       return state.section.testDone ? state : { ...state, section: { ...state.section, testDone: true } };
     case 'quizDone': {
-      if (!response.sections.some(section => section.type === 'quiz' && section.id === action.sectionId)) return state;
+      if (!response.section.some(section => section.type === 'quiz' && section.id === action.sectionId)) return state;
       const completedQuizIds = { ...state.section.completedQuizIds, [action.sectionId]: true as const };
-      const allQuizzesFinished = response.sections
+      const allQuizzesFinished = response.section
         .filter(section => section.type === 'quiz')
         .every(section => completedQuizIds[section.id]);
       return { ...state, section: { ...state.section, completedQuizIds, testDone: allQuizzesFinished } };
     }
     case 'checkpoint': {
       if (
-        !response.sections.some(
+        !response.section.some(
           section => section.id === action.sectionId && requiredCheckpointIds(section).includes(action.checkpointId),
         )
       )
@@ -230,14 +231,14 @@ function reduce(
       const target = action.type === 'visit' ? action.step : action.type === 'back' ? current - 1 : current + 1;
       if (
         action.type === 'skip' &&
-        (!canSkipSection(response.sections[current], state.params.sections.allowSkipping) ||
+        (!canSkipSection(response.section[current], state.params.sections.allowSkipping) ||
           state.bottomBar.skipDisabled)
       )
         return state;
       if (action.type === 'back' && state.bottomBar.backDisabled) return state;
       // An explicitly permitted skip bypasses unfinished Checkpoints, but never a blocking Quiz.
       if (action.type === 'skip') {
-        if (target >= response.sections.length) return state;
+        if (target >= response.section.length) return state;
         return { ...state, section: { ...state.section, step: target } };
       }
       if (!canMoveTo(state, response, target, action.type === 'visit')) return state;
@@ -286,7 +287,7 @@ const MemoStepper = memo(function LessonStepper({ response, messages }: Pick<Les
   return (
     <LessonSteps
       navigationLabel={messages.lesson.steps.navigation}
-      steps={response.sections.map(item => ({ id: item.id, title: item.navigationLabel }))}
+      steps={response.section.map(item => ({ id: item.id, title: item.locale.navigationLabel }))}
       currentStep={state.currentStep}
       completedStep={state.completedStep}
       showStepNumbers={state.parameters.showIndexes}
@@ -304,7 +305,7 @@ const MemoSection = memo(function LessonSection({
 }: Pick<LessonProps, 'response' | 'messages' | 'sceneRegistry'>) {
   const { step, completedCheckpoints } = useLessonSection();
   const actions = useLessonActions();
-  const section = response.sections[step];
+  const section = response.section[step];
   const completeCheckpoint = useCallback(
     (checkpointId: string) => {
       if (section) actions.completeCheckpoint(section.id, checkpointId);
@@ -321,20 +322,18 @@ const MemoSection = memo(function LessonSection({
     <div className={styles.stage}>
       <Container maxWidth="md" sx={{ py: { xs: 3, md: 6 } }}>
         {section.type === 'quiz' ? (
-          <QuestionRenderer
+          <EngineQuestionRenderer
             key={section.id}
-            questions={section.questions}
-            parameters={section.parameters}
-            language={response.locale.code}
+            lesson={response}
+            section={section}
             sceneRegistry={sceneRegistry}
             messages={messages}
             onComplete={result => (result.passed ? actions.completeQuiz(section.id) : actions.failQuiz(section.id))}
           />
         ) : (
-          <ContentBlockRenderer
+          <EngineContentBlockRenderer
             key={section.id}
             blocks={blocks}
-            language={response.locale.code}
             sceneRegistry={sceneRegistry}
             messages={messages}
             onCheckpointComplete={completeCheckpoint}
@@ -348,6 +347,7 @@ const MemoSection = memo(function LessonSection({
 
 function LessonControllerRuntime({
   response,
+  language,
   href,
   messages,
   topics: courseTopics,
@@ -366,8 +366,8 @@ function LessonControllerRuntime({
         : reduce(current, action, response, editableSectionParams),
     response,
     (value): Runtime => ({
-      params: value.parameters,
-      topBar: { title: value.title },
+      params: value.params,
+      topBar: { title: value.locale.title },
       stepper: { visible: true },
       section: { step: 0, testDone: false, completedQuizIds: {}, completedCheckpoints: {} },
       bottomBar: { nextDisabled: false, backDisabled: false, skipDisabled: false },
@@ -401,11 +401,11 @@ function LessonControllerRuntime({
 
   const finishQuiz = useCallback(
     (sectionId: string | undefined, passed: boolean) => {
-      const active = response.sections[latest.current.section.step];
+      const active = response.section[latest.current.section.step];
       const id = sectionId ?? (active?.type === 'quiz' ? active.id : undefined);
       if (
         !id ||
-        !response.sections.some(section => section.type === 'quiz' && section.id === id) ||
+        !response.section.some(section => section.type === 'quiz' && section.id === id) ||
         quizEmitted.current.has(id)
       )
         return;
@@ -414,7 +414,7 @@ function LessonControllerRuntime({
       emit('quizCompleted');
       if (!passed) emit('quizFailed');
     },
-    [emit, response.sections],
+    [emit, response.section],
   );
 
   const effectiveEvents = useMemo(
@@ -429,9 +429,9 @@ function LessonControllerRuntime({
     }
   }, [eventReady, emit]);
   useEffect(() => {
-    if (!eventReady || lessonFinished.current || !response.sections.length) return;
-    const finalStep = response.sections.length - 1;
-    const lastSection = response.sections[finalStep];
+    if (!eventReady || lessonFinished.current || !response.section.length) return;
+    const finalStep = response.section.length - 1;
+    const lastSection = response.section[finalStep];
     if (
       state.section.step !== finalStep ||
       (lastSection.type === 'quiz' && !state.section.completedQuizIds[lastSection.id]) ||
@@ -478,17 +478,17 @@ function LessonControllerRuntime({
     () => ({
       ready: true,
       step: state.section.step,
-      lastStep: response.sections.length - 1,
+      lastStep: response.section.length - 1,
       testDone: state.section.testDone,
     }),
-    [state.section.step, state.section.testDone, response.sections.length],
+    [state.section.step, state.section.testDone, response.section.length],
   );
-  const legacyDispatch = useCallback((action: LessonNavigationAction) => {
+  const navigationDispatch = useCallback((action: LessonNavigationAction) => {
     if (action.type === 'visit') dispatch({ type: 'visit', step: action.step });
     else if (action.type === 'restore') dispatch({ type: 'restore', step: action.step, testDone: action.testDone });
     else dispatch({ type: action.type });
   }, []);
-  const legacyNavigation = useMemo(() => ({ progress, dispatch: legacyDispatch }), [progress, legacyDispatch]);
+  const navigationState = useMemo(() => ({ progress, dispatch: navigationDispatch }), [progress, navigationDispatch]);
 
   const paramsValue = useMemo(
     () => ({
@@ -507,16 +507,16 @@ function LessonControllerRuntime({
     [state.topBar],
   );
   const bottomValue = useMemo(() => {
-    const current = response.sections[state.section.step];
+    const current = response.section[state.section.step];
     const nextDisabled =
       state.bottomBar.nextDisabled ||
       hasNextBlocker(state, state.section.step) ||
-      state.section.step >= response.sections.length - 1 ||
+      state.section.step >= response.section.length - 1 ||
       !canLeaveSection(state, response, state.section.step);
     const skipDisabled =
       state.bottomBar.skipDisabled ||
       !canSkipSection(current, state.params.sections.allowSkipping) ||
-      state.section.step >= response.sections.length - 1;
+      state.section.step >= response.section.length - 1;
     return { nextDisabled, skipDisabled, backDisabled: state.bottomBar.backDisabled };
   }, [state.bottomBar, state.nextBlockers, state.section, state.params.sections.allowSkipping, response]);
   const renderBottomBar = useCallback(
@@ -532,7 +532,7 @@ function LessonControllerRuntime({
     () => ({
       visible: state.stepper.visible,
       currentStep: state.section.step,
-      completedStep: state.section.testDone ? response.sections.length - 1 : undefined,
+      completedStep: state.section.testDone ? response.section.length - 1 : undefined,
       parameters: state.params.sections,
       canNavigateTo: (step: number) => canMoveTo(state, response, step, true),
     }),
@@ -541,10 +541,10 @@ function LessonControllerRuntime({
   const section = useMemo(
     () => ({
       step: state.section.step,
-      id: response.sections[state.section.step]?.id ?? '',
+      id: response.section[state.section.step]?.id ?? '',
       completedCheckpoints: state.section.completedCheckpoints,
     }),
-    [state.section.step, state.section.completedCheckpoints, response.sections],
+    [state.section.step, state.section.completedCheckpoints, response.section],
   );
 
   const navActions = useMemo(() => ({ back: actions.back, next: actions.next, skip: actions.skip }), [actions]);
@@ -553,27 +553,27 @@ function LessonControllerRuntime({
     [eventBus, effectiveEvents, sceneRegistry, eventReady],
   );
   const standaloneTopics = useMemo(
-    () => [{ id: response.id, title: response.title, href }],
-    [response.id, response.title, href],
+    () => [{ id: response.id, title: response.locale.title, href }],
+    [response.id, response.locale.title, href],
   );
   const topics = courseTopics ?? standaloneTopics;
   const supportedLessonLanguages = useMemo(
     () =>
-      DEFAULT_SUPPORTED_LANGUAGES.filter(item => response.parameters.languages.includes(item.language)).map(
+      DEFAULT_SUPPORTED_LANGUAGES.filter(item => response.params.languages.includes(item.language)).map(
         item => item.locale,
       ),
-    [response.parameters.languages],
+    [response.params.languages],
   );
-  const contentLanguage = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === response.locale.code);
+  const contentLanguage = DEFAULT_SUPPORTED_LANGUAGES.find(item => item.language === language);
   const skippableSteps = useMemo(
-    () => response.sections.map(item => canSkipSection(item, state.params.sections.allowSkipping)),
-    [response.sections, state.params.sections.allowSkipping],
+    () => response.section.map(item => canSkipSection(item, state.params.sections.allowSkipping)),
+    [response.section, state.params.sections.allowSkipping],
   );
   return (
     <LessonOperationsContext.Provider value={actions}>
       <LessonEventBusContext.Provider value={eventBus}>
         <ParamsContext.Provider value={paramsValue}>
-          <LessonNavigationContext.Provider value={legacyNavigation}>
+          <LessonNavigationContext.Provider value={navigationState}>
             <Layout
               contentLoading={contentLoading}
               contentError={contentError}
@@ -613,7 +613,7 @@ function LessonControllerRuntime({
 /** Keep media preferences scoped to this Lesson Controller, including direct consumers. */
 export function LessonController(props: LessonProps) {
   return (
-    <MediaSettingsProvider key={props.href + ':' + props.response.id + ':' + props.response.locale.code}>
+    <MediaSettingsProvider key={props.href + ':' + props.response.id + ':' + props.language}>
       <LessonControllerRuntime {...props} />
     </MediaSettingsProvider>
   );

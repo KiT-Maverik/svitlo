@@ -38,7 +38,7 @@ export function questionBlockLabel(block: QuestionBlock): string {
     case 'video':
       return block.title ?? '';
     case 'youtube':
-      return block.title ?? block.hint ?? '';
+      return block.title ?? block.label;
     case 'code':
       return block.title ?? block.language;
     case 'checkpoint':

@@ -1,7 +1,7 @@
-import { createPublishedLessonPage } from '@svitlo/adapter-nextjs';
+import { createPublishedLessonPropsPage } from '@svitlo/adapter-nextjs';
 import WebLesson from '@/components/pages/Lesson/Lesson';
 
-const lessonPage = createPublishedLessonPage({
+const lessonPage = createPublishedLessonPropsPage({
   renderLesson: props => <WebLesson {...props} />,
 });
 

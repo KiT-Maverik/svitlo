@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { conflictRelatedDangers_SkillGroup_Data } from './conflictRelatedDangers/conflictRelatedDangers.data';
 import { evacuationAndShelter_SkillGroup_Data } from './evacuationAndShelter/evacuationAndShelter.data';

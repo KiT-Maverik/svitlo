@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { harmonyAndMusicalForm_SkillGroup_Data } from './harmonyAndMusicalForm/harmonyAndMusicalForm.data';
 import { musicalSoundAndTexture_SkillGroup_Data } from './musicalSoundAndTexture/musicalSoundAndTexture.data';

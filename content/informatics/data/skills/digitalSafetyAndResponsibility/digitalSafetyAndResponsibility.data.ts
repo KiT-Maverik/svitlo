@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { accountProtection_SkillGroup_Data } from './accountProtection/accountProtection.data';
 import { ethicsOfDigitalInteraction_SkillGroup_Data } from './ethicsOfDigitalInteraction/ethicsOfDigitalInteraction.data';

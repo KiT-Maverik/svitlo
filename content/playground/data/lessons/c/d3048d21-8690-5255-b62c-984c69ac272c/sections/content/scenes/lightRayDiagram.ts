@@ -1,4 +1,4 @@
-import { defineScene } from '@svitlo/engine';
+import { defineScene } from '@svitlo/engine/build';
 
 const en = {
   scene: {
@@ -352,7 +352,7 @@ const zh: Locale = {
 
 export type LightRayDiagramLocale = Locale;
 
-export const lightRayDiagram = defineScene({
+export const lightRayDiagram: ReturnType<typeof defineScene<'lightRayDiagram'>> = defineScene({
   type: 'scene',
   id: '72d22bea-d787-4c6d-9a83-144830c6d325',
   slug: 'lightRayDiagram',

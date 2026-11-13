@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { chemicalBonds_SkillGroup_Data } from './chemicalBonds/chemicalBonds.data';
 import { interparticleInteractions_SkillGroup_Data } from './interparticleInteractions/interparticleInteractions.data';

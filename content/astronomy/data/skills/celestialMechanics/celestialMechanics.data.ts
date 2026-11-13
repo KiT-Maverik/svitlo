@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { dynamicalInteractions_SkillGroup_Data } from './dynamicalInteractions/dynamicalInteractions.data';
 import { gravitationalMotion_SkillGroup_Data } from './gravitationalMotion/gravitationalMotion.data';

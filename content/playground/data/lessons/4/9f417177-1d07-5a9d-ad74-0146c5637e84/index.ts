@@ -1,4 +1,4 @@
-import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine';
+import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine/build';
 import { howLightMoves_languages } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
 
 const story = defineContentSection({
@@ -32,7 +32,6 @@ export const lightStory = defineLesson({
   id: '9f417177-1d07-5a9d-ad74-0146c5637e84',
   slug: 'lightStory',
   type: 'lesson',
-  programId: '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67',
   skills: [],
   params: {
     requireQuiz: false,
@@ -44,6 +43,6 @@ export const lightStory = defineLesson({
     },
   },
   locale: { title: 'The secret of light · Story' },
-  flashcards: [],
+  flashcards: { items: {}, order: [] },
   section: { items: { story }, order: ['story'] },
 });

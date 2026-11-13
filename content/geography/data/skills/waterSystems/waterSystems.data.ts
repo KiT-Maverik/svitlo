@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { frozenAndSubsurfaceWater_SkillGroup_Data } from './frozenAndSubsurfaceWater/frozenAndSubsurfaceWater.data';
 import { hydrologicConnections_SkillGroup_Data } from './hydrologicConnections/hydrologicConnections.data';

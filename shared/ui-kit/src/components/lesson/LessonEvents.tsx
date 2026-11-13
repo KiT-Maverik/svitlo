@@ -1,14 +1,14 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, Suspense, useContext, useEffect, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import type { ContentBlock_Scene, Locale_Languages, SupportedLessonEvents } from '@svitlo/contracts/content';
+import { scene_Props_Schema, type ContentBlock_Scene_Props, type Lesson_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
-import { Scene } from '../widgets/ContentBlockRenderer/blocks/Scene/Scene';
 
-export type EventScene = ContentBlock_Scene<'response', Locale_Languages>;
+export type EventScene = ContentBlock_Scene_Props;
+type LessonEventName = 'lessonStarted' | 'lessonCompleted' | 'quizCompleted' | 'quizFailed';
 export type LessonEventSceneMap = Readonly<Record<string, EventScene | false>>;
 
 /** The bus is scoped to one mounted lesson; publishing never schedules a controller render. */
@@ -39,7 +39,7 @@ export function useLessonEventBus(): LessonEventBus {
 
 /** Subscribe without causing updates to sibling lesson regions. */
 export function useLessonEventListener<CustomEvents extends string = never>(
-  eventId: SupportedLessonEvents<CustomEvents>,
+  eventId: LessonEventName | CustomEvents,
   handler: () => void,
 ): void {
   const bus = useLessonEventBus();
@@ -60,11 +60,14 @@ export function useLessonEventScene() {
 
 /** Program override keys are checked; an app cannot introduce unregistered custom event IDs. */
 export function resolveLessonEventScenes(
-  authored: LessonEventSceneMap | undefined,
+  authored: Lesson_Props['events'],
   overrides: LessonEventSceneMap | undefined,
 ): LessonEventSceneMap {
   const builtIn = new Set<string>(['lessonStarted', 'lessonCompleted', 'quizCompleted', 'quizFailed']);
-  const result: Record<string, EventScene | false> = { ...authored };
+  const result: Record<string, EventScene | false> = {};
+  for (const [eventId, reaction] of Object.entries(authored ?? {})) {
+    result[eventId] = reaction === false ? false : scene_Props_Schema.parse(reaction);
+  }
   for (const [eventId, reaction] of Object.entries(overrides ?? {})) {
     if (!builtIn.has(eventId) && !Object.hasOwn(result, eventId)) {
       throw new Error('Cannot override undeclared lesson event: ' + eventId);
@@ -104,11 +107,17 @@ export function EventSceneHost({
 
   const active = queue[0];
   const dismiss = () => setQueue(previous => previous.slice(1));
-  const label = active
-    ? typeof active.scene.locales?.title === 'string'
-      ? active.scene.locales.title
-      : active.eventId
-    : '';
+  const sceneProps = active?.scene.locale.value;
+  const label =
+    active &&
+    sceneProps &&
+    typeof sceneProps === 'object' &&
+    'title' in sceneProps &&
+    typeof sceneProps.title === 'string'
+      ? sceneProps.title
+      : (active?.eventId ?? '');
+  const SceneComponent = active ? sceneRegistry?.(active.scene.id) : undefined;
+  if (active && !SceneComponent) throw new Error('Unregistered lesson event Scene: ' + active.scene.id);
 
   return (
     <EventSceneContext.Provider value={active ? { eventId: active.eventId, dismiss } : null}>
@@ -123,7 +132,11 @@ export function EventSceneHost({
         {active && <DialogTitle id="lesson-event-scene-title">{label}</DialogTitle>}
         {active && (
           <DialogContent>
-            <Scene key={active.eventId + ':' + active.scene.id} response={active.scene} sceneRegistry={sceneRegistry} />
+            {SceneComponent && sceneProps && typeof sceneProps === 'object' && (
+              <Suspense fallback={null}>
+                <SceneComponent key={active.eventId + ':' + active.scene.id} locales={sceneProps} />
+              </Suspense>
+            )}
           </DialogContent>
         )}
       </Dialog>

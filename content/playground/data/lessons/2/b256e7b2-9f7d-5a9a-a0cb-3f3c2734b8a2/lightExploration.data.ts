@@ -1,4 +1,4 @@
-import { defineLesson } from '@svitlo/engine';
+import { defineLesson } from '@svitlo/engine/build';
 import { howLightMoves } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c';
 
 /** Demo Lesson that reuses the canonical lesson's Sections, Questions and Flashcards. */

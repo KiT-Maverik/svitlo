@@ -1,27 +1,65 @@
-/**
- * Browser and React Server Components share the pure Engine runtime.
- * Node authoring and publishing helpers remain available from the default
- * root condition without entering client/server rendering bundles.
- */
+/** Framework-independent Engine runtime. No configurator factory or Node authoring code. */
 export * from './assemblers';
-export * from './configurators';
-export * from './lessons';
 export * from './schemas';
+export * from './configurators/_shared__configurators/common.schemas';
+export * from './configurators/assessmentMethods/defineAssessmentMethod.schemas';
+export * from './configurators/configurator.schemas';
+export * from './configurators/contentBlocks/_shared__contentBlocks/text.schemas';
+export { createContentBlockBaseSchema, contentBlockResolved_Schema, localizationSwitch as contentBlockLocalizationSwitch } from './configurators/contentBlocks/contentBlock.schemas';
+export * from './configurators/contentBlocks/defineAudio/defineAudio.schemas';
+export * from './configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
+export * from './configurators/contentBlocks/defineCarousel/defineCarouselSlide/defineCarouselSlide.schemas';
+export * from './configurators/contentBlocks/defineCheckpoint/defineCheckpoint.schemas';
+export * from './configurators/contentBlocks/defineCheckpoint/defineCheckpointItem/defineCheckpointItem.schemas';
+export * from './configurators/contentBlocks/defineCode/defineCode.schemas';
+export * from './configurators/contentBlocks/defineImage/defineImage.schemas';
+export * from './configurators/contentBlocks/defineMarkdown/defineMarkdown.schemas';
+export * from './configurators/contentBlocks/defineScene/defineScene.schemas';
+export * from './configurators/contentBlocks/defineText/defineText.schemas';
+export * from './configurators/contentBlocks/defineVideo/defineVideo.schemas';
+export * from './configurators/contentBlocks/defineYoutube/defineYoutube.schemas';
+export * from './configurators/courses/defineChapter/defineChapter.schemas';
+export * from './configurators/courses/defineCourse/defineCourse.schemas';
+export * from './configurators/courses/defineModule/defineModule.schemas';
+export * from './configurators/episodes/defineEpisode/defineEpisode.schemas';
+export * from './configurators/flashcards/defineFlashcard/defineFlashcard.schemas';
+export * from './configurators/lessons/defineLesson/defineLesson.schemas';
+export * from './configurators/questions/assessmentMethod.schemas';
+export * from './configurators/questions/defineAnswerWithNumber/defineAnswerWithNumber.schemas';
+export * from './configurators/questions/defineAnswerWithText/defineAnswerWithText.schemas';
+export * from './configurators/questions/defineBuildAnswerWithBlocks/defineBuildAnswerWithBlocks.schemas';
+export * from './configurators/questions/defineFillBlanksWithBlocks/defineFillBlanksWithBlocks.schemas';
+export * from './configurators/questions/defineFillBlanksWithText/defineFillBlanksWithText.schemas';
+export * from './configurators/questions/defineMatchBlocks/defineMatchBlocks.schemas';
+export * from './configurators/questions/defineOrderSequence/defineOrderSequence.schemas';
+export * from './configurators/questions/defineSelectMultipleAnswers/defineSelectMultipleAnswers.schemas';
+export * from './configurators/questions/defineSelectOneAnswer/defineSelectOneAnswer.schemas';
+export * from './configurators/questions/question.schemas';
+export * from './configurators/sections/defineCodingTaskSection/defineCodingTaskSection.schemas';
+export * from './configurators/sections/defineContentSection/defineContentSection.schemas';
+export * from './configurators/sections/defineFlashcardsSection/defineFlashcardsSection.schemas';
+export * from './configurators/sections/defineLearningFlowSection/defineLearningFlowSection.schemas';
+export * from './configurators/sections/definePracticeSection/definePracticeSection.schemas';
+export * from './configurators/sections/defineQuizSection/defineQuizSection.schemas';
+export * from './configurators/skills/defineSkill/defineSkill.schemas';
+export * from './configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
+export * from './configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
+export * from './configurators/contentBlocks/contentBlock.constants';
+export * from './configurators/questions/question.constants';
+export * from './configurators/sections/section.constants';
+export type { ContentBlock_Props, ContentBlock_Configurator } from './configurators/contentBlocks/contentBlock.types';
+export type { Section_Props, Section_Configurator } from './configurators/sections/section.types';
+export type { Question_Configurator } from './configurators/questions/question.types';
 export type { ResolveLocale } from './types';
-
+export * from './lessons/assembleLessonResponse';
+export * from './lessons/applyCourseLessonOverride';
+export * from './lessons/mergeLessonResources';
+export * from './lessons/prepareQuizQuestions';
+export * from './lessons/splitLessonValue';
+export * from './lessons/linkFlashcards';
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './utils/languages';
-export { splitLessonValue } from './lessons/splitLessonValue';
 export { resolveEntityPath } from './utils/entityPath/resolveEntityPath.utils';
 export { createLocalizedFileLocations } from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';
-export type {
-  CreateLocalizedFileLocationsOptions,
-  LocalizedFileLocations,
-} from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';
-export {
-  createDynamicQuestion,
-  validateArgument,
-  validateBooleanArgument,
-  validateNumberArgument,
-  validateStringArgument,
-} from './utils/createDynamicQuestion/createDynamicQuestion.utils';
+export type { CreateLocalizedFileLocationsOptions, LocalizedFileLocations } from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';
+export { createDynamicQuestion, validateArgument, validateBooleanArgument, validateNumberArgument, validateStringArgument } from './utils/createDynamicQuestion/createDynamicQuestion.utils';
 export type * from './utils/createDynamicQuestion/createDynamicQuestion.types';

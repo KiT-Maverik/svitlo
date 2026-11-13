@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { cellDivision_SkillGroup_Data } from './cellDivision/cellDivision.data';
 import { cellularStructure_SkillGroup_Data } from './cellularStructure/cellularStructure.data';

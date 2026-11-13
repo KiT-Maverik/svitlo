@@ -2,115 +2,159 @@ import 'server-only';
 
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { Course_Toc, Course_TocContent, Course_TocEpisode, Course_TocLesson } from '@svitlo/contracts/content';
+import { loadPublishedCourseLessonProps } from '@svitlo/adapter-nextjs';
+import {
+  languageCode_Schema,
+  resolveEntityPath,
+  type CourseLessonEntry,
+  type CoursePublishedTree,
+} from '@svitlo/engine/runtime';
 import type { LanguageCode } from '@svitlo/contracts/localization';
-import type { Course_LessonOverride, Locale_Languages } from '@svitlo/contracts/content';
-import { type LessonResponse, applyCourseLessonOverride, mergeLessonResources } from '@svitlo/engine';
 
-const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
-const assertUuid = (id: string) => {
-  if (!UUID.test(id)) throw new Error('Invalid Course resource ID');
-  return id;
+/** The published Course preserves locale metadata and slug-keyed hierarchy. */
+export type LocalizedCourseContent = {
+  items: Record<string, LocalizedCourseNode>;
+  order: string[];
 };
-const courseRoot = (id: string) => path.join(process.cwd(), 'public/data/pages/courses', assertUuid(id));
+export type LocalizedCourseNode =
+  | CourseLessonEntry
+  | {
+      type: 'module' | 'chapter';
+      id: string;
+      locale: { title: string; [key: string]: unknown };
+      content: LocalizedCourseContent;
+    };
+export type LocalizedCourse = Omit<CoursePublishedTree, 'content'> & {
+  locale: { title: string; [key: string]: unknown };
+  content: LocalizedCourseContent;
+};
 
-async function loadJson(filename: string): Promise<unknown> {
-  return JSON.parse(await readFile(filename, 'utf8'));
+const blockedKeys = new Set(['__proto__', 'constructor', 'prototype']);
+const record = (value: unknown): value is Record<string, unknown> =>
+  value !== null && typeof value === 'object' && !Array.isArray(value);
+
+function assertRecord(value: unknown, location: string): asserts value is Record<string, unknown> {
+  if (!record(value)) throw new Error('Invalid published Course object: ' + location);
 }
 
-/** Course runtime is the sole owner of assembling the published sparse base and locale. */
-async function loadSparseCourseResource(
-  courseId: string,
-  language: LanguageCode,
-  ...segments: string[]
-): Promise<unknown> {
-  const directory = path.join(courseRoot(courseId), ...segments);
-  const [base, locale] = await Promise.all([
-    loadJson(path.join(directory, 'base.json')),
-    loadJson(path.join(directory, language + '.json')),
-  ]);
-  return mergeLessonResources(base, locale);
-}
-
-export async function loadCourseToc(id: string, language: LanguageCode): Promise<Course_Toc> {
-  const data = await loadSparseCourseResource(id, language, 'toc');
-  if (
-    !data ||
-    typeof data !== 'object' ||
-    !('type' in data) ||
-    data.type !== 'course' ||
-    !('id' in data) ||
-    data.id !== id
-  )
-    throw new Error('Invalid Course TOC');
-  return data as Course_Toc;
-}
-
-type Node = Course_TocContent;
-export function flattenCourseToc(
-  toc: Course_Toc,
-  language: string,
-  lessonLanguage: string = language,
-): {
-  id: string;
-  title: string;
-  href: string;
-  depth: number;
-}[] {
-  const result: { id: string; title: string; href: string; depth: number }[] = [];
-  const root = '/' + language + '/course/' + toc.id;
-  function walk(nodes: readonly Node[], depth: number) {
-    for (const node of nodes) {
-      const href =
-        node.type === 'lesson'
-          ? root + '/lesson/' + lessonLanguage + '/' + node.id
-          : node.type === 'episode'
-            ? root + '/episode/' + node.id
-            : root + '#' + node.id;
-      result.push({ id: node.id, title: node.title, href, depth });
-      if ('children' in node) walk(node.children, depth + 1);
-    }
+/** Ordinary Props arrays are atomic; only keyed Course objects deep-merge. */
+function merge(base: unknown, patch: unknown): unknown {
+  if (patch === undefined) return base;
+  if (!record(base) || !record(patch)) return patch;
+  const result: Record<string, unknown> = { ...base };
+  for (const [key, value] of Object.entries(patch)) {
+    if (blockedKeys.has(key)) throw new Error('Unsafe published Course key: ' + key);
+    result[key] = merge(base[key], value);
   }
-  walk(toc.children, 0);
   return result;
 }
 
-function findNode(
-  toc: Course_Toc,
-  type: 'lesson' | 'episode',
-  id: string,
-): Course_TocLesson | Course_TocEpisode | undefined {
-  let found: Course_TocLesson | Course_TocEpisode | undefined;
-  function walk(nodes: readonly Node[]) {
-    for (const node of nodes) {
-      if (node.type === type && node.id === id) {
-        found = node;
-        return;
-      }
-      if ('children' in node) walk(node.children);
-    }
+function validateContent(content: unknown, parent: 'course' | 'module' | 'chapter', visited: Set<string>): void {
+  assertRecord(content, parent + '.content');
+  assertRecord(content.items, parent + '.content.items');
+  if (
+    !Array.isArray(content.order) ||
+    content.order.length !== Object.keys(content.items).length ||
+    new Set(content.order).size !== content.order.length
+  ) {
+    throw new Error('Invalid Course content order: ' + parent);
   }
-  walk(toc.children);
-  return found;
+  for (const slug of content.order) {
+    if (typeof slug !== 'string' || blockedKeys.has(slug) || !Object.hasOwn(content.items, slug)) {
+      throw new Error('Invalid Course child slug: ' + String(slug));
+    }
+    const child: unknown = content.items[slug];
+    assertRecord(child, parent + '/' + slug);
+    if (typeof child.id !== 'string' || visited.has(child.id)) {
+      throw new Error('Invalid or duplicate Course entity ID: ' + String(child.id));
+    }
+    visited.add(child.id);
+    if (child.type === 'lesson') continue;
+    if (child.type !== 'module' && child.type !== 'chapter') {
+      throw new Error('Unsupported Course child type: ' + String(child.type));
+    }
+    if (parent === 'chapter' || (parent === 'module' && child.type === 'module')) {
+      throw new Error('Invalid Course hierarchy under ' + parent);
+    }
+    assertRecord(child.locale, 'Course ' + slug + '.locale');
+    if (typeof child.locale.title !== 'string') throw new Error('Missing Course group title: ' + slug);
+    validateContent(child.content, child.type, visited);
+  }
 }
-export const courseHasLesson = (toc: Course_Toc, id: string): boolean => !!findNode(toc, 'lesson', id);
-export const courseHasEpisode = (toc: Course_Toc, id: string): boolean => !!findNode(toc, 'episode', id);
 
-export async function loadCourseLesson(
-  courseId: string,
-  lesson: LessonResponse,
-  language: LanguageCode,
-): Promise<LessonResponse> {
-  assertUuid(lesson.id);
-  let data: unknown;
+function validateCourse(value: unknown, id: string, language: LanguageCode): LocalizedCourse {
+  assertRecord(value, 'root');
+  if (value.type !== 'course' || value.id !== id) throw new Error('Published Course identity mismatch');
+  assertRecord(value.params, 'params');
+  if (!Array.isArray(value.params.languages) || !value.params.languages.includes(language)) {
+    throw new Error('Course does not support language ' + language);
+  }
+  assertRecord(value.locale, 'locale');
+  if (typeof value.locale.title !== 'string') throw new Error('Published Course is missing a title');
+  validateContent(value.content, 'course', new Set([id]));
+  return value as LocalizedCourse;
+}
+
+async function readJson(file: string, optional = false): Promise<unknown | undefined> {
+  let text: string;
   try {
-    data = await loadSparseCourseResource(courseId, language, 'overrides', lesson.id);
+    text = await readFile(file, 'utf8');
   } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return lesson;
+    if (optional && (error as NodeJS.ErrnoException).code === 'ENOENT') return undefined;
     throw error;
   }
-  return applyCourseLessonOverride(lesson, data as Course_LessonOverride<Locale_Languages>);
+  try {
+    return JSON.parse(text) as unknown;
+  } catch (error) {
+    throw new Error('Malformed Course publication JSON: ' + file, { cause: error });
+  }
 }
-export async function loadCourseEpisode(courseId: string, id: string, language: LanguageCode): Promise<unknown> {
-  return loadSparseCourseResource(courseId, language, 'episodes', assertUuid(id));
+
+/**
+ * Read exactly one localized Course publication. It contains nested Group
+ * Props but only Lesson references/overrides, never complete Lesson Props.
+ */
+export async function loadCourseTree(id: string, language: LanguageCode): Promise<LocalizedCourse> {
+  const code = languageCode_Schema.parse(language);
+  const courseId = resolveEntityPath(id).split('/')[1];
+  const directory = path.join(process.cwd(), 'public/data/courses', courseId);
+  const [base, localized] = await Promise.all([
+    readJson(path.join(directory, 'base.json')),
+    readJson(path.join(directory, code + '.json'), true),
+  ]);
+  return validateCourse(merge(base, localized), courseId, code);
+}
+
+export function courseHasLesson(course: LocalizedCourse, id: string): boolean {
+  function visit(content: LocalizedCourseContent): boolean {
+    return content.order.some(slug => {
+      const item = content.items[slug];
+      return item.type === 'lesson' ? item.id === id : visit(item.content);
+    });
+  }
+  return visit(course.content);
+}
+
+export function courseLessonIds(course: LocalizedCourse): string[] {
+  const ids: string[] = [];
+  function visit(content: LocalizedCourseContent): void {
+    for (const slug of content.order) {
+      const item = content.items[slug];
+      if (item.type === 'lesson') ids.push(item.id);
+      else visit(item.content);
+    }
+  }
+  visit(course.content);
+  return ids;
+}
+
+/** Read actual localized Lesson titles, honoring the Course's sparse overrides. */
+export async function loadCourseLessonTitles(course: LocalizedCourse, language: LanguageCode) {
+  const pairs = await Promise.all(
+    courseLessonIds(course).map(async id => {
+      const lesson = await loadPublishedCourseLessonProps(course.id, id, languageCode_Schema.parse(language));
+      return [id, lesson.locale.title] as const;
+    }),
+  );
+  return Object.fromEntries(pairs) as Record<string, string>;
 }

@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { arithmeticPattern_Skill_Data, growingPattern_Skill_Data } from './skills';
 

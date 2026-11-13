@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { causationTimeAndPossibility_SkillGroup_Data } from './causationTimeAndPossibility/causationTimeAndPossibility.data';
 import { existenceAndCategories_SkillGroup_Data } from './existenceAndCategories/existenceAndCategories.data';

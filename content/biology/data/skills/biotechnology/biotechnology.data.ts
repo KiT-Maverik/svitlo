@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import {
   evaluateEcologicalRisksOfBiotechnologyUse_Skill_Data,

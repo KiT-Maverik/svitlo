@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { certainImpossible_Skill_Data, likelihoodLanguage_Skill_Data, listOutcomes_Skill_Data } from './skills';
 

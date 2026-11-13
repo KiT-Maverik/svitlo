@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { developmentAndBodilyCare_SkillGroup_Data } from './developmentAndBodilyCare/developmentAndBodilyCare.data';
 import { sexualAndReproductiveHealthcare_SkillGroup_Data } from './sexualAndReproductiveHealthcare/sexualAndReproductiveHealthcare.data';

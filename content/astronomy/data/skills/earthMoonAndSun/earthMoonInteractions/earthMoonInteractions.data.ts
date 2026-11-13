@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { lunarOrbitAndMonth_Skill_Data, lunarTidalEvolution_Skill_Data, oceanTides_Skill_Data } from './skills';
 

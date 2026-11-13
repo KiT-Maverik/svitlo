@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { energyPerformance_SkillGroup_Data } from './energyPerformance/energyPerformance.data';
 import { generation_SkillGroup_Data } from './generation/generation.data';

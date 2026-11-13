@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { changesAndConservation_SkillGroup_Data } from './changesAndConservation/changesAndConservation.data';
 import { characteristicProperties_SkillGroup_Data } from './characteristicProperties/characteristicProperties.data';

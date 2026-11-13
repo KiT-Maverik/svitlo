@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { formationAndChronology_SkillGroup_Data } from './formationAndChronology/formationAndChronology.data';
 import { minorBodies_SkillGroup_Data } from './minorBodies/minorBodies.data';

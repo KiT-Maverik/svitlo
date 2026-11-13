@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { buildings_SkillGroup_Data } from './buildings/buildings.data';
 import { civilWorks_SkillGroup_Data } from './civilWorks/civilWorks.data';

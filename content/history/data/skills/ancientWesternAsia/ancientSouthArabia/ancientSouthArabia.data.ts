@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { arabianTradeRoutes_Skill_Data, southArabianKingdoms_Skill_Data } from './skills';
 

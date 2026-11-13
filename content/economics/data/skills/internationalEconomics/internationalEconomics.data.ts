@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { currenciesAndExternalBalances_SkillGroup_Data } from './currenciesAndExternalBalances/currenciesAndExternalBalances.data';
 import { internationalFinance_SkillGroup_Data } from './internationalFinance/internationalFinance.data';

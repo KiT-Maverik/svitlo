@@ -12,7 +12,7 @@ The canonical Math-style source is `<PackageRoot>/data/skills/`, not `Data/skill
 2. **[Skills Taxonomy Exception Review](./review-skills-taxonomy-exceptions.skill.md)** — independent Methodologist Persona audit of full draft scope and semantic issues. **This is read-only and does not confer editorial approval**. Record any editor decisions through the approved authoring/history gate.
 3. **[Implement Skill Code](./implement-skill-code.skill.md)** — Coding Agent implements accurate local `SkillDomain`, `SkillGroup`, `Skill` objects and IDs with fully localized names and canonical English `description.methodological`. Every **Skill** must additionally have `description.frontend` in every supported language. For Groups and Domains `frontend` is optional, but must be complete when present. Never silently synthesize translations from names.
 4. **[Migrate Implemented Taxonomy](./migrate-implemented-taxonomy.skill.md)** — independently compare every staging entry against its verified code object and all required name translations, the English methodological meaning, any present frontend translations and parent/child membership. Only remove a fully verified item once the editor approves its promotion. Never lose unimplemented descendants.
-5. **[Generate Skills Taxonomy](../../../scripts/generate-skills-taxonomy.mjs)** — optional, repeatable **read-only-from-Code** generation of Markdown with localized names, complete localized Skill user-friendly descriptions (available Group/Domain frontend copy), and canonical English methodological prose in `<PackageRoot>/docs/generated/skills/taxonomy.<locale>.md`. Default `en`. Generated material is not authoring input.
+5. **[Generate Skills Taxonomy](../../../shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs)** — optional, repeatable **read-only-from-Code** generation of Markdown with localized names, complete localized Skill user-friendly descriptions (available Group/Domain frontend copy), and canonical English methodological prose in `<PackageRoot>/docs/generated/skills/taxonomy.<locale>.md`. Default `en`. Generated material is not authoring input.
 
 ## CANONICAL CODE STRUCTURE
 
@@ -37,10 +37,10 @@ For newly authored or deliberately migrated staging taxonomies, `Slug: lowerCame
 For the fully migrated `data/skills/` Code taxonomy:
 
 ```sh
-node scripts/generate-skills-taxonomy.mjs --package content/math
-node scripts/generate-skills-taxonomy.mjs --package content/math --locale uk
-node scripts/generate-skills-taxonomy.mjs --package content/math --locale uk --stdout
-node scripts/generate-skills-taxonomy.mjs --package content/math --locale uk --check
+node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/math
+node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/math --locale uk
+node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/math --locale uk --stdout
+node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/math --locale uk --check
 npm run test:taxonomy-generator
 ```
 
@@ -54,11 +54,11 @@ Before changing any staging taxonomy record: preserve exact approved semantic me
 
 ## Markdown → Code entity generator
 
-The permanent [Markdown → Code generator](../../../scripts/implement-skills-taxonomy.mjs) consumes the approved, editable `docs/skills/taxonomy.md` and optionally a separately reviewed JSON localization dictionary keyed by scoped entity path (for example `domain/group/skill`). It targets only `<PackageRoot>/data/skills/` with directly composed typed Data entities. UUIDs belong to each entity's own `*.data.ts`; successful updates preserve them. It emits required runtime `slug` fields and complete child entities; it never emits separate ID files or ID-only membership maps.
+The permanent [Markdown → Code generator](../../../shared/engine/scripts/implementSkillsTaxonomy/implement-skills-taxonomy.mjs) consumes the approved, editable `docs/skills/taxonomy.md` and optionally a separately reviewed JSON localization dictionary keyed by scoped entity path (for example `domain/group/skill`). It targets only `<PackageRoot>/data/skills/` with directly composed typed Data entities. UUIDs belong to each entity's own `*.data.ts`; successful updates preserve them. It emits required runtime `slug` fields and complete child entities; it never emits separate ID files or ID-only membership maps.
 
 ```sh
-node scripts/implement-skills-taxonomy.mjs --package content/<textbook> --translations <reviewed-locales.json>
-node scripts/implement-skills-taxonomy.mjs --package content/<textbook> --translations <reviewed-locales.json> --apply
+node shared/engine/scripts/implementSkillsTaxonomy/implement-skills-taxonomy.mjs --package content/<textbook> --translations <reviewed-locales.json>
+node shared/engine/scripts/implementSkillsTaxonomy/implement-skills-taxonomy.mjs --package content/<textbook> --translations <reviewed-locales.json> --apply
 node --test scripts/implement-skills-taxonomy.spec.mjs
 ```
 
@@ -66,11 +66,11 @@ Dry-run is the default; `--apply` is required for writes. Generated changes are 
 
 ## Deterministic Markdown → Code description import
 
-The [description importer](../../../scripts/import-taxonomy-descriptions.mjs) reads the **new, labeled** `Methodological description: ` and `User-friendly description: ` fields of every Domain, Group and Skill. It uses verified standalone implementation links to update **existing** `*.data.ts` configs in a safe, dry-run-first process. The first field must already be approved English; the second is working-language frontend draft copy **only**, never automatically mapped to `description.frontend`. The importer has **not** been updated to parse `Slug:`, `Action:` or `Status:`; those fields currently cause unknown-content errors. Do not run it on the new template. Generator/parser/runtime changes are deferred to separate work. For legacy structured inputs, it rejects unknown fields, legacy free-form descriptions, incomplete Code links and conflicting values rather than guessing or overwriting. It does not create missing UUIDs, translate material or generate new Skill files.
+The [description importer](../../../shared/engine/scripts/importTaxonomyDescriptions/import-taxonomy-descriptions.mjs) reads the **new, labeled** `Methodological description: ` and `User-friendly description: ` fields of every Domain, Group and Skill. It uses verified standalone implementation links to update **existing** `*.data.ts` configs in a safe, dry-run-first process. The first field must already be approved English; the second is working-language frontend draft copy **only**, never automatically mapped to `description.frontend`. The importer has **not** been updated to parse `Slug:`, `Action:` or `Status:`; those fields currently cause unknown-content errors. Do not run it on the new template. Generator/parser/runtime changes are deferred to separate work. For legacy structured inputs, it rejects unknown fields, legacy free-form descriptions, incomplete Code links and conflicting values rather than guessing or overwriting. It does not create missing UUIDs, translate material or generate new Skill files.
 
 ```sh
-node scripts/import-taxonomy-descriptions.mjs --package content/math
-node scripts/import-taxonomy-descriptions.mjs --package content/math --write
+node shared/engine/scripts/importTaxonomyDescriptions/import-taxonomy-descriptions.mjs --package content/math
+node shared/engine/scripts/importTaxonomyDescriptions/import-taxonomy-descriptions.mjs --package content/math --write
 npm run test:taxonomy-import
 ```
 

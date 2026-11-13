@@ -10,12 +10,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "noEmit": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["*.ts", "controllers/**/*.ts", "schemas/**/*.ts", "utils/**/*.ts"],
   "exclude": ["node_modules", "dist", ".test-build"]
 }

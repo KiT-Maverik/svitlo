@@ -8,8 +8,12 @@ on:
       - 'shared/engine/index.ts'
       - 'shared/engine/package.json'
       - 'shared/engine/tsconfig*.json'
-      - 'scripts/generators/data/**'
+      - 'shared/engine/scripts/generateLessonProps/**'
+      - 'shared/engine/scripts/generateCourseProps/**'
+      - 'shared/engine/scripts/loadAuthoredConfigurators/**'
+      - 'shared/engine/scripts/generatorCliIntegration/**'
       - 'scripts/textbook-tooling/**'
+      - 'studio/generator-requirements.md'
       - 'package.json'
       - '.github/workflows/engine-generators.yml'
   workflow_dispatch:

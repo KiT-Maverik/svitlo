@@ -8,7 +8,7 @@ import {
   type Lesson_Props,
   type PublishedLessonPropsResource,
   type PublishedCoursePropsFiles,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 
 /** Host-owned publication roots. The generator can choose different directories. */
 export type CourseLessonPublicationRoots = {
