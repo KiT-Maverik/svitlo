@@ -80,16 +80,16 @@ const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']
   locale: { title: { uk: 'Розділ', en: 'Chapter' } },
   content: { items: { lesson }, order: ['lesson'] },
 });
-const module = defineModule<'module', { chapter: typeof chapter }, ['uk', 'en']>({
+const courseModule = defineModule<'module', { chapter: typeof chapter }, ['uk', 'en']>({
   id: id('10'), slug: 'module', type: 'module', params: {},
   locale: { title: { uk: 'Модуль', en: 'Module' } },
   content: { items: { chapter }, order: ['chapter'] },
 });
-const course = defineCourse<'course', ['uk'], { module: typeof module }>({
+const course = defineCourse<'course', ['uk'], { module: typeof courseModule }>({
   id: id('11'), slug: 'course', type: 'course',
   params: { languages: ['uk'] as const },
   locale: { title: { uk: 'Курс' }, description: 'Universal introduction' },
-  content: { items: { module }, order: ['module'] },
+  content: { items: { module: courseModule }, order: ['module'] },
 });
 
 test('Course → Module → Chapter → Lesson → Section → ContentBlock and Lesson banks share one publication scope', () => {
