@@ -19,10 +19,7 @@ describe('Legacy Lesson authoring and sparse publication', () => {
     assert.deepEqual(block.getBase({ languages }), { id: 'text-id', slug: 'introduction', type: 'text' });
     assert.deepEqual(block.getLocale({ languages, language: 'uk' }), { value: 'Світло' });
     assert.deepEqual(block.getLocale({ languages, language: 'en' }), { value: 'Light' });
-    assert.throws(
-      () => block.getLocale({ languages, language: 'de' as never }),
-      /Unsupported ContentBlock language/,
-    );
+    assert.throws(() => block.getLocale({ languages, language: 'de' as never }), /Unsupported ContentBlock language/);
   });
 
   it('materializes nested Section ContentBlocks and preserves sparse numeric array patches', () => {
@@ -46,10 +43,7 @@ describe('Legacy Lesson authoring and sparse publication', () => {
       title: 'Теорія',
       content: { '0': { value: 'Початок' } },
     });
-    assert.throws(
-      () => section.getLocale({ languages, language: 'de' as never }),
-      /Unsupported Section language/,
-    );
+    assert.throws(() => section.getLocale({ languages, language: 'de' as never }), /Unsupported Section language/);
   });
 
   it('tracks escaped JSON pointers and retains the structure of localized arrays', () => {
@@ -76,18 +70,17 @@ describe('Legacy Lesson authoring and sparse publication', () => {
     assert.deepEqual(result.locales.uk, { locales: { labels: { title: 'Привіт' } } });
     assert.deepEqual(result.pointers, ['/locales']);
     assert.throws(
-      () =>
-        splitLessonValue(
-          { ...source, locales: { ...source.locales, uk: { labels: { other: 'Ні' } } } },
-          languages,
-        ),
+      () => splitLessonValue({ ...source, locales: { ...source.locales, uk: { labels: { other: 'Ні' } } } }, languages),
       /Invalid Scene locale shape/,
     );
   });
 
   it('rejects incomplete dictionaries, fallback payloads and unsupported values', () => {
     assert.throws(() => splitLessonValue({ title: { en: 'Only English' } }, languages), /Incomplete locale dictionary/);
-    assert.throws(() => splitLessonValue({ title: { language: 'en', value: 'Hello' } }, languages), /fallback is not allowed/);
+    assert.throws(
+      () => splitLessonValue({ title: { language: 'en', value: 'Hello' } }, languages),
+      /fallback is not allowed/,
+    );
     assert.throws(() => splitLessonValue({ title: { fallback: 'English' } }, languages), /fallback is not allowed/);
     assert.throws(() => splitLessonValue({ value: () => 'text' }, languages), /Unsupported lesson value/);
     assert.throws(() => splitLessonValue({ value: 'text' }, ['en', 'en']), /Invalid declared lesson languages/);

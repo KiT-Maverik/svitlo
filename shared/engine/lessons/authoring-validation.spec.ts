@@ -34,19 +34,13 @@ describe('Lesson authored input validation', () => {
 
   it('rejects an invalid slug, empty language scope and malformed collection shapes', () => {
     assert.throws(() => assertLessonData({ ...valid(), slug: 'Not-camel-case' }), /camelCase slug/);
-    assert.throws(
-      () => assertLessonData({ ...valid(), parameters: { languages: [] } }),
-      /parameters.languages/,
-    );
+    assert.throws(() => assertLessonData({ ...valid(), parameters: { languages: [] } }), /parameters.languages/);
     assert.throws(() => assertLessonData({ ...valid(), flashcards: {} }), /missing flashcards/);
     assert.throws(() => assertLessonData({ ...valid(), questions: [] }), /missing flashcards/);
   });
 
   it('rejects duplicate Skill IDs, duplicate Section slugs and duplicate ContentBlock keys', () => {
-    assert.throws(
-      () => assertLessonData({ ...valid(), skills: [skillId, skillId] }),
-      /Invalid Lesson Skill IDs/,
-    );
+    assert.throws(() => assertLessonData({ ...valid(), skills: [skillId, skillId] }), /Invalid Lesson Skill IDs/);
     const duplicateSection = valid();
     duplicateSection.sections.push({ ...duplicateSection.sections[0], id: 'other-section' });
     assert.throws(() => assertLessonData(duplicateSection), /Duplicate section slug/);
@@ -68,14 +62,8 @@ describe('Lesson authored input validation', () => {
 
   it('permits disabling standard events but requires Scenes for custom events', () => {
     assert.doesNotThrow(() => assertLessonData({ ...valid(), events: { lessonCompleted: false } }));
-    assert.throws(
-      () => assertLessonData({ ...valid(), events: { userAction: false } }),
-      /authored Scene/,
-    );
-    assert.throws(
-      () => assertLessonData({ ...valid(), events: { 'not.valid': false } }),
-      /Invalid lesson event ID/,
-    );
+    assert.throws(() => assertLessonData({ ...valid(), events: { userAction: false } }), /authored Scene/);
+    assert.throws(() => assertLessonData({ ...valid(), events: { 'not.valid': false } }), /Invalid lesson event ID/);
   });
 
   it('validates unknown inputs before exposing a Lesson creator', () => {

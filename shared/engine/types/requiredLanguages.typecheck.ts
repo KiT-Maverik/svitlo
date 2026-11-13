@@ -9,8 +9,7 @@ import type {
 } from './index';
 
 type Assert<Condition extends true> = Condition;
-type Equal<Left, Right> =
-  (<T>() => T extends Left ? 1 : 2) extends <T>() => T extends Right ? 1 : 2 ? true : false;
+type Equal<Left, Right> = (<T>() => T extends Left ? 1 : 2) extends <T>() => T extends Right ? 1 : 2 ? true : false;
 
 type Authored = {
   title: { en: string; uk: string };
@@ -23,7 +22,10 @@ const required: RequireLanguages<Authored, ['en', 'uk']> = {
 };
 
 // @ts-expect-error Authored locale dictionaries must include every required language.
-const missingRequiredLanguage: RequireLanguages<Authored, ['en', 'uk']> = { title: { en: 'Title' }, nested: { label: { en: 'Label', uk: 'Мітка' } } };
+const missingRequiredLanguage: RequireLanguages<Authored, ['en', 'uk']> = {
+  title: { en: 'Title' },
+  nested: { label: { en: 'Label', uk: 'Мітка' } },
+};
 
 type Config = ConfigWithLanguages<{ params: { count: number }; locale: Authored }, ['en', 'uk']>;
 const completeConfig: Config = {
@@ -45,17 +47,9 @@ type LanguageCompatibilityChecks = [
   Assert<Equal<ChildSupporting<['en'], Bilingual>, Bilingual>>,
   Assert<Equal<ChildSupporting<['en', 'uk'], English>, never>>,
   Assert<
-    Equal<
-      ChildrenSupporting<['en'], { first: Bilingual; second: English }>,
-      { first: Bilingual; second: English }
-    >
+    Equal<ChildrenSupporting<['en'], { first: Bilingual; second: English }>, { first: Bilingual; second: English }>
   >,
-  Assert<
-    Equal<
-      ChildrenSupporting<['en', 'uk'], { first: Bilingual; second: English }>['second'],
-      never
-    >
-  >,
+  Assert<Equal<ChildrenSupporting<['en', 'uk'], { first: Bilingual; second: English }>['second'], never>>,
 ];
 
 type PartialConfig = DeepPartial<{
