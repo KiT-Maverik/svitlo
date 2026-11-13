@@ -112,6 +112,9 @@ function getOverride(
   for (const key of Object.keys(node.overrides)) {
     if (!allowedOverrideKeys.has(key)) throw new Error('Forbidden ' + label + ' Lesson override field: ' + key);
   }
+  if (isRecord(node.overrides.params) && Object.hasOwn(node.overrides.params, 'languages')) {
+    throw new Error('Course Lesson overrides cannot override Lesson supported languages');
+  }
   assertJson(node.overrides, label + '/overrides');
   return node.overrides;
 }
