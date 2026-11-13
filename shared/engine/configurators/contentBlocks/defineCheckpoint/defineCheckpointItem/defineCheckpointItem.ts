@@ -14,7 +14,6 @@ import {
   validateOrderedKeys,
   validateSluggedConfiguratorMap,
 } from '../../../_shared__configurators';
-import { contentBlockConfigurator_Schema } from '../../contentBlock.schemas';
 import { contentBlockTypes } from '../../contentBlock.constants';
 import {
   checkpointItem_Config_Schema,
@@ -71,7 +70,6 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
   if (
     !isObject(question) ||
     question.type !== 'text' ||
-    !contentBlockConfigurator_Schema.safeParse(question).success ||
     !isObject(question.config) ||
     !isObject(question.config.base) ||
     question.config.base.type !== 'text' ||

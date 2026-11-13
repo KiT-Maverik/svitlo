@@ -3,7 +3,7 @@ import type { DeepPartial, ChildrenSupporting } from '#types';
 import type { LanguageCodes } from '#schemas';
 import { disability_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../_shared__configurators';
-import { contentBlockConfigurator_Schema, contentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
+import { contentBlockResolved_Schema } from '../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../contentBlocks';
 import { assessmentMethodSlug_Schema } from './assessmentMethod.schemas';
 import type { Question_Type } from './question.constants';
@@ -19,14 +19,10 @@ export const createQuestionBaseSchema = <const Type extends Question_Type>(type:
     }),
   });
 
-const nestedBlock_Config_Schema = z.custom<ContentBlock_Configurator>(
-  value => contentBlockConfigurator_Schema.safeParse(value).success,
-  { message: 'Expected an authored ContentBlock configurator' },
-);
-
 /** Authoring collections are slug maps, never positional arrays. */
 export const questionBlockCollection_Config_Schema = z.object({
-  items: z.record(z.string(), nestedBlock_Config_Schema),
+  // Child Config validation belongs to the child; Question.validate checks its collection.
+  items: z.record(z.string(), z.custom<ContentBlock_Configurator>()),
   order: z.array(z.string()),
 });
 
