@@ -89,8 +89,8 @@ item.build.overrides({ question: { params: { disabled: true } } }, { languages: 
 item.build.overrides({ answer: { order: ['unknown'] } }, { languages: ['en', 'uk'] });
 // @ts-expect-error Identity cannot be changed.
 item.build.overrides({ slug: 'renamed' }, { languages: ['en', 'uk'] });
-// @ts-expect-error A new child must not reuse an authored slug.
 item.build.overrides(
+  // @ts-expect-error A new child must not reuse an authored slug.
   { answer: { additionalItems: configuratorArrayToSlugMap([answer]) } },
   { languages: ['en', 'uk'] },
 );
@@ -136,8 +136,8 @@ checkpoint.build.overrides(
   },
   { languages: ['en', 'uk'] },
 );
-// @ts-expect-error Existing CheckpointItem slugs cannot be added again.
 checkpoint.build.overrides(
+  // @ts-expect-error Existing CheckpointItem slugs cannot be added again.
   { content: { additionalItems: configuratorArrayToSlugMap([item]) } },
   { languages: ['en', 'uk'] },
 );
