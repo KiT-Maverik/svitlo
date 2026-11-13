@@ -60,7 +60,7 @@ const checkpointItemBase = identityBase_Schema.extend({
 
 /** The owning CheckpointItem.validate() enforces child kinds and identity. */
 export const checkpointItem_Config_Schema = checkpointItemBase.extend({
-  question: z.custom<ContentBlock_Text_Configurator>(),
+  question: z.custom<ContentBlock_Text_Configurator>(value => value !== undefined && value !== null),
   answer: z.object({
     items: z.record(z.string(), z.custom<Checkpoint_Allowed_Configurator>()),
     order: z.array(z.string()),
