@@ -50,18 +50,18 @@ describe('Lesson media settings', () => {
         <TestControls />
         <Audio
           id="test-audio"
+          slug="testAudio"
           type="audio"
-          fileLocation="/test.mp3"
-          title="Test audio"
+          params={{}}
+          locale={{ fileLocation: '/test.mp3', title: 'Test audio' }}
           messages={enUiKitMessages.audio}
         />
         <Video
           id="test-video"
+          slug="testVideo"
           type="video"
-          fileLocation="/test.mp4"
-          poster="/poster.png"
-          title="Test video"
-          label="Test video"
+          params={{}}
+          locale={{ fileLocation: '/test.mp4', poster: '/poster.png', title: 'Test video', label: 'Test video' }}
           messages={enUiKitMessages.video}
         />
       </MediaSettingsProvider>,

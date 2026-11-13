@@ -193,12 +193,17 @@ describe('accessible Question labels', () => {
     const block = {
       id: uuid(101),
       slug: 'audioChoice',
-      type: 'audio' as const,
+      type: 'video' as const,
       params: {},
-      locale: { fileLocation: '/recording.mp3', title: { en: 'Recording', uk: 'Запис' } },
+      locale: {
+        fileLocation: '/recording.mp4',
+        poster: '/poster.png',
+        label: 'Recording',
+        title: { en: 'Recording', uk: 'Запис' },
+      },
     };
     expect(questionBlockLabel(block, 'uk')).toBe('Запис');
-    expect(() => questionBlockLabel(block, 'ar')).toThrow('Missing localized content at audio.title for ar');
+    expect(() => questionBlockLabel(block, 'ar')).toThrow('Missing localized content at video.title for ar');
   });
 
   it('strips Markdown syntax from a choice label using canonical locale Props', () => {

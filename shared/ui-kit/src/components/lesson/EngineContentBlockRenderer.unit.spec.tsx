@@ -120,7 +120,7 @@ describe('EngineContentBlockRenderer — assembled Props bridge', () => {
         params: { language: 'javascript', codeAsText: 'console.log("%_%MESSAGE%_%");' },
         locale: {
           title: { en: 'Snippet', uk: 'Фрагмент' },
-          variables: { MESSAGE: { en: 'Hello', uk: 'Привіт' } },
+          variables: { MESSAGE: 'Привіт' },
         },
       },
       {
