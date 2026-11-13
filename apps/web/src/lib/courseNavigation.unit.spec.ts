@@ -1,37 +1,45 @@
 import { describe, expect, it } from 'vitest';
-import type { Course_Toc } from '@svitlo/contracts/content';
-import { courseTocToTopics } from './courseNavigation';
+import type { LocalizedCourse } from './courseResources';
+import { coursePropsToTopics } from './courseNavigation';
 
-const toc: Course_Toc = {
+const course: LocalizedCourse = {
   id: 'course-id',
   type: 'course',
-  title: 'Light journey',
-  children: [
-    {
-      id: 'module-1',
-      type: 'module',
-      title: 'Light laboratory',
-      children: [
-        {
-          id: 'chapter-1',
-          type: 'chapter',
-          title: 'First steps',
-          children: [
-            { id: 'lesson-1', type: 'lesson', title: 'Reflection' },
-            { id: 'episode-1', type: 'episode', title: 'A discovery' },
-          ],
+  locale: { title: 'Light journey' },
+  params: { languages: ['uk', 'en'] },
+  content: {
+    order: ['laboratory'],
+    items: {
+      laboratory: {
+        id: 'module-1',
+        type: 'module',
+        locale: { title: 'Light laboratory' },
+        content: {
+          order: ['fundamentals', 'refraction'],
+          items: {
+            fundamentals: {
+              id: 'chapter-1',
+              type: 'chapter',
+              locale: { title: 'First steps' },
+              content: {
+                order: ['reflection'],
+                items: {
+                  reflection: { id: 'lesson-1', type: 'lesson' },
+                },
+              },
+            },
+            refraction: { id: 'lesson-2', type: 'lesson' },
+          },
         },
-        { id: 'lesson-2', type: 'lesson', title: 'Refraction' },
-      ],
+      },
     },
-    { id: 'episode-2', type: 'episode', title: 'Outside the module' },
-  ],
+  },
 };
+const titles = { 'lesson-1': 'Reflection', 'lesson-2': 'Refraction' };
 
-describe('courseTocToTopics', () => {
-  it('keeps the published Module/Chapter tree and Course order without group links', () => {
-    const topics = courseTocToTopics(toc, 'uk', 'en');
-
+describe('coursePropsToTopics', () => {
+  it('retains keyed Module/Chapter order and resolves referenced Lesson titles', () => {
+    const topics = coursePropsToTopics(course, 'uk', 'en', titles);
     expect(topics).toEqual([
       {
         id: 'module-1',
@@ -49,12 +57,6 @@ describe('courseTocToTopics', () => {
                 title: 'Reflection',
                 href: '/uk/course/course-id/lesson/en/lesson-1',
               },
-              {
-                id: 'episode-1',
-                type: 'episode',
-                title: 'A discovery',
-                href: '/uk/course/course-id/episode/episode-1',
-              },
             ],
           },
           {
@@ -65,17 +67,10 @@ describe('courseTocToTopics', () => {
           },
         ],
       },
-      {
-        id: 'episode-2',
-        type: 'episode',
-        title: 'Outside the module',
-        href: '/uk/course/course-id/episode/episode-2',
-      },
     ]);
   });
 
-  it('uses the interface language for Lesson navigation by default', () => {
-    const topics = courseTocToTopics(toc, 'pl');
-    expect(topics[0]?.children?.[0]?.children?.[0]?.href).toBe('/pl/course/course-id/lesson/pl/lesson-1');
+  it('rejects missing Lesson titles rather than exposing UUIDs in navigation', () => {
+    expect(() => coursePropsToTopics(course, 'uk', 'uk', {})).toThrow(/Missing localized Lesson title/);
   });
 });
