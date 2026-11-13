@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 import { CoursePage } from '@svitlo/ui-kit';
 import { getMockCourse, getMockCourseMessages, mockCourseOutline } from '@/lib/mockCourses';
+import { loadCourseTree, loadCourseLessonTitles } from '@/lib/courseResources';
+import { coursePropsToTopics } from '@/lib/courseNavigation';
 
 type Props = { params: Promise<{ language: string; courseId: string }> };
 
@@ -13,11 +15,18 @@ async function Content({ params }: Props) {
 
   const course = getMockCourse(courseId, language);
   if (!course) notFound();
+  const outline = course.published
+    ? await (async () => {
+        const published = await loadCourseTree(courseId, interfaceLocale.language);
+        const titles = await loadCourseLessonTitles(published, interfaceLocale.language);
+        return coursePropsToTopics(published, language, language, titles);
+      })()
+    : mockCourseOutline(course, language);
 
   return (
     <CoursePage
       course={course.preview}
-      outline={mockCourseOutline(course, language)}
+      outline={outline}
       messages={getMockCourseMessages(language)}
       catalogHref={`/${language}/courses`}
       interfaceLanguage={interfaceLocale.language}
