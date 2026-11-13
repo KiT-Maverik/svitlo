@@ -193,7 +193,45 @@ const resolveNamed = (
   };
 };
 
-/** Define a reusable, stateless Flashcard with three independently ordered ContentBlock sides. */
+/**
+ * Author one focused recall target with a front, back and optional hint.
+ *
+ * @remarks
+ * Flags are presentation metadata, not extra answer content:
+ * - `list`: the learner should recall a meaningful list (`count >= 2`).
+ * - `warning`: draw attention to an important caution.
+ * - `acronym`: display a mnemonic; localize `value` when wording changes.
+ * - `custom`: provide a localized label, palette color and optional icon key.
+ * Each built-in flag may appear only once; multiple custom flags are allowed.
+ *
+ * Relationships connect distinct Flashcards by the OTHER card's UUID in
+ * `relatedFlashcardId` (not by slug). Choose a semantic relationship:
+ * - Symmetric: `reverse` (opposite recall direction), `equivalent` (same
+ *   meaning), `contrast` (a distinction), `complementary` (related facts).
+ * - Directed: `prerequisite` (foundation -> dependent), `partOf` (part ->
+ *   whole), `exampleOf` (example -> category), `causes` (cause -> effect),
+ *   `precedes` (earlier -> later).
+ * Use `position: 'peer'` on symmetric links; use `'source'` on the source
+ * card and `'target'` on the destination card for directed links.
+ * The mirrored entry must reuse the same `relationshipId`, but
+ * `defineFlashcard` does not generate mirrored entries automatically;
+ * use `linkFlashcards` when building from a canonical one-edge graph.
+ *
+ * @example
+ * ```ts
+ * relationships: {
+ *   items: {
+ *     exampleToCategory: {
+ *       relationshipId: 'example-category',
+ *       type: 'exampleOf',
+ *       relatedFlashcardId: 'a0000000-0000-4000-8000-000000000002',
+ *       position: 'source',
+ *     },
+ *   },
+ *   order: ['exampleToCategory'],
+ * }
+ * ```
+ */
 export function defineFlashcard<
   const Slug extends string,
   const Front extends Record<string, Block>,

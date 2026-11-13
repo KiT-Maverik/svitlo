@@ -107,7 +107,14 @@ const validate = (config: CodingTaskSection_Config): void => {
   }
 };
 
-/** Stateless Section authoring with ordered ContentBlock children. */
+/**
+ * Organize ContentBlocks that teach or present a coding task.
+ *
+ * @remarks
+ * The Section itself does not provide a code editor, execute learners' code,
+ * run tests or grade submissions. Use appropriate ContentBlocks or an
+ * interactive Scene to implement those experiences when required.
+ */
 export const defineCodingTaskSection = <
   const Slug extends string,
   const Items extends Record<string, Block>,

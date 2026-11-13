@@ -334,7 +334,6 @@ export class LessonOverridesBuilder<L extends AnyLesson, Sections extends readon
     }
     return this.replaceSection(slug, entry => {
       const section = { ...entry.section, ...patch } as AnySection;
-      if (patch.skippable === false) delete section.skippable;
       return { ...entry, section };
     }) as LessonOverridesBuilder<L, Sections>;
   }

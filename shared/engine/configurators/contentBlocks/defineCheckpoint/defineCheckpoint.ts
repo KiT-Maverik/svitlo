@@ -120,7 +120,16 @@ const validate = (config: ContentBlock_Checkpoint_Config): void => {
   if (!result.success) throw new CheckpointValidationError(result);
 };
 
-/** Define a Checkpoint with an ordered collection of CheckpointItem configurators. */
+/**
+ * Add a knowledge Checkpoint within a Section, rather than a scored Quiz.
+ *
+ * @remarks
+ * Its `content.items` contains `defineCheckpointItem` configurators.
+ * Use it for reflection and in-lesson comprehension checks; use a
+ * `defineQuizSection` for Question Bank assessment. Keep at least one
+ * active Checkpoint item. Required completion is configured by Checkpoint
+ * parameters, not by a Quiz Question selection.
+ */
 export const defineCheckpoint = <
   const Slug extends string,
   const Items extends Record<string, CheckpointItem>,

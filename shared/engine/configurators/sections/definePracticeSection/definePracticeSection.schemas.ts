@@ -8,7 +8,7 @@ import type { ContentBlock_Configurator, ContentBlock_Props } from '../../conten
 import type { Configurator_Mode } from '../../configurator.schemas';
 
 const params = paramsBase_Schema.shape.params.extend({
-  skippable: z.literal(true).optional(),
+  skippable: z.boolean().optional(),
 });
 
 const sectionBase = identityBase_Schema.extend({

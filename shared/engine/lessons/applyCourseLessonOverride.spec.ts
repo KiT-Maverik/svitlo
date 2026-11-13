@@ -78,6 +78,16 @@ test('Course patch composes new Sections and reorders existing Sections without 
   assert.equal(JSON.stringify(base), original);
 });
 
+test('Course override preserves explicit Section skippable: false', () => {
+  const changed = applyCourseLessonOverride(base, {
+    type: 'lessonOverride',
+    lessonId: base.id,
+    overrides: { sections: { bySlug: { theory: { skippable: false } } } },
+  });
+  assert.equal(changed.sections[0]?.skippable, false);
+  assert.equal(base.sections[0]?.skippable, undefined);
+});
+
 test('Course patch rejects missing order entries', () => {
   assert.throws(
     () =>

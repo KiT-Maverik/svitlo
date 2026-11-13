@@ -1,6 +1,6 @@
-# Runtime assembler architecture — planned
+# Runtime assembler architecture
 
-**Status:** Target contract only. No new runtime assembler or unified resolver is implemented by this document. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
+**Status:** Skills runtime assembly is implemented in `skills/assembleSkills.ts`; Lesson Props assembly is implemented in `assembleLessonProps.ts`, and Course-context Lesson composition in `assembleCourseLesson.ts`. Other entity assemblers remain planned. The rules below are the cross-entity target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
 
 ## Responsibility and dependency boundary
 
@@ -21,7 +21,14 @@
 - Parent/child composition and invariants (such as a Checkpoint requiring an enabled question) are validated during Configurator Build. Runtime Assemblers validate the resolved Props with existing entity `*_Props_Schema`, without rerunning authoring-only collection validation.
 - If a future use case genuinely requires multiple override layers for a **single resolved result**, explicitly specify their precedence and validation rules then. Do not introduce speculative multi-layer composition into the present publication contract.
 
-## Verification when implemented
+## Implemented Course-context Lesson contract
+
+- `assembleCourseLesson({ lesson, course, lessonId, courseId, language })` consumes four published layers and validates the resulting Lesson with `lesson_Props_Schema`. Both publication arguments contain `base` and optional locale-keyed JSON bodies. The standalone Lesson must be a Course member and support the requested language; the Course must support it too.
+- Published Course `content` is a hierarchical array of Course/Module/Chapter entities. Lesson entries carry `{ type: 'lesson', id, overrides? }` with **only sparse published Lesson overrides**, never a second full Lesson. The selected Course locale file may omit `content`; when present, its nodes retain IDs and types so the Lesson override can be located by ID.
+- Duplicated Lesson ID matches within a single file, Course/Lesson identity mismatches, forbidden Lesson override fields, unsafe JSON keys, and malformed final Props are errors. The assembler does not mutate inputs.
+- The Next.js host helper `loadPublishedCourseLessonProps` reads Lessons from `public/data/generated/lessons/<bucket>/<uuid>` and Courses from `public/data/courses/<uuid>`. It validates both IDs using the shared UUID resolver, and its roots are configurable. The current legacy `LessonResponse` / old Course patch loader remains untouched.
+
+## Verification
 
 - Test every supported locale, invariant-value replacement, sparse locale patches, keyed-object merging, complete replacement of published Props arrays, absence of authoring-only collection markers, and final Props validation.
 - Include the exact localized `A` + invariant `B` deletion regression above (including no override locale file), and separate per-locale tests for reordered and added collection entries.
