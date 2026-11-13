@@ -5,7 +5,6 @@ import { test } from 'node:test';
 import { chooseChecks } from './run-fast-gate.mjs';
 
 const packages = [
-  { path: 'shared/contracts', name: '@svitlo/contracts' },
   { path: 'shared/engine', name: '@svitlo/engine' },
   { path: 'content/math', name: '@svitlo/math' },
   { path: 'content/biology', name: '@svitlo/biology' },
@@ -18,9 +17,9 @@ test('Math authored data gets ordinary workspace checks, not taxonomy checks in 
   assert.equal('mathComponents' in p, false);
 });
 
-test('shared Contracts changes do not automatically select Math', () => {
-  const p = chooseChecks(['shared/contracts/src/taxonomy.ts'], packages);
-  assert.deepEqual([...p.affected], ['@svitlo/contracts']);
+test('shared Engine changes do not automatically select Math', () => {
+  const p = chooseChecks(['shared/engine/schemas/languages.schemas.ts'], packages);
+  assert.deepEqual([...p.affected], ['@svitlo/engine']);
 });
 
 test('selects only changed subject workspaces', () => {
@@ -30,7 +29,7 @@ test('selects only changed subject workspaces', () => {
 
 test('root package-lock changes select core workspaces without forcing Math', () => {
   const p = chooseChecks(['package-lock.json'], packages);
-  assert.deepEqual([...p.affected].sort(), ['@svitlo/contracts', '@svitlo/engine']);
+  assert.deepEqual([...p.affected].sort(), ['@svitlo/engine']);
 });
 
 test('shared textbook tooling changes do not automatically select Math', () => {

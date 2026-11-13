@@ -18,9 +18,9 @@ test('detect real imports and re-exports, including multiline and type-only form
   const source = `
     import {
       skill
-    } from '@svitlo/engine/taxonomy';
+    } from '@svitlo/engine/build';
     import './side-effect';
-    import type { Skill } from '@svitlo/contracts/taxonomy';
+    import type { Skill_Props } from '@svitlo/engine/runtime';
     export { helper } from './helper';
     import local = require('legacy-module');
     type Lazy = import('type-only-module').Something;

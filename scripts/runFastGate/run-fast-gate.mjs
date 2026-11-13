@@ -52,7 +52,7 @@ export function chooseChecks(changed, workspaces) {
   }
   if (global) for (const name of packages.keys()) affected.add(name);
   if (lockChange)
-    for (const name of ['@svitlo/contracts', '@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
+    for (const name of ['@svitlo/engine', '@svitlo/indexdb', '@svitlo/ui-kit']) {
       if (packages.has(name)) affected.add(name);
     }
   const jsFiles = changed.filter(f => /\.(?:mjs|cjs|js)$/.test(f) && fs.existsSync(path.join(repoRoot, f)));
@@ -139,7 +139,6 @@ function runGate(changed) {
         ) ||
         file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
         file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/') ||
-        file === 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
     )
   ) {
     exec('node', [
@@ -183,7 +182,6 @@ function runGate(changed) {
   // Validate the foundational runtime first. An unrelated textbook's unfinished
   // content translations must not hide failures in a changed shared package.
   const priority = [
-    '@svitlo/contracts',
     '@svitlo/engine',
     '@svitlo/indexdb',
     '@svitlo/ui-kit',
