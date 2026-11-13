@@ -93,7 +93,7 @@ describe('LearningLayout preparation', () => {
     );
     const top = screen.getByRole('navigation', { name: uk.navigation.top });
     const bottom = screen.getByRole('navigation', { name: uk.navigation.bottom });
-    expect(within(top).getByText('Тестовий урок')).toBeInTheDocument();
+    expect(within(top).getByRole('heading', { level: 1, name: 'Тестовий урок' })).toBeInTheDocument();
     expect(within(bottom).getByRole('button', { name: /Назад/ })).toBeDisabled();
     expect(within(bottom).getByRole('button', { name: uk.actions.skip })).toBeDisabled();
   });
