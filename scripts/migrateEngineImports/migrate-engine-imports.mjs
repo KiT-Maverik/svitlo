@@ -72,10 +72,15 @@ export function rewriteEngineImports(source, filename = 'source.ts') {
         }
       }
     }
-    // Re-exporting the entire legacy namespace cannot prove which individual
-    // types are supported by the new public surface.
-    if (unresolved && declaration && ts.isExportDeclaration(declaration) && !declaration.exportClause) {
-      throw new Error(filename + ': manual migration required for wildcard export from ' + module.text);
+    // Namespace imports/exports can hide unavailable symbols as well.
+    if (
+      unresolved &&
+      ((members && ts.isNamespaceImport(members)) ||
+        (declaration &&
+          ts.isExportDeclaration(declaration) &&
+          (!declaration.exportClause || ts.isNamespaceExport(declaration.exportClause))))
+    ) {
+      throw new Error(filename + ': manual migration required for wildcard namespace from ' + module.text);
     }
     const target = runtimeSubpaths.has(subpath) ? '@svitlo/engine/runtime' : '@svitlo/engine/build';
     replace(module.getStart(file) + 1, module.end - 1, target);

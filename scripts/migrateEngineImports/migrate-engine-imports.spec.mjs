@@ -49,7 +49,21 @@ test('rejects ambiguous content proxy exports instead of generating deleted pack
 test('rejects wildcard re-exports of legacy localization types', () => {
   assert.throws(
     () => rewriteEngineImports("export * from '@svitlo/engine/localization';"),
-    /manual migration required for wildcard export/,
+    /manual migration required for wildcard namespace/,
+  );
+});
+
+test('rejects namespace imports of unresolved taxonomy symbols', () => {
+  assert.throws(
+    () => rewriteEngineImports("import * as taxonomy from '@svitlo/engine/taxonomy';"),
+    /manual migration required for wildcard namespace/,
+  );
+});
+
+test('rejects namespace re-exports of unresolved localization symbols', () => {
+  assert.throws(
+    () => rewriteEngineImports("export * as locale from '@svitlo/engine/localization';"),
+    /manual migration required for wildcard namespace/,
   );
 });
 
