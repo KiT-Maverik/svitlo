@@ -10,20 +10,25 @@ TypeScript diagnostics.
 
 Place the source in the canonical Lesson UUID directory:
 
-- Required: **content.yaml** containing an authored Lesson Config tree and
-  **documentLanguage** (the one locale to emit).
-- Optional: **questions/questions.yaml** with a top-level **questions** map,
-  grouped by Question type and slug.
-- Optional: **flashcards/flashcards.yaml** with a top-level **flashcards**
-  collection (**items** and **order**).
+- Required: **lesson.config.yaml** — a separate, Config-shaped TypeScript
+  authoring projection containing the Lesson tree, Section/ContentBlock nodes,
+  and any typed Question and Flashcard collections.
+- The existing Screenwriter **content.yaml** is a distinct editorial plan,
+  not a Config. The scaffolder reads only its `documentLanguage` provenance
+  when no `--language` override was supplied; it never reads the plan's
+  Sections, Quizzes or blocks.
+- Existing **questions/questions.yaml** and **flashcards/flashcards.yaml**
+  remain specialist-owned editorial plans. A technical editor projects
+  their approved content into `lesson.config.yaml`, not automatically
+  through the scaffolder. The Builder never reinterprets those files.
 
-If the optional maps are already authored inline in **content.yaml**, do **not**
-declare them again in separate files.
+Use `--language uk` (or another source locale) when no Screenwriter
+`content.yaml` is available; the pure Config file does **not** carry
+`documentLanguage`, matching the generated Engine `lesson.schema.json`.
 
-For example, the start of a **partial** content.yaml may be:
+For example, the start of a **partial** lesson.config.yaml may be:
 
 ~~~yaml
-documentLanguage: uk
 id: 00000000-0000-4000-8000-00000000000c
 slug: lightLesson
 type: lesson
@@ -78,10 +83,11 @@ npm run test:unit:lesson-builder
 Or for one source:
 
 ~~~bash
-node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/playground/data/lessons/c/00000000-0000-4000-8000-00000000000c
-node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source content/playground/data/lessons/c/00000000-0000-4000-8000-00000000000c
+node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/playground/data/lessons/c/00000000-0000-4000-8000-00000000000c --language uk
+node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source content/playground/data/lessons/c/00000000-0000-4000-8000-00000000000c --language uk
 ~~~
 
+The repository-wide command discovers only folders with `lesson.config.yaml`.
 The generate command writes only the named draft; check is read-only and fails
 on missing or stale drafts. A checksum embedded in the generated file detects
 manual edits before an update. The script refuses to overwrite an unrelated
@@ -89,6 +95,6 @@ data.ts entrypoint or follow filesystem symlinks. There are no extra
 requirements, manifests, blocked handoffs, or generated folders.
 
 The separate **scripts/generateLessonProps/** publisher and all runtime APIs
-remain unchanged. Existing editorial Studio descriptions of the old,
-approval-gated builder are being reconciled in Agent 1's workstream; they
-must not be treated as implementation behavior for this scaffolder.
+remain unchanged. The technical projection from editorial plans to Config YAML is deliberate
+integration-editor work, with current approved revisions and stable identities.
+It does not modify the specialist-owned source files.
