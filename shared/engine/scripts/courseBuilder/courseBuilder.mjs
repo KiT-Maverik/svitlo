@@ -274,7 +274,7 @@ export function renderCourseSource(source, { slug, outputSlug, overrides } = {})
     ),
     '',
     ...state.unresolved.map(ref =>
-      '// TODO: Import standalone Lesson ' + ref.lessonId + ' for ' + ref.location +
+      '// TODO: Import standalone Lesson ' + literal(ref.lessonId) + ' for ' + literal(ref.location) +
       ' and replace ' + ref.alias + '. Never define a new Lesson here.'
     ),
     ...(state.unresolved.length ? [''] : []),
