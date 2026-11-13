@@ -13,7 +13,7 @@ test('Skill Analytics renders from the published base tree and requested locale'
   const uk = await localeResponse.json();
   expect(base.testColors.slug).toBe('testColors');
   expect(base.testColors.groups[0].skills[0].id).toBe(redSkillId);
-  expect(uk.testColors.groups[0].skills[0].locale.name).toContain('[TEST uk]');
+  expect(uk.testColors.groups[0].skills[0].name).toContain('[TEST uk]');
 
   const requested: string[] = [];
   page.on('request', resource => {
