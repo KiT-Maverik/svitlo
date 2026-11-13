@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
+import { defineSkill } from '../../configurators/skills/defineSkill';
+import { defineSkillGroup } from '../../configurators/skills/defineSkillGroup';
+import { defineSkillDomain } from '../../configurators/skills/defineSkillDomain';
 import { assembleSkills, type Skills_Publication } from './assembleSkills';
 
 const id = (n: string) => '00000000-0000-4000-8000-0000000000' + n;
@@ -136,4 +139,48 @@ test('rejects mismatched root slugs, malformed data, and unsafe JSON keys', () =
     /Forbidden Skills key/,
   );
   assert.equal(({} as { polluted?: boolean }).polluted, undefined);
+});
+
+test('consumes actual SkillDomain Build output without a second translation wrapper', () => {
+  const leaf = defineSkill<'balance', ['en', 'uk']>({
+    id: id('11'),
+    slug: 'balance',
+    name: { en: 'Balance', uk: 'Рівновага' },
+    description: {
+      methodological: 'Learn what balance means',
+      frontend: { en: 'Learn balance', uk: 'Вивчай рівновагу' },
+    },
+  });
+  const cluster = defineSkillGroup<
+    'mechanics',
+    { balance: typeof leaf },
+    ['uk']
+  >({
+    id: id('12'),
+    slug: 'mechanics',
+    name: { en: 'Mechanics', uk: 'Механіка' },
+    description: { methodological: 'Mechanics methodology' },
+    skills: { items: { balance: leaf }, order: ['balance'] },
+  });
+  const root = defineSkillDomain<
+    'physics',
+    { mechanics: typeof cluster },
+    {},
+    ['uk']
+  >({
+    id: id('13'),
+    slug: 'physics',
+    title: { en: 'Physics', uk: 'Фізика' },
+    description: { methodological: 'Physics methodology' },
+    groups: { items: { mechanics: cluster }, order: ['mechanics'] },
+  });
+  const built = root.build.props({ languages: ['uk'] });
+  const result = assembleSkills(
+    { base: { physics: built.base }, locale: { uk: { physics: built.locale?.uk ?? {} } } },
+    'uk',
+  );
+  assert.equal(result.physics.title, 'Фізика');
+  assert.equal(result.physics.groups?.[0].name, 'Механіка');
+  assert.equal(result.physics.groups?.[0].skills[0].name, 'Рівновага');
+  assert.equal(result.physics.groups?.[0].skills[0].description.frontend, 'Вивчай рівновагу');
 });
