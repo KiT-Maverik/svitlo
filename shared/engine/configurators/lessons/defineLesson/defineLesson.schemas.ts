@@ -26,7 +26,6 @@ const params = paramsBase_Schema.shape.params.extend({
 });
 const identity = identityBase_Schema.extend({
   type: z.literal('lesson'),
-  programId: z.uuid().optional(),
   skills: z.array(z.uuid()),
   params,
 });
@@ -71,7 +70,7 @@ export type Lesson_Props = Omit<z.infer<typeof lesson_Props_Schema>, 'section' |
   section: Section_Props[];
   flashcards: Flashcard_Props[];
 };
-export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'slug' | 'type' | 'params' | 'skills' | 'programId'> & {
+export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'slug' | 'type' | 'params' | 'skills'> & {
   locale?: { title?: string };
   section: ReturnType<Section_Configurator['build']['props']>['base'][];
   flashcards: ReturnType<Flashcard_Configurator['build']['props']>['base'][];
