@@ -122,7 +122,11 @@ export function assembleSkills(
       result[slug] = props;
     } catch (error) {
       throw new Error(
-        'Invalid assembled SkillDomain ' + slug + ' for ' + language + ': ' +
+        'Invalid assembled SkillDomain ' +
+          slug +
+          ' for ' +
+          language +
+          ': ' +
           (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );

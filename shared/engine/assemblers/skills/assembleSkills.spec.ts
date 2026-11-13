@@ -89,7 +89,10 @@ test('applies locale patches and immutable base overrides in the documented four
   assert.equal(resolved.physics.title, 'Українська назва');
   assert.equal(resolved.physics.description.methodological, 'Overridden methodology');
   assert.equal(resolved.physics.description.frontend, 'Новий опис');
-  assert.deepEqual(resolved.physics.skills?.map(s => s.slug), ['motion']);
+  assert.deepEqual(
+    resolved.physics.skills?.map(s => s.slug),
+    ['motion'],
+  );
   assert.equal(resolved.physics.skills?.[0].name, 'Motion');
   assert.deepEqual(resource.base.physics.skills, [a, b]);
 });
@@ -106,8 +109,14 @@ test('reordered and newly added published children replace the entire array per 
     base: { physics: { skills: [c, b] } },
     locale: { uk: { physics: { skills: [{ ...c, name: 'Сила' }, b] } } },
   });
-  assert.deepEqual(result.physics.skills?.map(s => s.slug), ['force', 'motion']);
-  assert.deepEqual(result.physics.skills?.map(s => s.name), ['Сила', 'Motion']);
+  assert.deepEqual(
+    result.physics.skills?.map(s => s.slug),
+    ['force', 'motion'],
+  );
+  assert.deepEqual(
+    result.physics.skills?.map(s => s.name),
+    ['Сила', 'Motion'],
+  );
 });
 
 test('rejects a missing required translation rather than falling back', () => {
@@ -134,10 +143,7 @@ test('rejects mismatched root slugs, malformed data, and unsafe JSON keys', () =
   );
   assert.throws(() => assembleSkills({ ...source, base: {} }, 'uk'), /Empty published Skills taxonomy/);
   const unsafe = JSON.parse('{"physics":{"__proto__":{"polluted":true}}}');
-  assert.throws(
-    () => assembleSkills({ ...source, locale: { uk: unsafe } }, 'uk'),
-    /Forbidden Skills key/,
-  );
+  assert.throws(() => assembleSkills({ ...source, locale: { uk: unsafe } }, 'uk'), /Forbidden Skills key/);
   assert.equal(({} as { polluted?: boolean }).polluted, undefined);
 });
 
@@ -151,23 +157,14 @@ test('consumes actual SkillDomain Build output without a second translation wrap
       frontend: { en: 'Learn balance', uk: 'Вивчай рівновагу' },
     },
   });
-  const cluster = defineSkillGroup<
-    'mechanics',
-    { balance: typeof leaf },
-    ['uk']
-  >({
+  const cluster = defineSkillGroup<'mechanics', { balance: typeof leaf }, ['uk']>({
     id: id('12'),
     slug: 'mechanics',
     name: { en: 'Mechanics', uk: 'Механіка' },
     description: { methodological: 'Mechanics methodology' },
     skills: { items: { balance: leaf }, order: ['balance'] },
   });
-  const root = defineSkillDomain<
-    'physics',
-    { mechanics: typeof cluster },
-    {},
-    ['uk']
-  >({
+  const root = defineSkillDomain<'physics', { mechanics: typeof cluster }, {}, ['uk']>({
     id: id('13'),
     slug: 'physics',
     title: { en: 'Physics', uk: 'Фізика' },
