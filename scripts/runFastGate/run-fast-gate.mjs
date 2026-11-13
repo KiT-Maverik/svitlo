@@ -73,6 +73,10 @@ function runGate(changed) {
   for (const f of plan.jsFiles) exec('node', ['--check', f]);
   for (const f of plan.jsonFiles) json(f);
   exec('node', ['--test', 'scripts/runFastGate/run-fast-gate.spec.mjs']);
+  // A migration helper must never reintroduce deleted package imports.
+  if (changed.some(file => file.startsWith('scripts/migrateEngineImports/'))) {
+    exec('node', ['--test', 'scripts/migrateEngineImports/migrate-engine-imports.spec.mjs']);
+  }
   // Engine build-only filesystem use must be distinguished from runtime leakage.
   // Exercise the canonical package boundary guard when it or Engine changes.
   if (
