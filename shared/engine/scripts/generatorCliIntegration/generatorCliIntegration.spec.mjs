@@ -16,8 +16,8 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
   const lessonFolder = path.join(pkg, 'data', 'lessons', lessonId.slice(-1), lessonId);
   const courseFolder = path.join(pkg, 'data', 'courses');
 
-  const run = (script, action) =>
-    spawnSync('npm', ['run', script, '--', '--package', 'content/' + name, action], {
+  const run = (script, action, extraArgs = []) =>
+    spawnSync('npm', ['run', script, '--', '--package', 'content/' + name, ...extraArgs, action], {
       cwd: repo,
       encoding: 'utf8',
       env: process.env,
@@ -70,6 +70,27 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
 
     fs.writeFileSync(path.join(pkg, 'generated', 'lessons', 'stale.json'), '{}');
     assert.notEqual(run('content:check:lesson-props', '--check').status, 0, 'check must reject stale files');
+    succeeds('content:generate:lesson-props', '--write');
+    succeeds('content:check:lesson-props', '--check');
+    assert.equal(fs.existsSync(path.join(pkg, 'generated', 'lessons', 'stale.json')), false);
+
+    assert.notEqual(
+      run('content:check:lesson-props', '--check', ['--output', 'content/' + name + '/generated/../escape']).status,
+      0,
+      'output traversal must be rejected',
+    );
+    const outside = path.join(pkg, 'outside');
+    fs.mkdirSync(outside);
+    fs.symlinkSync(outside, path.join(pkg, 'generated', 'linked'));
+    assert.notEqual(
+      run('content:generate:lesson-props', '--write', [
+        '--output',
+        'content/' + name + '/generated/linked/lessons',
+      ]).status,
+      0,
+      'symlink output must be rejected before any publication',
+    );
+    assert.equal(fs.existsSync(path.join(outside, 'lessons')), false);
   } finally {
     fs.rmSync(pkg, { recursive: true, force: true });
   }

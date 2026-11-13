@@ -10,7 +10,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadLessonData, renderLessonPropsFiles, resolveEntityPath, writeLessonFiles } from '@svitlo/engine/build';
+import { loadLessonData, renderLessonPropsFiles, resolveEntityPath } from '@svitlo/engine/build';
+import { assertSafeDirectoryPath, checkLessonProps, publishLessonProps } from './publishLessonProps.mjs';
+
+export { checkLessonProps as check } from './publishLessonProps.mjs';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage = 'Usage: --package content/<textbook> [--output <repo-relative-dir>] --write|--check';
@@ -99,30 +102,6 @@ async function render(packageDirectory) {
   return renderLessonPropsFiles(entries);
 }
 
-export function check(output, files) {
-  const actual = new Set();
-  const visit = (folder, prefix = '') => {
-    if (!fs.existsSync(folder)) return;
-    for (const entry of fs.readdirSync(folder, { withFileTypes: true })) {
-      const relative = path.join(prefix, entry.name);
-      if (entry.isSymbolicLink()) throw new Error('Unexpected symlink in generated Lessons: ' + relative);
-      if (entry.isDirectory()) visit(path.join(folder, entry.name), relative);
-      else if (entry.isFile()) actual.add(relative.replaceAll(path.sep, '/'));
-    }
-  };
-  visit(output);
-  const changed = [...files]
-    .filter(
-      ([relative, content]) =>
-        !actual.has(relative) || fs.readFileSync(path.join(output, relative), 'utf8') !== content,
-    )
-    .map(([name]) => name);
-  const stale = [...actual].filter(name => !files.has(name));
-  if (changed.length || stale.length) {
-    throw new Error('Generated Lessons differ: ' + JSON.stringify({ changed, stale }));
-  }
-}
-
 export async function main(args) {
   let packageName;
   let outputName;
@@ -146,13 +125,15 @@ export async function main(args) {
   if (!output.startsWith(allowedRoot + path.sep)) {
     throw new Error('Generated Lesson output must be under textbook generated/');
   }
+  assertSafeDirectoryPath(packageDirectory);
+  assertSafeDirectoryPath(output);
   assertRepositoryLessonIdsUnique();
   const files = await render(packageDirectory);
   if (action === '--write') {
-    writeLessonFiles(output, files);
+    publishLessonProps(output, files);
     console.log('Published ' + files.size + ' Props-shaped Lesson files in ' + output);
   } else {
-    check(output, files);
+    checkLessonProps(output, files);
     console.log('Verified ' + files.size + ' Props-shaped Lesson files in ' + output);
   }
 }
