@@ -367,8 +367,8 @@ function LessonControllerRuntime({
         : reduce(current, action, response, editableSectionParams),
     response,
     (value): Runtime => ({
-      params: value.parameters,
-      topBar: { title: value.title },
+      params: value.params,
+      topBar: { title: value.locale.title },
       stepper: { visible: true },
       section: { step: 0, testDone: false, completedQuizIds: {}, completedCheckpoints: {} },
       bottomBar: { nextDisabled: false, backDisabled: false, skipDisabled: false },
