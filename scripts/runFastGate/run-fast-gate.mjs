@@ -122,13 +122,13 @@ function runGate(changed) {
   if (
     changed.some(
       file =>
-        file.startsWith('scripts/generate-assessment-methods-reference.') ||
-        file === 'scripts/generate-translation-review-artifacts.mjs' ||
+        file.startsWith('shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.') ||
+        file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
         file.startsWith('shared/ui-kit/data/definitions/assessmentMethods/') ||
         file === 'shared/contracts/src/types/content/assessmentMethod.ids.ts',
     )
   ) {
-    exec('node', ['--test', 'scripts/generate-assessment-methods-reference.spec.mjs']);
+    exec('node', ['--test', 'shared/ui-kit/scripts/generateAssessmentMethodsReference/generate-assessment-methods-reference.spec.mjs']);
   }
 
   // Lesson builder is root-owned deterministic tooling: test it only when its
@@ -234,11 +234,11 @@ function runGate(changed) {
   if (
     changed.some(
       file =>
-        file.startsWith('scripts/generate-lessons-markdown.') ||
-        file.startsWith('scripts/generate-lesson-review-artifacts.') ||
-        file.startsWith('scripts/generate-lessons-by-skill.') ||
-        file === 'scripts/generate-translation-review-artifacts.mjs' ||
-        file.startsWith('scripts/lib/lesson-markdown.') ||
+        file.startsWith('shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.') ||
+        file.startsWith('shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.') ||
+        file.startsWith('shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.') ||
+        file === 'scripts/generateTranslationReviewArtifacts/generate-translation-review-artifacts.mjs' ||
+        file.startsWith('shared/engine/scripts/generateLessonsMarkdown/lesson-markdown.') ||
         file.startsWith('shared/engine/src/utils/generators/lessons/') ||
         file.startsWith('content/playground/data/lessons/'),
     )
@@ -250,9 +250,9 @@ function runGate(changed) {
     }
     exec('node', [
       '--test',
-      'scripts/generate-lessons-markdown.spec.mjs',
-      'scripts/generate-lesson-review-artifacts.spec.mjs',
-      'scripts/generate-lessons-by-skill.spec.mjs',
+      'shared/engine/scripts/generateLessonsMarkdown/generate-lessons-markdown.spec.mjs',
+      'shared/engine/scripts/generateLessonReviewArtifacts/generate-lesson-review-artifacts.spec.mjs',
+      'shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.spec.mjs',
     ]);
   }
 }

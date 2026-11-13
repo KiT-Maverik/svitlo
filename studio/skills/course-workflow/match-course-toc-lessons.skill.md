@@ -27,14 +27,14 @@ Generate a **flat Skill UUID lookup** using the real repository tool:
 
 ```sh
 # Select one Skill without writing files:
-node scripts/generate-lessons-by-skill.mjs --skill <skill-uuid> --stdout
+node shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs --skill <skill-uuid> --stdout
 
 # Select multiple Skills for a Chapter or Module:
-node scripts/generate-lessons-by-skill.mjs --package content/<book> \
+node shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs --package content/<book> \
   --skill <uuid-1> --skill <uuid-2> --output .agent-ci-artifacts/lessons-by-skill
 
 # Generate the full available index:
-node scripts/generate-lessons-by-skill.mjs --output .agent-ci-artifacts/lessons-by-skill
+node shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs --output .agent-ci-artifacts/lessons-by-skill
 ```
 
 The existing **Agent CI Artifacts** workflow generates `.agent-ci-artifacts/lessons-by-skill/<skill-id>.md` files in PR branches. They are ephemeral and removed before merge; they are **not** a production database. The generator statically parses Skill and Lesson TypeScript source without executing Lesson code. Each file contains candidate Lesson IDs, textbook paths, canonical source links and multi-Skill membership. A Lesson appears in **every** applicable Skill lookup. Use the full Lesson data and Methodology to decide suitability: a shared Skill ID is **not** proof of equal depth, readiness, language availability or pedagogical fit. Index excludes editorial-only Lesson drafts; search the actual draft directories separately before proposing new ones. Treat generator warnings about unsupported dynamic expressions as coverage gaps in the index, not as evidence of no Lesson.
