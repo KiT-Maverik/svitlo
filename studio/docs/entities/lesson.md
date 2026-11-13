@@ -22,30 +22,14 @@ Reusable/standalone Reusable/standalone Lesson files live under `<PackageRoot>/d
 - `flashcards/flashcards.yaml`: Flashcard Learning Architect's source-language recall bank, written **only after** approved Questions. Includes typed editorial ContentBlocks, resolvable Question field references, an explicit typed `flags` array (`list` count, `warning`, `acronym`, and `custom` value/color/optional icon), and a single canonical graph of card-to-card relations using the nine `FlashcardRelationType` keys. The Engine materializes each YAML edge **on both cards** as typed `FlashcardRelation[]`, with actual partner card IDs; this relation metadata is part of the `Flashcard<'data'>` and response contracts. The existing UI Kit Flashcard now renders typed flags automatically. Locale-specific acronym wording still requires independent translation; UI relationship navigation and scheduler semantics remain separate capabilities.
 - Typed `*.data.ts` configuration and published resources are owned by implementation/build workflows, not by either editorial document.
 
-**Observed contract:** [`Lesson<'data'>`](../../../shared/contracts/src/types/content/lesson.types.ts) identifies a Lesson with `id`, `slug`, `title`, `parameters` and ordered `sections`; the bucket is derived by Engine and is not authored. The contract is **not a complete editorial Lesson definition**; code presence does not establish editorial approval. Do not infer that the folder slug is the runtime ID. Read the current renderer and catalog types before implementation.
+**Current technical source:** Engine `lesson_Config_Schema` at [defineLesson](../../../shared/engine/configurators/lessons/defineLesson/defineLesson.schemas.ts) owns Lesson identity, intended `params.languages`, `skills`, source-language `locale.title`, `section.items/order`, `questions` and `flashcards.items/order`. The bucket is derived from immutable UUID, not a folder slug. [Engine YAML Config authoring guidance](../architecture/yaml-config-scaffolding.md) is separate from the Methodologist/Screenwriter/Assessment editorial plans. Code presence does not establish approval or publication readiness.
 
 Related: [Lesson Content](./lesson-content.md), [Section](./section.md), [Program](./program.md), [Skill](./skill.md).
 
-## Typed creator and publication boundary
+## Current typed Config and publication boundary
 
-`createLesson<SupportedLanguages>()(data)` is the canonical build-time
-creator. It accepts `createSection` creators (which may themselves contain
-`createContentBlock` creators) and ordinary typed authored data. Authors
-export `lesson.getData()` from `*.data.ts` for use in Courses.
+Current authored Lesson sources use `defineLesson` from `@svitlo/engine/build` with nested typed `define*` configurators. `lesson_Config_Schema` accepts a source-language-only localized Config tree with Sections as `{ items, order }`, Questions grouped by type and optional Flashcards as `{ items, order }`; it is **not** the old positional `createLesson<SupportedLanguages>()` creator contract. The YAML → TypeScript scaffolder emits an **unfinished draft** based on these Configs, not Lesson Props or published resources.
 
-`lesson.getBase()` returns the invariant parts of `config`, `flashcards`,
-and `questions`. `lesson.getLocale(language)` returns **only** the sparse
-localized patches and `localeSources`. No invariant strings, IDs, Sections or
-array structure are duplicated in locale patches. Locale dictionaries must be
-complete, with no automatic translations or field-level fallbacks.
+`documentLanguage` belongs to the editorial sources and provenance; `params.languages` holds the intended coverage while initial `locale` dictionaries can contain only the approved authoring language. Do not fabricate translations for missing locales. The subsequent Coding Agent must complete required fields, references, typechecks and media/a11y work; editorial approvals and `generateLessonProps`/publication are independent later steps. See [Lesson YAML Builder](../architecture/lesson-yaml-builder.md) and [Config-shaped handoff](../architecture/yaml-config-scaffolding.md).
 
-The Lesson generator (not the creator) handles JSON paths and bytes. At runtime,
-`mergeLessonResources` and `assembleLessonResponse` combine the published
-base and selected locale. A Lesson is Course-neutral and has **no TOC method**.
-`createLessonOverrides(lesson.getData())` is a separate Course-local builder;
-it preserves the canonical Lesson and emits only authored changes.
-
-See [Engine creator API](../../../shared/engine/README.md) and
-[Course](./course.md) for TOC and publishing details.
-
-**Editorial localization:** `content.yaml.documentLanguage` identifies the only locale populated by the initial YAML-to-entity generator; `supportedLanguages` sets the intended Lesson language tuple. Remaining locales require separate translation, and interim TypeScript errors must stay visible until translations exist. Initial generation is not proof of publication readiness.
+Related: [Lesson Content](./lesson-content.md), [Section](./section.md), [Course](./course.md).
