@@ -11,17 +11,25 @@ declare const lesson: Lesson_Configurator & LanguageScope<['en', 'uk']>;
 declare const lessonEnglishOnly: Lesson_Configurator & LanguageScope<['en']>;
 
 const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['en', 'uk']>({
-  id, type: 'chapter', slug: 'chapter', params: {},
+  id,
+  type: 'chapter',
+  slug: 'chapter',
+  params: {},
   locale: { title: { en: 'Chapter', uk: 'Розділ' } },
   content: { items: { lesson }, order: ['lesson'] },
 });
 const module = defineModule<'module', { chapter: typeof chapter }, ['en', 'uk']>({
-  id, type: 'module', slug: 'module', params: {},
+  id,
+  type: 'module',
+  slug: 'module',
+  params: {},
   locale: { title: 'Module' },
   content: { items: { chapter }, order: ['chapter'] },
 });
 const course = defineCourse<'course', ['en', 'uk'], { module: typeof module; chapter: typeof chapter }>({
-  id, type: 'course', slug: 'course',
+  id,
+  type: 'course',
+  slug: 'course',
   params: { languages: ['en', 'uk'] as const },
   locale: { title: { en: 'Course', uk: 'Курс' }, description: 'Introduction' },
   content: { items: { module, chapter }, order: ['module', 'chapter'] },
@@ -34,12 +42,17 @@ type NestedKind = Expect<Equal<typeof course.content.items.module.type, 'module'
 type ExactChapter = Expect<Equal<typeof module.content.items.chapter, typeof chapter>>;
 
 const chapterEnglishOnly = defineChapter<'chapterEnglish', {}, ['en']>({
-  id, type: 'chapter', slug: 'chapterEnglish', params: {},
+  id,
+  type: 'chapter',
+  slug: 'chapterEnglish',
+  params: {},
   locale: { title: { en: 'Chapter' } },
   content: { items: {}, order: [] },
 });
 const courseEnglish = defineCourse<'courseEnglish', ['en'], { chapter: typeof chapter }>({
-  id, type: 'course', slug: 'courseEnglish',
+  id,
+  type: 'course',
+  slug: 'courseEnglish',
   params: { languages: ['en'] as const },
   locale: { title: { en: 'Course' }, description: 'Introduction' },
   content: { items: { chapter }, order: ['chapter'] },
@@ -77,7 +90,10 @@ const invalidModuleItems: Record<string, Module_Child> = {
 void invalidChapterItems;
 void invalidModuleItems;
 defineCourse({
-  id, type: 'course', slug: 'invalid', params: { languages: ['en'] },
+  id,
+  type: 'course',
+  slug: 'invalid',
+  params: { languages: ['en'] },
   // @ts-expect-error Course locale must contain description.
   locale: { title: 'Course' },
   content: { items: {}, order: [] },

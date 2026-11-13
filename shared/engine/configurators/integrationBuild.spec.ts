@@ -24,40 +24,66 @@ const mergeObjects = (base: unknown, patch: unknown): Record<string, unknown> =>
   mergeForValidation(base as Record<string, unknown>, patch as Record<string, unknown>);
 
 const paragraph = defineText<'paragraph', ['uk', 'en', 'pl']>({
-  id: id('01'), slug: 'paragraph', type: 'text', params: {},
+  id: id('01'),
+  slug: 'paragraph',
+  type: 'text',
+  params: {},
   locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
 });
 const introduction = defineContentSection<'intro', { paragraph: typeof paragraph }, ['uk', 'en']>({
-  id: id('02'), slug: 'intro', type: 'content', params: {},
+  id: id('02'),
+  slug: 'intro',
+  type: 'content',
+  params: {},
   locale: { title: { uk: 'Вступ', en: 'Introduction' }, navigationLabel: '1' },
   content: { items: { paragraph }, order: ['paragraph'] },
 });
 
 const questionPrompt = defineText<'questionPrompt', ['uk', 'en']>({
-  id: id('03'), slug: 'questionPrompt', type: 'text', params: {},
+  id: id('03'),
+  slug: 'questionPrompt',
+  type: 'text',
+  params: {},
   locale: { value: { uk: 'Скільки?', en: 'How many?' } },
 });
 const questionContent = {
   question: { items: { questionPrompt }, order: ['questionPrompt'] },
 };
 const numeric = defineAnswerWithNumber<'numeric', typeof questionContent, ['uk', 'en']>({
-  id: id('04'), slug: 'numeric', type: 'answerWithNumber',
+  id: id('04'),
+  slug: 'numeric',
+  type: 'answerWithNumber',
   params: { assessmentMethod: 'retrieval', restrictions: ['dyslexia'], correctAnswers: [2] },
-  locale: { placeholder: 'Enter a number' }, content: questionContent,
+  locale: { placeholder: 'Enter a number' },
+  content: questionContent,
 });
 
 const front = defineText<'front', ['uk', 'en']>({
-  id: id('05'), slug: 'front', type: 'text', params: {},
+  id: id('05'),
+  slug: 'front',
+  type: 'text',
+  params: {},
   locale: { value: { uk: 'Питання', en: 'Prompt' } },
 });
 const back = defineText<'back', ['uk', 'en']>({
-  id: id('06'), slug: 'back', type: 'text', params: {},
+  id: id('06'),
+  slug: 'back',
+  type: 'text',
+  params: {},
   locale: { value: { uk: 'Відповідь', en: 'Answer' } },
 });
 const card = defineFlashcard<
-  'card', { front: typeof front }, { back: typeof back }, {}, { warningFlag: { type: 'warning' } }, {}, ['uk', 'en']
+  'card',
+  { front: typeof front },
+  { back: typeof back },
+  {},
+  { warningFlag: { type: 'warning' } },
+  {},
+  ['uk', 'en']
 >({
-  id: id('07'), slug: 'card', type: 'flashcard',
+  id: id('07'),
+  slug: 'card',
+  type: 'flashcard',
   parameters: { tags: [], flags: { items: { warningFlag: { type: 'warning' } }, order: ['warningFlag'] } },
   content: {
     front: { items: { front }, order: ['front'] },
@@ -65,9 +91,13 @@ const card = defineFlashcard<
   },
 });
 const lesson = defineLesson({
-  id: id('08'), slug: 'lesson', type: 'lesson', skills: [],
+  id: id('08'),
+  slug: 'lesson',
+  type: 'lesson',
+  skills: [],
   params: {
-    requireQuiz: false, languages: ['uk', 'en'] as const,
+    requireQuiz: false,
+    languages: ['uk', 'en'] as const,
     sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
   },
   locale: { title: { uk: 'Урок', en: 'Lesson' } },
@@ -76,17 +106,25 @@ const lesson = defineLesson({
   questions: { answerWithNumber: { numeric } },
 });
 const chapter = defineChapter<'chapter', { lesson: typeof lesson }, ['uk', 'en']>({
-  id: id('09'), slug: 'chapter', type: 'chapter', params: {},
+  id: id('09'),
+  slug: 'chapter',
+  type: 'chapter',
+  params: {},
   locale: { title: { uk: 'Розділ', en: 'Chapter' } },
   content: { items: { lesson }, order: ['lesson'] },
 });
 const courseModule = defineModule<'module', { chapter: typeof chapter }, ['uk', 'en']>({
-  id: id('10'), slug: 'module', type: 'module', params: {},
+  id: id('10'),
+  slug: 'module',
+  type: 'module',
+  params: {},
   locale: { title: { uk: 'Модуль', en: 'Module' } },
   content: { items: { chapter }, order: ['chapter'] },
 });
 const course = defineCourse<'course', ['uk'], { module: typeof courseModule }>({
-  id: id('11'), slug: 'course', type: 'course',
+  id: id('11'),
+  slug: 'course',
+  type: 'course',
   params: { languages: ['uk'] as const },
   locale: { title: { uk: 'Курс' }, description: 'Universal introduction' },
   content: { items: { module: courseModule }, order: ['module'] },
@@ -116,20 +154,22 @@ test('Course → Module → Chapter → Lesson → Section → ContentBlock and 
 });
 
 test('Nested Course override composes a complete, language-scoped atomic tree and leaves authored resources untouched', () => {
-  const patch = course.build.overrides({
-    content: {
-      items: {
-        module: {
-          content: {
-            items: {
-              chapter: {
-                content: {
-                  items: {
-                    lesson: {
-                      section: {
-                        items: {
-                          intro: {
-                            content: { items: { paragraph: { locale: { value: { uk: 'Оновлений текст' } } } } },
+  const patch = course.build.overrides(
+    {
+      content: {
+        items: {
+          module: {
+            content: {
+              items: {
+                chapter: {
+                  content: {
+                    items: {
+                      lesson: {
+                        section: {
+                          items: {
+                            intro: {
+                              content: { items: { paragraph: { locale: { value: { uk: 'Оновлений текст' } } } } },
+                            },
                           },
                         },
                       },
@@ -142,7 +182,8 @@ test('Nested Course override composes a complete, language-scoped atomic tree an
         },
       },
     },
-  }, uk);
+    uk,
+  );
   assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
   assert.ok(JSON.stringify(patch.locale?.uk).includes('Оновлений текст'));
   assert.equal(JSON.stringify(patch).includes('Cześć'), false);
@@ -156,9 +197,12 @@ test('Nested Course override composes a complete, language-scoped atomic tree an
   assert.ok(JSON.stringify(course.build.props(uk)).includes('Привіт'));
   assert.equal(JSON.stringify(course.build.props(uk)).includes('Оновлений текст'), false);
 
-  const removed = lesson.build.overrides({
-    section: { items: { intro: false }, order: [] },
-  }, uk);
+  const removed = lesson.build.overrides(
+    {
+      section: { items: { intro: false }, order: [] },
+    },
+    uk,
+  );
   assert.deepEqual(removed.base.section, []);
   assert.equal(removed.locale?.uk?.section, undefined);
   const lessonResource = lesson.build.props(uk);
@@ -170,17 +214,20 @@ test('Nested Course override composes a complete, language-scoped atomic tree an
 });
 
 test('Lesson → Question Bank applies nested question patch for only the requested language', () => {
-  const patch = lesson.build.overrides({
-    questions: {
-      answerWithNumber: {
-        items: {
-          numeric: {
-            content: { question: { items: { questionPrompt: { locale: { value: { uk: 'Скільки тепер?' } } } } } },
+  const patch = lesson.build.overrides(
+    {
+      questions: {
+        answerWithNumber: {
+          items: {
+            numeric: {
+              content: { question: { items: { questionPrompt: { locale: { value: { uk: 'Скільки тепер?' } } } } } },
+            },
           },
         },
       },
     },
-  }, uk);
+    uk,
+  );
   assert.ok(JSON.stringify(patch.locale?.uk?.questions).includes('Скільки тепер?'));
   assert.deepEqual(Object.keys(patch.locale ?? {}), ['uk']);
   assert.equal(JSON.stringify(lesson.build.props(uk)).includes('Скільки тепер?'), false);
@@ -188,26 +235,32 @@ test('Lesson → Question Bank applies nested question patch for only the reques
 
 test('SkillDomain → SkillGroup → Skill validates resolved multilingual nested overrides', () => {
   const balance = defineSkill<'balance', ['uk', 'en']>({
-    id: id('12'), slug: 'balance',
+    id: id('12'),
+    slug: 'balance',
     name: { uk: 'Рівновага', en: 'Balance' },
     description: { methodological: 'Describe forces', frontend: { uk: 'Сили', en: 'Forces' } },
   });
   const mechanics = defineSkillGroup<'mechanics', { balance: typeof balance }, ['uk', 'en']>({
-    id: id('13'), slug: 'mechanics',
+    id: id('13'),
+    slug: 'mechanics',
     name: { uk: 'Механіка', en: 'Mechanics' },
     description: { methodological: 'Mechanics' },
     skills: { items: { balance }, order: ['balance'] },
   });
   const domain = defineSkillDomain<'physics', { mechanics: typeof mechanics }, {}, ['uk']>({
-    id: id('14'), slug: 'physics',
+    id: id('14'),
+    slug: 'physics',
     title: { uk: 'Фізика', en: 'Physics' },
     description: { methodological: 'Physics overview' },
     groups: { items: { mechanics }, order: ['mechanics'] },
   });
   const resource = domain.build.props(uk);
-  const patch = domain.build.overrides({
-    groups: { items: { mechanics: { skills: { items: { balance: { name: { uk: 'Баланс' } } } } } } },
-  }, uk);
+  const patch = domain.build.overrides(
+    {
+      groups: { items: { mechanics: { skills: { items: { balance: { name: { uk: 'Баланс' } } } } } } },
+    },
+    uk,
+  );
   const effective = mergeObjects(
     mergeObjects(mergeObjects(resource.base, resource.locale?.uk ?? {}), patch.base),
     patch.locale?.uk ?? {},

@@ -26,4 +26,3 @@ export type AssessmentMethod_Overrides = DeepPartial<Pick<AssessmentMethod_Confi
 export const assessmentMethod_Override_Config_Schema: z.ZodType<AssessmentMethod_Overrides> = z.deepPartial(
   deepStrict_Schema(assessmentMethod_Config_Schema.omit({ id: true, slug: true })),
 );
-

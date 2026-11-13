@@ -12,8 +12,15 @@ import {
 } from '../../contentBlocks';
 
 export const flashcardRelationshipTypes = [
-  'reverse', 'equivalent', 'contrast', 'complementary', 'prerequisite',
-  'partOf', 'exampleOf', 'causes', 'precedes',
+  'reverse',
+  'equivalent',
+  'contrast',
+  'complementary',
+  'prerequisite',
+  'partOf',
+  'exampleOf',
+  'causes',
+  'precedes',
 ] as const;
 export type Flashcard_Relationship_Type = (typeof flashcardRelationshipTypes)[number];
 export const flashcardRelationshipPositions = ['peer', 'source', 'target'] as const;
@@ -23,7 +30,15 @@ export type Flashcard_Flag_Type = (typeof flashcardFlagTypes)[number];
 export const flashcardFlagColors = ['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning'] as const;
 export type Flashcard_Flag_Color = (typeof flashcardFlagColors)[number];
 export const flashcardFlagIcons = [
-  'list', 'warning', 'acronym', 'info', 'star', 'bookmark', 'lightbulb', 'code', 'check',
+  'list',
+  'warning',
+  'acronym',
+  'info',
+  'star',
+  'bookmark',
+  'lightbulb',
+  'code',
+  'check',
 ] as const;
 export type Flashcard_Flag_Icon = (typeof flashcardFlagIcons)[number];
 
@@ -70,10 +85,12 @@ export const flashcard_Config_Schema = identityBase_Schema.extend({
       items: z.record(z.string(), flashcardFlag_Config_Schema),
       order: z.array(z.string()),
     }),
-    relationships: z.strictObject({
-      items: z.record(z.string(), flashcardRelationship_Schema),
-      order: z.array(z.string()),
-    }).optional(),
+    relationships: z
+      .strictObject({
+        items: z.record(z.string(), flashcardRelationship_Schema),
+        order: z.array(z.string()),
+      })
+      .optional(),
   }),
   content: z.strictObject({
     front: authoredBlocks,
@@ -113,13 +130,15 @@ export type Flashcard_PropsBase = Pick<Flashcard_Props, 'id' | 'slug' | 'type'> 
 };
 
 /** Strictly derive ordinary metadata patch validation from the Config schema. */
-export type Flashcard_Metadata_Overrides = DeepPartial<
-  Pick<Flashcard_Config['parameters'], 'disabled' | 'tags'>
->;
+export type Flashcard_Metadata_Overrides = DeepPartial<Pick<Flashcard_Config['parameters'], 'disabled' | 'tags'>>;
 export const flashcard_Override_Metadata_Schema: z.ZodType<{ parameters?: Flashcard_Metadata_Overrides }> =
-  z.deepPartial(deepStrict_Schema(z.object({
-    parameters: flashcard_Config_Schema.shape.parameters.omit({ flags: true, relationships: true }),
-  })));
+  z.deepPartial(
+    deepStrict_Schema(
+      z.object({
+        parameters: flashcard_Config_Schema.shape.parameters.omit({ flags: true, relationships: true }),
+      }),
+    ),
+  );
 
 export type Flashcard_Item_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,
@@ -170,11 +189,21 @@ export const flashcardConfigurator_Schema = z.custom<{
   readonly type: 'flashcard';
   readonly build: { readonly props: () => unknown; readonly overrides: (patch: never) => unknown };
 }>(
-  value => value !== null && typeof value === 'object' && 'type' in value &&
-    value.type === 'flashcard' && 'id' in value && typeof value.id === 'string' &&
-    'slug' in value && typeof value.slug === 'string' &&
-    'build' in value && value.build !== null && typeof value.build === 'object' &&
-    'props' in value.build && typeof value.build.props === 'function' &&
-    'overrides' in value.build && typeof value.build.overrides === 'function',
+  value =>
+    value !== null &&
+    typeof value === 'object' &&
+    'type' in value &&
+    value.type === 'flashcard' &&
+    'id' in value &&
+    typeof value.id === 'string' &&
+    'slug' in value &&
+    typeof value.slug === 'string' &&
+    'build' in value &&
+    value.build !== null &&
+    typeof value.build === 'object' &&
+    'props' in value.build &&
+    typeof value.build.props === 'function' &&
+    'overrides' in value.build &&
+    typeof value.build.overrides === 'function',
   { message: 'Expected defineFlashcard Build configurator, not authored Flashcard data' },
 );

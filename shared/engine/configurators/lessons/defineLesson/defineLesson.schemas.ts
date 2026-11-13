@@ -11,7 +11,9 @@ export { lessonQuestionTypes };
 export type Lesson_Question_Type = (typeof lessonQuestionTypes)[number];
 export type Lesson_QuestionBank = Partial<Record<Lesson_Question_Type, Record<string, Question_Configurator>>>;
 
-const languages = z.array(languageCode_Schema).nonempty()
+const languages = z
+  .array(languageCode_Schema)
+  .nonempty()
   .refine(list => new Set(list).size === list.length, 'Lesson languages must be unique');
 const params = paramsBase_Schema.shape.params.extend({
   requireQuiz: z.boolean(),
@@ -51,9 +53,13 @@ export const lesson_Config_Schema = identity.extend({
 });
 export type Lesson_Config = z.infer<typeof lesson_Config_Schema>;
 
-const sectionResolved = z.object({
-  id: z.uuid(), slug: z.string().min(1), type: z.enum(sectionTypes),
-}).catchall(z.unknown());
+const sectionResolved = z
+  .object({
+    id: z.uuid(),
+    slug: z.string().min(1),
+    type: z.enum(sectionTypes),
+  })
+  .catchall(z.unknown());
 export const lesson_Props_Schema = identity.extend({
   ...addUnifiedLocale({ title: localizationSwitch.props }),
   section: z.array(sectionResolved),
@@ -78,10 +84,12 @@ export type Lesson_Metadata_Overrides = {
   locale?: DeepPartial<Lesson_Config['locale']>;
 };
 export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Overrides> = z.deepPartial(
-  deepStrict_Schema(z.object({
-    params: lesson_Config_Schema.shape.params.omit({ languages: true }),
-    locale: lesson_Config_Schema.shape.locale,
-  })),
+  deepStrict_Schema(
+    z.object({
+      params: lesson_Config_Schema.shape.params.omit({ languages: true }),
+      locale: lesson_Config_Schema.shape.locale,
+    }),
+  ),
 );
 
 type ExistingPatches<Items extends Record<string, object>> = {
@@ -97,11 +105,11 @@ export type Lesson_Ordered_Overrides<
   additionalItems?: Added & { [Key in keyof Items]?: never };
   order?: Extract<keyof Items | keyof NoInfer<Added>, string>[];
 };
-type QuestionGroup<Bank extends Lesson_QuestionBank, Kind extends Lesson_Question_Type> =
-  Kind extends keyof Bank
-    ? NonNullable<Bank[Kind]> extends Record<string, Question_Configurator>
-      ? NonNullable<Bank[Kind]> : {}
-    : {};
+type QuestionGroup<Bank extends Lesson_QuestionBank, Kind extends Lesson_Question_Type> = Kind extends keyof Bank
+  ? NonNullable<Bank[Kind]> extends Record<string, Question_Configurator>
+    ? NonNullable<Bank[Kind]>
+    : {}
+  : {};
 export type Lesson_Question_Overrides<
   Questions extends Lesson_QuestionBank,
   AddedQuestions extends Lesson_QuestionBank,
@@ -126,15 +134,26 @@ export type Lesson_Overrides<
 };
 
 export const lessonConfigurator_Schema = z.custom<{
-  readonly id: string; readonly slug: string; readonly type: 'lesson';
+  readonly id: string;
+  readonly slug: string;
+  readonly type: 'lesson';
   readonly build: { readonly props: () => unknown; readonly overrides: (patch: never) => unknown };
 }>(
-  value => value !== null && typeof value === 'object' &&
-    'type' in value && value.type === 'lesson' &&
-    'id' in value && typeof value.id === 'string' &&
-    'slug' in value && typeof value.slug === 'string' &&
-    'build' in value && value.build !== null && typeof value.build === 'object' &&
-    'props' in value.build && typeof value.build.props === 'function' &&
-    'overrides' in value.build && typeof value.build.overrides === 'function',
+  value =>
+    value !== null &&
+    typeof value === 'object' &&
+    'type' in value &&
+    value.type === 'lesson' &&
+    'id' in value &&
+    typeof value.id === 'string' &&
+    'slug' in value &&
+    typeof value.slug === 'string' &&
+    'build' in value &&
+    value.build !== null &&
+    typeof value.build === 'object' &&
+    'props' in value.build &&
+    typeof value.build.props === 'function' &&
+    'overrides' in value.build &&
+    typeof value.build.overrides === 'function',
   { message: 'Expected defineLesson Build configurator, not authored Lesson data' },
 );

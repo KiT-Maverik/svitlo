@@ -24,7 +24,8 @@ export type PracticeSection_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;
 
-export const practiceSection_Config_Schema = sectionBase.extend({ ...addUnifiedLocale(locale('config')),
+export const practiceSection_Config_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('config')),
   content: z.object({
     items: z.record(z.string(), z.custom<ContentBlock_Configurator>()),
     order: z.array(z.string()),
@@ -32,7 +33,8 @@ export const practiceSection_Config_Schema = sectionBase.extend({ ...addUnifiedL
 });
 export type PracticeSection_Config = z.infer<typeof practiceSection_Config_Schema>;
 
-export const practiceSection_Props_Schema = sectionBase.extend({ ...addUnifiedLocale(locale('props')),
+export const practiceSection_Props_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('props')),
   content: z.array(contentBlockResolved_Schema),
 });
 export type PracticeSection_Props = Omit<z.infer<typeof practiceSection_Props_Schema>, 'content'> & {

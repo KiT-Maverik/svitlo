@@ -7,7 +7,9 @@ type Expect<T extends true> = T;
 
 const text = defineText<'intro', ['en', 'uk']>({
   id: 'b775647f-203d-481a-a1c7-4d331c779d61',
-  type: 'text', slug: 'intro', params: {},
+  type: 'text',
+  slug: 'intro',
+  params: {},
   locale: { value: { en: 'Hello', uk: 'Привіт' } },
 });
 type TextSlug = Expect<Equal<typeof text.slug, 'intro'>>;
@@ -20,12 +22,17 @@ text.build.props();
 
 const item = defineCheckpointItem({
   id: 'b775647f-203d-481a-a1c7-4d331c779d62',
-  type: 'checkpointItem', slug: 'item', question: text,
+  type: 'checkpointItem',
+  slug: 'item',
+  question: text,
   answer: { items: { intro: text }, order: ['intro'] },
 });
 const checkpoint = defineCheckpoint({
   id: 'b775647f-203d-481a-a1c7-4d331c779d63',
-  type: 'checkpoint', slug: 'review', params: {}, locale: { title: 'Review' },
+  type: 'checkpoint',
+  slug: 'review',
+  params: {},
+  locale: { title: 'Review' },
   content: { items: { item }, order: ['item'] },
 });
 type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;

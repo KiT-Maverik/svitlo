@@ -1,5 +1,11 @@
 import type { LanguageCodes } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
+import type {
+  ChildrenSupporting,
+  DeepPartial,
+  LanguageScope,
+  PublicationLanguageOptions,
+  RequireLanguages,
+} from '#types';
 
 import {
   mergeForValidation,
@@ -68,14 +74,22 @@ const validate = (config: Module_Config): void => {
   ];
   if (isRecord(config.content) && isRecord(config.content.items)) {
     for (const [slug, child] of Object.entries(config.content.items)) {
-      if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+      if (
+        !isRecord(child) ||
+        !isRecord(child.build) ||
+        typeof child.build.props !== 'function' ||
+        typeof child.build.overrides !== 'function'
+      ) {
         errors.push('content.items.' + slug + ': child must expose the stateless Build API');
         continue;
       }
-      if (!isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== slug ||
-        child.config.base.type !== child.type) {
+      if (
+        !isRecord(child.config) ||
+        !isRecord(child.config.base) ||
+        child.config.base.id !== child.id ||
+        child.config.base.slug !== slug ||
+        child.config.base.type !== child.type
+      ) {
         errors.push('content.items.' + slug + ': immutable child identity does not match its authored metadata');
       }
     }
@@ -102,7 +116,8 @@ const parseChild = (value: unknown): Module_Child_Props => {
       if (!parsed.success) throw new Error('Invalid Module child Props: ' + parsed.error.message);
       return structuredClone(value) as Module_Child_Props;
     }
-    default: throw new Error('Unsupported Module child type: ' + String(value.type));
+    default:
+      throw new Error('Unsupported Module child type: ' + String(value.type));
   }
 };
 
@@ -146,7 +161,6 @@ export const defineModule = <
     slug: Slug;
     content: { items: Items & ChildrenSupporting<Languages, Items>; order: string[] };
     locale: RequireLanguages<Module_Config['locale'], Languages>;
-
   },
 ): Module_Configurator<Slug, Items, Languages> => {
   validate(config);
@@ -212,14 +226,20 @@ export const defineModule = <
           (resource.locale?.[language] ?? {}) as Record<string, unknown>,
         );
         const withBasePatch = mergeForValidation<Record<string, unknown>>(
-          original, (patch?.base ?? {}) as Record<string, unknown>,
+          original,
+          (patch?.base ?? {}) as Record<string, unknown>,
         );
         const effective = mergeForValidation<Record<string, unknown>>(
-          withBasePatch, (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
+          withBasePatch,
+          (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
         );
         return parseChild(effective);
       });
-      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
+      if (
+        entries.some(
+          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+        )
+      ) {
         locale[language] = resolved;
       }
     }
@@ -247,17 +267,22 @@ export const defineModule = <
     }
     const result: ModulePublication<ModulePropsBase> = {
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         content: children.base,
       },
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
-      module_Props_Schema.parse(mergeForValidation<Record<string, unknown>>(
-        result.base as Record<string, unknown>,
-        (result.locale?.[language] ?? {}) as Record<string, unknown>,
-      ));
+      module_Props_Schema.parse(
+        mergeForValidation<Record<string, unknown>>(
+          result.base as Record<string, unknown>,
+          (result.locale?.[language] ?? {}) as Record<string, unknown>,
+        ),
+      );
     }
     return result;
   };
@@ -301,7 +326,8 @@ export const defineModule = <
       if (!isRecord(changes)) throw new Error('content.items must be a slug-keyed object');
       if (!isRecord(additions)) throw new Error('content.additionalItems must be a slug-keyed configurator map');
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
-        path: 'content.additionalItems', itemLabel: 'Module child',
+        path: 'content.additionalItems',
+        itemLabel: 'Module child',
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -310,11 +336,17 @@ export const defineModule = <
       let structureChanged = Object.keys(additions).length > 0;
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Module child slug: ' + key);
-        if (!isRecord(child) || !isRecord(child.build) ||
-          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-          !isRecord(child.config) || !isRecord(child.config.base) ||
-          child.config.base.id !== child.id || child.config.base.slug !== key ||
-          child.config.base.type !== child.type) {
+        if (
+          !isRecord(child) ||
+          !isRecord(child.build) ||
+          typeof child.build.props !== 'function' ||
+          typeof child.build.overrides !== 'function' ||
+          !isRecord(child.config) ||
+          !isRecord(child.config.base) ||
+          child.config.base.id !== child.id ||
+          child.config.base.slug !== key ||
+          child.config.base.type !== child.type
+        ) {
           throw new Error('New Module child must expose a matching immutable Build identity: ' + key);
         }
         active[key] = child as Module_Child;
@@ -361,7 +393,11 @@ export const defineModule = <
   };
 
   return {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

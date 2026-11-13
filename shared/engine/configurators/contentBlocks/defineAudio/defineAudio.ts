@@ -1,7 +1,15 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   audio_Config_Schema,
@@ -89,7 +97,9 @@ export const defineAudio = <const Slug extends string, const Languages extends r
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Audio_Config>;
 
-  const props = (options: PublicationLanguageOptions<Languages>): AudioPropsPublication<ContentBlock_Audio_PropsBase> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): AudioPropsPublication<ContentBlock_Audio_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const result = buildAudioProps(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
@@ -97,7 +107,10 @@ export const defineAudio = <const Slug extends string, const Languages extends r
     return result;
   };
 
-  const overrides = (patch: ContentBlock_Audio_Overrides, options: PublicationLanguageOptions<Languages>): AudioPropsPublication<AudioOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Audio_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): AudioPropsPublication<AudioOverridePropsBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = audio_Override_Config_Schema.parse(patch);

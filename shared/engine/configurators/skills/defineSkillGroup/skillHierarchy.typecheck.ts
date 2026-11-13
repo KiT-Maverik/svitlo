@@ -5,37 +5,47 @@ import { defineSkillDomain } from '../defineSkillDomain';
 
 const id = 'b775647f-203d-481a-a1c7-4d331c779d01';
 const both = defineSkill<'both', ['en', 'uk']>({
-  id, slug: 'both',
+  id,
+  slug: 'both',
   name: { en: 'Both', uk: 'Обидві' },
   description: { methodological: 'Compare both cases', frontend: { en: 'Both', uk: 'Обидві' } },
 });
 const englishOnly = defineSkill<'englishOnly', ['en']>({
-  id, slug: 'englishOnly',
+  id,
+  slug: 'englishOnly',
   name: { en: 'English only' },
   description: { methodological: 'English coverage', frontend: { en: 'English copy' } },
 });
 
 // Every child must cover at least all parent languages; extra child languages are valid.
 const group = defineSkillGroup<'group', { both: typeof both }, ['uk']>({
-  id, slug: 'group', name: { uk: 'Група' },
+  id,
+  slug: 'group',
+  name: { uk: 'Група' },
   description: { methodological: 'Group context' },
   skills: { items: { both }, order: ['both'] },
 });
 const domain = defineSkillDomain<'domain', { group: typeof group }, {}, ['uk']>({
-  id, slug: 'domain', title: { uk: 'Область' },
+  id,
+  slug: 'domain',
+  title: { uk: 'Область' },
   description: { methodological: 'Domain context' },
   groups: { items: { group }, order: ['group'] },
 });
 
 // Compile-time lower-level coverage must not widen through either Group or Domain.
 defineSkillGroup<'invalidGroup', { englishOnly: typeof englishOnly }, ['en', 'uk']>({
-  id, slug: 'invalidGroup', name: { en: 'Invalid', uk: 'Некоректна' },
+  id,
+  slug: 'invalidGroup',
+  name: { en: 'Invalid', uk: 'Некоректна' },
   description: { methodological: 'Incompatible Skill language' },
   // @ts-expect-error Ukrainian is absent from the Skill language tuple.
   skills: { items: { englishOnly }, order: ['englishOnly'] },
 });
 defineSkillDomain<'invalidDomain', { group: typeof group }, {}, ['en', 'uk']>({
-  id, slug: 'invalidDomain', title: { en: 'Invalid', uk: 'Некоректна' },
+  id,
+  slug: 'invalidDomain',
+  title: { en: 'Invalid', uk: 'Некоректна' },
   description: { methodological: 'Incompatible Group language' },
   // @ts-expect-error The Group only supports Ukrainian, not English.
   groups: { items: { group }, order: ['group'] },
@@ -45,12 +55,20 @@ defineSkillDomain<'invalidDomain', { group: typeof group }, {}, ['en', 'uk']>({
 group.build.overrides({ skills: { items: { both: { name: { uk: 'Двоє' } } } } }, { languages: ['uk'] });
 // @ts-expect-error Identity fields are not overridable.
 both.build.overrides({ slug: 'altered' }, { languages: ['en', 'uk'] });
-group.build.overrides({ skills: { items: {
-  // @ts-expect-error Unknown Skill child key must be rejected at the type boundary.
-  missing: { name: 'Unknown' },
-} } }, { languages: ['uk'] });
+group.build.overrides(
+  {
+    skills: {
+      items: {
+        // @ts-expect-error Unknown Skill child key must be rejected at the type boundary.
+        missing: { name: 'Unknown' },
+      },
+    },
+  },
+  { languages: ['uk'] },
+);
 defineSkill<'incomplete', ['en', 'uk']>({
-  id, slug: 'incomplete',
+  id,
+  slug: 'incomplete',
   // @ts-expect-error Unsupported language cannot be omitted from a complete authored dictionary.
   name: { en: 'Incomplete' },
   description: { methodological: 'Incomplete', frontend: { en: 'Only English', uk: 'Англійська' } },

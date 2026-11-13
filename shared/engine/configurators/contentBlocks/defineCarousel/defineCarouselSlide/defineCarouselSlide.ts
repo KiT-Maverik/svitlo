@@ -1,6 +1,14 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../../_shared__configurators';
 import { validateLocalAssetPaths } from '../../_shared__contentBlocks';
 import {
   carouselSlide_Config_Schema,
@@ -60,7 +68,10 @@ export const defineCarouselSlide = <const Slug extends string, const Languages e
     validateRequestedPublication(carouselSlide_Props_Schema, result, languages);
     return result;
   };
-  const overrides = (patch: ContentBlock_CarouselSlide_Overrides, options: PublicationLanguageOptions<Languages>): SlidePublication<SlideOverrideBase> => {
+  const overrides = (
+    patch: ContentBlock_CarouselSlide_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): SlidePublication<SlideOverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
       const parsed = carouselSlide_Override_Config_Schema.parse(patch);

@@ -87,10 +87,13 @@ test('Checkpoint publishes only validated, sparse metadata overrides', () => {
   const before = checkpoint.build.props({ languages: ['en', 'uk'] });
   assert.deepEqual(checkpoint.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
   assert.deepEqual(
-    checkpoint.build.overrides({
-      params: { disabled: true },
-      locale: { title: { uk: 'Огляд' } },
-    }, { languages: ['en', 'uk'] }),
+    checkpoint.build.overrides(
+      {
+        params: { disabled: true },
+        locale: { title: { uk: 'Огляд' } },
+      },
+      { languages: ['en', 'uk'] },
+    ),
     {
       base: { params: { disabled: true } },
       locale: { uk: { locale: { title: 'Огляд' } } },
@@ -102,7 +105,10 @@ test('Checkpoint publishes only validated, sparse metadata overrides', () => {
 test('Removing a localized item does not generate a redundant locale array', () => {
   const { checkpoint } = example();
   const source = checkpoint.build.props({ languages: ['en', 'uk'] });
-  const patch = checkpoint.build.overrides({ content: { items: { first: false }, order: ['second'] } }, { languages: ['en', 'uk'] });
+  const patch = checkpoint.build.overrides(
+    { content: { items: { first: false }, order: ['second'] } },
+    { languages: ['en', 'uk'] },
+  );
   assert.deepEqual(
     patch.base.content?.map(item => item.slug),
     ['second'],

@@ -23,7 +23,11 @@ const numeracy = defineSkill({ ...fields, slug: 'numeracy' });
 
 type ReadingSlug = Expect<Equal<typeof reading.slug, 'reading'>>;
 
-const group = defineSkillGroup({ ...fields, slug: 'literacy', skills: { items: { reading, writing }, order: ['reading','writing'] } });
+const group = defineSkillGroup({
+  ...fields,
+  slug: 'literacy',
+  skills: { items: { reading, writing }, order: ['reading', 'writing'] },
+});
 type GroupSlug = Expect<Equal<typeof group.slug, 'literacy'>>;
 type GroupKeys = Expect<Equal<keyof typeof group.skill, 'reading' | 'writing'>>;
 type ReadingValue = Expect<Equal<typeof group.skill.reading, typeof reading>>;
@@ -63,7 +67,11 @@ type EmptyGroupKeys = Expect<Equal<keyof typeof emptyDomain.group, never>>;
 type EmptySkillKeys = Expect<Equal<keyof typeof emptyDomain.skill, never>>;
 
 const readonlySkills = [reading, writing] as const;
-const readonlyGroup = defineSkillGroup({ ...fields, slug: 'readonly', skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading','writing'] } });
+const readonlyGroup = defineSkillGroup({
+  ...fields,
+  slug: 'readonly',
+  skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading', 'writing'] },
+});
 type ReadonlyKeys = Expect<Equal<keyof typeof readonlyGroup.skill, 'reading' | 'writing'>>;
 
 const readonlyDomain = defineSkillDomain({
@@ -72,7 +80,7 @@ const readonlyDomain = defineSkillDomain({
   title: localized,
   description: fields.description,
   groups: { items: { literacy: group }, order: ['literacy'] },
-  skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading','writing'] },
+  skills: { items: configuratorArrayToSlugMap(readonlySkills), order: ['reading', 'writing'] },
 });
 type ReadonlyDomainGroupKeys = Expect<Equal<keyof typeof readonlyDomain.group, 'literacy'>>;
 type ReadonlyDomainSkillKeys = Expect<Equal<keyof typeof readonlyDomain.skill, 'reading' | 'writing'>>;

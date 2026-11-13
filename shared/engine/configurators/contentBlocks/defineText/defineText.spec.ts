@@ -116,9 +116,12 @@ test('Text checks semantic variable rules against the temporarily merged config'
     },
   });
   assert.deepEqual(
-    text.build.overrides({
-      locale: { value: { uk: 'Вітаю %_%id: personName; value: Оля%_%' } },
-    }, { languages: ['en', 'uk'] }),
+    text.build.overrides(
+      {
+        locale: { value: { uk: 'Вітаю %_%id: personName; value: Оля%_%' } },
+      },
+      { languages: ['en', 'uk'] },
+    ),
     {
       base: {},
       locale: { uk: { locale: { value: 'Вітаю %_%id: personName; value: Оля%_%' } } },
@@ -129,7 +132,11 @@ test('Text checks semantic variable rules against the temporarily merged config'
     /missing configured Text fragment "personName"/,
   );
   assert.throws(
-    () => text.build.overrides({ params: { variables: { anotherName: { applyStyle: ['bold'] } } } }, { languages: ['en', 'uk'] }),
+    () =>
+      text.build.overrides(
+        { params: { variables: { anotherName: { applyStyle: ['bold'] } } } },
+        { languages: ['en', 'uk'] },
+      ),
     /Text variables validation failed/,
   );
   assert.doesNotThrow(() =>
@@ -151,12 +158,15 @@ test('Text allows deep-partial nested patches and publishes only those keys', ()
     locale: { value: 'Hi %_%id: personName; value: Ada%_%' },
   });
   assert.deepEqual(
-    text.build.overrides({
-      params: {
-        wrap: { typographyProps: { weight: 'bold' } },
-        variables: { personName: { applyColor: 'blue' } },
+    text.build.overrides(
+      {
+        params: {
+          wrap: { typographyProps: { weight: 'bold' } },
+          variables: { personName: { applyColor: 'blue' } },
+        },
       },
-    }, { languages: ['en', 'uk'] }),
+      { languages: ['en', 'uk'] },
+    ),
     {
       base: {
         params: {
@@ -197,22 +207,29 @@ test('Text strictly rejects unknown override fields with cause and identity', ()
 test('Text rejects positional arrays in authored locale values and override patches', () => {
   const text = defineText({ ...identity, locale: { value: 'Welcome' } });
   assert.throws(() => defineText({ ...identity, locale: { value: ['not a locale dictionary'] } } as never));
-  assert.throws(() => text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, { languages: ['en', 'uk'] }));
+  assert.throws(() =>
+    text.build.overrides({ locale: { value: ['not a locale dictionary'] } } as never, { languages: ['en', 'uk'] }),
+  );
 });
 
 test('Text requires typographyProps to be a JSON-compatible object', () => {
   const text = defineText({ ...identity, locale: { value: 'Welcome' } });
   assert.deepEqual(
-    text.build.overrides({
-      params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } },
-    }, { languages: ['en', 'uk'] }),
+    text.build.overrides(
+      {
+        params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } },
+      },
+      { languages: ['en', 'uk'] },
+    ),
     {
       base: { params: { wrap: { enabled: true, typographyProps: { customMUIProp: 42 } } } },
       locale: undefined,
     },
   );
   for (const value of ['not-an-object', { onClick: () => 42 }, { nested: { invalid: undefined } }, { nested: 1n }]) {
-    assert.throws(() => text.build.overrides({ params: { wrap: { typographyProps: value as never } } }, { languages: ['en', 'uk'] }));
+    assert.throws(() =>
+      text.build.overrides({ params: { wrap: { typographyProps: value as never } } }, { languages: ['en', 'uk'] }),
+    );
   }
 });
 
@@ -238,7 +255,9 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
 
   const assembled = text.build.props({ languages: ['en'] });
   (assembled.base.params.wrap?.typographyProps as { nested: { weight: string } }).nested.weight = 'mutated output';
-  assert.deepEqual(text.build.props({ languages: ['en'] }).base.params.wrap?.typographyProps, { nested: { weight: 'normal' } });
+  assert.deepEqual(text.build.props({ languages: ['en'] }).base.params.wrap?.typographyProps, {
+    nested: { weight: 'normal' },
+  });
 
   const patch = { params: { wrap: { typographyProps: { nested: { weight: 'bold' } } } } };
   const first = text.build.overrides(patch, { languages: ['en'] });
@@ -253,7 +272,8 @@ test('Text keeps snapshots and assembled JSON independent of caller mutations', 
 
 test('Text validates requested publication languages, not every authored translation', () => {
   const text = defineText<'trilingual', ['uk', 'en', 'pl']>({
-    ...identity, slug: 'trilingual',
+    ...identity,
+    slug: 'trilingual',
     locale: { value: { uk: 'Привіт', en: 'Hello', pl: 'Cześć' } },
   });
   const selected = text.build.props({ languages: ['uk'] });

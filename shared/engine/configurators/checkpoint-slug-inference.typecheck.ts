@@ -52,8 +52,14 @@ const checkpoint = defineCheckpoint({
 
 type CheckpointSlug = Expect<Equal<typeof checkpoint.slug, 'review'>>;
 type CheckpointItemKeys = Expect<Equal<keyof typeof checkpoint.content.items, 'whatIsLight'>>;
-checkpoint.content.items.whatIsLight.question.build.overrides({ locale: { value: 'Updated question' } }, { languages: ['en', 'uk'] });
-checkpoint.content.items.whatIsLight.answer.items.answer.build.overrides({ locale: { value: 'Updated answer' } }, { languages: ['en', 'uk'] });
+checkpoint.content.items.whatIsLight.question.build.overrides(
+  { locale: { value: 'Updated question' } },
+  { languages: ['en', 'uk'] },
+);
+checkpoint.content.items.whatIsLight.answer.items.answer.build.overrides(
+  { locale: { value: 'Updated answer' } },
+  { languages: ['en', 'uk'] },
+);
 // @ts-expect-error Checkpoint item keys must be inferred literally.
 void checkpoint.content.items.unknown;
 
@@ -64,14 +70,17 @@ const later = defineText({
   params: {},
   locale: { value: 'Later answer' },
 });
-item.build.overrides({
-  question: { locale: { value: { uk: 'Оновлене питання' } } },
-  answer: {
-    items: { answer: { locale: { value: 'Updated' } } },
-    additionalItems: configuratorArrayToSlugMap([later]),
-    order: ['answer', 'later'],
+item.build.overrides(
+  {
+    question: { locale: { value: { uk: 'Оновлене питання' } } },
+    answer: {
+      items: { answer: { locale: { value: 'Updated' } } },
+      additionalItems: configuratorArrayToSlugMap([later]),
+      order: ['answer', 'later'],
+    },
   },
-}, { languages: ['en', 'uk'] });
+  { languages: ['en', 'uk'] },
+);
 // @ts-expect-error Only existing answer keys can be patched.
 item.build.overrides({ answer: { items: { unknown: { locale: { value: 'Unknown' } } } } }, { languages: ['en', 'uk'] });
 // @ts-expect-error The mandatory question cannot be disabled.
@@ -81,7 +90,10 @@ item.build.overrides({ answer: { order: ['unknown'] } }, { languages: ['en', 'uk
 // @ts-expect-error Identity cannot be changed.
 item.build.overrides({ slug: 'renamed' }, { languages: ['en', 'uk'] });
 // @ts-expect-error A new child must not reuse an authored slug.
-item.build.overrides({ answer: { additionalItems: configuratorArrayToSlugMap([answer]) } }, { languages: ['en', 'uk'] });
+item.build.overrides(
+  { answer: { additionalItems: configuratorArrayToSlugMap([answer]) } },
+  { languages: ['en', 'uk'] },
+);
 
 const notQuestion: import('./contentBlocks/defineCheckpoint').ContentBlock_CheckpointItem_Config = {
   id: 'b775647f-203d-481a-a1c7-4d331c779d6d',
@@ -114,12 +126,18 @@ const laterItem = defineCheckpointItem({
   question,
   answer: { items: configuratorArrayToSlugMap([later]), order: ['later'] },
 });
-checkpoint.build.overrides({
-  content: {
-    items: { whatIsLight: { question: { locale: { value: { uk: 'Оновлене?' } } } } },
-    additionalItems: configuratorArrayToSlugMap([laterItem]),
-    order: ['whatIsLight', 'laterItem'],
+checkpoint.build.overrides(
+  {
+    content: {
+      items: { whatIsLight: { question: { locale: { value: { uk: 'Оновлене?' } } } } },
+      additionalItems: configuratorArrayToSlugMap([laterItem]),
+      order: ['whatIsLight', 'laterItem'],
+    },
   },
-}, { languages: ['en', 'uk'] });
+  { languages: ['en', 'uk'] },
+);
 // @ts-expect-error Existing CheckpointItem slugs cannot be added again.
-checkpoint.build.overrides({ content: { additionalItems: configuratorArrayToSlugMap([item]) } }, { languages: ['en', 'uk'] });
+checkpoint.build.overrides(
+  { content: { additionalItems: configuratorArrayToSlugMap([item]) } },
+  { languages: ['en', 'uk'] },
+);

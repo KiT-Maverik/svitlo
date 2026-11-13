@@ -1,5 +1,9 @@
 import type {
-  DeepPartial, LanguageScope, ChildrenSupporting, RequireLanguages, PublicationLanguageOptions,
+  DeepPartial,
+  LanguageScope,
+  ChildrenSupporting,
+  RequireLanguages,
+  PublicationLanguageOptions,
 } from '#types';
 import type { LanguageCodes } from '#schemas';
 
@@ -19,16 +23,26 @@ import type { Flashcard_Configurator } from '../../flashcards';
 import { questionTypes } from '../../questions';
 import type { Question_Configurator } from '../../questions';
 import {
-  lesson_Config_Schema, lesson_Override_Metadata_Schema, lesson_Props_Schema, lessonQuestionTypes,
-  type Lesson_Config, type Lesson_PropsBase, type Lesson_Overrides, type Lesson_QuestionBank,
+  lesson_Config_Schema,
+  lesson_Override_Metadata_Schema,
+  lesson_Props_Schema,
+  lessonQuestionTypes,
+  type Lesson_Config,
+  type Lesson_PropsBase,
+  type Lesson_Overrides,
+  type Lesson_QuestionBank,
   type Lesson_Question_Type,
 } from './defineLesson.schemas';
 
 type Child = {
-  id: string; slug: string; type: string;
+  id: string;
+  slug: string;
+  type: string;
   config?: { base?: { id?: string; slug?: string; type?: string }; locales?: () => unknown };
-  build: { props: (options: PublicationLanguageOptions) => ChildResource;
-    overrides: (patch: never, options: PublicationLanguageOptions) => ChildPatch };
+  build: {
+    props: (options: PublicationLanguageOptions) => ChildResource;
+    overrides: (patch: never, options: PublicationLanguageOptions) => ChildPatch;
+  };
 };
 type ChildResource = {
   base: Record<string, unknown>;
@@ -76,16 +90,25 @@ const validatePublication = (
     try {
       lesson_Props_Schema.parse(effective);
     } catch (error) {
-      throw new Error('Invalid Lesson Props for language ' + language + ': ' +
-        (error instanceof Error ? error.message : String(error)), { cause: error });
+      throw new Error(
+        'Invalid Lesson Props for language ' +
+          language +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
     }
   }
 };
 const isBuildChild = (value: unknown): value is Child => {
   if (!isRecord(value) || !isRecord(value.build)) return false;
-  return typeof value.id === 'string' && typeof value.slug === 'string' &&
-    typeof value.type === 'string' && typeof value.build.props === 'function' &&
-    typeof value.build.overrides === 'function';
+  return (
+    typeof value.id === 'string' &&
+    typeof value.slug === 'string' &&
+    typeof value.type === 'string' &&
+    typeof value.build.props === 'function' &&
+    typeof value.build.overrides === 'function'
+  );
 };
 
 /** A required Quiz must remain present and enabled in the effective Lesson sections. */
@@ -102,21 +125,31 @@ const validate = (config: Lesson_Config): void => {
     const issues = [
       ...validateOrderedKeys(collection, { path: name }),
       ...validateSluggedConfiguratorMap(collection.items, kinds, {
-        path: name + '.items', itemLabel: name + ' child',
+        path: name + '.items',
+        itemLabel: name + ' child',
       }),
     ];
     if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
     for (const [key, child] of Object.entries(collection.items)) {
-      if (!isBuildChild(child) || !isRecord(child.config?.base) ||
-          child.config.base.id !== child.id || child.config.base.slug !== key ||
-          child.config.base.type !== child.type) {
+      if (
+        !isBuildChild(child) ||
+        !isRecord(child.config?.base) ||
+        child.config.base.id !== child.id ||
+        child.config.base.slug !== key ||
+        child.config.base.type !== child.type
+      ) {
         throw new Error('Invalid Lesson ' + name + ' Build API or identity: ' + key);
       }
     }
   }
-  if (config.params.requireQuiz && !hasEnabledQuiz(
-    config.section.order.map(key => config.section.items[key].build.props({ languages: config.params.languages }).base),
-  )) {
+  if (
+    config.params.requireQuiz &&
+    !hasEnabledQuiz(
+      config.section.order.map(
+        key => config.section.items[key].build.props({ languages: config.params.languages }).base,
+      ),
+    )
+  ) {
     throw new Error('Lesson requires at least one enabled Quiz section');
   }
   for (const [kind, entries] of Object.entries(config.questions ?? {})) {
@@ -124,7 +157,8 @@ const validate = (config: Lesson_Config): void => {
       throw new Error('Unknown Lesson question type: ' + kind);
     }
     const issues = validateSluggedConfiguratorMap(entries, [kind], {
-      path: 'questions.' + kind, itemLabel: 'Lesson Question',
+      path: 'questions.' + kind,
+      itemLabel: 'Lesson Question',
     });
     if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
     for (const [key, child] of Object.entries(entries)) {
@@ -158,7 +192,9 @@ export function defineLesson<
 ) {
   validate(config as unknown as Lesson_Config);
   const metadataSchema = lesson_Config_Schema.omit({
-    section: true, flashcards: true, questions: true,
+    section: true,
+    flashcards: true,
+    questions: true,
   });
   const authored = structuredClone(metadataSchema.parse(config));
   const copyAuthored = () => metadataSchema.parse(structuredClone(authored));
@@ -173,24 +209,31 @@ export function defineLesson<
   const section = { items: { ...initialSections }, order: [...sectionOrder] };
   const flashcards = { items: { ...initialCards }, order: [...flashcardOrder] };
   // Configurators contain methods and cannot be structured-cloned. Copy only the bank maps.
-  const questions = Object.fromEntries(
-    Object.entries(initialQuestions).map(([kind, items]) => [kind, { ...items }]),
-  );
+  const questions = Object.fromEntries(Object.entries(initialQuestions).map(([kind, items]) => [kind, { ...items }]));
   const base = {
-    id, slug, type, programId: authored.programId, skills: [...authored.skills],
-    params: structuredClone(authored.params), locale: onlyStrings(authored.locale),
+    id,
+    slug,
+    type,
+    programId: authored.programId,
+    skills: [...authored.skills],
+    params: structuredClone(authored.params),
+    locale: onlyStrings(authored.locale),
     ...(authored.events !== undefined ? { events: structuredClone(authored.events) } : {}),
   };
 
   const buildOrdered = (
-    items: Record<string, unknown>, order: readonly string[], languages: readonly LanguageCodes[],
+    items: Record<string, unknown>,
+    order: readonly string[],
+    languages: readonly LanguageCodes[],
     changes: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
       const child = items[key];
       if (!isBuildChild(child)) throw new Error('Nested child is missing Build API: ' + key);
       const resource = child.build.props({ languages });
-      const patch = Object.hasOwn(changes, key) ? child.build.overrides(changes[key] as never, { languages }) : undefined;
+      const patch = Object.hasOwn(changes, key)
+        ? child.build.overrides(changes[key] as never, { languages })
+        : undefined;
       return { resource, patch };
     });
     const bases = entries.map(({ resource, patch }) =>
@@ -198,9 +241,17 @@ export function defineLesson<
     );
     const locales: Partial<Record<LanguageCodes, Record<string, unknown>[]>> = {};
     for (const code of languages) {
-      if (!entries.some(({ resource, patch }) => resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined)) continue;
+      if (
+        !entries.some(
+          ({ resource, patch }) => resource.locale?.[code] !== undefined || patch?.locale?.[code] !== undefined,
+        )
+      )
+        continue;
       locales[code] = entries.map(({ resource, patch }) => {
-        const original = mergeForValidation(resource.base, (resource.locale?.[code] ?? {}) as DeepPartial<typeof resource.base>);
+        const original = mergeForValidation(
+          resource.base,
+          (resource.locale?.[code] ?? {}) as DeepPartial<typeof resource.base>,
+        );
         const effective = patch ? mergeForValidation(original, patch.base) : original;
         return patch?.locale?.[code] ? mergeForValidation(effective, patch.locale[code]) : effective;
       });
@@ -216,7 +267,12 @@ export function defineLesson<
     const base: NonNullable<Lesson_PropsBase['questions']> = {};
     const locales: Partial<Record<LanguageCodes, NonNullable<Lesson_PropsBase['questions']>>> = {};
     for (const [kind, items] of Object.entries(bank)) {
-      const built = buildOrdered(items, Object.keys(items).sort(), languages, changes[kind as Lesson_Question_Type] ?? {});
+      const built = buildOrdered(
+        items,
+        Object.keys(items).sort(),
+        languages,
+        changes[kind as Lesson_Question_Type] ?? {},
+      );
       base[kind as Lesson_Question_Type] = built.bases;
       for (const [code, entries] of Object.entries(built.locales)) {
         (locales[code as LanguageCodes] ??= {})[kind as Lesson_Question_Type] = entries;
@@ -226,7 +282,9 @@ export function defineLesson<
   };
 
   const addLocalizedArray = (
-    files: Files, key: 'section' | 'flashcards', values: ReturnType<typeof buildOrdered>['locales'],
+    files: Files,
+    key: 'section' | 'flashcards',
+    values: ReturnType<typeof buildOrdered>['locales'],
   ) => {
     for (const [code, children] of Object.entries(values)) {
       (files[code as LanguageCodes] ??= {})[key] = children as never;
@@ -242,7 +300,8 @@ export function defineLesson<
     const languages = resolvePublicationLanguages(options);
     const own = copyAuthored();
     for (const code of languages) {
-      if (!own.params.languages.includes(code)) throw new Error('Lesson does not support publication language: ' + code);
+      if (!own.params.languages.includes(code))
+        throw new Error('Lesson does not support publication language: ' + code);
     }
     const split = splitLocalizedFields(own.locale);
     const files: Files = {};
@@ -257,8 +316,12 @@ export function defineLesson<
     addQuestionFiles(files, bank.locales);
     const result = structuredClone({
       base: {
-        id, slug, type, programId: own.programId,
-        skills: own.skills, params: { ...own.params, languages: [...languages] },
+        id,
+        slug,
+        type,
+        programId: own.programId,
+        skills: own.skills,
+        params: { ...own.params, languages: [...languages] },
         ...(Object.keys(split.base).length ? { locale: split.base as { title?: string } } : {}),
         section: sections.bases as Lesson_PropsBase['section'],
         flashcards: cards.bases as Lesson_PropsBase['flashcards'],
@@ -281,22 +344,28 @@ export function defineLesson<
   ) => {
     if (patch !== undefined && !isRecord(patch)) throw new Error(label + ' must be an object');
     for (const key of Object.keys(patch ?? {})) {
-      if (!['items', 'additionalItems', 'order'].includes(key)) throw new Error('Unknown ' + label + ' override field: ' + key);
+      if (!['items', 'additionalItems', 'order'].includes(key))
+        throw new Error('Unknown ' + label + ' override field: ' + key);
     }
     const changes = patch?.items ?? {};
     const additions = patch?.additionalItems ?? {};
     if (!isRecord(changes) || !isRecord(additions)) throw new Error('Invalid ' + label + ' patch maps');
     const issues = validateSluggedConfiguratorMap(additions, allowedTypes, {
-      path: label + '.additionalItems', itemLabel: label + ' child',
+      path: label + '.additionalItems',
+      itemLabel: label + ' child',
     });
     if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
     const enabled: Record<string, unknown | false> = { ...original };
     let structureChanged = Object.keys(additions).length > 0;
     for (const [key, child] of Object.entries(additions)) {
       if (Object.hasOwn(original, key)) throw new Error('Duplicate ' + label + ' slug: ' + key);
-      if (!isBuildChild(child) || !isRecord(child.config?.base) ||
-          child.config.base.id !== child.id || child.config.base.slug !== key ||
-          child.config.base.type !== child.type) {
+      if (
+        !isBuildChild(child) ||
+        !isRecord(child.config?.base) ||
+        child.config.base.id !== child.id ||
+        child.config.base.slug !== key ||
+        child.config.base.type !== child.type
+      ) {
         throw new Error('Invalid added ' + label + ' Build child: ' + key);
       }
       enabled[key] = child;
@@ -304,8 +373,10 @@ export function defineLesson<
     const childChanges: Record<string, unknown> = {};
     for (const [key, change] of Object.entries(changes)) {
       if (!Object.hasOwn(original, key)) throw new Error('Unknown existing ' + label + ' child: ' + key);
-      if (change === false) { enabled[key] = false; structureChanged = true; }
-      else {
+      if (change === false) {
+        enabled[key] = false;
+        structureChanged = true;
+      } else {
         if (!isRecord(change)) throw new Error(label + ' child patch must be an object or false: ' + key);
         childChanges[key] = change;
       }
@@ -314,18 +385,16 @@ export function defineLesson<
       throw new Error(label + '.order is required when adding or disabling children');
     }
     const order = patch?.order ?? sourceOrder;
-    const orderIssues = validateOrderedKeys(
-      { items: enabled, order }, { path: label, allowDisabled: true },
-    );
+    const orderIssues = validateOrderedKeys({ items: enabled, order }, { path: label, allowDisabled: true });
     if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
-    const active = Object.fromEntries(
-      Object.entries(enabled).filter((entry) => entry[1] !== false),
-    );
+    const active = Object.fromEntries(Object.entries(enabled).filter(entry => entry[1] !== false));
     return {
-      active, order, childChanges,
-      changed: patch !== undefined && (
-        Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.order !== undefined
-      ),
+      active,
+      order,
+      childChanges,
+      changed:
+        patch !== undefined &&
+        (Object.keys(changes).length > 0 || Object.keys(additions).length > 0 || patch.order !== undefined),
     };
   };
 
@@ -337,18 +406,21 @@ export function defineLesson<
     patch: Lesson_Overrides<Sections, Cards, Questions, AddedSections, AddedCards, AddedQuestions> & {
       section?: { additionalItems?: AddedSections & ChildrenSupporting<Languages, AddedSections> };
       flashcards?: { additionalItems?: AddedCards & ChildrenSupporting<Languages, AddedCards> };
-      questions?: { [Kind in keyof AddedQuestions]?: {
-        additionalItems?: AddedQuestions[Kind] extends Record<string, Question_Configurator>
-          ? AddedQuestions[Kind] & ChildrenSupporting<Languages, AddedQuestions[Kind]>
-          : AddedQuestions[Kind];
-      } };
+      questions?: {
+        [Kind in keyof AddedQuestions]?: {
+          additionalItems?: AddedQuestions[Kind] extends Record<string, Question_Configurator>
+            ? AddedQuestions[Kind] & ChildrenSupporting<Languages, AddedQuestions[Kind]>
+            : AddedQuestions[Kind];
+        };
+      };
     },
     options: PublicationLanguageOptions<Languages>,
   ): Publication<OverrideBase> => {
     try {
       const languages = resolvePublicationLanguages(options);
       for (const code of languages) {
-        if (!authored.params.languages.includes(code)) throw new Error('Lesson does not support publication language: ' + code);
+        if (!authored.params.languages.includes(code))
+          throw new Error('Lesson does not support publication language: ' + code);
       }
       if (!isRecord(patch)) throw new Error('Expected Lesson overrides object');
       for (const key of Object.keys(patch)) {
@@ -372,8 +444,20 @@ export function defineLesson<
         },
         locale: undefined,
       };
-      const sections = resolveCollection('section', initialSections, sectionOrder, patch.section as CollectionPatch | undefined, sectionTypes);
-      const cards = resolveCollection('flashcards', initialCards, flashcardOrder, patch.flashcards as CollectionPatch | undefined, ['flashcard']);
+      const sections = resolveCollection(
+        'section',
+        initialSections,
+        sectionOrder,
+        patch.section as CollectionPatch | undefined,
+        sectionTypes,
+      );
+      const cards = resolveCollection(
+        'flashcards',
+        initialCards,
+        flashcardOrder,
+        patch.flashcards as CollectionPatch | undefined,
+        ['flashcard'],
+      );
       if (sections.changed) {
         const built = buildOrdered(sections.active, sections.order, languages, sections.childChanges);
         output.base.section = built.bases as Lesson_PropsBase['section'];
@@ -406,7 +490,8 @@ export function defineLesson<
           const additions = group.additionalItems ?? {};
           if (!isRecord(changes) || !isRecord(additions)) throw new Error('Invalid Question Bank patch maps');
           const addedIssues = validateSluggedConfiguratorMap(additions, [kind], {
-            path: 'questions.' + kind + '.additionalItems', itemLabel: 'Question',
+            path: 'questions.' + kind + '.additionalItems',
+            itemLabel: 'Question',
           });
           if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
           const active: Record<string, Question_Configurator> = { ...originals };
@@ -441,11 +526,14 @@ export function defineLesson<
         questions: nextQuestions,
       });
       // Child overrides can disable a Quiz without removing its configurator from the map.
-      if (own.params.requireQuiz && !hasEnabledQuiz(
-        sections.changed
-          ? (output.base.section ?? [])
-          : buildOrdered(sections.active, sections.order, languages).bases as Lesson_PropsBase['section'],
-      )) {
+      if (
+        own.params.requireQuiz &&
+        !hasEnabledQuiz(
+          sections.changed
+            ? (output.base.section ?? [])
+            : (buildOrdered(sections.active, sections.order, languages).bases as Lesson_PropsBase['section']),
+        )
+      ) {
         throw new Error('Lesson requires at least one enabled Quiz section');
       }
       output.locale = Object.keys(files).length ? files : undefined;
@@ -454,15 +542,20 @@ export function defineLesson<
       return result;
     } catch (error) {
       throw new Error(
-        'Invalid Lesson overrides for ' + id + ': ' +
-          (error instanceof Error ? error.message : String(error)),
+        'Invalid Lesson overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
   };
 
   const result = {
-    id, slug, type, section, flashcards, questions, validate,
+    id,
+    slug,
+    type,
+    section,
+    flashcards,
+    questions,
+    validate,
     build: { props, overrides },
     config: {
       base,

@@ -34,10 +34,12 @@ export type Chapter_Metadata_Overrides = {
   locale?: DeepPartial<Chapter_Config['locale']>;
 };
 export const chapter_Override_Config_Schema: z.ZodType<Chapter_Metadata_Overrides> = z.deepPartial(
-  deepStrict_Schema(z.object({
-    params: chapter_Config_Schema.shape.params,
-    locale: chapter_Config_Schema.shape.locale,
-  })),
+  deepStrict_Schema(
+    z.object({
+      params: chapter_Config_Schema.shape.params,
+      locale: chapter_Config_Schema.shape.locale,
+    }),
+  ),
 );
 export type Chapter_Overrides<
   Items extends Record<string, Chapter_Child> = Record<string, Chapter_Child>,

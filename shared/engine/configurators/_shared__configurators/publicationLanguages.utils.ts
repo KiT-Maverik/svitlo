@@ -1,9 +1,9 @@
 import { languageCode_Schema, type LanguageCodes } from '#schemas';
 
 /** Explicit runtime publication scope; authoring tuple constraints remain TypeScript-only. */
-export const resolvePublicationLanguages = (
-  options: { readonly languages: readonly LanguageCodes[] },
-): LanguageCodes[] => {
+export const resolvePublicationLanguages = (options: {
+  readonly languages: readonly LanguageCodes[];
+}): LanguageCodes[] => {
   if (!options || !Array.isArray(options.languages) || !options.languages.length) {
     throw new Error('Build requires a nonempty languages array');
   }

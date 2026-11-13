@@ -65,7 +65,9 @@ test('Carousel keeps invariant slides in base with no redundant locale arrays', 
     locale: {},
     slides: { items: { first }, order: ['first'] },
   });
-  assert.deepEqual(carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides, [{ src: 'https://example.com/base.png', alt: 'Base' }]);
+  assert.deepEqual(carousel.build.props({ languages: ['en', 'uk'] }).base.locale?.slides, [
+    { src: 'https://example.com/base.png', alt: 'Base' },
+  ]);
   assert.equal(carousel.build.props({ languages: ['en', 'uk'] }).locale, undefined);
   assert.deepEqual(carousel.build.overrides({}, { languages: ['en', 'uk'] }), { base: {}, locale: undefined });
 });
@@ -155,6 +157,9 @@ test('Carousel child patches cannot modify slide identity and support sparse loc
     locale: { uk: { locale: { alt: 'Перший' } } },
   });
   for (const patch of [{ id: ids[2] }, { slug: 'changed' }, { type: 'carouselSlide' }]) {
-    assert.throws(() => child.build.overrides(patch as never, { languages: ['en', 'uk'] }), /Invalid Carousel Slide overrides/);
+    assert.throws(
+      () => child.build.overrides(patch as never, { languages: ['en', 'uk'] }),
+      /Invalid Carousel Slide overrides/,
+    );
   }
 });

@@ -1,7 +1,12 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { onlyLocales, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  onlyLocales,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import {
   text_Config_Schema,
   text_Props_Schema,
@@ -135,7 +140,10 @@ export const defineText = <const Slug extends string, const Languages extends re
     return result;
   };
 
-  const overrides = (patch: ContentBlock_Text_Overrides, options: PublicationLanguageOptions<Languages>): TextPropsPublication<TextOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Text_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): TextPropsPublication<TextOverridePropsBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       // Structural: reject unknown fields, bad types, and invalid locale keys.

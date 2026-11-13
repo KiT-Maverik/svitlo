@@ -1,8 +1,22 @@
 import { readFileSync, readdirSync } from 'node:fs';
-import type { DeepPartial, ConfigWithLanguages, RequireLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
+import type {
+  DeepPartial,
+  ConfigWithLanguages,
+  RequireLanguages,
+  LanguageScope,
+  PublicationLanguageOptions,
+} from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   markdown_Config_Schema,
@@ -202,7 +216,9 @@ export const defineMarkdown = <const Slug extends string, const Languages extend
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Markdown_Config>;
 
-  const props = (options: PublicationLanguageOptions<Languages>): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): MarkdownPropsPublication<ContentBlock_Markdown_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const result = buildMarkdownProps(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
@@ -210,7 +226,10 @@ export const defineMarkdown = <const Slug extends string, const Languages extend
     return result;
   };
 
-  const overrides = (patch: ContentBlock_Markdown_Overrides, options: PublicationLanguageOptions<Languages>): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Markdown_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): MarkdownPropsPublication<MarkdownOverridePropsBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = markdown_Override_Config_Schema.parse(patch);

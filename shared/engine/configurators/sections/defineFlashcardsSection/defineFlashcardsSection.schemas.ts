@@ -24,7 +24,8 @@ export type FlashcardsSection_Locale<Mode extends Configurator_Mode> = z.infer<
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;
 
-export const flashcardsSection_Config_Schema = sectionBase.extend({ ...addUnifiedLocale(locale('config')),
+export const flashcardsSection_Config_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('config')),
   content: z.object({
     items: z.record(z.string(), z.custom<ContentBlock_Configurator>()),
     order: z.array(z.string()),
@@ -32,7 +33,8 @@ export const flashcardsSection_Config_Schema = sectionBase.extend({ ...addUnifie
 });
 export type FlashcardsSection_Config = z.infer<typeof flashcardsSection_Config_Schema>;
 
-export const flashcardsSection_Props_Schema = sectionBase.extend({ ...addUnifiedLocale(locale('props')),
+export const flashcardsSection_Props_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('props')),
   content: z.array(contentBlockResolved_Schema),
 });
 export type FlashcardsSection_Props = Omit<z.infer<typeof flashcardsSection_Props_Schema>, 'content'> & {

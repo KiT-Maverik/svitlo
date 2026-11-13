@@ -24,7 +24,8 @@ export type LearningFlowSection_Locale<Mode extends Configurator_Mode> = z.infer
   z.ZodObject<ReturnType<typeof locale<Mode>>>
 >;
 
-export const learningFlowSection_Config_Schema = sectionBase.extend({ ...addUnifiedLocale(locale('config')),
+export const learningFlowSection_Config_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('config')),
   content: z.object({
     items: z.record(z.string(), z.custom<ContentBlock_Configurator>()),
     order: z.array(z.string()),
@@ -32,7 +33,8 @@ export const learningFlowSection_Config_Schema = sectionBase.extend({ ...addUnif
 });
 export type LearningFlowSection_Config = z.infer<typeof learningFlowSection_Config_Schema>;
 
-export const learningFlowSection_Props_Schema = sectionBase.extend({ ...addUnifiedLocale(locale('props')),
+export const learningFlowSection_Props_Schema = sectionBase.extend({
+  ...addUnifiedLocale(locale('props')),
   content: z.array(contentBlockResolved_Schema),
 });
 export type LearningFlowSection_Props = Omit<z.infer<typeof learningFlowSection_Props_Schema>, 'content'> & {
@@ -47,14 +49,15 @@ export type LearningFlowSection_PropsBase = Pick<LearningFlowSection_Props, 'id'
 
 /** Identity and authored collection organization cannot be changed via metadata patches. */
 export type LearningFlowSection_MetadataOverrides = DeepPartial<Pick<LearningFlowSection_Config, 'params' | 'locale'>>;
-export const learningFlowSection_Override_Config_Schema: z.ZodType<LearningFlowSection_MetadataOverrides> = z.deepPartial(
-  deepStrict_Schema(
-    z.object({
-      params: learningFlowSection_Config_Schema.shape.params,
-      locale: learningFlowSection_Config_Schema.shape.locale,
-    }),
-  ),
-);
+export const learningFlowSection_Override_Config_Schema: z.ZodType<LearningFlowSection_MetadataOverrides> =
+  z.deepPartial(
+    deepStrict_Schema(
+      z.object({
+        params: learningFlowSection_Config_Schema.shape.params,
+        locale: learningFlowSection_Config_Schema.shape.locale,
+      }),
+    ),
+  );
 
 export type LearningFlowSection_Overrides<
   Items extends Record<string, ContentBlock_Configurator>,

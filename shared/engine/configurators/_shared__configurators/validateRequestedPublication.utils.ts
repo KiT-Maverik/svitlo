@@ -13,14 +13,15 @@ export const validateRequestedPublication = (
   for (const language of languages) {
     const original = mergeForValidation(resource.base, (resource.locale?.[language] ?? {}) as DeepPartial<unknown>);
     const base = patch ? mergeForValidation(original, patch.base as DeepPartial<unknown>) : original;
-    const effective = patch
-      ? mergeForValidation(base, (patch.locale?.[language] ?? {}) as DeepPartial<unknown>)
-      : base;
+    const effective = patch ? mergeForValidation(base, (patch.locale?.[language] ?? {}) as DeepPartial<unknown>) : base;
     try {
       schema.parse(effective);
     } catch (error) {
       throw new Error(
-        'Invalid publication for language ' + language + ': ' + (error instanceof Error ? error.message : String(error)),
+        'Invalid publication for language ' +
+          language +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }

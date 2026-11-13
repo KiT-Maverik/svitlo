@@ -1,7 +1,15 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateLocalAssetPaths } from '../_shared__contentBlocks';
 import {
   video_Config_Schema,
@@ -90,7 +98,9 @@ export const defineVideo = <const Slug extends string, const Languages extends r
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Video_Config>;
 
-  const props = (options: PublicationLanguageOptions<Languages>): VideoPropsPublication<ContentBlock_Video_PropsBase> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): VideoPropsPublication<ContentBlock_Video_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const result = buildVideoProps(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
@@ -98,7 +108,10 @@ export const defineVideo = <const Slug extends string, const Languages extends r
     return result;
   };
 
-  const overrides = (patch: ContentBlock_Video_Overrides, options: PublicationLanguageOptions<Languages>): VideoPropsPublication<VideoOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Video_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): VideoPropsPublication<VideoOverridePropsBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = video_Override_Config_Schema.parse(patch);

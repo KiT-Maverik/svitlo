@@ -84,7 +84,9 @@ const params = sectionBase.shape.params.extend({
     .optional(),
 });
 
-export const quizSection_Config_Schema = sectionBase.extend({ params, ...addUnifiedLocale(locale('config')),
+export const quizSection_Config_Schema = sectionBase.extend({
+  params,
+  ...addUnifiedLocale(locale('config')),
   content: z.object({
     items: z.record(z.string(), z.custom<ContentBlock_Configurator>()),
     order: z.array(z.string()),
@@ -92,7 +94,9 @@ export const quizSection_Config_Schema = sectionBase.extend({ params, ...addUnif
 });
 export type QuizSection_Config = z.infer<typeof quizSection_Config_Schema>;
 
-export const quizSection_Props_Schema = sectionBase.extend({ params, ...addUnifiedLocale(locale('props')),
+export const quizSection_Props_Schema = sectionBase.extend({
+  params,
+  ...addUnifiedLocale(locale('props')),
   content: z.array(contentBlockResolved_Schema),
 });
 export type QuizSection_Props = Omit<z.infer<typeof quizSection_Props_Schema>, 'content'> & {

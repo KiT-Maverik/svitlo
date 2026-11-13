@@ -1,5 +1,11 @@
 import type { LanguageCodes } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
+import type {
+  ChildrenSupporting,
+  DeepPartial,
+  LanguageScope,
+  PublicationLanguageOptions,
+  RequireLanguages,
+} from '#types';
 
 import {
   mergeForValidation,
@@ -44,10 +50,16 @@ const validate = (config: SkillGroup_Config): void => {
     }),
   ];
   for (const [key, child] of Object.entries(config.skills?.items ?? {})) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-      typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-      !isRecord(child.config) || !isRecord(child.config.base) ||
-      child.config.base.id !== child.id || child.config.base.slug !== key) {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.props !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.slug !== key
+    ) {
       issues.push({ check: 'item', path: 'skills.items.' + key, message: 'Skill must expose the Build API' });
     }
   }
@@ -75,7 +87,9 @@ export type SkillGroup_Configurator<
   readonly skill: Skills;
   readonly validate: typeof validate;
   readonly build: {
-    props(options: PublicationLanguageOptions<Languages>): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }>;
+    props(
+      options: PublicationLanguageOptions<Languages>,
+    ): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }>;
     overrides<const Added extends Record<string, Skill> = {}>(
       patch: SkillGroup_Overrides<Skills, Added> & {
         skills?: { additionalItems?: Added & ChildrenSupporting<Languages, Added> };
@@ -139,7 +153,10 @@ export function defineSkillGroup<
       const child = items[key];
       const resource = child.build.props({ languages });
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => SkillPatch)(patches[key] as never, { languages })
+        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => SkillPatch)(
+            patches[key] as never,
+            { languages },
+          )
         : undefined;
       return { resource, patch };
     });
@@ -150,18 +167,27 @@ export function defineSkillGroup<
     for (const language of languages) {
       const resolved = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
-        const withPatchBase = mergeForValidation(withResourceLocale, (patch?.base ?? {}) as DeepPartial<typeof resource.base>);
+        const withPatchBase = mergeForValidation(
+          withResourceLocale,
+          (patch?.base ?? {}) as DeepPartial<typeof resource.base>,
+        );
         const effective = mergeForValidation(withPatchBase, patch?.locale?.[language] ?? {});
         return skill_Props_Schema.parse(effective);
       });
-      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
+      if (
+        entries.some(
+          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+        )
+      ) {
         locale[language] = resolved;
       }
     }
     return { base, locale };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): SkillGroupPublication<DeepPartial<SkillGroup_Props> & { id: string; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = splitOwn({ name: current.name, description: current.description });
@@ -190,7 +216,8 @@ export function defineSkillGroup<
       const languages = resolvePublicationLanguages(options);
       if (!isRecord(patch)) throw new Error('Expected SkillGroup overrides object');
       for (const key of Object.keys(patch)) {
-        if (!['name', 'description', 'skills'].includes(key)) throw new Error('Unknown SkillGroup override field: ' + key);
+        if (!['name', 'description', 'skills'].includes(key))
+          throw new Error('Unknown SkillGroup override field: ' + key);
       }
       const metadataPatch = skillGroup_Override_Config_Schema.parse(
         Object.fromEntries(Object.entries(patch).filter(([key]) => key !== 'skills')),
@@ -206,7 +233,8 @@ export function defineSkillGroup<
       if (patch.skills !== undefined && !isRecord(patch.skills)) throw new Error('skills must be an object');
       if (patch.skills) {
         for (const key of Object.keys(patch.skills)) {
-          if (!['items', 'additionalItems', 'order'].includes(key)) throw new Error('Unknown skills override field: ' + key);
+          if (!['items', 'additionalItems', 'order'].includes(key))
+            throw new Error('Unknown skills override field: ' + key);
         }
       }
       const changes = patch.skills?.items ?? {};
@@ -214,7 +242,8 @@ export function defineSkillGroup<
       if (!isRecord(changes)) throw new Error('skills.items must be a slug-keyed object');
       if (!isRecord(additions)) throw new Error('skills.additionalItems must be a slug-keyed configurator map');
       const addedIssues = validateSluggedConfiguratorMap(additions, ['skill'], {
-        path: 'skills.additionalItems', itemLabel: 'Skill',
+        path: 'skills.additionalItems',
+        itemLabel: 'Skill',
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -223,10 +252,16 @@ export function defineSkillGroup<
       let structureChanged = Object.keys(additions).length > 0;
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Skill slug: ' + key);
-        if (!isRecord(child) || !isRecord(child.build) ||
-          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-          !isRecord(child.config) || !isRecord(child.config.base) ||
-          child.config.base.id !== child.id || child.config.base.slug !== key) {
+        if (
+          !isRecord(child) ||
+          !isRecord(child.build) ||
+          typeof child.build.props !== 'function' ||
+          typeof child.build.overrides !== 'function' ||
+          !isRecord(child.config) ||
+          !isRecord(child.config.base) ||
+          child.config.base.id !== child.id ||
+          child.config.base.slug !== key
+        ) {
           throw new Error('New Skill must expose a matching immutable Build identity: ' + key);
         }
         active[key] = child as Skill;
@@ -245,9 +280,14 @@ export function defineSkillGroup<
         throw new Error('skills.order is required when adding or disabling Skills');
       }
       const order = patch.skills?.order ?? initialOrder;
-      const issues = validateOrderedKeys({ items: active, order }, {
-        path: 'skills', allowDisabled: true, requireNonEmpty: true,
-      });
+      const issues = validateOrderedKeys(
+        { items: active, order },
+        {
+          path: 'skills',
+          allowDisabled: true,
+          requireNonEmpty: true,
+        },
+      );
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       if (!order.length) throw new Error('At least one active Skill is required');
 
@@ -292,4 +332,3 @@ export function defineSkillGroup<
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }
-

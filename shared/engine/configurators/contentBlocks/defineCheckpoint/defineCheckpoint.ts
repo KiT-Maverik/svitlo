@@ -1,4 +1,10 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, ChildrenSupporting, PublicationLanguageOptions } from '#types';
+import type {
+  DeepPartial,
+  ConfigWithLanguages,
+  LanguageScope,
+  ChildrenSupporting,
+  PublicationLanguageOptions,
+} from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
@@ -173,7 +179,10 @@ export const defineCheckpoint = <
       const child = items[key];
       const resource = child.build.props({ languages });
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ItemOverride)(patches[key] as never, { languages })
+        ? (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ItemOverride)(
+            patches[key] as never,
+            { languages },
+          )
         : undefined;
       return { resource, patch };
     });
@@ -184,8 +193,8 @@ export const defineCheckpoint = <
     );
 
     const translatedLanguages = languages.filter(language =>
-      entries.some(({ resource, patch }) =>
-        resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+      entries.some(
+        ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
       ),
     );
 
@@ -210,7 +219,9 @@ export const defineCheckpoint = <
     return { bases, locales };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): CheckpointPublication<ContentBlock_Checkpoint_PropsBase> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): CheckpointPublication<ContentBlock_Checkpoint_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);

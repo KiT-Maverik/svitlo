@@ -1,4 +1,10 @@
-import type { DeepPartial, LanguageScope, ChildSupporting, ChildrenSupporting, PublicationLanguageOptions } from '#types';
+import type {
+  DeepPartial,
+  LanguageScope,
+  ChildSupporting,
+  ChildrenSupporting,
+  PublicationLanguageOptions,
+} from '#types';
 import type { LanguageCodes } from '#schemas';
 
 import {
@@ -159,8 +165,15 @@ export const defineCheckpointItem = <
   const buildChild = (child: Checkpoint_Allowed_Configurator, languages: readonly LanguageCodes[]): ChildPublication =>
     child.build.props({ languages }) as unknown as ChildPublication;
 
-  const buildChildPatch = (child: Checkpoint_Allowed_Configurator, patch: unknown, languages: readonly LanguageCodes[]): ChildPatchPublication =>
-    (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ChildPatchPublication)(patch as never, { languages });
+  const buildChildPatch = (
+    child: Checkpoint_Allowed_Configurator,
+    patch: unknown,
+    languages: readonly LanguageCodes[],
+  ): ChildPatchPublication =>
+    (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ChildPatchPublication)(
+      patch as never,
+      { languages },
+    );
 
   /**
    * A published answer collection is always a complete, already sorted array.
@@ -182,8 +195,8 @@ export const defineCheckpointItem = <
       patch ? mergeForValidation(original.base, patch.base) : original.base,
     );
     const translatedLanguages = languages.filter(language =>
-      entries.some(({ original, patch }) =>
-        original.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+      entries.some(
+        ({ original, patch }) => original.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
       ),
     );
     const locales: ItemLocaleFiles = {};

@@ -30,4 +30,3 @@ export type Skill_Overrides = DeepPartial<Pick<Skill_Config, 'name' | 'descripti
 export const skill_Override_Config_Schema: z.ZodType<Skill_Overrides> = z.deepPartial(
   deepStrict_Schema(skill_Config_Schema.omit({ id: true, slug: true })),
 );
-

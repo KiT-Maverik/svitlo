@@ -1,4 +1,10 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, ChildrenSupporting, PublicationLanguageOptions } from '#types';
+import type {
+  DeepPartial,
+  ConfigWithLanguages,
+  LanguageScope,
+  ChildrenSupporting,
+  PublicationLanguageOptions,
+} from '#types';
 import type { LanguageCodes } from '#schemas';
 import {
   mergeForValidation,
@@ -31,7 +37,10 @@ type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
   locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
 };
-type LocaleBody = { locale?: DeepPartial<ContentSection_Locale<'props'>>; content?: ContentSection_PropsBase['content'] };
+type LocaleBody = {
+  locale?: DeepPartial<ContentSection_Locale<'props'>>;
+  content?: ContentSection_PropsBase['content'];
+};
 type Files = Partial<Record<LanguageCodes, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
@@ -53,36 +62,46 @@ const validateResolvedProps = (
       resource.base as Record<string, unknown>,
       (resource.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>,
     );
-    const patched = patch
-      ? mergeForValidation(base, patch.base as DeepPartial<Record<string, unknown>>)
-      : base;
+    const patched = patch ? mergeForValidation(base, patch.base as DeepPartial<Record<string, unknown>>) : base;
     const resolved = patch
       ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : patched;
     try {
       contentSection_Props_Schema.parse(resolved);
     } catch (error) {
-      throw new Error('Invalid defineContentSection Props for language ' + language + ': ' +
-        (error instanceof Error ? error.message : String(error)), { cause: error });
+      throw new Error(
+        'Invalid defineContentSection Props for language ' +
+          language +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
+        { cause: error },
+      );
     }
   }
 };
-
 
 const validate = (config: Content_Section_Config): void => {
   contentSection_Config_Schema.parse(config);
   const issues = [
     ...validateOrderedKeys(config.content, { path: 'content' }),
     ...validateSluggedConfiguratorMap(config.content?.items, contentBlockTypes, {
-      path: 'content.items', itemLabel: 'ContentBlock',
+      path: 'content.items',
+      itemLabel: 'ContentBlock',
     }),
   ];
   if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
   for (const [key, child] of Object.entries(config.content.items)) {
-    if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) || !isRecord(child.config.base) || child.config.base.id !== child.id ||
-        child.config.base.type !== child.type || child.config.base.slug !== key) {
+    if (
+      !isRecord(child) ||
+      !isRecord(child.build) ||
+      typeof child.build.props !== 'function' ||
+      typeof child.build.overrides !== 'function' ||
+      !isRecord(child.config) ||
+      !isRecord(child.config.base) ||
+      child.config.base.id !== child.id ||
+      child.config.base.type !== child.type ||
+      child.config.base.slug !== key
+    ) {
       throw new Error('Invalid Section ContentBlock Build API or identity: ' + key);
     }
   }
@@ -110,7 +129,9 @@ export const defineContentSection = <
   const content = { items: { ...initialItems }, order: [...initialOrder] };
 
   const base = {
-    id, slug, type,
+    id,
+    slug,
+    type,
     params: structuredClone(authored.params),
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<Content_Section_Config>;
@@ -134,7 +155,10 @@ export const defineContentSection = <
       const child = items[key];
       const resource = child.build.props({ languages }) as unknown as ChildResource;
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => ChildPatch)(patches[key] as never, { languages })
+        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => ChildPatch)(
+            patches[key] as never,
+            { languages },
+          )
         : undefined;
       return { resource, patch };
     });
@@ -143,15 +167,19 @@ export const defineContentSection = <
     ) as ContentSection_PropsBase['content'];
     const locales: Partial<Record<LanguageCodes, ContentSection_PropsBase['content']>> = {};
     for (const language of languages) {
-      if (!entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) continue;
+      if (
+        !entries.some(
+          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+        )
+      )
+        continue;
       locales[language] = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(
-          resource.base, (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
+          resource.base,
+          (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
         );
         const withPatchBase = patch ? mergeForValidation(withResourceLocale, patch.base) : withResourceLocale;
-        return patch?.locale?.[language]
-          ? mergeForValidation(withPatchBase, patch.locale[language])
-          : withPatchBase;
+        return patch?.locale?.[language] ? mergeForValidation(withPatchBase, patch.locale[language]) : withPatchBase;
       }) as ContentSection_PropsBase['content'];
     }
     return { bases, locales };
@@ -168,7 +196,10 @@ export const defineContentSection = <
     }
     const result = structuredClone({
       base: {
-        id, slug, type, params: metadata.params,
+        id,
+        slug,
+        type,
+        params: metadata.params,
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         content: children.bases,
       },
@@ -218,7 +249,8 @@ export const defineContentSection = <
       if (!isRecord(changes)) throw new Error('content.items must be an object');
       if (!isRecord(additions)) throw new Error('content.additionalItems must be an object');
       const addedIssues = validateSluggedConfiguratorMap(additions, contentBlockTypes, {
-        path: 'content.additionalItems', itemLabel: 'ContentBlock',
+        path: 'content.additionalItems',
+        itemLabel: 'ContentBlock',
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -227,18 +259,27 @@ export const defineContentSection = <
       let structureChanged = Object.keys(additions).length > 0;
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Section ContentBlock slug: ' + key);
-        if (!isRecord(child) || !isRecord(child.build) ||
-            typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-            !isRecord(child.config) || !isRecord(child.config.base) || child.config.base.id !== child.id ||
-            child.config.base.type !== child.type || child.config.base.slug !== key) {
+        if (
+          !isRecord(child) ||
+          !isRecord(child.build) ||
+          typeof child.build.props !== 'function' ||
+          typeof child.build.overrides !== 'function' ||
+          !isRecord(child.config) ||
+          !isRecord(child.config.base) ||
+          child.config.base.id !== child.id ||
+          child.config.base.type !== child.type ||
+          child.config.base.slug !== key
+        ) {
           throw new Error('New Section ContentBlock must expose a valid Build API: ' + key);
         }
         active[key] = child as Block;
       }
       for (const [key, change] of Object.entries(changes)) {
         if (!Object.hasOwn(initialItems, key)) throw new Error('Unknown existing Section ContentBlock: ' + key);
-        if (change === false) { active[key] = false; structureChanged = true; }
-        else {
+        if (change === false) {
+          active[key] = false;
+          structureChanged = true;
+        } else {
           if (!isRecord(change)) throw new Error('Section ContentBlock patch must be an object or false: ' + key);
           childPatches[key] = change;
         }
@@ -247,9 +288,7 @@ export const defineContentSection = <
         throw new Error('content.order is required when adding or disabling Section ContentBlocks');
       }
       const order = patch.content?.order ?? initialOrder;
-      const issues = validateOrderedKeys(
-        { items: active, order }, { path: 'content', allowDisabled: true },
-      );
+      const issues = validateOrderedKeys({ items: active, order }, { path: 'content', allowDisabled: true });
       if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
       const enabled = Object.fromEntries(
         Object.entries(active).filter((entry): entry is [string, Block] => entry[1] !== false),
@@ -269,14 +308,21 @@ export const defineContentSection = <
       return result;
     } catch (error) {
       throw new Error(
-        'Invalid defineContentSection overrides for ' + id + ': ' + (error instanceof Error ? error.message : String(error)),
+        'Invalid defineContentSection overrides for ' +
+          id +
+          ': ' +
+          (error instanceof Error ? error.message : String(error)),
         { cause: error },
       );
     }
   };
 
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

@@ -1,7 +1,15 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateSceneEntry } from '../_shared__contentBlocks';
 import {
   scene_Config_Schema,
@@ -97,7 +105,9 @@ export const defineScene = <const Slug extends string, const Languages extends r
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Scene_Config>;
 
-  const props = (options: PublicationLanguageOptions<Languages>): ScenePropsPublication<ContentBlock_Scene_PropsBase> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): ScenePropsPublication<ContentBlock_Scene_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const result = buildSceneProps(parseAndValidate(copyAuthored()));
     result.locale = selectPublicationLocales(result.locale, languages);
@@ -105,7 +115,10 @@ export const defineScene = <const Slug extends string, const Languages extends r
     return result;
   };
 
-  const overrides = (patch: ContentBlock_Scene_Overrides, options: PublicationLanguageOptions<Languages>): ScenePropsPublication<SceneOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Scene_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): ScenePropsPublication<SceneOverridePropsBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = scene_Override_Config_Schema.parse(patch);

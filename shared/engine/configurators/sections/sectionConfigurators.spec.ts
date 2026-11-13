@@ -10,17 +10,26 @@ import { defineFlashcardsSection } from './defineFlashcardsSection';
 
 const id = (suffix: string) => 'e5235ac2-2c44-4c10-8c48-3c7bad6490' + suffix;
 const prompt = defineText({
-  id: id('01'), slug: 'prompt', type: 'text', params: {},
+  id: id('01'),
+  slug: 'prompt',
+  type: 'text',
+  params: {},
   locale: { value: { en: 'Question', uk: 'Питання' } },
 });
 const extra = defineText({
-  id: id('02'), slug: 'extra', type: 'text', params: {},
+  id: id('02'),
+  slug: 'extra',
+  type: 'text',
+  params: {},
   locale: { value: 'Additional content' },
 });
 const input = <const Type extends 'content' | 'practice' | 'codingTask' | 'learningFlow' | 'flashcards'>(
   type: Type,
 ) => ({
-  id: id('03'), slug: 'unit', type, params: {},
+  id: id('03'),
+  slug: 'unit',
+  type,
+  params: {},
   locale: { title: { en: 'Title', uk: 'Назва' }, navigationLabel: '1' },
   content: { items: { prompt }, order: ['prompt'] },
 });
@@ -53,43 +62,85 @@ test('every Section publishes ordered JSON-safe ContentBlock Props without mutab
     assert.equal(original.locale?.en?.locale?.title, 'Title');
     assert.doesNotThrow(() => JSON.stringify(original));
 
-    const changed = section.build.overrides({
-      content: {
-        items: { prompt: false },
-        additionalItems: { extra },
-        order: ['extra'],
+    const changed = section.build.overrides(
+      {
+        content: {
+          items: { prompt: false },
+          additionalItems: { extra },
+          order: ['extra'],
+        },
       },
-    }, { languages: ['en', 'uk'] });
-    assert.deepEqual(changed.base.content?.map(block => block.slug), ['extra']);
+      { languages: ['en', 'uk'] },
+    );
+    assert.deepEqual(
+      changed.base.content?.map(block => block.slug),
+      ['extra'],
+    );
     assert.deepEqual(changed.locale, undefined, 'invariant replacement needs no translated file');
     assert.equal(section.build.props({ languages: ['en', 'uk'] }).base.content[0]?.slug, 'prompt');
     assert.deepEqual(section.content.order, ['prompt']);
-    assert.deepEqual(original.base.content.map(block => block.slug), ['prompt']);
+    assert.deepEqual(
+      original.base.content.map(block => block.slug),
+      ['prompt'],
+    );
     assert.equal(textValue(section.build.props({ languages: ['en', 'uk'] }).locale?.uk?.content), 'Питання');
 
     const sparse = section.build.overrides({ locale: { title: { uk: 'Оновлено' } } }, { languages: ['en', 'uk'] });
     assert.deepEqual(sparse.base, {});
     assert.deepEqual(sparse.locale, { uk: { locale: { title: 'Оновлено' } } });
 
-    assert.throws(() => section.build.overrides({
-      content: { items: { prompt: false } },
-    }, { languages: ['en', 'uk'] }), /order is required/);
-    assert.throws(() => section.build.overrides({
-      content: { additionalItems: { extra }, order: ['prompt'] },
-    }, { languages: ['en', 'uk'] }), /Missing slug/);
-    assert.throws(() => section.build.overrides({
-      content: { additionalItems: { extra }, order: ['prompt', 'extra', 'extra'] },
-    }, { languages: ['en', 'uk'] }), /Duplicate slug/);
-    assert.throws(() => section.build.overrides({ id: id('09') } as never, { languages: ['en', 'uk'] }), /Invalid .* overrides/);
-    assert.throws(() => section.build.overrides({ locale: { unexpected: 'x' } } as never, { languages: ['en', 'uk'] }), /Invalid .* overrides/);
+    assert.throws(
+      () =>
+        section.build.overrides(
+          {
+            content: { items: { prompt: false } },
+          },
+          { languages: ['en', 'uk'] },
+        ),
+      /order is required/,
+    );
+    assert.throws(
+      () =>
+        section.build.overrides(
+          {
+            content: { additionalItems: { extra }, order: ['prompt'] },
+          },
+          { languages: ['en', 'uk'] },
+        ),
+      /Missing slug/,
+    );
+    assert.throws(
+      () =>
+        section.build.overrides(
+          {
+            content: { additionalItems: { extra }, order: ['prompt', 'extra', 'extra'] },
+          },
+          { languages: ['en', 'uk'] },
+        ),
+      /Duplicate slug/,
+    );
+    assert.throws(
+      () => section.build.overrides({ id: id('09') } as never, { languages: ['en', 'uk'] }),
+      /Invalid .* overrides/,
+    );
+    assert.throws(
+      () => section.build.overrides({ locale: { unexpected: 'x' } } as never, { languages: ['en', 'uk'] }),
+      /Invalid .* overrides/,
+    );
   }
 });
 
 test('all Sections remain reusable across independently built override contexts', () => {
   for (const create of definitions) {
     const section = create();
-    const one = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Один' } } } } } }, { languages: ['en', 'uk'] });
-    const two = section.build.overrides({ content: { items: { prompt: { locale: { value: { uk: 'Два' } } } } } }, { languages: ['en', 'uk'] });
+    const one = section.build.overrides(
+      { content: { items: { prompt: { locale: { value: { uk: 'Один' } } } } } },
+      { languages: ['en', 'uk'] },
+    );
+    const two = section.build.overrides(
+      { content: { items: { prompt: { locale: { value: { uk: 'Два' } } } } } },
+      { languages: ['en', 'uk'] },
+    );
     assert.equal(textValue(one.locale?.uk?.content), 'Один');
     assert.equal(textValue(two.locale?.uk?.content), 'Два');
     const base = section.build.props({ languages: ['en', 'uk'] });
@@ -105,9 +156,12 @@ test('Sections materialize only selected languages in resources and atomic neste
     const one = section.build.props({ languages: ['uk'] });
     assert.deepEqual(Object.keys(one.locale ?? {}), ['uk']);
     assert.equal(one.locale?.en, undefined);
-    const replacement = section.build.overrides({
-      content: { items: { prompt: { locale: { value: { uk: 'Новий текст' } } } } },
-    }, { languages: ['uk'] });
+    const replacement = section.build.overrides(
+      {
+        content: { items: { prompt: { locale: { value: { uk: 'Новий текст' } } } } },
+      },
+      { languages: ['uk'] },
+    );
     assert.deepEqual(Object.keys(replacement.locale ?? {}), ['uk']);
     assert.equal(textValue(replacement.locale?.uk?.content), 'Новий текст');
     assert.throws(() => section.build.props({ languages: [] }), /nonempty languages/);

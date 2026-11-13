@@ -1,5 +1,11 @@
 import type { LanguageCodes } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
+import type {
+  ChildrenSupporting,
+  DeepPartial,
+  LanguageScope,
+  PublicationLanguageOptions,
+  RequireLanguages,
+} from '#types';
 
 import {
   mergeForValidation,
@@ -69,14 +75,22 @@ const validate = (config: Course_Config): void => {
   ];
   if (isRecord(config.content) && isRecord(config.content.items)) {
     for (const [slug, child] of Object.entries(config.content.items)) {
-      if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function') {
+      if (
+        !isRecord(child) ||
+        !isRecord(child.build) ||
+        typeof child.build.props !== 'function' ||
+        typeof child.build.overrides !== 'function'
+      ) {
         errors.push('content.items.' + slug + ': child must expose the stateless Build API');
         continue;
       }
-      if (!isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== slug ||
-        child.config.base.type !== child.type) {
+      if (
+        !isRecord(child.config) ||
+        !isRecord(child.config.base) ||
+        child.config.base.id !== child.id ||
+        child.config.base.slug !== slug ||
+        child.config.base.type !== child.type
+      ) {
         errors.push('content.items.' + slug + ': immutable child identity does not match its authored metadata');
       }
     }
@@ -108,7 +122,8 @@ const parseChild = (value: unknown): Course_Child_Props => {
       if (!parsed.success) throw new Error('Invalid Course child Props: ' + parsed.error.message);
       return structuredClone(value) as Course_Child_Props;
     }
-    default: throw new Error('Unsupported Course child type: ' + String(value.type));
+    default:
+      throw new Error('Unsupported Course child type: ' + String(value.type));
   }
 };
 
@@ -218,14 +233,20 @@ export const defineCourse = <
           (resource.locale?.[language] ?? {}) as Record<string, unknown>,
         );
         const withBasePatch = mergeForValidation<Record<string, unknown>>(
-          original, (patch?.base ?? {}) as Record<string, unknown>,
+          original,
+          (patch?.base ?? {}) as Record<string, unknown>,
         );
         const effective = mergeForValidation<Record<string, unknown>>(
-          withBasePatch, (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
+          withBasePatch,
+          (patch?.locale?.[language] ?? {}) as Record<string, unknown>,
         );
         return parseChild(effective);
       });
-      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
+      if (
+        entries.some(
+          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+        )
+      ) {
         locale[language] = resolved;
       }
     }
@@ -258,17 +279,22 @@ export const defineCourse = <
     }
     const result: CoursePublication<CoursePropsBase> = {
       base: {
-        id, slug, type, params: { ...metadata.params, languages: [...languages] },
+        id,
+        slug,
+        type,
+        params: { ...metadata.params, languages: [...languages] },
         ...(Object.keys(own.invariant).length ? { locale: own.invariant } : {}),
         content: children.base,
       },
       locale: Object.keys(files).length ? files : undefined,
     };
     for (const language of languages) {
-      course_Props_Schema.parse(mergeForValidation<Record<string, unknown>>(
-        result.base as Record<string, unknown>,
-        (result.locale?.[language] ?? {}) as Record<string, unknown>,
-      ));
+      course_Props_Schema.parse(
+        mergeForValidation<Record<string, unknown>>(
+          result.base as Record<string, unknown>,
+          (result.locale?.[language] ?? {}) as Record<string, unknown>,
+        ),
+      );
     }
     return result;
   };
@@ -317,7 +343,8 @@ export const defineCourse = <
       if (!isRecord(changes)) throw new Error('content.items must be a slug-keyed object');
       if (!isRecord(additions)) throw new Error('content.additionalItems must be a slug-keyed configurator map');
       const addedIssues = validateSluggedConfiguratorMap(additions, allowedChildren, {
-        path: 'content.additionalItems', itemLabel: 'Course child',
+        path: 'content.additionalItems',
+        itemLabel: 'Course child',
       });
       if (addedIssues.length) throw new Error(addedIssues.map(issue => issue.message).join('; '));
 
@@ -326,11 +353,17 @@ export const defineCourse = <
       let structureChanged = Object.keys(additions).length > 0;
       for (const [key, child] of Object.entries(additions)) {
         if (Object.hasOwn(initialItems, key)) throw new Error('Duplicate Course child slug: ' + key);
-        if (!isRecord(child) || !isRecord(child.build) ||
-          typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-          !isRecord(child.config) || !isRecord(child.config.base) ||
-          child.config.base.id !== child.id || child.config.base.slug !== key ||
-          child.config.base.type !== child.type) {
+        if (
+          !isRecord(child) ||
+          !isRecord(child.build) ||
+          typeof child.build.props !== 'function' ||
+          typeof child.build.overrides !== 'function' ||
+          !isRecord(child.config) ||
+          !isRecord(child.config.base) ||
+          child.config.base.id !== child.id ||
+          child.config.base.slug !== key ||
+          child.config.base.type !== child.type
+        ) {
           throw new Error('New Course child must expose a matching immutable Build identity: ' + key);
         }
         active[key] = child as Course_Child;
@@ -377,7 +410,11 @@ export const defineCourse = <
   };
 
   return {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base,

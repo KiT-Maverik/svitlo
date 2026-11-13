@@ -31,14 +31,26 @@ test('AssessmentMethod validates sparse independent overrides and disallows iden
   const sparse = method.build.overrides({ title: { uk: 'Усна перевірка' } }, { languages: ['en', 'uk'] });
   assert.deepEqual(sparse.base, {});
   assert.deepEqual(sparse.locale, { uk: { title: 'Усна перевірка' } });
-  assert.throws(() => method.build.overrides({ id: 'other' } as never, { languages: ['en', 'uk'] }), /Invalid Assessment Method overrides/);
-  assert.throws(() => method.build.overrides({ type: 'other' } as never, { languages: ['en', 'uk'] }), /Invalid Assessment Method overrides/);
-  assert.throws(() => method.build.overrides({ title: { inventedLocale: 'Bad' } } as never, { languages: ['en', 'uk'] }), /Invalid Assessment Method overrides/);
+  assert.throws(
+    () => method.build.overrides({ id: 'other' } as never, { languages: ['en', 'uk'] }),
+    /Invalid Assessment Method overrides/,
+  );
+  assert.throws(
+    () => method.build.overrides({ type: 'other' } as never, { languages: ['en', 'uk'] }),
+    /Invalid Assessment Method overrides/,
+  );
+  assert.throws(
+    () => method.build.overrides({ title: { inventedLocale: 'Bad' } } as never, { languages: ['en', 'uk'] }),
+    /Invalid Assessment Method overrides/,
+  );
   sparse.locale!.uk!.title = 'mutated';
   assert.equal(method.build.props({ languages: ['en', 'uk'] }).locale?.uk?.title, 'Усне опитування');
-  assert.deepEqual(method.build.overrides({ description: { en: 'Explain aloud.' } }, { languages: ['en', 'uk'] }).locale, {
-    en: { description: 'Explain aloud.' },
-  });
+  assert.deepEqual(
+    method.build.overrides({ description: { en: 'Explain aloud.' } }, { languages: ['en', 'uk'] }).locale,
+    {
+      en: { description: 'Explain aloud.' },
+    },
+  );
 });
 
 test('AssessmentMethod publishes only requested locales and validates unsupported requests', () => {

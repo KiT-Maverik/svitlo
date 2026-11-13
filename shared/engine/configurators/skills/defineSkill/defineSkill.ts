@@ -2,7 +2,13 @@ import type { SkillId } from '@svitlo/contracts/content';
 import type { LanguageCodes } from '#schemas';
 import type { DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
 
-import { mergeForValidation, onlyLocales, resolvePublicationLanguages, selectPublicationLocales, splitLocalizedFields } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  splitLocalizedFields,
+} from '../../_shared__configurators';
 import {
   skill_Config_Schema,
   skill_Props_Schema,
@@ -26,7 +32,8 @@ const project = (input: DeepPartial<Pick<Skill_Config, 'name' | 'description'>>)
   const split = splitLocalizedFields(input);
   return {
     base: split.base as DeepPartial<Pick<Skill_Props, 'name' | 'description'>>,
-    locale: split.locale as Partial<Record<LanguageCodes, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
+    locale: split.locale as
+      Partial<Record<LanguageCodes, DeepPartial<Pick<Skill_Props, 'name' | 'description'>>>> | undefined,
   };
 };
 
@@ -40,8 +47,13 @@ export type Skill_Configurator<
   readonly type: 'skill';
   readonly validate: typeof validate;
   readonly build: {
-    props(options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }>;
-    overrides(patch: Skill_Overrides, options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props>>;
+    props(
+      options: PublicationLanguageOptions<Languages>,
+    ): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }>;
+    overrides(
+      patch: Skill_Overrides,
+      options: PublicationLanguageOptions<Languages>,
+    ): SkillPublication<DeepPartial<Skill_Props>>;
   };
   readonly config: {
     base: DeepPartial<Skill_Props> & { id: SkillId; slug: string };
@@ -50,16 +62,17 @@ export type Skill_Configurator<
   };
 } & LanguageScope<Languages>;
 
-export function defineSkill<
-  const Slug extends string,
-  const Languages extends readonly LanguageCodes[] = [],
->(config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>): Skill_Configurator<Slug, Languages> {
+export function defineSkill<const Slug extends string, const Languages extends readonly LanguageCodes[] = []>(
+  config: Omit<Skill_Config, 'slug'> & { slug: Slug } & RequireLanguages<Skill_Config, Languages>,
+): Skill_Configurator<Slug, Languages> {
   const authored = structuredClone(skill_Config_Schema.parse(config));
   const { id } = authored;
   const slug = config.slug;
   const copyAuthored = () => skill_Config_Schema.parse(structuredClone(authored));
 
-  const props = (options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): SkillPublication<DeepPartial<Skill_Props> & { id: SkillId; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = project({ name: current.name, description: current.description });
@@ -73,7 +86,10 @@ export function defineSkill<
     return result;
   };
 
-  const overrides = (patch: Skill_Overrides, options: PublicationLanguageOptions<Languages>): SkillPublication<DeepPartial<Skill_Props>> => {
+  const overrides = (
+    patch: Skill_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): SkillPublication<DeepPartial<Skill_Props>> => {
     try {
       const languages = resolvePublicationLanguages(options);
       const sparse = skill_Override_Config_Schema.parse(patch);
@@ -115,4 +131,3 @@ export function defineSkill<
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }
-

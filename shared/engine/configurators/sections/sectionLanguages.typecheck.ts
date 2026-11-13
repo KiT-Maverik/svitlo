@@ -8,12 +8,16 @@ import { defineContentSection } from './defineContentSection/defineContentSectio
 function authoringLanguageContracts() {
   const enUkText = defineText<'paragraph', ['en', 'uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e01',
-    slug: 'paragraph', type: 'text', params: {},
+    slug: 'paragraph',
+    type: 'text',
+    params: {},
     locale: { value: { en: 'Hello', uk: 'Привіт' } },
   });
   const ukText = defineText<'ukOnly', ['uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e02',
-    slug: 'ukOnly', type: 'text', params: {},
+    slug: 'ukOnly',
+    type: 'text',
+    params: {},
     locale: { value: { uk: 'Тільки українська' } },
   });
 
@@ -25,7 +29,9 @@ function authoringLanguageContracts() {
 
   const bilingual = defineContentSection<'intro', { paragraph: typeof enUkText }, ['en', 'uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e03',
-    slug: 'intro', type: 'content', params: {},
+    slug: 'intro',
+    type: 'content',
+    params: {},
     locale: { title: { en: 'Intro', uk: 'Вступ' }, navigationLabel: '1' },
     content: { items: { paragraph: enUkText }, order: ['paragraph'] },
   });
@@ -35,27 +41,35 @@ function authoringLanguageContracts() {
   bilingual.build.props({ languages: ['pl'] });
   // @ts-expect-error Patch publication also requires explicit selected languages.
   bilingual.build.overrides({});
-  bilingual.build.overrides({
-    content: {
-      additionalItems: {
-        // @ts-expect-error A new child must support every language of the parent Section.
-        ukOnly: ukText,
-      },
-      order: ['paragraph', 'ukOnly'],
-    },
-  }, { languages: ['uk'] });
-  bilingual.build.overrides({
-    content: {
-      items: {
-        // @ts-expect-error Existing child slugs remain literal keys; unknown keys are rejected.
-        missing: false,
+  bilingual.build.overrides(
+    {
+      content: {
+        additionalItems: {
+          // @ts-expect-error A new child must support every language of the parent Section.
+          ukOnly: ukText,
+        },
+        order: ['paragraph', 'ukOnly'],
       },
     },
-  }, { languages: ['uk'] });
+    { languages: ['uk'] },
+  );
+  bilingual.build.overrides(
+    {
+      content: {
+        items: {
+          // @ts-expect-error Existing child slugs remain literal keys; unknown keys are rejected.
+          missing: false,
+        },
+      },
+    },
+    { languages: ['uk'] },
+  );
 
   const ukrainian = defineContentSection<'onlyUkrainian', { ukOnly: typeof ukText }, ['uk']>({
     id: '663572e7-bd85-4516-86e2-3de07d209e04',
-    slug: 'onlyUkrainian', type: 'content', params: {},
+    slug: 'onlyUkrainian',
+    type: 'content',
+    params: {},
     locale: { title: { uk: 'Вступ' }, navigationLabel: '1' },
     content: { items: { ukOnly: ukText }, order: ['ukOnly'] },
   });
@@ -68,16 +82,22 @@ function authoringLanguageContracts() {
 
   const lesson = defineLesson({
     id: '663572e7-bd85-4516-86e2-3de07d209e05',
-    slug: 'typedLesson', type: 'lesson', skills: [],
+    slug: 'typedLesson',
+    type: 'lesson',
+    skills: [],
     params: {
-      requireQuiz: false, languages: ['uk'] as const,
+      requireQuiz: false,
+      languages: ['uk'] as const,
       sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
     },
     locale: { title: { uk: 'Урок' } },
     section: { items: { intro: bilingual }, order: ['intro'] },
     flashcards: { items: {}, order: [] },
   });
-  lesson.build.overrides({ section: { items: { intro: { locale: { title: { uk: 'Оновлено' } } } } } }, { languages: ['uk'] });
+  lesson.build.overrides(
+    { section: { items: { intro: { locale: { title: { uk: 'Оновлено' } } } } } },
+    { languages: ['uk'] },
+  );
   // @ts-expect-error Lesson supports only the authored Ukrainian publication scope.
   lesson.build.props({ languages: ['en'] });
 }

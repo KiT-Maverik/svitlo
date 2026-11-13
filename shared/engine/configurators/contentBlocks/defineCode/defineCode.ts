@@ -1,7 +1,15 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
 import type { LanguageCodes } from '#schemas';
 
-import { mergeForValidation, onlyLocales, onlyStrings, splitLocalizedFields, resolvePublicationLanguages, selectPublicationLocales, validateRequestedPublication } from '../../_shared__configurators';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  splitLocalizedFields,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  validateRequestedPublication,
+} from '../../_shared__configurators';
 import { validateReplacementVariables } from '../_shared__contentBlocks';
 import {
   code_Config_Schema,
@@ -130,7 +138,10 @@ export const defineCode = <const Slug extends string, const Languages extends re
     return result;
   };
 
-  const overrides = (patch: ContentBlock_Code_Overrides, options: PublicationLanguageOptions<Languages>): CodePropsPublication<CodeOverridePropsBase> => {
+  const overrides = (
+    patch: ContentBlock_Code_Overrides,
+    options: PublicationLanguageOptions<Languages>,
+  ): CodePropsPublication<CodeOverridePropsBase> => {
     const languages = resolvePublicationLanguages(options);
     try {
       const parsedPatch = code_Override_Config_Schema.parse(patch);

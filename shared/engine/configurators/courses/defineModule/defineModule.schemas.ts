@@ -35,10 +35,12 @@ export type Module_Metadata_Overrides = {
   locale?: DeepPartial<Module_Config['locale']>;
 };
 export const module_Override_Config_Schema: z.ZodType<Module_Metadata_Overrides> = z.deepPartial(
-  deepStrict_Schema(z.object({
-    params: module_Config_Schema.shape.params,
-    locale: module_Config_Schema.shape.locale,
-  })),
+  deepStrict_Schema(
+    z.object({
+      params: module_Config_Schema.shape.params,
+      locale: module_Config_Schema.shape.locale,
+    }),
+  ),
 );
 export type Module_Overrides<
   Items extends Record<string, Module_Child> = Record<string, Module_Child>,
@@ -53,6 +55,6 @@ export type Module_Overrides<
 
 export const module_Props_Schema = identity.extend({
   ...addUnifiedLocale(locale('props')),
-  content: z.array(z.union([chapter_Props_Schema,lesson_Props_Schema])),
+  content: z.array(z.union([chapter_Props_Schema, lesson_Props_Schema])),
 });
 export type Module_Props = z.infer<typeof module_Props_Schema>;

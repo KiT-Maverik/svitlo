@@ -1,4 +1,10 @@
-import type { DeepPartial, ConfigWithLanguages, LanguageScope, ChildrenSupporting, PublicationLanguageOptions } from '#types';
+import type {
+  DeepPartial,
+  ConfigWithLanguages,
+  LanguageScope,
+  ChildrenSupporting,
+  PublicationLanguageOptions,
+} from '#types';
 import type { LanguageCodes } from '#schemas';
 import { z } from 'zod';
 
@@ -125,7 +131,10 @@ export const defineCarousel = <
       const slide = items[key];
       const resource = slide.build.props({ languages });
       const patch = Object.hasOwn(patches, key)
-        ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(patches[key] as never, { languages })
+        ? (slide.build.overrides as (patch: never, options: PublicationLanguageOptions) => SlidePatch)(
+            patches[key] as never,
+            { languages },
+          )
         : undefined;
       return { resource, patch };
     });
@@ -137,8 +146,8 @@ export const defineCarousel = <
     const parsedInvariant = arraySchema.safeParse(invariant);
 
     const translatedLanguages = languages.filter(language =>
-      entries.some(({ resource, patch }) =>
-        resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+      entries.some(
+        ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
       ),
     );
 
@@ -175,7 +184,9 @@ export const defineCarousel = <
     locale: onlyStrings(authored.locale),
   } satisfies DeepPartial<ContentBlock_Carousel_Config>;
 
-  const props = (options: PublicationLanguageOptions<Languages>): CarouselPublication<ContentBlock_Carousel_PropsBase> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): CarouselPublication<ContentBlock_Carousel_PropsBase> => {
     const languages = resolvePublicationLanguages(options);
     const metadata = copyAuthored();
     const own = splitOwnLocale(metadata.locale);

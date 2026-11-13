@@ -1,5 +1,11 @@
 import type { LanguageCodes } from '#schemas';
-import type { ChildrenSupporting, DeepPartial, LanguageScope, PublicationLanguageOptions, RequireLanguages } from '#types';
+import type {
+  ChildrenSupporting,
+  DeepPartial,
+  LanguageScope,
+  PublicationLanguageOptions,
+  RequireLanguages,
+} from '#types';
 
 import {
   mergeForValidation,
@@ -26,7 +32,10 @@ import {
 type Skill = Skill_Configurator;
 type Group = SkillGroup_Configurator;
 type Child = Skill | Group;
-type ChildPatch = { base: DeepPartial<Skill_Props | SkillGroup_Props>; locale: Partial<Record<LanguageCodes, DeepPartial<Skill_Props | SkillGroup_Props>>> | undefined };
+type ChildPatch = {
+  base: DeepPartial<Skill_Props | SkillGroup_Props>;
+  locale: Partial<Record<LanguageCodes, DeepPartial<Skill_Props | SkillGroup_Props>>> | undefined;
+};
 type SkillDomainPublication<Base> = {
   base: Base;
   locale: Partial<Record<LanguageCodes, DeepPartial<SkillDomain_Props>>> | undefined;
@@ -43,18 +52,30 @@ const validate = (config: SkillDomain_Config): void => {
   const metadata = skillDomain_Config_Schema.omit({ skills: true, groups: true });
   metadata.parse(config);
   const issues: { path: string; message: string }[] = [];
-  for (const [key, type] of [['skills', 'skill'], ['groups', 'skillGroup']] as const) {
+  for (const [key, type] of [
+    ['skills', 'skill'],
+    ['groups', 'skillGroup'],
+  ] as const) {
     const collection = config[key];
     if (!collection) continue;
     issues.push(...validateOrderedKeys(collection, { path: key }));
-    issues.push(...validateSluggedConfiguratorMap(collection.items, [type], {
-      path: key + '.items', itemLabel: type,
-    }));
+    issues.push(
+      ...validateSluggedConfiguratorMap(collection.items, [type], {
+        path: key + '.items',
+        itemLabel: type,
+      }),
+    );
     for (const [slug, child] of Object.entries(collection.items)) {
-      if (!isRecord(child) || !isRecord(child.build) ||
-        typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-        !isRecord(child.config) || !isRecord(child.config.base) ||
-        child.config.base.id !== child.id || child.config.base.slug !== slug) {
+      if (
+        !isRecord(child) ||
+        !isRecord(child.build) ||
+        typeof child.build.props !== 'function' ||
+        typeof child.build.overrides !== 'function' ||
+        !isRecord(child.config) ||
+        !isRecord(child.config.base) ||
+        child.config.base.id !== child.id ||
+        child.config.base.slug !== slug
+      ) {
         issues.push({ path: key + '.items.' + slug, message: 'Child must expose the Build API' });
       }
     }
@@ -71,7 +92,8 @@ const validate = (config: SkillDomain_Config): void => {
     if (ids.has(child.id)) issues.push({ path: slug, message: 'Duplicate Domain child ID: ' + child.id });
     ids.add(child.id);
   }
-  if (issues.length) throw new Error('SkillDomain validation failed: ' + issues.map(x => x.path + ': ' + x.message).join('; '));
+  if (issues.length)
+    throw new Error('SkillDomain validation failed: ' + issues.map(x => x.path + ': ' + x.message).join('; '));
 };
 
 /** Bound declaration surface; existing and added slug keys remain explicit. */
@@ -90,7 +112,9 @@ export type SkillDomain_Configurator<
   readonly group: Groups;
   readonly validate: typeof validate;
   readonly build: {
-    props(options: PublicationLanguageOptions<Languages>): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }>;
+    props(
+      options: PublicationLanguageOptions<Languages>,
+    ): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }>;
     overrides<
       const AddedSkills extends Record<string, Skill> = {},
       const AddedGroups extends Record<string, Group> = {},
@@ -164,7 +188,10 @@ export function defineSkillDomain<
       const child = items[key];
       const resource = child.build.props({ languages });
       const patch = Object.hasOwn(patches, key)
-        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => ChildPatch)(patches[key] as never, { languages })
+        ? (child.build.overrides as (value: never, options: PublicationLanguageOptions) => ChildPatch)(
+            patches[key] as never,
+            { languages },
+          )
         : undefined;
       return { resource, patch };
     });
@@ -178,14 +205,20 @@ export function defineSkillDomain<
         const patched = mergeForValidation(original, (patch?.base ?? {}) as DeepPartial<typeof original>);
         return parse(mergeForValidation(patched, (patch?.locale?.[language] ?? {}) as DeepPartial<typeof patched>));
       });
-      if (entries.some(({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined)) {
+      if (
+        entries.some(
+          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+        )
+      ) {
         locale[language] = resolved;
       }
     }
     return { base, locale };
   };
 
-  const props = (options: PublicationLanguageOptions<Languages>): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }> => {
+  const props = (
+    options: PublicationLanguageOptions<Languages>,
+  ): SkillDomainPublication<DeepPartial<SkillDomain_Props> & { id: string; slug: string }> => {
     const languages = resolvePublicationLanguages(options);
     const current = copyAuthored();
     const own = splitOwn({ title: current.title, description: current.description });
@@ -194,12 +227,14 @@ export function defineSkillDomain<
     if (skills) {
       const built = buildChildren(initialSkills, skillOrder, value => skill_Props_Schema.parse(value), languages);
       base.skills = built.base;
-      for (const [language, values] of Object.entries(built.locale)) (files[language as LanguageCodes] ??= {}).skills = values;
+      for (const [language, values] of Object.entries(built.locale))
+        (files[language as LanguageCodes] ??= {}).skills = values;
     }
     if (groups) {
       const built = buildChildren(initialGroups, groupOrder, value => skillGroup_Props_Schema.parse(value), languages);
       base.groups = built.base;
-      for (const [language, values] of Object.entries(built.locale)) (files[language as LanguageCodes] ??= {}).groups = values;
+      for (const [language, values] of Object.entries(built.locale))
+        (files[language as LanguageCodes] ??= {}).groups = values;
     }
     const result = { base, locale: Object.keys(files).length ? files : undefined };
     for (const language of languages) {
@@ -252,14 +287,16 @@ export function defineSkillDomain<
         if (patchCollection === undefined) return;
         if (!isRecord(patchCollection)) throw new Error(key + ' must be an object');
         for (const field of Object.keys(patchCollection)) {
-          if (!['items', 'additionalItems', 'order'].includes(field)) throw new Error('Unknown ' + key + ' override field: ' + field);
+          if (!['items', 'additionalItems', 'order'].includes(field))
+            throw new Error('Unknown ' + key + ' override field: ' + field);
         }
         const changes = patchCollection.items ?? {};
         const additions = patchCollection.additionalItems ?? {};
         if (!isRecord(changes)) throw new Error(key + '.items must be a slug-keyed object');
         if (!isRecord(additions)) throw new Error(key + '.additionalItems must be a slug-keyed configurator map');
         const issues = validateSluggedConfiguratorMap(additions, [type], {
-          path: key + '.additionalItems', itemLabel: type,
+          path: key + '.additionalItems',
+          itemLabel: type,
         });
         if (issues.length) throw new Error(issues.map(issue => issue.message).join('; '));
 
@@ -268,10 +305,16 @@ export function defineSkillDomain<
         let changedStructure = Object.keys(additions).length > 0;
         for (const [slug, child] of Object.entries(additions)) {
           if (Object.hasOwn(initial, slug)) throw new Error('Duplicate ' + key + ' slug: ' + slug);
-          if (!isRecord(child) || !isRecord(child.build) ||
-            typeof child.build.props !== 'function' || typeof child.build.overrides !== 'function' ||
-            !isRecord(child.config) || !isRecord(child.config.base) ||
-            child.config.base.id !== child.id || child.config.base.slug !== slug) {
+          if (
+            !isRecord(child) ||
+            !isRecord(child.build) ||
+            typeof child.build.props !== 'function' ||
+            typeof child.build.overrides !== 'function' ||
+            !isRecord(child.config) ||
+            !isRecord(child.config.base) ||
+            child.config.base.id !== child.id ||
+            child.config.base.slug !== slug
+          ) {
             throw new Error('New ' + type + ' must expose a matching immutable Build identity: ' + slug);
           }
           active[slug] = child as T;
@@ -290,12 +333,19 @@ export function defineSkillDomain<
           throw new Error(key + '.order is required when adding or disabling children');
         }
         const order = (patchCollection.order ?? originalOrder) as readonly string[];
-        const orderIssues = validateOrderedKeys({ items: active, order }, {
-          path: key, allowDisabled: true,
-        });
+        const orderIssues = validateOrderedKeys(
+          { items: active, order },
+          {
+            path: key,
+            allowDisabled: true,
+          },
+        );
         if (orderIssues.length) throw new Error(orderIssues.map(issue => issue.message).join('; '));
-        if (!Object.keys(changes).length && !Object.keys(additions).length && patchCollection.order === undefined) return;
-        const enabled = Object.fromEntries(Object.entries(active).filter((entry): entry is [string, T] => entry[1] !== false));
+        if (!Object.keys(changes).length && !Object.keys(additions).length && patchCollection.order === undefined)
+          return;
+        const enabled = Object.fromEntries(
+          Object.entries(active).filter((entry): entry is [string, T] => entry[1] !== false),
+        );
         effectiveChildren[key] = enabled;
         const built = buildChildren(enabled, order, parse, languages, childPatches);
         (output.base as Record<string, unknown>)[key] = built.base;
@@ -304,8 +354,12 @@ export function defineSkillDomain<
         }
       };
 
-      applyCollection('skills', patch.skills, initialSkills, skillOrder, 'skill', value => skill_Props_Schema.parse(value));
-      applyCollection('groups', patch.groups, initialGroups, groupOrder, 'skillGroup', value => skillGroup_Props_Schema.parse(value));
+      applyCollection('skills', patch.skills, initialSkills, skillOrder, 'skill', value =>
+        skill_Props_Schema.parse(value),
+      );
+      applyCollection('groups', patch.groups, initialGroups, groupOrder, 'skillGroup', value =>
+        skillGroup_Props_Schema.parse(value),
+      );
       const ids = new Set<string>();
       const slugs = new Set<string>();
       for (const [slug, child] of [
@@ -350,4 +404,3 @@ export function defineSkillDomain<
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 }
-

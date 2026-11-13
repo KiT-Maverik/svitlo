@@ -129,7 +129,12 @@ export const validateCommonContent = (content: QuestionCommonContent): void => {
 const readResource = (child: Block, languages: readonly LanguageCodes[]): BlockResource =>
   cloneJson(child.build.props({ languages }) as BlockResource);
 const readPatch = (child: Block, patch: unknown, languages: readonly LanguageCodes[]): BlockPatch =>
-  cloneJson((child.build.overrides as (value: never, options: { languages: readonly LanguageCodes[] }) => BlockPatch)(patch as never, { languages }));
+  cloneJson(
+    (child.build.overrides as (value: never, options: { languages: readonly LanguageCodes[] }) => BlockPatch)(
+      patch as never,
+      { languages },
+    ),
+  );
 
 const propsSchemas: Record<string, { parse: (value: unknown) => unknown }> = {
   text: text_Props_Schema,
