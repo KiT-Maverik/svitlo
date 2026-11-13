@@ -1,3 +1,4 @@
+import type { ConfiguratorChild } from '../../types/configuratorChild';
 import type { ContentBlock_Text_Configurator, ContentBlock_Text_Props } from './defineText';
 import type { ContentBlock_Markdown_Configurator, ContentBlock_Markdown_Props } from './defineMarkdown';
 import type { ContentBlock_Code_Configurator, ContentBlock_Code_Props } from './defineCode';
@@ -9,7 +10,7 @@ import type { ContentBlock_Carousel_Configurator, ContentBlock_Carousel_Props } 
 import type { ContentBlock_Checkpoint_Configurator, ContentBlock_Checkpoint_Props } from './defineCheckpoint';
 import type { ContentBlock_Scene_Configurator, ContentBlock_Scene_Props } from './defineScene';
 
-export type ContentBlock_Configurator =
+export type ContentBlock_Configurator = ConfiguratorChild<
   | ContentBlock_Text_Configurator
   | ContentBlock_Markdown_Configurator
   | ContentBlock_Code_Configurator
@@ -19,7 +20,8 @@ export type ContentBlock_Configurator =
   | ContentBlock_Youtube_Configurator
   | ContentBlock_Carousel_Configurator
   | ContentBlock_Checkpoint_Configurator
-  | ContentBlock_Scene_Configurator;
+  | ContentBlock_Scene_Configurator
+>;
 
 export type ContentBlock_Props =
   | ContentBlock_Text_Props

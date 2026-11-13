@@ -1,5 +1,6 @@
 import { defineContentSection, defineLesson, defineMarkdown } from '@svitlo/engine/build';
 import { howLightMoves, howLightMovesTitle } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c';
+import { howLightMoves_languages } from '../../c/d3048d21-8690-5255-b62c-984c69ac272c/constants';
 import { contentBlockGallery } from '../../../courses/sections/contentBlockGallery.data';
 
 const storyBridge = defineContentSection({
@@ -38,6 +39,7 @@ export const courseHowLightMoves = defineLesson({
   skills: howLightMoves.config.base.skills,
   params: {
     ...howLightMoves.config.base.params,
+    languages: howLightMoves_languages,
     sections: {
       ...howLightMoves.config.base.params.sections,
       allowSkipping: false,

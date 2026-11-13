@@ -1,3 +1,4 @@
+import type { ConfiguratorChild } from '../../types/configuratorChild';
 import type { Question_SelectOneAnswer_Configurator } from './defineSelectOneAnswer';
 import type { Question_SelectMultipleAnswers_Configurator } from './defineSelectMultipleAnswers';
 import type { Question_MatchBlocks_Configurator } from './defineMatchBlocks';
@@ -8,7 +9,7 @@ import type { Question_BuildAnswerWithBlocks_Configurator } from './defineBuildA
 import type { Question_FillBlanksWithBlocks_Configurator } from './defineFillBlanksWithBlocks';
 import type { Question_FillBlanksWithText_Configurator } from './defineFillBlanksWithText';
 
-export type Question_Configurator =
+export type Question_Configurator = ConfiguratorChild<
   | Question_SelectOneAnswer_Configurator
   | Question_SelectMultipleAnswers_Configurator
   | Question_MatchBlocks_Configurator
@@ -17,4 +18,5 @@ export type Question_Configurator =
   | Question_OrderSequence_Configurator
   | Question_BuildAnswerWithBlocks_Configurator
   | Question_FillBlanksWithBlocks_Configurator
-  | Question_FillBlanksWithText_Configurator;
+  | Question_FillBlanksWithText_Configurator
+>;

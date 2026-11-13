@@ -1,3 +1,4 @@
+import type { ConfiguratorChild } from '../../../../types/configuratorChild';
 import type {
   DeepPartial,
   LanguageScope,
@@ -384,4 +385,4 @@ export const defineCheckpointItem = <
   return result as typeof result & LanguageScope<Languages>;
 };
 
-export type ContentBlock_CheckpointItem_Configurator = ReturnType<typeof defineCheckpointItem>;
+export type ContentBlock_CheckpointItem_Configurator = ConfiguratorChild<ReturnType<typeof defineCheckpointItem>>;

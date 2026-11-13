@@ -1,3 +1,4 @@
+import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
@@ -26,7 +27,7 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
 });
 export type Module_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
-export type Module_Child = Chapter_Configurator | Lesson_Configurator | Episode_Configurator;
+export type Module_Child = ConfiguratorChild<Chapter_Configurator | Lesson_Configurator | Episode_Configurator>;
 export type Module_Child_Props = Chapter_Props | Lesson_Props | Episode_Props;
 
 export const module_Config_Schema = identity.extend({

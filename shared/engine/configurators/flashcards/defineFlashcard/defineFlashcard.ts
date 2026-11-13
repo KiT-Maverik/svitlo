@@ -1,3 +1,4 @@
+import type { ConfiguratorChild } from '../../../types/configuratorChild';
 import type {
   DeepPartial,
   LanguageScope,
@@ -626,4 +627,4 @@ export function defineFlashcard<
   return result as typeof result & LanguageScope<Languages>;
 }
 
-export type Flashcard_Configurator = ReturnType<typeof defineFlashcard>;
+export type Flashcard_Configurator = ConfiguratorChild<ReturnType<typeof defineFlashcard>>;
