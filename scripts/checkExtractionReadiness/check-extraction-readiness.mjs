@@ -173,8 +173,9 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
         target.startsWith('./dist/') && target.endsWith('.js'),
         'Invalid compiled entrypoint: ' + pkg.name + subpath,
       );
+      // Engine and IndexedDB compile from the package root; other shared packages compile from src/.
       const sourcePath =
-        path === 'shared/engine'
+        path === 'shared/engine' || path === 'shared/indexdb'
           ? target.replace(/^\.\/dist\//, '').replace(/\.js$/, '')
           : target.replace(/^\.\/dist\/(?:src\/)?/, 'src/').replace(/\.js$/, '');
       assert(
