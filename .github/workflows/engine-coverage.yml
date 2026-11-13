@@ -76,10 +76,8 @@ jobs:
       - name: Install pinned workspace dependencies
         run: npm ci --ignore-scripts --no-audit --no-fund
 
-      - name: Build Contracts and Engine
-        run: |
-          npm run package:build --workspace @svitlo/contracts
-          npm run package:build --workspace @svitlo/engine
+      - name: Build Engine
+        run: npm run package:build --workspace @svitlo/engine
 
       - name: Validate the coverage filter and gap reporter
         run: node --test shared/engine/scripts/coverage/report.spec.mjs

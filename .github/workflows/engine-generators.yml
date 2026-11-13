@@ -36,8 +36,6 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Build Contracts
-        run: npm run package:build --workspace @svitlo/contracts
       - name: Build Engine
         run: npm run package:build --workspace @svitlo/engine
       - name: Typecheck Engine and compile generator tests

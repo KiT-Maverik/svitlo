@@ -112,12 +112,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Install and build current Lesson creator dependencies
+      - name: Install and build current Lesson dependencies
         shell: bash
         run: |
           set -euo pipefail
           npm ci --ignore-scripts --no-audit --no-fund
-          npm run package:build --workspace @svitlo/contracts
           npm run package:build --workspace @svitlo/engine
       - name: Validate Lesson artifact adapter
         run: |

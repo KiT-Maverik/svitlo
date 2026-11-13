@@ -29,7 +29,5 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Build Contracts workspace for Engine type resolution
-        run: npm run package:build --workspace @svitlo/contracts
       - name: Typecheck Engine and execute ContentBlock regression tests
         run: npm run test:contentblocks --workspace @svitlo/engine

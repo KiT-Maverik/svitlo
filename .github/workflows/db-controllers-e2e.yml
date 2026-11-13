@@ -5,7 +5,7 @@ on:
   pull_request:
     paths:
       - 'shared/indexdb/**'
-      - 'shared/contracts/**'
+      - 'shared/engine/**'
       - '.github/workflows/db-controllers-e2e.yml'
       - 'package.json'
       - 'package-lock.json'
@@ -25,11 +25,9 @@ jobs:
       - run: npm run repo:check:packages
       # Run only this workflow's browser dependencies. Root commands check all
       # textbook workspaces, including unrelated in-progress authored translations.
-      - run: npm run package:build --workspace @svitlo/contracts
       - run: npm run package:build --workspace @svitlo/engine
       - run: npm run package:build --workspace @svitlo/indexdb
       - run: npm run package:build --workspace @svitlo/ui-kit
-      - run: npm run code:check:types --workspace @svitlo/contracts
       - run: npm run code:check:types --workspace @svitlo/indexdb
       - run: npm run code:check:types --workspace @svitlo/ui-kit
       - run: npm run code:check:types --workspace @svitlo/playground
