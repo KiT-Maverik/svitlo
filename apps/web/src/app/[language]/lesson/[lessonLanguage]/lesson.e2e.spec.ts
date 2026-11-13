@@ -20,7 +20,7 @@ test('lesson renders sections, scenes and quiz in the selected content language'
 });
 
 test('the requested lesson language selects localized published JSON and scene props', async ({ page }) => {
-  const root = '/data/pages/lessons/c/' + id + '/config/';
+  const root = '/data/lessons/c/' + id + '/';
   const [baseResource, localizedResource] = await Promise.all([
     page.request.get(root + 'base.json'),
     page.request.get(root + 'en.json'),
@@ -29,9 +29,11 @@ test('the requested lesson language selects localized published JSON and scene p
   expect(localizedResource.ok()).toBe(true);
   const base = await baseResource.json();
   const json = await localizedResource.json();
-  expect(base.data.title).toBeUndefined();
-  expect(json.data.title).toBe('How Light Travels');
-  expect(json.localeSources['/title']).toEqual({ code: 'en' });
+  expect(base.type).toBe('lesson');
+  expect(base.params.languages).toContain('en');
+  expect(base.section.map((section: { type: string }) => section.type)).toEqual(['content', 'practice', 'quiz']);
+  expect(json.locale.title).toBe('How Light Travels');
+  expect(json.section[0].locale.title).toBeDefined();
 
   await page.goto(`/uk/lesson/en/${id}`);
   await expect(page.locator('html')).toHaveAttribute('lang', 'uk-UA');
