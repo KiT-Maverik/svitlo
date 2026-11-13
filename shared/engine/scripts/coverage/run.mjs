@@ -36,7 +36,7 @@ function testPaths() {
   const patterns = command.slice(index + marker.length).trim().split(/\s+/);
   const files = new Set();
   for (const pattern of patterns) {
-    if (!/^(?:\.test-build|generators)\/[a-zA-Z0-9_.*\/-]+\.spec\.(?:js|mjs)$/.test(pattern)) {
+    if (!/^(?:\.test-build|generators|scripts)\/[a-zA-Z0-9_.*\/-]+\.spec\.(?:js|mjs)$/.test(pattern)) {
       throw new Error('Unexpected Engine test glob: ' + pattern);
     }
     const matches = globSync(pattern, { cwd: engineRoot }).sort();
