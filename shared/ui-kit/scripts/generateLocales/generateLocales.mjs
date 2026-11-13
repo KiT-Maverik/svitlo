@@ -28,7 +28,7 @@ const output =
     ? resolve(repoRoot, process.argv[outputFlag + 1])
     : join(target, 'public/data/uiKit');
 if (!output.startsWith(resolve(repoRoot) + sep)) throw new Error('Output must stay inside the repository');
-const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/contracts/localization');
+const { DEFAULT_SUPPORTED_LANGUAGES } = require('@svitlo/engine/runtime');
 const tmp = mkdtempSync(join(tmpdir(), 'svitlo-ui-kit-'));
 
 /** Compile authored data into temporary JS modules; never ship this code to the app. */

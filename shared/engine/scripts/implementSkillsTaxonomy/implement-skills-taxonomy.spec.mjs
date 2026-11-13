@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const script = path.join(root, 'shared/engine/scripts/implementSkillsTaxonomy/implement-skills-taxonomy.mjs');
-const roster = fs.readFileSync(path.join(root, 'shared/contracts/src/types/languages.ts'), 'utf8');
+const roster = fs.readFileSync(path.join(root, 'shared/engine/schemas/languages.schemas.ts'), 'utf8');
 const languages = roster.slice(
   roster.indexOf('export const DEFAULT_SUPPORTED_LANGUAGES'),
   roster.indexOf('] as const satisfies readonly LanguageDefinition[];'),

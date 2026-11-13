@@ -88,7 +88,7 @@ function dictionary(object, field, file) {
   return pairs;
 }
 function supportedLocales() {
-  const file = path.join(repositoryRoot, 'shared/contracts/src/types/languages.ts');
+  const file = path.join(repositoryRoot, 'shared/engine/schemas/languages.schemas.ts');
   let found;
   for (const node of parse(file).statements) {
     if (!ts.isVariableStatement(node)) continue;
