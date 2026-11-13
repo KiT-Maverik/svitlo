@@ -40,9 +40,9 @@ test('Course detail uses the published nested hierarchy and opens a real Lesson'
   );
 
   await page.goto('/uk/course/' + courseId + '/lesson/uk/' + discoveryId);
-  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
   await page.goto('/uk/lesson/uk/' + discoveryId);
-  await expect(page.getByRole('heading', { name: 'Light Lab · Discovery (demo)', exact: true })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Світловий промінь' })).toBeVisible();
 });
 
 test('Course-context Lesson preserves the independent content language', async ({ page }) => {
