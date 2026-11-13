@@ -69,6 +69,30 @@ const validateResolvedProps = (
 };
 
 
+/** Validate Quiz-owned references against the effective, active child collection. */
+const validateScreenReferences = (
+  screen: QuizSection_Config['params']['screen'],
+  activeSlugs: ReadonlySet<string>,
+  disabledSlugs: ReadonlySet<string>,
+): void => {
+  const screens = [
+    ['starting', screen?.starting],
+    ['ending.success', screen?.ending?.success],
+    ['ending.fail', screen?.ending?.fail],
+    ['ending.retry', screen?.ending?.retry],
+  ] as const;
+  for (const [location, entry] of screens) {
+    for (const slug of entry?.content ?? []) {
+      if (!activeSlugs.has(slug)) {
+        throw new Error('Quiz screen references unknown ContentBlock: ' + slug + ' (' + location + ')');
+      }
+      if (disabledSlugs.has(slug)) {
+        throw new Error('Quiz screen ' + location + ' references disabled ContentBlock: ' + slug);
+      }
+    }
+  }
+};
+
 const validate = (config: QuizSection_Config): void => {
   quizSection_Config_Schema.parse(config);
   const issues = [
@@ -86,16 +110,13 @@ const validate = (config: QuizSection_Config): void => {
       throw new Error('Invalid Section ContentBlock Build API or identity: ' + key);
     }
   }
-  // Screens reference named Section content; references must survive disabled-item patches.
-  const screen = config.params.screen;
-  const screens = [screen?.starting, screen?.ending?.success, screen?.ending?.fail, screen?.ending?.retry];
-  for (const entry of screens) {
-    for (const slug of entry?.content ?? []) {
-      if (!Object.hasOwn(config.content.items, slug)) {
-        throw new Error('Quiz screen references unknown ContentBlock: ' + slug);
-      }
-    }
-  }
+  // Authored references must target enabled ContentBlocks (not just existing slugs).
+  const authoredDisabled = new Set(
+    Object.entries(config.content.items)
+      .filter(([, child]) => isRecord(child.config.base.params) && child.config.base.params.disabled === true)
+      .map(([key]) => key),
+  );
+  validateScreenReferences(config.params.screen, new Set(Object.keys(config.content.items)), authoredDisabled);
 };
 
 /** Stateless Section authoring with ordered ContentBlock children. */
@@ -268,6 +289,14 @@ export const defineQuizSection = <
       validate({ ...candidate, content: { items: enabled, order: [...order] } });
       if (Object.keys(changes).length || Object.keys(additions).length || patch.content?.order !== undefined) {
         const built = buildContent(enabled, order, languages, childPatches);
+        // An existing child may still be in the collection while disabled by its own patch.
+        // Check the final child Props, not only the authored Config or structural false entries.
+        const effectiveDisabled = new Set(
+          built.bases
+            .filter(child => isRecord(child.params) && child.params.disabled === true)
+            .map(child => child.slug),
+        );
+        validateScreenReferences(candidate.params.screen, new Set(order), effectiveDisabled);
         output.base.content = built.bases;
         for (const [language, entries] of Object.entries(built.locales)) {
           (files[language as LanguageCodes] ??= {}).content = entries;
