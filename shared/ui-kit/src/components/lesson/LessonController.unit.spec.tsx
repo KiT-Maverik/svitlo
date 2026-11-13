@@ -1,7 +1,12 @@
 import { useEffect } from 'react';
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { Lesson_Props, ContentBlock_Text_Props, ContentBlock_Checkpoint_Props, QuizSection_Props } from '@svitlo/engine';
+import type {
+  Lesson_Props,
+  ContentBlock_Text_Props,
+  ContentBlock_Checkpoint_Props,
+  QuizSection_Props,
+} from '@svitlo/engine';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';
@@ -76,7 +81,13 @@ let releaseBlocker: (() => void) | undefined;
 function TestLayout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions();
   const bus = useLessonEventBus();
-  useEffect(() => bus.subscribe(eventId => { received.push(eventId); }), [bus]);
+  useEffect(
+    () =>
+      bus.subscribe(eventId => {
+        received.push(eventId);
+      }),
+    [bus],
+  );
   observed.push(actions);
   return (
     <>
@@ -94,8 +105,14 @@ function showLesson(response = fixture(true), editableSectionParams: readonly 'a
   received.length = 0;
   releaseBlocker = undefined;
   return render(
-    <Lesson response={response} language="en" href="/en/lesson/light"
-      layout={TestLayout} messages={enUiKitMessages} editableSectionParams={editableSectionParams} />,
+    <Lesson
+      response={response}
+      language="en"
+      href="/en/lesson/light"
+      layout={TestLayout}
+      messages={enUiKitMessages}
+      editableSectionParams={editableSectionParams}
+    />,
   );
 }
 function navigationButton(action: 'next' | 'previous' | 'skip') {
@@ -166,8 +183,9 @@ describe('Engine Props Lesson Controller', () => {
     view.unmount();
 
     showLesson(initial, ['allowNavigation']);
-    const permitted = within(screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation }))
-      .getByRole('button', { name: /Summary/i });
+    const permitted = within(
+      screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation }),
+    ).getByRole('button', { name: /Summary/i });
     fireEvent.click(screen.getByRole('button', { name: 'Enable navigation' }));
     expect(permitted).toBeEnabled();
   });
@@ -176,8 +194,9 @@ describe('Engine Props Lesson Controller', () => {
     const source = fixture(false);
     source.section[1].params.disabled = true;
     showLesson(source);
-    expect(screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation })
-      .querySelectorAll('button')).toHaveLength(1);
+    expect(
+      screen.getByRole('navigation', { name: enUiKitMessages.lesson.steps.navigation }).querySelectorAll('button'),
+    ).toHaveLength(1);
   });
 
   it('keeps media preferences scoped to a Lesson session', () => {

@@ -205,10 +205,10 @@ export function assembleCourseLesson({
   const overrides =
     basePatch === undefined && localePatch === undefined
       ? undefined
-      : {
+      : ({
           ...(basePatch !== undefined ? { base: basePatch } : {}),
           ...(localePatch !== undefined ? { locale: { [language]: localePatch } } : {}),
-        } as unknown as PublishedLessonPropsOverride;
+        } as unknown as PublishedLessonPropsOverride);
 
   // Reuse the canonical Lesson Props validator with the published keyed Course hierarchy.
   try {

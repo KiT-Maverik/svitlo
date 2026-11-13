@@ -27,9 +27,18 @@ export type LessonProps = {
 };
 
 export function Lesson(props: LessonProps) {
-  const response = useMemo(() => ({
-    ...props.response,
-    section: props.response.section.filter(section => section.params.disabled !== true),
-  }), [props.response]);
-  return <LessonController key={props.href + ':' + props.response.id + ':' + props.language} {...props} response={response} />;
+  const response = useMemo(
+    () => ({
+      ...props.response,
+      section: props.response.section.filter(section => section.params.disabled !== true),
+    }),
+    [props.response],
+  );
+  return (
+    <LessonController
+      key={props.href + ':' + props.response.id + ':' + props.language}
+      {...props}
+      response={response}
+    />
+  );
 }

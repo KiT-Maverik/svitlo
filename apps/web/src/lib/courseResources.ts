@@ -3,7 +3,12 @@ import 'server-only';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { loadPublishedCourseLessonProps } from '@svitlo/adapter-nextjs';
-import { languageCode_Schema, resolveEntityPath, type CourseLessonEntry, type CoursePublishedTree } from '@svitlo/engine';
+import {
+  languageCode_Schema,
+  resolveEntityPath,
+  type CourseLessonEntry,
+  type CoursePublishedTree,
+} from '@svitlo/engine';
 import type { LanguageCode } from '@svitlo/contracts/localization';
 
 /** The published Course preserves locale metadata and slug-keyed hierarchy. */
@@ -47,9 +52,11 @@ function merge(base: unknown, patch: unknown): unknown {
 function validateContent(content: unknown, parent: 'course' | 'module' | 'chapter', visited: Set<string>): void {
   assertRecord(content, parent + '.content');
   assertRecord(content.items, parent + '.content.items');
-  if (!Array.isArray(content.order) ||
-      content.order.length !== Object.keys(content.items).length ||
-      new Set(content.order).size !== content.order.length) {
+  if (
+    !Array.isArray(content.order) ||
+    content.order.length !== Object.keys(content.items).length ||
+    new Set(content.order).size !== content.order.length
+  ) {
     throw new Error('Invalid Course content order: ' + parent);
   }
   for (const slug of content.order) {

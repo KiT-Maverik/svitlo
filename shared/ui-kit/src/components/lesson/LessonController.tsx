@@ -141,8 +141,7 @@ function hasNextBlocker(state: Runtime, step: number): boolean {
 function canLeaveSection(state: Runtime, response: Lesson_Props, index: number): boolean {
   const section = response.section[index];
   if (!section) return false;
-  if (section.type === 'quiz' && section.params.isBlocker && !state.section.completedQuizIds[section.id])
-    return false;
+  if (section.type === 'quiz' && section.params.isBlocker && !state.section.completedQuizIds[section.id]) return false;
   return requiredCheckpointIds(section).every(id => state.section.completedCheckpoints[section.id + '/' + id]);
 }
 

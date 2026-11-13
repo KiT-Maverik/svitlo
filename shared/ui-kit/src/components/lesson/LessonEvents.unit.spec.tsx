@@ -33,11 +33,22 @@ function SceneContent({ locales }: { locales: ContentBlock_Scene_Props['locale']
 function Layout({ messages, ...props }: LessonLearningLayoutProps) {
   const actions = useLessonActions<'lightDiscovered'>();
   const bus = useLessonEventBus();
-  useEffect(() => bus.subscribe(id => { received.push(id); }), [bus]);
+  useEffect(
+    () =>
+      bus.subscribe(id => {
+        received.push(id);
+      }),
+    [bus],
+  );
   return (
     <>
       <button onClick={() => actions.publishEvent('lightDiscovered')}>Discover light</button>
-      <button onClick={() => { actions.publishEvent('lightDiscovered'); actions.publishEvent('lightDiscovered'); }}>
+      <button
+        onClick={() => {
+          actions.publishEvent('lightDiscovered');
+          actions.publishEvent('lightDiscovered');
+        }}
+      >
         Discover twice
       </button>
       <button onClick={() => actions.completeQuiz(uuid(53))}>Complete quiz</button>
@@ -69,13 +80,15 @@ function lesson(): Lesson_Props {
         type: 'content',
         params: {},
         locale: { title: 'First', navigationLabel: 'First' },
-        content: [{
-          id: uuid(56),
-          slug: 'textFirst',
-          type: 'text',
-          params: {},
-          locale: { value: 'First section' },
-        }],
+        content: [
+          {
+            id: uuid(56),
+            slug: 'textFirst',
+            type: 'text',
+            params: {},
+            locale: { value: 'First section' },
+          },
+        ],
       },
       {
         id: uuid(52),
@@ -83,13 +96,15 @@ function lesson(): Lesson_Props {
         type: 'content',
         params: {},
         locale: { title: 'Second', navigationLabel: 'Second' },
-        content: [{
-          id: uuid(57),
-          slug: 'textSecond',
-          type: 'text',
-          params: {},
-          locale: { value: 'Second section' },
-        }],
+        content: [
+          {
+            id: uuid(57),
+            slug: 'textSecond',
+            type: 'text',
+            params: {},
+            locale: { value: 'Second section' },
+          },
+        ],
       },
     ],
     questions: {},
@@ -110,7 +125,9 @@ function showLesson(overrides?: Record<string, ContentBlock_Scene_Props | false>
     />,
   );
 }
-beforeEach(() => { received.length = 0; });
+beforeEach(() => {
+  received.length = 0;
+});
 
 describe('Engine Props Lesson events', () => {
   it('publishes custom events and renders a Scene with resolved Engine locale Props', async () => {
@@ -143,9 +160,11 @@ describe('Engine Props Lesson events', () => {
   it('marks Lesson completed after reaching the final Section', () => {
     showLesson();
     expect(received).not.toContain('lessonCompleted');
-    const next = within(screen.getByRole('navigation', {
-      name: enUiKitMessages.learningLayout.navigation.bottom,
-    })).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i') });
+    const next = within(
+      screen.getByRole('navigation', {
+        name: enUiKitMessages.learningLayout.navigation.bottom,
+      }),
+    ).getByRole('button', { name: new RegExp(enUiKitMessages.learningLayout.actions.next, 'i') });
     fireEvent.click(next);
     expect(received.filter(id => id === 'lessonCompleted')).toHaveLength(1);
   });
@@ -196,7 +215,9 @@ describe('Engine Props Lesson events', () => {
   });
 
   it('validates authored custom event IDs before applying Course overrides', () => {
-    expect(resolveLessonEventScenes({ lightDiscovered: celebration }, { lightDiscovered: false }).lightDiscovered).toBe(false);
+    expect(resolveLessonEventScenes({ lightDiscovered: celebration }, { lightDiscovered: false }).lightDiscovered).toBe(
+      false,
+    );
     expect(() => resolveLessonEventScenes({}, { unknown: false })).toThrow(/undeclared/);
   });
 });

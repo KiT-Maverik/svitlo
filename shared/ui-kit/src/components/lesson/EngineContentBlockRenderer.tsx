@@ -40,7 +40,9 @@ function requiredText(value: unknown, field: string): string {
 }
 function localizedMap(values: Record<string, unknown> | undefined, field: string): Record<string, string> | undefined {
   if (!values) return undefined;
-  return Object.fromEntries(Object.entries(values).map(([key, value]) => [key, requiredText(value, field + '.' + key)]));
+  return Object.fromEntries(
+    Object.entries(values).map(([key, value]) => [key, requiredText(value, field + '.' + key)]),
+  );
 }
 function localizedFallback(value: Record<string, unknown> | undefined, field: string) {
   if (!value) return undefined;
@@ -76,7 +78,10 @@ function EngineCheckpoint({
   const allDone = checks.every(item => checked.has(item.id));
   return (
     <section aria-label={source.locale.title}>
-      <Typography component={(`h${source.params.headingLevel ?? 2}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6')} variant="h6">
+      <Typography
+        component={`h${source.params.headingLevel ?? 2}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'}
+        variant="h6"
+      >
         {source.locale.title}
       </Typography>
       <Stack spacing={1}>
@@ -130,7 +135,15 @@ function EngineBlock({
   switch (block.type) {
     case 'text': {
       const data = text_Props_Schema.parse(block);
-      return <ContentBlock_Text type="text" id={data.id} value={data.locale.value} variables={data.params.variables} wrap={data.params.wrap ? { typographyProps: data.params.wrap.typographyProps } : undefined} />;
+      return (
+        <ContentBlock_Text
+          type="text"
+          id={data.id}
+          value={data.locale.value}
+          variables={data.params.variables}
+          wrap={data.params.wrap ? { typographyProps: data.params.wrap.typographyProps } : undefined}
+        />
+      );
     }
     case 'markdown': {
       const data = markdown_Props_Schema.parse(block);
@@ -138,7 +151,16 @@ function EngineBlock({
     }
     case 'code': {
       const data = code_Props_Schema.parse(block);
-      return <Code type="code" id={data.id} codeAsText={data.params.codeAsText} language={data.params.language} title={localizedText(data.locale?.title, 'code.title', true)} variables={localizedMap(data.locale?.variables, 'code.variables')} />;
+      return (
+        <Code
+          type="code"
+          id={data.id}
+          codeAsText={data.params.codeAsText}
+          language={data.params.language}
+          title={localizedText(data.locale?.title, 'code.title', true)}
+          variables={localizedMap(data.locale?.variables, 'code.variables')}
+        />
+      );
     }
     case 'image': {
       const data = image_Props_Schema.parse(block);
@@ -146,42 +168,97 @@ function EngineBlock({
       const src = data.locale.src;
       const alt = data.locale.alt;
       const caption = localizedText(data.locale.caption, 'image.caption', true);
-      const common = { src, alt, caption, sizes: data.params.sizes, unoptimized: data.params.unoptimized, fallback, messages: messages.image };
+      const common = {
+        src,
+        alt,
+        caption,
+        sizes: data.params.sizes,
+        unoptimized: data.params.unoptimized,
+        fallback,
+        messages: messages.image,
+      };
       if (data.params.fill) {
-        return <Image type="image" id={data.id} fill aspectRatio={data.params.aspectRatio!}
-          objectFit={data.params.objectFit} {...common} />;
+        return (
+          <Image
+            type="image"
+            id={data.id}
+            fill
+            aspectRatio={data.params.aspectRatio!}
+            objectFit={data.params.objectFit}
+            {...common}
+          />
+        );
       }
-      return <Image type="image" id={data.id} width={data.params.width!}
-        height={data.params.height!} {...common} />;
+      return <Image type="image" id={data.id} width={data.params.width!} height={data.params.height!} {...common} />;
     }
     case 'carousel': {
       const data = carousel_Props_Schema.parse(block);
-      return <Carousel type="carousel" id={data.id} {...data.params} title={localizedText(data.locale.title, 'carousel.title', true)} slides={data.locale.slides as [typeof data.locale.slides[number], ...typeof data.locale.slides[number][]]} messages={messages} />;
+      return (
+        <Carousel
+          type="carousel"
+          id={data.id}
+          {...data.params}
+          title={localizedText(data.locale.title, 'carousel.title', true)}
+          slides={data.locale.slides as [(typeof data.locale.slides)[number], ...(typeof data.locale.slides)[number][]]}
+          messages={messages}
+        />
+      );
     }
     case 'video': {
       const data = video_Props_Schema.parse(block);
-      return <Video type="video" id={data.id} fileLocation={data.locale.fileLocation} poster={data.locale.poster}
-        label={data.locale.label} title={localizedText(data.locale.title, 'video.title', true)}
-        fallback={localizedFallback(data.locale.fallback, 'video.fallback')} messages={messages.video} />;
+      return (
+        <Video
+          type="video"
+          id={data.id}
+          fileLocation={data.locale.fileLocation}
+          poster={data.locale.poster}
+          label={data.locale.label}
+          title={localizedText(data.locale.title, 'video.title', true)}
+          fallback={localizedFallback(data.locale.fallback, 'video.fallback')}
+          messages={messages.video}
+        />
+      );
     }
     case 'audio': {
       const data = audio_Props_Schema.parse(block);
-      return <Audio type="audio" id={data.id} fileLocation={data.locale.fileLocation} title={data.locale.title}
-        description={localizedText(data.locale.description, 'audio.description', true)}
-        fallback={localizedFallback(data.locale.fallback, 'audio.fallback')} messages={messages.audio} />;
+      return (
+        <Audio
+          type="audio"
+          id={data.id}
+          fileLocation={data.locale.fileLocation}
+          title={data.locale.title}
+          description={localizedText(data.locale.description, 'audio.description', true)}
+          fallback={localizedFallback(data.locale.fallback, 'audio.fallback')}
+          messages={messages.audio}
+        />
+      );
     }
     case 'youtube': {
       const data = youtube_Props_Schema.parse(block);
-      return <Youtube type="youtube" id={data.id} mode={data.params.mode} href={data.locale.href} label={data.locale.label}
-        title={localizedText(data.locale.title, 'youtube.title', true)}
-        fallback={localizedFallback(data.locale.fallback, 'youtube.fallback')} messages={messages.youtube} />;
+      return (
+        <Youtube
+          type="youtube"
+          id={data.id}
+          mode={data.params.mode}
+          href={data.locale.href}
+          label={data.locale.label}
+          title={localizedText(data.locale.title, 'youtube.title', true)}
+          fallback={localizedFallback(data.locale.fallback, 'youtube.fallback')}
+          messages={messages.youtube}
+        />
+      );
     }
     case 'scene': {
       const data = scene_Props_Schema.parse(block);
       const Scene = sceneRegistry?.(data.id);
       if (!Scene) throw new Error('Unregistered Scene: ' + data.id);
-      if (!data.locale.value || typeof data.locale.value !== 'object') throw new Error('Scene expects object Props: ' + data.id);
-      return <Suspense fallback={null}><Scene locales={data.locale.value} /></Suspense>;
+      if (!data.locale.value || typeof data.locale.value !== 'object')
+        throw new Error('Scene expects object Props: ' + data.id);
+      return (
+        <Suspense fallback={null}>
+          <Scene locales={data.locale.value} />
+        </Suspense>
+      );
     }
     case 'checkpoint':
       return (

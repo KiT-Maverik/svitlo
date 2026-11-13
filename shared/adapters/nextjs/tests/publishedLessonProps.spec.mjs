@@ -84,13 +84,15 @@ test('loads localized Engine Section and ContentBlock Props without legacy respo
     type: 'content',
     params: {},
     locale: { title: 'Introduction', navigationLabel: 'Start' },
-    content: [{
-      id: '663572e7-bd85-4516-86e2-3de07d209e06',
-      slug: 'introText',
-      type: 'text',
-      params: {},
-      locale: { value: 'Light travels in straight lines' },
-    }],
+    content: [
+      {
+        id: '663572e7-bd85-4516-86e2-3de07d209e06',
+        slug: 'introText',
+        type: 'text',
+        params: {},
+        locale: { value: 'Light travels in straight lines' },
+      },
+    ],
   };
   const translatedSection = {
     ...section,

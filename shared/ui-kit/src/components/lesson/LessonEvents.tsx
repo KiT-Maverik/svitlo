@@ -7,7 +7,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { scene_Props_Schema, type ContentBlock_Scene_Props, type Lesson_Props } from '@svitlo/engine';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 
-
 export type EventScene = ContentBlock_Scene_Props;
 type LessonEventName = 'lessonStarted' | 'lessonCompleted' | 'quizCompleted' | 'quizFailed';
 export type LessonEventSceneMap = Readonly<Record<string, EventScene | false>>;
@@ -109,8 +108,14 @@ export function EventSceneHost({
   const active = queue[0];
   const dismiss = () => setQueue(previous => previous.slice(1));
   const sceneProps = active?.scene.locale.value;
-  const label = active && sceneProps && typeof sceneProps === 'object' && 'title' in sceneProps &&
-    typeof sceneProps.title === 'string' ? sceneProps.title : active?.eventId ?? '';
+  const label =
+    active &&
+    sceneProps &&
+    typeof sceneProps === 'object' &&
+    'title' in sceneProps &&
+    typeof sceneProps.title === 'string'
+      ? sceneProps.title
+      : (active?.eventId ?? '');
   const SceneComponent = active ? sceneRegistry?.(active.scene.id) : undefined;
   if (active && !SceneComponent) throw new Error('Unregistered lesson event Scene: ' + active.scene.id);
 

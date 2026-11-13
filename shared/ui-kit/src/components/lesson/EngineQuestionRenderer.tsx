@@ -1,17 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import {
-  Box,
-  Button,
-  Checkbox,
-  FormControlLabel,
-  MenuItem,
-  Radio,
-  Stack,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Box, Button, Checkbox, FormControlLabel, MenuItem, Radio, Stack, TextField, Typography } from '@mui/material';
 import type {
   ContentBlock_Props,
   Lesson_Props,
@@ -101,7 +91,8 @@ export function selectQuizQuestions(lesson: Lesson_Props, section: QuizSection_P
     : all;
   const ordered = selection.shuffle ? shuffle(selected, section.id + ':' + String(selection.seed ?? 0)) : selected;
   if (selection.mode === 'sample') {
-    if (!selection.count || selection.count > ordered.length) throw new Error('Invalid Quiz sample count: ' + section.id);
+    if (!selection.count || selection.count > ordered.length)
+      throw new Error('Invalid Quiz sample count: ' + section.id);
     return ordered.slice(0, selection.count);
   }
   return ordered;
@@ -145,7 +136,10 @@ function QuestionCard({
       })),
     );
     return parameters.questionOptions?.selectOneAnswer?.shuffleAnswers
-      ? shuffle(entries.map(item => ({ ...item, id: item.key })), question.id)
+      ? shuffle(
+          entries.map(item => ({ ...item, id: item.key })),
+          question.id,
+        )
       : entries;
   }, [question, parameters.questionOptions?.selectOneAnswer?.shuffleAnswers]);
 
@@ -165,11 +159,15 @@ function QuestionCard({
         return question.params.correctAnswers.includes(Number(input.replace(',', '.')));
       }
       case 'orderSequence':
-        return order.length === question.content.sequence.length &&
-          order.every((id, index) => id === question.content.sequence[index].id);
+        return (
+          order.length === question.content.sequence.length &&
+          order.every((id, index) => id === question.content.sequence[index].id)
+        );
       case 'buildAnswerWithBlocks':
-        return chosen.length === question.content.correctSequence.length &&
-          chosen.every((id, index) => id === question.content.correctSequence[index].id);
+        return (
+          chosen.length === question.content.correctSequence.length &&
+          chosen.every((id, index) => id === question.content.correctSequence[index].id)
+        );
       case 'fillBlanksWithBlocks':
         return question.content.slots.every(slot => answer[slot.selector] === slot.correctAnswer.id);
       case 'fillBlanksWithText':
@@ -188,9 +186,14 @@ function QuestionCard({
 
   return (
     <Box component="section" sx={{ border: 1, borderColor: 'divider', borderRadius: 2, p: 2 }}>
-      <Box component="h2" sx={{ typography: 'h6' }}>{renderer(question.content.question)}</Box>
+      <Box component="h2" sx={{ typography: 'h6' }}>
+        {renderer(question.content.question)}
+      </Box>
       {question.content.hint?.length ? (
-        <Box component="details"><Box component="summary">{messages.questionFrame.hint}</Box>{renderer(question.content.hint)}</Box>
+        <Box component="details">
+          <Box component="summary">{messages.questionFrame.hint}</Box>
+          {renderer(question.content.hint)}
+        </Box>
       ) : null}
       <Stack spacing={1}>
         {(question.type === 'selectOneAnswer' || question.type === 'selectMultipleAnswers') &&
@@ -199,64 +202,128 @@ function QuestionCard({
               key={option.key}
               disabled={disabled || checked}
               label={renderer([option.block])}
-              control={question.type === 'selectOneAnswer'
-                ? <Radio checked={answer.choice === option.key} onChange={() => respond('choice', option.key)} />
-                : <Checkbox checked={answer[option.key] === '1'} onChange={(_, value) => respond(option.key, value ? '1' : '')} />}
+              control={
+                question.type === 'selectOneAnswer' ? (
+                  <Radio checked={answer.choice === option.key} onChange={() => respond('choice', option.key)} />
+                ) : (
+                  <Checkbox
+                    checked={answer[option.key] === '1'}
+                    onChange={(_, value) => respond(option.key, value ? '1' : '')}
+                  />
+                )
+              }
             />
           ))}
-        {question.type === 'matchBlocks' && Object.entries(question.content.pairs).map(([key, pair]) => (
-          <Stack key={key} direction="row" spacing={2} sx={{ alignItems: "center" }}>
-            <Box sx={{ flex: 1 }}>{renderer([pair.left])}</Box>
-            <TextField select label={messages.questionFrame.answerLabel} value={answer[key] ?? ''} onChange={event => respond(key, event.target.value)} disabled={disabled || checked} sx={{ flex: 1 }}>
-              {Object.entries(question.content.pairs).map(([candidate, value]) => (
-                <MenuItem key={candidate} value={candidate}>{contentLabel(value.right)}</MenuItem>
-              ))}
-            </TextField>
-          </Stack>
-        ))}
+        {question.type === 'matchBlocks' &&
+          Object.entries(question.content.pairs).map(([key, pair]) => (
+            <Stack key={key} direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+              <Box sx={{ flex: 1 }}>{renderer([pair.left])}</Box>
+              <TextField
+                select
+                label={messages.questionFrame.answerLabel}
+                value={answer[key] ?? ''}
+                onChange={event => respond(key, event.target.value)}
+                disabled={disabled || checked}
+                sx={{ flex: 1 }}
+              >
+                {Object.entries(question.content.pairs).map(([candidate, value]) => (
+                  <MenuItem key={candidate} value={candidate}>
+                    {contentLabel(value.right)}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </Stack>
+          ))}
         {(question.type === 'answerWithText' || question.type === 'answerWithNumber') && (
-          <TextField fullWidth label={messages.questionFrame.answerLabel} placeholder={question.locale.placeholder}
-            value={answer.value ?? ''} onChange={event => respond('value', event.target.value)}
-            disabled={disabled || checked} />
+          <TextField
+            fullWidth
+            label={messages.questionFrame.answerLabel}
+            placeholder={question.locale.placeholder}
+            value={answer.value ?? ''}
+            onChange={event => respond('value', event.target.value)}
+            disabled={disabled || checked}
+          />
         )}
-        {question.type === 'fillBlanksWithText' && question.locale.slots.map(slot => (
-          <TextField key={slot.selector} label={slot.selector} placeholder={question.locale.placeholder}
-            value={answer[slot.selector] ?? ''} onChange={event => respond(slot.selector, event.target.value)}
-            disabled={disabled || checked} />
-        ))}
-        {question.type === 'fillBlanksWithBlocks' && question.content.slots.map(slot => {
-          const candidates = [slot.correctAnswer, ...question.content.distractors];
-          return (
-            <TextField key={slot.selector} select label={slot.selector} value={answer[slot.selector] ?? ''}
-              onChange={event => respond(slot.selector, event.target.value)} disabled={disabled || checked}>
-              {candidates.map(block => <MenuItem key={block.id} value={block.id}>{contentLabel(block)}</MenuItem>)}
-            </TextField>
-          );
-        })}
-        {question.type === 'orderSequence' && (() => {
-          const blocks = question.content.sequence;
-          const ids = order.length ? order : [...blocks].reverse().map(item => item.id);
-          return ids.map((id, index) => {
-            const block = blocks.find(item => item.id === id);
-            if (!block) throw new Error('Quiz sequence references missing ContentBlock: ' + id);
-            return <Stack key={id} direction="row" sx={{ alignItems: "center" }}>
-              <Box sx={{ flex: 1 }}>{renderer([block])}</Box>
-              <Button disabled={disabled || checked || index === 0} onClick={() => {
-                const next = [...ids]; [next[index], next[index - 1]] = [next[index - 1], next[index]]; setOrder(next);
-              }}>↑</Button>
-              <Button disabled={disabled || checked || index === ids.length - 1} onClick={() => {
-                const next = [...ids]; [next[index], next[index + 1]] = [next[index + 1], next[index]]; setOrder(next);
-              }}>↓</Button>
-            </Stack>;
-          });
-        })()}
+        {question.type === 'fillBlanksWithText' &&
+          question.locale.slots.map(slot => (
+            <TextField
+              key={slot.selector}
+              label={slot.selector}
+              placeholder={question.locale.placeholder}
+              value={answer[slot.selector] ?? ''}
+              onChange={event => respond(slot.selector, event.target.value)}
+              disabled={disabled || checked}
+            />
+          ))}
+        {question.type === 'fillBlanksWithBlocks' &&
+          question.content.slots.map(slot => {
+            const candidates = [slot.correctAnswer, ...question.content.distractors];
+            return (
+              <TextField
+                key={slot.selector}
+                select
+                label={slot.selector}
+                value={answer[slot.selector] ?? ''}
+                onChange={event => respond(slot.selector, event.target.value)}
+                disabled={disabled || checked}
+              >
+                {candidates.map(block => (
+                  <MenuItem key={block.id} value={block.id}>
+                    {contentLabel(block)}
+                  </MenuItem>
+                ))}
+              </TextField>
+            );
+          })}
+        {question.type === 'orderSequence' &&
+          (() => {
+            const blocks = question.content.sequence;
+            const ids = order.length ? order : [...blocks].reverse().map(item => item.id);
+            return ids.map((id, index) => {
+              const block = blocks.find(item => item.id === id);
+              if (!block) throw new Error('Quiz sequence references missing ContentBlock: ' + id);
+              return (
+                <Stack key={id} direction="row" sx={{ alignItems: 'center' }}>
+                  <Box sx={{ flex: 1 }}>{renderer([block])}</Box>
+                  <Button
+                    disabled={disabled || checked || index === 0}
+                    onClick={() => {
+                      const next = [...ids];
+                      [next[index], next[index - 1]] = [next[index - 1], next[index]];
+                      setOrder(next);
+                    }}
+                  >
+                    ↑
+                  </Button>
+                  <Button
+                    disabled={disabled || checked || index === ids.length - 1}
+                    onClick={() => {
+                      const next = [...ids];
+                      [next[index], next[index + 1]] = [next[index + 1], next[index]];
+                      setOrder(next);
+                    }}
+                  >
+                    ↓
+                  </Button>
+                </Stack>
+              );
+            });
+          })()}
         {question.type === 'buildAnswerWithBlocks' && (
           <>
             <Typography>{question.locale.placeholder}</Typography>
-            <Stack direction="row" sx={{ flexWrap: "wrap", gap: 1 }}>
+            <Stack direction="row" sx={{ flexWrap: 'wrap', gap: 1 }}>
               {[...question.content.correctSequence, ...question.content.distractors].map(block => (
-                <Button key={block.id} variant={chosen.includes(block.id) ? 'contained' : 'outlined'}
-                  disabled={disabled || checked} onClick={() => setChosen(previous => previous.includes(block.id) ? previous.filter(id => id !== block.id) : [...previous, block.id])}>
+                <Button
+                  key={block.id}
+                  variant={chosen.includes(block.id) ? 'contained' : 'outlined'}
+                  disabled={disabled || checked}
+                  onClick={() =>
+                    setChosen(previous =>
+                      previous.includes(block.id) ? previous.filter(id => id !== block.id) : [...previous, block.id],
+                    )
+                  }
+                >
                   {contentLabel(block)}
                 </Button>
               ))}
@@ -270,17 +337,33 @@ function QuestionCard({
         </Typography>
       )}
       {checked && parameters.interaction.allowExplanations && question.content.explanation?.length ? (
-        <Box component="details"><Box component="summary">{messages.questionFrame.explanation}</Box>{renderer(question.content.explanation)}</Box>
+        <Box component="details">
+          <Box component="summary">{messages.questionFrame.explanation}</Box>
+          {renderer(question.content.explanation)}
+        </Box>
       ) : null}
-      <Stack direction="row" sx={{ justifyContent: "center", mt: 2 }}>
+      <Stack direction="row" sx={{ justifyContent: 'center', mt: 2 }}>
         {checked && canRetry && !disabled ? (
-          <Button onClick={() => { setChecked(false); setAnswer({}); setOrder([]); setChosen([]); onChecked(undefined); }}>
+          <Button
+            onClick={() => {
+              setChecked(false);
+              setAnswer({});
+              setOrder([]);
+              setChosen([]);
+              onChecked(undefined);
+            }}
+          >
             {messages.questionFrame.retry}
           </Button>
         ) : (
-          <Button disabled={checked || disabled} onClick={() => {
-            setChecked(true); setAttempts(previous => previous + 1); onChecked(correct);
-          }}>
+          <Button
+            disabled={checked || disabled}
+            onClick={() => {
+              setChecked(true);
+              setAttempts(previous => previous + 1);
+              onChecked(correct);
+            }}
+          >
             {messages.questionFrame.check}
           </Button>
         )}
@@ -315,7 +398,10 @@ export function EngineQuestionRenderer({
 
   useEffect(() => {
     if (remaining === undefined || emitted.current) return;
-    const timer = setInterval(() => setRemaining(value => value === undefined ? undefined : Math.max(0, value - 1)), 1000);
+    const timer = setInterval(
+      () => setRemaining(value => (value === undefined ? undefined : Math.max(0, value - 1))),
+      1000,
+    );
     return () => clearInterval(timer);
   }, [remaining === undefined]);
   useEffect(() => {
@@ -328,29 +414,55 @@ export function EngineQuestionRenderer({
   const stepper = section.params.layout.mode === 'stepper';
   return (
     <Stack spacing={2}>
-      {remaining !== undefined && <Typography role="timer">{Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, '0')}</Typography>}
+      {remaining !== undefined && (
+        <Typography role="timer">
+          {Math.floor(remaining / 60)}:{String(remaining % 60).padStart(2, '0')}
+        </Typography>
+      )}
       {stepper && section.params.layout.showProgress !== false && (
-        <QuestionProgress statuses={questions.map(question => !Object.hasOwn(statuses, question.id) ? 'unanswered' : statuses[question.id] ? 'correct' : 'incorrect')}
-          currentIndex={index} messages={messages.lesson}
-          allowNavigation={section.params.interaction.allowQuestionNavigation} onNavigate={setIndex} />
+        <QuestionProgress
+          statuses={questions.map(question =>
+            !Object.hasOwn(statuses, question.id) ? 'unanswered' : statuses[question.id] ? 'correct' : 'incorrect',
+          )}
+          currentIndex={index}
+          messages={messages.lesson}
+          allowNavigation={section.params.interaction.allowQuestionNavigation}
+          onNavigate={setIndex}
+        />
       )}
       {questions.map((question, position) => (
         <Box key={question.id} sx={{ display: stepper && index !== position ? 'none' : 'block' }}>
-          <QuestionCard question={question} messages={messages} sceneRegistry={sceneRegistry}
-            parameters={section.params} disabled={timedOut}
-            onChecked={correct => setStatuses(previous => {
-              const next = { ...previous };
-              if (correct === undefined) delete next[question.id];
-              else next[question.id] = correct;
-              return next;
-            })} />
+          <QuestionCard
+            question={question}
+            messages={messages}
+            sceneRegistry={sceneRegistry}
+            parameters={section.params}
+            disabled={timedOut}
+            onChecked={correct =>
+              setStatuses(previous => {
+                const next = { ...previous };
+                if (correct === undefined) delete next[question.id];
+                else next[question.id] = correct;
+                return next;
+              })
+            }
+          />
         </Box>
       ))}
       {stepper && (
-        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-          <Button disabled={index === 0} onClick={() => setIndex(value => value - 1)}>{messages.learningLayout.actions.previous}</Button>
-          <Button disabled={index >= questions.length - 1 || (!section.params.interaction.allowDeferring && !Object.hasOwn(statuses, questions[index].id))}
-            onClick={() => setIndex(value => value + 1)}>{messages.learningLayout.actions.next}</Button>
+        <Stack direction="row" sx={{ justifyContent: 'space-between' }}>
+          <Button disabled={index === 0} onClick={() => setIndex(value => value - 1)}>
+            {messages.learningLayout.actions.previous}
+          </Button>
+          <Button
+            disabled={
+              index >= questions.length - 1 ||
+              (!section.params.interaction.allowDeferring && !Object.hasOwn(statuses, questions[index].id))
+            }
+            onClick={() => setIndex(value => value + 1)}
+          >
+            {messages.learningLayout.actions.next}
+          </Button>
         </Stack>
       )}
       {timedOut && <Typography role="status">{messages.questionFrame.incorrect}</Typography>}
