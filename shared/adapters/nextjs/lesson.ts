@@ -3,7 +3,7 @@ import path from 'node:path';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { resolveEntityPath, languageCode_Schema, type Lesson_Props } from '@svitlo/engine/runtime';
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '+@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 import { loadPublishedLessonProps } from './publishedLessonProps';
 import { loadPublishedUiKitMessages } from './publishedUiKitMessages';

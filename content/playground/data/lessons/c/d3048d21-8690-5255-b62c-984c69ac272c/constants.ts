@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 
 export const howLightMoves_languages = [
   DEFAULT_SUPPORTED_LANGUAGES[0].language,
