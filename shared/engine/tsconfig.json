@@ -30,6 +30,7 @@
     "lessons/**/*.ts",
     "schemas/**/*.ts",
     "types/**/*.ts",
-    "utils/**/*.ts"
+    "utils/**/*.ts",
+    "generators/**/*.ts"
   ]
 }

@@ -1,0 +1,56 @@
+name: Engine generators
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'shared/engine/generators/**'
+      - 'shared/engine/index.ts'
+      - 'shared/engine/package.json'
+      - 'shared/engine/tsconfig*.json'
+      - 'shared/engine/scripts/generateLessonProps/**'
+      - 'shared/engine/scripts/generateCourseProps/**'
+      - 'shared/engine/scripts/loadAuthoredConfigurators/**'
+      - 'shared/engine/scripts/generatorCliIntegration/**'
+      - 'scripts/textbook-tooling/**'
+      - 'studio/generator-requirements.md'
+      - 'package.json'
+      - '.github/workflows/engine-generators.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engine-generators-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generator-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Build Contracts
+        run: npm run package:build --workspace @svitlo/contracts
+      - name: Build Engine
+        run: npm run package:build --workspace @svitlo/engine
+      - name: Typecheck Engine and compile generator tests
+        run: |
+          npm run code:check:types --workspace @svitlo/engine
+          npx tsc -p shared/engine/tsconfig.test.json
+      - name: Run targeted generator and CLI regression tests
+        run: |
+          node --test \
+            shared/engine/.test-build/generators/lessons/*.spec.js \
+            shared/engine/generators/courses/publishCourseData.spec.mjs \
+            shared/engine/generators/skills/publishSkillTree.spec.mjs \
+            shared/engine/scripts/generateSkills/prepareSkillsPublication.spec.mjs \
+            shared/engine/scripts/generateLessonProps/generateLessonProps.spec.mjs \
+            shared/engine/scripts/generateCourseProps/generateCourseProps.spec.mjs \
+            shared/engine/scripts/generatorCliIntegration/generatorCliIntegration.spec.mjs

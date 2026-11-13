@@ -43,3 +43,7 @@ available for PR comments once merged to the default branch.
 Reviewers should start from the compact PR comment, inspect the gap-only JSON
 artifact for the remaining locations, and design behavioral tests. A high
 percentage alone does not establish that the assertions detect realistic bugs.
+
+## Lesson and Course generation
+
+The build-time CLI entrypoints are under `scripts/generateLessonProps/` and `scripts/generateCourseProps/`, each with its own tests. Lesson and Course publication modules live under `generators/{lessons,courses}/` with their unit tests. The shared textbook build invokes the named Engine CLIs without root-level generator wrappers. Build-time APIs belong to `@svitlo/engine/build`; `@svitlo/engine/runtime` remains free of Node filesystem and authored configurators.

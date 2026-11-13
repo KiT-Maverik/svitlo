@@ -47,3 +47,5 @@ files without writing.
 
 The host copies the published files into `public/data/lessons` and the
 runtime assembler consumes one base file plus the selected locale file.
+
+The CLI and its regression tests live in this named directory. The Props serializer and its tests live in [`../../generators/lessons/`](../../generators/lessons/).

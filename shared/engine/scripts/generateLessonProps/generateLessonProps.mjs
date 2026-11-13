@@ -99,7 +99,7 @@ async function render(packageDirectory) {
   return renderLessonPropsFiles(entries);
 }
 
-function check(output, files) {
+export function check(output, files) {
   const actual = new Set();
   const visit = (folder, prefix = '') => {
     if (!fs.existsSync(folder)) return;
@@ -123,7 +123,7 @@ function check(output, files) {
   }
 }
 
-async function main(args) {
+export async function main(args) {
   let packageName;
   let outputName;
   let action;
@@ -157,7 +157,9 @@ async function main(args) {
   }
 }
 
-main(process.argv.slice(2)).catch(error => {
-  console.error(error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main(process.argv.slice(2)).catch(error => {
+    console.error(error);
+    process.exitCode = 1;
+  });
+}
