@@ -5,11 +5,8 @@ import { deepStrict_Schema } from '#schemas';
 import { createContentBlockBaseSchema, localizationSwitch } from '../contentBlock.schemas';
 
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import {
-  carouselSlide_Published_Schema,
-  type ContentBlock_CarouselSlide_Configurator,
-  type ContentBlock_CarouselSlide_Fields,
-} from './defineCarouselSlide/defineCarouselSlide.schemas';
+import { carouselSlide_Published_Schema } from './defineCarouselSlide/defineCarouselSlide.schemas';
+import type { ContentBlock_CarouselSlide_Configurator, ContentBlock_CarouselSlide_Fields } from './defineCarouselSlide/defineCarouselSlide.schemas';
 
 const contentBlockBase = createContentBlockBaseSchema('carousel');
 

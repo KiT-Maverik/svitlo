@@ -1,11 +1,16 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { languageCode_Schema, deepStrict_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
-import { contentBlockLocalizationSwitch as localizationSwitch } from '../../contentBlocks';
-import { sectionTypes, type Section_Configurator, type Section_Props } from '../../sections';
-import { flashcard_Props_Schema, type Flashcard_Configurator, type Flashcard_Props } from '../../flashcards';
-import { questionTypes as lessonQuestionTypes, type Question_Configurator } from '../../questions';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { sectionTypes } from '../../sections/section.constants';
+import type { Section_Configurator, Section_Props } from '../../sections/section.types';
+import { flashcard_Props_Schema } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
+import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/defineFlashcard';
+import type { Flashcard_Props } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
+import { questionTypes as lessonQuestionTypes } from '../../questions/question.constants';
+import type { Question_Configurator } from '../../questions/question.types';
 
 export { lessonQuestionTypes };
 export type Lesson_Question_Type = (typeof lessonQuestionTypes)[number];
