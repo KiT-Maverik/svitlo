@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import {
   compareWaveFrequenciesByObservableRhythm_Skill_Data,

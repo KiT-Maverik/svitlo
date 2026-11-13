@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const giveArtisticFeedback_Skill_Data = defineSkill({
   slug: 'giveArtisticFeedback',

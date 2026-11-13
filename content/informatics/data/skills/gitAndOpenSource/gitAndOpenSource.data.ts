@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { collaborativeDigitalProductDevelopment_SkillGroup_Data } from './collaborativeDigitalProductDevelopment/collaborativeDigitalProductDevelopment.data';
 import { gitVersionControl_SkillGroup_Data } from './gitVersionControl/gitVersionControl.data';

@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { respondToUnsafeApproachesInPublic_Skill_Data, seekHelpWhenLostOrSeparated_Skill_Data } from './skills';
 

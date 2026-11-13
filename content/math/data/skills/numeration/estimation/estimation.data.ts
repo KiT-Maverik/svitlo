@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { roundToTen_Skill_Data, roundToHundred_Skill_Data, estimateQuantity_Skill_Data } from './skills';
 

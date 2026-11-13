@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { diversityAndMeaning_SkillGroup_Data } from './diversityAndMeaning/diversityAndMeaning.data';
 import { faithReasonAndExperience_SkillGroup_Data } from './faithReasonAndExperience/faithReasonAndExperience.data';

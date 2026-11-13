@@ -7,7 +7,7 @@ import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join, resolve, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { format, resolveConfig } from 'prettier';
-import { resolveEntityPath } from '@svitlo/engine';
+import { resolveEntityPath } from '@svitlo/engine/build';
 
 const repoRoot = resolve(fileURLToPath(new URL('../../..', import.meta.url)));
 

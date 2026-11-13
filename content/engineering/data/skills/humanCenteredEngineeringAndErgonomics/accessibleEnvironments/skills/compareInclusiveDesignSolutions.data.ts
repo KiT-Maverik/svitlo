@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const compareInclusiveDesignSolutions_Skill_Data = defineSkill({
   slug: 'compareInclusiveDesignSolutions',

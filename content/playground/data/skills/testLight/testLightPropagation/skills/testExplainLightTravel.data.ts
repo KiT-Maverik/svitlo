@@ -1,5 +1,5 @@
 // Synthetic Playground fixtures: locale-tagged placeholders, not translations.
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const testExplainLightTravel_Skill_Data = defineSkill({
   id: '00000000-0000-4000-8000-000000000015',

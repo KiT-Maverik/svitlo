@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import { addUnifiedLocale, identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators';
-import { contentBlockLocalizationSwitch } from '../../contentBlocks';
-import { sectionTypes, type Section_Configurator, type Section_Props } from '../../sections';
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { localizationSwitch as contentBlockLocalizationSwitch } from '../../contentBlocks/contentBlock.schemas';
+import { sectionTypes } from '../../sections/section.constants';
+import type { Section_Configurator, Section_Props } from '../../sections/section.types';
 
 /**
  * A Course-owned narrative activity. Episode is not a Lesson subtype:

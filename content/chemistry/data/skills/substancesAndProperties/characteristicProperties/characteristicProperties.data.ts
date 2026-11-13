@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import {
   chemicalProperties_Skill_Data,

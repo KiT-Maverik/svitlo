@@ -1,13 +1,22 @@
 import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema, languageCode_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
 import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import { module_Props_Schema, type Module_Configurator, type Module_Props } from '../defineModule';
-import { chapter_Props_Schema, type Chapter_Configurator, type Chapter_Props } from '../defineChapter';
-import { lesson_Props_Schema, type Lesson_Configurator, type Lesson_Props } from '../../lessons/defineLesson';
-import { episode_Props_Schema, type Episode_Configurator, type Episode_Props } from '../../episodes/defineEpisode';
+import { module_Props_Schema } from '../defineModule/defineModule.schemas';
+import type { Module_Configurator } from '../defineModule/defineModule';
+import type { Module_Props } from '../defineModule/defineModule.schemas';
+import { chapter_Props_Schema } from '../defineChapter/defineChapter.schemas';
+import type { Chapter_Configurator } from '../defineChapter/defineChapter';
+import type { Chapter_Props } from '../defineChapter/defineChapter.schemas';
+import { lesson_Props_Schema } from '../../lessons/defineLesson/defineLesson.schemas';
+import type { Lesson_Configurator } from '../../lessons/defineLesson/defineLesson';
+import type { Lesson_Props } from '../../lessons/defineLesson/defineLesson.schemas';
+import { episode_Props_Schema } from '../../episodes/defineEpisode/defineEpisode.schemas';
+import type { Episode_Configurator } from '../../episodes/defineEpisode/defineEpisode';
+import type { Episode_Props } from '../../episodes/defineEpisode/defineEpisode.schemas';
 
 const params = paramsBase_Schema.shape.params.extend({
   languages: z

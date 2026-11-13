@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { assetRiskAndReturn_Skill_Data, bonds_Skill_Data, interestRates_Skill_Data, stocks_Skill_Data } from './skills';
 

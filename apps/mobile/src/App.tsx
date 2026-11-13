@@ -20,7 +20,7 @@ import {
   type UiKitMessages,
 } from '@svitlo/ui-kit';
 import { type Locale } from '@svitlo/contracts/localization';
-import { getLocaleDirection, type Lesson_Props } from '@svitlo/engine';
+import { getLocaleDirection, type Lesson_Props } from '@svitlo/engine/runtime';
 import { registerNativeBackButton, exitNativeApp } from '@svitlo/adapter-capacitor';
 import { textbook, resolveScene } from './generated/textbook';
 import { loadLesson, loadLessonIndex, loadMessages, type LessonIndex } from './loadLesson';

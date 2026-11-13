@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { aestheticJudgment_SkillGroup_Data } from './aestheticJudgment/aestheticJudgment.data';
 import { artAndInterpretation_SkillGroup_Data } from './artAndInterpretation/artAndInterpretation.data';

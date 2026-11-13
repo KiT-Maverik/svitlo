@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { analyzeMaoriWhakairoCarving_Skill_Data, analyzeYolUBarkPainting_Skill_Data } from './skills';
 

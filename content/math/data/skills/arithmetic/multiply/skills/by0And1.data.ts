@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const by0And1_Skill_Data = defineSkill({
   slug: 'by0And1',

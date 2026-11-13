@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { completeEquality_Skill_Data, equalityMeaning_Skill_Data, trueFalseEquality_Skill_Data } from './skills';
 

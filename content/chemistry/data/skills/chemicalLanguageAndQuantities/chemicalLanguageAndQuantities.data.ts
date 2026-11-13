@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { amountOfSubstance_SkillGroup_Data } from './amountOfSubstance/amountOfSubstance.data';
 import { chemicalNotation_SkillGroup_Data } from './chemicalNotation/chemicalNotation.data';

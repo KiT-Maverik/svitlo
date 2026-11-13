@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { conceptualAnalysis_SkillGroup_Data } from './conceptualAnalysis/conceptualAnalysis.data';
 import { dialogueAndDisagreement_SkillGroup_Data } from './dialogueAndDisagreement/dialogueAndDisagreement.data';

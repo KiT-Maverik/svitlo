@@ -115,7 +115,7 @@ function loadAssessmentMethodDefinitions() {
 function createAssessmentMethodResources() {
   const entries = loadAssessmentMethodDefinitions();
   const languages = DEFAULT_SUPPORTED_LANGUAGES.map(({ language }) => language);
-  const { assessmentMethod_Props_Schema } = require('@svitlo/engine');
+  const { assessmentMethod_Props_Schema } = require('@svitlo/engine/build');
   const ids = new Set();
   const base = {};
   const localized = Object.fromEntries(languages.map(language => [language, {}]));

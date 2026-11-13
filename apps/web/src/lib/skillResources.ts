@@ -9,7 +9,7 @@ import {
   type Skill_Props,
   type Skills_Publication,
   type Skills_Props,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 import { resolveSkillLanguage } from '@/components/pages/SkillsMindMap/skillsData.client';
 import { slugPattern, type SkillNode } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
 

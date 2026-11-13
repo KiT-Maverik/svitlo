@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { dataTypesAndReferences_SkillGroup_Data } from './dataTypesAndReferences/dataTypesAndReferences.data';
 import { functionsAndReuse_SkillGroup_Data } from './functionsAndReuse/functionsAndReuse.data';

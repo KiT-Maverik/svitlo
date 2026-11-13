@@ -15,7 +15,7 @@ import type {
   Question_BuildAnswerWithBlocks_Props,
   Question_FillBlanksWithBlocks_Props,
   Question_FillBlanksWithText_Props,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 import {
   selectOneAnswer_Props_Schema,
   selectMultipleAnswers_Props_Schema,
@@ -26,7 +26,7 @@ import {
   buildAnswerWithBlocks_Props_Schema,
   fillBlanksWithBlocks_Props_Schema,
   fillBlanksWithText_Props_Schema,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { QuestionProgress } from './QuestionProgress';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';

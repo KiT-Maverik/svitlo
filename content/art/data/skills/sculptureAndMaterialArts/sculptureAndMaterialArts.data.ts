@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { ceramicsAndAssemblage_SkillGroup_Data } from './ceramicsAndAssemblage/ceramicsAndAssemblage.data';
 import { printmaking_SkillGroup_Data } from './printmaking/printmaking.data';

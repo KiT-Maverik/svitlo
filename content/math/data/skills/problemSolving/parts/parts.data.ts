@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { fractionsContext_Skill_Data, partWholeAddsub_Skill_Data } from './skills';
 

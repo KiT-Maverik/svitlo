@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { earthquakesAndVolcanism_SkillGroup_Data } from './earthquakesAndVolcanism/earthquakesAndVolcanism.data';
 import { earthsInteriorAndPlateTectonics_SkillGroup_Data } from './earthsInteriorAndPlateTectonics/earthsInteriorAndPlateTectonics.data';

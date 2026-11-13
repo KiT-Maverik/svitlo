@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import type { Lesson_Props, ContentBlock_Scene_Props } from '@svitlo/engine';
+import type { Lesson_Props, ContentBlock_Scene_Props } from '@svitlo/engine/runtime';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';

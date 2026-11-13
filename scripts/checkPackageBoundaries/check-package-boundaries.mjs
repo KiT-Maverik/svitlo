@@ -180,10 +180,13 @@ assert(uiKit.dependencies?.[engine.name] === engine.version, 'UI Kit must consum
 assert(engine.scripts?.['package:build'] && engine.files?.includes('dist'), 'Engine must publish compiled artifacts');
 assert(
   engine.exports &&
-    Object.keys(engine.exports).length === 1 &&
-    engine.exports['.']?.types === './dist/index.d.ts' &&
-    engine.exports['.']?.default === './dist/index.js',
-  'Engine must expose only the compiled root entrypoint',
+    Object.keys(engine.exports).length === 2 &&
+    !Object.hasOwn(engine.exports, '.') &&
+    engine.exports['./build']?.types === './dist/build.d.ts' &&
+    engine.exports['./build']?.default === './dist/build.js' &&
+    engine.exports['./runtime']?.types === './dist/runtime.d.ts' &&
+    engine.exports['./runtime']?.default === './dist/runtime.js',
+  'Engine must expose only explicit compiled build and runtime entrypoints',
 );
 const assessmentMethodsRoot = resolve(root, 'shared/ui-kit/data/definitions/assessmentMethods');
 assert(

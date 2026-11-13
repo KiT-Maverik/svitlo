@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { evidenceAndTestimony_SkillGroup_Data } from './evidenceAndTestimony/evidenceAndTestimony.data';
 import { knowledgeAndJustification_SkillGroup_Data } from './knowledgeAndJustification/knowledgeAndJustification.data';

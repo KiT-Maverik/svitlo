@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { encodingAndConsolidation_SkillGroup_Data } from './encodingAndConsolidation/encodingAndConsolidation.data';
 import { memorySystems_SkillGroup_Data } from './memorySystems/memorySystems.data';

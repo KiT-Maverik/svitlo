@@ -10,7 +10,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { loadLessonData, renderLessonPropsFiles, resolveEntityPath, writeLessonFiles } from '@svitlo/engine';
+import { loadLessonData, renderLessonPropsFiles, resolveEntityPath, writeLessonFiles } from '@svitlo/engine/build';
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage = 'Usage: --package content/<textbook> [--output <repo-relative-dir>] --write|--check';

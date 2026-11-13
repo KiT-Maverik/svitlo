@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { ancientSoutheastAsia_SkillGroup_Data } from './ancientSoutheastAsia/ancientSoutheastAsia.data';
 import { indusCivilization_SkillGroup_Data } from './indusCivilization/indusCivilization.data';

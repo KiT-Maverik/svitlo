@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { explainEndocrineRegulation_Skill_Data, explainMaintenanceOfHomeostasis_Skill_Data } from './skills';
 

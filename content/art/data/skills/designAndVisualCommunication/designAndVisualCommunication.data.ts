@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { appliedGraphics_SkillGroup_Data } from './appliedGraphics/appliedGraphics.data';
 import { fashionAndApparelDesign_SkillGroup_Data } from './fashionAndApparelDesign/fashionAndApparelDesign.data';

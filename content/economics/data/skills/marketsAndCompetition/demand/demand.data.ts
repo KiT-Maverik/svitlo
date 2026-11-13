@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { changeInQuantityDemanded_Skill_Data, lawOfDemand_Skill_Data, shiftInDemand_Skill_Data } from './skills';
 

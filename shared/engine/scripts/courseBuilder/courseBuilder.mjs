@@ -427,7 +427,7 @@ export function renderCourseSource(plan, outputFilename) {
     generatedHeader.trimEnd(),
     'import { createCourse, createChapter, createModule' +
       (authoredOverrides.length ? ', createLessonOverrides' : '') +
-      ' } from "@svitlo/engine";',
+      ' } from "@svitlo/engine/build";',
     'import type { Course, Locale_Languages } from "@svitlo/contracts/content";',
     ...importLines,
     ...ownedImports,
@@ -493,7 +493,7 @@ function lessonExport(source, filename) {
 }
 
 export async function resolveImplementedLesson(root, id) {
-  const { resolveEntityPath, loadLessonData } = await import('@svitlo/engine');
+  const { resolveEntityPath, loadLessonData } = await import('@svitlo/engine/build');
   const folder = path.join(root, 'data/lessons', resolveEntityPath(id));
   if (!fs.existsSync(folder)) {
     error('MISSING_LESSON', id + ': expected implemented Lesson *.data.ts at ' + folder);
@@ -561,7 +561,7 @@ export function parseArguments(args) {
 export async function main(args) {
   const { packagePath, courseId, action } = parseArguments(args);
   const root = path.join(repoRoot, packagePath);
-  const { resolveEntityPath } = await import('@svitlo/engine');
+  const { resolveEntityPath } = await import('@svitlo/engine/build');
   const { DEFAULT_SUPPORTED_LANGUAGES } = await import('@svitlo/contracts/localization');
   const folder = path.join(root, 'data/courses', resolveEntityPath(courseId));
   const overridesFilename = path.join(folder, 'overrides.yaml');

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { contactForcesAndFriction_SkillGroup_Data } from './contactForcesAndFriction/contactForcesAndFriction.data';
 import { equilibriumAndStability_SkillGroup_Data } from './equilibriumAndStability/equilibriumAndStability.data';

@@ -945,7 +945,7 @@ function renderLesson(input, model) {
   return (
     marker +
     '\n' +
-    "import { createLesson, createSectionConfigurator, createContentBlock, linkFlashcards } from '@svitlo/engine';\n" +
+    "import { createLesson, createSectionConfigurator, createContentBlock, linkFlashcards } from '@svitlo/engine/build';\n" +
     "import type { Locale_Languages, Question_Catalog } from '@svitlo/contracts/content';\n\n" +
     'export const supportedLanguages = ' +
     languages +

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { conservationOfEnergy_SkillGroup_Data } from './conservationOfEnergy/conservationOfEnergy.data';
 import { energyTransferAndTransformation_SkillGroup_Data } from './energyTransferAndTransformation/energyTransferAndTransformation.data';

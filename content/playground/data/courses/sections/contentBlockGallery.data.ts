@@ -12,7 +12,7 @@ import {
   defineText,
   defineVideo,
   defineYoutube,
-} from '@svitlo/engine';
+} from '@svitlo/engine/build';
 import { lightRayDiagram } from '../../lessons/c/d3048d21-8690-5255-b62c-984c69ac272c/sections/content/scenes/lightRayDiagram';
 
 /** Playground gallery of all ten supported ContentBlock configurators. */

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { analyticalChemistry_SkillGroup_Data } from './analyticalChemistry/analyticalChemistry.data';
 import { laboratoryReasoning_SkillGroup_Data } from './laboratoryReasoning/laboratoryReasoning.data';

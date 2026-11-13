@@ -47,7 +47,7 @@ for (const workspace of [
 }
 run(npm, ['run', 'package:build', '--workspace', selection.package]);
 // Resolve Engine only after building the shared workspace from a fresh checkout.
-const { assembleLessonProps } = await import('@svitlo/engine');
+const { assembleLessonProps } = await import('@svitlo/engine/runtime');
 const publicRoot = join(mobileRoot, 'public');
 // npm ci may not link a binary generated during build, so execute the
 // published package binary from its validated manifest path directly.

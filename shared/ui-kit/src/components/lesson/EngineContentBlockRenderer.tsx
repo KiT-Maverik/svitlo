@@ -3,7 +3,7 @@
 import { Fragment, Suspense, useState } from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Button, Stack, Typography } from '@mui/material';
 import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
-import type { ContentBlock_Props } from '@svitlo/engine';
+import type { ContentBlock_Props } from '@svitlo/engine/runtime';
 import {
   text_Props_Schema,
   markdown_Props_Schema,
@@ -15,7 +15,7 @@ import {
   youtube_Props_Schema,
   scene_Props_Schema,
   checkpoint_Props_Schema,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import type { SceneRegistry } from '../widgets/ContentBlockRenderer';
 import { ContentBlock_Text } from '../widgets/ContentBlockRenderer/blocks/Text/Text';

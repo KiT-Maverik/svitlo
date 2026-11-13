@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { guidanceAndRetention_SkillGroup_Data } from './guidanceAndRetention/guidanceAndRetention.data';
 import { integratedMachines_SkillGroup_Data } from './integratedMachines/integratedMachines.data';

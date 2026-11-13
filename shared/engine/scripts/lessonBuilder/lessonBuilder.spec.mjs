@@ -373,7 +373,7 @@ test('single-language generated TypeScript matches real Engine/Contracts APIs', 
       esModuleInterop: true,
       baseUrl: repoRoot,
       paths: {
-        '@svitlo/engine': ['shared/engine/index.ts'],
+        '@svitlo/engine/build': ['shared/engine/build.ts'],
         '@svitlo/contracts': ['shared/contracts/src/index.ts'],
         '@svitlo/contracts/*': ['shared/contracts/src/*'],
       },

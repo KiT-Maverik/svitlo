@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { reactantsAndProducts_Skill_Data, reactionEvidence_Skill_Data } from './skills';
 

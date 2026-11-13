@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { healthAndRisk_SkillGroup_Data } from './healthAndRisk/healthAndRisk.data';
 import { healthInformationAndMedicines_SkillGroup_Data } from './healthInformationAndMedicines/healthInformationAndMedicines.data';

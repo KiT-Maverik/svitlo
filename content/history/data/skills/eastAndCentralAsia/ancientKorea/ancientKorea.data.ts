@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { baekje_Skill_Data, goguryeo_Skill_Data, gojoseon_Skill_Data, silla_Skill_Data } from './skills';
 

@@ -6,7 +6,7 @@ import {
   type Lesson_Props,
   type PublishedLessonPropsResource,
   type LessonPropsFragment,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 import type { LanguageCode, Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 

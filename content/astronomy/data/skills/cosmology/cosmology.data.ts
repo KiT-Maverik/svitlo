@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { cosmicComponentsAndConstraints_SkillGroup_Data } from './cosmicComponentsAndConstraints/cosmicComponentsAndConstraints.data';
 import { cosmicExpansion_SkillGroup_Data } from './cosmicExpansion/cosmicExpansion.data';

@@ -1,4 +1,4 @@
-import { defineFlashcard } from '@svitlo/engine';
+import { defineFlashcard } from '@svitlo/engine/build';
 import { lightTravelsStraight } from '../questions/lightTravelsStraight';
 import { fastestMedium } from '../questions/fastestMedium';
 import { opaqueObjectShadow } from '../questions/opaqueObjectShadow';

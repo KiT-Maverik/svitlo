@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { events_SkillGroup_Data } from './events/events.data';
 import { experiments_SkillGroup_Data } from './experiments/experiments.data';

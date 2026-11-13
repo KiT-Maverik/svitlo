@@ -2,9 +2,10 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 import { camelCase_Schema } from '#schemas';
-import { identityBase_Schema, paramsBase_Schema, addUnifiedLocale } from '../../_shared__configurators';
-import { contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
+import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
+import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
 import type { Configurator_Mode } from '../../configurator.schemas';
 
 const sectionBase = identityBase_Schema.extend({

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { foodAndAgriculturalTechnology_SkillGroup_Data } from './foodAndAgriculturalTechnology/foodAndAgriculturalTechnology.data';
 import { industrialProcessEquipment_SkillGroup_Data } from './industrialProcessEquipment/industrialProcessEquipment.data';

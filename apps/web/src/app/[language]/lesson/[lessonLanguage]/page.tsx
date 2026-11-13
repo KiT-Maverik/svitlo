@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { notFound, redirect } from 'next/navigation';
-import { resolveEntityPath } from '@svitlo/engine';
+import { resolveEntityPath } from '@svitlo/engine/runtime';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
 
 /** Redirect existing links to the canonical two-language lesson URL. */

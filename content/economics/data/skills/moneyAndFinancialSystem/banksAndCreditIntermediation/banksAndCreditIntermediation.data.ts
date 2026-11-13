@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { bankDeposits_Skill_Data, bankLending_Skill_Data, bankLiquidity_Skill_Data } from './skills';
 

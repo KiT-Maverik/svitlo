@@ -6,7 +6,7 @@ import type {
   ContentBlock_Text_Props,
   ContentBlock_Checkpoint_Props,
   QuizSection_Props,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
 import type { LessonLearningLayoutProps } from '../layout/LearningLayout/createLessonLearningLayout';

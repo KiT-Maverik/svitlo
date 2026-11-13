@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { formsOfMoney_Skill_Data, functionsOfMoney_Skill_Data, purchasingPowerOfMoney_Skill_Data } from './skills';
 

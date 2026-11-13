@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { aegeanBronzeAge_SkillGroup_Data } from './aegeanBronzeAge/aegeanBronzeAge.data';
 import { greekCultureAndIdeas_SkillGroup_Data } from './greekCultureAndIdeas/greekCultureAndIdeas.data';

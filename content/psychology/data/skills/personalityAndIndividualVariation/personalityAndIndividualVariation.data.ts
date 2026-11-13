@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { cognitiveAndLearningDifferences_SkillGroup_Data } from './cognitiveAndLearningDifferences/cognitiveAndLearningDifferences.data';
 import { cultureAndDiversity_SkillGroup_Data } from './cultureAndDiversity/cultureAndDiversity.data';

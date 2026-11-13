@@ -2,14 +2,10 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 
-import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators';
+import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
-import {
-  contentBlockLocalizationSwitch,
-  contentBlockResolved_Schema,
-  type ContentBlock_Configurator,
-  type ContentBlock_Props,
-} from '../../contentBlocks';
+import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
 
 export const flashcardRelationshipTypes = [
   'reverse',

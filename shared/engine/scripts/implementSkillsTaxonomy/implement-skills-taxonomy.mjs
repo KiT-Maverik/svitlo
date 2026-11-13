@@ -382,7 +382,7 @@ function children(e, local) {
     });
 }
 function render(e, value, kids) {
-  const imports = ['import { define' + e.kind + " } from '@svitlo/engine';"];
+  const imports = ['import { define' + e.kind + " } from '@svitlo/engine/build';"];
   const lines = [
     '  slug: ' + JSON.stringify(e.slug) + ',',
     '  id: ' + JSON.stringify(value.id) + ',',
