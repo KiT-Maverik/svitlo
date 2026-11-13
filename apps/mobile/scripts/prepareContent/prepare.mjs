@@ -37,7 +37,7 @@ function run(command, args, cwd = repoRoot) {
   }
 }
 for (const workspace of [
-  '@svitlo/contracts',
+  '+@svitlo/contracts',
   '@svitlo/engine',
   '@svitlo/indexdb',
   '@svitlo/ui-kit',

@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import type { Locale } from '@svitlo/contracts/localization';
+import type { Locale } from '+@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 
 /** Read only one locale from the standalone textbook's generated UI Kit JSON. */

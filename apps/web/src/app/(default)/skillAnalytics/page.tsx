@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
 import { SkillAnalyticsPage } from '@/components/pages/SkillsMindMap/SkillAnalyticsPage';
 import { loadUiKitMessages } from '@/lib/uiKit/loadUiKitMessages';
 import { loadPublishedSkills } from '@/lib/skillResources';

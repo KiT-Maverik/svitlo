@@ -1,4 +1,4 @@
-import { FLASHCARD_FLAG_COLORS, FLASHCARD_FLAG_ICONS } from '@svitlo/contracts/content';
+import { FLASHCARD_FLAG_COLORS, FLASHCARD_FLAG_ICONS } from '+@svitlo/contracts/content';
 
 const colors: ReadonlySet<string> = new Set(FLASHCARD_FLAG_COLORS);
 const icons: ReadonlySet<string> = new Set(FLASHCARD_FLAG_ICONS);

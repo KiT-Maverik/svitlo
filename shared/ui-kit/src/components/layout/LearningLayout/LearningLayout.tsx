@@ -16,7 +16,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import TopNavbar from '../Navigation/TopNavbar';
 import BottomNavbar from '../Navigation/BottomNavbar';
-import { type Locale } from '@svitlo/contracts/localization';
+import { type Locale } from '++@svitlo/contracts/localization';
 import { getLocaleDirection } from '@svitlo/engine/runtime';
 import ThreeSlotLayout from '../ThreeSlotLayout';
 import ProfileMenu, { type LearningProfile } from './ProfileMenu';

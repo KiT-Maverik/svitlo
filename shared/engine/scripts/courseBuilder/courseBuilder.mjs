@@ -428,7 +428,7 @@ export function renderCourseSource(plan, outputFilename) {
     'import { createCourse, createChapter, createModule' +
       (authoredOverrides.length ? ', createLessonOverrides' : '') +
       ' } from "@svitlo/engine/build";',
-    'import type { Course, Locale_Languages } from "@svitlo/contracts/content";',
+    'import type { Course, Locale_Languages } from "+@svitlo/contracts/content";',
     ...importLines,
     ...ownedImports,
     '',
@@ -562,7 +562,7 @@ export async function main(args) {
   const { packagePath, courseId, action } = parseArguments(args);
   const root = path.join(repoRoot, packagePath);
   const { resolveEntityPath } = await import('@svitlo/engine/build');
-  const { DEFAULT_SUPPORTED_LANGUAGES } = await import('@svitlo/contracts/localization');
+  const { DEFAULT_SUPPORTED_LANGUAGES } = await import('+@svitlo/contracts/localization');
   const folder = path.join(root, 'data/courses', resolveEntityPath(courseId));
   const overridesFilename = path.join(folder, 'overrides.yaml');
   const methodology = path.join(folder, 'methodology.md');

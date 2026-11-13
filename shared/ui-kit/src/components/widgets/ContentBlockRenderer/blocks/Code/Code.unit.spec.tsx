@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Code_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Code_Response } from '+@svitlo/contracts/content';
 
 import { Code } from './Code';
 import { ContentLanguageContext } from '../../ContentLanguageContext';

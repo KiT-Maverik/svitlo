@@ -1,4 +1,4 @@
-import type { Locale_Languages } from '@svitlo/contracts/content';
+import type { Locale_Languages } from '+@svitlo/contracts/content';
 import type {
   DynamicQuestion,
   DynamicQuestion_ArgumentProposal,

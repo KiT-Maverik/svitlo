@@ -1,4 +1,4 @@
-import { defineLessonData, type Course_Content, type Section } from '@svitlo/contracts/content';
+import { defineLessonData, type Course_Content, type Section } from '+@svitlo/contracts/content';
 import { createLessonOverrides } from './createLessonOverrides';
 
 const languages = ['en', 'uk'] as const;

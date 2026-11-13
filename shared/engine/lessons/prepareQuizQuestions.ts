@@ -1,4 +1,4 @@
-import type { Locale_Languages, Question, Quiz_Parameters } from '@svitlo/contracts/content';
+import type { Locale_Languages, Question, Quiz_Parameters } from '+@svitlo/contracts/content';
 
 type QuestionResponse = Question<'response', Locale_Languages>;
 type Bank = Record<string, Record<string, Record<string, unknown>>>;

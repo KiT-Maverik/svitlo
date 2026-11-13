@@ -1,7 +1,7 @@
 import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '@svitlo/contracts/content';
+import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '+@svitlo/contracts/content';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 
 import { Checkpoint } from './Checkpoint';

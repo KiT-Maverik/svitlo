@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageDefinition } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageDefinition } from '+@svitlo/contracts/localization';
 import { getLanguageCode, getLocaleDirection, getSupportedLanguages, isLocale } from './index';
 
 const customLanguage: LanguageDefinition = {

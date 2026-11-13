@@ -1,5 +1,5 @@
 import Typography, { type TypographyProps } from '@mui/material/Typography';
-import type { ContentBlock_Text_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Text_Response } from '+@svitlo/contracts/content';
 import { applyStyledText } from '#utils/styledText/applyStyledText';
 
 export const Text = ({ value, variables, wrap }: ContentBlock_Text_Response) => {

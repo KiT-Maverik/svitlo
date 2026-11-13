@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import type { Question, Locale_Languages, Quiz_Parameters } from '@svitlo/contracts/content';
+import type { Question, Locale_Languages, Quiz_Parameters } from '+@svitlo/contracts/content';
 import { QuestionRenderer } from './questions/response/QuestionRenderer';
 import { parseQuestionNumber } from './questions/AnswerWithNumber/AnswerWithNumber';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';

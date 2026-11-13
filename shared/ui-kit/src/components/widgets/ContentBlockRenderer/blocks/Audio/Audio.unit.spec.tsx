@@ -2,7 +2,7 @@ import { enUiKitMessages } from '../../../../../testing/uiKitMessages.unit.fx';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import type { ContentBlock_Audio_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Audio_Response } from '+@svitlo/contracts/content';
 import { Audio } from './Audio';
 import { ContentLanguageContext } from '../../ContentLanguageContext';
 import { formatAudioTime } from './Audio.utils';

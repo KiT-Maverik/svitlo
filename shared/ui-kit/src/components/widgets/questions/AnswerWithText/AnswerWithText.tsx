@@ -2,7 +2,7 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { TextField } from '@mui/material';
-import type { Question_AnswerWithText, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_AnswerWithText, Locale_Languages } from '+@svitlo/contracts/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { normalizedAnswer } from '../response/QuestionContent';

@@ -1,4 +1,4 @@
-import type { Course_LessonOverride, Locale_Languages } from '@svitlo/contracts/content';
+import type { Course_LessonOverride, Locale_Languages } from '+@svitlo/contracts/content';
 import type { LessonContentBlock, LessonResponse, LessonSectionResponse } from './assembleLessonResponse';
 
 type Patch = Course_LessonOverride<Locale_Languages>;

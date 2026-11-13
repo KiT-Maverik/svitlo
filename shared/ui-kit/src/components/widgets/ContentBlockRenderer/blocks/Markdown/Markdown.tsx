@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
-import type { ContentBlock_Markdown_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Markdown_Response } from '+@svitlo/contracts/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';

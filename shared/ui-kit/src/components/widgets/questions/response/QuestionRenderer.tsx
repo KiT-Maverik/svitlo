@@ -4,8 +4,8 @@ import type { UiKitMessages } from '#types/uiKitMessages';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Button, Stack, Typography } from '@mui/material';
-import type { Question, Locale_Languages, Quiz_Parameters } from '@svitlo/contracts/content';
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { Question, Locale_Languages, Quiz_Parameters } from '+@svitlo/contracts/content';
+import type { LanguageCode } from '+@svitlo/contracts/localization';
 import { ContentLanguageContext, useContentLanguage } from '../../ContentBlockRenderer/ContentLanguageContext';
 import { QuestionCompletionContext } from './QuestionCompletion';
 import { QuestionProgress } from '../../../lesson/QuestionProgress';

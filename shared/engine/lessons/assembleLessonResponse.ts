@@ -1,4 +1,4 @@
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '+@svitlo/contracts/localization';
 import {
   SECTION_TYPES,
   type ContentBlock,
@@ -9,7 +9,7 @@ import {
   type Section_Type,
   type ContentBlock_Scene,
   DEFAULT_LESSON_EVENTS,
-} from '@svitlo/contracts/content';
+} from '+@svitlo/contracts/content';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
 import { prepareQuizQuestions } from './prepareQuizQuestions';
 

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import type { Locale_Languages, Quiz_Parameters } from '@svitlo/contracts/content';
+import type { Locale_Languages, Quiz_Parameters } from '+@svitlo/contracts/content';
 import { prepareQuizQuestions } from './prepareQuizQuestions';
 
 const config = (

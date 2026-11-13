@@ -13,7 +13,7 @@ import type {
   Locale_Languages,
   Section,
   Section_Override,
-} from '@svitlo/contracts/content';
+} from '+@svitlo/contracts/content';
 
 // Use Lesson's canonical data shape without narrowing its custom event keys.
 // A Lesson may declare only custom reactions, with no standard event handlers.

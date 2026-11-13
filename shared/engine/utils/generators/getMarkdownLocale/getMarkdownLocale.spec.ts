@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, it } from 'node:test';
 import { pathToFileURL } from 'node:url';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
 import { getMarkdownLocale } from './getMarkdownLocale.util';
 
 function withLocaleDirectory(run: (directory: string) => void): void {

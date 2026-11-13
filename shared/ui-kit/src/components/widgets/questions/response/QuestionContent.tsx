@@ -1,5 +1,5 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
-import type { ContentBlock, Locale_Languages } from '@svitlo/contracts/content';
+import type { ContentBlock, Locale_Languages } from '+@svitlo/contracts/content';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRenderer';
 

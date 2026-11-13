@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import type { LessonState, QuizState } from '@svitlo/contracts/content';
+import type { LessonState, QuizState } from '+@svitlo/contracts/content';
 import {
   createLessonState,
   deleteLessonState,

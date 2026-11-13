@@ -1,4 +1,4 @@
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '+@svitlo/contracts/localization';
 type HomeCopy = readonly [title: string, description: string];
 export const geographyHomeCopy = {
   en: ['Geography', 'Learning materials are being prepared.'],

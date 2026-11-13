@@ -9,7 +9,7 @@ import {
   type CourseLessonEntry,
   type CoursePublishedTree,
 } from '@svitlo/engine/runtime';
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '+@svitlo/contracts/localization';
 
 /** The published Course preserves locale metadata and slug-keyed hierarchy. */
 export type LocalizedCourseContent = {

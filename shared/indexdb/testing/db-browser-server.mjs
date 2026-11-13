@@ -34,7 +34,7 @@ try {
         name: 'svitlo-indexdb-browser-fixture',
         private: true,
         dependencies: {
-          '@svitlo/contracts': '0.0.0',
+          '+@svitlo/contracts': '0.0.0',
           '@svitlo/indexdb': '0.0.0',
           next: '16.4.2',
           react: '19.3.0',

@@ -1,4 +1,4 @@
-import { FLASHCARD_RELATION_TYPES, type FlashcardRelationType } from '@svitlo/contracts/content';
+import { FLASHCARD_RELATION_TYPES, type FlashcardRelationType } from '+@svitlo/contracts/content';
 
 type LinkEntry = {
   cardId: string;

@@ -1,4 +1,4 @@
-import type { AssessmentMethodKey, Locale_Languages, Question } from '@svitlo/contracts/content';
+import type { AssessmentMethodKey, Locale_Languages, Question } from '+@svitlo/contracts/content';
 
 const valid: AssessmentMethodKey = 'retrieval';
 void valid;

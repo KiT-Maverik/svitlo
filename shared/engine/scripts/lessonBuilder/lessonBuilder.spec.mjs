@@ -375,8 +375,8 @@ test('single-language generated TypeScript matches real Engine/Contracts APIs', 
       baseUrl: repoRoot,
       paths: {
         '@svitlo/engine/build': ['shared/engine/build.ts'],
-        '@svitlo/contracts': ['shared/contracts/src/index.ts'],
-        '@svitlo/contracts/*': ['shared/contracts/src/*'],
+        '+@svitlo/contracts': ['shared/contracts/src/index.ts'],
+        '+@svitlo/contracts/*': ['shared/contracts/src/*'],
       },
     };
     const program = ts.createProgram([generated], options);

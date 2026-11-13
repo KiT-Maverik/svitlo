@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Box, Container } from '@mui/material';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
 import { SkillLearningClient } from '@/components/pages/SkillsMindMap/SkillLearningClient';
 import { flattenSkillNodes } from '@/components/pages/SkillsMindMap/skillsMindMap.utils';
 import { loadPublishedSkills } from '@/lib/skillResources';

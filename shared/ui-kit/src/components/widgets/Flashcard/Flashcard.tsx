@@ -6,7 +6,7 @@ import { forwardRef, type ReactNode } from 'react';
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
-import type { FlashcardFlag, Locale_Languages } from '@svitlo/contracts/content';
+import type { FlashcardFlag, Locale_Languages } from '+@svitlo/contracts/content';
 import { toFlashcardLabel, type FlashcardLabel } from './FlashcardFlags';
 export type { FlashcardLabel } from './FlashcardFlags';
 import Divider from '@mui/material/Divider';

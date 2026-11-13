@@ -1,4 +1,4 @@
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '+@svitlo/contracts/localization';
 import type {
   Entity_Creator,
   Lesson,
@@ -6,8 +6,8 @@ import type {
   Lesson_Locale,
   Question_Catalog_ValidSlugs,
   Section,
-} from '@svitlo/contracts/content';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+} from '+@svitlo/contracts/content';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
 import { resolveEntityPath } from '../utils/entityPath/resolveEntityPath.utils';
 import { assertLessonData } from './assertLessonData';
 import { splitLessonValue, type SparseLessonValue } from './splitLessonValue';

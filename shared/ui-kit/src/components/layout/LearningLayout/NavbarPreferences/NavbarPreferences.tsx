@@ -8,7 +8,7 @@ import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type Locale } from '+@svitlo/contracts/localization';
 import { Flag } from '#widgets/Flag/Flag';
 
 const nativeNameCollator = new Intl.Collator('en', { sensitivity: 'base' });

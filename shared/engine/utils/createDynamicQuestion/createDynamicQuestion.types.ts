@@ -1,4 +1,4 @@
-import type { ContentBlock, Locale_Languages, Locale_Options, NonEmptyArray } from '@svitlo/contracts/content';
+import type { ContentBlock, Locale_Languages, Locale_Options, NonEmptyArray } from '+@svitlo/contracts/content';
 
 export type DynamicQuestion_ArgumentType = 'string' | 'number' | 'boolean';
 

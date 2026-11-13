@@ -4,7 +4,7 @@ import {
   type FlashcardRelation,
   type FlashcardRelationType,
   type Locale_Languages,
-} from '@svitlo/contracts/content';
+} from '+@svitlo/contracts/content';
 
 /** Canonical authored edge: supplied exactly once, then mirrored onto both Flashcards. */
 export type FlashcardLink = {

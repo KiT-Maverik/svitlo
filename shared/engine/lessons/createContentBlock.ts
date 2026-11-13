@@ -1,4 +1,4 @@
-import type { ContentBlock, Entity_Creator, Locale_Languages } from '@svitlo/contracts/content';
+import type { ContentBlock, Entity_Creator, Locale_Languages } from '+@svitlo/contracts/content';
 import { splitLessonValue, type SparseLessonValue } from './splitLessonValue';
 
 export type BlockLocalizationContext<L extends Locale_Languages> = { languages: L };

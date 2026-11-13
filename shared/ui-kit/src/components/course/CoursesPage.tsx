@@ -3,7 +3,7 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '+@svitlo/contracts/localization';
 import type { CourseListItem, CourseMessages } from './types';
 import { CourseCard } from './CourseCard';
 

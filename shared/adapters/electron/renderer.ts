@@ -8,7 +8,7 @@ import {
   type PublishedLessonPropsResource,
   type LessonPropsFragment,
 } from '@svitlo/engine/runtime';
-import type { LanguageCode, Locale } from '@svitlo/contracts/localization';
+import type { LanguageCode, Locale } from '+@svitlo/contracts/localization';
 
 /** Fetch only build-published Lesson Props. No Node, Electron or authored *.data.ts at runtime. */
 async function loadJson(url: string, optional = false): Promise<unknown | undefined> {

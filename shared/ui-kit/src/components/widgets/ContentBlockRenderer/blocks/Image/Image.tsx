@@ -5,7 +5,7 @@ import type { Image_Locale } from '../../../../../../data/locale/image';
 import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 
-import type { ContentBlock_Image_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Image_Response } from '+@svitlo/contracts/content';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';

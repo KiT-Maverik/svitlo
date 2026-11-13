@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
 import AppDocument from '../AppDocument';
 
 export function generateStaticParams() {

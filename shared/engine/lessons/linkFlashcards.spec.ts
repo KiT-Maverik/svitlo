@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { FLASHCARD_RELATION_TYPES, type Flashcard, type Locale_Languages } from '@svitlo/contracts/content';
+import { FLASHCARD_RELATION_TYPES, type Flashcard, type Locale_Languages } from '+@svitlo/contracts/content';
 import { linkFlashcards, type FlashcardLink } from './linkFlashcards';
 
 const card = (id: string): Flashcard<'data', Locale_Languages> => ({

@@ -4,7 +4,7 @@ import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack } from '@mui/material';
 import { useContext } from 'react';
 import { QuestionCompletionContext } from '../response/QuestionCompletion';
-import type { Question_SelectOneAnswer, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_SelectOneAnswer, Locale_Languages } from '+@svitlo/contracts/content';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionChoice } from '../response/QuestionChoice';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';

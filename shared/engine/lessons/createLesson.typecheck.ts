@@ -1,7 +1,7 @@
 import { createContentBlock } from './createContentBlock';
 import { createSectionConfigurator } from './createSection';
 import { createLesson } from './createLesson';
-import type { ContentBlock, Section } from '@svitlo/contracts/content';
+import type { ContentBlock, Section } from '+@svitlo/contracts/content';
 
 const languages = ['en', 'uk'] as const;
 

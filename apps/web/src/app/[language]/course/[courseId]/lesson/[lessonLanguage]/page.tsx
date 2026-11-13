@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { notFound, redirect } from 'next/navigation';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '+@svitlo/contracts/localization';
 
 type Props = {
   params: Promise<{ language: string; courseId: string; lessonLanguage: string }>;

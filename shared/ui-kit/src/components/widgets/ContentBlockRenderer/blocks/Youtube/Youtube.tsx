@@ -4,7 +4,7 @@ import type { Youtube_Locale } from '../../../../../../data/locale/youtube';
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 
-import type { ContentBlock_Youtube_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Youtube_Response } from '+@svitlo/contracts/content';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import {

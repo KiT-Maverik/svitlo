@@ -14,7 +14,7 @@ import CheckCircleOutlineRounded from '@mui/icons-material/CheckCircleOutlineRou
 import LayersOutlined from '@mui/icons-material/LayersOutlined';
 import MenuBookOutlined from '@mui/icons-material/MenuBookOutlined';
 import PlayCircleOutlineRounded from '@mui/icons-material/PlayCircleOutlineRounded';
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '+@svitlo/contracts/localization';
 import type { CourseMessages, CourseOutlineItem, CoursePreview } from './types';
 import { CourseLanguages } from './CourseLanguages';
 import { CourseArtwork } from './CourseArtwork';

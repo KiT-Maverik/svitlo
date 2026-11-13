@@ -1,4 +1,4 @@
-import type { Lesson, Question, ContentBlock, AssessmentMethodKey, Locale_Languages } from '@svitlo/contracts/content';
+import type { Lesson, Question, ContentBlock, AssessmentMethodKey, Locale_Languages } from '+@svitlo/contracts/content';
 
 // A textbook can extend canonical response contracts without redefining them.
 type MathLesson = Lesson<'response', Locale_Languages> & { readonly subject: 'math' };
