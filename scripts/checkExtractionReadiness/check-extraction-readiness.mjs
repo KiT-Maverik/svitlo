@@ -180,9 +180,7 @@ for (const [path, pkg] of workspaces.filter(([name]) => name.startsWith('shared/
       const source = target.replace(/^\.\/dist\//, '').replace(/\.js$/, '');
       const candidates = path === 'shared/engine' ? [source] : [source, 'src/' + source.replace(/^src\//, '')];
       assert(
-        candidates.some(candidate =>
-          ['.ts', '.tsx'].some(ext => existsSync(resolve(root, path, candidate + ext))),
-        ),
+        candidates.some(candidate => ['.ts', '.tsx'].some(ext => existsSync(resolve(root, path, candidate + ext)))),
         'Missing public entrypoint source: ' + pkg.name + subpath,
       );
       assert(entry.types === target.replace(/\.js$/, '.d.ts'), 'Mismatched declarations: ' + pkg.name + subpath);

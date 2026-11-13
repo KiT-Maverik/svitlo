@@ -86,7 +86,10 @@ const buildYoutubePatch = (
  * identifies the video for the iframe/link and fallback UI.
  * `locale.title` is an optional visible heading, not its accessible label.
  */
-export const defineYoutube = <const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
+export const defineYoutube = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Youtube_Config,
       Languages

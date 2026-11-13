@@ -85,7 +85,10 @@ const buildVideoPatch = (patch: ContentBlock_Video_Overrides): VideoPropsPublica
  * are checked where the textbook can be resolved.
  * Author fallback messages for offline/unavailable playback when appropriate.
  */
-export const defineVideo = <const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
+export const defineVideo = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Video_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Video_Config,
       Languages

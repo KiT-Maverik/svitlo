@@ -120,7 +120,10 @@ const mergeTextOverride = (source: ContentBlock_Text_Config, patch: ContentBlock
  * a temporary merged config, and publishes only the patch. Neither method
  * mutates the original Text configurator.
  */
-export const defineText = <const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
+export const defineText = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Text_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Text_Config,
       Languages

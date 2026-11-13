@@ -112,7 +112,10 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
  * Build complete Props and validated sparse overrides. Temporary merged
  * configurations are used only for semantic validation.
  */
-export const defineCode = <const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
+export const defineCode = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+>(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Code_Config,
       Languages

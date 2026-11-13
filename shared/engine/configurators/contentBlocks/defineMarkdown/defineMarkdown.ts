@@ -190,7 +190,10 @@ const mergeMarkdownForValidation = (
  * Stateless ContentBlock Build API validates isolated snapshots and emits
  * either complete Props or exclusively sparse override fields.
  */
-export const defineMarkdown = <const Slug extends string, const Languages extends readonly LanguageCodes[] = AllLanguageCodes>(
+export const defineMarkdown = <
+  const Slug extends string,
+  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+>(
   config: MarkdownInlineConfig<Slug, Languages> | MarkdownFileConfig<Slug, Languages>,
 ) => {
   const locale =

@@ -25,9 +25,9 @@ function readPublicationBase(file: string): Record<string, unknown> | undefined 
 }
 
 function supportsLanguage(resource: Record<string, unknown>, language: string): boolean {
-  return record(resource.params) &&
-    Array.isArray(resource.params.languages) &&
-    resource.params.languages.includes(language);
+  return (
+    record(resource.params) && Array.isArray(resource.params.languages) && resource.params.languages.includes(language)
+  );
 }
 
 function lessonExists(publicRoot: string, id: string, language: string): boolean {
@@ -50,11 +50,13 @@ function courseIncludesLesson(publicRoot: string, courseId: string, lessonId: st
   const normalized = courseId.toLowerCase();
   const file = path.join(publicRoot, 'data', 'courses', normalized, 'base.json');
   const course = readPublicationBase(file);
-  return !!course &&
+  return (
+    !!course &&
     course.id === normalized &&
     course.type === 'course' &&
     supportsLanguage(course, language) &&
-    courseContainsLesson(course, lessonId);
+    courseContainsLesson(course, lessonId)
+  );
 }
 
 /** Pure routing decision with an injectable publication directory for regression tests. */
@@ -79,8 +81,9 @@ export function isInvalidPublishedRoute(pathname: string, publicRoot: string): b
   if (parts[1] === 'course' && parts[3] === 'lesson') {
     if (parts.length !== 6 || !codes.has(language) || !codes.has(parts[4])) return true;
     const [courseId, lessonId] = [parts[2], parts[5]];
-    return !lessonExists(publicRoot, lessonId, parts[4]) ||
-      !courseIncludesLesson(publicRoot, courseId, lessonId, parts[4]);
+    return (
+      !lessonExists(publicRoot, lessonId, parts[4]) || !courseIncludesLesson(publicRoot, courseId, lessonId, parts[4])
+    );
   }
   return false;
 }

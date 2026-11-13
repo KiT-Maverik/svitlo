@@ -44,7 +44,9 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   prerequisitesText: localizationSwitch[mode].optional(),
 });
 export type Course_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
-export type Course_Child = ConfiguratorChild<Module_Configurator | Chapter_Configurator | Lesson_Configurator | Episode_Configurator>;
+export type Course_Child = ConfiguratorChild<
+  Module_Configurator | Chapter_Configurator | Lesson_Configurator | Episode_Configurator
+>;
 export type Course_Child_Props = Module_Props | Chapter_Props | Lesson_Props | Episode_Props;
 
 export const course_Config_Schema = identity.extend({

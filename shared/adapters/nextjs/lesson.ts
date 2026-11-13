@@ -97,8 +97,7 @@ export function createLessonPage(bindings: LessonPageBindings) {
  * legacy UI Kit LessonView is performed.
  */
 export function createPublishedLessonPropsPage(
-  bindings: Pick<LessonPageBindings, 'renderLesson'> &
-    Partial<Pick<LessonPageBindings, 'loadLesson' | 'loadMessages'>>,
+  bindings: Pick<LessonPageBindings, 'renderLesson'> & Partial<Pick<LessonPageBindings, 'loadLesson' | 'loadMessages'>>,
 ) {
   return createLessonPage({
     loadLesson:

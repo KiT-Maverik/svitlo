@@ -132,7 +132,11 @@ export function renderLessonMarkdown({ lesson, locale, languages, packagePath, s
     throw new Error('Missing, duplicate or unsupported lesson languages');
   }
   if (!supported.includes(locale)) throw new Error(`Lesson ${relative} does not support locale ${locale}`);
-  if (!Array.isArray(lesson.section) || !Array.isArray(lesson.flashcards) || (lesson.questions !== undefined && !record(lesson.questions))) {
+  if (
+    !Array.isArray(lesson.section) ||
+    !Array.isArray(lesson.flashcards) ||
+    (lesson.questions !== undefined && !record(lesson.questions))
+  ) {
     throw new Error('Lesson is missing Section or Flashcard Props arrays or has an invalid Question Bank');
   }
   if (!record(lesson.locale) || typeof lesson.locale.title !== 'string' || !lesson.locale.title.trim()) {

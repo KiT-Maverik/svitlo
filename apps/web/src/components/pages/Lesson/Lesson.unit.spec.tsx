@@ -49,9 +49,7 @@ const response = {
       type: 'content',
       params: {},
       locale: { title: 'Перша секція', navigationLabel: 'Перша' },
-      content: [
-        { id: sceneOneId, slug: 'firstScene', type: 'scene', params: {}, locale: { value: 'Scene one' } },
-      ],
+      content: [{ id: sceneOneId, slug: 'firstScene', type: 'scene', params: {}, locale: { value: 'Scene one' } }],
     },
     {
       id: '663572e7-bd85-4516-86e2-3de07d209e06',
@@ -59,9 +57,7 @@ const response = {
       type: 'content',
       params: {},
       locale: { title: 'Друга секція', navigationLabel: 'Друга' },
-      content: [
-        { id: sceneTwoId, slug: 'secondScene', type: 'scene', params: {}, locale: { value: 'Scene two' } },
-      ],
+      content: [{ id: sceneTwoId, slug: 'secondScene', type: 'scene', params: {}, locale: { value: 'Scene two' } }],
     },
   ],
   flashcards: [],

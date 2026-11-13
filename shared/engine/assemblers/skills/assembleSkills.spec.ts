@@ -188,14 +188,8 @@ test('published Skill Props reject unresolved locale dictionaries at domain and 
   const domain = assembleSkills(publication(), 'uk').physics;
   const group = domain.groups?.[0];
   assert.ok(group);
-  assert.equal(
-    skillDomain_Props_Schema.safeParse({ ...domain, title: { uk: 'Фізика' } }).success,
-    false,
-  );
-  assert.equal(
-    skillGroup_Props_Schema.safeParse({ ...group, name: { uk: 'Механіка' } }).success,
-    false,
-  );
+  assert.equal(skillDomain_Props_Schema.safeParse({ ...domain, title: { uk: 'Фізика' } }).success, false);
+  assert.equal(skillGroup_Props_Schema.safeParse({ ...group, name: { uk: 'Механіка' } }).success, false);
   assert.equal(
     skillGroup_Props_Schema.safeParse({
       ...group,
