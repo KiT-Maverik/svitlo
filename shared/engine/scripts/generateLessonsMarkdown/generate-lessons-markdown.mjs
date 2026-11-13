@@ -14,7 +14,7 @@ import Module from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lesson-markdown.mjs';
-import { resolveEntityPath } from '@svitlo/engine/build';
+import { resolveEntityPath, assembleLessonProps } from '@svitlo/engine/runtime';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../../..');
 const usage =
@@ -70,10 +70,12 @@ export function discoverLessons(packageDirectory) {
       if (relative !== `${bucket.name}/${lesson.name}`) throw new Error(`Lesson path mismatch: ${relative}`);
       const directory = path.join(bucketPath, lesson.name);
       realDirectory(directory, bucketPath);
-      const candidates = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
-      if (!candidates.length) continue;
-      if (candidates.length !== 1) throw new Error(`Ambiguous Lesson entry in ${directory}`);
-      const entry = path.join(directory, candidates[0]);
+      const authored = fs.readdirSync(directory).filter(name => name.endsWith('.data.ts'));
+      const index = path.join(directory, 'index.ts');
+      if (authored.length > 1) throw new Error(`Ambiguous Lesson entry in ${directory}`);
+      // A composed Lesson is exported from index.ts; standalone .data.ts entries remain valid.
+      const entry = fs.existsSync(index) ? index : authored.length === 1 ? path.join(directory, authored[0]) : null;
+      if (entry === null) continue;
       if (fs.lstatSync(entry).isSymbolicLink() || !fs.statSync(entry).isFile())
         throw new Error(`Invalid Lesson entry: ${entry}`);
       result.push({ id: lesson.name, relative, directory, entry });
@@ -120,10 +122,15 @@ export async function loadLesson(entry, packageDirectory) {
   loaded.paths = Module._nodeModulePaths(packageDirectory);
   loaded._compile(output.outputFiles[0].text, filename);
   const lessonExports = Object.values(loaded.exports).filter(
-    value => value !== null && typeof value === 'object' && !Array.isArray(value) && 'id' in value && 'slug' in value,
+    value =>
+      value !== null &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      value.type === 'lesson' &&
+      typeof value.build?.props === 'function',
   );
   if (lessonExports.length !== 1)
-    throw new Error(`Expected exactly one exported LessonV2 data object in ${entry}, found ${lessonExports.length}`);
+    throw new Error(`Expected exactly one exported Lesson configurator in ${entry}, found ${lessonExports.length}`);
   return lessonExports[0];
 }
 
@@ -146,8 +153,11 @@ export async function generate(options, { root = repositoryRoot, loader = loadLe
     const commit = spawnSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' });
     const sourceRef =
       commit.status === 0 && /^[0-9a-f]{40}$/.test(commit.stdout.trim()) ? commit.stdout.trim() : 'main';
+    if (typeof lesson.build?.props !== 'function') throw new Error('Lesson is missing the Configurator Build API');
+    const publication = lesson.build.props({ languages: [options.locale] });
+    const resolved = assembleLessonProps(publication, options.locale);
     const markdown = renderLessonMarkdown({
-      lesson,
+      lesson: resolved,
       locale: options.locale,
       languages: locales,
       packagePath: options.package,
