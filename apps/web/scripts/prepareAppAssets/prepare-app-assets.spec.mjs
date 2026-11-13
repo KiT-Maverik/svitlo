@@ -5,13 +5,13 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const webRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const webRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const repoRoot = resolve(webRoot, '../..');
 const source = join(repoRoot, 'shared/ui-kit/assets/flags');
 const published = join(webRoot, 'public/flags');
 
 test('common Web asset preparation copies canonical UI Kit flags independent of textbook selection', () => {
-  const result = spawnSync(process.execPath, [join(webRoot, 'scripts/prepare-app-assets.mjs')], {
+  const result = spawnSync(process.execPath, [join(webRoot, 'scripts/prepareAppAssets/prepare-app-assets.mjs')], {
     cwd: repoRoot,
     env: { ...process.env, SVITLO_TEXTBOOK: 'not-a-real-textbook' },
     encoding: 'utf8',

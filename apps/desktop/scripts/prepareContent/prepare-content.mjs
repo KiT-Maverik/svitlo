@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
 
-const desktopRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const desktopRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const repoRoot = resolve(desktopRoot, '../..');
 const catalog = JSON.parse(readFileSync(join(desktopRoot, 'textbooks.json'), 'utf8'));
 const textbookId = process.env.SVITLO_TEXTBOOK ?? 'playground';

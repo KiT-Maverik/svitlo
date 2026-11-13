@@ -5,7 +5,7 @@ import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { resolve, join } from 'node:path';
 
-const webRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const webRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const repoRoot = resolve(webRoot, '../..');
 
 test('catalog entries are declared workspace packages with a public Scene registry', () => {
@@ -24,7 +24,7 @@ test('catalog entries are declared workspace packages with a public Scene regist
 });
 
 test('unknown textbook fails before content generation', () => {
-  const result = spawnSync(process.execPath, [join(webRoot, 'scripts/prepare-textbook.mjs')], {
+  const result = spawnSync(process.execPath, [join(webRoot, 'scripts/prepareTextbook/prepare-textbook.mjs')], {
     cwd: webRoot,
     env: { ...process.env, SVITLO_TEXTBOOK: 'unknown-textbook' },
     encoding: 'utf8',

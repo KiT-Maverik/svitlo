@@ -4,12 +4,12 @@ import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, relative, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const mobileRoot = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const mobileRoot = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const dist = join(mobileRoot, 'dist');
 const serve = process.argv.includes('--serve');
 const entry = join(mobileRoot, 'src/main.tsx');
 if (!existsSync(join(mobileRoot, 'src/generated/textbook.ts'))) {
-  throw new Error('Mobile textbook is not prepared. Run node scripts/prepare.mjs first.');
+  throw new Error('Mobile textbook is not prepared. Run node scripts/prepareContent/prepare.mjs first.');
 }
 rmSync(dist, { recursive: true, force: true });
 mkdirSync(dist, { recursive: true });

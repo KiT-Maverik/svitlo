@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { setTimeout as delay } from 'node:timers/promises';
 
-const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const url = 'http://127.0.0.1:5173';
 const vite = spawn(npm, ['exec', '--', 'vite', '--host', '127.0.0.1', '--port', '5173', '--strictPort'], {

@@ -3,7 +3,7 @@ import { build } from 'esbuild';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 await build({
   entryPoints: [resolve(root, 'electron/main.ts')],
   outfile: resolve(root, 'dist-main/main.cjs'),

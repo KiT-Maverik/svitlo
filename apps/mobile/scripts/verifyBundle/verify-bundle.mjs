@@ -4,7 +4,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const root = resolve(fileURLToPath(new URL('../..', import.meta.url)));
 const dist = join(root, 'dist');
 const index = JSON.parse(readFileSync(join(dist, 'data/lesson-index.json'), 'utf8'));
 const publication = JSON.parse(readFileSync(join(dist, '.svitlo/publish-playground.json'), 'utf8'));
