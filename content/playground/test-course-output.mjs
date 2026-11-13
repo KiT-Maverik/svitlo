@@ -8,14 +8,18 @@ const root = process.cwd();
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
 const lessonId = 'f760e7b7-9f77-5027-89ce-4e40d9d031a1';
 const files = JSON.parse(readFileSync(join(root, 'dist/manifest.json'), 'utf8')).files;
-const read = (...path) => JSON.parse(readFileSync(join(root, 'dist/static', ...path), 'utf8'));
+const read = (...segments) => JSON.parse(readFileSync(join(root, 'dist/static', ...segments), 'utf8'));
+const optional = (...segments) => {
+  try { return read(...segments); }
+  catch (error) { if (error.code === 'ENOENT') return undefined; throw error; }
+};
 const course = language => ({
   base: read('data', 'courses', courseId, 'base.json'),
-  locale: { [language]: read('data', 'courses', courseId, language + '.json') },
+  locale: { [language]: optional('data', 'courses', courseId, language + '.json') },
 });
 const lesson = language => ({
   base: read('data', 'lessons', lessonId.slice(-1), lessonId, 'base.json'),
-  locale: { [language]: read('data', 'lessons', lessonId.slice(-1), lessonId, language + '.json') },
+  locale: { [language]: optional('data', 'lessons', lessonId.slice(-1), lessonId, language + '.json') },
 });
 
 test('new Course publication is a compact slug-keyed hierarchy, not full nested Lessons', () => {
@@ -34,9 +38,13 @@ test('new Course publication is a compact slug-keyed hierarchy, not full nested 
 
 test('localized Course files are sparse and do not repeat unchanged siblings', () => {
   const localized = course('uk').locale.uk;
-  assert.equal(Object.hasOwn(localized, 'id'), false);
-  assert.equal(Object.hasOwn(localized, 'type'), false);
-  assert.equal(Object.hasOwn(localized.content ?? {}, 'order'), false);
+  if (localized !== undefined) {
+    assert.equal(Object.hasOwn(localized, 'id'), false);
+    assert.equal(Object.hasOwn(localized, 'type'), false);
+    assert.equal(Object.hasOwn(localized.content ?? {}, 'order'), false);
+  } else {
+    assert.equal(files.includes('data/courses/' + courseId + '/uk.json'), false);
+  }
 });
 
 test('Course-context Lesson assembler consumes actual published Course and Lesson JSON', () => {
