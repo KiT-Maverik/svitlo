@@ -4,7 +4,7 @@
  * Static TypeScript module graph traversal catches barrels, reexports and aliases.
  */
 import { existsSync, readFileSync } from 'node:fs';
-import { dirname, extname, join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript';
 
@@ -23,7 +23,7 @@ function localModule(from, specifier) {
   if (specifier.startsWith('.')) target = resolve(dirname(from), specifier);
   else if (Object.hasOwn(aliases, specifier)) target = join(engineRoot, aliases[specifier]);
   else return null;
-  const candidates = extname(target) ? [target] : [target + '.ts', target + '.tsx', join(target, 'index.ts')];
+  const candidates = /\.[cm]?[jt]sx?$/.test(target) ? [target] : [target + '.ts', target + '.tsx', join(target, 'index.ts')];
   const file = candidates.find(existsSync);
   if (!file) throw new Error('Unresolved internal module ' + specifier + ' from ' + from);
   return file;
