@@ -28,6 +28,8 @@ The draft scaffolder must **not**:
 - Fill missing languages, fake accessibility/media resources, silently invent Quiz parameters or change stable Lesson identity.
 - Generate publishable Props, invoke `generateLessonProps`, write localized published JSON, or run the Course Props pipeline. These are separate Engine tools and later stages.
 
+**Current Lesson CLI reads `lesson.config.yaml`**, a technical projection in the same UUID directory containing a top-level `documentLanguage` provenance marker alongside the Config-shaped fields. It does **not** read the Screenwriter's separate editorial `content.yaml` or raw specialist Question/Flashcard plans; their review and explicit projection happen upstream. The provenance marker is removed before emitting `defineLesson` and is not part of the Engine Config JSON Schema.
+
 **Editor schema generation is a different command** (run against a built Engine workspace):
 
 ```sh

@@ -303,3 +303,72 @@ test('YAML-derived unresolved Lesson comments cannot inject TypeScript lines', (
   const ast = ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true);
   assert.deepEqual(ast.parseDiagnostics, []);
 });
+
+test('nested Carousel and Checkpoint configurators become factory calls in Course draft', () => {
+  const nested = {
+    ...source,
+    documentLanguage: 'uk',
+    content: { items: {
+      module: { type: 'module', slug: 'module', content: { items: {
+        chapter: { type: 'chapter', slug: 'chapter', content: { items: {
+          episode: { type: 'episode', slug: 'episode', section: { items: {
+            section: { type: 'content', slug: 'section', content: { items: {
+              gallery: { type: 'carousel', slug: 'gallery',
+                slides: { items: {
+                  slide: { type: 'carouselSlide', slug: 'slide' },
+                }, order: ['slide'] },
+              },
+              checkpoint: { type: 'checkpoint', slug: 'checkpoint',
+                content: { items: {
+                  task: { type: 'checkpointItem', slug: 'task',
+                    question: { type: 'text', slug: 'prompt', locale: { value: { uk: 'Питання', en: 'EN_SECRET' } } },
+                    answer: { items: {
+                      answer: { type: 'text', slug: 'answer', locale: { value: { uk: 'Відповідь' } } },
+                    }, order: ['answer'] },
+                  },
+                }, order: ['task'] },
+              },
+            }, order: ['gallery', 'checkpoint'] } },
+          }, order: ['section'] } },
+        }, order: ['episode'] } },
+      }, order: ['chapter'] } },
+    }, order: ['module'] },
+  };
+  const code = renderCourseSource(nested);
+  for (const factory of ['defineCourse', 'defineModule', 'defineChapter', 'defineEpisode',
+    'defineContentSection', 'defineCarousel', 'defineCarouselSlide', 'defineCheckpoint',
+    'defineCheckpointItem', 'defineText']) {
+    assert(code.includes(factory + '('), 'missing ' + factory);
+  }
+  assert.equal((code.match(/defineText\(/g) ?? []).length, 2);
+  assert(!code.includes('EN_SECRET'));
+  assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+});
+
+test('canonical sibling Lesson imports are permitted but cannot escape textbook data', () => {
+  const sibling = '../../../lessons/4/d3048d21-8690-5255-b62c-984c69ac272c/lesson.data.ts';
+  const valid = { ...source, content: { items: {
+    previous: { type: 'lesson', lessonId,
+      source: { path: sibling, export: 'lesson_Lesson' } },
+  }, order: ['previous'] } };
+  const code = renderCourseSource(valid);
+  assert(code.includes('from "' + sibling.replace('.ts', '') + '"'));
+  assert(!code.includes('UNRESOLVED_LESSON'));
+  const invalid = { ...valid, content: { items: {
+    previous: { type: 'lesson', lessonId,
+      source: { path: '../../../../../../../outside.ts', export: 'bad_Lesson' } },
+  }, order: ['previous'] } };
+  assert(renderCourseSource(invalid).includes('UNRESOLVED_LESSON_0'));
+});
+
+test('Course uses the same canonical Engine registry and prunes explicit source-locale dictionaries', () => {
+  const direct = {
+    ...source, documentLanguage: 'uk',
+    locale: { title: { uk: 'Космос', en: 'DROP_ME' } },
+  };
+  const code = renderCourseSource(direct);
+  assert(code.includes('defineCourse('));
+  assert(!code.includes('DROP_ME'));
+  assert(!code.includes('"documentLanguage"'));
+  assert(code.includes('"languages": ['));
+});

@@ -15,46 +15,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
+import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
 
 const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const IDENTIFIER = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
 const marker = '// SCAFFOLDED BY shared/engine/scripts/courseBuilder/courseBuilder.mjs; AI DRAFT.\n';
-const factories = Object.freeze({
-  course: 'defineCourse',
-  module: 'defineModule',
-  chapter: 'defineChapter',
-  episode: 'defineEpisode',
-  content: 'defineContentSection',
-  practice: 'definePracticeSection',
-  codingTask: 'defineCodingTaskSection',
-  learningFlow: 'defineLearningFlowSection',
-  flashcards: 'defineFlashcardsSection',
-  quiz: 'defineQuizSection',
-  text: 'defineText',
-  markdown: 'defineMarkdown',
-  image: 'defineImage',
-  video: 'defineVideo',
-  youtube: 'defineYoutube',
-  audio: 'defineAudio',
-  code: 'defineCode',
-  carousel: 'defineCarousel',
-  carouselSlide: 'defineCarouselSlide',
-  scene: 'defineScene',
-  checkpoint: 'defineCheckpoint',
-  checkpointItem: 'defineCheckpointItem',
-  selectOneAnswer: 'defineSelectOneAnswer',
-  selectMultipleAnswers: 'defineSelectMultipleAnswers',
-  matchBlocks: 'defineMatchBlocks',
-  answerWithText: 'defineAnswerWithText',
-  answerWithNumber: 'defineAnswerWithNumber',
-  orderSequence: 'defineOrderSequence',
-  buildAnswerWithBlocks: 'defineBuildAnswerWithBlocks',
-  fillBlanksWithBlocks: 'defineFillBlanksWithBlocks',
-  fillBlanksWithText: 'defineFillBlanksWithText',
-  flashcard: 'defineFlashcard',
-});
+const factories = Object.freeze(loadFactoryRegistry());
 
 function fail(code, description) {
   throw new Error('Course Scaffolder [' + code + ']: ' + description);
@@ -130,7 +98,10 @@ function editorialContent(nodes, language, location) {
 }
 
 export function normalizeCourseSource(source, slug) {
-  if (source.type === 'course') return source;
+  if (source.type === 'course') {
+    const { documentLanguage: _provenance, ...config } = source;
+    return sourceAuthoringCopy(config, source.documentLanguage);
+  }
   if (source.kind !== 'course-toc-plan' || !Array.isArray(source.content)) {
     fail('TYPE', 'course.yaml: missing or unknown Course type discriminator');
   }
@@ -153,24 +124,34 @@ export function normalizeCourseSource(source, slug) {
   };
 }
 
-function safeImport(reference) {
-  if (!record(reference) || typeof reference.path !== 'string' || !IDENTIFIER.test(reference.export ?? '')) {
+/**
+ * Permit canonical sibling Lesson imports under the same textbook data tree.
+ * Do not resolve references or require an existing Lesson file at scaffolding.
+ */
+function safeImport(reference, courseId) {
+  if (!record(reference) || typeof reference.path !== 'string' || !IDENTIFIER.test(reference.export ?? ''))
     return null;
-  }
   const p = reference.path;
   if (
-    p.startsWith('/') ||
-    p.includes('\\') ||
-    p.includes(':') ||
-    p.split('/').some(part => !part || part === '.' || part === '..') ||
-    !/\.tsx?$/.test(p)
+    p.startsWith('/') || p.includes('\\') || p.includes(':') ||
+    p.split('/').some(part => !part || part === '.') || !/\.tsx?$/.test(p)
   ) return null;
-  return { path: './' + p.replace(/\.tsx?$/, ''), symbol: reference.export };
+  const base = typeof courseId === 'string' && UUID.test(courseId)
+    ? 'data/courses/' + courseId.at(-1) + '/' + courseId
+    : null;
+  if (!base) {
+    if (p.split('/').includes('..')) return null;
+  } else {
+    const resolved = path.posix.normalize(path.posix.join(base, p));
+    if (!resolved.startsWith('data/lessons/') && !resolved.startsWith(base + '/')) return null;
+  }
+  const relative = p.startsWith('.') ? p : './' + p;
+  return { path: relative.replace(/\.tsx?$/, ''), symbol: reference.export };
 }
 
 function lessonExpression(node, state, location) {
   const lessonId = typeof node.lessonId === 'string' ? node.lessonId : '(missing lessonId)';
-  const reference = safeImport(node.source);
+  const reference = safeImport(node.source, state.courseId);
   if (reference) {
     const key = reference.path + '#' + reference.symbol;
     if (!state.lessonImports.has(key)) {
@@ -198,8 +179,9 @@ const typedCollections = {
   learningFlow: ['content'],
   flashcards: ['content'],
   quiz: ['content'],
-  carousel: ['content'],
+  carousel: ['slides'],
   checkpoint: ['content'],
+  checkpointItem: ['answer'],
   flashcard: ['content'],
 };
 
@@ -231,7 +213,9 @@ function renderConfigFields(node, state, indent, location) {
   return '{\n' + fields.map(([key, value]) => {
     const collection = (typedCollections[node.type] ?? []).includes(key);
     let expression;
-    if (collection && record(value) && record(value.items)) {
+    if (node.type === 'checkpointItem' && key === 'question') {
+      expression = renderEntity(value, state, indent + 1, location + '.question');
+    } else if (collection && record(value) && record(value.items)) {
       const properties = Object.entries(value).map(([field, child]) => {
         const rendered = field === 'items'
           ? renderValue(child, state, indent + 2, location + '.' + key + '.items', true)
@@ -262,7 +246,7 @@ export function renderCourseSource(source, { slug, outputSlug, overrides } = {})
   const course = normalizeCourseSource(source, slug);
   const fileSlug = outputSlug ?? slug ?? course.slug ?? (typeof course.id === 'string' ? 'course_' + course.id.slice(0, 8) : 'course_draft');
   const symbol = exportIdentifier(fileSlug) + '_Course';
-  const state = { imports: new Set(), lessonImports: new Map(), unresolved: [] };
+  const state = { imports: new Set(), lessonImports: new Map(), unresolved: [], courseId: course.id };
   const expression = renderEntity(course, state, 0, 'course');
   const imports = [...state.imports].sort();
   const lines = [

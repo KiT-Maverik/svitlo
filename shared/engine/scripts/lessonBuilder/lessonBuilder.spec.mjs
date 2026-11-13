@@ -132,9 +132,14 @@ function fixture(callback) {
   const questions = makeQuestions();
   const flashcards = makeFlashcards();
   const save = () => {
-    fs.writeFileSync(path.join(lesson, 'content.yaml'), yaml.stringify(content));
-    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), yaml.stringify(questions));
-    fs.writeFileSync(path.join(lesson, 'flashcards/flashcards.yaml'), yaml.stringify(flashcards));
+    fs.writeFileSync(path.join(lesson, 'lesson.config.yaml'), yaml.stringify({
+      ...content, questions: questions.questions, flashcards: flashcards.flashcards,
+    }));
+    // Specialist-owned editorial files are a different contract and remain
+    // untouched by this technical draft scaffolder.
+    fs.writeFileSync(path.join(lesson, 'content.yaml'), 'kind: lesson-content-plan\nstatus: draft\n');
+    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), 'kind: lesson-questions-plan\nstatus: draft\n');
+    fs.writeFileSync(path.join(lesson, 'flashcards/flashcards.yaml'), 'kind: lesson-flashcards-plan\nstatus: draft\n');
   };
   const generated = () => path.join(lesson, 'lightLesson.data.ts');
   try {
@@ -197,6 +202,7 @@ test('emits named Lesson TS and nested factories, including all Question and Fla
     assert.doesNotMatch(output, /"documentLanguage"/);
     assert.ok(!fs.existsSync(path.join(f.lesson, 'generated')));
     assert.ok(!fs.existsSync(path.join(f.lesson, 'requirements.json')));
+    assert.match(fs.readFileSync(path.join(f.lesson, 'content.yaml'), 'utf8'), /lesson-content-plan/);
   }));
 
 test('preserves partial YAML instead of inventing required fields, locale values or questions', () =>
@@ -206,7 +212,7 @@ test('preserves partial YAML instead of inventing required fields, locale values
     delete f.content.flashcards;
     fs.rmSync(path.join(f.lesson, 'questions'), { recursive: true });
     fs.rmSync(path.join(f.lesson, 'flashcards'), { recursive: true });
-    f.save = () => fs.writeFileSync(path.join(f.lesson, 'content.yaml'), yaml.stringify(f.content));
+    f.save = () => fs.writeFileSync(path.join(f.lesson, 'lesson.config.yaml'), yaml.stringify(f.content));
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const code = fs.readFileSync(f.generated(), 'utf8');
@@ -297,4 +303,32 @@ test('requires only dispatch and output essentials, not methodology, review or a
     assert.doesNotThrow(() => runOne(f.lesson, 'generate', f.root));
     assert.ok(calls(fs.readFileSync(f.generated(), 'utf8')).includes('defineImage'));
     assert.doesNotThrow(() => main(['check', '--source', path.relative(f.root, f.lesson)], f.root));
+  }));
+
+test('source locale pruning includes localized Flashcard flag values outside locale', () => {
+  const draft = renderLessonDraft({
+    slug: 'sample',
+    type: 'lesson',
+    params: { languages: ['uk', 'en'] },
+    flashcards: { items: {
+      card: {
+        slug: 'card', type: 'flashcard',
+        parameters: { flags: { items: {
+          acronym: { type: 'acronym', value: { uk: 'АБ', en: 'EN_SECRET' } },
+          custom: { type: 'custom', value: { uk: 'Лише УК', en: 'CUSTOM_SECRET' }, color: 'red' },
+        }, order: ['acronym', 'custom'] } },
+      },
+    }, order: ['card'] },
+  }, 'uk');
+  assert.match(draft, /"uk": "АБ"/);
+  assert.doesNotMatch(draft, /EN_SECRET|CUSTOM_SECRET/);
+  assert.match(draft, /"languages": \[\s*"uk",\s*"en"\s*\]/);
+});
+
+test('Lesson Config is independently discovered without repurposing editorial content', () =>
+  fixture(f => {
+    fs.writeFileSync(path.join(f.lesson, 'content.yaml'), 'kind: lesson-content-plan\nsections: []\n');
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
+    assert.match(fs.readFileSync(path.join(f.lesson, 'content.yaml'), 'utf8'), /lesson-content-plan/);
+    assert.match(fs.readFileSync(f.generated(), 'utf8'), /defineLesson\(/);
   }));
