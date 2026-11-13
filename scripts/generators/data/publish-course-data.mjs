@@ -5,7 +5,7 @@
  * Lessons are *references* to independently published resources, with only
  * Course-specific sparse Lesson override Props embedded in the reference.
  *
- * Output: <textbook>/public/data/courses/<course-id>/{base,<language>}.json
+ * Output: <textbook>/generated/courses/<course-id>/{base,<language>}.json
  * No authored configurators or full standalone Lesson resources are serialized.
  */
 import fs from 'node:fs';
@@ -116,10 +116,43 @@ function compactEntity(value, lessonPatches, language) {
   if (!['course', 'module', 'chapter'].includes(value.type) || !Array.isArray(value.content)) {
     throw new Error('Invalid Course/Module/Chapter Props for ' + value.id);
   }
+  const items = {};
+  const order = [];
+  for (const child of value.content) {
+    if (!isObject(child) || typeof child.slug !== 'string' || !/^[a-z][a-zA-Z0-9]*$/.test(child.slug)) {
+      throw new Error('Course child must have a valid slug in ' + value.id);
+    }
+    if (own(items, child.slug)) throw new Error('Duplicate Course child slug: ' + child.slug);
+    items[child.slug] = compactEntity(child, lessonPatches, language);
+    order.push(child.slug);
+  }
   return {
     ...clone(Object.fromEntries(Object.entries(value).filter(([key]) => key !== 'content'))),
-    content: value.content.map(child => compactEntity(child, lessonPatches, language)),
+    content: { items, order },
   };
+}
+
+/** Confirm a language cannot change course membership in a sparse localization file. */
+function assertSameCourseStructure(base, localized, location = 'course') {
+  if (!isObject(base) || !isObject(localized) || base.id !== localized.id || base.type !== localized.type) {
+    throw new Error('Localized Course identity mismatch at ' + location);
+  }
+  if (!base.content && !localized.content) return;
+  if (!isObject(base.content) || !isObject(localized.content)) {
+    throw new Error('Localized Course content mismatch at ' + location);
+  }
+  const original = base.content;
+  const translated = localized.content;
+  if (JSON.stringify(original.order) !== JSON.stringify(translated.order)) {
+    throw new Error('Localized Course order mismatch at ' + location);
+  }
+  if (Object.keys(original.items).length !== Object.keys(translated.items).length) {
+    throw new Error('Localized Course child count mismatch at ' + location);
+  }
+  for (const slug of original.order) {
+    if (!own(translated.items, slug)) throw new Error('Localized Course missing child at ' + location + '/' + slug);
+    assertSameCourseStructure(original.items[slug], translated.items[slug], location + '/' + slug);
+  }
 }
 
 /**
@@ -157,6 +190,7 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
       patch?.locale?.[language],
     );
     const localized = compactEntity(resolved, lessonPatches, language);
+    assertSameCourseStructure(base, localized);
     const delta = difference(base, localized);
     if (delta !== undefined) {
       assertJson(delta, 'Course locale ' + language);
@@ -178,9 +212,7 @@ export function publishCourse(course, { packageRoot, outputRoot, languages, over
     throw new Error('packageRoot or outputRoot (Course resources parent directory) is required');
   }
   const files = renderCourseFiles(course, { languages, overrides });
-  const root = outputRoot
-    ? path.resolve(outputRoot)
-    : path.join(path.resolve(packageRoot), 'public', 'data', 'courses');
+  const root = outputRoot ? path.resolve(outputRoot) : path.join(path.resolve(packageRoot), 'generated', 'courses');
   const destination = path.join(root, course.id);
 
   if (check) {

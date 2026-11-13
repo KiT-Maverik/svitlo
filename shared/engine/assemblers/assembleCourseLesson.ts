@@ -7,7 +7,7 @@ import {
 } from './assembleLessonProps';
 
 /**
- * The Course generator publishes a Lesson reference, not standalone Lesson
+ * The Course generator publishes a Lesson reference in a slug-keyed hierarchy, not standalone Lesson
  * Props. The sparse overrides come from the Lesson configurator Build API.
  */
 export type CourseLessonEntry = {
@@ -16,15 +16,19 @@ export type CourseLessonEntry = {
   overrides?: PublishedLessonPropsOverride['base'];
 };
 
+export type CoursePublishedContent = {
+  items: Record<string, CoursePublishedNode>;
+  order: string[];
+};
+
 export type CoursePublishedNode =
-  | CourseLessonEntry
-  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedNode[] };
+  CourseLessonEntry | { type: 'module' | 'chapter'; id: string; content: CoursePublishedContent };
 
 export type CoursePublishedTree = {
   type: 'course';
   id: string;
   params: { languages: readonly LanguageCodes[] };
-  content: CoursePublishedNode[];
+  content: CoursePublishedContent;
 };
 
 export type PublishedCoursePropsFiles = {
@@ -80,33 +84,67 @@ function assertCourseRoot(root: unknown, courseId: string, label: string): Recor
   return root;
 }
 
-function findLesson(root: Record<string, unknown>, lessonId: string, label: string): Record<string, unknown> | undefined {
-  let match: Record<string, unknown> | undefined;
-  const visit = (nodes: unknown, at: string): void => {
-    if (!Array.isArray(nodes)) throw new Error('Invalid Course content at ' + at);
-    for (const [index, raw] of nodes.entries()) {
-      const location = at + '/' + index;
+/** The root hierarchy is keyed by slugs; order is an independent ordered index. */
+function findLesson(
+  root: Record<string, unknown>,
+  lessonId: string,
+  label: string,
+): { node: Record<string, unknown>; path: string[] } | undefined {
+  let match: { node: Record<string, unknown>; path: string[] } | undefined;
+  const visit = (content: unknown, at: string, prefix: string[]): void => {
+    if (!isRecord(content) || !isRecord(content.items) || !Array.isArray(content.order)) {
+      throw new Error('Invalid Course content at ' + at);
+    }
+    const items = content.items;
+    const order = content.order;
+    if (
+      order.length !== Object.keys(items).length ||
+      new Set(order).size !== order.length ||
+      order.some(slug => typeof slug !== 'string' || forbiddenKeys.has(slug) || !Object.hasOwn(items, slug))
+    ) {
+      throw new Error('Invalid Course order at ' + at);
+    }
+    for (const slug of order) {
+      const location = at + '/' + slug;
+      const raw = items[slug];
       if (!isRecord(raw) || typeof raw.id !== 'string') throw new Error('Invalid Course child at ' + location);
       if (raw.type === 'lesson') {
         if (raw.id === lessonId) {
           if (match) throw new Error('Duplicate Lesson ID ' + lessonId + ' in ' + label + ' Course publication');
-          match = raw;
+          match = { node: raw, path: [...prefix, slug] };
         }
       } else if (raw.type === 'module' || raw.type === 'chapter') {
-        if (raw.content !== undefined) visit(raw.content, location + '/content');
+        visit(raw.content, location + '/content', [...prefix, slug]);
       } else {
         throw new Error('Unsupported Course child type at ' + location);
       }
     }
   };
-  if (root.content !== undefined) visit(root.content, label + '/content');
+  visit(root.content, label + '/content', []);
   return match;
 }
 
-function getOverride(
-  node: Record<string, unknown> | undefined,
+/** Locale JSON contains only changed items along an immutable base-tree path. */
+function findLocalizedLesson(
+  localeRoot: Record<string, unknown> | undefined,
+  path: readonly string[],
   label: string,
-): PublishedLessonPropsOverride['base'] {
+): Record<string, unknown> | undefined {
+  let parent: Record<string, unknown> | undefined = localeRoot;
+  for (const slug of path) {
+    if (!parent || parent.content === undefined) return undefined;
+    if (!isRecord(parent.content) || !isRecord(parent.content.items)) {
+      throw new Error('Invalid Course content at ' + label + '/' + slug);
+    }
+    const item: unknown = parent.content.items[slug];
+    if (item === undefined) return undefined;
+    if (!isRecord(item)) throw new Error('Invalid Course child at ' + label + '/' + slug);
+    parent = item;
+  }
+  return parent;
+}
+
+function getOverride(node: Record<string, unknown> | undefined, label: string): PublishedLessonPropsOverride['base'] {
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
@@ -140,13 +178,20 @@ export function assembleCourseLesson({
     throw new Error('Course does not support language ' + language);
   }
 
-  const baseNode = findLesson(base, lessonId, 'base');
-  if (!baseNode) throw new Error('Lesson ' + lessonId + ' does not belong to Course ' + courseId);
+  const baseMatch = findLesson(base, lessonId, 'base');
+  if (!baseMatch) throw new Error('Lesson ' + lessonId + ' does not belong to Course ' + courseId);
 
   const localeData = course.locale?.[language];
   const localeRoot = localeData === undefined ? undefined : assertCourseRoot(localeData, courseId, language);
-  const localeNode = localeRoot ? findLesson(localeRoot, lessonId, language) : undefined;
-  const basePatch = getOverride(baseNode, 'base');
+  const localeNode = findLocalizedLesson(localeRoot, baseMatch.path, language);
+  if (
+    localeNode &&
+    ((localeNode.id !== undefined && localeNode.id !== lessonId) ||
+      (localeNode.type !== undefined && localeNode.type !== 'lesson'))
+  ) {
+    throw new Error('Localized Lesson identity mismatch');
+  }
+  const basePatch = getOverride(baseMatch.node, 'base');
   const localePatch = getOverride(localeNode, language);
 
   const overrides: PublishedLessonPropsOverride | undefined =

@@ -1,7 +1,7 @@
 # Props-shaped Lesson publication
 
-This is the new build-time pipeline for `defineLesson` configurators. It does
-not replace the legacy Lesson creator generator or change the runtime loader.
+This is the new build-time pipeline for `defineLesson` configurators. It publishes completed Lesson Props into a build-only staging directory; the
+textbook packaging script is responsible for final public resource paths.
 
 ## Run
 
@@ -14,10 +14,9 @@ npm run content:check:lesson-props -- --package content/playground --check
 ```
 
 The default output root is
-`content/<textbook>/public/data/generated/lessons/`. An explicit `--output`
-may select another directory beneath the same textbook's `public/data/`.
-This new namespace keeps the new Props files separate from the existing
-`public/data/pages/lessons` format until a runtime assembler migration.
+`content/<textbook>/generated/lessons/`. An explicit `--output`
+may select another directory beneath the same textbook's `generated/`.
+These files are inputs to textbook packaging, not an application public URL.
 
 Each built Lesson produces:
 
@@ -46,5 +45,5 @@ IDs are not. The output tree is swapped atomically, removing stale JSON. The
 check command compares exact expected bytes and reports changed and stale
 files without writing.
 
-Do not point this CLI at the legacy published Lesson root until its consumers
-have migrated to the new base/locale Props format.
+The host copies the published files into `public/data/lessons` and the
+runtime assembler consumes one base file plus the selected locale file.

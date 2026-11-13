@@ -24,9 +24,9 @@
 ## Implemented Course-context Lesson contract
 
 - `assembleCourseLesson({ lesson, course, lessonId, courseId, language })` consumes four published layers and validates the resulting Lesson with `lesson_Props_Schema`. Both publication arguments contain `base` and optional locale-keyed JSON bodies. The standalone Lesson must be a Course member and support the requested language; the Course must support it too.
-- Published Course `content` is a hierarchical array of Course/Module/Chapter entities. Lesson entries carry `{ type: 'lesson', id, overrides? }` with **only sparse published Lesson overrides**, never a second full Lesson. The selected Course locale file may omit `content`; when present, its nodes retain IDs and types so the Lesson override can be located by ID.
+- Published Course/Module/Chapter `content` is a slug-keyed `{ items, order }` hierarchy, not an array. Lesson entries carry `{ type: 'lesson', id, overrides? }` with **only sparse published Lesson overrides**, never a second full Lesson. The selected Course locale file carries sparse changes along the base-tree slug path, without duplicating sibling subtrees or identity fields. Published Props arrays _inside_ Lessons still replace atomically.
 - Duplicated Lesson ID matches within a single file, Course/Lesson identity mismatches, forbidden Lesson override fields, unsafe JSON keys, and malformed final Props are errors. The assembler does not mutate inputs.
-- The Next.js host helper `loadPublishedCourseLessonProps` reads Lessons from `public/data/generated/lessons/<bucket>/<uuid>` and Courses from `public/data/courses/<uuid>`. It validates both IDs using the shared UUID resolver, and its roots are configurable. The current legacy `LessonResponse` / old Course patch loader remains untouched.
+- The Next.js host helper `loadPublishedCourseLessonProps` reads Lessons from `public/data/lessons/<bucket>/<uuid>` and Courses from `public/data/courses/<uuid>`. It validates both IDs using the shared UUID resolver, and its roots are configurable. The current legacy `LessonResponse` / old Course patch loader remains untouched.
 
 ## Verification
 

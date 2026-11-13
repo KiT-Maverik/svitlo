@@ -32,12 +32,14 @@ function owned(name, allowRetiredAnalytics = false) {
   return (
     typeof name === 'string' &&
     !isAbsolute(name) &&
-    (/^(?:generated\/skills|data\/pages\/lessons|data\/pages\/courses|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(
-      name,
-    ) ||
+    (/^(?:data\/(?:skills|lessons|courses)|textbooks\/[a-z][a-z-]*)\/[a-zA-Z0-9_./-]+$/.test(name) ||
       (allowRetiredAnalytics &&
-        /^(?:data\/pages\/skillAnalytics\/[a-z]{2,8}|data\/skills\/(?:base|[a-z]{2,8}))\.json$/.test(name))) &&
-    (name.startsWith('data/') || name.startsWith('generated/skills/') || name.startsWith('textbooks/' + id + '/')) &&
+        /^(?:data\/pages\/(?:skillAnalytics|lessons|courses)\/[a-zA-Z0-9_./-]+|generated\/skills\/[a-z]{2,8}\.json|generated\/skills\/base\.json)$/.test(
+          name,
+        ))) &&
+    (name.startsWith('data/') ||
+      name.startsWith('textbooks/' + id + '/') ||
+      (allowRetiredAnalytics && name.startsWith('generated/skills/'))) &&
     name.split('/').every(part => part && part !== '.' && part !== '..')
   );
 }
@@ -96,7 +98,7 @@ function publish(args) {
   const names = readManifest(manifestFile);
   if (
     id === 'playground' &&
-    (!names.some(name => name.startsWith('data/pages/lessons/')) || !names.includes('generated/skills/base.json'))
+    (!names.some(name => name.startsWith('data/lessons/')) || !names.includes('data/skills/base.json'))
   ) {
     fail('missing required lesson or Skills resources in build');
   }

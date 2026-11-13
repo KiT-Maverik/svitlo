@@ -36,7 +36,10 @@ export const testCoolColors_SkillGroup_Data = defineSkillGroup({
     kk: '[TEST kk] Cool colors',
     qm: '[TEST qm] Cool colors',
   },
-  skills: [testRecognizeBlue_Skill_Data, testRecognizeGreen_Skill_Data],
+  skills: {
+    items: { testRecognizeBlue: testRecognizeBlue_Skill_Data, testRecognizeGreen: testRecognizeGreen_Skill_Data },
+    order: ['testRecognizeBlue', 'testRecognizeGreen'],
+  },
   description: {
     methodological: 'Synthetic Playground fixture for testCoolColors; testing only, not curricular content.',
     frontend: {

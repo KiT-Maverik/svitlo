@@ -10,49 +10,63 @@ const sectionA = { id: '123e4567-e89b-42d3-a456-426614174004', slug: 'intro', ty
 const sectionB = { id: '123e4567-e89b-42d3-a456-426614174005', slug: 'practice', type: 'practice' };
 const sectionC = { id: '123e4567-e89b-42d3-a456-426614174006', slug: 'summary', type: 'content' };
 
-const createInput = (): AssembleCourseLessonInput => ({
-  lessonId,
-  courseId,
-  language: 'uk',
-  lesson: {
-    base: {
-      id: lessonId,
-      type: 'lesson',
-      slug: 'sampleLesson',
-      skills: [],
-      params: {
-        requireQuiz: false,
-        languages: ['uk', 'en'],
-        sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
-      },
-      locale: { title: 'Invariant lesson title' },
-      section: [sectionA, sectionB],
-      flashcards: [],
-    },
-    locale: {
-      uk: { locale: { title: 'Український урок' }, section: [sectionA, sectionB] },
-      en: { locale: { title: 'English lesson' } },
-    },
-  },
-  course: {
-    base: {
-      id: courseId,
-      type: 'course',
-      params: { languages: ['en', 'uk'] },
-      content: [
-        {
-          id: moduleId,
-          type: 'module',
-          content: [{ id: lessonId, type: 'lesson', overrides: {} }],
+const createInput = (): AssembleCourseLessonInput =>
+  ({
+    lessonId,
+    courseId,
+    language: 'uk',
+    lesson: {
+      base: {
+        id: lessonId,
+        type: 'lesson',
+        slug: 'sampleLesson',
+        skills: [],
+        params: {
+          requireQuiz: false,
+          languages: ['uk', 'en'],
+          sections: { allowNavigation: true, allowSkipping: true, showIndexes: true },
         },
-      ],
+        locale: { title: 'Invariant lesson title' },
+        section: [sectionA, sectionB],
+        flashcards: [],
+      },
+      locale: {
+        uk: { locale: { title: 'Український урок' }, section: [sectionA, sectionB] },
+        en: { locale: { title: 'English lesson' } },
+      },
     },
-  },
-} as unknown as AssembleCourseLessonInput);
+    course: {
+      base: {
+        id: courseId,
+        type: 'course',
+        params: { languages: ['en', 'uk'] },
+        content: {
+          items: {
+            laboratory: {
+              id: moduleId,
+              type: 'module',
+              content: {
+                items: { demo: { id: lessonId, type: 'lesson', overrides: {} } },
+                order: ['demo'],
+              },
+            },
+          },
+          order: ['laboratory'],
+        },
+      },
+    },
+  }) as unknown as AssembleCourseLessonInput;
 
 const baseLesson = (input: AssembleCourseLessonInput) =>
-  ((input.course.base as unknown as { content: { content: { overrides: Record<string, unknown> }[] }[] }).content[0]
-    .content[0].overrides);
+  (
+    input.course.base.content.items.laboratory as {
+      content: { items: { demo: { overrides: Record<string, unknown> } } };
+    }
+  ).content.items.demo.overrides;
+
+const localeOverride = (overrides: Record<string, unknown>) => ({
+  content: { items: { laboratory: { content: { items: { demo: { overrides } } } } } },
+});
 
 test('assembles a course-neutral Lesson when the Course has no patches', () => {
   const input = createInput();
@@ -61,7 +75,10 @@ test('assembles a course-neutral Lesson when the Course has no patches', () => {
 
   assert.equal(result.id, lessonId);
   assert.equal(result.locale.title, 'Український урок');
-  assert.deepEqual(result.section.map(entry => entry.slug), ['intro', 'practice']);
+  assert.deepEqual(
+    result.section.map(entry => entry.slug),
+    ['intro', 'practice'],
+  );
   assert.deepEqual(input, snapshot, 'assembly must not mutate input publications');
   assert.notEqual(result.section, (input.lesson.base as { section: unknown }).section);
 });
@@ -71,24 +88,8 @@ test('fixed four-layer precedence favors the selected Course locale', () => {
   baseLesson(input).locale = { title: 'Invariant Course title' };
   baseLesson(input).params = { sections: { allowSkipping: false } };
   input.course.locale = {
-    uk: {
-      content: [
-        {
-          id: moduleId,
-          type: 'module',
-          content: [{ id: lessonId, type: 'lesson', overrides: { locale: { title: 'Назва від програми' } } }],
-        },
-      ],
-    },
-    en: {
-      content: [
-        {
-          id: moduleId,
-          type: 'module',
-          content: [{ id: lessonId, type: 'lesson', overrides: { locale: { title: 'Course title' } } }],
-        },
-      ],
-    },
+    uk: localeOverride({ locale: { title: 'Назва від програми' } }),
+    en: localeOverride({ locale: { title: 'Course title' } }),
   };
 
   const uk = assembleCourseLesson(input);
@@ -111,40 +112,40 @@ test('Course base replaces published arrays atomically and cannot resurrect dele
   baseLesson(input).section = [sectionB];
   input.lesson.locale!.uk = { section: [sectionA, sectionB], locale: { title: 'Український урок' } } as never;
   const result = assembleCourseLesson(input);
-  assert.deepEqual(result.section.map(entry => entry.id), [sectionB.id]);
+  assert.deepEqual(
+    result.section.map(entry => entry.id),
+    [sectionB.id],
+  );
 });
 
 test('Course localized override replaces an invariant collection rather than merging by index', () => {
   const input = createInput();
   baseLesson(input).section = [sectionB];
   input.course.locale = {
-    uk: {
-      content: [
-        { id: lessonId, type: 'lesson', overrides: { section: [sectionC] } },
-      ],
-    },
+    uk: localeOverride({ section: [sectionC] }),
   };
-  assert.deepEqual(assembleCourseLesson(input).section.map(section => section.slug), ['summary']);
+  assert.deepEqual(
+    assembleCourseLesson(input).section.map(section => section.slug),
+    ['summary'],
+  );
 });
 
 test('validates course membership, identities, duplicates and supported languages', () => {
   const input = createInput();
-  assert.throws(
-    () => assembleCourseLesson({ ...input, courseId: lessonId }),
-    /Course publication ID mismatch/,
-  );
+  assert.throws(() => assembleCourseLesson({ ...input, courseId: lessonId }), /Course publication ID mismatch/);
   assert.throws(
     () => assembleCourseLesson({ ...input, lessonId: courseId }),
     /Standalone Lesson publication ID\/type mismatch/,
   );
 
   const missing = createInput();
-  (missing.course.base as { content: unknown[] }).content = [];
+  (missing.course.base as unknown as { content: unknown }).content = { items: {}, order: [] };
   assert.throws(() => assembleCourseLesson(missing), /does not belong/);
 
   const duplicate = createInput();
-  const content = (duplicate.course.base as { content: unknown[] }).content;
-  content.push({ id: lessonId, type: 'lesson', overrides: {} });
+  const content = duplicate.course.base.content as unknown as { items: Record<string, unknown>; order: string[] };
+  content.items.duplicate = { id: lessonId, type: 'lesson', overrides: {} };
+  content.order.push('duplicate');
   assert.throws(() => assembleCourseLesson(duplicate), /Duplicate Lesson ID/);
 
   const unsupported = createInput();
@@ -174,7 +175,7 @@ test('rejects dangerous JSON keys and invalid Course JSON trees', () => {
 
   const invalid = createInput();
   invalid.course.locale = {
-    uk: { content: [{ id: moduleId, type: 'module', content: { invalid: true } }] },
+    uk: { content: { items: { laboratory: { content: { invalid: true } } } } },
   };
   assert.throws(() => assembleCourseLesson(invalid), /Invalid Course content/);
 });

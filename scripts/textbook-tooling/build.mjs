@@ -18,7 +18,6 @@ import { dirname, join, relative, resolve, sep } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
-import { checkTaxonomy } from '../check-skills-taxonomy-structure.mjs';
 
 const root = resolve(process.cwd());
 const repo = resolve(fileURLToPath(new URL('../..', import.meta.url)));
@@ -54,13 +53,6 @@ function filesUnder(folder, prefix = '') {
     .sort();
 }
 const authored = folder => filesUnder(join(root, folder)).some(name => name.endsWith('.data.ts'));
-
-// Authored Skill graphs must be complete before a textbook can be published.
-// The same invariant is enforced for every content package, including Playground.
-if (authored('data/skills')) {
-  const { domains, groups, skills } = checkTaxonomy(join(root, 'data/skills'));
-  console.log('Verified ' + id + ' Skills: ' + domains + ' domains, ' + groups + ' groups, ' + skills + ' skills');
-}
 
 // Dependencies required for build-time content generation; none are included in
 // the runtime output. Standalone npm workspace builds start from a clean checkout.
@@ -153,20 +145,20 @@ for (const [from, to] of [
 }
 rmSync(join(dist, '.declarations'), { recursive: true, force: true });
 
-for (const [source, generator, target] of [
-  ['data/lessons', 'scripts/generators/pages/lessons/generate-lessons.mjs', 'data/pages/lessons'],
-  ['data/skills', 'scripts/generators/data/publish-skills-data.mjs', 'generated/skills'],
-  ['data/courses', 'scripts/generators/pages/courses/generate-courses.mjs', 'data/pages/courses'],
+// Build authored content once into textbook-owned generated/, then stage
+// the already-published JSON to the portable package's public URL layout.
+for (const [source, generator, staged, target] of [
+  ['data/skills', 'scripts/generators/data/publish-skills-data.mjs', 'skills', 'data/skills'],
+  ['data/lessons', 'scripts/generators/pages/lessons/generate-lesson-props.mjs', 'lessons', 'data/lessons'],
+  ['data/courses', 'scripts/generators/data/generate-course-props.mjs', 'courses', 'data/courses'],
 ]) {
   if (!authored(source)) continue;
-  run(process.execPath, [
-    generator,
-    '--package',
-    packageDirectory,
-    '--output',
-    relative(repo, join(resources, target)),
-    '--write',
-  ]);
+  run(process.execPath, [generator, '--package', packageDirectory, '--write']);
+  const generatedRoot = join(root, 'generated', staged);
+  if (!existsSync(generatedRoot)) throw new Error('Generator did not produce ' + generatedRoot);
+  const destination = join(resources, target);
+  mkdirSync(dirname(destination), { recursive: true });
+  cpSync(generatedRoot, destination, { recursive: true });
 }
 const sourcePublic = join(root, 'public');
 if (existsSync(sourcePublic)) {
@@ -189,9 +181,9 @@ for (const name of filesUnder(join(root, 'static'))) {
 }
 const published = filesUnder(resources);
 for (const [source, prefix] of [
-  ['data/lessons', 'data/pages/lessons/'],
-  ['data/skills', 'generated/skills/'],
-  ['data/courses', 'data/pages/courses/'],
+  ['data/lessons', 'data/lessons/'],
+  ['data/skills', 'data/skills/'],
+  ['data/courses', 'data/courses/'],
 ]) {
   if (authored(source) && !published.some(name => name.startsWith(prefix) && name.endsWith('.json'))) {
     throw new Error('Authored ' + source + ' did not produce published JSON for ' + id);

@@ -45,8 +45,11 @@ function lessonDirectories(textbook) {
 function assertRepositoryLessonIdsUnique() {
   const owners = new Map();
   const contentRoot = path.join(repoRoot, 'content');
-  for (const textbook of directories(contentRoot)) {
-    const packageRoot = path.join(contentRoot, textbook.name);
+  const candidates = [
+    ...directories(contentRoot).map(entry => path.join(contentRoot, entry.name)),
+    ...directories(path.join(contentRoot, 'languages')).map(entry => path.join(contentRoot, 'languages', entry.name)),
+  ];
+  for (const packageRoot of candidates) {
     if (!fs.existsSync(path.join(packageRoot, 'package.json'))) continue;
     for (const { id, directory } of lessonDirectories(packageRoot)) {
       const previous = owners.get(id);
@@ -139,12 +142,10 @@ async function main(args) {
   ) {
     throw new Error('Invalid textbook package');
   }
-  const output = outputName
-    ? path.resolve(repoRoot, outputName)
-    : path.join(packageDirectory, 'public/data/generated/lessons');
-  const allowedRoot = path.join(packageDirectory, 'public/data');
+  const output = outputName ? path.resolve(repoRoot, outputName) : path.join(packageDirectory, 'generated/lessons');
+  const allowedRoot = path.join(packageDirectory, 'generated');
   if (!output.startsWith(allowedRoot + path.sep)) {
-    throw new Error('Generated Lesson output must be under textbook public/data/');
+    throw new Error('Generated Lesson output must be under textbook generated/');
   }
   assertRepositoryLessonIdsUnique();
   const files = await render(packageDirectory);
