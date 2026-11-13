@@ -23,6 +23,8 @@
     "repo:check:artifacts": "node scripts/check-built-package-exports.mjs",
     "content:generate:lessons": "node scripts/lesson-builder.mjs generate",
     "content:check:lessons": "node scripts/lesson-builder.mjs check",
+    "content:generate:lesson-props": "node scripts/generators/pages/lessons/generate-lesson-props.mjs",
+    "content:check:lesson-props": "node scripts/generators/pages/lessons/generate-lesson-props.mjs",
     "test:unit:lesson-builder": "node --test scripts/lesson-builder.spec.mjs",
     "repo:check:imports": "node scripts/migrate-shared-imports.mjs --check",
     "repo:fix:imports": "node scripts/migrate-shared-imports.mjs --write"
