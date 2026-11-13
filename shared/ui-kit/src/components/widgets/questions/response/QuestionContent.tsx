@@ -22,8 +22,9 @@ export function QuestionContent({
 export function questionBlockLabel(block: QuestionBlock): string {
   switch (block.type) {
     case 'text':
-    case 'markdown':
       return block.locale.value;
+    case 'markdown':
+      return block.locale.value.replace(/[*_`#]/gu, '');
     case 'image':
       return block.locale.alt;
     case 'carousel':
