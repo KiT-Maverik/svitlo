@@ -22,6 +22,16 @@ import {
   fillBlanksWithBlocks_Props_Schema,
   fillBlanksWithText_Props_Schema,
   prepareQuizQuestions,
+  text_Props_Schema,
+  markdown_Props_Schema,
+  code_Props_Schema,
+  image_Props_Schema,
+  carousel_Props_Schema,
+  video_Props_Schema,
+  audio_Props_Schema,
+  youtube_Props_Schema,
+  scene_Props_Schema,
+  checkpoint_Props_Schema,
 } from '@svitlo/engine';
 import type { LanguageCode } from '@svitlo/contracts/localization';
 import type { ContentBlockResponse } from '../widgets/ContentBlockRenderer';
@@ -37,7 +47,23 @@ import type { LessonEventSceneMap } from './LessonEvents';
  * Each block/question is mapped by discriminant. Unsupported types and quiz
  * screens fail visibly instead of silently dropping authored learning content.
  */
+const contentBlockSchemas: Record<ContentBlock_Props['type'], { parse(value: unknown): unknown }> = {
+  text: text_Props_Schema,
+  markdown: markdown_Props_Schema,
+  code: code_Props_Schema,
+  image: image_Props_Schema,
+  carousel: carousel_Props_Schema,
+  video: video_Props_Schema,
+  audio: audio_Props_Schema,
+  youtube: youtube_Props_Schema,
+  scene: scene_Props_Schema,
+  checkpoint: checkpoint_Props_Schema,
+};
+
 export function projectContentBlock(source: ContentBlock_Props): ContentBlockResponse {
+  // Engine's assembled Lesson schema checks the Section boundary but not every
+  // nested ContentBlock. Parse each concrete Props schema before projection.
+  contentBlockSchemas[source.type].parse(source);
   const meta = { id: source.id, slug: source.slug };
   switch (source.type) {
     case 'text':
@@ -47,7 +73,7 @@ export function projectContentBlock(source: ContentBlock_Props): ContentBlockRes
         value: source.locale.value,
         ...(source.params.variables ? { variables: source.params.variables } : {}),
         ...(source.params.wrap ? { wrap: { typographyProps: source.params.wrap.typographyProps } } : {}),
-      } as ContentBlockResponse;
+      } as unknown as ContentBlockResponse;
     case 'markdown':
       return { ...meta, type: 'markdown', text: source.locale.value, variables: source.locale.variables };
     case 'code':
@@ -58,23 +84,23 @@ export function projectContentBlock(source: ContentBlock_Props): ContentBlockRes
         codeAsText: source.params.codeAsText,
         title: source.locale?.title,
         variables: source.locale?.variables,
-      };
+      } as unknown as ContentBlockResponse;
     case 'image':
-      return { ...meta, type: 'image', ...source.params, ...source.locale } as ContentBlockResponse;
+      return { ...meta, type: 'image', ...source.params, ...source.locale } as unknown as ContentBlockResponse;
     case 'carousel':
-      return { ...meta, type: 'carousel', ...source.params, ...source.locale } as ContentBlockResponse;
+      return { ...meta, type: 'carousel', ...source.params, ...source.locale } as unknown as ContentBlockResponse;
     case 'video':
-      return { ...meta, type: 'video', ...source.locale };
+      return { ...meta, type: 'video', ...source.locale } as unknown as ContentBlockResponse;
     case 'audio':
-      return { ...meta, type: 'audio', ...source.locale };
+      return { ...meta, type: 'audio', ...source.locale } as unknown as ContentBlockResponse;
     case 'youtube':
-      return { ...meta, type: 'youtube', mode: source.params.mode, ...source.locale };
+      return { ...meta, type: 'youtube', mode: source.params.mode, ...source.locale } as unknown as ContentBlockResponse;
     case 'scene': {
       const value = source.locale.value;
       if (!value || typeof value !== 'object' || Array.isArray(value)) {
         throw new Error('Scene ' + source.id + ' needs object-valued renderer props');
       }
-      return { ...meta, type: 'scene', locales: value } as ContentBlockResponse;
+      return { ...meta, type: 'scene', locales: value } as unknown as ContentBlockResponse;
     }
     case 'checkpoint':
       return {
@@ -90,7 +116,7 @@ export function projectContentBlock(source: ContentBlock_Props): ContentBlockRes
             check: item.check,
           };
         }),
-      } as ContentBlockResponse;
+      } as unknown as ContentBlockResponse;
     default: {
       const unsupported: never = source;
       throw new Error('Unrecognized ContentBlock Props: ' + String(unsupported));
@@ -161,7 +187,7 @@ function projectQuestion(source: EngineQuestion): QuestionResponse {
           incorrect: projectMap(answers.incorrect),
           distractors: projectMap(answers.distractors),
         },
-      } as QuestionResponse;
+      } as unknown as QuestionResponse;
     }
     case 'matchBlocks':
       return {
@@ -172,20 +198,20 @@ function projectQuestion(source: EngineQuestion): QuestionResponse {
             { left: projectContentBlock(pair.left), right: projectContentBlock(pair.right) },
           ]),
         ),
-      } as QuestionResponse;
+      } as unknown as QuestionResponse;
     case 'answerWithText':
-      return { ...meta, correctAnswers: source.locale.correctAnswers, placeholder: source.locale.placeholder } as QuestionResponse;
+      return { ...meta, correctAnswers: source.locale.correctAnswers, placeholder: source.locale.placeholder } as unknown as QuestionResponse;
     case 'answerWithNumber':
-      return { ...meta, correctAnswers: source.params.correctAnswers, placeholder: source.locale.placeholder } as QuestionResponse;
+      return { ...meta, correctAnswers: source.params.correctAnswers, placeholder: source.locale.placeholder } as unknown as QuestionResponse;
     case 'orderSequence':
-      return { ...meta, sequence: source.content.sequence.map(projectContentBlock) } as QuestionResponse;
+      return { ...meta, sequence: source.content.sequence.map(projectContentBlock) } as unknown as QuestionResponse;
     case 'buildAnswerWithBlocks':
       return {
         ...meta,
         correctSequence: source.content.correctSequence.map(projectContentBlock),
         distractors: source.content.distractors.map(projectContentBlock),
         placeholder: source.locale.placeholder,
-      } as QuestionResponse;
+      } as unknown as QuestionResponse;
     case 'fillBlanksWithBlocks':
       return {
         ...meta,
@@ -195,9 +221,9 @@ function projectQuestion(source: EngineQuestion): QuestionResponse {
         })),
         distractors: source.content.distractors.map(projectContentBlock),
         placeholder: source.locale.placeholder,
-      } as QuestionResponse;
+      } as unknown as QuestionResponse;
     case 'fillBlanksWithText':
-      return { ...meta, slots: source.locale.slots, placeholder: source.locale.placeholder } as QuestionResponse;
+      return { ...meta, slots: source.locale.slots, placeholder: source.locale.placeholder } as unknown as QuestionResponse;
     default: {
       const unsupported: never = source;
       throw new Error('Unrecognized Question Props: ' + String(unsupported));
@@ -232,7 +258,7 @@ function projectEvents(value: Lesson_Props['events']): LessonEventSceneMap | und
     if (event === false) {
       result[key] = false;
     } else if (event && typeof event === 'object' && !Array.isArray(event) && event.type === 'scene') {
-      result[key] = projectContentBlock(event as ContentBlock_Props) as Exclude<LessonEventSceneMap[string], false>;
+      result[key] = projectContentBlock(scene_Props_Schema.parse(event)) as Exclude<LessonEventSceneMap[string], false>;
     } else {
       throw new Error('Unsupported published Lesson event reaction: ' + key);
     }
