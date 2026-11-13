@@ -34,7 +34,7 @@ test('root package-lock changes select core workspaces without forcing Math', ()
 });
 
 test('shared textbook tooling changes do not automatically select Math', () => {
-  const p = chooseChecks(['scripts/textbook-tooling/test-publish.mjs'], packages);
+  const p = chooseChecks(['scripts/textbook-tooling/publishTextbook/test-publish.mjs'], packages);
   assert.deepEqual([...p.affected], []);
 });
 

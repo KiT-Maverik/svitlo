@@ -105,7 +105,7 @@ function execute(operation) {
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   try {
-    if (process.argv.length !== 3) throw Error('Usage: node scripts/run-workspace-script.mjs <canonical-script>');
+    if (process.argv.length !== 3) throw Error('Usage: node scripts/runWorkspaceScript/run-workspace-script.mjs <canonical-script>');
     execute(process.argv[2]);
   } catch (error) {
     console.error(error.message);

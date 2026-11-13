@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate a localized-name, read-only Markdown view from typed taxonomy source.
- * Usage: node scripts/generate-skills-taxonomy.mjs --package content/math
+ * Usage: node shared/engine/scripts/generateSkillsTaxonomy/generate-skills-taxonomy.mjs --package content/math
  *   [--locale en] [--check | --stdout]
  *
  * Deliberately parses TypeScript source without executing textbook code.
