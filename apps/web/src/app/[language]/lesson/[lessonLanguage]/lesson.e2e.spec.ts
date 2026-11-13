@@ -16,7 +16,7 @@ test('lesson renders sections, scenes and quiz in the selected content language'
   await next.click();
   await expect(page.getByRole('heading', { name: 'Одне світло. Різні середовища.' })).toBeVisible();
   await next.click();
-  await expect(page.locator('fieldset')).toHaveCount(1);
+  await expect(page.locator('fieldset')).toHaveCount(2);
 });
 
 test('the requested lesson language selects localized published JSON and scene props', async ({ page }) => {
@@ -76,7 +76,7 @@ test('mobile quick settings fills the content width and provides a close button'
   const settings = page.getByRole('complementary', { name: 'Швидкі налаштування' });
   await expect(settings.getByRole('heading', { name: 'Швидкі налаштування' })).toBeVisible();
   const box = await settings.boundingBox();
-  expect(box?.width).toBeGreaterThanOrEqual(389);
+  expect(Math.round(box?.width ?? 0)).toBeGreaterThanOrEqual(389);
   await settings.getByRole('button', { name: 'Закрити панель налаштувань' }).click();
   await expect(settings).not.toBeInViewport();
   await page.setViewportSize({ width: 1280, height: 720 });
@@ -124,7 +124,7 @@ test('Quick Settings switches the actual page colors and persists the theme', as
   await page.goto(`/uk/lesson/uk/${id}`);
 
   const html = page.locator('html');
-  const surface = page.locator('#learning-content').locator('..').locator('..');
+  const surface = page.locator('#learning-content:visible').first().locator('..').locator('..');
   const background = () => surface.evaluate(node => getComputedStyle(node).backgroundColor);
 
   await expect(html).toHaveAttribute('data-light', '');

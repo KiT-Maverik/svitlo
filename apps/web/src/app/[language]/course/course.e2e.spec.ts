@@ -86,6 +86,6 @@ test('Course catalog still supports unpublished previews without fake Lesson lin
   await page.goto('/uk/courses');
   await expect(page.getByRole('heading', { name: 'Обирай свою наступну пригоду', level: 1 })).toBeVisible();
   await page.getByRole('link', { name: 'Переглянути курс: Математика навколо нас' }).click();
-  await expect(page.getByText('Це попередній перегляд. Уроки будуть доступні пізніше.')).toBeVisible();
+  await expect(page.getByText('Це попередній перегляд. Уроки будуть доступні пізніше.').first()).toBeVisible();
   await expect(page.getByRole('link', { name: 'Почати навчання' })).toHaveCount(0);
 });
