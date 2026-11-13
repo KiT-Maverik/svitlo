@@ -143,7 +143,7 @@ test('one compact Course base contains complete Course/Module/Chapter Props but 
   const base = JSON.parse(files.get('base.json'));
   const chapter = base.content.items.myModule.content.items.myChapter;
   assert.equal(chapter.locale.title, 'Chapter');
-  assert.deepEqual(chapter.content, [{ id: ids.lesson, type: 'lesson' }]);
+  assert.deepEqual(chapter.content, { items: { myLesson: { id: ids.lesson, type: 'lesson' } }, order: ['myLesson'] });
   assert.equal(base.content.items.myModule.locale.title, 'Module');
   assert(![...files.values()].join('').includes('secret-standalone-skill'));
   assert(![...files.values()].join('').includes('standalone-section'));
@@ -162,7 +162,7 @@ test('Lesson base and locale override Props are stored at the same tree position
   const files = renderCourseFiles(course, { overrides: authoredPatch });
   assert.equal(getPatchCalls(), 1);
   const base = JSON.parse(files.get('base.json'));
-  const lessonRef = base.content.items.myModule.content.items.myChapter.content[0];
+  const lessonRef = base.content.items.myModule.content.items.myChapter.content.items.myLesson;
   assert.deepEqual(lessonRef, {
     id: ids.lesson,
     type: 'lesson',
@@ -200,7 +200,7 @@ test('invariant child removal wins over a translated pre-override Course array',
   assert.deepEqual(base.content, { items: {}, order: [] });
   const uk = JSON.parse(files.get('uk.json'));
   assert.equal(Object.hasOwn(uk, 'content'), false, 'old localized child must not reappear');
-  assert.deepEqual(mergeCourseProps(base, uk).content, []);
+  assert.deepEqual(mergeCourseProps(base, uk).content, { items: {}, order: [] });
 });
 
 test('deterministic publication, check mode, stale file cleanup and unrelated assets', () => {
@@ -208,7 +208,7 @@ test('deterministic publication, check mode, stale file cleanup and unrelated as
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-'));
   try {
     const first = publishCourse(course, { packageRoot: home });
-    const destination = path.join(home, 'public/data/courses', ids.course);
+    const destination = path.join(home, 'generated/courses', ids.course);
     assert.equal(first.directory, destination);
     assert.deepEqual(first.files, ['base.json', 'uk.json']);
     publishCourse(course, { packageRoot: home, check: true });
@@ -231,7 +231,7 @@ test('publishes directly to a caller-owned compiled Course output root', () => {
   const { course } = fixture();
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-dist-'));
   try {
-    const outputRoot = path.join(home, 'dist/static/data/courses');
+    const outputRoot = path.join(home, 'generated/courses');
     const result = publishCourse(course, { outputRoot });
     assert.equal(result.directory, path.join(outputRoot, ids.course));
     publishCourse(course, { outputRoot, check: true });
