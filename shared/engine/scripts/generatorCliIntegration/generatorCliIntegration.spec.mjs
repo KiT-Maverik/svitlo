@@ -83,7 +83,10 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
     fs.mkdirSync(outside);
     fs.symlinkSync(outside, path.join(pkg, 'generated', 'linked'));
     assert.notEqual(
-      run('content:generate:lesson-props', '--write', ['--output', 'content/' + name + '/generated/linked/lessons']).status,
+      run('content:generate:lesson-props', '--write', [
+        '--output',
+        'content/' + name + '/generated/linked/lessons',
+      ]).status,
       0,
       'symlink output must be rejected before any publication',
     );
