@@ -70,6 +70,17 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
     'question.schema.json',
     'section.schema.json',
   ]);
+  // Shared schema instances should be reused through $defs/$ref, not
+  // expanded into dozens of megabytes of duplicated nested Config trees.
+  for (const name of ['lesson.schema.json', 'course.schema.json', 'question.schema.json']) {
+    const json = JSON.parse(docs[name]);
+    assert.ok(Object.keys(json.$defs ?? {}).length > 0, name + ' should have shared definitions');
+    assert.match(docs[name], /"\\$ref"/);
+  }
+  const lesson = JSON.parse(docs['lesson.schema.json']);
+  assert.equal(lesson.properties.type.const, 'lesson');
+  assert(lesson.required.includes('type'));
+
   for (const source of Object.values(docs)) {
     const document = JSON.parse(source);
     assert.equal(document.$schema, 'https://json-schema.org/draft/2020-12/schema');
