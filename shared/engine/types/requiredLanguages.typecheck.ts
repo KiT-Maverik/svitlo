@@ -23,10 +23,7 @@ const required: RequireLanguages<Authored, ['en', 'uk']> = {
 };
 
 // @ts-expect-error Authored locale dictionaries must include every required language.
-const missingRequiredLanguage: RequireLanguages<Authored, ['en', 'uk']> = {
-  title: { en: 'Title' },
-  nested: { label: { en: 'Label', uk: 'Мітка' } },
-};
+const missingRequiredLanguage: RequireLanguages<Authored, ['en', 'uk']> = { title: { en: 'Title' }, nested: { label: { en: 'Label', uk: 'Мітка' } } };
 
 type Config = ConfigWithLanguages<{ params: { count: number }; locale: Authored }, ['en', 'uk']>;
 const completeConfig: Config = {
