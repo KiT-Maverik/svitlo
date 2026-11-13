@@ -43,6 +43,9 @@ export function yamlJsonSchemaDocuments() {
       const jsonSchema = z.toJSONSchema(schema, {
         target: 'draft-2020-12',
         unrepresentable: 'throw',
+        // Reuse identical Zod child schemas via $defs/$ref instead of
+        // recursively inlining megabytes of repeated Config tree fragments.
+        reused: 'ref',
       });
       return [
         kind + '.schema.json',
