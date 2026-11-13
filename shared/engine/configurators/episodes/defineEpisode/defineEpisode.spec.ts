@@ -77,7 +77,7 @@ test('Episode overrides metadata and Section children without modifying the cano
   assert.ok(JSON.stringify(episode.build.props({ languages: ['en', 'uk'] })).includes('Ви заходите до зали'));
   assert.deepEqual(episode.build.props({ languages: ['en', 'uk'] }), original);
 
-  const extra = defineContentSection({
+  const extra = defineContentSection<'extra', {}, typeof languages>({
     id: id('04'),
     slug: 'extra',
     type: 'content',
