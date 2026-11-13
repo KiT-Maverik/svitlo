@@ -108,6 +108,21 @@ test('Episode overrides metadata and Section children without modifying the cano
   );
 });
 
+test('Episode rejects Lesson-only authoring fields', () => {
+  assert.throws(
+    () => defineEpisode({
+      id: id('0a'),
+      slug: 'invalid',
+      type: 'episode',
+      params: { languages },
+      locale: { title: 'Invalid' },
+      section: { items: {}, order: [] },
+      skills: [],
+    } as never),
+    /skills/,
+  );
+});
+
 test('Episode respects selected publication languages, validates requested scope and remains stateless', () => {
   const episode = makeEpisode();
   const single = episode.build.props({ languages: ['uk'] });
