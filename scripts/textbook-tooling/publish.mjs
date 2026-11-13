@@ -36,7 +36,7 @@ function owned(name, allowRetiredAnalytics = false) {
       name,
     ) ||
       (allowRetiredAnalytics && /^data\/pages\/skillAnalytics\/[a-z]{2,8}\.json$/.test(name))) &&
-    (name.startsWith('data/') || name.startsWith('textbooks/' + id + '/')) &&
+    (name.startsWith('data/') || name.startsWith('generated/skills/') || name.startsWith('textbooks/' + id + '/')) &&
     name.split('/').every(part => part && part !== '.' && part !== '..')
   );
 }
@@ -95,7 +95,7 @@ function publish(args) {
   const names = readManifest(manifestFile);
   if (
     id === 'playground' &&
-    (!names.some(name => name.startsWith('data/pages/lessons/')) || !names.includes('data/skills/base.json'))
+    (!names.some(name => name.startsWith('data/pages/lessons/')) || !names.includes('generated/skills/base.json'))
   ) {
     fail('missing required lesson or Skills resources in build');
   }
