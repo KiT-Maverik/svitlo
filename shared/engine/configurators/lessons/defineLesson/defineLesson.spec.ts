@@ -33,7 +33,6 @@ const makeLesson = () =>
     id: id('03'),
     slug: 'exampleLesson',
     type: 'lesson',
-    programId: id('04'),
     skills: [],
     params: {
       requireQuiz: false,
@@ -48,7 +47,8 @@ const makeLesson = () =>
 test('Lesson emits plain Section Props arrays with correct own and nested locale paths', () => {
   const lesson = makeLesson();
   const built = lesson.build.props({ languages: ['en', 'uk'] });
-  assert.equal(lesson.config.base.programId, id('04'));
+  assert.equal('programId' in lesson.config.base, false);
+  assert.equal('programId' in lesson.build.props({ languages: ['en'] }).base, false);
   assert.deepEqual(lesson.config.locales(), { locale: { title: { en: 'Example', uk: 'Приклад' } } });
   assert.equal(lesson.section.items.intro, section);
   assert.equal(built.base.section[0]?.slug, 'intro');
