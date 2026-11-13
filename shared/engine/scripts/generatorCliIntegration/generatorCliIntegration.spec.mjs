@@ -16,11 +16,12 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
   const lessonFolder = path.join(pkg, 'data', 'lessons', lessonId.slice(-1), lessonId);
   const courseFolder = path.join(pkg, 'data', 'courses');
 
-  const run = (script, action) => spawnSync('npm', ['run', script, '--', '--package', 'content/' + name, action], {
-    cwd: repo,
-    encoding: 'utf8',
-    env: process.env,
-  });
+  const run = (script, action) =>
+    spawnSync('npm', ['run', script, '--', '--package', 'content/' + name, action], {
+      cwd: repo,
+      encoding: 'utf8',
+      env: process.env,
+    });
   const succeeds = (script, action) => {
     const result = run(script, action);
     assert.equal(result.status, 0, result.stdout + '\n' + result.stderr);
@@ -32,17 +33,23 @@ test('Engine-owned npm CLIs publish and verify a valid Lesson and Course without
     fs.writeFileSync(path.join(pkg, 'package.json'), JSON.stringify({ name: '@svitlo/' + name, private: true }));
 
     const lessonSource =
-      "export const lesson = { id: '" + lessonId + "', slug: 'testLesson', type: 'lesson', " +
+      "export const lesson = { id: '" +
+      lessonId +
+      "', slug: 'testLesson', type: 'lesson', " +
       "config: { base: { params: { languages: ['en', 'uk'] } } }, " +
-      "build: { props({ languages }) { return { base: { id: '" + lessonId +
+      "build: { props({ languages }) { return { base: { id: '" +
+      lessonId +
       "', type: 'lesson', params: { languages } }, locale: { uk: { locale: { title: 'Тестовий урок' } } } }; } } };";
     fs.writeFileSync(path.join(lessonFolder, 'lesson.data.ts'), lessonSource);
 
     const courseSource =
-      "export const course = { id: '" + courseId + "', slug: 'testCourse', type: 'course', " +
+      "export const course = { id: '" +
+      courseId +
+      "', slug: 'testCourse', type: 'course', " +
       "config: { base: { params: { languages: ['en'] } } }, " +
       "content: { items: {}, order: [] }, build: { props({ languages }) { return { base: { id: '" +
-      courseId + "', slug: 'testCourse', type: 'course', params: { languages }, " +
+      courseId +
+      "', slug: 'testCourse', type: 'course', params: { languages }, " +
       "locale: { title: 'Testing' }, content: [] } }; } } };";
     fs.writeFileSync(path.join(courseFolder, 'course.data.ts'), courseSource);
 
