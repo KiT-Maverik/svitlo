@@ -6,7 +6,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -113,7 +113,7 @@ const validate = (config: ContentBlock_CheckpointItem_Config): void => {
 
 type ChildPublication = {
   base: Checkpoint_Allowed_PropsBase;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type ChildPatchPublication = Omit<ChildPublication, 'base'> & {
   base: DeepPartial<Checkpoint_Allowed_PropsBase>;
@@ -122,7 +122,7 @@ type ItemLocaleBody = {
   question?: Record<string, unknown>;
   answer?: Record<string, unknown>[];
 };
-type ItemLocaleFiles = Partial<Record<LanguageCodes, ItemLocaleBody>>;
+type ItemLocaleFiles = Partial<Record<LanguageCode, ItemLocaleBody>>;
 type ItemPublication<Base> = { base: Base; locale: ItemLocaleFiles | undefined };
 type ItemBase = Pick<ContentBlock_CheckpointItem_Props, 'id' | 'slug' | 'type' | 'check'> & {
   question: ReturnType<ContentBlock_CheckpointItem_Config['question']['build']['props']>['base'];
@@ -147,7 +147,7 @@ export const defineCheckpointItem = <
   const Slug extends string,
   const Answers extends Record<string, Checkpoint_Allowed_Configurator>,
   const Question extends ContentBlock_CheckpointItem_Config['question'],
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_CheckpointItem_Config, 'slug' | 'answer' | 'question'> & {
     slug: Slug;
@@ -169,13 +169,13 @@ export const defineCheckpointItem = <
     ...(check !== undefined ? { check } : {}),
   } satisfies DeepPartial<ContentBlock_CheckpointItem_Config>;
 
-  const buildChild = (child: Checkpoint_Allowed_Configurator, languages: readonly LanguageCodes[]): ChildPublication =>
+  const buildChild = (child: Checkpoint_Allowed_Configurator, languages: readonly LanguageCode[]): ChildPublication =>
     child.build.props({ languages }) as unknown as ChildPublication;
 
   const buildChildPatch = (
     child: Checkpoint_Allowed_Configurator,
     patch: unknown,
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
   ): ChildPatchPublication =>
     (child.build.overrides as (patch: never, options: PublicationLanguageOptions) => ChildPatchPublication)(
       patch as never,
@@ -189,7 +189,7 @@ export const defineCheckpointItem = <
   const buildAnswers = (
     items: Record<string, Checkpoint_Allowed_Configurator>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -229,7 +229,7 @@ export const defineCheckpointItem = <
     const builtAnswers = buildAnswers(initialItems, initialOrder, languages);
     const locale = { ...builtAnswers.locales };
     for (const [language, fields] of Object.entries(builtQuestion.locale ?? {})) {
-      (locale[language as LanguageCodes] ??= {}).question = fields;
+      (locale[language as LanguageCode] ??= {}).question = fields;
     }
     const result = {
       base: {
@@ -272,7 +272,7 @@ export const defineCheckpointItem = <
         const built = question.build.overrides(patch.question, { languages });
         if (Object.keys(built.base).length) output.base.question = built.base;
         for (const [language, fields] of Object.entries(built.locale ?? {})) {
-          (locales[language as LanguageCodes] ??= {}).question = fields;
+          (locales[language as LanguageCode] ??= {}).question = fields;
         }
       }
 
@@ -353,7 +353,7 @@ export const defineCheckpointItem = <
         const built = buildAnswers(active, order, languages, patches);
         output.base.answer = built.bases;
         for (const [language, fragment] of Object.entries(built.locales)) {
-          (locales[language as LanguageCodes] ??= {}).answer = fragment.answer;
+          (locales[language as LanguageCode] ??= {}).answer = fragment.answer;
         }
       }
       output.locale = Object.keys(locales).length ? locales : undefined;

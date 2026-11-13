@@ -1,5 +1,5 @@
 import type { DeepPartial, LanguageScope, ChildrenSupporting, ConfigWithLanguages } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { onlyLocales, onlyStrings } from '../../_shared__configurators';
 import {
   assertEnabledBlock,
@@ -53,7 +53,7 @@ type ContentShape = Question_OrderSequence_Config['content'];
 export type Question_OrderSequence_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  Languages extends readonly LanguageCode[] = AllLanguageCodes,
 > = Question_OrderSequence_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
     sequence?: OrderedBlockPatch<Content['sequence']['items'], Added, Languages>;
@@ -71,7 +71,7 @@ export type Question_OrderSequence_Overrides<
 export const defineOrderSequence = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Question_OrderSequence_Config, 'slug' | 'content'> & {
     slug: Slug;
@@ -96,7 +96,7 @@ export const defineOrderSequence = <
     sequence: snapshotBlockCollection(initialContent.sequence),
   } as Content;
 
-  const extraContent = (source: Content, languages: readonly LanguageCodes[], patch?: ResolvableBlockPatch) => {
+  const extraContent = (source: Content, languages: readonly LanguageCode[], patch?: ResolvableBlockPatch) => {
     const result = resolveBlockCollection(source.sequence, languages, patch, 'content.sequence', true);
     result.base.forEach((block, index) => assertEnabledBlock(block, 'content.sequence[' + index + ']'));
     const locale: Record<string, Record<string, unknown>> = {};

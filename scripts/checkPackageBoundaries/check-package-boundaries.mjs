@@ -3,7 +3,6 @@ import { dirname, join, resolve, relative, sep } from 'node:path';
 
 const root = process.cwd();
 const readJson = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
-const contracts = readJson('shared/contracts/package.json');
 const engine = readJson('shared/engine/package.json');
 const indexdb = readJson('shared/indexdb/package.json');
 const playground = readJson('content/playground/package.json');
@@ -71,11 +70,9 @@ assert(
 for (const path of ['src/app/layout.tsx', 'src/app/page.tsx', 'playwright.config.ts', 'next.config.ts']) {
   assert(existsSync(resolve(root, 'apps/platform', path)), 'Platform scaffold missing: ' + path);
 }
-assert(contracts.name === '@svitlo/contracts', 'Unexpected contracts package name');
 assert(engine.name === '@svitlo/engine', 'Unexpected engine package name');
 assert(indexdb.name === '@svitlo/indexdb', 'Unexpected IndexedDB package name');
-assert(indexdb.dependencies?.[contracts.name] === contracts.version, 'IndexedDB must consume canonical Contracts');
-assert(!indexdb.dependencies?.[engine.name], 'IndexedDB cannot depend on Engine');
+assert(indexdb.dependencies?.[engine.name] === engine.version, 'IndexedDB must depend on Engine runtime contracts');
 assert(indexdb.dependencies?.zod, 'IndexedDB must declare its Zod schema dependency');
 assert(
   Object.keys(indexdb.exports ?? {}).length === 1 && Object.hasOwn(indexdb.exports ?? {}, '.'),
@@ -85,17 +82,6 @@ assert(
   indexdb.exports['.']?.types === './dist/index.d.ts' && indexdb.exports['.']?.default === './dist/index.js',
   'IndexedDB root entrypoint must use compiled artifacts',
 );
-assert(
-  engine.dependencies?.[contracts.name] === contracts.version,
-  'Engine must use versioned public Contracts dependency',
-);
-for (const subpath of ['.', './content', './taxonomy', './localization', './state']) {
-  const target = contracts.exports?.[subpath];
-  assert(
-    target?.types?.startsWith('./dist/') && target?.default?.startsWith('./dist/'),
-    'Contracts public export must use compiled artifacts: ' + subpath,
-  );
-}
 assert(playground.dependencies?.[engine.name] === engine.version, 'Playground must use a versioned engine dependency');
 assert(playground.dependencies?.[uiKit.name] === uiKit.version, 'Playground must use a versioned UI Kit dependency');
 assert(web.dependencies?.[indexdb.name] === indexdb.version, 'Web must use public IndexedDB dependency');
@@ -218,7 +204,6 @@ assert(
 );
 assert(
   !existsSync(resolve(root, 'shared/engine/data/assessmentMethodTaxonomy')) &&
-    !existsSync(resolve(root, 'shared/contracts/src/types/content/assessmentMethod.ids.ts')) &&
     !existsSync(resolve(root, 'shared/engine/utils/builders/config/buildAssessmentMethodConfig.utils.ts')),
   'Legacy Assessment Method taxonomy, UUID registry and config builder must be removed',
 );
@@ -247,7 +232,6 @@ for (const file of engineSources) {
   for (const match of imports) {
     assert(
       match[1].startsWith('.') ||
-        match[1].startsWith('@svitlo/contracts') ||
         match[1].startsWith('#') ||
         match[1] === 'zod' ||
         (relative(root, file).startsWith('shared/engine/utils/generators/') &&

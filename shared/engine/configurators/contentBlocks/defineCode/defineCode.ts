@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -21,7 +21,7 @@ import {
   type ContentBlock_Code_PropsBase,
 } from './defineCode.schemas';
 
-type CodeLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Code_Locale<'props'>> }>>;
+type CodeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Code_Locale<'props'>> }>>;
 type CodePropsPublication<Base, LocaleFiles = CodeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type CodeOverridePropsBase = {
   params?: ContentBlock_Code_Overrides['params'];
@@ -114,7 +114,7 @@ const buildCodePatch = (patch: ContentBlock_Code_Overrides): CodePropsPublicatio
  */
 export const defineCode = <
   const Slug extends string,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_Code_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Code_Config,

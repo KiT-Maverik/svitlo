@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageDefinition, type Locale } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageDefinition, type Locale } from '#schemas';
 
 export function isLocale(
   value: string,

@@ -2,18 +2,14 @@
 
 A Section is a navigable learning unit. Regular Sections hold ordered ContentBlocks; a Quiz is **a Section, not a ContentBlock**.
 
-## Contract
+## Engine contracts
 
-See [Section](../../../shared/contracts/src/types/content/section.types.ts) and [Quiz parameters](../../../shared/contracts/src/types/content/quiz.types.ts).
+See [Content Section schemas](../../../shared/engine/configurators/sections/defineContentSection/defineContentSection.schemas.ts) and [Quiz Section schemas](../../../shared/engine/configurators/sections/defineQuizSection/defineQuizSection.schemas.ts). Both define Config and Props, Section `params`, localized `title`/`navigationLabel`, and ordered ContentBlocks.
 
-- General Section: `type`, `content: ContentBlock[]` and metadata.
-- Quiz Section: `type: 'quiz'`, `parameters` and metadata, with **no** `content` array.
-- Quiz parameters hold `selection`, `questionOptions`, `layout`, `interaction`, `feedbackMode`, `grading`, `results`, `screen`, `timeLimitSeconds` and `isBlocker`.
-- Lesson owns the full authored Question catalog. Engine prepares each Quiz's Question array from this catalog and its `parameters.selection` settings.
-- Multiple Quiz Sections are supported. A Quiz with `isBlocker: true` prevents forward navigation until the Quiz attempt is completed; passing the grade threshold is a separate assessment outcome.
-- Omitted `timeLimitSeconds` means an untimed Quiz. `layout.mode` supports `stack` and `stepper`; the latter reuses QuestionProgress.
-
-The same prepared Question responses and Quiz parameters can power standalone practice.
+- Content Section: `type: 'content'`, with authored `content: { items, order }` published as an ordered array.
+- Quiz Section: `type: 'quiz'`; `params` include `selection`, `questionOptions`, `layout`, `interaction`, `feedbackMode`, `grading`, `results`, `screen`, `timeLimitSeconds` and `isBlocker`. Quiz `content` holds Section-owned screen ContentBlocks; Questions are selected from the separate Lesson Question Bank.
+- Multiple Quizzes are allowed. A blocking Quiz can prevent forward navigation; meeting a grading threshold is a separate assessment result.
+- `layout.mode` supports `stack` and `stepper`. Without `timeLimitSeconds`, the Quiz is untimed.
 
 ## Layout and knowledge checkpoints
 
@@ -21,20 +17,14 @@ General Section ContentBlocks render in one vertical column. A Scene can have it
 
 Related: [Lesson](./lesson.md), [Lesson Content](./lesson-content.md).
 
-## Build-time creator API
+## Build-time configurator API
 
-`createSection<SupportedLanguages>()({ ... })` accepts typed Section
-data or ContentBlock creators. `getData()` unwraps nested creators
-without losing content identity or order. For both ordinary Sections
-and Quiz Sections, `getBase({ languages })` returns invariant authored
-data while `getLocale({ languages, language })` returns only the sparse
-patch for a selected language.
-
-`createContentBlock<SupportedLanguages>()({ ... })` exposes the same
-three operations. Neither nested creator handles files, TOC, or runtime
-merging; Lesson and Course generators own their respective publication
-boundaries. The Quiz Question catalog remains owned by the parent Lesson.
+Use the appropriate Engine `define*Section` configurator from `@svitlo/engine/build`. `build.props({ languages })` returns invariant and locale-specific Props fragments; `build.overrides(patch, { languages })` returns scoped sparse patches. Section configurators do not write files, build Course TOCs, or own the Lesson's Question Bank.
 
 ## Methodologist assessment requirements
 
-The Lesson's approved `methodology.md` YAML frontmatter declares `assessmentPlan.quizRequired` and `quizzes[]`, including required `AssessmentMethodKey` values per Quiz. `Quiz_Parameters` configures runtime behavior, but it does **not** decide why a Quiz is educationally required. The Screenwriter's `content.yaml` binds each required Quiz to its approved `assessmentPlanKey`; the Assessment Architect validates the actual Questions and scoring. No fixed one-Quiz-per-Lesson rule.
+The Lesson's approved `methodology.md` YAML frontmatter declares `assessmentPlan.quizRequired` and `quizzes[]`, including required `AssessmentMethodKey` values per Quiz. `defineQuizSection` configures runtime behavior, but it does **not** decide why a Quiz is educationally required. The Screenwriter's `content.yaml` binds each required Quiz to its approved `assessmentPlanKey`; the Assessment Architect validates the actual Questions and scoring. No fixed one-Quiz-per-Lesson rule.
+
+## YAML Config draft authoring
+
+The technical `lesson.config.yaml` uses explicit `type` for each Section and its ContentBlocks, with slug-keyed `content: { items, order }` collections. Its editor schema is generated from Engine Config schemas; the TypeScript draft scaffolder emits nested `define*Section` and `define*` calls but does not verify editorial approval or publish Props. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md).

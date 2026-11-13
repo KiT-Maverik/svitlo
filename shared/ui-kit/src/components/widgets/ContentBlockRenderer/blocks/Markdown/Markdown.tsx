@@ -1,9 +1,9 @@
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
-import type { ContentBlock_Markdown_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Markdown_Props } from '@svitlo/engine/runtime';
 
-import { localizedAttributes } from '../../utils';
+import { localizedAttributes, resolveLocalizedRecord } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { resolveTemplateVariables } from '../resolveTemplateVariables';
 import styles from './Markdown.module.css';
@@ -15,12 +15,12 @@ const schema = {
 };
 
 /** Render a published, localized Markdown content block. */
-export const Markdown = ({ text, variables }: ContentBlock_Markdown_Response) => {
+export const Markdown = ({ locale: { value, variables } }: ContentBlock_Markdown_Props) => {
   const contentLanguage = useContentLanguage();
   return (
     <article {...localizedAttributes({ locale: { code: contentLanguage } })} className={styles.content}>
       <ReactMarkdown rehypePlugins={[rehypeRaw, [rehypeSanitize, schema]]}>
-        {resolveTemplateVariables(text, variables)}
+        {resolveTemplateVariables(value, resolveLocalizedRecord(variables, contentLanguage, 'markdown.variables'))}
       </ReactMarkdown>
     </article>
   );

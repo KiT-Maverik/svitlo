@@ -5,7 +5,7 @@ import type {
   RequireLanguages,
   PublicationLanguageOptions,
 } from '#types';
-import type { LanguageCodes } from '#schemas';
+import type { LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -46,11 +46,11 @@ type Child = {
 };
 type ChildResource = {
   base: Record<string, unknown>;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type ChildPatch = {
   base: DeepPartial<Record<string, unknown>>;
-  locale: Partial<Record<LanguageCodes, Record<string, unknown>>> | undefined;
+  locale: Partial<Record<LanguageCode, Record<string, unknown>>> | undefined;
 };
 type LocaleBody = {
   locale?: { title?: string };
@@ -58,7 +58,7 @@ type LocaleBody = {
   flashcards?: Lesson_PropsBase['flashcards'];
   questions?: Partial<Record<Lesson_Question_Type, Record<string, unknown>[]>>;
 };
-type Files = Partial<Record<LanguageCodes, LocaleBody>>;
+type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
 type OverrideBase = {
   params?: DeepPartial<Omit<Lesson_Config['params'], 'languages'>>;
@@ -73,7 +73,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 /** Verify complete Props for the requested language, including applied nested array patches. */
 const validatePublication = (
   resource: Publication<unknown>,
-  languages: readonly LanguageCodes[],
+  languages: readonly LanguageCode[],
   patch?: Publication<unknown>,
 ): void => {
   for (const language of languages) {
@@ -191,7 +191,7 @@ const validate = (config: Lesson_Config): void => {
  */
 export function defineLesson<
   const Slug extends string,
-  const Languages extends readonly [LanguageCodes, ...LanguageCodes[]],
+  const Languages extends readonly [LanguageCode, ...LanguageCode[]],
   const Sections extends Record<string, Section_Configurator>,
   const Cards extends Record<string, Flashcard_Configurator> = {},
   const Questions extends Lesson_QuestionBank = {},
@@ -242,7 +242,7 @@ export function defineLesson<
   const buildOrdered = (
     items: Record<string, unknown>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     changes: Record<string, unknown> = {},
   ) => {
     const entries = order.map(key => {
@@ -257,7 +257,7 @@ export function defineLesson<
     const bases = entries.map(({ resource, patch }) =>
       patch ? mergeForValidation(resource.base, patch.base) : resource.base,
     );
-    const locales: Partial<Record<LanguageCodes, Record<string, unknown>[]>> = {};
+    const locales: Partial<Record<LanguageCode, Record<string, unknown>[]>> = {};
     for (const code of languages) {
       if (
         !entries.some(
@@ -279,11 +279,11 @@ export function defineLesson<
 
   const buildQuestions = (
     bank: Lesson_QuestionBank,
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     changes: Partial<Record<Lesson_Question_Type, Record<string, unknown>>> = {},
   ) => {
     const base: NonNullable<Lesson_PropsBase['questions']> = {};
-    const locales: Partial<Record<LanguageCodes, NonNullable<Lesson_PropsBase['questions']>>> = {};
+    const locales: Partial<Record<LanguageCode, NonNullable<Lesson_PropsBase['questions']>>> = {};
     for (const [kind, items] of Object.entries(bank)) {
       const built = buildOrdered(
         items,
@@ -293,7 +293,7 @@ export function defineLesson<
       );
       base[kind as Lesson_Question_Type] = built.bases;
       for (const [code, entries] of Object.entries(built.locales)) {
-        (locales[code as LanguageCodes] ??= {})[kind as Lesson_Question_Type] = entries;
+        (locales[code as LanguageCode] ??= {})[kind as Lesson_Question_Type] = entries;
       }
     }
     return { base, locales };
@@ -305,12 +305,12 @@ export function defineLesson<
     values: ReturnType<typeof buildOrdered>['locales'],
   ) => {
     for (const [code, children] of Object.entries(values)) {
-      (files[code as LanguageCodes] ??= {})[key] = children as never;
+      (files[code as LanguageCode] ??= {})[key] = children as never;
     }
   };
   const addQuestionFiles = (files: Files, values: ReturnType<typeof buildQuestions>['locales']) => {
     for (const [code, children] of Object.entries(values)) {
-      (files[code as LanguageCodes] ??= {}).questions = children;
+      (files[code as LanguageCode] ??= {}).questions = children;
     }
   };
 
@@ -324,7 +324,7 @@ export function defineLesson<
     const split = splitLocalizedFields(own.locale);
     const files: Files = {};
     for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
-      files[code as LanguageCodes] = { locale: fields as LocaleBody['locale'] };
+      files[code as LanguageCode] = { locale: fields as LocaleBody['locale'] };
     }
     const sections = buildOrdered(initialSections, sectionOrder, languages);
     const cards = buildOrdered(initialCards, flashcardOrder, languages);
@@ -452,7 +452,7 @@ export function defineLesson<
       const split = splitLocalizedFields(metadataPatch.locale ?? {});
       const files: Files = {};
       for (const [code, fields] of Object.entries(selectPublicationLocales(split.locale, languages) ?? {})) {
-        files[code as LanguageCodes] = { locale: fields as LocaleBody['locale'] };
+        files[code as LanguageCode] = { locale: fields as LocaleBody['locale'] };
       }
       const output: Publication<OverrideBase> = {
         base: {

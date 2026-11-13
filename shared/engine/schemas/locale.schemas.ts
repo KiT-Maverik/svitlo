@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { languageCode_Schema, type LanguageCodes } from './languages.schemas';
+import { languageCode_Schema, type LanguageCode } from './languages.schemas';
 
 export const nonTranslatableText_Schema = z.string().min(1);
 
@@ -8,7 +8,7 @@ export const localeText_Schema = z.string().min(1);
 
 export const locale_All_Schema = z.record(languageCode_Schema, localeText_Schema);
 
-export const createLocaleSubsetSchema = <const Languages extends readonly [LanguageCodes, ...LanguageCodes[]]>(
+export const createLocaleSubsetSchema = <const Languages extends readonly [LanguageCode, ...LanguageCode[]]>(
   languages: Languages,
   allowOtherLanguages = true,
 ) => {

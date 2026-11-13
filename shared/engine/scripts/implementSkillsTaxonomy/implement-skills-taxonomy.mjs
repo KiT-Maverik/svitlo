@@ -53,7 +53,7 @@ function cli() {
   } else opts.translations = {};
 }
 function locales() {
-  const source = fs.readFileSync(path.join(root, 'shared/contracts/src/types/languages.ts'), 'utf8');
+  const source = fs.readFileSync(path.join(root, 'shared/engine/schemas/languages.schemas.ts'), 'utf8');
   const marker = source.indexOf('export const DEFAULT_SUPPORTED_LANGUAGES = [');
   const end = source.indexOf('] as const satisfies readonly LanguageDefinition[];', marker);
   if (marker < 0 || end < 0) throw Error('Unable to read supported-language registry');

@@ -2,7 +2,7 @@
 
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { Stack, TextField } from '@mui/material';
-import type { Question_FillBlanksWithText, Locale_Languages } from '@svitlo/contracts/content';
+import type { Question_FillBlanksWithText_Props } from '@svitlo/engine/runtime';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 import { QuestionFrame, useQuestionAttempt } from '../response/QuestionFrame';
 import { normalizedAnswer } from '../response/QuestionContent';
@@ -12,29 +12,29 @@ export function FillBlanksWithText({
   sceneRegistry,
   messages,
 }: {
-  response: Question_FillBlanksWithText<'response', Locale_Languages>;
+  response: Question_FillBlanksWithText_Props;
   sceneRegistry?: SceneRegistry;
   messages: UiKitMessages;
 }) {
   const attempt = useQuestionAttempt<Record<string, string>>(
     () => ({}),
     value =>
-      response.slots.every(slot =>
+      response.locale.slots.every(slot =>
         slot.correctAnswers.some(correct => normalizedAnswer(correct) === normalizedAnswer(value[slot.selector] ?? '')),
       ),
-    value => response.slots.length > 0 && response.slots.every(slot => (value[slot.selector] ?? '').trim().length > 0),
+    value => response.locale.slots.length > 0 && response.locale.slots.every(slot => (value[slot.selector] ?? '').trim().length > 0),
   );
   return (
     <QuestionFrame response={response} sceneRegistry={sceneRegistry} messages={messages} attempt={attempt}>
       <Stack spacing={2} role="group">
-        {response.slots.map(slot => {
+        {response.locale.slots.map(slot => {
           const value = attempt.value[slot.selector] ?? '';
           const correct = slot.correctAnswers.some(answer => normalizedAnswer(answer) === normalizedAnswer(value));
           return (
             <TextField
               key={slot.selector}
               label={slot.selector}
-              placeholder={response.placeholder}
+              placeholder={response.locale.placeholder}
               value={value}
               fullWidth
               onChange={event => attempt.setValue({ ...attempt.value, [slot.selector]: event.target.value })}

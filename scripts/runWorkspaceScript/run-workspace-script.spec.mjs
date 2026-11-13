@@ -13,24 +13,24 @@ const ws = (name, path, scripts, deps = []) => ({
 
 test('builds dependencies in order and never builds an eligible package twice', () => {
   const items = [
-    ws('@svitlo/app', 'apps/web', { 'app:build': 'next build' }, ['@svitlo/content']),
+    ws('@svitlo/app', 'apps/web', { 'app:build': 'next build' }, ['@svitlo/content', '@svitlo/indexdb']),
     ws('@svitlo/content', 'content/playground', { 'package:build': 'content-build' }, ['@svitlo/engine']),
-    ws('@svitlo/engine', 'shared/engine', { 'package:build': 'tsc' }, ['@svitlo/contracts']),
-    ws('@svitlo/contracts', 'shared/contracts', { 'package:build': 'tsc' }),
+    ws('@svitlo/engine', 'shared/engine', { 'package:build': 'tsc' }),
+    ws('@svitlo/indexdb', 'shared/indexdb', { 'package:build': 'tsc' }, ['@svitlo/engine']),
   ];
   assert.deepEqual(
     planWorkspaceOperation(items, 'app:build').steps.map(step => step.name + '/' + step.script),
     [
-      '@svitlo/contracts/package:build',
       '@svitlo/engine/package:build',
       '@svitlo/content/package:build',
+      '@svitlo/indexdb/package:build',
       '@svitlo/app/app:build',
     ],
   );
   const builds = planWorkspaceOperation(items, 'package:build').steps;
   assert.deepEqual(
     builds.map(step => step.name),
-    ['@svitlo/contracts', '@svitlo/engine', '@svitlo/content'],
+    ['@svitlo/engine', '@svitlo/content', '@svitlo/indexdb'],
   );
 });
 
@@ -105,7 +105,7 @@ test('root and workspace package manifests group metadata, scripts, dependencies
 test('real manifests use canonical operation names and preserve npm pre-hooks', () => {
   const root = JSON.parse(readFileSync(fileURLToPath(new URL('../../package.json', import.meta.url)), 'utf8'));
   const packages = discoverWorkspaces();
-  assert.equal(packages.length, 29);
+  assert.equal(packages.length, 28);
   assert.equal(Object.hasOwn(root.scripts, 'storybook:start'), false);
   assert.equal(Object.hasOwn(root.scripts, 'app:start:dev'), false);
   assert.equal(Object.hasOwn(root.scripts, 'app:start'), false);

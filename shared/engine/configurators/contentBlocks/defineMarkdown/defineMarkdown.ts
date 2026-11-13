@@ -6,7 +6,7 @@ import type {
   LanguageScope,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -29,7 +29,7 @@ import {
 } from './defineMarkdown.schemas';
 
 type MarkdownLocaleFiles = Partial<
-  Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Markdown_Locale<'props'>> }>
+  Record<LanguageCode, { locale: DeepPartial<ContentBlock_Markdown_Locale<'props'>> }>
 >;
 type MarkdownPropsPublication<Base, LocaleFiles = MarkdownLocaleFiles> = {
   base: Base;
@@ -40,14 +40,14 @@ type MarkdownOverridePropsBase = {
   locale?: DeepPartial<ContentBlock_Markdown_Locale<'props'>>;
 };
 
-type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCodes[] };
+type MarkdownFiles = { moduleUrl: string; languages: readonly LanguageCode[] };
 
-type MarkdownInlineConfig<Slug extends string, Languages extends readonly LanguageCodes[]> = Omit<
+type MarkdownInlineConfig<Slug extends string, Languages extends readonly LanguageCode[]> = Omit<
   ContentBlock_Markdown_Config,
   'slug'
 > & { slug: Slug; files?: never } & ConfigWithLanguages<ContentBlock_Markdown_Config, Languages>;
 
-type MarkdownFileConfig<Slug extends string, Languages extends readonly LanguageCodes[]> = Omit<
+type MarkdownFileConfig<Slug extends string, Languages extends readonly LanguageCode[]> = Omit<
   ContentBlock_Markdown_Config,
   'slug' | 'locale'
 > & {
@@ -56,7 +56,7 @@ type MarkdownFileConfig<Slug extends string, Languages extends readonly Language
   locale?: Omit<RequireLanguages<ContentBlock_Markdown_Locale<'config'>, Languages>, 'value'>;
 };
 
-function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Record<LanguageCodes, string>> {
+function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Record<LanguageCode, string>> {
   if (!languages.length || new Set(languages).size !== languages.length) {
     throw new Error('Markdown files: languages must be a non-empty list without duplicates');
   }
@@ -64,11 +64,11 @@ function readMarkdownFiles({ moduleUrl, languages }: MarkdownFiles): Partial<Rec
   const directory = new URL('./locales/', moduleUrl);
   const expected = new Set(languages);
   const unexpected = readdirSync(directory).filter(
-    name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCodes),
+    name => name.endsWith('.md') && !expected.has(name.slice(0, -3) as LanguageCode),
   );
   if (unexpected.length) throw new Error('Unexpected Markdown locale files: ' + unexpected.join(', '));
 
-  const values: Partial<Record<LanguageCodes, string>> = {};
+  const values: Partial<Record<LanguageCode, string>> = {};
   for (const language of languages) {
     const file = new URL(language + '.md', directory);
     let value: string;
@@ -148,10 +148,10 @@ const mergeMarkdownForValidation = (
   for (const [name, replacement] of Object.entries(patch.locale?.variables ?? {})) {
     const previous = original.locale.variables?.[name];
     if (typeof previous !== 'string' || !replacement || typeof replacement !== 'object') continue;
-    const localized = replacement as Partial<Record<LanguageCodes, string>>;
-    const complete: Partial<Record<LanguageCodes, string>> = {};
+    const localized = replacement as Partial<Record<LanguageCode, string>>;
+    const complete: Partial<Record<LanguageCode, string>> = {};
     for (const language of Object.keys(effective.locale.value)) {
-      const code = language as LanguageCodes;
+      const code = language as LanguageCode;
       complete[code] = localized[code] ?? previous;
     }
     effective.locale.variables = { ...effective.locale.variables, [name]: complete };
@@ -192,7 +192,7 @@ const mergeMarkdownForValidation = (
  */
 export const defineMarkdown = <
   const Slug extends string,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: MarkdownInlineConfig<Slug, Languages> | MarkdownFileConfig<Slug, Languages>,
 ) => {

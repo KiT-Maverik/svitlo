@@ -68,7 +68,6 @@ function validateAgent({ workspace, domains }) {
     'shared/engine/scripts/checkSkillsTaxonomyStructure/check-skills-taxonomy-structure.mjs',
     workspace.path + '/data/skills',
   ]);
-  run('npm', ['run', 'package:build', '--workspace', '@svitlo/contracts']);
   run('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
   const file = join(repo, workspace.path, 'tsconfig.agent-ci.tmp.json');
   try {

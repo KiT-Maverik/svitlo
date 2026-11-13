@@ -1,4 +1,4 @@
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import type {
   ChildrenSupporting,
   DeepPartial,
@@ -32,7 +32,7 @@ type Skill = Skill_Configurator;
 type SkillPatch = ReturnType<Skill['build']['overrides']>;
 type SkillGroupPublication<Base> = {
   base: Base;
-  locale: Partial<Record<LanguageCodes, DeepPartial<SkillGroup_Props>>> | undefined;
+  locale: Partial<Record<LanguageCode, DeepPartial<SkillGroup_Props>>> | undefined;
 };
 type SkillGroupOverrideBase = SkillGroup_Metadata_Overrides & { skills?: DeepPartial<Skill_Props>[] };
 
@@ -78,7 +78,7 @@ const validate = (config: SkillGroup_Config): void => {
 export type SkillGroup_Configurator<
   Slug extends string = string,
   Skills extends Record<string, Skill> = Record<string, Skill>,
-  Languages extends readonly LanguageCodes[] = readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[] = readonly LanguageCode[],
 > = {
   readonly id: string;
   readonly slug: Slug;
@@ -108,7 +108,7 @@ export type SkillGroup_Configurator<
 export function defineSkillGroup<
   const Slug extends string,
   const Skills extends Record<string, Skill>,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<SkillGroup_Config, 'slug' | 'skills' | 'name' | 'description'> & {
     slug: Slug;
@@ -132,14 +132,14 @@ export function defineSkillGroup<
     const own = splitLocalizedFields(value);
     return {
       base: own.base as DeepPartial<Pick<SkillGroup_Props, 'name' | 'description'>>,
-      locale: (own.locale ?? {}) as Partial<Record<LanguageCodes, DeepPartial<SkillGroup_Props>>>,
+      locale: (own.locale ?? {}) as Partial<Record<LanguageCode, DeepPartial<SkillGroup_Props>>>,
     };
   };
 
   const buildSkills = (
     items: Record<string, Skill>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ) => {
     const seen = new Set<string>();
@@ -163,7 +163,7 @@ export function defineSkillGroup<
     const base = entries.map(({ resource, patch }) =>
       mergeForValidation(resource.base, (patch?.base ?? {}) as DeepPartial<typeof resource.base>),
     ) as DeepPartial<Skill_Props>[];
-    const locale: Partial<Record<LanguageCodes, Skill_Props[]>> = {};
+    const locale: Partial<Record<LanguageCode, Skill_Props[]>> = {};
     for (const language of languages) {
       const resolved = entries.map(({ resource, patch }) => {
         const withResourceLocale = mergeForValidation(resource.base, resource.locale?.[language] ?? {});
@@ -194,7 +194,7 @@ export function defineSkillGroup<
     const children = buildSkills(initialItems, initialOrder, languages);
     const files = selectPublicationLocales(own.locale, languages) ?? {};
     for (const [language, values] of Object.entries(children.locale)) {
-      (files[language as LanguageCodes] ??= {}).skills = values;
+      (files[language as LanguageCode] ??= {}).skills = values;
     }
     const result = {
       base: { id, slug, ...own.base, skills: children.base },
@@ -298,7 +298,7 @@ export function defineSkillGroup<
         const built = buildSkills(enabled, order, languages, childPatches);
         output.base.skills = built.base;
         for (const [language, values] of Object.entries(built.locale)) {
-          (files[language as LanguageCodes] ??= {}).skills = values;
+          (files[language as LanguageCode] ??= {}).skills = values;
         }
       }
       output.locale = Object.keys(files).length ? files : undefined;

@@ -1,5 +1,5 @@
 import type { ConfigWithLanguages, DeepPartial, LanguageScope, RequireLanguages } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { deepStrict_Schema, camelCase_Schema } from '#schemas';
 import { z } from 'zod';
 
@@ -43,7 +43,7 @@ type SlotChanges<Content extends ContentShape> = {
 type SlotsOverride<
   Content extends ContentShape,
   AddedSlots extends Record<string, Slot>,
-  Languages extends readonly LanguageCodes[],
+  Languages extends readonly LanguageCode[],
 > = {
   items?: SlotChanges<Content>;
   additionalItems?: AddedSlots &
@@ -54,7 +54,7 @@ type SlotsOverride<
 export type Question_FillBlanksWithText_Overrides<
   Content extends ContentShape = ContentShape,
   Added extends Record<string, ContentBlock_Configurator> = {},
-  Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  Languages extends readonly LanguageCode[] = AllLanguageCodes,
   AddedSlots extends Record<string, Slot> = {},
 > = Question_FillBlanksWithText_MetadataOverrides & {
   content?: QuestionCommonPatch<Content, Added, Languages> & {
@@ -95,7 +95,7 @@ const validate = (candidate: Question_FillBlanksWithText_Config): void => {
 export const defineFillBlanksWithText = <
   const Slug extends string,
   const Content extends ContentShape,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<Question_FillBlanksWithText_Config, 'slug' | 'content'> & {
     slug: Slug;
@@ -123,7 +123,7 @@ export const defineFillBlanksWithText = <
   } as Content;
 
   const projectSlots = (
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patch?: {
       items?: SlotChanges<Content>;
       additionalItems?: Record<string, Slot>;
@@ -194,7 +194,7 @@ export const defineFillBlanksWithText = <
           );
     const locale: typeof resolved.locale = {};
     for (const code of affected) {
-      const language = code as LanguageCodes;
+      const language = code as LanguageCode;
       if (resolved.locale[language]) locale[language] = resolved.locale[language];
     }
     return {
@@ -203,13 +203,13 @@ export const defineFillBlanksWithText = <
     };
   };
 
-  const ownProps = (metadata: typeof authored, languages: readonly LanguageCodes[]) => {
+  const ownProps = (metadata: typeof authored, languages: readonly LanguageCode[]) => {
     const own = projectQuestionLocale(metadata.locale, languages);
     const projected = projectSlots(languages);
     if (projected.base !== undefined) own.base.slots = projected.base;
     for (const [language, slots] of Object.entries(projected.locale)) {
-      (own.files[language as LanguageCodes] ??= {}).locale = {
-        ...((own.files[language as LanguageCodes]?.locale ?? {}) as Record<string, unknown>),
+      (own.files[language as LanguageCode] ??= {}).locale = {
+        ...((own.files[language as LanguageCode]?.locale ?? {}) as Record<string, unknown>),
         slots,
       };
     }
@@ -277,8 +277,8 @@ export const defineFillBlanksWithText = <
             (base.locale as Record<string, unknown>).slots = projected.base;
           }
           for (const [language, slots] of Object.entries(projected.locale)) {
-            (own.files[language as LanguageCodes] ??= {}).locale = {
-              ...((own.files[language as LanguageCodes]?.locale ?? {}) as Record<string, unknown>),
+            (own.files[language as LanguageCode] ??= {}).locale = {
+              ...((own.files[language as LanguageCode]?.locale ?? {}) as Record<string, unknown>),
               slots,
             };
           }

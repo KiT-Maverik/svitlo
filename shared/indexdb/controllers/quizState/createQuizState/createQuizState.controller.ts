@@ -1,4 +1,4 @@
-import type { QuizState } from '@svitlo/contracts/content';
+import type { QuizState } from '../../../schemas';
 import { quizStateSchema } from '../../../schemas/quizState/quizState.schema';
 import { runStateRequest } from '../../../utils';
 

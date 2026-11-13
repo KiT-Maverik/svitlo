@@ -55,7 +55,7 @@ After authoring the bank, inspect _every approved Quiz Section_ in the current `
 - The Quiz must use only approved, existing bank Question slugs, preserving their source-language and type-independent identities. Assign separate default selections for multiple Quizzes, reflecting their placement and prerequisites, and avoid unintended repeated Questions.
 - A Question **not selected into any default Quiz remains in the Lesson bank** and remains eligible for extra practice. Do not delete or artificially cap the bank to satisfy the default Quiz length. Custom Practice should be able to operate on the full valid bank when implemented, with its own independently configured selection and scoring.
 
-**Ownership and generation:** keep the Quiz subset specification in Assessment-Architect-owned `questions/questions.yaml`, not in the Screenwriter's `content.yaml`. The future YAML-to-TypeScript builder must combine the documents by `assessmentPlanKey`, map the explicit `quizAssignments[].selection` to the matching generated Quiz Section's `parameters.selection` in Lesson config, and publish **all Questions** to `Lesson.questions`. It must preserve the other Quiz parameters and never rewrite the Screenwriter's source. Confirm actual generated data and semantics after the generator exists; do not claim it does today.
+**Ownership and technical handoff:** keep Quiz subsets in Assessment-Architect-owned `questions/questions.yaml`, never Screenwriter `content.yaml`. The **separate reviewed projection** must reconcile `assessmentPlanKey` and map each approved `quizAssignments[].selection` to the matching Engine Quiz Section's **`params.selection`**, retaining the full Question bank under `questions.<type>.<slug>`. The generic YAML → TypeScript scaffolder does **not** independently merge these editorial schemas, select Questions, validate approval, or publish a Lesson. See [YAML Config handoff](../../docs/architecture/yaml-config-scaffolding.md).
 
 ## Step 4 — Author complete, implementable items
 
@@ -74,9 +74,13 @@ Do not claim automatic scoring can measure open-ended justification/knowledge co
 
 ## Step 5 — Source language and provenance
 
-Write **exactly one source-language bank**. `documentLanguage` defaults to `en` unless the editor explicitly selects a different approved language. It must belong to `supportedLanguages`. Copy `supportedLanguages` unchanged from the approved Lesson. Every learner-facing prompt/answer/explanation/hint and media text specification is authored only in `documentLanguage`. Technical keys and canonical `assessmentMethod` values remain exact English identifiers. **Do not translate** or fill missing locale values with duplicates/placeholders.
+Write **exactly one source-language bank**. Choose the actual approved authoring language (`uk`, `en` or another supported Lesson locale); do not infer `en` when the Lesson's reviewed source language differs. It must belong to `supportedLanguages`. Copy `supportedLanguages` unchanged from the approved Lesson. Every learner-facing prompt/answer/explanation/hint and media text specification is authored only in `documentLanguage`. Technical keys and canonical `assessmentMethod` values remain exact English identifiers. **Do not translate** or fill missing locale values with duplicates/placeholders.
 
 Record `sources.methodology.path`, `sources.content.path`, and available immutable `revision` (Git blob SHA or commit reference). Preserve existing Question slugs and avoid unnecessary churn on regeneration.
+
+## Engine Config projection (separate from this Skill)
+
+The editorial `lesson-questions.schema.json` validates the bank design, not an Engine `define*` Config tree. After independent sign-off, the integration editor groups Questions by actual Engine question `type` and slug under `Lesson.questions`, preserving the full bank. Each Question node needs `id`, camelCase `slug`, explicit `type`, current Config `params` including an Engine `assessmentMethod` slug and `restrictions`, `locale`, and nested source-language ContentBlocks using `{items,order}`. Verify method-key mapping against the **Engine** assessment method schema rather than copying deprecated ID registries. The curated Quiz assignment remains a separate explicit mapping, and an unselected Question must remain in the bank. See the [nested example](../../docs/architecture/yaml-config-scaffolding.md#partial-lesson-config-shaped-yaml-example).
 
 ## Output schema
 
@@ -144,12 +148,12 @@ IDs and educational claims above are illustrative placeholders, **never permissi
 
 Validate machine-readable YAML against the schema plus **semantic checks** (a schema alone cannot establish correctness):
 
-1. Every Question type and method exists in current canonical Contracts, and required type-specific answer fields are complete.
+1. Every Question type and method exists in current canonical Engine schemas, and required type-specific answer fields are complete.
 2. Every `targetSkills` value belongs to the Lesson's approved Skill set. Every `assessmentPlanKey` exists in both sources. All explicitly assigned `selection.questionSlugs` exist, are unique within a Quiz, and reference eligible bank Questions; unassigned Questions are allowed and preserved for additional practice.
 3. Every default Quiz has a deliberate, proportionate **subset** with a nonempty explicit `questionSlugs` list, and each required Quiz `targetSkill`/`requiredAssessmentMethods` pair has meaningful coverage **in the actual selected set** (not merely somewhere in the full bank). For `sample` mode, assess every possible sample or document a safe selection strategy; never rely on accidental coverage. `coverage` matches the actual Question assignments.
 4. Every item has a distinctness case, correct answer and evidence target. Reject near-duplicates and superficial type-diversity inflation.
 5. Any media requirement has an approved real path or an explicit request, with a plan for equivalent accessible evidence; unresolved blockers are not disguised as approved resources.
 6. Only one source language is authored. No invented translations, IDs, media or renderer capabilities.
-7. The full bank is preserved for Custom Practice regardless of default Quiz subsets, and the builder is required to emit both the full catalog and merged Quiz selections when implemented. The bank matches current approved source revisions. A subsequent material change to methodology or content invalidates affected reviews/coverage until checked.
+7. The full bank is preserved for Custom Practice regardless of default Quiz subsets, and the independent technical handoff is responsible for carrying both the full Question bank and approved Quiz selections into the Config-shaped draft. The bank matches current approved source revisions. A subsequent material change to methodology or content invalidates affected reviews/coverage until checked.
 
-Create/update the bank only in its Lesson's `questions/` folder. Follow the Lesson Production Issue handoff, Draft PR and source-specific approval policy when operating in a production workflow. The Coding Agent consumes the _approved_ YAML to author typed data and tests; the Translation workflow supplies remaining locales. Do not claim the YAML-to-code generator exists unless it is verified in the repository.
+Create/update the bank only in its Lesson's `questions/` folder. Follow the Lesson Production Issue handoff, Draft PR and source-specific approval policy when operating in a production workflow. The Coding Agent consumes the _approved_ YAML to author typed data and tests; the Translation workflow supplies remaining locales. The generic YAML-to-TypeScript scaffolder is only a draft emitter, not an editorial Question-bank converter or publication checker; verify the current implementation before claiming any further behavior.

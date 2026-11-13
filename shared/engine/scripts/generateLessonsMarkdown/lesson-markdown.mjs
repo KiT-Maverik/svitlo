@@ -19,7 +19,7 @@ const compact = value => JSON.stringify(value);
 
 /** Extract the actual language registry rather than maintaining a duplicate list. */
 export function supportedLanguages(repositoryRoot) {
-  const source = fs.readFileSync(path.join(repositoryRoot, 'shared/contracts/src/types/languages.ts'), 'utf8');
+  const source = fs.readFileSync(path.join(repositoryRoot, 'shared/engine/schemas/languages.schemas.ts'), 'utf8');
   const registry = source.match(/export\s+const\s+DEFAULT_SUPPORTED_LANGUAGES\s*=\s*\[([\s\S]*?)\]\s*as\s+const/);
   if (!registry) throw new Error('Cannot locate DEFAULT_SUPPORTED_LANGUAGES');
   const locales = [...registry[1].matchAll(/\blanguage:\s*['"]([^'"]+)['"]/g)].map(match => match[1]);

@@ -5,7 +5,7 @@ import type {
   ChildrenSupporting,
   PublicationLanguageOptions,
 } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { z } from 'zod';
 
 import {
@@ -36,7 +36,7 @@ type Slide = ContentBlock_CarouselSlide_Configurator;
 type SlideResource = ReturnType<Slide['build']['props']>;
 type SlidePatch = ReturnType<Slide['build']['overrides']>;
 type CarouselLocaleBody = { locale: DeepPartial<ContentBlock_Carousel_Locale<'props'>> };
-type CarouselLocaleFiles = Partial<Record<LanguageCodes, CarouselLocaleBody>>;
+type CarouselLocaleFiles = Partial<Record<LanguageCode, CarouselLocaleBody>>;
 type CarouselPublication<Base> = { base: Base; locale: CarouselLocaleFiles | undefined };
 type CarouselOverrideBase = {
   params?: Carousel_Metadata_Overrides['params'];
@@ -99,7 +99,7 @@ const validate = (config: ContentBlock_Carousel_Config): void => {
 export const defineCarousel = <
   const Slug extends string,
   const Items extends Record<string, Slide>,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_Carousel_Config, 'slug' | 'slides'> & {
     slug: Slug;
@@ -120,7 +120,7 @@ export const defineCarousel = <
     const { base: invariant, locale } = splitLocalizedFields(input);
     const files: CarouselLocaleFiles = {};
     for (const [language, fields] of Object.entries(locale ?? {})) {
-      files[language as LanguageCodes] = {
+      files[language as LanguageCode] = {
         locale: fields as DeepPartial<ContentBlock_Carousel_Locale<'props'>>,
       };
     }
@@ -133,11 +133,11 @@ export const defineCarousel = <
   const buildSlides = (
     items: Record<string, Slide>,
     order: readonly string[],
-    languages: readonly LanguageCodes[],
+    languages: readonly LanguageCode[],
     patches: Record<string, unknown> = {},
   ): {
     base: ContentBlock_Carousel_SlideProps[] | undefined;
-    locale: Partial<Record<LanguageCodes, ContentBlock_Carousel_SlideProps[]>>;
+    locale: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>>;
   } => {
     const entries = order.map(key => {
       const slide = items[key];
@@ -163,7 +163,7 @@ export const defineCarousel = <
       ),
     );
 
-    const localized: Partial<Record<LanguageCodes, ContentBlock_Carousel_SlideProps[]>> = {};
+    const localized: Partial<Record<LanguageCode, ContentBlock_Carousel_SlideProps[]>> = {};
     for (const language of translatedLanguages) {
       const values = entries.map(({ resource, patch }) => {
         const fromResource = mergeForValidation(resource.base.locale ?? {}, resource.locale?.[language]?.locale ?? {});
@@ -206,10 +206,10 @@ export const defineCarousel = <
     const files = selectPublicationLocales(own.files, languages) ?? {};
 
     for (const [language, entries] of Object.entries(built.locale)) {
-      (files[language as LanguageCodes] ??= { locale: {} }).locale.slides = entries;
+      (files[language as LanguageCode] ??= { locale: {} }).locale.slides = entries;
     }
     if (!built.base) {
-      for (const language of Object.keys(files) as LanguageCodes[]) {
+      for (const language of Object.keys(files) as LanguageCode[]) {
         if (!files[language]?.locale.slides) {
           throw new Error('Carousel slides are missing for localized title language ' + language);
         }
@@ -328,7 +328,7 @@ export const defineCarousel = <
         const built = buildSlides(enabled, order, languages, childPatches);
         if (built.base) output.base.locale = { ...output.base.locale, slides: built.base };
         for (const [language, entries] of Object.entries(built.locale)) {
-          (files[language as LanguageCodes] ??= { locale: {} }).locale.slides = entries;
+          (files[language as LanguageCode] ??= { locale: {} }).locale.slides = entries;
         }
       }
 

@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -20,7 +20,7 @@ import {
   type ContentBlock_Youtube_PropsBase,
 } from './defineYoutube.schemas';
 
-type YoutubeLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Youtube_Locale<'props'>> }>>;
+type YoutubeLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Youtube_Locale<'props'>> }>>;
 type YoutubePropsPublication<Base, LocaleFiles = YoutubeLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type YoutubeOverridePropsBase = {
   params?: ContentBlock_Youtube_Overrides['params'];
@@ -88,7 +88,7 @@ const buildYoutubePatch = (
  */
 export const defineYoutube = <
   const Slug extends string,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_Youtube_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Youtube_Config,

@@ -14,6 +14,7 @@ import {
 } from 'react';
 import Container from '@mui/material/Container';
 import { EngineContentBlockRenderer } from './EngineContentBlockRenderer';
+import { ContentLanguageContext } from '../widgets/ContentBlockRenderer/ContentLanguageContext';
 import { EngineQuestionRenderer } from './EngineQuestionRenderer';
 import type {
   LearningLayoutTopBarProps,
@@ -28,7 +29,7 @@ import { MediaVolumeControl } from './MediaVolumeControl';
 import { MediaSettingsProvider } from './MediaSettings';
 import type { LessonProps } from './Lesson';
 import type { Lesson_Props, Section_Props } from '@svitlo/engine/runtime';
-import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/contracts/localization';
+import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { EventSceneHost, LessonEventBusContext, createLessonEventBus, resolveLessonEventScenes } from './LessonEvents';
 import styles from './Lesson.module.css';
 
@@ -597,7 +598,9 @@ function LessonControllerRuntime({
                       <MemoStepper response={response} messages={messages} />
                     </StepperContext.Provider>
                     <SectionContext.Provider value={section}>
-                      <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
+                      <ContentLanguageContext.Provider value={language}>
+                        <MemoSection response={response} messages={messages} sceneRegistry={sceneRegistry} />
+                      </ContentLanguageContext.Provider>
                     </SectionContext.Provider>
                   </>
                 )}

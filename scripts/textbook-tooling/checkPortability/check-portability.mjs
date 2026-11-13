@@ -108,8 +108,6 @@ try {
       '@svitlo/engine/*',
       '@svitlo/ui-kit',
       '@svitlo/ui-kit/*',
-      '@svitlo/contracts',
-      '@svitlo/contracts/*',
       '@mui/*',
       '@emotion/*',
     ],

@@ -57,7 +57,6 @@ const authored = folder => filesUnder(join(root, folder)).some(name => name.ends
 // Dependencies required for build-time content generation; none are included in
 // the runtime output. Standalone npm workspace builds start from a clean checkout.
 for (const [workspace, compiled] of [
-  ['@svitlo/contracts', 'shared/contracts/dist/index.js'],
   ['@svitlo/engine', 'shared/engine/dist/build.js'],
   ...(hasScenes || hasStyles || pkg.dependencies?.['@svitlo/ui-kit'] || pkg.devDependencies?.['@svitlo/ui-kit']
     ? [['@svitlo/ui-kit', 'shared/ui-kit/dist/src/index.js']]

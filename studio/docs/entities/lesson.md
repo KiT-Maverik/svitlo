@@ -19,33 +19,23 @@ Reusable/standalone Reusable/standalone Lesson files live under `<PackageRoot>/d
 - `content.yaml`: Screenwriter-owned **machine-readable** _how to teach_ plan with ordered Sections/ContentBlocks, learner-facing text in the declared `documentLanguage` and explicit assessment/Scene/media dependencies. Legacy `content.md` requires explicit migration; it is not a parallel canonical artifact.
 - `scenes/`: separate Scene specifications **only when needed**, later consumed by the Scene implementation workflow.
 - `questions/questions.yaml`: Assessment Architect's approved source-language Question bank (specialist workflow, subject to separate editorial approval). It is the mandatory upstream input for Flashcard authoring; its future generator supplies canonical typed Question objects.
-- `flashcards/flashcards.yaml`: Flashcard Learning Architect's source-language recall bank, written **only after** approved Questions. Includes typed editorial ContentBlocks, resolvable Question field references, an explicit typed `flags` array (`list` count, `warning`, `acronym`, and `custom` value/color/optional icon), and a single canonical graph of card-to-card relations using the nine `FlashcardRelationType` keys. The Engine materializes each YAML edge **on both cards** as typed `FlashcardRelation[]`, with actual partner card IDs; this relation metadata is part of the `Flashcard<'data'>` and response contracts. The existing UI Kit Flashcard now renders typed flags automatically. Locale-specific acronym wording still requires independent translation; UI relationship navigation and scheduler semantics remain separate capabilities.
+- `flashcards/flashcards.yaml`: Flashcard Learning Architect's source-language recall bank, written **only after** approved Questions. Includes typed editorial ContentBlocks, resolvable Question field references, an explicit typed `flags` array (`list` count, `warning`, `acronym`, and `custom` value/color/optional icon), and a single canonical graph of card-to-card relations using the nine `FlashcardRelationType` keys. The Engine materializes approved YAML edges on both cards using the relationship model in [Flashcard schemas](../../../shared/engine/configurators/flashcards/defineFlashcard/defineFlashcard.schemas.ts), with stable partner IDs. The existing UI Kit Flashcard now renders typed flags automatically. Locale-specific acronym wording still requires independent translation; UI relationship navigation and scheduler semantics remain separate capabilities.
 - Typed `*.data.ts` configuration and published resources are owned by implementation/build workflows, not by either editorial document.
 
-**Observed contract:** [`Lesson<'data'>`](../../../shared/contracts/src/types/content/lesson.types.ts) identifies a Lesson with `id`, `slug`, `title`, `parameters` and ordered `sections`; the bucket is derived by Engine and is not authored. The contract is **not a complete editorial Lesson definition**; code presence does not establish editorial approval. Do not infer that the folder slug is the runtime ID. Read the current renderer and catalog types before implementation.
+**Observed contract:** [Engine Lesson Config and Props](../../../shared/engine/configurators/lessons/defineLesson/defineLesson.schemas.ts) model a Course-neutral Lesson with stable identity, supported languages, ordered Sections, Flashcards and a Question Bank. Published Props contain resolved learner-facing data. Folder addressing follows the permanent UUID, not the slug. Check renderers separately for actual UI support.
 
 Related: [Lesson Content](./lesson-content.md), [Section](./section.md), [Program](./program.md), [Skill](./skill.md).
 
-## Typed creator and publication boundary
+## Typed authoring and publication boundary
 
-`createLesson<SupportedLanguages>()(data)` is the canonical build-time
-creator. It accepts `createSection` creators (which may themselves contain
-`createContentBlock` creators) and ordinary typed authored data. Authors
-export `lesson.getData()` from `*.data.ts` for use in Courses.
+Use [`defineLesson`](../../../shared/engine/configurators/lessons/defineLesson/defineLesson.ts) from `@svitlo/engine/build`. It composes the named, ordered `section` collection, `flashcards` and a Question Bank grouped by type, and declares supported `params.languages`. Each nested configurator validates its own authored shape.
 
-`lesson.getBase()` returns the invariant parts of `config`, `flashcards`,
-and `questions`. `lesson.getLocale(language)` returns **only** the sparse
-localized patches and `localeSources`. No invariant strings, IDs, Sections or
-array structure are duplicated in locale patches. Locale dictionaries must be
-complete, with no automatic translations or field-level fallbacks.
+`lesson.build.props({ languages })` produces `base` and sparse `locale` Props fragments. `lesson.build.overrides(patch, { languages })` prepares Course-specific patches without mutating the Lesson. Generators, not configurators, write files.
 
-The Lesson generator (not the creator) handles JSON paths and bytes. At runtime,
-`mergeLessonResources` and `assembleLessonResponse` combine the published
-base and selected locale. A Lesson is Course-neutral and has **no TOC method**.
-`createLessonOverrides(lesson.getData())` is a separate Course-local builder;
-it preserves the canonical Lesson and emits only authored changes.
-
-See [Engine creator API](../../../shared/engine/README.md) and
-[Course](./course.md) for TOC and publishing details.
+At runtime, [`assembleLessonProps`](../../../shared/engine/assemblers/assembleLessonProps/assembleLessonProps.ts) merges the published base and selected locale with optional Course overrides and validates the complete Props.
 
 **Editorial localization:** `content.yaml.documentLanguage` identifies the only locale populated by the initial YAML-to-entity generator; `supportedLanguages` sets the intended Lesson language tuple. Remaining locales require separate translation, and interim TypeScript errors must stay visible until translations exist. Initial generation is not proof of publication readiness.
+
+## YAML TypeScript draft authoring handoff
+
+The Screenwriter-owned `content.yaml` is an editorial plan; the independent `lesson.config.yaml` technical projection carries the authored Engine `defineLesson` Config tree, plus a removable source-language `documentLanguage` provenance field. The Engine YAML draft scaffolder converts it to incomplete named `*.data.ts` source using `@svitlo/engine/build` factories without validating, translating, typechecking or publishing. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md). The published Props pipeline remains separate.

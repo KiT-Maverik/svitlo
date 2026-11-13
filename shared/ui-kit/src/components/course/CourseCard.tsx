@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import ArrowForwardRounded from '@mui/icons-material/ArrowForwardRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
-import type { LanguageCode } from '@svitlo/contracts/localization';
+import type { LanguageCode } from '@svitlo/engine/runtime';
 import type { CourseMessages, CoursePreview } from './types';
 import { CourseLanguages } from './CourseLanguages';
 import { CourseArtwork } from './CourseArtwork';

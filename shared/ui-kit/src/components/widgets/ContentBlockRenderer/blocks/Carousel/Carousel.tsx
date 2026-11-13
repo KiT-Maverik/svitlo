@@ -8,14 +8,14 @@ import FullscreenRounded from '@mui/icons-material/FullscreenRounded';
 import FullscreenExitRounded from '@mui/icons-material/FullscreenExitRounded';
 import PauseRounded from '@mui/icons-material/PauseRounded';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
-import type { ContentBlock_Carousel_Response, ContentBlock_Carousel_Slide_Response } from '@svitlo/contracts/content';
+import type { ContentBlock_Carousel_Props, ContentBlock_Carousel_SlideProps } from '@svitlo/engine/runtime';
 import type { UiKitMessages } from '#types/uiKitMessages';
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
 import { Image } from '../Image/Image';
 import styles from './Carousel.module.css';
 
-type Props = ContentBlock_Carousel_Response & { messages: Pick<UiKitMessages, 'image' | 'learningLayout'> };
+type Props = ContentBlock_Carousel_Props & { messages: Pick<UiKitMessages, 'image' | 'learningLayout'> };
 type Playback = 'auto' | 'paused' | 'playing';
 type TransitionState = { from: number; direction: -1 | 1; revision: number };
 
@@ -25,22 +25,23 @@ function initialIndex(startIndex: number | undefined, count: number) {
 
 export function Carousel({
   id,
-  title,
-  slides,
+  locale: { title, slides },
   messages,
-  aspectRatio = 16 / 9,
-  objectFit = 'cover',
-  loop = true,
-  autoplay = false,
-  autoplayIntervalMs = 5000,
-  transition = 'slide',
-  transitionDurationMs = 450,
-  showArrows = true,
-  showIndicators = true,
-  allowFullscreen = true,
-  allowSwipe = true,
-  pauseOnHover = true,
-  startIndex = 0,
+  params: {
+    aspectRatio = 16 / 9,
+    objectFit = 'cover',
+    loop = true,
+    autoplay = false,
+    autoplayIntervalMs = 5000,
+    transition = 'slide',
+    transitionDurationMs = 450,
+    showArrows = true,
+    showIndicators = true,
+    allowFullscreen = true,
+    allowSwipe = true,
+    pauseOnHover = true,
+    startIndex = 0,
+  },
 }: Props) {
   const language = useContentLanguage();
   const attributes = localizedAttributes({ locale: { code: language } });
@@ -166,17 +167,14 @@ export function Carousel({
   const currentSlide = slides[current];
   const style = { '--carousel-duration': String(duration) + 'ms' } as CSSProperties;
 
-  function renderSlide(slide: ContentBlock_Carousel_Slide_Response, number: number) {
+  function renderSlide(slide: ContentBlock_Carousel_SlideProps, number: number) {
     return (
       <Image
-        id={id + '-image-' + number}
+        id={id}
+        slug={'carouselImage' + number}
         type="image"
-        src={slide.src}
-        alt={slide.alt}
-        caption={slide.caption}
-        fill
-        aspectRatio={ratio}
-        objectFit={objectFit}
+        params={{ fill: true, aspectRatio: ratio, objectFit }}
+        locale={{ src: slide.src, alt: slide.alt, caption: slide.caption }}
         messages={messages.image}
       />
     );

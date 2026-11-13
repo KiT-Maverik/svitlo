@@ -69,7 +69,7 @@ assert(
 const db = readFileSync(resolve(root, '.github/workflows/db-controllers-e2e.yml'), 'utf8');
 assert(db.includes('test:e2e:db'), 'Native Chromium workflow missing');
 const canonical = readFileSync(resolve(root, 'studio/docs/architecture/monorepo-and-textbook.md'), 'utf8');
-for (const subject of ['shared/contracts', 'shared/indexdb', 'apps/platform', 'content/math', 'content/informatics']) {
+for (const subject of ['shared/engine', 'shared/indexdb', 'apps/platform', 'content/math', 'content/informatics']) {
   assert(canonical.includes(subject), 'Canonical architecture docs omit: ' + subject);
 }
 console.log('Architecture audit: no duplicate app ownership; shared owners, Platform and CI gates verified.');

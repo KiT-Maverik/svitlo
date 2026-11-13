@@ -1,13 +1,10 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
-import type { ContentBlock, Locale_Languages } from '@svitlo/contracts/content';
+import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
+import { resolveLocalizedText, type LocalizedText } from '../../ContentBlockRenderer/utils';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
-import type { ContentBlockResponse, SceneRegistry } from '../../ContentBlockRenderer';
+import type { SceneRegistry } from '../../ContentBlockRenderer';
 
-export type QuestionBlock = ContentBlock<'response', Locale_Languages>;
-
-function renderable(block: QuestionBlock): ContentBlockResponse {
-  return block;
-}
+export type QuestionBlock = ContentBlock_Props;
 
 export function QuestionContent({
   blocks,
@@ -19,41 +16,55 @@ export function QuestionContent({
   sceneRegistry?: SceneRegistry;
 }) {
   if (!blocks?.length) return null;
-  return <ContentBlockRenderer blocks={blocks.map(renderable)} sceneRegistry={sceneRegistry} messages={messages} />;
+  return <ContentBlockRenderer blocks={blocks} sceneRegistry={sceneRegistry} messages={messages} />;
+}
+
+/** A choice name may be read outside a React component; require a language for dictionary values. */
+function labelText(value: LocalizedText, language: LanguageCode | undefined, field: string): string {
+  if (typeof value === 'string') return value;
+  if (!language) throw new Error('Selected content language is required at ' + field);
+  return resolveLocalizedText(value, language, field);
+}
+
+function optionalLabelText(
+  value: LocalizedText | undefined,
+  language: LanguageCode | undefined,
+  field: string,
+): string | undefined {
+  return value === undefined ? undefined : labelText(value, language, field);
 }
 
 /** Plain text is for accessible names only; visual content uses ContentBlockRenderer. */
-export function questionBlockLabel(block: QuestionBlock): string {
+export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode): string {
   switch (block.type) {
     case 'text':
-      return block.value;
+      return block.locale.value;
     case 'markdown':
-      return block.text.replace(/[*_`#]/gu, '');
+      return block.locale.value.replace(/[*_`#]/gu, '');
     case 'image':
-      return block.alt;
+      return block.locale.alt;
     case 'carousel':
-      return block.title ?? block.slides[0].alt;
+      return (
+        optionalLabelText(block.locale.title, language, 'carousel.title') ?? block.locale.slides[0]?.alt ?? ''
+      );
     case 'audio':
-      return block.title;
+      return labelText(block.locale.title, language, 'audio.title');
     case 'video':
-      return block.title ?? '';
     case 'youtube':
-      return block.title ?? block.label;
+      return optionalLabelText(block.locale.title, language, block.type + '.title') ?? block.locale.label;
     case 'code':
-      return block.title ?? block.language;
+      return optionalLabelText(block.locale?.title, language, 'code.title') ?? block.params.language;
     case 'checkpoint':
-      return block.title;
+      return labelText(block.locale.title, language, 'checkpoint.title');
     case 'scene': {
-      const title = block.locales.title;
-      if (typeof title === 'string') return title;
-      const scene = block.locales.scene;
-      return typeof scene === 'object' && typeof scene.title === 'string' ? scene.title : '';
+      const value = block.locale.value;
+      if (typeof value === 'string') return value;
+      return typeof value.title === 'string' ? value.title : '';
     }
   }
 }
-
-export function questionLabel(blocks: readonly QuestionBlock[]): string {
-  return blocks.map(questionBlockLabel).filter(Boolean).join(' ');
+export function questionLabel(blocks: readonly QuestionBlock[], language?: LanguageCode): string {
+  return blocks.map(block => questionBlockLabel(block, language)).filter(Boolean).join(' ');
 }
 
 export type QuestionItem = { id: string; block: QuestionBlock };

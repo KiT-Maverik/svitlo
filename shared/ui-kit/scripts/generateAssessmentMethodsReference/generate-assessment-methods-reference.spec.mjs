@@ -19,7 +19,7 @@ const definitions = fs
   .filter(name => /^[a-z][A-Za-z0-9]*\.ts$/.test(name) && name !== 'index.ts')
   .sort();
 const sources = [
-  'shared/contracts/src/types/languages.ts',
+  'shared/engine/schemas/languages.schemas.ts',
   definitionRoot + '/retrieval.ts',
   ...definitions.filter(name => name !== 'retrieval.ts').map(name => definitionRoot + '/' + name),
 ];

@@ -10,7 +10,7 @@ const root = path.resolve(import.meta.dirname, '../../../..');
 const packageRoot = path.join(root, 'content/math');
 const taxonomyRoot = path.join(packageRoot, 'data/skills');
 const outputPath = path.join(packageRoot, 'docs/generated/skills/taxonomy.en.md');
-const source = fs.readFileSync(path.join(root, 'shared/contracts/src/types/languages.ts'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'shared/engine/schemas/languages.schemas.ts'), 'utf8');
 const registry = source.slice(
   source.indexOf('export const DEFAULT_SUPPORTED_LANGUAGES'),
   source.indexOf('] as const satisfies readonly LanguageDefinition[];'),

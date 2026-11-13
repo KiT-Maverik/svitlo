@@ -187,7 +187,7 @@ function fixture(locale = 'uk') {
 
 function temporaryRepo() {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-md-'));
-  const languageFile = path.join(root, 'shared/contracts/src/types/languages.ts');
+  const languageFile = path.join(root, 'shared/engine/schemas/languages.schemas.ts');
   fs.mkdirSync(path.dirname(languageFile), { recursive: true });
   fs.writeFileSync(
     languageFile,

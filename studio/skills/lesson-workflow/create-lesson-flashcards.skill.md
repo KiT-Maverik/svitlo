@@ -39,7 +39,7 @@ When the back is a genuine multi-element enumeration, put one **typed list flag*
 
 If a Question field expresses the desired prompt, correct answer, date, term, number, code or media, specify a typed `questionField` reference as the **value** of the editorial ContentBlock instead of copying its rendered text. It has `questionSlug` and `fieldPath`, an array of exact property names and indices locating one field on the canonical Question data. Example paths are `[question, 0, value]` and `[answers, correct, straightLine, value]`. A referenced field must exist, be semantically correct for that card, and have the expected source type/localization.
 
-On subsequent **YAML-to-TypeScript generation**, resolve a Question by its globally unique slug and canonical type, locate the actual exported Question_Data object, and emit a real import and type-safe field access, for example:
+During the **separately reviewed technical handoff and TypeScript completion** (not an automatic generic scaffolder step), resolve a Question by its globally unique slug and canonical type, locate the actual exported Question source, and emit a real import and type-safe field access, for example:
 
 ```ts
 import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';
@@ -59,7 +59,7 @@ These are **illustrations of the generated pattern**, not committed imports or a
 
 ## Step 3 — Use ContentBlocks purposefully
 
-Every `front`, `back` and `hint` is an **ordered array of editorial ContentBlocks**; the future generator maps them to actual typed ContentBlocks. Know all available block types from current Contracts and UI Kit; avoid promising renderer support based merely on a type's presence.
+Every `front`, `back` and `hint` is an **ordered array of editorial ContentBlocks**; the future generator maps them to actual typed ContentBlocks. Know all available block types from current Engine schemas and UI Kit; avoid promising renderer support based merely on a type's presence.
 
 - `text`: plain brief prompts/answers; use `%_%id: personName; value: Maria%_%` for named inline fragments. The identifier must be `camelCase` (e.g. `personName`, `year`, `planetName`) and must match a key in the `variables` object when styling is configured (e.g. `variables: { personName: { applyStyle: ['variable'] } }`). Text keeps the visible value directly inside the marker. This emphasizes a generalizable variable, **not automatic random replacement**.
 - `code`: actual programming syntax/algorithms, with correct `language` and optional localized `variables`. Use `%_%VARIABLE_NAME%_%` with UPPER_SNAKE_CASE identifiers matching keys of the `variables` object (not an array of `{ id, value }` entries). Code substitutes values before highlighting; unlike Text, it does not embed an `id`/`value` pair in the source marker.
@@ -98,7 +98,7 @@ The four flag variants are **serialized data**, not ad hoc Storybook `labels`. T
 
 ## Step 5 — Author canonical typed card relationships
 
-Write each relationship **only once** at the YAML bank root. Its `type` must be exactly one of the nine canonical `FlashcardRelationType` values from `FLASHCARD_RELATION_TYPES` in Contracts:
+Write each relationship **only once** at the YAML bank root. Its `type` must be exactly one of the nine canonical `FlashcardRelationType` values from `flashcardRelationshipTypes` in [Engine Flashcard schemas](../../../shared/engine/configurators/flashcards/defineFlashcard/defineFlashcard.schemas.ts):
 
 - **Symmetric**: `reverse`, `equivalent`, `contrast`, `complementary`.
 - **Directed**: `prerequisite` (prerequisite → dependent), `partOf` (part → whole), `exampleOf` (example → category), `causes` (cause → effect), `precedes` (earlier → later).
@@ -174,6 +174,10 @@ unresolvedDependencies: []
 
 The UUID and source revision are **placeholders**, not approved identifiers. The `questionSlug` and paths must be verified against the real approved bank and Question TS exports before generation.
 
+## Projection to the Engine Flashcard Config (separate technical stage)
+
+The bank above follows `lesson-flashcards.schema.json`, an **editorial** schema. After independent approval, a technical editor projects the cards into the Engine Lesson `flashcards: { items, order }` collection. Every Flashcard needs `type: flashcard`, stable UUID/camelCase slug, `parameters.tags`, named `parameters.flags: { items, order }` (typed `list`/`warning`/`acronym`/`custom`), optional named relationships, and named `content.front/back/hint: { items, order }` with nested, explicitly typed ContentBlock Configs. `documentLanguage` remains outside the Config and only source-locale `locale` values are populated. Question-field references and relationship IDs must be **resolved from real approved sources**; do not pretend the generic `define*` draft scaffolder performs editorial matching or invents imports. See [Engine YAML handoff and example](../../docs/architecture/yaml-config-scaffolding.md).
+
 ## Semantic validation and handoff
 
 Validate schema and additionally verify:
@@ -184,9 +188,9 @@ Validate schema and additionally verify:
 4. For list answers, a single typed `flags: [{type: list, count: N}]` matches actual elements; no numeral is redundantly authored into the front, hints or another metadata field. For `custom`, verify its required value/color and optional allowed icon token.
 5. Variables use meaningful names and correct TextBlock/CodeBlock marker conventions. No claim that styling generates randomized values.
 6. Acronym source letters and connectors match uppercase/lowercase rules and the original items, and any locale-specific mnemonic translations are pending until independently verified.
-7. Relationship slugs exist; types belong to the canonical nine-value enum, both endpoints receive mirrored links with the other card's actual ID and correct `position`, and no self-links or duplicate edges survive. Runtime graph storage is supported by Contracts/Engine; UI and scheduling actions are **not** implied.
+7. Relationship slugs exist; types belong to the canonical nine-value enum, both endpoints receive mirrored links with the other card's actual ID and correct `position`, and no self-links or duplicate edges survive. Runtime graph storage is described by Engine; UI and scheduling actions are **not** implied.
 8. ContentBlock descriptions can actually be implemented or have precise recorded dependencies; no invented assets.
 9. One authored source language; no duplicated Question localizations, invented locales or hidden publication blockers.
 10. A changed Question bank invalidates dependent cards until rechecked; editorial reviewer pass is not approval.
 
-Use a Draft PR and the existing fixed-scope Lesson Production Issue when doing authorized content production. A future Coding Agent consumes **approved** YAML, resolves Question imports and produces typed Flashcards. Do not claim a full YAML-to-code compiler has already been implemented.
+Use a Draft PR and the existing fixed-scope Lesson Production Issue when doing authorized content production. A later Coding Agent consumes the **approved editorial bank plus its reviewed Config-shaped projection**, resolves actual Question imports, and completes TypeScript Flashcards. The generic scaffolder only emits a draft; it does not certify complete, compiling or publishable Flashcards.

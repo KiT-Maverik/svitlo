@@ -1,4 +1,4 @@
-import type { LessonState } from '@svitlo/contracts/content';
+import type { LessonState } from '../../../schemas';
 import { runStateRequest } from '../../../utils';
 
 export async function deleteLessonState(id: LessonState['id']): Promise<void> {

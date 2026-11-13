@@ -21,13 +21,14 @@ A Quiz question can cite multiple Skill IDs. That does not create an extra integ
 
 ## Important implementation boundaries
 
-**Confirmed in currently inspected Contracts / Engine / apps (recheck current code):**
+**Observed in current Engine, UI Kit and IndexDB code (recheck before implementation):**
 
-- [Lesson types](../../../shared/contracts/src/types/content/lesson.types.ts) include a `Lesson_Config` and array-based ordered `sections.content`, `LessonState`, and a Lesson/Section vs Quiz distinction.
-- [Resource types](../../../shared/contracts/src/types/content/resource.types.ts) distinguish typed content resources; full renderer support **does not follow from TypeScript declarations**.
-- The current [Lesson renderer](../../../shared/ui-kit/src/components/lesson/Lesson.tsx) delegates content blocks to the shared UI Kit; verify each declared resource kind against its actual widget before claiming rendering support.
-- The [Question types](../../../shared/contracts/src/types/content/question.types.ts) include a `Disability[]` restriction and multiple Question kinds; their actual UI support differs by widget/adapter.
-- [Engine languages](../../../shared/engine/src/types/languages.ts) include locale and `ltr`/`rtl` definitions; complete translation and semantic RTL still require implementation/testing per component.
+- [Lesson Config and Props](../../../shared/engine/configurators/lessons/defineLesson/defineLesson.schemas.ts) define immutable identity, language coverage, Sections, Flashcards and the Question Bank. A Quiz is a Section, not a ContentBlock.
+- [ContentBlock schemas](../../../shared/engine/configurators/contentBlocks/contentBlock.schemas.ts) describe authored and resolved block structures. A declared block kind alone does **not** prove that a widget can render it.
+- The [Lesson renderer](../../../shared/ui-kit/src/components/lesson/Lesson.tsx) delegates content blocks to the shared UI Kit; confirm each block against its actual widget.
+- [Question schemas](../../../shared/engine/configurators/questions/question.schemas.ts) describe assessment methods and disability restrictions; UI interaction support is widget-specific.
+- [Engine language schemas](../../../shared/engine/schemas/languages.schemas.ts) define language codes, locales and `ltr`/`rtl` directions. Complete translations and semantic RTL still require component-level testing.
+- [IndexDB Lesson state schemas](../../../shared/indexdb/schemas/lessonState/lessonState.schema.ts) and [Quiz state schemas](../../../shared/indexdb/schemas/quizState/quizState.schema.ts) validate persisted records.
 
 **Not a completed universal runtime (do not invent these APIs):**
 

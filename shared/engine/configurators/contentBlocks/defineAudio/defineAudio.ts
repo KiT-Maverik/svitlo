@@ -1,5 +1,5 @@
 import type { DeepPartial, ConfigWithLanguages, LanguageScope, PublicationLanguageOptions } from '#types';
-import type { AllLanguageCodes, LanguageCodes } from '#schemas';
+import type { AllLanguageCodes, LanguageCode } from '#schemas';
 
 import {
   mergeForValidation,
@@ -21,7 +21,7 @@ import {
   type ContentBlock_Audio_PropsBase,
 } from './defineAudio.schemas';
 
-type AudioLocaleFiles = Partial<Record<LanguageCodes, { locale: DeepPartial<ContentBlock_Audio_Locale<'props'>> }>>;
+type AudioLocaleFiles = Partial<Record<LanguageCode, { locale: DeepPartial<ContentBlock_Audio_Locale<'props'>> }>>;
 type AudioPropsPublication<Base, LocaleFiles = AudioLocaleFiles> = { base: Base; locale: LocaleFiles | undefined };
 type AudioOverridePropsBase = {
   params?: ContentBlock_Audio_Overrides['params'];
@@ -81,7 +81,7 @@ const buildAudioPatch = (patch: ContentBlock_Audio_Overrides): AudioPropsPublica
  */
 export const defineAudio = <
   const Slug extends string,
-  const Languages extends readonly LanguageCodes[] = AllLanguageCodes,
+  const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<ContentBlock_Audio_Config, 'slug'> & { slug: Slug } & ConfigWithLanguages<
       ContentBlock_Audio_Config,

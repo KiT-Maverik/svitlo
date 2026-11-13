@@ -85,10 +85,6 @@ const expected = [
     name: '@svitlo/engineering',
   },
   {
-    path: 'shared/contracts',
-    name: '@svitlo/contracts',
-  },
-  {
     path: 'shared/indexdb',
     name: '@svitlo/indexdb',
   },
