@@ -19,10 +19,11 @@ future data generators; additions should be recorded here before implementation.
 
 ## 2. Generated directory convention
 
-- Generated resources belong under `content/<textbook>/public/data/`.
-  **Always use lower-case `data` and `skills` in paths**.
-- The entire `**/public/data/` subtree is Git-ignored and must contain no tracked
-  files. It is regenerated for `predev` and `prebuild`.
+- Generators write to `content/<textbook>/generated/{skills,lessons,courses}`.
+  The textbook build stages these resources under `dist/static/data/` and records
+  their public destinations in `dist/manifest.json`. The host Publish CLI copies
+  only those built resources to its `public/data/` tree. Generated source files
+  never belong inside a textbook's `public/` directory.
 - Entity-oriented generators and tests live under `scripts/generators/data/`.
   Purpose-built page generators live under
   `scripts/generators/pages/<camelCasePageName>/`. Paths are relative to each
@@ -148,18 +149,18 @@ The new Course configurator publisher is
 `scripts/generators/data/publish-course-data.mjs`. Its caller supplies a
 `defineCourse` configurator and, optionally, one separate Course-owned
 `build.overrides` authoring patch. The publication target for each textbook
-is `public/data/courses/<courseId>/base.json` and sparse
-`public/data/courses/<courseId>/<language>.json` files.
+is `generated/courses/<courseId>/base.json` and sparse
+`generated/courses/<courseId>/<language>.json` files, staged as `data/courses/`.
 
 This is a **single publication context per Course**, not a standalone Lesson
-publication. Course, Module and Chapter keep complete Props in their ordered
-hierarchy; a Lesson leaf contains only its UUID, `type: 'lesson'`, and optional
+publication. Course, Module and Chapter keep complete Props metadata in their ordered
+`content: { items, order }` hierarchy; a Lesson leaf contains only its UUID, `type: 'lesson'`, and optional
 `overrides` with sparse already-built Props. Never duplicate the Lesson's
 full resource or serialize authoring Config, Build methods or internal
 collection markers into Course files. Locale-only overrides live in the
-language file and invariant overrides in base. Because published child arrays
-replace atomically, translated arrays must repeat the full effective array
-(including invariant sibling values) to avoid losing base overrides.
+language file and invariant overrides in base. Course `content.items` locale
+fragments are keyed by slug; untranslated siblings are not repeated. Within
+Lesson Props, published arrays still replace atomically.
 
 The Course's existing `build.props` and `build.overrides` validate and
 materialize authoring data; the publisher only projects their completed
