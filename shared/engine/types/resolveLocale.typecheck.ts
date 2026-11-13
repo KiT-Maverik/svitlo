@@ -1,6 +1,6 @@
 import type { ResolveLocale } from '../index';
 import type { ResolveLocale as RuntimeResolveLocale } from '../runtime';
-import type { LanguageCodes } from '../schemas/languages.schemas';
+import type { LanguageCode } from '../schemas/languages.schemas';
 
 type Assert<T extends true> = T;
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
@@ -26,7 +26,7 @@ type Expected = {
 type SceneChecks = [
   Assert<Equal<ResolveLocale<typeof authoredValue>, Expected>>,
   Assert<Equal<RuntimeResolveLocale<typeof authoredValue>, Expected>>,
-  Assert<Equal<ResolveLocale<Partial<Record<LanguageCodes, string>>>, string>>,
+  Assert<Equal<ResolveLocale<Partial<Record<LanguageCode, string>>>, string>>,
   Assert<Equal<ResolveLocale<{ en: string; nonLocaleKey: string }>, { en: string; nonLocaleKey: string }>>,
   Assert<
     Equal<
