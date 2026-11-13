@@ -1,10 +1,12 @@
 import { cache, createElement, Suspense, type ReactElement } from 'react';
+import path from 'node:path';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { resolveEntityPath, type LessonResponse } from '@svitlo/engine';
+import { resolveEntityPath, languageCode_Schema, type LessonResponse, type Lesson_Props } from '@svitlo/engine';
 import { DEFAULT_SUPPORTED_LANGUAGES, type LanguageCode, type Locale } from '@svitlo/contracts/localization';
 import type { UiKitMessages } from '@svitlo/ui-kit';
 import { loadPublishedLesson } from './publishedLesson';
+import { loadPublishedLessonProps } from './publishedLessonProps';
 import { loadPublishedUiKitMessages } from './publishedUiKitMessages';
 
 /** Only the framework-specific route shape is Next.js-owned. */
@@ -13,7 +15,9 @@ export type LessonPageInput = {
 };
 
 /** The textbook supplies its published JSON loader and scene-bound Lesson renderer. */
-export type LessonPageBindings<Response extends { id: string; title: string }> = {
+type LessonPageResource = { id: string } & ({ title: string } | { locale: { title: string } });
+
+export type LessonPageBindings<Response extends LessonPageResource> = {
   loadLesson: (id: string, language: LanguageCode) => Promise<Response>;
   loadMessages: (locale: Locale) => Promise<UiKitMessages>;
   renderLesson: (props: {
@@ -29,7 +33,7 @@ export type LessonPageBindings<Response extends { id: string; title: string }> =
  * The only Next.js-specific lesson orchestration. No app-specific imports:
  * standalone textbooks inject their data loader and client-renderer boundary.
  */
-export function createLessonPage<Response extends { id: string; title: string }>(
+export function createLessonPage<Response extends LessonPageResource>(
   bindings: LessonPageBindings<Response>,
 ) {
   const load = cache(async ({ params }: LessonPageInput) => {
@@ -63,7 +67,8 @@ export function createLessonPage<Response extends { id: string; title: string }>
 
   async function generateMetadata(props: LessonPageInput): Promise<Metadata> {
     const { response } = await load(props);
-    return { title: response.title, description: response.title };
+    const title = 'title' in response ? response.title : response.locale.title;
+    return { title, description: title };
   }
 
   async function LocalizedLesson(props: LessonPageInput): Promise<ReactElement> {
@@ -103,6 +108,31 @@ export function createPublishedLessonPage(
 ) {
   return createLessonPage<LessonResponse>({
     loadLesson: bindings.loadLesson ?? loadPublishedLesson,
+    loadMessages: bindings.loadMessages ?? loadPublishedUiKitMessages,
+    renderLesson: bindings.renderLesson,
+  });
+}
+
+/**
+ * Engine-first published Lesson route. It loads the new `data/lessons` Props
+ * resources rather than the retired three-collection LessonResponse format.
+ *
+ * Hosts provide a renderer accepting `Lesson_Props`; no lossy cast to the
+ * legacy UI Kit LessonView is performed.
+ */
+export function createPublishedLessonPropsPage(
+  bindings: Pick<LessonPageBindings<Lesson_Props>, 'renderLesson'> &
+    Partial<Pick<LessonPageBindings<Lesson_Props>, 'loadLesson' | 'loadMessages'>>,
+) {
+  return createLessonPage<Lesson_Props>({
+    loadLesson:
+      bindings.loadLesson ??
+      ((id, language) =>
+        loadPublishedLessonProps({
+          rootDirectory: path.join(process.cwd(), 'public', 'data', 'lessons'),
+          id,
+          language: languageCode_Schema.parse(language),
+        })),
     loadMessages: bindings.loadMessages ?? loadPublishedUiKitMessages,
     renderLesson: bindings.renderLesson,
   });
