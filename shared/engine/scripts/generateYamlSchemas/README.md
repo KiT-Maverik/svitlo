@@ -23,6 +23,12 @@ Generated, reviewable JSON Schemas are written to
 `shared/engine/yaml-schemas/{contentBlock,section,question,flashcard,lesson,episode,course}.schema.json`.
 The `--check` command is read-only and detects stale/absent files.
 
+JSON Schema serialization uses Zod's `reused: 'ref'` option so repeated
+nested Config schemas are referenced through JSON Schema `$defs/$ref`
+rather than inlined at every nesting position. This keeps the machine-readable
+authoring guidance compact without dropping any required `type` discriminators
+or replacing nested schemas with permissive placeholders.
+
 These schemas describe *authored Config structure*, not published Props and
 not the role-specific editorial plans in `studio/skills/`. The Studio agents
 can consume them as machine-readable guides for YAML authoring; they do not
