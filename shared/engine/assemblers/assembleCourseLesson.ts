@@ -17,8 +17,7 @@ export type CourseLessonEntry = {
 };
 
 export type CoursePublishedNode =
-  | CourseLessonEntry
-  | { type: 'module' | 'chapter'; id: string; content: CoursePublishedNode[] };
+  CourseLessonEntry | { type: 'module' | 'chapter'; id: string; content: CoursePublishedNode[] };
 
 export type CoursePublishedTree = {
   type: 'course';
@@ -80,7 +79,11 @@ function assertCourseRoot(root: unknown, courseId: string, label: string): Recor
   return root;
 }
 
-function findLesson(root: Record<string, unknown>, lessonId: string, label: string): Record<string, unknown> | undefined {
+function findLesson(
+  root: Record<string, unknown>,
+  lessonId: string,
+  label: string,
+): Record<string, unknown> | undefined {
   let match: Record<string, unknown> | undefined;
   const visit = (nodes: unknown, at: string): void => {
     if (!Array.isArray(nodes)) throw new Error('Invalid Course content at ' + at);
@@ -103,10 +106,7 @@ function findLesson(root: Record<string, unknown>, lessonId: string, label: stri
   return match;
 }
 
-function getOverride(
-  node: Record<string, unknown> | undefined,
-  label: string,
-): Record<string, unknown> | undefined {
+function getOverride(node: Record<string, unknown> | undefined, label: string): Record<string, unknown> | undefined {
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {

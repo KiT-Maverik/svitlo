@@ -28,15 +28,16 @@ const intro = defineContentSection<'intro', { line: typeof line }, typeof langua
   locale: { title: 'Arrival', navigationLabel: '1' },
   content: { items: { line }, order: ['line'] },
 });
-const makeEpisode = () => defineEpisode({
-  id: id('03'),
-  slug: 'arrival',
-  type: 'episode',
-  params: { languages },
-  locale: { title: { en: 'Arrival', uk: 'Прибуття' } },
-  section: { items: { intro }, order: ['intro'] },
-  events: { enter: { trigger: 'onStart' } },
-});
+const makeEpisode = () =>
+  defineEpisode({
+    id: id('03'),
+    slug: 'arrival',
+    type: 'episode',
+    params: { languages },
+    locale: { title: { en: 'Arrival', uk: 'Прибуття' } },
+    section: { items: { intro }, order: ['intro'] },
+    events: { enter: { trigger: 'onStart' } },
+  });
 
 test('Episode is an independent JSON-safe configurator with sparse locale and no Lesson pedagogy', () => {
   const episode = makeEpisode();
@@ -49,7 +50,10 @@ test('Episode is an independent JSON-safe configurator with sparse locale and no
   assert.equal('flashcards' in resource.base, false);
   assert.equal('questions' in resource.base, false);
   assert.deepEqual(resource.base.events, { enter: { trigger: 'onStart' } });
-  assert.deepEqual(resource.base.section.map(item => item.slug), ['intro']);
+  assert.deepEqual(
+    resource.base.section.map(item => item.slug),
+    ['intro'],
+  );
   assert.deepEqual(episode.config.locales(), { locale: { title: { en: 'Arrival', uk: 'Прибуття' } } });
   assert.equal(resource.locale?.uk?.locale?.title, 'Прибуття');
   assert.ok(JSON.stringify(resource.locale?.uk?.section).includes('Ви заходите до зали'));
@@ -63,15 +67,21 @@ test('Episode is an independent JSON-safe configurator with sparse locale and no
 test('Episode overrides metadata and Section children without modifying the canonical Episode', () => {
   const episode = makeEpisode();
   const original = episode.build.props({ languages: ['en', 'uk'] });
-  const result = episode.build.overrides({
-    locale: { title: { uk: 'Нове прибуття' } },
-    section: {
-      items: {
-        intro: { content: { items: { line: { locale: { value: { uk: 'Відчиніть двері' } } } } } },
+  const result = episode.build.overrides(
+    {
+      locale: { title: { uk: 'Нове прибуття' } },
+      section: {
+        items: {
+          intro: { content: { items: { line: { locale: { value: { uk: 'Відчиніть двері' } } } } } },
+        },
       },
     },
-  }, { languages: ['en', 'uk'] });
-  assert.deepEqual(result.base.section?.map(item => item.slug), ['intro']);
+    { languages: ['en', 'uk'] },
+  );
+  assert.deepEqual(
+    result.base.section?.map(item => item.slug),
+    ['intro'],
+  );
   assert.equal(result.locale?.uk?.locale?.title, 'Нове прибуття');
   assert.ok(JSON.stringify(result.locale?.uk?.section).includes('Відчиніть двері'));
   assert.ok(JSON.stringify(episode.build.props({ languages: ['en', 'uk'] })).includes('Ви заходите до зали'));
@@ -85,10 +95,16 @@ test('Episode overrides metadata and Section children without modifying the cano
     locale: { title: 'Exit', navigationLabel: '2' },
     content: { items: {}, order: [] },
   });
-  const reordered = episode.build.overrides({
-    section: { items: { intro: false }, additionalItems: { extra }, order: ['extra'] },
-  }, { languages: ['en', 'uk'] });
-  assert.deepEqual(reordered.base.section?.map(item => item.slug), ['extra']);
+  const reordered = episode.build.overrides(
+    {
+      section: { items: { intro: false }, additionalItems: { extra }, order: ['extra'] },
+    },
+    { languages: ['en', 'uk'] },
+  );
+  assert.deepEqual(
+    reordered.base.section?.map(item => item.slug),
+    ['extra'],
+  );
   assert.deepEqual(episode.section.order, ['intro']);
   assert.throws(
     () => episode.build.overrides({ section: { items: { intro: false } } }, { languages: ['en', 'uk'] }),
@@ -110,15 +126,16 @@ test('Episode overrides metadata and Section children without modifying the cano
 
 test('Episode rejects Lesson-only authoring fields', () => {
   assert.throws(
-    () => defineEpisode({
-      id: id('0a'),
-      slug: 'invalid',
-      type: 'episode',
-      params: { languages },
-      locale: { title: 'Invalid' },
-      section: { items: {}, order: [] },
-      skills: [],
-    } as never),
+    () =>
+      defineEpisode({
+        id: id('0a'),
+        slug: 'invalid',
+        type: 'episode',
+        params: { languages },
+        locale: { title: 'Invalid' },
+        section: { items: {}, order: [] },
+        skills: [],
+      } as never),
     /skills/,
   );
 });
@@ -188,8 +205,11 @@ test('Course, Module and Chapter accept separately owned Episodes as direct chil
   assert.equal(module.content.items.moduleScene, moduleEpisode);
   assert.equal(resource.base.content[1]?.type, 'episode');
   assert.ok(JSON.stringify(resource.locale?.uk).includes('Прибуття'));
-  const override = course.build.overrides({
-    content: { items: { arrival: { locale: { title: { uk: 'Змінена сцена' } } } } },
-  }, { languages: ['en', 'uk'] });
+  const override = course.build.overrides(
+    {
+      content: { items: { arrival: { locale: { title: { uk: 'Змінена сцена' } } } } },
+    },
+    { languages: ['en', 'uk'] },
+  );
   assert.ok(JSON.stringify(override.locale?.uk).includes('Змінена сцена'));
 });

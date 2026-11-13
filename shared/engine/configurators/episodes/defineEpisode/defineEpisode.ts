@@ -143,9 +143,7 @@ export const defineEpisode = <
       if (!child) throw new Error('Unknown Episode Section: ' + key);
       const build = (child as unknown as SectionBuild).build;
       const resource = build.props({ languages });
-      const patch = Object.hasOwn(patches, key)
-        ? build.overrides(patches[key] as never, { languages })
-        : undefined;
+      const patch = Object.hasOwn(patches, key) ? build.overrides(patches[key] as never, { languages }) : undefined;
       return { resource, patch };
     });
     const base = entries.map(({ resource, patch }) =>
@@ -155,19 +153,17 @@ export const defineEpisode = <
     for (const language of languages) {
       if (
         !entries.some(
-          ({ resource, patch }) =>
-            resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
+          ({ resource, patch }) => resource.locale?.[language] !== undefined || patch?.locale?.[language] !== undefined,
         )
-      ) continue;
+      )
+        continue;
       locale[language] = entries.map(({ resource, patch }) => {
         const translated = mergeForValidation(
           resource.base,
           (resource.locale?.[language] ?? {}) as DeepPartial<typeof resource.base>,
         );
         const withBasePatch = patch ? mergeForValidation(translated, patch.base) : translated;
-        return patch?.locale?.[language]
-          ? mergeForValidation(withBasePatch, patch.locale[language])
-          : withBasePatch;
+        return patch?.locale?.[language] ? mergeForValidation(withBasePatch, patch.locale[language]) : withBasePatch;
       }) as Episode_PropsBase['section'];
     }
     return { base, locale };

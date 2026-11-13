@@ -23,24 +23,30 @@ const sectionCollection = z.strictObject({
   order: z.array(z.string()),
 });
 
-export const episode_Config_Schema = identity.extend({
-  ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
-  section: sectionCollection,
-  events: z.record(z.string(), z.json()).optional(),
-}).strict();
+export const episode_Config_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
+    section: sectionCollection,
+    events: z.record(z.string(), z.json()).optional(),
+  })
+  .strict();
 export type Episode_Config = z.infer<typeof episode_Config_Schema>;
 
-const sectionResolved = z.object({
-  id: z.uuid(),
-  slug: z.string().min(1),
-  type: z.enum(sectionTypes),
-}).catchall(z.unknown());
+const sectionResolved = z
+  .object({
+    id: z.uuid(),
+    slug: z.string().min(1),
+    type: z.enum(sectionTypes),
+  })
+  .catchall(z.unknown());
 
-export const episode_Props_Schema = identity.extend({
-  ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
-  section: z.array(sectionResolved),
-  events: z.record(z.string(), z.json()).optional(),
-}).strict();
+export const episode_Props_Schema = identity
+  .extend({
+    ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
+    section: z.array(sectionResolved),
+    events: z.record(z.string(), z.json()).optional(),
+  })
+  .strict();
 export type Episode_Props = Omit<z.infer<typeof episode_Props_Schema>, 'section'> & {
   section: Section_Props[];
 };
@@ -58,9 +64,7 @@ export type Episode_Metadata_Overrides = {
 // JSON event payloads can be recursive: keep them outside deepPartial to
 // avoid unbounded Zod/TypeScript schema expansion.
 export const episode_Override_Metadata_Schema: z.ZodType<Episode_Metadata_Overrides> = z.strictObject({
-  params: z.deepPartial(
-    deepStrict_Schema(episode_Config_Schema.shape.params.omit({ languages: true })),
-  ).optional(),
+  params: z.deepPartial(deepStrict_Schema(episode_Config_Schema.shape.params.omit({ languages: true }))).optional(),
   locale: z.deepPartial(deepStrict_Schema(episode_Config_Schema.shape.locale)).optional(),
   events: z.record(z.string(), z.json()).optional(),
 });
