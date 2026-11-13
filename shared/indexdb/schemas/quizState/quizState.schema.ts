@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import type { QuizState } from '+@svitlo/contracts/content';
 
 const id = z.string().min(1);
 const stringArray = z.array(id);
@@ -34,8 +33,12 @@ const resultSchema = z.discriminatedUnion('status', [
 const base = { id, quizId: id };
 const progress = { ...base, startedAt: z.string(), answers: z.record(id, questionStateSchema) };
 
-export const quizStateSchema: z.ZodType<QuizState> = z.discriminatedUnion('status', [
+export const quizStateSchema = z.discriminatedUnion('status', [
   z.strictObject({ ...base, status: z.literal('new') }),
   z.strictObject({ ...progress, status: z.literal('in-progress') }),
   z.strictObject({ ...progress, status: z.literal('finished'), completedAt: z.string(), result: resultSchema }),
 ]);
+
+/** Persisted v1 Quiz state and completion result shapes. */
+export type QuizState = z.infer<typeof quizStateSchema>;
+export type QuizResult = z.infer<typeof resultSchema>;
