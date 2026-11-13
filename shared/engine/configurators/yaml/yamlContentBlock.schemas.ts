@@ -25,8 +25,8 @@ import { youtube_Config_Schema } from '../contentBlocks/defineYoutube/defineYout
  * Each variant retains the concrete Engine Config schema's params, locale,
  * identity and discriminating type; only the opaque child fields are replaced.
  */
-export const yamlCarousel_Schema = carousel_Config_Schema.safeExtend({
-  slides: carousel_Config_Schema.shape.slides.safeExtend({
+export const yamlCarousel_Schema = carousel_Config_Schema.extend({
+  slides: carousel_Config_Schema.shape.slides.extend({
     items: z.record(z.string(), carouselSlide_Config_Schema),
   }),
 });
@@ -44,15 +44,15 @@ export const yamlCheckpointAnswer_Schema = z.discriminatedUnion('type', [
   youtube_Config_Schema,
 ]);
 
-export const yamlCheckpointItem_Schema = checkpointItem_Config_Schema.safeExtend({
+export const yamlCheckpointItem_Schema = checkpointItem_Config_Schema.extend({
   question: text_Config_Schema,
-  answer: checkpointItem_Config_Schema.shape.answer.safeExtend({
+  answer: checkpointItem_Config_Schema.shape.answer.extend({
     items: z.record(z.string(), yamlCheckpointAnswer_Schema),
   }),
 });
 
-export const yamlCheckpoint_Schema = checkpoint_Config_Schema.safeExtend({
-  content: checkpoint_Config_Schema.shape.content.safeExtend({
+export const yamlCheckpoint_Schema = checkpoint_Config_Schema.extend({
+  content: checkpoint_Config_Schema.shape.content.extend({
     items: z.record(z.string(), yamlCheckpointItem_Schema),
   }),
 });
