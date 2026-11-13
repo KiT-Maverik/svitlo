@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
-import { contentBlockConfigurator_Schema, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
 import {
   createQuestionBaseSchema,
@@ -13,9 +13,6 @@ import {
   type QuestionPublishedContent,
   type QuestionMetadataOverrides,
 } from '../question.schemas';
-const authoredBlock = z.custom<ContentBlock_Configurator>(
-  value => contentBlockConfigurator_Schema.safeParse(value).success,
-);
 
 const questionBase = createQuestionBaseSchema('matchBlocks');
 const params = questionBase.shape.params;
@@ -25,7 +22,10 @@ export const matchBlocks_Config_Schema = questionBase.extend({
   ...addUnifiedLocale({}),
   content: questionCommonContent_Config_Schema.extend({
     pairs: z.object({
-      items: z.record(z.string(), z.object({ left: authoredBlock, right: authoredBlock })),
+      items: z.record(
+        z.string(),
+        z.object({ left: z.custom<ContentBlock_Configurator>(), right: z.custom<ContentBlock_Configurator>() }),
+      ),
       order: z.array(z.string()),
     }),
   }),

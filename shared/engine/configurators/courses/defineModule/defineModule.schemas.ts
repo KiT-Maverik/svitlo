@@ -6,6 +6,7 @@ import { localizationSwitch } from '../../contentBlocks/contentBlock.schemas';
 import type { Configurator_Mode } from '../../configurator.schemas';
 import { chapter_Props_Schema, type Chapter_Configurator, type Chapter_Props } from '../defineChapter';
 import { lesson_Props_Schema, type Lesson_Configurator, type Lesson_Props } from '../../lessons/defineLesson';
+import { episode_Props_Schema, type Episode_Configurator, type Episode_Props } from '../../episodes/defineEpisode';
 
 const params = paramsBase_Schema.shape.params.extend({
   iconKey: z.string().optional(),
@@ -18,8 +19,8 @@ const locale = <Mode extends Configurator_Mode>(mode: Mode) => ({
   title: localizationSwitch[mode],
 });
 export type Module_Locale<Mode extends Configurator_Mode> = z.infer<z.ZodObject<ReturnType<typeof locale<Mode>>>>;
-export type Module_Child = Chapter_Configurator | Lesson_Configurator;
-export type Module_Child_Props = Chapter_Props | Lesson_Props;
+export type Module_Child = Chapter_Configurator | Lesson_Configurator | Episode_Configurator;
+export type Module_Child_Props = Chapter_Props | Lesson_Props | Episode_Props;
 
 export const module_Config_Schema = identity.extend({
   ...addUnifiedLocale(locale('config')),
@@ -55,6 +56,6 @@ export type Module_Overrides<
 
 export const module_Props_Schema = identity.extend({
   ...addUnifiedLocale(locale('props')),
-  content: z.array(z.union([chapter_Props_Schema, lesson_Props_Schema])),
+  content: z.array(z.union([chapter_Props_Schema, lesson_Props_Schema, episode_Props_Schema])),
 });
 export type Module_Props = z.infer<typeof module_Props_Schema>;

@@ -1,9 +1,8 @@
-export type { Definition } from './definition';
 export * from './contentBlocks';
-export * from './structured';
 export * from './questions';
 export * from './sections';
 export * from './lessons';
+export * from './episodes';
 export * from './courses';
 export * from './skills';
 export * from './assessmentMethods';

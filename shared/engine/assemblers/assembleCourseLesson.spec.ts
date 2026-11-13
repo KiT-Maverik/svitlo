@@ -59,7 +59,7 @@ const createInput = (): AssembleCourseLessonInput =>
 
 const baseLesson = (input: AssembleCourseLessonInput) =>
   (
-    input.course.base.content.items.laboratory as {
+    input.course.base.content.items.laboratory as unknown as {
       content: { items: { demo: { overrides: Record<string, unknown> } } };
     }
   ).content.items.demo.overrides;

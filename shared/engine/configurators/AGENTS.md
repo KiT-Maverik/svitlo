@@ -73,3 +73,12 @@
 - Configurators are **build-time only**. The planned file-writing contract lives in [`../generators/AGENTS.md`](../generators/AGENTS.md); runtime resolution and Props validation live in [`../assemblers/AGENTS.md`](../assemblers/AGENTS.md). Neither future layer is implemented merely by these documents.
 - Test complete resources and sparse patches, one-language and invariant locale cases, unified resource/override locale shapes, single-signature Build API types, deep unknown-field rejection, semantic validation of the temporary merged candidate, **four-layer final Props validation** for every selected locale, array replacement semantics where applicable, JSON safety, and mutation isolation. Include end-to-end parent → nested child tests across Course → Lesson → Section → ContentBlock, Lesson → Question Bank and SkillDomain → SkillGroup → Skill.
 - Keep transitional accessors for consumers that still need them; do not claim unrelated nested configurators implement Build.
+
+## Test suite hierarchy
+
+Every runtime `*.spec.ts` under `configurators/` must nest its tests in Node's `describe` blocks:
+`Configurators` → the owning category (for example, `ContentBlocks`, `Sections`, or `Questions`)
+→ the specific `define*` configurator name (for example, `defineText`). Further subdivisions may follow.
+For suites spanning multiple configurators or testing shared utilities, use a precise third-level suite name
+(for example, `assembly` or `validateOrderedKeys`); never omit the first three levels.
+Register new test files in the relevant Engine `test` scripts so CI actually executes them.

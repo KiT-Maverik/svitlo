@@ -2,8 +2,8 @@ import { z } from 'zod';
 import type { DeepPartial } from '#types';
 import { deepStrict_Schema } from '#schemas';
 import { addUnifiedLocale } from '../../_shared__configurators';
-import { contentBlockConfigurator_Schema, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
-import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks';
+import { contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import type { ContentBlock_Props } from '../../contentBlocks';
 import {
   createQuestionBaseSchema,
   questionBlockCollection_Config_Schema,
@@ -13,9 +13,6 @@ import {
   type QuestionPublishedContent,
   type QuestionMetadataOverrides,
 } from '../question.schemas';
-const authoredBlock = z.custom<ContentBlock_Configurator>(
-  value => contentBlockConfigurator_Schema.safeParse(value).success,
-);
 
 const questionBase = createQuestionBaseSchema('selectMultipleAnswers');
 const params = questionBase.shape.params;
