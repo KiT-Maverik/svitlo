@@ -126,6 +126,15 @@ jobs:
             git ls-files -u
             exit 1
           fi
+          # Upstream merge supplies an extra empty EOF line; normalize it
+          # without restoring any legacy Contracts API or changing semantics.
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const filename = 'shared/engine/utils/generators/lessons/generateLessons.utils.ts';
+          const body = fs.readFileSync(filename, 'utf8');
+          fs.writeFileSync(filename, body.replace(/\n+$/, '\n'));
+          NODE
+          git add -- shared/engine/utils/generators/lessons/generateLessons.utils.ts
           git diff --cached --check
           echo "Merge-index paths: $(git diff --cached --name-only | wc -l)"
       - uses: actions/setup-node@v4
