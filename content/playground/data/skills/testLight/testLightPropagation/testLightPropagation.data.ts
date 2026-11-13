@@ -36,7 +36,7 @@ export const testLightPropagation_SkillGroup_Data = defineSkillGroup({
     kk: '[TEST kk] Light propagation',
     qm: '[TEST qm] Light propagation',
   },
-  skills: [testExplainLightTravel_Skill_Data],
+  skills: { items: { testExplainLightTravel: testExplainLightTravel_Skill_Data }, order: ['testExplainLightTravel'] },
   description: {
     methodological: 'Synthetic Playground fixture for testLightPropagation; testing only, not curricular content.',
     frontend: {
