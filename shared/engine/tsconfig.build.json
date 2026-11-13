@@ -12,6 +12,7 @@
   },
   "include": [
     "index.ts",
+    "assemblers/**/*.ts",
     "runtime.ts",
     "configurators/**/*.ts",
     "configurators_old/**/*.ts",
