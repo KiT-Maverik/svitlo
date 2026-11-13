@@ -1,7 +1,32 @@
 #!/usr/bin/env node
 /**
- * Approved editorial YAML -> typed Lesson Data. Build time only.
- * Ownership is restricted to the generated/ directory of one canonical Lesson.
+ * @fileoverview Build-time Lesson YAML -> TypeScript draft scaffolding.
+ *
+ * Strategic purpose: save AI authoring tokens by generating repetitive
+ * TypeScript structure deterministically. An AI author supplies partial,
+ * source-language YAML; the script provides a starting point for an AI editor,
+ * not a validated, publishable Lesson.
+ *
+ * Intended result: a predictably named `.data.ts` source with a named export
+ * such as `lessonSlug_Lesson = defineLesson({...})`, importing factories from
+ * `@svitlo/engine/build`. Nested Sections, ContentBlocks, Questions, and
+ * Flashcards should become corresponding `define*` calls selected by each
+ * polymorphic node's required `type` discriminator.
+ *
+ * A draft may intentionally fail TypeScript checks: YAML populates only its
+ * authored `documentLanguage`, even when the Lesson declares more supported
+ * languages, and other Config fields may be unfinished. Those diagnostics
+ * guide subsequent AI work. Never invent translations or missing content.
+ *
+ * Responsibility boundary: mechanical YAML reading, `type`-based factory
+ * dispatch, and deterministic TS file emission only. No semantic/schema
+ * validation, editorial approval checks, typechecks, or Props publication.
+ * An absent/unknown `type` is a dispatch error, not a reason to guess.
+ *
+ * Migration note: this existing legacy script still validates inputs using
+ * AJV and editorial checks, emits `create*` calls, and writes requirement and
+ * manifest artifacts. These are current implementation details to replace,
+ * NOT requirements for the target scaffolder. See issue #507.
  */
 import fs from 'node:fs';
 import path from 'node:path';
