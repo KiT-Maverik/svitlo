@@ -71,7 +71,15 @@ export type Question_SelectOneAnswer_Overrides<
   };
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Author a single-choice Question with exactly one correct answer.
+ *
+ * @remarks
+ * Place the correct option in `content.answers.correct`, plausible wrong
+ * answers in `incorrect`, and optional decoys in `distractors`.
+ * Use distinct answer slugs across these three collections; the one
+ * correct option must remain enabled.
+ */
 export const defineSelectOneAnswer = <
   const Slug extends string,
   const Content extends ContentShape,
