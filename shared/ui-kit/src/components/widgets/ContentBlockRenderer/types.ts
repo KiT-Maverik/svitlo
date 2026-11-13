@@ -1,15 +1,14 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
 import type { ComponentType, ReactNode } from 'react';
-import type { ContentBlock, Locale_Languages } from '+@svitlo/contracts/content';
-import type { LanguageCode } from '@svitlo/engine/runtime';
+import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
 
 /** Quiz is a Section; ContentBlock contains renderable resources only. */
-export type ContentBlockResponse = ContentBlock<'response', Locale_Languages>;
+export type ContentBlockResponse = ContentBlock_Props;
 export type ContentBlockType = ContentBlockResponse['type'];
 export type ResponseOf<Type extends ContentBlockType> = Extract<ContentBlockResponse, { type: Type }>;
 
 /** Resolve a scene by its stable content ID. */
-export type SceneRegistry = (id: string) => ComponentType<{ locales: ResponseOf<'scene'>['locales'] }> | undefined;
+export type SceneRegistry = (id: string) => ComponentType<{ locales: ResponseOf<'scene'>['locale']['value'] }> | undefined;
 
 export type ContentBlockRendererProps = {
   messages: UiKitMessages;

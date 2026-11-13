@@ -5,7 +5,7 @@ import type { Image_Locale } from '../../../../../../data/locale/image';
 import { useEffect, useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 
-import type { ContentBlock_Image_Response } from '+@svitlo/contracts/content';
+import type { ContentBlock_Image_Props } from '@svitlo/engine/runtime';
 
 import { localizedAttributes } from '../../utils';
 import { useContentLanguage } from '../../ContentLanguageContext';
@@ -15,8 +15,10 @@ import styles from './Image.module.css';
 
 type ImageFailure = { source: string; kind: ImageFailureKind };
 
-export const Image = (props: ContentBlock_Image_Response & { messages: Image_Locale }) => {
-  const { src, alt, caption, sizes, unoptimized, fallback, messages } = props;
+export const Image = (props: ContentBlock_Image_Props & { messages: Image_Locale }) => {
+  const { src, alt, caption, fallback } = props.locale;
+  const { sizes, unoptimized, fill, aspectRatio, width, height, objectFit } = props.params;
+  const { messages } = props;
   const Renderer = useImageRenderer();
   const contentLanguage = useContentLanguage();
   const imageRef = useRef<HTMLImageElement>(null);
@@ -53,7 +55,7 @@ export const Image = (props: ContentBlock_Image_Response & { messages: Image_Loc
         <div
           className={styles.placeholder}
           role="alert"
-          style={{ aspectRatio: props.fill ? props.aspectRatio : `${props.width} / ${props.height}` }}
+          style={{ aspectRatio: fill ? aspectRatio : `${width} / ${height}` }}
         >
           {alt && <strong>{alt}</strong>}
           <span>{fallback?.[failureKind] || messages[failureKind]}</span>
@@ -61,8 +63,8 @@ export const Image = (props: ContentBlock_Image_Response & { messages: Image_Loc
             {fallback?.retry || messages['retry']}
           </Button>
         </div>
-      ) : props.fill ? (
-        <div className={styles.fillFrame} style={{ aspectRatio: props.aspectRatio }}>
+      ) : fill ? (
+        <div className={styles.fillFrame} style={{ aspectRatio: aspectRatio }}>
           <Renderer
             key={`${src}:${attempt}`}
             ref={imageRef}
@@ -72,7 +74,7 @@ export const Image = (props: ContentBlock_Image_Response & { messages: Image_Loc
             src={src}
             alt={alt}
             sizes={sizes ?? '100vw'}
-            style={{ objectFit: props.objectFit ?? 'contain', width: '100%', height: '100%' }}
+            style={{ objectFit: objectFit ?? 'contain', width: '100%', height: '100%' }}
             loading="lazy"
             decoding="async"
             onError={onError}
@@ -86,9 +88,9 @@ export const Image = (props: ContentBlock_Image_Response & { messages: Image_Loc
           className={styles.image}
           src={src}
           alt={alt}
-          width={props.width}
-          height={props.height}
-          sizes={sizes ?? `(max-width: ${props.width}px) 100vw, ${props.width}px`}
+          width={width}
+          height={height}
+          sizes={sizes ?? `(max-width: ${width}px) 100vw, ${width}px`}
           loading="lazy"
           decoding="async"
           onError={onError}

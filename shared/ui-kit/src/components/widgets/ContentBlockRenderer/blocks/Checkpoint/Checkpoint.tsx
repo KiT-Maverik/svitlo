@@ -11,7 +11,7 @@ import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import LightbulbOutlineRounded from '@mui/icons-material/LightbulbOutlineRounded';
 import RadioButtonUncheckedRounded from '@mui/icons-material/RadioButtonUncheckedRounded';
 import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
-import type { ContentBlock_Checkpoint_Response, Locale_Languages } from '+@svitlo/contracts/content';
+import type { ContentBlock_Checkpoint_Props } from '@svitlo/engine/runtime';
 import { DEFAULT_SUPPORTED_LANGUAGES } from '@svitlo/engine/runtime';
 import { getLocaleDirection } from '@svitlo/engine/runtime';
 
@@ -20,7 +20,7 @@ import { useContentLanguage } from '../../ContentLanguageContext';
 import { useOptionalLessonActions } from '../../../../lesson/LessonOperationsContext';
 import styles from './Checkpoint.module.css';
 
-type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {
+type CheckpointProps = ContentBlock_Checkpoint_Props & {
   messages: Checkpoint_Locale;
   renderNested: RenderNested;
   onComplete?: () => void;
@@ -29,8 +29,9 @@ type CheckpointProps = ContentBlock_Checkpoint_Response<Locale_Languages> & {
 
 export const Checkpoint = ({
   id,
-  title,
-  items,
+  locale: { title },
+  content: items,
+  params: {
   headingLevel = 2,
   showIndices = true,
   showChevron = true,
@@ -41,6 +42,7 @@ export const Checkpoint = ({
   enableChecks = false,
   requireCompletion = false,
   renderAsGroup = true,
+  },
   renderNested,
   messages,
   onComplete,
@@ -110,11 +112,11 @@ export const Checkpoint = ({
                 aria-controls={`${domId}-answer-${index}`}
                 aria-describedby={needsCheck ? `${domId}-status-${index}` : undefined}
               >
-                <span className={styles.summaryRow}>
+                <div className={styles.summaryRow}>
                   <span className={styles.adornment}>{side('left')}</span>
-                  <span className={styles.question} dir={direction}>
-                    {item.question}
-                  </span>
+                  <div className={styles.question} dir={direction}>
+                    {renderNested(item.question)}
+                  </div>
                   <span className={styles.adornment}>
                     {side('right')}
                     {needsCheck && (
@@ -127,7 +129,7 @@ export const Checkpoint = ({
                       </span>
                     )}
                   </span>
-                </span>
+                </div>
                 {needsCheck && (
                   <span className={styles.visuallyHidden} id={`${domId}-status-${index}`}>
                     {isChecked ? messages.checked : messages.check}

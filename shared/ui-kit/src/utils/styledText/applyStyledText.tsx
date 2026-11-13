@@ -1,4 +1,6 @@
-import type { StyledText_Rules } from '+@svitlo/contracts/content';
+import type { ContentBlock_Text_Props } from '@svitlo/engine/runtime';
+
+type StyledText_Rules = ContentBlock_Text_Props['params']['variables'];
 
 import { parseText } from '../text/parseText';
 import styles from './StyledText.module.css';

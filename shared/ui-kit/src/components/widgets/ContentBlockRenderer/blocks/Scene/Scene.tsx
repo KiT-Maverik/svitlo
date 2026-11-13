@@ -12,7 +12,7 @@ export const Scene = ({
   if (!Scene) throw new Error('Unregistered scene id: ' + response.id);
   return (
     <Suspense fallback={null}>
-      <Scene locales={response.locales} />
+      <Scene locales={response.locale.value} />
     </Suspense>
   );
 };
