@@ -6,6 +6,10 @@ on:
     paths:
       - 'shared/indexdb/**'
       - 'shared/engine/**'
+      # Web and UI Kit changes must run the real browser integration tests too.
+      - 'shared/ui-kit/**'
+      - 'shared/adapters/nextjs/**'
+      - 'apps/web/**'
       - '.github/workflows/db-controllers-e2e.yml'
       - 'package.json'
       - 'package-lock.json'
