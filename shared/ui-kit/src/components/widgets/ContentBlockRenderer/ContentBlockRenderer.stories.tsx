@@ -10,7 +10,7 @@ const mixedBlocks: NonNullable<ContentBlockRendererProps['blocks']> = [
     type: 'code',
     language: 'javascript',
     title: 'Example',
-    code: 'const speedOfLight = 299_792_458;\nconsole.log(speedOfLight);',
+    codeAsText: 'const speedOfLight = 299_792_458;\nconsole.log(speedOfLight);',
   },
   { id: 'markdown-note', type: 'markdown', text: '## Key idea\n\n**Speed** is a distance divided by time.' },
   { id: 'summary', type: 'text', value: 'Now check your understanding.' },

@@ -21,7 +21,10 @@ const received: string[] = [];
 
 function SceneContent({ locales }: { locales: ContentBlock_Scene_Props['locale']['value'] }) {
   const { dismiss } = useLessonEventScene();
-  const title = locales && typeof locales === 'object' && 'title' in locales ? locales.title : '';
+  const title =
+    locales && typeof locales === 'object' && 'title' in locales && typeof locales.title === 'string'
+      ? locales.title
+      : '';
   return (
     <>
       <p>{title}</p>

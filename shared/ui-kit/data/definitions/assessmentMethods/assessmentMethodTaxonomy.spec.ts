@@ -31,20 +31,22 @@ describe('Assessment Method authored definitions', () => {
     for (const name of names) {
       const definition = methods[name as keyof typeof methods];
       const locales = definition.config.locales();
-      for (const field of ['title', 'description'] as const) {
-        assert.deepEqual(Object.keys(locales[field]).sort(), [...languages].sort(), name + '/' + field);
+      const titles = locales.title;
+      const descriptions = locales.description;
+      assert.ok(titles && typeof titles === 'object', name + '/title');
+      assert.ok(descriptions && typeof descriptions === 'object', name + '/description');
+      for (const [field, dictionary] of Object.entries({ title: titles, description: descriptions })) {
+        assert.deepEqual(Object.keys(dictionary).sort(), [...languages].sort(), name + '/' + field);
         for (const language of languages) {
-          assert.ok(
-            locales[field][language as keyof (typeof locales)[typeof field]]?.trim(),
-            name + '/' + field + '/' + language,
-          );
+          const value = dictionary[language as keyof typeof dictionary];
+          assert.ok(typeof value === 'string' && value.trim(), name + '/' + field + '/' + language);
         }
       }
       for (const language of languages) {
         const props = assessmentMethod_Props_Schema.parse({
           ...definition.config.base,
-          title: locales.title[language as keyof typeof locales.title],
-          description: locales.description[language as keyof typeof locales.description],
+          title: titles[language as keyof typeof titles],
+          description: descriptions[language as keyof typeof descriptions],
         });
         assert.equal(props.slug, name);
       }

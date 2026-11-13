@@ -61,6 +61,7 @@ describe('Lesson media settings', () => {
           fileLocation="/test.mp4"
           poster="/poster.png"
           title="Test video"
+          label="Test video"
           messages={enUiKitMessages.video}
         />
       </MediaSettingsProvider>,
