@@ -1,10 +1,34 @@
 #!/usr/bin/env node
 /**
- * Deterministic Course editorial TOC -> typed Course composition.
+ * @fileoverview Build-time Course YAML -> TypeScript draft scaffolding.
  *
- * The editorial schema does not contain publishable Course title/description or
- * translations. This generator therefore exports a typed composition factory,
- * never a fake publishable Course or invented translation.
+ * Strategic purpose: save AI authoring tokens by mechanically generating the
+ * repetitive Course hierarchy and imports from a partial YAML specification.
+ * This is a convenience tool for finishing an authored Course in TypeScript,
+ * not a content-quality, approval, compilation, or publication gate.
+ *
+ * Intended result: predictable, named `.data.ts` source exports such as
+ * `courseSlug_Course = defineCourse({...})` using `@svitlo/engine/build`.
+ * Nested Module, Chapter, and Episode nodes use their matching `define*`
+ * factories; referenced standalone Lessons retain their existing identities.
+ * Every polymorphic node must supply `type` for unambiguous dispatch.
+ *
+ * Only the YAML's source-language copy is emitted, even if the Course plans
+ * additional supported languages. Missing translations, incomplete Config
+ * fields, and TypeScript errors are expected draft handoff signals to the
+ * subsequent AI editor; this script must neither fill gaps nor fabricate
+ * Course metadata, Lessons, or scenario content.
+ *
+ * Responsibility boundary: mechanical YAML reading, `type`-based factory
+ * dispatch, and deterministic TS file emission only. Do not add schema or
+ * semantic validation, reference/approval checks, typechecks, or Props
+ * publication; absence of a usable `type` is a simple dispatch failure.
+ *
+ * Migration note: this legacy implementation currently validates approved
+ * methodology/TOC/overrides, resolves Lesson sources, and emits a `create*`
+ * composition factory rather than a direct `defineCourse` draft. These
+ * legacy behaviors are to be removed, not maintained as strategic goals.
+ * See issue #507.
  */
 import fs from 'node:fs';
 import path from 'node:path';
