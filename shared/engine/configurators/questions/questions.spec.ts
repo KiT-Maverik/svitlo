@@ -52,76 +52,76 @@ describe('Configurators', () => {
       test('all nine Questions expose immutable stateless Build instead of mutable overrides', () => {
         const instances = [
           (() => {
-          const config = { ...common('selectOneAnswer'), content: { ...prompt, answers } };
-          return defineSelectOneAnswer<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            const config = { ...common('selectOneAnswer'), content: { ...prompt, answers } };
+            return defineSelectOneAnswer<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
           (() => {
-          const config = { ...common('selectMultipleAnswers'), content: { ...prompt, answers } };
-          return defineSelectMultipleAnswers<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            const config = { ...common('selectMultipleAnswers'), content: { ...prompt, answers } };
+            return defineSelectMultipleAnswers<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
           (() => {
-          const config = {
-            ...common('matchBlocks'),
-            content: { ...prompt, pairs: { items: { pairOne: { left: yes, right: no } }, order: ['pairOne'] } },
-          };
-          return defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            const config = {
+              ...common('matchBlocks'),
+              content: { ...prompt, pairs: { items: { pairOne: { left: yes, right: no } }, order: ['pairOne'] } },
+            };
+            return defineMatchBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
           (() => {
-          const config = {
-            ...common('answerWithText'),
-            locale: { correctAnswers: { first: 'Yes', second: localized }, placeholder: localized },
-          };
-          return defineAnswerWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            const config = {
+              ...common('answerWithText'),
+              locale: { correctAnswers: { first: 'Yes', second: localized }, placeholder: localized },
+            };
+            return defineAnswerWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
           (() => {
-          const config = {
-            ...common('answerWithNumber'),
-            params: { ...params, correctAnswers: [42] },
-            locale: { placeholder: localized },
-          };
-          return defineAnswerWithNumber<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            const config = {
+              ...common('answerWithNumber'),
+              params: { ...params, correctAnswers: [42] },
+              locale: { placeholder: localized },
+            };
+            return defineAnswerWithNumber<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
           (() => {
-          const config = {
-            ...common('orderSequence'),
-            content: { ...prompt, sequence: collection(yes) },
-          };
-          return defineOrderSequence<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            const config = {
+              ...common('orderSequence'),
+              content: { ...prompt, sequence: collection(yes) },
+            };
+            return defineOrderSequence<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
           (() => {
-          const config = {
-            ...common('buildAnswerWithBlocks'),
-            locale: { placeholder: localized },
-            content: { ...prompt, correctSequence: collection(yes), distractors: collection(no) },
-          };
-          return defineBuildAnswerWithBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            const config = {
+              ...common('buildAnswerWithBlocks'),
+              locale: { placeholder: localized },
+              content: { ...prompt, correctSequence: collection(yes), distractors: collection(no) },
+            };
+            return defineBuildAnswerWithBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
           (() => {
-          const config = {
-            ...common('fillBlanksWithBlocks'),
-            locale: { placeholder: localized },
-            content: {
-              ...prompt,
-              slots: { items: { slotOne: { correctAnswer: yes } }, order: ['slotOne'] },
-              distractors: collection(no),
-            },
-          };
-          return defineFillBlanksWithBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
-          (() => {
-          const config = {
-            ...common('fillBlanksWithText'),
-            locale: { placeholder: localized },
-            content: {
-              ...prompt,
-              slots: {
-                items: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } },
-                order: ['slotOne'],
+            const config = {
+              ...common('fillBlanksWithBlocks'),
+              locale: { placeholder: localized },
+              content: {
+                ...prompt,
+                slots: { items: { slotOne: { correctAnswer: yes } }, order: ['slotOne'] },
+                distractors: collection(no),
               },
-            },
-          };
-          return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
-        })(),
+            };
+            return defineFillBlanksWithBlocks<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
+          (() => {
+            const config = {
+              ...common('fillBlanksWithText'),
+              locale: { placeholder: localized },
+              content: {
+                ...prompt,
+                slots: {
+                  items: { slotOne: { correctAnswers: { first: 'Yes', second: localized } } },
+                  order: ['slotOne'],
+                },
+              },
+            };
+            return defineFillBlanksWithText<typeof config.slug, typeof config.content, ['en', 'uk']>(config);
+          })(),
         ];
 
         for (const question of instances) {
@@ -544,6 +544,7 @@ describe('Configurators', () => {
           return defineAnswerWithNumber<typeof config.slug, typeof config.content, ['uk']>(config);
         })();
         assert.doesNotThrow(() => badQuestion.build.props({ languages: ['uk'] }));
+        // Requesting an unsupported locale here is intentional: exercise the runtime guard.
         assert.throws(
           () => badQuestion.build.props({ languages: ['en' as never] }),
           /ContentBlock publication|Invalid publication for language en/,
@@ -605,6 +606,7 @@ describe('Configurators', () => {
           return defineAnswerWithText<typeof config.slug, typeof config.content, ['uk']>(config);
         })();
         assert.doesNotThrow(() => answer.build.props({ languages: ['uk'] }));
+        // Explicitly bypass the compile-time scope to verify the runtime rejection.
         assert.throws(() => answer.build.props({ languages: ['en' as never] }), /Incomplete accepted-answer set/);
 
         const slot = (() => {

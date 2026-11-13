@@ -254,7 +254,7 @@ describe('Configurators', () => {
           params: { wrap: { enabled: true, typographyProps: props } },
           locale: { value: { en: 'Welcome' } },
         };
-        const text = defineText<'intro', ['en']>({ ...config, locale: { value: { en: 'Welcome' } } });
+        const text = defineText<'intro', ['en']>({ ...config, slug: 'intro', locale: { value: { en: 'Welcome' } } });
         props.nested.weight = 'mutated caller';
         config.locale.value = 'Other';
         config.params.disabled = true;
