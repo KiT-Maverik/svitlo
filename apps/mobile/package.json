@@ -33,7 +33,6 @@
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
     "@svitlo/adapter-capacitor": "0.0.0",
-    "@svitlo/contracts": "0.0.0",
     "@svitlo/engine": "0.0.0",
     "@svitlo/indexdb": "0.0.0",
     "@svitlo/playground": "0.0.0",
