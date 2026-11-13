@@ -79,8 +79,11 @@ function findLessonPatches(course, overrides, languages) {
     const items = { ...collection.items, ...additions };
     const order = change?.content?.order ?? collection.order;
     const expected = Object.keys(items).filter(key => changes[key] !== false);
-    if (order.length !== expected.length || new Set(order).size !== order.length ||
-        expected.some(key => !order.includes(key))) {
+    if (
+      order.length !== expected.length ||
+      new Set(order).size !== order.length ||
+      expected.some(key => !order.includes(key))
+    ) {
       throw new Error('Invalid Course child order at ' + location);
     }
     for (const key of order) {
@@ -130,9 +133,12 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
   if (course?.type !== 'course' || !uuid.test(course.id) || !course?.build?.props) {
     throw new Error('Expected a defineCourse configurator with a valid Course ID');
   }
-  if (!Array.isArray(languages) || languages.length === 0 ||
-      new Set(languages).size !== languages.length ||
-      languages.some(language => !/^[a-z]{2,8}$/.test(language))) {
+  if (
+    !Array.isArray(languages) ||
+    languages.length === 0 ||
+    new Set(languages).size !== languages.length ||
+    languages.some(language => !/^[a-z]{2,8}$/.test(language))
+  ) {
     throw new Error('Expected distinct, nonempty Course publication languages');
   }
   const scope = { languages };
@@ -147,10 +153,7 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
   const files = new Map([['base.json', JSON.stringify(base, null, 2) + '\n']]);
   for (const language of languages) {
     const resolved = mergeCourseProps(
-      mergeCourseProps(
-        mergeCourseProps(resource.base, resource.locale?.[language]),
-        patch?.base,
-      ),
+      mergeCourseProps(mergeCourseProps(resource.base, resource.locale?.[language]), patch?.base),
       patch?.locale?.[language],
     );
     const localized = compactEntity(resolved, lessonPatches, language);
@@ -168,8 +171,10 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
  * are modified. Check mode is read-only and verifies stale/unexpected files.
  */
 export function publishCourse(course, { packageRoot, outputRoot, languages, overrides, check = false } = {}) {
-  if ((typeof outputRoot !== 'string' || !outputRoot.trim()) &&
-      (typeof packageRoot !== 'string' || !packageRoot.trim())) {
+  if (
+    (typeof outputRoot !== 'string' || !outputRoot.trim()) &&
+    (typeof packageRoot !== 'string' || !packageRoot.trim())
+  ) {
     throw new Error('packageRoot or outputRoot (Course resources parent directory) is required');
   }
   const files = renderCourseFiles(course, { languages, overrides });
@@ -179,9 +184,7 @@ export function publishCourse(course, { packageRoot, outputRoot, languages, over
   const destination = path.join(root, course.id);
 
   if (check) {
-    const existing = fs.existsSync(destination)
-      ? fs.readdirSync(destination).sort()
-      : [];
+    const existing = fs.existsSync(destination) ? fs.readdirSync(destination).sort() : [];
     const expected = [...files.keys()].sort();
     if (JSON.stringify(existing) !== JSON.stringify(expected)) {
       throw new Error('Course publication file mismatch at ' + destination);

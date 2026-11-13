@@ -15,7 +15,9 @@ const ids = {
 function fixture() {
   let patchCalls = 0;
   const lesson = {
-    id: ids.lesson, slug: 'myLesson', type: 'lesson',
+    id: ids.lesson,
+    slug: 'myLesson',
+    type: 'lesson',
     build: {
       overrides(value, { languages }) {
         patchCalls++;
@@ -32,32 +34,50 @@ function fixture() {
     },
   };
   const chapter = {
-    id: ids.chapter, slug: 'myChapter', type: 'chapter',
+    id: ids.chapter,
+    slug: 'myChapter',
+    type: 'chapter',
     content: { items: { myLesson: lesson }, order: ['myLesson'] },
   };
   const module = {
-    id: ids.module, slug: 'myModule', type: 'module',
+    id: ids.module,
+    slug: 'myModule',
+    type: 'module',
     content: { items: { myChapter: chapter }, order: ['myChapter'] },
   };
 
   const fullLesson = {
-    id: ids.lesson, slug: 'myLesson', type: 'lesson',
+    id: ids.lesson,
+    slug: 'myLesson',
+    type: 'lesson',
     params: { languages: ['en', 'uk'], sections: { allowSkipping: true } },
     skills: ['secret-standalone-skill'],
     section: [{ id: 'standalone-section' }],
     locale: { title: 'Standalone title' },
   };
   const fullChapter = {
-    id: ids.chapter, slug: 'myChapter', type: 'chapter',
-    params: {}, locale: { title: 'Chapter' }, content: [fullLesson],
+    id: ids.chapter,
+    slug: 'myChapter',
+    type: 'chapter',
+    params: {},
+    locale: { title: 'Chapter' },
+    content: [fullLesson],
   };
   const fullModule = {
-    id: ids.module, slug: 'myModule', type: 'module',
-    params: {}, locale: { title: 'Module' }, content: [fullChapter],
+    id: ids.module,
+    slug: 'myModule',
+    type: 'module',
+    params: {},
+    locale: { title: 'Module' },
+    content: [fullChapter],
   };
   const base = {
-    id: ids.course, slug: 'myCourse', type: 'course',
-    params: { languages: ['en', 'uk'] }, locale: { title: 'Course' }, content: [fullModule],
+    id: ids.course,
+    slug: 'myCourse',
+    type: 'course',
+    params: { languages: ['en', 'uk'] },
+    locale: { title: 'Course' },
+    content: [fullModule],
   };
   const uk = structuredClone(base);
   uk.locale.title = 'Курс';
@@ -89,7 +109,9 @@ function fixture() {
   };
 
   const course = {
-    id: ids.course, slug: 'myCourse', type: 'course',
+    id: ids.course,
+    slug: 'myCourse',
+    type: 'course',
     config: { base: { params: { languages: ['en', 'uk'] } } },
     content: { items: { myModule: module }, order: ['myModule'] },
     build: {
@@ -140,13 +162,15 @@ test('Lesson base and locale override Props are stored at the same tree position
   const base = JSON.parse(files.get('base.json'));
   const lessonRef = base.content[0].content[0].content[0];
   assert.deepEqual(lessonRef, {
-    id: ids.lesson, type: 'lesson',
+    id: ids.lesson,
+    type: 'lesson',
     overrides: { params: { sections: { allowSkipping: false } } },
   });
   const uk = JSON.parse(files.get('uk.json'));
   const assembled = mergeCourseProps(base, uk);
   assert.deepEqual(assembled.content[0].content[0].content[0], {
-    id: ids.lesson, type: 'lesson',
+    id: ids.lesson,
+    type: 'lesson',
     overrides: {
       params: { sections: { allowSkipping: false } },
       locale: { title: 'Спеціальний урок' },

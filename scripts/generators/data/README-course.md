@@ -34,7 +34,7 @@ The Course root, Modules and Chapters carry their full Props-shaped metadata
 and their ordered `content` arrays. Each Lesson appears only as
 `{ "type": "lesson", "id": "<uuid>" }`, with an optional `overrides` field
 containing the **already-built sparse Lesson override Props**. Course-specific
-Lesson patches are *not* applied to the standalone Lesson's published resources.
+Lesson patches are _not_ applied to the standalone Lesson's published resources.
 
 The locale patch is Props-shaped and has **no extra locale wrapper**. Objects
 merge by key, and arrays replace atomically. If a localized Module/Chapter or
@@ -45,7 +45,7 @@ published arrays as replacements; they must not merge arrays by index.
 
 Course/Module/Chapter and Lesson config validation and override resolution
 remain owned by their existing `build.props` / `build.overrides` methods.
-The output is intentionally a *compact Course resource*, **not** a standalone
+The output is intentionally a _compact Course resource_, **not** a standalone
 `course_Props_Schema` object: Lesson leaves are references to separately
 published Lesson Props. The future Course assembler must resolve those Lesson
 IDs and apply these sparse patches after the Lesson's own locale assembly.
