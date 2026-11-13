@@ -49,10 +49,13 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
-      - name: Enforce the single Engine public entrypoint
+      - name: Enforce explicit Engine build/runtime entrypoints
         run: |
           node --test scripts/migrate-engine-imports.spec.mjs
           node scripts/migrate-engine-imports.mjs --check
+          node --test scripts/migrate-engine-entrypoints.spec.mjs
+          node scripts/migrate-engine-entrypoints.mjs --check
+          node scripts/check-engine-runtime-graph.mjs
       - name: Scoped quality checks
         if: github.event_name == 'pull_request'
         env:
