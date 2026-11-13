@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 import { afterEach, describe, it, mock } from 'node:test';
-import type { QuizResult, QuizState } from '+@svitlo/contracts/content';
+import type { QuizResult, QuizState } from '../../../schemas';
 import { completeQuiz } from './completeQuiz.controller';
 import { quizInProgress, quizNew } from '../../testUtils/controllerTestDoubles';
 
