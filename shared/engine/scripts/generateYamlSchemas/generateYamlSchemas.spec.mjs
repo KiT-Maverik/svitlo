@@ -75,7 +75,7 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   for (const name of ['lesson.schema.json', 'course.schema.json', 'question.schema.json']) {
     const json = JSON.parse(docs[name]);
     assert.ok(Object.keys(json.$defs ?? {}).length > 0, name + ' should have shared definitions');
-    assert.match(docs[name], /"\\$ref"/);
+    assert.ok(docs[name].includes('"$ref"'));
   }
   const lesson = JSON.parse(docs['lesson.schema.json']);
   assert.equal(lesson.properties.type.const, 'lesson');
