@@ -62,7 +62,14 @@ export type Question_BuildAnswerWithBlocks_Overrides<
   };
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Ask learners to construct an answer from a sequence of ContentBlocks.
+ *
+ * @remarks
+ * `content.correctSequence` is the canonical completed answer in the
+ * right order, not a shuffled presentation. `content.distractors` holds
+ * optional extra blocks that are never part of the correct sequence.
+ */
 export const defineBuildAnswerWithBlocks = <
   const Slug extends string,
   const Content extends ContentShape,

@@ -83,7 +83,14 @@ export type Question_MatchBlocks_Overrides<
   };
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Ask learners to match related ContentBlocks in pairs.
+ *
+ * @remarks
+ * Each named entry in `content.pairs.items` is one genuine
+ * `{ left, right }` match. Author the correct semantic pair explicitly;
+ * do not rely on two unrelated positional lists matching by index.
+ */
 export const defineMatchBlocks = <
   const Slug extends string,
   const Content extends ContentShape,

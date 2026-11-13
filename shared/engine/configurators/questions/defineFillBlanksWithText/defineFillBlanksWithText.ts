@@ -82,7 +82,16 @@ const validate = (candidate: Question_FillBlanksWithText_Config): void => {
   validateSlots(candidate.content.slots);
 };
 
-/** A named authored slot is never a positional locale override. */
+/**
+ * Author named gaps that learners complete with text.
+ *
+ * @remarks
+ * Name each blank in `content.slots.items` and provide its accepted
+ * `correctAnswers` as a named map of strings or translations.
+ * `content.slots.order` identifies the intended slot sequence.
+ * Keep names stable when translating; do not author localized positional
+ * arrays of answers.
+ */
 export const defineFillBlanksWithText = <
   const Slug extends string,
   const Content extends ContentShape,

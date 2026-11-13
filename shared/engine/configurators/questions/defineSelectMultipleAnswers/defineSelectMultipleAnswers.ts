@@ -73,7 +73,15 @@ export type Question_SelectMultipleAnswers_Overrides<
   };
 };
 
-/** A Question reuses ContentBlocks but never mutates their publication contexts. */
+/**
+ * Author a Question where several options may be correct simultaneously.
+ *
+ * @remarks
+ * Put all correct choices in `content.answers.correct`, false alternatives
+ * in `incorrect`, and optional extra decoys in `distractors`.
+ * At least one correct answer must remain enabled, and answer slugs must
+ * be unique across all groups.
+ */
 export const defineSelectMultipleAnswers = <
   const Slug extends string,
   const Content extends ContentShape,
