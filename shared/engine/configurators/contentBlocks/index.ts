@@ -22,6 +22,5 @@ export type { ContentBlock_Configurator, ContentBlock_Props } from './contentBlo
 export * from './contentBlock.constants';
 export {
   localizationSwitch as contentBlockLocalizationSwitch,
-  contentBlockConfigurator_Schema,
   contentBlockResolved_Schema,
 } from './contentBlock.schemas';
