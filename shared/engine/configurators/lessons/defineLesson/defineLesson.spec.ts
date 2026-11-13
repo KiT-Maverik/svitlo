@@ -73,6 +73,45 @@ describe('Configurators', () => {
         assert.equal(lesson_Config_Schema.safeParse(lesson.config.base).success, false);
       });
 
+      test('Unscoped children still validate each requested language before publishing Lesson Props', () => {
+        const sparseText = defineText({
+          id: id('81'),
+          slug: 'sparseText',
+          type: 'text',
+          params: {},
+          locale: { value: { uk: 'Тільки українська' } },
+        });
+        const unscopedSection = defineContentSection({
+          id: id('82'),
+          slug: 'unscoped',
+          type: 'content',
+          params: {},
+          locale: { title: 'Unscoped section', navigationLabel: '1' },
+          content: { items: { sparseText }, order: ['sparseText'] },
+        });
+        const lesson = defineLesson({
+          id: id('83'),
+          slug: 'incompleteLesson',
+          type: 'lesson',
+          skills: [],
+          params: {
+            requireQuiz: false,
+            languages: ['en', 'uk'] as const,
+            sections: { allowNavigation: true, allowSkipping: true, showIndexes: false },
+          },
+          locale: { title: 'Lesson' },
+          section: { items: { unscoped: unscopedSection }, order: ['unscoped'] },
+          flashcards: { items: {}, order: [] },
+        });
+
+        assert.doesNotThrow(() => lesson.build.props({ languages: ['uk'] }));
+        assert.throws(
+          () => lesson.build.props({ languages: ['en', 'uk'] }),
+          /Invalid.*Props/,
+          'An unscoped authoring child cannot publish a missing translation to a scoped parent',
+        );
+      });
+
       test('Lesson independently overrides Sections, nested ContentBlocks, languages and metadata', () => {
         const lesson = makeLesson();
         const updated = lesson.build.overrides(
