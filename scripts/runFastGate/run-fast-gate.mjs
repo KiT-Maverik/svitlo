@@ -212,6 +212,24 @@ function runGate(changed) {
       exec('npm', ['run', 'test:components', '--workspace', name]);
     }
   }
+  // Verify the on-demand coverage workflow itself when its implementation changes.
+  // Ordinary Engine PRs do not pay for a second instrumented test run.
+  if (
+    changed.some(
+      file =>
+        file === '.github/workflows/engine-coverage.yml' ||
+        file === 'shared/engine/tsconfig.test.json' ||
+        file.startsWith('shared/engine/scripts/coverage/'),
+    )
+  ) {
+    ensureSharedDependencies('@svitlo/engine');
+    if (!built.has('@svitlo/engine')) {
+      exec('npm', ['run', 'package:build', '--workspace', '@svitlo/engine']);
+      built.add('@svitlo/engine');
+    }
+    exec('npm', ['run', 'test:coverage', '--workspace', '@svitlo/engine']);
+  }
+
   if (
     changed.some(
       f =>

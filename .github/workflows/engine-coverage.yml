@@ -1,0 +1,152 @@
+name: Engine coverage gaps
+
+# Diagnostic-only, on demand. Not a required gate for every PR commit.
+on:
+  issue_comment:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'Open same-repository PR number to analyze'
+        type: number
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: engine-coverage-${{ github.event.issue.number || inputs.pr_number }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: Engine coverage / analyze
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.issue.pull_request &&
+       github.event.comment.body == '/engine-coverage' &&
+       contains(fromJSON('["OWNER","MEMBER","COLLABORATOR"]'), github.event.comment.author_association))
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      pr_number: ${{ steps.pr.outputs.pr_number }}
+      head_sha: ${{ steps.pr.outputs.head_sha }}
+    steps:
+      - name: Resolve the open PR's exact commits
+        id: pr
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.issue.number || inputs.pr_number }}
+        run: |
+          set -euo pipefail
+          [[ "$PR_NUMBER" =~ ^[0-9]+$ ]] || { echo "::error::Invalid PR number"; exit 1; }
+          pr=$(gh api "repos/$GITHUB_REPOSITORY/pulls/$PR_NUMBER")
+          head_repo=$(jq -r '.head.repo.full_name' <<< "$pr")
+          state=$(jq -r '.state' <<< "$pr")
+          head_sha=$(jq -r '.head.sha' <<< "$pr")
+          base_sha=$(jq -r '.base.sha' <<< "$pr")
+          [[ "$state" == "open" ]] || { echo "::error::PR must be open"; exit 1; }
+          [[ "$head_repo" == "$GITHUB_REPOSITORY" ]] || {
+            echo "::error::Only same-repository PRs are supported by this diagnostic workflow"
+            exit 1
+          }
+          [[ "$head_sha" =~ ^[a-f0-9]{40}$ && "$base_sha" =~ ^[a-f0-9]{40}$ ]] || {
+            echo "::error::Invalid PR commit metadata"
+            exit 1
+          }
+          {
+            echo "pr_number=$PR_NUMBER"
+            echo "head_sha=$head_sha"
+            echo "base_sha=$base_sha"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Check out the immutable PR head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.head_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install pinned workspace dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Build Contracts and Engine
+        run: |
+          npm run package:build --workspace @svitlo/contracts
+          npm run package:build --workspace @svitlo/engine
+
+      - name: Validate the coverage filter and gap reporter
+        run: node --test shared/engine/scripts/coverage/report.spec.mjs
+
+      - name: Discover files changed by the PR
+        shell: bash
+        env:
+          BASE_SHA: ${{ steps.pr.outputs.base_sha }}
+          HEAD_SHA: ${{ steps.pr.outputs.head_sha }}
+        run: |
+          set -euo pipefail
+          git cat-file -e "$BASE_SHA^{commit}"
+          git cat-file -e "$HEAD_SHA^{commit}"
+          git diff --name-only -z "$BASE_SHA" "$HEAD_SHA" > "$RUNNER_TEMP/engine-coverage-changed.z"
+
+      - name: Run the Engine test suite and publish only gaps
+        env:
+          ENGINE_COVERAGE_SHA: ${{ steps.pr.outputs.head_sha }}
+          ENGINE_COVERAGE_CHANGED_FILE: ${{ runner.temp }}/engine-coverage-changed.z
+        run: npm run test:coverage --workspace @svitlo/engine
+
+      - name: Stage only the sanitized gap diagnostics
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/engine-coverage-report"
+          cp shared/engine/.coverage-engine/engine-gaps.md "$RUNNER_TEMP/engine-coverage-report/"
+          cp shared/engine/.coverage-engine/engine-gaps.json "$RUNNER_TEMP/engine-coverage-report/"
+
+      - name: Upload gap-only diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-coverage-gaps-pr-${{ steps.pr.outputs.pr_number }}
+          path: ${{ runner.temp }}/engine-coverage-report/
+          if-no-files-found: error
+          retention-days: 7
+
+  comment:
+    name: Engine coverage / report to PR
+    needs: analyze
+    if: needs.analyze.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      issues: write
+    steps:
+      - name: Download gap-only report from this run
+        uses: actions/download-artifact@v4
+        with:
+          name: engine-coverage-gaps-pr-${{ needs.analyze.outputs.pr_number }}
+          path: report
+
+      - name: Update the single coverage comment
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ needs.analyze.outputs.pr_number }}
+        run: |
+          set -euo pipefail
+          file="report/engine-gaps.md"
+          test -s "$file"
+          printf '\n[Gap-only report artifact](https://github.com/%s/actions/runs/%s) · Commit: `%s`\n' \
+            "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" "${{ needs.analyze.outputs.head_sha }}" >> "$file"
+          existing=$(gh api "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments?per_page=100" \
+            --jq '[.[] | select(.user.login == "github-actions[bot]" and (.body | startswith("<!-- svitlo-engine-coverage-gaps -->")))] | last | .id // empty')
+          if [ -n "$existing" ]; then
+            gh api --method PATCH "repos/$GITHUB_REPOSITORY/issues/comments/$existing" -F "body=@$file" >/dev/null
+          else
+            gh api --method POST "repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments" -F "body=@$file" >/dev/null
+          fi
