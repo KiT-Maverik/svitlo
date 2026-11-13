@@ -91,6 +91,28 @@ before(() => {
 });
 after(() => fs.rmSync(fixture, { recursive: true, force: true }));
 
+test('resolves repository-relative --package independently of the current working directory', () => {
+  const result = spawnSync(
+    process.execPath,
+    [generator, '--package', path.relative(root, fixture), '--locale', 'en', '--stdout'],
+    { cwd: fixture, encoding: 'utf8', maxBuffer: 32 * 1024 * 1024 },
+  );
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /^Domains: 2$/m);
+  assert.equal(fs.existsSync(output('en')), false, '--stdout must not write generated Markdown');
+});
+
+test('rejects package paths outside textbook directories, including traversal', () => {
+  for (const invalid of ['../outside', 'content/../../shared/engine', 'shared/engine', 'content']) {
+    const result = spawnSync(process.execPath, [generator, '--package', invalid, '--stdout'], {
+      cwd: fixture,
+      encoding: 'utf8',
+    });
+    assert.notEqual(result.status, 0, 'Unexpected success for ' + invalid);
+    assert.ok(result.stderr.includes('Package must be within content/'), invalid);
+  }
+});
+
 test('canonical lowercase data/skills renders grouped and direct Skill hierarchies', () => {
   for (const locale of ['en', 'uk']) {
     const a = run(locale, '--stdout'),
