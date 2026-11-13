@@ -1,90 +1,122 @@
-# Deterministic Course YAML → TypeScript composition
+# Course YAML → TypeScript draft scaffolder
 
-This is **not** an AI authoring skill and does **not** generate standalone Lessons. It validates the approved Course Methodology and skill-based Course TOC, resolves **implemented** standalone Lessons by canonical UUID, optionally applies approved Course-specific `overrides.yaml` instructions through the existing Engine sparse override builder, and writes a deterministic **typed Course composition factory**. It does not change the existing Course publisher, Lesson authoring files, Episodes, Scenes or overrides.
+This Engine-owned script mechanically converts a **partly authored Course YAML**
+into a named TypeScript Config draft. It saves repetitive AI authoring work.
+It is **not** a validator, approval check, translator, Lesson resolver,
+typechecker, runtime component, or Props generator.
 
-## Usage
+The output is a draft for an AI/editor to complete. Missing mandatory Config
+fields and missing translations are intentional and may produce TypeScript
+diagnostics **after** an editor begins completing the draft. Do not typecheck
+generated drafts as an acceptance criterion for this script.
 
-From the monorepo root after installing and building the existing Contracts/Engine workspaces:
+## Source shapes
 
-```sh
-npm run package:build --workspace @svitlo/contracts
-npm run package:build --workspace @svitlo/engine
+The script accepts either:
 
+- A direct Config-shaped course.yaml with type: course, slug,
+  params.languages, locale, and content: { items, order } when authored;
+  recursively nested Module/Chapter/Episode/Section items are converted to
+  matching define* calls.
+- The existing Studio toc.yaml editorial Course plan (kind:
+  course-toc-plan, with content arrays and children). Its courseId
+  becomes Config id, supportedLanguages becomes params.languages,
+  key becomes slug, and ordered arrays become items/order. Group titles
+  are copied **only** under locale.title[documentLanguage], except for
+  explicitly invariant titles. No group ID, scenario, Course title or
+  description is fabricated. Planning-only fields (skills, objectives, etc.)
+  stay in the original YAML for the subsequent editor to consult.
+
+All polymorphic children must provide type. Unknown or absent discriminators
+fail with a path-specific diagnostic. No schema/semantic, approval or Lesson
+existence checks run here. The current Engine authoring schemas are defined in
+shared/engine/configurators/yaml/, and Engine authoring factories are
+imported from @svitlo/engine/build.
+
+### Existing standalone Lessons
+
+A type: lesson Course child is a **reference** to a previously authored,
+reusable Lesson, identified by lessonId. It does not become defineLesson.
+When YAML supplies safe, explicit relative import coordinates:
+
+~~~yaml
+type: lesson
+lessonId: d3048d21-8690-5255-b62c-984c69ac272c
+source:
+  path: lessons/intro.data.ts
+  export: intro_Lesson
+~~~
+
+the draft includes that import. Otherwise it includes a clearly named
+UNRESOLVED_LESSON_N and a TODO recording the original UUID and location.
+The editor must resolve the actual import; no Lesson is fabricated and no
+implementation lookup is performed. Such unfinished drafts may not typecheck.
+
+### Optional Course-owned overrides
+
+If the Course directory contains overrides.yaml, its YAML data is preserved
+unaltered in the exported <slug>_OverrideEditorial constant, including
+slotKey, lessonId, ordered operations, and Course-owned source references.
+This is an **explicit handoff**, not an executable patch.
+
+The old Studio operation language (section-set, block-order, etc.) cannot
+safely be translated one-to-one into the current stateless Engine
+course.build.overrides({ content: { items: ... } }, { languages }) API.
+An editor/coordinator must define and approve that mapping before creating
+typed sparse patches. The builder must not resurrect createLessonOverrides
+or edit any standalone Lesson.
+
+## Run
+
+From the repository root (with npm workspace dependencies installed):
+
+~~~sh
 node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --package content/<textbook> \
   --course <course-uuid> \
+  --slug <courseSlug> \
   --write
 
 node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --package content/<textbook> \
   --course <course-uuid> \
+  --slug <courseSlug> \
   --check
 
 node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
-```
+~~~
 
-The builder looks for existing approved input only at:
+--slug is optional when the YAML has its own safe slug. For old TOC input
+without an authored slug, supplying --slug names the output and explicitly
+provides the draft Config slug. Otherwise an ID-derived **filename only** is
+used and the required Config slug stays unfilled. An optional
+--source course.yaml|toc.yaml selects the source; by default course.yaml
+wins if present, otherwise toc.yaml.
 
-```text
-content/<book>/data/courses/<last-hex-digit>/<courseId>/
-  methodology.md
-  toc.yaml
-```
+The input directory is fixed at:
 
-The canonical JSON Schema is **read from Studio**, not reimplemented. Duplicate keys are rejected; order is inherited exclusively from the YAML arrays. All Lesson slots require a matched UUID. For each unique UUID the builder looks in the textbook's canonical Lesson UUID bucket, requires exactly one implemented \`*.data.ts\`, loads real Lesson data through \`@svitlo/engine/utils\` and checks identity and implemented languages. Editorial-only \`methodology.md\` or \`lesson.identity.json\` is not an implemented Lesson. Missing implementations fail with their expected path.
+~~~text
+content/<book>/data/courses/<last-uuid-hex-digit>/<course-uuid>/
+  course.yaml or toc.yaml
+  overrides.yaml  # optional
+~~~
 
-The generated file is:
+The output is <courseSlug>.data.ts in the same directory, exporting
+<courseSlug>_Course = defineCourse(...) (non-identifier characters in export
+names become underscores).
 
-```text
-content/<book>/data/courses/<bucket>/<courseId>/toc.generated.ts
-```
+**Safe writes:** --check never writes. --write creates a new file or does
+nothing if byte-identical. It refuses to overwrite *any* divergent existing
+file, even one originally scaffolded: a human/AI editor may have changed it.
+No input YAML, Lesson authoring, Episode Scene, Props generator, or runtime
+source is changed.
 
-It exports:
+## Work that remains outside this script
 
-- \`courseLanguages\` and its literal tuple type;
-- \`courseGroupTitleSources\`, with **only** the TOC's \`documentLanguage\` for ordinary group titles;
-- \`courseLessonSlotTitleSources\` for editorial traceability, **not** as automatic Lesson title overrides;
-- \`CourseLocalizedGroupTitles\`, a **complete** dictionary type required by the factory (intentional invariant group titles remain scalar);
-- \`createCourseData(metadata, titles)\`, which composes the existing \`createModule\`, \`createChapter\`, \`createCourse\` and **imported, unmodified** Lesson Data.
-
-The caller must supply separately approved Course-level frontend \`title\` and \`description\` as \`CourseFrontendMetadata\` and complete translations for ordinary grouping titles. For example, the caller's existing, authored flat \`data/courses/<name>.data.ts\` may use:
-
-```ts
-import { createCourseData } from './<bucket>/<uuid>/toc.generated';
-
-export const exampleCourse_Data = createCourseData(
-  {
-    title: { id: 'course-title', slug: 'courseTitle', type: 'text', value: { uk: '...', en: '...' } },
-    description: {
-      id: 'course-description',
-      slug: 'courseDescription',
-      type: 'markdown',
-      locales: { uk: '...', en: '...' },
-    },
-  },
-  {
-    'module/foundations': { uk: '...', en: '...' },
-  },
-);
-```
-
-The example values above are schematic and **must not** be used as placeholders in actual Course authoring. Ordinary titles are not promoted to language-independent strings simply because translations are unfinished. The generated source-only dictionaries do not satisfy the full localized type for a multi-language Course and cannot be passed directly to the factory until translations are approved. The builder does not assert publication readiness merely because a TS factory was generated.
-
-## Integration boundary and known blockers
-
-The existing Course publisher discovers **flat** \`data/courses/*.data.ts\` exports and produces \`data/pages/courses/<courseId>/toc/{base,<locale>}.json\`, Episodes and sparse Overrides. A generated \`toc.generated.ts\` is not discovered automatically: a typed Course Data entrypoint with approved Course metadata/translations is required before publication. This is deliberate; the current **Methodology and TOC have no approved frontend Course description or complete translated titles**. Fabricating those fields, an incomplete Course Data export, or null-filled \`Locale_Options\` would break content ownership or type safety.
-
-Further gaps to close in subsequent reviewed work:
-
-1. **Course frontend copy/translation ownership:** determine the canonical approved input for Course title, description, optional prerequisites text and translated Module/Chapter labels. Only then can a builder safely emit a complete \`*.data.ts\` entrypoint automatically.
-2. **Course-owned Episodes and Scenario Sections:** no approved self-contained editorial schema produces their authored content yet. For Course-specific Lesson changes, the approved [`overrides.yaml` contract](../../studio/skills/course-workflow/course-overrides.md) now defines slug-keyed changes and references to already-approved Course-owned TypeScript Sections, blocks and patches. The builder emits actual `createLessonOverrides` calls; it never invents an Episode, Section, Scene or translation.
-3. **Subset language typing:** \`Course<'data', L>\` currently requires imported \`Lesson<'data', L>\` with the _identical ordered tuple_. The builder checks the required Course locale subset first, then emits \`TYPED_LANGUAGE_SUPERSET\` for a Lesson with extra supported languages, rather than forcing \`any\`/casts or copying the Lesson. The Course contract needs a type-safe superset adaptation, independently approved.
-4. **Repeated Lesson routes/overrides:** the publisher can now reuse one Lesson UUID in several TOC positions, but all placements address the same Lesson URL. Two different per-slot overrides targeting one UUID are rejected because the current publisher keys overrides by Lesson UUID, not slot key.
-5. **Runtime Lesson titles:** existing \`createCourse\` derives Lesson TOC titles from canonical Lesson Data. TOC slot titles are editorial intent, not automatically approved sparse title overrides. The builder exposes them for review without changing Lesson UI or content.
-6. **Group UUIDs:** Module/Chapter IDs are stable UUIDv5 values scoped by Course ID, node type and immutable editorial key. Renaming a key changes that group's identity: key changes require explicit migration/approval.
-
-### Determinism and ownership
-
-The builder processes input arrays without sorting, reuses each standalone Lesson import by UUID, applies approved override operations in their explicit YAML order, deterministically derives group IDs, and emits byte-stable UTF-8 output. \`--check\` is read-only and fails on drift. \`--write\` rewrites **only** its marker-identified generated file and does nothing on unchanged output. No existing Lesson, Course publisher, Episode Scene, editor YAML or manually authored Course \`*.data.ts\` is changed by the generator.
-
-For full validation, run the builder tests, the relevant textbook TypeScript typecheck after creating a real Course Data entrypoint, and the existing textbook publish/integration tests. The implementation is intentionally a separable production step from the Lesson YAML builder.
+The following requires deliberate editorial/coordination work, not generator
+heuristics: completing Course/Module/Chapter identity fields; resolving
+existing Lesson imports; translating Course/group/episode copy; authoring
+Episode and Section content; converting the old operations-only
+overrides.yaml into Engine's sparse patch model; validating Config types and
+publishing Course Props. Coordinate source-format changes with the Studio/schema
+workstream; do not silently alter the Engine schemas to accommodate a draft.
