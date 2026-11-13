@@ -15,46 +15,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
+import { loadFactoryRegistry } from '../yamlDraft/loadFactoryRegistry.mjs';
 
 const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const PACKAGE = /^content\/[a-z][a-z0-9-]*$/;
 const IDENTIFIER = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
 const marker = '// SCAFFOLDED BY shared/engine/scripts/courseBuilder/courseBuilder.mjs; AI DRAFT.\n';
-const factories = Object.freeze({
-  course: 'defineCourse',
-  module: 'defineModule',
-  chapter: 'defineChapter',
-  episode: 'defineEpisode',
-  content: 'defineContentSection',
-  practice: 'definePracticeSection',
-  codingTask: 'defineCodingTaskSection',
-  learningFlow: 'defineLearningFlowSection',
-  flashcards: 'defineFlashcardsSection',
-  quiz: 'defineQuizSection',
-  text: 'defineText',
-  markdown: 'defineMarkdown',
-  image: 'defineImage',
-  video: 'defineVideo',
-  youtube: 'defineYoutube',
-  audio: 'defineAudio',
-  code: 'defineCode',
-  carousel: 'defineCarousel',
-  carouselSlide: 'defineCarouselSlide',
-  scene: 'defineScene',
-  checkpoint: 'defineCheckpoint',
-  checkpointItem: 'defineCheckpointItem',
-  selectOneAnswer: 'defineSelectOneAnswer',
-  selectMultipleAnswers: 'defineSelectMultipleAnswers',
-  matchBlocks: 'defineMatchBlocks',
-  answerWithText: 'defineAnswerWithText',
-  answerWithNumber: 'defineAnswerWithNumber',
-  orderSequence: 'defineOrderSequence',
-  buildAnswerWithBlocks: 'defineBuildAnswerWithBlocks',
-  fillBlanksWithBlocks: 'defineFillBlanksWithBlocks',
-  fillBlanksWithText: 'defineFillBlanksWithText',
-  flashcard: 'defineFlashcard',
-});
+const factories = loadFactoryRegistry();
 
 function fail(code, description) {
   throw new Error('Course Scaffolder [' + code + ']: ' + description);
@@ -198,8 +166,9 @@ const typedCollections = {
   learningFlow: ['content'],
   flashcards: ['content'],
   quiz: ['content'],
-  carousel: ['content'],
+  carousel: ['slides'],
   checkpoint: ['content'],
+  checkpointItem: ['answer'],
   flashcard: ['content'],
 };
 
@@ -231,7 +200,9 @@ function renderConfigFields(node, state, indent, location) {
   return '{\n' + fields.map(([key, value]) => {
     const collection = (typedCollections[node.type] ?? []).includes(key);
     let expression;
-    if (collection && record(value) && record(value.items)) {
+    if (node.type === 'checkpointItem' && key === 'question') {
+      expression = renderEntity(value, state, indent + 1, location + '.question');
+    } else if (collection && record(value) && record(value.items)) {
       const properties = Object.entries(value).map(([field, child]) => {
         const rendered = field === 'items'
           ? renderValue(child, state, indent + 2, location + '.' + key + '.items', true)
