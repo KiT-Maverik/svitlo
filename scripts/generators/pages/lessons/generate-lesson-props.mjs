@@ -96,6 +96,9 @@ async function render(packageDirectory) {
     }
     entries.push({ source: path.relative(repoRoot, source), publication });
   }
+  if (entries.length === 0) {
+    throw new Error('No authored Lesson configurators found; refusing to replace generated output');
+  }
   return renderLessonPropsFiles(entries);
 }
 
