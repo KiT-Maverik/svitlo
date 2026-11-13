@@ -17,7 +17,7 @@ test('Course and Lessons publish Engine Props files, not legacy TOC and override
   expect(course.content.order).toEqual(['lightLaboratory']);
   const courseModule = course.content.items.lightLaboratory;
   expect(courseModule.type).toBe('module');
-  expect(module.content.order).toEqual(['lightFoundations', 'lightExploration']);
+  expect(courseModule.content.order).toEqual(['lightFoundations', 'lightExploration']);
   const chapter = courseModule.content.items.lightFoundations;
   expect(chapter.type).toBe('chapter');
   expect(chapter.content.items.lightDiscovery).toEqual({ type: 'lesson', id: discoveryId });
