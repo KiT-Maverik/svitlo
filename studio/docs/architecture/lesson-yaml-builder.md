@@ -1,108 +1,48 @@
-# Deterministic Lesson YAML → TypeScript Builder
+# Deterministic Lesson YAML → TypeScript draft scaffolder
 
-This is Node.js build-time tooling, **not an AI Skill**. Implementation:
-[shared/engine/scripts/lessonBuilder/lessonBuilder.mjs](../../../shared/engine/scripts/lessonBuilder/lessonBuilder.mjs). Sources and
-contracts: the three schemas in [Lesson Workflow](../../skills/lesson-workflow/README.md),
-Engine creators, and the canonical content types.
+**Purpose:** Reduce repetitive authoring of `define*` TypeScript Config trees. This is build-time code scaffolding, **not** a Studio approval Skill, a completed Lesson generator, a YAML validator or a publisher.
 
-## Production stage and approval gate
+The canonical authored YAML structure is defined by Engine's [composed Zod schemas](../../../shared/engine/configurators/yaml/) and the [generated editor JSON Schemas](../../../shared/engine/scripts/generateYamlSchemas/README.md). See the [Studio editorial-to-Config handoff](./yaml-config-scaffolding.md) for a concrete, nested Lesson sample and the source-language-only rule. Engine `yamlFactoryByType` resolves each explicit node `type` to its `define*` factory; **no** type can be inferred from an editorial plan's array position or block `key`.
 
-Run after the fixed-scope Lesson Production Issue confirms approved methodology,
-approved screenwriter content and both current independent reviews with editorial
-sign-off, and the approved Question Bank with curated Quiz assignments.
-The Builder validates the YAML approval status and schemas, but **cannot
-independently verify external GitHub approvals**. The coordinator must verify
-approval links/revisions before invoking it.
+## Inputs and distinct ownership
 
-The source directory is the canonical
-content/<textbook>/data/lessons/<last-uuid-character>/<uuid>, containing
-methodology.md (or the legacy methodologist-brief.md), content.yaml,
-questions/questions.yaml, optional approved flashcards/flashcards.yaml, and
-optionally scenes/*.scene-spec.md.
+Specialists own separate, independently reviewed editorial sources beneath the immutable Lesson UUID directory:
 
-## Commands
+- `methodology.md` (or existing legacy `methodologist-brief.md`): Methodologist scope, Skill links, audience, language plan and `assessmentPlan`.
+- `content.yaml`: Screenwriter's ordered learner experience and optional `scenes/*.scene-spec.md`.
+- `questions/questions.yaml`: Assessment Architect's complete Question bank and curated Quiz selections.
+- `flashcards/flashcards.yaml`: optional, separately approved recall bank, downstream of the approved Questions.
 
-    npm ci
-    npm run content:generate:lessons
-    npm run content:check:lessons
-    npm run test:unit:lesson-builder
+These files have their **own editorial schemas** and are **not** direct `defineLesson` Config YAML. An authorized technical handoff projects their relevant, independently reviewed data into **Config-shaped YAML** with permanent IDs, camelCase slugs, `type` at each polymorphic level, nested `{items,order}` collections, type-specific Question content, and explicitly resolved Question references. In particular, approved Quiz selections must be deliberately transferred into their Quiz Section `params.selection`; the scaffolder does not discover or approve that selection. Unresolved authoring and identity decisions remain explicit handoff blockers.
 
-Or run only one authorized Lesson:
+The generated JSON Schemas are derived from **current Engine** Zod Config compositions; they must not be independently recreated in Studio or invoked as runtime validation by the scaffolder.
 
-    node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<textbook>/data/lessons/<bucket>/<uuid>
-    node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source content/<textbook>/data/lessons/<bucket>/<uuid>
+## Output and non-goals
 
-Without a source argument, the root command discovers YAML Lessons across all
-textbook workspaces. Generation requires approved and valid inputs; check is read-only.
+The Lesson scaffolder's output is **draft TypeScript source** calling the current build-time `defineLesson`, `define*` Section/ContentBlock/Question/Flashcard factories, where the Config-shaped input supports them. It may contain deliberately incomplete fields or only the editorial source locale; later Coding Agent completion remains necessary. Generated TS is **not promised to typecheck**, nor does it attest that a Lesson is pedagogically correct, reviewed, complete, localized or publishable. Actual supported CLI flags, input paths and output file naming must be read from the **current `shared/engine/scripts/lessonBuilder/` implementation and tests**, not inferred from the historical generator commands formerly listed in this document.
 
-## Build-time integration and ownership
+The draft scaffolder must **not**:
 
-The script writes **only** a root Lesson entrypoint
-<lessonSlug>.data.ts and the generated/ directory under the Lesson UUID.
-The root entrypoint re-exports the generated lessonData object. Existing
-renderTextbookLessonFiles discovers that root file without any new runtime
-imports or a second publisher.
+- Check YAML with AJV or Zod, run whole-repository TypeScript validation, enforce editorial approvals, inspect Issue/PR sign-offs, or manufacture missing material.
+- Convert `content.yaml`, `questions/questions.yaml` or `flashcards/flashcards.yaml` directly as if the editorial schemas were Config schemas without the explicit handoff.
+- Fill missing languages, fake accessibility/media resources, silently invent Quiz parameters or change stable Lesson identity.
+- Generate publishable Props, invoke `generateLessonProps`, write localized published JSON, or run the Course Props pipeline. These are separate Engine tools and later stages.
 
-Generated outputs:
+**Editor schema generation is a different command** (run against a built Engine workspace):
 
-- generated/lesson.data.ts — typed Engine creator calls, full Question Catalog,
-  and (when approved YAML exists) typed Flashcards via Engine linkFlashcards.
-- generated/requirements.json — machine-readable resource/contract/localization handoff.
-- generated/requirements.md — corresponding human-readable handoff.
-- generated/manifest.json — SHA-256 input and output fingerprints, generator
-  version, Lesson ID and check categories.
-  When a source cannot be mapped, the Builder fails before writing any output,
-  with a file/field diagnostic; incomplete sources cannot appear generated.
+```sh
+npm run package:build --workspace @svitlo/engine
+npm run content:generate:yaml-schemas --workspace @svitlo/engine
+npm run content:check:yaml-schemas --workspace @svitlo/engine
+node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
+```
 
-The script uses stable UUIDv5 identities from the Lesson UUID and editorial
-keys/paths. It skips unchanged files and refuses to overwrite manual edits,
-unowned files, symlinks or competing root authored Lesson entrypoints. Changing
-a Lesson slug needs an explicit migration. No timestamps or network lookups.
+The checked-in `shared/engine/yaml-schemas/` files are editor references. The write command must be run whenever the underlying Engine Config schemas change; the check command detects stale outputs.
 
-## Content and localization semantics
+## Locales and later completion
 
-- Lesson.questions retains **every Question**, including unselected questions.
-- Each Quiz Section receives its approved explicit
-  quizAssignments[].selection.questionSlugs. Never omit questionSlugs to
-  include the entire bank implicitly. Zero Quiz and multiple Quiz are valid.
-- In the absence of UI configuration in editorial YAML, technical Quiz defaults
-  are stepper, after-completion feedback, zero retries, and after-review score;
-  real production can require separately approved refinements.
-- supportedLanguages is preserved exactly; learner-facing dictionaries
-  contain only documentLanguage. No copies, translations, fake fallbacks,
-  weakened types, or suppression of target-locale TypeScript errors.
-- Implement Scene owns React Scenes, Scene locale strings and the registry;
-  this tool only emits typed Scene references and precise requirements.
-- Media files must have safe local paths. Missing assets become requirements,
-  not fabricated files, external downloads or fake URLs.
+`documentLanguage` is an editorial provenance field and may be `uk`, `en`, or another approved source language. It is **not** an extra field inside the Engine Lesson Config; the projection places learner text in e.g. `locale.title.uk`, `locale.value.uk` and retains the intended `params.languages` (which may contain more locales). Other locales remain absent until actual translations exist. A genuinely invariant string is different from a missing translation.
 
-## Explicit blockers and deferred integrations
+**Editorial review/approval stays with Studio** and must be source-revision-specific; a valid-looking draft or successful scaffolder command never closes any review gate. After the scaffolder, a Coding Agent resolves missing Config inputs, tests, Scenes, accessibility, assets and typed references. Translation, ordinary package typechecking, real `generateLessonProps` generation and publication are subsequent, separately verified tasks. No stage automatically approves or publishes a Lesson.
 
-1. Flashcards: the canonical approved Flashcards schema now exists. Optional
-   flashcards/flashcards.yaml is validated with the same source-language and
-   UUID invariants, and compiled to typed front/back/hint ContentBlocks, built-in
-   and custom flags, actual Question field references, and canonical relationships
-   mirrored by Engine linkFlashcards. If the approved YAML is absent, the Lesson
-   uses an empty Flashcard bank with an explicit editorial requirement. If a
-   Flashcard depends on an unsupported proposed block or missing essential
-   image information, generation stops with a structured blocked handoff.
-   Mnemonic composition and typed references are validated; educational
-   soundness and acronym translation still require review.
-2. Checkpoint ContentBlocks: editorial contentSpec has no canonical typed
-   mapping for required title/items. The Builder refuses unsupported conversion.
-3. Question image blocks: editorial YAML lacks the required canonical image
-   layout and accessible alt. The Builder requires a contract decision.
-4. The repo currently contains no approved Lesson content.yaml +
-   questions/questions.yaml pair. Playground howLightMoves remains a read-only
-   contract integration reference; do not claim an end-to-end YAML migration.
-5. Source-only Lesson data can intentionally fail TypeScript/publishing due to
-   missing target-locale values. **Unrelated TypeScript errors are engineering
-   failures and must be fixed.** Existing publisher requires complete locale
-   dictionaries before publication; never circumvent it.
-
-For each authorized Lesson Production Issue stage, record the approved YAML
-revisions, generated file paths, manifest input SHA-256 checks, check/generation
-results, unresolved requirements with owners, exact missing-translation diagnostics
-separately from generated-code/API errors, and next Scene/Media/Translation stages.
-Neither the Builder nor its technical PR grants editorial approval or
-auto-publishes/merges/closes a Lesson.
+The legacy Builder design described YAML approval checks, automatic Question-bank assembly, complete generated outputs and manifest publication as if those features were guaranteed. They are **not** the contract for the new Issue #507 draft-scaffolding path. Any such behavior in existing legacy scripts must be established from their actual current implementation and is outside this scaffolder's acceptance criteria.

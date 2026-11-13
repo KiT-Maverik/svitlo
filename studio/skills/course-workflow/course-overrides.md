@@ -12,7 +12,7 @@ The input is an ordered sequence of explicitly typed operations applied to one C
 - \`blocks/<name>.ts\`: an approved \`ContentBlock<'data', ...>\` source, usually produced with \`createContentBlock(...).getData()\`;
 - \`patches/<name>.ts\`: an approved, typed sparse replacement, title, Section metadata or event patch. Its exported type must satisfy the existing creator API.
 
-The YAML builder checks source files and exported symbols. TypeScript and Engine creators validate the shapes and the existing original slug/ID invariants. New Course-owned material must have a distinct canonical content-producing workflow. No arbitrary inline TS/JS, fabricated strings, unknown Lesson-owned Question changes, or unreviewed translation fallback is permitted.
+The legacy editorial override operation format must be reviewed against real source files and typed integrations; the generic Course YAML → TypeScript Config scaffolder does **not** check imported source files, apply sparse override operations or guarantee slug/ID invariants. New Course-owned material must have a distinct canonical content-producing workflow. No arbitrary inline TS/JS, fabricated strings, unknown Lesson-owned Question changes, or unreviewed translation fallback is permitted.
 
 ## Multi-author workflow and configuration review
 
@@ -24,7 +24,7 @@ The Course-owned `overrides.yaml` is **one shared approved input**, not separate
 
 The editor/content owner resolves contradictory operations; **do not silently overwrite** another specialist's approved modifications. Record operation-level author, rationale, affected slot and revision in review reports or PR discussion, **not as unsupported extra keys in the current YAML schema**. An edit to previously approved `overrides.yaml` reopens its approval gate: set it to `status: draft`, obtain approval for the new revision, and recheck the affected methodological/scenario reviews. When no changes are needed, omit the optional file instead of creating empty or decorative overrides.
 
-These are **editorial review requirements**. The current deterministic Builder checks `status: approved` plus its schema/source validation; it does not automatically inspect `scenario-review.md` or `methodology-review.md`.
+These are **editorial review requirements** enforced outside the TypeScript **draft** scaffolder. It does **not** check `status: approved`, this editorial schema, imported source files or review files such as `scenario-review.md` and `methodology-review.md`. A Config-shaped Course YAML tree is different from this separate Course-owned override document.
 
 ## Example (schematic UUIDs, never a production-ready editorial artifact)
 
@@ -94,6 +94,6 @@ The \`operations\` array is ordered. A \`remove\` should precede an affected \`s
 
 The existing publisher writes Course-local sparse overrides under \`overrides/<lessonId>/\` and cannot distinguish different slots sharing a Lesson UUID. Therefore an override on a Lesson referenced twice is an explicit \`OVERRIDE_REUSED_LESSON\` blocker pending a separate route/identity change. **Reusing an unmodified Lesson any number of times remains valid.**
 
-A standalone Lesson may support extra languages: **Course languages ⊆ Lesson languages**. This must hold for each referenced Lesson (including an override's original Lesson); a missing Course locale is a blocker. A Course-owned addition should localize its own user-facing content for Course languages, without altering the standalone Lesson language declaration. TypeScript rejects incomplete \`Locale_Options\`; the builder does not duplicate source-locale content to other locales.
+A standalone Lesson may support extra languages: **Course languages ⊆ Lesson languages**. This must hold for each referenced Lesson (including an override's original Lesson); a missing Course locale is a blocker. A Course-owned addition should localize its own user-facing content for Course languages, without altering the standalone Lesson language declaration. TypeScript rejects incomplete \`Locale_Options\`; neither the draft scaffolder nor the editorial projection may duplicate source-locale content to other locales.
 
-The Course publisher remains responsible for writing \`getBase()\`, \`getLocale()\` and \`getContentEntries()\` projections. The builder writes only the generated typed composition factory and never rewrites \`data/lessons\`, \`Scenes\`, published resources or manually authored \`*.data.ts\` sources.
+The separate Course Props/publication pipeline owns resource output. The generic Course Config draft scaffolder emits source scaffolding, **not** standalone Lesson assets, Scene registries or published JSON. See [editorial-to-Engine Config handoff](../../docs/architecture/yaml-config-scaffolding.md).

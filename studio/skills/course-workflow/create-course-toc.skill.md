@@ -85,7 +85,7 @@ title:
   invariant: true
 ```
 
-Use this only for identical-in-all-locales values, never to bypass translations. In current Course contracts `Locale_Options<SupportedLanguages>` is a union of a **complete** locale dictionary and an **intentional invariant string**. A future converter must place source text into `documentLanguage`, require real translations for remaining supported locales before publication, and turn `invariant: true` into the scalar invariant alternative. Do not replicate one translation across languages as a fallback.
+Use this only for identical-in-all-locales values, never to bypass translations. In current Course contracts `Locale_Options<SupportedLanguages>` is a union of a **complete** locale dictionary and an **intentional invariant string**. A separately reviewed technical projection to Engine Config places source text under `locale.<field>.<documentLanguage>` and preserves `params.languages` without fabricating any other locale. Genuine invariant titles use the Config's supported scalar alternative. The generic TypeScript draft scaffolder does **not** create translations or enforce publication readiness. Do not replicate one translation across languages as a fallback.
 
 The Course's SupportedLanguages generic propagates to nested Modules, Chapters, Episodes, Sections and Course-owned ContentBlocks. Attached standalone Lessons are referenced by ID: their actual `parameters.languages` must cover **all** Course supported languages and may include more. Do not redundantly repeat language arrays on each Chapter or Lesson slot.
 
@@ -135,6 +135,10 @@ Missing required Skills must be recorded in `openIssues`, with a suggested locat
 - Coverage and pedagogical order are audited globally, including multi-skill lessons, repeated skills, missing preparatory competencies and varying depth.
 - `openIssues` clearly distinguishes missing taxonomy competencies and actual blockers from completed work; `status: approved` is only an explicit editor decision.
 - Deliver a concise summary: scope, skill/slot counts, sequence rationale, gaps and pending approvals. **Do not** automatically run Lesson matching, scenario creation or code generation.
+
+## Engine Config-shaped handoff (after Lesson matching)
+
+This `toc.yaml` is an **editorial plan**; its arrays, `key`, `objective`, `skills`, `lessonSelectionNote`, `status` and `openIssues` are not an Engine `defineCourse` Config tree. After matching and required approvals, a separate technical editor projects resolved Course/Module/Chapter nodes into nested `content: { items, order }` maps with stable UUID/camelCase slugs and required `type` on every node. Course-owned Episodes similarly include typed `section.items/order`. Each selected `type: lesson` child becomes a **reference to an implemented standalone Lesson** with `lessonId`, not an embedded Lesson Config or a newly reserved editorial-only ID. Verify actual Lesson source imports and Course locale coverage. Leave `overrides.yaml` separate. See [the example and mapping](../../docs/architecture/yaml-config-scaffolding.md#partial-course-config-shaped-yaml-example) and [generated Engine editor schemas](../../../shared/engine/scripts/generateYamlSchemas/README.md). The YAML → TS scaffolder emits an **incomplete draft** and neither validates editorial approvals nor publishes Course Props.
 
 ## Downstream configuration review
 
