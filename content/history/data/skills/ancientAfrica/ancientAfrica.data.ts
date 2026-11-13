@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { ancientEgypt_SkillGroup_Data } from './ancientEgypt/ancientEgypt.data';
 import { hornOfAfrica_SkillGroup_Data } from './hornOfAfrica/hornOfAfrica.data';

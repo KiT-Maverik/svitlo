@@ -1,4 +1,4 @@
-import { defineAssessmentMethod } from '@svitlo/engine';
+import { defineAssessmentMethod } from '@svitlo/engine/runtime';
 
 export const patternGeneralization = defineAssessmentMethod({
   id: 'd26486ad-f49b-4f7c-b10b-7e9e87d62621',

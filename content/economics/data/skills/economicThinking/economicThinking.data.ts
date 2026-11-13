@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { exchangeAndInstitutions_SkillGroup_Data } from './exchangeAndInstitutions/exchangeAndInstitutions.data';
 import { incentivesAndDecisions_SkillGroup_Data } from './incentivesAndDecisions/incentivesAndDecisions.data';

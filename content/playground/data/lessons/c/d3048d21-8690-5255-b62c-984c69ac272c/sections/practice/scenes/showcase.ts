@@ -1,4 +1,4 @@
-import { defineScene } from '@svitlo/engine';
+import { defineScene } from '@svitlo/engine/build';
 
 const en = {
   header: {

@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const personalityAssessment_Skill_Data = defineSkill({
   slug: 'personalityAssessment',

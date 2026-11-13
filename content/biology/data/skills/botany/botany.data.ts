@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { nutritionAndGrowth_SkillGroup_Data } from './nutritionAndGrowth/nutritionAndGrowth.data';
 import { plantAdaptations_SkillGroup_Data } from './plantAdaptations/plantAdaptations.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { robotControl_SkillGroup_Data } from './robotControl/robotControl.data';
 import { roboticSystemComponents_SkillGroup_Data } from './roboticSystemComponents/roboticSystemComponents.data';

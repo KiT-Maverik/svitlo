@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { digitalImages_SkillGroup_Data } from './digitalImages/digitalImages.data';
 import { digitalThreeDimensionalArt_SkillGroup_Data } from './digitalThreeDimensionalArt/digitalThreeDimensionalArt.data';

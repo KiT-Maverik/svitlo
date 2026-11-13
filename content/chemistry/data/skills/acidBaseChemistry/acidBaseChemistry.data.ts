@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { acidBaseFundamentals_SkillGroup_Data } from './acidBaseFundamentals/acidBaseFundamentals.data';
 import { acidBaseSystems_SkillGroup_Data } from './acidBaseSystems/acidBaseSystems.data';

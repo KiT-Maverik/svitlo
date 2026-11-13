@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { resolveEntityPath, assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine';
+import { resolveEntityPath, assembleLessonResponse, mergeLessonResources, type LessonResponse } from '@svitlo/engine/runtime';
 import type { LanguageCode } from '@svitlo/contracts/localization';
 
 /**

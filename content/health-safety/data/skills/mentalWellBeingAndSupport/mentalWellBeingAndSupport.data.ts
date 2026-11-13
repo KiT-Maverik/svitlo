@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { everydayCopingAndAssistance_SkillGroup_Data } from './everydayCopingAndAssistance/everydayCopingAndAssistance.data';
 import { mentalHealthCrises_SkillGroup_Data } from './mentalHealthCrises/mentalHealthCrises.data';

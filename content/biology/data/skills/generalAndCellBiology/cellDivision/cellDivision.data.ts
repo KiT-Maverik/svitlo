@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { explainMeiosis_Skill_Data, explainMitosis_Skill_Data } from './skills';
 

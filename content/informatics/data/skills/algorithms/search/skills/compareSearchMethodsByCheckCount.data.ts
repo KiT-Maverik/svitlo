@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const compareSearchMethodsByCheckCount_Skill_Data = defineSkill({
   slug: 'compareSearchMethodsByCheckCount',

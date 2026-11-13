@@ -7,7 +7,7 @@ import {
   SceneLocaleProvider,
 } from '@svitlo/ui-kit';
 import { type Locale } from '@svitlo/contracts/localization';
-import { getLocaleDirection, type LessonResponse } from '@svitlo/engine';
+import { getLocaleDirection, type LessonResponse } from '@svitlo/engine/runtime';
 import { resolveScene } from '@svitlo/playground/scenes';
 import { loadPublishedLesson, loadPublishedUiKitMessages } from '@svitlo/adapter-electron';
 import { changeLessonLocale, changeContentLocale, initialLessonRoute, lessonHref, type LessonRoute } from './routing';

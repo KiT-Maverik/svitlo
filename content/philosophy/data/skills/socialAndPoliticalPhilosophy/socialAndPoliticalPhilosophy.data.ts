@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { justiceAndEquality_SkillGroup_Data } from './justiceAndEquality/justiceAndEquality.data';
 import { philosophyOfLaw_SkillGroup_Data } from './philosophyOfLaw/philosophyOfLaw.data';

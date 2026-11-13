@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { classifyObjectsAsLivingDeadOrNeverAlive_Skill_Data } from './skills';
 

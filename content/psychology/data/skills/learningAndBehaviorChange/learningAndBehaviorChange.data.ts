@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { operantLearning_SkillGroup_Data } from './operantLearning/operantLearning.data';
 import { respondentConditioning_SkillGroup_Data } from './respondentConditioning/respondentConditioning.data';

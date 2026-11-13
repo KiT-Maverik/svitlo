@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { astronomicalSpectra_SkillGroup_Data } from './astronomicalSpectra/astronomicalSpectra.data';
 import { distancesAndPhysicalProperties_SkillGroup_Data } from './distancesAndPhysicalProperties/distancesAndPhysicalProperties.data';

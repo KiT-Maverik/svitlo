@@ -1,4 +1,4 @@
-import { defineAssessmentMethod } from '@svitlo/engine';
+import { defineAssessmentMethod } from '@svitlo/engine/runtime';
 
 export const retrieval = defineAssessmentMethod({
   id: 'db75ef83-f99d-4a93-940c-9402abc908d5',

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { argumentativeFallacies_SkillGroup_Data } from './argumentativeFallacies/argumentativeFallacies.data';
 import { argumentsAndInference_SkillGroup_Data } from './argumentsAndInference/argumentsAndInference.data';

@@ -1,4 +1,4 @@
-import { defineAssessmentMethod } from '@svitlo/engine';
+import { defineAssessmentMethod } from '@svitlo/engine/runtime';
 
 export const relationshipMapping = defineAssessmentMethod({
   id: '773e207f-3a99-40be-94c4-34401fff6442',

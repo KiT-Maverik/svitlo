@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { distributionChannels_Skill_Data, distributionCosts_Skill_Data, wholesaleTrade_Skill_Data } from './skills';
 

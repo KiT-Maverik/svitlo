@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { directAndIndirectTaxes_Skill_Data, taxIncidence_Skill_Data, taxProgressivity_Skill_Data } from './skills';
 

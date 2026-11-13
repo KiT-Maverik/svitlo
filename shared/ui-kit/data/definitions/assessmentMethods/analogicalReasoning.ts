@@ -1,4 +1,4 @@
-import { defineAssessmentMethod } from '@svitlo/engine';
+import { defineAssessmentMethod } from '@svitlo/engine/runtime';
 
 export const analogicalReasoning = defineAssessmentMethod({
   id: '91734986-923d-4072-9f82-72bc3c099538',

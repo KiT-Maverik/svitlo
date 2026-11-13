@@ -14,7 +14,7 @@ import Module from 'node:module';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { renderLessonMarkdown, sourceIndex, supportedLanguages } from './lib/lesson-markdown.mjs';
-import { resolveEntityPath } from '@svitlo/engine';
+import { resolveEntityPath } from '@svitlo/engine/build';
 
 const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const usage =

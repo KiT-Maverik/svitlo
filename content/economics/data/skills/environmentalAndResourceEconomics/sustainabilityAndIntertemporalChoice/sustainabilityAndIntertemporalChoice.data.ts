@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { discountingFutureConsequences_Skill_Data, intergenerationalEconomicImpacts_Skill_Data } from './skills';
 

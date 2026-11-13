@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { objectFamilies_SkillGroup_Data } from './objectFamilies/objectFamilies.data';
 import { organizationAndMembership_SkillGroup_Data } from './organizationAndMembership/organizationAndMembership.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { aerodynamics_SkillGroup_Data } from './aerodynamics/aerodynamics.data';
 import { floatingAndBuoyancy_SkillGroup_Data } from './floatingAndBuoyancy/floatingAndBuoyancy.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { digitalMaterials_SkillGroup_Data } from './digitalMaterials/digitalMaterials.data';
 import { gameDesign_SkillGroup_Data } from './gameDesign/gameDesign.data';

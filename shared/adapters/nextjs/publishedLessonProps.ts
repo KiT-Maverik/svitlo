@@ -10,7 +10,7 @@ import {
   type LessonPropsFragment,
   type PublishedLessonPropsOverride,
   type PublishedLessonPropsResource,
-} from '@svitlo/engine';
+} from '@svitlo/engine/runtime';
 
 export type LoadPublishedLessonPropsOptions = {
   /** Folder containing the 0-f/UUID Lesson directory hierarchy. */

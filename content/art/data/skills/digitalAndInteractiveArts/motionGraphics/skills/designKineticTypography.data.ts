@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const designKineticTypography_Skill_Data = defineSkill({
   slug: 'designKineticTypography',

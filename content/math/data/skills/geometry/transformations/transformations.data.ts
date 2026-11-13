@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { turnsQuarters_Skill_Data, translationsReflections_Skill_Data, reflectionSymmetry_Skill_Data } from './skills';
 

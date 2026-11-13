@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { colorPractice_SkillGroup_Data } from './colorPractice/colorPractice.data';
 import { paintingTechniques_SkillGroup_Data } from './paintingTechniques/paintingTechniques.data';

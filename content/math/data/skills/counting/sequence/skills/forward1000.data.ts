@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const forward1000_Skill_Data = defineSkill({
   slug: 'forward1000',

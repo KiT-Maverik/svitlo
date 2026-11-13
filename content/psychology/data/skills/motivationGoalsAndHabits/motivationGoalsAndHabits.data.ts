@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { goalPursuitAndSelfControl_SkillGroup_Data } from './goalPursuitAndSelfControl/goalPursuitAndSelfControl.data';
 import { habitMechanisms_SkillGroup_Data } from './habitMechanisms/habitMechanisms.data';

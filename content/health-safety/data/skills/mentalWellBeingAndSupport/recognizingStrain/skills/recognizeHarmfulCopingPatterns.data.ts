@@ -1,4 +1,4 @@
-import { defineSkill } from '@svitlo/engine';
+import { defineSkill } from '@svitlo/engine/build';
 
 export const recognizeHarmfulCopingPatterns_Skill_Data = defineSkill({
   slug: 'recognizeHarmfulCopingPatterns',

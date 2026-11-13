@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { carbonFrameworks_SkillGroup_Data } from './carbonFrameworks/carbonFrameworks.data';
 import { functionalGroups_SkillGroup_Data } from './functionalGroups/functionalGroups.data';

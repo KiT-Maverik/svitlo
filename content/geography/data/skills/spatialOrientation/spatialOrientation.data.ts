@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { locationAndReference_SkillGroup_Data } from './locationAndReference/locationAndReference.data';
 import { navigationAndMentalMaps_SkillGroup_Data } from './navigationAndMentalMaps/navigationAndMentalMaps.data';

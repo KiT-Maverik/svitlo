@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { importTariffs_Skill_Data, quotasAndNonTariffBarriers_Skill_Data, tradeAgreements_Skill_Data } from './skills';
 

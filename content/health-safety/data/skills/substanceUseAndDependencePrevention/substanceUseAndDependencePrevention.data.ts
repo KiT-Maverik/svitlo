@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { preventionAndAccessToHelp_SkillGroup_Data } from './preventionAndAccessToHelp/preventionAndAccessToHelp.data';
 import { substanceRelatedRisks_SkillGroup_Data } from './substanceRelatedRisks/substanceRelatedRisks.data';

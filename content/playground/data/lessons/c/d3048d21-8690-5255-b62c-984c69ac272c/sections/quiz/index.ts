@@ -1,4 +1,4 @@
-import { defineQuizSection } from '@svitlo/engine';
+import { defineQuizSection } from '@svitlo/engine/build';
 import { howLightMovesQuestions } from '../../questions';
 
 const title = {

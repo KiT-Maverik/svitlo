@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { communityMediaAndEnvironment_SkillGroup_Data } from './communityMediaAndEnvironment/communityMediaAndEnvironment.data';
 import { healthBehavior_SkillGroup_Data } from './healthBehavior/healthBehavior.data';

@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { decompositionAndAbstraction_SkillGroup_Data } from './decompositionAndAbstraction/decompositionAndAbstraction.data';
 import { logicAndPatterns_SkillGroup_Data } from './logicAndPatterns/logicAndPatterns.data';

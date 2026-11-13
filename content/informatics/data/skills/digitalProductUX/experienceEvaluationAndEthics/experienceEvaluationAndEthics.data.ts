@@ -1,4 +1,4 @@
-import { defineSkillGroup } from '@svitlo/engine';
+import { defineSkillGroup } from '@svitlo/engine/build';
 
 import { identifyManipulativeInterfacePatterns_Skill_Data, testDigitalInterfaceUsability_Skill_Data } from './skills';
 

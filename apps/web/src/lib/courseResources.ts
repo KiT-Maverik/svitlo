@@ -5,7 +5,7 @@ import path from 'node:path';
 import type { Course_Toc, Course_TocContent, Course_TocEpisode, Course_TocLesson } from '@svitlo/contracts/content';
 import type { LanguageCode } from '@svitlo/contracts/localization';
 import type { Course_LessonOverride, Locale_Languages } from '@svitlo/contracts/content';
-import { type LessonResponse, applyCourseLessonOverride, mergeLessonResources } from '@svitlo/engine';
+import { type LessonResponse, applyCourseLessonOverride, mergeLessonResources } from '@svitlo/engine/runtime';
 
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
 const assertUuid = (id: string) => {

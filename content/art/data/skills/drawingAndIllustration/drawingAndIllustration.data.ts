@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { illustrativeStorytelling_SkillGroup_Data } from './illustrativeStorytelling/illustrativeStorytelling.data';
 import { observationalDrawing_SkillGroup_Data } from './observationalDrawing/observationalDrawing.data';

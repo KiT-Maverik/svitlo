@@ -7,7 +7,7 @@ import path from 'node:path';
 import { beforeAll, describe, it } from 'vitest';
 import { z } from 'zod';
 
-import { allLanguageCodes, assessmentMethod_Props_Schema } from '@svitlo/engine';
+import { allLanguageCodes, assessmentMethod_Props_Schema } from '@svitlo/engine/runtime';
 
 import * as assessmentMethods from '../data/definitions/assessmentMethods';
 

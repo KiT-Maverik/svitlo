@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { digitalDeviceComponents_SkillGroup_Data } from './digitalDeviceComponents/digitalDeviceComponents.data';
 import { memoryAndStorage_SkillGroup_Data } from './memoryAndStorage/memoryAndStorage.data';

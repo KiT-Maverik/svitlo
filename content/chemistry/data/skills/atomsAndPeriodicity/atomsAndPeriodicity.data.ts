@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { atomicStructure_SkillGroup_Data } from './atomicStructure/atomicStructure.data';
 import { electronicStructure_SkillGroup_Data } from './electronicStructure/electronicStructure.data';

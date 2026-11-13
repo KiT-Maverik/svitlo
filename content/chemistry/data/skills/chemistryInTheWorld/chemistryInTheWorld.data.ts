@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { airAndWater_SkillGroup_Data } from './airAndWater/airAndWater.data';
 import { materialsChemistry_SkillGroup_Data } from './materialsChemistry/materialsChemistry.data';

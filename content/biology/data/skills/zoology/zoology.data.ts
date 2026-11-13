@@ -1,4 +1,4 @@
-import { defineSkillDomain } from '@svitlo/engine';
+import { defineSkillDomain } from '@svitlo/engine/build';
 
 import { animalDiversity_SkillGroup_Data } from './animalDiversity/animalDiversity.data';
 import { behavior_SkillGroup_Data } from './behavior/behavior.data';
