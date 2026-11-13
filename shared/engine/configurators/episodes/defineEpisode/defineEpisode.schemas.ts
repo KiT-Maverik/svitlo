@@ -27,7 +27,7 @@ export const episode_Config_Schema = identity.extend({
   ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.config }),
   section: sectionCollection,
   events: z.record(z.string(), z.json()).optional(),
-});
+}).strict();
 export type Episode_Config = z.infer<typeof episode_Config_Schema>;
 
 const sectionResolved = z.object({
@@ -40,7 +40,7 @@ export const episode_Props_Schema = identity.extend({
   ...addUnifiedLocale({ title: contentBlockLocalizationSwitch.props }),
   section: z.array(sectionResolved),
   events: z.record(z.string(), z.json()).optional(),
-});
+}).strict();
 export type Episode_Props = Omit<z.infer<typeof episode_Props_Schema>, 'section'> & {
   section: Section_Props[];
 };
