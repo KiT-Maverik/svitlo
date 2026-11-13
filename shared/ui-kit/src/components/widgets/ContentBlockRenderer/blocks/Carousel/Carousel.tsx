@@ -170,8 +170,8 @@ export function Carousel({
   function renderSlide(slide: ContentBlock_Carousel_SlideProps, number: number) {
     return (
       <Image
-        id={id + '-image-' + number}
-        slug={'carousel-image-' + number}
+        id={id}
+        slug={'carouselImage' + number}
         type="image"
         params={{ fill: true, aspectRatio: ratio, objectFit }}
         locale={{ src: slide.src, alt: slide.alt, caption: slide.caption }}
