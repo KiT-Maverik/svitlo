@@ -24,6 +24,7 @@ const packageRoots = [
 ];
 
 export function canonicalSharedSpecifier(value) {
+  if (value === '@svitlo/engine/build' || value === '@svitlo/engine/runtime') return value;
   return packageRoots.find(root => value === root || value.startsWith(root + '/')) ?? value;
 }
 

@@ -79,3 +79,10 @@ test('deduplicates side-effect-only imports safely', () => {
   assert.equal((result.code.match(/import '@svitlo\/indexdb';/g) ?? []).length, 1);
   assert.equal(migrateSharedImports(result.code).changed, false);
 });
+
+test('preserves the two explicit Engine public entrypoints', () => {
+  assert.equal(canonicalSharedSpecifier('@svitlo/engine/build'), '@svitlo/engine/build');
+  assert.equal(canonicalSharedSpecifier('@svitlo/engine/runtime'), '@svitlo/engine/runtime');
+  assert.equal(migrateSharedImports("import { defineSkill } from '@svitlo/engine/build';").changed, false);
+  assert.equal(migrateSharedImports("import { assembleSkills } from '@svitlo/engine/runtime';").changed, false);
+});
