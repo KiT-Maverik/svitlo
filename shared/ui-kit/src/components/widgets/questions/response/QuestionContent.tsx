@@ -1,5 +1,6 @@
 import type { UiKitMessages } from '#types/uiKitMessages';
-import type { ContentBlock_Props } from '@svitlo/engine/runtime';
+import type { ContentBlock_Props, LanguageCode } from '@svitlo/engine/runtime';
+import { resolveLocalizedText, type LocalizedText } from '../../ContentBlockRenderer/utils';
 import { ContentBlockRenderer } from '../../ContentBlockRenderer';
 import type { SceneRegistry } from '../../ContentBlockRenderer';
 
@@ -18,8 +19,23 @@ export function QuestionContent({
   return <ContentBlockRenderer blocks={blocks} sceneRegistry={sceneRegistry} messages={messages} />;
 }
 
+/** A choice name may be read outside a React component; require a language for dictionary values. */
+function labelText(value: LocalizedText, language: LanguageCode | undefined, field: string): string {
+  if (typeof value === 'string') return value;
+  if (!language) throw new Error('Selected content language is required at ' + field);
+  return resolveLocalizedText(value, language, field);
+}
+
+function optionalLabelText(
+  value: LocalizedText | undefined,
+  language: LanguageCode | undefined,
+  field: string,
+): string | undefined {
+  return value === undefined ? undefined : labelText(value, language, field);
+}
+
 /** Plain text is for accessible names only; visual content uses ContentBlockRenderer. */
-export function questionBlockLabel(block: QuestionBlock): string {
+export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode): string {
   switch (block.type) {
     case 'text':
       return block.locale.value;
@@ -28,16 +44,16 @@ export function questionBlockLabel(block: QuestionBlock): string {
     case 'image':
       return block.locale.alt;
     case 'carousel':
-      return block.locale.title ?? block.locale.slides[0]?.alt ?? '';
+      return optionalLabelText(block.locale.title, language, 'carousel.title') ?? block.locale.slides[0]?.alt ?? '';
     case 'audio':
-      return block.locale.title;
+      return labelText(block.locale.title, language, 'audio.title');
     case 'video':
     case 'youtube':
-      return block.locale.title ?? block.locale.label;
+      return optionalLabelText(block.locale.title, language, block.type + '.title') ?? block.locale.label;
     case 'code':
-      return block.locale?.title ?? block.params.language;
+      return optionalLabelText(block.locale?.title, language, 'code.title') ?? block.params.language;
     case 'checkpoint':
-      return block.locale.title;
+      return labelText(block.locale.title, language, 'checkpoint.title');
     case 'scene': {
       const value = block.locale.value;
       if (typeof value === 'string') return value;
@@ -45,8 +61,8 @@ export function questionBlockLabel(block: QuestionBlock): string {
     }
   }
 }
-export function questionLabel(blocks: readonly QuestionBlock[]): string {
-  return blocks.map(questionBlockLabel).filter(Boolean).join(' ');
+export function questionLabel(blocks: readonly QuestionBlock[], language?: LanguageCode): string {
+  return blocks.map(block => questionBlockLabel(block, language)).filter(Boolean).join(' ');
 }
 
 export type QuestionItem = { id: string; block: QuestionBlock };
