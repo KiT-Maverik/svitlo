@@ -4,7 +4,7 @@ const uuid = (n: number) => '00000000-0000-4000-8000-' + String(n).padStart(12, 
 export const TEST_SKILLS_DOMAIN_SLUGS = ['testColors'] as const;
 
 export function fixtureJsonForSkillUrl(url: string): unknown | null {
-  if (url === '/data/skills/base.json') {
+  if (url === '/generated/skills/base.json') {
     return {
       testColors: {
         id: uuid(1),
