@@ -30,7 +30,7 @@ function progressingLesson(id: string, lessonId: string): LessonState {
   };
 }
 
-function progressingQuiz(id: string, quizId: string): QuizState {
+function progressingQuiz(id: string, quizId: string): Extract<QuizState, { status: 'in-progress' }> {
   return {
     id,
     quizId,
