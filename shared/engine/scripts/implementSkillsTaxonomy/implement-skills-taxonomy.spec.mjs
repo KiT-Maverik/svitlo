@@ -142,15 +142,15 @@ test('English-only create needs no reviewed translations and keeps locales visib
     const directDomain = source(f, 'music/music.data.ts');
     assert.match(
       domain,
-      /^import \{ defineSkillDomain \} from '@svitlo\/engine';\n\nimport \{ angles_SkillGroup_Data \} from '\.\/angles\/angles\.data';/,
+      /^import \{ defineSkillDomain \} from '@svitlo\/engine\/build';\n\nimport \{ angles_SkillGroup_Data \} from '\.\/angles\/angles\.data';/,
     );
     assert.match(
       group,
-      /^import \{ defineSkillGroup \} from '@svitlo\/engine';\n\nimport \{ compareAngles_Skill_Data \} from '\.\/skills';/,
+      /^import \{ defineSkillGroup \} from '@svitlo\/engine\/build';\n\nimport \{ compareAngles_Skill_Data \} from '\.\/skills';/,
     );
     assert.match(
       directDomain,
-      /^import \{ defineSkillDomain \} from '@svitlo\/engine';\n\nimport \{ hearRhythm_Skill_Data \} from '\.\/skills';/,
+      /^import \{ defineSkillDomain \} from '@svitlo\/engine\/build';\n\nimport \{ hearRhythm_Skill_Data \} from '\.\/skills';/,
     );
     assert.match(skill, /^  slug: "compareAngles",$/m);
     assert.match(group, /^  slug: "angles",$/m);
@@ -162,7 +162,7 @@ test('English-only create needs no reviewed translations and keeps locales visib
     assert.match(skill, /frontend: \{\s*en: /);
     assert.match(skill, /^  name: \{\n    en: "Compare Angles",\n  \},$/m);
     assert.match(skill, /^    frontend: \{\n      en: "Explore this topic\.",\n    \},$/m);
-    assert.match(skill, /^import \{ defineSkill \} from '@svitlo\/engine';\n\nexport const compareAngles_Skill_Data/m);
+    assert.match(skill, /^import \{ defineSkill \} from '@svitlo\/engine\/build';\n\nexport const compareAngles_Skill_Data/m);
     assert.doesNotMatch(skill, /["'](?:en|uk)["']\s*:/);
     assert.match(skill, /methodological: "Definition of Compare Angles\."/);
     assert.match(domain, /en: "Geometry"/);
