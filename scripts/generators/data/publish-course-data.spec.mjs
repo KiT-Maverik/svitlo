@@ -157,6 +157,26 @@ test('Lesson base and locale override Props are stored at the same tree position
   assert(![...files.values()].join('').includes('standalone-section'));
 });
 
+test('invariant child removal wins over a translated pre-override Course array', () => {
+  const { course } = fixture();
+  const disable = {
+    content: {
+      items: { myModule: false },
+      order: [],
+    },
+  };
+  course.build.overrides = value => {
+    assert.deepEqual(value, disable);
+    return { base: { content: [] }, locale: undefined };
+  };
+  const files = renderCourseFiles(course, { overrides: disable });
+  const base = JSON.parse(files.get('base.json'));
+  assert.deepEqual(base.content, []);
+  const uk = JSON.parse(files.get('uk.json'));
+  assert.equal(Object.hasOwn(uk, 'content'), false, 'old localized child must not reappear');
+  assert.deepEqual(mergeCourseProps(base, uk).content, []);
+});
+
 test('deterministic publication, check mode, stale file cleanup and unrelated assets', () => {
   const { course } = fixture();
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-'));
