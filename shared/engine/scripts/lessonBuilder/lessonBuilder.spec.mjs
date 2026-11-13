@@ -1,633 +1,334 @@
-import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import yaml from 'yaml';
+import { test } from 'node:test';
 import ts from 'typescript';
-import { runOne, repoRoot } from './lessonBuilder.mjs';
+import yaml from 'yaml';
 
-const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
-const skillId = '00000000-0000-4000-8000-000000000015';
-const goodQuestion = (slug = 'q-one', plans = ['knowledge']) => ({
+import { BuilderDiagnostic, loadFactoryRegistry, renderLessonDraft, runOne, main } from './lessonBuilder.mjs';
+
+const lessonId = '00000000-0000-4000-8000-00000000000c';
+const id = suffix => '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0');
+const textBlock = (slug, value = 'Текст') => ({
+  id: id(1),
   slug,
-  type: 'selectOneAnswer',
-  assessmentMethod: 'retrieval',
-  targetSkills: [skillId],
-  assessmentPlanKeys: plans,
-  pool: 'core',
-  evidence: {
-    outcome: 'Understands light',
-    operation: 'Recall',
-    distinction: 'Straight path',
-    distinctness: 'Unique observation',
-  },
-  question: [{ type: 'text', text: 'How does light travel?' }],
-  answer: {
-    correct: [{ key: 'straight', content: [{ type: 'text', text: 'In a straight line' }] }],
-    incorrect: [{ key: 'curved', content: [{ type: 'text', text: 'In circles' }] }],
-    distractors: [],
-  },
-  explanation: [{ type: 'text', text: 'In a uniform medium, straight.' }],
+  type: 'text',
+  params: { disabled: false },
+  locale: { value: { uk: value, en: 'English value not to emit' } },
 });
-const quizPlan = key => ({
-  key,
-  purpose: 'Measure learning',
-  targetSkills: [skillId],
-  requiredAssessmentMethods: ['retrieval'],
-});
-const quizSection = (key, assessmentPlanKey) => ({
-  key,
-  type: 'quiz',
-  title: 'Quick check',
-  purpose: 'Assess the concept',
-  assessmentPlanKey,
-  targetSkills: [skillId],
-  requiredAssessmentMethods: ['retrieval'],
-});
-const assignment = (key, slugs) => ({
-  assessmentPlanKey: key,
-  selection: { mode: 'all', questionSlugs: slugs },
-});
-function fixture(options = {}) {
-  const repo = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-builder-'));
-  const workspace = path.join(repo, 'content/playground');
+const group = items => ({ items, order: Object.keys(items) });
+
+function makeLesson() {
+  const slide = {
+    id: id(2), slug: 'slide', type: 'carouselSlide',
+    locale: { src: { uk: 'img/uk.png', en: 'img/en.png' }, alt: { uk: 'Опис', en: 'Description' } },
+  };
+  const item = {
+    id: id(3), slug: 'task', type: 'checkpointItem',
+    question: textBlock('question', 'Запитання'),
+    answer: group({ answer: textBlock('answer', 'Відповідь') }),
+  };
+  return {
+    documentLanguage: 'uk',
+    id: lessonId,
+    slug: 'lightLesson',
+    type: 'lesson',
+    skills: [],
+    params: {
+      languages: ['uk', 'en'],
+      requireQuiz: false,
+      sections: { allowNavigation: true, allowSkipping: false, showIndexes: true },
+    },
+    locale: { title: { uk: 'Світло', en: 'Light' } },
+    section: group({
+      intro: {
+        id: id(4), slug: 'intro', type: 'content',
+        params: { skippable: false },
+        locale: { title: { uk: 'Вступ', en: 'Intro' } },
+        content: group({
+          body: textBlock('body'),
+          gallery: {
+            id: id(5), slug: 'gallery', type: 'carousel',
+            slides: group({ first: slide }),
+          },
+          check: {
+            id: id(6), slug: 'check', type: 'checkpoint',
+            content: group({ task: item }),
+          },
+        }),
+      },
+      quiz: {
+        id: id(7), slug: 'quiz', type: 'quiz',
+        params: { selection: { mode: 'all' } },
+        content: group({ prompt: textBlock('prompt') }),
+      },
+    }),
+  };
+}
+
+function makeQuestions() {
+  const selectOne = {
+    id: id(8), slug: 'one', type: 'selectOneAnswer',
+    params: { disabled: false },
+    content: {
+      question: group({ prompt: textBlock('prompt') }),
+      answers: {
+        correct: group({ yes: textBlock('yes') }),
+        incorrect: group({ no: textBlock('no') }),
+        distractors: group({}),
+      },
+    },
+  };
+  const match = {
+    id: id(9), slug: 'match', type: 'matchBlocks',
+    content: {
+      question: group({ prompt: textBlock('prompt') }),
+      pairs: group({
+        pair: { left: textBlock('left'), right: textBlock('right') },
+      }),
+    },
+  };
+  const blanks = {
+    id: id(10), slug: 'blanks', type: 'fillBlanksWithBlocks',
+    content: {
+      question: group({ prompt: textBlock('prompt') }),
+      slots: group({ gap: { correctAnswer: textBlock('correctAnswer') } }),
+      distractors: group({}),
+    },
+  };
+  return { documentLanguage: 'uk', questions: {
+    selectOneAnswer: { one: selectOne },
+    matchBlocks: { match },
+    fillBlanksWithBlocks: { blanks },
+  } };
+}
+
+function makeFlashcards() {
+  return { documentLanguage: 'uk', flashcards: group({
+    first: {
+      id: id(11), slug: 'first', type: 'flashcard',
+      parameters: {
+        tags: ['light'],
+        flags: group({ warning: { type: 'warning' } }),
+      },
+      content: {
+        front: group({ front: textBlock('front') }),
+        back: group({ back: textBlock('back') }),
+        hint: group({ hint: textBlock('hint') }),
+      },
+    },
+  }) };
+}
+
+function fixture(callback) {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-scaffolder-'));
+  const workspace = path.join(root, 'content/playground');
   const lesson = path.join(workspace, 'data/lessons/c', lessonId);
   fs.mkdirSync(path.join(lesson, 'questions'), { recursive: true });
-  fs.mkdirSync(path.join(workspace, 'data/skills/test/group/skills'), { recursive: true });
-  fs.writeFileSync(path.join(workspace, 'package.json'), JSON.stringify({ name: '@svitlo/playground' }));
-  fs.writeFileSync(
-    path.join(workspace, 'data/skills/test/group/skills/light.data.ts'),
-    "export const light = { id: '" + skillId + "' };\n",
-  );
-  const planKeys = options.plans ?? ['knowledge'];
-  const methodology = {
-    documentLanguage: 'en',
-    supportedLanguages: options.languages ?? ['en', 'uk'],
-    assessmentPlan: {
-      quizRequired: planKeys.length > 0,
-      quizzes: planKeys.map(quizPlan),
-    },
-  };
-  const content = {
-    schemaVersion: 1,
-    kind: 'lesson-content-plan',
-    status: 'approved',
-    lessonId,
-    lessonSlug: 'howLightMoves',
-    methodologySource: 'methodology.md',
-    documentLanguage: 'en',
-    supportedLanguages: options.languages ?? ['en', 'uk'],
-    title: 'How Light Moves',
-    learningIntent: 'Understand straight-line propagation',
-    sections: [
-      {
-        key: 'theory',
-        type: 'theory',
-        title: 'Explore light',
-        purpose: 'Teach light',
-        blocks: [
-          {
-            key: 'intro',
-            type: 'text',
-            purpose: 'Introduce concept',
-            readiness: 'available',
-            sourceText: 'Light travels in straight lines.',
-            accessibility: 'Screen-reader friendly',
-          },
-          {
-            key: 'details',
-            type: 'markdown',
-            purpose: 'Explanation',
-            readiness: 'available',
-            sourceText: '**Light** moves straight.',
-            accessibility: 'Readable text',
-          },
-        ],
-      },
-      ...planKeys.map((key, i) => quizSection('quiz-' + (i + 1), key)),
-    ],
-    sceneSpecifications: [],
-    productionDependencies: [],
-  };
-  const questions = {
-    schemaVersion: 1,
-    kind: 'lesson-question-bank',
-    status: 'approved',
-    lessonId,
-    documentLanguage: 'en',
-    supportedLanguages: options.languages ?? ['en', 'uk'],
-    sources: { methodology: { path: 'methodology.md' }, content: { path: 'content.yaml' } },
-    quizAssignments: planKeys.map(key => assignment(key, ['q-one'])),
-    questions: [goodQuestion('q-one', planKeys)],
-    coverage: [
-      { targetSkill: skillId, outcome: 'Understand light', assessmentMethod: 'retrieval', questionSlugs: ['q-one'] },
-    ],
-    unresolvedDependencies: [],
-  };
+  fs.mkdirSync(path.join(lesson, 'flashcards'), { recursive: true });
+  fs.writeFileSync(path.join(workspace, 'package.json'), '{"name":"@svitlo/playground"}\n');
+  const content = makeLesson();
+  const questions = makeQuestions();
+  const flashcards = makeFlashcards();
   const save = () => {
-    fs.writeFileSync(
-      path.join(lesson, 'methodology.md'),
-      '---\n' + yaml.stringify(methodology) + '---\n\nApproved methodology.\n',
-    );
-    fs.writeFileSync(path.join(lesson, 'content.yaml'), yaml.stringify(content));
-    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), yaml.stringify(questions));
+    fs.writeFileSync(path.join(lesson, 'lesson.config.yaml'), yaml.stringify({
+      ...content, questions: questions.questions, flashcards: flashcards.flashcards,
+    }));
+    // Specialist-owned editorial files are a different contract and remain
+    // untouched by this technical draft scaffolder.
+    fs.writeFileSync(path.join(lesson, 'content.yaml'), 'kind: lesson-content-plan\nstatus: draft\n');
+    fs.writeFileSync(path.join(lesson, 'questions/questions.yaml'), 'kind: lesson-questions-plan\nstatus: draft\n');
+    fs.writeFileSync(path.join(lesson, 'flashcards/flashcards.yaml'), 'kind: lesson-flashcards-plan\nstatus: draft\n');
   };
-  save();
-  return {
-    repo,
-    workspace,
-    lesson,
-    content,
-    questions,
-    methodology,
-    save,
-    generated: name => path.join(lesson, 'generated', name),
-    dispose: () => fs.rmSync(repo, { recursive: true, force: true }),
-  };
-}
-function withFixture(callback, options) {
-  const f = fixture(options);
+  const generated = () => path.join(lesson, 'lightLesson.data.ts');
   try {
-    return callback(f);
+    save();
+    return callback({ root, lesson, content, questions, flashcards, save, generated });
   } finally {
-    f.dispose();
+    fs.rmSync(root, { recursive: true, force: true });
   }
 }
-test('generates a typed full Lesson with all approved source text and selected Quiz', () =>
-  withFixture(f => {
-    const result = runOne(f.lesson, 'generate', f.repo);
-    assert.equal(result.lessonId, lessonId);
-    const ts = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    assert.match(ts, /createLesson<Languages>/);
-    assert.match(ts, /createSectionConfigurator<Languages>/);
-    assert.match(ts, /createContentBlock<Languages>/);
-    assert.match(ts, /satisfies Question_Catalog<'data', Languages>/);
-    assert.match(ts, /How Light Moves/);
-    assert.match(ts, /questionSlugs/);
-    assert.match(ts, /q-one/);
-    assert.match(ts, /"uk"/);
-    assert.doesNotMatch(ts, /"uk":\s*"How Light Moves"/);
-    assert.equal(runOne(f.lesson, 'check', f.repo).changed, 0);
-    const manifest = JSON.parse(fs.readFileSync(f.generated('manifest.json')));
-    assert.equal(manifest.generator, 'lesson-builder-v1');
-    assert.ok(manifest.inputs['questions/questions.yaml']);
-    assert.ok(manifest.outputs['lesson.data.ts']);
-    assert.equal(manifest.entrypoint.name, 'howLightMoves.data.ts');
-    assert.match(fs.readFileSync(path.join(f.lesson, 'howLightMoves.data.ts'), 'utf8'), /export \{ lessonData \} from/);
-    assert.deepEqual(
-      fs.readdirSync(f.lesson).filter(name => name.endsWith('.data.ts')),
-      ['howLightMoves.data.ts'],
-    );
-  }));
-test('supports Lessons without a Quiz and with two explicit Quiz selections', () =>
-  withFixture(
-    f => {
-      runOne(f.lesson, 'generate', f.repo);
-      assert.doesNotMatch(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /"type": "quiz"/);
-      assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /requireQuiz: false/);
-    },
-    { plans: [] },
-  ));
-test('multiple Quizzes select only their curated questions, retaining the full bank', () =>
-  withFixture(
-    f => {
-      f.questions.questions.push(goodQuestion('q-two', ['verify']));
-      f.questions.quizAssignments[1].selection.questionSlugs = ['q-two'];
-      f.questions.coverage[0].questionSlugs.push('q-two');
-      f.save();
-      runOne(f.lesson, 'generate', f.repo);
-      const ts = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-      assert.match(ts, /"q-two":/);
-      assert.match(ts, /"questionSlugs": \[\s*"q-two"/);
-      assert.match(ts, /"questionSlugs": \[\s*"q-one"/);
-      assert.equal((ts.match(/"type": "quiz"/g) || []).length, 2);
-    },
-    { plans: ['knowledge', 'verify'] },
-  ));
-test('rejects duplicate Section, Question and missing question/Quiz references', () =>
-  withFixture(f => {
-    f.content.sections.push(structuredClone(f.content.sections[0]));
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate key/);
-    f.content.sections.pop();
-    f.questions.questions.push(goodQuestion('q-one'));
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate key/);
-    f.questions.questions.pop();
-    f.questions.quizAssignments[0].selection.questionSlugs = ['missing'];
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown Question slug/);
-    f.questions.quizAssignments[0].selection.questionSlugs = ['q-one'];
-    f.content.sections[1].assessmentPlanKey = 'missing-plan';
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown methodology Quiz key/);
-  }));
-test('rejects invalid Skill IDs and AssessmentMethodKey at the exact YAML field', () =>
-  withFixture(f => {
-    const missingSkill = '00000000-0000-4000-8000-000000000999';
-    f.questions.questions[0].targetSkills = [missingSkill];
-    f.questions.coverage[0].targetSkill = missingSkill;
-    f.methodology.assessmentPlan.quizzes[0].targetSkills = [missingSkill];
-    f.content.sections[1].targetSkills = [missingSkill];
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown canonical Skill ID/);
-    f.questions.questions[0].targetSkills = [skillId];
-    f.questions.coverage[0].targetSkill = skillId;
-    f.methodology.assessmentPlan.quizzes[0].targetSkills = [skillId];
-    f.content.sections[1].targetSkills = [skillId];
-    f.questions.questions[0].assessmentMethod = 'madeUp';
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /questions\/questions.yaml:.*assessmentMethod/);
-  }));
-test('preserves one-language-only strings without copying them into other locales', () =>
-  withFixture(f => {
-    f.content.sections[0].title = 'An untranslated heading';
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    const data = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    assert.match(data, /"en": "An untranslated heading"/);
-    assert.doesNotMatch(data, /"uk": "An untranslated heading"/);
-    const requirements = JSON.parse(fs.readFileSync(f.generated('requirements.json')));
-    assert.ok(requirements.unresolved.some(r => r.kind === 'localization'));
-  }));
-test('records missing media without inventing asset implementations', () =>
-  withFixture(f => {
-    f.content.sections[0].blocks.push({
-      key: 'illustration',
-      type: 'image',
-      purpose: 'Visualise the ray',
-      readiness: 'typed-only',
-      accessibility: 'Text equivalent',
-      assetRequest: { description: 'Ray illustration', status: 'pending', path: 'static/ray.png' },
-      contentSpec: { width: 640, height: 360, alt: 'Straight light ray' },
-    });
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    const reqs = JSON.parse(fs.readFileSync(f.generated('requirements.json')));
-    assert.ok(reqs.unresolved.some(r => r.detail.includes('static/ray.png')));
-    assert.ok(!fs.existsSync(path.join(f.workspace, 'static/ray.png')));
-  }));
-test('is idempotent and update-safe: edits only generated outputs, never Scene source', () =>
-  withFixture(f => {
-    const manuallyOwned = path.join(f.workspace, 'scenes/c/custom-scene/index.tsx');
-    fs.mkdirSync(path.dirname(manuallyOwned), { recursive: true });
-    fs.writeFileSync(manuallyOwned, 'export default function Scene() { return null; }\n');
-    runOne(f.lesson, 'generate', f.repo);
-    const first = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    const again = runOne(f.lesson, 'generate', f.repo);
-    assert.equal(again.changed, 0);
-    f.content.sections[0].blocks[0].sourceText = 'The new approved source-language description';
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'check', f.repo), /stale generated file/);
-    runOne(f.lesson, 'generate', f.repo);
-    assert.notEqual(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), first);
-    assert.equal(fs.readFileSync(manuallyOwned, 'utf8'), 'export default function Scene() { return null; }\n');
-    fs.appendFileSync(f.generated('lesson.data.ts'), '// manual change\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /modified manually/);
-  }));
-test('requires approved and complete schema-valid inputs', () =>
-  withFixture(f => {
-    f.content.status = 'draft';
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /must both be approved/);
-    delete f.content.sections[0].blocks[0].accessibility;
-    f.content.status = 'approved';
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /content.yaml:.*accessibility/);
-    f.content.sections[0].blocks[0].accessibility = 'Readable';
-    f.save();
-    fs.rmSync(path.join(f.lesson, 'questions/questions.yaml'));
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /ENOENT/);
-  }));
-test('does not fake Scene implementations; missing specifications fail explicitly', () =>
-  withFixture(f => {
-    f.content.sections[0].blocks.push({
-      key: 'simulation',
-      type: 'scene',
-      purpose: 'Explore the path',
-      readiness: 'typed-only',
-      accessibility: 'Keyboard instructions',
-      sceneSpecKey: 'ray',
-    });
-    f.content.sceneSpecifications.push({
-      key: 'ray',
-      path: 'scenes/ray.scene-spec.md',
-      status: 'approved',
-    });
-    fs.mkdirSync(path.join(f.lesson, 'scenes'));
-    fs.writeFileSync(path.join(f.lesson, 'scenes/ray.scene-spec.md'), '# Ray specification\n');
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    const reqs = JSON.parse(fs.readFileSync(f.generated('requirements.json')));
-    assert.ok(reqs.unresolved.some(r => r.kind === 'scene' && r.owner === 'Implement Scene'));
-    assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /"locales": \{\}/);
-    f.content.sceneSpecifications[0].key = 'other';
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unknown Scene specification/);
-  }));
-test('real Playground Sections and Question Bank use current APIs', () => {
-  const root = path.join(repoRoot, 'content/playground/data/lessons/c', lessonId);
-  const quiz = fs.readFileSync(path.join(root, 'sections/quiz/index.ts'), 'utf8');
-  const catalog = fs.readFileSync(path.join(root, 'questions/index.ts'), 'utf8');
-  assert.match(quiz, /defineQuizSection\(\{/);
-  assert.match(quiz, /questionSlugs:/);
-  assert.match(catalog, /export const howLightMovesQuestions = \{/);
-  assert.match(catalog, /selectOneAnswer: \{/);
-  assert.equal(fs.existsSync(path.join(root, 'content.yaml')), false);
-  // No migration or overwrite of the real Playground TS lesson is performed.
+
+function calls(source) {
+  const ast = ts.createSourceFile('lightLesson.data.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  assert.deepEqual(ast.parseDiagnostics, []);
+  const found = [];
+  function visit(node) {
+    if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) found.push(node.expression.text);
+    ts.forEachChild(node, visit);
+  }
+  visit(ast);
+  return found;
+}
+
+test('reads the exhaustive factory registry from the Engine source of truth', () => {
+  const factories = loadFactoryRegistry();
+  assert.equal(factories.lesson, 'defineLesson');
+  assert.equal(factories.content, 'defineContentSection');
+  assert.equal(factories.checkpointItem, 'defineCheckpointItem');
+  assert.equal(factories.selectOneAnswer, 'defineSelectOneAnswer');
+  assert.equal(factories.flashcard, 'defineFlashcard');
 });
 
-test('refuses a competing manual Lesson entrypoint without touching it', () =>
-  withFixture(f => {
-    const manual = path.join(f.lesson, 'manual.data.ts');
-    fs.writeFileSync(manual, 'export const manual = "keep";\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /entrypoint\(s\).*duplicated/);
-    assert.equal(fs.readFileSync(manual, 'utf8'), 'export const manual = "keep";\n');
-  }));
-test('checks canonical YAML source references before emission', () =>
-  withFixture(f => {
-    f.questions.sources.content.path = 'other.yaml';
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /questions\/questions.yaml:sources.content.path/);
+test('emits named Lesson TS and nested factories, including all Question and Flashcard collections', () =>
+  fixture(f => {
+    const result = runOne(f.lesson, 'generate', f.root);
+    assert.equal(result.changed, 1);
+    assert.deepEqual(result.files, ['lightLesson.data.ts']);
+    const output = fs.readFileSync(f.generated(), 'utf8');
+    assert.match(output, /from '@svitlo\/engine\/build'/);
+    assert.match(output, /export const lightLesson_Lesson = defineLesson\(/);
+    const names = calls(output);
+    for (const name of [
+      'defineLesson', 'defineContentSection', 'defineQuizSection',
+      'defineText', 'defineCarousel', 'defineCarouselSlide',
+      'defineCheckpoint', 'defineCheckpointItem',
+      'defineSelectOneAnswer', 'defineMatchBlocks', 'defineFillBlanksWithBlocks',
+      'defineFlashcard',
+    ]) assert.ok(names.includes(name), 'Missing ' + name);
+    assert.equal(names.filter(name => name === 'defineCheckpointItem').length, 1);
+    assert.equal(names.filter(name => name === 'defineFlashcard').length, 1);
+    assert.ok(names.filter(name => name === 'defineText').length >= 15);
+    assert.ok(!names.includes('defineWarning'), 'flags must remain ordinary authored objects');
+    assert.match(output, /"order": \[\s*"intro",\s*"quiz"\s*\]/);
+    assert.match(output, /"id": "00000000-0000-4000-8000-00000000000c"/);
+    assert.match(output, /"slug": "lightLesson"/);
+    assert.match(output, /"languages": \[\s*"uk",\s*"en"\s*\]/);
+    assert.match(output, /"uk": "Світло"/);
+    assert.doesNotMatch(output, /"en": "Light"/);
+    assert.doesNotMatch(output, /"en": "English value not to emit"/);
+    assert.doesNotMatch(output, /img\/en\.png/);
+    assert.doesNotMatch(output, /"documentLanguage"/);
+    assert.ok(!fs.existsSync(path.join(f.lesson, 'generated')));
+    assert.ok(!fs.existsSync(path.join(f.lesson, 'requirements.json')));
+    assert.match(fs.readFileSync(path.join(f.lesson, 'content.yaml'), 'utf8'), /lesson-content-plan/);
   }));
 
-test('single-language generated TypeScript matches real Engine/Contracts APIs', () =>
-  withFixture(f => {
-    f.content.supportedLanguages = ['en'];
-    f.questions.supportedLanguages = ['en'];
-    f.methodology.supportedLanguages = ['en'];
+test('preserves partial YAML instead of inventing required fields, locale values or questions', () =>
+  fixture(f => {
+    delete f.content.params;
+    delete f.content.section;
+    delete f.content.flashcards;
+    fs.rmSync(path.join(f.lesson, 'questions'), { recursive: true });
+    fs.rmSync(path.join(f.lesson, 'flashcards'), { recursive: true });
+    f.save = () => fs.writeFileSync(path.join(f.lesson, 'lesson.config.yaml'), yaml.stringify(f.content));
     f.save();
-    writeFlashcards(f, bank => {
-      bank.supportedLanguages = ['en'];
-      return bank;
-    });
-    runOne(f.lesson, 'generate', f.repo);
-    const generated = f.generated('lesson.data.ts');
-    const options = {
-      target: ts.ScriptTarget.ES2022,
-      module: ts.ModuleKind.ESNext,
-      moduleResolution: ts.ModuleResolutionKind.Bundler,
-      strict: true,
-      noEmit: true,
-      skipLibCheck: true,
-      esModuleInterop: true,
-      baseUrl: repoRoot,
-      paths: {
-        '@svitlo/engine/build': ['shared/engine/build.ts'],
-        '+@svitlo/contracts': ['shared/contracts/src/index.ts'],
-        '+@svitlo/contracts/*': ['shared/contracts/src/*'],
-      },
+    runOne(f.lesson, 'generate', f.root);
+    const code = fs.readFileSync(f.generated(), 'utf8');
+    assert.deepEqual(calls(code), ['defineLesson']);
+    assert.doesNotMatch(code, /"params":/);
+    assert.doesNotMatch(code, /"section":/);
+    assert.doesNotMatch(code, /"questions":/);
+    assert.doesNotMatch(code, /"flashcards":/);
+  }));
+
+test('is byte-stable on repeated generation and check is read-only', () =>
+  fixture(f => {
+    runOne(f.lesson, 'generate', f.root);
+    const first = fs.readFileSync(f.generated(), 'utf8');
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 0);
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), first);
+    f.content.section.items.intro.locale.title.uk = 'Змінений вступ';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /stale draft/);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), first);
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
+    assert.notEqual(fs.readFileSync(f.generated(), 'utf8'), first);
+  }));
+
+test('missing and unknown polymorphic types produce a local dispatch diagnostic', () =>
+  fixture(f => {
+    delete f.content.section.items.intro.content.items.body.type;
+    f.save();
+    assert.throws(
+      () => runOne(f.lesson, 'generate', f.root),
+      error => error instanceof BuilderDiagnostic &&
+        /content\.items\.body\.type: missing type discriminator/.test(error.message),
+    );
+    f.content.section.items.intro.content.items.body.type = 'unknownBlock';
+    f.save();
+    assert.throws(
+      () => runOne(f.lesson, 'generate', f.root),
+      /content\.items\.body\.type: unknown type "unknownBlock"/,
+    );
+    assert.ok(!fs.existsSync(f.generated()));
+  }));
+
+test('refuses a non-Lesson root type rather than emitting the wrong factory', () =>
+  fixture(f => {
+    f.content.type = 'text';
+    f.save();
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /expected lesson type/);
+    assert.ok(!fs.existsSync(f.generated()));
+  }));
+
+test('source-localization filtering leaves unrelated type metadata intact', () => {
+  const source = renderLessonDraft({
+    slug: 'demo',
+    type: 'lesson',
+    locale: { title: { uk: 'Заголовок', en: 'Title' } },
+    params: { languages: ['en', 'uk'], type: 'configValue' },
+    flashcards: { items: {}, order: [] },
+  }, 'uk', loadFactoryRegistry());
+  assert.match(source, /"languages": \[\s*"en",\s*"uk"\s*\]/);
+  assert.match(source, /"type": "configValue"/);
+  assert.match(source, /"uk": "Заголовок"/);
+  assert.doesNotMatch(source, /"en": "Title"/);
+});
+
+test('manual data sources and modifications are never overwritten', () =>
+  fixture(f => {
+    const manual = path.join(f.lesson, 'other.data.ts');
+    fs.writeFileSync(manual, 'export const keep = true;\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /competing Lesson data entrypoint/);
+    assert.equal(fs.readFileSync(manual, 'utf8'), 'export const keep = true;\n');
+    fs.rmSync(manual);
+    fs.writeFileSync(f.generated(), 'export const handwritten = true;\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /manually authored file/);
+    fs.rmSync(f.generated());
+    runOne(f.lesson, 'generate', f.root);
+    fs.appendFileSync(f.generated(), '// human edit\n');
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /modified manually/);
+  }));
+
+test('requires only dispatch and output essentials, not methodology, review or assets', () =>
+  fixture(f => {
+    assert.equal(fs.existsSync(path.join(f.lesson, 'methodology.md')), false);
+    f.content.section.items.intro.content.items.photo = {
+      id: id(99), slug: 'photo', type: 'image', locale: { src: 'missing.png', alt: 'Опис' },
     };
-    const program = ts.createProgram([generated], options);
-    const ownErrors = ts
-      .getPreEmitDiagnostics(program)
-      .filter(d => d.file && path.resolve(d.file.fileName) === path.resolve(generated))
-      .map(d => ts.flattenDiagnosticMessageText(d.messageText, '\n'));
-    assert.deepEqual(ownErrors, []);
+    f.save();
+    assert.doesNotThrow(() => runOne(f.lesson, 'generate', f.root));
+    assert.ok(calls(fs.readFileSync(f.generated(), 'utf8')).includes('defineImage'));
+    assert.doesNotThrow(() => main(['check', '--source', path.relative(f.root, f.lesson)], f.root));
   }));
 
-test('stable ContentBlock identity survives editorial reordering', () =>
-  withFixture(f => {
-    runOne(f.lesson, 'generate', f.repo);
-    const before = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    const blockId = before.match(/"id": "([a-f0-9-]{36})",\s*"slug": "intro"/)?.[1];
-    assert.ok(blockId);
-    f.content.sections[0].blocks.reverse();
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    const after = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    assert.match(after, new RegExp('"id": "' + blockId + '",\\s*"slug": "intro"'));
-  }));
-test('Scene renderer key follows the current kebab-case registry convention', () =>
-  withFixture(f => {
-    f.content.sections[0].blocks.push({
-      key: 'simulation',
-      type: 'scene',
-      purpose: 'Explore a ray',
-      readiness: 'typed-only',
-      accessibility: 'Keyboard accessible',
-      sceneSpecKey: 'ray',
-    });
-    f.content.sceneSpecifications.push({
-      key: 'ray',
-      path: 'scenes/ray.scene-spec.md',
-      status: 'approved',
-    });
-    fs.mkdirSync(path.join(f.lesson, 'scenes'));
-    fs.writeFileSync(path.join(f.lesson, 'scenes/ray.scene-spec.md'), '# Approved Ray\n');
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /"id": "how-light-moves-scene-ray"/);
-    assert.match(fs.readFileSync(f.generated('requirements.md'), 'utf8'), /how-light-moves-scene-ray/);
-  }));
-test('rejects YAML-supplied Methodology path traversal before opening a file', () =>
-  withFixture(f => {
-    f.content.methodologySource = '../../other.md';
-    f.save();
-    assert.throws(
-      () => runOne(f.lesson, 'generate', f.repo),
-      /content.yaml:methodologySource: must name the canonical Methodology file/,
-    );
-  }));
-
-test('does not silently discard unknown editorial contentSpec fields', () =>
-  withFixture(f => {
-    f.content.sections[0].blocks[0].contentSpec = { unexplainedParameter: 'editorial meaning' };
-    f.save();
-    assert.throws(
-      () => runOne(f.lesson, 'generate', f.repo),
-      /content.yaml:sections\[0\].blocks\[0\].contentSpec.unexplainedParameter/,
-    );
-  }));
-test('preserves canonical text presentation fields and code-block exclusivity', () =>
-  withFixture(f => {
-    f.content.sections[0].blocks[0].contentSpec = { wrap: { enabled: false } };
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    assert.match(fs.readFileSync(f.generated('lesson.data.ts'), 'utf8'), /"wrap": \{/);
-    f.content.sections[0].blocks.push({
-      key: 'example',
-      type: 'code',
-      purpose: 'Read a sample',
-      readiness: 'typed-only',
-      accessibility: 'Readable code',
-      contentSpec: { language: 'js', code: 'console.log(1);', fileLocation: 'code/example.js' },
-    });
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /mutually exclusive/);
-  }));
-
-test('invalid content creates only a structured blocked handoff and recovers cleanly', () =>
-  withFixture(f => {
-    f.content.sections[0].blocks[0].contentSpec = { unsupported: true };
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /no approved mapping/);
-    const blocked = JSON.parse(fs.readFileSync(f.generated('requirements.blocked.json')));
-    assert.equal(blocked.lessonId, lessonId);
-    assert.equal(blocked.generator, 'lesson-builder-v1');
-    assert.equal(blocked.unresolved[0].kind, 'contract');
-    assert.ok(!fs.existsSync(f.generated('lesson.data.ts')));
-    delete f.content.sections[0].blocks[0].contentSpec;
-    f.save();
-    assert.throws(() => runOne(f.lesson, 'check', f.repo), /missing\/stale/);
-    runOne(f.lesson, 'generate', f.repo);
-    assert.ok(fs.existsSync(f.generated('lesson.data.ts')));
-    assert.ok(!fs.existsSync(f.generated('requirements.blocked.json')));
-    assert.equal(runOne(f.lesson, 'check', f.repo).changed, 0);
-  }));
-
-test('Question and keyed answer block identities survive Question Bank reordering', () =>
-  withFixture(f => {
-    f.questions.questions.push(goodQuestion('q-two', []));
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    const before = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    // IDs are derived from Question slug + answer key, not its array position.
-    const qId = before.match(/"q-two": \{\s*"id": "([a-f0-9-]{36})"/)?.[1];
-    const promptId = before.match(/"q-two": \{[\s\S]*?"question": \[\s*\{\s*"id": "([a-f0-9-]{36})"/)?.[1];
-    assert.ok(qId && promptId);
-    f.questions.questions.reverse();
-    f.save();
-    runOne(f.lesson, 'generate', f.repo);
-    const after = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    assert.match(after, new RegExp('"q-two": \\{\\s*"id": "' + qId + '"'));
-    assert.match(after, new RegExp('"q-two": \\{[\\s\\S]*?"question": \\[\\s*\\{\\s*"id": "' + promptId + '"'));
-  }));
-
-function writeFlashcards(f, transform = value => value) {
-  const bank = {
-    schemaVersion: 1,
-    kind: 'lesson-flashcard-bank',
-    status: 'approved',
-    lessonId,
-    documentLanguage: 'en',
-    supportedLanguages: ['en', 'uk'],
-    sources: {
-      methodology: { path: 'methodology.md' },
-      content: { path: 'content.yaml' },
-      questions: { path: 'questions/questions.yaml', revision: 'reviewed-question-revision' },
-    },
-    flashcards: [
-      {
-        slug: 'ray-fact',
-        front: [
-          {
-            type: 'text',
-            value: { kind: 'questionField', questionSlug: 'q-one', fieldPath: ['question', 0, 'value'] },
-          },
-        ],
-        back: [{ type: 'text', value: 'Light travels straight' }],
-        hint: [],
-        tags: ['physics'],
-        flags: [{ type: 'warning' }, { type: 'list', count: 2 }],
+test('source locale pruning includes localized Flashcard flag values outside locale', () => {
+  const draft = renderLessonDraft({
+    slug: 'sample',
+    type: 'lesson',
+    params: { languages: ['uk', 'en'] },
+    flashcards: { items: {
+      card: {
+        slug: 'card', type: 'flashcard',
+        parameters: { flags: { items: {
+          acronym: { type: 'acronym', value: { uk: 'АБ', en: 'EN_SECRET' } },
+          custom: { type: 'custom', value: { uk: 'Лише УК', en: 'CUSTOM_SECRET' }, color: 'red' },
+        }, order: ['acronym', 'custom'] } },
       },
-      {
-        slug: 'path-check',
-        front: [{ type: 'text', value: 'What shape is the path?' }],
-        back: [
-          {
-            type: 'text',
-            value: {
-              kind: 'questionField',
-              questionSlug: 'q-one',
-              fieldPath: ['answers', 'correct', 'straight', 'value'],
-            },
-          },
-        ],
-        hint: [],
-        tags: [],
-        flags: [
-          { type: 'custom', value: 'Keep practicing', color: 'info', icon: 'star' },
-          {
-            type: 'acronym',
-            value: 'AB',
-            localePolicy: 'needsLocalizedVersion',
-            parts: [
-              { kind: 'source', item: 'A', letters: 'A' },
-              { kind: 'source', item: 'B', letters: 'B' },
-            ],
-          },
-        ],
-      },
-    ],
-    relationships: [
-      {
-        key: 'reverse-ray',
-        source: 'ray-fact',
-        target: 'path-check',
-        type: 'reverse',
-        rationale: 'Complementary directions',
-      },
-    ],
-    unresolvedDependencies: [],
-  };
-  const converted = transform(bank) ?? bank;
-  const file = path.join(f.lesson, 'flashcards/flashcards.yaml');
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, yaml.stringify(converted));
-  return converted;
-}
-test('approved Flashcards compile typed flags, Question-field references and mirrored links', () =>
-  withFixture(f => {
-    writeFlashcards(f);
-    runOne(f.lesson, 'generate', f.repo);
-    const generated = fs.readFileSync(f.generated('lesson.data.ts'), 'utf8');
-    assert.match(generated, /linkFlashcards<Languages>/);
-    assert.match(generated, /questionBank\["selectOneAnswer"\]\["q-one"\]\["question"\]\[0\]\["value"\]/);
-    assert.match(generated, /"relationshipId":/);
-    assert.match(generated, /"type": "reverse"/);
-    assert.match(generated, /"count": 2/);
-    assert.doesNotMatch(generated, /"localePolicy"/);
-    assert.doesNotMatch(generated, /"parts"/);
-    const manifest = JSON.parse(fs.readFileSync(f.generated('manifest.json'), 'utf8'));
-    assert.ok(manifest.inputs['flashcards/flashcards.yaml']);
-    const req = JSON.parse(fs.readFileSync(f.generated('requirements.json'), 'utf8'));
-    assert.ok(req.unresolved.some(x => x.kind === 'localization' && x.detail.includes('acronym')));
-    assert.equal(runOne(f.lesson, 'check', f.repo).changed, 0);
-  }));
-test('Flashcard references must resolve against actual typed Question data', () =>
-  withFixture(f => {
-    writeFlashcards(f, bank => {
-      bank.flashcards[0].front[0].value.fieldPath = ['question', 0, 'notAField'];
-      return bank;
-    });
-    assert.throws(
-      () => runOne(f.lesson, 'generate', f.repo),
-      /flashcards\/flashcards.yaml:.*fieldPath.*unknown canonical Question property/,
-    );
-    assert.ok(!fs.existsSync(f.generated('lesson.data.ts')));
-    assert.ok(fs.existsSync(f.generated('requirements.blocked.json')));
-  }));
-test('rejects duplicate Flashcard links and invented acronym compositions', () =>
-  withFixture(f => {
-    const bank = writeFlashcards(f);
-    bank.relationships.push({
-      key: 'duplicate',
-      source: 'path-check',
-      target: 'ray-fact',
-      type: 'reverse',
-      rationale: 'Same relation repeated in reverse order',
-    });
-    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.stringify(bank));
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /duplicate typed Flashcard edge/);
-    bank.relationships.pop();
-    bank.flashcards[1].flags[1].parts[1].letters = 'C';
-    fs.writeFileSync(path.join(f.lesson, 'flashcards/flashcards.yaml'), yaml.stringify(bank));
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /acronym parts must concatenate/);
-  }));
-test('rejects proposed Flashcard blocks without inventing runtime content', () =>
-  withFixture(f => {
-    writeFlashcards(f, bank => {
-      bank.flashcards[0].back = [
-        {
-          type: 'scene',
-          purpose: 'Interactive simulation',
-          status: 'proposed',
-          dependency: 'Implement Scene after approved specification',
-        },
-      ];
-      return bank;
-    });
-    assert.throws(() => runOne(f.lesson, 'generate', f.repo), /unsupported\/pending Flashcard block/);
+    }, order: ['card'] },
+  }, 'uk');
+  assert.match(draft, /"uk": "АБ"/);
+  assert.doesNotMatch(draft, /EN_SECRET|CUSTOM_SECRET/);
+  assert.match(draft, /"languages": \[\s*"uk",\s*"en"\s*\]/);
+});
+
+test('Lesson Config is independently discovered without repurposing editorial content', () =>
+  fixture(f => {
+    fs.writeFileSync(path.join(f.lesson, 'content.yaml'), 'kind: lesson-content-plan\nsections: []\n');
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
+    assert.match(fs.readFileSync(path.join(f.lesson, 'content.yaml'), 'utf8'), /lesson-content-plan/);
+    assert.match(fs.readFileSync(f.generated(), 'utf8'), /defineLesson\(/);
   }));

@@ -35,3 +35,7 @@ Use [`defineLesson`](../../../shared/engine/configurators/lessons/defineLesson/d
 At runtime, [`assembleLessonProps`](../../../shared/engine/assemblers/assembleLessonProps/assembleLessonProps.ts) merges the published base and selected locale with optional Course overrides and validates the complete Props.
 
 **Editorial localization:** `content.yaml.documentLanguage` identifies the only locale populated by the initial YAML-to-entity generator; `supportedLanguages` sets the intended Lesson language tuple. Remaining locales require separate translation, and interim TypeScript errors must stay visible until translations exist. Initial generation is not proof of publication readiness.
+
+## YAML TypeScript draft authoring handoff
+
+The Screenwriter-owned `content.yaml` is an editorial plan; the independent `lesson.config.yaml` technical projection carries the authored Engine `defineLesson` Config tree, plus a removable source-language `documentLanguage` provenance field. The Engine YAML draft scaffolder converts it to incomplete named `*.data.ts` source using `@svitlo/engine/build` factories without validating, translating, typechecking or publishing. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md). The published Props pipeline remains separate.

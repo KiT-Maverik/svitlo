@@ -39,7 +39,7 @@ When the back is a genuine multi-element enumeration, put one **typed list flag*
 
 If a Question field expresses the desired prompt, correct answer, date, term, number, code or media, specify a typed `questionField` reference as the **value** of the editorial ContentBlock instead of copying its rendered text. It has `questionSlug` and `fieldPath`, an array of exact property names and indices locating one field on the canonical Question data. Example paths are `[question, 0, value]` and `[answers, correct, straightLine, value]`. A referenced field must exist, be semantically correct for that card, and have the expected source type/localization.
 
-On subsequent **YAML-to-TypeScript generation**, resolve a Question by its globally unique slug and canonical type, locate the actual exported Question_Data object, and emit a real import and type-safe field access, for example:
+During the **separately reviewed technical handoff and TypeScript completion** (not an automatic generic scaffolder step), resolve a Question by its globally unique slug and canonical type, locate the actual exported Question source, and emit a real import and type-safe field access, for example:
 
 ```ts
 import { lightTravelsStraight_Question_Data } from '../questions/lightTravelsStraight';
@@ -174,6 +174,10 @@ unresolvedDependencies: []
 
 The UUID and source revision are **placeholders**, not approved identifiers. The `questionSlug` and paths must be verified against the real approved bank and Question TS exports before generation.
 
+## Projection to the Engine Flashcard Config (separate technical stage)
+
+The bank above follows `lesson-flashcards.schema.json`, an **editorial** schema. After independent approval, a technical editor projects the cards into the Engine Lesson `flashcards: { items, order }` collection. Every Flashcard needs `type: flashcard`, stable UUID/camelCase slug, `parameters.tags`, named `parameters.flags: { items, order }` (typed `list`/`warning`/`acronym`/`custom`), optional named relationships, and named `content.front/back/hint: { items, order }` with nested, explicitly typed ContentBlock Configs. `documentLanguage` remains outside the Config and only source-locale `locale` values are populated. Question-field references and relationship IDs must be **resolved from real approved sources**; do not pretend the generic `define*` draft scaffolder performs editorial matching or invents imports. See [Engine YAML handoff and example](../../docs/architecture/yaml-config-scaffolding.md).
+
 ## Semantic validation and handoff
 
 Validate schema and additionally verify:
@@ -189,4 +193,4 @@ Validate schema and additionally verify:
 9. One authored source language; no duplicated Question localizations, invented locales or hidden publication blockers.
 10. A changed Question bank invalidates dependent cards until rechecked; editorial reviewer pass is not approval.
 
-Use a Draft PR and the existing fixed-scope Lesson Production Issue when doing authorized content production. A future Coding Agent consumes **approved** YAML, resolves Question imports and produces typed Flashcards. Do not claim a full YAML-to-code compiler has already been implemented.
+Use a Draft PR and the existing fixed-scope Lesson Production Issue when doing authorized content production. A later Coding Agent consumes the **approved editorial bank plus its reviewed Config-shaped projection**, resolves actual Question imports, and completes TypeScript Flashcards. The generic scaffolder only emits a draft; it does not certify complete, compiling or publishable Flashcards.

@@ -24,3 +24,7 @@ Use the appropriate Engine `define*Section` configurator from `@svitlo/engine/bu
 ## Methodologist assessment requirements
 
 The Lesson's approved `methodology.md` YAML frontmatter declares `assessmentPlan.quizRequired` and `quizzes[]`, including required `AssessmentMethodKey` values per Quiz. `defineQuizSection` configures runtime behavior, but it does **not** decide why a Quiz is educationally required. The Screenwriter's `content.yaml` binds each required Quiz to its approved `assessmentPlanKey`; the Assessment Architect validates the actual Questions and scoring. No fixed one-Quiz-per-Lesson rule.
+
+## YAML Config draft authoring
+
+The technical `lesson.config.yaml` uses explicit `type` for each Section and its ContentBlocks, with slug-keyed `content: { items, order }` collections. Its editor schema is generated from Engine Config schemas; the TypeScript draft scaffolder emits nested `define*Section` and `define*` calls but does not verify editorial approval or publish Props. See [Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md).

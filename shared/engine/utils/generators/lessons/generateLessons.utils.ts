@@ -45,4 +45,3 @@ export async function loadLessonData(entry: string): Promise<unknown> {
     fs.rmSync(directory, { recursive: true, force: true });
   }
 }
-

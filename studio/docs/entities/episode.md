@@ -14,12 +14,12 @@ Episodes belong in their owning Course's authoring directory, e.g. `data/courses
 
 ## Independent Engine Build API
 
-`defineEpisode` is exported from `@svitlo/engine` via `configurators/episodes/defineEpisode`. Its own `episode_Config_Schema`, `episode_Props_Schema` and `episode_Override_Metadata_Schema` are not derived from Lesson schemas or functions.
+`defineEpisode` is exported through the build-time `@svitlo/engine/build` entrypoint and implemented in `configurators/episodes/defineEpisode`. Its own `episode_Config_Schema`, `episode_Props_Schema` and `episode_Override_Metadata_Schema` are not derived from Lesson schemas or functions.
 
 The initial authored shape includes identity (`type: 'episode'`, UUID and slug), `params.languages`, localized `locale.title`, optional `events`, and a slug-keyed `section: { items, order }` collection of Section configurators. Episode does not own Lesson `skills`, `questions`, `flashcards`, `requireQuiz`, or `programId`.
 
 `build.props({ languages })` returns `{ base, locale }`, with complete per-language **atomic Section Props arrays** wherever Sections require translation. `build.overrides(patch, { languages })` returns sparse metadata changes and complete Section arrays for changed collections. Existing Section overrides, additions, disabling, and order are validated. Course, Module and Chapter may directly contain Episode children.
 
-Current scope is **authoring schemas and Build API composition**. Episode runtime screens, scenario state handling, generators, assemblers and separate publication routes are not implemented by this change. Do not claim they are operational based on configurator existence.
+The current Engine [YAML Config composition](../../../shared/engine/configurators/yaml/yamlLessonCourse.schemas.ts) can represent nested Episode `type: episode`, `section.items/order` and explicit child Section/ContentBlock types inside a Course. See the [partial Course example](../architecture/yaml-config-scaffolding.md#partial-course-config-shaped-yaml-example). Its draft TypeScript scaffolder does **not** guarantee that Episode runtime screens, scenario state, generators, assemblers or publishing are complete; verify those separately rather than assuming Config support proves operational integration.
 
 See [Lesson](./lesson.md), [Course](./course.md), and [Section](./section.md).
