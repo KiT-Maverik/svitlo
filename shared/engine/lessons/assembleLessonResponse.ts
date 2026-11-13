@@ -180,12 +180,19 @@ export function assembleLessonResponse(
     if (!SECTION_TYPES.includes(sectionType as Section_Type)) {
       throw new Error('Unsupported section type at ' + where + ': ' + sectionType);
     }
+    // New Section configurators publish skippable under params; legacy authored Sections
+    // place it at the root. Normalize both paths into the renderer's Section metadata.
+    const sectionParams = section.params === undefined ? undefined : record(section.params, where + '.params');
+    const authoredSkippable = sectionParams?.skippable ?? section.skippable;
+    if (authoredSkippable !== undefined && typeof authoredSkippable !== 'boolean') {
+      throw new Error('Invalid Section skippable at ' + where);
+    }
     const metadata = {
       id: sectionId,
       slug: sectionSlug,
       title: string(section.title, where + '.title'),
       navigationLabel: string(section.navigationLabel, where + '.navigationLabel'),
-      ...(typeof section.skippable === 'boolean' ? { skippable: section.skippable } : {}),
+      ...(typeof authoredSkippable === 'boolean' ? { skippable: authoredSkippable } : {}),
     };
     if (sectionType === 'quiz') {
       if (section.content !== undefined) throw new Error('Quiz must not contain ContentBlocks at ' + sectionSlug);
