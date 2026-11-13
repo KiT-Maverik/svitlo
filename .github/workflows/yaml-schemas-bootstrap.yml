@@ -9,6 +9,9 @@ on:
       - '.github/workflows/yaml-schemas-bootstrap.yml'
 permissions:
   contents: write
+concurrency:
+  group: yaml-editor-regeneration-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 jobs:
   regenerate:
     if: github.event.pull_request.head.ref == 'agent/508-scaffolder-integration-fixes' && github.event.pull_request.head.repo.full_name == github.repository
@@ -43,4 +46,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "build(engine): refresh deduplicated YAML editor schemas"
+          # Other agent edits may land while the generator runs. Replay this
+          # generated-files-only commit on the latest branch tip before pushing.
+          git fetch origin "$HEAD_BRANCH"
+          git rebase FETCH_HEAD
           git push origin "HEAD:refs/heads/$HEAD_BRANCH"
