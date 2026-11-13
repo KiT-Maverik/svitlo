@@ -19,11 +19,11 @@ jobs:
         with:
           node-version: '22'
           cache: npm
+      - name: Update the workspace lockfile for Mobile ESLint dependencies
+        run: npm install --package-lock-only --ignore-scripts
       - run: npm ci
       - name: Rewrite tracked Engine imports with the one-time TypeScript AST script
         run: node temp/migrate-engine-exports.mjs --write
-      - name: Update the workspace lockfile for Mobile ESLint dependencies
-        run: npm install --package-lock-only --ignore-scripts
       - name: Remove the temporary migration entrypoints
         run: git rm -f .github/workflows/engine-entrypoint-migration.yml temp/migrate-engine-exports.mjs
       - name: Commit the migration as one reviewable change
