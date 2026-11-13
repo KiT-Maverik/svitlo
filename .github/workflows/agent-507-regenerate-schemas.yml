@@ -34,6 +34,7 @@ jobs:
       - run: npm run content:generate:yaml-schemas --workspace @svitlo/engine
       - run: npm run content:check:yaml-schemas --workspace @svitlo/engine
       - run: node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
+      - run: npm test --workspace @svitlo/engine
       - name: Report and commit generated schema changes
         shell: bash
         run: |
