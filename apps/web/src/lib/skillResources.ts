@@ -63,7 +63,10 @@ async function readPublishedSkillFiles(code: string): Promise<{ base: unknown; l
   const dir = join(process.cwd(), 'public/generated/skills');
   const [base, locale] = await Promise.all([
     readFile(join(dir, 'base.json'), 'utf8').then(JSON.parse),
-    readFile(join(dir, code + '.json'), 'utf8').then(JSON.parse),
+    readFile(join(dir, code + '.json'), 'utf8').then(JSON.parse).catch(error => {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') return {};
+      throw error;
+    }),
   ]);
   return { base, locale };
 }
