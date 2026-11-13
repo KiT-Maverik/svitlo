@@ -64,7 +64,7 @@ for (const resource of ['assessmentMethods/base.json', 'assessmentMethods/uk.jso
   const filename = join(targetPublic, 'data/uiKit', resource);
   if (!existsSync(filename)) throw new Error('Missing UI Kit Assessment Method resource: ' + filename);
 }
-if (!existsSync(join(targetPublic, 'data/pages/lessons'))) {
+if (!existsSync(join(targetPublic, 'data/lessons'))) {
   throw new Error('No published lessons for ' + id);
 }
 
