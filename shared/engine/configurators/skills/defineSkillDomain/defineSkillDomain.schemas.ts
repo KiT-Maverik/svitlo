@@ -8,7 +8,7 @@ import type { Skill_Configurator } from '../defineSkill/defineSkill';
 import { skillGroup_Props_Schema, type SkillGroup_Props } from '../defineSkillGroup/defineSkillGroup.schemas';
 import type { SkillGroup_Configurator } from '../defineSkillGroup/defineSkillGroup';
 
-const localized = (mode: 'config' | 'props') => ({
+const localized = <const Mode extends 'config' | 'props'>(mode: Mode) => ({
   id: z.uuid(),
   slug: z.string().min(1),
   description: z.object({
