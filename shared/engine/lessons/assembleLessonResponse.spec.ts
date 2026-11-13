@@ -80,6 +80,20 @@ describe('assembleLessonResponse', () => {
     }
   });
 
+  it('preserves explicit Section skip opt-outs and opt-ins in published responses', () => {
+    const data = {
+      ...lesson,
+      sections: [{ ...quiz('first', false), skippable: false }, { ...quiz('second', false), skippable: true }],
+    };
+    const response = assembleLessonResponse(id, 'en', {
+      config: { data, localeSources: {} },
+      flashcards: { data: [], localeSources: {} },
+      questions,
+    });
+    assert.equal(response.sections[0]?.skippable, false);
+    assert.equal(response.sections[1]?.skippable, true);
+  });
+
   it('rejects legacy nested Quiz ContentBlocks', () => {
     const invalid = { ...lesson, sections: [{ ...quiz('old', true), content: [{ type: 'quiz' }] }] };
     assert.throws(

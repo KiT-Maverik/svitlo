@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { enUiKitMessages } from '../../testing/uiKitMessages.unit.fx';
 import LearningLayout from '../layout/LearningLayout/LearningLayout';
@@ -95,6 +95,40 @@ describe('LessonController scoped state and navigation', () => {
     showLesson();
     const supported = screen.getByTestId('supported-lesson-languages').textContent?.split(',');
     expect(new Set(supported)).toEqual(new Set(['en-US', 'uk-UA']));
+  });
+
+  it.each([
+    { name: 'Lesson disabled; Section unspecified', allowSkipping: false, skippable: undefined, enabled: false },
+    { name: 'Lesson disabled; Section enabled', allowSkipping: false, skippable: true, enabled: false },
+    { name: 'Lesson disabled; Section disabled', allowSkipping: false, skippable: false, enabled: false },
+    { name: 'Lesson enabled; Section unspecified', allowSkipping: true, skippable: undefined, enabled: true },
+    { name: 'Lesson enabled; Section enabled', allowSkipping: true, skippable: true, enabled: true },
+    { name: 'Lesson enabled; Section disabled', allowSkipping: true, skippable: false, enabled: false },
+  ])('$name', ({ allowSkipping, skippable, enabled }) => {
+    const fixture = response(true);
+    const { skippable: _original, ...first } = fixture.sections[0];
+    const value = {
+      ...fixture,
+      parameters: {
+        ...fixture.parameters,
+        sections: { ...fixture.parameters.sections, allowSkipping },
+      },
+      sections: [
+        { ...first, ...(skippable === undefined ? {} : { skippable }) },
+        ...fixture.sections.slice(1),
+      ],
+    } as LessonView;
+    observed.length = 0;
+    render(<Lesson response={value} href="/en/lesson/lesson-test" messages={enUiKitMessages} layout={TestLayout} />);
+    const bottom = screen.getByRole('navigation', { name: enUiKitMessages.learningLayout.navigation.bottom });
+    const skip = within(bottom).getByRole('button', {
+      name: new RegExp(enUiKitMessages.learningLayout.actions.skip, 'i'),
+    });
+    if (enabled) expect(skip).toBeEnabled();
+    else expect(skip).toBeDisabled();
+    // Programmatic actions must obey the same policy as the button and stepper.
+    act(() => observed.at(-1)?.skip());
+    expect(screen.getByText(enabled ? 'Second section content' : 'What is light?')).toBeVisible();
   });
 
   it('blocks Next and direct forward navigation until required checkpoints are completed', () => {
