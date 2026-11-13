@@ -1,6 +1,6 @@
-# Runtime assembler architecture — planned
+# Runtime assembler architecture
 
-**Status:** Target contract only. No new runtime assembler or unified resolver is implemented by this document. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
+**Status:** Skills runtime assembly is implemented in `skills/assembleSkills.ts`. Other entity assemblers remain planned. The rules below are the cross-entity target contract. Follow the root `AGENTS.md`, applicable Studio guidance, and the authoring/publication contract in [`../configurators/AGENTS.md`](../configurators/AGENTS.md).
 
 ## Responsibility and dependency boundary
 
