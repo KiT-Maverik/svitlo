@@ -18,19 +18,16 @@ const meta = {
   args: {
     messages: enUiKitMessages.audio,
     id: 'audio-example',
+    slug: 'audioExample',
     type: 'audio',
-
-    fileLocation: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
-    title: 'Animal sounds',
-    description: 'Play the audio recording.',
+    params: {},
+    locale: {
+      fileLocation: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
+      title: 'Animal sounds',
+      description: 'Play the audio recording.',
+    },
   },
-  argTypes: {
-    id: { control: false },
-    type: { control: false },
-
-    fileLocation: { control: 'text' },
-    fallback: { control: 'object' },
-  },
+  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, locale: { control: 'object' } },
 } satisfies Meta<typeof Audio>;
 
 export default meta;
@@ -46,17 +43,23 @@ export const Localized: Story = {
       </ContentLanguageContext.Provider>
     ),
   ],
-  args: { messages: ukUiKitMessages.audio, title: 'Звуки тварин', description: 'Прослухайте аудіозапис.' },
+  args: {
+    messages: ukUiKitMessages.audio,
+    locale: { ...meta.args.locale, title: 'Звуки тварин', description: 'Прослухайте аудіозапис.' },
+  },
 };
 
 export const MissingFile: Story = {
   args: {
-    fileLocation: '/storybook-audio-not-found.mp3',
-    fallback: {
-      unavailable: 'The recording could not be loaded.',
-      offline: 'Connect to the internet to load this recording.',
-      playbackError: 'Playback failed.',
-      retry: 'Retry audio',
+    locale: {
+      ...meta.args.locale,
+      fileLocation: '/storybook-audio-not-found.mp3',
+      fallback: {
+        unavailable: 'The recording could not be loaded.',
+        offline: 'Connect to the internet to load this recording.',
+        playbackError: 'Playback failed.',
+        retry: 'Retry audio',
+      },
     },
   },
 };

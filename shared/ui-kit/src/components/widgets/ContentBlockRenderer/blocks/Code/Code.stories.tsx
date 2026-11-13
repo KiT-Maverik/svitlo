@@ -15,14 +15,15 @@ const meta = {
   },
   args: {
     id: 'code-example',
+    slug: 'codeExample',
     type: 'code',
-
-    title: 'Greeting',
-    language: 'typescript',
-    codeAsText: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
-    variables: { GREETING: 'Hello!' },
+    params: {
+      language: 'typescript',
+      codeAsText: 'const greeting = "%_%GREETING%_%";\nconsole.log(greeting);',
+    },
+    locale: { title: 'Greeting', variables: { GREETING: 'Hello!' } },
   },
-  argTypes: { id: { control: false }, type: { control: false }, variables: { control: 'object' } },
+  argTypes: { id: { control: false }, slug: { control: false }, type: { control: false }, params: { control: 'object' }, locale: { control: 'object' } },
 } satisfies Meta<typeof Code>;
 
 export default meta;
@@ -38,18 +39,20 @@ export const LocalizedVariables: Story = {
       </ContentLanguageContext.Provider>
     ),
   ],
-  args: { title: 'Привітання', variables: { GREETING: 'Привіт!' } },
+  args: { locale: { ...meta.args.locale, title: 'Привітання', variables: { GREETING: 'Привіт!' } } },
 };
 
 export const UnknownLanguage: Story = {
   args: {
-    language: 'custom-language',
-    codeAsText: 'let value = 42;\nprint(value);',
-    title: 'Plain-text fallback',
-    variables: {},
+    params: {
+      ...meta.args.params,
+      language: 'custom-language',
+      codeAsText: 'let value = 42;\nprint(value);',
+    },
+    locale: { ...meta.args.locale, title: 'Plain-text fallback', variables: {} },
   },
 };
 
 export const WithoutTitle: Story = {
-  args: { title: undefined },
+  args: { locale: { ...meta.args.locale, title: undefined } },
 };
