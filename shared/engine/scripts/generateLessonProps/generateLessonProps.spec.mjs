@@ -101,14 +101,14 @@ test('Lesson publisher and check reject output symlinks, symlink ancestors, and 
   try {
     fs.mkdirSync(outside);
     fs.symlinkSync(outside, output);
-    assert.throws(() => publishLessonProps(output, files), /Symlink in generated Lesson path/);
-    assert.throws(() => check(output, files), /Symlink in generated Lesson path/);
+    assert.throws(() => publishLessonProps(output, files), /Symlink in generated path/);
+    assert.throws(() => check(output, files), /Symlink in generated path/);
     fs.unlinkSync(output);
 
     fs.symlinkSync(outside, path.join(home, 'alias'));
     const escaped = path.join(home, 'alias', 'lessons');
-    assert.throws(() => publishLessonProps(escaped, files), /Symlink in generated Lesson path/);
-    assert.throws(() => check(escaped, files), /Symlink in generated Lesson path/);
+    assert.throws(() => publishLessonProps(escaped, files), /Symlink in generated path/);
+    assert.throws(() => check(escaped, files), /Symlink in generated path/);
     assert.equal(fs.existsSync(path.join(outside, 'lessons')), false);
 
     publishLessonProps(output, files);

@@ -152,6 +152,21 @@ describe('Configurators', () => {
         );
       });
 
+      test('Quiz grading thresholds require nonnegative points and percentage within 0–100', () => {
+        const quiz = makeQuiz();
+        const build = (mode: 'percentage' | 'points', successThreshold: number) =>
+          quiz.build.overrides(
+            { params: { grading: { mode, successThreshold } } },
+            { languages: ['en', 'uk'] },
+          );
+        assert.doesNotThrow(() => build('percentage', 0));
+        assert.doesNotThrow(() => build('percentage', 100));
+        assert.doesNotThrow(() => build('points', 101));
+        assert.throws(() => build('percentage', -1), /Invalid Quiz|Invalid.*override|successThreshold/);
+        assert.throws(() => build('percentage', 101), /Invalid Quiz|Invalid.*override|successThreshold/);
+        assert.throws(() => build('points', -1), /Invalid Quiz|Invalid.*override|successThreshold/);
+      });
+
       test('Quiz screens cannot reference authored or overridden disabled ContentBlocks', () => {
         const disabledPrompt = defineText({
           id: id('b6'),

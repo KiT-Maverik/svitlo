@@ -56,7 +56,7 @@ type LocaleBody = {
   locale?: { title?: string };
   section?: Lesson_PropsBase['section'];
   flashcards?: Lesson_PropsBase['flashcards'];
-  questions?: Partial<Record<Lesson_Question_Type, Record<string, unknown>[]>>;
+  questions?: Lesson_PropsBase['questions'];
 };
 type Files = Partial<Record<LanguageCode, LocaleBody>>;
 type Publication<Base> = { base: Base; locale: Files | undefined };
@@ -66,6 +66,7 @@ type OverrideBase = {
   section?: Lesson_PropsBase['section'];
   flashcards?: Lesson_PropsBase['flashcards'];
   questions?: Lesson_PropsBase['questions'];
+  events?: NonNullable<Lesson_Config['events']>;
 };
 type CollectionPatch = { items?: Record<string, unknown>; additionalItems?: Record<string, unknown>; order?: string[] };
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -291,9 +292,10 @@ export function defineLesson<
         languages,
         changes[kind as Lesson_Question_Type] ?? {},
       );
-      base[kind as Lesson_Question_Type] = built.bases;
+      (base as Record<string, unknown>)[kind] = built.bases;
       for (const [code, entries] of Object.entries(built.locales)) {
-        (locales[code as LanguageCode] ??= {})[kind as Lesson_Question_Type] = entries;
+        const localized = (locales[code as LanguageCode] ??= {});
+        (localized as Record<string, unknown>)[kind] = entries;
       }
     }
     return { base, locales };
@@ -441,12 +443,12 @@ export function defineLesson<
       }
       if (!isRecord(patch)) throw new Error('Expected Lesson overrides object');
       for (const key of Object.keys(patch)) {
-        if (!['params', 'locale', 'section', 'flashcards', 'questions'].includes(key)) {
+        if (!['params', 'locale', 'events', 'section', 'flashcards', 'questions'].includes(key)) {
           throw new Error('Unknown Lesson override field: ' + key);
         }
       }
       const metadataPatch = lesson_Override_Metadata_Schema.parse(
-        Object.fromEntries(Object.entries(patch).filter(([key]) => key === 'params' || key === 'locale')),
+        Object.fromEntries(Object.entries(patch).filter(([key]) => ['params', 'locale', 'events'].includes(key))),
       );
       const own = metadataSchema.parse(mergeForValidation(copyAuthored(), metadataPatch));
       const split = splitLocalizedFields(metadataPatch.locale ?? {});
@@ -458,6 +460,7 @@ export function defineLesson<
         base: {
           ...(metadataPatch.params !== undefined ? { params: metadataPatch.params } : {}),
           ...(Object.keys(split.base).length ? { locale: split.base as { title?: string } } : {}),
+          ...(metadataPatch.events !== undefined ? { events: metadataPatch.events } : {}),
         },
         locale: undefined,
       };

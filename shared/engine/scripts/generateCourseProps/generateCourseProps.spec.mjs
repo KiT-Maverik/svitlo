@@ -35,8 +35,23 @@ test('Course batch publisher rejects unsafe paths and output symlinks', () => {
     assert.throws(() => publish(root, new Map([['../escape.json', '{}']])), /Invalid generated Course path/);
     assert.equal(fs.existsSync(root), false, 'invalid content must not be published');
     fs.symlinkSync(home, root);
-    assert.throws(() => publish(root, new Map([[id + '/base.json', '{}']])), /non-directory Course output/);
+    assert.throws(() => publish(root, new Map([[id + '/base.json', '{}']])), /Symlink in generated path/);
     assert.throws(() => readCurrent(root), /Symlink/);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
+
+test('Course batch publisher rejects a symlink in an output ancestor', () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-ancestors-'));
+  try {
+    const real = path.join(home, 'real');
+    fs.mkdirSync(real);
+    fs.symlinkSync(real, path.join(home, 'alias'), 'dir');
+    const output = path.join(home, 'alias/generated/courses');
+    assert.throws(() => publish(output, new Map([[id + '/base.json', '{}']])), /Symlink in generated path/);
+    assert.throws(() => readCurrent(output), /Symlink in generated path/);
+    assert.equal(fs.existsSync(path.join(real, 'generated')), false);
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
   }

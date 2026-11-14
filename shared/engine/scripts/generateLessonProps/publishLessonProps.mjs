@@ -5,6 +5,8 @@
 import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/assertSafeDirectoryPath.mjs';
+export { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const lessonFile =
   /^([0-9a-f])\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\/(base|[a-z]{2})\.json$/;
@@ -17,24 +19,6 @@ function validateFiles(files) {
       throw new Error('Invalid generated Lesson path: ' + String(relative));
     }
     if (typeof body !== 'string') throw new Error('Invalid generated Lesson body: ' + relative);
-  }
-}
-
-/** Reject symlink/non-directory ancestors, including the output root itself. */
-export function assertSafeDirectoryPath(directory) {
-  const absolute = path.resolve(directory);
-  let current = path.parse(absolute).root;
-  for (const segment of absolute.slice(current.length).split(path.sep).filter(Boolean)) {
-    current = path.join(current, segment);
-    let stat;
-    try {
-      stat = fs.lstatSync(current);
-    } catch (error) {
-      if (error.code === 'ENOENT') continue;
-      throw error;
-    }
-    if (stat.isSymbolicLink()) throw new Error('Symlink in generated Lesson path: ' + current);
-    if (!stat.isDirectory()) throw new Error('Non-directory in generated Lesson path: ' + current);
   }
 }
 

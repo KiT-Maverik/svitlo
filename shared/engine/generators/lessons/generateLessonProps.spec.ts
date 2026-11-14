@@ -126,3 +126,16 @@ test('renders deterministic, isolated publication snapshots with canonical relat
   first.clear();
   assert.equal(second.size, 3, 'A previously returned map cannot mutate a later publication');
 });
+
+test('rejects deeply non-JSON Lesson publication values instead of silently dropping data', () => {
+  const bad = (nested: unknown) => [
+    {
+      source: 'lesson.ts',
+      publication: { base: { id, type: 'lesson', extra: nested } },
+    },
+  ] as never;
+  assert.throws(() => renderLessonPropsFiles(bad({ retained: true, dropped: undefined })), /Non-JSON value/);
+  assert.throws(() => renderLessonPropsFiles(bad({ count: Number.POSITIVE_INFINITY })), /Non-JSON value/);
+  assert.throws(() => renderLessonPropsFiles(bad([, 'value'])), /Sparse Lesson array/);
+  assert.throws(() => renderLessonPropsFiles(bad({ nested: () => null })), /Non-JSON value/);
+});

@@ -138,8 +138,24 @@ test('refuses traversal filenames and symlink output trees', () => {
       /Invalid Skills output filename/,
     );
     fs.symlinkSync(temp, output, 'dir');
-    assert.throws(() => writeSkillFiles(output, renderSkillTree(publication())), /Refusing to replace/);
+    assert.throws(() => writeSkillFiles(output, renderSkillTree(publication())), /Symlink in generated path/);
   } finally {
     fs.rmSync(temp, { recursive: true, force: true });
+  }
+});
+
+test('Skills publisher refuses symlink ancestors in write and check modes', () => {
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-skills-ancestors-'));
+  try {
+    const real = path.join(home, 'real');
+    fs.mkdirSync(real);
+    fs.symlinkSync(real, path.join(home, 'alias'), 'dir');
+    const output = path.join(home, 'alias/generated/skills');
+    const files = renderSkillTree(publication());
+    assert.throws(() => writeSkillFiles(output, files), /Symlink in generated path/);
+    assert.throws(() => checkSkillFiles(output, files), /Symlink in generated path/);
+    assert.equal(fs.existsSync(path.join(real, 'generated')), false);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
   }
 });

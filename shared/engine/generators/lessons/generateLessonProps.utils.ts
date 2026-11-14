@@ -14,24 +14,43 @@ export type LessonPublicationEntry = {
   publication: LessonPropsPublication;
 };
 
-const json = (value: unknown, source: string): string => {
-  const content = JSON.stringify(
-    value,
-    (_key, entry: unknown) => {
-      if (
-        typeof entry === 'function' ||
-        typeof entry === 'symbol' ||
-        typeof entry === 'bigint' ||
-        (typeof entry === 'number' && !Number.isFinite(entry))
-      ) {
-        throw new Error('Non-JSON value in Lesson publication: ' + source);
+/** Reject silent JSON.stringify data loss before a completed publication reaches disk. */
+function assertJson(value: unknown, location: string, ancestors = new Set<object>()): void {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return;
+  if (typeof value === 'number' && Number.isFinite(value)) return;
+  if (typeof value !== 'object' || value === null) {
+    throw new Error('Non-JSON value in Lesson publication: ' + location);
+  }
+  if (ancestors.has(value)) throw new Error('Circular Lesson publication: ' + location);
+  if (!Array.isArray(value) && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+    throw new Error('Non-plain Lesson publication value: ' + location);
+  }
+  ancestors.add(value);
+  try {
+    if (Array.isArray(value)) {
+      for (let index = 0; index < value.length; index++) {
+        if (!Object.hasOwn(value, index)) throw new Error('Sparse Lesson array: ' + location);
+        assertJson(value[index], location + '[' + index + ']', ancestors);
       }
-      return entry;
-    },
-    2,
-  );
-  if (content === undefined) throw new Error('Empty Lesson publication: ' + source);
-  return content + '\n';
+    } else {
+      for (const [key, child] of Object.entries(value)) {
+        if (['__proto__', 'prototype', 'constructor'].includes(key)) {
+          throw new Error('Unsafe Lesson publication key: ' + location + '/' + key);
+        }
+        assertJson(child, location + '/' + key, ancestors);
+      }
+      if (Object.getOwnPropertySymbols(value).length) {
+        throw new Error('Symbol key in Lesson publication: ' + location);
+      }
+    }
+  } finally {
+    ancestors.delete(value);
+  }
+}
+
+const json = (value: unknown, source: string): string => {
+  assertJson(value, source);
+  return JSON.stringify(value, null, 2) + '\n';
 };
 
 /**

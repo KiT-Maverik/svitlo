@@ -10,6 +10,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { assertSafeDirectoryPath } from '../safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const own = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
@@ -39,12 +40,33 @@ function difference(base, resolved) {
   return Object.keys(output).length ? output : undefined;
 }
 
-function assertJson(value, label) {
-  if (value === undefined) throw new Error(label + ' contains an undefined value');
-  const text = JSON.stringify(value);
-  if (text === undefined) throw new Error(label + ' is not JSON serializable');
-  const parsed = JSON.parse(text);
-  if (JSON.stringify(parsed) !== text) throw new Error(label + ' is not stable JSON');
+function assertJson(value, label, ancestors = new Set()) {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return;
+  if (typeof value === 'number' && Number.isFinite(value)) return;
+  if (typeof value !== 'object' || value === null) throw new Error('Non-JSON value in ' + label);
+  if (ancestors.has(value)) throw new Error('Circular publication in ' + label);
+  if (!Array.isArray(value) && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+    throw new Error('Non-plain JSON object in ' + label);
+  }
+  ancestors.add(value);
+  try {
+    if (Array.isArray(value)) {
+      for (let index = 0; index < value.length; index++) {
+        if (!Object.hasOwn(value, index)) throw new Error('Sparse publication array in ' + label);
+        assertJson(value[index], label + '[' + index + ']', ancestors);
+      }
+    } else {
+      for (const [key, child] of Object.entries(value)) {
+        if (['__proto__', 'prototype', 'constructor'].includes(key)) {
+          throw new Error('Unsafe publication key in ' + label + '/' + key);
+        }
+        assertJson(child, label + '/' + key, ancestors);
+      }
+      if (Object.getOwnPropertySymbols(value).length) throw new Error('Symbol publication key in ' + label);
+    }
+  } finally {
+    ancestors.delete(value);
+  }
 }
 
 /** Walk the authored Course tree to associate sparse Lesson patches with IDs. */
@@ -179,6 +201,17 @@ export function renderCourseFiles(course, { languages = course?.config?.base?.pa
   const resource = course.build.props(scope);
   const patch = overrides === undefined ? undefined : course.build.overrides(overrides, scope);
   const lessonPatches = findLessonPatches(course, overrides, languages);
+  assertJson(resource.base, 'Course resource base');
+  if (patch?.base !== undefined) assertJson(patch.base, 'Course override base');
+  for (const language of languages) {
+    if (resource.locale?.[language] !== undefined) assertJson(resource.locale[language], 'Course resource ' + language);
+    if (patch?.locale?.[language] !== undefined) assertJson(patch.locale[language], 'Course override ' + language);
+    const lessonPatch = [...lessonPatches.values()];
+    for (const entry of lessonPatch) {
+      if (entry?.base !== undefined) assertJson(entry.base, 'Lesson override base');
+      if (entry?.locale?.[language] !== undefined) assertJson(entry.locale[language], 'Lesson override ' + language);
+    }
+  }
   const baseResolved = mergeCourseProps(resource.base, patch?.base);
   const base = compactEntity(baseResolved, lessonPatches);
   assertJson(base, 'Course base ' + course.id);
@@ -214,6 +247,7 @@ export function publishCourse(course, { packageRoot, outputRoot, languages, over
   const files = renderCourseFiles(course, { languages, overrides });
   const root = outputRoot ? path.resolve(outputRoot) : path.join(path.resolve(packageRoot), 'generated', 'courses');
   const destination = path.join(root, course.id);
+  assertSafeDirectoryPath(destination);
 
   if (check) {
     const existing = fs.existsSync(destination) ? fs.readdirSync(destination).sort() : [];
