@@ -301,18 +301,30 @@ function noSymlinkComponents(target) {
   }
 }
 
+/** Detect any already-authored Course entrypoint in the destination UUID folder. */
+export function existingCourseDrafts(courseFolder) {
+  if (!fs.existsSync(courseFolder)) return [];
+  return fs.readdirSync(courseFolder).filter(name => name.endsWith('.data.ts')).sort();
+}
+
 export function verifyOrWriteGenerated(filename, rendered, action) {
   if (action !== '--write' && action !== '--check') fail('ARGS', 'choose --write or --check');
   noSymlinkComponents(filename);
-  const existing = fs.existsSync(filename) ? fs.readFileSync(filename, 'utf8') : undefined;
-  if (existing === rendered) return false;
-  if (action === '--check') fail('STALE', 'missing or changed Course draft: ' + filename);
-  if (existing !== undefined) {
-    // Even scaffolded files may subsequently contain human/AI edits: never clobber.
-    fail('OWNERSHIP', 'existing draft differs; refusing to overwrite: ' + filename);
+  if (action === '--write') {
+    // 'wx' is the race-safe counterpart to the preliminary UUID-folder scan.
+    if (fs.existsSync(filename)) return false;
+    try {
+      fs.writeFileSync(filename, rendered, { encoding: 'utf8', flag: 'wx' });
+      return true;
+    } catch (error) {
+      if (error.code === 'EEXIST') return false;
+      throw error;
+    }
   }
-  fs.writeFileSync(filename, rendered, { encoding: 'utf8', flag: 'wx' });
-  return true;
+  if (!fs.existsSync(filename) || fs.readFileSync(filename, 'utf8') !== rendered) {
+    fail('STALE', 'missing or changed Course draft: ' + filename);
+  }
+  return false;
 }
 
 export function parseArguments(args) {
@@ -345,6 +357,14 @@ export async function main(args) {
   const courseFolder = path.join(repoRoot, options.packagePath, 'data/courses',
     options.courseId.at(-1), options.courseId);
   noSymlinkComponents(courseFolder);
+  if (options.action === '--write') {
+    const existing = existingCourseDrafts(courseFolder);
+    if (existing.length) {
+      console.log('SKIP Course ' + options.courseId + ': existing ' + existing.join(', ') +
+        ' in ' + courseFolder + '; no files modified');
+      return;
+    }
+  }
   const sourceFilename = options.sourceFilename ??
     (fs.existsSync(path.join(courseFolder, 'course.yaml')) ? 'course.yaml' : 'toc.yaml');
   const input = path.join(courseFolder, sourceFilename);
@@ -363,8 +383,10 @@ export async function main(args) {
   const filename = path.join(courseFolder, fileSlug + '.data.ts');
   const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides });
   const changed = verifyOrWriteGenerated(filename, content, options.action);
-  console.log((changed ? 'Scaffolded ' : 'Checked ') + filename +
-    '; draft requires AI completion (no schema/TS/publication checks)');
+  console.log(options.action === '--write' && !changed
+    ? 'SKIP Course ' + options.courseId + ': existing ' + path.basename(filename) + '; no files modified'
+    : (changed ? 'Scaffolded ' : 'Checked ') + filename +
+      '; draft requires AI completion (no schema/TS/publication checks)');
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
