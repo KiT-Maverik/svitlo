@@ -4,7 +4,10 @@ import { deepStrict_Schema } from '#schemas';
 import { camelCase_Schema } from '#schemas';
 import { identityBase_Schema, paramsBase_Schema } from '../../_shared__configurators/common.schemas';
 import { addUnifiedLocale } from '../../_shared__configurators/addUnifiedLocale/addUnifiedLocale.utils';
-import { localizationSwitch as contentBlockLocalizationSwitch, contentBlockResolved_Schema } from '../../contentBlocks/contentBlock.schemas';
+import {
+  localizationSwitch as contentBlockLocalizationSwitch,
+  contentBlockResolved_Schema,
+} from '../../contentBlocks/contentBlock.schemas';
 import type { ContentBlock_Configurator, ContentBlock_Props } from '../../contentBlocks/contentBlock.types';
 import type { Configurator_Mode } from '../../configurator.schemas';
 

@@ -45,7 +45,11 @@ function assertJson(value, label, ancestors = new Set()) {
   if (typeof value === 'number' && Number.isFinite(value)) return;
   if (typeof value !== 'object' || value === null) throw new Error('Non-JSON value in ' + label);
   if (ancestors.has(value)) throw new Error('Circular publication in ' + label);
-  if (!Array.isArray(value) && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+  if (
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) !== Object.prototype &&
+    Object.getPrototypeOf(value) !== null
+  ) {
     throw new Error('Non-plain JSON object in ' + label);
   }
   ancestors.add(value);

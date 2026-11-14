@@ -22,7 +22,11 @@ function assertJson(value: unknown, location: string, ancestors = new Set<object
     throw new Error('Non-JSON value in Lesson publication: ' + location);
   }
   if (ancestors.has(value)) throw new Error('Circular Lesson publication: ' + location);
-  if (!Array.isArray(value) && Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) {
+  if (
+    !Array.isArray(value) &&
+    Object.getPrototypeOf(value) !== Object.prototype &&
+    Object.getPrototypeOf(value) !== null
+  ) {
     throw new Error('Non-plain Lesson publication value: ' + location);
   }
   ancestors.add(value);

@@ -76,15 +76,9 @@ test('Lesson publisher rejects traversal, incorrect UUID buckets, and invalid fi
   const root = path.join(home, 'lessons');
   try {
     for (const filename of ['../outside.json', 'd/' + lessonId + '/base.json', baseFile + '/child']) {
-      assert.throws(
-        () => publishLessonProps(root, new Map([[filename, '{}']])),
-        /Invalid generated Lesson path/,
-      );
+      assert.throws(() => publishLessonProps(root, new Map([[filename, '{}']])), /Invalid generated Lesson path/);
     }
-    assert.throws(
-      () => publishLessonProps(root, new Map([[baseFile, undefined]])),
-      /Invalid generated Lesson body/,
-    );
+    assert.throws(() => publishLessonProps(root, new Map([[baseFile, undefined]])), /Invalid generated Lesson body/);
     assert.throws(() => check(root, new Map([['../outside.json', '{}']])), /Invalid generated Lesson path/);
     assert.equal(fs.existsSync(root), false);
     assert.equal(fs.existsSync(path.join(home, 'outside.json')), false);
@@ -125,7 +119,10 @@ test('Lesson publisher leaves the previous tree intact when staging fails partwa
   const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lessons-interrupt-'));
   const root = path.join(home, 'lessons');
   const original = new Map([[baseFile, 'original\n']]);
-  const next = new Map([[baseFile, 'replacement\n'], [ukFile, 'translation\n']]);
+  const next = new Map([
+    [baseFile, 'replacement\n'],
+    [ukFile, 'translation\n'],
+  ]);
   try {
     publishLessonProps(root, original);
     const write = fs.writeFileSync;

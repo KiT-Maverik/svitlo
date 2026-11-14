@@ -47,8 +47,7 @@ export function checkLessonProps(root, files) {
   const actual = currentFiles(root);
   const changed = [...files]
     .filter(
-      ([relative, content]) =>
-        !actual.has(relative) || fs.readFileSync(path.join(root, relative), 'utf8') !== content,
+      ([relative, content]) => !actual.has(relative) || fs.readFileSync(path.join(root, relative), 'utf8') !== content,
     )
     .map(([relative]) => relative);
   const stale = [...actual].filter(relative => !files.has(relative));

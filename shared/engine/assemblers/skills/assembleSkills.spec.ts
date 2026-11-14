@@ -206,27 +206,31 @@ test('rejects identity changes to existing Skills and SkillGroups across publish
     /Cannot change published Skills identity/,
   );
   assert.throws(
-    () => assembleSkills(source, 'uk', {
-      base: { physics: { skills: [{ ...a, slug: 'renamed' }, b] } },
-    }),
+    () =>
+      assembleSkills(source, 'uk', {
+        base: { physics: { skills: [{ ...a, slug: 'renamed' }, b] } },
+      }),
     /Cannot change published Skills identity/,
   );
   assert.throws(
-    () => assembleSkills(source, 'uk', {
-      locale: { uk: { physics: { groups: [{ ...group, id: id('92') }] } } },
-    }),
+    () =>
+      assembleSkills(source, 'uk', {
+        locale: { uk: { physics: { groups: [{ ...group, id: id('92') }] } } },
+      }),
     /Cannot change published Skills identity/,
   );
   assert.throws(
-    () => assembleSkills(source, 'uk', {
-      base: { physics: { groups: [{ ...group, skills: [{ ...a, id: id('93') }, b] }] } },
-    }),
+    () =>
+      assembleSkills(source, 'uk', {
+        base: { physics: { groups: [{ ...group, skills: [{ ...a, id: id('93') }, b] }] } },
+      }),
     /Cannot change published Skills identity/,
   );
   assert.throws(
-    () => assembleSkills(source, 'uk', {
-      base: { physics: { skills: [a, { ...a }] } },
-    }),
+    () =>
+      assembleSkills(source, 'uk', {
+        base: { physics: { skills: [a, { ...a }] } },
+      }),
     /Duplicate published Skills identity/,
   );
 });

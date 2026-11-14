@@ -155,10 +155,7 @@ describe('Configurators', () => {
       test('Quiz grading thresholds require nonnegative points and percentage within 0–100', () => {
         const quiz = makeQuiz();
         const build = (mode: 'percentage' | 'points', successThreshold: number) =>
-          quiz.build.overrides(
-            { params: { grading: { mode, successThreshold } } },
-            { languages: ['en', 'uk'] },
-          );
+          quiz.build.overrides({ params: { grading: { mode, successThreshold } } }, { languages: ['en', 'uk'] });
         assert.doesNotThrow(() => build('percentage', 0));
         assert.doesNotThrow(() => build('percentage', 100));
         assert.doesNotThrow(() => build('points', 101));

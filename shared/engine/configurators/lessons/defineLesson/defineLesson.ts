@@ -453,10 +453,7 @@ export function defineLesson<
       // The merged value is parsed by the authoritative metadata schema below.
       // Fix the generic at this boundary to avoid recursive JsonValue inference for events.
       const own = metadataSchema.parse(
-        mergeForValidation<Record<string, unknown>>(
-          copyAuthored(),
-          metadataPatch as Record<string, unknown>,
-        ),
+        mergeForValidation<Record<string, unknown>>(copyAuthored(), metadataPatch as Record<string, unknown>),
       );
       const split = splitLocalizedFields(metadataPatch.locale ?? {});
       const files: Files = {};

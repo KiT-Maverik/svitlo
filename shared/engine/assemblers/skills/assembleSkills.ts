@@ -10,10 +10,7 @@ import type { SkillGroup_Props } from '../../configurators/skills/defineSkillGro
 /** One published file contains the whole slug-keyed Domain tree. */
 export type Skills_Base = Record<string, DeepPartial<SkillDomain_Props> & Pick<SkillDomain_Props, 'id' | 'slug'>>;
 /** Scalar metadata may be sparse; published child collection arrays are complete Props replacements. */
-export type SkillDomain_PublishedPatch = Omit<
-  DeepPartial<SkillDomain_Props>,
-  'id' | 'slug' | 'skills' | 'groups'
-> & {
+export type SkillDomain_PublishedPatch = Omit<DeepPartial<SkillDomain_Props>, 'id' | 'slug' | 'skills' | 'groups'> & {
   id?: never;
   slug?: never;
   skills?: Skill_Props[];
