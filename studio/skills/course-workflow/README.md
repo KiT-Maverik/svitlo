@@ -6,6 +6,14 @@ Independent course-authoring skills; explicit artifact prerequisites, **no manda
 - [Create Course Table of Contents](./create-course-toc.skill.md) — Methodologist; requires `methodology.md` and Skill Taxonomy; creates ordered skill-based `toc.yaml`.
 - [Match Course TOC Lessons](./match-course-toc-lessons.skill.md) — Methodologist; requires existing `methodology.md` and `toc.yaml`, discovers candidates with [Lessons by Skill ID](../../../shared/engine/scripts/generateLessonsBySkill/generate-lessons-by-skill.mjs), adds `lessonId` or creates an independent Lesson Methodology draft.
 
+## Quest, guided practice and assessment responsibilities
+
+Course Methodology and the skill-based TOC decide **what learners should achieve**, not which player to render. Do not insert Quest or Quiz Sections into `toc.yaml` just because the format exists. At the optional Course Screenwriting / Episode authoring stage, the Educational Screenwriter may propose a **Quest Section** when a coherent guided demonstration or narrative mission needs one persistent interactive workspace, named presentation Stages and Scene-driven Tasks with branching feedback. Ordinary explanations and independent media belong in Content Sections; linear steps may remain Learning Flow. Quest is not mandatory for a story.
+
+The Methodologist separately determines whether a standalone Lesson requires **Quiz Sections** to elicit defensible evidence of its targeted Skills, documents `assessmentPlan.quizRequired` and the required Assessment Methods, and reviews those obligations in Course context. The Learning Assessment Architect owns Question/Quiz validity and scoring. A Quest Task may give immediate formative feedback and practice opportunities, but **does not replace an approved Quiz, Question Bank, or verified mastery evidence**. An Episode has no standalone Lesson Quiz requirement; do not silently add scoring to a Quest to imitate one.
+
+A technical editor may place approved Quest Config nodes inside an Episode's `section.items/order` or a standalone Lesson's `section.items/order`. Quest itself uses `stages` and `tasks` camelCase maps, both with `start`, and no internal `order`; Stage media and Task Scenes become nested factories in the YAML → TypeScript **draft** pipeline. Consult [Quest](../../docs/entities/quest.md) and [YAML Config handoff](../../docs/architecture/yaml-config-scaffolding.md). **Runtime Section registration, player, and publication remain unavailable**. The Screenwriter, technical editor and independent scenario reviewer must record that dependency rather than calling the Course finished or playable.
+
 ## Course configuration review gates
 
 Once matched Lessons and their actual authoring data are available, compose and review the Course **before final TypeScript completion and publication**. These are independent specialist skills, not automatic side effects of creating the TOC:
