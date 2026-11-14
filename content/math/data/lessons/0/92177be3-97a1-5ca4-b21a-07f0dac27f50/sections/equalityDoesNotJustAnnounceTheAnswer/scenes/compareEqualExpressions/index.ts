@@ -1,6 +1,7 @@
 import { defineScene } from '@svitlo/engine/build';
+import type { EqualsMeansSameValue_Lesson_Languages } from '../../../../constants';
 
-export const compareEqualExpressions = defineScene({
+export const compareEqualExpressions = defineScene<'compareEqualExpressions', EqualsMeansSameValue_Lesson_Languages>({
   id: "7f4e090a-3ab2-48c8-8e2b-b0334bd731f1",
   slug: "compareEqualExpressions",
   type: "scene",

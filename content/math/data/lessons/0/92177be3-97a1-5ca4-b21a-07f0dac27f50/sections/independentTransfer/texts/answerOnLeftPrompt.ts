@@ -1,6 +1,7 @@
 import { defineText } from '@svitlo/engine/build';
+import type { EqualsMeansSameValue_Lesson_Languages } from '../../../constants';
 
-export const answerOnLeftPrompt = defineText({
+export const answerOnLeftPrompt = defineText<'answerOnLeftPrompt', EqualsMeansSameValue_Lesson_Languages>({
   id: "00162145-5c3c-42b1-8d10-dbb6713aa842",
   slug: "answerOnLeftPrompt",
   type: "text",

@@ -1,6 +1,7 @@
 import { defineText } from '@svitlo/engine/build';
+import type { EqualsMeansSameValue_Lesson_Languages } from '../../../constants';
 
-export const trayAmountPrompt = defineText({
+export const trayAmountPrompt = defineText<'trayAmountPrompt', EqualsMeansSameValue_Lesson_Languages>({
   id: "b32df671-84cb-4c85-8139-8bb716dfc143",
   slug: "trayAmountPrompt",
   type: "text",

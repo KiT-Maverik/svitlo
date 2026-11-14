@@ -1,9 +1,16 @@
 import { defineContentSection } from '@svitlo/engine/build';
+import type { EqualsMeansSameValue_Lesson_Languages } from '../../constants';
 import { answerOnLeftPrompt } from './texts/answerOnLeftPrompt';
 import { sixOnBothSides } from './texts/sixOnBothSides';
 import { sameValueReminder } from './markdown/sameValueReminder';
 
-export const independentTransfer = defineContentSection({
+type SectionItems = {
+  answerOnLeftPrompt: typeof answerOnLeftPrompt;
+  sixOnBothSides: typeof sixOnBothSides;
+  sameValueReminder: typeof sameValueReminder;
+};
+
+export const independentTransfer = defineContentSection<'independentTransfer', SectionItems, EqualsMeansSameValue_Lesson_Languages>({
   id: "2f4afed8-5ba5-42fb-8ee6-9465aa098846",
   slug: "independentTransfer",
   type: "content",
