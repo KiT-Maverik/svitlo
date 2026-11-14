@@ -131,7 +131,7 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
       type: 'object',
       properties: {
         config,
-        production: { $ref: '#/$defs/__production/' + productionName(type, properties) },
+        production: { $ref: '#/$defs/__production/$defs/' + productionName(type, properties) },
       },
       required: ['config'],
       additionalProperties: false,
@@ -155,7 +155,7 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     ...envelope,
     $defs: {
       ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
-      __production: structuredClone(production.$defs),
+      __production: { $defs: structuredClone(production.$defs) },
     },
   };
 }
