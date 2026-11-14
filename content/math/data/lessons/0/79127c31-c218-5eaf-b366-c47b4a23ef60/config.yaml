@@ -1,102 +1,133 @@
 config:
-  id: "79127c31-c218-5eaf-b366-c47b4a23ef60"
-  slug: "divisionEqualSharing"
-  type: "lesson"
-  skills: ["9a201a1d-c00d-4375-91c5-aaba7c579060"]
+  id: '79127c31-c218-5eaf-b366-c47b4a23ef60'
+  slug: 'divisionEqualSharing'
+  type: 'lesson'
+  skills: ['9a201a1d-c00d-4375-91c5-aaba7c579060']
   params:
     requireQuiz: false
-    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Share Equally: How Many in Each Group?"
+      en: 'Share Equally: How Many in Each Group?'
   section:
     items:
       section1GiveEveryoneAnEqualShare:
         config:
-          id: "76e137d7-5530-4dee-9b92-82e1744c36a0"
-          slug: "section1GiveEveryoneAnEqualShare"
-          type: "content"
+          id: '76e137d7-5530-4dee-9b92-82e1744c36a0'
+          slug: 'section1GiveEveryoneAnEqualShare'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Give Everyone an Equal Share"
+              en: 'Give Everyone an Equal Share'
             navigationLabel:
-              en: "Give Everyone an Equal Share"
+              en: 'Give Everyone an Equal Share'
           content:
             items:
               text1:
                 config:
-                  id: "410e433a-7d44-4f3f-8e77-68b046180115"
-                  slug: "text1"
-                  type: "text"
+                  id: '410e433a-7d44-4f3f-8e77-68b046180115'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve counters must be shared among three groups. Can you give each group the same number?"
+                      en: 'Twelve counters must be shared among three groups. Can you give each group the same number?'
               fairSharingWorkshop:
                 config:
-                  id: "80cf0b9f-1505-4c4e-bfd8-fa55c24d3bdc"
-                  slug: "fairSharingWorkshop"
-                  type: "scene"
+                  id: '80cf0b9f-1505-4c4e-bfd8-fa55c24d3bdc'
+                  slug: 'fairSharingWorkshop'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Fair Sharing Workshop"
+                      en: 'Fair Sharing Workshop'
                 production:
                   specification: |
                     # Fair Sharing Workshop — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: Share Equally: How Many in Each Group? (editorial text integrated into this config.yaml), Sections 1–4
                     Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Introduce partitive division through an exact, fair share: when the total and the number of groups are known, the learner must discover the size of EACH group. The distinction between the number of recipients and the number of objects in each share is the concept, not a division sign memorized ahead of the experience.
-                    
+
                     The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     With an exact whole-number share, 12 objects and 3 groups give 4 each, written 12 ÷ 3 = 4. The shares must all match: 4+4+4=12. A second exact case 10 ÷ 2 = 5 uses two groups of five. When trying to share 13 counters among 3 groups, four go in each and one remains: there is NO equal share of all thirteen into three whole-number groups; do not falsely write 13 ÷ 3 = 4 as an exact identity. The remainder is observed as one leftover object without a full formal remainder algorithm. A divisor of zero is not used.
-                    
+
                     **Misconceptions / boundaries:** Confusing the known three groups with the answer 'three in each'; placing twelve counters in each group (thirty-six total); calling an unequal distribution fair; pretending thirteen can be shared exactly without splitting an object; copying the size from an earlier case. A share distributes, it does not clone the original counters.
-                    
+
                     **Conservation invariant:** Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: Give Everyone an Equal Share.** Prompt “Twelve counters must be shared among three groups. Can you give each group the same number?”. Start and learner action: Start 12 uniquely identified counters in a source area and 3 empty labeled groups. Child activates 'Give one to each group' (three moves per complete round) or accessible single-step distribute; three complete rounds plus one produce four each. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve shared equally among three groups leaves four counters in every group. We used every counter once and nobody has extra. For a mistaken attempt: If a child predicts three in each, count 3+3+3=9 with three still unassigned; distribute the remaining three, one to each. Reveal available without any required prediction.
-                    
+
                     2. **Section 2: What Do the Numbers Mean?.** Prompt “In 12 ÷ 3 = 4, which number counts all counters, which counts groups, and which counts each share?”. Start and learner action: Keep the completed twelve-counter sharing scene. Learner activates labeled positions in the expression; highlight total 12, group count 3 and per-group size 4 with full screen-reader names, then reveal 4+4+4=12. Display **12 ÷ 3 = 4; 4 + 4 + 4 = 12** with unit-labeled explanation: Twelve is the total. Three says how many groups are receiving a share. Four tells us how many counters each receives. For a mistaken attempt: For 'three in each', inspect all three trays and count four in one; do not allow positions to be swapped silently. Reveal available without any required prediction.
-                    
+
                     3. **Section 3: What if One Counter Is Left?.** Prompt “What changes when you share thirteen counters among three groups? Can every counter fit into an equal whole-number share?”. Start and learner action: Fresh independent 13-counter scene, three groups; allow four fair rounds assigning twelve, then leave exactly one visibly in the source area. Narrate 'four each; one left over' and explicitly refuse to label 13÷3=4 an exact equality. Display **13 = 3 × 4 + 1** with unit-labeled explanation: Three groups can each have four, but one counter remains. Sharing all thirteen into three equal groups of whole counters is not exact. For a mistaken attempt: If a learner adds leftover to one tray, counts become 5,4,4 and shares are unequal; show counts and correct by restoring that one to the source area. Reveal available without any required prediction.
-                    
+
                     4. **Section 4: Share Ten With Two Groups.** Prompt “Ten counters and two groups: how many does each get?”. Start and learner action: New exact transfer with ten objects and two groups; child predicts 4/5/6, distributes or reveals the groups, then validates 5+5=10. Display **10 ÷ 2 = 5** with unit-labeled explanation: Two equal shares of five use all ten counters. The group count is two, and the group size is five. For a mistaken attempt: Four each only uses eight with two left; six each would require twelve, more than we started with. Reveal available without any required prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
                     - Objects: Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
                     - State: Per-section initial total 12/13/10, group count 3 or 2, stable counter identities and allocations, leftover pool, number of fair distribution rounds, prediction, explanation and reset; initial states isolated.
                     - Invariants: Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
                     - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 12 into 3 distributes 4 per group, no lost/cloned counters, and 4+4+4=12.
                     2. All three roles in 12÷3=4 are identified, including '3 groups' and '4 in each'.
                     3. 13 into 3 leaves one unassigned after three groups of four, and is never labeled as exact 13÷3=4.
@@ -104,18 +135,18 @@ config:
                     5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
                     6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
                     7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
-                  purpose: "Proposed interactive Scene for Give Everyone an Equal Share"
+                  purpose: 'Proposed interactive Scene for Give Everyone an Equal Share'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ["text1","fairSharingWorkshop"]
+            order: ['text1', 'fairSharingWorkshop']
         production:
-          purpose: "Give Everyone an Equal Share"
+          purpose: 'Give Everyone an Equal Share'
           pedagogicalIntent: |
             ### Section 1 — Give Everyone an Equal Share
-            
+
             - **Outcome / conceptual goal:** Share 12 counters fairly among 3 clearly labeled groups and show 4 in each.
             - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
             - **Text Resource (supported):** “Twelve counters must be shared among three groups. Can you give each group the same number?”
@@ -127,90 +158,90 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** “Fair sharing means every group receives the same number.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section2WhatDoTheNumbersMean:
         config:
-          id: "4bbcbe2b-4151-4546-9508-4f090ef7b774"
-          slug: "section2WhatDoTheNumbersMean"
-          type: "content"
+          id: '4bbcbe2b-4151-4546-9508-4f090ef7b774'
+          slug: 'section2WhatDoTheNumbersMean'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What Do the Numbers Mean?"
+              en: 'What Do the Numbers Mean?'
             navigationLabel:
-              en: "What Do the Numbers Mean?"
+              en: 'What Do the Numbers Mean?'
           content:
             items:
               text1:
                 config:
-                  id: "3ab26bce-21ff-4237-86af-ba38d52bc639"
-                  slug: "text1"
-                  type: "text"
+                  id: '3ab26bce-21ff-4237-86af-ba38d52bc639'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "In 12 ÷ 3 = 4, which number counts all counters, which counts groups, and which counts each share?"
+                      en: 'In 12 ÷ 3 = 4, which number counts all counters, which counts groups, and which counts each share?'
               fairSharingWorkshop:
                 config:
-                  id: "26c49c3b-4d94-4ab6-a0ec-2d6d968b2b08"
-                  slug: "fairSharingWorkshop"
-                  type: "scene"
+                  id: '26c49c3b-4d94-4ab6-a0ec-2d6d968b2b08'
+                  slug: 'fairSharingWorkshop'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Fair Sharing Workshop"
+                      en: 'Fair Sharing Workshop'
                 production:
                   specification: |
                     # Fair Sharing Workshop — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: Share Equally: How Many in Each Group? (editorial text integrated into this config.yaml), Sections 1–4
                     Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Introduce partitive division through an exact, fair share: when the total and the number of groups are known, the learner must discover the size of EACH group. The distinction between the number of recipients and the number of objects in each share is the concept, not a division sign memorized ahead of the experience.
-                    
+
                     The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     With an exact whole-number share, 12 objects and 3 groups give 4 each, written 12 ÷ 3 = 4. The shares must all match: 4+4+4=12. A second exact case 10 ÷ 2 = 5 uses two groups of five. When trying to share 13 counters among 3 groups, four go in each and one remains: there is NO equal share of all thirteen into three whole-number groups; do not falsely write 13 ÷ 3 = 4 as an exact identity. The remainder is observed as one leftover object without a full formal remainder algorithm. A divisor of zero is not used.
-                    
+
                     **Misconceptions / boundaries:** Confusing the known three groups with the answer 'three in each'; placing twelve counters in each group (thirty-six total); calling an unequal distribution fair; pretending thirteen can be shared exactly without splitting an object; copying the size from an earlier case. A share distributes, it does not clone the original counters.
-                    
+
                     **Conservation invariant:** Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: Give Everyone an Equal Share.** Prompt “Twelve counters must be shared among three groups. Can you give each group the same number?”. Start and learner action: Start 12 uniquely identified counters in a source area and 3 empty labeled groups. Child activates 'Give one to each group' (three moves per complete round) or accessible single-step distribute; three complete rounds plus one produce four each. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve shared equally among three groups leaves four counters in every group. We used every counter once and nobody has extra. For a mistaken attempt: If a child predicts three in each, count 3+3+3=9 with three still unassigned; distribute the remaining three, one to each. Reveal available without any required prediction.
-                    
+
                     2. **Section 2: What Do the Numbers Mean?.** Prompt “In 12 ÷ 3 = 4, which number counts all counters, which counts groups, and which counts each share?”. Start and learner action: Keep the completed twelve-counter sharing scene. Learner activates labeled positions in the expression; highlight total 12, group count 3 and per-group size 4 with full screen-reader names, then reveal 4+4+4=12. Display **12 ÷ 3 = 4; 4 + 4 + 4 = 12** with unit-labeled explanation: Twelve is the total. Three says how many groups are receiving a share. Four tells us how many counters each receives. For a mistaken attempt: For 'three in each', inspect all three trays and count four in one; do not allow positions to be swapped silently. Reveal available without any required prediction.
-                    
+
                     3. **Section 3: What if One Counter Is Left?.** Prompt “What changes when you share thirteen counters among three groups? Can every counter fit into an equal whole-number share?”. Start and learner action: Fresh independent 13-counter scene, three groups; allow four fair rounds assigning twelve, then leave exactly one visibly in the source area. Narrate 'four each; one left over' and explicitly refuse to label 13÷3=4 an exact equality. Display **13 = 3 × 4 + 1** with unit-labeled explanation: Three groups can each have four, but one counter remains. Sharing all thirteen into three equal groups of whole counters is not exact. For a mistaken attempt: If a learner adds leftover to one tray, counts become 5,4,4 and shares are unequal; show counts and correct by restoring that one to the source area. Reveal available without any required prediction.
-                    
+
                     4. **Section 4: Share Ten With Two Groups.** Prompt “Ten counters and two groups: how many does each get?”. Start and learner action: New exact transfer with ten objects and two groups; child predicts 4/5/6, distributes or reveals the groups, then validates 5+5=10. Display **10 ÷ 2 = 5** with unit-labeled explanation: Two equal shares of five use all ten counters. The group count is two, and the group size is five. For a mistaken attempt: Four each only uses eight with two left; six each would require twelve, more than we started with. Reveal available without any required prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
                     - Objects: Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
                     - State: Per-section initial total 12/13/10, group count 3 or 2, stable counter identities and allocations, leftover pool, number of fair distribution rounds, prediction, explanation and reset; initial states isolated.
                     - Invariants: Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
                     - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 12 into 3 distributes 4 per group, no lost/cloned counters, and 4+4+4=12.
                     2. All three roles in 12÷3=4 are identified, including '3 groups' and '4 in each'.
                     3. 13 into 3 leaves one unassigned after three groups of four, and is never labeled as exact 13÷3=4.
@@ -218,18 +249,18 @@ config:
                     5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
                     6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
                     7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
-                  purpose: "Proposed interactive Scene for What Do the Numbers Mean?"
+                  purpose: 'Proposed interactive Scene for What Do the Numbers Mean?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ["text1","fairSharingWorkshop"]
+            order: ['text1', 'fairSharingWorkshop']
         production:
-          purpose: "What Do the Numbers Mean?"
+          purpose: 'What Do the Numbers Mean?'
           pedagogicalIntent: |
             ### Section 2 — What Do the Numbers Mean?
-            
+
             - **Outcome / conceptual goal:** Explain that 12 is the dividend/total, 3 is the known group count (divisor in this sharing story), and 4 is each group’s size.
             - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
             - **Text Resource (supported):** “In 12 ÷ 3 = 4, which number counts all counters, which counts groups, and which counts each share?”
@@ -241,90 +272,90 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** “The number of groups is known; division finds how many are in each group.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section3WhatIfOneCounterIsLeft:
         config:
-          id: "8e4ad9fd-39f7-4d94-945a-8497e2187fa6"
-          slug: "section3WhatIfOneCounterIsLeft"
-          type: "content"
+          id: '8e4ad9fd-39f7-4d94-945a-8497e2187fa6'
+          slug: 'section3WhatIfOneCounterIsLeft'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What if One Counter Is Left?"
+              en: 'What if One Counter Is Left?'
             navigationLabel:
-              en: "What if One Counter Is Left?"
+              en: 'What if One Counter Is Left?'
           content:
             items:
               text1:
                 config:
-                  id: "8562711c-ebcd-4d59-a077-f3fadb2b3217"
-                  slug: "text1"
-                  type: "text"
+                  id: '8562711c-ebcd-4d59-a077-f3fadb2b3217'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What changes when you share thirteen counters among three groups? Can every counter fit into an equal whole-number share?"
+                      en: 'What changes when you share thirteen counters among three groups? Can every counter fit into an equal whole-number share?'
               fairSharingWorkshop:
                 config:
-                  id: "24beb699-c345-4a28-a839-01df720df916"
-                  slug: "fairSharingWorkshop"
-                  type: "scene"
+                  id: '24beb699-c345-4a28-a839-01df720df916'
+                  slug: 'fairSharingWorkshop'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Fair Sharing Workshop"
+                      en: 'Fair Sharing Workshop'
                 production:
                   specification: |
                     # Fair Sharing Workshop — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: Share Equally: How Many in Each Group? (editorial text integrated into this config.yaml), Sections 1–4
                     Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Introduce partitive division through an exact, fair share: when the total and the number of groups are known, the learner must discover the size of EACH group. The distinction between the number of recipients and the number of objects in each share is the concept, not a division sign memorized ahead of the experience.
-                    
+
                     The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     With an exact whole-number share, 12 objects and 3 groups give 4 each, written 12 ÷ 3 = 4. The shares must all match: 4+4+4=12. A second exact case 10 ÷ 2 = 5 uses two groups of five. When trying to share 13 counters among 3 groups, four go in each and one remains: there is NO equal share of all thirteen into three whole-number groups; do not falsely write 13 ÷ 3 = 4 as an exact identity. The remainder is observed as one leftover object without a full formal remainder algorithm. A divisor of zero is not used.
-                    
+
                     **Misconceptions / boundaries:** Confusing the known three groups with the answer 'three in each'; placing twelve counters in each group (thirty-six total); calling an unequal distribution fair; pretending thirteen can be shared exactly without splitting an object; copying the size from an earlier case. A share distributes, it does not clone the original counters.
-                    
+
                     **Conservation invariant:** Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: Give Everyone an Equal Share.** Prompt “Twelve counters must be shared among three groups. Can you give each group the same number?”. Start and learner action: Start 12 uniquely identified counters in a source area and 3 empty labeled groups. Child activates 'Give one to each group' (three moves per complete round) or accessible single-step distribute; three complete rounds plus one produce four each. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve shared equally among three groups leaves four counters in every group. We used every counter once and nobody has extra. For a mistaken attempt: If a child predicts three in each, count 3+3+3=9 with three still unassigned; distribute the remaining three, one to each. Reveal available without any required prediction.
-                    
+
                     2. **Section 2: What Do the Numbers Mean?.** Prompt “In 12 ÷ 3 = 4, which number counts all counters, which counts groups, and which counts each share?”. Start and learner action: Keep the completed twelve-counter sharing scene. Learner activates labeled positions in the expression; highlight total 12, group count 3 and per-group size 4 with full screen-reader names, then reveal 4+4+4=12. Display **12 ÷ 3 = 4; 4 + 4 + 4 = 12** with unit-labeled explanation: Twelve is the total. Three says how many groups are receiving a share. Four tells us how many counters each receives. For a mistaken attempt: For 'three in each', inspect all three trays and count four in one; do not allow positions to be swapped silently. Reveal available without any required prediction.
-                    
+
                     3. **Section 3: What if One Counter Is Left?.** Prompt “What changes when you share thirteen counters among three groups? Can every counter fit into an equal whole-number share?”. Start and learner action: Fresh independent 13-counter scene, three groups; allow four fair rounds assigning twelve, then leave exactly one visibly in the source area. Narrate 'four each; one left over' and explicitly refuse to label 13÷3=4 an exact equality. Display **13 = 3 × 4 + 1** with unit-labeled explanation: Three groups can each have four, but one counter remains. Sharing all thirteen into three equal groups of whole counters is not exact. For a mistaken attempt: If a learner adds leftover to one tray, counts become 5,4,4 and shares are unequal; show counts and correct by restoring that one to the source area. Reveal available without any required prediction.
-                    
+
                     4. **Section 4: Share Ten With Two Groups.** Prompt “Ten counters and two groups: how many does each get?”. Start and learner action: New exact transfer with ten objects and two groups; child predicts 4/5/6, distributes or reveals the groups, then validates 5+5=10. Display **10 ÷ 2 = 5** with unit-labeled explanation: Two equal shares of five use all ten counters. The group count is two, and the group size is five. For a mistaken attempt: Four each only uses eight with two left; six each would require twelve, more than we started with. Reveal available without any required prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
                     - Objects: Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
                     - State: Per-section initial total 12/13/10, group count 3 or 2, stable counter identities and allocations, leftover pool, number of fair distribution rounds, prediction, explanation and reset; initial states isolated.
                     - Invariants: Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
                     - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 12 into 3 distributes 4 per group, no lost/cloned counters, and 4+4+4=12.
                     2. All three roles in 12÷3=4 are identified, including '3 groups' and '4 in each'.
                     3. 13 into 3 leaves one unassigned after three groups of four, and is never labeled as exact 13÷3=4.
@@ -332,18 +363,18 @@ config:
                     5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
                     6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
                     7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
-                  purpose: "Proposed interactive Scene for What if One Counter Is Left?"
+                  purpose: 'Proposed interactive Scene for What if One Counter Is Left?'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ["text1","fairSharingWorkshop"]
+            order: ['text1', 'fairSharingWorkshop']
         production:
-          purpose: "What if One Counter Is Left?"
+          purpose: 'What if One Counter Is Left?'
           pedagogicalIntent: |
             ### Section 3 — What if One Counter Is Left?
-            
+
             - **Outcome / conceptual goal:** Recognize that 13 counters cannot be distributed equally among 3 groups with whole counters without one left over.
             - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
             - **Text Resource (supported):** “What changes when you share thirteen counters among three groups? Can every counter fit into an equal whole-number share?”
@@ -355,90 +386,90 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** None in this Section.
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section4ShareTenWithTwoGroups:
         config:
-          id: "c045d934-2fec-45ff-9d4f-6b2e6c45c251"
-          slug: "section4ShareTenWithTwoGroups"
-          type: "content"
+          id: 'c045d934-2fec-45ff-9d4f-6b2e6c45c251'
+          slug: 'section4ShareTenWithTwoGroups'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Share Ten With Two Groups"
+              en: 'Share Ten With Two Groups'
             navigationLabel:
-              en: "Share Ten With Two Groups"
+              en: 'Share Ten With Two Groups'
           content:
             items:
               text1:
                 config:
-                  id: "d6a769f9-3173-49c2-9bab-9b7f1ca00b20"
-                  slug: "text1"
-                  type: "text"
+                  id: 'd6a769f9-3173-49c2-9bab-9b7f1ca00b20'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Ten counters and two groups: how many does each get?"
+                      en: 'Ten counters and two groups: how many does each get?'
               fairSharingWorkshop:
                 config:
-                  id: "0eef8948-816a-4f37-a63e-fd0e623c4425"
-                  slug: "fairSharingWorkshop"
-                  type: "scene"
+                  id: '0eef8948-816a-4f37-a63e-fd0e623c4425'
+                  slug: 'fairSharingWorkshop'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Fair Sharing Workshop"
+                      en: 'Fair Sharing Workshop'
                 production:
                   specification: |
                     # Fair Sharing Workshop — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: Share Equally: How Many in Each Group? (editorial text integrated into this config.yaml), Sections 1–4
                     Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Introduce partitive division through an exact, fair share: when the total and the number of groups are known, the learner must discover the size of EACH group. The distinction between the number of recipients and the number of objects in each share is the concept, not a division sign memorized ahead of the experience.
-                    
+
                     The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     With an exact whole-number share, 12 objects and 3 groups give 4 each, written 12 ÷ 3 = 4. The shares must all match: 4+4+4=12. A second exact case 10 ÷ 2 = 5 uses two groups of five. When trying to share 13 counters among 3 groups, four go in each and one remains: there is NO equal share of all thirteen into three whole-number groups; do not falsely write 13 ÷ 3 = 4 as an exact identity. The remainder is observed as one leftover object without a full formal remainder algorithm. A divisor of zero is not used.
-                    
+
                     **Misconceptions / boundaries:** Confusing the known three groups with the answer 'three in each'; placing twelve counters in each group (thirty-six total); calling an unequal distribution fair; pretending thirteen can be shared exactly without splitting an object; copying the size from an earlier case. A share distributes, it does not clone the original counters.
-                    
+
                     **Conservation invariant:** Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: Give Everyone an Equal Share.** Prompt “Twelve counters must be shared among three groups. Can you give each group the same number?”. Start and learner action: Start 12 uniquely identified counters in a source area and 3 empty labeled groups. Child activates 'Give one to each group' (three moves per complete round) or accessible single-step distribute; three complete rounds plus one produce four each. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve shared equally among three groups leaves four counters in every group. We used every counter once and nobody has extra. For a mistaken attempt: If a child predicts three in each, count 3+3+3=9 with three still unassigned; distribute the remaining three, one to each. Reveal available without any required prediction.
-                    
+
                     2. **Section 2: What Do the Numbers Mean?.** Prompt “In 12 ÷ 3 = 4, which number counts all counters, which counts groups, and which counts each share?”. Start and learner action: Keep the completed twelve-counter sharing scene. Learner activates labeled positions in the expression; highlight total 12, group count 3 and per-group size 4 with full screen-reader names, then reveal 4+4+4=12. Display **12 ÷ 3 = 4; 4 + 4 + 4 = 12** with unit-labeled explanation: Twelve is the total. Three says how many groups are receiving a share. Four tells us how many counters each receives. For a mistaken attempt: For 'three in each', inspect all three trays and count four in one; do not allow positions to be swapped silently. Reveal available without any required prediction.
-                    
+
                     3. **Section 3: What if One Counter Is Left?.** Prompt “What changes when you share thirteen counters among three groups? Can every counter fit into an equal whole-number share?”. Start and learner action: Fresh independent 13-counter scene, three groups; allow four fair rounds assigning twelve, then leave exactly one visibly in the source area. Narrate 'four each; one left over' and explicitly refuse to label 13÷3=4 an exact equality. Display **13 = 3 × 4 + 1** with unit-labeled explanation: Three groups can each have four, but one counter remains. Sharing all thirteen into three equal groups of whole counters is not exact. For a mistaken attempt: If a learner adds leftover to one tray, counts become 5,4,4 and shares are unequal; show counts and correct by restoring that one to the source area. Reveal available without any required prediction.
-                    
+
                     4. **Section 4: Share Ten With Two Groups.** Prompt “Ten counters and two groups: how many does each get?”. Start and learner action: New exact transfer with ten objects and two groups; child predicts 4/5/6, distributes or reveals the groups, then validates 5+5=10. Display **10 ÷ 2 = 5** with unit-labeled explanation: Two equal shares of five use all ten counters. The group count is two, and the group size is five. For a mistaken attempt: Four each only uses eight with two left; six each would require twelve, more than we started with. Reveal available without any required prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
                     - Objects: Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
                     - State: Per-section initial total 12/13/10, group count 3 or 2, stable counter identities and allocations, leftover pool, number of fair distribution rounds, prediction, explanation and reset; initial states isolated.
                     - Invariants: Allocated counters plus leftover exactly equals the original total; every counter has exactly one location. Equal sharing has equal per-group counts. For 12 with three groups there are 4 each and 0 left; for 13 there are 4 each and 1 left; for 10 with two groups there are 5 each and 0 left. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
                     - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Three large labeled share trays (or two for transfer), a source counter pile with stable IDs and a tally of each group; allow 'one to each' and direct accessible step controls, not drag-only distribution. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 12 into 3 distributes 4 per group, no lost/cloned counters, and 4+4+4=12.
                     2. All three roles in 12÷3=4 are identified, including '3 groups' and '4 in each'.
                     3. 13 into 3 leaves one unassigned after three groups of four, and is never labeled as exact 13÷3=4.
@@ -446,18 +477,18 @@ config:
                     5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
                     6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
                     7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene rendering is supported; **Fair Sharing Workshop is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
-                  purpose: "Proposed interactive Scene for Share Ten With Two Groups"
+                  purpose: 'Proposed interactive Scene for Share Ten With Two Groups'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
-            order: ["text1","fairSharingWorkshop"]
+            order: ['text1', 'fairSharingWorkshop']
         production:
-          purpose: "Share Ten With Two Groups"
+          purpose: 'Share Ten With Two Groups'
           pedagogicalIntent: |
             ### Section 4 — Share Ten With Two Groups
-            
+
             - **Outcome / conceptual goal:** Share 10 into 2 groups, predicting 5 in each and checking through a total count.
             - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
             - **Text Resource (supported):** “Ten counters and two groups: how many does each get?”
@@ -469,150 +500,156 @@ config:
             - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
             - **Proposed unlocked Note(s):** “The number of groups is known; division finds how many are in each group.” after the full explanation is visible (planned only).
             - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
-    order: ["section1GiveEveryoneAnEqualShare","section2WhatDoTheNumbersMean","section3WhatIfOneCounterIsLeft","section4ShareTenWithTwoGroups"]
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order:
+      [
+        'section1GiveEveryoneAnEqualShare',
+        'section2WhatDoTheNumbersMean',
+        'section3WhatIfOneCounterIsLeft',
+        'section4ShareTenWithTwoGroups',
+      ]
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Share Equally: How Many in Each Group? — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: divisionEqualSharing
     Methodologist status: Draft
     Primary audience: **Grade 2** within grades 1–3
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Introduce partitive division through an exact, fair share: when the total and the number of groups are known, the learner must discover the size of EACH group. The distinction between the number of recipients and the number of objects in each share is the concept, not a division sign memorized ahead of the experience.
-    
+
     ## Target audience
-    
+
     Grade 2, selected for readiness to count and partition groups; the canonical Skill has no grade ceiling. Students need concrete models and short translated prompts, not timed fact recall.
-    
+
     ## Prerequisites
-    
+
     - Count groups of objects up to 20 and count how many are in each.
     - Distribute objects one-to-one across two or three labeled recipients.
     - Recognize equal groups as groups with the same amount and explain a leftover object.
-    
+
     ## Target Skills
-    
+
     - [equalSharing.data.ts](../../../../data/skills/arithmetic/divide/skills/equalSharing.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Share 12 counters fairly among 3 clearly labeled groups and show 4 in each.
     - Explain that 12 is the dividend/total, 3 is the known group count (divisor in this sharing story), and 4 is each group’s size.
     - Recognize that 13 counters cannot be distributed equally among 3 groups with whole counters without one left over.
     - Share 10 into 2 groups, predicting 5 in each and checking through a total count.
-    
+
     ## Essential subject matter
-    
+
     With an exact whole-number share, 12 objects and 3 groups give 4 each, written 12 ÷ 3 = 4. The shares must all match: 4+4+4=12. A second exact case 10 ÷ 2 = 5 uses two groups of five. When trying to share 13 counters among 3 groups, four go in each and one remains: there is NO equal share of all thirteen into three whole-number groups; do not falsely write 13 ÷ 3 = 4 as an exact identity. The remainder is observed as one leftover object without a full formal remainder algorithm. A divisor of zero is not used.
-    
+
     ## Conceptual progression and dependencies
-    
+
     1. **Give Everyone an Equal Share:** Start 12 uniquely identified counters in a source area and 3 empty labeled groups. Child activates 'Give one to each group' (three moves per complete round) or accessible single-step distribute; three complete rounds plus one produce four each.
     2. **What Do the Numbers Mean?:** Keep the completed twelve-counter sharing scene. Learner activates labeled positions in the expression; highlight total 12, group count 3 and per-group size 4 with full screen-reader names, then reveal 4+4+4=12.
     3. **What if One Counter Is Left?:** Fresh independent 13-counter scene, three groups; allow four fair rounds assigning twelve, then leave exactly one visibly in the source area. Narrate 'four each; one left over' and explicitly refuse to label 13÷3=4 an exact equality.
     4. **Share Ten With Two Groups:** New exact transfer with ten objects and two groups; child predicts 4/5/6, distributes or reveals the groups, then validates 5+5=10.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Confusing the known three groups with the answer 'three in each'; placing twelve counters in each group (thirty-six total); calling an unequal distribution fair; pretending thirteen can be shared exactly without splitting an object; copying the size from an earlier case. A share distributes, it does not clone the original counters.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every child-facing string must be genuinely localized, without silent English fallback. Distinguish the group COUNT from group SIZE in all languages; RTL must not reverse the mathematical meaning of expressions. Countable objects and their states have complete keyboard/screen-reader/table-ledger equivalents, full native touch controls, focus, zoom, reduced motion and offline deterministic calculations after downloading selected-language resources. No motor-precision drag or audio-only instructions.
-    
+
     ## Sources and factual verification
-    
+
     - [Canonical Skill source](../../../../data/skills/arithmetic/divide/skills/equalSharing.data.ts), identical to Mathematics source, including UUID and translations.
     - [Playground English generated taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned view which must be regenerated after the merge.
     - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/) as a comparative instructional reference, not an assertion of national grade alignment.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. Standalone, Program-neutral. Grade 2 selected for the Lesson, not as a limitation on the Skill definition.
-    
+
     ## Open editorial decisions
-    
+
     - Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
     - Confirm concrete examples, accessible leftover representation, and age-appropriate terminology before production.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not approved.** Content and Scene specifications may be produced provisionally for editor review, but they cannot be promoted into implementation without formal approval. No runtime lessons, scored Questions or curricula created.
   productionNotes: |-
     Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
-    
+
     # Share Equally: How Many in Each Group? — Content
-    
+
     Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/divisionEqualSharing/
     Audience: **Grade 2**, after: Count groups of objects up to 20 and count how many are in each. Distribute objects one-to-one across two or three labeled recipients. Recognize equal groups as groups with the same amount and explain a leftover object.
     Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved)
     Target Skill: The direct canonical equalSharing.data.ts link in the Methodologist Brief
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Introduce partitive division through an exact, fair share: when the total and the number of groups are known, the learner must discover the size of EACH group. The distinction between the number of recipients and the number of objects in each share is the concept, not a division sign memorized ahead of the experience.
-    
+
     With an exact whole-number share, 12 objects and 3 groups give 4 each, written 12 ÷ 3 = 4. The shares must all match: 4+4+4=12. A second exact case 10 ÷ 2 = 5 uses two groups of five. When trying to share 13 counters among 3 groups, four go in each and one remains: there is NO equal share of all thirteen into three whole-number groups; do not falsely write 13 ÷ 3 = 4 as an exact identity. The remainder is observed as one leftover object without a full formal remainder algorithm. A divisor of zero is not used.
-    
+
     Learners must identify the _unit_ counted in the answer, not merely choose a numeral. Native controls permit fair grouping and inspection without dragging or reading a long word problem. The representation is not a scored quiz.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Give Everyone an Equal Share:** Start 12 uniquely identified counters in a source area and 3 empty labeled groups. Child activates 'Give one to each group' (three moves per complete round) or accessible single-step distribute; three complete rounds plus one produce four each.
     2. **What Do the Numbers Mean?:** Keep the completed twelve-counter sharing scene. Learner activates labeled positions in the expression; highlight total 12, group count 3 and per-group size 4 with full screen-reader names, then reveal 4+4+4=12.
     3. **What if One Counter Is Left?:** Fresh independent 13-counter scene, three groups; allow four fair rounds assigning twelve, then leave exactly one visibly in the source area. Narrate 'four each; one left over' and explicitly refuse to label 13÷3=4 an exact equality.
     4. **Share Ten With Two Groups:** New exact transfer with ten objects and two groups; child predicts 4/5/6, distributes or reveals the groups, then validates 5+5=10.
-    
+
     ## SECTION PLAN
-    
-    
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Fair Sharing Workshop (Scene specification embedded in this config.yaml) — four independent prop-free Section entries; generic Scene Resource rendering exists, but this new component does not.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “Fair sharing means every group receives the same number.” — editorial proposal after its corresponding explanation, not a scored success event.
     2. “The number of groups is known; division finds how many are in each group.” — editorial proposal after its corresponding explanation, not a scored success event.
-    
+
     Notes are **planned, not wired**: no implemented Note type, unlock API, per-child persistence, revision sheet or spaced review is assumed.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     The final Section uses fresh numbers and optionally reduced scaffolding. Practice predictions and observed leftover quantities are purely formative. The Assessment Architect independently validates any graded items, including whether to assess a non-exact whole-number case, permitted number ranges, error messages, thresholds and evidence of mastery. The current select-one Quiz adapter does not implement these bespoke group-model Scenes.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every learner prompt, count, unit label, number of groups, size in each, leftover status and feedback must have genuine translations into every supported locale; no fallback. All counter layouts provide fully **operable** state lists and native keyboard/switch/touch controls, not just descriptive labels, with WCAG 2.2 AA, child-size targets, screen-reader status, high contrast, focus, zoom/mobile and semantic RTL numerical order. Reduced motion retains exact before/after count states. Downloaded locale and scene math/feedback must work offline on weak devices without drag, network, audio or video.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     General `LessonSection_Config` and text, markdown, scene renderer are present. Fair Sharing Workshop is proposed, requires approved Scene spec, prop-free entries, genuine locale strings, accessibility/unit tests and offline verification. Images/audio/video/code Resource kinds are typed-only in generic renderer; no YouTube. Notes, spaced retrieval and PWA package delivery are separate product features, not claimed implemented. No actual runtime Lesson or assessed Question authored here.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Methodologist Brief (editorial text integrated into this config.yaml), Draft, needs approval.
     - [Canonical Skill](../../../../data/skills/arithmetic/divide/skills/equalSharing.data.ts), unchanged.
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Formally introducing quotient/remainder terminology is optional for Grade 2; retain the accuracy of the non-exact case. Do not overlap the existing unknownDividend Lesson's purpose of recovering a hidden starting total.
     - Coordinator-owned English taxonomy is deliberately unchanged until integration.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft Content plus separately reviewable Draft Scene specification. Editor approves Methodologist Brief first, then Content/Scene; only then may Design Scene and Coding Agent implement, with Assessment Architect separately approving scored work. No unrelated Lessons or canon Skills modified.
-    
-    
+
+
     Migration status: provisional draft; pending independent approvals, translation and implementation.
