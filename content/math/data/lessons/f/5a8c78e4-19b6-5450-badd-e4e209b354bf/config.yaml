@@ -1,10 +1,41 @@
 config:
-  id: "5a8c78e4-19b6-5450-badd-e4e209b354bf"
-  slug: "ordinalPositionWithDirection"
-  type: "lesson"
-  skills: ["5a3fd900-fb88-4017-a8b6-f70dfba3f5cf"]
+  id: '5a8c78e4-19b6-5450-badd-e4e209b354bf'
+  slug: 'ordinalPositionWithDirection'
+  type: 'lesson'
+  skills: ['5a3fd900-fb88-4017-a8b6-f70dfba3f5cf']
   params:
-    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -12,7 +43,7 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Which One Is Third? Position Depends on the Start"
+      en: 'Which One Is Third? Position Depends on the Start'
   flashcards:
     items: {}
     order: []
@@ -20,123 +51,123 @@ config:
     items:
       section1StartMarkerLine:
         config:
-          id: "52f173ec-4848-42c3-89fc-686a3c290f01"
-          slug: "section1StartMarkerLine"
-          type: "content"
+          id: '52f173ec-4848-42c3-89fc-686a3c290f01'
+          slug: 'section1StartMarkerLine'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Start Marker Line"
+              en: 'Start Marker Line'
             navigationLabel:
-              en: "Start Marker Line"
+              en: 'Start Marker Line'
           content:
             items:
               text1:
                 config:
-                  id: "4b79f0d1-61ef-4dc6-a045-afdb55bd1fd0"
-                  slug: "text1"
-                  type: "text"
+                  id: '4b79f0d1-61ef-4dc6-a045-afdb55bd1fd0'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Which bag is third from START at A?"
+                      en: 'Which bag is third from START at A?'
               startMarkerLine:
                 config:
-                  id: "18c49823-1a6d-4e70-9bb4-643549d68052"
-                  slug: "startMarkerLine"
-                  type: "scene"
+                  id: '18c49823-1a6d-4e70-9bb4-643549d68052'
+                  slug: 'startMarkerLine'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Which bag is third from START at A?"
+                      en: 'Which bag is third from START at A?'
                 production:
                   specification: |
                     # Start Marker Line — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Which One Is Third? Position Depends on the Start Content (original now embedded in this config.yaml), Section 1
                     Methodologist objectives: Draft Methodologist Brief (original now embedded in this config.yaml)
                     Implementation status: Proposed prop-free component; not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Recognize the ordinal position of an object in an explicitly directed sequence; distinguish its rank from the number of objects and show that changing origin or order changes rank but not total. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For A,B,C,D,E,F counted from A, C is third; counted from F, C is fourth. The total remains six in both cases. Swapping Star and Rain in Sun,Moon,Star,Cloud,Rain makes Star fifth while total stays five. Ordinal position is relative to an order and its starting direction.
-                    
+
                     **Initial state:** Six identifiable bags A,B,C,D,E,F and explicit START initially at A. Child can deliberately switch START to F. C is the focus object.
-                    
+
                     **Authoritative interactive model:** START end A or F; selected bag identity, prediction, trace ledger and total six. Position is i+1 from A, 6-i from F; changing START does not move bags.
-                    
+
                     **Boundaries:** Grade 1: five or six identifiable items and explicit START marker; no number-line lengths, sorting magnitude, ordinal spelling drills, speed tests or grades.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1
-                    
+
                     - **Learner-facing prompt:** “Which bag is third from START at A?”
                     - **Learner action:** Learner traces A first, B second, C third.
                     - **Visible mathematical conclusion:** C is third; six bags total.
                     - **Specific explanatory feedback:** Choosing D triggers A=first, B=second, C=third, D=fourth.
                     - **Verified expected result:** C third from A; six in total.
                     - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
-                    
+
                     ### Beat 2
-                    
+
                     - **Learner-facing prompt:** “Now START at F. Where is C?”
                     - **Learner action:** Learner predicts then counts F,E,D,C.
                     - **Visible mathematical conclusion:** C is fourth; still six bags.
                     - **Specific explanatory feedback:** For third, show F first, E second, D third, C fourth.
                     - **Verified expected result:** C fourth from F; six in total.
                     - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Select START end; select bag; Step from START; Reveal trace; Reset.
-                    
+
                     - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
                     - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
                     - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
                     - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. C third from A; six in total. Incorrect case: Choosing D triggers A=first, B=second, C=third, D=fourth.
                     2. C fourth from F; six in total. Incorrect case: For third, show F first, E second, D third, C fourth.
                     3. A-origin gives third; F-origin gives fourth; neither changes six stable bag identities. Reset restores A-origin.
                     4. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
-                  purpose: "Proposed interactive Scene for Start Marker Line"
-                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+                  purpose: 'Proposed interactive Scene for Start Marker Line'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
               markdown2:
                 config:
-                  id: "94b7537e-4d25-41ed-88de-0ad058c39ed7"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '94b7537e-4d25-41ed-88de-0ad058c39ed7'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "C is third; six bags total."
-            order: ["text1","startMarkerLine","markdown2"]
+                      en: 'C is third; six bags total.'
+            order: ['text1', 'startMarkerLine', 'markdown2']
         production:
-          purpose: "Start Marker Line"
+          purpose: 'Start Marker Line'
           pedagogicalIntent: |
             ### Section 1 — Start Marker Line
-            
+
             - **Purpose:** Establish and test the model in a controlled contrast.
             - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
             - **Ordered blocks:** (1) text (renderable): “Which bag is third from START at A?” (2) scene (generic type renderable; this bespoke component proposed): Start Marker Line (Scene specification embedded in this config.yaml) (3) markdown (renderable): “C is third; six bags total.”
@@ -146,54 +177,54 @@ config:
             - **Learner control and state:** Select START end; select bag; Step from START; Reveal trace; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
             - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
-            
-          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
       section2ThinkBeforeRevealingTheReason:
         config:
-          id: "813bacda-11d6-4175-a332-117c1aa059bf"
-          slug: "section2ThinkBeforeRevealingTheReason"
-          type: "content"
+          id: '813bacda-11d6-4175-a332-117c1aa059bf'
+          slug: 'section2ThinkBeforeRevealingTheReason'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Think before revealing the reason"
+              en: 'Think before revealing the reason'
             navigationLabel:
-              en: "Think before revealing the reason"
+              en: 'Think before revealing the reason'
           content:
             items:
               markdown1:
                 config:
-                  id: "fb465f59-f093-45ae-b0ee-395bee9cdb10"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'fb465f59-f093-45ae-b0ee-395bee9cdb10'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Yes to the first: C is third from A but fourth from F. No to the second: exchanging objects preserves the count."
+                      en: 'Yes to the first: C is third from A but fourth from F. No to the second: exchanging objects preserves the count.'
               text1:
                 config:
-                  id: "9d2ba94b-df4a-4b14-a1ea-81e13f974f82"
-                  slug: "text1"
-                  type: "text"
+                  id: '9d2ba94b-df4a-4b14-a1ea-81e13f974f82'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Can C be third and fourth without moving the bags?"
+                      en: 'Can C be third and fourth without moving the bags?'
               text2:
                 config:
-                  id: "9e2baade-e24a-4fcd-9eea-7d283e974def"
-                  slug: "text2"
-                  type: "text"
+                  id: '9e2baade-e24a-4fcd-9eea-7d283e974def'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Does swapping two objects create another object?"
-            order: ["text1","markdown1","text2"]
+                      en: 'Does swapping two objects create another object?'
+            order: ['text1', 'markdown1', 'text2']
         production:
-          purpose: "Think before revealing the reason"
+          purpose: 'Think before revealing the reason'
           pedagogicalIntent: |
             ### Section 2 — Think before revealing the reason
-            
+
             - **Purpose:** Short independent retrieval and misconception contrast.
             - **Ordered Resource blocks (renderable):**
               1. text: “Can C be third and fourth without moving the bags?”
@@ -202,127 +233,127 @@ config:
             - **Pedagogical action:** The learner reflects before reading the explanation, then checks it against the first Scene. An actual hidden-answer widget is **not** inferred from plain text/Markdown support; this is a planned reflective pause, not a scored Question.
             - **Feedback:** Address the common trap directly: Confusing third with a collection of three; assuming leftmost means first regardless of START; believing an item stays third when its place changes; believing a swap adds an item.
             - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
-            
-          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
       section3LineUpSwap:
         config:
-          id: "780a0f22-700e-4467-a956-0844f58e5579"
-          slug: "section3LineUpSwap"
-          type: "content"
+          id: '780a0f22-700e-4467-a956-0844f58e5579'
+          slug: 'section3LineUpSwap'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Line-Up Swap"
+              en: 'Line-Up Swap'
             navigationLabel:
-              en: "Line-Up Swap"
+              en: 'Line-Up Swap'
           content:
             items:
               text1:
                 config:
-                  id: "78a1d073-a6b2-4f8a-b5db-ff0906e71e28"
-                  slug: "text1"
-                  type: "text"
+                  id: '78a1d073-a6b2-4f8a-b5db-ff0906e71e28'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Swap Star and Rain. Where is Star now?"
+                      en: 'Swap Star and Rain. Where is Star now?'
               lineUpSwap:
                 config:
-                  id: "f592a0e3-2ecc-45f8-b193-a8f981675e66"
-                  slug: "lineUpSwap"
-                  type: "scene"
+                  id: 'f592a0e3-2ecc-45f8-b193-a8f981675e66'
+                  slug: 'lineUpSwap'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "Swap Star and Rain. Where is Star now?"
+                      en: 'Swap Star and Rain. Where is Star now?'
                 production:
                   specification: |
                     # Line-Up Swap — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist and Scene approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: Which One Is Third? Position Depends on the Start Content (original now embedded in this config.yaml), Section 3
                     Methodologist objectives: Draft Methodologist Brief (original now embedded in this config.yaml)
                     Implementation status: Proposed prop-free component; not implemented
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Recognize the ordinal position of an object in an explicitly directed sequence; distinguish its rank from the number of objects and show that changing origin or order changes rank but not total. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For A,B,C,D,E,F counted from A, C is third; counted from F, C is fourth. The total remains six in both cases. Swapping Star and Rain in Sun,Moon,Star,Cloud,Rain makes Star fifth while total stays five. Ordinal position is relative to an order and its starting direction.
-                    
+
                     **Initial state:** Five labelled objects Sun,Moon,Star,Cloud,Rain from a marked doorway; independent library cushions P,Q,R,S,T.
-                    
+
                     **Authoritative interactive model:** Permutation of five fixed identities, origin, selected object, predicted rank; swapping never adds/removes an identity.
-                    
+
                     **Boundaries:** Grade 1: five or six identifiable items and explicit START marker; no number-line lengths, sorting magnitude, ordinal spelling drills, speed tests or grades.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Beat 1
-                    
+
                     - **Learner-facing prompt:** “Swap Star and Rain. Where is Star now?”
                     - **Learner action:** Sun,Moon,Star,Cloud,Rain changes to Sun,Moon,Rain,Cloud,Star.
                     - **Visible mathematical conclusion:** Star is fifth; five items remain.
                     - **Specific explanatory feedback:** If number changed, map every object before and after; all five remain.
                     - **Verified expected result:** Star third becomes fifth, total five.
                     - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
-                    
+
                     ### Beat 2
-                    
+
                     - **Learner-facing prompt:** “Which cushion is fourth from the library entrance?”
                     - **Learner action:** In new P,Q,R,S,T line, learner counts from entrance and selects S.
                     - **Visible mathematical conclusion:** S is fourth; total five.
                     - **Specific explanatory feedback:** If R selected, trace P first, Q second, R third, S fourth.
                     - **Verified expected result:** S fourth from entrance; five cushions.
                     - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Select two objects; Swap; Step from entrance; Reveal; Reset.
-                    
+
                     - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
                     - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
                     - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
                     - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Star third becomes fifth, total five. Incorrect case: If number changed, map every object before and after; all five remain.
                     2. S fourth from entrance; five cushions. Incorrect case: If R selected, trace P first, Q second, R third, S fourth.
                     3. Star moves to fifth after exchange; S fourth in new case; no origin depends on CSS writing direction.
                     4. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
-                  purpose: "Proposed interactive Scene for Line-Up Swap"
-                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+                  purpose: 'Proposed interactive Scene for Line-Up Swap'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
               markdown2:
                 config:
-                  id: "76edc618-ed01-4a01-93b8-ff260b211d3f"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '76edc618-ed01-4a01-93b8-ff260b211d3f'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Star is fifth; five items remain."
-            order: ["text1","lineUpSwap","markdown2"]
+                      en: 'Star is fifth; five items remain.'
+            order: ['text1', 'lineUpSwap', 'markdown2']
         production:
-          purpose: "Line-Up Swap"
+          purpose: 'Line-Up Swap'
           pedagogicalIntent: |
             ### Section 3 — Line-Up Swap
-            
+
             - **Purpose:** Transfer the principle to a changed situation independently.
             - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
             - **Ordered blocks:** (1) text (renderable): “Swap Star and Rain. Where is Star now?” (2) scene (generic type renderable; this bespoke component proposed): Line-Up Swap (Scene specification embedded in this config.yaml) (3) markdown (renderable): “Star is fifth; five items remain.”
@@ -332,91 +363,91 @@ config:
             - **Learner control and state:** Select two objects; Swap; Step from entrance; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
             - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
             - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
-            
-          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
-    order: ["section1StartMarkerLine","section2ThinkBeforeRevealingTheReason","section3LineUpSwap"]
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+    order: ['section1StartMarkerLine', 'section2ThinkBeforeRevealingTheReason', 'section3LineUpSwap']
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Which One Is Third? Position Depends on the Start — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: ordinalPositionWithDirection
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Recognize the ordinal position of an object in an explicitly directed sequence; distinguish its rank from the number of objects and show that changing origin or order changes rank but not total.
-    
+
     ## Target audience
-    
+
     **Primary grade: Grade 1.** This selection depends on mathematical complexity, prerequisites and developmental readiness, not a grade label embedded in Skill Taxonomy. Early readers can use short instructions, countable models and ordered text alternatives.
-    
+
     ## Prerequisites
-    
+
     One-to-one correspondence and cardinal counting through six; first through sixth introduced with oral and text support. The learner can track a named starting point.
-    
+
     ## Target Skills
-    
+
     - [basicOrdinal.data.ts](../../../../data/skills/counting/ordinal/skills/basicOrdinal.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - C is third; six bags total.
     - C is fourth; still six bags.
     - Star is fifth; five items remain.
     - S is fourth; total five.
     - Explain a changed-context instance using evidence rather than repeating a memorized answer; formative success is not proof of verified mastery.
-    
+
     ## Essential subject matter
-    
+
     For A,B,C,D,E,F counted from A, C is third; counted from F, C is fourth. The total remains six in both cases. Swapping Star and Rain in Sun,Moon,Star,Cloud,Rain makes Star fifth while total stays five. Ordinal position is relative to an order and its starting direction.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Introduce prerequisite number and object meanings → construct and inspect the first model → explain its contrast → retrieve the mathematical principle → independently apply it in the second Scene with a changed arrangement or representation.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Confusing third with a collection of three; assuming leftmost means first regardless of START; believing an item stays third when its place changes; believing a swap adds an item.
-    
+
     **Instructional depth and hard exclusions:** Grade 1: five or six identifiable items and explicit START marker; no number-line lengths, sorting magnitude, ordinal spelling drills, speed tests or grades.
-    
+
     **Verified numerical examples:**
-    
+
     - C third from A; six in total.
     - C fourth from F; six in total.
     - Star third becomes fifth, total five.
     - S fourth from entrance; five cushions.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Complete genuine translations for every Engine-supported language are required; English drafts are not released locale assets. Semantic RTL must preserve object identity, designated START, pairing membership, euro value and numeric order, not reverse the mathematics. WCAG 2.2 AA plan: keyboard, touch and switch operation, ordered nonvisual ledger, meaningful labels, visible focus, zoom/mobile and reduced-motion equivalents. The selected-language content and same learning interactions must function offline after download, which is a required future capability, not implemented by this task.
-    
+
     ## Sources and factual verification
-    
+
     - Approved canonical Mathematics Skill data files directly linked above, copied unchanged in Batch 1.
     - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) and [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
-    
+
     ## Curriculum / Program compatibility
-    
+
     Standalone and Program-neutral. No named Curriculum alignment asserted.
-    
+
     ## Open editorial decisions
-    
+
     - Editor: approve Grade 1, prerequisites, target Skills and scope before formal Content/Scene approval.
     - Editor and localization team: verify full-locale copy, semantic RTL and nonvisual equivalence.
-    
+
     ## Methodologist handoff
-    
+
     **Draft — not Approved.** The accompanying Content and Scene specifications are **Provisional Drafts prepared under the explicit batch authorization**. Normal approval gate has not passed. Do not implement React, runtime Lesson data, Questions, Quizzes, scoring, Note persistence or undocumented APIs.
   productionNotes: |-
     All content.md text outside ordered Sections — editorial premise, accessibility, global feedback, production and dependencies:
-    
+
     # Which One Is Third? Position Depends on the Start — Content
-    
+
     Status: **Provisional Draft — pending Methodologist approval**
     Target Lesson: content/playground/Data/Lessons/1/ordinalPositionWithDirection/
     Audience: Primary Grade 1
@@ -424,63 +455,63 @@ production:
     Target Skills: As directly linked in the Draft Brief, unchanged canonical Skill objects
     Program dependence: None
     Runtime status: Not implemented
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Recognize the ordinal position of an object in an explicitly directed sequence; distinguish its rank from the number of objects and show that changing origin or order changes rank but not total. The learner can predict, operate the mathematical representation, see an actual explanation and transfer the idea to a changed setting. The experience is not a lecture followed by a token quiz.
-    
+
     **Core mathematical truth and boundaries:** For A,B,C,D,E,F counted from A, C is third; counted from F, C is fourth. The total remains six in both cases. Swapping Star and Rain in Sun,Moon,Star,Cloud,Rain makes Star fifth while total stays five. Ordinal position is relative to an order and its starting direction. Grade 1: five or six identifiable items and explicit START marker; no number-line lengths, sorting magnitude, ordinal spelling drills, speed tests or grades.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. Encounter a small concrete instance with Start Marker Line. The child changes the model rather than passively watches; mistakes receive named evidence.
     2. Compare the first model with a deliberately contrasting condition. Ask what stayed the same and what changed.
     3. Brief unscored retrieval with a worked counterexample: Can C be third and fourth without moving the bags?
     4. Independently try Line-Up Swap, changing the item identities, configuration or currency amounts so the child must apply the general principle.
     5. State a reason, or reveal and revisit the full model without score, timer, Program narrative or persistence.
-    
+
     ## SECTION PLAN
-    
-    
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Start Marker Line (Scene specification embedded in this config.yaml) — conceptual model and first contrast.
     - Line-Up Swap (Scene specification embedded in this config.yaml) — independent transfer and different actions.
-    
+
     Both specific Scenes are **proposed**, self-contained, prop-free and not implemented. Generic text, markdown and scene Resource rendering exists; this does not establish the new components. No new runtime field or mode prop is proposed.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “Ordinal tells which place from a start; cardinal tells how many.” — after Section 1 model and explanation (planned, not wired).
     2. “Moving an item can change its position without changing the total.” — after Section 3 transfer and explanation (planned, not wired).
-    
+
     These are concise factual recall candidates. Note entities, event contracts, revision sheets and persistence have not been verified implemented.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     The first Scene uses guided formative decisions and worked contrast; Section 2 retrieves the principle verbally; Section 3 changes the setting to elicit transfer. No response implies Skill mastery. Assessment Architect owns any future scored Question, Quiz, evidence validity and retry policy.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     English text here is editorial source, not production locale assets. Complete truthful translation of instructional language, count words, denomination labels, error messages, aria names and Notes is required for every Engine-supported locale with no silent fallback. RTL must preserve number order, identities, explicit START or EUR units and pair semantics. Equivalent keyboard/switch/touch/nonvisual controls, focus, contrast, reduced motion, zoom and mobile experience are WCAG 2.2 AA targets. All lesson assets, selected-language explanations and computation must be usable offline after download; actual PWA completeness is not claimed.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     - Existing general Lesson Section contract: ordered vertical nonempty Resource list.
     - Current generic text, markdown and scene renderer: observed. New bespoke Scenes: **proposed only**.
     - Full-locale translations, RTL/keyboard accessibility, genuine offline download and Note persistence: required/planned, not demonstrated.
     - No React code, runtime Lesson data, Questions, Quizzes, scoring or Note event wiring exists in this batch.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (original now embedded in this config.yaml) and its exact Skill data links.
     - [Section entity](../../../../../../studio/docs/entities/section.md) and [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md).
-    
+
     - Open decisions: explicit Methodologist grade/targets/depth approval; separate Content/Scene review; full locale and offline/accessibility production checks.
-    
+
     ## HANDOFF
-    
+
     **Provisional Draft.** Content is prepared under batch authorization before Methodologist approval, without claiming formal editorial readiness or implementation permission.
-    
-    
+
+
     Editorial state: provisional draft; pending independent approval. Locales beyond English are intended but not yet translated.
