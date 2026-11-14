@@ -27,6 +27,9 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci
+      - name: Apply repository Prettier to changed Quest source and tests
+        run: |
+          npx prettier --write             shared/engine/configurators/yaml/yamlContentBlock.schemas.ts             shared/engine/configurators/yaml/yamlSection.schemas.ts             shared/engine/configurators/yaml/yamlFactoryByType.ts             shared/engine/scripts/lessonBuilder/lessonBuilder.mjs             shared/engine/scripts/lessonBuilder/lessonBuilder.spec.mjs             shared/engine/scripts/courseBuilder/courseBuilder.mjs             shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs             shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.mjs             shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs             shared/engine/scripts/yamlScaffolding/productionScaffolding.mjs             shared/engine/scripts/yamlScaffolding/yamlScaffolding.spec.mjs
       - name: Build current Engine authoring schemas
         run: npm run package:build --workspace @svitlo/engine
       - name: Regenerate checked-in YAML JSON Schemas
@@ -35,9 +38,9 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add shared/engine/yaml-schemas/*.schema.json
+          git add -u
           if ! git diff --cached --quiet; then
-            git commit -m 'Regenerate Quest YAML editor schemas'
+            git commit -m 'Format Quest YAML authoring and refresh editor schemas'
             git fetch origin feature/quest-yaml-authoring
             git rebase origin/feature/quest-yaml-authoring
             git push origin HEAD:feature/quest-yaml-authoring
