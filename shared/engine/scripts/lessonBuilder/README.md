@@ -6,7 +6,7 @@ It is not a validator, translator, resource producer or Props publisher.
 
 ## One source per Lesson
 
-Input: `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/config.yaml`.
+Input: a `config.yaml` inside the textbook package. The canonical source is `content/<book>/data/lessons/<last-uuid-hex>/<uuid>/config.yaml`; for new work, `--source` may instead point directly to a staged `config.yaml` anywhere within the owning textbook. The generated Lesson UUID directory is computed from the single `config.id`.
 
 Each entity node has **exactly one identity**, inside its `config` object.
 Its optional sibling `production` contains authoring instructions and never
@@ -86,13 +86,13 @@ Config/Props, check approval or call `build.props()`.
 
 ```sh
 node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<book>/data/lessons/<bucket>/<uuid>
+node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate --source content/<book>/staging/config.yaml
 node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source content/<book>/data/lessons/<bucket>/<uuid>
 npm run test:unit:lesson-builder
 ```
 
-Without `--source`, discovers Lesson directories containing `config.yaml`.
-`generate` **skips the entire Lesson before parsing YAML if any `*.data.ts`
-exists** in its UUID directory, as established in PR #531. For a new Lesson,
+Without `--source`, discovers canonical Lesson directories containing `config.yaml`. A direct file source derives its output path from `config.id` without requiring the staging folder name to repeat the UUID.
+`generate` **skips the entire Lesson before parsing YAML if any `*.data.ts` exists in a canonical source UUID directory**, as established in PR #531. When given a staged file, the generator first reads its sole ID to locate the destination, then applies the same no-overwrite `SKIP` safeguard there. For a new Lesson,
 writes are exclusive (`wx`); no existing code or independently edited
 specification is overwritten. `check` is strict/read-only, and never silently
 skips stale or missing draft outputs. Unsafe symlink paths are rejected.
