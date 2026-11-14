@@ -180,7 +180,7 @@
                         "additionalProperties": false
                       },
                       "production": {
-                        "$ref": "#/$defs/__production/default"
+                        "$ref": "#/$defs/__production/$defs/default"
                       }
                     },
                     "required": [
@@ -217,7 +217,7 @@
       "additionalProperties": false
     },
     "production": {
-      "$ref": "#/$defs/__production/course"
+      "$ref": "#/$defs/__production/$defs/course"
     },
     "overrides": {
       "$ref": "courseOverrides.schema.json"
@@ -369,7 +369,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/default"
+          "$ref": "#/$defs/__production/$defs/default"
         }
       },
       "required": [
@@ -491,7 +491,7 @@
                             "additionalProperties": false
                           },
                           "production": {
-                            "$ref": "#/$defs/__production/section"
+                            "$ref": "#/$defs/__production/$defs/section"
                           }
                         },
                         "required": [
@@ -562,7 +562,7 @@
                             "additionalProperties": false
                           },
                           "production": {
-                            "$ref": "#/$defs/__production/section"
+                            "$ref": "#/$defs/__production/$defs/section"
                           }
                         },
                         "required": [
@@ -633,7 +633,7 @@
                             "additionalProperties": false
                           },
                           "production": {
-                            "$ref": "#/$defs/__production/section"
+                            "$ref": "#/$defs/__production/$defs/section"
                           }
                         },
                         "required": [
@@ -704,7 +704,7 @@
                             "additionalProperties": false
                           },
                           "production": {
-                            "$ref": "#/$defs/__production/section"
+                            "$ref": "#/$defs/__production/$defs/section"
                           }
                         },
                         "required": [
@@ -775,7 +775,7 @@
                             "additionalProperties": false
                           },
                           "production": {
-                            "$ref": "#/$defs/__production/section"
+                            "$ref": "#/$defs/__production/$defs/section"
                           }
                         },
                         "required": [
@@ -1023,7 +1023,7 @@
                             "additionalProperties": false
                           },
                           "production": {
-                            "$ref": "#/$defs/__production/section"
+                            "$ref": "#/$defs/__production/$defs/section"
                           }
                         },
                         "required": [
@@ -1060,7 +1060,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/episode"
+          "$ref": "#/$defs/__production/$defs/episode"
         }
       },
       "required": [
@@ -1247,7 +1247,7 @@
                               "additionalProperties": false
                             },
                             "production": {
-                              "$ref": "#/$defs/__production/default"
+                              "$ref": "#/$defs/__production/$defs/default"
                             }
                           },
                           "required": [
@@ -1273,7 +1273,7 @@
                 "additionalProperties": false
               },
               "production": {
-                "$ref": "#/$defs/__production/default"
+                "$ref": "#/$defs/__production/$defs/default"
               }
             },
             "required": [
@@ -1371,7 +1371,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/audio"
+          "$ref": "#/$defs/__production/$defs/audio"
         }
       },
       "required": [
@@ -1512,7 +1512,7 @@
                         "additionalProperties": false
                       },
                       "production": {
-                        "$ref": "#/$defs/__production/default"
+                        "$ref": "#/$defs/__production/$defs/default"
                       }
                     },
                     "required": [
@@ -1538,7 +1538,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/default"
+          "$ref": "#/$defs/__production/$defs/default"
         }
       },
       "required": [
@@ -1644,7 +1644,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/default"
+          "$ref": "#/$defs/__production/$defs/default"
         }
       },
       "required": [
@@ -1727,7 +1727,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/default"
+          "$ref": "#/$defs/__production/$defs/default"
         }
       },
       "required": [
@@ -1764,7 +1764,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/image"
+          "$ref": "#/$defs/__production/$defs/image"
         }
       },
       "required": [
@@ -1895,7 +1895,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/default"
+          "$ref": "#/$defs/__production/$defs/default"
         }
       },
       "required": [
@@ -1945,7 +1945,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/scene"
+          "$ref": "#/$defs/__production/$defs/scene"
         }
       },
       "required": [
@@ -2038,7 +2038,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/video"
+          "$ref": "#/$defs/__production/$defs/video"
         }
       },
       "required": [
@@ -2116,7 +2116,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/default"
+          "$ref": "#/$defs/__production/$defs/default"
         }
       },
       "required": [
@@ -2208,7 +2208,7 @@
           "additionalProperties": false
         },
         "production": {
-          "$ref": "#/$defs/__production/lessonReference"
+          "$ref": "#/$defs/__production/$defs/lessonReference"
         }
       },
       "required": [
@@ -2217,263 +2217,265 @@
       "additionalProperties": false
     },
     "__production": {
-      "lesson": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "documentLanguage": {
-            "type": "string",
-            "minLength": 2,
-            "description": "Source language of authored locale values; not an Engine Config field."
+      "$defs": {
+        "lesson": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "documentLanguage": {
+              "type": "string",
+              "minLength": 2,
+              "description": "Source language of authored locale values; not an Engine Config field."
+            },
+            "methodology": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Complete source-language methodology passport. When supplied, may create an editor-owned methodology.md if absent."
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "audience": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           },
-          "methodology": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Complete source-language methodology passport. When supplied, may create an editor-owned methodology.md if absent."
-          },
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "audience": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+          "required": [
+            "documentLanguage"
+          ]
+        },
+        "course": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "documentLanguage": {
+              "type": "string",
+              "minLength": 2
+            },
+            "methodology": {
+              "type": "string",
+              "minLength": 1
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "audience": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
-        "required": [
-          "documentLanguage"
-        ]
-      },
-      "course": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "documentLanguage": {
-            "type": "string",
-            "minLength": 2
-          },
-          "methodology": {
-            "type": "string",
-            "minLength": 1
-          },
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "audience": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      },
-      "episode": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "specification": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      },
-      "section": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "pedagogicalIntent": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      },
-      "block": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "specification": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
-          }
-        }
-      },
-      "scene": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "specification": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Full implementation specification. The scaffolder writes the Scene UUID directory's specification.md without a sceneSpecKey."
-          },
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+        "episode": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
-        "required": [
-          "specification"
-        ]
-      },
-      "image": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "prompt": {
-            "type": "string",
-            "minLength": 1,
-            "description": "What to depict, pedagogically essential visible elements and relationships; never a fabricated src."
-          },
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+        "section": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pedagogicalIntent": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         },
-        "required": [
-          "prompt",
-          "purpose"
-        ]
-      },
-      "audio": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "specification": {
-            "type": "string",
-            "minLength": 1
-          },
-          "script": {
-            "type": "string",
-            "minLength": 1
-          },
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+        "block": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
-        }
-      },
-      "video": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "specification": {
-            "type": "string",
-            "minLength": 1
+        },
+        "scene": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "specification": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Full implementation specification. The scaffolder writes the Scene UUID directory's specification.md without a sceneSpecKey."
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           },
-          "storyboard": {
-            "type": "string",
-            "minLength": 1
+          "required": [
+            "specification"
+          ]
+        },
+        "image": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "prompt": {
+              "type": "string",
+              "minLength": 1,
+              "description": "What to depict, pedagogically essential visible elements and relationships; never a fabricated src."
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           },
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+          "required": [
+            "prompt",
+            "purpose"
+          ]
+        },
+        "audio": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "specification": {
+              "type": "string",
+              "minLength": 1
+            },
+            "script": {
+              "type": "string",
+              "minLength": 1
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
-        }
-      },
-      "question": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "evidenceIntent": {
-            "type": "string",
-            "minLength": 1
-          },
-          "rationale": {
-            "type": "string",
-            "minLength": 1
+        },
+        "video": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "specification": {
+              "type": "string",
+              "minLength": 1
+            },
+            "storyboard": {
+              "type": "string",
+              "minLength": 1
+            },
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
-        }
-      },
-      "flashcard": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "rationale": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+        },
+        "question": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "evidenceIntent": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 1
+            }
           }
-        }
-      },
-      "lessonReference": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "placementReason": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+        },
+        "flashcard": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "rationale": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
-        }
-      },
-      "default": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "purpose": {
-            "type": "string",
-            "minLength": 1
-          },
-          "specification": {
-            "type": "string",
-            "minLength": 1
-          },
-          "productionNotes": {
-            "type": "string",
-            "minLength": 1
+        },
+        "lessonReference": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "placementReason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "default": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
           }
         }
       }
