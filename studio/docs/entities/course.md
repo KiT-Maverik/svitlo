@@ -1,6 +1,6 @@
 # Course content, creators, Lessons and Episodes
 
-**Current authoring rule (Episode configurator migration):** A Course, Module or Chapter may contain independent `defineEpisode` children alongside `defineLesson` children. Episodes own narrative Sections and are not Lesson subtypes. A Lesson remains pedagogically Course-neutral even if physically authored under one Course. The legacy creator/publication details below describe historical APIs and need separate runtime migration. **For Issue #507 YAML draft-scaffolding, the current authority is [Engine's Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md): typed `content.items/order`, explicit nested `type`, and existing standalone Lesson `lessonId` references.** The editorial `toc.yaml` and `overrides.yaml` are different role-owned formats with independent approval gates.
+**Current authoring rule (Episode configurator migration):** A Course, Module or Chapter may contain independent `defineEpisode` children alongside `defineLesson` children. Episodes own narrative Sections and are not Lesson subtypes. A Lesson remains pedagogically Course-neutral even if physically authored under one Course. The legacy creator/publication details below describe historical APIs and need separate runtime migration. **For Issue #507 YAML draft-scaffolding, the current authority is [Engine's Config-shaped YAML handoff](../architecture/yaml-config-scaffolding.md): typed `content.items/order`, explicit nested `type`, and existing standalone Lesson `lessonId` references.** The editorial `toc.yaml` is distinct from technical Course YAML; `overrides.yaml` uses only the current Build API patch shape and has its own review requirements.
 
 **Status:** Authored Course contracts, creator APIs and a Playground-only Course publication/navigation prototype are implemented. Course-owned React Scene registry generation, full publisher hardening, and progression/persistence remain future integration work.
 
@@ -12,82 +12,42 @@ A **Course** is an ordered learning journey, distinct from a Curriculum. Its aut
 
 A TOC creator receives only `{ language }`. It reads localized Lesson titles from the already imported Lesson Data and emits compact TOC leaves with `type`, `id`, and localized `title`.
 
-## Creator and publication boundaries
+## Current Build API and Course-owned overrides
 
-All Course-family creators return authored data via `getData()`.
-`createModule`, `createChapter` and `createEpisode` compose typed
-nested entities; they do **not** build their own TOC. The Course creator
-traverses its complete content tree and owns navigation projection.
+`defineCourse` composes independently authored `defineModule`, `defineChapter`,
+`defineEpisode`, and **existing standalone `defineLesson` configurators**.
+A Course `type: lesson` node in YAML is a `lessonId` reference, not an embedded
+Lesson Config. The Course TypeScript draft scaffolder imports the existing
+Lesson when its optional `source` import coordinates are known, or leaves an
+explicit unresolved reference for a separate Lesson Production handoff.
+It must never create or overwrite files in a standalone Lesson directory.
 
-```ts
-const episode = createEpisode(episodeData);
-const chapter = createChapter({ ...chapterData, content: [lessonA, episode] });
-const module = createModule({ ...moduleData, content: [chapter, lessonB] });
-const course = createCourse({ ...courseData, content: [module] });
-
-course.getData(); // Authored, complete, build-only
-course.getContentEntries(); // Flattened authoring entities for publisher
-course.getBase(); // { toc, episodes, overrides } invariant data
-course.getLocale('uk'); // Sparse patch for the selected language
-course.toToc({ language: 'uk' }); // Fully localized authoring preview only
-```
-
-`getContentEntries()` also exists on Module, Chapter and Episode creators.
-It returns `lessons`, `episodes`, `groups` and `overrides`, **not files**.
-The Course generator owns path construction, serialization and publication
-of `toc/base.json` plus `toc/<language>.json`, and equivalent resources
-under `episodes/<id>/` and `overrides/<lessonId>/`.
-
-Only the Course builds TOC. Its base holds types, IDs, icons and hierarchy;
-locale patches hold only localized navigation strings, without duplicating
-invariant fields or child-array structure. Runtime merges the base and
-the requested language before navigation or applying a Course-local patch.
-Standalone Lesson Data never appears in published Course resources.
-
-## Sparse Lesson override API
+The **only** current override mechanism is the stateless nested Build API:
 
 ```ts
-const overridden = createLessonOverrides(lesson)
-  .setParams({ sections: { allowSkipping: false } })
-  .sections.bySlug.theory.content.bySlug.intro.set({
-    locales: localizedMarkdown,
-  })
-  .sections.bySlug.theory.content.setOrder(['intro', newHintBlock])
-  .sections.setOrder(['theory', courseScenario, 'practice', 'quiz']);
-
-overridden.build(); // minimum changed-field patch
-overridden.getData(); // same authored patch
-overridden.getContentEntries(); // Build-time Lesson and patch references; no files or TOC
+const course = defineCourse(courseConfig);
+const courseOverrides = course.build.overrides(
+  { content: { items: { opening: { params: { sections: { allowSkipping: false } } } } } },
+  { languages: ['uk'] },
+);
 ```
 
-`build()` returns `{ type: 'lessonOverride', lessonId, lesson, overrides }` with **only changed override fields**; the `lesson` property is the original, unmodified Lesson Data available solely at authoring/build time. The publisher strips it and emits only `lessonId` plus the sparse override. Unchanged sections, blocks, questions, flashcards, language sets and Lesson Definition are never copied into the published patch. The `sections` field uses an explicit patch model:
+At each Module/Chapter boundary the sparse patch uses `content.items` keyed
+by stable authored slugs. `items`, `additionalItems`, and `order` are the
+current collection operations; the applicable child configurator owns
+validation. The Course-specific patch does not change the source Lesson.
+Identity fields and supported Lesson languages cannot be rewritten.
 
-```ts
-{
-  order?: string[];
-  added?: { section: SectionData, source: { type: 'course' } }[];
-  removed?: string[];
-  bySlug?: {
-    [sectionSlug]: {
-      title?: LocalizedTitle;
-      navigationLabel?: LocalizedLabel;
-      skippable?: boolean;
-      content?: {
-        order?: string[];
-        added?: { block: ContentBlockData, source: { type: 'course' } }[];
-        removed?: string[];
-        bySlug?: { [blockSlug]: PartialBlockFields };
-      };
-    };
-  };
-}
-```
+The optional Course-local `overrides.yaml` is **that direct Build API patch**.
+See [Course Build Overrides](../../skills/course-workflow/course-overrides.md)
+and the generated `shared/engine/yaml-schemas/courseOverrides.schema.json`.
+The former `createLessonOverrides` fluent API, `operations` array DSL, and
+`_OverrideEditorial` output are obsolete and unsupported.
 
-This shape preserves source ownership only where needed: **new Course-owned Sections and blocks**. Existing Lesson-owned items are resolved by slug from the referenced Lesson and retain their original Scene Definition registry, even after a data override.
-
-**Merge semantics:** object fields can be deep-merged into canonical **Lesson Data**; Section and ContentBlock arrays MUST be processed via `removed`, `added`, and `order` with stable slug identities. Do not use generic array-index deep merge. Keep Lesson Definition unchanged: Course-owned Definitions/Scene registries remain Course-owned. This merge/materialization is a future publisher responsibility.
-
-The legacy typed override API documents slug operations and validation in its own implementation. **The generic YAML → TypeScript draft scaffolder performs no such validation**: it does not validate duplicate IDs/slugs, cross-Lesson references, ordering, Quiz invariants, editor approval or locale completeness. These belong to the later Configurator, editorial and publication checks.
+The YAML → TypeScript scaffolder is a mechanical draft emitter, not a
+validator, translator, reviewer, asset resolver, Props generator, or publisher.
+Generated TypeScript may deliberately be incomplete until an AI editor
+finishes imports, authored fields and locale coverage. Publication is separate.
 
 ## Boundaries
 
@@ -126,17 +86,23 @@ The [Match Course TOC Lessons](../../../studio/skills/course-workflow/match-cour
 
 ## Course languages and editor-authored TOC locale
 
-**Historical builder boundary:** The earlier `scripts/course-builder/build-course.mjs` path was designed around approved Course editorial Methodology, TOC and optional [`overrides.yaml`](../../skills/course-workflow/course-overrides.md). That editorial integration is **not** the new Engine Config-shaped YAML → TypeScript **draft scaffolder**. Issue #507's scaffolder consumes separately projected Config-shaped YAML and does not enforce editorial status, integrate override operations, resolve all source references, guarantee compiling TS or generate published Props. Any retained legacy builder behavior must be checked from its actual current source rather than implied here.
+**Current Course scaffolder boundary:** `shared/engine/scripts/courseBuilder/` reads Config-shaped `course.yaml` or supported partial `toc.yaml` and optional direct Build API `overrides.yaml`. It never accepts the former editorial operations DSL, resolves missing Lessons by guessing, or publishes Props.
 
 The Course already declares supported languages as `parameters.languages`. The generic `Course<'data', SupportedLanguages>` propagates them through Module, Chapter, Episode, Scenario Sections and Course-owned content/overrides. `Locale_Options<SupportedLanguages>` permits a complete localized dictionary or an **intentionally invariant string**, not partial translations. External Lessons are referenced by ID: the publisher checks that each `Lesson.parameters.languages` includes **every** Course language; Lessons may support more.
 
 Editorial `methodology.md` declares its own prose `documentLanguage` and planned `supportedLanguages`. The [skill-based TOC](../../../studio/skills/course-workflow/create-course-toc.skill.md) repeats supported languages and declares its **own** `documentLanguage` as the source locale for ordinary titles. Invariant titles are explicit `{value: "...", invariant: true}`. The separately reviewed projection puts ordinary TOC text into `locale.<field>.<documentLanguage>` only and preserves the intended `params.languages`; it cannot fabricate translations or treat the other locales as implemented. The TOC's source `documentLanguage` should be in `supportedLanguages` when projected, even if Methodology was written in another editorial language. The TypeScript draft scaffolder does not replace Course authoring, normal typechecks, Props generation or the runtime JSON publisher.
 
-## Full Lesson Data in authoring, compact Course publications
+## Standalone Lesson reuse and compact Course publications
 
-Course/Module/Chapter creators now accept full `Lesson<'data', SupportedLanguages>` objects instead of bare Lesson IDs. The shared Course generic propagates through nested entities and Lesson Data. This ensures the TS compiler sees the Lesson's declared languages and localized values at authoring time. `createLessonOverrides(lesson).build()` also carries its original Lesson Data for the same check. As with the existing Lesson contracts, scalar strings remain intentionally invariant; locale dictionaries must be complete.
+Current Course/Module/Chapter Configs accept previously authored Lesson
+configurators via the Build API. A Course's supported languages must be
+a subset of those supported by every included Lesson. The reusable Lesson
+remains standalone regardless of Course ownership or patching.
 
-The Course publisher consumes `createCourse(course).getBase()`, `getLocale(language)` and `getContentEntries()`, not manual recursive Lesson lookups. It writes localized TOC, Episodes, and sparse Lesson overrides, not embedded Lesson objects. Duplicate IDs, invalid buckets, missing authoring data and output collisions remain generator integrity checks. **Run TypeScript typecheck on authored Course sources before publication:** esbuild/transpilation alone does not typecheck. The Course's compatible Lesson entry type accepts a standalone Lesson whose locale tuple is a **superset** of Course languages. The Engine creator checks that `Course.parameters.languages` is a subset of each referenced `Lesson.parameters.languages`; generated Course factories additionally typecheck literal tuples. Course-owned entries remain strictly localized for Course languages, and `Locale_Options` is unchanged.
+The Course publisher emits Course-local resources and sparse overrides
+separately from standalone Lesson resources. The Course YAML scaffolder
+does not publish them. An editor must complete and typecheck authored
+TypeScript before normal validation and publication.
 
 ## Course configuration review and override authorship
 

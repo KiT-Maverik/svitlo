@@ -12,7 +12,7 @@ Once matched Lessons and their actual authoring data are available, compose and 
 
 1. **Course Screenwriting (future optional stage)** — authors approved Course-owned narrative, Episodes, Scenes and any scenario-specific changes to the shared `overrides.yaml`. This is not yet a shipped Course-authoring skill.
 2. [Review Course Scenario](./review-course-scenario.skill.md) — independent scenario/narrative review **only for Courses with an actual scenario layer**. A Course without scenario content skips this gate.
-3. [Review Course Methodology and Configuration](./review-course-methodology.skill.md) — Methodologist checks the assembled Course, each actual Lesson's default settings, progression and assessment. When pedagogically justified, the Methodologist **adds or revises methodological operations in the same `overrides.yaml`**, subject to independent editorial approval. This is the required methodological configuration review before final generation.
+3. [Review Course Methodology and Configuration](./review-course-methodology.skill.md) — Methodologist checks the assembled Course, each actual Lesson's default settings, progression and assessment. When pedagogically justified, the Methodologist **adds or revises a methodological Build API patch in the same `overrides.yaml`**, subject to independent editorial approval. This is the required methodological configuration review before final generation.
 
 The two reviews have distinct criteria and revision-specific sign-offs. They can examine independently ready content without a rigid execution ordering, but changes affecting scenario content/behavior must be rechecked by the scenario reviewer, and changes affecting pedagogy must be rechecked by the Methodologist. A reviewer cannot approve their own authored override. New or changed overrides remain **draft** until independently approved; do not label them approved simply because an Engine scaffolder can emit code. Review reports live in the Course directory as `scenario-review.md` (when applicable) and `methodology-review.md`.
 
@@ -22,7 +22,16 @@ The editorial TOC format is defined by [course-toc.schema.json](./course-toc.sch
 
 ## Approved Course-owned overrides
 
-[Course Lesson Overrides](./course-overrides.md) defines the **separate** `overrides.yaml` editorial format, validated by [course-overrides.schema.json](./course-overrides.schema.json). It is not part of `toc.yaml` and never edits a standalone Lesson. The Course Methodologist can author **pedagogical** overrides during Course Methodology Review, while the future Course Screenwriter can author **scenario** overrides during Course screenwriting; both contribute to **one** approved Course-owned file. A reviewed Course integration author can use it to specify sparse parameter changes, Section/ContentBlock slug modifications, ordering and approved Course-owned TS source references for new Sections/blocks or metadata patches. The Course `overrides.yaml` operation format is **not** the Engine Course Config-shaped YAML tree. Any approved override mapping belongs to a separately verified technical integration step; do not assume the generic Course draft scaffolder applies `createLessonOverrides` or validates the existing editorial operations. Scenario content/asset sources must already exist and be approved; their authorship is not delegated to the scaffolder.
+[Course Build Overrides](./course-overrides.md) defines the **single supported**
+Course-owned override format. `overrides.yaml` contains a direct stateless
+`course.build.overrides(patch, { languages })` patch, guided by the
+[generated Engine Course Overrides Schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json).
+Legacy ordered editorial operations are obsolete and unsupported.
+
+Methodological and scenario review still determines whether each Course-specific
+change is justified and approved; approval is distinct from technical
+scaffolding and from the final Engine Config/Props validation. Override patches
+must not mutate any reusable standalone Lesson.
 
 ## Engine YAML draft handoff
 

@@ -9,7 +9,9 @@ import {
   parseArguments,
   parseCourseYaml,
   renderCourseSource,
+  existingCourseDrafts,
   verifyOrWriteGenerated,
+  main,
 } from './courseBuilder.mjs';
 
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
@@ -96,14 +98,16 @@ const studioPlan = {
           type: 'chapter',
           key: 'intro',
           title: { value: 'HTML', invariant: true },
-          children: [{
-            type: 'lesson',
-            key: 'lesson-one',
-            title: 'Редакційна назва',
-            objective: 'Навчитись',
-            skills: [{ id: 'skill-1', name: 'Skill' }],
-            lessonId,
-          }],
+          children: [
+            {
+              type: 'lesson',
+              key: 'lesson-one',
+              title: 'Редакційна назва',
+              objective: 'Навчитись',
+              skills: [{ id: 'skill-1', name: 'Skill' }],
+              lessonId,
+            },
+          ],
         },
       ],
     },
@@ -111,10 +115,7 @@ const studioPlan = {
 };
 
 test('parses only YAML data, without methodology or approval requirements', () => {
-  const parsed = parseCourseYaml(
-    'type: course\nslug: spaceCourse\nparams:\n  languages: [uk, en]\n',
-    'course.yaml',
-  );
+  const parsed = parseCourseYaml('type: course\nslug: spaceCourse\nparams:\n  languages: [uk, en]\n', 'course.yaml');
   assert.equal(parsed.type, 'course');
   assert.deepEqual(parsed.params.languages, ['uk', 'en']);
   assert.throws(() => parseCourseYaml('type: course\ntype: module\n'), /Course Scaffolder \[YAML\]/);
@@ -124,8 +125,14 @@ test('parses only YAML data, without methodology or approval requirements', () =
 test('modern Config tree dispatches Course, Module, Chapter, Episode, Section, Block', () => {
   const rendered = renderCourseSource(source);
   assert.match(rendered, /export const spaceCourse_Course = defineCourse\(/);
-  for (const name of ['defineCourse', 'defineModule', 'defineChapter', 'defineEpisode',
-    'defineContentSection', 'defineMarkdown']) {
+  for (const name of [
+    'defineCourse',
+    'defineModule',
+    'defineChapter',
+    'defineEpisode',
+    'defineContentSection',
+    'defineMarkdown',
+  ]) {
     assert(rendered.includes(name + '('), 'missing nested factory ' + name);
   }
   assert.match(rendered, /from "@svitlo\/engine\/build"/);
@@ -173,15 +180,30 @@ test('Studio toc.yaml is converted mechanically without inventing group IDs or L
 });
 
 test('missing or unknown node type is an explicit location-specific dispatch error', () => {
-  assert.throws(() => renderCourseSource({ ...source, content: { items: { x: { slug: 'x' } }, order: ['x'] } }),
-    /TYPE.*content\.items\.x: missing required type/);
-  assert.throws(() => renderCourseSource({
-    ...source, content: { items: { x: { type: 'unknown', slug: 'x' } }, order: ['x'] },
-  }), /TYPE.*content\.items\.x: unknown type/);
+  assert.throws(
+    () => renderCourseSource({ ...source, content: { items: { x: { slug: 'x' } }, order: ['x'] } }),
+    /TYPE.*content\.items\.x: missing required type/,
+  );
+  assert.throws(
+    () =>
+      renderCourseSource({
+        ...source,
+        content: { items: { x: { type: 'unknown', slug: 'x' } }, order: ['x'] },
+      }),
+    /TYPE.*content\.items\.x: unknown type/,
+  );
   assert.throws(() => renderCourseSource({ content: [] }), /missing or unknown Course type/);
-  assert.throws(() => renderCourseSource({
-    ...studioPlan, content: [{ key: 'lost-type' }],
-  }, { slug: 'spaceCourse' }), /TYPE.*content\[0\].*missing/);
+  assert.throws(
+    () =>
+      renderCourseSource(
+        {
+          ...studioPlan,
+          content: [{ key: 'lost-type' }],
+        },
+        { slug: 'spaceCourse' },
+      ),
+    /TYPE.*content\[0\].*missing/,
+  );
 });
 
 test('referenced standalone Lessons are reused and missing import coordinates remain explicit handoffs', () => {
@@ -200,92 +222,180 @@ test('referenced standalone Lessons are reused and missing import coordinates re
   assert(rendered.includes('UNRESOLVED_LESSON_1'));
   assert(!rendered.includes('defineLesson('));
   assert(rendered.includes('Never define a new Lesson here'));
-  const input = { ...data, content: {
-    items: {
-      again: { type: 'lesson', lessonId, source: { path: '../elsewhere.ts', export: 'Bad' } },
-    }, order: ['again'],
-  } };
+  const input = {
+    ...data,
+    content: {
+      items: {
+        again: { type: 'lesson', lessonId, source: { path: '../elsewhere.ts', export: 'Bad' } },
+      },
+      order: ['again'],
+    },
+  };
   assert(renderCourseSource(input).includes('UNRESOLVED_LESSON_0'));
   assert(!renderCourseSource(input).includes('from "../elsewhere"'));
 });
 
-test('Course-owned legacy override operations are preserved without claiming sparse conversion', () => {
+test('Course override YAML maps directly to the stateless Build API, without legacy operations', () => {
   const overrides = {
-    kind: 'course-lesson-overrides',
-    courseId,
-    status: 'draft',
-    overrides: [{
-      slotKey: 'lesson-one',
-      lessonId,
-      operations: [
-        { type: 'params', sections: { allowSkipping: false } },
-        { type: 'block-set', sectionSlug: 'intro', slug: 'note',
-          source: { path: 'patches/note.ts', export: 'note_Patch' } },
-      ],
-    }],
+    content: {
+      items: {
+        opening: { params: { sections: { allowSkipping: false } } },
+        basics: {
+          content: {
+            items: {
+              first: { content: { items: { followUp: { locale: { title: { uk: 'Назва у курсі' } } } } } },
+            },
+          },
+        },
+      },
+    },
   };
   const code = renderCourseSource(source, { overrides });
-  assert(code.includes('spaceCourse_OverrideEditorial'));
-  assert(code.includes('build.overrides('));
-  assert(code.includes('course-lesson-overrides'));
-  assert(code.includes(lessonId));
-  assert(code.includes('patches/note.ts'));
-  assert(code.includes('note_Patch'));
-  assert(code.includes('block-set'));
+  assert(code.includes('spaceCourse_Course.build.overrides('));
+  assert(code.includes('spaceCourse_Overrides'));
   assert(code.includes('"allowSkipping": false'));
+  assert(code.includes('"followUp": {'));
+  assert(code.includes('languages: ['));
+  assert(!code.includes('OverrideEditorial'));
   assert(!code.includes('createLessonOverrides('));
-  assert(!renderCourseSource(source).includes('OverrideEditorial'));
   assert.equal(code, renderCourseSource(source, { overrides }));
+  assert(!renderCourseSource(source).includes('spaceCourse_Overrides'));
+  assert.throws(
+    () =>
+      renderCourseSource(source, {
+        overrides: { kind: 'course-lesson-overrides', overrides: [{ slotKey: 'opening', operations: [] }] },
+      }),
+    /OVERRIDES.*legacy editorial operations are unsupported/,
+  );
 });
 
-test('safe, idempotent write and --check never overwrite edited drafts', () => {
+test('Course Build overrides render additional configurators and never create standalone Lessons', () => {
+  const overrides = {
+    content: {
+      additionalItems: {
+        second: { type: 'lesson', lessonId },
+      },
+      order: ['opening', 'basics', 'second'],
+    },
+  };
+  const code = renderCourseSource(source, { overrides });
+  assert(code.includes('content: {') || code.includes('"content": {'));
+  assert(code.includes('"additionalItems": {'));
+  assert(code.includes('UNRESOLVED_LESSON_1'));
+  assert(code.includes('.build.overrides('));
+  assert(!code.includes('defineLesson('));
+});
+
+test('creation skips any existing Course data file; check keeps detecting stale drafts', () => {
   const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'course-draft-'));
   const filename = path.join(folder, 'spaceCourse.data.ts');
   const code = renderCourseSource(source);
   try {
+    assert.deepEqual(existingCourseDrafts(folder), []);
     assert.throws(() => verifyOrWriteGenerated(filename, code, '--check'), /STALE/);
     assert.equal(verifyOrWriteGenerated(filename, code, '--write'), true);
+    assert.deepEqual(existingCourseDrafts(folder), ['spaceCourse.data.ts']);
     const before = fs.statSync(filename).mtimeMs;
     assert.equal(verifyOrWriteGenerated(filename, code, '--write'), false);
     assert.equal(verifyOrWriteGenerated(filename, code, '--check'), false);
     assert.equal(fs.statSync(filename).mtimeMs, before);
+
     fs.appendFileSync(filename, '// AI editorial changes\n');
-    assert.throws(() => verifyOrWriteGenerated(filename, code, '--write'), /OWNERSHIP/);
+    const authored = fs.readFileSync(filename, 'utf8');
+    assert.equal(verifyOrWriteGenerated(filename, code, '--write'), false);
     assert.throws(() => verifyOrWriteGenerated(filename, code, '--check'), /STALE/);
-    assert(fs.readFileSync(filename, 'utf8').includes('AI editorial changes'));
+    assert.equal(fs.readFileSync(filename, 'utf8'), authored);
+    const another = path.join(folder, 'other.data.ts');
+    fs.writeFileSync(another, 'export const previous = true;\n');
+    assert.deepEqual(existingCourseDrafts(folder), ['other.data.ts', 'spaceCourse.data.ts']);
+
     const symlink = path.join(folder, 'symlink.ts');
     fs.symlinkSync(filename, symlink);
+    assert.throws(() => verifyOrWriteGenerated(symlink, code, '--write'), /PATH/);
     assert.throws(() => verifyOrWriteGenerated(symlink, code, '--check'), /PATH/);
   } finally {
     fs.rmSync(folder, { recursive: true, force: true });
   }
 });
 
+test('Course ownership detection treats any data.ts as existing, not editorial YAML', () => {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'course-scaffold-ownership-'));
+  try {
+    fs.writeFileSync(path.join(folder, 'course.yaml'), 'type: course\n');
+    assert.deepEqual(existingCourseDrafts(folder), []);
+    fs.writeFileSync(path.join(folder, 'anotherCourse.data.ts'), 'export const authored = true;\n');
+    assert.deepEqual(existingCourseDrafts(folder), ['anotherCourse.data.ts']);
+    assert.deepEqual(existingCourseDrafts(path.join(folder, 'missing')), []);
+  } finally {
+    fs.rmSync(folder, { recursive: true, force: true });
+  }
+});
+
+test('Course CLI logs SKIP before parsing YAML when the UUID already has data', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-existing-cli-'));
+  const folder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  fs.mkdirSync(folder, { recursive: true });
+  const target = path.join(folder, 'alreadyAuthored.data.ts');
+  fs.writeFileSync(target, 'export const authored = true;\n');
+  const logs = [];
+  const previousLog = console.log;
+  try {
+    console.log = value => logs.push(value);
+    // No source YAML: skipping must occur before parsing or generating anything.
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    assert.equal(fs.readFileSync(target, 'utf8'), 'export const authored = true;\n');
+    assert.deepEqual(existingCourseDrafts(folder), ['alreadyAuthored.data.ts']);
+    assert(
+      logs.some(
+        value =>
+          value.includes('SKIP Course ' + courseId) &&
+          value.includes('alreadyAuthored.data.ts') &&
+          value.includes('no files modified'),
+      ),
+    );
+  } finally {
+    console.log = previousLog;
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 test('CLI confines input and output path selection', () => {
-  assert.deepEqual(parseArguments([
-    '--package', 'content/math', '--course', courseId, '--slug', 'spaceCourse',
-    '--source', 'toc.yaml', '--write',
-  ]), {
-    packagePath: 'content/math',
-    courseId,
-    slug: 'spaceCourse',
-    sourceFilename: 'toc.yaml',
-    action: '--write',
-  });
-  assert.throws(() => parseArguments([
-    '--package', '../content/math', '--course', courseId, '--write',
-  ]), /ARGS/);
-  assert.throws(() => parseArguments([
-    '--package', 'content/math', '--course', courseId, '--source', '../bad.yaml', '--write',
-  ]), /ARGS/);
+  assert.deepEqual(
+    parseArguments([
+      '--package',
+      'content/math',
+      '--course',
+      courseId,
+      '--slug',
+      'spaceCourse',
+      '--source',
+      'toc.yaml',
+      '--write',
+    ]),
+    {
+      packagePath: 'content/math',
+      courseId,
+      slug: 'spaceCourse',
+      sourceFilename: 'toc.yaml',
+      action: '--write',
+    },
+  );
+  assert.throws(() => parseArguments(['--package', '../content/math', '--course', courseId, '--write']), /ARGS/);
+  assert.throws(
+    () => parseArguments(['--package', 'content/math', '--course', courseId, '--source', '../bad.yaml', '--write']),
+    /ARGS/,
+  );
 });
 
 test('ID-derived export filename does not fabricate an absent authored Course slug', () => {
-  const code = renderCourseSource({
-    type: 'course',
-    id: courseId,
-    content: { items: {}, order: [] },
-  }, { outputSlug: 'course_30ecbde1' });
+  const code = renderCourseSource(
+    {
+      type: 'course',
+      id: courseId,
+      content: { items: {}, order: [] },
+    },
+    { outputSlug: 'course_30ecbde1' },
+  );
   assert(code.includes('course_30ecbde1_Course = defineCourse('));
   assert(!code.includes('"slug":'));
 });
@@ -308,36 +418,99 @@ test('nested Carousel and Checkpoint configurators become factory calls in Cours
   const nested = {
     ...source,
     documentLanguage: 'uk',
-    content: { items: {
-      module: { type: 'module', slug: 'module', content: { items: {
-        chapter: { type: 'chapter', slug: 'chapter', content: { items: {
-          episode: { type: 'episode', slug: 'episode', section: { items: {
-            section: { type: 'content', slug: 'section', content: { items: {
-              gallery: { type: 'carousel', slug: 'gallery',
-                slides: { items: {
-                  slide: { type: 'carouselSlide', slug: 'slide' },
-                }, order: ['slide'] },
-              },
-              checkpoint: { type: 'checkpoint', slug: 'checkpoint',
-                content: { items: {
-                  task: { type: 'checkpointItem', slug: 'task',
-                    question: { type: 'text', slug: 'prompt', locale: { value: { uk: 'Питання', en: 'EN_SECRET' } } },
-                    answer: { items: {
-                      answer: { type: 'text', slug: 'answer', locale: { value: { uk: 'Відповідь' } } },
-                    }, order: ['answer'] },
+    content: {
+      items: {
+        module: {
+          type: 'module',
+          slug: 'module',
+          content: {
+            items: {
+              chapter: {
+                type: 'chapter',
+                slug: 'chapter',
+                content: {
+                  items: {
+                    episode: {
+                      type: 'episode',
+                      slug: 'episode',
+                      section: {
+                        items: {
+                          section: {
+                            type: 'content',
+                            slug: 'section',
+                            content: {
+                              items: {
+                                gallery: {
+                                  type: 'carousel',
+                                  slug: 'gallery',
+                                  slides: {
+                                    items: {
+                                      slide: { type: 'carouselSlide', slug: 'slide' },
+                                    },
+                                    order: ['slide'],
+                                  },
+                                },
+                                checkpoint: {
+                                  type: 'checkpoint',
+                                  slug: 'checkpoint',
+                                  content: {
+                                    items: {
+                                      task: {
+                                        type: 'checkpointItem',
+                                        slug: 'task',
+                                        question: {
+                                          type: 'text',
+                                          slug: 'prompt',
+                                          locale: { value: { uk: 'Питання', en: 'EN_SECRET' } },
+                                        },
+                                        answer: {
+                                          items: {
+                                            answer: {
+                                              type: 'text',
+                                              slug: 'answer',
+                                              locale: { value: { uk: 'Відповідь' } },
+                                            },
+                                          },
+                                          order: ['answer'],
+                                        },
+                                      },
+                                    },
+                                    order: ['task'],
+                                  },
+                                },
+                              },
+                              order: ['gallery', 'checkpoint'],
+                            },
+                          },
+                        },
+                        order: ['section'],
+                      },
+                    },
                   },
-                }, order: ['task'] },
+                  order: ['episode'],
+                },
               },
-            }, order: ['gallery', 'checkpoint'] } },
-          }, order: ['section'] } },
-        }, order: ['episode'] } },
-      }, order: ['chapter'] } },
-    }, order: ['module'] },
+            },
+            order: ['chapter'],
+          },
+        },
+      },
+      order: ['module'],
+    },
   };
   const code = renderCourseSource(nested);
-  for (const factory of ['defineCourse', 'defineModule', 'defineChapter', 'defineEpisode',
-    'defineContentSection', 'defineCarousel', 'defineCarouselSlide', 'defineCheckpoint',
-    'defineCheckpointItem', 'defineText']) {
+  for (const factory of [
+    'defineCourse',
+    'defineModule',
+    'defineChapter',
+    'defineEpisode',
+    'defineContentSection',
+    'defineCarousel',
+    'defineCarouselSlide',
+    'defineCheckpoint',
+    'defineCheckpointItem',
+    'defineText',
+  ]) {
     assert(code.includes(factory + '('), 'missing ' + factory);
   }
   assert.equal((code.match(/defineText\(/g) ?? []).length, 2);
@@ -347,23 +520,38 @@ test('nested Carousel and Checkpoint configurators become factory calls in Cours
 
 test('canonical sibling Lesson imports are permitted but cannot escape textbook data', () => {
   const sibling = '../../../lessons/4/d3048d21-8690-5255-b62c-984c69ac272c/lesson.data.ts';
-  const valid = { ...source, content: { items: {
-    previous: { type: 'lesson', lessonId,
-      source: { path: sibling, export: 'lesson_Lesson' } },
-  }, order: ['previous'] } };
+  const valid = {
+    ...source,
+    content: {
+      items: {
+        previous: { type: 'lesson', lessonId, source: { path: sibling, export: 'lesson_Lesson' } },
+      },
+      order: ['previous'],
+    },
+  };
   const code = renderCourseSource(valid);
   assert(code.includes('from "' + sibling.replace('.ts', '') + '"'));
   assert(!code.includes('UNRESOLVED_LESSON'));
-  const invalid = { ...valid, content: { items: {
-    previous: { type: 'lesson', lessonId,
-      source: { path: '../../../../../../../outside.ts', export: 'bad_Lesson' } },
-  }, order: ['previous'] } };
+  const invalid = {
+    ...valid,
+    content: {
+      items: {
+        previous: {
+          type: 'lesson',
+          lessonId,
+          source: { path: '../../../../../../../outside.ts', export: 'bad_Lesson' },
+        },
+      },
+      order: ['previous'],
+    },
+  };
   assert(renderCourseSource(invalid).includes('UNRESOLVED_LESSON_0'));
 });
 
 test('Course uses the same canonical Engine registry and prunes explicit source-locale dictionaries', () => {
   const direct = {
-    ...source, documentLanguage: 'uk',
+    ...source,
+    documentLanguage: 'uk',
     locale: { title: { uk: 'Космос', en: 'DROP_ME' } },
   };
   const code = renderCourseSource(direct);

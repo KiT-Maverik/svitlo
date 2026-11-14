@@ -21,11 +21,15 @@ const group = items => ({ items, order: Object.keys(items) });
 
 function makeLesson() {
   const slide = {
-    id: id(2), slug: 'slide', type: 'carouselSlide',
+    id: id(2),
+    slug: 'slide',
+    type: 'carouselSlide',
     locale: { src: { uk: 'img/uk.png', en: 'img/en.png' }, alt: { uk: 'Опис', en: 'Description' } },
   };
   const item = {
-    id: id(3), slug: 'task', type: 'checkpointItem',
+    id: id(3),
+    slug: 'task',
+    type: 'checkpointItem',
     question: textBlock('question', 'Запитання'),
     answer: group({ answer: textBlock('answer', 'Відповідь') }),
   };
@@ -43,23 +47,31 @@ function makeLesson() {
     locale: { title: { uk: 'Світло', en: 'Light' } },
     section: group({
       intro: {
-        id: id(4), slug: 'intro', type: 'content',
+        id: id(4),
+        slug: 'intro',
+        type: 'content',
         params: { skippable: false },
         locale: { title: { uk: 'Вступ', en: 'Intro' } },
         content: group({
           body: textBlock('body'),
           gallery: {
-            id: id(5), slug: 'gallery', type: 'carousel',
+            id: id(5),
+            slug: 'gallery',
+            type: 'carousel',
             slides: group({ first: slide }),
           },
           check: {
-            id: id(6), slug: 'check', type: 'checkpoint',
+            id: id(6),
+            slug: 'check',
+            type: 'checkpoint',
             content: group({ task: item }),
           },
         }),
       },
       quiz: {
-        id: id(7), slug: 'quiz', type: 'quiz',
+        id: id(7),
+        slug: 'quiz',
+        type: 'quiz',
         params: { selection: { mode: 'all' } },
         content: group({ prompt: textBlock('prompt') }),
       },
@@ -69,7 +81,9 @@ function makeLesson() {
 
 function makeQuestions() {
   const selectOne = {
-    id: id(8), slug: 'one', type: 'selectOneAnswer',
+    id: id(8),
+    slug: 'one',
+    type: 'selectOneAnswer',
     params: { disabled: false },
     content: {
       question: group({ prompt: textBlock('prompt') }),
@@ -81,7 +95,9 @@ function makeQuestions() {
     },
   };
   const match = {
-    id: id(9), slug: 'match', type: 'matchBlocks',
+    id: id(9),
+    slug: 'match',
+    type: 'matchBlocks',
     content: {
       question: group({ prompt: textBlock('prompt') }),
       pairs: group({
@@ -90,35 +106,45 @@ function makeQuestions() {
     },
   };
   const blanks = {
-    id: id(10), slug: 'blanks', type: 'fillBlanksWithBlocks',
+    id: id(10),
+    slug: 'blanks',
+    type: 'fillBlanksWithBlocks',
     content: {
       question: group({ prompt: textBlock('prompt') }),
       slots: group({ gap: { correctAnswer: textBlock('correctAnswer') } }),
       distractors: group({}),
     },
   };
-  return { documentLanguage: 'uk', questions: {
-    selectOneAnswer: { one: selectOne },
-    matchBlocks: { match },
-    fillBlanksWithBlocks: { blanks },
-  } };
+  return {
+    documentLanguage: 'uk',
+    questions: {
+      selectOneAnswer: { one: selectOne },
+      matchBlocks: { match },
+      fillBlanksWithBlocks: { blanks },
+    },
+  };
 }
 
 function makeFlashcards() {
-  return { documentLanguage: 'uk', flashcards: group({
-    first: {
-      id: id(11), slug: 'first', type: 'flashcard',
-      parameters: {
-        tags: ['light'],
-        flags: group({ warning: { type: 'warning' } }),
+  return {
+    documentLanguage: 'uk',
+    flashcards: group({
+      first: {
+        id: id(11),
+        slug: 'first',
+        type: 'flashcard',
+        parameters: {
+          tags: ['light'],
+          flags: group({ warning: { type: 'warning' } }),
+        },
+        content: {
+          front: group({ front: textBlock('front') }),
+          back: group({ back: textBlock('back') }),
+          hint: group({ hint: textBlock('hint') }),
+        },
       },
-      content: {
-        front: group({ front: textBlock('front') }),
-        back: group({ back: textBlock('back') }),
-        hint: group({ hint: textBlock('hint') }),
-      },
-    },
-  }) };
+    }),
+  };
 }
 
 function fixture(callback) {
@@ -132,9 +158,14 @@ function fixture(callback) {
   const questions = makeQuestions();
   const flashcards = makeFlashcards();
   const save = () => {
-    fs.writeFileSync(path.join(lesson, 'lesson.config.yaml'), yaml.stringify({
-      ...content, questions: questions.questions, flashcards: flashcards.flashcards,
-    }));
+    fs.writeFileSync(
+      path.join(lesson, 'lesson.config.yaml'),
+      yaml.stringify({
+        ...content,
+        questions: questions.questions,
+        flashcards: flashcards.flashcards,
+      }),
+    );
     // Specialist-owned editorial files are a different contract and remain
     // untouched by this technical draft scaffolder.
     fs.writeFileSync(path.join(lesson, 'content.yaml'), 'kind: lesson-content-plan\nstatus: draft\n');
@@ -181,12 +212,20 @@ test('emits named Lesson TS and nested factories, including all Question and Fla
     assert.match(output, /export const lightLesson_Lesson = defineLesson\(/);
     const names = calls(output);
     for (const name of [
-      'defineLesson', 'defineContentSection', 'defineQuizSection',
-      'defineText', 'defineCarousel', 'defineCarouselSlide',
-      'defineCheckpoint', 'defineCheckpointItem',
-      'defineSelectOneAnswer', 'defineMatchBlocks', 'defineFillBlanksWithBlocks',
+      'defineLesson',
+      'defineContentSection',
+      'defineQuizSection',
+      'defineText',
+      'defineCarousel',
+      'defineCarouselSlide',
+      'defineCheckpoint',
+      'defineCheckpointItem',
+      'defineSelectOneAnswer',
+      'defineMatchBlocks',
+      'defineFillBlanksWithBlocks',
       'defineFlashcard',
-    ]) assert.ok(names.includes(name), 'Missing ' + name);
+    ])
+      assert.ok(names.includes(name), 'Missing ' + name);
     assert.equal(names.filter(name => name === 'defineCheckpointItem').length, 1);
     assert.equal(names.filter(name => name === 'defineFlashcard').length, 1);
     assert.ok(names.filter(name => name === 'defineText').length >= 15);
@@ -223,19 +262,32 @@ test('preserves partial YAML instead of inventing required fields, locale values
     assert.doesNotMatch(code, /"flashcards":/);
   }));
 
-test('is byte-stable on repeated generation and check is read-only', () =>
+test('creation skips existing Lesson data while check remains read-only and strict', () =>
   fixture(f => {
-    runOne(f.lesson, 'generate', f.root);
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
     const first = fs.readFileSync(f.generated(), 'utf8');
-    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 0);
+    assert.deepEqual(runOne(f.lesson, 'generate', f.root), {
+      changed: 0,
+      skipped: true,
+      files: ['lightLesson.data.ts'],
+      lessonId,
+    });
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     assert.equal(fs.readFileSync(f.generated(), 'utf8'), first);
     f.content.section.items.intro.locale.title.uk = 'Змінений вступ';
     f.save();
     assert.throws(() => runOne(f.lesson, 'check', f.root), /stale draft/);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(f.generated(), 'utf8'), first);
-    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
-    assert.notEqual(fs.readFileSync(f.generated(), 'utf8'), first);
+    const logged = [];
+    const previousLog = console.log;
+    try {
+      console.log = message => logged.push(message);
+      main(['generate', '--source', path.relative(f.root, f.lesson)], f.root);
+    } finally {
+      console.log = previousLog;
+    }
+    assert(logged.some(message => /SKIP Lesson .*existing lightLesson.data.ts; no files modified/.test(message)));
   }));
 
 test('missing and unknown polymorphic types produce a local dispatch diagnostic', () =>
@@ -244,7 +296,8 @@ test('missing and unknown polymorphic types produce a local dispatch diagnostic'
     f.save();
     assert.throws(
       () => runOne(f.lesson, 'generate', f.root),
-      error => error instanceof BuilderDiagnostic &&
+      error =>
+        error instanceof BuilderDiagnostic &&
         /content\.items\.body\.type: missing type discriminator/.test(error.message),
     );
     f.content.section.items.intro.content.items.body.type = 'unknownBlock';
@@ -265,39 +318,61 @@ test('refuses a non-Lesson root type rather than emitting the wrong factory', ()
   }));
 
 test('source-localization filtering leaves unrelated type metadata intact', () => {
-  const source = renderLessonDraft({
-    slug: 'demo',
-    type: 'lesson',
-    locale: { title: { uk: 'Заголовок', en: 'Title' } },
-    params: { languages: ['en', 'uk'], type: 'configValue' },
-    flashcards: { items: {}, order: [] },
-  }, 'uk', loadFactoryRegistry());
+  const source = renderLessonDraft(
+    {
+      slug: 'demo',
+      type: 'lesson',
+      locale: { title: { uk: 'Заголовок', en: 'Title' } },
+      params: { languages: ['en', 'uk'], type: 'configValue' },
+      flashcards: { items: {}, order: [] },
+    },
+    'uk',
+    loadFactoryRegistry(),
+  );
   assert.match(source, /"languages": \[\s*"en",\s*"uk"\s*\]/);
   assert.match(source, /"type": "configValue"/);
   assert.match(source, /"uk": "Заголовок"/);
   assert.doesNotMatch(source, /"en": "Title"/);
 });
 
-test('manual data sources and modifications are never overwritten', () =>
+test('existing authored and modified data files are skipped without any overwrites', () =>
   fixture(f => {
     const manual = path.join(f.lesson, 'other.data.ts');
     fs.writeFileSync(manual, 'export const keep = true;\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /competing Lesson data entrypoint/);
+    assert.deepEqual(runOne(f.lesson, 'generate', f.root).files, ['other.data.ts']);
     assert.equal(fs.readFileSync(manual, 'utf8'), 'export const keep = true;\n');
+    assert.equal(fs.existsSync(f.generated()), false);
     fs.rmSync(manual);
     fs.writeFileSync(f.generated(), 'export const handwritten = true;\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /manually authored file/);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), 'export const handwritten = true;\n');
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /manually authored file/);
     fs.rmSync(f.generated());
-    runOne(f.lesson, 'generate', f.root);
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
     fs.appendFileSync(f.generated(), '// human edit\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /modified manually/);
+    const edited = fs.readFileSync(f.generated(), 'utf8');
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), edited);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /modified manually/);
+  }));
+
+test('generation skips existing Lesson before parsing a stale YAML projection', () =>
+  fixture(f => {
+    fs.writeFileSync(f.generated(), 'export const alreadyAuthored = true;\n');
+    fs.writeFileSync(path.join(f.lesson, 'lesson.config.yaml'), 'invalid: [\n');
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), 'export const alreadyAuthored = true;\n');
+    assert.throws(() => runOne(f.lesson, 'check', f.root));
   }));
 
 test('requires only dispatch and output essentials, not methodology, review or assets', () =>
   fixture(f => {
     assert.equal(fs.existsSync(path.join(f.lesson, 'methodology.md')), false);
     f.content.section.items.intro.content.items.photo = {
-      id: id(99), slug: 'photo', type: 'image', locale: { src: 'missing.png', alt: 'Опис' },
+      id: id(99),
+      slug: 'photo',
+      type: 'image',
+      locale: { src: 'missing.png', alt: 'Опис' },
     };
     f.save();
     assert.doesNotThrow(() => runOne(f.lesson, 'generate', f.root));
@@ -306,20 +381,32 @@ test('requires only dispatch and output essentials, not methodology, review or a
   }));
 
 test('source locale pruning includes localized Flashcard flag values outside locale', () => {
-  const draft = renderLessonDraft({
-    slug: 'sample',
-    type: 'lesson',
-    params: { languages: ['uk', 'en'] },
-    flashcards: { items: {
-      card: {
-        slug: 'card', type: 'flashcard',
-        parameters: { flags: { items: {
-          acronym: { type: 'acronym', value: { uk: 'АБ', en: 'EN_SECRET' } },
-          custom: { type: 'custom', value: { uk: 'Лише УК', en: 'CUSTOM_SECRET' }, color: 'red' },
-        }, order: ['acronym', 'custom'] } },
+  const draft = renderLessonDraft(
+    {
+      slug: 'sample',
+      type: 'lesson',
+      params: { languages: ['uk', 'en'] },
+      flashcards: {
+        items: {
+          card: {
+            slug: 'card',
+            type: 'flashcard',
+            parameters: {
+              flags: {
+                items: {
+                  acronym: { type: 'acronym', value: { uk: 'АБ', en: 'EN_SECRET' } },
+                  custom: { type: 'custom', value: { uk: 'Лише УК', en: 'CUSTOM_SECRET' }, color: 'red' },
+                },
+                order: ['acronym', 'custom'],
+              },
+            },
+          },
+        },
+        order: ['card'],
       },
-    }, order: ['card'] },
-  }, 'uk');
+    },
+    'uk',
+  );
   assert.match(draft, /"uk": "АБ"/);
   assert.doesNotMatch(draft, /EN_SECRET|CUSTOM_SECRET/);
   assert.match(draft, /"languages": \[\s*"uk",\s*"en"\s*\]/);

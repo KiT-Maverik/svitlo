@@ -5,7 +5,9 @@
  * This is a token-saving mechanical authoring aid, not a validator, approval
  * gate, translator, Lesson resolver, TypeScript checker or Props publisher.
  * The resulting Course Config may deliberately be incomplete. An AI editor
- * finishes missing fields, translations, Lesson imports and sparse overrides.
+ * finishes missing fields, translations and Lesson imports. Optional Course-owned
+ * sparse overrides are read directly in the single stateless Engine Build API
+ * shape; obsolete ordered editorial override operations are unsupported.
  *
  * Studio's older skill-based toc.yaml is accepted as a partial editorial
  * source. The Engine Config format (type: course, content.items/order) is also
@@ -74,7 +76,8 @@ function fromEditorialNode(node, language, location) {
       ...(node.title !== undefined ? { locale: { title: localeTitle(node.title, language) } } : {}),
     };
     if (node.content !== undefined) result.content = node.content;
-    else if (Array.isArray(node.children)) result.content = editorialContent(node.children, language, location + '.children');
+    else if (Array.isArray(node.children))
+      result.content = editorialContent(node.children, language, location + '.children');
     return result;
   }
   return node; // An explicitly authored Episode is already Config-shaped.
@@ -129,16 +132,18 @@ export function normalizeCourseSource(source, slug) {
  * Do not resolve references or require an existing Lesson file at scaffolding.
  */
 function safeImport(reference, courseId) {
-  if (!record(reference) || typeof reference.path !== 'string' || !IDENTIFIER.test(reference.export ?? ''))
-    return null;
+  if (!record(reference) || typeof reference.path !== 'string' || !IDENTIFIER.test(reference.export ?? '')) return null;
   const p = reference.path;
   if (
-    p.startsWith('/') || p.includes('\\') || p.includes(':') ||
-    p.split('/').some(part => !part || part === '.') || !/\.tsx?$/.test(p)
-  ) return null;
-  const base = typeof courseId === 'string' && UUID.test(courseId)
-    ? 'data/courses/' + courseId.at(-1) + '/' + courseId
-    : null;
+    p.startsWith('/') ||
+    p.includes('\\') ||
+    p.includes(':') ||
+    p.split('/').some(part => !part || part === '.') ||
+    !/\.tsx?$/.test(p)
+  )
+    return null;
+  const base =
+    typeof courseId === 'string' && UUID.test(courseId) ? 'data/courses/' + courseId.at(-1) + '/' + courseId : null;
   if (!base) {
     if (p.split('/').includes('..')) return null;
   } else {
@@ -190,44 +195,69 @@ function renderValue(value, state, indent, location, typedItems = false) {
   const inner = '  '.repeat(indent + 1);
   if (Array.isArray(value)) {
     if (!value.length) return '[]';
-    return '[\n' + value.map((entry, index) =>
-      inner + renderValue(entry, state, indent + 1, location + '[' + index + ']') + ','
-    ).join('\n') + '\n' + space + ']';
+    return (
+      '[\n' +
+      value
+        .map((entry, index) => inner + renderValue(entry, state, indent + 1, location + '[' + index + ']') + ',')
+        .join('\n') +
+      '\n' +
+      space +
+      ']'
+    );
   }
   if (!record(value)) return literal(value);
   const entries = Object.entries(value);
   if (!entries.length) return '{}';
-  return '{\n' + entries.map(([key, child]) => {
-    const nextLocation = location + '.' + key;
-    const expression = typedItems
-      ? renderEntity(child, state, indent + 1, nextLocation)
-      : renderValue(child, state, indent + 1, nextLocation);
-    return inner + literal(key) + ': ' + expression + ',';
-  }).join('\n') + '\n' + space + '}';
+  return (
+    '{\n' +
+    entries
+      .map(([key, child]) => {
+        const nextLocation = location + '.' + key;
+        const expression = typedItems
+          ? renderEntity(child, state, indent + 1, nextLocation)
+          : key === 'additionalItems' && record(child)
+            ? renderValue(child, state, indent + 1, nextLocation, true)
+            : renderValue(child, state, indent + 1, nextLocation);
+        return inner + literal(key) + ': ' + expression + ',';
+      })
+      .join('\n') +
+    '\n' +
+    space +
+    '}'
+  );
 }
 
 function renderConfigFields(node, state, indent, location) {
   const space = '  '.repeat(indent);
   const inner = '  '.repeat(indent + 1);
   const fields = Object.entries(node);
-  return '{\n' + fields.map(([key, value]) => {
-    const collection = (typedCollections[node.type] ?? []).includes(key);
-    let expression;
-    if (node.type === 'checkpointItem' && key === 'question') {
-      expression = renderEntity(value, state, indent + 1, location + '.question');
-    } else if (collection && record(value) && record(value.items)) {
-      const properties = Object.entries(value).map(([field, child]) => {
-        const rendered = field === 'items'
-          ? renderValue(child, state, indent + 2, location + '.' + key + '.items', true)
-          : renderValue(child, state, indent + 2, location + '.' + key + '.' + field);
-        return '  '.repeat(indent + 2) + literal(field) + ': ' + rendered + ',';
-      });
-      expression = '{\n' + properties.join('\n') + '\n' + inner + '}';
-    } else {
-      expression = renderValue(value, state, indent + 1, location + '.' + key);
-    }
-    return inner + literal(key) + ': ' + expression + ',';
-  }).join('\n') + '\n' + space + '}';
+  return (
+    '{\n' +
+    fields
+      .map(([key, value]) => {
+        const collection = (typedCollections[node.type] ?? []).includes(key);
+        let expression;
+        if (node.type === 'checkpointItem' && key === 'question') {
+          expression = renderEntity(value, state, indent + 1, location + '.question');
+        } else if (collection && record(value) && record(value.items)) {
+          const properties = Object.entries(value).map(([field, child]) => {
+            const rendered =
+              field === 'items'
+                ? renderValue(child, state, indent + 2, location + '.' + key + '.items', true)
+                : renderValue(child, state, indent + 2, location + '.' + key + '.' + field);
+            return '  '.repeat(indent + 2) + literal(field) + ': ' + rendered + ',';
+          });
+          expression = '{\n' + properties.join('\n') + '\n' + inner + '}';
+        } else {
+          expression = renderValue(value, state, indent + 1, location + '.' + key);
+        }
+        return inner + literal(key) + ': ' + expression + ',';
+      })
+      .join('\n') +
+    '\n' +
+    space +
+    '}'
+  );
 }
 
 function renderEntity(node, state, indent, location) {
@@ -244,37 +274,66 @@ function exportIdentifier(slug) {
 
 export function renderCourseSource(source, { slug, outputSlug, overrides } = {}) {
   const course = normalizeCourseSource(source, slug);
-  const fileSlug = outputSlug ?? slug ?? course.slug ?? (typeof course.id === 'string' ? 'course_' + course.id.slice(0, 8) : 'course_draft');
+  const fileSlug =
+    outputSlug ??
+    slug ??
+    course.slug ??
+    (typeof course.id === 'string' ? 'course_' + course.id.slice(0, 8) : 'course_draft');
   const symbol = exportIdentifier(fileSlug) + '_Course';
   const state = { imports: new Set(), lessonImports: new Map(), unresolved: [], courseId: course.id };
   const expression = renderEntity(course, state, 0, 'course');
+  if (
+    overrides !== undefined &&
+    (!record(overrides) || Object.keys(overrides).some(key => !['params', 'locale', 'content'].includes(key)))
+  ) {
+    fail(
+      'OVERRIDES',
+      'overrides.yaml must be a direct Course build.overrides patch; legacy editorial operations are unsupported',
+    );
+  }
+  const authoredPatch = overrides === undefined ? undefined : sourceAuthoringCopy(overrides, source.documentLanguage);
+  const patchExpression = authoredPatch === undefined ? undefined : renderValue(authoredPatch, state, 0, 'overrides');
   const imports = [...state.imports].sort();
   const lines = [
     marker.trimEnd(),
     '// Incomplete source-language authoring draft; NOT validated, localized or publishable.',
     'import { ' + imports.join(', ') + ' } from "@svitlo/engine/build";',
-    ...[...state.lessonImports.values()].map(ref =>
-      'import { ' + ref.symbol + ' as ' + ref.alias + ' } from ' + literal(ref.path) + ';'
+    ...[...state.lessonImports.values()].map(
+      ref => 'import { ' + ref.symbol + ' as ' + ref.alias + ' } from ' + literal(ref.path) + ';',
     ),
     '',
-    ...state.unresolved.map(ref =>
-      '// TODO: Import standalone Lesson ' + literal(ref.lessonId) + ' for ' + literal(ref.location) +
-      ' and replace ' + ref.alias + '. Never define a new Lesson here.'
+    ...state.unresolved.map(
+      ref =>
+        '// TODO: Import standalone Lesson ' +
+        literal(ref.lessonId) +
+        ' for ' +
+        literal(ref.location) +
+        ' and replace ' +
+        ref.alias +
+        '. Never define a new Lesson here.',
     ),
     ...(state.unresolved.length ? [''] : []),
     'export const ' + symbol + ' = ' + expression + ';',
   ];
   if (overrides !== undefined) {
-    // Old operation lists have no proven 1:1 mapping to the current sparse API.
-    // Preserve source references/slot identities intact, without inventing a patch.
+    // Only the current Engine Build API patch is supported. This is still a
+    // draft scaffolder: it emits source rather than evaluating build.overrides.
+    const languages =
+      record(course.params) && Array.isArray(course.params.languages)
+        ? renderValue(course.params.languages, state, 0, 'params.languages')
+        : symbol + '.config.base.params.languages';
     lines.push(
       '',
-      '// Course-owned sparse override handoff. Preserve Lesson identities and source refs.',
-      '// TODO: Map editorial operations into ' + symbol +
-        '.build.overrides({ content: { items: { /* keyed patches */ } } }, { languages: ... }).',
-      '// The old createLessonOverrides operation DSL is NOT a supported Engine API.',
-      'export const ' + exportIdentifier(fileSlug) + '_OverrideEditorial = ' +
-        renderValue(overrides, state, 0, 'overrides') + ' as const;',
+      '// Course-owned sparse Build API patch; standalone Lessons remain unchanged.',
+      'export const ' +
+        exportIdentifier(fileSlug) +
+        '_Overrides = ' +
+        symbol +
+        '.build.overrides(' +
+        patchExpression +
+        ', { languages: ' +
+        languages +
+        ' });',
     );
   }
   return lines.join('\n') + '\n';
@@ -291,18 +350,33 @@ function noSymlinkComponents(target) {
   }
 }
 
+/** Detect any already-authored Course entrypoint in the destination UUID folder. */
+export function existingCourseDrafts(courseFolder) {
+  if (!fs.existsSync(courseFolder)) return [];
+  return fs
+    .readdirSync(courseFolder)
+    .filter(name => name.endsWith('.data.ts'))
+    .sort();
+}
+
 export function verifyOrWriteGenerated(filename, rendered, action) {
   if (action !== '--write' && action !== '--check') fail('ARGS', 'choose --write or --check');
   noSymlinkComponents(filename);
-  const existing = fs.existsSync(filename) ? fs.readFileSync(filename, 'utf8') : undefined;
-  if (existing === rendered) return false;
-  if (action === '--check') fail('STALE', 'missing or changed Course draft: ' + filename);
-  if (existing !== undefined) {
-    // Even scaffolded files may subsequently contain human/AI edits: never clobber.
-    fail('OWNERSHIP', 'existing draft differs; refusing to overwrite: ' + filename);
+  if (action === '--write') {
+    // 'wx' is the race-safe counterpart to the preliminary UUID-folder scan.
+    if (fs.existsSync(filename)) return false;
+    try {
+      fs.writeFileSync(filename, rendered, { encoding: 'utf8', flag: 'wx' });
+      return true;
+    } catch (error) {
+      if (error.code === 'EEXIST') return false;
+      throw error;
+    }
   }
-  fs.writeFileSync(filename, rendered, { encoding: 'utf8', flag: 'wx' });
-  return true;
+  if (!fs.existsSync(filename) || fs.readFileSync(filename, 'utf8') !== rendered) {
+    fail('STALE', 'missing or changed Course draft: ' + filename);
+  }
+  return false;
 }
 
 export function parseArguments(args) {
@@ -319,24 +393,42 @@ export function parseArguments(args) {
     } else fail('ARGS', 'unknown option: ' + arg);
   }
   if (
-    !PACKAGE.test(packagePath ?? '') || !UUID.test(courseId ?? '') ||
+    !PACKAGE.test(packagePath ?? '') ||
+    !UUID.test(courseId ?? '') ||
     (slug !== undefined && !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(slug)) ||
     (sourceFilename !== undefined && !['toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
     !action
   ) {
-    fail('ARGS', 'usage: --package content/<book> --course <uuid> [--slug <slug>] ' +
-      '[--source toc.yaml|course.yaml] --write|--check');
+    fail(
+      'ARGS',
+      'usage: --package content/<book> --course <uuid> [--slug <slug>] ' +
+        '[--source toc.yaml|course.yaml] --write|--check',
+    );
   }
   return { packagePath, courseId, slug, sourceFilename, action };
 }
 
-export async function main(args) {
+export async function main(args, repo = repoRoot) {
   const options = parseArguments(args);
-  const courseFolder = path.join(repoRoot, options.packagePath, 'data/courses',
-    options.courseId.at(-1), options.courseId);
+  const courseFolder = path.join(repo, options.packagePath, 'data/courses', options.courseId.at(-1), options.courseId);
   noSymlinkComponents(courseFolder);
-  const sourceFilename = options.sourceFilename ??
-    (fs.existsSync(path.join(courseFolder, 'course.yaml')) ? 'course.yaml' : 'toc.yaml');
+  if (options.action === '--write') {
+    const existing = existingCourseDrafts(courseFolder);
+    if (existing.length) {
+      console.log(
+        'SKIP Course ' +
+          options.courseId +
+          ': existing ' +
+          existing.join(', ') +
+          ' in ' +
+          courseFolder +
+          '; no files modified',
+      );
+      return;
+    }
+  }
+  const sourceFilename =
+    options.sourceFilename ?? (fs.existsSync(path.join(courseFolder, 'course.yaml')) ? 'course.yaml' : 'toc.yaml');
   const input = path.join(courseFolder, sourceFilename);
   noSymlinkComponents(input);
   if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
@@ -347,14 +439,21 @@ export async function main(args) {
     ? parseCourseYaml(fs.readFileSync(overridesFilename, 'utf8'), 'overrides.yaml')
     : undefined;
   const normalized = normalizeCourseSource(source, options.slug);
-  const fileSlug = options.slug ?? normalized.slug ??
+  const fileSlug =
+    options.slug ??
+    normalized.slug ??
     (typeof normalized.id === 'string' ? 'course_' + normalized.id.slice(0, 8) : 'course_draft');
   if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(fileSlug)) fail('SLUG', 'unsafe output slug: ' + fileSlug);
   const filename = path.join(courseFolder, fileSlug + '.data.ts');
   const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides });
   const changed = verifyOrWriteGenerated(filename, content, options.action);
-  console.log((changed ? 'Scaffolded ' : 'Checked ') + filename +
-    '; draft requires AI completion (no schema/TS/publication checks)');
+  console.log(
+    options.action === '--write' && !changed
+      ? 'SKIP Course ' + options.courseId + ': existing ' + path.basename(filename) + '; no files modified'
+      : (changed ? 'Scaffolded ' : 'Checked ') +
+          filename +
+          '; draft requires AI completion (no schema/TS/publication checks)',
+  );
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

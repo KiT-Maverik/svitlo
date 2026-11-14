@@ -1,99 +1,54 @@
-# Course Lesson Overrides: approved editorial contract
+# Course-owned Build Overrides
 
-**Canonical schema:** [course-overrides.schema.json](./course-overrides.schema.json). This is a **separate**, optional, Course-owned editorial input: \`content/<book>/data/courses/<bucket>/<uuid>/overrides.yaml\`. It is not an extension of the Methodologist's skill-based \`toc.yaml\`.
+**The only supported override API is the stateless Engine `build.overrides(patch, { languages })`.**
+Course-local `overrides.yaml` is the serialized `patch` argument and is guided by
+[the generated Course Overrides JSON Schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json).
+No other override DSL or historical operation list is supported.
 
-## Ownership and approval
+## Identity and ownership
 
-An authorized Course editor must approve the **Course-specific modification**, and the relevant content owner must approve any replacement prose, interaction, scenario, events or newly inserted Section/ContentBlock. An approved \`overrides.yaml\` can only reference already implemented standalone Lessons and already authored, reviewed **Course-owned TypeScript sources**. Approving this file does **not** change ownership of the original Lesson or authorize the builder to invent a scene, story, image, question or translation.
+- A standalone Lesson is immutable from the Course's perspective. `type: lesson` in a Course
+  is a `lessonId` reference to an existing independently authored Lesson, not an embedded
+  Lesson definition. `source.path` and `source.export` are optional import coordinates,
+  **not** existence markers or instructions to create a Lesson.
+- A Course-specific patch changes only the Course's view of a referenced Lesson.
+  It never changes or writes files under `data/lessons/`.
+- A new Lesson, if required, is produced through the separate Lesson Production workflow
+  and only later referenced by Course. Course Builder generates files only within the
+  Course UUID directory; Lesson Builder has independent UUID-path and no-clobber safeguards.
+- Course languages must be a subset of the referenced Lesson's supported languages.
+  Missing translations must not be invented.
 
-The input is an ordered sequence of explicitly typed operations applied to one Course Lesson slot using \`createLessonOverrides(lesson)\`. References to existing Sections and ContentBlocks use immutable **slugs**, never array indexes. A new Course-owned item is referenced by an exported TypeScript object in the **same Course directory**, never copied into a Lesson directory:
+## Format
 
-- \`sections/<name>.ts\`: an approved \`Section<'data', ...>\` source, usually produced with \`createSection(...).getData()\`;
-- \`blocks/<name>.ts\`: an approved \`ContentBlock<'data', ...>\` source, usually produced with \`createContentBlock(...).getData()\`;
-- \`patches/<name>.ts\`: an approved, typed sparse replacement, title, Section metadata or event patch. Its exported type must satisfy the existing creator API.
-
-The legacy editorial override operation format must be reviewed against real source files and typed integrations; the generic Course YAML → TypeScript Config scaffolder does **not** check imported source files, apply sparse override operations or guarantee slug/ID invariants. New Course-owned material must have a distinct canonical content-producing workflow. No arbitrary inline TS/JS, fabricated strings, unknown Lesson-owned Question changes, or unreviewed translation fallback is permitted.
-
-## Multi-author workflow and configuration review
-
-The Course-owned `overrides.yaml` is **one shared approved input**, not separate methodological and scenario override files:
-
-- **Course Methodologist**, during [Review Course Methodology and Configuration](./review-course-methodology.skill.md), inspects real Lesson Data and may author **methodological** overrides (navigation, skipping, pacing/order, other approved operations) when needed for the Course's learning sequence. This does **not** happen while creating the skill-based TOC, which precedes Lesson matching.
-- **Course Screenwriter**, in the future Course scenario authoring stage, may propose **scenario** overrides (story integration, new approved Course-owned Sections/blocks, transitions/events and sequencing) within their creative scope. A missing Course Screenwriting skill is not permission for the Builder or Methodologist to fabricate narrative assets.
-- **Independent reviewers**: [Scenario Review](./review-course-scenario.skill.md) is conditional on actual scenario material; Methodological Review is required before final composed Course generation. Reviewers check distinct concerns and record exact reviewed source revisions. Their verdicts do not replace authorized editorial approval.
-
-The editor/content owner resolves contradictory operations; **do not silently overwrite** another specialist's approved modifications. Record operation-level author, rationale, affected slot and revision in review reports or PR discussion, **not as unsupported extra keys in the current YAML schema**. An edit to previously approved `overrides.yaml` reopens its approval gate: set it to `status: draft`, obtain approval for the new revision, and recheck the affected methodological/scenario reviews. When no changes are needed, omit the optional file instead of creating empty or decorative overrides.
-
-These are **editorial review requirements** enforced outside the TypeScript **draft** scaffolder. It does **not** check `status: approved`, this editorial schema, imported source files or review files such as `scenario-review.md` and `methodology-review.md`. A Config-shaped Course YAML tree is different from this separate Course-owned override document.
-
-## Example (schematic UUIDs, never a production-ready editorial artifact)
+Write `content/<book>/data/courses/<bucket>/<uuid>/overrides.yaml` with the exact shape
+of a `Course.build.overrides` patch. For example:
 
 ```yaml
-schemaVersion: 1
-kind: course-lesson-overrides
-status: approved
-courseId: 30ecbde1-97fd-5fe7-a353-ea89b9ef4a67
-overrides:
-  - slotKey: light-intro
-    lessonId: d3048d21-8690-5255-b62c-984c69ac272c
-    operations:
-      - type: params
+content:
+  items:
+    opening:
+      params:
         sections:
           allowSkipping: false
-
-      # Existing Section metadata, approved as typed Course-owned TS.
-      - type: section-set
-        slug: theory
-        source: { path: patches/theory.ts, export: theory_Patch }
-
-      # Original Lesson-owned block remains original; change only authored fields.
-      - type: block-set
-        sectionSlug: theory
-        slug: intro
-        source: { path: patches/intro.ts, export: intro_Patch }
-
-      - type: block-remove
-        sectionSlug: theory
-        slug: oldHint
-
-      # Every retained existing block must occur exactly once.
-      - type: block-order
-        sectionSlug: theory
-        entries:
-          - intro
-          - { source: { path: blocks/newHint.ts, export: newHint_Block } }
-
-      # Every retained existing Section must occur exactly once.
-      - type: section-order
-        entries:
-          - practice
-          - theory
-          - quiz
-          - { source: { path: sections/storyBridge.ts, export: storyBridge_Section } }
 ```
 
-Replace the example's slugs, IDs and paths with verified sources. In an actual Lesson the retained Section and ContentBlock lists **must match** its existing authoring data; the builder rejects missing/duplicate members.
+To patch a nested Lesson, follow its Course path through `content.items` at each Module
+or Chapter level. To change order or add/disable children, use the canonical
+`items`, `additionalItems`, `order` collection fields supported by the corresponding
+configurator's Build API. Identifiers and source Lesson Configs remain unchanged.
 
-## Supported operations
+**Unsupported:** `schemaVersion`, `kind: course-lesson-overrides`, `operations`,
+`section-set`, `block-order`, `createLessonOverrides`, or exported `_OverrideEditorial`.
+The generic scaffolder must reject the obsolete operation format rather than silently
+converting, applying, preserving, or treating it as a second supported format.
 
-| Type               | Required fields                                                                | Existing Engine method                                             |
-| ------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| \`params\`         | \`sections\` (allowNavigation / allowSkipping / showIndexes)                   | \`.setParams({ sections })\`                                       |
-| \`title\`          | \`source\` (approved typed title dictionary)                                   | \`.setTitle(source)\`                                              |
-| \`events\`         | \`source\` (approved typed event patch)                                        | \`.setEvents(source)\`                                             |
-| \`section-set\`    | \`slug\`, \`source\` (approved metadata patch)                                 | \`.sections.bySlug[slug].set(source)\`                             |
-| \`section-remove\` | \`slug\`                                                                       | \`.sections.remove(slug)\`                                         |
-| \`section-order\`  | \`entries\`: existing slugs or Course-owned Section source refs                | \`.sections.setOrder(entries)\`                                    |
-| \`block-set\`      | \`sectionSlug\`, \`slug\`, \`source\`                                          | \`.sections.bySlug[sectionSlug].content.bySlug[slug].set(source)\` |
-| \`block-remove\`   | \`sectionSlug\`, \`slug\`                                                      | \`.sections.bySlug[sectionSlug].content.remove(slug)\`             |
-| \`block-order\`    | \`sectionSlug\`, \`entries\`: existing slugs or Course-owned block source refs | \`.sections.bySlug[sectionSlug].content.setOrder(entries)\`        |
+## Authorship and verification
 
-The \`operations\` array is ordered. A \`remove\` should precede an affected \`setOrder\` (because \`setOrder\` includes all _currently present_ members), and new items must be represented by source refs inside their order operation. Schema validation rejects unsupported operations and fields. Slug membership and original Lesson languages are checked against actual authored Lesson Data; the existing creator enforces complete slug/ID uniqueness and Quiz invariants.
-
-## Important publication constraints
-
-The existing publisher writes Course-local sparse overrides under \`overrides/<lessonId>/\` and cannot distinguish different slots sharing a Lesson UUID. Therefore an override on a Lesson referenced twice is an explicit \`OVERRIDE_REUSED_LESSON\` blocker pending a separate route/identity change. **Reusing an unmodified Lesson any number of times remains valid.**
-
-A standalone Lesson may support extra languages: **Course languages ⊆ Lesson languages**. This must hold for each referenced Lesson (including an override's original Lesson); a missing Course locale is a blocker. A Course-owned addition should localize its own user-facing content for Course languages, without altering the standalone Lesson language declaration. TypeScript rejects incomplete \`Locale_Options\`; neither the draft scaffolder nor the editorial projection may duplicate source-locale content to other locales.
-
-The separate Course Props/publication pipeline owns resource output. The generic Course Config draft scaffolder emits source scaffolding, **not** standalone Lesson assets, Scene registries or published JSON. See [editorial-to-Engine Config handoff](../../docs/architecture/yaml-config-scaffolding.md).
+Methodological and scenario changes still require the appropriate Studio authoring and
+independent review; source conversion is not approval. The Course draft scaffolder emits
+a `course.build.overrides(...)` TypeScript expression, but does **not** evaluate it,
+typecheck it, resolve all references, validate authoring completeness, or publish Props.
+Those are separate required completion and publication stages. New Course-owned Sections,
+blocks, and Scenes require approved source and compatible import/authoring workflows;
+the scaffolder must not fabricate them.

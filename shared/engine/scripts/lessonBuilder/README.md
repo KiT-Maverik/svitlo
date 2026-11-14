@@ -28,8 +28,8 @@ No unapproved mapping from editorial key/section arrays is inferred here.
 
 The technical file includes one extra **scaffolder provenance field**
 `documentLanguage` at the root. It is **removed** before emitting
-`defineLesson({...})`: it is not part of the Engine Lesson Config or the
-generated editor JSON Schema. The builder uses it only to select authored
+`defineLesson({...})`: it is not part of the Engine Lesson Config, but it
+**is** described in the generated YAML draft editor Schema. The builder uses it only to select authored
 locale dictionaries and localized Flashcard flag values.
 
 Example incomplete `lesson.config.yaml`:
@@ -90,15 +90,20 @@ node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source conten
 
 Without `--source`, the script discovers directories with
 `lesson.config.yaml` (not Screenwriter editorial YAML).
-The `check` command is read-only; `generate` is deterministic. Existing
-unrelated `*.data.ts` files and manually modified generated files are never
-overwritten silently; symlink traversal is refused.
+The `check` command is read-only and continues to report missing or stale
+YAML-generated drafts. **`generate` is creation-only**: if the Lesson UUID
+directory already contains **any `*.data.ts`**, the Lesson is skipped with a
+`SKIP Lesson <uuid>: existing <file>; no files modified` message, even if the
+YAML has changed or the existing file is identical. A missing target file is
+created with exclusive (`wx`) semantics. To regenerate intentionally, an
+editor must first review and manually remove/move the existing file.
+Editorial YAML, methodology and other non-`*.data.ts` files do not trigger
+the skip. Symlink traversal is refused.
 
 ## Boundaries
 
 The separate `scripts/generateLessonProps/` publisher and runtime Engine
-remain unchanged. Studio editorial approval stays in Studio. The seven
-derived Editor JSON Schemas describe **Config fields only**; the
-`documentLanguage` envelope marker is a CLI convention, and no Zod/AJV
-validation runs inside the builder. See
+remain unchanged. Studio editorial approval stays in Studio. The eight derived editor JSON Schemas describe Engine-derived authoring shapes
+and explicit draft-only envelope fields (including `documentLanguage`); no
+Zod/AJV validation runs inside this builder. See
 `studio/docs/architecture/yaml-config-scaffolding.md`.

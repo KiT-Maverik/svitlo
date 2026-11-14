@@ -31,7 +31,16 @@ test('all current polymorphic types have a concrete exported define* factory', (
     assert.equal(typeof yamlFactoryByType[type], 'string', 'no factory for ' + type);
     assert.equal(typeof require('../../dist/build.js')[yamlFactoryByType[type]], 'function', type);
   }
-  for (const type of ['lesson', 'course', 'module', 'chapter', 'episode', 'flashcard', 'checkpointItem', 'carouselSlide']) {
+  for (const type of [
+    'lesson',
+    'course',
+    'module',
+    'chapter',
+    'episode',
+    'flashcard',
+    'checkpointItem',
+    'carouselSlide',
+  ]) {
     assert.equal(typeof require('../../dist/build.js')[yamlFactoryByType[type]], 'function', type);
   }
 });
@@ -64,6 +73,7 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   assert.deepEqual(Object.keys(docs).sort(), [
     'contentBlock.schema.json',
     'course.schema.json',
+    'courseOverrides.schema.json',
     'episode.schema.json',
     'flashcard.schema.json',
     'lesson.schema.json',
@@ -79,14 +89,38 @@ test('Zod -> JSON Schema exports every root without opaque Configurator nodes', 
   }
 });
 
+test('Lesson/Course draft envelopes document source language, import coordinates and direct overrides', () => {
+  const docs = yamlJsonSchemaDocuments();
+  const lesson = JSON.parse(docs['lesson.schema.json']);
+  const course = JSON.parse(docs['course.schema.json']);
+  const overrides = JSON.parse(docs['courseOverrides.schema.json']);
+  assert(lesson.required.includes('documentLanguage'));
+  assert(lesson.required.includes('type'));
+  assert(!lesson.required.includes('flashcards')); // Drafts may be incomplete.
+  assert.equal(course.properties.documentLanguage.type, 'string');
+  assert(!course.required.includes('content'));
+  assert.equal(overrides.additionalProperties, false);
+  assert.deepEqual(Object.keys(overrides.properties).sort(), ['content', 'locale', 'params']);
+  assert.equal(overrides.properties.content.properties.items.type, 'object');
+  assert.equal(overrides.$defs.buildPatch.properties.questions.type, 'object');
+  assert(!Object.hasOwn(overrides.properties, 'operations'));
+  assert(JSON.stringify(course).includes('"source"'));
+});
 test('generator write/check is deterministic and rejects stale files', () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-yaml-schemas-'));
   try {
     assert.throws(() => generateYamlSchemas('--check', root), /Outdated YAML JSON Schema/);
     const written = generateYamlSchemas('--write', root);
-    assert.equal(written.length, 7);
+    assert.equal(written.length, 8);
     assert.deepEqual(generateYamlSchemas('--write', root), written);
     assert.deepEqual(generateYamlSchemas('--check', root), written);
+    // Formatting is not semantic schema drift: Prettier may compact arrays.
+    const courseFile = path.join(root, 'course.schema.json');
+    const formattedDifferently = JSON.stringify(JSON.parse(fs.readFileSync(courseFile, 'utf8'))) + '\n';
+    fs.writeFileSync(courseFile, formattedDifferently);
+    assert.deepEqual(generateYamlSchemas('--check', root), written);
+    assert.deepEqual(generateYamlSchemas('--write', root), written);
+    assert.equal(fs.readFileSync(courseFile, 'utf8'), formattedDifferently);
     fs.writeFileSync(path.join(root, 'lesson.schema.json'), '{}');
     assert.throws(() => generateYamlSchemas('--check', root), /Outdated YAML JSON Schema/);
   } finally {
@@ -104,5 +138,5 @@ test('reused nested Config schemas are shared by reference instead of expanded c
 });
 
 test('checked-in editor schemas match the current Engine Zod source', () => {
-  assert.equal(generateYamlSchemas('--check').length, 7);
+  assert.equal(generateYamlSchemas('--check').length, 8);
 });
