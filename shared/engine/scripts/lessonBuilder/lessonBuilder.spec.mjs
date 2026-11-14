@@ -507,6 +507,7 @@ test('single YAML config.id determines the Lesson UUID output path without check
     authoring.config.slug = 'stagedLesson';
     fs.mkdirSync(path.dirname(staged), { recursive: true });
     fs.writeFileSync(staged, yaml.stringify(authoring));
+    fs.writeFileSync(path.join(path.dirname(staged), 'unrelated.data.ts'), 'export const unrelated = true;\n');
     const expected = path.join(f.root, 'content/playground/data/lessons', ownId.at(-1), ownId);
     assert.equal(runOne(staged, 'generate', f.root).lessonId, ownId);
     assert(fs.existsSync(path.join(expected, 'stagedLesson.data.ts')));
