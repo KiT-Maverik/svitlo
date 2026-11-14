@@ -1,0 +1,688 @@
+# Draft editorial migration, not approved; no runtime Scene implementation.
+config:
+  id: "2f5d2fd1-d8d0-5180-b2a6-8de270e85c86"
+  slug: "divisionEqualGrouping"
+  type: "lesson"
+  skills: ["29ffb036-c9f2-415e-a464-f07e5d8ef05b"]
+  params:
+    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Make Groups of a Given Size"
+  section:
+    items:
+      section1:
+        config:
+          id: "9a090dde-b7b1-47a1-8ec4-892437c3754f"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Build Groups of Three"
+            navigationLabel:
+              en: "Build Groups of Three"
+          content:
+            items:
+              text1:
+                config:
+                  id: "0360106f-dc9b-4170-9e43-cee9f2affd92"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "We have twelve counters. Make groups with exactly three counters each. How many groups can we make?"
+                production:
+                  purpose: "Build Groups of Three; authored text block 1"
+                  specification: "- **Text Resource (supported):** “We have twelve counters. Make groups with exactly three counters each. How many groups can we make?”"
+              scene2:
+                config:
+                  id: "813de5c9-0247-48d8-a148-7d37feab1a4e"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Build Groups of Three"
+                production:
+                  purpose: "Build Groups of Three; authored scene block 2"
+                  specification: |-
+                    # Group Size Packing Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Make Groups of a Given Size](.this config.yaml), Sections 1–4
+                    Methodologist source: [Methodologist Brief](.this config.yaml) (Draft, not approved).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Introduce quotitive division as discovering the NUMBER of equal-sized groups that fit a total when the SIZE of each group is already given. Show the contrast with the prior fair-sharing story: 12 ÷ 3 = 4 now means 'how many groups of three can be made?' rather than 'how many in each of three groups?'. The arithmetic is the same but the units of the input and answer change.
+                    
+                    The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    Quotitive division knows total 12 and group size 3, and determines four groups, written 12÷3=4 because 3+3+3+3=12. This story differs from 12 shared AMONG 3 groups, where 12÷3=4 reports four in each. Both are valid interpretations with different units for divisor and quotient. If total 14 and fixed size 4, create 3 complete groups (12 counters) with 2 left over; no statement 14÷4=3 as an exact whole-number equality. Transfer 20 objects at 5 each gives 4 complete groups.
+                    
+                    **Misconceptions / boundaries:** Confusing a requested group size with a required number of groups; counting an incomplete group as a full group; constructing groups of four instead of groups of three; thinking three groups of three uses all twelve; treating quotient units as always items-per-group. No formal remainder algorithm, negative numbers, fractions or grouping by zero.
+                    
+                    **Conservation invariant:** Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Section 1: Build Groups of Three.** Prompt “We have twelve counters. Make groups with exactly three counters each. How many groups can we make?”. Start and learner action: Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made. For a mistaken attempt: If a learner predicts three groups, show three groups of three use only nine and three counters still wait for a fourth group. Reveal available without any required prediction.
+                    
+                    2. **Section 2: Same Symbols, Different Question.** Prompt “Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?”. Start and learner action: Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story. Display **12 ÷ 3 = 4** with unit-labeled explanation: In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts. For a mistaken attempt: If a child claims four groups in the sharing model, name the three fixed recipient trays and count four inside each; preserve the unit labels. Reveal available without any required prediction.
+                    
+                    3. **Section 3: When Some Do Not Fit.** Prompt “Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?”. Start and learner action: New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'. Display **14 = 3 × 4 + 2** with unit-labeled explanation: Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers. For a mistaken attempt: If child counts four groups, show final unfinished pair has only two, so it cannot count as a full group of four. Reveal available without any required prediction.
+                    
+                    4. **Section 4: Build Groups of Five.** Prompt “Twenty counters: how many groups of five can we build?”. Start and learner action: Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty. Display **20 ÷ 5 = 4; 4 × 5 = 20** with unit-labeled explanation: Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size. For a mistaken attempt: Three groups use fifteen and leave five; five groups would need twenty-five, more than provided. Reveal available without any required prediction.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
+                    - Objects: An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
+                    - State: Initial total 12/14/20 and target group size 3/4/5, stable counter IDs, array of complete-group membership, remaining source count, selected candidate, explanation/reset; independent per Section.
+                    - Invariants: Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
+                    - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. 12 grouped in threes creates four and none left; the total sequence 12,9,6,3,0 is accurate.
+                    2. The two stories 12÷3=4 are visually and verbally distinct, and labels attach to the correct units.
+                    3. 14 grouped in fours creates 3 complete groups and leaves 2, not an exact whole-number quotient equality.
+                    4. 20 grouped in fives creates 4 groups and verifies 4×5=20.
+                    5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
+                    6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
+                    7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene rendering is supported; **Group Size Packing Lab is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Do not duplicate the earlier fair-sharing exercise: the group size here is specified first and the unknown is the NUMBER of groups. For Grade 2, use leftover observations without requiring formal division-with-remainder notation.
+                    
+                    ## Placement 1: Build Groups of Three
+                    
+                    - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 1. Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three.
+                  productionNotes: "Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "c02c3157-d096-48e4-ab9f-2d195805a766"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made."
+                production:
+                  purpose: "Build Groups of Three; authored markdown block 3"
+                  specification: "- **Markdown Resource (supported):** “Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made.” The accurate mathematical record is **12 ÷ 3 = 4**. If division is not exact, explicitly avoid presenting an integer equality as exact."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Build four groups of size three from twelve objects and identify four as the number of complete groups."
+          pedagogicalIntent: "Original Section 1 — Build Groups of Three; authoring draft only"
+          productionNotes: |-
+            - **Outcome / conceptual goal:** Build four groups of size three from twelve objects and identify four as the number of complete groups.
+            - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
+            - **Text Resource (supported):** “We have twelve counters. Make groups with exactly three counters each. How many groups can we make?”
+            - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 1. Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three.
+            - **Markdown Resource (supported):** “Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made.” The accurate mathematical record is **12 ÷ 3 = 4**. If division is not exact, explicitly avoid presenting an integer equality as exact.
+            - **Learner action, observation, feedback:** Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three. For likely confusion: If a learner predicts three groups, show three groups of three use only nine and three counters still wait for a fourth group. Each state remains inspectable; “Read counts”, “Show how” and “Reset” are always accessible and none is a graded submission.
+            - **Model/graphic direction:** An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. A numerical ledger lists initial count, specified number/size of groups, allocated items, leftover and final amount, with explicit units.
+            - **Transition/navigation:** Preview the next role/question while retaining access to this model and the ability to replay.
+            - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
+            - **Proposed unlocked Note(s):** “When the size of each group is known, division finds how many groups fit.” after the full explanation is visible (planned only).
+            - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
+      section2:
+        config:
+          id: "99090c4b-b4b1-42e8-91c4-8ddd38c376e2"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Same Symbols, Different Question"
+            navigationLabel:
+              en: "Same Symbols, Different Question"
+          content:
+            items:
+              text1:
+                config:
+                  id: "603bc06e-0767-461d-835f-337cf4ed2d33"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?"
+                production:
+                  purpose: "Same Symbols, Different Question; authored text block 1"
+                  specification: "- **Text Resource (supported):** “Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?”"
+              scene2:
+                config:
+                  id: "cc254502-68e0-4a73-b3f7-13ccbdd16325"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Same Symbols, Different Question"
+                production:
+                  purpose: "Same Symbols, Different Question; authored scene block 2"
+                  specification: |-
+                    # Group Size Packing Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Make Groups of a Given Size](.this config.yaml), Sections 1–4
+                    Methodologist source: [Methodologist Brief](.this config.yaml) (Draft, not approved).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Introduce quotitive division as discovering the NUMBER of equal-sized groups that fit a total when the SIZE of each group is already given. Show the contrast with the prior fair-sharing story: 12 ÷ 3 = 4 now means 'how many groups of three can be made?' rather than 'how many in each of three groups?'. The arithmetic is the same but the units of the input and answer change.
+                    
+                    The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    Quotitive division knows total 12 and group size 3, and determines four groups, written 12÷3=4 because 3+3+3+3=12. This story differs from 12 shared AMONG 3 groups, where 12÷3=4 reports four in each. Both are valid interpretations with different units for divisor and quotient. If total 14 and fixed size 4, create 3 complete groups (12 counters) with 2 left over; no statement 14÷4=3 as an exact whole-number equality. Transfer 20 objects at 5 each gives 4 complete groups.
+                    
+                    **Misconceptions / boundaries:** Confusing a requested group size with a required number of groups; counting an incomplete group as a full group; constructing groups of four instead of groups of three; thinking three groups of three uses all twelve; treating quotient units as always items-per-group. No formal remainder algorithm, negative numbers, fractions or grouping by zero.
+                    
+                    **Conservation invariant:** Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Section 1: Build Groups of Three.** Prompt “We have twelve counters. Make groups with exactly three counters each. How many groups can we make?”. Start and learner action: Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made. For a mistaken attempt: If a learner predicts three groups, show three groups of three use only nine and three counters still wait for a fourth group. Reveal available without any required prediction.
+                    
+                    2. **Section 2: Same Symbols, Different Question.** Prompt “Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?”. Start and learner action: Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story. Display **12 ÷ 3 = 4** with unit-labeled explanation: In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts. For a mistaken attempt: If a child claims four groups in the sharing model, name the three fixed recipient trays and count four inside each; preserve the unit labels. Reveal available without any required prediction.
+                    
+                    3. **Section 3: When Some Do Not Fit.** Prompt “Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?”. Start and learner action: New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'. Display **14 = 3 × 4 + 2** with unit-labeled explanation: Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers. For a mistaken attempt: If child counts four groups, show final unfinished pair has only two, so it cannot count as a full group of four. Reveal available without any required prediction.
+                    
+                    4. **Section 4: Build Groups of Five.** Prompt “Twenty counters: how many groups of five can we build?”. Start and learner action: Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty. Display **20 ÷ 5 = 4; 4 × 5 = 20** with unit-labeled explanation: Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size. For a mistaken attempt: Three groups use fifteen and leave five; five groups would need twenty-five, more than provided. Reveal available without any required prediction.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
+                    - Objects: An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
+                    - State: Initial total 12/14/20 and target group size 3/4/5, stable counter IDs, array of complete-group membership, remaining source count, selected candidate, explanation/reset; independent per Section.
+                    - Invariants: Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
+                    - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. 12 grouped in threes creates four and none left; the total sequence 12,9,6,3,0 is accurate.
+                    2. The two stories 12÷3=4 are visually and verbally distinct, and labels attach to the correct units.
+                    3. 14 grouped in fours creates 3 complete groups and leaves 2, not an exact whole-number quotient equality.
+                    4. 20 grouped in fives creates 4 groups and verifies 4×5=20.
+                    5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
+                    6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
+                    7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene rendering is supported; **Group Size Packing Lab is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Do not duplicate the earlier fair-sharing exercise: the group size here is specified first and the unknown is the NUMBER of groups. For Grade 2, use leftover observations without requiring formal division-with-remainder notation.
+                    
+                    ## Placement 2: Same Symbols, Different Question
+                    
+                    - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 2. Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story.
+                  productionNotes: "Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "b96e7372-b8de-456d-b675-69e0e373566b"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts."
+                production:
+                  purpose: "Same Symbols, Different Question; authored markdown block 3"
+                  specification: "- **Markdown Resource (supported):** “In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts.” The accurate mathematical record is **12 ÷ 3 = 4**. If division is not exact, explicitly avoid presenting an integer equality as exact."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Read 12 ÷ 3 = 4 with 'three in each group' as the known divisor and 'four groups' as the quotient in this story."
+          pedagogicalIntent: "Original Section 2 — Same Symbols, Different Question; authoring draft only"
+          productionNotes: |-
+            - **Outcome / conceptual goal:** Read 12 ÷ 3 = 4 with 'three in each group' as the known divisor and 'four groups' as the quotient in this story.
+            - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
+            - **Text Resource (supported):** “Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?”
+            - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 2. Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story.
+            - **Markdown Resource (supported):** “In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts.” The accurate mathematical record is **12 ÷ 3 = 4**. If division is not exact, explicitly avoid presenting an integer equality as exact.
+            - **Learner action, observation, feedback:** Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story. For likely confusion: If a child claims four groups in the sharing model, name the three fixed recipient trays and count four inside each; preserve the unit labels. Each state remains inspectable; “Read counts”, “Show how” and “Reset” are always accessible and none is a graded submission.
+            - **Model/graphic direction:** An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. A numerical ledger lists initial count, specified number/size of groups, allocated items, leftover and final amount, with explicit units.
+            - **Transition/navigation:** Preview the next role/question while retaining access to this model and the ability to replay.
+            - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
+            - **Proposed unlocked Note(s):** “When the size of each group is known, division finds how many groups fit.” after the full explanation is visible (planned only).
+            - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
+      section3:
+        config:
+          id: "98090ab8-b5b1-447b-90c4-8c4a39c37875"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "When Some Do Not Fit"
+            navigationLabel:
+              en: "When Some Do Not Fit"
+          content:
+            items:
+              text1:
+                config:
+                  id: "b32a32ad-50be-405e-9a51-76bb56142a14"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?"
+                production:
+                  purpose: "When Some Do Not Fit; authored text block 1"
+                  specification: "- **Text Resource (supported):** “Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?”"
+              scene2:
+                config:
+                  id: "59b09523-f406-4292-8c3a-ed5d36f51fd4"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "When Some Do Not Fit"
+                production:
+                  purpose: "When Some Do Not Fit; authored scene block 2"
+                  specification: |-
+                    # Group Size Packing Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Make Groups of a Given Size](.this config.yaml), Sections 1–4
+                    Methodologist source: [Methodologist Brief](.this config.yaml) (Draft, not approved).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Introduce quotitive division as discovering the NUMBER of equal-sized groups that fit a total when the SIZE of each group is already given. Show the contrast with the prior fair-sharing story: 12 ÷ 3 = 4 now means 'how many groups of three can be made?' rather than 'how many in each of three groups?'. The arithmetic is the same but the units of the input and answer change.
+                    
+                    The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    Quotitive division knows total 12 and group size 3, and determines four groups, written 12÷3=4 because 3+3+3+3=12. This story differs from 12 shared AMONG 3 groups, where 12÷3=4 reports four in each. Both are valid interpretations with different units for divisor and quotient. If total 14 and fixed size 4, create 3 complete groups (12 counters) with 2 left over; no statement 14÷4=3 as an exact whole-number equality. Transfer 20 objects at 5 each gives 4 complete groups.
+                    
+                    **Misconceptions / boundaries:** Confusing a requested group size with a required number of groups; counting an incomplete group as a full group; constructing groups of four instead of groups of three; thinking three groups of three uses all twelve; treating quotient units as always items-per-group. No formal remainder algorithm, negative numbers, fractions or grouping by zero.
+                    
+                    **Conservation invariant:** Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Section 1: Build Groups of Three.** Prompt “We have twelve counters. Make groups with exactly three counters each. How many groups can we make?”. Start and learner action: Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made. For a mistaken attempt: If a learner predicts three groups, show three groups of three use only nine and three counters still wait for a fourth group. Reveal available without any required prediction.
+                    
+                    2. **Section 2: Same Symbols, Different Question.** Prompt “Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?”. Start and learner action: Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story. Display **12 ÷ 3 = 4** with unit-labeled explanation: In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts. For a mistaken attempt: If a child claims four groups in the sharing model, name the three fixed recipient trays and count four inside each; preserve the unit labels. Reveal available without any required prediction.
+                    
+                    3. **Section 3: When Some Do Not Fit.** Prompt “Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?”. Start and learner action: New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'. Display **14 = 3 × 4 + 2** with unit-labeled explanation: Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers. For a mistaken attempt: If child counts four groups, show final unfinished pair has only two, so it cannot count as a full group of four. Reveal available without any required prediction.
+                    
+                    4. **Section 4: Build Groups of Five.** Prompt “Twenty counters: how many groups of five can we build?”. Start and learner action: Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty. Display **20 ÷ 5 = 4; 4 × 5 = 20** with unit-labeled explanation: Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size. For a mistaken attempt: Three groups use fifteen and leave five; five groups would need twenty-five, more than provided. Reveal available without any required prediction.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
+                    - Objects: An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
+                    - State: Initial total 12/14/20 and target group size 3/4/5, stable counter IDs, array of complete-group membership, remaining source count, selected candidate, explanation/reset; independent per Section.
+                    - Invariants: Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
+                    - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. 12 grouped in threes creates four and none left; the total sequence 12,9,6,3,0 is accurate.
+                    2. The two stories 12÷3=4 are visually and verbally distinct, and labels attach to the correct units.
+                    3. 14 grouped in fours creates 3 complete groups and leaves 2, not an exact whole-number quotient equality.
+                    4. 20 grouped in fives creates 4 groups and verifies 4×5=20.
+                    5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
+                    6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
+                    7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene rendering is supported; **Group Size Packing Lab is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Do not duplicate the earlier fair-sharing exercise: the group size here is specified first and the unknown is the NUMBER of groups. For Grade 2, use leftover observations without requiring formal division-with-remainder notation.
+                    
+                    ## Placement 3: When Some Do Not Fit
+                    
+                    - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 3. New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'.
+                  productionNotes: "Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "7f9df01d-dade-4b02-8fb8-b3c34bfa9188"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers."
+                production:
+                  purpose: "When Some Do Not Fit; authored markdown block 3"
+                  specification: "- **Markdown Resource (supported):** “Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers.” The accurate mathematical record is **14 = 3 × 4 + 2**. If division is not exact, explicitly avoid presenting an integer equality as exact."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Explain that grouping 14 by fours yields three complete groups with two left, not a fourth incomplete group counted as complete."
+          pedagogicalIntent: "Original Section 3 — When Some Do Not Fit; authoring draft only"
+          productionNotes: |-
+            - **Outcome / conceptual goal:** Explain that grouping 14 by fours yields three complete groups with two left, not a fourth incomplete group counted as complete.
+            - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
+            - **Text Resource (supported):** “Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?”
+            - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 3. New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'.
+            - **Markdown Resource (supported):** “Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers.” The accurate mathematical record is **14 = 3 × 4 + 2**. If division is not exact, explicitly avoid presenting an integer equality as exact.
+            - **Learner action, observation, feedback:** New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'. For likely confusion: If child counts four groups, show final unfinished pair has only two, so it cannot count as a full group of four. Each state remains inspectable; “Read counts”, “Show how” and “Reset” are always accessible and none is a graded submission.
+            - **Model/graphic direction:** An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. A numerical ledger lists initial count, specified number/size of groups, allocated items, leftover and final amount, with explicit units.
+            - **Transition/navigation:** Preview the next role/question while retaining access to this model and the ability to replay.
+            - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
+            - **Proposed unlocked Note(s):** “Count only complete groups; any extra objects remain ungrouped.” after the full explanation is visible (planned only).
+            - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
+      section4:
+        config:
+          id: "9f0915bd-bab1-4c5a-8bc4-846b32c36d70"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Build Groups of Five"
+            navigationLabel:
+              en: "Build Groups of Five"
+          content:
+            items:
+              text1:
+                config:
+                  id: "7eb59bdc-33f9-4ccb-a131-e80e010bf225"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Twenty counters: how many groups of five can we build?"
+                production:
+                  purpose: "Build Groups of Five; authored text block 1"
+                  specification: "- **Text Resource (supported):** “Twenty counters: how many groups of five can we build?”"
+              scene2:
+                config:
+                  id: "23b112ac-9d2f-4d8d-b3f3-d2a2250383cb"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Build Groups of Five"
+                production:
+                  purpose: "Build Groups of Five; authored scene block 2"
+                  specification: |-
+                    # Group Size Packing Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: [Make Groups of a Given Size](.this config.yaml), Sections 1–4
+                    Methodologist source: [Methodologist Brief](.this config.yaml) (Draft, not approved).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Introduce quotitive division as discovering the NUMBER of equal-sized groups that fit a total when the SIZE of each group is already given. Show the contrast with the prior fair-sharing story: 12 ÷ 3 = 4 now means 'how many groups of three can be made?' rather than 'how many in each of three groups?'. The arithmetic is the same but the units of the input and answer change.
+                    
+                    The learner actively discovers what the numerical answer counts, including the correct units, by moving a small known total into labeled groups or using an equivalent accessible numeric action.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    Quotitive division knows total 12 and group size 3, and determines four groups, written 12÷3=4 because 3+3+3+3=12. This story differs from 12 shared AMONG 3 groups, where 12÷3=4 reports four in each. Both are valid interpretations with different units for divisor and quotient. If total 14 and fixed size 4, create 3 complete groups (12 counters) with 2 left over; no statement 14÷4=3 as an exact whole-number equality. Transfer 20 objects at 5 each gives 4 complete groups.
+                    
+                    **Misconceptions / boundaries:** Confusing a requested group size with a required number of groups; counting an incomplete group as a full group; constructing groups of four instead of groups of three; thinking three groups of three uses all twelve; treating quotient units as always items-per-group. No formal remainder algorithm, negative numbers, fractions or grouping by zero.
+                    
+                    **Conservation invariant:** Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Section 1: Build Groups of Three.** Prompt “We have twelve counters. Make groups with exactly three counters each. How many groups can we make?”. Start and learner action: Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three. Display **12 ÷ 3 = 4** with unit-labeled explanation: Twelve contains four complete groups of three. Here three means how many counters belong in EACH group; four means how many groups we made. For a mistaken attempt: If a learner predicts three groups, show three groups of three use only nine and three counters still wait for a fourth group. Reveal available without any required prediction.
+                    
+                    2. **Section 2: Same Symbols, Different Question.** Prompt “Compare 'share 12 among 3 groups' and 'make groups of 3 from 12'. Does the answer four mean the same thing?”. Start and learner action: Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story. Display **12 ÷ 3 = 4** with unit-labeled explanation: In fair sharing, we know THREE groups and find FOUR in each. In grouping, we know THREE in each and find FOUR groups. The number sentence is identical; the story says what the answer counts. For a mistaken attempt: If a child claims four groups in the sharing model, name the three fixed recipient trays and count four inside each; preserve the unit labels. Reveal available without any required prediction.
+                    
+                    3. **Section 3: When Some Do Not Fit.** Prompt “Fourteen counters in groups of four. How many COMPLETE groups can you make, and what remains?”. Start and learner action: New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'. Display **14 = 3 × 4 + 2** with unit-labeled explanation: Three complete groups take twelve counters; two are left over. Two counters are not a complete group of four. Division here is not exact in whole numbers. For a mistaken attempt: If child counts four groups, show final unfinished pair has only two, so it cannot count as a full group of four. Reveal available without any required prediction.
+                    
+                    4. **Section 4: Build Groups of Five.** Prompt “Twenty counters: how many groups of five can we build?”. Start and learner action: Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty. Display **20 ÷ 5 = 4; 4 × 5 = 20** with unit-labeled explanation: Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size. For a mistaken attempt: Three groups use fifteen and leave five; five groups would need twenty-five, more than provided. Reveal available without any required prediction.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independently initialized **prop-free Scene entries**, one per Section; no invented public React `mode` prop or new Resource_Config field.
+                    - Objects: An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Exact source object count, group IDs, per-group memberships, remaining unassigned counters, learner step controls, numerical status, original word problem and mathematical statement.
+                    - State: Initial total 12/14/20 and target group size 3/4/5, stable counter IDs, array of complete-group membership, remaining source count, selected candidate, explanation/reset; independent per Section.
+                    - Invariants: Every complete group has exactly target size; group count × target size + leftover = original total. Twelve with size3 →4 groups/0 leftover; fourteen with size4 →3 groups/2 leftover; twenty with size5 →4 groups/0 leftover. Incomplete leftovers cannot be recorded as complete groups. Non-exact grouping remains a leftover state and must not be mislabeled as an exact quotient.
+                    - Wrong trials show numerical comparison, not an accepted equality; Reset/Undo/Read/Show solution controls remain available. No scoring, Note persistence or mastery system.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. Simple lightweight HTML/SVG and large count labels are enough. Each step may move one counter per group or a whole complete group with identical state totals. Reduced motion immediately presents the same before/after quantities. Avoid generated media, animated prizes, WebGL, compulsory audio, remote evaluation or drag-only objects.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate every instruction, group label, numeric status, aria description, error and feedback authentically for all supported languages; never silently use English. Preserve group-count/group-size semantic order in LTR/RTL rather than mirroring mathematics. A keyboard/switch/screen-reader user can inspect and execute every grouping move through native controls and an ordered accessible counter ledger, not a static description. Child-size targets, high contrast, visible focus, 200% zoom, reduced motion, responsive mobile and offline after the chosen locale package download are required. No speech recognition or precise dragging.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. 12 grouped in threes creates four and none left; the total sequence 12,9,6,3,0 is accurate.
+                    2. The two stories 12÷3=4 are visually and verbally distinct, and labels attach to the correct units.
+                    3. 14 grouped in fours creates 3 complete groups and leaves 2, not an exact whole-number quotient equality.
+                    4. 20 grouped in fives creates 4 groups and verifies 4×5=20.
+                    5. A wrong prediction gives its exact numerical feedback and allows retry/undo and solution reveal, with no score.
+                    6. Every Section placement resets independently; counters never duplicated, omitted or ambiguously classified.
+                    7. Keyboard, assistive technology, RTL, reduced motion, zoomed mobile and local offline use expose the same group roles, numbers and model steps.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene rendering is supported; **Group Size Packing Lab is only proposed**. Editor first approves the Draft Brief, then Content and Scene independently before Design Scene implementation with tests. Coding Agent verifies genuine locale data, prop-free entries, accessibility and offline. Assessment Architect owns any scored Questions. Editorial decision: Do not duplicate the earlier fair-sharing exercise: the group size here is specified first and the unknown is the NUMBER of groups. For Grade 2, use leftover observations without requiring formal division-with-remainder notation.
+                    
+                    ## Placement 4: Build Groups of Five
+                    
+                    - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 4. Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty.
+                  productionNotes: "Proposed unimplemented Scene, sourced from groupSizePackingLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "531e92c0-2a48-47b3-bd2f-f5125d7a73a5"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size."
+                production:
+                  purpose: "Build Groups of Five; authored markdown block 3"
+                  specification: "- **Markdown Resource (supported):** “Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size.” The accurate mathematical record is **20 ÷ 5 = 4; 4 × 5 = 20**. If division is not exact, explicitly avoid presenting an integer equality as exact."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Build groups of size five from twenty counters, count four complete groups, and check 4×5=20."
+          pedagogicalIntent: "Original Section 4 — Build Groups of Five; authoring draft only"
+          productionNotes: |-
+            - **Outcome / conceptual goal:** Build groups of size five from twenty counters, count four complete groups, and check 4×5=20.
+            - **Section shape:** One `LessonSection_Config` with text, scene, markdown resources ordered vertically.
+            - **Text Resource (supported):** “Twenty counters: how many groups of five can we build?”
+            - **Interactive Scene Resource (supported generic type; new Scene proposed):** Group Size Packing Lab (Scene specification embedded in this config.yaml), independent entry 4. Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty.
+            - **Markdown Resource (supported):** “Four groups of five use twenty counters. Four tells how many complete groups, and five is their required size.” The accurate mathematical record is **20 ÷ 5 = 4; 4 × 5 = 20**. If division is not exact, explicitly avoid presenting an integer equality as exact.
+            - **Learner action, observation, feedback:** Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty. For likely confusion: Three groups use fifteen and leave five; five groups would need twenty-five, more than provided. Each state remains inspectable; “Read counts”, “Show how” and “Reset” are always accessible and none is a graded submission.
+            - **Model/graphic direction:** An unassigned countable source pool plus an ordered row of full groups, each with a visible and accessible target group size. Incomplete leftovers are explicitly separate, not an unlabeled half-built group. A numerical ledger lists initial count, specified number/size of groups, allocated items, leftover and final amount, with explicit units.
+            - **Transition/navigation:** Offer a voluntary explanation of what the answer counts and finish without a score.
+            - **Accessibility / locale / RTL:** Authentic translations, semantic role labels, equivalent keyboard/switch/touch/count-table operations, readable focus and mobile/zoom view, screen-reader status, reduced motion and downloaded offline logic.
+            - **Proposed unlocked Note(s):** “When the size of each group is known, division finds how many groups fit.” after the full explanation is visible (planned only).
+            - **Dependencies:** Proposed, not implemented Scene; no new Resource type, public mode prop, scoring, Quiz or Note API.
+    order: ["section1", "section2", "section3", "section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Make Groups of a Given Size — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: divisionEqualGrouping
+    Methodologist status: Draft
+    Primary audience: **Grade 2** within grades 1–3
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Introduce quotitive division as discovering the NUMBER of equal-sized groups that fit a total when the SIZE of each group is already given. Show the contrast with the prior fair-sharing story: 12 ÷ 3 = 4 now means 'how many groups of three can be made?' rather than 'how many in each of three groups?'. The arithmetic is the same but the units of the input and answer change.
+    
+    ## Target audience
+    
+    Grade 2, selected for readiness to count and partition groups; the canonical Skill has no grade ceiling. Students need concrete models and short translated prompts, not timed fact recall.
+    
+    ## Prerequisites
+    
+    - Count and make small equal groups, such as repeated collections of three.
+    - Understand that a fixed total can be partitioned without adding or losing objects.
+    - Recognize the distinction between 'groups of size three' and 'three groups' from the equal-sharing model.
+    
+    ## Target Skills
+    
+    - [equalGrouping.data.ts](../../../../data/skills/arithmetic/divide/skills/equalGrouping.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Build four groups of size three from twelve objects and identify four as the number of complete groups.
+    - Read 12 ÷ 3 = 4 with 'three in each group' as the known divisor and 'four groups' as the quotient in this story.
+    - Explain that grouping 14 by fours yields three complete groups with two left, not a fourth incomplete group counted as complete.
+    - Build groups of size five from twenty counters, count four complete groups, and check 4×5=20.
+    
+    ## Essential subject matter
+    
+    Quotitive division knows total 12 and group size 3, and determines four groups, written 12÷3=4 because 3+3+3+3=12. This story differs from 12 shared AMONG 3 groups, where 12÷3=4 reports four in each. Both are valid interpretations with different units for divisor and quotient. If total 14 and fixed size 4, create 3 complete groups (12 counters) with 2 left over; no statement 14÷4=3 as an exact whole-number equality. Transfer 20 objects at 5 each gives 4 complete groups.
+    
+    ## Conceptual progression and dependencies
+    
+    1. **Build Groups of Three:** Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three.
+    2. **Same Symbols, Different Question:** Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story.
+    3. **When Some Do Not Fit:** New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'.
+    4. **Build Groups of Five:** Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Confusing a requested group size with a required number of groups; counting an incomplete group as a full group; constructing groups of four instead of groups of three; thinking three groups of three uses all twelve; treating quotient units as always items-per-group. No formal remainder algorithm, negative numbers, fractions or grouping by zero.
+    
+    ## Localization, accessibility and offline intent
+    
+    Every child-facing string must be genuinely localized, without silent English fallback. Distinguish the group COUNT from group SIZE in all languages; RTL must not reverse the mathematical meaning of expressions. Countable objects and their states have complete keyboard/screen-reader/table-ledger equivalents, full native touch controls, focus, zoom, reduced motion and offline deterministic calculations after downloading selected-language resources. No motor-precision drag or audio-only instructions.
+    
+    ## Sources and factual verification
+    
+    - [Canonical Skill source](../../../../data/skills/arithmetic/divide/skills/equalGrouping.data.ts), identical to Mathematics source, including UUID and translations.
+    - Playground English generated taxonomy (historical generated taxonomy; Skill code remains authoritative), coordinator-owned view which must be regenerated after the merge.
+    - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/) as a comparative instructional reference, not an assertion of national grade alignment.
+    
+    ## Curriculum / Program compatibility
+    
+    Not specified. Standalone, Program-neutral. Grade 2 selected for the Lesson, not as a limitation on the Skill definition.
+    
+    ## Open editorial decisions
+    
+    - Do not duplicate the earlier fair-sharing exercise: the group size here is specified first and the unknown is the NUMBER of groups. For Grade 2, use leftover observations without requiring formal division-with-remainder notation.
+    - Confirm concrete examples, accessible leftover representation, and age-appropriate terminology before production.
+    
+    ## Methodologist handoff
+    
+    **Draft, not approved.** Content and Scene specifications may be produced provisionally for editor review, but they cannot be promoted into implementation without formal approval. No runtime lessons, scored Questions or curricula created.
+  purpose: "Make Groups of a Given Size"
+  productionNotes: |-
+    Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
+    
+    # Make Groups of a Given Size — Content
+    
+    Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/divisionEqualGrouping/
+    Audience: **Grade 2**, after: Count and make small equal groups, such as repeated collections of three. Understand that a fixed total can be partitioned without adding or losing objects. Recognize the distinction between 'groups of size three' and 'three groups' from the equal-sharing model.
+    Methodologist source: Methodologist Brief (incorporated in this config.yaml) (Draft, not approved)
+    Target Skill: The direct canonical equalGrouping.data.ts link in the Methodologist Brief
+    Program dependence: None
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Introduce quotitive division as discovering the NUMBER of equal-sized groups that fit a total when the SIZE of each group is already given. Show the contrast with the prior fair-sharing story: 12 ÷ 3 = 4 now means 'how many groups of three can be made?' rather than 'how many in each of three groups?'. The arithmetic is the same but the units of the input and answer change.
+    
+    Quotitive division knows total 12 and group size 3, and determines four groups, written 12÷3=4 because 3+3+3+3=12. This story differs from 12 shared AMONG 3 groups, where 12÷3=4 reports four in each. Both are valid interpretations with different units for divisor and quotient. If total 14 and fixed size 4, create 3 complete groups (12 counters) with 2 left over; no statement 14÷4=3 as an exact whole-number equality. Transfer 20 objects at 5 each gives 4 complete groups.
+    
+    Learners must identify the _unit_ counted in the answer, not merely choose a numeral. Native controls permit fair grouping and inspection without dragging or reading a long word problem. The representation is not a scored quiz.
+    
+    ## LEARNER JOURNEY
+    
+    1. **Build Groups of Three:** Start 12 independent counter IDs and a 'Make next group of 3' native control. Child creates four labeled groups of exactly three while pool counts 12→9→6→3→0, each group using exactly one set of three.
+    2. **Same Symbols, Different Question:** Present two explicitly labeled models with the exact same 12÷3=4 equality: partitive sharing makes 3 groups of 4; grouping makes 4 groups of 3. Learner chooses which number describes groups versus counters in each, without silently changing either story.
+    3. **When Some Do Not Fit:** New 14-counter pool with target group size four; 'Pack a complete group' produces three groups of 4, leaves 2 in source. A fourth group cannot be formed. Show explicitly '3 complete groups and 2 left'.
+    4. **Build Groups of Five:** Transfer with pool 20, group size 5, learner predicts 3/4/5, groups via accessible action and checks four groups use all twenty.
+    
+    ## SECTION PLAN
+    
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - Group Size Packing Lab (Scene specification embedded in this config.yaml) — four independent prop-free Section entries; generic Scene Resource rendering exists, but this new component does not.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    1. “When the size of each group is known, division finds how many groups fit.” — editorial proposal after its corresponding explanation, not a scored success event.
+    2. “Count only complete groups; any extra objects remain ungrouped.” — editorial proposal after its corresponding explanation, not a scored success event.
+    
+    Notes are **planned, not wired**: no implemented Note type, unlock API, per-child persistence, revision sheet or spaced review is assumed.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    The final Section uses fresh numbers and optionally reduced scaffolding. Practice predictions and observed leftover quantities are purely formative. The Assessment Architect independently validates any graded items, including whether to assess a non-exact whole-number case, permitted number ranges, error messages, thresholds and evidence of mastery. The current select-one Quiz adapter does not implement these bespoke group-model Scenes.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    Every learner prompt, count, unit label, number of groups, size in each, leftover status and feedback must have genuine translations into every supported locale; no fallback. All counter layouts provide fully **operable** state lists and native keyboard/switch/touch controls, not just descriptive labels, with WCAG 2.2 AA, child-size targets, screen-reader status, high contrast, focus, zoom/mobile and semantic RTL numerical order. Reduced motion retains exact before/after count states. Downloaded locale and scene math/feedback must work offline on weak devices without drag, network, audio or video.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    General `LessonSection_Config` and text, markdown, scene renderer are present. Group Size Packing Lab is proposed, requires approved Scene spec, prop-free entries, genuine locale strings, accessibility/unit tests and offline verification. Images/audio/video/code Resource kinds are typed-only in generic renderer; no YouTube. Notes, spaced retrieval and PWA package delivery are separate product features, not claimed implemented. No actual runtime Lesson or assessed Question authored here.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Methodologist Brief (incorporated in this config.yaml), Draft, needs approval.
+    - [Canonical Skill](../../../../data/skills/arithmetic/divide/skills/equalGrouping.data.ts), unchanged.
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Do not duplicate the earlier fair-sharing exercise: the group size here is specified first and the unknown is the NUMBER of groups. For Grade 2, use leftover observations without requiring formal division-with-remainder notation.
+    - Coordinator-owned English taxonomy is deliberately unchanged until integration.
+    
+    ## HANDOFF
+    
+    Provisional Draft Content plus separately reviewable Draft Scene specification. Editor approves Methodologist Brief first, then Content/Scene; only then may Design Scene and Coding Agent implement, with Assessment Architect separately approving scored work. No unrelated Lessons or canon Skills modified.
+    
+    Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.

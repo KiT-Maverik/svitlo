@@ -1,0 +1,664 @@
+# Draft editorial migration, not approved; no runtime Scene implementation.
+config:
+  id: "15f71e37-b8df-5625-98bd-686de40c7d91"
+  slug: "divisionHalvesAndDoubles"
+  type: "lesson"
+  skills: ["d7bfb5f7-38b7-4995-b4af-4cd09e35426f", "cfb05426-4c79-46eb-a49e-53a128a661de"]
+  params:
+    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Half and Double: Divide by Two"
+  section:
+    items:
+      section1:
+        config:
+          id: "062f4a4d-b224-441a-94c0-db53ea07d6e0"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Two Equal Halves"
+            navigationLabel:
+              en: "Two Equal Halves"
+          content:
+            items:
+              text1:
+                config:
+                  id: "7b6b03ec-de79-438b-bcb6-c5563d872055"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Share twelve counters into TWO equal groups. How many in each?"
+                production:
+                  purpose: "Two Equal Halves; authored text block 1"
+                  specification: "- **Text resource (available):** “Share twelve counters into TWO equal groups. How many in each?”"
+              scene2:
+                config:
+                  id: "4f4b5edc-aa94-444d-a3db-4d9a68880d1b"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Two Equal Halves"
+                production:
+                  purpose: "Two Equal Halves; authored scene block 2"
+                  specification: |-
+                    # Half and Double Balance — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [Half and Double: Divide by Two Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Make two equal shares of twelve and name six as half. Verify the half by doubling six to obtain twelve. Contrast two groups of six with six groups of two, labeling the quotient units. Transfer exact halving to sixteen and ten and check via doubling. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Integrate exact division by two with halving/doubling as inverse actions; two equal shares are formed and their combined amount restores the whole. Distinguish two large shares from pairs of two. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    12 ÷ 2 = 6, 6 + 6 = 12, and 2×6=12; 16÷2=8 with 2×8=16; 10÷2=5 with 2×5=10. For the sharing story 12÷2=6 means TWO groups each containing SIX; for grouping it means SIX complete groups of TWO. For thirteen whole counters divided among two groups, six each leaves one leftover; 13÷2=6 is not an exact whole-number equality. Whole even amounts ≤20; no forced half-objects or fractions. Shares of seven and five are not equal even though they total twelve. Doubling six is not adding one; don't confuse the two meanings of the quotient six or discard one leftover from thirteen. **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Two Equal Halves:** “Share twelve counters into TWO equal groups. How many in each?” Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals. Output **12 ÷ 2 = 6**. Explain: Two groups each have six. Six is half of twelve. Wrong trial: If 7 and 5 are offered, compare group counts and rebalance one counter.
+                    
+                    2. **Double the Half:** “If one half is six, what is double six?” Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks. Output **6 + 6 = 12; 2 × 6 = 12**. Explain: Doubling means two equal groups of six; together they reconstruct twelve. Wrong trial: If seven is chosen, show that six plus one differs from six plus six.
+                    
+                    3. **Two Groups or Groups of Two?:** “What changes if we make GROUPS OF two instead of TWO groups?” Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6. Output **12 ÷ 2 = 6**. Explain: In sharing the six counts objects per group; in grouping it counts complete pairs. Wrong trial: If child claims two groups in the pairing story, read every one of six pairs.
+                    
+                    4. **Halve Sixteen and Ten:** “Find half of sixteen and half of ten, then double each answer.” Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two. Output **16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10**. Explain: Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result. Wrong trial: If nine is half sixteen, double nine gives eighteen; if six is half ten, double six gives twelve.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** Independent initial amounts 12, 16, 10 (optional 13 contrast), stable IDs, two share trays or pairs of two, allocated/remaining, trial/check, explanation/reset.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Two Equal Halves: 12 ÷ 2 = 6. Two groups each have six. Six is half of twelve.
+                    2. Double the Half: 6 + 6 = 12; 2 × 6 = 12. Doubling means two equal groups of six; together they reconstruct twelve.
+                    3. Two Groups or Groups of Two?: 12 ÷ 2 = 6. In sharing the six counts objects per group; in grouping it counts complete pairs.
+                    4. Halve Sixteen and Ten: 16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10. Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; Half and Double Balance itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. The combined lesson must provide separately observable understanding of division by two and the inverse half/double relationship.
+                    
+                    ## Placement 1: Two Equal Halves
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals.
+                  productionNotes: "Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "a6f3ed70-c441-4473-90d2-7c4ab8184875"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Two groups each have six. Six is half of twelve."
+                production:
+                  purpose: "Two Equal Halves; authored markdown block 3"
+                  specification: "- **Markdown resource (available):** “Two groups each have six. Six is half of twelve.” Equation **12 ÷ 2 = 6**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Make two equal shares of twelve and name six as half."
+          pedagogicalIntent: "Original Section 1 — Two Equal Halves; authoring draft only"
+          productionNotes: |-
+            - **Objective:** Make two equal shares of twelve and name six as half.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “Share twelve counters into TWO equal groups. How many in each?”
+            - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals.
+            - **Markdown resource (available):** “Two groups each have six. Six is half of twelve.” Equation **12 ÷ 2 = 6**.
+            - **Child's meaningful action and feedback:** Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals. For common wrong responses: If 7 and 5 are offered, compare group counts and rebalance one counter. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Offer replay, full explanation, and then the next conceptual contrast without mandatory success.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** Half of an even amount is one of two equal shares., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+      section2:
+        config:
+          id: "032f4594-b124-4287-95c0-dce6ed07db99"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Double the Half"
+            navigationLabel:
+              en: "Double the Half"
+          content:
+            items:
+              text1:
+                config:
+                  id: "3c863559-5eef-48aa-a646-ca5792bbadc8"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "If one half is six, what is double six?"
+                production:
+                  purpose: "Double the Half; authored text block 1"
+                  specification: "- **Text resource (available):** “If one half is six, what is double six?”"
+              scene2:
+                config:
+                  id: "bb4a4b07-8cbd-4596-9421-fce195b9a7a0"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Double the Half"
+                production:
+                  purpose: "Double the Half; authored scene block 2"
+                  specification: |-
+                    # Half and Double Balance — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [Half and Double: Divide by Two Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Make two equal shares of twelve and name six as half. Verify the half by doubling six to obtain twelve. Contrast two groups of six with six groups of two, labeling the quotient units. Transfer exact halving to sixteen and ten and check via doubling. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Integrate exact division by two with halving/doubling as inverse actions; two equal shares are formed and their combined amount restores the whole. Distinguish two large shares from pairs of two. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    12 ÷ 2 = 6, 6 + 6 = 12, and 2×6=12; 16÷2=8 with 2×8=16; 10÷2=5 with 2×5=10. For the sharing story 12÷2=6 means TWO groups each containing SIX; for grouping it means SIX complete groups of TWO. For thirteen whole counters divided among two groups, six each leaves one leftover; 13÷2=6 is not an exact whole-number equality. Whole even amounts ≤20; no forced half-objects or fractions. Shares of seven and five are not equal even though they total twelve. Doubling six is not adding one; don't confuse the two meanings of the quotient six or discard one leftover from thirteen. **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Two Equal Halves:** “Share twelve counters into TWO equal groups. How many in each?” Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals. Output **12 ÷ 2 = 6**. Explain: Two groups each have six. Six is half of twelve. Wrong trial: If 7 and 5 are offered, compare group counts and rebalance one counter.
+                    
+                    2. **Double the Half:** “If one half is six, what is double six?” Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks. Output **6 + 6 = 12; 2 × 6 = 12**. Explain: Doubling means two equal groups of six; together they reconstruct twelve. Wrong trial: If seven is chosen, show that six plus one differs from six plus six.
+                    
+                    3. **Two Groups or Groups of Two?:** “What changes if we make GROUPS OF two instead of TWO groups?” Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6. Output **12 ÷ 2 = 6**. Explain: In sharing the six counts objects per group; in grouping it counts complete pairs. Wrong trial: If child claims two groups in the pairing story, read every one of six pairs.
+                    
+                    4. **Halve Sixteen and Ten:** “Find half of sixteen and half of ten, then double each answer.” Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two. Output **16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10**. Explain: Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result. Wrong trial: If nine is half sixteen, double nine gives eighteen; if six is half ten, double six gives twelve.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** Independent initial amounts 12, 16, 10 (optional 13 contrast), stable IDs, two share trays or pairs of two, allocated/remaining, trial/check, explanation/reset.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Two Equal Halves: 12 ÷ 2 = 6. Two groups each have six. Six is half of twelve.
+                    2. Double the Half: 6 + 6 = 12; 2 × 6 = 12. Doubling means two equal groups of six; together they reconstruct twelve.
+                    3. Two Groups or Groups of Two?: 12 ÷ 2 = 6. In sharing the six counts objects per group; in grouping it counts complete pairs.
+                    4. Halve Sixteen and Ten: 16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10. Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; Half and Double Balance itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. The combined lesson must provide separately observable understanding of division by two and the inverse half/double relationship.
+                    
+                    ## Placement 2: Double the Half
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks.
+                  productionNotes: "Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "546f70e9-b7f9-458e-b7bf-92eff8fa804c"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Doubling means two equal groups of six; together they reconstruct twelve."
+                production:
+                  purpose: "Double the Half; authored markdown block 3"
+                  specification: "- **Markdown resource (available):** “Doubling means two equal groups of six; together they reconstruct twelve.” Equation **6 + 6 = 12; 2 × 6 = 12**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Verify the half by doubling six to obtain twelve."
+          pedagogicalIntent: "Original Section 2 — Double the Half; authoring draft only"
+          productionNotes: |-
+            - **Objective:** Verify the half by doubling six to obtain twelve.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “If one half is six, what is double six?”
+            - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks.
+            - **Markdown resource (available):** “Doubling means two equal groups of six; together they reconstruct twelve.” Equation **6 + 6 = 12; 2 × 6 = 12**.
+            - **Child's meaningful action and feedback:** Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks. For common wrong responses: If seven is chosen, show that six plus one differs from six plus six. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Offer replay, full explanation, and then the next conceptual contrast without mandatory success.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** Doubling one half rebuilds the original amount., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+      section3:
+        config:
+          id: "042f4727-b024-40f4-96c0-de79ec07da06"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Two Groups or Groups of Two?"
+            navigationLabel:
+              en: "Two Groups or Groups of Two?"
+          content:
+            items:
+              text1:
+                config:
+                  id: "a193f04a-f8a7-43b9-903d-5f288f7863f7"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "What changes if we make GROUPS OF two instead of TWO groups?"
+                production:
+                  purpose: "Two Groups or Groups of Two?; authored text block 1"
+                  specification: "- **Text resource (available):** “What changes if we make GROUPS OF two instead of TWO groups?”"
+              scene2:
+                config:
+                  id: "c7aadd36-aba6-4ee7-9ca4-6c00a0f75e01"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Two Groups or Groups of Two?"
+                production:
+                  purpose: "Two Groups or Groups of Two?; authored scene block 2"
+                  specification: |-
+                    # Half and Double Balance — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [Half and Double: Divide by Two Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Make two equal shares of twelve and name six as half. Verify the half by doubling six to obtain twelve. Contrast two groups of six with six groups of two, labeling the quotient units. Transfer exact halving to sixteen and ten and check via doubling. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Integrate exact division by two with halving/doubling as inverse actions; two equal shares are formed and their combined amount restores the whole. Distinguish two large shares from pairs of two. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    12 ÷ 2 = 6, 6 + 6 = 12, and 2×6=12; 16÷2=8 with 2×8=16; 10÷2=5 with 2×5=10. For the sharing story 12÷2=6 means TWO groups each containing SIX; for grouping it means SIX complete groups of TWO. For thirteen whole counters divided among two groups, six each leaves one leftover; 13÷2=6 is not an exact whole-number equality. Whole even amounts ≤20; no forced half-objects or fractions. Shares of seven and five are not equal even though they total twelve. Doubling six is not adding one; don't confuse the two meanings of the quotient six or discard one leftover from thirteen. **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Two Equal Halves:** “Share twelve counters into TWO equal groups. How many in each?” Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals. Output **12 ÷ 2 = 6**. Explain: Two groups each have six. Six is half of twelve. Wrong trial: If 7 and 5 are offered, compare group counts and rebalance one counter.
+                    
+                    2. **Double the Half:** “If one half is six, what is double six?” Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks. Output **6 + 6 = 12; 2 × 6 = 12**. Explain: Doubling means two equal groups of six; together they reconstruct twelve. Wrong trial: If seven is chosen, show that six plus one differs from six plus six.
+                    
+                    3. **Two Groups or Groups of Two?:** “What changes if we make GROUPS OF two instead of TWO groups?” Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6. Output **12 ÷ 2 = 6**. Explain: In sharing the six counts objects per group; in grouping it counts complete pairs. Wrong trial: If child claims two groups in the pairing story, read every one of six pairs.
+                    
+                    4. **Halve Sixteen and Ten:** “Find half of sixteen and half of ten, then double each answer.” Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two. Output **16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10**. Explain: Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result. Wrong trial: If nine is half sixteen, double nine gives eighteen; if six is half ten, double six gives twelve.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** Independent initial amounts 12, 16, 10 (optional 13 contrast), stable IDs, two share trays or pairs of two, allocated/remaining, trial/check, explanation/reset.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Two Equal Halves: 12 ÷ 2 = 6. Two groups each have six. Six is half of twelve.
+                    2. Double the Half: 6 + 6 = 12; 2 × 6 = 12. Doubling means two equal groups of six; together they reconstruct twelve.
+                    3. Two Groups or Groups of Two?: 12 ÷ 2 = 6. In sharing the six counts objects per group; in grouping it counts complete pairs.
+                    4. Halve Sixteen and Ten: 16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10. Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; Half and Double Balance itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. The combined lesson must provide separately observable understanding of division by two and the inverse half/double relationship.
+                    
+                    ## Placement 3: Two Groups or Groups of Two?
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6.
+                  productionNotes: "Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "f123072e-36f9-49c9-8eda-6cac930ffc8f"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "In sharing the six counts objects per group; in grouping it counts complete pairs."
+                production:
+                  purpose: "Two Groups or Groups of Two?; authored markdown block 3"
+                  specification: "- **Markdown resource (available):** “In sharing the six counts objects per group; in grouping it counts complete pairs.” Equation **12 ÷ 2 = 6**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Contrast two groups of six with six groups of two, labeling the quotient units."
+          pedagogicalIntent: "Original Section 3 — Two Groups or Groups of Two?; authoring draft only"
+          productionNotes: |-
+            - **Objective:** Contrast two groups of six with six groups of two, labeling the quotient units.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “What changes if we make GROUPS OF two instead of TWO groups?”
+            - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6.
+            - **Markdown resource (available):** “In sharing the six counts objects per group; in grouping it counts complete pairs.” Equation **12 ÷ 2 = 6**.
+            - **Child's meaningful action and feedback:** Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6. For common wrong responses: If child claims two groups in the pairing story, read every one of six pairs. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Offer replay, full explanation, and then the next conceptual contrast without mandatory success.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** Half of an even amount is one of two equal shares., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+      section4:
+        config:
+          id: "012f426e-af24-4f61-97c0-e00cef07debf"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Halve Sixteen and Ten"
+            navigationLabel:
+              en: "Halve Sixteen and Ten"
+          content:
+            items:
+              text1:
+                config:
+                  id: "39abbfbf-8996-4130-bd7f-79f1e29aac82"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Find half of sixteen and half of ten, then double each answer."
+                production:
+                  purpose: "Halve Sixteen and Ten; authored text block 1"
+                  specification: "- **Text resource (available):** “Find half of sixteen and half of ten, then double each answer.”"
+              scene2:
+                config:
+                  id: "9b1c3e39-3beb-4098-a9ba-548f7fbec3de"
+                  slug: "scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Halve Sixteen and Ten"
+                production:
+                  purpose: "Halve Sixteen and Ten; authored scene block 2"
+                  specification: |-
+                    # Half and Double Balance — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: [Half and Double: Divide by Two Content](.this config.yaml), Sections 1–4
+                    Methodologist objectives: Make two equal shares of twelve and name six as half. Verify the half by doubling six to obtain twelve. Contrast two groups of six with six groups of two, labeling the quotient units. Transfer exact halving to sixteen and ten and check via doubling. [Methodologist Brief](.this config.yaml) is Draft.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Integrate exact division by two with halving/doubling as inverse actions; two equal shares are formed and their combined amount restores the whole. Distinguish two large shares from pairs of two. A learner acts on exact counted objects; explanations must be numerical, inspectable and available without a scored response.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    12 ÷ 2 = 6, 6 + 6 = 12, and 2×6=12; 16÷2=8 with 2×8=16; 10÷2=5 with 2×5=10. For the sharing story 12÷2=6 means TWO groups each containing SIX; for grouping it means SIX complete groups of TWO. For thirteen whole counters divided among two groups, six each leaves one leftover; 13÷2=6 is not an exact whole-number equality. Whole even amounts ≤20; no forced half-objects or fractions. Shares of seven and five are not equal even though they total twelve. Doubling six is not adding one; don't confuse the two meanings of the quotient six or discard one leftover from thirteen. **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Two Equal Halves:** “Share twelve counters into TWO equal groups. How many in each?” Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals. Output **12 ÷ 2 = 6**. Explain: Two groups each have six. Six is half of twelve. Wrong trial: If 7 and 5 are offered, compare group counts and rebalance one counter.
+                    
+                    2. **Double the Half:** “If one half is six, what is double six?” Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks. Output **6 + 6 = 12; 2 × 6 = 12**. Explain: Doubling means two equal groups of six; together they reconstruct twelve. Wrong trial: If seven is chosen, show that six plus one differs from six plus six.
+                    
+                    3. **Two Groups or Groups of Two?:** “What changes if we make GROUPS OF two instead of TWO groups?” Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6. Output **12 ÷ 2 = 6**. Explain: In sharing the six counts objects per group; in grouping it counts complete pairs. Wrong trial: If child claims two groups in the pairing story, read every one of six pairs.
+                    
+                    4. **Halve Sixteen and Ten:** “Find half of sixteen and half of ten, then double each answer.” Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two. Output **16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10**. Explain: Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result. Wrong trial: If nine is half sixteen, double nine gives eighteen; if six is half ten, double six gives twelve.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, prop-free Scene placements, one per Section. No public `mode` prop or new Resource_Config field.
+                    - **State:** Independent initial amounts 12, 16, 10 (optional 13 contrast), stable IDs, two share trays or pairs of two, allocated/remaining, trial/check, explanation/reset.
+                    - **Objects:** countable immutable-source IDs, labeled trays, explicit group-count/size text ledger, step controls, prediction, reset/reveal.
+                    - **Invariant:** Every original counter has exactly one location; for even N, equalShare×2=N. Thirteen in two whole-number groups may leave one explicitly unallocated, never become an exact equality. Each transition conserves counters, and invalid division expressions never receive a fictitious quotient.
+                    - Full explanation and replay work without predictions. No score, Note API, Question or mastery status.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple responsive HTML/SVG counter trays with clear role labels and large numeric states; motion optional and user-triggered. Reduced motion shows the same totals immediately. No external media or drag-only interaction.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Genuinely translate all learner phrases and statuses to all supported languages, never silent English fallback. RTL preserves math operand roles rather than mirroring them. A screen-reader user has a fully actionable ordered text/count interface through native controls and announced change states. Large touch targets, visible focus, reduced motion, zoom/mobile and offline operations after locale download are mandatory.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Two Equal Halves: 12 ÷ 2 = 6. Two groups each have six. Six is half of twelve.
+                    2. Double the Half: 6 + 6 = 12; 2 × 6 = 12. Doubling means two equal groups of six; together they reconstruct twelve.
+                    3. Two Groups or Groups of Two?: 12 ÷ 2 = 6. In sharing the six counts objects per group; in grouping it counts complete pairs.
+                    4. Halve Sixteen and Ten: 16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10. Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result.
+                    5. Every incorrect prediction yields a specific numeric correction with no grade.
+                    6. Reset and independent Sections never leak state or duplicate objects.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and downloaded offline provide identical mathematics.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic scene resource exists; Half and Double Balance itself is NOT implemented. Editor must approve the Draft Brief, Content and Scene independently; Coding Agent/Scene Designer implement prop-free components and tests later. Assessment Architect controls scored questions. The combined lesson must provide separately observable understanding of division by two and the inverse half/double relationship.
+                    
+                    ## Placement 4: Halve Sixteen and Ten
+                    
+                    - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two.
+                  productionNotes: "Proposed unimplemented Scene, sourced from halfDoubleBalance.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+              markdown3:
+                config:
+                  id: "c93c9d87-227c-49a4-a75d-a93193b90b36"
+                  slug: "markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result."
+                production:
+                  purpose: "Halve Sixteen and Ten; authored markdown block 3"
+                  specification: "- **Markdown resource (available):** “Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result.” Equation **16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10**."
+            order: ["text1", "scene2", "markdown3"]
+        production:
+          purpose: "Transfer exact halving to sixteen and ten and check via doubling."
+          pedagogicalIntent: "Original Section 4 — Halve Sixteen and Ten; authoring draft only"
+          productionNotes: |-
+            - **Objective:** Transfer exact halving to sixteen and ten and check via doubling.
+            - **Structure:** one ordered vertical LessonSection_Config, text → scene → markdown.
+            - **Text resource (available):** “Find half of sixteen and half of ten, then double each answer.”
+            - **Scene resource (generic type exists; new implementation proposed):** Half and Double Balance (Scene specification embedded in this config.yaml). Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two.
+            - **Markdown resource (available):** “Eight doubled is sixteen; five doubled is ten. A leftover in an odd model does not produce an exact result.” Equation **16 ÷ 2 = 8; 2 × 8 = 16; 10 ÷ 2 = 5; 2 × 5 = 10**.
+            - **Child's meaningful action and feedback:** Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two. For common wrong responses: If nine is half sixteen, double nine gives eighteen; if six is half ten, double six gives twelve. The original counters and calculation remain inspectable; do not mark a false trial as a true identity.
+            - **Model:** each source counter, group total, group count, number in each, remainder (if any) and check have equivalent ordered text and focusable controls.
+            - **Navigation:** Close with voluntary reflection, no score or assumed mastery.
+            - **Accessibility/localization:** real locale strings, independent semantic LTR/RTL numerical ordering, keyboard/touch/switch and screen-reader actions, visible focus, reduced-motion and offline state parity.
+            - **Planned Note:** Doubling one half rebuilds the original amount., only after complete evidence and explanation, not a score or wired event.
+            - **Dependencies:** proposed self-contained prop-free scene entry; no invented API or runtime props.
+    order: ["section1", "section2", "section3", "section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Half and Double: Divide by Two — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: divisionHalvesAndDoubles
+    Methodologist status: Draft
+    Primary audience: Grade 2
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Integrate exact division by two with halving/doubling as inverse actions; two equal shares are formed and their combined amount restores the whole. Distinguish two large shares from pairs of two.
+    
+    ## Target audience
+    
+    Primary Grade 2, with the prerequisite abilities listed below. This audience applies to this Lesson only; the source Skills remain grade-independent.
+    
+    ## Prerequisites
+    
+    - Count and pair up to twenty objects.
+    - Recognize equal shares and know double means two equal copies.
+    - Read exact a ÷ 2 with concrete groups and check multiplication by two.
+    
+    ## Target Skills
+    
+    - [by2.data.ts](../../../../data/skills/arithmetic/divide/skills/by2.data.ts)
+    - [doubleHalf.data.ts](../../../../data/skills/arithmetic/divide/skills/doubleHalf.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Make two equal shares of twelve and name six as half.
+    - Verify the half by doubling six to obtain twelve.
+    - Contrast two groups of six with six groups of two, labeling the quotient units.
+    - Transfer exact halving to sixteen and ten and check via doubling.
+    
+    ## Essential subject matter
+    
+    12 ÷ 2 = 6, 6 + 6 = 12, and 2×6=12; 16÷2=8 with 2×8=16; 10÷2=5 with 2×5=10. For the sharing story 12÷2=6 means TWO groups each containing SIX; for grouping it means SIX complete groups of TWO. For thirteen whole counters divided among two groups, six each leaves one leftover; 13÷2=6 is not an exact whole-number equality. Whole even amounts ≤20; no forced half-objects or fractions.
+    
+    ## Conceptual progression and dependencies
+    
+    1. Two Equal Halves: Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals.
+    2. Double the Half: Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks.
+    3. Two Groups or Groups of Two?: Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6.
+    4. Halve Sixteen and Ten: Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Shares of seven and five are not equal even though they total twelve. Doubling six is not adding one; don't confuse the two meanings of the quotient six or discard one leftover from thirteen.
+    
+    ## Localization, accessibility and offline intent
+    
+    Every child-facing string needs genuine complete supported-locale translations, not English fallbacks. Use exact group labels, semantic RTL operand order and fully operable accessible count ledgers with native keyboard/touch/switch equivalents, WCAG 2.2 AA, visible focus, mobile/zoom, reduced motion and local offline maths once downloaded. No drag-only or speech-only explanation.
+    
+    ## Sources and factual verification
+    
+    - Generated Playground taxonomy (historical generated taxonomy; Skill code remains authoritative), coordinator-owned; regeneration pending integration of this branch.
+    - Canonical Mathematics Skill Code linked by full filename in Target Skills.
+    - [Common Core Math Standards](https://corestandards.org/mathematics-standards/), comparative mathematical development only.
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone, Program-neutral. Lesson audience Grade 2, without limiting source Skill applicability.
+    
+    ## Open editorial decisions
+    
+    - The combined lesson must provide separately observable understanding of division by two and the inverse half/double relationship.
+    - Confirm model meaning, numerical examples and inclusive wording before approval.
+    
+    ## Methodologist handoff
+    
+    Draft awaiting explicit approval. Screenwriter Content and Scene spec are only provisional Drafts for review. No runtime Lesson, Question, Quiz, scoring or mastery implemented.
+  purpose: "Half and Double: Divide by Two"
+  productionNotes: |-
+    Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
+    
+    # Half and Double: Divide by Two — Content
+    
+    Status: Draft — provisional Screenwriter script pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/divisionHalvesAndDoubles/
+    Primary audience: Grade 2
+    Methodologist source: Methodologist Brief (incorporated in this config.yaml) (Draft, not editor-approved)
+    Target Skills: by2, doubleHalf — links in the Brief
+    Program dependence: None
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Integrate exact division by two with halving/doubling as inverse actions; two equal shares are formed and their combined amount restores the whole. Distinguish two large shares from pairs of two.
+    
+    12 ÷ 2 = 6, 6 + 6 = 12, and 2×6=12; 16÷2=8 with 2×8=16; 10÷2=5 with 2×5=10. For the sharing story 12÷2=6 means TWO groups each containing SIX; for grouping it means SIX complete groups of TWO. For thirteen whole counters divided among two groups, six each leaves one leftover; 13÷2=6 is not an exact whole-number equality. Whole even amounts ≤20; no forced half-objects or fractions.
+    
+    The child first predicts, then performs an exact group action, then compares the observed amounts to the original mathematical statement. Explanation and retry are available without any graded gate.
+    
+    ## LEARNER JOURNEY
+    
+    1. **Two Equal Halves:** Use 'Give one to each' for six rounds, distributing unique counters into two labeled trays; offer grouped actions and text totals.
+    2. **Double the Half:** Show both complete shares and allow the learner to recombine them and read both the addition and multiplication checks.
+    3. **Two Groups or Groups of Two?:** Show two explicitly labeled story panels: two groups of six vs six groups of two, preserving exact twelve and expression 12÷2=6.
+    4. **Halve Sixteen and Ten:** Offer independently reset 16- and 10-counter models, with optional odd thirteen contrast. Check eight and five by multiplying by two.
+    
+    ## SECTION PLAN
+    
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - Half and Double Balance (Scene specification embedded in this config.yaml), four independent Scene placements described in a separate Draft specification.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    - “Half of an even amount is one of two equal shares.” — proposed after complete model explanation.
+    - “Doubling one half rebuilds the original amount.” — proposed after complete model explanation.
+    
+    These Notes are not implemented, persisted or scheduled; unlocking is not mastery.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    Section 4 introduces new numbers and a meaningful check. All interactions are formative; Assessment Architect owns separately validated scored Questions, Skill attribution and passing thresholds. Select-one Quiz support in the generic adapter does not implement these proposed Scenes.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    Translate all text, controls, aria descriptions, status and feedback into every supported locale without fallback. A nonvisual learner must be able to perform each action with a keyboard and ordered interactive count ledger, not merely listen to a summary of a picture. RTL order must preserve the actual dividend/divisor/quotient. Ensure WCAG 2.2 AA, 200% zoom, mobile, reduced motion, child-sized targets and downloaded offline equivalence.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    Generic LessonSection_Config text/markdown/scene rendering exists, but Half and Double Balance is **proposed**. After approval, implement prop-free entries and own tests, full locale content, offline calculations and accessibility. Notes/review scheduling/PWA sync are separate product features. No React or Quiz implementation is authored here.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Methodologist Brief (incorporated in this config.yaml), Draft.
+    - Generated Skill taxonomy (historical generated taxonomy; Skill code remains authoritative), coordinator-owned and not edited.
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - The combined lesson must provide separately observable understanding of division by two and the inverse half/double relationship.
+    
+    ## HANDOFF
+    
+    Provisional Draft script plus Draft Scene specification for editorial review. Methodologist approval precedes Content/Scene review, then separate Scene Designer/Coding Agent work. No existing Lesson changed.
+    
+    Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.
