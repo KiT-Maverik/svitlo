@@ -1,678 +1,715 @@
 config:
-  id: "c376c37a-9059-52c0-b462-e8d2ea4fa574"
-  slug: "countEveryObjectOnce"
-  type: "lesson"
-  skills: ["8d4c247d-8d53-4703-9c83-9072c211a23c"]
+  id: 'c376c37a-9059-52c0-b462-e8d2ea4fa574'
+  slug: 'countEveryObjectOnce'
+  type: 'lesson'
+  skills: ['8d4c247d-8d53-4703-9c83-9072c211a23c']
   params:
     requireQuiz: false
-    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "One Object, One Count"
+      en: 'One Object, One Count'
   section:
     items:
       section1SixButtonsInATray:
         config:
-          id: "d12a43e2-a164-4fad-a4fc-0ef828c272f3"
-          slug: "section1SixButtonsInATray"
-          type: "content"
+          id: 'd12a43e2-a164-4fad-a4fc-0ef828c272f3'
+          slug: 'section1SixButtonsInATray'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Six buttons in a tray"
+              en: 'Six buttons in a tray'
             navigationLabel:
-              en: "Six buttons in a tray"
+              en: 'Six buttons in a tray'
           content:
             items:
               text1:
                 config:
-                  id: "71b59233-f83f-444c-bbc7-e1ed0f03e476"
-                  slug: "text1"
-                  type: "text"
+                  id: '71b59233-f83f-444c-bbc7-e1ed0f03e476'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are six buttons. Can we count each exactly once?"
+                      en: 'There are six buttons. Can we count each exactly once?'
               countEveryObjectOnceLab:
                 config:
-                  id: "4dbf9716-de48-477d-86fd-cc9c553f1ec3"
-                  slug: "countEveryObjectOnceLab"
-                  type: "scene"
+                  id: '4dbf9716-de48-477d-86fd-cc9c553f1ec3'
+                  slug: 'countEveryObjectOnceLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "One Object, One Count Lab"
+                      en: 'One Object, One Count Lab'
                 production:
                   specification: |
                     # One Object, One Count Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist approval**
                     Owner: Educational Screenwriter
                     Sources: Content (editorial text integrated into this config.yaml); Brief (editorial text integrated into this config.yaml) (Draft)
-                    
+
                     ## Purpose and accurate model
-                    
+
                     Match exactly one spoken count word to each new object, without skipping or recounting. 1–10 concrete objects; no digit-writing, time pressure or formal arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
-                    
+
                     ## Experience beats and acceptance
-                    
+
                     ### Placement 1: Six buttons in a tray
-                    
+
                     - Prompt: “There are six buttons. Can we count each exactly once?”
                     - Independent initial state and interaction: Mark each of six separated buttons; each advances a count-word ledger once.
                     - Correct mathematical rule: The sixth different button corresponds to the word six.
                     - Expected example: Six buttons, six distinct count words.
                     - Error feedback: If a button is counted twice, explain it has already received a number; show the unmarked items.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 2: Scattered pebbles
-                    
+
                     - Prompt: “Will the total change when the pebbles are scattered?”
                     - Independent initial state and interaction: Rearrange seven pebbles, then count by choosing a new unmarked pebble in any order.
                     - Correct mathematical rule: Any order counts the same seven distinct objects.
                     - Expected example: Seven pebbles stay seven when scattered.
                     - Error feedback: For a guess of eight, contrast the eight words with only seven unique pebbles.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 3: Find the missing stone
-                    
+
                     - Prompt: “A friend said five but one stone is still unmarked. Is the count finished?”
                     - Independent initial state and interaction: Show six stones with only five counted; let learner identify the missed item and complete a new count.
                     - Correct mathematical rule: One unmarked stone means the count is incomplete; the final total is six.
                     - Expected example: Five marked plus one unmarked = six stones.
                     - Error feedback: A five-answer highlights the uncounted stone and models all six steps.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 4: Path of nine stones
-                    
+
                     - Prompt: “How many stones lead across this little path?”
                     - Independent initial state and interaction: Independently count nine stones in a new path layout; allow ordered list navigation without tapping stones.
                     - Correct mathematical rule: Nine different marks correspond to nine count words, without repetition.
                     - Expected example: There are nine stones; each received one word.
                     - Error feedback: Replay the exact item-to-word ledger for any incomplete count.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ## Self-contained interactive state and constraints
-                    
+
                     Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
-                    
+
                     ## Visual, audio and media direction
-                    
+
                     Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
-                    
+
                     ## Localization, RTL, WCAG and offline
-                    
+
                     Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
-                    
+
                     ## Cross-placement acceptance criteria
-                    
+
                     - Each of four initial states is reproducible and mathematically accurate.
                     - Every error path offers specific reasoning and a recoverable action.
                     - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
                     - Reset in one placement never changes another.
                     - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
                     - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
-                    
+
                     ## Review and dependencies
-                    
+
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
-                  purpose: "Proposed interactive Scene for Six buttons in a tray"
+                  purpose: 'Proposed interactive Scene for Six buttons in a tray'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "d89d09d8-b6b4-4ce3-8e15-06ca041bc0fd"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: 'd89d09d8-b6b4-4ce3-8e15-06ca041bc0fd'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The sixth different button corresponds to the word six. Example: Six buttons, six distinct count words."
-            order: ["text1","countEveryObjectOnceLab","markdown2"]
+                      en: 'The sixth different button corresponds to the word six. Example: Six buttons, six distinct count words.'
+            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
         production:
-          purpose: "Six buttons in a tray"
+          purpose: 'Six buttons in a tray'
           pedagogicalIntent: |
             ### Section 1 — Six buttons in a tray
-            
+
             **text / learner invitation:** “There are six buttons. Can we count each exactly once?”
-            
+
             **scene / learner action:** countEveryObjectOnce Lab (Scene specification embedded in this config.yaml), placement 1. Mark each of six separated buttons; each advances a count-word ledger once. Child may predict, inspect, revise or reveal a full worked model.
-            
+
             **markdown / explanation:** The sixth different button corresponds to the word six. Example: Six buttons, six distinct count words.
-            
+
             **Formative feedback:** If a button is counted twice, explain it has already received a number; show the unmarked items. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
-            
+
             **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
-            
+
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section2ScatteredPebbles:
         config:
-          id: "226f6a14-865a-4131-bc51-ca860b442333"
-          slug: "section2ScatteredPebbles"
-          type: "content"
+          id: '226f6a14-865a-4131-bc51-ca860b442333'
+          slug: 'section2ScatteredPebbles'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Scattered pebbles"
+              en: 'Scattered pebbles'
             navigationLabel:
-              en: "Scattered pebbles"
+              en: 'Scattered pebbles'
           content:
             items:
               text1:
                 config:
-                  id: "a3a135d9-b2d3-4700-98ee-d077e3d056b6"
-                  slug: "text1"
-                  type: "text"
+                  id: 'a3a135d9-b2d3-4700-98ee-d077e3d056b6'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Will the total change when the pebbles are scattered?"
+                      en: 'Will the total change when the pebbles are scattered?'
               countEveryObjectOnceLab:
                 config:
-                  id: "181e3e10-c9b3-40e9-8c17-51b2fcf2b583"
-                  slug: "countEveryObjectOnceLab"
-                  type: "scene"
+                  id: '181e3e10-c9b3-40e9-8c17-51b2fcf2b583'
+                  slug: 'countEveryObjectOnceLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "One Object, One Count Lab"
+                      en: 'One Object, One Count Lab'
                 production:
                   specification: |
                     # One Object, One Count Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist approval**
                     Owner: Educational Screenwriter
                     Sources: Content (editorial text integrated into this config.yaml); Brief (editorial text integrated into this config.yaml) (Draft)
-                    
+
                     ## Purpose and accurate model
-                    
+
                     Match exactly one spoken count word to each new object, without skipping or recounting. 1–10 concrete objects; no digit-writing, time pressure or formal arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
-                    
+
                     ## Experience beats and acceptance
-                    
+
                     ### Placement 1: Six buttons in a tray
-                    
+
                     - Prompt: “There are six buttons. Can we count each exactly once?”
                     - Independent initial state and interaction: Mark each of six separated buttons; each advances a count-word ledger once.
                     - Correct mathematical rule: The sixth different button corresponds to the word six.
                     - Expected example: Six buttons, six distinct count words.
                     - Error feedback: If a button is counted twice, explain it has already received a number; show the unmarked items.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 2: Scattered pebbles
-                    
+
                     - Prompt: “Will the total change when the pebbles are scattered?”
                     - Independent initial state and interaction: Rearrange seven pebbles, then count by choosing a new unmarked pebble in any order.
                     - Correct mathematical rule: Any order counts the same seven distinct objects.
                     - Expected example: Seven pebbles stay seven when scattered.
                     - Error feedback: For a guess of eight, contrast the eight words with only seven unique pebbles.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 3: Find the missing stone
-                    
+
                     - Prompt: “A friend said five but one stone is still unmarked. Is the count finished?”
                     - Independent initial state and interaction: Show six stones with only five counted; let learner identify the missed item and complete a new count.
                     - Correct mathematical rule: One unmarked stone means the count is incomplete; the final total is six.
                     - Expected example: Five marked plus one unmarked = six stones.
                     - Error feedback: A five-answer highlights the uncounted stone and models all six steps.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 4: Path of nine stones
-                    
+
                     - Prompt: “How many stones lead across this little path?”
                     - Independent initial state and interaction: Independently count nine stones in a new path layout; allow ordered list navigation without tapping stones.
                     - Correct mathematical rule: Nine different marks correspond to nine count words, without repetition.
                     - Expected example: There are nine stones; each received one word.
                     - Error feedback: Replay the exact item-to-word ledger for any incomplete count.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ## Self-contained interactive state and constraints
-                    
+
                     Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
-                    
+
                     ## Visual, audio and media direction
-                    
+
                     Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
-                    
+
                     ## Localization, RTL, WCAG and offline
-                    
+
                     Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
-                    
+
                     ## Cross-placement acceptance criteria
-                    
+
                     - Each of four initial states is reproducible and mathematically accurate.
                     - Every error path offers specific reasoning and a recoverable action.
                     - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
                     - Reset in one placement never changes another.
                     - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
                     - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
-                    
+
                     ## Review and dependencies
-                    
+
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
-                  purpose: "Proposed interactive Scene for Scattered pebbles"
+                  purpose: 'Proposed interactive Scene for Scattered pebbles'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "e759f7d6-7be2-4b67-bda0-af7c99237c3d"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: 'e759f7d6-7be2-4b67-bda0-af7c99237c3d'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Any order counts the same seven distinct objects. Example: Seven pebbles stay seven when scattered."
-            order: ["text1","countEveryObjectOnceLab","markdown2"]
+                      en: 'Any order counts the same seven distinct objects. Example: Seven pebbles stay seven when scattered.'
+            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
         production:
-          purpose: "Scattered pebbles"
+          purpose: 'Scattered pebbles'
           pedagogicalIntent: |
             ### Section 2 — Scattered pebbles
-            
+
             **text / learner invitation:** “Will the total change when the pebbles are scattered?”
-            
+
             **scene / learner action:** countEveryObjectOnce Lab (Scene specification embedded in this config.yaml), placement 2. Rearrange seven pebbles, then count by choosing a new unmarked pebble in any order. Child may predict, inspect, revise or reveal a full worked model.
-            
+
             **markdown / explanation:** Any order counts the same seven distinct objects. Example: Seven pebbles stay seven when scattered.
-            
+
             **Formative feedback:** For a guess of eight, contrast the eight words with only seven unique pebbles. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
-            
+
             **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
-            
+
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section3FindTheMissingStone:
         config:
-          id: "8a63a49e-cea0-4415-97f6-c9a8769c9cd7"
-          slug: "section3FindTheMissingStone"
-          type: "content"
+          id: '8a63a49e-cea0-4415-97f6-c9a8769c9cd7'
+          slug: 'section3FindTheMissingStone'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Find the missing stone"
+              en: 'Find the missing stone'
             navigationLabel:
-              en: "Find the missing stone"
+              en: 'Find the missing stone'
           content:
             items:
               text1:
                 config:
-                  id: "f050bb2f-8d40-49b4-b332-3edd55c6803a"
-                  slug: "text1"
-                  type: "text"
+                  id: 'f050bb2f-8d40-49b4-b332-3edd55c6803a'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A friend said five but one stone is still unmarked. Is the count finished?"
+                      en: 'A friend said five but one stone is still unmarked. Is the count finished?'
               countEveryObjectOnceLab:
                 config:
-                  id: "3e827b7a-f942-4f55-b40b-0f8c6c401e9f"
-                  slug: "countEveryObjectOnceLab"
-                  type: "scene"
+                  id: '3e827b7a-f942-4f55-b40b-0f8c6c401e9f'
+                  slug: 'countEveryObjectOnceLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "One Object, One Count Lab"
+                      en: 'One Object, One Count Lab'
                 production:
                   specification: |
                     # One Object, One Count Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist approval**
                     Owner: Educational Screenwriter
                     Sources: Content (editorial text integrated into this config.yaml); Brief (editorial text integrated into this config.yaml) (Draft)
-                    
+
                     ## Purpose and accurate model
-                    
+
                     Match exactly one spoken count word to each new object, without skipping or recounting. 1–10 concrete objects; no digit-writing, time pressure or formal arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
-                    
+
                     ## Experience beats and acceptance
-                    
+
                     ### Placement 1: Six buttons in a tray
-                    
+
                     - Prompt: “There are six buttons. Can we count each exactly once?”
                     - Independent initial state and interaction: Mark each of six separated buttons; each advances a count-word ledger once.
                     - Correct mathematical rule: The sixth different button corresponds to the word six.
                     - Expected example: Six buttons, six distinct count words.
                     - Error feedback: If a button is counted twice, explain it has already received a number; show the unmarked items.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 2: Scattered pebbles
-                    
+
                     - Prompt: “Will the total change when the pebbles are scattered?”
                     - Independent initial state and interaction: Rearrange seven pebbles, then count by choosing a new unmarked pebble in any order.
                     - Correct mathematical rule: Any order counts the same seven distinct objects.
                     - Expected example: Seven pebbles stay seven when scattered.
                     - Error feedback: For a guess of eight, contrast the eight words with only seven unique pebbles.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 3: Find the missing stone
-                    
+
                     - Prompt: “A friend said five but one stone is still unmarked. Is the count finished?”
                     - Independent initial state and interaction: Show six stones with only five counted; let learner identify the missed item and complete a new count.
                     - Correct mathematical rule: One unmarked stone means the count is incomplete; the final total is six.
                     - Expected example: Five marked plus one unmarked = six stones.
                     - Error feedback: A five-answer highlights the uncounted stone and models all six steps.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 4: Path of nine stones
-                    
+
                     - Prompt: “How many stones lead across this little path?”
                     - Independent initial state and interaction: Independently count nine stones in a new path layout; allow ordered list navigation without tapping stones.
                     - Correct mathematical rule: Nine different marks correspond to nine count words, without repetition.
                     - Expected example: There are nine stones; each received one word.
                     - Error feedback: Replay the exact item-to-word ledger for any incomplete count.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ## Self-contained interactive state and constraints
-                    
+
                     Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
-                    
+
                     ## Visual, audio and media direction
-                    
+
                     Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
-                    
+
                     ## Localization, RTL, WCAG and offline
-                    
+
                     Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
-                    
+
                     ## Cross-placement acceptance criteria
-                    
+
                     - Each of four initial states is reproducible and mathematically accurate.
                     - Every error path offers specific reasoning and a recoverable action.
                     - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
                     - Reset in one placement never changes another.
                     - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
                     - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
-                    
+
                     ## Review and dependencies
-                    
+
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
-                  purpose: "Proposed interactive Scene for Find the missing stone"
+                  purpose: 'Proposed interactive Scene for Find the missing stone'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "453f4784-a962-4abb-98bc-fb9afaec43d1"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '453f4784-a962-4abb-98bc-fb9afaec43d1'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "One unmarked stone means the count is incomplete; the final total is six. Example: Five marked plus one unmarked = six stones."
-            order: ["text1","countEveryObjectOnceLab","markdown2"]
+                      en: 'One unmarked stone means the count is incomplete; the final total is six. Example: Five marked plus one unmarked = six stones.'
+            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
         production:
-          purpose: "Find the missing stone"
+          purpose: 'Find the missing stone'
           pedagogicalIntent: |
             ### Section 3 — Find the missing stone
-            
+
             **text / learner invitation:** “A friend said five but one stone is still unmarked. Is the count finished?”
-            
+
             **scene / learner action:** countEveryObjectOnce Lab (Scene specification embedded in this config.yaml), placement 3. Show six stones with only five counted; let learner identify the missed item and complete a new count. Child may predict, inspect, revise or reveal a full worked model.
-            
+
             **markdown / explanation:** One unmarked stone means the count is incomplete; the final total is six. Example: Five marked plus one unmarked = six stones.
-            
+
             **Formative feedback:** A five-answer highlights the uncounted stone and models all six steps. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
-            
+
             **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
-            
+
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
       section4PathOfNineStones:
         config:
-          id: "853eaed6-c0b4-4db7-8bf7-fc34ca9cacd5"
-          slug: "section4PathOfNineStones"
-          type: "content"
+          id: '853eaed6-c0b4-4db7-8bf7-fc34ca9cacd5'
+          slug: 'section4PathOfNineStones'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Path of nine stones"
+              en: 'Path of nine stones'
             navigationLabel:
-              en: "Path of nine stones"
+              en: 'Path of nine stones'
           content:
             items:
               text1:
                 config:
-                  id: "8483cf87-e5cd-489a-b5b0-74f90cb8f574"
-                  slug: "text1"
-                  type: "text"
+                  id: '8483cf87-e5cd-489a-b5b0-74f90cb8f574'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "How many stones lead across this little path?"
+                      en: 'How many stones lead across this little path?'
               countEveryObjectOnceLab:
                 config:
-                  id: "d2c1c782-cecf-417f-9daf-c9b02845e695"
-                  slug: "countEveryObjectOnceLab"
-                  type: "scene"
+                  id: 'd2c1c782-cecf-417f-9daf-c9b02845e695'
+                  slug: 'countEveryObjectOnceLab'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
-                      en: "One Object, One Count Lab"
+                      en: 'One Object, One Count Lab'
                 production:
                   specification: |
                     # One Object, One Count Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist approval**
                     Owner: Educational Screenwriter
                     Sources: Content (editorial text integrated into this config.yaml); Brief (editorial text integrated into this config.yaml) (Draft)
-                    
+
                     ## Purpose and accurate model
-                    
+
                     Match exactly one spoken count word to each new object, without skipping or recounting. 1–10 concrete objects; no digit-writing, time pressure or formal arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
-                    
+
                     ## Experience beats and acceptance
-                    
+
                     ### Placement 1: Six buttons in a tray
-                    
+
                     - Prompt: “There are six buttons. Can we count each exactly once?”
                     - Independent initial state and interaction: Mark each of six separated buttons; each advances a count-word ledger once.
                     - Correct mathematical rule: The sixth different button corresponds to the word six.
                     - Expected example: Six buttons, six distinct count words.
                     - Error feedback: If a button is counted twice, explain it has already received a number; show the unmarked items.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 2: Scattered pebbles
-                    
+
                     - Prompt: “Will the total change when the pebbles are scattered?”
                     - Independent initial state and interaction: Rearrange seven pebbles, then count by choosing a new unmarked pebble in any order.
                     - Correct mathematical rule: Any order counts the same seven distinct objects.
                     - Expected example: Seven pebbles stay seven when scattered.
                     - Error feedback: For a guess of eight, contrast the eight words with only seven unique pebbles.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 3: Find the missing stone
-                    
+
                     - Prompt: “A friend said five but one stone is still unmarked. Is the count finished?”
                     - Independent initial state and interaction: Show six stones with only five counted; let learner identify the missed item and complete a new count.
                     - Correct mathematical rule: One unmarked stone means the count is incomplete; the final total is six.
                     - Expected example: Five marked plus one unmarked = six stones.
                     - Error feedback: A five-answer highlights the uncounted stone and models all six steps.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ### Placement 4: Path of nine stones
-                    
+
                     - Prompt: “How many stones lead across this little path?”
                     - Independent initial state and interaction: Independently count nine stones in a new path layout; allow ordered list navigation without tapping stones.
                     - Correct mathematical rule: Nine different marks correspond to nine count words, without repetition.
                     - Expected example: There are nine stones; each received one word.
                     - Error feedback: Replay the exact item-to-word ledger for any incomplete count.
                     - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
-                    
+
                     ## Self-contained interactive state and constraints
-                    
+
                     Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
-                    
+
                     ## Visual, audio and media direction
-                    
+
                     Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
-                    
+
                     ## Localization, RTL, WCAG and offline
-                    
+
                     Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
-                    
+
                     ## Cross-placement acceptance criteria
-                    
+
                     - Each of four initial states is reproducible and mathematically accurate.
                     - Every error path offers specific reasoning and a recoverable action.
                     - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
                     - Reset in one placement never changes another.
                     - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
                     - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
-                    
+
                     ## Review and dependencies
-                    
+
                     Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
-                  purpose: "Proposed interactive Scene for Path of nine stones"
+                  purpose: 'Proposed interactive Scene for Path of nine stones'
                   productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
               markdown2:
                 config:
-                  id: "67c3c6ec-132d-4c31-b7b2-2076cb31457b"
-                  slug: "markdown2"
-                  type: "markdown"
+                  id: '67c3c6ec-132d-4c31-b7b2-2076cb31457b'
+                  slug: 'markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Nine different marks correspond to nine count words, without repetition. Example: There are nine stones; each received one word."
-            order: ["text1","countEveryObjectOnceLab","markdown2"]
+                      en: 'Nine different marks correspond to nine count words, without repetition. Example: There are nine stones; each received one word.'
+            order: ['text1', 'countEveryObjectOnceLab', 'markdown2']
         production:
-          purpose: "Path of nine stones"
+          purpose: 'Path of nine stones'
           pedagogicalIntent: |
             ### Section 4 — Path of nine stones
-            
+
             **text / learner invitation:** “How many stones lead across this little path?”
-            
+
             **scene / learner action:** countEveryObjectOnce Lab (Scene specification embedded in this config.yaml), placement 4. Independently count nine stones in a new path layout; allow ordered list navigation without tapping stones. Child may predict, inspect, revise or reveal a full worked model.
-            
+
             **markdown / explanation:** Nine different marks correspond to nine count words, without repetition. Example: There are nine stones; each received one word.
-            
+
             **Formative feedback:** Replay the exact item-to-word ledger for any incomplete count. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
-            
+
             **Transition:** Independent transfer: explain the total or symbol in this unfamiliar context.
-            
+
             **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
-            
-          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
-    order: ["section1SixButtonsInATray","section2ScatteredPebbles","section3FindTheMissingStone","section4PathOfNineStones"]
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order:
+      [
+        'section1SixButtonsInATray',
+        'section2ScatteredPebbles',
+        'section3FindTheMissingStone',
+        'section4PathOfNineStones',
+      ]
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # One Object, One Count — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: countEveryObjectOnce
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Match exactly one spoken count word to each new object, without skipping or recounting. Program-neutral and independently teachable.
-    
+
     ## Target audience
-    
+
     **Grade 1 (primary audience)**, early readers using short prompts, countable illustrations, and optional narration. No requirement for mouse use, hearing, or fluent reading.
-    
+
     ## Prerequisites
-    
+
     Know the spoken number words one to five; point to distinct objects. Provide an optional introductory reminder, not an assumption of demonstrated mastery.
-    
+
     ## Target Skills
-    
+
     - [oneToOne.data.ts](../../../../data/skills/counting/sequence/skills/oneToOne.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     1. The sixth different button corresponds to the word six.
     2. Any order counts the same seven distinct objects.
     3. One unmarked stone means the count is incomplete; the final total is six.
     4. Nine different marks correspond to nine count words, without repetition.
-    
+
     - Explain a new instance using the underlying number relationship, not merely identify a familiar arrangement.
-    
+
     ## Essential subject matter and instructional depth
-    
+
     1–10 concrete objects; no digit-writing, time pressure or formal arithmetic. Verified model examples:
-    
+
     - Six buttons, six distinct count words.
     - Seven pebbles stay seven when scattered.
     - Five marked plus one unmarked = six stones.
     - There are nine stones; each received one word.
-    
+
     ## Conceptual progression and dependencies
-    
+
     1. Six buttons in a tray: Mark each of six separated buttons; each advances a count-word ledger once.
     2. Scattered pebbles: Rearrange seven pebbles, then count by choosing a new unmarked pebble in any order.
     3. Find the missing stone: Show six stones with only five counted; let learner identify the missed item and complete a new count.
     4. Path of nine stones: Independently count nine stones in a new path layout; allow ordered list navigation without tapping stones.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Repeating a word for one item, omitting obscured objects, double-counting an already marked object. Feedback must point to the relevant concrete counting evidence. No score, timed drill, or inference of mastered competence.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     English editorial source only. All learner-facing prompts, count words, control text, accessible descriptions and feedback require complete genuine translations across supported locales. Preserve semantic numeric order under RTL. WCAG 2.2 AA: keyboard/switch/touch support, nonvisual ordered ledger, visible focus, sufficient targets, zoom and reduced motion; no drag-only or audio-only tasks. Design for deterministic fully downloaded offline use, without claiming offline capability is implemented.
-    
+
     ## Sources and factual verification
-    
+
     - The canonical Skill data files linked above, copied unchanged from Mathematics main; regenerated Playground taxonomy pending coordinator.
     - Studio Methodologist Persona and Lesson Editorial Artifacts, consulted in this batch; not runtime contracts.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Standalone. No Program dependency or specific Curriculum alignment claimed.
-    
+
     ## Open editorial decisions
-    
+
     Editor approval required for this Brief, target Skills and numerical boundaries. Confirm genuine locales and accessible Scene interaction before implementation.
-    
+
     ## Methodologist handoff
-    
+
     **Draft, not Approved.** Subsequent Content and Scene files are provisional under explicit batch authorization; formal editorial approval gate has not passed.
   productionNotes: |-
     Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
-    
+
     # One Object, One Count — Lesson Content
-    
+
     Status: **Provisional Draft — pending Methodologist approval**
     Source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft)
     Program dependence: None
     Code: Not implemented
-    
+
     ## Instructional concept
-    
+
     Match exactly one spoken count word to each new object, without skipping or recounting. Every Section invites prediction or observation, meaningful learner control, explanatory feedback, and a chance to apply the reasoning to a changed representation, not an extended lecture followed by a token quiz.
-    
+
     ## Learner journey / ordered Section plan
-    
+
     Each Section is a proposed `LessonSection_Config` with vertically ordered existing Resource types: `text` → proposed new `scene` → `markdown`. The generic scene resource type exists; the custom Scene specified here is **not implemented**. Independent prop-free placements have their own starting states and no external mode prop.
-    
-    
+
+
     ## Custom Scene specification
-    
+
     - countEveryObjectOnce Lab (Scene specification embedded in this config.yaml) — four independently instantiated prop-free Scenes, proposed only.
-    
+
     ## Lesson Notes — proposed
-    
+
     Potential concise later recall cue: “Six buttons, six distinct count words.” Notes, unlocking, persistence and review scheduling are **not** claimed implemented.
-    
+
     ## Practice, retrieval, transfer and assessment boundaries
-    
+
     Section 4 provides independent application in a changed context. Revisit countable evidence if answers differ. No Question, Quiz, scoring, mastery or persistence is designed here.
-    
+
     ## Localization, accessibility and offline
-    
+
     Provide complete genuine translation of every caption, feedback, numeral word and accessible label to all supported locales (no English fallback). RTL mirrors semantic layout without reversing mathematical sequence. Provide WCAG 2.2 AA alternatives, reduced motion, screen-reader count ledger, small-screen support and fully selected-locale offline behavior as planned requirements, not implemented claims.
-    
+
     ## Editorial dependencies
-    
+
     Provisional only: explicit Methodologist approval, Screenwriter review, Scene implementation, localization, and independent Scene tests remain necessary. Shared Skill index and generated taxonomy are coordinator-owned.
-    
-    
+
+
     Migration status: provisional draft; pending independent approvals, translation and implementation.
