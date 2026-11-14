@@ -1,0 +1,761 @@
+config:
+  id: "315672f1-60f8-5b64-b80f-2c9eef978a83"
+  slug: "readingBarCharts"
+  type: "lesson"
+  skills: ["391638bc-6f41-49cf-b499-a35253bb0ef7"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Reading a Bar Chart"
+  section:
+    items:
+      section1:
+        config:
+          id: "86066f26-4b6e-5e45-90b4-ef26f126be13"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A bar's length stands for a number"
+            navigationLabel:
+              en: "A bar's length stands for a number"
+          content:
+            items:
+              text1:
+                config:
+                  id: "652da597-9a00-5664-a668-259743b6c816"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "This chart shows how many fruit tokens we counted: apples, pears and plums. Which name belongs to each bar?"
+                production:
+                  purpose: "Source learner prompt/feedback"
+              scene1:
+                config:
+                  id: "e910d868-8de7-537d-9828-5868ac2e31c7"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "This chart shows how many fruit tokens we counted: apples, pears and plums. Which name belongs to each bar?"
+                production:
+                  specification: |
+                    # BarChartReader — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Reading a Bar Chart Content (embedded in this Lesson config.yaml)
+                    **Brief:** Methodologist Draft (embedded in this Lesson config.yaml)
+                    **Target Skill:** [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Read categorical counts from a bar chart using its category labels, baseline and numerical scale, then compare values without treating bar width or decoration as the count.
+                    
+                    An inspectable bar-chart model with a numbered 0–6 y-axis, fixed unit scale 1, categorical x-axis and labelled count table; a deliberately misleading variable-width view is clearly marked as a bad design and can never replace the canonical model.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use apples=4, pears=2, plums=5, y-axis 0 to 6 in unit steps; 5 > 4 > 2. For transfer, use books read by three fictional readers or library shelf categories: red=3, blue=5, yellow=1 with a zero baseline and count unit 1. All charts have explicit unit names and source context.
+                    
+                    **Hard limits:** Do not teach constructing bar charts (separate Skill), unequal numeric steps, broken baselines, frequency ratios, 2D bar area interpretation, multiplication with scale values, histogram bins, percentages or statistical conclusions beyond simple comparisons.
+                    
+                    ## Required observable states
+                    
+                    | State                 | Data or model facts                                                                | Correct interpretation             |
+                    | --------------------- | ---------------------------------------------------------------------------------- | ---------------------------------- |
+                    | Initial chart         | Apples 4, pears 2, plums 5; all bars equal width; scale 0–6.                       | Bar height encodes category count. |
+                    | Selected category     | Apples selected; highlight baseline 0, tick 4, bar top at 4.                       | Apples count equals 4.             |
+                    | Misleading decoration | Pear bar artificially wide but still ends at 2; warning states width is not count. | Pears remain 2, plums remain 5.    |
+                    | New dataset           | Three equally wide bars red=3, blue=5, yellow=1 with same baseline.                | Smallest yellow 1; highest blue 5. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A bar's length stands for a number:** If the child counts a bar's decorative width: “The number goes up the scale, not across the width of the bar.”
+                    - **Read three values:** If apples are read as 5: “The apple bar stops at the tick marked 4. The plum bar is the one that reaches 5.”
+                    - **Which group has more?:** If pears are called most because the pear bar is wide: “Read height against the scale: pears are 2, plums are 5. Width is not the count.”
+                    - **Read a new chart without a model answer:** For smallest red: “Follow the yellow bar to the 1 mark and red to the 3 mark; 1 is smaller than 3.”
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Provide a plain semantic table of category/value pairs alongside a numerically described chart, reachable through the same selection controls. State baseline 0 and tick step 1. Use meaningful labels in addition to visual highlights; compare numeric values by keyboard and speech without relying on color or pointer tracing.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  purpose: "A bar's length stands for a number: independent scene placement"
+                  productionNotes: "Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID."
+              markdown1:
+                config:
+                  id: "c4632955-71e0-56de-bec5-a955988803e4"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Find the bar’s name, then read its top against the numbered scale. Start from zero."
+                production:
+                  purpose: "Source explanatory learner copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "A bar's length stands for a number"
+          productionNotes: |-
+            **Purpose:** Introduce category and count axes and the zero baseline.
+            
+            **Block sequence — a single column:**
+            
+            1. **`text` (existing Resource type).** “This chart shows how many fruit tokens we counted: apples, pears and plums. Which name belongs to each bar?”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Display a unit-scaled 0–6 vertical bar chart, labels under three bars and optional visible horizontal unit guides. Highlight the ‘0’ baseline and ‘1’ to ‘6’ numbers.
+            
+            3. **`markdown` (existing Resource type).** “Find the bar’s name, then read its top against the numbered scale. Start from zero.”
+            
+            **Learner's actual move:** Select a labelled category and see its bar, baseline and top marker named.
+            
+            **Misconception-specific explanation:** If the child counts a bar's decorative width: “The number goes up the scale, not across the width of the bar.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+      section2:
+        config:
+          id: "85066d93-486e-598c-8fb4-ed93f226bfa6"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Read three values"
+            navigationLabel:
+              en: "Read three values"
+          content:
+            items:
+              text1:
+                config:
+                  id: "301cfb96-caf2-5771-b157-7b9678c77217"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "How many apples? Trace upward from zero until the apple bar stops. Do the same for pears and plums."
+                production:
+                  purpose: "Source learner prompt/feedback"
+              scene1:
+                config:
+                  id: "51114447-d6d8-56a2-8028-c447442dc5e8"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "How many apples? Trace upward from zero until the apple bar stops. Do the same for pears and plums."
+                production:
+                  specification: |
+                    # BarChartReader — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Reading a Bar Chart Content (embedded in this Lesson config.yaml)
+                    **Brief:** Methodologist Draft (embedded in this Lesson config.yaml)
+                    **Target Skill:** [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Read categorical counts from a bar chart using its category labels, baseline and numerical scale, then compare values without treating bar width or decoration as the count.
+                    
+                    An inspectable bar-chart model with a numbered 0–6 y-axis, fixed unit scale 1, categorical x-axis and labelled count table; a deliberately misleading variable-width view is clearly marked as a bad design and can never replace the canonical model.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use apples=4, pears=2, plums=5, y-axis 0 to 6 in unit steps; 5 > 4 > 2. For transfer, use books read by three fictional readers or library shelf categories: red=3, blue=5, yellow=1 with a zero baseline and count unit 1. All charts have explicit unit names and source context.
+                    
+                    **Hard limits:** Do not teach constructing bar charts (separate Skill), unequal numeric steps, broken baselines, frequency ratios, 2D bar area interpretation, multiplication with scale values, histogram bins, percentages or statistical conclusions beyond simple comparisons.
+                    
+                    ## Required observable states
+                    
+                    | State                 | Data or model facts                                                                | Correct interpretation             |
+                    | --------------------- | ---------------------------------------------------------------------------------- | ---------------------------------- |
+                    | Initial chart         | Apples 4, pears 2, plums 5; all bars equal width; scale 0–6.                       | Bar height encodes category count. |
+                    | Selected category     | Apples selected; highlight baseline 0, tick 4, bar top at 4.                       | Apples count equals 4.             |
+                    | Misleading decoration | Pear bar artificially wide but still ends at 2; warning states width is not count. | Pears remain 2, plums remain 5.    |
+                    | New dataset           | Three equally wide bars red=3, blue=5, yellow=1 with same baseline.                | Smallest yellow 1; highest blue 5. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A bar's length stands for a number:** If the child counts a bar's decorative width: “The number goes up the scale, not across the width of the bar.”
+                    - **Read three values:** If apples are read as 5: “The apple bar stops at the tick marked 4. The plum bar is the one that reaches 5.”
+                    - **Which group has more?:** If pears are called most because the pear bar is wide: “Read height against the scale: pears are 2, plums are 5. Width is not the count.”
+                    - **Read a new chart without a model answer:** For smallest red: “Follow the yellow bar to the 1 mark and red to the 3 mark; 1 is smaller than 3.”
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Provide a plain semantic table of category/value pairs alongside a numerically described chart, reachable through the same selection controls. State baseline 0 and tick step 1. Use meaningful labels in addition to visual highlights; compare numeric values by keyboard and speech without relying on color or pointer tracing.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  purpose: "Read three values: independent scene placement"
+                  productionNotes: "Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID."
+              markdown1:
+                config:
+                  id: "4bfdef64-ec54-5b8b-8660-6f6410ed3dd5"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The chart tells us 4 apples, 2 pears and 5 plums. The line at the top of each bar matches its count."
+                production:
+                  purpose: "Source explanatory learner copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Read three values"
+          productionNotes: |-
+            **Purpose:** Read the exact height of each bar, not an approximate pictorial impression.
+            
+            **Block sequence — a single column:**
+            
+            1. **`text` (existing Resource type).** “How many apples? Trace upward from zero until the apple bar stops. Do the same for pears and plums.”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Select apples, pears or plums to reveal counted unit steps from zero. Hide exact labels until requested; then show apples 4, pears 2, plums 5.
+            
+            3. **`markdown` (existing Resource type).** “The chart tells us 4 apples, 2 pears and 5 plums. The line at the top of each bar matches its count.”
+            
+            **Learner's actual move:** Predict the exact value of two bars, inspect tick marks and reveal the source table.
+            
+            **Misconception-specific explanation:** If apples are read as 5: “The apple bar stops at the tick marked 4. The plum bar is the one that reaches 5.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+      section3:
+        config:
+          id: "84066c00-496e-5b1f-8eb4-ec00f326c139"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Which group has more?"
+            navigationLabel:
+              en: "Which group has more?"
+          content:
+            items:
+              text1:
+                config:
+                  id: "91f883f5-5393-5062-9333-03f5367ef5e8"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Which group has the most tokens? If a bar is drawn wider, does that change its number?"
+                production:
+                  purpose: "Source learner prompt/feedback"
+              scene1:
+                config:
+                  id: "df500b4e-9ead-5eab-8e67-8b4ea5a29a79"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Which group has the most tokens? If a bar is drawn wider, does that change its number?"
+                production:
+                  specification: |
+                    # BarChartReader — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Reading a Bar Chart Content (embedded in this Lesson config.yaml)
+                    **Brief:** Methodologist Draft (embedded in this Lesson config.yaml)
+                    **Target Skill:** [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Read categorical counts from a bar chart using its category labels, baseline and numerical scale, then compare values without treating bar width or decoration as the count.
+                    
+                    An inspectable bar-chart model with a numbered 0–6 y-axis, fixed unit scale 1, categorical x-axis and labelled count table; a deliberately misleading variable-width view is clearly marked as a bad design and can never replace the canonical model.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use apples=4, pears=2, plums=5, y-axis 0 to 6 in unit steps; 5 > 4 > 2. For transfer, use books read by three fictional readers or library shelf categories: red=3, blue=5, yellow=1 with a zero baseline and count unit 1. All charts have explicit unit names and source context.
+                    
+                    **Hard limits:** Do not teach constructing bar charts (separate Skill), unequal numeric steps, broken baselines, frequency ratios, 2D bar area interpretation, multiplication with scale values, histogram bins, percentages or statistical conclusions beyond simple comparisons.
+                    
+                    ## Required observable states
+                    
+                    | State                 | Data or model facts                                                                | Correct interpretation             |
+                    | --------------------- | ---------------------------------------------------------------------------------- | ---------------------------------- |
+                    | Initial chart         | Apples 4, pears 2, plums 5; all bars equal width; scale 0–6.                       | Bar height encodes category count. |
+                    | Selected category     | Apples selected; highlight baseline 0, tick 4, bar top at 4.                       | Apples count equals 4.             |
+                    | Misleading decoration | Pear bar artificially wide but still ends at 2; warning states width is not count. | Pears remain 2, plums remain 5.    |
+                    | New dataset           | Three equally wide bars red=3, blue=5, yellow=1 with same baseline.                | Smallest yellow 1; highest blue 5. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A bar's length stands for a number:** If the child counts a bar's decorative width: “The number goes up the scale, not across the width of the bar.”
+                    - **Read three values:** If apples are read as 5: “The apple bar stops at the tick marked 4. The plum bar is the one that reaches 5.”
+                    - **Which group has more?:** If pears are called most because the pear bar is wide: “Read height against the scale: pears are 2, plums are 5. Width is not the count.”
+                    - **Read a new chart without a model answer:** For smallest red: “Follow the yellow bar to the 1 mark and red to the 3 mark; 1 is smaller than 3.”
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Provide a plain semantic table of category/value pairs alongside a numerically described chart, reachable through the same selection controls. State baseline 0 and tick step 1. Use meaningful labels in addition to visual highlights; compare numeric values by keyboard and speech without relying on color or pointer tracing.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  purpose: "Which group has more?: independent scene placement"
+                  productionNotes: "Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID."
+              markdown1:
+                config:
+                  id: "52689d6f-a536-5ef0-8ccb-1d6fa0d68492"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Plums have the most, 5. Pears have only 2 even if somebody draws their bar very wide. Trust the number scale."
+                production:
+                  purpose: "Source explanatory learner copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Which group has more?"
+          productionNotes: |-
+            **Purpose:** Compare two numerical values and expose a visual distractor.
+            
+            **Block sequence — a single column:**
+            
+            1. **`text` (existing Resource type).** “Which group has the most tokens? If a bar is drawn wider, does that change its number?”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Show the correct equal-width bars. An ‘Inspect misleading widths’ mode then widens the pear bar while keeping its height 2 and explicitly flags that distorted width is not a value and is bad chart design.
+            
+            3. **`markdown` (existing Resource type).** “Plums have the most, 5. Pears have only 2 even if somebody draws their bar very wide. Trust the number scale.”
+            
+            **Learner's actual move:** Name maximum and minimum, then explain why changing bar width is irrelevant or misleading.
+            
+            **Misconception-specific explanation:** If pears are called most because the pear bar is wide: “Read height against the scale: pears are 2, plums are 5. Width is not the count.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+      section4:
+        config:
+          id: "8b067705-466e-5666-95b4-f705f426c2cc"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Read a new chart without a model answer"
+            navigationLabel:
+              en: "Read a new chart without a model answer"
+          content:
+            items:
+              text1:
+                config:
+                  id: "f8825824-f3b9-57d7-b9bc-d8247c794db1"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A new chart counts three kinds of cards: red 3, blue 5, yellow 1. Which is the smallest group? How many are blue?"
+                production:
+                  purpose: "Source learner prompt/feedback"
+              scene1:
+                config:
+                  id: "e8719d3d-bd40-58a8-9789-1d3df0fbdee2"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A new chart counts three kinds of cards: red 3, blue 5, yellow 1. Which is the smallest group? How many are blue?"
+                production:
+                  specification: |
+                    # BarChartReader — Screenwriter Scene Specification
+                    
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Reading a Bar Chart Content (embedded in this Lesson config.yaml)
+                    **Brief:** Methodologist Draft (embedded in this Lesson config.yaml)
+                    **Target Skill:** [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts)
+                    **Implementation:** Not built or registered
+                    
+                    ## Why this Scene needs to be interactive
+                    
+                    Read categorical counts from a bar chart using its category labels, baseline and numerical scale, then compare values without treating bar width or decoration as the count.
+                    
+                    An inspectable bar-chart model with a numbered 0–6 y-axis, fixed unit scale 1, categorical x-axis and labelled count table; a deliberately misleading variable-width view is clearly marked as a bad design and can never replace the canonical model.
+                    
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+                    
+                    ## Mathematical content and source-of-truth conditions
+                    
+                    Use apples=4, pears=2, plums=5, y-axis 0 to 6 in unit steps; 5 > 4 > 2. For transfer, use books read by three fictional readers or library shelf categories: red=3, blue=5, yellow=1 with a zero baseline and count unit 1. All charts have explicit unit names and source context.
+                    
+                    **Hard limits:** Do not teach constructing bar charts (separate Skill), unequal numeric steps, broken baselines, frequency ratios, 2D bar area interpretation, multiplication with scale values, histogram bins, percentages or statistical conclusions beyond simple comparisons.
+                    
+                    ## Required observable states
+                    
+                    | State                 | Data or model facts                                                                | Correct interpretation             |
+                    | --------------------- | ---------------------------------------------------------------------------------- | ---------------------------------- |
+                    | Initial chart         | Apples 4, pears 2, plums 5; all bars equal width; scale 0–6.                       | Bar height encodes category count. |
+                    | Selected category     | Apples selected; highlight baseline 0, tick 4, bar top at 4.                       | Apples count equals 4.             |
+                    | Misleading decoration | Pear bar artificially wide but still ends at 2; warning states width is not count. | Pears remain 2, plums remain 5.    |
+                    | New dataset           | Three equally wide bars red=3, blue=5, yellow=1 with same baseline.                | Smallest yellow 1; highest blue 5. |
+                    
+                    ## Required learning interaction
+                    
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+                    
+                    ## Exact misconception and explanation cases
+                    
+                    - **A bar's length stands for a number:** If the child counts a bar's decorative width: “The number goes up the scale, not across the width of the bar.”
+                    - **Read three values:** If apples are read as 5: “The apple bar stops at the tick marked 4. The plum bar is the one that reaches 5.”
+                    - **Which group has more?:** If pears are called most because the pear bar is wide: “Read height against the scale: pears are 2, plums are 5. Width is not the count.”
+                    - **Read a new chart without a model answer:** For smallest red: “Follow the yellow bar to the 1 mark and red to the 3 mark; 1 is smaller than 3.”
+                    
+                    ## Nonvisual, motor and cognitive equivalence
+                    
+                    Provide a plain semantic table of category/value pairs alongside a numerically described chart, reachable through the same selection controls. State baseline 0 and tick step 1. Use meaningful labels in addition to visual highlights; compare numeric values by keyboard and speech without relying on color or pointer tracing.
+                    
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+                    
+                    ## Localization / RTL / offline / performance handoff
+                    
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+                    
+                    ## Engineer-facing constraints and test coverage (not implementation)
+                    
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+                    
+                    ## Approval boundary
+                    
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+                  purpose: "Read a new chart without a model answer: independent scene placement"
+                  productionNotes: "Legacy Scene BarChartReader.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID."
+              markdown1:
+                config:
+                  id: "894e239e-80b5-5b95-83b0-a39e41afe7cb"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Yellow is smallest with 1 card, blue has 5, and red has 3. A bar chart still follows the same label-and-scale rule."
+                production:
+                  purpose: "Source explanatory learner copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Read a new chart without a model answer"
+          productionNotes: |-
+            **Purpose:** Independent value reading and comparison.
+            
+            **Block sequence — a single column:**
+            
+            1. **`text` (existing Resource type).** “A new chart counts three kinds of cards: red 3, blue 5, yellow 1. Which is the smallest group? How many are blue?”
+            
+            2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Use a correctly drawn unit-scale bar chart with blue 5, red 3, yellow 1 (all bars equal width). Offer a text table only as an optional reveal or nonvisual equivalent.
+            
+            3. **`markdown` (existing Resource type).** “Yellow is smallest with 1 card, blue has 5, and red has 3. A bar chart still follows the same label-and-scale rule.”
+            
+            **Learner's actual move:** Read the independent chart, compare maxima/minima and explain the zero baseline.
+            
+            **Misconception-specific explanation:** For smallest red: “Follow the yellow bar to the 1 mark and red to the 3 mark; 1 is smaller than 3.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+            
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    order: ["section1","section2","section3","section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Reading a Bar Chart — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: readingBarCharts
+    Methodologist status: **Draft — pending explicit approval**
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Read categorical counts from a bar chart using its category labels, baseline and numerical scale, then compare values without treating bar width or decoration as the count.
+    
+    **Why this lesson now:** After collecting counts, reading tables and building pictographs, a length-encoded bar chart is the next straightforward visual representation. The canonical Skill remains an independently assessable unit even though this Lesson structures examples and models around it.
+    
+    ## Target audience
+    
+    **Primary grade: Grade 2**, approximately ages 7–8. Grade 2: pupils can already read one-to-one pictographs and simple count tables, enabling a bar chart with a zero baseline and unit steps. The grade and learning depth are editorial decisions and do not redefine the Skill's cross-grade identity. Use short child-native language and meaningful equivalent interactions for visual, nonvisual, mobile and multilingual learners.
+    
+    ## Prerequisites
+    
+    - Read numerals 0–6 and count one unit at a time.
+    - Match a category label to its recorded count in a simple table.
+    - Understand that one picture symbol can represent one observation in an unscaled pictograph.
+    
+    These are assumed competencies, not claims that a preceding Playground Lesson proves mastery. Missing prerequisites require separate support.
+    
+    ## Target Skills
+    
+    - [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts) — original canonical Mathematics Skill retained with exact UUID, names, multilingual metadata and methodological description.
+    
+    ## Expected learning outcomes
+    
+    - Find the category indicated by each bar's label.
+    - Start at zero and count unit marks up to the bar top to read its numerical value.
+    - Report apples 4, pears 2 and plums 5 from a fixed correctly labelled chart.
+    - Compare the largest and smallest categories by their measured heights.
+    - Explain why a wide bar is not a larger count when its numerical height is shorter.
+    
+    Observe explanations and transfer behaviors, not mere clicks or answer reveals. Formal assessment and scores are outside this editorial batch.
+    
+    ## Essential subject matter and depth
+    
+    The example is a vertical bar chart with equal-width bars, a labelled y-axis starting at 0 and unit ticks 0,1,2,3,4,5,6. The table and bars are apples=4, pears=2, plums=5. The same valid chart may be redrawn with wider but equal-width bars; width is not a data axis. A purposely varied-width misleading decoration is shown only as a **non-authoritative contrast**, never as a recommended chart. The heights and categories determine values. No axis breaks or scales greater than one.
+    
+    **Verified model cases:** Use apples=4, pears=2, plums=5, y-axis 0 to 6 in unit steps; 5 > 4 > 2. For transfer, use books read by three fictional readers or library shelf categories: red=3, blue=5, yellow=1 with a zero baseline and count unit 1. All charts have explicit unit names and source context.
+    
+    ## Conceptual progression and dependencies
+    
+    Recall the relevant earlier model, ask a precise prediction, allow an active inspection, reveal a mathematically justified counterexample, then offer a new transfer condition. An inspectable bar-chart model with a numbered 0–6 y-axis, fixed unit scale 1, categorical x-axis and labelled count table; a deliberately misleading variable-width view is clearly marked as a bad design and can never replace the canonical model. The Screenwriter can adjust pacing within this conceptual boundary after Methodologist approval.
+    
+    ## Misconceptions, examples and boundaries
+    
+    - The widest bar necessarily means the largest number.
+    - The tallest-looking decorative image is more than the numerical scale indicates.
+    - A bar must start its count from 1 instead of the 0 baseline.
+    - Changing the width changes the data value.
+    - A chart category's count can be read without consulting the scale.
+    
+    **Explicit exclusions:** Do not teach constructing bar charts (separate Skill), unequal numeric steps, broken baselines, frequency ratios, 2D bar area interpretation, multiplication with scale values, histogram bins, percentages or statistical conclusions beyond simple comparisons.
+    
+    ## Localization, accessibility and offline intent
+    
+    All future client-facing text, controls, feedback, Scene state descriptions, labels and any narration need **real** meaning-preserving translations for every supported locale. No silent English fallback, placeholder locale or missing dictionary key is acceptable. RTL adapts semantic reading and control order without changing mathematical quantities, fraction values, bar scale, data category labels or chronological meaning. Provide complete keyboard, touch and assistive-technology routes; equivalent alternatives for essential visual information; visible focus, contrast, reduced motion, readable small screens and WCAG 2.2 AA review. Once packaged for PWA download, all educational states must work offline and on weak devices; these are future implementation gates, not shipped functionality.
+    
+    ## Sources and factual verification
+    
+    - Canonical Skill [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts), including preserved methodological definition and names.
+    - [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md), [Lesson entity](../../../../../../studio/docs/entities/lesson.md), [Section entity](../../../../../../studio/docs/entities/section.md) and [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md).
+    - Worked factual example model: Use apples=4, pears=2, plums=5, y-axis 0 to 6 in unit steps; 5 > 4 > 2. For transfer, use books read by three fictional readers or library shelf categories: red=3, blue=5, yellow=1 with a zero baseline and count unit 1. All charts have explicit unit names and source context.
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone and Program-neutral: no presumed national curriculum endorsement, story, mascot, external participant, grade-lock or previous account state. Links to prerequisite math ideas are conceptual only.
+    
+    ## Open editorial decisions
+    
+    - **Methodologist:** Approve the brief and pedagogical use of one intentionally misleading chart as a critical comparison (not an endorsement of distorted data graphics).
+    - **Methodologist:** accept the Grade 2 audience, prerequisites and observable learning outcomes.
+    - **Screenwriter / Scene reviewer:** review the separate provisional documents after explicit Methodologist sign-off.
+    - **Coding Agent / QA:** eventually verify true locale completeness, LTR/RTL, nonvisual parity, offline delivery, tests and weak-device behavior. No implementation is claimed.
+    
+    ## Methodologist handoff
+    
+    **Draft, not approved.** The accompanying Content and Scene spec are explicitly **provisional**, prepared as a batch deliverable without treating Methodologist approval as granted. There is no Lesson runtime config, Questions, Quiz, assessment, scoring, Notes entity or Scene React code in this batch.
+  productionNotes: |
+    # Reading a Bar Chart — Lesson Content
+    
+    **Editorial status: Provisional Draft — pending Methodologist approval; not formally approved.**
+    **Audience:** Grade 2 (approximately 7–8).
+    **Methodologist input:** Draft Methodologist Brief (embedded in this Lesson config.yaml).
+    **Target Skill:** [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts).
+    **Standalone:** No Program story, imported Quiz, scored Question, progress gate, runtime Lesson code or assembled locale bundle is created.
+    
+    ## Learner experience and teaching logic
+    
+    Read categorical counts from a bar chart using its category labels, baseline and numerical scale, then compare values without treating bar width or decoration as the count.
+    
+    After collecting counts, reading tables and building pictographs, a length-encoded bar chart is the next straightforward visual representation. The activity builds toward an explanation by the learner, not automatic mastery from making a choice. An inspectable bar-chart model with a numbered 0–6 y-axis, fixed unit scale 1, categorical x-axis and labelled count table; a deliberately misleading variable-width view is clearly marked as a bad design and can never replace the canonical model.
+    
+    **Scope boundary:** Do not teach constructing bar charts (separate Skill), unequal numeric steps, broken baselines, frequency ratios, 2D bar area interpretation, multiplication with scale values, histogram bins, percentages or statistical conclusions beyond simple comparisons.
+    
+    The Sections below use the existing block types `text`, `markdown` and `scene`, arranged in one **vertical top-to-bottom column**. `BarChartReader` is **proposed** and is not a registered/implemented Scene. There are no invented custom Resource discriminators or server APIs.
+    
+    ## Learning journey
+    
+    1. **A bar's length stands for a number.** Introduce category and count axes and the zero baseline.
+    2. **Read three values.** Read the exact height of each bar, not an approximate pictorial impression.
+    3. **Which group has more?.** Compare two numerical values and expose a visual distractor.
+    4. **Read a new chart without a model answer.** Independent value reading and comparison.
+    
+    ## Section scripts (ordered Resources)
+    
+    ### Section 1: A bar's length stands for a number
+    
+    **Purpose:** Introduce category and count axes and the zero baseline.
+    
+    **Block sequence — a single column:**
+    
+    1. **`text` (existing Resource type).** “This chart shows how many fruit tokens we counted: apples, pears and plums. Which name belongs to each bar?”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Display a unit-scaled 0–6 vertical bar chart, labels under three bars and optional visible horizontal unit guides. Highlight the ‘0’ baseline and ‘1’ to ‘6’ numbers.
+    
+    3. **`markdown` (existing Resource type).** “Find the bar’s name, then read its top against the numbered scale. Start from zero.”
+    
+    **Learner's actual move:** Select a labelled category and see its bar, baseline and top marker named.
+    
+    **Misconception-specific explanation:** If the child counts a bar's decorative width: “The number goes up the scale, not across the width of the bar.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ### Section 2: Read three values
+    
+    **Purpose:** Read the exact height of each bar, not an approximate pictorial impression.
+    
+    **Block sequence — a single column:**
+    
+    1. **`text` (existing Resource type).** “How many apples? Trace upward from zero until the apple bar stops. Do the same for pears and plums.”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Select apples, pears or plums to reveal counted unit steps from zero. Hide exact labels until requested; then show apples 4, pears 2, plums 5.
+    
+    3. **`markdown` (existing Resource type).** “The chart tells us 4 apples, 2 pears and 5 plums. The line at the top of each bar matches its count.”
+    
+    **Learner's actual move:** Predict the exact value of two bars, inspect tick marks and reveal the source table.
+    
+    **Misconception-specific explanation:** If apples are read as 5: “The apple bar stops at the tick marked 4. The plum bar is the one that reaches 5.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ### Section 3: Which group has more?
+    
+    **Purpose:** Compare two numerical values and expose a visual distractor.
+    
+    **Block sequence — a single column:**
+    
+    1. **`text` (existing Resource type).** “Which group has the most tokens? If a bar is drawn wider, does that change its number?”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Show the correct equal-width bars. An ‘Inspect misleading widths’ mode then widens the pear bar while keeping its height 2 and explicitly flags that distorted width is not a value and is bad chart design.
+    
+    3. **`markdown` (existing Resource type).** “Plums have the most, 5. Pears have only 2 even if somebody draws their bar very wide. Trust the number scale.”
+    
+    **Learner's actual move:** Name maximum and minimum, then explain why changing bar width is irrelevant or misleading.
+    
+    **Misconception-specific explanation:** If pears are called most because the pear bar is wide: “Read height against the scale: pears are 2, plums are 5. Width is not the count.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ### Section 4: Read a new chart without a model answer
+    
+    **Purpose:** Independent value reading and comparison.
+    
+    **Block sequence — a single column:**
+    
+    1. **`text` (existing Resource type).** “A new chart counts three kinds of cards: red 3, blue 5, yellow 1. Which is the smallest group? How many are blue?”
+    
+    2. **`scene` (existing Resource type; Scene proposed).** BarChartReader (Scene specification BarChartReader embedded below). Use a correctly drawn unit-scale bar chart with blue 5, red 3, yellow 1 (all bars equal width). Offer a text table only as an optional reveal or nonvisual equivalent.
+    
+    3. **`markdown` (existing Resource type).** “Yellow is smallest with 1 card, blue has 5, and red has 3. A bar chart still follows the same label-and-scale rule.”
+    
+    **Learner's actual move:** Read the independent chart, compare maxima/minima and explain the zero baseline.
+    
+    **Misconception-specific explanation:** For smallest red: “Follow the yellow bar to the 1 mark and red to the 3 mark; 1 is smaller than 3.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+    
+    **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+    
+    ## Bespoke interactive Scene — provisional
+    
+    - BarChartReader (Scene specification BarChartReader embedded below) is a proposed **self-contained, prop-free** Scene. It owns only its local learning model and explanation state. It has no runtime implementation yet; if reused by multiple sections, each instance should maintain independent state.
+    
+    ## Independent transfer prompt
+    
+    On a new unit-scale chart, blue reaches 5 while yellow reaches 1. Which has more and how do you know without judging colors or bar widths?
+    
+    Learners should first predict or justify their thinking without copying the original example. Reveal a correct worked explanation only on request or after an attempt. This remains instruction, **not scored mastery assessment**.
+    
+    ## Proposed Lesson Note — product concept only
+    
+    “Read a bar’s label and height against the scale; its width is not the count.”
+    
+    **Editorial unlock proposal:** Make this cue available after the learner inspects the explicit misconception contrast in Section 3 and explains it. The Note entity, unlock API, offline notes persistence and automatic spaced review are not implemented by this content plan; the explanation stays available regardless.
+    
+    ## Source verification and content constraints
+    
+    The canonical [readBarChart.data.ts](../../../../data/skills/data/presentation/skills/readBarChart.data.ts) governs Skill meaning; its UUID, definition and multilingual translations are unchanged. Use apples=4, pears=2, plums=5, y-axis 0 to 6 in unit steps; 5 > 4 > 2. For transfer, use books read by three fictional readers or library shelf categories: red=3, blue=5, yellow=1 with a zero baseline and count unit 1. All charts have explicit unit names and source context.
+    
+    All runtime copy requires complete, authentic translation into every configured locale; this English editorial script is _not_ runtime locale coverage. The proposed Scene's essential functions need nonvisual equivalence, mobile usability, semantic RTL, and offline availability. These are requirements for implementation review, not a declaration that they pass.
+    
+    ## Approvals and implementation boundary
+    
+    **Methodologist approval pending. Screenwriter and Scene editorial approval pending.** Assessment Architect owns any Questions/Quiz, scoring and competency evidence. Coding Agent owns runtime Lesson/Scene, provider-free public Scene interface, localizations, tests and offline support. No scoring, Program content or runtime configuration is added.
