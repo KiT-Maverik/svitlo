@@ -85,6 +85,15 @@ node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
 node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
 ```
 
+A new single-ID invocation is also supported:
+
+```sh
+node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
+  --package content/<book> --config content/<book>/staging/config.yaml --write
+```
+
+The `config.id` determines the Course UUID directory; no separate `--course` ID is supplied. For that mode the generator must read the source ID **before** checking the destination for existing `*.data.ts`, then SKIPs without modifying anything. For the older `--course` command, it still skips before parsing YAML.
+
 The builder chooses `config.yaml` when present. Its previously supported
 `course.yaml` and editorial `toc.yaml` sources remain available as distinct
 upstream draft inputs; they are not the new single-file contract. Legacy
