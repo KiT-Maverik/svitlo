@@ -115,15 +115,19 @@ export type Lesson_Metadata_Overrides = {
   locale?: DeepPartial<Lesson_Config['locale']>;
   events?: NonNullable<Lesson_Config['events']>;
 };
-export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Overrides> = z.deepPartial(
+/** Keep JSON event records out of recursive deepPartial; events replace as a sparse map value. */
+const lessonOverrideMetadataFields = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: lesson_Config_Schema.shape.params.omit({ languages: true }),
       locale: lesson_Config_Schema.shape.locale,
-      events: lesson_Config_Schema.shape.events,
     }),
   ),
 );
+export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Overrides> = z.strictObject({
+  ...lessonOverrideMetadataFields.shape,
+  events: lesson_Config_Schema.shape.events,
+});
 
 type ExistingPatches<Items extends Record<string, object>> = {
   [Key in keyof Items]?: Items[Key] extends { build: { overrides: (...args: never[]) => unknown } }

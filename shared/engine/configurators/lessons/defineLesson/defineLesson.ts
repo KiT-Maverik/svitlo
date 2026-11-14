@@ -529,7 +529,7 @@ export function defineLesson<
               childChanges[key] = change;
             }
           }
-          nextQuestions[kind as Lesson_Question_Type] = active;
+          (nextQuestions as Record<string, unknown>)[kind] = active;
           questionPatches[kind as Lesson_Question_Type] = childChanges;
         }
         if (Object.keys(patch.questions).length) {
