@@ -89,7 +89,25 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: "Proposed interactive Scene for The Missing Space"
                   productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
-            order: ["unitTileWorkbench"]
+              text1:
+                config:
+                  id: "40537174-2aa8-4097-b5a2-a7e2a9b50675"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Show an unchanging bar of 12 grid spaces. A sequence of six identical two-space tiles covers it exactly; then insert a one-space gap while keeping six tiles. Ask if the result is still correct."
+              markdown2:
+                config:
+                  id: "8cf7817b-26ca-4f9c-bbc4-2329b90ac982"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Explain: 'A good measurement covers the length once—no holes and no overlap.' Count intervals, not tile boundary marks."
+            order: ["text1","unitTileWorkbench","markdown2"]
         production:
           purpose: "The Missing Space"
           pedagogicalIntent: |
@@ -177,7 +195,25 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: "Proposed interactive Scene for Build a Real Measure"
                   productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
-            order: ["unitTileWorkbench"]
+              text1:
+                config:
+                  id: "6f6fde73-39c2-4624-919c-fc7d214457f6"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "In the workbench, choose identical two-space tiles, place them consecutively using Next tile and Undo tile, and reveal endpoint progress. Completion at six tiles should show '6 of these tiles long'."
+              markdown2:
+                config:
+                  id: "f80eb418-f93c-400b-918a-22baf0cfec7d"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "For an overlap attempt, the tile snaps to the next unoccupied position or the app explains why overlap is not allowed; don't silently accept incorrect placement."
+            order: ["text1","unitTileWorkbench","markdown2"]
         production:
           purpose: "Build a Real Measure"
           pedagogicalIntent: |
@@ -265,7 +301,25 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: "Proposed interactive Scene for Swap the Unit, Not the Bar"
                   productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
-            order: ["unitTileWorkbench"]
+              text1:
+                config:
+                  id: "2d3a6196-2176-419f-826c-866860d7e579"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Lock the same twelve-space bar and switch to equal three-space tiles. Ask: 'Will we need more or fewer tiles?' Four now cover the bar exactly."
+              markdown2:
+                config:
+                  id: "e20bba1d-fb3e-4ad4-b72c-9b7f200018f6"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Explain: 'A bigger tile needs fewer repeats. Six small tiles and four big tiles cover the SAME bar.' Show equivalent boundaries."
+            order: ["text1","unitTileWorkbench","markdown2"]
         production:
           purpose: "Swap the Unit, Not the Bar"
           pedagogicalIntent: |
@@ -353,7 +407,25 @@ config:
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
                   purpose: "Proposed interactive Scene for Make and Fix a Measurement"
                   productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
-            order: ["unitTileWorkbench"]
+              text1:
+                config:
+                  id: "2cec770d-2f4f-42dc-b336-4b17eb4eb87e"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Present two proposed measures: 2-space tiles placed at 0,2,4,6,8,10 vs same tiles with gaps/overlaps. Learner identifies what to repair and predicts the valid count."
+              markdown2:
+                config:
+                  id: "46cd636a-de3e-4b53-82b0-a21cd872dcb5"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Transfer to measuring a real pencil with equal blocks; advise against asserting whole units when there's an uncovered remainder. No scoring."
+            order: ["text1","unitTileWorkbench","markdown2"]
         production:
           purpose: "Make and Fix a Measurement"
           pedagogicalIntent: |

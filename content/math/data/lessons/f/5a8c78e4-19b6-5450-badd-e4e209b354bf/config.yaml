@@ -169,8 +169,26 @@ config:
                   params: {}
                   locale:
                     value:
+                      en: "Yes to the first: C is third from A but fourth from F. No to the second: exchanging objects preserves the count."
+              text1:
+                config:
+                  id: "9d2ba94b-df4a-4b14-a1ea-81e13f974f82"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
                       en: "Can C be third and fourth without moving the bags?"
-            order: ["markdown1"]
+              text2:
+                config:
+                  id: "9e2baade-e24a-4fcd-9eea-7d283e974def"
+                  slug: "text2"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Does swapping two objects create another object?"
+            order: ["text1","markdown1","text2"]
         production:
           purpose: "Think before revealing the reason"
           pedagogicalIntent: |
