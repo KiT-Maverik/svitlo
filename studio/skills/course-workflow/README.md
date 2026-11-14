@@ -18,9 +18,9 @@ A technical editor may place approved Quest Config nodes inside an Episode's `se
 
 Once matched Lessons and their actual authoring data are available, compose and review the Course **before final TypeScript completion and publication**. These are independent specialist skills, not automatic side effects of creating the TOC:
 
-1. **Course Screenwriting (future optional stage)** — authors approved Course-owned narrative, Episodes, Scenes and any scenario-specific changes to the shared `overrides.yaml`. This is not yet a shipped Course-authoring skill.
+1. **Course Screenwriting (future optional stage)** — authors approved Course-owned narrative, Episodes, Scenes and any scenario-specific changes to the canonical sparse Course Build patch. This is not yet a shipped Course-authoring skill.
 2. [Review Course Scenario](./review-course-scenario.skill.md) — independent scenario/narrative review **only for Courses with an actual scenario layer**. A Course without scenario content skips this gate.
-3. [Review Course Methodology and Configuration](./review-course-methodology.skill.md) — Methodologist checks the assembled Course, each actual Lesson's default settings, progression and assessment. When pedagogically justified, the Methodologist **adds or revises a methodological Build API patch in the same `overrides.yaml`**, subject to independent editorial approval. This is the required methodological configuration review before final generation.
+3. [Review Course Methodology and Configuration](./review-course-methodology.skill.md) — Methodologist checks the assembled Course, each actual Lesson's default settings, progression and assessment. When pedagogically justified, the Methodologist **adds or revises a methodological Build API patch in that same canonical Course overrides source**, subject to independent editorial approval. This is the required methodological configuration review before final generation.
 
 The two reviews have distinct criteria and revision-specific sign-offs. They can examine independently ready content without a rigid execution ordering, but changes affecting scenario content/behavior must be rechecked by the scenario reviewer, and changes affecting pedagogy must be rechecked by the Methodologist. A reviewer cannot approve their own authored override. New or changed overrides remain **draft** until independently approved; do not label them approved simply because an Engine scaffolder can emit code. Review reports live in the Course directory as `scenario-review.md` (when applicable) and `methodology-review.md`.
 
@@ -33,7 +33,7 @@ The editorial TOC format is defined by [course-toc.schema.json](./course-toc.sch
 ## Approved Course-owned overrides
 
 [Course Build Overrides](./course-overrides.md) defines the **single supported**
-Course-owned override format. `overrides.yaml` with older editorial inputs, or root `overrides` in the new `config.yaml`, contains a direct stateless
+Course-owned override format. `config.yaml.overrides` in new technical sources, or a separate current-format `overrides.yaml` in an existing legacy source, contains a direct stateless
 `course.build.overrides(patch, { languages })` patch, guided by the
 [generated Engine Course Overrides Schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json).
 Legacy ordered editorial operations are obsolete and unsupported.
