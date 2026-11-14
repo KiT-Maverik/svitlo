@@ -416,7 +416,7 @@ export function parseArguments(args) {
         '[--source config.yaml|toc.yaml|course.yaml] --write|--check OR --package content/<book> --config <path>/config.yaml --write|--check',
     );
   }
-  return { packagePath, courseId, slug, sourceFilename, configFile, action };
+  return { packagePath, courseId, slug, sourceFilename, ...(configFile !== undefined ? { configFile } : {}), action };
 }
 
 export async function main(args, repo = repoRoot) {
