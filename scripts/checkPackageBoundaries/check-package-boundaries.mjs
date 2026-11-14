@@ -357,7 +357,7 @@ for (const app of ['content/math', 'apps/web']) {
   );
 }
 for (const testFile of [
-  'DbBrowserHarness.tsx',
+  'db-browser-harness.ts',
   'db-browser-commands.ts',
   'db-browser-server.mjs',
   'controllers.e2e.spec.ts',
