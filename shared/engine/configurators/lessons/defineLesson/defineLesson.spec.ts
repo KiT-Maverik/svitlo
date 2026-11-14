@@ -188,6 +188,30 @@ describe('Configurators', () => {
         );
       });
 
+      test('Lesson publishes typed Question Bank boundaries and sparse events overrides', () => {
+        const lesson = makeLesson();
+        const events = {
+          lessonStarted: false,
+          lessonCompleted: { action: 'notify' },
+        };
+        const patch = lesson.build.overrides({ events }, { languages: ['uk'] });
+        assert.deepEqual(patch.base.events, events);
+        assert.equal(lesson.build.props({ languages: ['uk'] }).base.events, undefined);
+        assert.equal(patch.locale, undefined);
+        assert.throws(
+          () => lesson.build.overrides({ events: { lessonStarted: () => false } } as never, { languages: ['uk'] }),
+          /Invalid Lesson overrides/,
+        );
+        assert.equal(
+          lesson_Props_Schema.safeParse({
+            ...lesson.build.props({ languages: ['uk'] }).base,
+            questions: { answerWithText: [{ id: id('04'), slug: 'question', type: 'selectOneAnswer' }] },
+          }).success,
+          false,
+          'Question Bank keys must match the child Question type',
+        );
+      });
+
       test('Lesson rejects obsolete programId ownership metadata', () => {
         const lesson = makeLesson();
         assert.throws(

@@ -10,11 +10,20 @@ import { flashcard_Props_Schema } from '../../flashcards/defineFlashcard/defineF
 import type { Flashcard_Configurator } from '../../flashcards/defineFlashcard/defineFlashcard';
 import type { Flashcard_Props } from '../../flashcards/defineFlashcard/defineFlashcard.schemas';
 import { questionTypes as lessonQuestionTypes } from '../../questions/question.constants';
-import type { Question_Configurator } from '../../questions/question.types';
+import type { Question_Configurator, Question_Props, Question_PropsBase } from '../../questions/question.types';
 
 export { lessonQuestionTypes };
 export type Lesson_Question_Type = (typeof lessonQuestionTypes)[number];
-export type Lesson_QuestionBank = Partial<Record<Lesson_Question_Type, Record<string, Question_Configurator>>>;
+export type Lesson_QuestionBank = Partial<{
+  [Kind in Lesson_Question_Type]: Record<string, Extract<Question_Configurator, { type: Kind }>>;
+}>;
+/** The bank's literal key determines its Question Props type. */
+export type Lesson_ResolvedQuestionBank = Partial<{
+  [Kind in Lesson_Question_Type]: Extract<Question_Props, { type: Kind }>[];
+}>;
+export type Lesson_QuestionPropsBase = Partial<{
+  [Kind in Lesson_Question_Type]: Extract<Question_PropsBase, { type: Kind }>[];
+}>;
 
 const languages = z
   .array(languageCode_Schema)
@@ -57,6 +66,23 @@ export const lesson_Config_Schema = identity.extend({
 });
 export type Lesson_Config = z.infer<typeof lesson_Config_Schema>;
 
+/** Check the parent-owned kind/identity boundary, leaving child internals to Question Build. */
+const questionReference = <const Kind extends Lesson_Question_Type>(kind: Kind) =>
+  z.object({ id: z.uuid(), slug: z.string().min(1), type: z.literal(kind) }).catchall(z.unknown());
+const resolvedQuestions = z
+  .strictObject({
+    selectOneAnswer: z.array(questionReference('selectOneAnswer')),
+    selectMultipleAnswers: z.array(questionReference('selectMultipleAnswers')),
+    matchBlocks: z.array(questionReference('matchBlocks')),
+    answerWithText: z.array(questionReference('answerWithText')),
+    answerWithNumber: z.array(questionReference('answerWithNumber')),
+    orderSequence: z.array(questionReference('orderSequence')),
+    buildAnswerWithBlocks: z.array(questionReference('buildAnswerWithBlocks')),
+    fillBlanksWithBlocks: z.array(questionReference('fillBlanksWithBlocks')),
+    fillBlanksWithText: z.array(questionReference('fillBlanksWithText')),
+  })
+  .partial();
+
 const sectionResolved = z
   .object({
     id: z.uuid(),
@@ -68,26 +94,29 @@ export const lesson_Props_Schema = identity.extend({
   ...addUnifiedLocale({ title: localizationSwitch.props }),
   section: z.array(sectionResolved),
   flashcards: z.array(flashcard_Props_Schema),
-  questions: z.partialRecord(z.enum(lessonQuestionTypes), z.array(z.record(z.string(), z.json()))).optional(),
+  questions: resolvedQuestions.optional(),
   events: z.record(z.string(), z.json()).optional(),
 });
-export type Lesson_Props = Omit<z.infer<typeof lesson_Props_Schema>, 'section' | 'flashcards'> & {
+export type Lesson_Props = Omit<z.infer<typeof lesson_Props_Schema>, 'section' | 'flashcards' | 'questions'> & {
   section: Section_Props[];
   flashcards: Flashcard_Props[];
+  questions?: Lesson_ResolvedQuestionBank;
 };
 export type Lesson_PropsBase = Pick<Lesson_Props, 'id' | 'slug' | 'type' | 'params' | 'skills'> & {
   locale?: { title?: string };
   section: ReturnType<Section_Configurator['build']['props']>['base'][];
   flashcards: ReturnType<Flashcard_Configurator['build']['props']>['base'][];
-  questions?: Partial<Record<Lesson_Question_Type, Record<string, unknown>[]>>;
+  questions?: Lesson_QuestionPropsBase;
   events?: Record<string, unknown>;
 };
 
 export type Lesson_Metadata_Overrides = {
   params?: DeepPartial<Omit<Lesson_Config['params'], 'languages'>>;
   locale?: DeepPartial<Lesson_Config['locale']>;
+  events?: NonNullable<Lesson_Config['events']>;
 };
-export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Overrides> = z.deepPartial(
+/** Keep JSON event records out of recursive deepPartial; events replace as a sparse map value. */
+const lessonOverrideMetadataFields = z.deepPartial(
   deepStrict_Schema(
     z.object({
       params: lesson_Config_Schema.shape.params.omit({ languages: true }),
@@ -95,6 +124,10 @@ export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Override
     }),
   ),
 );
+export const lesson_Override_Metadata_Schema: z.ZodType<Lesson_Metadata_Overrides> = z.strictObject({
+  ...lessonOverrideMetadataFields.shape,
+  events: lesson_Config_Schema.shape.events,
+});
 
 type ExistingPatches<Items extends Record<string, object>> = {
   [Key in keyof Items]?: Items[Key] extends { build: { overrides: (...args: never[]) => unknown } }

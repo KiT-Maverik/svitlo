@@ -9,8 +9,9 @@ import { localizeReviewValue, renderLessonMarkdown, sourceIndex, supportedLangua
 
 const lessonId = 'd3048d21-8690-5255-b62c-984c69ac272c';
 const relative = 'c/' + lessonId;
-const realLessonEntry = path.resolve('content/playground/data/lessons', relative, 'index.ts');
-const realPackage = path.resolve('content/playground');
+const repositoryRoot = path.resolve(import.meta.dirname, '../../../..');
+const realLessonEntry = path.join(repositoryRoot, 'content/playground/data/lessons', relative, 'index.ts');
+const realPackage = path.join(repositoryRoot, 'content/playground');
 
 function fixture(locale = 'uk') {
   const t = (en, uk) => (locale === 'uk' ? uk : en);
@@ -348,7 +349,7 @@ describe('Current Lesson Props → localized Markdown review projection', () => 
   });
 
   it('renders the actual Playground Lesson configurator and its resolved Question/Flashcard Props', async () => {
-    const root = path.resolve('.');
+    const root = repositoryRoot;
     const lesson = await loadLesson(realLessonEntry, realPackage);
     assert.equal(lesson.id, lessonId);
     const markdown = await generate(

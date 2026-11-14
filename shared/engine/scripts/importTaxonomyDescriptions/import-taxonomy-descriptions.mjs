@@ -18,7 +18,7 @@ import ts from 'typescript';
 function fail(message) {
   throw new Error(message);
 }
-const root = path.resolve(import.meta.dirname, '..');
+const root = path.resolve(import.meta.dirname, '../../../..');
 const args = process.argv.slice(2);
 let packageName;
 let write = false;
@@ -69,7 +69,7 @@ function parseSection(entry) {
   if (match[2] === '#') fail(prefix + 'not implemented — cannot import description');
   if (!/^[a-zA-Z0-9_.-]+\.data\.ts$/.test(match[1])) fail(prefix + 'bad Code link label');
   const target = path.resolve(path.dirname(markdownPath), decodeURI(match[2]));
-  const srcRoot = path.join(packageRoot, 'src', 'data', 'skillsTaxonomy') + path.sep;
+  const srcRoot = path.join(packageRoot, 'data', 'skills') + path.sep;
   if (!target.startsWith(srcRoot) || path.basename(target) !== match[1] || !fs.existsSync(target)) {
     fail(prefix + 'Code link target must be an existing taxonomy *.data.ts: ' + match[2]);
   }
@@ -110,7 +110,7 @@ function patch(entry) {
     if (
       ts.isCallExpression(node) &&
       ts.isIdentifier(node.expression) &&
-      node.expression.text === 'build' + entry.kind + 'Config' &&
+      node.expression.text === 'define' + entry.kind &&
       node.arguments.length === 1 &&
       ts.isObjectLiteralExpression(node.arguments[0])
     ) {
@@ -120,7 +120,7 @@ function patch(entry) {
     ts.forEachChild(node, visit);
   }
   visit(ast);
-  if (!object) fail('Missing build' + entry.kind + 'Config in ' + entry.target);
+  if (!object) fail('Missing define' + entry.kind + ' in ' + entry.target);
   const existing = object.properties.filter(
     p => p.name && (ts.isIdentifier(p.name) || ts.isStringLiteral(p.name)) && p.name.text === 'description',
   );

@@ -132,7 +132,7 @@ test('rejects unknown domains and identity fields in locale/override patches', (
     /Unknown SkillDomain/,
   );
   assert.throws(
-    () => assembleSkills(source, 'uk', { base: { physics: { slug: 'other' } } }),
+    () => assembleSkills(source, 'uk', { base: { physics: { slug: 'other' } } } as never),
     /Cannot override SkillDomain identity/,
   );
 });
@@ -196,5 +196,41 @@ test('published Skill Props reject unresolved locale dictionaries at domain and 
       description: { ...group.description, frontend: { uk: 'Вивчай механіку' } },
     }).success,
     false,
+  );
+});
+
+test('rejects identity changes to existing Skills and SkillGroups across published layers', () => {
+  const source = publication();
+  assert.throws(
+    () => assembleSkills(source, 'uk', { base: { physics: { skills: [{ ...a, id: id('91') }, b] } } }),
+    /Cannot change published Skills identity/,
+  );
+  assert.throws(
+    () =>
+      assembleSkills(source, 'uk', {
+        base: { physics: { skills: [{ ...a, slug: 'renamed' }, b] } },
+      }),
+    /Cannot change published Skills identity/,
+  );
+  assert.throws(
+    () =>
+      assembleSkills(source, 'uk', {
+        locale: { uk: { physics: { groups: [{ ...group, id: id('92') }] } } },
+      }),
+    /Cannot change published Skills identity/,
+  );
+  assert.throws(
+    () =>
+      assembleSkills(source, 'uk', {
+        base: { physics: { groups: [{ ...group, skills: [{ ...a, id: id('93') }, b] }] } },
+      }),
+    /Cannot change published Skills identity/,
+  );
+  assert.throws(
+    () =>
+      assembleSkills(source, 'uk', {
+        base: { physics: { skills: [a, { ...a }] } },
+      }),
+    /Duplicate published Skills identity/,
   );
 });

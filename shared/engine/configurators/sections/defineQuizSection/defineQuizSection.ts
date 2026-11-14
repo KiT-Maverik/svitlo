@@ -48,6 +48,16 @@ type OverrideBase = {
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   value !== null && typeof value === 'object' && !Array.isArray(value);
 
+/** Enforce conditional grading semantics without decorating a deep-partial-able Zod object.
+ * Zod's deepPartial refuses object refinements; the full Schema still validates the
+ * mode, finite/nonnegative threshold and all other structural fields.
+ */
+const validateGrading = (grading: QuizSection_Config['params']['grading']): void => {
+  if (grading?.mode === 'percentage' && grading.successThreshold > 100) {
+    throw new Error('Quiz percentage successThreshold must be between 0 and 100');
+  }
+};
+
 /** Validate the effective Props for each explicitly requested publication locale. */
 const validateResolvedProps = (
   resource: Publication<unknown>,
@@ -64,7 +74,8 @@ const validateResolvedProps = (
       ? mergeForValidation(patched, (patch.locale?.[language] ?? {}) as DeepPartial<Record<string, unknown>>)
       : patched;
     try {
-      quizSection_Props_Schema.parse(resolved);
+      const valid = quizSection_Props_Schema.parse(resolved);
+      validateGrading(valid.params.grading);
     } catch (error) {
       throw new Error(
         'Invalid defineQuizSection Props for language ' +
@@ -102,7 +113,8 @@ const validateScreenReferences = (
 };
 
 const validate = (config: QuizSection_Config): void => {
-  quizSection_Config_Schema.parse(config);
+  const parsed = quizSection_Config_Schema.parse(config);
+  validateGrading(parsed.params.grading);
   const issues = [
     ...validateOrderedKeys(config.content, { path: 'content' }),
     ...validateSluggedConfiguratorMap(config.content?.items, contentBlockTypes, {

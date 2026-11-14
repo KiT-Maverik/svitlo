@@ -12,6 +12,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { assertSafeDirectoryPath } from '../safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const localePattern = /^[a-z]{2,8}$/;
 
@@ -83,6 +84,7 @@ export function renderSkillTree(publication) {
 }
 
 function currentFiles(root) {
+  assertSafeDirectoryPath(root);
   const files = new Map();
   if (!fs.existsSync(root)) return files;
   assert(
@@ -115,6 +117,7 @@ export function checkSkillFiles(root, expected) {
 
 /** Stage the complete output and atomically replace only the Skills directory. */
 export function writeSkillFiles(root, files) {
+  assertSafeDirectoryPath(root);
   assert(files instanceof Map && files.has('base.json'), 'Expected Skills files with base.json');
   for (const [name, content] of files) {
     assert(
