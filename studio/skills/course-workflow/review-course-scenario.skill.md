@@ -35,3 +35,8 @@ Write or update `scenario-review.md` beside the Course `toc.yaml` with: Course U
 A `pass` is a recommendation **only**. An authorized editor must sign off against the reviewed source revisions. Return story or Course-owned content edits to their authors rather than independently writing and approving them. A change to the story or any scenario-affecting override after a `pass` invalidates affected review evidence and requires a focused re-review. A subsequent Methodological Review may run independently, but it cannot declare the scenario gate approved or override the scenario author's decisions.
 
 **Boundary:** Do not create or translate Course narrative, standalone Lessons, Question banks, typed Course configuration or output from the Course Builder. Use an appropriately labeled Draft PR and link the Course's coordination Issue when one exists; do not auto-merge.
+
+
+## Quest Section in Course-owned Episode scenarios
+
+Consult [Quest](../../docs/entities/quest.md) when an Episode proposes a branching interactive mission. Evaluate story consequences, safe recovery from failed tasks, pedagogical usefulness, exact Stage/Task branch responsibilities and alternatives for deaf, blind, motor-impaired and reduced-motion learners. A Quest is a Section in an Episode, not an Episode replacement. Its Engine Build contract does not yet mean runtime support, so document the player/Section integration dependency before approving a playable scenario.

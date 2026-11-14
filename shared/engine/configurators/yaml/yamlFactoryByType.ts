@@ -33,6 +33,7 @@ export const yamlFactoryByType = {
   checkpoint: 'defineCheckpoint',
   markdown: 'defineMarkdown',
   audio: 'defineAudio',
+  subtitles: 'defineSubtitles',
   carouselSlide: 'defineCarouselSlide',
   checkpointItem: 'defineCheckpointItem',
 

@@ -9,6 +9,7 @@ export const contentBlockTypes = [
   'checkpoint',
   'markdown',
   'audio',
+  'subtitles',
 ] as const;
 export type ContentBlock_Type = (typeof contentBlockTypes)[number];
 

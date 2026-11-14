@@ -10,6 +10,8 @@ export * from './defineVideo';
 
 export * from './defineAudio';
 
+export * from './defineSubtitles';
+
 export * from './defineYoutube';
 
 export * from './defineCarousel';
