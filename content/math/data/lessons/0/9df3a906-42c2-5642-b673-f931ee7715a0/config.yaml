@@ -1,0 +1,831 @@
+config:
+  id: "9df3a906-42c2-5642-b673-f931ee7715a0"
+  slug: "randomExperimentsVary"
+  type: "lesson"
+  skills: ["90f7775d-bb0d-4b7b-85fd-d56870116d3f"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Same Spinner, Different Results"
+  section:
+    items:
+      section1:
+        config:
+          id: "5c43e41e-1069-540d-a6f2-641e845c5733"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Fix the spinner, count the spins"
+            navigationLabel:
+              en: "Fix the spinner, count the spins"
+          content:
+            items:
+              text1:
+                config:
+                  id: "8632feaf-d273-5eac-876d-7eaf4a86eab6"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "This spinner has one blue half and one yellow half. We assume it stops equally likely anywhere. We will spin ten times and record one color each time. Must we get exactly five blue and five yellow?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "85491350-e9e6-5855-b460-93509ad27267"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "This spinner has one blue half and one yellow half. We assume it stops equally likely anywhere. We will spin ten times and record one color each time. Must we get exactly five blue and five yellow?"
+                production:
+                  specification: |
+                    # TrialRunComparator — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Same Spinner, Different Results (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [experimentVariation.data.ts](../../../../data/skills/probability/experiments/skills/experimentVariation.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Compare outcome frequencies from two finite runs of the same fair random experiment and explain why differing counts can arise without any change to the experiment's possible outcomes, conditions or chances.
+                    
+                    A deterministic _illustration of possible outcome sequences_, not a fake live-randomness proof: a labelled equal-sector spinner remains visibly unchanged while the learner reveals Run A and Run B as fixed recorded sequences of ten spins. Counts update one by one with blue/yellow labels; after both, an optional third panel deliberately shows a changed spinner and asks which conditions changed.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state       | Model shown or described                                                           | Correct observation and explanatory result             |
+                    | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
+                    | **Shared setup**   | Two equal-size angular sectors, blue and yellow; uniform pointer direction assumed | Both colors possible and equally likely per spin       |
+                    | **Run A outcomes** | Blue, Blue, Yellow, Blue, Blue, Yellow, Blue, Blue, Yellow, Blue                   | 7 blue and 3 yellow; total 10                          |
+                    | **Changed setup**  | Four equal-sized sectors, 3 blue and 1 yellow; uniform pointer direction assumed   | Chances changed; 3 blue sectors rather than 1 of 2     |
+                    | **Incomplete run** | Any prefix of recorded examples shorter than ten trials                            | Subtotal of blue+yellow equals revealed trial count    |
+                    | **Run B outcomes** | Yellow, Blue, Yellow, Yellow, Blue, Yellow, Blue, Yellow, Yellow, Blue             | 4 blue and 6 yellow; total 10                          |
+                    | **Run comparison** | Run A 7 blue/3 yellow; Run B 4 blue/6 yellow; same spinner rule                    | Counts differ across runs despite unchanged conditions |
+                    
+                    **Validity boundary:** Two explicit ten-trial sequences of a fixed two-equal-sector uniformly random spinner, per-color frequency comparisons, and one changed-conditions counterexample. Count outcomes, identify constant/changing factors and compare two runs; do not introduce numeric probability estimates, significance testing, independence theorems, law of large numbers, hypothesis testing, percentages or claims about statistical bias from tiny samples.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose 'Reveal next trial', 'Show Run A', 'Show Run B', 'Compare fixed conditions', 'Show changed experiment', or Reset. Keep spinner conditions visible and identical throughout A/B. Each trial's prewritten example outcome advances counts; never claim these outcomes were generated by a live fair RNG or proved underlying probabilities. No props, global state, scoring, timers or network.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Fix the spinner, count the spins: Five each guaranteed.** “Each spin could be either color. Equal chances do not force equal counts in a short set of spins.”
+                    - **Fix the spinner, count the spins: Seven blue changes chance.** “The spinner stayed the same; seven is what we observed in these ten example outcomes, not a new spinner rule.”
+                    - **Two runs, different totals by color: Counts must match.** “The experiment conditions are the same, but the outcomes are not predetermined. A short run can have different color totals.”
+                    - **Two runs, different totals by color: Run B 5/5.** “Count the blue entries in the example sequence carefully: there are four blue and six yellow.”
+                    - **Two runs, different totals by color: Spinner biased now.** “We observed different totals; the displayed spinner and uniform assumption did not change. These two examples alone do not prove a changed chance.”
+                    - **Different sample, or different experiment?: No rule change.** “The blue part changed from half to three quarters of the circle. That changes what the spinner can favor.”
+                    - **Different sample, or different experiment?: Same as Run B.** “Run B used the original half-blue spinner. This new design favors blue; do not treat the conditions as identical.”
+                    - **A fresh pair of short runs: Must change spinner.** “Neither run changes the blue/yellow half-spinner. Different chance outcomes can occur under the same conditions.”
+                    - **A fresh pair of short runs: Second run proves yellow favored.** “Four yellows in six spins are observed outcomes; they do not change how much of the spinner is yellow.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A keyboard-operable textual table lists each of ten outcomes in Run A and Run B and the numeric frequency after each reveal, with an explicit note that both are _possible examples_. An equally valid reduced-motion state shows complete lists immediately. A separate textual changed-condition card says 'original one blue of two equal sectors; changed three blue of four equal sectors'.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "Fix the spinner, count the spins: independent placement"
+                  productionNotes: "Original TrialRunComparator.scene-spec.md variant belongs to Fix the spinner, count the spins; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "84e247bd-ea71-5e56-bf44-c7bdc6af4b84"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A fair spinner gives both colors the same chance _on each spin_. It does not promise five of each in every short run. In this example, Run A has seven blue and three yellow."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Fix the spinner, count the spins"
+          productionNotes: |-
+            **Learning purpose:** Make unchanged experimental conditions explicit before inspecting observed frequencies.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`text` Resource (available block type):** “This spinner has one blue half and one yellow half. We assume it stops equally likely anywhere. We will spin ten times and record one color each time. Must we get exactly five blue and five yellow?”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). TrialRunComparator displays the unchanged blue/yellow half-spinner with its fair-uniform assumption. Learner predicts whether 5/5 must occur; Run A's ten possible example results are shown one at a time or as an accessible list.
+            
+            3. **`markdown` Resource (available block type):** “A fair spinner gives both colors the same chance _on each spin_. It does not promise five of each in every short run. In this example, Run A has seven blue and three yellow.”
+            
+            **Meaningful learner action:** Predict whether a 5/5 split is obligatory and tally Run A's ten outcomes.
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **Five each guaranteed:** “Each spin could be either color. Equal chances do not force equal counts in a short set of spins.”
+            - **Seven blue changes chance:** “The spinner stayed the same; seven is what we observed in these ten example outcomes, not a new spinner rule.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+      section2:
+        config:
+          id: "5b43e28b-0d69-5f54-a5f2-628b855c58c6"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Two runs, different totals by color"
+            navigationLabel:
+              en: "Two runs, different totals by color"
+          content:
+            items:
+              text1:
+                config:
+                  id: "11c828ae-7cbc-5419-9302-a8ae9c97b9b7"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "We use the _same_ spinner for another ten spins. Could the numbers of blue and yellow change even though the chance for each color stays equal?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "a33ce0af-53e5-515a-9254-60af18007e08"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "We use the _same_ spinner for another ten spins. Could the numbers of blue and yellow change even though the chance for each color stays equal?"
+                production:
+                  specification: |
+                    # TrialRunComparator — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Same Spinner, Different Results (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [experimentVariation.data.ts](../../../../data/skills/probability/experiments/skills/experimentVariation.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Compare outcome frequencies from two finite runs of the same fair random experiment and explain why differing counts can arise without any change to the experiment's possible outcomes, conditions or chances.
+                    
+                    A deterministic _illustration of possible outcome sequences_, not a fake live-randomness proof: a labelled equal-sector spinner remains visibly unchanged while the learner reveals Run A and Run B as fixed recorded sequences of ten spins. Counts update one by one with blue/yellow labels; after both, an optional third panel deliberately shows a changed spinner and asks which conditions changed.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state       | Model shown or described                                                           | Correct observation and explanatory result             |
+                    | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
+                    | **Shared setup**   | Two equal-size angular sectors, blue and yellow; uniform pointer direction assumed | Both colors possible and equally likely per spin       |
+                    | **Run A outcomes** | Blue, Blue, Yellow, Blue, Blue, Yellow, Blue, Blue, Yellow, Blue                   | 7 blue and 3 yellow; total 10                          |
+                    | **Changed setup**  | Four equal-sized sectors, 3 blue and 1 yellow; uniform pointer direction assumed   | Chances changed; 3 blue sectors rather than 1 of 2     |
+                    | **Incomplete run** | Any prefix of recorded examples shorter than ten trials                            | Subtotal of blue+yellow equals revealed trial count    |
+                    | **Run B outcomes** | Yellow, Blue, Yellow, Yellow, Blue, Yellow, Blue, Yellow, Yellow, Blue             | 4 blue and 6 yellow; total 10                          |
+                    | **Run comparison** | Run A 7 blue/3 yellow; Run B 4 blue/6 yellow; same spinner rule                    | Counts differ across runs despite unchanged conditions |
+                    
+                    **Validity boundary:** Two explicit ten-trial sequences of a fixed two-equal-sector uniformly random spinner, per-color frequency comparisons, and one changed-conditions counterexample. Count outcomes, identify constant/changing factors and compare two runs; do not introduce numeric probability estimates, significance testing, independence theorems, law of large numbers, hypothesis testing, percentages or claims about statistical bias from tiny samples.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose 'Reveal next trial', 'Show Run A', 'Show Run B', 'Compare fixed conditions', 'Show changed experiment', or Reset. Keep spinner conditions visible and identical throughout A/B. Each trial's prewritten example outcome advances counts; never claim these outcomes were generated by a live fair RNG or proved underlying probabilities. No props, global state, scoring, timers or network.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Fix the spinner, count the spins: Five each guaranteed.** “Each spin could be either color. Equal chances do not force equal counts in a short set of spins.”
+                    - **Fix the spinner, count the spins: Seven blue changes chance.** “The spinner stayed the same; seven is what we observed in these ten example outcomes, not a new spinner rule.”
+                    - **Two runs, different totals by color: Counts must match.** “The experiment conditions are the same, but the outcomes are not predetermined. A short run can have different color totals.”
+                    - **Two runs, different totals by color: Run B 5/5.** “Count the blue entries in the example sequence carefully: there are four blue and six yellow.”
+                    - **Two runs, different totals by color: Spinner biased now.** “We observed different totals; the displayed spinner and uniform assumption did not change. These two examples alone do not prove a changed chance.”
+                    - **Different sample, or different experiment?: No rule change.** “The blue part changed from half to three quarters of the circle. That changes what the spinner can favor.”
+                    - **Different sample, or different experiment?: Same as Run B.** “Run B used the original half-blue spinner. This new design favors blue; do not treat the conditions as identical.”
+                    - **A fresh pair of short runs: Must change spinner.** “Neither run changes the blue/yellow half-spinner. Different chance outcomes can occur under the same conditions.”
+                    - **A fresh pair of short runs: Second run proves yellow favored.** “Four yellows in six spins are observed outcomes; they do not change how much of the spinner is yellow.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A keyboard-operable textual table lists each of ten outcomes in Run A and Run B and the numeric frequency after each reveal, with an explicit note that both are _possible examples_. An equally valid reduced-motion state shows complete lists immediately. A separate textual changed-condition card says 'original one blue of two equal sectors; changed three blue of four equal sectors'.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "Two runs, different totals by color: independent placement"
+                  productionNotes: "Original TrialRunComparator.scene-spec.md variant belongs to Two runs, different totals by color; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "6471e38c-f28b-5883-9ed4-638c7d86c975"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Run A had seven blue and three yellow. Run B had four blue and six yellow. Both used ten spins of the same fair spinner. Different counts can happen without changing the chances."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Two runs, different totals by color"
+          productionNotes: |-
+            **Learning purpose:** Observe run-to-run variability with the same total trials and conditions.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`text` Resource (available block type):** “We use the _same_ spinner for another ten spins. Could the numbers of blue and yellow change even though the chance for each color stays equal?”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). Replay Run B as a distinct fixed possible sequence with exactly four blue and six yellow outcomes, keeping the spinner illustration locked. Reveal its counts and compare to Run A's 7/3.
+            
+            3. **`markdown` Resource (available block type):** “Run A had seven blue and three yellow. Run B had four blue and six yellow. Both used ten spins of the same fair spinner. Different counts can happen without changing the chances.”
+            
+            **Meaningful learner action:** Count Run B and identify A-versus-B frequency differences (blue 7 versus 4, yellow 3 versus 6).
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **Counts must match:** “The experiment conditions are the same, but the outcomes are not predetermined. A short run can have different color totals.”
+            - **Run B 5/5:** “Count the blue entries in the example sequence carefully: there are four blue and six yellow.”
+            - **Spinner biased now:** “We observed different totals; the displayed spinner and uniform assumption did not change. These two examples alone do not prove a changed chance.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+      section3:
+        config:
+          id: "5a43e0f8-0e69-50e7-a4f2-60f8865c5a59"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Different sample, or different experiment?"
+            navigationLabel:
+              en: "Different sample, or different experiment?"
+          content:
+            items:
+              markdown1:
+                config:
+                  id: "9c606737-7854-55c8-96c2-e7379f784f32"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Now we really change the spinner: four equal parts, three blue and one yellow. Is it still the same chance for blue as in our first spinner?"
+                production:
+                  purpose: "Provisional instructional explanation"
+              scene1:
+                config:
+                  id: "094966f6-ef01-5263-b860-e6f6e8fe2919"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Now we really change the spinner: four equal parts, three blue and one yellow. Is it still the same chance for blue as in our first spinner?"
+                production:
+                  specification: |
+                    # TrialRunComparator — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Same Spinner, Different Results (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [experimentVariation.data.ts](../../../../data/skills/probability/experiments/skills/experimentVariation.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Compare outcome frequencies from two finite runs of the same fair random experiment and explain why differing counts can arise without any change to the experiment's possible outcomes, conditions or chances.
+                    
+                    A deterministic _illustration of possible outcome sequences_, not a fake live-randomness proof: a labelled equal-sector spinner remains visibly unchanged while the learner reveals Run A and Run B as fixed recorded sequences of ten spins. Counts update one by one with blue/yellow labels; after both, an optional third panel deliberately shows a changed spinner and asks which conditions changed.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state       | Model shown or described                                                           | Correct observation and explanatory result             |
+                    | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
+                    | **Shared setup**   | Two equal-size angular sectors, blue and yellow; uniform pointer direction assumed | Both colors possible and equally likely per spin       |
+                    | **Run A outcomes** | Blue, Blue, Yellow, Blue, Blue, Yellow, Blue, Blue, Yellow, Blue                   | 7 blue and 3 yellow; total 10                          |
+                    | **Changed setup**  | Four equal-sized sectors, 3 blue and 1 yellow; uniform pointer direction assumed   | Chances changed; 3 blue sectors rather than 1 of 2     |
+                    | **Incomplete run** | Any prefix of recorded examples shorter than ten trials                            | Subtotal of blue+yellow equals revealed trial count    |
+                    | **Run B outcomes** | Yellow, Blue, Yellow, Yellow, Blue, Yellow, Blue, Yellow, Yellow, Blue             | 4 blue and 6 yellow; total 10                          |
+                    | **Run comparison** | Run A 7 blue/3 yellow; Run B 4 blue/6 yellow; same spinner rule                    | Counts differ across runs despite unchanged conditions |
+                    
+                    **Validity boundary:** Two explicit ten-trial sequences of a fixed two-equal-sector uniformly random spinner, per-color frequency comparisons, and one changed-conditions counterexample. Count outcomes, identify constant/changing factors and compare two runs; do not introduce numeric probability estimates, significance testing, independence theorems, law of large numbers, hypothesis testing, percentages or claims about statistical bias from tiny samples.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose 'Reveal next trial', 'Show Run A', 'Show Run B', 'Compare fixed conditions', 'Show changed experiment', or Reset. Keep spinner conditions visible and identical throughout A/B. Each trial's prewritten example outcome advances counts; never claim these outcomes were generated by a live fair RNG or proved underlying probabilities. No props, global state, scoring, timers or network.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Fix the spinner, count the spins: Five each guaranteed.** “Each spin could be either color. Equal chances do not force equal counts in a short set of spins.”
+                    - **Fix the spinner, count the spins: Seven blue changes chance.** “The spinner stayed the same; seven is what we observed in these ten example outcomes, not a new spinner rule.”
+                    - **Two runs, different totals by color: Counts must match.** “The experiment conditions are the same, but the outcomes are not predetermined. A short run can have different color totals.”
+                    - **Two runs, different totals by color: Run B 5/5.** “Count the blue entries in the example sequence carefully: there are four blue and six yellow.”
+                    - **Two runs, different totals by color: Spinner biased now.** “We observed different totals; the displayed spinner and uniform assumption did not change. These two examples alone do not prove a changed chance.”
+                    - **Different sample, or different experiment?: No rule change.** “The blue part changed from half to three quarters of the circle. That changes what the spinner can favor.”
+                    - **Different sample, or different experiment?: Same as Run B.** “Run B used the original half-blue spinner. This new design favors blue; do not treat the conditions as identical.”
+                    - **A fresh pair of short runs: Must change spinner.** “Neither run changes the blue/yellow half-spinner. Different chance outcomes can occur under the same conditions.”
+                    - **A fresh pair of short runs: Second run proves yellow favored.** “Four yellows in six spins are observed outcomes; they do not change how much of the spinner is yellow.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A keyboard-operable textual table lists each of ten outcomes in Run A and Run B and the numeric frequency after each reveal, with an explicit note that both are _possible examples_. An equally valid reduced-motion state shows complete lists immediately. A separate textual changed-condition card says 'original one blue of two equal sectors; changed three blue of four equal sectors'.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "Different sample, or different experiment?: independent placement"
+                  productionNotes: "Original TrialRunComparator.scene-spec.md variant belongs to Different sample, or different experiment?; see Section productionNotes. Unique stable Scene ID."
+              text1:
+                config:
+                  id: "d44123ed-5154-580a-957b-a3ed868e4e88"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Now the spinner is different: blue covers more of its circle. The chance has changed. Different counts with changed rules are not the same example as different counts from identical conditions."
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+            order: ["markdown1","scene1","text1"]
+        production:
+          purpose: "Different sample, or different experiment?"
+          productionNotes: |-
+            **Learning purpose:** Contrast natural sampling variation with changed conditions.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`markdown` Resource (available block type):** “Now we really change the spinner: four equal parts, three blue and one yellow. Is it still the same chance for blue as in our first spinner?”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). Use 'Changed setup' panel: original 1 of 2 equal sectors blue; new 3 of 4 equal sectors blue, with the same uniform-pointer assumption. Learner identifies the changed blue coverage and compares to the unchanged A/B runs.
+            
+            3. **`text` Resource (available block type):** “Now the spinner is different: blue covers more of its circle. The chance has changed. Different counts with changed rules are not the same example as different counts from identical conditions.”
+            
+            **Meaningful learner action:** Separate the statement 'same spinner, different run' from 'new spinner, changed chance'.
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **No rule change:** “The blue part changed from half to three quarters of the circle. That changes what the spinner can favor.”
+            - **Same as Run B:** “Run B used the original half-blue spinner. This new design favors blue; do not treat the conditions as identical.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+      section4:
+        config:
+          id: "6143ebfd-0b69-5c2e-abf2-6bfd875c5bec"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A fresh pair of short runs"
+            navigationLabel:
+              en: "A fresh pair of short runs"
+          content:
+            items:
+              text1:
+                config:
+                  id: "0402f31c-bf6e-547f-853d-731c754d98d1"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Two six-spin runs use the same fair half-blue, half-yellow spinner. One has three blue and three yellow; the other has two blue and four yellow. Must we change the spinner to explain this?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "5780f1a5-ea2b-5840-8698-71a5072e8702"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Two six-spin runs use the same fair half-blue, half-yellow spinner. One has three blue and three yellow; the other has two blue and four yellow. Must we change the spinner to explain this?"
+                production:
+                  specification: |
+                    # TrialRunComparator — Interactive Scene Specification
+                    
+                    **Status: Provisional Draft; pending Methodologist approval and independent Scene editorial review.**
+                    **Lesson Content:** Same Spinner, Different Results (embedded in this Lesson config.yaml)
+                    **Methodologist:** Draft Brief (embedded in this Lesson config.yaml)
+                    **Canonical target Skills:**
+                    
+                    - [experimentVariation.data.ts](../../../../data/skills/probability/experiments/skills/experimentVariation.data.ts)
+                    
+                    ## Educational purpose and intended web interaction
+                    
+                    Compare outcome frequencies from two finite runs of the same fair random experiment and explain why differing counts can arise without any change to the experiment's possible outcomes, conditions or chances.
+                    
+                    A deterministic _illustration of possible outcome sequences_, not a fake live-randomness proof: a labelled equal-sector spinner remains visibly unchanged while the learner reveals Run A and Run B as fixed recorded sequences of ten spins. Counts update one by one with blue/yellow labels; after both, an optional third panel deliberately shows a changed spinner and asks which conditions changed.
+                    
+                    **Self-contained design:** One independently initializable, prop-free Scene root owns all preset data, controls, explanations and interaction state. Multiple Section placements must not rely on props or state inherited from other Scenes. No invented renderer registration, engine hooks, scoring or persistence are authorized by this document.
+                    
+                    ## Exact factual models and required states
+                    
+                    | Preset/state       | Model shown or described                                                           | Correct observation and explanatory result             |
+                    | ------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------------ |
+                    | **Shared setup**   | Two equal-size angular sectors, blue and yellow; uniform pointer direction assumed | Both colors possible and equally likely per spin       |
+                    | **Run A outcomes** | Blue, Blue, Yellow, Blue, Blue, Yellow, Blue, Blue, Yellow, Blue                   | 7 blue and 3 yellow; total 10                          |
+                    | **Changed setup**  | Four equal-sized sectors, 3 blue and 1 yellow; uniform pointer direction assumed   | Chances changed; 3 blue sectors rather than 1 of 2     |
+                    | **Incomplete run** | Any prefix of recorded examples shorter than ten trials                            | Subtotal of blue+yellow equals revealed trial count    |
+                    | **Run B outcomes** | Yellow, Blue, Yellow, Yellow, Blue, Yellow, Blue, Yellow, Yellow, Blue             | 4 blue and 6 yellow; total 10                          |
+                    | **Run comparison** | Run A 7 blue/3 yellow; Run B 4 blue/6 yellow; same spinner rule                    | Counts differ across runs despite unchanged conditions |
+                    
+                    **Validity boundary:** Two explicit ten-trial sequences of a fixed two-equal-sector uniformly random spinner, per-color frequency comparisons, and one changed-conditions counterexample. Count outcomes, identify constant/changing factors and compare two runs; do not introduce numeric probability estimates, significance testing, independence theorems, law of large numbers, hypothesis testing, percentages or claims about statistical bias from tiny samples.
+                    
+                    ## Learner actions, transitions and recovery
+                    
+                    Choose 'Reveal next trial', 'Show Run A', 'Show Run B', 'Compare fixed conditions', 'Show changed experiment', or Reset. Keep spinner conditions visible and identical throughout A/B. Each trial's prewritten example outcome advances counts; never claim these outcomes were generated by a live fair RNG or proved underlying probabilities. No props, global state, scoring, timers or network.
+                    
+                    1. Start from one fully specified state with all its reference data visible or available via the text equivalent (whole, units, tick scale, key, or experimental conditions).
+                    2. Let the learner predict before an automatic answer reveal where useful, but always permit a voluntary request for a worked explanation without an assessment gate.
+                    3. For each action, preserve mathematical invariants, update the model deterministically and expose the new state and relevant numbers using both a visible and a structured accessible description.
+                    4. Incorrect prediction or choice: explain what contradicts the claim (actual part size, the hand's position, chart's row count, or sample-space evidence) and allow an undo, retry or reset, without score or penalty.
+                    5. Switch presets without leaking state between separate Scene instances; reset returns the current Scene to the documented initial state. A later independent transfer must hide the worked result until prediction or voluntary reveal, not hide the evidence itself.
+                    6. No essential knowledge depends on autoplay motion, sound, fixed response time, probability of hitting a random state, or fine motor skill.
+                    
+                    ## Detailed explanatory feedback
+                    
+                    - **Fix the spinner, count the spins: Five each guaranteed.** “Each spin could be either color. Equal chances do not force equal counts in a short set of spins.”
+                    - **Fix the spinner, count the spins: Seven blue changes chance.** “The spinner stayed the same; seven is what we observed in these ten example outcomes, not a new spinner rule.”
+                    - **Two runs, different totals by color: Counts must match.** “The experiment conditions are the same, but the outcomes are not predetermined. A short run can have different color totals.”
+                    - **Two runs, different totals by color: Run B 5/5.** “Count the blue entries in the example sequence carefully: there are four blue and six yellow.”
+                    - **Two runs, different totals by color: Spinner biased now.** “We observed different totals; the displayed spinner and uniform assumption did not change. These two examples alone do not prove a changed chance.”
+                    - **Different sample, or different experiment?: No rule change.** “The blue part changed from half to three quarters of the circle. That changes what the spinner can favor.”
+                    - **Different sample, or different experiment?: Same as Run B.** “Run B used the original half-blue spinner. This new design favors blue; do not treat the conditions as identical.”
+                    - **A fresh pair of short runs: Must change spinner.** “Neither run changes the blue/yellow half-spinner. Different chance outcomes can occur under the same conditions.”
+                    - **A fresh pair of short runs: Second run proves yellow favored.** “Four yellows in six spins are observed outcomes; they do not change how much of the spinner is yellow.”
+                    
+                    **Model limitations:** All examples are explicitly constrained to the conditions above. Do not extrapolate to unsupported operations or claim a simulation proves mastery or statistical generalizations. For the probability Scene, recorded illustrative sequences must never be described as a live random experiment that empirically verified fairness.
+                    
+                    ## Accessible equivalent path
+                    
+                    A keyboard-operable textual table lists each of ten outcomes in Run A and Run B and the numeric frequency after each reveal, with an explicit note that both are _possible examples_. An equally valid reduced-motion state shows complete lists immediately. A separate textual changed-condition card says 'original one blue of two equal sectors; changed three blue of four equal sectors'.
+                    
+                    All key interactions must be fully operable with native labelled keyboard/touch controls. Screen readers need a chronological, understandable announcement of changes without a flood of redundant narration. Use text labels and descriptive math/value captions rather than color or position alone. Include visible focus, sensible order, reduced-motion/static states, adequate touch sizing and narrow-screen alternatives.
+                    
+                    ## Locale / RTL / offline / weak-device requirements
+                    
+                    Genuine meaning-preserving translations of every label, narration, option, alt description and explanatory message are required in every supported locale; **do not implement silent English fallbacks, fake translations or missing dictionaries**. Distinguish mathematical meaning from visual LTR/RTL arrangement; fraction slash interpretation, clock hands and spinner probabilities must not be reversed by naive mirroring. The same lesson functionality must remain available on low-power/mobile devices and offline after complete package download. These are implementation acceptance criteria, not features supplied by this specification.
+                    
+                    ## Implementation boundary and test handoff
+                    
+                    Scene is **specified, not coded**. Later Design Scene implementation requires a prop-free React component, localized content via existing context, exact required state handling, separate Scene-specific automated tests, focus/screen-reader tests, true RTL, keyboard/touch parity, reduced motion and offline validation. No Lesson_Config, Question_Config, Quiz_Config, grading, completion API, Note API or real RNG is introduced here. Editor review is required before implementation.
+                  purpose: "A fresh pair of short runs: independent placement"
+                  productionNotes: "Original TrialRunComparator.scene-spec.md variant belongs to A fresh pair of short runs; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "931b7d26-4558-516d-8d7d-fd26511d79eb"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The first run has three of each; the second has two blue and four yellow. Both are possible with the same fair spinner. Counts may vary from run to run even when the rule stays the same."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "A fresh pair of short runs"
+          productionNotes: |-
+            **Learning purpose:** Independently transfer the distinction without memorizing 7/3 and 4/6.
+            
+            **Ordered blocks (single outer column):**
+            
+            1. **`text` Resource (available block type):** “Two six-spin runs use the same fair half-blue, half-yellow spinner. One has three blue and three yellow; the other has two blue and four yellow. Must we change the spinner to explain this?”
+            
+            2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). Transfer preset: C sequence B,B,Y,B,Y,Y and D sequence Y,Y,B,Y,Y,B. Both conditions match the original spinner. Learner counts and chooses whether results can vary under unchanged rules; reveal explanations after choice.
+            
+            3. **`markdown` Resource (available block type):** “The first run has three of each; the second has two blue and four yellow. Both are possible with the same fair spinner. Counts may vary from run to run even when the rule stays the same.”
+            
+            **Meaningful learner action:** Count C and D, assert unchanged conditions, and give reason without claiming either is guaranteed.
+            
+            **Explanatory feedback for anticipated choices:**
+            
+            - **Must change spinner:** “Neither run changes the blue/yellow half-spinner. Different chance outcomes can occur under the same conditions.”
+            - **Second run proves yellow favored:** “Four yellows in six spins are observed outcomes; they do not change how much of the spinner is yellow.”
+            
+            **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+            
+            **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    order: ["section1","section2","section3","section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Same Spinner, Different Results — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: randomExperimentsVary
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Compare outcome frequencies from two finite runs of the same fair random experiment and explain why differing counts can arise without any change to the experiment's possible outcomes, conditions or chances.
+    
+    **Pedagogical rationale and placement:** Having identified possible outcomes and compared chances, learners can now distinguish the _fixed rule_ of a fair experiment from the _variable tally_ observed in finite repeated runs. This is the domain's final canonical Skill; the depth is Grade 3 without numeric probability calculations.
+    
+    The single canonical target Skill is a competency, not an interaction format or an assessed mastery state.
+    
+    ## Target audience
+    
+    **Primary grade: Grade 3; ages approximately 8–9.** This depth follows the stated prerequisites, not an arbitrary one-Skill-per-Grade or one-Lesson-per-Skill mapping. Design for emerging literacy, mixed language proficiency, variable math fluency and accessibility needs. Use short concrete learner-facing copy, clear audible/textual alternatives and non-motor-precision inputs. The canonical Skills have no Grade ceiling.
+    
+    ## Prerequisites
+    
+    - Distinguish certain, impossible and possible outcomes of a fully specified experiment.
+    - List the distinct result colors and understand that equal-size sectors under a fair spinner assumption give equal likelihood.
+    - Count category frequencies up to ten and reconcile the number of observations per trial run.
+    
+    Previously transferred, pedagogically adjacent Skills: `certainImpossible`, `listOutcomes`, `likelihoodLanguage`. The Lesson itself must remain standalone and Program-neutral; a learner with the equivalent knowledge need not complete any named preceding Lesson.
+    
+    ## Target Skills
+    
+    - [experimentVariation.data.ts](../../../../data/skills/probability/experiments/skills/experimentVariation.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Describe the unchanged conditions of a uniformly random, two-equal-sector spinner labelled blue and yellow.
+    - Compare one ten-spin run with blue 7/yellow 3 and a second with blue 4/yellow 6; check that each has exactly ten spins.
+    - Explain that the runs have different observed frequencies even though both used the same fair spinner and equal-chance rule.
+    - Identify that neither small run proves the spinner became unfair or that the next color is guaranteed.
+    - Distinguish sampling variation from a deliberate change to an unequal spinner (three equal blue sectors and one yellow sector), which changes the experiment's chances.
+    
+    These observable outcomes state what the Lesson intends to teach and invite learners to demonstrate. Neither a single correct choice nor completion of a Section guarantees validated mastery of an individual Skill.
+    
+    ## Essential subject matter
+    
+    - An experiment is defined by conditions and rules: here a spinner with two equal-size sectors, one blue and one yellow, and an assumed uniform pointer direction. Each spin yields exactly one color.
+    - A run of ten spins produces one frequency for blue and one for yellow; those observed counts add to ten but need not equal five and five in a particular run.
+    - Two illustrative, mathematically possible runs under the same fixed conditions are Run A: seven blue and three yellow; Run B: four blue and six yellow. They differ without requiring a rule change.
+    - Observed relative frequency in a small sample is not identical to the experiment's underlying chance; run-to-run sampling variation is natural and does not imply that the previous outcomes caused the next outcome.
+    - If the spinner changes to four equal sections with three blue and one yellow, or the pointer distribution changes, the experimental conditions/chances have changed. Differences then cannot be attributed to identical-condition sampling variation alone.
+    
+    **Depth selected for this audience:** Two explicit ten-trial sequences of a fixed two-equal-sector uniformly random spinner, per-color frequency comparisons, and one changed-conditions counterexample. Count outcomes, identify constant/changing factors and compare two runs; do not introduce numeric probability estimates, significance testing, independence theorems, law of large numbers, hypothesis testing, percentages or claims about statistical bias from tiny samples.
+    
+    ## Conceptual progression and dependencies
+    
+    Build on the listed prerequisites, expose the _reference_ (whole size, hour and minute scale, pictograph key, or random-experiment conditions) before asking the learner to reason. Move from a familiar case to an interactive contrast that makes a common misconception visible, then apply the correct rule in an independent fresh example. The Screenwriter chooses presentation, interactions and number of Sections; the Methodologist owns content limits and accuracy. Supporting representations teach a Skill; they do not create additional Skill IDs.
+    
+    ## Misconceptions, examples and boundaries
+    
+    - An exactly fair two-color spinner must produce five and five in every set of ten spins.
+    - An outcome appearing seven times must be more likely on the _next_ spin under unchanged independent fair conditions.
+    - Different observed counts prove that somebody changed the spinner.
+    - A spinner redesigned with three blue sectors and one yellow sector is exactly the same random experiment as before.
+    - A recorded example sequence is a guaranteed future prediction rather than one possible result.
+    
+    **Explicit exclusions:** Two explicit ten-trial sequences of a fixed two-equal-sector uniformly random spinner, per-color frequency comparisons, and one changed-conditions counterexample. Count outcomes, identify constant/changing factors and compare two runs; do not introduce numeric probability estimates, significance testing, independence theorems, law of large numbers, hypothesis testing, percentages or claims about statistical bias from tiny samples. Do not implicitly extend the canonical Skill description, invent new taxonomy entities or treat any exercise format as a separately approved Skill.
+    
+    ## Localization, accessibility and offline intent
+    
+    Complete authentic translation of all learner-facing text, mathematical terminology, captions, nonvisual model descriptions, controls, hints and feedback is mandatory for every standard locale at implementation. No English replacement text, fake dictionaries, silent fallbacks or `allLocales` assertions of incomplete coverage. Adapt layout and narrative order semantically for RTL without reversing mathematical truth. Require meaningful keyboard/touch/screen-reader participation, visible focus, adequate targets, high contrast, static reduced-motion representation, small-screen readability and WCAG 2.2 AA testing. Once downloaded, the complete Lesson, Scene and explanatory feedback must run offline on low-resource devices. These are requirements, not claims that runtime assets or PWA flows exist.
+    
+    ## Sources and factual verification
+    
+    - [experimentVariation.data.ts](../../../../data/skills/probability/experiments/skills/experimentVariation.data.ts) — canonical Mathematics Skill object and methodological description.
+    - Studio [Lesson](../../../../../../studio/docs/entities/lesson.md), [Lesson Content](../../../../../../studio/docs/entities/lesson-content.md), [Section](../../../../../../studio/docs/entities/section.md) and [Program](../../../../../../studio/docs/entities/program.md) contracts.
+    - Scene specification below records fully specified examples and truth conditions for subsequent mathematical and editorial review.
+    
+    ## Curriculum / Program compatibility
+    
+    Not specified. Standalone and Program-neutral. Do not claim formal Ukrainian or international Curriculum alignment without reviewing a concrete Curriculum.
+    
+    ## Open editorial decisions
+    
+    - **Editor/Methodologist:** verify Grade 3 audience, prerequisite suitability, target Skills, depth and treatment of the listed misconceptions.
+    - **Editor/Screenwriter:** approve the provisional Section plan and separately review the custom Scene specification only after the Methodologist Brief is accepted.
+    - **Engineering/QA:** accessible equivalence, locale coverage, offline behavior, tests and runtime Section integration remain future implementation work, not established behavior.
+    
+    ## Methodologist handoff
+    
+    **Draft pending editorial approval.** Companion Content and Scene specifications are _provisional_ under the explicit batch instruction; their creation does not satisfy or bypass the Methodologist approval gate. No runtime Lesson_Config, Question, Quiz, React Scene, scoring, storage API or Note implementation is authorized by this handoff.
+  productionNotes: |
+    # Same Spinner, Different Results — Lesson Content
+    
+    **Status: Provisional Draft — pending Methodologist approval.**
+    **Methodologist input:** Draft Brief (embedded in this Lesson config.yaml) (**not approved**).
+    **Primary audience:** Grade 3, ages 8–9.
+    **Target canonical Skills:**
+    
+    - [experimentVariation.data.ts](../../../../data/skills/probability/experiments/skills/experimentVariation.data.ts)
+      **Independence:** standalone Playground Lesson; no Program storyline, mascot, reward, mission or past learner state required.
+      **Implementation:** editorial Content only. No runtime Lesson, Questions, Quizzes, scoring, registered custom Scenes or locale bundles created.
+    
+    ## Instructional concept
+    
+    Compare outcome frequencies from two finite runs of the same fair random experiment and explain why differing counts can arise without any change to the experiment's possible outcomes, conditions or chances.
+    
+    Having identified possible outcomes and compared chances, learners can now distinguish the _fixed rule_ of a fair experiment from the _variable tally_ observed in finite repeated runs. This is the domain's final canonical Skill; the depth is Grade 3 without numeric probability calculations.
+    
+    The core web opportunity is **learner-controlled inspection of a mathematical model**, not merely an illustration: A deterministic _illustration of possible outcome sequences_, not a fake live-randomness proof: a labelled equal-sector spinner remains visibly unchanged while the learner reveals Run A and Run B as fixed recorded sequences of ten spins. Counts update one by one with blue/yellow labels; after both, an optional third panel deliberately shows a changed spinner and asks which conditions changed.
+    
+    Every example is bounded: Two explicit ten-trial sequences of a fixed two-equal-sector uniformly random spinner, per-color frequency comparisons, and one changed-conditions counterexample. Count outcomes, identify constant/changing factors and compare two runs; do not introduce numeric probability estimates, significance testing, independence theorems, law of large numbers, hypothesis testing, percentages or claims about statistical bias from tiny samples.
+    
+    ## Learner journey and ordered Sections
+    
+    1. **Fix the spinner, count the spins** — Make unchanged experimental conditions explicit before inspecting observed frequencies.
+    2. **Two runs, different totals by color** — Observe run-to-run variability with the same total trials and conditions.
+    3. **Different sample, or different experiment?** — Contrast natural sampling variation with changed conditions.
+    4. **A fresh pair of short runs** — Independently transfer the distinction without memorizing 7/3 and 4/6.
+    
+    Use a vertical single-column order of typed Resource blocks within each general Section: `text`, `markdown` and the existing `scene` Resource type. The named **TrialRunComparator** is a new proposed Scene, not yet implemented, and each appearance must be self-contained rather than depending on earlier Section state. A generic Scene renderer does not mean this particular educational interaction is available. No new Section discriminators or hidden readiness APIs are implied.
+    
+    ## Section-by-Section learning experience
+    
+    ### Section 1 — Fix the spinner, count the spins
+    
+    **Learning purpose:** Make unchanged experimental conditions explicit before inspecting observed frequencies.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`text` Resource (available block type):** “This spinner has one blue half and one yellow half. We assume it stops equally likely anywhere. We will spin ten times and record one color each time. Must we get exactly five blue and five yellow?”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). TrialRunComparator displays the unchanged blue/yellow half-spinner with its fair-uniform assumption. Learner predicts whether 5/5 must occur; Run A's ten possible example results are shown one at a time or as an accessible list.
+    
+    3. **`markdown` Resource (available block type):** “A fair spinner gives both colors the same chance _on each spin_. It does not promise five of each in every short run. In this example, Run A has seven blue and three yellow.”
+    
+    **Meaningful learner action:** Predict whether a 5/5 split is obligatory and tally Run A's ten outcomes.
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **Five each guaranteed:** “Each spin could be either color. Equal chances do not force equal counts in a short set of spins.”
+    - **Seven blue changes chance:** “The spinner stayed the same; seven is what we observed in these ten example outcomes, not a new spinner rule.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ### Section 2 — Two runs, different totals by color
+    
+    **Learning purpose:** Observe run-to-run variability with the same total trials and conditions.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`text` Resource (available block type):** “We use the _same_ spinner for another ten spins. Could the numbers of blue and yellow change even though the chance for each color stays equal?”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). Replay Run B as a distinct fixed possible sequence with exactly four blue and six yellow outcomes, keeping the spinner illustration locked. Reveal its counts and compare to Run A's 7/3.
+    
+    3. **`markdown` Resource (available block type):** “Run A had seven blue and three yellow. Run B had four blue and six yellow. Both used ten spins of the same fair spinner. Different counts can happen without changing the chances.”
+    
+    **Meaningful learner action:** Count Run B and identify A-versus-B frequency differences (blue 7 versus 4, yellow 3 versus 6).
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **Counts must match:** “The experiment conditions are the same, but the outcomes are not predetermined. A short run can have different color totals.”
+    - **Run B 5/5:** “Count the blue entries in the example sequence carefully: there are four blue and six yellow.”
+    - **Spinner biased now:** “We observed different totals; the displayed spinner and uniform assumption did not change. These two examples alone do not prove a changed chance.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ### Section 3 — Different sample, or different experiment?
+    
+    **Learning purpose:** Contrast natural sampling variation with changed conditions.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`markdown` Resource (available block type):** “Now we really change the spinner: four equal parts, three blue and one yellow. Is it still the same chance for blue as in our first spinner?”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). Use 'Changed setup' panel: original 1 of 2 equal sectors blue; new 3 of 4 equal sectors blue, with the same uniform-pointer assumption. Learner identifies the changed blue coverage and compares to the unchanged A/B runs.
+    
+    3. **`text` Resource (available block type):** “Now the spinner is different: blue covers more of its circle. The chance has changed. Different counts with changed rules are not the same example as different counts from identical conditions.”
+    
+    **Meaningful learner action:** Separate the statement 'same spinner, different run' from 'new spinner, changed chance'.
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **No rule change:** “The blue part changed from half to three quarters of the circle. That changes what the spinner can favor.”
+    - **Same as Run B:** “Run B used the original half-blue spinner. This new design favors blue; do not treat the conditions as identical.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ### Section 4 — A fresh pair of short runs
+    
+    **Learning purpose:** Independently transfer the distinction without memorizing 7/3 and 4/6.
+    
+    **Ordered blocks (single outer column):**
+    
+    1. **`text` Resource (available block type):** “Two six-spin runs use the same fair half-blue, half-yellow spinner. One has three blue and three yellow; the other has two blue and four yellow. Must we change the spinner to explain this?”
+    
+    2. **`scene` Resource (existing type; bespoke Scene proposed, not implemented):** TrialRunComparator (Scene specification TrialRunComparator embedded below). Transfer preset: C sequence B,B,Y,B,Y,Y and D sequence Y,Y,B,Y,Y,B. Both conditions match the original spinner. Learner counts and chooses whether results can vary under unchanged rules; reveal explanations after choice.
+    
+    3. **`markdown` Resource (available block type):** “The first run has three of each; the second has two blue and four yellow. Both are possible with the same fair spinner. Counts may vary from run to run even when the rule stays the same.”
+    
+    **Meaningful learner action:** Count C and D, assert unchanged conditions, and give reason without claiming either is guaranteed.
+    
+    **Explanatory feedback for anticipated choices:**
+    
+    - **Must change spinner:** “Neither run changes the blue/yellow half-spinner. Different chance outcomes can occur under the same conditions.”
+    - **Second run proves yellow favored:** “Four yellows in six spins are observed outcomes; they do not change how much of the spinner is yellow.”
+    
+    **Learner control and transfer:** Ask for a prediction before revealing a model's conclusion where appropriate. Any wrong selection exposes the relevant mathematical fact, with a no-penalty retry. The correct explanation stays accessible on demand without requiring a correct answer or forcing perfect performance before navigation.
+    
+    **Access, locale and RTL:** All essential diagram/state facts need matching concise text or alternative labelled selections and keyboard/touch controls; optional audio must have meaningful captions/transcript. Avoid color, motion or pointer precision as the sole carrier of knowledge. RTL adaptation changes semantic layout, not quantity, clock direction, symbols, or outcome probabilities. Do not imply localization or accessible code is already implemented.
+    
+    ## Custom Scene specifications
+    
+    - TrialRunComparator (Scene specification TrialRunComparator embedded below) — proposed interactive, prop-free self-contained Scene. Review its pedagogical cases, state changes, feedback, accessibility alternatives and reset. It is a written specification, **not** a React component.
+    
+    ## Independent transfer and reflection
+    
+    With a fresh 6-spin pair under the same fair two-sector spinner, Run C has B,B,Y,B,Y,Y = 3 blue/3 yellow and Run D has Y,Y,B,Y,Y,B = 2 blue/4 yellow. Explain why the equal-chance rule can still be unchanged.
+    
+    Present the unfamiliar case before revealing the worked result. The learner may request a hint and review a full explanation; speech input is optional to a nearby adult rather than an assumed speech-recognition system. An unscored transfer response informs learning but is not validated mastery.
+    
+    ## Lesson Notes — planned, not implemented
+    
+    **Concise cue:** “Same rules do not require the same results every run; small sample counts can vary.”
+    
+    **Proposed unlock moment:** after the learner has examined the critical comparison in Section 3 and can explain what made the examples different. There is no verified Note entity, unlock event, persistent study sheet, spaced-repetition scheduler or offline Notes sync; the Lesson must remain understandable without those features.
+    
+    ## Assessment and technical handoff
+    
+    These interactions are formative, explanatory and unscored. An Assessment Architect owns later Question banks, diagnostic validity, Quiz behavior, scoring thresholds and mastery evidence. A Coding Agent owns runtime Lesson/Section data, Scene implementation, translations, assets, tests, registration and packaging. The Scene's feasibility, full supported locale coverage, WCAG 2.2 AA access, true RTL, reduced motion, mobile and offline parity are **release requirements, not existing implementation claims**.
+    
+    ## Open editorial questions
+    
+    - Confirm the Methodologist's selected scope before approving this Content.
+    - Review explanatory language and any potentially ambiguous model assumptions in the Scene with domain specialist.
+    - Review all locale-specific labels, numerals and conventions, and provide accurate genuine translations before implementation.
+    
+    **Editorial status remains Provisional Draft.**
