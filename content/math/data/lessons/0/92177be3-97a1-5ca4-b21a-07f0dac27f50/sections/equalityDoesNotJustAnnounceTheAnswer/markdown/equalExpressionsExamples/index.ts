@@ -6,8 +6,6 @@ export const equalExpressionsExamples = defineMarkdown({
   type: "markdown",
   params: {},
   locale: {
-    value: {
-      en: "3 + 2 = 4 + 1 is true: five on each side. 5 = 2 + 3 is also true: the answer need not be on the right."
-    }
+      en: // todo: util reading file "en" from ./locale
   }
 });
