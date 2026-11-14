@@ -388,13 +388,14 @@ export function verifyOrWriteGenerated(filename, rendered, action) {
 }
 
 export function parseArguments(args) {
-  let packagePath, courseId, slug, sourceFilename, action;
+  let packagePath, courseId, slug, sourceFilename, configFile, action;
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--package') packagePath = args[++i];
     else if (arg === '--course') courseId = args[++i];
     else if (arg === '--slug') slug = args[++i];
     else if (arg === '--source') sourceFilename = args[++i];
+    else if (arg === '--config') configFile = args[++i];
     else if (arg === '--write' || arg === '--check') {
       if (action) fail('ARGS', 'choose exactly one action');
       action = arg;
@@ -402,50 +403,69 @@ export function parseArguments(args) {
   }
   if (
     !PACKAGE.test(packagePath ?? '') ||
-    !UUID.test(courseId ?? '') ||
+    ((courseId === undefined) === (configFile === undefined)) ||
+    (courseId !== undefined && !UUID.test(courseId)) ||
     (slug !== undefined && !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(slug)) ||
     (sourceFilename !== undefined && !['config.yaml', 'toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
+    (configFile !== undefined && (sourceFilename !== undefined || !configFile.endsWith('/config.yaml'))) ||
     !action
   ) {
     fail(
       'ARGS',
       'usage: --package content/<book> --course <uuid> [--slug <slug>] ' +
-        '[--source config.yaml|toc.yaml|course.yaml] --write|--check',
+        '[--source config.yaml|toc.yaml|course.yaml] --write|--check OR --package content/<book> --config <path>/config.yaml --write|--check',
     );
   }
-  return { packagePath, courseId, slug, sourceFilename, action };
+  return { packagePath, courseId, slug, sourceFilename, configFile, action };
 }
 
 export async function main(args, repo = repoRoot) {
   const options = parseArguments(args);
-  const courseFolder = path.join(repo, options.packagePath, 'data/courses', options.courseId.at(-1), options.courseId);
-  noSymlinkComponents(courseFolder);
-  if (options.action === '--write') {
-    const existing = existingCourseDrafts(courseFolder);
-    if (existing.length) {
-      console.log(
-        'SKIP Course ' +
-          options.courseId +
-          ': existing ' +
-          existing.join(', ') +
-          ' in ' +
-          courseFolder +
-          '; no files modified',
-      );
-      return;
-    }
+  let courseId = options.courseId;
+  let courseFolder;
+  let sourceFilename;
+  let input;
+  let source;
+  if (options.configFile) {
+    // Direct source mode: the only authored Course ID is inside config.yaml.
+    input = path.resolve(repo, options.configFile);
+    const textbookRoot = path.resolve(repo, options.packagePath);
+    const relative = path.relative(textbookRoot, input);
+    if (relative.startsWith('..' + path.sep) || relative === '..' || path.isAbsolute(relative))
+      fail('PATH', 'config.yaml source must be inside its textbook: ' + input);
+    noSymlinkComponents(input);
+    if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
+    sourceFilename = 'config.yaml';
+    source = parseCourseYaml(fs.readFileSync(input, 'utf8'), sourceFilename);
+    courseId = source.config?.id;
+    if (!UUID.test(courseId ?? '') || source.config?.type !== 'course')
+      fail('INPUT', 'config.yaml must contain one Course config.id UUID and config.type');
   }
-  const sourceFilename =
-    options.sourceFilename ??
-    (fs.existsSync(path.join(courseFolder, 'config.yaml'))
-      ? 'config.yaml'
-      : fs.existsSync(path.join(courseFolder, 'course.yaml'))
-        ? 'course.yaml'
-        : 'toc.yaml');
-  const input = path.join(courseFolder, sourceFilename);
-  noSymlinkComponents(input);
-  if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
-  const source = parseCourseYaml(fs.readFileSync(input, 'utf8'), sourceFilename);
+  courseFolder = path.join(repo, options.packagePath, 'data/courses', courseId.at(-1), courseId);
+  noSymlinkComponents(courseFolder);
+  const skipExisting = () => {
+    const existing = existingCourseDrafts(courseFolder);
+    if (!existing.length) return false;
+    console.log(
+      'SKIP Course ' + courseId + ': existing ' + existing.join(', ') +
+        ' in ' + courseFolder + '; no files modified',
+    );
+    return true;
+  };
+  if (options.action === '--write' && skipExisting()) return;
+  if (!options.configFile) {
+    sourceFilename =
+      options.sourceFilename ??
+      (fs.existsSync(path.join(courseFolder, 'config.yaml'))
+        ? 'config.yaml'
+        : fs.existsSync(path.join(courseFolder, 'course.yaml'))
+          ? 'course.yaml'
+          : 'toc.yaml');
+    input = path.join(courseFolder, sourceFilename);
+    noSymlinkComponents(input);
+    if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
+    source = parseCourseYaml(fs.readFileSync(input, 'utf8'), sourceFilename);
+  }
   const scaffold = sourceFilename === 'config.yaml' ? splitScaffoldDocument(source) : undefined;
   const artifacts = scaffold ? productionFiles(courseFolder, scaffold.tasks) : [];
   checkProductionFiles(artifacts, options.action === '--write' ? 'generate' : 'check');
@@ -471,11 +491,12 @@ export async function main(args, repo = repoRoot) {
   if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(fileSlug)) fail('SLUG', 'unsafe output slug: ' + fileSlug);
   const filename = path.join(courseFolder, fileSlug + '.data.ts');
   const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides });
+  if (options.action === '--write') fs.mkdirSync(courseFolder, { recursive: true });
   const changed = verifyOrWriteGenerated(filename, content, options.action);
   const specs = options.action === '--write' && changed ? writeProductionFiles(artifacts) : 0;
   console.log(
     options.action === '--write' && !changed
-      ? 'SKIP Course ' + options.courseId + ': existing ' + path.basename(filename) + '; no files modified'
+      ? 'SKIP Course ' + courseId + ': existing ' + path.basename(filename) + '; no files modified'
       : (changed ? 'Scaffolded ' : 'Checked ') +
           filename +
           '; draft requires AI completion (no schema/TS/publication checks)',
