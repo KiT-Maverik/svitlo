@@ -38,17 +38,8 @@ const schemas = {
 export function draftYamlSchema(kind, configSchema) {
   if (kind !== 'lesson' && kind !== 'course') return configSchema;
   const schema = structuredClone(configSchema);
-  // Factory dispatch is mandatory; the rest can be deliberately incomplete.
-  function relax(node) {
-    if (Array.isArray(node)) return void node.forEach(relax);
-    if (!node || typeof node !== 'object') return;
-    if (node.properties && Array.isArray(node.required)) {
-      const must = node.required.filter(name => name === 'type' || name === 'lessonId');
-      if (must.length) node.required = must;
-      else delete node.required;
-    }
-    for (const value of Object.values(node)) relax(value);
-  }
+  // Keep Zod-derived required fields. Pending local media is represented
+  // by literal null in the YAML-only Zod projections, not by omitted fields.
   schema.properties.documentLanguage = { type: 'string', minLength: 2 };
   if (kind === 'course') {
     const importSource = {
@@ -70,8 +61,7 @@ export function draftYamlSchema(kind, configSchema) {
     }
     addImportSource(schema);
   }
-  relax(schema);
-  if (kind === 'lesson') schema.required = ['type', 'slug', 'documentLanguage'];
+  if (kind === 'lesson') schema.required = [...new Set([...(schema.required ?? []), 'documentLanguage'])];
   return schema;
 }
 
@@ -169,7 +159,8 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     title: 'Svitlo ' + kind + ' unified config.yaml authoring draft',
     description:
       'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
-      'Intentionally incomplete Config may generate TypeScript that fails typechecking by design.',
+      'Complete Config structure may contain literal null for pending local media; ' +
+      'TypeScript fails until the actual resources have been produced.',
     ...envelope,
     $defs: {
       ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),

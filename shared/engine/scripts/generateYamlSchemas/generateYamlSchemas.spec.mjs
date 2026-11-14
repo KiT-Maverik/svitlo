@@ -15,6 +15,14 @@ const {
   yamlFactoryByType,
   yamlContentBlock_Schema,
   yamlSection_Schema,
+  yamlAudio_Schema,
+  yamlImage_Schema,
+  yamlVideo_Schema,
+  yamlCarouselSlide_Schema,
+  audio_Config_Schema,
+  image_Config_Schema,
+  video_Config_Schema,
+  carouselSlide_Config_Schema,
 } = require('../../dist/build.js');
 
 const id = '00000000-0000-4000-8000-000000000001';
@@ -68,6 +76,77 @@ test('nested discriminator is required even in source-language-only YAML', () =>
   );
 });
 
+
+test('YAML media projections require null while Engine Config schemas require real paths', () => {
+  const variants = [
+    { yaml: yamlImage_Schema, engine: image_Config_Schema, fields: ['src'],
+      config: { id, slug: 'picture', type: 'image', params: { fill: true, aspectRatio: 1.5 },
+        locale: { src: null, alt: { uk: 'Зображення' } } } },
+    { yaml: yamlAudio_Schema, engine: audio_Config_Schema, fields: ['fileLocation'],
+      config: { id, slug: 'voice', type: 'audio', params: {},
+        locale: { fileLocation: null, title: { uk: 'Озвучення' } } } },
+    { yaml: yamlVideo_Schema, engine: video_Config_Schema, fields: ['fileLocation', 'poster'],
+      config: { id, slug: 'film', type: 'video', params: {},
+        locale: { fileLocation: null, poster: null, label: { uk: 'Відео' } } } },
+    { yaml: yamlCarouselSlide_Schema, engine: carouselSlide_Config_Schema, fields: ['src'],
+      config: { id, slug: 'slide', type: 'carouselSlide',
+        locale: { src: null, alt: { uk: 'Слайд' } } } },
+  ];
+  for (const { yaml, engine, fields, config } of variants) {
+    assert.equal(yaml.safeParse(config).success, true, config.type);
+    assert.equal(engine.safeParse(config).success, false, config.type + ': Engine must reject null');
+    for (const field of fields) {
+      const absent = structuredClone(config);
+      delete absent.locale[field];
+      assert.equal(yaml.safeParse(absent).success, false, config.type + '.' + field + ' must exist');
+      const filled = structuredClone(config);
+      filled.locale[field] = '/assets/real.png';
+      assert.equal(yaml.safeParse(filled).success, false, config.type + '.' + field + ' must be null');
+    }
+    if (config.type !== 'carouselSlide') {
+      assert.equal(yamlContentBlock_Schema.safeParse(config).success, true, config.type + ': nested union');
+    }
+  }
+  const slide = variants[3].config;
+  const carousel = { id, slug: 'gallery', type: 'carousel', params: {}, locale: {},
+    slides: { items: { slide }, order: ['slide'] } };
+  assert.equal(yamlContentBlock_Schema.safeParse(carousel).success, true);
+  assert.equal(yamlContentBlock_Schema.safeParse({
+    ...carousel, slides: { items: { slide: { ...slide, locale: { ...slide.locale, src: 'ready.png' } } },
+      order: ['slide'] },
+  }).success, false);
+});
+
+test('JSON Schema retains required fields and literal null media even in nested Lessons/Courses', () => {
+  const docs = yamlJsonSchemaDocuments();
+  for (const kind of ['contentBlock', 'lesson', 'course']) {
+    const schema = JSON.parse(docs[kind + '.schema.json']);
+    const media = new Map();
+    const visit = node => {
+      if (!node || typeof node !== 'object') return;
+      const type = node.properties?.type?.const;
+      if (typeof type === 'string' && node.properties?.locale) media.set(type, node);
+      for (const value of Object.values(node)) visit(value);
+    };
+    visit(schema);
+    for (const [kindOfMedia, fields] of Object.entries({
+      image: ['src'], audio: ['fileLocation'], video: ['fileLocation', 'poster'],
+      carouselSlide: ['src'],
+    })) {
+      if (kind === 'contentBlock' && kindOfMedia === 'carouselSlide') continue;
+      const block = media.get(kindOfMedia);
+      assert(block, kind + ': missing ' + kindOfMedia);
+      assert(block.required.includes('locale'), kind + ': required locale for ' + kindOfMedia);
+      for (const field of fields) {
+        assert(block.properties.locale.required.includes(field), kind + ': required ' + field);
+        const value = block.properties.locale.properties[field];
+        assert.equal(value.type, 'null');
+        assert.equal(value.const, null);
+      }
+    }
+  }
+});
+
 test('Zod -> JSON Schema exports every root without opaque Configurator nodes', () => {
   const docs = yamlJsonSchemaDocuments();
   assert.deepEqual(Object.keys(docs).sort(), [
@@ -98,9 +177,15 @@ test('Lesson/Course draft envelopes document source language, import coordinates
   const overrides = JSON.parse(docs['courseOverrides.schema.json']);
   assert(lesson.required.includes('documentLanguage'));
   assert(lesson.required.includes('type'));
-  assert(!lesson.required.includes('flashcards')); // Drafts may be incomplete.
+  assert(lesson.required.includes('flashcards')); // Required structure is never silently relaxed.
   assert.equal(course.properties.documentLanguage.type, 'string');
-  assert(!course.required.includes('content'));
+  for (const field of ['id', 'slug', 'type', 'skills', 'params', 'locale', 'section', 'flashcards']) {
+    assert(lesson.required.includes(field), 'Missing Lesson required field: ' + field);
+  }
+  for (const field of ['id', 'slug', 'type', 'params', 'locale', 'content']) {
+    assert(course.required.includes(field), 'Missing Course required field: ' + field);
+  }
+  assert(course.required.includes('content'));
   assert.equal(overrides.additionalProperties, false);
   assert.deepEqual(Object.keys(overrides.properties).sort(), ['content', 'locale', 'params']);
   assert.equal(overrides.properties.content.properties.items.type, 'object');
