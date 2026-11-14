@@ -1,71 +1,102 @@
 config:
-  id: "8e731d45-0f3a-5f47-9563-2414813fca30"
-  slug: "measuringCapacityInLiters"
-  type: "lesson"
-  skills: ["3853f445-537c-4c06-b5ec-9391ce2a440f"]
+  id: '8e731d45-0f3a-5f47-9563-2414813fca30'
+  slug: 'measuringCapacityInLiters'
+  type: 'lesson'
+  skills: ['3853f445-537c-4c06-b5ec-9391ce2a440f']
   params:
     requireQuiz: false
-    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "One Liter at a Time"
+      en: 'One Liter at a Time'
   section:
     items:
       section1:
         config:
-          id: "e8528562-ceec-591d-b301-05622e887f0f"
-          slug: "section1"
-          type: "content"
+          id: 'e8528562-ceec-591d-b301-05622e887f0f'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What Exactly Is One Liter?"
+              en: 'What Exactly Is One Liter?'
             navigationLabel:
-              en: "What Exactly Is One Liter?"
+              en: 'What Exactly Is One Liter?'
           content:
             items:
               text1:
                 config:
-                  id: "8e8fc7b3-f291-5ebc-8fca-47b3759ede52"
-                  slug: "text1"
-                  type: "text"
+                  id: '8e8fc7b3-f291-5ebc-8fca-47b3759ede52'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This measuring vessel has a line marked **1 L**. It is empty now. Does it still have a **one-liter capacity**? What happens when we fill it to the line?"
+                      en: 'This measuring vessel has a line marked **1 L**. It is empty now. Does it still have a **one-liter capacity**? What happens when we fill it to the line?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "15ca95ec-d28e-50c5-84e2-15ec2005787b"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '15ca95ec-d28e-50c5-84e2-15ec2005787b'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "This measuring vessel has a line marked **1 L**. It is empty now. Does it still have a **one-liter capacity**? What happens when we fill it to the line?"
+                        instruction: 'This measuring vessel has a line marked **1 L**. It is empty now. Does it still have a **one-liter capacity**? What happens when we fill it to the line?'
                 production:
                   specification: |
                     # Liter Measure Studio — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: One Liter at a Time (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — know one liter as a standard unit of volume/capacity, estimate and measure whole-liter container capacity against a **full calibrated 1 L reference**, diagnose unfair partial or different-unit measures. This is not a new Skill, a fluid-physics simulator or a scored Question.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children have compared capacities using abstract equal scoops. This Scene makes a **common standard unit** explicit: a calibrated measuring vessel that holds **1 liter at its full marked line**. The learner makes a prediction, fills the reference completely, transfers it into a target, counts equivalent one-liter portions, then explains what the target can hold. A visible container's width/height is a **hypothesis**, not a reliable measurement.
-                    
+
                     Core learner phrase: "**A full reference is one liter. Count how many full liters a container holds. Empty and full are contents, not the container's capacity.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - **Liter (L)** is a volume unit used for capacity. In the virtual model, reference capacity is exactly **1 L** when filled to its calibration line. The reference's **current contents** are a separate state: **0 L** empty or **1 L** full during ordinary measurement. In a **deliberate diagnostic only**, the reference can be **partially filled (0 < contents < 1 L)**; this amount is **not** treated as one liter and need not be numerically exposed to early learners.
                     - Each target has immutable capacity `C` in **whole liters**, initially empty for each new measurement. Target contents `v` must remain between **0 and C**. Capacity `C` does **not** change on filling, emptying, shape illustration or screen resizing.
                     - A **successful full-liter transfer** requires the reference contains exactly **1 L**, target has at least **1 L remaining capacity**, and the simulated operation moves that volume **from reference to target**. Afterward reference contents becomes **0 L** and target contents increases by exactly **1 L**. **No fluid is duplicated, lost, evaporated or spilled.**
@@ -75,20 +106,20 @@ config:
                     - The prior `capacityConcept` Lesson established the distinction between **maximum possible volume** and amount **currently inside**. This one measures in _liters_ and includes a pre-measure estimate. No fractional liter arithmetic, mL conversion, density, weight or physical calibration to actual on-screen containers is taught.
                     - **Fairness:** Count repeated **full 1 L** transfers into an initially empty target. A partly filled reference is _not_ a one-liter portion and must never increment "number of completed full 1 L transfers".
                     - A digital interface may present fluid as icons or progress bars, but a screen reader gets **the same unit-bearing values and state transitions**. UI never implies that an empty 3 L container's capacity becomes 0 L.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — The One-Liter Reference (Section 1)
-                    
+
                     1. Show fixed reference vessel with readable **1 L fill mark**, initially empty. State ledger: "**Capacity 1 L; currently contains 0 L**."
                     2. Prompt: "If the reference vessel is empty now, can it still hold one liter?" Choices "Yes, when full" / "No, capacity is zero". Prediction before reveal.
                     3. "Fill to marked line" changes current contents **0→1 L**, capacity remains **1 L**. Both visual state and text announce "**Contains 1 L, full**".
                     4. "Empty reference" changes contents **1→0 L** while capacity remains **1 L**. Correct explanation: "Empty isn't no capacity. The vessel could still hold one liter."
                     5. Feedback for wrong "no capacity" focuses on same vessel/unchanged capacity, no point deduction or confusion with object mass.
                     6. Reset restores empty reference and unrevealed prediction. No actual pouring, screen size or water properties needed.
-                    
+
                     ### B — Three Complete Reference Transfers (Section 2)
-                    
+
                     1. Set target **C=3 L**, contents0. Show a **1 L reference** separately, with its capacity label. Do **not** disclose exact target C in learner-visible or accessibility UI before measurement; describe it as "larger than one 1 L reference, perhaps around two, three or four liters" with deliberately coarse geometry. Learner chooses estimate `e∈{2,3,4} L`, optionally a short reason.
                     2. "Confirm estimate" then "Fill reference" ⇒ reference contents 1 L. "Pour full reference" ⇒ target contents **1 L**, reference0. Repeat exactly twice more. Document transitions:
                        - Initial: target0 L, reference0 L, confirmed full transfers0.
@@ -99,27 +130,27 @@ config:
                     4. "Pour" when target already full is blocked, and reference full volume remains in reference (no disappearance). Explanation: "This target is already at its full capacity, 3 L."
                     5. Feedback for estimate2: "The target took one **more** full liter than your estimate"; estimate4: "One **less**"; estimate3: "Your prediction matched the three measured portions." These are **unscored explanatory** comparisons, not a secret tolerance.
                     6. If learner requests "What did we do?" read a complete log of three exact transfers with current contents and final capacity. Reset clears estimate and restores both empty.
-                    
+
                     ### C — Two Different Shapes, Equal Liters; Unfair Reference (Section 3)
-                    
+
                     1. Two fixed differently shaped schematic targets A (tall narrow) and B (short wide), **each** capacity **3 L**, initially empty. Prompt: "Would the taller one necessarily hold more?"
                     2. Learner may "Measure A" and "Measure B" independently. Each needs three **complete** one-liter reference transfers from an initially empty target to its full mark. Ledger: "A capacity3 L, B capacity3 L, despite shape difference."
                     3. Show diagnostic measuring vessel intentionally **partially filled below 1 L line**. Prompt: "May we call each such pour one liter?" Choices yes/no, then reveal. Correct: **no**; a part-full reference contributes less than one liter.
                     4. If diagnostic "Pour part-filled vessel" is permitted to illustrate, it must use a separate non-scored model preserving volume, not increment the **full-liter portion counter**, and should not pretend the target fills after three such pours. Simpler implementation may **block** that action with explanation and require "Fill to 1 L mark" first; preferred for Grade 2.
                     5. Explanatory feedback: "Container height alone doesn't determine capacity. We compared the same full one-liter portions." "Part-filled is not one liter." No fractional liters presented as an assessed numeric concept.
                     6. Reset restores both A/B empty and full-liter counters0. Changes to one shape model cannot alter its underlying capacity without explicit editorial redesign.
-                    
+
                     ### D — New Four-Liter Container (Section 4)
-                    
+
                     1. New target **C=4 L**, contents0; same fixed reference1 L, contents0. No numeric target reveal before estimate. Coarse cue: "Clearly bigger than one reference vessel" with comparable shape illustration, not exact readout. Estimate choices2,3,4 L; short optional justification.
                     2. On confirmed estimate, cycle "Fill 1 L reference" and "Pour full measure" four times. Target contents **0→1→2→3→4 L**; current reference returns to0 after each transfer. Count **four full 1 L transfers** and reveal "**Capacity 4 L**".
                     3. At intermediate target contents3 L, ask: "Does the container have 3 L capacity or 3 L _inside_?" Correct: **contains3 L; capacity4 L**. No claim that the model water level reads a precise fraction based on pixels.
                     4. After full, a fifth full reference pour must be refused without consuming volume; state remains target4 L and reference1 L if it was refilled. Message: "It is already full. A further liter cannot be added."
                     5. Feedback if estimate2: two more full portions than expected; estimate3: one more; estimate4: matches; reasoning refers to the observed full-liter portions, no grades. Reset to blank new target with no leaked previous answer.
                     6. A new container style, changed language or increased zoom may not alter volume states or true capacity. No external fluid/pour animation required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** marked 1 L reference vessel, target vessel(s), capacity/contents state ledger, estimate choice, optional reason, Fill/Pour/Empty/Undo/Reset buttons, full-liter portion counter, reveal feedback, optional container-shape illustrations.
                     - **State per placement:** preset true capacity, reference current contents, target current contents, confirmed transfer count, learner estimate and reveal stage; Stage C two separate targets with independent contents/counters. The canonical reference remains exactly 1 L.
                     - **Conservation:** on any successful transfer `referenceBefore + targetBefore = referenceAfter + targetAfter`; no spill/loss, no volume generation. Refill represents addition from an explicit virtual reservoir, not spontaneous duplication; label as "fill from supply" in the model if shown.
@@ -127,20 +158,20 @@ config:
                     - **Counter invariant:** full-liter transfer count increases **only** after exactly 1 L has been moved to the target. Zero on reset; no count change on mere refill, failed pour or invalid half-full state.
                     - **Prop-free implementation:** each Section-specific Scene entry must be self-contained, accept **no external props**, and derive locale from verified Lesson context. Shared private arithmetic helpers allowed, no invented public `capacity`, `mode`, `language`, `onPour` props or events.
                     - **Feedback:** learner always sees/hears consistent current content, capacity only when appropriately revealed, number of validated full-liter transfers and an actionable error explanation. No graded state, Quiz or Note persistence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Minimal high-contrast schematic marked reference and target vessels with distinct labels "capacity" vs "contents". Convey pours through discrete volume-state cards/numbered tokens; optional animation must not imply a continuous physical-fluid solver, calibrated pixel height or that taller means more. A partially filled reference is visibly below the 1 L mark and also described explicitly. Avoid real water-hazard demonstrations; fully virtual. Reduced motion uses instant transitions. No required pictures/video/audio, external assets, network call or physical measuring supplies.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - All visible and screen-reader messages, unit expressions, button labels, prediction choices, feedback, status, "full/empty/contains/can hold" and future Notes need **genuine translations** into every supported locale, including correct singular/plural for liter and code **L**. Missing translations block implementation rather than falling back silently.
                     - UI may be semantic RTL but no diagram mirror may change transferred quantities or which container has C=3/4. Do not reverse the numerical relation of _maximum capacity_ and _current contents_.
                     - A nonvisual learner can choose an estimate from coarse cues, fill and pour through native labeled buttons, inspect a transfer history and receive the exact same measured capacity at the same instructional point. No audio, drag, fine pour, color-only fill bar, timed action or water simulation required.
                     - Screen-reader announcements should report meaningful changes once per action; keyboard/switch focus, large touch controls, 200% text, reduced motion, WCAG 2.2 AA, mobile and low-end device equivalence, and full offline operation after verified package/locale download are all **future release acceptance requirements**, not existing platform assertions.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Empty 1 L reference: capacity **1 L**, contents **0 L**; filling reaches contents **1 L** without changing capacity; emptying returns contents0 with unchanged capacity.
                     2. Starting from target0 and reference0, three cycles of Fill then Pour yield target **1,2,3 L**, reference0 after each, full-liter counter3 and measured capacity **3 L**.
                     3. An attempted Pour while reference is empty/part-filled cannot be recorded as a completed **full 1 L** measure. Invalid operation reports why and preserves arithmetic.
@@ -150,26 +181,26 @@ config:
                     7. Trying a fifth pour on full 4 L target is blocked; no fluid vanishes or target exceeds C.
                     8. Estimate2/3/4 for a 3 L or 4 L target produces only correct comparative explanation, no score. Exact hidden target value is not disclosed in pre-reveal learner-facing/aria copy.
                     9. All roots reset independently and accept no React props; screen-reader, keyboard, RTL, reduced-motion, mobile and offline-after-download modes preserve the same full-liter arithmetic and explanatory messages.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource exists, but **Liter Measure Studio is not implemented**. Future Coding Agent/Scene Designer verifies actual Lesson locale provider, builds deterministic bounded state transitions and visual/nonvisual parity, authors genuine locale dictionaries, tests invalid pours, packages offline content and uses self-contained prop-free Scene roots **after editorial approval**. No scored Question/Quiz, learner mastery, Note events, real fluid engine or external database invented.
-                  purpose: "What Exactly Is One Liter?"
-                  productionNotes: "Source Scene literMeasureStudio.scene-spec.md; independent placement for What Exactly Is One Liter?. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'What Exactly Is One Liter?'
+                  productionNotes: 'Source Scene literMeasureStudio.scene-spec.md; independent placement for What Exactly Is One Liter?. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "ab451c11-8ef1-5446-a5a7-9c1121379d00"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'ab451c11-8ef1-5446-a5a7-9c1121379d00'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A **liter (L)** is a standard way to measure **volume**, including how much a container can hold. This reference has **1 L capacity** even when empty. When we fill it _to the one-liter line_, it contains **1 L**."
+                      en: 'A **liter (L)** is a standard way to measure **volume**, including how much a container can hold. This reference has **1 L capacity** even when empty. When we fill it _to the one-liter line_, it contains **1 L**.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "What Exactly Is One Liter?"
+          purpose: 'What Exactly Is One Liter?'
           productionNotes: |-
             - **Purpose:** establish a standard capacity reference and distinguish capacity from contents.
             - **Section contract:** `LessonSection_Config`; vertically ordered Resources.
@@ -182,55 +213,55 @@ config:
             - **Planned Note:** "One full marked reference holds 1 L; an empty container still has capacity."
       section2:
         config:
-          id: "e75283cf-cbec-5464-b201-03cf2f8880a2"
-          slug: "section2"
-          type: "content"
+          id: 'e75283cf-cbec-5464-b201-03cf2f8880a2'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "How Many Full One-Liter Measures?"
+              en: 'How Many Full One-Liter Measures?'
             navigationLabel:
-              en: "How Many Full One-Liter Measures?"
+              en: 'How Many Full One-Liter Measures?'
           content:
             items:
               text1:
                 config:
-                  id: "8c529812-e93d-5829-8d8d-1812a1a0b5f3"
-                  slug: "text1"
-                  type: "text"
+                  id: '8c529812-e93d-5829-8d8d-1812a1a0b5f3'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Here is a container that looks as if it might hold **two, three or four liters**. Before we fill it, choose an estimate. Then pour one **full 1 L reference** at a time."
+                      en: 'Here is a container that looks as if it might hold **two, three or four liters**. Before we fill it, choose an estimate. Then pour one **full 1 L reference** at a time.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "58a4503b-d41d-5b0a-87bb-d03bb0ecad2c"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '58a4503b-d41d-5b0a-87bb-d03bb0ecad2c'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Here is a container that looks as if it might hold **two, three or four liters**. Before we fill it, choose an estimate. Then pour one **full 1 L reference** at a time."
+                        instruction: 'Here is a container that looks as if it might hold **two, three or four liters**. Before we fill it, choose an estimate. Then pour one **full 1 L reference** at a time.'
                 production:
                   specification: |
                     # Liter Measure Studio — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: One Liter at a Time (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — know one liter as a standard unit of volume/capacity, estimate and measure whole-liter container capacity against a **full calibrated 1 L reference**, diagnose unfair partial or different-unit measures. This is not a new Skill, a fluid-physics simulator or a scored Question.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children have compared capacities using abstract equal scoops. This Scene makes a **common standard unit** explicit: a calibrated measuring vessel that holds **1 liter at its full marked line**. The learner makes a prediction, fills the reference completely, transfers it into a target, counts equivalent one-liter portions, then explains what the target can hold. A visible container's width/height is a **hypothesis**, not a reliable measurement.
-                    
+
                     Core learner phrase: "**A full reference is one liter. Count how many full liters a container holds. Empty and full are contents, not the container's capacity.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - **Liter (L)** is a volume unit used for capacity. In the virtual model, reference capacity is exactly **1 L** when filled to its calibration line. The reference's **current contents** are a separate state: **0 L** empty or **1 L** full during ordinary measurement. In a **deliberate diagnostic only**, the reference can be **partially filled (0 < contents < 1 L)**; this amount is **not** treated as one liter and need not be numerically exposed to early learners.
                     - Each target has immutable capacity `C` in **whole liters**, initially empty for each new measurement. Target contents `v` must remain between **0 and C**. Capacity `C` does **not** change on filling, emptying, shape illustration or screen resizing.
                     - A **successful full-liter transfer** requires the reference contains exactly **1 L**, target has at least **1 L remaining capacity**, and the simulated operation moves that volume **from reference to target**. Afterward reference contents becomes **0 L** and target contents increases by exactly **1 L**. **No fluid is duplicated, lost, evaporated or spilled.**
@@ -240,20 +271,20 @@ config:
                     - The prior `capacityConcept` Lesson established the distinction between **maximum possible volume** and amount **currently inside**. This one measures in _liters_ and includes a pre-measure estimate. No fractional liter arithmetic, mL conversion, density, weight or physical calibration to actual on-screen containers is taught.
                     - **Fairness:** Count repeated **full 1 L** transfers into an initially empty target. A partly filled reference is _not_ a one-liter portion and must never increment "number of completed full 1 L transfers".
                     - A digital interface may present fluid as icons or progress bars, but a screen reader gets **the same unit-bearing values and state transitions**. UI never implies that an empty 3 L container's capacity becomes 0 L.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — The One-Liter Reference (Section 1)
-                    
+
                     1. Show fixed reference vessel with readable **1 L fill mark**, initially empty. State ledger: "**Capacity 1 L; currently contains 0 L**."
                     2. Prompt: "If the reference vessel is empty now, can it still hold one liter?" Choices "Yes, when full" / "No, capacity is zero". Prediction before reveal.
                     3. "Fill to marked line" changes current contents **0→1 L**, capacity remains **1 L**. Both visual state and text announce "**Contains 1 L, full**".
                     4. "Empty reference" changes contents **1→0 L** while capacity remains **1 L**. Correct explanation: "Empty isn't no capacity. The vessel could still hold one liter."
                     5. Feedback for wrong "no capacity" focuses on same vessel/unchanged capacity, no point deduction or confusion with object mass.
                     6. Reset restores empty reference and unrevealed prediction. No actual pouring, screen size or water properties needed.
-                    
+
                     ### B — Three Complete Reference Transfers (Section 2)
-                    
+
                     1. Set target **C=3 L**, contents0. Show a **1 L reference** separately, with its capacity label. Do **not** disclose exact target C in learner-visible or accessibility UI before measurement; describe it as "larger than one 1 L reference, perhaps around two, three or four liters" with deliberately coarse geometry. Learner chooses estimate `e∈{2,3,4} L`, optionally a short reason.
                     2. "Confirm estimate" then "Fill reference" ⇒ reference contents 1 L. "Pour full reference" ⇒ target contents **1 L**, reference0. Repeat exactly twice more. Document transitions:
                        - Initial: target0 L, reference0 L, confirmed full transfers0.
@@ -264,27 +295,27 @@ config:
                     4. "Pour" when target already full is blocked, and reference full volume remains in reference (no disappearance). Explanation: "This target is already at its full capacity, 3 L."
                     5. Feedback for estimate2: "The target took one **more** full liter than your estimate"; estimate4: "One **less**"; estimate3: "Your prediction matched the three measured portions." These are **unscored explanatory** comparisons, not a secret tolerance.
                     6. If learner requests "What did we do?" read a complete log of three exact transfers with current contents and final capacity. Reset clears estimate and restores both empty.
-                    
+
                     ### C — Two Different Shapes, Equal Liters; Unfair Reference (Section 3)
-                    
+
                     1. Two fixed differently shaped schematic targets A (tall narrow) and B (short wide), **each** capacity **3 L**, initially empty. Prompt: "Would the taller one necessarily hold more?"
                     2. Learner may "Measure A" and "Measure B" independently. Each needs three **complete** one-liter reference transfers from an initially empty target to its full mark. Ledger: "A capacity3 L, B capacity3 L, despite shape difference."
                     3. Show diagnostic measuring vessel intentionally **partially filled below 1 L line**. Prompt: "May we call each such pour one liter?" Choices yes/no, then reveal. Correct: **no**; a part-full reference contributes less than one liter.
                     4. If diagnostic "Pour part-filled vessel" is permitted to illustrate, it must use a separate non-scored model preserving volume, not increment the **full-liter portion counter**, and should not pretend the target fills after three such pours. Simpler implementation may **block** that action with explanation and require "Fill to 1 L mark" first; preferred for Grade 2.
                     5. Explanatory feedback: "Container height alone doesn't determine capacity. We compared the same full one-liter portions." "Part-filled is not one liter." No fractional liters presented as an assessed numeric concept.
                     6. Reset restores both A/B empty and full-liter counters0. Changes to one shape model cannot alter its underlying capacity without explicit editorial redesign.
-                    
+
                     ### D — New Four-Liter Container (Section 4)
-                    
+
                     1. New target **C=4 L**, contents0; same fixed reference1 L, contents0. No numeric target reveal before estimate. Coarse cue: "Clearly bigger than one reference vessel" with comparable shape illustration, not exact readout. Estimate choices2,3,4 L; short optional justification.
                     2. On confirmed estimate, cycle "Fill 1 L reference" and "Pour full measure" four times. Target contents **0→1→2→3→4 L**; current reference returns to0 after each transfer. Count **four full 1 L transfers** and reveal "**Capacity 4 L**".
                     3. At intermediate target contents3 L, ask: "Does the container have 3 L capacity or 3 L _inside_?" Correct: **contains3 L; capacity4 L**. No claim that the model water level reads a precise fraction based on pixels.
                     4. After full, a fifth full reference pour must be refused without consuming volume; state remains target4 L and reference1 L if it was refilled. Message: "It is already full. A further liter cannot be added."
                     5. Feedback if estimate2: two more full portions than expected; estimate3: one more; estimate4: matches; reasoning refers to the observed full-liter portions, no grades. Reset to blank new target with no leaked previous answer.
                     6. A new container style, changed language or increased zoom may not alter volume states or true capacity. No external fluid/pour animation required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** marked 1 L reference vessel, target vessel(s), capacity/contents state ledger, estimate choice, optional reason, Fill/Pour/Empty/Undo/Reset buttons, full-liter portion counter, reveal feedback, optional container-shape illustrations.
                     - **State per placement:** preset true capacity, reference current contents, target current contents, confirmed transfer count, learner estimate and reveal stage; Stage C two separate targets with independent contents/counters. The canonical reference remains exactly 1 L.
                     - **Conservation:** on any successful transfer `referenceBefore + targetBefore = referenceAfter + targetAfter`; no spill/loss, no volume generation. Refill represents addition from an explicit virtual reservoir, not spontaneous duplication; label as "fill from supply" in the model if shown.
@@ -292,20 +323,20 @@ config:
                     - **Counter invariant:** full-liter transfer count increases **only** after exactly 1 L has been moved to the target. Zero on reset; no count change on mere refill, failed pour or invalid half-full state.
                     - **Prop-free implementation:** each Section-specific Scene entry must be self-contained, accept **no external props**, and derive locale from verified Lesson context. Shared private arithmetic helpers allowed, no invented public `capacity`, `mode`, `language`, `onPour` props or events.
                     - **Feedback:** learner always sees/hears consistent current content, capacity only when appropriately revealed, number of validated full-liter transfers and an actionable error explanation. No graded state, Quiz or Note persistence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Minimal high-contrast schematic marked reference and target vessels with distinct labels "capacity" vs "contents". Convey pours through discrete volume-state cards/numbered tokens; optional animation must not imply a continuous physical-fluid solver, calibrated pixel height or that taller means more. A partially filled reference is visibly below the 1 L mark and also described explicitly. Avoid real water-hazard demonstrations; fully virtual. Reduced motion uses instant transitions. No required pictures/video/audio, external assets, network call or physical measuring supplies.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - All visible and screen-reader messages, unit expressions, button labels, prediction choices, feedback, status, "full/empty/contains/can hold" and future Notes need **genuine translations** into every supported locale, including correct singular/plural for liter and code **L**. Missing translations block implementation rather than falling back silently.
                     - UI may be semantic RTL but no diagram mirror may change transferred quantities or which container has C=3/4. Do not reverse the numerical relation of _maximum capacity_ and _current contents_.
                     - A nonvisual learner can choose an estimate from coarse cues, fill and pour through native labeled buttons, inspect a transfer history and receive the exact same measured capacity at the same instructional point. No audio, drag, fine pour, color-only fill bar, timed action or water simulation required.
                     - Screen-reader announcements should report meaningful changes once per action; keyboard/switch focus, large touch controls, 200% text, reduced motion, WCAG 2.2 AA, mobile and low-end device equivalence, and full offline operation after verified package/locale download are all **future release acceptance requirements**, not existing platform assertions.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Empty 1 L reference: capacity **1 L**, contents **0 L**; filling reaches contents **1 L** without changing capacity; emptying returns contents0 with unchanged capacity.
                     2. Starting from target0 and reference0, three cycles of Fill then Pour yield target **1,2,3 L**, reference0 after each, full-liter counter3 and measured capacity **3 L**.
                     3. An attempted Pour while reference is empty/part-filled cannot be recorded as a completed **full 1 L** measure. Invalid operation reports why and preserves arithmetic.
@@ -315,26 +346,26 @@ config:
                     7. Trying a fifth pour on full 4 L target is blocked; no fluid vanishes or target exceeds C.
                     8. Estimate2/3/4 for a 3 L or 4 L target produces only correct comparative explanation, no score. Exact hidden target value is not disclosed in pre-reveal learner-facing/aria copy.
                     9. All roots reset independently and accept no React props; screen-reader, keyboard, RTL, reduced-motion, mobile and offline-after-download modes preserve the same full-liter arithmetic and explanatory messages.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource exists, but **Liter Measure Studio is not implemented**. Future Coding Agent/Scene Designer verifies actual Lesson locale provider, builds deterministic bounded state transitions and visual/nonvisual parity, authors genuine locale dictionaries, tests invalid pours, packages offline content and uses self-contained prop-free Scene roots **after editorial approval**. No scored Question/Quiz, learner mastery, Note events, real fluid engine or external database invented.
-                  purpose: "How Many Full One-Liter Measures?"
-                  productionNotes: "Source Scene literMeasureStudio.scene-spec.md; independent placement for How Many Full One-Liter Measures?. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'How Many Full One-Liter Measures?'
+                  productionNotes: 'Source Scene literMeasureStudio.scene-spec.md; independent placement for How Many Full One-Liter Measures?. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "1bd766c0-fcfe-5133-9639-e6c05f558851"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '1bd766c0-fcfe-5133-9639-e6c05f558851'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We filled our measuring vessel to **1 L** each time, then emptied it into the target. After **three full one-liter pours**, the target was full. Its **capacity is 3 L**. An estimate came first; measuring checked it."
+                      en: 'We filled our measuring vessel to **1 L** each time, then emptied it into the target. After **three full one-liter pours**, the target was full. Its **capacity is 3 L**. An estimate came first; measuring checked it.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "How Many Full One-Liter Measures?"
+          purpose: 'How Many Full One-Liter Measures?'
           productionNotes: |-
             - **Purpose:** determine whole-liter capacity by repeatable, no-loss filling.
             - **Section contract:** `LessonSection_Config`, one vertical Resource stack.
@@ -347,9 +378,9 @@ config:
             - **Planned Note:** "Count equal **full 1 L portions** to find capacity in liters."
       section3:
         config:
-          id: "e652823c-ccec-55f7-b101-023c30888235"
-          slug: "section3"
-          type: "content"
+          id: 'e652823c-ccec-55f7-b101-023c30888235'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
@@ -360,42 +391,42 @@ config:
             items:
               text1:
                 config:
-                  id: "7960a2a1-1861-52da-ba9b-22a1d9030ad4"
-                  slug: "text1"
-                  type: "text"
+                  id: '7960a2a1-1861-52da-ba9b-22a1d9030ad4'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This tall narrow container looks very different from a short wide one. Could they both hold **3 L**? What if someone used a half-filled one-liter cup and counted each pour as one liter?"
+                      en: 'This tall narrow container looks very different from a short wide one. Could they both hold **3 L**? What if someone used a half-filled one-liter cup and counted each pour as one liter?'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "2ee72572-345c-5993-9dfe-a5720611b04d"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '2ee72572-345c-5993-9dfe-a5720611b04d'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "This tall narrow container looks very different from a short wide one. Could they both hold **3 L**? What if someone used a half-filled one-liter cup and counted each pour as one liter?"
+                        instruction: 'This tall narrow container looks very different from a short wide one. Could they both hold **3 L**? What if someone used a half-filled one-liter cup and counted each pour as one liter?'
                 production:
                   specification: |
                     # Liter Measure Studio — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: One Liter at a Time (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — know one liter as a standard unit of volume/capacity, estimate and measure whole-liter container capacity against a **full calibrated 1 L reference**, diagnose unfair partial or different-unit measures. This is not a new Skill, a fluid-physics simulator or a scored Question.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children have compared capacities using abstract equal scoops. This Scene makes a **common standard unit** explicit: a calibrated measuring vessel that holds **1 liter at its full marked line**. The learner makes a prediction, fills the reference completely, transfers it into a target, counts equivalent one-liter portions, then explains what the target can hold. A visible container's width/height is a **hypothesis**, not a reliable measurement.
-                    
+
                     Core learner phrase: "**A full reference is one liter. Count how many full liters a container holds. Empty and full are contents, not the container's capacity.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - **Liter (L)** is a volume unit used for capacity. In the virtual model, reference capacity is exactly **1 L** when filled to its calibration line. The reference's **current contents** are a separate state: **0 L** empty or **1 L** full during ordinary measurement. In a **deliberate diagnostic only**, the reference can be **partially filled (0 < contents < 1 L)**; this amount is **not** treated as one liter and need not be numerically exposed to early learners.
                     - Each target has immutable capacity `C` in **whole liters**, initially empty for each new measurement. Target contents `v` must remain between **0 and C**. Capacity `C` does **not** change on filling, emptying, shape illustration or screen resizing.
                     - A **successful full-liter transfer** requires the reference contains exactly **1 L**, target has at least **1 L remaining capacity**, and the simulated operation moves that volume **from reference to target**. Afterward reference contents becomes **0 L** and target contents increases by exactly **1 L**. **No fluid is duplicated, lost, evaporated or spilled.**
@@ -405,20 +436,20 @@ config:
                     - The prior `capacityConcept` Lesson established the distinction between **maximum possible volume** and amount **currently inside**. This one measures in _liters_ and includes a pre-measure estimate. No fractional liter arithmetic, mL conversion, density, weight or physical calibration to actual on-screen containers is taught.
                     - **Fairness:** Count repeated **full 1 L** transfers into an initially empty target. A partly filled reference is _not_ a one-liter portion and must never increment "number of completed full 1 L transfers".
                     - A digital interface may present fluid as icons or progress bars, but a screen reader gets **the same unit-bearing values and state transitions**. UI never implies that an empty 3 L container's capacity becomes 0 L.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — The One-Liter Reference (Section 1)
-                    
+
                     1. Show fixed reference vessel with readable **1 L fill mark**, initially empty. State ledger: "**Capacity 1 L; currently contains 0 L**."
                     2. Prompt: "If the reference vessel is empty now, can it still hold one liter?" Choices "Yes, when full" / "No, capacity is zero". Prediction before reveal.
                     3. "Fill to marked line" changes current contents **0→1 L**, capacity remains **1 L**. Both visual state and text announce "**Contains 1 L, full**".
                     4. "Empty reference" changes contents **1→0 L** while capacity remains **1 L**. Correct explanation: "Empty isn't no capacity. The vessel could still hold one liter."
                     5. Feedback for wrong "no capacity" focuses on same vessel/unchanged capacity, no point deduction or confusion with object mass.
                     6. Reset restores empty reference and unrevealed prediction. No actual pouring, screen size or water properties needed.
-                    
+
                     ### B — Three Complete Reference Transfers (Section 2)
-                    
+
                     1. Set target **C=3 L**, contents0. Show a **1 L reference** separately, with its capacity label. Do **not** disclose exact target C in learner-visible or accessibility UI before measurement; describe it as "larger than one 1 L reference, perhaps around two, three or four liters" with deliberately coarse geometry. Learner chooses estimate `e∈{2,3,4} L`, optionally a short reason.
                     2. "Confirm estimate" then "Fill reference" ⇒ reference contents 1 L. "Pour full reference" ⇒ target contents **1 L**, reference0. Repeat exactly twice more. Document transitions:
                        - Initial: target0 L, reference0 L, confirmed full transfers0.
@@ -429,27 +460,27 @@ config:
                     4. "Pour" when target already full is blocked, and reference full volume remains in reference (no disappearance). Explanation: "This target is already at its full capacity, 3 L."
                     5. Feedback for estimate2: "The target took one **more** full liter than your estimate"; estimate4: "One **less**"; estimate3: "Your prediction matched the three measured portions." These are **unscored explanatory** comparisons, not a secret tolerance.
                     6. If learner requests "What did we do?" read a complete log of three exact transfers with current contents and final capacity. Reset clears estimate and restores both empty.
-                    
+
                     ### C — Two Different Shapes, Equal Liters; Unfair Reference (Section 3)
-                    
+
                     1. Two fixed differently shaped schematic targets A (tall narrow) and B (short wide), **each** capacity **3 L**, initially empty. Prompt: "Would the taller one necessarily hold more?"
                     2. Learner may "Measure A" and "Measure B" independently. Each needs three **complete** one-liter reference transfers from an initially empty target to its full mark. Ledger: "A capacity3 L, B capacity3 L, despite shape difference."
                     3. Show diagnostic measuring vessel intentionally **partially filled below 1 L line**. Prompt: "May we call each such pour one liter?" Choices yes/no, then reveal. Correct: **no**; a part-full reference contributes less than one liter.
                     4. If diagnostic "Pour part-filled vessel" is permitted to illustrate, it must use a separate non-scored model preserving volume, not increment the **full-liter portion counter**, and should not pretend the target fills after three such pours. Simpler implementation may **block** that action with explanation and require "Fill to 1 L mark" first; preferred for Grade 2.
                     5. Explanatory feedback: "Container height alone doesn't determine capacity. We compared the same full one-liter portions." "Part-filled is not one liter." No fractional liters presented as an assessed numeric concept.
                     6. Reset restores both A/B empty and full-liter counters0. Changes to one shape model cannot alter its underlying capacity without explicit editorial redesign.
-                    
+
                     ### D — New Four-Liter Container (Section 4)
-                    
+
                     1. New target **C=4 L**, contents0; same fixed reference1 L, contents0. No numeric target reveal before estimate. Coarse cue: "Clearly bigger than one reference vessel" with comparable shape illustration, not exact readout. Estimate choices2,3,4 L; short optional justification.
                     2. On confirmed estimate, cycle "Fill 1 L reference" and "Pour full measure" four times. Target contents **0→1→2→3→4 L**; current reference returns to0 after each transfer. Count **four full 1 L transfers** and reveal "**Capacity 4 L**".
                     3. At intermediate target contents3 L, ask: "Does the container have 3 L capacity or 3 L _inside_?" Correct: **contains3 L; capacity4 L**. No claim that the model water level reads a precise fraction based on pixels.
                     4. After full, a fifth full reference pour must be refused without consuming volume; state remains target4 L and reference1 L if it was refilled. Message: "It is already full. A further liter cannot be added."
                     5. Feedback if estimate2: two more full portions than expected; estimate3: one more; estimate4: matches; reasoning refers to the observed full-liter portions, no grades. Reset to blank new target with no leaked previous answer.
                     6. A new container style, changed language or increased zoom may not alter volume states or true capacity. No external fluid/pour animation required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** marked 1 L reference vessel, target vessel(s), capacity/contents state ledger, estimate choice, optional reason, Fill/Pour/Empty/Undo/Reset buttons, full-liter portion counter, reveal feedback, optional container-shape illustrations.
                     - **State per placement:** preset true capacity, reference current contents, target current contents, confirmed transfer count, learner estimate and reveal stage; Stage C two separate targets with independent contents/counters. The canonical reference remains exactly 1 L.
                     - **Conservation:** on any successful transfer `referenceBefore + targetBefore = referenceAfter + targetAfter`; no spill/loss, no volume generation. Refill represents addition from an explicit virtual reservoir, not spontaneous duplication; label as "fill from supply" in the model if shown.
@@ -457,20 +488,20 @@ config:
                     - **Counter invariant:** full-liter transfer count increases **only** after exactly 1 L has been moved to the target. Zero on reset; no count change on mere refill, failed pour or invalid half-full state.
                     - **Prop-free implementation:** each Section-specific Scene entry must be self-contained, accept **no external props**, and derive locale from verified Lesson context. Shared private arithmetic helpers allowed, no invented public `capacity`, `mode`, `language`, `onPour` props or events.
                     - **Feedback:** learner always sees/hears consistent current content, capacity only when appropriately revealed, number of validated full-liter transfers and an actionable error explanation. No graded state, Quiz or Note persistence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Minimal high-contrast schematic marked reference and target vessels with distinct labels "capacity" vs "contents". Convey pours through discrete volume-state cards/numbered tokens; optional animation must not imply a continuous physical-fluid solver, calibrated pixel height or that taller means more. A partially filled reference is visibly below the 1 L mark and also described explicitly. Avoid real water-hazard demonstrations; fully virtual. Reduced motion uses instant transitions. No required pictures/video/audio, external assets, network call or physical measuring supplies.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - All visible and screen-reader messages, unit expressions, button labels, prediction choices, feedback, status, "full/empty/contains/can hold" and future Notes need **genuine translations** into every supported locale, including correct singular/plural for liter and code **L**. Missing translations block implementation rather than falling back silently.
                     - UI may be semantic RTL but no diagram mirror may change transferred quantities or which container has C=3/4. Do not reverse the numerical relation of _maximum capacity_ and _current contents_.
                     - A nonvisual learner can choose an estimate from coarse cues, fill and pour through native labeled buttons, inspect a transfer history and receive the exact same measured capacity at the same instructional point. No audio, drag, fine pour, color-only fill bar, timed action or water simulation required.
                     - Screen-reader announcements should report meaningful changes once per action; keyboard/switch focus, large touch controls, 200% text, reduced motion, WCAG 2.2 AA, mobile and low-end device equivalence, and full offline operation after verified package/locale download are all **future release acceptance requirements**, not existing platform assertions.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Empty 1 L reference: capacity **1 L**, contents **0 L**; filling reaches contents **1 L** without changing capacity; emptying returns contents0 with unchanged capacity.
                     2. Starting from target0 and reference0, three cycles of Fill then Pour yield target **1,2,3 L**, reference0 after each, full-liter counter3 and measured capacity **3 L**.
                     3. An attempted Pour while reference is empty/part-filled cannot be recorded as a completed **full 1 L** measure. Invalid operation reports why and preserves arithmetic.
@@ -480,24 +511,24 @@ config:
                     7. Trying a fifth pour on full 4 L target is blocked; no fluid vanishes or target exceeds C.
                     8. Estimate2/3/4 for a 3 L or 4 L target produces only correct comparative explanation, no score. Exact hidden target value is not disclosed in pre-reveal learner-facing/aria copy.
                     9. All roots reset independently and accept no React props; screen-reader, keyboard, RTL, reduced-motion, mobile and offline-after-download modes preserve the same full-liter arithmetic and explanatory messages.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource exists, but **Liter Measure Studio is not implemented**. Future Coding Agent/Scene Designer verifies actual Lesson locale provider, builds deterministic bounded state transitions and visual/nonvisual parity, authors genuine locale dictionaries, tests invalid pours, packages offline content and uses self-contained prop-free Scene roots **after editorial approval**. No scored Question/Quiz, learner mastery, Note events, real fluid engine or external database invented.
                   purpose: "Shape Doesn't Tell the Liter Count"
                   productionNotes: "Source Scene literMeasureStudio.scene-spec.md; independent placement for Shape Doesn't Tell the Liter Count. Variant/feedback retained under parent Section productionNotes."
               markdown1:
                 config:
-                  id: "afd0c91b-2d12-5bb8-aa33-491b557af56e"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'afd0c91b-2d12-5bb8-aa33-491b557af56e'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The outside shape can change without changing capacity. Both of these containers hold **three full liters**. A **half-full** measuring cup does _not_ contain 1 L, so counting it as one liter gives an unreliable total."
+                      en: 'The outside shape can change without changing capacity. Both of these containers hold **three full liters**. A **half-full** measuring cup does _not_ contain 1 L, so counting it as one liter gives an unreliable total.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
           purpose: "Shape Doesn't Tell the Liter Count"
           productionNotes: |-
@@ -512,55 +543,55 @@ config:
             - **Planned Note:** "Always use the same **full** reference volume when counting liters."
       section4:
         config:
-          id: "e55280a9-c9ec-513e-b001-00a929887730"
-          slug: "section4"
-          type: "content"
+          id: 'e55280a9-c9ec-513e-b001-00a929887730'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Predict and Check a New Container"
+              en: 'Predict and Check a New Container'
             navigationLabel:
-              en: "Predict and Check a New Container"
+              en: 'Predict and Check a New Container'
           content:
             items:
               text1:
                 config:
-                  id: "6a2fd9d8-7604-5ecf-ab6a-59d8b039e3e5"
-                  slug: "text1"
-                  type: "text"
+                  id: '6a2fd9d8-7604-5ecf-ab6a-59d8b039e3e5'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Our new container looks **much bigger** than the 1 L reference. Do you expect about **2, 3 or 4 liters**? Choose an estimate and tell us what you compared. Now check one full measure at a time."
+                      en: 'Our new container looks **much bigger** than the 1 L reference. Do you expect about **2, 3 or 4 liters**? Choose an estimate and tell us what you compared. Now check one full measure at a time.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "138ebb09-ff6c-5cf0-82a6-3b09ac944b1e"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '138ebb09-ff6c-5cf0-82a6-3b09ac944b1e'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Our new container looks **much bigger** than the 1 L reference. Do you expect about **2, 3 or 4 liters**? Choose an estimate and tell us what you compared. Now check one full measure at a time."
+                        instruction: 'Our new container looks **much bigger** than the 1 L reference. Do you expect about **2, 3 or 4 liters**? Choose an estimate and tell us what you compared. Now check one full measure at a time.'
                 production:
                   specification: |
                     # Liter Measure Studio — Scene Specification
-                    
+
                     Status: **Provisional Draft — awaiting Methodologist and Screenwriter/editor approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: One Liter at a Time (embedded in this Lesson config.yaml), Sections 1–4
                     Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml) — know one liter as a standard unit of volume/capacity, estimate and measure whole-liter container capacity against a **full calibrated 1 L reference**, diagnose unfair partial or different-unit measures. This is not a new Skill, a fluid-physics simulator or a scored Question.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Children have compared capacities using abstract equal scoops. This Scene makes a **common standard unit** explicit: a calibrated measuring vessel that holds **1 liter at its full marked line**. The learner makes a prediction, fills the reference completely, transfers it into a target, counts equivalent one-liter portions, then explains what the target can hold. A visible container's width/height is a **hypothesis**, not a reliable measurement.
-                    
+
                     Core learner phrase: "**A full reference is one liter. Count how many full liters a container holds. Empty and full are contents, not the container's capacity.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - **Liter (L)** is a volume unit used for capacity. In the virtual model, reference capacity is exactly **1 L** when filled to its calibration line. The reference's **current contents** are a separate state: **0 L** empty or **1 L** full during ordinary measurement. In a **deliberate diagnostic only**, the reference can be **partially filled (0 < contents < 1 L)**; this amount is **not** treated as one liter and need not be numerically exposed to early learners.
                     - Each target has immutable capacity `C` in **whole liters**, initially empty for each new measurement. Target contents `v` must remain between **0 and C**. Capacity `C` does **not** change on filling, emptying, shape illustration or screen resizing.
                     - A **successful full-liter transfer** requires the reference contains exactly **1 L**, target has at least **1 L remaining capacity**, and the simulated operation moves that volume **from reference to target**. Afterward reference contents becomes **0 L** and target contents increases by exactly **1 L**. **No fluid is duplicated, lost, evaporated or spilled.**
@@ -570,20 +601,20 @@ config:
                     - The prior `capacityConcept` Lesson established the distinction between **maximum possible volume** and amount **currently inside**. This one measures in _liters_ and includes a pre-measure estimate. No fractional liter arithmetic, mL conversion, density, weight or physical calibration to actual on-screen containers is taught.
                     - **Fairness:** Count repeated **full 1 L** transfers into an initially empty target. A partly filled reference is _not_ a one-liter portion and must never increment "number of completed full 1 L transfers".
                     - A digital interface may present fluid as icons or progress bars, but a screen reader gets **the same unit-bearing values and state transitions**. UI never implies that an empty 3 L container's capacity becomes 0 L.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — The One-Liter Reference (Section 1)
-                    
+
                     1. Show fixed reference vessel with readable **1 L fill mark**, initially empty. State ledger: "**Capacity 1 L; currently contains 0 L**."
                     2. Prompt: "If the reference vessel is empty now, can it still hold one liter?" Choices "Yes, when full" / "No, capacity is zero". Prediction before reveal.
                     3. "Fill to marked line" changes current contents **0→1 L**, capacity remains **1 L**. Both visual state and text announce "**Contains 1 L, full**".
                     4. "Empty reference" changes contents **1→0 L** while capacity remains **1 L**. Correct explanation: "Empty isn't no capacity. The vessel could still hold one liter."
                     5. Feedback for wrong "no capacity" focuses on same vessel/unchanged capacity, no point deduction or confusion with object mass.
                     6. Reset restores empty reference and unrevealed prediction. No actual pouring, screen size or water properties needed.
-                    
+
                     ### B — Three Complete Reference Transfers (Section 2)
-                    
+
                     1. Set target **C=3 L**, contents0. Show a **1 L reference** separately, with its capacity label. Do **not** disclose exact target C in learner-visible or accessibility UI before measurement; describe it as "larger than one 1 L reference, perhaps around two, three or four liters" with deliberately coarse geometry. Learner chooses estimate `e∈{2,3,4} L`, optionally a short reason.
                     2. "Confirm estimate" then "Fill reference" ⇒ reference contents 1 L. "Pour full reference" ⇒ target contents **1 L**, reference0. Repeat exactly twice more. Document transitions:
                        - Initial: target0 L, reference0 L, confirmed full transfers0.
@@ -594,27 +625,27 @@ config:
                     4. "Pour" when target already full is blocked, and reference full volume remains in reference (no disappearance). Explanation: "This target is already at its full capacity, 3 L."
                     5. Feedback for estimate2: "The target took one **more** full liter than your estimate"; estimate4: "One **less**"; estimate3: "Your prediction matched the three measured portions." These are **unscored explanatory** comparisons, not a secret tolerance.
                     6. If learner requests "What did we do?" read a complete log of three exact transfers with current contents and final capacity. Reset clears estimate and restores both empty.
-                    
+
                     ### C — Two Different Shapes, Equal Liters; Unfair Reference (Section 3)
-                    
+
                     1. Two fixed differently shaped schematic targets A (tall narrow) and B (short wide), **each** capacity **3 L**, initially empty. Prompt: "Would the taller one necessarily hold more?"
                     2. Learner may "Measure A" and "Measure B" independently. Each needs three **complete** one-liter reference transfers from an initially empty target to its full mark. Ledger: "A capacity3 L, B capacity3 L, despite shape difference."
                     3. Show diagnostic measuring vessel intentionally **partially filled below 1 L line**. Prompt: "May we call each such pour one liter?" Choices yes/no, then reveal. Correct: **no**; a part-full reference contributes less than one liter.
                     4. If diagnostic "Pour part-filled vessel" is permitted to illustrate, it must use a separate non-scored model preserving volume, not increment the **full-liter portion counter**, and should not pretend the target fills after three such pours. Simpler implementation may **block** that action with explanation and require "Fill to 1 L mark" first; preferred for Grade 2.
                     5. Explanatory feedback: "Container height alone doesn't determine capacity. We compared the same full one-liter portions." "Part-filled is not one liter." No fractional liters presented as an assessed numeric concept.
                     6. Reset restores both A/B empty and full-liter counters0. Changes to one shape model cannot alter its underlying capacity without explicit editorial redesign.
-                    
+
                     ### D — New Four-Liter Container (Section 4)
-                    
+
                     1. New target **C=4 L**, contents0; same fixed reference1 L, contents0. No numeric target reveal before estimate. Coarse cue: "Clearly bigger than one reference vessel" with comparable shape illustration, not exact readout. Estimate choices2,3,4 L; short optional justification.
                     2. On confirmed estimate, cycle "Fill 1 L reference" and "Pour full measure" four times. Target contents **0→1→2→3→4 L**; current reference returns to0 after each transfer. Count **four full 1 L transfers** and reveal "**Capacity 4 L**".
                     3. At intermediate target contents3 L, ask: "Does the container have 3 L capacity or 3 L _inside_?" Correct: **contains3 L; capacity4 L**. No claim that the model water level reads a precise fraction based on pixels.
                     4. After full, a fifth full reference pour must be refused without consuming volume; state remains target4 L and reference1 L if it was refilled. Message: "It is already full. A further liter cannot be added."
                     5. Feedback if estimate2: two more full portions than expected; estimate3: one more; estimate4: matches; reasoning refers to the observed full-liter portions, no grades. Reset to blank new target with no leaked previous answer.
                     6. A new container style, changed language or increased zoom may not alter volume states or true capacity. No external fluid/pour animation required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** marked 1 L reference vessel, target vessel(s), capacity/contents state ledger, estimate choice, optional reason, Fill/Pour/Empty/Undo/Reset buttons, full-liter portion counter, reveal feedback, optional container-shape illustrations.
                     - **State per placement:** preset true capacity, reference current contents, target current contents, confirmed transfer count, learner estimate and reveal stage; Stage C two separate targets with independent contents/counters. The canonical reference remains exactly 1 L.
                     - **Conservation:** on any successful transfer `referenceBefore + targetBefore = referenceAfter + targetAfter`; no spill/loss, no volume generation. Refill represents addition from an explicit virtual reservoir, not spontaneous duplication; label as "fill from supply" in the model if shown.
@@ -622,20 +653,20 @@ config:
                     - **Counter invariant:** full-liter transfer count increases **only** after exactly 1 L has been moved to the target. Zero on reset; no count change on mere refill, failed pour or invalid half-full state.
                     - **Prop-free implementation:** each Section-specific Scene entry must be self-contained, accept **no external props**, and derive locale from verified Lesson context. Shared private arithmetic helpers allowed, no invented public `capacity`, `mode`, `language`, `onPour` props or events.
                     - **Feedback:** learner always sees/hears consistent current content, capacity only when appropriately revealed, number of validated full-liter transfers and an actionable error explanation. No graded state, Quiz or Note persistence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Minimal high-contrast schematic marked reference and target vessels with distinct labels "capacity" vs "contents". Convey pours through discrete volume-state cards/numbered tokens; optional animation must not imply a continuous physical-fluid solver, calibrated pixel height or that taller means more. A partially filled reference is visibly below the 1 L mark and also described explicitly. Avoid real water-hazard demonstrations; fully virtual. Reduced motion uses instant transitions. No required pictures/video/audio, external assets, network call or physical measuring supplies.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - All visible and screen-reader messages, unit expressions, button labels, prediction choices, feedback, status, "full/empty/contains/can hold" and future Notes need **genuine translations** into every supported locale, including correct singular/plural for liter and code **L**. Missing translations block implementation rather than falling back silently.
                     - UI may be semantic RTL but no diagram mirror may change transferred quantities or which container has C=3/4. Do not reverse the numerical relation of _maximum capacity_ and _current contents_.
                     - A nonvisual learner can choose an estimate from coarse cues, fill and pour through native labeled buttons, inspect a transfer history and receive the exact same measured capacity at the same instructional point. No audio, drag, fine pour, color-only fill bar, timed action or water simulation required.
                     - Screen-reader announcements should report meaningful changes once per action; keyboard/switch focus, large touch controls, 200% text, reduced motion, WCAG 2.2 AA, mobile and low-end device equivalence, and full offline operation after verified package/locale download are all **future release acceptance requirements**, not existing platform assertions.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Empty 1 L reference: capacity **1 L**, contents **0 L**; filling reaches contents **1 L** without changing capacity; emptying returns contents0 with unchanged capacity.
                     2. Starting from target0 and reference0, three cycles of Fill then Pour yield target **1,2,3 L**, reference0 after each, full-liter counter3 and measured capacity **3 L**.
                     3. An attempted Pour while reference is empty/part-filled cannot be recorded as a completed **full 1 L** measure. Invalid operation reports why and preserves arithmetic.
@@ -645,26 +676,26 @@ config:
                     7. Trying a fifth pour on full 4 L target is blocked; no fluid vanishes or target exceeds C.
                     8. Estimate2/3/4 for a 3 L or 4 L target produces only correct comparative explanation, no score. Exact hidden target value is not disclosed in pre-reveal learner-facing/aria copy.
                     9. All roots reset independently and accept no React props; screen-reader, keyboard, RTL, reduced-motion, mobile and offline-after-download modes preserve the same full-liter arithmetic and explanatory messages.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource exists, but **Liter Measure Studio is not implemented**. Future Coding Agent/Scene Designer verifies actual Lesson locale provider, builds deterministic bounded state transitions and visual/nonvisual parity, authors genuine locale dictionaries, tests invalid pours, packages offline content and uses self-contained prop-free Scene roots **after editorial approval**. No scored Question/Quiz, learner mastery, Note events, real fluid engine or external database invented.
-                  purpose: "Predict and Check a New Container"
-                  productionNotes: "Source Scene literMeasureStudio.scene-spec.md; independent placement for Predict and Check a New Container. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Predict and Check a New Container'
+                  productionNotes: 'Source Scene literMeasureStudio.scene-spec.md; independent placement for Predict and Check a New Container. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "88998b22-84d5-5bdd-82fc-0b22c230283f"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '88998b22-84d5-5bdd-82fc-0b22c230283f'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Four correctly filled reference measures went in before the target was full. Its capacity is **4 L**. The vessel's shape only gave an estimate; the repeated known liters gave a measured result."
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Predict and Check a New Container"
+          purpose: 'Predict and Check a New Container'
           productionNotes: |-
             - **Purpose:** independent transfer with an unfamiliar whole-liter capacity.
             - **Section contract:** `LessonSection_Config`, vertical.
@@ -675,86 +706,86 @@ config:
             - **Feedback:** Estimate 2 L: "You expected two, but it took four known one-liter measures." Estimate 3 L: "One full measure more was needed." Estimate 4 L: "Your prediction matched the checked capacity." Choosing a half-full reference is explained and must be refilled before a full-liter step; a learner can always replay instead of being stuck.
             - **Reflective checkpoint:** "If we poured three liters into this container and stopped, how much would be inside? Is that the same as its capacity?" Reveal "3 L contents, 4 L capacity" without a score.
             - **Boundary:** Whole liters only, no fractional pour arithmetic, no ml conversion, no physical calibration claim.
-    order: ["section1","section2","section3","section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # One Liter at a Time — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: measuringCapacityInLiters
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Extend the earlier comparison of **how much a container can hold** into a standard capacity unit: one **liter**. Use a known one-liter reference to estimate and then measure target capacities by counting repeated identical full-liter portions. Container shape can mislead; a fair numerical answer requires a consistent unit and actual full-volume comparison.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2, approximately ages 7–8.** Grade 2 (approximately 7–8), comfortable counting to six and differentiating an empty container's capacity from its current contents. The learner uses a virtual full-liter measure and explicit count steps; no real liquid, physical lifting, precise pouring, vision or pointer dragging is mandatory.
-    
+
     ## Prerequisites
-    
+
     - [capacityConcept.data.ts](../../../../data/skills/measurement/capacity/skills/capacityConcept.data.ts): capacity is maximum volume a container can hold; compare containers by identical scoops or a full-to-empty fair transfer.
     - Count 1–6 identical units, understand full/empty and distinguish a marked reference cup's **one-liter capacity** from the amount it currently contains.
-    
+
     ## Target Skills
-    
+
     - [liter.data.ts](../../../../data/skills/measurement/capacity/skills/liter.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify **1 liter (1 L)** as one named standard unit of volume/capacity, separate from a container's height or mass.
     - Use a full, fixed **1 L reference** repeatedly with no losses/overlap to determine that a container filled by exactly three portions has **capacity 3 L**.
     - Make a reasoned approximate estimate from a one-liter reference **before measuring**, compare the estimate with the final whole-liter result, and report both values with the unit L.
     - Explain why different shapes can hold the same liters, why a half-full reference cup does not count as 1 L poured, and why using two unequally sized scoops gives an invalid comparison.
-    
+
     ## Essential subject matter
-    
+
     One **liter (L)** is a standard unit of **volume**, often used for container capacity. A reference vessel marked **1 L** holds exactly one liter when correctly filled to its calibrated line. To measure capacity of a fixed target, start with the target empty, repeatedly empty exactly one **full 1 L** reference into it, and count portions while avoiding spill/loss. A model **3 L** container holds precisely three complete one-liter portions, irrespective of its short-wide/tall-narrow picture. A **2 L** and **4 L** capacity can similarly be compared by exact full-liter pours. Repeating three half-full portions does **not** provide three liters; each half-full reference portion contributes **less than one liter**. The current amount can be 0 L in an empty container while its capacity remains e.g. 3 L. Two full containers of different appearance may both be 3 L. A visual one-liter benchmark is a **calibrated label within the simulation**, not a claim of device-measured real volume; don't compute liquid flow from pixel heights, and don't silently equate weight to capacity.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Revisit the capacity comparison without numerical labels: tall and short containers can hold different amounts. Present a sealed/fixed _reference_ model labeled 1 L (the amount when filled to its marked line). Invite a rough estimate 'about 2 L, 3 L or 4 L' for a known-looking target before pouring. Repeatedly empty a **full 1 L** portion into the empty 3 L target; after the third it reaches full, 3 L. Contrast two differently shaped 3 L containers. Test unfair measurement with a half-full reference, then transfer to an unfamiliar 4 L target with prediction first and complete counts afterward.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     A liter is a weight; a 1 L cup contains 1 L even when half-full; a taller-looking container must hold more; liquid height is linearly proportional to volume in arbitrary shaped containers; one pour counts as 1 L regardless of the source's fill level; a capacity label equals current contents; three pours from different-sized references are comparable.
-    
+
     **Instructional depth / explicit exclusions:** Virtual exact whole-liter capacities **1–5 L** and exactly full 1 L increments; limited learner estimates before reveal; no real fluid simulation, liquid density, liters-to-milliliters conversion, half-liter quantitative calculations, physical calibration or unit conversion. Unfair partial pour is recognized **qualitatively**, not measured in fractions. These are **Lesson boundaries**; the canonical Skill object remains grade-neutral and unchanged.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every learner-visible prompt, feedback, dynamic state description, diagram label, ruler/scale symbol, unit expression, alt description, optional transcript and proposed recall Note requires authentic localization into **every supported textbook locale**, with **no silent English fallback or placeholder translation**. Reading direction can change layout but must never change the invariant square-cell area, rigid-piece count, one-liter measure or scale tick values. For nonvisual learners provide a complete meaningful ordered list of the model's unit cells, pieces, pours or graduation marks. Each manipulation must be operable via touch, keyboard/switch and appropriately labeled controls without precision dragging. Use WCAG 2.2 AA targets/contrast/focus, understandable low-reading-load copy, accessible text scaling, reduced motion, equivalent low-end performance and complete post-download offline activity. These are design requirements, **not existing infrastructure claims**.
-    
+
     ## Sources and factual verification
-    
+
     - [liter.data.ts](../../../../data/skills/measurement/capacity/skills/liter.data.ts) — canonical Mathematics Skill source from `content/math/`; copied byte-for-byte (UUID, multilingual data, methodological description unchanged) into this textbook's local Skill tree.
     - [Methodologist persona](../../../../../../studio/personas/methodist.persona.md), [separate editorial artifact policy](../../../../../../studio/docs/architecture/lesson-editorial-document.md), [Lesson entity definition](../../../../../../studio/docs/entities/lesson.md) — editorial roles, Program-neutral scope and approval boundaries.
     - [Playground generated taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) — **stale for newly transferred Skills** until coordinator integration/regeneration; the canonical source files above, not this view, are the identity authority.
-    
+
     Mathematical/measurement illustrative cases must be reviewed against the exact Skill definition; no country-specific curriculum was assigned and no external instrument calibration has been verified.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No national Program or Curriculum specified. The Lesson is independently usable and may be sequenced differently by future Programs. Grade 2 denotes bounded **pedagogical depth**, not a modification to the global Skill's definition.
-    
+
     ## Open editorial decisions
-    
+
     - Editor: confirm simulation clearly labels full reference vessel as calibrated exactly one liter and makes shape representation consistent with the data; avoid misleading pixel-height-to-liter assumptions.
     - **Methodologist approval required:** This Brief is Draft. Associated `content.md` and `scenes/*.scene-spec.md` in this batch are **provisional screenwriter drafts**, prepared under user batch authorization ahead of formal Brief approval. They must be revised if this Brief changes.
-    
+
     ## Methodologist handoff
-    
+
     Review prerequisites, mathematical examples, misconceptions and audience demands before any explicit Approved status. The Screenwriter owns the provisional Section experience; future approved Scene Designer work must remain within it. Assessment Architect separately owns any Question, Quiz, grading and evidence model. No React Scene, runtime Lesson config, published locale content, Note persistence or generated registries is included.
   productionNotes: |
     # One Liter at a Time — Lesson Content
-    
+
     Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation**
     Target Lesson: `content/playground/Data/Lessons/1/measuringCapacityInLiters/`
     Audience: **Grade 2**, approximately ages 7–8, beginning/mixed readers; exact whole-liter model quantities
@@ -763,26 +794,26 @@ production:
     Target Skills: `liter.data.ts`, linked directly in Brief; `capacityConcept.data.ts` is a prerequisite, not another new target Skill.
     Program dependence: None
     Implementation: **editorial concept only**. Generic Section supports `text`, `markdown`, `scene` blocks, but the proposed Scene, locale assets and runtime Lesson are not implemented.
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     **"One full liter, then another: we count how much the container can hold."** A child already knows that a container's capacity is what it **could** hold when filled, not how much is currently inside it. This Lesson gives the measure a common **unit**: a **liter (L)**. We model a reference measuring vessel that holds **exactly 1 L when filled to its marked line**. Repeatedly emptying that full reference into an empty target, with no losses, counts the target's capacity in whole liters. Children predict first, then check. They discover that an attractive tall thin container may still hold fewer liters than a short wide container and that an empty 3 L container has **3 L capacity but 0 L inside**.
-    
+
     The model uses discrete calibrated volume quantities rather than real fluid dynamics. A "fill" is an exact one-liter transfer **only when the reference vessel is full**; a half-filled vessel makes an unfair comparison. This is not a hands-on water safety experiment, a calibrated physical measuring device or a litres-to-millilitres conversion activity.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. Contrast an empty reference cup's **capacity 1 L** with its current contents; reveal a printed **1 L** fill line.
     2. Predict the capacity of a target from a known 1 L reference before showing its exact internal result. Measure it by three full transfers and report **3 L**.
     3. Explore two unlike-looking **3 L** containers; both accept three identical reference portions, despite very different dimensions. Repair a half-full source error.
     4. Transfer to a new container: estimate **about 2, 3 or 4 L**, then prove a fixed **4 L** capacity by four complete full-liter transfers with all volume accounted for.
-    
+
     No splash animation, pump mechanism or drag-only pour is necessary; the **reasoning is the controlled quantity**.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — What Exactly Is One Liter?
-    
+
     - **Purpose:** establish a standard capacity reference and distinguish capacity from contents.
     - **Section contract:** `LessonSection_Config`; vertically ordered Resources.
     - **Ordered blocks:**
@@ -792,9 +823,9 @@ production:
     - **Explanatory feedback:** If child says capacity vanished when empty: "The cup is still the same size. Its **contents** became zero, but it could still hold one liter when filled." If correct: "Yes: capacity is what it _can_ hold; current contents are how full it is." Do not use an animated water height to falsely imply volume is a simple function of height for arbitrary shapes.
     - **Access:** A text ledger always distinguishes capacity and currently inside, e.g. "Reference: capacity 1 L; contains 0 L / 1 L." Large Fill/Empty buttons and numerical status ensure equal nonvisual reasoning.
     - **Planned Note:** "One full marked reference holds 1 L; an empty container still has capacity."
-    
+
     ### Section 2 — How Many Full One-Liter Measures?
-    
+
     - **Purpose:** determine whole-liter capacity by repeatable, no-loss filling.
     - **Section contract:** `LessonSection_Config`, one vertical Resource stack.
     - **Ordered blocks:**
@@ -804,9 +835,9 @@ production:
     - **Feedback:** If estimated 2 L: "We checked and needed **three** full liters, one more than your estimate." If 4 L: "Three full portions filled it, one fewer than expected." If 3 L: "Your estimate matched; the repeated full measures are how we _know_." If child tries to pour an empty reference, block with: "First fill the measuring vessel to its **1 L line**; an empty pour adds nothing."
     - **Invariant:** No liquid spills; target never exceeds capacity; target is initially empty. "Reset" returns 0 L target and an empty reference so the measurement is repeatable.
     - **Planned Note:** "Count equal **full 1 L portions** to find capacity in liters."
-    
+
     ### Section 3 — Shape Doesn't Tell the Liter Count
-    
+
     - **Purpose:** separate shape and current fill from maximum numeric capacity; diagnose unfair reference use.
     - **Section contract:** `LessonSection_Config`, vertical.
     - **Ordered blocks:**
@@ -816,9 +847,9 @@ production:
     - **Feedback:** If the child chooses taller as more capacity: "Height alone isn't evidence. Each filled completely after three equal **1 L** portions." If a half-filled pour is counted as a liter: "That measure was not full to the line. We cannot call it one liter." If child confuses present contents with capacity: "We can empty both without changing how much each _could_ hold."
     - **Access:** Nonvisual shape labels and the exact test sequence are available; cup outline is not the exclusive source of evidence. No exact volume for half-full cup needs to be calculated.
     - **Planned Note:** "Always use the same **full** reference volume when counting liters."
-    
+
     ### Section 4 — Predict and Check a New Container
-    
+
     - **Purpose:** independent transfer with an unfamiliar whole-liter capacity.
     - **Section contract:** `LessonSection_Config`, vertical.
     - **Ordered blocks:**
@@ -828,38 +859,38 @@ production:
     - **Feedback:** Estimate 2 L: "You expected two, but it took four known one-liter measures." Estimate 3 L: "One full measure more was needed." Estimate 4 L: "Your prediction matched the checked capacity." Choosing a half-full reference is explained and must be refilled before a full-liter step; a learner can always replay instead of being stuck.
     - **Reflective checkpoint:** "If we poured three liters into this container and stopped, how much would be inside? Is that the same as its capacity?" Reveal "3 L contents, 4 L capacity" without a score.
     - **Boundary:** Whole liters only, no fractional pour arithmetic, no ml conversion, no physical calibration claim.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Liter Measure Studio (Scene specification literMeasureStudio embedded in the corresponding Scene node) — proposed self-contained custom Scene, four independently initialized prop-free placement roots.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. After Section 1 reference line: "One liter (1 L) is a standard volume unit."
     2. After Section 2 measured capacity: "Count repeated **full one-liter** measures to find liters."
     3. After Section 3 counterexample: "Container shape or current fill does not alone reveal capacity."
-    
+
     These are **planned** short Git-authored recall cues, not a current Note type, unlock signal, persistence or personal revision-sheet implementation.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     The new four-liter task is unscored practice and independent transfer. A future Assessment Architect should vary reference quantities/container shapes without making the learner infer calibrated liter quantities from pixels; test counting of _genuinely full_ measures, unit-bearing responses and fair versus unfair measurement. One successful pour simulation does not establish mastery; spaced review is future work.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Translate "capacity", "contents", "liter", "full", "half-full", "estimate", control labels, status, every explanation, Note text and unit-bearing amounts authentically for all configured locales. The visible model depicts fixed **calibrated unit transfers**, not visual water-pixel height as proof. A screen reader reads target contents, current reference fill, number of confirmed pours and whether target is full, plus safe alternative estimate cues _before_ reveal. The same discrete Fill/Pour/Reset buttons work with keyboard, switch and touch; no drag-only activity, audio-only feedback, precision pouring or color dependence. RTL may change labels/layout but not amount or volume-conservation arithmetic; ensure readable 200% text, reduced motion, high contrast, focus, large touch controls, WCAG 2.2 AA and all locally downloaded content usable fully offline after a verified download process exists.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Current generic Lesson Section renderer handles `text`, `markdown`, `scene`, not this specific Scene. Implementation of liter-calibrated amounts, genuine translations, Lesson runtime data, tests and offline packaging remains future work. Scene roots must be prop-free, use real verified locale context and have local deterministic tests. No physics solver, server measurement, Question/Quiz, scoring, Note event or persistence is added.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (embedded in this Lesson config.yaml) and canonical `liter.data.ts` Skill source linked there.
     - Editor: ensure equal-capacity tall/short vessel illustrations do not undermine accurate volume models; avoid height=volume simplification.
     - Editor: confirm the **half-full** diagnostic remains qualitative, since `milliliter` or fractions are not yet being taught.
     - Brief/Content/Scene remain Draft pending explicit approvals.
-    
+
     ## HANDOFF
-    
+
     Methodologist approves standard-unit concept and prerequisite fit first. Screenwriter/editor reviews calibration claims and transfer examples. Scene Designer may implement only an approved specification, while Assessment Architect separately defines any scored mass/capacity evidence.

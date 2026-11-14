@@ -1,49 +1,80 @@
 config:
-  id: "c7ec00c0-7a5c-5cb2-8413-ddb0766387ae"
-  slug: "recognizingPlaneFigures"
-  type: "lesson"
-  skills: ["54f96aba-7db2-48bb-97ae-5ba2f3436095"]
+  id: 'c7ec00c0-7a5c-5cb2-8413-ddb0766387ae'
+  slug: 'recognizingPlaneFigures'
+  type: 'lesson'
+  skills: ['54f96aba-7db2-48bb-97ae-5ba2f3436095']
   params:
     requireQuiz: false
-    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Recognize Shapes by Properties"
+      en: 'Recognize Shapes by Properties'
   section:
     items:
       section1:
         config:
-          id: "d80ac11e-ffdd-5d95-a2b9-411e566619c3"
-          slug: "section1"
-          type: "content"
+          id: 'd80ac11e-ffdd-5d95-a2b9-411e566619c3'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "The Turned Square"
+              en: 'The Turned Square'
             navigationLabel:
-              en: "The Turned Square"
+              en: 'The Turned Square'
           content:
             items:
               text1:
                 config:
-                  id: "2adaf3af-fb47-5734-ac15-73af0965bcc6"
-                  slug: "text1"
-                  type: "text"
+                  id: '2adaf3af-fb47-5734-ac15-73af0965bcc6'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "Present one upright square and one square rotated 45 degrees. Ask: 'Are these the same kind of shape?' Keep the rotation model visible."
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "b9afc250-51be-5a2d-a8c7-42507acdded7"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'b9afc250-51be-5a2d-a8c7-42507acdded7'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
@@ -52,31 +83,31 @@ config:
                 production:
                   specification: |
                     # Shape Property Studio — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending Methodologist approval.
                     **Owner:** Educational Screenwriter.
                     **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
                     **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
-                    
+
                     ## Pedagogical purpose
-                    
+
                     Change the picture without changing the shape. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
-                    
+
                     ## Domain model and immutable rules
-                    
+
                     Geometry SVG with fixed straight-line geometry; rotations and proportional scaling preserve properties; explicit nonuniform resize shows meaningful counterexample.
-                    
+
                     ## Interaction design and state transitions
-                    
+
                     - Objects/state: shape selected, rotation 0/45/90 degrees, proportional scale, optional stretch for counterexample, property ledger, two-group sorting, reset.
                     - Show accessible starting information and a predicted outcome before the relevant reveal.
                     - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
                     - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
                     - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
                     - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
-                    
+
                     ## Exact acceptance scenarios
-                    
+
                     1. Rotating a square by 45 degrees retains square and rectangle labels.
                     2. Uniform scale preserves all relevant angle and side equalities.
                     3. Stretching only one axis may produce a non-square rectangle; never label it square after distortion.
@@ -84,106 +115,106 @@ config:
                     5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
                     6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
                     7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
-                    
+
                     ## Visual and media specification
-                    
+
                     Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
-                    
+
                     ## Localization and inclusive interaction
-                    
+
                     Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
-                    
+
                     ## Review and handoff
-                    
+
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
-                  purpose: "The Turned Square"
-                  productionNotes: "Source Scene shapePropertyStudio.scene-spec.md; independent placement for The Turned Square. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'The Turned Square'
+                  productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for The Turned Square. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "e5548cbd-433c-51ce-9fb7-0cbd56810c34"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e5548cbd-433c-51ce-9fb7-0cbd56810c34'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Reveal equal side lengths and four right-angle corners on both. Explain: 'Turning a square does not change its corners or sides.'"
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "The Turned Square"
+          purpose: 'The Turned Square'
           productionNotes: |-
             **Purpose:** Elicit prior intuition and create an intelligible problem.
-            
+
             1. **text (existing):** Present one upright square and one square rotated 45 degrees. Ask: 'Are these the same kind of shape?' Keep the rotation model visible.
             2. **scene (type exists; proposed instance):** Work within Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
             3. **markdown (existing):** Reveal equal side lengths and four right-angle corners on both. Explain: 'Turning a square does not change its corners or sides.'
-            
+
             **Explanatory feedback and recovery:** For 'diamond': 'It looks tilted. Trace its four equal sides and square corners; it is still a square.'
-            
+
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
       section2:
         config:
-          id: "d70abf8b-fcdd-58dc-a1b9-3f8b57661b56"
-          slug: "section2"
-          type: "content"
+          id: 'd70abf8b-fcdd-58dc-a1b9-3f8b57661b56'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Change What Does Not Matter"
+              en: 'Change What Does Not Matter'
             navigationLabel:
-              en: "Change What Does Not Matter"
+              en: 'Change What Does Not Matter'
           content:
             items:
               text1:
                 config:
-                  id: "b6701dae-92eb-59c1-b7aa-9daefd0bd807"
-                  slug: "text1"
-                  type: "text"
+                  id: 'b6701dae-92eb-59c1-b7aa-9daefd0bd807'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "In Shape Property Studio, learner rotates, rescales and recolors one figure; the property ledger stays constant. Include triangles and rectangles with multiple legitimate appearances."
+                      en: 'In Shape Property Studio, learner rotates, rescales and recolors one figure; the property ledger stays constant. Include triangles and rectangles with multiple legitimate appearances.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "d7a38faf-6b74-5492-86bb-0faf0271fcf8"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'd7a38faf-6b74-5492-86bb-0faf0271fcf8'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "In Shape Property Studio, learner rotates, rescales and recolors one figure; the property ledger stays constant. Include triangles and rectangles with multiple legitimate appearances."
+                        instruction: 'In Shape Property Studio, learner rotates, rescales and recolors one figure; the property ledger stays constant. Include triangles and rectangles with multiple legitimate appearances.'
                 production:
                   specification: |
                     # Shape Property Studio — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending Methodologist approval.
                     **Owner:** Educational Screenwriter.
                     **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
                     **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
-                    
+
                     ## Pedagogical purpose
-                    
+
                     Change the picture without changing the shape. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
-                    
+
                     ## Domain model and immutable rules
-                    
+
                     Geometry SVG with fixed straight-line geometry; rotations and proportional scaling preserve properties; explicit nonuniform resize shows meaningful counterexample.
-                    
+
                     ## Interaction design and state transitions
-                    
+
                     - Objects/state: shape selected, rotation 0/45/90 degrees, proportional scale, optional stretch for counterexample, property ledger, two-group sorting, reset.
                     - Show accessible starting information and a predicted outcome before the relevant reveal.
                     - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
                     - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
                     - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
                     - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
-                    
+
                     ## Exact acceptance scenarios
-                    
+
                     1. Rotating a square by 45 degrees retains square and rectangle labels.
                     2. Uniform scale preserves all relevant angle and side equalities.
                     3. Stretching only one axis may produce a non-square rectangle; never label it square after distortion.
@@ -191,73 +222,73 @@ config:
                     5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
                     6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
                     7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
-                    
+
                     ## Visual and media specification
-                    
+
                     Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
-                    
+
                     ## Localization and inclusive interaction
-                    
+
                     Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
-                    
+
                     ## Review and handoff
-                    
+
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
-                  purpose: "Change What Does Not Matter"
-                  productionNotes: "Source Scene shapePropertyStudio.scene-spec.md; independent placement for Change What Does Not Matter. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Change What Does Not Matter'
+                  productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for Change What Does Not Matter. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "c4e4288c-dfee-5abb-bf46-a88c5be3dc25"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c4e4288c-dfee-5abb-bf46-a88c5be3dc25'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Ask the learner to predict whether a shape name changes after a turn, then test. A stretched square becomes a non-square rectangle only if actual side lengths change; scaling both dimensions equally preserves the square."
+                      en: 'Ask the learner to predict whether a shape name changes after a turn, then test. A stretched square becomes a non-square rectangle only if actual side lengths change; scaling both dimensions equally preserves the square.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Change What Does Not Matter"
+          purpose: 'Change What Does Not Matter'
           productionNotes: |-
             **Purpose:** Strengthen the concept by testing a controlled contrast.
-            
+
             1. **text (existing):** In Shape Property Studio, learner rotates, rescales and recolors one figure; the property ledger stays constant. Include triangles and rectangles with multiple legitimate appearances.
             2. **scene (type exists; proposed instance):** Work within Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
             3. **markdown (existing):** Ask the learner to predict whether a shape name changes after a turn, then test. A stretched square becomes a non-square rectangle only if actual side lengths change; scaling both dimensions equally preserves the square.
-            
+
             **Explanatory feedback and recovery:** Do not claim every stretch preserves shape type. If width changes alone, say: 'Its sides changed, so it may no longer be a square.'
-            
+
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
       section3:
         config:
-          id: "d60abdf8-fddd-5a6f-a0b9-3df858661ce9"
-          slug: "section3"
-          type: "content"
+          id: 'd60abdf8-fddd-5a6f-a0b9-3df858661ce9'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Shapes Within Shapes"
+              en: 'Shapes Within Shapes'
             navigationLabel:
-              en: "Shapes Within Shapes"
+              en: 'Shapes Within Shapes'
           content:
             items:
               text1:
                 config:
-                  id: "78e918ed-ece6-54b2-ba23-98ed1a712418"
-                  slug: "text1"
-                  type: "text"
+                  id: '78e918ed-ece6-54b2-ba23-98ed1a712418'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "Show square and a longer rectangle. Reveal that each has four right angles; ask if both may be called rectangles. Sort by 'rectangles' and 'squares' as overlapping groups."
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "3db015f6-ed42-5c5b-acc7-95f634c40249"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '3db015f6-ed42-5c5b-acc7-95f634c40249'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
@@ -266,31 +297,31 @@ config:
                 production:
                   specification: |
                     # Shape Property Studio — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending Methodologist approval.
                     **Owner:** Educational Screenwriter.
                     **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
                     **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
-                    
+
                     ## Pedagogical purpose
-                    
+
                     Change the picture without changing the shape. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
-                    
+
                     ## Domain model and immutable rules
-                    
+
                     Geometry SVG with fixed straight-line geometry; rotations and proportional scaling preserve properties; explicit nonuniform resize shows meaningful counterexample.
-                    
+
                     ## Interaction design and state transitions
-                    
+
                     - Objects/state: shape selected, rotation 0/45/90 degrees, proportional scale, optional stretch for counterexample, property ledger, two-group sorting, reset.
                     - Show accessible starting information and a predicted outcome before the relevant reveal.
                     - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
                     - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
                     - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
                     - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
-                    
+
                     ## Exact acceptance scenarios
-                    
+
                     1. Rotating a square by 45 degrees retains square and rectangle labels.
                     2. Uniform scale preserves all relevant angle and side equalities.
                     3. Stretching only one axis may produce a non-square rectangle; never label it square after distortion.
@@ -298,106 +329,106 @@ config:
                     5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
                     6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
                     7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
-                    
+
                     ## Visual and media specification
-                    
+
                     Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
-                    
+
                     ## Localization and inclusive interaction
-                    
+
                     Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
-                    
+
                     ## Review and handoff
-                    
+
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
-                  purpose: "Shapes Within Shapes"
-                  productionNotes: "Source Scene shapePropertyStudio.scene-spec.md; independent placement for Shapes Within Shapes. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Shapes Within Shapes'
+                  productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for Shapes Within Shapes. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "fcd2ac37-fb65-56e0-b735-2c3744ec7862"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'fcd2ac37-fb65-56e0-b735-2c3744ec7862'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Explain the relationship in plain language: 'All squares are rectangles. Some rectangles have unequal neighboring sides and are not squares.'"
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Shapes Within Shapes"
+          purpose: 'Shapes Within Shapes'
           productionNotes: |-
             **Purpose:** Strengthen the concept by testing a controlled contrast.
-            
+
             1. **text (existing):** Show square and a longer rectangle. Reveal that each has four right angles; ask if both may be called rectangles. Sort by 'rectangles' and 'squares' as overlapping groups.
             2. **scene (type exists; proposed instance):** Work within Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
             3. **markdown (existing):** Explain the relationship in plain language: 'All squares are rectangles. Some rectangles have unequal neighboring sides and are not squares.'
-            
+
             **Explanatory feedback and recovery:** If the learner excludes the square: 'Check its corners. A square also has four right angles.'
-            
+
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
       section4:
         config:
-          id: "dd0ac8fd-fadd-55b6-a7b9-48fd59661e7c"
-          slug: "section4"
-          type: "content"
+          id: 'dd0ac8fd-fadd-55b6-a7b9-48fd59661e7c'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Find One Away From the Screen"
+              en: 'Find One Away From the Screen'
             navigationLabel:
-              en: "Find One Away From the Screen"
+              en: 'Find One Away From the Screen'
           content:
             items:
               text1:
                 config:
-                  id: "a8aae81c-54a5-5d67-a9e5-681ce41626e1"
-                  slug: "text1"
-                  type: "text"
+                  id: 'a8aae81c-54a5-5d67-a9e5-681ce41626e1'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Invite a learner to identify a triangle and a rectangle from unfamiliar, color-neutral outlines, including a turned example; alternatively describe a real sign/window shape."
+                      en: 'Invite a learner to identify a triangle and a rectangle from unfamiliar, color-neutral outlines, including a turned example; alternatively describe a real sign/window shape.'
                 production:
-                  purpose: "Source prompt or feedback"
+                  purpose: 'Source prompt or feedback'
               scene1:
                 config:
-                  id: "8be7a0a5-248b-57d8-baff-20a5f7642fb2"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '8be7a0a5-248b-57d8-baff-20a5f7642fb2'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Invite a learner to identify a triangle and a rectangle from unfamiliar, color-neutral outlines, including a turned example; alternatively describe a real sign/window shape."
+                        instruction: 'Invite a learner to identify a triangle and a rectangle from unfamiliar, color-neutral outlines, including a turned example; alternatively describe a real sign/window shape.'
                 production:
                   specification: |
                     # Shape Property Studio — Scene Specification
-                    
+
                     **Status:** Provisional Draft pending Methodologist approval.
                     **Owner:** Educational Screenwriter.
                     **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
                     **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
-                    
+
                     ## Pedagogical purpose
-                    
+
                     Change the picture without changing the shape. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
-                    
+
                     ## Domain model and immutable rules
-                    
+
                     Geometry SVG with fixed straight-line geometry; rotations and proportional scaling preserve properties; explicit nonuniform resize shows meaningful counterexample.
-                    
+
                     ## Interaction design and state transitions
-                    
+
                     - Objects/state: shape selected, rotation 0/45/90 degrees, proportional scale, optional stretch for counterexample, property ledger, two-group sorting, reset.
                     - Show accessible starting information and a predicted outcome before the relevant reveal.
                     - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
                     - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
                     - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
                     - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
-                    
+
                     ## Exact acceptance scenarios
-                    
+
                     1. Rotating a square by 45 degrees retains square and rectangle labels.
                     2. Uniform scale preserves all relevant angle and side equalities.
                     3. Stretching only one axis may produce a non-square rectangle; never label it square after distortion.
@@ -405,188 +436,188 @@ config:
                     5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
                     6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
                     7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
-                    
+
                     ## Visual and media specification
-                    
+
                     Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
-                    
+
                     ## Localization and inclusive interaction
-                    
+
                     Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
-                    
+
                     ## Review and handoff
-                    
+
                     The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
-                  purpose: "Find One Away From the Screen"
-                  productionNotes: "Source Scene shapePropertyStudio.scene-spec.md; independent placement for Find One Away From the Screen. Variant/feedback retained under parent Section productionNotes."
+                  purpose: 'Find One Away From the Screen'
+                  productionNotes: 'Source Scene shapePropertyStudio.scene-spec.md; independent placement for Find One Away From the Screen. Variant/feedback retained under parent Section productionNotes.'
               markdown1:
                 config:
-                  id: "f38dc226-5300-5585-adf0-4226af6f2e5b"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'f38dc226-5300-5585-adf0-4226af6f2e5b'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Ask them to name a property, not a color. No answer tracking or formal assessment."
+                      en: 'Ask them to name a property, not a color. No answer tracking or formal assessment.'
                 production:
-                  purpose: "Source explanatory copy"
-            order: ["text1","scene1","markdown1"]
+                  purpose: 'Source explanatory copy'
+            order: ['text1', 'scene1', 'markdown1']
         production:
-          purpose: "Find One Away From the Screen"
+          purpose: 'Find One Away From the Screen'
           productionNotes: |-
             **Purpose:** Transfer the new reasoning independently.
-            
+
             1. **text (existing):** Invite a learner to identify a triangle and a rectangle from unfamiliar, color-neutral outlines, including a turned example; alternatively describe a real sign/window shape.
             2. **scene (type exists; proposed instance):** Offer a fresh preset or an accessible textual equivalent in Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
             3. **markdown (existing):** Ask them to name a property, not a color. No answer tracking or formal assessment.
-            
+
             **Explanatory feedback and recovery:** If unsure: 'Try counting straight sides and checking the corners.'
-            
+
             **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-    order: ["section1","section2","section3","section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
     # Recognize Shapes by Properties — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: recognizingPlaneFigures
     Methodologist status: Draft — not approved
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Change the picture without changing the shape. This Lesson is an autonomous introduction to its assigned canonical competency; it must be valuable without a Program storyline or assessments.
-    
+
     ## Target audience and depth
-    
+
     **Primary grade: 1** (approximate ages 6–7). Early or mixed readers, multilingual learners, keyboard/switch users, low-vision users and learners who need concrete examples must receive equivalent access. **Instructional depth:** Circle, triangle, rectangle and square, varied orientation, proportions and color. Treat square as a special rectangle; avoid forcing a false exclusive classification.
-    
+
     ## Prerequisite knowledge and Skills
-    
+
     Notice straight and curved edges in drawings; distinguish same/different visually or with tactile equivalents. Counting to four helpful but supported.
-    
+
     - No formal prerequisite Skill ID is claimed; foundational experiences are described above.
-    
+
     ## Target Skills
-    
+
     - [identify2dShapes.data.ts](../../../../data/skills/geometry/figures/skills/identify2dShapes.data.ts)
-    
+
     ## Expected observable learning outcomes
-    
+
     - Identify familiar flat figures despite turning, resizing or recoloring.
     - Justify identification using curved boundary, straight sides and corners where appropriate.
     - Explain that every square is a rectangle, although not every rectangle is a square.
-    
+
     ## Essential mathematical ideas
-    
+
     Identity depends on geometric properties, not visual decoration. A square has four equal straight sides and four right angles, so it satisfies the rectangle's defining right-angle condition. Early examples do not require formal proof.
-    
+
     ## Conceptual progression
-    
+
     Start with a plausible misconception, invite a prediction, make the relevant invariant or comparison observable, provide controlled learner manipulation, explain counterexamples, and finish with a fresh independent application. Short formative responses are not proof of mastery.
-    
+
     ## Common misconceptions and boundaries
-    
+
     A rotated square can look like a 'diamond'; children may reject a square as a rectangle; color or size can dominate attention.
-    
+
     Exclude unneeded symbolic formalism and unrelated geometry or measurement topics. Do not change any Skill definition to match these illustrations.
-    
+
     ## Localization, accessibility and offline
-    
+
     All proposed language must be authentically translated for supported locales, including meaningful viewpoint and spatial-direction semantics in LTR/RTL; numerical or geometric truth must not be mirrored incorrectly. Visual manipulation needs a fully equivalent keyboard and screen-reader path, visible focus, adequate touch targets, no color-only cues, no timers, reduced motion, and WCAG 2.2 AA design verification. All assets and feedback must be available offline after download; these are **requirements, not implementation claims**.
-    
+
     ## Sources and verification
-    
+
     - Approved canonical Mathematics Skill file(s): linked above; their IDs, translations and methodological meaning must remain unchanged.
     - [Playground taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) is a generated reference and requires coordinator regeneration after integration.
     - [Studio Lesson editorial workflow](../../../../../../studio/docs/architecture/lesson-editorial-document.md) (repository-level path should be checked during link validation).
     - Mathematics follows the exact models described above; there are no national Curriculum alignment claims.
-    
+
     ## Editorial decisions
-    
+
     - Methodologist approval is pending. Content and Scene below are **provisional Drafts by explicit batch authorization**, not a passed approval gate.
     - Confirm chosen grade and instructional depth before release.
     - No runtime Lesson, Question, Quiz, scoring or persistence is authorized.
-    
+
     ## Handoff
-    
+
     Screenwriter may provisionally prepare the instructional journey subject to Methodologist review. Final content approvals, design and implementation remain separate.
   productionNotes: |
     # Recognize Shapes by Properties — Lesson Content
-    
+
     **Editorial status: Provisional Draft — pending Methodologist approval.**
     **Lesson:** `content/playground/Data/Lessons/1/recognizingPlaneFigures/`. **Audience:** Grade 1 (ages 6–7). **Program dependence:** None.
     **Methodology:** Draft Methodologist Brief (embedded in this Lesson config.yaml). **Target Skills:** exactly the linked canonical Skill(s) in that Brief; no inferred UUID or runtime registration.
-    
+
     ## Instructional premise
-    
+
     Change the picture without changing the shape. Make the learner predict, manipulate an accurate model, inspect what stays constant, articulate the reason, and transfer to new objects. This is explanatory learning, not a graded quiz or a sequence of arbitrary clicks. Progress is self-paced. Proposed custom Scene: Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node).
-    
+
     ## Ordered Section plan
-    
+
     Each Section is a single-column ordered Resource plan. **`text` and `markdown`** are existing typed blocks; **`scene`** is an existing block type but the Shape Property Studio component itself is **not implemented**. Actual rendering and all optional audio are subject to coding-agent verification. No unsupported Resource types or APIs are assumed.
-    
+
     ### Section 1 — The Turned Square
-    
+
     **Purpose:** Elicit prior intuition and create an intelligible problem.
-    
+
     1. **text (existing):** Present one upright square and one square rotated 45 degrees. Ask: 'Are these the same kind of shape?' Keep the rotation model visible.
     2. **scene (type exists; proposed instance):** Work within Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
     3. **markdown (existing):** Reveal equal side lengths and four right-angle corners on both. Explain: 'Turning a square does not change its corners or sides.'
-    
+
     **Explanatory feedback and recovery:** For 'diamond': 'It looks tilted. Trace its four equal sides and square corners; it is still a square.'
-    
+
     **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-    
+
     ### Section 2 — Change What Does Not Matter
-    
+
     **Purpose:** Strengthen the concept by testing a controlled contrast.
-    
+
     1. **text (existing):** In Shape Property Studio, learner rotates, rescales and recolors one figure; the property ledger stays constant. Include triangles and rectangles with multiple legitimate appearances.
     2. **scene (type exists; proposed instance):** Work within Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
     3. **markdown (existing):** Ask the learner to predict whether a shape name changes after a turn, then test. A stretched square becomes a non-square rectangle only if actual side lengths change; scaling both dimensions equally preserves the square.
-    
+
     **Explanatory feedback and recovery:** Do not claim every stretch preserves shape type. If width changes alone, say: 'Its sides changed, so it may no longer be a square.'
-    
+
     **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-    
+
     ### Section 3 — Shapes Within Shapes
-    
+
     **Purpose:** Strengthen the concept by testing a controlled contrast.
-    
+
     1. **text (existing):** Show square and a longer rectangle. Reveal that each has four right angles; ask if both may be called rectangles. Sort by 'rectangles' and 'squares' as overlapping groups.
     2. **scene (type exists; proposed instance):** Work within Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
     3. **markdown (existing):** Explain the relationship in plain language: 'All squares are rectangles. Some rectangles have unequal neighboring sides and are not squares.'
-    
+
     **Explanatory feedback and recovery:** If the learner excludes the square: 'Check its corners. A square also has four right angles.'
-    
+
     **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-    
+
     ### Section 4 — Find One Away From the Screen
-    
+
     **Purpose:** Transfer the new reasoning independently.
-    
+
     1. **text (existing):** Invite a learner to identify a triangle and a rectangle from unfamiliar, color-neutral outlines, including a turned example; alternatively describe a real sign/window shape.
     2. **scene (type exists; proposed instance):** Offer a fresh preset or an accessible textual equivalent in Shape Property Studio (Scene specification shapePropertyStudio embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
     3. **markdown (existing):** Ask them to name a property, not a color. No answer tracking or formal assessment.
-    
+
     **Explanatory feedback and recovery:** If unsure: 'Try counting straight sides and checking the corners.'
-    
+
     **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
-    
+
     ## Independent application and feedback principles
-    
+
     Invite the learner to explain the key reason in a new everyday example, not only repeat the original picture. A plausible wrong answer must receive a _specific mathematical explanation_ rather than a red mark. Avoid asserting mastery from one voluntary interaction. No Question/Quiz/scoring implementation is proposed in this batch.
-    
+
     ## Future recall cue (not implemented)
-    
+
     “Change the picture without changing the shape.” Suggested trigger: after the learner observes the decisive contrast in Section 2. This is a **proposed Note cue only**; no persistence, unlock event or runtime Note contract is invented.
-    
+
     ## Editorial/implementation boundary
-    
+
     All texts, labels, model alternatives, explanations, optional sound transcripts and Scene states require authentic supported-locale translation. Semantic RTL, mobile operation, WCAG 2.2 AA, reduced motion and post-download offline equivalence are acceptance requirements, not verified features. A standalone prop-free Scene must be designed and coded later. The Lesson is independent of Curriculum/Program, has no specified runtime lesson data, scored Questions, or analytics.
