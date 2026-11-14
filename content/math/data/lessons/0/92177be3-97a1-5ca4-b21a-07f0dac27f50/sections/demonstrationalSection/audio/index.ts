@@ -7,7 +7,6 @@ export const demonstrationTone = defineAudio<'demonstrationTone', EqualsMeansSam
   type: 'audio',
   params: {},
   locale: {
-    fileLocation: '/textbooks/math/demonstrationalSection/demo-tone.wav',
     title: { en: 'Demonstration tone' },
   },
 });
