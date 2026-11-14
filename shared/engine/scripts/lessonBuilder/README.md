@@ -90,9 +90,15 @@ node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs check --source conten
 
 Without `--source`, the script discovers directories with
 `lesson.config.yaml` (not Screenwriter editorial YAML).
-The `check` command is read-only; `generate` is deterministic. Existing
-unrelated `*.data.ts` files and manually modified generated files are never
-overwritten silently; symlink traversal is refused.
+The `check` command is read-only and continues to report missing or stale
+YAML-generated drafts. **`generate` is creation-only**: if the Lesson UUID
+directory already contains **any `*.data.ts`**, the Lesson is skipped with a
+`SKIP Lesson <uuid>: existing <file>; no files modified` message, even if the
+YAML has changed or the existing file is identical. A missing target file is
+created with exclusive (`wx`) semantics. To regenerate intentionally, an
+editor must first review and manually remove/move the existing file.
+Editorial YAML, methodology and other non-`*.data.ts` files do not trigger
+the skip. Symlink traversal is refused.
 
 ## Boundaries
 
