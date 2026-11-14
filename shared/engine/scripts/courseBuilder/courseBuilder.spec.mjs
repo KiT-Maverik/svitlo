@@ -600,7 +600,7 @@ test('single Course config.yaml emits TypeScript, methodology and direct Build o
     assert.match(fs.readFileSync(path.join(folder, 'methodology.md'), 'utf8'), /Teach astronomy/);
     assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
     await main(['--package', 'content/math', '--course', courseId, '--check'], root);
-    fs.writeFileSync(path.join(folder, 'config.yaml'), 'invalid: [\\n');
+    fs.writeFileSync(path.join(folder, 'config.yaml'), 'invalid: [\n');
     await main(['--package', 'content/math', '--course', courseId, '--write'], root);
     assert.equal(fs.readFileSync(file, 'utf8'), code);
   } finally {
@@ -695,8 +695,8 @@ test('Course config.yaml emits Scene/media handoffs without inventing image sour
     fs.writeFileSync(path.join(courseFolder, 'config.yaml'), yaml.stringify(input));
     await main(['--package', 'content/math', '--course', courseId, '--write'], root);
     const code = fs.readFileSync(path.join(courseFolder, 'draftCourse.data.ts'), 'utf8');
-    assert.match(code, /defineScene\\(/);
-    assert.match(code, /defineImage\\(/);
+    assert.match(code, /defineScene\(/);
+    assert.match(code, /defineImage\(/);
     assert.doesNotMatch(code, /"src":|Two balanced groups of counters|Interactive equality demonstration/);
     assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
     assert.match(fs.readFileSync(sceneSpec, 'utf8'), /Interactive equality demonstration/);
