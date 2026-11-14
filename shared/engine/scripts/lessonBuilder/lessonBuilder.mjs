@@ -295,8 +295,18 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const draft = renderLessonDraft(lesson, language);
   const entryName = lesson.slug + '.data.ts';
   for (const name of destinationData) {
-    if (name !== entryName)
-      fail(name, '
+    if (name !== entryName) {
+      fail(name, '$', 'competing Lesson data entrypoint; refusing to create another');
+    }
+  }
+  if (mode === 'generate') fs.mkdirSync(outputFolder, { recursive: true });
+  const changed = writeDraft(path.join(outputFolder, entryName), draft, mode);
+  const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
+  return {
+    changed: changed + specs,
+    files: [entryName, ...artifacts.map(item => item.file)],
+    lessonId: lesson.id,
+  };
 }
 
 function discover(repo) {
