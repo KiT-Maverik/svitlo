@@ -157,6 +157,16 @@ export function yamlJsonSchemaDocuments() {
   return documents;
 }
 
+/** Generated JSON is semantically stable even after Prettier changes whitespace. */
+function schemaMatches(target, contents) {
+  if (!fs.existsSync(target)) return false;
+  try {
+    return JSON.stringify(JSON.parse(fs.readFileSync(target, 'utf8'))) === JSON.stringify(JSON.parse(contents));
+  } catch {
+    return false;
+  }
+}
+
 export function generateYamlSchemas(mode, outputRoot = yamlSchemaOutputRoot) {
   if (mode !== '--write' && mode !== '--check') {
     throw new Error('Expected --write or --check');
@@ -166,10 +176,10 @@ export function generateYamlSchemas(mode, outputRoot = yamlSchemaOutputRoot) {
   for (const [filename, contents] of Object.entries(documents)) {
     const target = path.join(outputRoot, filename);
     if (mode === '--check') {
-      if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== contents) {
+      if (!schemaMatches(target, contents)) {
         throw new Error('Outdated YAML JSON Schema: ' + target + '. Run with --write.');
       }
-    } else if (!fs.existsSync(target) || fs.readFileSync(target, 'utf8') !== contents) {
+    } else if (!schemaMatches(target, contents)) {
       fs.writeFileSync(target, contents);
     }
   }
