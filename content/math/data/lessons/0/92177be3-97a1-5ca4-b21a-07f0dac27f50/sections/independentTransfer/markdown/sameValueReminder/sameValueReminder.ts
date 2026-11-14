@@ -6,8 +6,6 @@ export const sameValueReminder = defineMarkdown({
   type: "markdown",
   params: {},
   locale: {
-    value: {
-      en: "Remember: **= means the values on both sides match.**"
-    }
+    value: // todo: tooll reading from text.md
   }
 });
