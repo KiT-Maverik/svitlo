@@ -218,6 +218,9 @@
     },
     "production": {
       "$ref": "production.schema.json#/$defs/course"
+    },
+    "overrides": {
+      "$ref": "courseOverrides.schema.json"
     }
   },
   "required": [
