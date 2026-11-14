@@ -11,6 +11,7 @@ import {
   renderCourseSource,
   existingCourseDrafts,
   verifyOrWriteGenerated,
+  main,
 } from './courseBuilder.mjs';
 
 const courseId = '30ecbde1-97fd-5fe7-a353-ea89b9ef4a67';
@@ -295,6 +296,28 @@ test('Course ownership detection treats any data.ts as existing, not editorial Y
     assert.deepEqual(existingCourseDrafts(path.join(folder, 'missing')), []);
   } finally {
     fs.rmSync(folder, { recursive: true, force: true });
+  }
+});
+
+test('Course CLI logs SKIP before parsing YAML when the UUID already has data', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-existing-cli-'));
+  const folder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  fs.mkdirSync(folder, { recursive: true });
+  const target = path.join(folder, 'alreadyAuthored.data.ts');
+  fs.writeFileSync(target, 'export const authored = true;\n');
+  const logs = [];
+  const previousLog = console.log;
+  try {
+    console.log = value => logs.push(value);
+    // No source YAML: skipping must occur before parsing or generating anything.
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    assert.equal(fs.readFileSync(target, 'utf8'), 'export const authored = true;\n');
+    assert.deepEqual(existingCourseDrafts(folder), ['alreadyAuthored.data.ts']);
+    assert(logs.some(value => value.includes('SKIP Course ' + courseId) &&
+      value.includes('alreadyAuthored.data.ts') && value.includes('no files modified')));
+  } finally {
+    console.log = previousLog;
+    fs.rmSync(root, { recursive: true, force: true });
   }
 });
 
