@@ -1790,7 +1790,8 @@
     }
   },
   "required": [
-    "config"
+    "config",
+    "production"
   ],
   "additionalProperties": false,
   "$defs": {
