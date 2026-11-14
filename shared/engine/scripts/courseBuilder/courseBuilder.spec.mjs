@@ -9,6 +9,7 @@ import {
   parseArguments,
   parseCourseYaml,
   renderCourseSource,
+  existingCourseDrafts,
   verifyOrWriteGenerated,
 } from './courseBuilder.mjs';
 
@@ -252,24 +253,46 @@ test('Course Build overrides render additional configurators and never create st
   assert(!code.includes('defineLesson('));
 });
 
-test('safe, idempotent write and --check never overwrite edited drafts', () => {
+test('creation skips any existing Course data file; check keeps detecting stale drafts', () => {
   const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'course-draft-'));
   const filename = path.join(folder, 'spaceCourse.data.ts');
   const code = renderCourseSource(source);
   try {
+    assert.deepEqual(existingCourseDrafts(folder), []);
     assert.throws(() => verifyOrWriteGenerated(filename, code, '--check'), /STALE/);
     assert.equal(verifyOrWriteGenerated(filename, code, '--write'), true);
+    assert.deepEqual(existingCourseDrafts(folder), ['spaceCourse.data.ts']);
     const before = fs.statSync(filename).mtimeMs;
     assert.equal(verifyOrWriteGenerated(filename, code, '--write'), false);
     assert.equal(verifyOrWriteGenerated(filename, code, '--check'), false);
     assert.equal(fs.statSync(filename).mtimeMs, before);
+
     fs.appendFileSync(filename, '// AI editorial changes\n');
-    assert.throws(() => verifyOrWriteGenerated(filename, code, '--write'), /OWNERSHIP/);
+    const authored = fs.readFileSync(filename, 'utf8');
+    assert.equal(verifyOrWriteGenerated(filename, code, '--write'), false);
     assert.throws(() => verifyOrWriteGenerated(filename, code, '--check'), /STALE/);
-    assert(fs.readFileSync(filename, 'utf8').includes('AI editorial changes'));
+    assert.equal(fs.readFileSync(filename, 'utf8'), authored);
+    const another = path.join(folder, 'other.data.ts');
+    fs.writeFileSync(another, 'export const previous = true;\n');
+    assert.deepEqual(existingCourseDrafts(folder), ['other.data.ts', 'spaceCourse.data.ts']);
+
     const symlink = path.join(folder, 'symlink.ts');
     fs.symlinkSync(filename, symlink);
+    assert.throws(() => verifyOrWriteGenerated(symlink, code, '--write'), /PATH/);
     assert.throws(() => verifyOrWriteGenerated(symlink, code, '--check'), /PATH/);
+  } finally {
+    fs.rmSync(folder, { recursive: true, force: true });
+  }
+});
+
+test('Course ownership detection treats any data.ts as existing, not editorial YAML', () => {
+  const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'course-scaffold-ownership-'));
+  try {
+    fs.writeFileSync(path.join(folder, 'course.yaml'), 'type: course\n');
+    assert.deepEqual(existingCourseDrafts(folder), []);
+    fs.writeFileSync(path.join(folder, 'anotherCourse.data.ts'), 'export const authored = true;\n');
+    assert.deepEqual(existingCourseDrafts(folder), ['anotherCourse.data.ts']);
+    assert.deepEqual(existingCourseDrafts(path.join(folder, 'missing')), []);
   } finally {
     fs.rmSync(folder, { recursive: true, force: true });
   }
