@@ -21,8 +21,7 @@ No other override DSL or historical operation list is supported.
 
 ## Format
 
-Write `content/<book>/data/courses/<bucket>/<uuid>/overrides.yaml` with the exact shape
-of a `Course.build.overrides` patch. For example:
+In the **new single-file technical authoring flow**, write the patch as root `overrides` in `content/<book>/data/courses/<bucket>/<uuid>/config.yaml`. A pre-existing separate `overrides.yaml` is only for historical Course source formats, and must contain the **same** supported sparse Build API patch; never author both as competing sources. Example patch body:
 
 ```yaml
 content:
@@ -36,7 +35,7 @@ content:
 To patch a nested Lesson, follow its Course path through `content.items` at each Module
 or Chapter level. To change order or add/disable children, use the canonical
 `items`, `additionalItems`, `order` collection fields supported by the corresponding
-configurator's Build API. Identifiers and source Lesson Configs remain unchanged.
+configurator's Build API. For Quest sections, patch their supported `stages` and `tasks` maps through the Quest Build API; there are **no** Quest `order` arrays. New Quest Config nodes can be authored in the technical YAML drafts, but runtime Section integration and playback remain pending. Identifiers and source Lesson Configs remain unchanged.
 
 **Unsupported:** `schemaVersion`, `kind: course-lesson-overrides`, `operations`,
 `section-set`, `block-order`, `createLessonOverrides`, or exported `_OverrideEditorial`.

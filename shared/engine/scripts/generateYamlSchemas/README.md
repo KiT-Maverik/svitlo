@@ -26,7 +26,7 @@ the Course's direct Build overrides guide. Source language provenance is
 YAML Zod projections preserve all Engine-required Config fields; the only
 intentional type differences for pending local assets are `z.literal(null)`
 for `image.src`, `audio.fileLocation`, `video.fileLocation`,
-`video.poster` and `carouselSlide.src`. Existing Config/Props schemas are
+`video.poster`, `carouselSlide.src` and localized `subtitles.fileLocation`. Existing Config/Props schemas are
 unchanged. The YAML editor schema requires these keys to exist and be null;
 the TypeScript draft remains invalid until real asset paths are supplied.
 
@@ -50,6 +50,8 @@ npm run content:generate:yaml-schemas --workspace @svitlo/engine
 npm run content:check:yaml-schemas --workspace @svitlo/engine
 node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
 ```
+
+Quest is an authoring-only `type: quest` Section variant with named `stages` and `tasks` maps (both requiring `start` at configurator validation), not a positional collection. The Zod-to-JSON-Schema projection recursively expands Quest Stages into their required medium/small video, three nullable audio slots, image, Subtitles, and Tasks into one Scene each. Subtitles WebVTT paths use pending `null` in technical drafts. This schema and the two draft scaffolders do **not** enable Quest in the runtime Section union or provide playback.
 
 Generated, reviewable JSON Schemas are written to
 `shared/engine/yaml-schemas/{contentBlock,section,question,flashcard,lesson,episode,course,courseOverrides}.schema.json` plus `lesson.scaffold.schema.json` and `course.scaffold.schema.json`. Manual `production.schema.json` is not generated.

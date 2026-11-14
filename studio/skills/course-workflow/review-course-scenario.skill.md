@@ -14,7 +14,7 @@ For the selected exact Course UUID under `content/<book>/data/courses/<bucket>/<
 
 - Approved Course `methodology.md`, the current `toc.yaml` with resolved Lesson slots and actual Lesson configuration for every affected slot.
 - The current authored Course story/episode/scene specifications and **existing** Course-owned TS sources, plus their editorial approvals. Do not invent a nonexistent Course Screenwriting skill or imply that story authoring is implemented by this review.
-- `overrides.yaml` when present, including the origin/rationale for scenario changes in linked editorial artifacts; inspect applicable Section and ContentBlock slugs and original Lesson Data.
+- The canonical Course sparse Build overrides source (root `config.yaml.overrides` for new technical authoring, or an existing current-format `overrides.yaml`), including the origin/rationale for scenario changes in linked editorial artifacts; inspect applicable Section and ContentBlock slugs and original Lesson Data.
 - Existing independent Lesson reviews or approval links when a Course change would alter their educational content.
 
 If original Lesson Data, an applicable scene specification or a required approval is missing, record a precise blocker. Never assume that `toc.yaml` alone supplies runtime Section slugs or Lesson parameters.
@@ -24,18 +24,21 @@ If original Lesson Data, an applicable scene specification or a required approva
 1. **Narrative coherence:** Episodes, transitions, characters, actions and state/event expectations remain consistent across Course/Module/Chapter/Lesson boundaries, without continuity gaps.
 2. **Learning integration:** the story reinforces, rather than replaces or distorts, the approved learning outcomes; pacing, agency, cognitive load, engagement and feedback remain appropriate.
 3. **Source ownership:** standalone Lessons work without the Course narrative. Course-owned additions and sparse overrides do not copy or mutate Lesson sources. All replacements and new Sections/blocks have separately approved author-owned sources.
-4. **Override compatibility:** every proposed scenario override has a clear narrative purpose and applies to a real Lesson slot/Section/block; identify conflicts with methodological constraints rather than silently removing them. Check ordering, events, slug references and source paths against the [approved overrides contract](./course-overrides.schema.json).
+4. **Override compatibility:** every proposed scenario override has a clear narrative purpose and applies to a real Lesson slot/Section/block; identify conflicts with methodological constraints rather than silently removing them. Check ordering, events, slug references and source paths against the [current direct Build overrides contract](./course-overrides.md) and [Engine-generated overrides schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json).
 5. **Accessibility and localization:** meaningful nonvisual alternatives, captions/transcripts, keyboard/touch paths, reduced-motion behavior and correct locale/RTL semantics are planned; no hidden story dependency makes an outcome inaccessible.
 6. **Implementation truthfulness:** distinguish implemented Course-owned resources from proposed Scenes/behavior. Missing assets, runtime support or approval must remain visible blockers, not fabricated output.
 
 ## Output and review gate
 
-Write or update `scenario-review.md` beside the Course `toc.yaml` with: Course UUID, reviewer role, date, the **exact Git commit/blob revisions** of `methodology.md`, `toc.yaml`, `overrides.yaml` (or explicit absence), and scenario source files; verdict `pass | changes-requested | blocked`; evidence by episode/slot/Section/block; issues with severity, owner and concrete correction; accessibility and narrative continuity findings; required re-review/sign-off.
+Write or update `scenario-review.md` beside the Course `toc.yaml` with: Course UUID, reviewer role, date, the **exact Git commit/blob revisions** of `methodology.md`, `toc.yaml`, the canonical Course overrides source (or explicit absence), and scenario source files; verdict `pass | changes-requested | blocked`; evidence by episode/slot/Section/block; issues with severity, owner and concrete correction; accessibility and narrative continuity findings; required re-review/sign-off.
 
 A `pass` is a recommendation **only**. An authorized editor must sign off against the reviewed source revisions. Return story or Course-owned content edits to their authors rather than independently writing and approving them. A change to the story or any scenario-affecting override after a `pass` invalidates affected review evidence and requires a focused re-review. A subsequent Methodological Review may run independently, but it cannot declare the scenario gate approved or override the scenario author's decisions.
 
 **Boundary:** Do not create or translate Course narrative, standalone Lessons, Question banks, typed Course configuration or output from the Course Builder. Use an appropriately labeled Draft PR and link the Course's coordination Issue when one exists; do not auto-merge.
 
 ## Quest Section in Course-owned Episode scenarios
+
+When reviewing an Episode, distinguish **Quest** (one persistent guided-practice / story-workspace with branching Scene feedback) from a Content Section (ordinary exposition), a Learning Flow (linear guided steps), and a **Quiz** (Methodologist-approved scored assessment in a standalone Lesson with Assessment Architect evidence requirements). Neither a mission reward nor a Quest Task success may stand in for Quiz mastery. Confirm the Screenwriter owns narrative decisions, the Methodologist owns educational outcomes and Quiz necessity, and the Assessment Architect owns Question/scoring validity; return any conflict to its owner rather than silently editing another specialist's work.
+
 
 Consult [Quest](../../docs/entities/quest.md) when an Episode proposes a branching interactive mission. Evaluate story consequences, safe recovery from failed tasks, pedagogical usefulness, exact Stage/Task branch responsibilities and alternatives for deaf, blind, motor-impaired and reduced-motion learners. A Quest is a Section in an Episode, not an Episode replacement. Its Engine Build contract does not yet mean runtime support, so document the player/Section integration dependency before approving a playable scenario.
