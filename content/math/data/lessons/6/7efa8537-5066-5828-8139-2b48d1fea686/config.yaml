@@ -1,135 +1,135 @@
 config:
-  id: "7efa8537-5066-5828-8139-2b48d1fea686"
-  slug: "divisionByThree"
-  type: "lesson"
+  id: '7efa8537-5066-5828-8139-2b48d1fea686'
+  slug: 'divisionByThree'
+  type: 'lesson'
   skills:
-    - "f1eca9a5-d86a-4382-9c8b-459baca0f9ee"
+    - 'f1eca9a5-d86a-4382-9c8b-459baca0f9ee'
   params:
     requireQuiz: false
     languages:
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
-      - "en"
-      - "qm"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
-      - "pl"
-      - "uk"
+      - 'lt'
+      - 'lv'
+      - 'et'
+      - 'be'
+      - 'ka'
+      - 'kk'
+      - 'en'
+      - 'qm'
+      - 'zh'
+      - 'hi'
+      - 'es'
+      - 'ar'
+      - 'fr'
+      - 'bn'
+      - 'pt'
+      - 'ur'
+      - 'id'
+      - 'de'
+      - 'ja'
+      - 'ko'
+      - 'tr'
+      - 'vi'
+      - 'ta'
+      - 'te'
+      - 'mr'
+      - 'ms'
+      - 'he'
+      - 'pl'
+      - 'uk'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Three at a Time: Division Facts by Three"
+      en: 'Three at a Time: Division Facts by Three'
   section:
     items:
       section1:
         config:
-          id: "7efa8537-5066-5828-8139-000000000004"
-          slug: "section1"
-          type: "content"
+          id: '7efa8537-5066-5828-8139-000000000004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Build Twelve in Threes"
+              en: 'Build Twelve in Threes'
             navigationLabel:
-              en: "Build Twelve in Threes"
+              en: 'Build Twelve in Threes'
           content:
             items:
               text1:
                 config:
-                  id: "7efa8537-5066-5828-8139-000000000001"
-                  slug: "text1"
-                  type: "text"
+                  id: '7efa8537-5066-5828-8139-000000000001'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve counters, with THREE in each group: how many complete groups can you build?"
+                      en: 'Twelve counters, with THREE in each group: how many complete groups can you build?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original authored resource line: - **Text Resource (supported):** “Twelve counters, with THREE in each group: how many complete groups can you build?”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original authored resource line: - **Text Resource (supported):** “Twelve counters, with THREE in each group: how many complete groups can you build?”'
               scene1:
                 config:
-                  id: "7efa8537-5066-5828-8139-000000000002"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '7efa8537-5066-5828-8139-000000000002'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Twelve counters, with THREE in each group: how many complete groups can you build?"
+                        instruction: 'Twelve counters, with THREE in each group: how many complete groups can you build?'
                 production:
-                  purpose: "Provisional interactive learning experience; implementation pending"
+                  purpose: 'Provisional interactive learning experience; implementation pending'
                   specification: |-
                     # Three Step Division Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Three at a Time: Division Facts by Three` (source consolidated in this YAML), Sections 1–4
                     Methodologist objective(s): Build four groups of three from twelve counters to justify 12 ÷ 3 = 4. Use three equal sharing groups to show 15 ÷ 3 = 5 and identify five as items per group. Find 18 ÷ 3 = 6 using a 3-step number sequence or a matching multiplication fact, checking 3 × 6 = 18. Transfer independently to 21 ÷ 3 = 7 and use inverse multiplication to reject a wrong quotient. `Methodologist Brief` (source consolidated in this YAML) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Whole-number exact division by three corresponds to multiples of three: 3×4=12 so 12÷3=4; 3×5=15 so 15÷3=5; 3×6=18 so 18÷3=6; 3×7=21 so 21÷3=7. In the grouping model 12÷3=4 means FOUR groups of THREE; in the sharing model 15÷3=5 means THREE groups of FIVE. Inverse check always uses the original dividend and divisor. 20 ÷ 3 is non-exact in whole numbers (six groups of three plus two left), so must not be labeled 20÷3=6 as an exact equality. All positive whole factors, totals ≤30, no fraction or formal remainder algorithm needed.
-                    
+
                     **Misconceptions:** Reading 12÷3=4 as three groups of four in a grouping story, confusing consecutive multiples 15 and 18, answering five for 18÷3 without checking 3×5=15, or claiming division by three changes the number of objects. Do not turn non-exact 20÷3 into an exact equality.
-                    
+
                     **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Build Twelve in Threes:** Prompt “Twelve counters, with THREE in each group: how many complete groups can you build?”. Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0. Show **12 ÷ 3 = 4; 3 × 4 = 12**. Explanation: There are four groups of three. Four is the number of complete groups. For a wrong attempt: If three groups suggested, count 3×3=9, with three counters left to form the fourth.
-                    
+
                     2. **Share Fifteen Among Three:** Prompt “Fifteen counters shared among THREE groups: how many in EACH group?”. In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section. Show **15 ÷ 3 = 5; 3 × 5 = 15**. Explanation: Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts. For a wrong attempt: If child answers three, explain three trays with three each contain nine, not fifteen.
-                    
+
                     3. **Step by Three to Eighteen:** Prompt “How many threes make eighteen? Which multiplication can check it?”. Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18. Show **18 ÷ 3 = 6; 3 × 6 = 18**. Explanation: Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen. For a wrong attempt: If five selected, show five threes are fifteen, not eighteen; another group of three is needed.
-                    
+
                     4. **A New Total: Twenty-One:** Prompt “Twenty-one divided by three: how many equal groups of three? How do you check?”. Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model. Show **21 ÷ 3 = 7; 3 × 7 = 21**. Explanation: Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder. For a wrong attempt: If six chosen, only eighteen counters are grouped; if eight, twenty-four would be required, exceeding the original total.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
                     - **State:** Separate initial totals 12/15/18/21, fixed positive divisor three, group/step counters, unique object IDs, role labels (grouping/sharing), candidate, full multiplication check, explanation/reset.
                     - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
                     - **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself. Never mark a wrong equality as correct or produce a quotient for an undefined case.
                     - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Build Twelve in Threes: 12 ÷ 3 = 4; 3 × 4 = 12. There are four groups of three. Four is the number of complete groups.
                     2. Share Fifteen Among Three: 15 ÷ 3 = 5; 3 × 5 = 15. Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.
                     3. Step by Three to Eighteen: 18 ÷ 3 = 6; 3 × 6 = 18. Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.
@@ -137,29 +137,29 @@ config:
                     5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
                     6. Independent placements and reset never change the original mathematical problem or duplicate counters.
                     7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
                   productionNotes: "Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Build Twelve in Threes. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 1. Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0.. Provisional draft; distinct identity per placement."
               markdown1:
                 config:
-                  id: "7efa8537-5066-5828-8139-000000000003"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '7efa8537-5066-5828-8139-000000000003'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "There are four groups of three. Four is the number of complete groups."
+                      en: 'There are four groups of three. Four is the number of complete groups.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original authored resource line: - **Markdown Resource (supported):** “There are four groups of three. Four is the number of complete groups.” Mathematical record: **12 ÷ 3 = 4; 3 × 4 = 12**."
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original authored resource line: - **Markdown Resource (supported):** “There are four groups of three. Four is the number of complete groups.” Mathematical record: **12 ÷ 3 = 4; 3 × 4 = 12**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Build Twelve in Threes"
+          purpose: 'Build Twelve in Threes'
           pedagogicalIntent: |-
             - **Outcome:** Build four groups of three from twelve counters to justify 12 ÷ 3 = 4.
             - **One ordered LessonSection_Config:** text → scene → markdown.
@@ -173,92 +173,92 @@ config:
             - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
             - **Planned unlocked Note:** “To divide by three, build or count complete groups of three.” after the complete evidence and explanation, not a scored answer or wired event.
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+          productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
       section2:
         config:
-          id: "7efa8537-5066-5828-8139-000000000008"
-          slug: "section2"
-          type: "content"
+          id: '7efa8537-5066-5828-8139-000000000008'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Share Fifteen Among Three"
+              en: 'Share Fifteen Among Three'
             navigationLabel:
-              en: "Share Fifteen Among Three"
+              en: 'Share Fifteen Among Three'
           content:
             items:
               text1:
                 config:
-                  id: "7efa8537-5066-5828-8139-000000000005"
-                  slug: "text1"
-                  type: "text"
+                  id: '7efa8537-5066-5828-8139-000000000005'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Fifteen counters shared among THREE groups: how many in EACH group?"
+                      en: 'Fifteen counters shared among THREE groups: how many in EACH group?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original authored resource line: - **Text Resource (supported):** “Fifteen counters shared among THREE groups: how many in EACH group?”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original authored resource line: - **Text Resource (supported):** “Fifteen counters shared among THREE groups: how many in EACH group?”'
               scene1:
                 config:
-                  id: "7efa8537-5066-5828-8139-000000000006"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '7efa8537-5066-5828-8139-000000000006'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Fifteen counters shared among THREE groups: how many in EACH group?"
+                        instruction: 'Fifteen counters shared among THREE groups: how many in EACH group?'
                 production:
-                  purpose: "Provisional interactive learning experience; implementation pending"
+                  purpose: 'Provisional interactive learning experience; implementation pending'
                   specification: |-
                     # Three Step Division Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Three at a Time: Division Facts by Three` (source consolidated in this YAML), Sections 1–4
                     Methodologist objective(s): Build four groups of three from twelve counters to justify 12 ÷ 3 = 4. Use three equal sharing groups to show 15 ÷ 3 = 5 and identify five as items per group. Find 18 ÷ 3 = 6 using a 3-step number sequence or a matching multiplication fact, checking 3 × 6 = 18. Transfer independently to 21 ÷ 3 = 7 and use inverse multiplication to reject a wrong quotient. `Methodologist Brief` (source consolidated in this YAML) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Whole-number exact division by three corresponds to multiples of three: 3×4=12 so 12÷3=4; 3×5=15 so 15÷3=5; 3×6=18 so 18÷3=6; 3×7=21 so 21÷3=7. In the grouping model 12÷3=4 means FOUR groups of THREE; in the sharing model 15÷3=5 means THREE groups of FIVE. Inverse check always uses the original dividend and divisor. 20 ÷ 3 is non-exact in whole numbers (six groups of three plus two left), so must not be labeled 20÷3=6 as an exact equality. All positive whole factors, totals ≤30, no fraction or formal remainder algorithm needed.
-                    
+
                     **Misconceptions:** Reading 12÷3=4 as three groups of four in a grouping story, confusing consecutive multiples 15 and 18, answering five for 18÷3 without checking 3×5=15, or claiming division by three changes the number of objects. Do not turn non-exact 20÷3 into an exact equality.
-                    
+
                     **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Build Twelve in Threes:** Prompt “Twelve counters, with THREE in each group: how many complete groups can you build?”. Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0. Show **12 ÷ 3 = 4; 3 × 4 = 12**. Explanation: There are four groups of three. Four is the number of complete groups. For a wrong attempt: If three groups suggested, count 3×3=9, with three counters left to form the fourth.
-                    
+
                     2. **Share Fifteen Among Three:** Prompt “Fifteen counters shared among THREE groups: how many in EACH group?”. In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section. Show **15 ÷ 3 = 5; 3 × 5 = 15**. Explanation: Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts. For a wrong attempt: If child answers three, explain three trays with three each contain nine, not fifteen.
-                    
+
                     3. **Step by Three to Eighteen:** Prompt “How many threes make eighteen? Which multiplication can check it?”. Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18. Show **18 ÷ 3 = 6; 3 × 6 = 18**. Explanation: Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen. For a wrong attempt: If five selected, show five threes are fifteen, not eighteen; another group of three is needed.
-                    
+
                     4. **A New Total: Twenty-One:** Prompt “Twenty-one divided by three: how many equal groups of three? How do you check?”. Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model. Show **21 ÷ 3 = 7; 3 × 7 = 21**. Explanation: Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder. For a wrong attempt: If six chosen, only eighteen counters are grouped; if eight, twenty-four would be required, exceeding the original total.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
                     - **State:** Separate initial totals 12/15/18/21, fixed positive divisor three, group/step counters, unique object IDs, role labels (grouping/sharing), candidate, full multiplication check, explanation/reset.
                     - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
                     - **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself. Never mark a wrong equality as correct or produce a quotient for an undefined case.
                     - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Build Twelve in Threes: 12 ÷ 3 = 4; 3 × 4 = 12. There are four groups of three. Four is the number of complete groups.
                     2. Share Fifteen Among Three: 15 ÷ 3 = 5; 3 × 5 = 15. Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.
                     3. Step by Three to Eighteen: 18 ÷ 3 = 6; 3 × 6 = 18. Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.
@@ -266,29 +266,29 @@ config:
                     5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
                     6. Independent placements and reset never change the original mathematical problem or duplicate counters.
                     7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
-                  productionNotes: "Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Share Fifteen Among Three. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 2. In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section.. Provisional draft; distinct identity per placement."
+                  productionNotes: 'Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Share Fifteen Among Three. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 2. In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section.. Provisional draft; distinct identity per placement.'
               markdown1:
                 config:
-                  id: "7efa8537-5066-5828-8139-000000000007"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '7efa8537-5066-5828-8139-000000000007'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts."
+                      en: 'Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original authored resource line: - **Markdown Resource (supported):** “Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.” Mathematical record: **15 ÷ 3 = 5; 3 × 5 = 15**."
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original authored resource line: - **Markdown Resource (supported):** “Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.” Mathematical record: **15 ÷ 3 = 5; 3 × 5 = 15**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Share Fifteen Among Three"
+          purpose: 'Share Fifteen Among Three'
           pedagogicalIntent: |-
             - **Outcome:** Use three equal sharing groups to show 15 ÷ 3 = 5 and identify five as items per group.
             - **One ordered LessonSection_Config:** text → scene → markdown.
@@ -302,92 +302,92 @@ config:
             - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
             - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+          productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
       section3:
         config:
-          id: "7efa8537-5066-5828-8139-00000000000c"
-          slug: "section3"
-          type: "content"
+          id: '7efa8537-5066-5828-8139-00000000000c'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Step by Three to Eighteen"
+              en: 'Step by Three to Eighteen'
             navigationLabel:
-              en: "Step by Three to Eighteen"
+              en: 'Step by Three to Eighteen'
           content:
             items:
               text1:
                 config:
-                  id: "7efa8537-5066-5828-8139-000000000009"
-                  slug: "text1"
-                  type: "text"
+                  id: '7efa8537-5066-5828-8139-000000000009'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "How many threes make eighteen? Which multiplication can check it?"
+                      en: 'How many threes make eighteen? Which multiplication can check it?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original authored resource line: - **Text Resource (supported):** “How many threes make eighteen? Which multiplication can check it?”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original authored resource line: - **Text Resource (supported):** “How many threes make eighteen? Which multiplication can check it?”'
               scene1:
                 config:
-                  id: "7efa8537-5066-5828-8139-00000000000a"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '7efa8537-5066-5828-8139-00000000000a'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "How many threes make eighteen? Which multiplication can check it?"
+                        instruction: 'How many threes make eighteen? Which multiplication can check it?'
                 production:
-                  purpose: "Provisional interactive learning experience; implementation pending"
+                  purpose: 'Provisional interactive learning experience; implementation pending'
                   specification: |-
                     # Three Step Division Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Three at a Time: Division Facts by Three` (source consolidated in this YAML), Sections 1–4
                     Methodologist objective(s): Build four groups of three from twelve counters to justify 12 ÷ 3 = 4. Use three equal sharing groups to show 15 ÷ 3 = 5 and identify five as items per group. Find 18 ÷ 3 = 6 using a 3-step number sequence or a matching multiplication fact, checking 3 × 6 = 18. Transfer independently to 21 ÷ 3 = 7 and use inverse multiplication to reject a wrong quotient. `Methodologist Brief` (source consolidated in this YAML) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Whole-number exact division by three corresponds to multiples of three: 3×4=12 so 12÷3=4; 3×5=15 so 15÷3=5; 3×6=18 so 18÷3=6; 3×7=21 so 21÷3=7. In the grouping model 12÷3=4 means FOUR groups of THREE; in the sharing model 15÷3=5 means THREE groups of FIVE. Inverse check always uses the original dividend and divisor. 20 ÷ 3 is non-exact in whole numbers (six groups of three plus two left), so must not be labeled 20÷3=6 as an exact equality. All positive whole factors, totals ≤30, no fraction or formal remainder algorithm needed.
-                    
+
                     **Misconceptions:** Reading 12÷3=4 as three groups of four in a grouping story, confusing consecutive multiples 15 and 18, answering five for 18÷3 without checking 3×5=15, or claiming division by three changes the number of objects. Do not turn non-exact 20÷3 into an exact equality.
-                    
+
                     **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Build Twelve in Threes:** Prompt “Twelve counters, with THREE in each group: how many complete groups can you build?”. Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0. Show **12 ÷ 3 = 4; 3 × 4 = 12**. Explanation: There are four groups of three. Four is the number of complete groups. For a wrong attempt: If three groups suggested, count 3×3=9, with three counters left to form the fourth.
-                    
+
                     2. **Share Fifteen Among Three:** Prompt “Fifteen counters shared among THREE groups: how many in EACH group?”. In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section. Show **15 ÷ 3 = 5; 3 × 5 = 15**. Explanation: Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts. For a wrong attempt: If child answers three, explain three trays with three each contain nine, not fifteen.
-                    
+
                     3. **Step by Three to Eighteen:** Prompt “How many threes make eighteen? Which multiplication can check it?”. Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18. Show **18 ÷ 3 = 6; 3 × 6 = 18**. Explanation: Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen. For a wrong attempt: If five selected, show five threes are fifteen, not eighteen; another group of three is needed.
-                    
+
                     4. **A New Total: Twenty-One:** Prompt “Twenty-one divided by three: how many equal groups of three? How do you check?”. Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model. Show **21 ÷ 3 = 7; 3 × 7 = 21**. Explanation: Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder. For a wrong attempt: If six chosen, only eighteen counters are grouped; if eight, twenty-four would be required, exceeding the original total.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
                     - **State:** Separate initial totals 12/15/18/21, fixed positive divisor three, group/step counters, unique object IDs, role labels (grouping/sharing), candidate, full multiplication check, explanation/reset.
                     - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
                     - **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself. Never mark a wrong equality as correct or produce a quotient for an undefined case.
                     - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Build Twelve in Threes: 12 ÷ 3 = 4; 3 × 4 = 12. There are four groups of three. Four is the number of complete groups.
                     2. Share Fifteen Among Three: 15 ÷ 3 = 5; 3 × 5 = 15. Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.
                     3. Step by Three to Eighteen: 18 ÷ 3 = 6; 3 × 6 = 18. Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.
@@ -395,29 +395,29 @@ config:
                     5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
                     6. Independent placements and reset never change the original mathematical problem or duplicate counters.
                     7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
-                  productionNotes: "Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Step by Three to Eighteen. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 3. Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18.. Provisional draft; distinct identity per placement."
+                  productionNotes: 'Placement scene1 of threeStepDivisionExplorer.scene-spec.md in Step by Three to Eighteen. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 3. Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18.. Provisional draft; distinct identity per placement.'
               markdown1:
                 config:
-                  id: "7efa8537-5066-5828-8139-00000000000b"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '7efa8537-5066-5828-8139-00000000000b'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen."
+                      en: 'Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original authored resource line: - **Markdown Resource (supported):** “Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.” Mathematical record: **18 ÷ 3 = 6; 3 × 6 = 18**."
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original authored resource line: - **Markdown Resource (supported):** “Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.” Mathematical record: **18 ÷ 3 = 6; 3 × 6 = 18**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Step by Three to Eighteen"
+          purpose: 'Step by Three to Eighteen'
           pedagogicalIntent: |-
             - **Outcome:** Find 18 ÷ 3 = 6 using a 3-step number sequence or a matching multiplication fact, checking 3 × 6 = 18.
             - **One ordered LessonSection_Config:** text → scene → markdown.
@@ -431,92 +431,92 @@ config:
             - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
             - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+          productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
       section4:
         config:
-          id: "7efa8537-5066-5828-8139-000000000010"
-          slug: "section4"
-          type: "content"
+          id: '7efa8537-5066-5828-8139-000000000010'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A New Total: Twenty-One"
+              en: 'A New Total: Twenty-One'
             navigationLabel:
-              en: "A New Total: Twenty-One"
+              en: 'A New Total: Twenty-One'
           content:
             items:
               text1:
                 config:
-                  id: "7efa8537-5066-5828-8139-00000000000d"
-                  slug: "text1"
-                  type: "text"
+                  id: '7efa8537-5066-5828-8139-00000000000d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Twenty-one divided by three: how many equal groups of three? How do you check?"
+                      en: 'Twenty-one divided by three: how many equal groups of three? How do you check?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original authored resource line: - **Text Resource (supported):** “Twenty-one divided by three: how many equal groups of three? How do you check?”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original authored resource line: - **Text Resource (supported):** “Twenty-one divided by three: how many equal groups of three? How do you check?”'
               scene1:
                 config:
-                  id: "7efa8537-5066-5828-8139-00000000000e"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '7efa8537-5066-5828-8139-00000000000e'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Twenty-one divided by three: how many equal groups of three? How do you check?"
+                        instruction: 'Twenty-one divided by three: how many equal groups of three? How do you check?'
                 production:
-                  purpose: "Provisional interactive learning experience; implementation pending"
+                  purpose: 'Provisional interactive learning experience; implementation pending'
                   specification: |-
                     # Three Step Division Explorer — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Three at a Time: Division Facts by Three` (source consolidated in this YAML), Sections 1–4
                     Methodologist objective(s): Build four groups of three from twelve counters to justify 12 ÷ 3 = 4. Use three equal sharing groups to show 15 ÷ 3 = 5 and identify five as items per group. Find 18 ÷ 3 = 6 using a 3-step number sequence or a matching multiplication fact, checking 3 × 6 = 18. Transfer independently to 21 ÷ 3 = 7 and use inverse multiplication to reject a wrong quotient. `Methodologist Brief` (source consolidated in this YAML) (Draft).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     Whole-number exact division by three corresponds to multiples of three: 3×4=12 so 12÷3=4; 3×5=15 so 15÷3=5; 3×6=18 so 18÷3=6; 3×7=21 so 21÷3=7. In the grouping model 12÷3=4 means FOUR groups of THREE; in the sharing model 15÷3=5 means THREE groups of FIVE. Inverse check always uses the original dividend and divisor. 20 ÷ 3 is non-exact in whole numbers (six groups of three plus two left), so must not be labeled 20÷3=6 as an exact equality. All positive whole factors, totals ≤30, no fraction or formal remainder algorithm needed.
-                    
+
                     **Misconceptions:** Reading 12÷3=4 as three groups of four in a grouping story, confusing consecutive multiples 15 and 18, answering five for 18÷3 without checking 3×5=15, or claiming division by three changes the number of objects. Do not turn non-exact 20÷3 into an exact equality.
-                    
+
                     **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Build Twelve in Threes:** Prompt “Twelve counters, with THREE in each group: how many complete groups can you build?”. Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0. Show **12 ÷ 3 = 4; 3 × 4 = 12**. Explanation: There are four groups of three. Four is the number of complete groups. For a wrong attempt: If three groups suggested, count 3×3=9, with three counters left to form the fourth.
-                    
+
                     2. **Share Fifteen Among Three:** Prompt “Fifteen counters shared among THREE groups: how many in EACH group?”. In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section. Show **15 ÷ 3 = 5; 3 × 5 = 15**. Explanation: Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts. For a wrong attempt: If child answers three, explain three trays with three each contain nine, not fifteen.
-                    
+
                     3. **Step by Three to Eighteen:** Prompt “How many threes make eighteen? Which multiplication can check it?”. Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18. Show **18 ÷ 3 = 6; 3 × 6 = 18**. Explanation: Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen. For a wrong attempt: If five selected, show five threes are fifteen, not eighteen; another group of three is needed.
-                    
+
                     4. **A New Total: Twenty-One:** Prompt “Twenty-one divided by three: how many equal groups of three? How do you check?”. Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model. Show **21 ÷ 3 = 7; 3 × 7 = 21**. Explanation: Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder. For a wrong attempt: If six chosen, only eighteen counters are grouped; if eight, twenty-four would be required, exceeding the original total.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
                     - **State:** Separate initial totals 12/15/18/21, fixed positive divisor three, group/step counters, unique object IDs, role labels (grouping/sharing), candidate, full multiplication check, explanation/reset.
                     - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
                     - **Invariant:** For an accepted exact division, 3×quotient=original dividend; all counter IDs assigned once with zero leftover. For step counts the number of +3 steps equals the quotient, not the destination number itself. Never mark a wrong equality as correct or produce a quotient for an undefined case.
                     - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Build Twelve in Threes: 12 ÷ 3 = 4; 3 × 4 = 12. There are four groups of three. Four is the number of complete groups.
                     2. Share Fifteen Among Three: 15 ÷ 3 = 5; 3 × 5 = 15. Now the divisor three counts the groups, and five counts counters in each. The story changes what the quotient counts.
                     3. Step by Three to Eighteen: 18 ÷ 3 = 6; 3 × 6 = 18. Six steps of three reach eighteen. The quotient is six; multiplication rebuilds the original eighteen.
@@ -524,29 +524,29 @@ config:
                     5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
                     6. Independent placements and reset never change the original mathematical problem or duplicate counters.
                     7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene Resource rendering exists; Three Step Division Explorer is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
-                  productionNotes: "Placement scene1 of threeStepDivisionExplorer.scene-spec.md in A New Total: Twenty-One. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 4. Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model.. Provisional draft; distinct identity per placement."
+                  productionNotes: 'Placement scene1 of threeStepDivisionExplorer.scene-spec.md in A New Total: Twenty-One. - **Scene Resource (generic integration supported; bespoke component proposed):** `Three Step Division Explorer` (Scene specification embedded in this YAML), independent entry 4. Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model.. Provisional draft; distinct identity per placement.'
               markdown1:
                 config:
-                  id: "7efa8537-5066-5828-8139-00000000000f"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '7efa8537-5066-5828-8139-00000000000f'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder."
+                      en: 'Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original authored resource line: - **Markdown Resource (supported):** “Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder.” Mathematical record: **21 ÷ 3 = 7; 3 × 7 = 21**."
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original authored resource line: - **Markdown Resource (supported):** “Seven threes make twenty-one. Multiplication confirms the quotient and leaves no remainder.” Mathematical record: **21 ÷ 3 = 7; 3 × 7 = 21**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "A New Total: Twenty-One"
+          purpose: 'A New Total: Twenty-One'
           pedagogicalIntent: |-
             - **Outcome:** Transfer independently to 21 ÷ 3 = 7 and use inverse multiplication to reject a wrong quotient.
             - **One ordered LessonSection_Config:** text → scene → markdown.
@@ -560,120 +560,120 @@ config:
             - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
             - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
             - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-          productionNotes: "Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above."
+          productionNotes: 'Draft pending independent editorial review; all feedback and accessibility acceptance criteria are retained above.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Three at a Time: Division Facts by Three — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: divisionByThree
     Methodologist status: Draft
     Primary audience: Grade 3
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation.
-    
+
     ## Target audience
-    
+
     Grade 3, based on the stated conceptual prerequisites. The source Skills retain their independent age-neutral taxonomy definitions.
-    
+
     ## Prerequisites
-    
+
     - Count forward by threes to at least twenty-one, or build three-counter groups with support.
     - Know 3 × n for small n using equal-group diagrams; use exact division/quotient meaning.
     - Read original dividend ÷ 3 = quotient and check the result with 3 × quotient = dividend.
-    
+
     ## Target Skills
-    
+
     - [by3.data.ts](../../../../data/skills/arithmetic/divide/skills/by3.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Build four groups of three from twelve counters to justify 12 ÷ 3 = 4.
     - Use three equal sharing groups to show 15 ÷ 3 = 5 and identify five as items per group.
     - Find 18 ÷ 3 = 6 using a 3-step number sequence or a matching multiplication fact, checking 3 × 6 = 18.
     - Transfer independently to 21 ÷ 3 = 7 and use inverse multiplication to reject a wrong quotient.
-    
+
     ## Essential subject matter
-    
+
     Whole-number exact division by three corresponds to multiples of three: 3×4=12 so 12÷3=4; 3×5=15 so 15÷3=5; 3×6=18 so 18÷3=6; 3×7=21 so 21÷3=7. In the grouping model 12÷3=4 means FOUR groups of THREE; in the sharing model 15÷3=5 means THREE groups of FIVE. Inverse check always uses the original dividend and divisor. 20 ÷ 3 is non-exact in whole numbers (six groups of three plus two left), so must not be labeled 20÷3=6 as an exact equality. All positive whole factors, totals ≤30, no fraction or formal remainder algorithm needed.
-    
+
     ## Conceptual progression and dependencies
-    
+
     1. **Build Twelve in Threes:** Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0.
     2. **Share Fifteen Among Three:** In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section.
     3. **Step by Three to Eighteen:** Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18.
     4. **A New Total: Twenty-One:** Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Reading 12÷3=4 as three groups of four in a grouping story, confusing consecutive multiples 15 and 18, answering five for 18÷3 without checking 3×5=15, or claiming division by three changes the number of objects. Do not turn non-exact 20÷3 into an exact equality.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Every mathematical role, operand label, explanation, control and status translated genuinely into every supported locale, without English fallback. Retain semantic mathematical order in RTL, and provide equivalent fully operable keyboard/touch/switch controls and ordered screen-reader number/quantity records. Large targets, visible focus, WCAG 2.2 AA, zoom/mobile, reduced motion and entirely local deterministic feedback after downloaded language data; no audio-only, dragging or speech-recognition dependency.
-    
+
     ## Sources and factual verification
-    
+
     - [Playground Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned generated view awaiting regeneration after this agent branch is integrated.
     - Canonical source Mathematics Skill files linked by exact filenames above, with UUIDs and translations preserved.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), comparative early division context, not guaranteed national Grade alignment.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No Program dependence. Lesson-specific Grade 3, while atomic Skills remain independent of age/grade.
-    
+
     ## Open editorial decisions
-    
+
     - Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
     - Editor to verify mathematical boundaries and clarity of every example, accessibility and translation requirements.
-    
+
     ## Methodologist handoff
-    
+
     Draft, editorial approval pending. The accompanying Content and Scene specifications are provisional Drafts, not claims of approved methodology or permission to build runtime code.
-  purpose: "Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation."
-  audience: "Grade and prerequisite boundaries are preserved verbatim in production.methodology."
+  purpose: 'Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation.'
+  audience: 'Grade and prerequisite boundaries are preserved verbatim in production.methodology.'
   productionNotes: |-
     # Three at a Time: Division Facts by Three — Content
-    
+
     Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/divisionByThree/
     Primary audience: Grade 3
     Methodologist source: `Methodologist Brief` (source consolidated in this YAML) — Draft, not approved
     Target Skills: by3; direct canonical links in the Methodologist Brief
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Develop exact division-by-three facts by linking multiples of three, equal groups, stepping in threes and inverse multiplication, not memorizing a table without evidence. Explain quotient units based on the chosen grouping or sharing interpretation.
-    
+
     Whole-number exact division by three corresponds to multiples of three: 3×4=12 so 12÷3=4; 3×5=15 so 15÷3=5; 3×6=18 so 18÷3=6; 3×7=21 so 21÷3=7. In the grouping model 12÷3=4 means FOUR groups of THREE; in the sharing model 15÷3=5 means THREE groups of FIVE. Inverse check always uses the original dividend and divisor. 20 ÷ 3 is non-exact in whole numbers (six groups of three plus two left), so must not be labeled 20÷3=6 as an exact equality. All positive whole factors, totals ≤30, no fraction or formal remainder algorithm needed.
-    
+
     Learners act on a controlled model or interpret an original equation, test a prediction and receive an exact explanation. The mathematical statement never changes just to make a guess look correct.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Build Twelve in Threes:** Starting with twelve distinct counter IDs, 'Make one group of three' consumes three at a time, revealing groups 1,2,3,4 and pool 12→9→6→3→0.
     2. **Share Fifteen Among Three:** In a separate fair-sharing entry, give each of three labeled trays one counter per round, until all fifteen are assigned. Five appear in each; compare with grouping meaning from previous Section.
     3. **Step by Three to Eighteen:** Show number sequence 0,3,6,9,12,15,18 with a focusable step counter. The child counts six three-steps and evaluates the original division using 3×6=18.
     4. **A New Total: Twenty-One:** Learner predicts six/seven/eight, optionally builds seven 3-counter groups or checks each multiplication: 3×6=18, 3×7=21, 3×8=24; reveal exact full model.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — Build Twelve in Threes
-    
+
     - **Outcome:** Build four groups of three from twelve counters to justify 12 ÷ 3 = 4.
     - **One ordered LessonSection_Config:** text → scene → markdown.
     - **Text Resource (supported):** “Twelve counters, with THREE in each group: how many complete groups can you build?”
@@ -686,9 +686,9 @@ production:
     - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
     - **Planned unlocked Note:** “To divide by three, build or count complete groups of three.” after the complete evidence and explanation, not a scored answer or wired event.
     - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-    
+
     ### Section 2 — Share Fifteen Among Three
-    
+
     - **Outcome:** Use three equal sharing groups to show 15 ÷ 3 = 5 and identify five as items per group.
     - **One ordered LessonSection_Config:** text → scene → markdown.
     - **Text Resource (supported):** “Fifteen counters shared among THREE groups: how many in EACH group?”
@@ -701,9 +701,9 @@ production:
     - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
     - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
     - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-    
+
     ### Section 3 — Step by Three to Eighteen
-    
+
     - **Outcome:** Find 18 ÷ 3 = 6 using a 3-step number sequence or a matching multiplication fact, checking 3 × 6 = 18.
     - **One ordered LessonSection_Config:** text → scene → markdown.
     - **Text Resource (supported):** “How many threes make eighteen? Which multiplication can check it?”
@@ -716,9 +716,9 @@ production:
     - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
     - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
     - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-    
+
     ### Section 4 — A New Total: Twenty-One
-    
+
     - **Outcome:** Transfer independently to 21 ÷ 3 = 7 and use inverse multiplication to reject a wrong quotient.
     - **One ordered LessonSection_Config:** text → scene → markdown.
     - **Text Resource (supported):** “Twenty-one divided by three: how many equal groups of three? How do you check?”
@@ -731,37 +731,37 @@ production:
     - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
     - **Planned unlocked Note:** “Check your answer by multiplying it by three to get the original total.” after the complete evidence and explanation, not a scored answer or wired event.
     - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - `Three Step Division Explorer` (Scene specification embedded in this YAML), one standalone Draft spec with four independent prop-free Section-specific entries.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     - “To divide by three, build or count complete groups of three.” — proposed only after a full worked model is accessible.
     - “Check your answer by multiplying it by three to get the original total.” — proposed only after a full worked model is accessible.
-    
+
     No Note persistence, unlock event, personal offline sheet, scheduler or mastery state is implemented by the document.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     New numerical examples with transparent feedback are formative experiences. Assessment Architect separately approves any graded Questions, Skill coverage, permitted answer formats, thresholds, retries and mastery evidence. A child's one correct answer in a proposed Scene is not a validated score. No runtime Quiz/Question included.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Use real translations in every supported locale (no silent English fallback), including result-check, undefined-operation explanations, object states and aria labels. LTR/RTL adapt semantically, preserving operand roles. An operable ordered count/number ledger plus native keyboard/touch/switch controls must give a nonvisual child every choice and mathematical step; do not rely on color, dragging, animation, sound or time. WCAG 2.2 AA, zoom/mobile, focus, reduced motion and local offline parity after the entire chosen-language package is downloaded.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Text/markdown/scene Resource rendering and LessonSection_Config exist; Three Step Division Explorer is **proposed and not implemented**, with prop-free entries, real locale integration and own tests required. Notes/review/sync/download are separate product capabilities, not assumed existing. No Quiz, Question, React Scene, scoring or mastery implementation is part of this editorial batch.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - `Methodologist Brief` (source consolidated in this YAML), Draft, not approved.
     - [Generated Playground Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md) (coordinator-controlled).
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Use meaningful regrouping and inverse checks rather than four similar flashcards. Each context must say whether three represents group size or number of groups; preserve Grade 3 audience.
-    
+
     ## HANDOFF
-    
+
     Provisional four-Section Screenwriter Draft plus separate Scene Draft, requiring Methodologist/editor approval before Scene Designer and Coding Agent implementation. Assessment Architect owns graded tasks. No existing Lessons modified.

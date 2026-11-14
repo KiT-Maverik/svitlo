@@ -1,110 +1,110 @@
 config:
-  id: "2673b210-7f91-53a8-a96f-ced6b387873a"
-  slug: "talliesIntoTables"
-  type: "lesson"
+  id: '2673b210-7f91-53a8-a96f-ced6b387873a'
+  slug: 'talliesIntoTables'
+  type: 'lesson'
   skills:
-    - "8930fd33-d7d2-448f-a97c-637053e95731"
-    - "03c02752-3921-4349-b7b0-ad955248e511"
+    - '8930fd33-d7d2-448f-a97c-637053e95731'
+    - '03c02752-3921-4349-b7b0-ad955248e511'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "qm"
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
-      - "pl"
-      - "uk"
+      - 'en'
+      - 'qm'
+      - 'lt'
+      - 'lv'
+      - 'et'
+      - 'be'
+      - 'ka'
+      - 'kk'
+      - 'zh'
+      - 'hi'
+      - 'es'
+      - 'ar'
+      - 'fr'
+      - 'bn'
+      - 'pt'
+      - 'ur'
+      - 'id'
+      - 'de'
+      - 'ja'
+      - 'ko'
+      - 'tr'
+      - 'vi'
+      - 'ta'
+      - 'te'
+      - 'mr'
+      - 'ms'
+      - 'he'
+      - 'pl'
+      - 'uk'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "From Tally Marks to a Table"
+      en: 'From Tally Marks to a Table'
   section:
     items:
       section1:
         config:
-          id: "2673b210-7f91-53a8-a96f-000000000004"
-          slug: "section1"
-          type: "content"
+          id: '2673b210-7f91-53a8-a96f-000000000004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A mark for each new card"
+              en: 'A mark for each new card'
             navigationLabel:
-              en: "A mark for each new card"
+              en: 'A mark for each new card'
           content:
             items:
               text1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-000000000001"
-                  slug: "text1"
-                  type: "text"
+                  id: '2673b210-7f91-53a8-a96f-000000000001'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?"
+                      en: 'Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?”'
               scene1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-000000000002"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '2673b210-7f91-53a8-a96f-000000000002'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?"
+                        instruction: 'Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?'
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # TallyTableStudio — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** `From Tally Marks to a Table` (source consolidated in this YAML)
                     **Methodologist source:** `Draft Brief` (source consolidated in this YAML)
                     **Target Skills:**
-                    
+
                     - [tallyMarks.data.ts](../../../../../data/skills/data/collection/skills/tallyMarks.data.ts)
                     - [fillSimpleTable.data.ts](../../../../../data/skills/data/collection/skills/fillSimpleTable.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A compact observation stream with persistent local category tallies and a labelled three-column table; a fifth mark crosses four upright marks. Every card has its own processed state to prevent accidental double-counting. Learners may undo and replay.
-                    
+
                     **Specific manipulation and learner control:** Show next observation, choose exactly one category, undo a specific recorded observation, step through the five-group build, fill count cells through labelled buttons/numeric selection, request row explanation, reset. No DOM drag requirement and no external props/API.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset     | What the learner can inspect                                           | Correct mathematical / logical condition                          |
                     | ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
                     | First observation  | The first of 12 bird/cat/dog cards unprocessed; three tally rows empty | Total assigned 0.                                                 |
@@ -114,20 +114,20 @@ config:
                     | Table mismatched   | Cat row tally 4 but editable numeral 6                                 | Show row-specific mismatch; no silent correction.                 |
                     | Dataset B transfer | Star 5; Moon 2; Sun 1; eight cards                                     | 5+2+1=8.                                                          |
                     | Undo               | One previously processed card returned to unprocessed status           | Its one tally stroke and affected count are removed consistently. |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **A mark for each new card — Wrong row:** “This card shows a bird. Add its mark to Bird, not Cat; keep one mark for the one card.”
                     - **A mark for each new card — Extra mark attempted:** “This card has already been recorded. Move to the next card before adding another mark.”
                     - **A bundle of five — Six counted as five:** “Count the complete five-mark group first, then add the single new stroke: five plus one is six.”
@@ -137,124 +137,124 @@ config:
                     - **Put the marks into a table — Sum does not match:** “Add 6 + 4 + 2. It makes 12, the number of cards we counted once each.”
                     - **Fresh observations, your table — Extra ninth mark:** “There are only eight cards. Check whether one was marked twice.”
                     - **Fresh observations, your table — Missing mark:** “Read the observation list again and find the item without a recorded mark.”
-                    
+
                     **Boundary:** Do not introduce a new data-investigation Skill or infer comparisons from a single table as mastery of chart interpretation. Recording and reading tallies and accurately recording values in a table are two separately linked canonical Skills in this same lesson.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Use a chronological labelled observation list with 'assigned to Bird' status; textual tallies 'one group of five plus one' and an accessible row-wise table. Learner can independently perform all actions with named buttons.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                  productionNotes: "Placement 1 in A mark for each new card. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Observation mode shows twelve named cards in a fixed order: bird, cat, bird, dog, bird, cat, bird, cat, bird, dog, cat, bird. Show the next card only when requested; learner chooses its labelled category.. Separate stable Scene identity per placement; implementation pending."
+                  productionNotes: 'Placement 1 in A mark for each new card. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Observation mode shows twelve named cards in a fixed order: bird, cat, bird, dog, bird, cat, bird, cat, bird, dog, cat, bird. Show the next card only when requested; learner chooses its labelled category.. Separate stable Scene identity per placement; implementation pending.'
               markdown1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-000000000003"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '2673b210-7f91-53a8-a96f-000000000003'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "One card gives one tally mark, in one row. The marks remember our count so we do not have to start again each time."
+                      en: 'One card gives one tally mark, in one row. The marks remember our count so we do not have to start again each time.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “One card gives one tally mark, in one row. The marks remember our count so we do not have to start again each time.”"
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “One card gives one tally mark, in one row. The marks remember our count so we do not have to start again each time.”'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "A mark for each new card"
+          purpose: 'A mark for each new card'
           pedagogicalIntent: |-
             **Purpose:** Convert one-to-one observations into a written count.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`text`** (supported Resource type) — “Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Observation mode shows twelve named cards in a fixed order: bird, cat, bird, dog, bird, cat, bird, cat, bird, dog, cat, bird. Show the next card only when requested; learner chooses its labelled category.
-            
+
             3. **`markdown`** (supported Resource type) — “One card gives one tally mark, in one row. The marks remember our count so we do not have to start again each time.”
-            
+
             **Meaningful learner action:** Process six observations first, then optionally continue; each submission labels the specific recorded card.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - Wrong row: “This card shows a bird. Add its mark to Bird, not Cat; keep one mark for the one card.”
             - Extra mark attempted: “This card has already been recorded. Move to the next card before adding another mark.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. The source card stays available in a review list; any category assignment can be corrected by undo.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
       section2:
         config:
-          id: "2673b210-7f91-53a8-a96f-000000000008"
-          slug: "section2"
-          type: "content"
+          id: '2673b210-7f91-53a8-a96f-000000000008'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A bundle of five"
+              en: 'A bundle of five'
             navigationLabel:
-              en: "A bundle of five"
+              en: 'A bundle of five'
           content:
             items:
               text1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-000000000005"
-                  slug: "text1"
-                  type: "text"
+                  id: '2673b210-7f91-53a8-a96f-000000000005'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?"
+                      en: 'When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?”'
               scene1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-000000000006"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '2673b210-7f91-53a8-a96f-000000000006'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?"
+                        instruction: 'When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?'
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # TallyTableStudio — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** `From Tally Marks to a Table` (source consolidated in this YAML)
                     **Methodologist source:** `Draft Brief` (source consolidated in this YAML)
                     **Target Skills:**
-                    
+
                     - [tallyMarks.data.ts](../../../../../data/skills/data/collection/skills/tallyMarks.data.ts)
                     - [fillSimpleTable.data.ts](../../../../../data/skills/data/collection/skills/fillSimpleTable.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A compact observation stream with persistent local category tallies and a labelled three-column table; a fifth mark crosses four upright marks. Every card has its own processed state to prevent accidental double-counting. Learners may undo and replay.
-                    
+
                     **Specific manipulation and learner control:** Show next observation, choose exactly one category, undo a specific recorded observation, step through the five-group build, fill count cells through labelled buttons/numeric selection, request row explanation, reset. No DOM drag requirement and no external props/API.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset     | What the learner can inspect                                           | Correct mathematical / logical condition                          |
                     | ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
                     | First observation  | The first of 12 bird/cat/dog cards unprocessed; three tally rows empty | Total assigned 0.                                                 |
@@ -264,20 +264,20 @@ config:
                     | Table mismatched   | Cat row tally 4 but editable numeral 6                                 | Show row-specific mismatch; no silent correction.                 |
                     | Dataset B transfer | Star 5; Moon 2; Sun 1; eight cards                                     | 5+2+1=8.                                                          |
                     | Undo               | One previously processed card returned to unprocessed status           | Its one tally stroke and affected count are removed consistently. |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **A mark for each new card — Wrong row:** “This card shows a bird. Add its mark to Bird, not Cat; keep one mark for the one card.”
                     - **A mark for each new card — Extra mark attempted:** “This card has already been recorded. Move to the next card before adding another mark.”
                     - **A bundle of five — Six counted as five:** “Count the complete five-mark group first, then add the single new stroke: five plus one is six.”
@@ -287,124 +287,124 @@ config:
                     - **Put the marks into a table — Sum does not match:** “Add 6 + 4 + 2. It makes 12, the number of cards we counted once each.”
                     - **Fresh observations, your table — Extra ninth mark:** “There are only eight cards. Check whether one was marked twice.”
                     - **Fresh observations, your table — Missing mark:** “Read the observation list again and find the item without a recorded mark.”
-                    
+
                     **Boundary:** Do not introduce a new data-investigation Skill or infer comparisons from a single table as mastery of chart interpretation. Recording and reading tallies and accurately recording values in a table are two separately linked canonical Skills in this same lesson.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Use a chronological labelled observation list with 'assigned to Bird' status; textual tallies 'one group of five plus one' and an accessible row-wise table. Learner can independently perform all actions with named buttons.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                  productionNotes: "Placement 1 in A bundle of five. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Tally mode isolates the bird row. Step through counts 1, 2, 3, 4, 5, 6; at five the four upright marks gain one crossing stroke, and at six one new upright stroke appears.. Separate stable Scene identity per placement; implementation pending."
+                  productionNotes: 'Placement 1 in A bundle of five. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Tally mode isolates the bird row. Step through counts 1, 2, 3, 4, 5, 6; at five the four upright marks gain one crossing stroke, and at six one new upright stroke appears.. Separate stable Scene identity per placement; implementation pending.'
               markdown1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-000000000007"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '2673b210-7f91-53a8-a96f-000000000007'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Four straight strokes plus one crossing stroke stand for five. Add one more straight stroke for six. It is a group of five and one more—not six groups."
+                      en: 'Four straight strokes plus one crossing stroke stand for five. Add one more straight stroke for six. It is a group of five and one more—not six groups.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “Four straight strokes plus one crossing stroke stand for five. Add one more straight stroke for six. It is a group of five and one more—not six groups.”"
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “Four straight strokes plus one crossing stroke stand for five. Add one more straight stroke for six. It is a group of five and one more—not six groups.”'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "A bundle of five"
+          purpose: 'A bundle of five'
           pedagogicalIntent: |-
             **Purpose:** Read and construct tallies without miscounting the crossed mark.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`text`** (supported Resource type) — “When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Tally mode isolates the bird row. Step through counts 1, 2, 3, 4, 5, 6; at five the four upright marks gain one crossing stroke, and at six one new upright stroke appears.
-            
+
             3. **`markdown`** (supported Resource type) — “Four straight strokes plus one crossing stroke stand for five. Add one more straight stroke for six. It is a group of five and one more—not six groups.”
-            
+
             **Meaningful learner action:** Choose the tally for five and then six, using a visually and verbally precise grouping.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - Six counted as five: “Count the complete five-mark group first, then add the single new stroke: five plus one is six.”
             - Crossing stroke ignored: “The diagonal stroke is the fifth mark. It counts as one observation just like a straight mark.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Use dynamic grouped labels 'five' and 'one extra'; do not rely on diagonal direction as semantic information in RTL.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
       section3:
         config:
-          id: "2673b210-7f91-53a8-a96f-00000000000c"
-          slug: "section3"
-          type: "content"
+          id: '2673b210-7f91-53a8-a96f-00000000000c'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Put the marks into a table"
+              en: 'Put the marks into a table'
             navigationLabel:
-              en: "Put the marks into a table"
+              en: 'Put the marks into a table'
           content:
             items:
               markdown1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-000000000009"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '2673b210-7f91-53a8-a96f-000000000009'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "Our observations are six birds, four cats and two dogs. Let's put each count next to the correct label."
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
+                  purpose: 'Source-authored learner-facing markdown resource'
                   specification: "Original source resource (including pedagogical direction): 1. **`markdown`** (supported Resource type) — “Our observations are six birds, four cats and two dogs. Let's put each count next to the correct label.”"
               scene1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-00000000000a"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '2673b210-7f91-53a8-a96f-00000000000a'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Put the marks into a table"
+                        instruction: 'Put the marks into a table'
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # TallyTableStudio — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** `From Tally Marks to a Table` (source consolidated in this YAML)
                     **Methodologist source:** `Draft Brief` (source consolidated in this YAML)
                     **Target Skills:**
-                    
+
                     - [tallyMarks.data.ts](../../../../../data/skills/data/collection/skills/tallyMarks.data.ts)
                     - [fillSimpleTable.data.ts](../../../../../data/skills/data/collection/skills/fillSimpleTable.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A compact observation stream with persistent local category tallies and a labelled three-column table; a fifth mark crosses four upright marks. Every card has its own processed state to prevent accidental double-counting. Learners may undo and replay.
-                    
+
                     **Specific manipulation and learner control:** Show next observation, choose exactly one category, undo a specific recorded observation, step through the five-group build, fill count cells through labelled buttons/numeric selection, request row explanation, reset. No DOM drag requirement and no external props/API.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset     | What the learner can inspect                                           | Correct mathematical / logical condition                          |
                     | ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
                     | First observation  | The first of 12 bird/cat/dog cards unprocessed; three tally rows empty | Total assigned 0.                                                 |
@@ -414,20 +414,20 @@ config:
                     | Table mismatched   | Cat row tally 4 but editable numeral 6                                 | Show row-specific mismatch; no silent correction.                 |
                     | Dataset B transfer | Star 5; Moon 2; Sun 1; eight cards                                     | 5+2+1=8.                                                          |
                     | Undo               | One previously processed card returned to unprocessed status           | Its one tally stroke and affected count are removed consistently. |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **A mark for each new card — Wrong row:** “This card shows a bird. Add its mark to Bird, not Cat; keep one mark for the one card.”
                     - **A mark for each new card — Extra mark attempted:** “This card has already been recorded. Move to the next card before adding another mark.”
                     - **A bundle of five — Six counted as five:** “Count the complete five-mark group first, then add the single new stroke: five plus one is six.”
@@ -437,125 +437,125 @@ config:
                     - **Put the marks into a table — Sum does not match:** “Add 6 + 4 + 2. It makes 12, the number of cards we counted once each.”
                     - **Fresh observations, your table — Extra ninth mark:** “There are only eight cards. Check whether one was marked twice.”
                     - **Fresh observations, your table — Missing mark:** “Read the observation list again and find the item without a recorded mark.”
-                    
+
                     **Boundary:** Do not introduce a new data-investigation Skill or infer comparisons from a single table as mastery of chart interpretation. Recording and reading tallies and accurately recording values in a table are two separately linked canonical Skills in this same lesson.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Use a chronological labelled observation list with 'assigned to Bird' status; textual tallies 'one group of five plus one' and an accessible row-wise table. Learner can independently perform all actions with named buttons.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                  productionNotes: "Placement 1 in Put the marks into a table. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Table mode has three rows Bird/Cat/Dog and columns Category, Tally, Count. Learner places the 6, 4 and 2 numerals into the matching rows after reading the tallies; the 12 observation cards remain available.. Separate stable Scene identity per placement; implementation pending."
+                  productionNotes: 'Placement 1 in Put the marks into a table. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Table mode has three rows Bird/Cat/Dog and columns Category, Tally, Count. Learner places the 6, 4 and 2 numerals into the matching rows after reading the tallies; the 12 observation cards remain available.. Separate stable Scene identity per placement; implementation pending.'
               text1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-00000000000b"
-                  slug: "text1"
-                  type: "text"
+                  id: '2673b210-7f91-53a8-a96f-00000000000b'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Bird: a group of five and one, count 6. Cat: four marks, count 4. Dog: two marks, count 2. Together that is 12 cards."
+                      en: 'Bird: a group of five and one, count 6. Cat: four marks, count 4. Dog: two marks, count 2. Together that is 12 cards.'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction): 3. **`text`** (supported Resource type) — “Bird: a group of five and one, count 6. Cat: four marks, count 4. Dog: two marks, count 2. Together that is 12 cards.”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction): 3. **`text`** (supported Resource type) — “Bird: a group of five and one, count 6. Cat: four marks, count 4. Dog: two marks, count 2. Together that is 12 cards.”'
             order:
-              - "markdown1"
-              - "scene1"
-              - "text1"
+              - 'markdown1'
+              - 'scene1'
+              - 'text1'
         production:
-          purpose: "Put the marks into a table"
+          purpose: 'Put the marks into a table'
           pedagogicalIntent: |-
             **Purpose:** Make category, tally and numerical frequency correspond row by row.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`markdown`** (supported Resource type) — “Our observations are six birds, four cats and two dogs. Let's put each count next to the correct label.”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Table mode has three rows Bird/Cat/Dog and columns Category, Tally, Count. Learner places the 6, 4 and 2 numerals into the matching rows after reading the tallies; the 12 observation cards remain available.
-            
+
             3. **`text`** (supported Resource type) — “Bird: a group of five and one, count 6. Cat: four marks, count 4. Dog: two marks, count 2. Together that is 12 cards.”
-            
+
             **Meaningful learner action:** Fill three frequency cells and check the sum against the original twelve cards.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - Bird row labeled 5: “Read the group of five and the one extra mark. Bird is six.”
             - Counts swapped: “Look at the named row, not just the number. Four tallies belong beside Cat.”
             - Sum does not match: “Add 6 + 4 + 2. It makes 12, the number of cards we counted once each.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Provide a linearized table transcript with explicit row headings.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
       section4:
         config:
-          id: "2673b210-7f91-53a8-a96f-000000000010"
-          slug: "section4"
-          type: "content"
+          id: '2673b210-7f91-53a8-a96f-000000000010'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Fresh observations, your table"
+              en: 'Fresh observations, your table'
             navigationLabel:
-              en: "Fresh observations, your table"
+              en: 'Fresh observations, your table'
           content:
             items:
               text1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-00000000000d"
-                  slug: "text1"
-                  type: "text"
+                  id: '2673b210-7f91-53a8-a96f-00000000000d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row."
+                      en: 'Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row.'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row.”"
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction): 1. **`text`** (supported Resource type) — “Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row.”'
               scene1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-00000000000e"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '2673b210-7f91-53a8-a96f-00000000000e'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row."
+                        instruction: 'Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row.'
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # TallyTableStudio — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** `From Tally Marks to a Table` (source consolidated in this YAML)
                     **Methodologist source:** `Draft Brief` (source consolidated in this YAML)
                     **Target Skills:**
-                    
+
                     - [tallyMarks.data.ts](../../../../../data/skills/data/collection/skills/tallyMarks.data.ts)
                     - [fillSimpleTable.data.ts](../../../../../data/skills/data/collection/skills/fillSimpleTable.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A compact observation stream with persistent local category tallies and a labelled three-column table; a fifth mark crosses four upright marks. Every card has its own processed state to prevent accidental double-counting. Learners may undo and replay.
-                    
+
                     **Specific manipulation and learner control:** Show next observation, choose exactly one category, undo a specific recorded observation, step through the five-group build, fill count cells through labelled buttons/numeric selection, request row explanation, reset. No DOM drag requirement and no external props/API.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset     | What the learner can inspect                                           | Correct mathematical / logical condition                          |
                     | ------------------ | ---------------------------------------------------------------------- | ----------------------------------------------------------------- |
                     | First observation  | The first of 12 bird/cat/dog cards unprocessed; three tally rows empty | Total assigned 0.                                                 |
@@ -565,20 +565,20 @@ config:
                     | Table mismatched   | Cat row tally 4 but editable numeral 6                                 | Show row-specific mismatch; no silent correction.                 |
                     | Dataset B transfer | Star 5; Moon 2; Sun 1; eight cards                                     | 5+2+1=8.                                                          |
                     | Undo               | One previously processed card returned to unprocessed status           | Its one tally stroke and affected count are removed consistently. |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **A mark for each new card — Wrong row:** “This card shows a bird. Add its mark to Bird, not Cat; keep one mark for the one card.”
                     - **A mark for each new card — Extra mark attempted:** “This card has already been recorded. Move to the next card before adding another mark.”
                     - **A bundle of five — Six counted as five:** “Count the complete five-mark group first, then add the single new stroke: five plus one is six.”
@@ -588,174 +588,174 @@ config:
                     - **Put the marks into a table — Sum does not match:** “Add 6 + 4 + 2. It makes 12, the number of cards we counted once each.”
                     - **Fresh observations, your table — Extra ninth mark:** “There are only eight cards. Check whether one was marked twice.”
                     - **Fresh observations, your table — Missing mark:** “Read the observation list again and find the item without a recorded mark.”
-                    
+
                     **Boundary:** Do not introduce a new data-investigation Skill or infer comparisons from a single table as mastery of chart interpretation. Recording and reading tallies and accurately recording values in a table are two separately linked canonical Skills in this same lesson.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Use a chronological labelled observation list with 'assigned to Bird' status; textual tallies 'one group of five plus one' and an accessible row-wise table. Learner can independently perform all actions with named buttons.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
                   productionNotes: "Placement 1 in Fresh observations, your table. Source resource: 2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Transfer mode starts with eight cards in mixed order and blank tally and count cells, no pre-filled numbers. Learner can request 'How do I group five?' once or reveal afterward.. Separate stable Scene identity per placement; implementation pending."
               markdown1:
                 config:
-                  id: "2673b210-7f91-53a8-a96f-00000000000f"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '2673b210-7f91-53a8-a96f-00000000000f'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Star has one complete group of five: 5. Moon has two marks: 2. Sun has one mark: 1. The table total is 5 + 2 + 1 = 8."
+                      en: 'Star has one complete group of five: 5. Moon has two marks: 2. Sun has one mark: 1. The table total is 5 + 2 + 1 = 8.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “Star has one complete group of five: 5. Moon has two marks: 2. Sun has one mark: 1. The table total is 5 + 2 + 1 = 8.”"
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original source resource (including pedagogical direction): 3. **`markdown`** (supported Resource type) — “Star has one complete group of five: 5. Moon has two marks: 2. Sun has one mark: 1. The table total is 5 + 2 + 1 = 8.”'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Fresh observations, your table"
+          purpose: 'Fresh observations, your table'
           pedagogicalIntent: |-
             **Purpose:** Use the recording procedure independently with a different symbol set.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`text`** (supported Resource type) — “Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row.”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Transfer mode starts with eight cards in mixed order and blank tally and count cells, no pre-filled numbers. Learner can request 'How do I group five?' once or reveal afterward.
-            
+
             3. **`markdown`** (supported Resource type) — “Star has one complete group of five: 5. Moon has two marks: 2. Sun has one mark: 1. The table total is 5 + 2 + 1 = 8.”
-            
+
             **Meaningful learner action:** Count, tally and fill three rows, then explain why the total is eight.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - Extra ninth mark: “There are only eight cards. Check whether one was marked twice.”
             - Missing mark: “Read the observation list again and find the item without a recorded mark.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. No score or mastery gate. The full worked table can be revealed voluntarily.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # From Tally Marks to a Table — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: talliesIntoTables
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Record observations as consistent tally marks, group them in fives, and transfer correctly matched category, tally and frequency values into a simple labelled table. Grade 2 learners who already count by category can externalize that count using marks and read a structured table; five-groups make counting efficient without requiring graph interpretation.
-    
+
     This Lesson intentionally joins 2 independently assessable Skills because a meaningful learning sequence must first build and then communicate the representation; it does not merge Skill identities or claim a new integrative Skill.
-    
+
     ## Target audience
-    
+
     **Primary: Grade 2**, approximately ages 7–8. Grade 2 learners who already count by category can externalize that count using marks and read a structured table; five-groups make counting efficient without requiring graph interpretation. Mixed reading fluency and language proficiency are expected: use short text, meaningful optional narration, explicit number/category labels, and full keyboard/touch and nonvisual alternatives. The Grade is a teaching-depth decision, not part of the Skill definition.
-    
+
     ## Prerequisites
-    
+
     - Count up to twelve, classify every observation into one exclusive category and check category totals (existing Skill `collectCounts`).
     - Read category labels and a small two-column or three-column table with accessible row-by-row guidance.
     - Recognize that a group of five equals four individual marks plus a fifth cross mark when that convention is taught.
-    
+
     Relevant previously transferred Playground Skill: `collectCounts`. The Lesson is standalone: a learner does not need to complete any named Program or another specific Lesson if equivalent prerequisite knowledge is present.
-    
+
     ## Target Skills
-    
+
     - [tallyMarks.data.ts](../../../../data/skills/data/collection/skills/tallyMarks.data.ts)
     - [fillSimpleTable.data.ts](../../../../data/skills/data/collection/skills/fillSimpleTable.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Record each new observation by adding one mark to exactly one category's tally.
     - Apply the explicitly taught grouping rule: four upright marks followed by a crossing fifth, then restart counting.
     - Read six as a five-group plus one, four as four marks, and two as two marks.
     - Fill a table in which category names, tally marks and frequency numerals refer to the same observations.
     - Check that the row counts 6, 4 and 2 total twelve, and transfer the routine to 5, 2 and 1.
-    
+
     An instructional interaction shows what was taught or practiced, not validated mastery of every linked Skill.
-    
+
     ## Essential subject matter
-    
+
     - Tally strokes are a compact record made while observations arrive. One new observation adds one mark to the row for its category.
     - A common convention groups five strokes: four vertical lines and a fifth crossing them diagonally. A sixth observation begins another vertical stroke.
     - A table provides labelled rows: each row has one category, its tally representation and its numerical frequency. A numeral without its row label can be misleading.
     - For a twelve-card set with six birds, four cats and two dogs: birds have one group of five plus one, cats four single marks, dogs two; 6 + 4 + 2 = 12.
     - The nonvisual equivalent announces 'group of five, one extra' rather than asking learners to identify crossing strokes by sight.
-    
+
     **Instructional depth and hard scope:** Single category variable, up to three mutually exclusive categories, one observation per token, counts 0–12, one record per item. Use one consistent five-bundled tally convention; no pie charts, averages, percentages or statistical inference.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin with the learner's prerequisite mental model, introduce one controlling representation or condition, then have the learner explain both a confirming example and a tempting non-example. Later reduce hints so they apply the concept to a new setup. Grade 2 learners who already count by category can externalize that count using marks and read a structured table; five-groups make counting efficient without requiring graph interpretation. Do not infer that presentation, a correct guess or a revealed explanation certifies independent competence.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     - Recording the fifth stroke as a separate upright line when the rule requires a crossing mark.
     - Putting a count in the wrong category's row.
     - Counting the crossing stroke both as the fifth and as another five marks.
     - Leaving an observed object unrecorded or counting a single object twice.
-    
+
     **Exclusions:** Do not introduce a new data-investigation Skill or infer comparisons from a single table as mastery of chart interpretation. Recording and reading tallies and accurately recording values in a table are two separately linked canonical Skills in this same lesson.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Learner-facing text, mathematical language, captions, accessible labels and Scene feedback must ultimately have **genuine translations for every supported locale**; no missing keys, English placeholder translations or silent fallback are approved. Use semantically appropriate LTR/RTL layouts; do not mirror mathematics, clock meanings, figures or numeric symbols by default. Design equivalently meaningful touch, keyboard, screen-reader and low-vision paths, reduced-motion static representations, visible focus, adequate target sizes and WCAG 2.2 AA compliance. Preserve full learning functionality in low-resource and offline use once the platform supports packaged Lesson downloads. These are intended acceptance criteria, **not claims of current implementation**.
-    
+
     ## Sources and factual verification
-    
+
     - [tallyMarks.data.ts](../../../../data/skills/data/collection/skills/tallyMarks.data.ts) — Mathematics canonical Skill definition/description; transferred to Playground without modification.
     - [fillSimpleTable.data.ts](../../../../data/skills/data/collection/skills/fillSimpleTable.data.ts) — Mathematics canonical Skill definition/description; transferred to Playground without modification.
     - [Lesson](../../../../../../studio/docs/entities/lesson.md), [Lesson Content](../../../../../../studio/docs/entities/lesson-content.md), [Section](../../../../../../studio/docs/entities/section.md) and [Program](../../../../../../studio/docs/entities/program.md) entity contracts in Studio.
     - Checked model cases and expected results are enumerated independently in the associated provisional Scene spec; verify them again at implementation.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Unspecified. Standalone learning objective only, with no external quest, reward or Program narrative. Grade is determined pedagogically and does not cap the taxonomy Skill.
-    
+
     ## Open editorial decisions
-    
+
     - **Editor:** approve this Grade 2 audience, depth, boundary and joint-Skill pedagogical grouping; a Draft Brief does not authorize a later Approved state.
     - **Methodologist/editor:** confirm any cross-representation scope before development; no Skill taxonomy edits are requested.
     - **Screenwriter:** the authorized draft Content and Scene spec are **provisional pending this Methodologist decision** and require their own subsequent reviews.
-    
+
     ## Methodologist handoff
-    
+
     Ready for editorial review only. The companion `content.md` and Scene specification have been drafted provisionally by explicit batch instruction; **formal Methodologist approval gate has not passed**. No React Scene, runtime Lesson, Question, Quiz or scoring has been authorized or implemented.
   purpose: |-
     Record observations as consistent tally marks, group them in fives, and transfer correctly matched category, tally and frequency values into a simple labelled table. Grade 2 learners who already count by category can externalize that count using marks and read a structured table; five-groups make counting efficient without requiring graph interpretation.
-    
+
     This Lesson intentionally joins 2 independently assessable Skills because a meaningful learning sequence must first build and then communicate the representation; it does not merge Skill identities or claim a new integrative Skill.
-  audience: "Audience, prerequisites and grade-specific boundaries are specified in production.methodology."
+  audience: 'Audience, prerequisites and grade-specific boundaries are specified in production.methodology.'
   productionNotes: |-
     # From Tally Marks to a Table — Lesson Content
-    
+
     **Editorial status: Provisional Draft — pending Methodologist approval; not an Approved Screenwriter artifact.**
-    
+
     - Lesson directory: `content/playground/Data/Lessons/1/talliesIntoTables/`
     - Audience: **Grade 2**, approximately ages 7–8
     - Methodologist source: `Draft Brief` (source consolidated in this YAML) (**not approved**)
@@ -764,142 +764,142 @@ production:
       - [fillSimpleTable.data.ts](../../../../data/skills/data/collection/skills/fillSimpleTable.data.ts)
     - Program dependence: **None**
     - Runtime/assessment status: editorial instructions only; no implementation, graded Questions or mastery signal.
-    
+
     ## Creative and instructional premise
-    
+
     Record observations as consistent tally marks, group them in fives, and transfer correctly matched category, tally and frequency values into a simple labelled table.
-    
+
     A compact observation stream with persistent local category tallies and a labelled three-column table; a fifth mark crosses four upright marks. Every card has its own processed state to prevent accidental double-counting. Learners may undo and replay.
-    
+
     **Why interactivity matters:** The child can change the relevant mathematical or observational state, inspect evidence rather than accept an answer by authority, receive a reason-specific explanation, and retry without penalty. The final unfamiliar example is not a copy of the original. The experience is a standalone teaching sequence, not a Program plot, mascot activity or points-based game.
-    
+
     **Teaching limits:** Single category variable, up to three mutually exclusive categories, one observation per token, counts 0–12, one record per item. Use one consistent five-bundled tally convention; no pie charts, averages, percentages or statistical inference. Do not introduce a new data-investigation Skill or infer comparisons from a single table as mastery of chart interpretation. Recording and reading tallies and accurately recording values in a table are two separately linked canonical Skills in this same lesson.
-    
+
     ## Learner journey / planned Sections
-    
+
     1. **A mark for each new card:** Convert one-to-one observations into a written count.
     2. **A bundle of five:** Read and construct tallies without miscounting the crossed mark.
     3. **Put the marks into a table:** Make category, tally and numerical frequency correspond row by row.
     4. **Fresh observations, your table:** Use the recording procedure independently with a different symbol set.
-    
+
     Each general Section has a **single top-to-bottom column** of typed `text`, `markdown` and `scene` blocks. These Resource types are supported by the current generic renderer, but the **named TallyTableStudio Scene does not exist yet** and is specified for later implementation. No new Section discriminators, Question adapters or scoring contracts are invented.
-    
+
     ## Detailed ordered Section plan
-    
+
     ### Section 1 — A mark for each new card
-    
+
     **Purpose:** Convert one-to-one observations into a written count.
-    
+
     **Ordered content blocks:**
-    
+
     1. **`text`** (supported Resource type) — “Twelve picture cards will appear, one at a time. Every time you see a bird, cat or dog, make one mark in its group. Which row will you use for a bird?”
-    
+
     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Observation mode shows twelve named cards in a fixed order: bird, cat, bird, dog, bird, cat, bird, cat, bird, dog, cat, bird. Show the next card only when requested; learner chooses its labelled category.
-    
+
     3. **`markdown`** (supported Resource type) — “One card gives one tally mark, in one row. The marks remember our count so we do not have to start again each time.”
-    
+
     **Meaningful learner action:** Process six observations first, then optionally continue; each submission labels the specific recorded card.
-    
+
     **Specific formative feedback, not a scored answer:**
-    
+
     - Wrong row: “This card shows a bird. Add its mark to Bird, not Cat; keep one mark for the one card.”
     - Extra mark attempted: “This card has already been recorded. Move to the next card before adding another mark.”
-    
+
     **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. The source card stays available in a review list; any category assignment can be corrected by undo.
-    
+
     **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-    
+
     ### Section 2 — A bundle of five
-    
+
     **Purpose:** Read and construct tallies without miscounting the crossed mark.
-    
+
     **Ordered content blocks:**
-    
+
     1. **`text`** (supported Resource type) — “When the fifth bird arrives, do we add a fifth upright mark—or cross the four marks to show one complete group of five?”
-    
+
     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Tally mode isolates the bird row. Step through counts 1, 2, 3, 4, 5, 6; at five the four upright marks gain one crossing stroke, and at six one new upright stroke appears.
-    
+
     3. **`markdown`** (supported Resource type) — “Four straight strokes plus one crossing stroke stand for five. Add one more straight stroke for six. It is a group of five and one more—not six groups.”
-    
+
     **Meaningful learner action:** Choose the tally for five and then six, using a visually and verbally precise grouping.
-    
+
     **Specific formative feedback, not a scored answer:**
-    
+
     - Six counted as five: “Count the complete five-mark group first, then add the single new stroke: five plus one is six.”
     - Crossing stroke ignored: “The diagonal stroke is the fifth mark. It counts as one observation just like a straight mark.”
-    
+
     **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Use dynamic grouped labels 'five' and 'one extra'; do not rely on diagonal direction as semantic information in RTL.
-    
+
     **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-    
+
     ### Section 3 — Put the marks into a table
-    
+
     **Purpose:** Make category, tally and numerical frequency correspond row by row.
-    
+
     **Ordered content blocks:**
-    
+
     1. **`markdown`** (supported Resource type) — “Our observations are six birds, four cats and two dogs. Let's put each count next to the correct label.”
-    
+
     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Table mode has three rows Bird/Cat/Dog and columns Category, Tally, Count. Learner places the 6, 4 and 2 numerals into the matching rows after reading the tallies; the 12 observation cards remain available.
-    
+
     3. **`text`** (supported Resource type) — “Bird: a group of five and one, count 6. Cat: four marks, count 4. Dog: two marks, count 2. Together that is 12 cards.”
-    
+
     **Meaningful learner action:** Fill three frequency cells and check the sum against the original twelve cards.
-    
+
     **Specific formative feedback, not a scored answer:**
-    
+
     - Bird row labeled 5: “Read the group of five and the one extra mark. Bird is six.”
     - Counts swapped: “Look at the named row, not just the number. Four tallies belong beside Cat.”
     - Sum does not match: “Add 6 + 4 + 2. It makes 12, the number of cards we counted once each.”
-    
+
     **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Provide a linearized table transcript with explicit row headings.
-    
+
     **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-    
+
     ### Section 4 — Fresh observations, your table
-    
+
     **Purpose:** Use the recording procedure independently with a different symbol set.
-    
+
     **Ordered content blocks:**
-    
+
     1. **`text`** (supported Resource type) — “Now count eight new cards: five stars, two moons, one sun. Make the marks first, then write the count in each row.”
-    
+
     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — `TallyTableStudio` (Scene specification embedded in this YAML): Transfer mode starts with eight cards in mixed order and blank tally and count cells, no pre-filled numbers. Learner can request 'How do I group five?' once or reveal afterward.
-    
+
     3. **`markdown`** (supported Resource type) — “Star has one complete group of five: 5. Moon has two marks: 2. Sun has one mark: 1. The table total is 5 + 2 + 1 = 8.”
-    
+
     **Meaningful learner action:** Count, tally and fill three rows, then explain why the total is eight.
-    
+
     **Specific formative feedback, not a scored answer:**
-    
+
     - Extra ninth mark: “There are only eight cards. Check whether one was marked twice.”
     - Missing mark: “Read the observation list again and find the item without a recorded mark.”
-    
+
     **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. No score or mastery gate. The full worked table can be revealed voluntarily.
-    
+
     **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-    
+
     ## Scene handoff
-    
+
     - `TallyTableStudio` (Scene specification embedded in this YAML) — proposed prop-free, self-contained Scene with explicit state cases, feedback and nonvisual pathway. **The Scene type/renderer is present as a general platform capability; this particular Scene is not implemented.**
     - Scene instances may use independent local preset selection within each Section, without a public props API or hidden cross-Section state. Section order itself is specified above; no invented Lesson runtime registry is implied.
-    
+
     ## Independent transfer and reflection
-    
+
     Eight new observations make Star 5, Moon 2 and Sun 1; construct each tally and verify the table total is eight.
-    
+
     Invite the child to describe **why** the result fits the model before revealing the full explanation. One optional hint is available. A non-reading learner can use accessible choice-and-explanation controls or speak to a nearby adult, without a speech-recognition requirement. Do not turn a voluntary reveal, an acknowledgement or a Section completion into a mastery claim.
-    
+
     ## Planned short recall Note
-    
+
     “One observation adds one mark to its category. A five-mark bundle helps count, and table rows keep labels matched to counts.”
-    
+
     Proposed pedagogical unlock _point_: when the contrast in Section 3 has been examined and explained. **Status planned, not wired**: no Note entity, unlock API, persistence, offline sync or review-sheet scheduler is claimed present. A learner who does not trigger an eventual Note still gets the full teaching content.
-    
+
     ## Locale, accessibility, offline and resource readiness
-    
+
     All quoted learner text and Scene feedback above are English authoring source, **not implemented locale bundles**. Complete genuine translation for all required languages, contextual terms, numeral conventions, accessible descriptions and RTL-specific meaning is mandatory before runtime delivery. The spec does not create or claim language fallback behavior. Design for WCAG 2.2 AA, keyboard and mobile touch, nonvisual equivalent participation, reduced motion, weak-device parity and complete offline access once the Lesson and Scene are packaged. New assets must be locally available; no network call is essential to these experiences.
-    
+
     ## Editorial and engineering dependencies
-    
+
     **All Content is provisional Draft pending Methodologist approval.** Subsequent Screenwriter approval and independent Scene review remain required. Coding Agent owns runtime content assembly, Scene registration, tests, locale resources and eventual PWA packaging. Assessment Architect owns all Questions, Quiz behavior, scores, retries and validated evidence. This batch does **not** implement any of those capabilities.

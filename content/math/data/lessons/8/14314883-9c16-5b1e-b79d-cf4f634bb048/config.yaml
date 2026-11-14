@@ -1,103 +1,103 @@
 config:
-  id: "14314883-9c16-5b1e-b79d-cf4f634bb048"
-  slug: "estimatingAndCheckingLengths"
-  type: "lesson"
+  id: '14314883-9c16-5b1e-b79d-cf4f634bb048'
+  slug: 'estimatingAndCheckingLengths'
+  type: 'lesson'
   skills:
-    - "acf47ae5-cf9b-42b3-9f7f-4c2a92e73f1f"
+    - 'acf47ae5-cf9b-42b3-9f7f-4c2a92e73f1f'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "qm"
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
-      - "pl"
-      - "uk"
+      - 'en'
+      - 'qm'
+      - 'lt'
+      - 'lv'
+      - 'et'
+      - 'be'
+      - 'ka'
+      - 'kk'
+      - 'zh'
+      - 'hi'
+      - 'es'
+      - 'ar'
+      - 'fr'
+      - 'bn'
+      - 'pt'
+      - 'ur'
+      - 'id'
+      - 'de'
+      - 'ja'
+      - 'ko'
+      - 'tr'
+      - 'vi'
+      - 'ta'
+      - 'te'
+      - 'mr'
+      - 'ms'
+      - 'he'
+      - 'pl'
+      - 'uk'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Estimate Length, Then Measure"
+      en: 'Estimate Length, Then Measure'
   section:
     items:
       section1:
         config:
-          id: "14314883-9c16-5b1e-b79d-000000000004"
-          slug: "section1"
-          type: "content"
+          id: '14314883-9c16-5b1e-b79d-000000000004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Use a Known Length as a Clue"
+              en: 'Use a Known Length as a Clue'
             navigationLabel:
-              en: "Use a Known Length as a Clue"
+              en: 'Use a Known Length as a Clue'
           content:
             items:
               text1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-000000000001"
-                  slug: "text1"
-                  type: "text"
+                  id: '14314883-9c16-5b1e-b79d-000000000001'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This short strip is our **10 cm reference**. The mystery strip looks a little longer. Could it be about **11 cm**, **12 cm**, or **15 cm**? Make an estimate, not a perfect guess. What did you compare?"
+                      en: 'This short strip is our **10 cm reference**. The mystery strip looks a little longer. Could it be about **11 cm**, **12 cm**, or **15 cm**? Make an estimate, not a perfect guess. What did you compare?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction):   1. **text — currently rendered:** \"This short strip is our **10 cm reference**. The mystery strip looks a little longer. Could it be about **11 cm**, **12 cm**, or **15 cm**? Make an estimate, not a perfect guess. What did you compare?\""
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction):   1. **text — currently rendered:** "This short strip is our **10 cm reference**. The mystery strip looks a little longer. Could it be about **11 cm**, **12 cm**, or **15 cm**? Make an estimate, not a perfect guess. What did you compare?"'
               scene1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-000000000002"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '14314883-9c16-5b1e-b79d-000000000002'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "This short strip is our **10 cm reference**. The mystery strip looks a little longer. Could it be about **11 cm**, **12 cm**, or **15 cm**? Make an estimate, not a perfect guess. What did you compare?"
+                        instruction: 'This short strip is our **10 cm reference**. The mystery strip looks a little longer. Could it be about **11 cm**, **12 cm**, or **15 cm**? Make an estimate, not a perfect guess. What did you compare?'
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # Length Estimate Laboratory — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson: `Estimate Length, Then Measure` (source consolidated in this YAML), Sections 1–4
                     Methodologist objectives: `Draft Brief` (source consolidated in this YAML): estimate length from a benchmark, accurately check by measuring, and interpret discrepancy in the **same unit**. No additional Skill or scoring criterion is introduced.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A known **10 cm benchmark** gives children a reason to suggest a length **before** measuring. They must compare, choose a plausible approximate number, then independently check with a ruler and explain whether the estimate was high, low or equal. The active learning loop is **predict → commit a reason → reveal measured evidence → interpret and refine**; it is not a competition for the closest number.
-                    
+
                     Learner voice: "**I used a length I know, made an estimate in centimeters, then checked what the ruler actually says. The difference helps me improve.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - All model lengths are fixed whole numbers in **centimeters**. The reference strip is **10 cm** in the schematic numerical model. Stage target actual lengths: A=**12 cm**, B=**16 cm**, C=**18 cm**, D=**23 cm**. A separate ruler has modeled centimeter ticks 0 to **at least 25/30**, equally spaced.
                     - **Before** an estimate is chosen and explicitly confirmed (stage A, B, D), the mystery strip's exact value, scale tick endpoint, numeric length, computed difference and any answer-specific aria text are **not presented to the learner**. No developer-tool security is promised; hiding values from the console is a runtime engineering concern, not a solved protection mechanism.
                     - Pre-reveal modes display a known-length **10 cm reference** and a mystery strip drawn at internally consistent proportional scale **without tick divisions**. Nonvisual users receive a **coarse relative comparison** adequate to reason ("a little longer than one reference"; "between one and two"; "a little more than two, less than two and a half"), without exact lengths.
@@ -106,28 +106,28 @@ config:
                     - No hidden pass threshold: an estimate that differs from measurement can still be a reasoned estimate. Use quality of comparison and error explanation as formative feedback, not a grade or arbitrary accepted band.
                     - Screen pixels, SVG units, zoom, physical display DPI are **not calibrated centimeters**; all comparisons are schematic and proportionally consistent within one display. Do not claim real-world distance measurements through screen size.
                     - This Lesson is Grade 3, whole centimeters between roughly 8 and 30 only. No millimeters, meters, decimals/fractions, percent error or statistics.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A: A Little Longer Than Ten (Section 1)
-                    
+
                     1. Show known **10 cm reference strip** with label and an **unlabeled 12 cm target strip**, proportionally a little longer, no ruler/ticks on target.
                     2. Prompt: "Is the mystery around 11, 12 or 15 centimeters? Choose **an estimate** and a reason." Coarse nonvisual description: "A little longer than one 10cm reference, far shorter than two."
                     3. Estimate choices **11/12/15 cm**. Reason choices "Just above 10", "More than 20", "I am unsure" (latter asks for a gentle hint). Any selection records an **estimate**, not an outcome. A "Confirm my estimate" action fixes it for this reveal without scoring; "Edit estimate" remains possible before reveal.
                     4. On deliberate "Measure", display schematic correctly aligned ruler 0…15 (at least), reveal endpoint mark **12**, and count the **twelve** equal unit intervals as requested. State: "Measured 12 cm".
                     5. Feedback exact: 11 → estimate **1 cm below**; 12 → **matches**; 15 → **3 cm above**. For reason "more than 20": "Our strip looked much shorter than two 10 cm pieces; check your benchmark before measuring."
                     6. No hidden exact length in pre-reveal accessible strings, visually displayed marks, cursor labels or image descriptions; nonvisual and visual learners both estimate without the ruler.
-                    
+
                     ### Placement B: Fifteen Versus Sixteen (Section 2)
-                    
+
                     1. Present reference 10 cm and unknown target **16 cm**, no target ruler. Coarse description "Longer than one 10 cm reference, shorter than two." Learner may choose estimate 14/15/16/18 or another simple integer within an accessible bounded range if engineer approves; **worked example uses 15 cm**.
                     2. "Confirm estimate" then "Reveal ruler" shows zero-aligned endpoint at **16 cm**, unit spaces 0→1…15→16, true length unchanged.
                     3. Worked feedback: e=15, actual=16 ⇒ measured is one greater, so "**1 cm below**". For e=18, result **2 cm above**; for e=16, it **matches**. Every chosen estimate is labeled an estimate even if exact.
                     4. Ask "Was your estimate above, below, or equal to the measured number?" Reasoned feedback: 15 below 16; both values measured in **cm** so comparison legitimate. The same centimeter unit appears on benchmark, estimate, measurement and difference.
                     5. Reset returns to unrevealed fixed length 16, with no stored choice or previous stage state.
-                    
+
                     ### Placement C: Two Estimates of One Fixed Strip (Section 3)
-                    
+
                     1. Display the **same fixed target of 18 cm**, reference 10 cm, with already declared estimates **20 cm** and **25 cm**; these are _given examples_, not the learner's hidden initial guess.
                     2. After "Measure", show 0→18 from a ruler and exact comparison:
                        - **20 cm estimate** vs 18 measured ⇒ **2 cm above**.
@@ -136,39 +136,39 @@ config:
                     4. Show "20" **without a unit** against "18 cm" in a second illustrative card and ask "Is the comparison complete?" Explain no: a length needs an explicit unit. Do not incorrectly assert that the bare number 20 is a known centimeter estimate unless explicitly supplied.
                     5. Feedback for "object got shorter": "The strip stayed **18 cm**. 20 and 25 were guesses; they were never the object's measured lengths." Offer a one-step review of reference-to-target reasoning.
                     6. This placement doesn't claim any learner prediction is "wrong" as a scored result; its purpose is to interpret relative discrepancy sizes.
-                    
+
                     ### Placement D: New Strip, Reason First (Section 4)
-                    
+
                     1. New **23 cm** fixed target strip, no visible unit grid/tick endpoint. Show reference **10 cm**; comparative cue "A little more than two references, but less than two and a half" (between **20 and 25 cm**, not an exact value). Provide the same coarse nonvisual cue without exposing 23.
                     2. Learner selects an integer estimate **e ∈ {18,19,…,28}** via accessible stepper/select plus a reason e.g. "just above 20" / "near two and a half reference strips" / "unsure; show a clue". Never require a typed paragraph.
                     3. "Confirm my estimate" then deliberately "Check with ruler" reveals a correctly zero-aligned scale 0…25 or 0…30, with endpoint **23**. Record exact measured "**23 cm**".
                     4. Feedback calculated for any allowed e: if **e < 23**, show "**23−e cm below**"; if **e > 23**, show "**e−23 cm above**"; if equal, "**matches**". Specific examples: e=20 ⇒ **3 cm below**; e=22 ⇒ **1 cm below**; e=24 ⇒ **1 cm above**; e=28 ⇒ **5 cm above**. Explain the difference through the fixed 10 cm benchmark after reveal.
                     5. A learner may say "the estimate was far too large for this reference", compare two 10 cm spans to the target and revise their next future estimate. They may retry but no grade or hidden performance label is stored. An independent new estimate after a reset is always a new _practice_ event, not spaced scheduling.
                     6. Keep everything locally deterministic, including all feedback and no scoring state. A physical ruler is an optional outside-the-Scene extension and not required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** fixed 10 cm reference strip, fixed but pre-reveal unlabeled target strip, optional proportional length-comparison brackets, estimate selection control (integer centimeters), reason choices, explicit "Confirm estimate" / "Reveal measurement", schematic ruler/tick intervals, measured result with unit, difference sentence and reflect/retry/reset controls.
                     - **State:** per placement fixed internal reference and target length, learner estimate (nullable), chosen reason, confirmation status, ruler reveal status, possibly selected interval for inspection and feedback. All UI localization must come from actual verified context, **not** public props.
                     - **Invariant:** mystery strip's underlying length NEVER changes when measured or resized; before reveal no exact target value leaked in learner-perceivable text/UI; ruler ticks equal and zero-aligned after reveal; difference magnitude and direction computed correctly using _the same unit_.
                     - **Reason checks:** show explanatory commentary ("estimate not informed by reference") without treating guesses as pass/fail. If estimate omitted, pressing "Measure" requests a provisional estimate and a reason **or offers an explicit 'show anyway' route for accessibility**; avoid permanently blocking learning.
                     - **No public props:** Section-specific Scene roots must each be self-contained and **prop-free**. They can share private model functions but may not require invented `targetLength`, `language`, `mode`, `onAnswered` or learner-state event props.
                     - **No persistence/quiz:** chosen local estimate is a transient instructional variable. No recorded results, mastery validation, scoring, Note events or external network dependency.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a stable, clean SVG strip comparison showing the known 10cm reference; the mystery target is proportionally drawn but **not pre-divided into one-centimeter marks**. Under "Reveal measurement", an evenly marked schematic ruler appears; zero aligns with target start, endpoint at exact integer tick. Label intervals and numerical comparisons in text as well as visual brackets. If device width forces proportional scaling, both reference and target scale by **the same transform** to preserve relative lengths. Large text, no decorative motion; reveal animation optional and bypassed by reduced-motion mode. Do not request or imply external image/video or hardware calibration.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate all unit-bearing values, comparative cues, choice labels, numeral/plural display, messages, reflection sentences, ruler descriptions and Note text genuinely for all supported locales. Use suitable localized grammar for 1/2/3+ centimeters and avoid idioms where "above/below" might be mistaken for vertical placement; pair with "greater/less than the measured value".
                     - **RTL:** UI text/control order may mirror, but the ruler's chosen numeric orientation (0 increasing consistently) and the reference/target length relation **must not** reverse. Avoid whole SVG mirroring that changes mapped tick labels.
                     - **Pre-reveal nonvisual equity:** a screen reader gets the same _coarse_ relational clue as visual learners, but not the target's exact numeric value; no exact endpoint mark in aria labels until measured. After reveal, provide an exhaustive interval-based text explanation if requested. The optional visual ruler isn't a secret answer channel in another modality.
                     - Keyboard/switch accessible integer stepper and reason buttons, visible focus, ample touch targets, no precision pointer measuring, no time limit, no mandatory speech, no color-only encoding, controlled announcements and reduced motion.
                     - Must meet WCAG 2.2 AA intent and preserve full learning on mobile, low-end or offline after successful package/locale download. These are **implementation requirements** awaiting verification, not claims that current UI supports them.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A known 10 cm, hidden target 12 cm: before estimate **no exact target appears** in learner-facing or accessibility UI; after reveal length **12 cm**, estimates 11/12/15 produce differences **1 below / equal / 3 above**.
                     2. Stage B target 16 cm, worked estimate 15 cm ⇒ **1 cm below**; estimate 18 cm ⇒ **2 cm above**, always in centimeters.
                     3. Stage C target fixed 18 cm with estimates 20 and 25 produces **2 cm above** and **7 cm above**, so 20 is nearer; the target bar itself never shrinks/grows.
@@ -178,29 +178,29 @@ config:
                     7. After reset, no previous estimate, reason or revealed answer persists across independent Section placements.
                     8. Keyboard, screen reader, RTL, reduced motion, mobile zoom and post-download offline operations provide equivalent pre-estimate **non-exact** evidence and complete post-measure feedback.
                     9. No arbitrary scoring threshold, persistent answer state, Question/Quiz or invented runtime event exists.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
-                  productionNotes: "Placement 1 in Use a Known Length as a Clue. Source resource:   2. **scene — Resource type exists, custom model proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage A. Show fixed reference bar labeled **10 cm** beside an unlabeled mystery bar of exact model length **12 cm** but with **no grid/ticks/endpoint ruler labels** until after estimate. Learner picks an approximate centimeter number (11,12,15 permitted) and a reason choice (\"similar to ten; slightly longer\", \"more than twice ten\", \"not sure\"). Record estimate in **cm** in local unscored state, then press \"Measure\" to align a ruler at zero and reveal 0→12 as **12 cm**.. Separate stable Scene identity per placement; implementation pending."
+                  productionNotes: 'Placement 1 in Use a Known Length as a Clue. Source resource:   2. **scene — Resource type exists, custom model proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage A. Show fixed reference bar labeled **10 cm** beside an unlabeled mystery bar of exact model length **12 cm** but with **no grid/ticks/endpoint ruler labels** until after estimate. Learner picks an approximate centimeter number (11,12,15 permitted) and a reason choice ("similar to ten; slightly longer", "more than twice ten", "not sure"). Record estimate in **cm** in local unscored state, then press "Measure" to align a ruler at zero and reveal 0→12 as **12 cm**.. Separate stable Scene identity per placement; implementation pending.'
               markdown1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-000000000003"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '14314883-9c16-5b1e-b79d-000000000003'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Our reference is **10 cm** long. The mystery strip was a little longer, so a value a little above 10 made sense. The ruler shows **12 cm**. Measuring checks an estimate; it does not turn estimation into a guessing contest."
+                      en: 'Our reference is **10 cm** long. The mystery strip was a little longer, so a value a little above 10 made sense. The ruler shows **12 cm**. Measuring checks an estimate; it does not turn estimation into a guessing contest.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original source resource (including pedagogical direction):   3. **markdown — currently rendered:** \"Our reference is **10 cm** long. The mystery strip was a little longer, so a value a little above 10 made sense. The ruler shows **12 cm**. Measuring checks an estimate; it does not turn estimation into a guessing contest.\""
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original source resource (including pedagogical direction):   3. **markdown — currently rendered:** "Our reference is **10 cm** long. The mystery strip was a little longer, so a value a little above 10 made sense. The ruler shows **12 cm**. Measuring checks an estimate; it does not turn estimation into a guessing contest."'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Use a Known Length as a Clue"
+          purpose: 'Use a Known Length as a Clue'
           pedagogicalIntent: |-
             - **Purpose:** use a known benchmark to generate an estimate before revealing a measurement.
             - **Current shape:** `LessonSection_Config`, one vertical ordered Resource sequence.
@@ -210,60 +210,60 @@ config:
               3. **markdown — currently rendered:** "Our reference is **10 cm** long. The mystery strip was a little longer, so a value a little above 10 made sense. The ruler shows **12 cm**. Measuring checks an estimate; it does not turn estimation into a guessing contest."
             - **Explanatory feedback:** For 11: "You estimated 11 cm; the ruler says 12 cm. Your estimate is 1 cm **below** the measurement." For 12: "Your estimate and measurement match." For 15: "You estimated 15 cm, 3 cm **above** the measured length. Look again at how much longer it is than the 10 cm reference." No hidden acceptable-range pass/fail, positive/negative numerical error sign confusion, or premature answer reveal.
             - **Access:** Meaningful nonvisual comparison says "Mystery is a little longer than one ten-centimeter reference and much shorter than two", not "exactly two intervals longer". Learner may request a coarse hint before estimating, with the same benchmark language.
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
       section2:
         config:
-          id: "14314883-9c16-5b1e-b79d-000000000008"
-          slug: "section2"
-          type: "content"
+          id: '14314883-9c16-5b1e-b79d-000000000008'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Compare the Numbers Using the Same Unit"
+              en: 'Compare the Numbers Using the Same Unit'
             navigationLabel:
-              en: "Compare the Numbers Using the Same Unit"
+              en: 'Compare the Numbers Using the Same Unit'
           content:
             items:
               text1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-000000000005"
-                  slug: "text1"
-                  type: "text"
+                  id: '14314883-9c16-5b1e-b79d-000000000005'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "A second mystery strip looks longer than **10 cm**, but shorter than **20 cm** (two reference strips). I think it might be **15 cm**. Let's check with the ruler."
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction):   1. **text — available:** \"A second mystery strip looks longer than **10 cm**, but shorter than **20 cm** (two reference strips). I think it might be **15 cm**. Let's check with the ruler.\""
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction):   1. **text — available:** "A second mystery strip looks longer than **10 cm**, but shorter than **20 cm** (two reference strips). I think it might be **15 cm**. Let''s check with the ruler."'
               scene1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-000000000006"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '14314883-9c16-5b1e-b79d-000000000006'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
                         instruction: "A second mystery strip looks longer than **10 cm**, but shorter than **20 cm** (two reference strips). I think it might be **15 cm**. Let's check with the ruler."
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # Length Estimate Laboratory — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson: `Estimate Length, Then Measure` (source consolidated in this YAML), Sections 1–4
                     Methodologist objectives: `Draft Brief` (source consolidated in this YAML): estimate length from a benchmark, accurately check by measuring, and interpret discrepancy in the **same unit**. No additional Skill or scoring criterion is introduced.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A known **10 cm benchmark** gives children a reason to suggest a length **before** measuring. They must compare, choose a plausible approximate number, then independently check with a ruler and explain whether the estimate was high, low or equal. The active learning loop is **predict → commit a reason → reveal measured evidence → interpret and refine**; it is not a competition for the closest number.
-                    
+
                     Learner voice: "**I used a length I know, made an estimate in centimeters, then checked what the ruler actually says. The difference helps me improve.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - All model lengths are fixed whole numbers in **centimeters**. The reference strip is **10 cm** in the schematic numerical model. Stage target actual lengths: A=**12 cm**, B=**16 cm**, C=**18 cm**, D=**23 cm**. A separate ruler has modeled centimeter ticks 0 to **at least 25/30**, equally spaced.
                     - **Before** an estimate is chosen and explicitly confirmed (stage A, B, D), the mystery strip's exact value, scale tick endpoint, numeric length, computed difference and any answer-specific aria text are **not presented to the learner**. No developer-tool security is promised; hiding values from the console is a runtime engineering concern, not a solved protection mechanism.
                     - Pre-reveal modes display a known-length **10 cm reference** and a mystery strip drawn at internally consistent proportional scale **without tick divisions**. Nonvisual users receive a **coarse relative comparison** adequate to reason ("a little longer than one reference"; "between one and two"; "a little more than two, less than two and a half"), without exact lengths.
@@ -272,28 +272,28 @@ config:
                     - No hidden pass threshold: an estimate that differs from measurement can still be a reasoned estimate. Use quality of comparison and error explanation as formative feedback, not a grade or arbitrary accepted band.
                     - Screen pixels, SVG units, zoom, physical display DPI are **not calibrated centimeters**; all comparisons are schematic and proportionally consistent within one display. Do not claim real-world distance measurements through screen size.
                     - This Lesson is Grade 3, whole centimeters between roughly 8 and 30 only. No millimeters, meters, decimals/fractions, percent error or statistics.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A: A Little Longer Than Ten (Section 1)
-                    
+
                     1. Show known **10 cm reference strip** with label and an **unlabeled 12 cm target strip**, proportionally a little longer, no ruler/ticks on target.
                     2. Prompt: "Is the mystery around 11, 12 or 15 centimeters? Choose **an estimate** and a reason." Coarse nonvisual description: "A little longer than one 10cm reference, far shorter than two."
                     3. Estimate choices **11/12/15 cm**. Reason choices "Just above 10", "More than 20", "I am unsure" (latter asks for a gentle hint). Any selection records an **estimate**, not an outcome. A "Confirm my estimate" action fixes it for this reveal without scoring; "Edit estimate" remains possible before reveal.
                     4. On deliberate "Measure", display schematic correctly aligned ruler 0…15 (at least), reveal endpoint mark **12**, and count the **twelve** equal unit intervals as requested. State: "Measured 12 cm".
                     5. Feedback exact: 11 → estimate **1 cm below**; 12 → **matches**; 15 → **3 cm above**. For reason "more than 20": "Our strip looked much shorter than two 10 cm pieces; check your benchmark before measuring."
                     6. No hidden exact length in pre-reveal accessible strings, visually displayed marks, cursor labels or image descriptions; nonvisual and visual learners both estimate without the ruler.
-                    
+
                     ### Placement B: Fifteen Versus Sixteen (Section 2)
-                    
+
                     1. Present reference 10 cm and unknown target **16 cm**, no target ruler. Coarse description "Longer than one 10 cm reference, shorter than two." Learner may choose estimate 14/15/16/18 or another simple integer within an accessible bounded range if engineer approves; **worked example uses 15 cm**.
                     2. "Confirm estimate" then "Reveal ruler" shows zero-aligned endpoint at **16 cm**, unit spaces 0→1…15→16, true length unchanged.
                     3. Worked feedback: e=15, actual=16 ⇒ measured is one greater, so "**1 cm below**". For e=18, result **2 cm above**; for e=16, it **matches**. Every chosen estimate is labeled an estimate even if exact.
                     4. Ask "Was your estimate above, below, or equal to the measured number?" Reasoned feedback: 15 below 16; both values measured in **cm** so comparison legitimate. The same centimeter unit appears on benchmark, estimate, measurement and difference.
                     5. Reset returns to unrevealed fixed length 16, with no stored choice or previous stage state.
-                    
+
                     ### Placement C: Two Estimates of One Fixed Strip (Section 3)
-                    
+
                     1. Display the **same fixed target of 18 cm**, reference 10 cm, with already declared estimates **20 cm** and **25 cm**; these are _given examples_, not the learner's hidden initial guess.
                     2. After "Measure", show 0→18 from a ruler and exact comparison:
                        - **20 cm estimate** vs 18 measured ⇒ **2 cm above**.
@@ -302,39 +302,39 @@ config:
                     4. Show "20" **without a unit** against "18 cm" in a second illustrative card and ask "Is the comparison complete?" Explain no: a length needs an explicit unit. Do not incorrectly assert that the bare number 20 is a known centimeter estimate unless explicitly supplied.
                     5. Feedback for "object got shorter": "The strip stayed **18 cm**. 20 and 25 were guesses; they were never the object's measured lengths." Offer a one-step review of reference-to-target reasoning.
                     6. This placement doesn't claim any learner prediction is "wrong" as a scored result; its purpose is to interpret relative discrepancy sizes.
-                    
+
                     ### Placement D: New Strip, Reason First (Section 4)
-                    
+
                     1. New **23 cm** fixed target strip, no visible unit grid/tick endpoint. Show reference **10 cm**; comparative cue "A little more than two references, but less than two and a half" (between **20 and 25 cm**, not an exact value). Provide the same coarse nonvisual cue without exposing 23.
                     2. Learner selects an integer estimate **e ∈ {18,19,…,28}** via accessible stepper/select plus a reason e.g. "just above 20" / "near two and a half reference strips" / "unsure; show a clue". Never require a typed paragraph.
                     3. "Confirm my estimate" then deliberately "Check with ruler" reveals a correctly zero-aligned scale 0…25 or 0…30, with endpoint **23**. Record exact measured "**23 cm**".
                     4. Feedback calculated for any allowed e: if **e < 23**, show "**23−e cm below**"; if **e > 23**, show "**e−23 cm above**"; if equal, "**matches**". Specific examples: e=20 ⇒ **3 cm below**; e=22 ⇒ **1 cm below**; e=24 ⇒ **1 cm above**; e=28 ⇒ **5 cm above**. Explain the difference through the fixed 10 cm benchmark after reveal.
                     5. A learner may say "the estimate was far too large for this reference", compare two 10 cm spans to the target and revise their next future estimate. They may retry but no grade or hidden performance label is stored. An independent new estimate after a reset is always a new _practice_ event, not spaced scheduling.
                     6. Keep everything locally deterministic, including all feedback and no scoring state. A physical ruler is an optional outside-the-Scene extension and not required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** fixed 10 cm reference strip, fixed but pre-reveal unlabeled target strip, optional proportional length-comparison brackets, estimate selection control (integer centimeters), reason choices, explicit "Confirm estimate" / "Reveal measurement", schematic ruler/tick intervals, measured result with unit, difference sentence and reflect/retry/reset controls.
                     - **State:** per placement fixed internal reference and target length, learner estimate (nullable), chosen reason, confirmation status, ruler reveal status, possibly selected interval for inspection and feedback. All UI localization must come from actual verified context, **not** public props.
                     - **Invariant:** mystery strip's underlying length NEVER changes when measured or resized; before reveal no exact target value leaked in learner-perceivable text/UI; ruler ticks equal and zero-aligned after reveal; difference magnitude and direction computed correctly using _the same unit_.
                     - **Reason checks:** show explanatory commentary ("estimate not informed by reference") without treating guesses as pass/fail. If estimate omitted, pressing "Measure" requests a provisional estimate and a reason **or offers an explicit 'show anyway' route for accessibility**; avoid permanently blocking learning.
                     - **No public props:** Section-specific Scene roots must each be self-contained and **prop-free**. They can share private model functions but may not require invented `targetLength`, `language`, `mode`, `onAnswered` or learner-state event props.
                     - **No persistence/quiz:** chosen local estimate is a transient instructional variable. No recorded results, mastery validation, scoring, Note events or external network dependency.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a stable, clean SVG strip comparison showing the known 10cm reference; the mystery target is proportionally drawn but **not pre-divided into one-centimeter marks**. Under "Reveal measurement", an evenly marked schematic ruler appears; zero aligns with target start, endpoint at exact integer tick. Label intervals and numerical comparisons in text as well as visual brackets. If device width forces proportional scaling, both reference and target scale by **the same transform** to preserve relative lengths. Large text, no decorative motion; reveal animation optional and bypassed by reduced-motion mode. Do not request or imply external image/video or hardware calibration.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate all unit-bearing values, comparative cues, choice labels, numeral/plural display, messages, reflection sentences, ruler descriptions and Note text genuinely for all supported locales. Use suitable localized grammar for 1/2/3+ centimeters and avoid idioms where "above/below" might be mistaken for vertical placement; pair with "greater/less than the measured value".
                     - **RTL:** UI text/control order may mirror, but the ruler's chosen numeric orientation (0 increasing consistently) and the reference/target length relation **must not** reverse. Avoid whole SVG mirroring that changes mapped tick labels.
                     - **Pre-reveal nonvisual equity:** a screen reader gets the same _coarse_ relational clue as visual learners, but not the target's exact numeric value; no exact endpoint mark in aria labels until measured. After reveal, provide an exhaustive interval-based text explanation if requested. The optional visual ruler isn't a secret answer channel in another modality.
                     - Keyboard/switch accessible integer stepper and reason buttons, visible focus, ample touch targets, no precision pointer measuring, no time limit, no mandatory speech, no color-only encoding, controlled announcements and reduced motion.
                     - Must meet WCAG 2.2 AA intent and preserve full learning on mobile, low-end or offline after successful package/locale download. These are **implementation requirements** awaiting verification, not claims that current UI supports them.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A known 10 cm, hidden target 12 cm: before estimate **no exact target appears** in learner-facing or accessibility UI; after reveal length **12 cm**, estimates 11/12/15 produce differences **1 below / equal / 3 above**.
                     2. Stage B target 16 cm, worked estimate 15 cm ⇒ **1 cm below**; estimate 18 cm ⇒ **2 cm above**, always in centimeters.
                     3. Stage C target fixed 18 cm with estimates 20 and 25 produces **2 cm above** and **7 cm above**, so 20 is nearer; the target bar itself never shrinks/grows.
@@ -344,29 +344,29 @@ config:
                     7. After reset, no previous estimate, reason or revealed answer persists across independent Section placements.
                     8. Keyboard, screen reader, RTL, reduced motion, mobile zoom and post-download offline operations provide equivalent pre-estimate **non-exact** evidence and complete post-measure feedback.
                     9. No arbitrary scoring threshold, persistent answer state, Question/Quiz or invented runtime event exists.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
-                  productionNotes: "Placement 1 in Compare the Numbers Using the Same Unit. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage B. True fixed model length **16 cm**, reference length **10 cm**. Learner chooses an estimate in cm (e.g. 14,15,16,18) and then reveals ruler aligned at 0. Worked demonstration specifically selects **15 cm**, reveals **16 cm** and highlights that 16 is **1 greater than 15**. Display \"Estimated 15 cm; measured 16 cm; estimate was **1 cm below**.\" An independent alternative chosen by learner produces correct feedback based on chosen number, not a predetermined \"correct estimate\".. Separate stable Scene identity per placement; implementation pending."
+                  productionNotes: 'Placement 1 in Compare the Numbers Using the Same Unit. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage B. True fixed model length **16 cm**, reference length **10 cm**. Learner chooses an estimate in cm (e.g. 14,15,16,18) and then reveals ruler aligned at 0. Worked demonstration specifically selects **15 cm**, reveals **16 cm** and highlights that 16 is **1 greater than 15**. Display "Estimated 15 cm; measured 16 cm; estimate was **1 cm below**." An independent alternative chosen by learner produces correct feedback based on chosen number, not a predetermined "correct estimate".. Separate stable Scene identity per placement; implementation pending.'
               markdown1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-000000000007"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '14314883-9c16-5b1e-b79d-000000000007'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**15 cm** was our estimate. **16 cm** is what the ruler showed. The estimate is **1 cm less** than the measured length. Both values are in **centimeters**, so they can be compared directly."
+                      en: '**15 cm** was our estimate. **16 cm** is what the ruler showed. The estimate is **1 cm less** than the measured length. Both values are in **centimeters**, so they can be compared directly.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original source resource (including pedagogical direction):   3. **markdown — available:** \"**15 cm** was our estimate. **16 cm** is what the ruler showed. The estimate is **1 cm less** than the measured length. Both values are in **centimeters**, so they can be compared directly.\""
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original source resource (including pedagogical direction):   3. **markdown — available:** "**15 cm** was our estimate. **16 cm** is what the ruler showed. The estimate is **1 cm less** than the measured length. Both values are in **centimeters**, so they can be compared directly."'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Compare the Numbers Using the Same Unit"
+          purpose: 'Compare the Numbers Using the Same Unit'
           pedagogicalIntent: |-
             - **Purpose:** explain measured-versus-estimated differences with consistent centimeter units.
             - **Current shape:** one-column `LessonSection_Config`.
@@ -377,60 +377,60 @@ config:
             - **Feedback:** If learner says "one too long": "Look at which number is larger: 16 measured is larger than 15 estimated, so our estimate was **below**." If they omit `cm`: "A difference in a measurement needs a unit too. Here it is one **centimeter**." No forced subtraction notation, but give optional 16 − 15 = 1 in readable form.
             - **Access:** Report values in a structured comparison table or verbal sentence, not color-only bars. The bar is fixed while the ruler appears, so measurement never visually changes the mystery length.
             - **Planned Note:** After reveal: "Compare estimate and measurement in the **same unit**."
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
       section3:
         config:
-          id: "14314883-9c16-5b1e-b79d-00000000000c"
-          slug: "section3"
-          type: "content"
+          id: '14314883-9c16-5b1e-b79d-00000000000c'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Two Estimates, One Object"
+              en: 'Two Estimates, One Object'
             navigationLabel:
-              en: "Two Estimates, One Object"
+              en: 'Two Estimates, One Object'
           content:
             items:
               text1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-000000000009"
-                  slug: "text1"
-                  type: "text"
+                  id: '14314883-9c16-5b1e-b79d-000000000009'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Two people estimated the **same** strip. One said **20 cm**; another said **25 cm**. The ruler shows **18 cm**. Which estimate was nearer? How much higher was each?"
+                      en: 'Two people estimated the **same** strip. One said **20 cm**; another said **25 cm**. The ruler shows **18 cm**. Which estimate was nearer? How much higher was each?'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction):   1. **text — available:** \"Two people estimated the **same** strip. One said **20 cm**; another said **25 cm**. The ruler shows **18 cm**. Which estimate was nearer? How much higher was each?\""
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction):   1. **text — available:** "Two people estimated the **same** strip. One said **20 cm**; another said **25 cm**. The ruler shows **18 cm**. Which estimate was nearer? How much higher was each?"'
               scene1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-00000000000a"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '14314883-9c16-5b1e-b79d-00000000000a'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Two people estimated the **same** strip. One said **20 cm**; another said **25 cm**. The ruler shows **18 cm**. Which estimate was nearer? How much higher was each?"
+                        instruction: 'Two people estimated the **same** strip. One said **20 cm**; another said **25 cm**. The ruler shows **18 cm**. Which estimate was nearer? How much higher was each?'
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # Length Estimate Laboratory — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson: `Estimate Length, Then Measure` (source consolidated in this YAML), Sections 1–4
                     Methodologist objectives: `Draft Brief` (source consolidated in this YAML): estimate length from a benchmark, accurately check by measuring, and interpret discrepancy in the **same unit**. No additional Skill or scoring criterion is introduced.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A known **10 cm benchmark** gives children a reason to suggest a length **before** measuring. They must compare, choose a plausible approximate number, then independently check with a ruler and explain whether the estimate was high, low or equal. The active learning loop is **predict → commit a reason → reveal measured evidence → interpret and refine**; it is not a competition for the closest number.
-                    
+
                     Learner voice: "**I used a length I know, made an estimate in centimeters, then checked what the ruler actually says. The difference helps me improve.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - All model lengths are fixed whole numbers in **centimeters**. The reference strip is **10 cm** in the schematic numerical model. Stage target actual lengths: A=**12 cm**, B=**16 cm**, C=**18 cm**, D=**23 cm**. A separate ruler has modeled centimeter ticks 0 to **at least 25/30**, equally spaced.
                     - **Before** an estimate is chosen and explicitly confirmed (stage A, B, D), the mystery strip's exact value, scale tick endpoint, numeric length, computed difference and any answer-specific aria text are **not presented to the learner**. No developer-tool security is promised; hiding values from the console is a runtime engineering concern, not a solved protection mechanism.
                     - Pre-reveal modes display a known-length **10 cm reference** and a mystery strip drawn at internally consistent proportional scale **without tick divisions**. Nonvisual users receive a **coarse relative comparison** adequate to reason ("a little longer than one reference"; "between one and two"; "a little more than two, less than two and a half"), without exact lengths.
@@ -439,28 +439,28 @@ config:
                     - No hidden pass threshold: an estimate that differs from measurement can still be a reasoned estimate. Use quality of comparison and error explanation as formative feedback, not a grade or arbitrary accepted band.
                     - Screen pixels, SVG units, zoom, physical display DPI are **not calibrated centimeters**; all comparisons are schematic and proportionally consistent within one display. Do not claim real-world distance measurements through screen size.
                     - This Lesson is Grade 3, whole centimeters between roughly 8 and 30 only. No millimeters, meters, decimals/fractions, percent error or statistics.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A: A Little Longer Than Ten (Section 1)
-                    
+
                     1. Show known **10 cm reference strip** with label and an **unlabeled 12 cm target strip**, proportionally a little longer, no ruler/ticks on target.
                     2. Prompt: "Is the mystery around 11, 12 or 15 centimeters? Choose **an estimate** and a reason." Coarse nonvisual description: "A little longer than one 10cm reference, far shorter than two."
                     3. Estimate choices **11/12/15 cm**. Reason choices "Just above 10", "More than 20", "I am unsure" (latter asks for a gentle hint). Any selection records an **estimate**, not an outcome. A "Confirm my estimate" action fixes it for this reveal without scoring; "Edit estimate" remains possible before reveal.
                     4. On deliberate "Measure", display schematic correctly aligned ruler 0…15 (at least), reveal endpoint mark **12**, and count the **twelve** equal unit intervals as requested. State: "Measured 12 cm".
                     5. Feedback exact: 11 → estimate **1 cm below**; 12 → **matches**; 15 → **3 cm above**. For reason "more than 20": "Our strip looked much shorter than two 10 cm pieces; check your benchmark before measuring."
                     6. No hidden exact length in pre-reveal accessible strings, visually displayed marks, cursor labels or image descriptions; nonvisual and visual learners both estimate without the ruler.
-                    
+
                     ### Placement B: Fifteen Versus Sixteen (Section 2)
-                    
+
                     1. Present reference 10 cm and unknown target **16 cm**, no target ruler. Coarse description "Longer than one 10 cm reference, shorter than two." Learner may choose estimate 14/15/16/18 or another simple integer within an accessible bounded range if engineer approves; **worked example uses 15 cm**.
                     2. "Confirm estimate" then "Reveal ruler" shows zero-aligned endpoint at **16 cm**, unit spaces 0→1…15→16, true length unchanged.
                     3. Worked feedback: e=15, actual=16 ⇒ measured is one greater, so "**1 cm below**". For e=18, result **2 cm above**; for e=16, it **matches**. Every chosen estimate is labeled an estimate even if exact.
                     4. Ask "Was your estimate above, below, or equal to the measured number?" Reasoned feedback: 15 below 16; both values measured in **cm** so comparison legitimate. The same centimeter unit appears on benchmark, estimate, measurement and difference.
                     5. Reset returns to unrevealed fixed length 16, with no stored choice or previous stage state.
-                    
+
                     ### Placement C: Two Estimates of One Fixed Strip (Section 3)
-                    
+
                     1. Display the **same fixed target of 18 cm**, reference 10 cm, with already declared estimates **20 cm** and **25 cm**; these are _given examples_, not the learner's hidden initial guess.
                     2. After "Measure", show 0→18 from a ruler and exact comparison:
                        - **20 cm estimate** vs 18 measured ⇒ **2 cm above**.
@@ -469,39 +469,39 @@ config:
                     4. Show "20" **without a unit** against "18 cm" in a second illustrative card and ask "Is the comparison complete?" Explain no: a length needs an explicit unit. Do not incorrectly assert that the bare number 20 is a known centimeter estimate unless explicitly supplied.
                     5. Feedback for "object got shorter": "The strip stayed **18 cm**. 20 and 25 were guesses; they were never the object's measured lengths." Offer a one-step review of reference-to-target reasoning.
                     6. This placement doesn't claim any learner prediction is "wrong" as a scored result; its purpose is to interpret relative discrepancy sizes.
-                    
+
                     ### Placement D: New Strip, Reason First (Section 4)
-                    
+
                     1. New **23 cm** fixed target strip, no visible unit grid/tick endpoint. Show reference **10 cm**; comparative cue "A little more than two references, but less than two and a half" (between **20 and 25 cm**, not an exact value). Provide the same coarse nonvisual cue without exposing 23.
                     2. Learner selects an integer estimate **e ∈ {18,19,…,28}** via accessible stepper/select plus a reason e.g. "just above 20" / "near two and a half reference strips" / "unsure; show a clue". Never require a typed paragraph.
                     3. "Confirm my estimate" then deliberately "Check with ruler" reveals a correctly zero-aligned scale 0…25 or 0…30, with endpoint **23**. Record exact measured "**23 cm**".
                     4. Feedback calculated for any allowed e: if **e < 23**, show "**23−e cm below**"; if **e > 23**, show "**e−23 cm above**"; if equal, "**matches**". Specific examples: e=20 ⇒ **3 cm below**; e=22 ⇒ **1 cm below**; e=24 ⇒ **1 cm above**; e=28 ⇒ **5 cm above**. Explain the difference through the fixed 10 cm benchmark after reveal.
                     5. A learner may say "the estimate was far too large for this reference", compare two 10 cm spans to the target and revise their next future estimate. They may retry but no grade or hidden performance label is stored. An independent new estimate after a reset is always a new _practice_ event, not spaced scheduling.
                     6. Keep everything locally deterministic, including all feedback and no scoring state. A physical ruler is an optional outside-the-Scene extension and not required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** fixed 10 cm reference strip, fixed but pre-reveal unlabeled target strip, optional proportional length-comparison brackets, estimate selection control (integer centimeters), reason choices, explicit "Confirm estimate" / "Reveal measurement", schematic ruler/tick intervals, measured result with unit, difference sentence and reflect/retry/reset controls.
                     - **State:** per placement fixed internal reference and target length, learner estimate (nullable), chosen reason, confirmation status, ruler reveal status, possibly selected interval for inspection and feedback. All UI localization must come from actual verified context, **not** public props.
                     - **Invariant:** mystery strip's underlying length NEVER changes when measured or resized; before reveal no exact target value leaked in learner-perceivable text/UI; ruler ticks equal and zero-aligned after reveal; difference magnitude and direction computed correctly using _the same unit_.
                     - **Reason checks:** show explanatory commentary ("estimate not informed by reference") without treating guesses as pass/fail. If estimate omitted, pressing "Measure" requests a provisional estimate and a reason **or offers an explicit 'show anyway' route for accessibility**; avoid permanently blocking learning.
                     - **No public props:** Section-specific Scene roots must each be self-contained and **prop-free**. They can share private model functions but may not require invented `targetLength`, `language`, `mode`, `onAnswered` or learner-state event props.
                     - **No persistence/quiz:** chosen local estimate is a transient instructional variable. No recorded results, mastery validation, scoring, Note events or external network dependency.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a stable, clean SVG strip comparison showing the known 10cm reference; the mystery target is proportionally drawn but **not pre-divided into one-centimeter marks**. Under "Reveal measurement", an evenly marked schematic ruler appears; zero aligns with target start, endpoint at exact integer tick. Label intervals and numerical comparisons in text as well as visual brackets. If device width forces proportional scaling, both reference and target scale by **the same transform** to preserve relative lengths. Large text, no decorative motion; reveal animation optional and bypassed by reduced-motion mode. Do not request or imply external image/video or hardware calibration.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate all unit-bearing values, comparative cues, choice labels, numeral/plural display, messages, reflection sentences, ruler descriptions and Note text genuinely for all supported locales. Use suitable localized grammar for 1/2/3+ centimeters and avoid idioms where "above/below" might be mistaken for vertical placement; pair with "greater/less than the measured value".
                     - **RTL:** UI text/control order may mirror, but the ruler's chosen numeric orientation (0 increasing consistently) and the reference/target length relation **must not** reverse. Avoid whole SVG mirroring that changes mapped tick labels.
                     - **Pre-reveal nonvisual equity:** a screen reader gets the same _coarse_ relational clue as visual learners, but not the target's exact numeric value; no exact endpoint mark in aria labels until measured. After reveal, provide an exhaustive interval-based text explanation if requested. The optional visual ruler isn't a secret answer channel in another modality.
                     - Keyboard/switch accessible integer stepper and reason buttons, visible focus, ample touch targets, no precision pointer measuring, no time limit, no mandatory speech, no color-only encoding, controlled announcements and reduced motion.
                     - Must meet WCAG 2.2 AA intent and preserve full learning on mobile, low-end or offline after successful package/locale download. These are **implementation requirements** awaiting verification, not claims that current UI supports them.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A known 10 cm, hidden target 12 cm: before estimate **no exact target appears** in learner-facing or accessibility UI; after reveal length **12 cm**, estimates 11/12/15 produce differences **1 below / equal / 3 above**.
                     2. Stage B target 16 cm, worked estimate 15 cm ⇒ **1 cm below**; estimate 18 cm ⇒ **2 cm above**, always in centimeters.
                     3. Stage C target fixed 18 cm with estimates 20 and 25 produces **2 cm above** and **7 cm above**, so 20 is nearer; the target bar itself never shrinks/grows.
@@ -511,29 +511,29 @@ config:
                     7. After reset, no previous estimate, reason or revealed answer persists across independent Section placements.
                     8. Keyboard, screen reader, RTL, reduced motion, mobile zoom and post-download offline operations provide equivalent pre-estimate **non-exact** evidence and complete post-measure feedback.
                     9. No arbitrary scoring threshold, persistent answer state, Question/Quiz or invented runtime event exists.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
-                  productionNotes: "Placement 1 in Two Estimates, One Object. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage C; true fixed length **18 cm**, reference 10 cm. Before revealing ruler, child sees two recorded estimates 20 and 25 cm as separate markers. After \"Measure\", show: 20 vs 18 → **2 cm above**; 25 vs 18 → **7 cm above**. The strip remains unchanged. Next show misleading comparison \"20\" with **no unit** vs \"18 cm\"; invite choice \"Can we compare directly?\" and explain unit requirement.. Separate stable Scene identity per placement; implementation pending."
+                  productionNotes: 'Placement 1 in Two Estimates, One Object. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage C; true fixed length **18 cm**, reference 10 cm. Before revealing ruler, child sees two recorded estimates 20 and 25 cm as separate markers. After "Measure", show: 20 vs 18 → **2 cm above**; 25 vs 18 → **7 cm above**. The strip remains unchanged. Next show misleading comparison "20" with **no unit** vs "18 cm"; invite choice "Can we compare directly?" and explain unit requirement.. Separate stable Scene identity per placement; implementation pending.'
               markdown1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-00000000000b"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '14314883-9c16-5b1e-b79d-00000000000b'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "The 20 cm estimate is **2 cm higher**, and the 25 cm estimate is **7 cm higher** than the same measured length. Both missed the exact number, but the first was closer. Saying only '20' without a unit does not say how long something is."
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original source resource (including pedagogical direction):   3. **markdown — available:** \"The 20 cm estimate is **2 cm higher**, and the 25 cm estimate is **7 cm higher** than the same measured length. Both missed the exact number, but the first was closer. Saying only '20' without a unit does not say how long something is.\""
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original source resource (including pedagogical direction):   3. **markdown — available:** "The 20 cm estimate is **2 cm higher**, and the 25 cm estimate is **7 cm higher** than the same measured length. Both missed the exact number, but the first was closer. Saying only ''20'' without a unit does not say how long something is."'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Two Estimates, One Object"
+          purpose: 'Two Estimates, One Object'
           pedagogicalIntent: |-
             - **Purpose:** distinguish a reasoned approximate estimate from an arbitrary number and explain discrepancies in either direction.
             - **Current shape:** one-column `LessonSection_Config`.
@@ -543,60 +543,60 @@ config:
               3. **markdown — available:** "The 20 cm estimate is **2 cm higher**, and the 25 cm estimate is **7 cm higher** than the same measured length. Both missed the exact number, but the first was closer. Saying only '20' without a unit does not say how long something is."
             - **Feedback:** If child claims strip shrank from 25 to 18: "The strip never changed. **25** was a prediction, not a measured size." If they call 25 a 'wrong measurement': "It was an estimate. We compare it to the later measurement and explain the difference." Clarify that a **wild estimate** can be less useful without assigning points or "good enough" threshold.
             - **Planned Note:** "An estimate can be above or below a measured length; the **difference** tells how far."
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
       section4:
         config:
-          id: "14314883-9c16-5b1e-b79d-000000000010"
-          slug: "section4"
-          type: "content"
+          id: '14314883-9c16-5b1e-b79d-000000000010'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Make an Estimate You Can Defend"
+              en: 'Make an Estimate You Can Defend'
             navigationLabel:
-              en: "Make an Estimate You Can Defend"
+              en: 'Make an Estimate You Can Defend'
           content:
             items:
               text1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-00000000000d"
-                  slug: "text1"
-                  type: "text"
+                  id: '14314883-9c16-5b1e-b79d-00000000000d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The reference strip is **10 cm**. A new mystery strip looks a little more than twice as long. First choose your estimate **in cm** and tell what you noticed. Only then measure it."
+                      en: 'The reference strip is **10 cm**. A new mystery strip looks a little more than twice as long. First choose your estimate **in cm** and tell what you noticed. Only then measure it.'
                 production:
-                  purpose: "Source-authored learner-facing text resource"
-                  specification: "Original source resource (including pedagogical direction):   1. **text — available:** \"The reference strip is **10 cm**. A new mystery strip looks a little more than twice as long. First choose your estimate **in cm** and tell what you noticed. Only then measure it.\""
+                  purpose: 'Source-authored learner-facing text resource'
+                  specification: 'Original source resource (including pedagogical direction):   1. **text — available:** "The reference strip is **10 cm**. A new mystery strip looks a little more than twice as long. First choose your estimate **in cm** and tell what you noticed. Only then measure it."'
               scene1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-00000000000e"
-                  slug: "scene1"
-                  type: "scene"
+                  id: '14314883-9c16-5b1e-b79d-00000000000e'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The reference strip is **10 cm**. A new mystery strip looks a little more than twice as long. First choose your estimate **in cm** and tell what you noticed. Only then measure it."
+                        instruction: 'The reference strip is **10 cm**. A new mystery strip looks a little more than twice as long. First choose your estimate **in cm** and tell what you noticed. Only then measure it.'
                 production:
-                  purpose: "Provisional interactive learning experience; no implementation exists"
+                  purpose: 'Provisional interactive learning experience; no implementation exists'
                   specification: |-
                     # Length Estimate Laboratory — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson: `Estimate Length, Then Measure` (source consolidated in this YAML), Sections 1–4
                     Methodologist objectives: `Draft Brief` (source consolidated in this YAML): estimate length from a benchmark, accurately check by measuring, and interpret discrepancy in the **same unit**. No additional Skill or scoring criterion is introduced.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A known **10 cm benchmark** gives children a reason to suggest a length **before** measuring. They must compare, choose a plausible approximate number, then independently check with a ruler and explain whether the estimate was high, low or equal. The active learning loop is **predict → commit a reason → reveal measured evidence → interpret and refine**; it is not a competition for the closest number.
-                    
+
                     Learner voice: "**I used a length I know, made an estimate in centimeters, then checked what the ruler actually says. The difference helps me improve.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - All model lengths are fixed whole numbers in **centimeters**. The reference strip is **10 cm** in the schematic numerical model. Stage target actual lengths: A=**12 cm**, B=**16 cm**, C=**18 cm**, D=**23 cm**. A separate ruler has modeled centimeter ticks 0 to **at least 25/30**, equally spaced.
                     - **Before** an estimate is chosen and explicitly confirmed (stage A, B, D), the mystery strip's exact value, scale tick endpoint, numeric length, computed difference and any answer-specific aria text are **not presented to the learner**. No developer-tool security is promised; hiding values from the console is a runtime engineering concern, not a solved protection mechanism.
                     - Pre-reveal modes display a known-length **10 cm reference** and a mystery strip drawn at internally consistent proportional scale **without tick divisions**. Nonvisual users receive a **coarse relative comparison** adequate to reason ("a little longer than one reference"; "between one and two"; "a little more than two, less than two and a half"), without exact lengths.
@@ -605,28 +605,28 @@ config:
                     - No hidden pass threshold: an estimate that differs from measurement can still be a reasoned estimate. Use quality of comparison and error explanation as formative feedback, not a grade or arbitrary accepted band.
                     - Screen pixels, SVG units, zoom, physical display DPI are **not calibrated centimeters**; all comparisons are schematic and proportionally consistent within one display. Do not claim real-world distance measurements through screen size.
                     - This Lesson is Grade 3, whole centimeters between roughly 8 and 30 only. No millimeters, meters, decimals/fractions, percent error or statistics.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### Placement A: A Little Longer Than Ten (Section 1)
-                    
+
                     1. Show known **10 cm reference strip** with label and an **unlabeled 12 cm target strip**, proportionally a little longer, no ruler/ticks on target.
                     2. Prompt: "Is the mystery around 11, 12 or 15 centimeters? Choose **an estimate** and a reason." Coarse nonvisual description: "A little longer than one 10cm reference, far shorter than two."
                     3. Estimate choices **11/12/15 cm**. Reason choices "Just above 10", "More than 20", "I am unsure" (latter asks for a gentle hint). Any selection records an **estimate**, not an outcome. A "Confirm my estimate" action fixes it for this reveal without scoring; "Edit estimate" remains possible before reveal.
                     4. On deliberate "Measure", display schematic correctly aligned ruler 0…15 (at least), reveal endpoint mark **12**, and count the **twelve** equal unit intervals as requested. State: "Measured 12 cm".
                     5. Feedback exact: 11 → estimate **1 cm below**; 12 → **matches**; 15 → **3 cm above**. For reason "more than 20": "Our strip looked much shorter than two 10 cm pieces; check your benchmark before measuring."
                     6. No hidden exact length in pre-reveal accessible strings, visually displayed marks, cursor labels or image descriptions; nonvisual and visual learners both estimate without the ruler.
-                    
+
                     ### Placement B: Fifteen Versus Sixteen (Section 2)
-                    
+
                     1. Present reference 10 cm and unknown target **16 cm**, no target ruler. Coarse description "Longer than one 10 cm reference, shorter than two." Learner may choose estimate 14/15/16/18 or another simple integer within an accessible bounded range if engineer approves; **worked example uses 15 cm**.
                     2. "Confirm estimate" then "Reveal ruler" shows zero-aligned endpoint at **16 cm**, unit spaces 0→1…15→16, true length unchanged.
                     3. Worked feedback: e=15, actual=16 ⇒ measured is one greater, so "**1 cm below**". For e=18, result **2 cm above**; for e=16, it **matches**. Every chosen estimate is labeled an estimate even if exact.
                     4. Ask "Was your estimate above, below, or equal to the measured number?" Reasoned feedback: 15 below 16; both values measured in **cm** so comparison legitimate. The same centimeter unit appears on benchmark, estimate, measurement and difference.
                     5. Reset returns to unrevealed fixed length 16, with no stored choice or previous stage state.
-                    
+
                     ### Placement C: Two Estimates of One Fixed Strip (Section 3)
-                    
+
                     1. Display the **same fixed target of 18 cm**, reference 10 cm, with already declared estimates **20 cm** and **25 cm**; these are _given examples_, not the learner's hidden initial guess.
                     2. After "Measure", show 0→18 from a ruler and exact comparison:
                        - **20 cm estimate** vs 18 measured ⇒ **2 cm above**.
@@ -635,39 +635,39 @@ config:
                     4. Show "20" **without a unit** against "18 cm" in a second illustrative card and ask "Is the comparison complete?" Explain no: a length needs an explicit unit. Do not incorrectly assert that the bare number 20 is a known centimeter estimate unless explicitly supplied.
                     5. Feedback for "object got shorter": "The strip stayed **18 cm**. 20 and 25 were guesses; they were never the object's measured lengths." Offer a one-step review of reference-to-target reasoning.
                     6. This placement doesn't claim any learner prediction is "wrong" as a scored result; its purpose is to interpret relative discrepancy sizes.
-                    
+
                     ### Placement D: New Strip, Reason First (Section 4)
-                    
+
                     1. New **23 cm** fixed target strip, no visible unit grid/tick endpoint. Show reference **10 cm**; comparative cue "A little more than two references, but less than two and a half" (between **20 and 25 cm**, not an exact value). Provide the same coarse nonvisual cue without exposing 23.
                     2. Learner selects an integer estimate **e ∈ {18,19,…,28}** via accessible stepper/select plus a reason e.g. "just above 20" / "near two and a half reference strips" / "unsure; show a clue". Never require a typed paragraph.
                     3. "Confirm my estimate" then deliberately "Check with ruler" reveals a correctly zero-aligned scale 0…25 or 0…30, with endpoint **23**. Record exact measured "**23 cm**".
                     4. Feedback calculated for any allowed e: if **e < 23**, show "**23−e cm below**"; if **e > 23**, show "**e−23 cm above**"; if equal, "**matches**". Specific examples: e=20 ⇒ **3 cm below**; e=22 ⇒ **1 cm below**; e=24 ⇒ **1 cm above**; e=28 ⇒ **5 cm above**. Explain the difference through the fixed 10 cm benchmark after reveal.
                     5. A learner may say "the estimate was far too large for this reference", compare two 10 cm spans to the target and revise their next future estimate. They may retry but no grade or hidden performance label is stored. An independent new estimate after a reset is always a new _practice_ event, not spaced scheduling.
                     6. Keep everything locally deterministic, including all feedback and no scoring state. A physical ruler is an optional outside-the-Scene extension and not required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** fixed 10 cm reference strip, fixed but pre-reveal unlabeled target strip, optional proportional length-comparison brackets, estimate selection control (integer centimeters), reason choices, explicit "Confirm estimate" / "Reveal measurement", schematic ruler/tick intervals, measured result with unit, difference sentence and reflect/retry/reset controls.
                     - **State:** per placement fixed internal reference and target length, learner estimate (nullable), chosen reason, confirmation status, ruler reveal status, possibly selected interval for inspection and feedback. All UI localization must come from actual verified context, **not** public props.
                     - **Invariant:** mystery strip's underlying length NEVER changes when measured or resized; before reveal no exact target value leaked in learner-perceivable text/UI; ruler ticks equal and zero-aligned after reveal; difference magnitude and direction computed correctly using _the same unit_.
                     - **Reason checks:** show explanatory commentary ("estimate not informed by reference") without treating guesses as pass/fail. If estimate omitted, pressing "Measure" requests a provisional estimate and a reason **or offers an explicit 'show anyway' route for accessibility**; avoid permanently blocking learning.
                     - **No public props:** Section-specific Scene roots must each be self-contained and **prop-free**. They can share private model functions but may not require invented `targetLength`, `language`, `mode`, `onAnswered` or learner-state event props.
                     - **No persistence/quiz:** chosen local estimate is a transient instructional variable. No recorded results, mastery validation, scoring, Note events or external network dependency.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a stable, clean SVG strip comparison showing the known 10cm reference; the mystery target is proportionally drawn but **not pre-divided into one-centimeter marks**. Under "Reveal measurement", an evenly marked schematic ruler appears; zero aligns with target start, endpoint at exact integer tick. Label intervals and numerical comparisons in text as well as visual brackets. If device width forces proportional scaling, both reference and target scale by **the same transform** to preserve relative lengths. Large text, no decorative motion; reveal animation optional and bypassed by reduced-motion mode. Do not request or imply external image/video or hardware calibration.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     - Translate all unit-bearing values, comparative cues, choice labels, numeral/plural display, messages, reflection sentences, ruler descriptions and Note text genuinely for all supported locales. Use suitable localized grammar for 1/2/3+ centimeters and avoid idioms where "above/below" might be mistaken for vertical placement; pair with "greater/less than the measured value".
                     - **RTL:** UI text/control order may mirror, but the ruler's chosen numeric orientation (0 increasing consistently) and the reference/target length relation **must not** reverse. Avoid whole SVG mirroring that changes mapped tick labels.
                     - **Pre-reveal nonvisual equity:** a screen reader gets the same _coarse_ relational clue as visual learners, but not the target's exact numeric value; no exact endpoint mark in aria labels until measured. After reveal, provide an exhaustive interval-based text explanation if requested. The optional visual ruler isn't a secret answer channel in another modality.
                     - Keyboard/switch accessible integer stepper and reason buttons, visible focus, ample touch targets, no precision pointer measuring, no time limit, no mandatory speech, no color-only encoding, controlled announcements and reduced motion.
                     - Must meet WCAG 2.2 AA intent and preserve full learning on mobile, low-end or offline after successful package/locale download. These are **implementation requirements** awaiting verification, not claims that current UI supports them.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A known 10 cm, hidden target 12 cm: before estimate **no exact target appears** in learner-facing or accessibility UI; after reveal length **12 cm**, estimates 11/12/15 produce differences **1 below / equal / 3 above**.
                     2. Stage B target 16 cm, worked estimate 15 cm ⇒ **1 cm below**; estimate 18 cm ⇒ **2 cm above**, always in centimeters.
                     3. Stage C target fixed 18 cm with estimates 20 and 25 produces **2 cm above** and **7 cm above**, so 20 is nearer; the target bar itself never shrinks/grows.
@@ -677,29 +677,29 @@ config:
                     7. After reset, no previous estimate, reason or revealed answer persists across independent Section placements.
                     8. Keyboard, screen reader, RTL, reduced motion, mobile zoom and post-download offline operations provide equivalent pre-estimate **non-exact** evidence and complete post-measure feedback.
                     9. No arbitrary scoring threshold, persistent answer state, Question/Quiz or invented runtime event exists.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The current generic Section accepts a `scene` Resource, but **Length Estimate Laboratory does not yet exist**. An editor must approve the lesson and Scene specifications first. Future Scene Designer/Coding Agent verifies actual locale provider hooks and creates deterministic prop-free components, unit-valid tests, equitable pre-reveal descriptive modes and complete offline assets. No React, runtime Lesson, scored assessment, learner analytics or Note persistence is part of this batch. The rubric for a "reasonable" estimate remains an editorial/Assessment Architect decision rather than a hidden threshold.
-                  productionNotes: "Placement 1 in Make an Estimate You Can Defend. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage D. True model length **23 cm**, concealed until measurement. Before reveal, offer coarse size comparison **between 20 and 25 cm** without exact interval boundary labels. Learner selects any whole-centimeter estimate **18–28**, says/reference-selects a reason and commits it. Press \"Measure\" to reveal a ruler scale 0–25 (or consistent paged 0–30) and the end at **23 cm**. Feedback computed from estimate `e`: when e<23 → \"**23−e cm below**\"; e=23 → \"matches\"; e>23 → \"**e−23 cm above**\". Show the exact intervals and final number to all modes **after** the estimate.. Separate stable Scene identity per placement; implementation pending."
+                  productionNotes: 'Placement 1 in Make an Estimate You Can Defend. Source resource:   2. **scene — proposed:** `Length Estimate Laboratory` (Scene specification embedded in this YAML), stage D. True model length **23 cm**, concealed until measurement. Before reveal, offer coarse size comparison **between 20 and 25 cm** without exact interval boundary labels. Learner selects any whole-centimeter estimate **18–28**, says/reference-selects a reason and commits it. Press "Measure" to reveal a ruler scale 0–25 (or consistent paged 0–30) and the end at **23 cm**. Feedback computed from estimate `e`: when e<23 → "**23−e cm below**"; e=23 → "matches"; e>23 → "**e−23 cm above**". Show the exact intervals and final number to all modes **after** the estimate.. Separate stable Scene identity per placement; implementation pending.'
               markdown1:
                 config:
-                  id: "14314883-9c16-5b1e-b79d-00000000000f"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '14314883-9c16-5b1e-b79d-00000000000f'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A checkable estimate has **a reference, a unit and a reason**. The ruler found **23 cm**. If you chose **22 cm**, that is **1 cm below**; if you chose **24 cm**, it is **1 cm above**. We can keep the useful benchmark and adjust our next estimate."
+                      en: 'A checkable estimate has **a reference, a unit and a reason**. The ruler found **23 cm**. If you chose **22 cm**, that is **1 cm below**; if you chose **24 cm**, it is **1 cm above**. We can keep the useful benchmark and adjust our next estimate.'
                 production:
-                  purpose: "Source-authored learner-facing markdown resource"
-                  specification: "Original source resource (including pedagogical direction):   3. **markdown — available:** \"A checkable estimate has **a reference, a unit and a reason**. The ruler found **23 cm**. If you chose **22 cm**, that is **1 cm below**; if you chose **24 cm**, it is **1 cm above**. We can keep the useful benchmark and adjust our next estimate.\""
+                  purpose: 'Source-authored learner-facing markdown resource'
+                  specification: 'Original source resource (including pedagogical direction):   3. **markdown — available:** "A checkable estimate has **a reference, a unit and a reason**. The ruler found **23 cm**. If you chose **22 cm**, that is **1 cm below**; if you chose **24 cm**, it is **1 cm above**. We can keep the useful benchmark and adjust our next estimate."'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Make an Estimate You Can Defend"
+          purpose: 'Make an Estimate You Can Defend'
           pedagogicalIntent: |-
             - **Purpose:** independent transfer on an unseen fixed length, with reflection rather than scoring.
             - **Current shape:** one-column `LessonSection_Config`.
@@ -709,94 +709,94 @@ config:
               3. **markdown — available:** "A checkable estimate has **a reference, a unit and a reason**. The ruler found **23 cm**. If you chose **22 cm**, that is **1 cm below**; if you chose **24 cm**, it is **1 cm above**. We can keep the useful benchmark and adjust our next estimate."
             - **Feedback and recovery:** For 20: "20 cm is 3 cm below 23. You recognized two reference strips; this one was another 3 cm longer." For 28: "28 cm is 5 cm above 23. Compare its size again with two 10 cm references and a partial extra." For 23: "Your estimate matched, but it is still an _estimate_ until checked with a ruler." If no reason chosen, invite reflection before revealing but never lock the learner permanently.
             - **Offline practical transfer:** An optional ruler check on a real book edge may be proposed, but users without a ruler must have exactly the same conceptual estimation and checking interaction in the self-contained Scene.
-          productionNotes: "Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved."
+          productionNotes: 'Provisional educational draft; all text, feedback, constraints and accessible alternatives are editor-owned and not approved.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Estimate Length, Then Measure — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: estimatingAndCheckingLengths
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Develop reasoned, calibrated estimates rather than precision guessing. Learners compare an unknown straight length to a **known benchmark** in the same units, state a justified approximate centimeter value, then measure and explain the discrepancy. This lesson adds the cycle of prediction, check and refinement to previously accurate direct measurement.
-    
+
     ## Target audience
-    
+
     **Primary grade: 3 (approximately ages 8–9).** Primary Grade 3 (approximately 8–9). Learners can count to 30, add/subtract small whole numbers, use centimeter rulers and compare numeric quantities. Early readers get short on-screen phrases and optional narrated equivalents; nonvisual learners have exact benchmark comparisons and an accessible provisional-length description without being told the answer.
-    
+
     **Instructional depth:** Schematic fixed straight segments 8–30 cm; reference strip 10 cm; integral centimeter results and simple comparisons/differences at most about 10 cm. No fractional cm, conversion among km/m/mm, percent error, statistics, claims of real screen calibration, inferential 'accuracy grades', or physically unmeasured household items as authoritative facts.
-    
+
     ## Prerequisites
-    
+
     [measureCentimeters.data.ts](../../../../data/skills/measurement/length/skills/measureCentimeters.data.ts) for correct whole-centimeter measurements using zero, [useRuler.data.ts](../../../../data/skills/measurement/length/skills/useRuler.data.ts) for unit conventions, and [compareLength.data.ts](../../../../data/skills/measurement/length/skills/compareLength.data.ts) to compare length spans. Numeracy: counting, compare, small differences within 30. Prior [nonstandardLength.data.ts](../../../../data/skills/measurement/length/skills/nonstandardLength.data.ts) illustrates why a reference unit must stay constant.
-    
+
     ## Target Skills
-    
+
     - [estimateLength.data.ts](../../../../data/skills/measurement/length/skills/estimateLength.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Select a familiar **10 cm reference** and form a plausible approximate length, explaining whether the target is close to one, two or more reference lengths.
     - Record an estimate **with the unit** before a ruler result is revealed, then measure the same fixed object/segment with consistent centimeter intervals.
     - Compare estimate and measured length as 'estimated above', 'estimated below', or 'equal', with a numeric absolute difference in cm.
     - Use the discrepancy to explain which benchmark or comparison was misleading, then make a more informed estimate on an unfamiliar segment without requiring exact first-try prediction.
-    
+
     ## Essential subject matter
-    
+
     An **estimate** is an approximate number informed by a known reference; a **measurement** is obtained by applying equal unit intervals with the correct instrument setup. Both require an explicit and matching unit before direct comparison. If the reference is **10 cm** and the target is slightly less than twice that reference, **18 cm** is a plausible estimate (not proven). Ruler verification might show **19 cm**: the estimate was **1 cm below** the measure. If estimated 20 cm and measured 18 cm, it was **2 cm above**. Learner estimates are not automatically wrong because they differ from a measured result; explain magnitude and likely reason rather than assigning hidden correctness thresholds. Visual schematic uses consistent proportions; pixel size cannot be treated as a real-world centimeter. Avoid secretly exposing exact value via grid lines **before** estimation.
-    
+
     ## Conceptual progression and dependencies
-    
+
     1. Use a fixed 10 cm benchmark and compare visually/semantically with an unknown strip. Commit an approximate prediction without a visible ruler. 2) Reveal a ruler and count intervals to compare measured value, name the difference in centimeters. 3) Contrast estimates above and below the result and expose a deliberately mismatched unit as invalid comparison; ask what makes a benchmark useful. 4) Transfer to a new hidden-length strip; learner selects a reasoned estimate and verbalizes the post-measurement difference. No accuracy scores or random rewards.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Estimation means a wild guess or must match measurement exactly; comparing numbers without units; changing the reference scale midway; seeing an image larger on a device and concluding its real length is larger; deciding that 20 estimated versus 18 measured means the **object** shortened; reading before recording an estimate; reporting a signed difference without saying above/below.
-    
+
     **Explicitly out of scope:** Schematic fixed straight segments 8–30 cm; reference strip 10 cm; integral centimeter results and simple comparisons/differences at most about 10 cm. No fractional cm, conversion among km/m/mm, percent error, statistics, claims of real screen calibration, inferential 'accuracy grades', or physically unmeasured household items as authoritative facts. Canonical Skill definitions remain grade-independent and are never rewritten to fit these limits.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     All proposed learner-facing messages (including SVG descriptions, answer explanations, controls, geometry terms, measurement units, feedback and proposed recall Notes) must eventually receive **genuine supported-locale translations**. Do not invent translation resources, silently fall back to English, or interpret draft English copy as multilingual implementation. Design semantic LTR/RTL layout without changing mathematical order or map/measurement direction. Every meaningful visual manipulation requires a semantically equivalent keyboard/switch and nonvisual path; no forced dragging, color-only answers, precise drawing gestures, audio dependence or timers. WCAG 2.2 AA, large mobile controls, 200% text, reduced motion, correct reading order and complete offline access **after an actual download mechanism exists** are release requirements, not proof of implemented support.
-    
+
     ## Sources and factual verification
-    
+
     - [Canonical estimate-length Skill](../../../../data/skills/measurement/length/skills/estimateLength.data.ts) — approved/promoted Mathematics data, copied without changing UUID, slug or translations.
     - [Studio Methodologist persona](../../../../../../studio/personas/methodist.persona.md), [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md), and [Lesson entity](../../../../../../studio/docs/entities/lesson.md) define role ownership and independent Program-neutral Lesson scope.
     - [Playground generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md) is **not regenerated in this feature branch**. Coordinator must regenerate after integrating domain-local Skill registration; it cannot currently verify the newly transferred entries.
-    
+
     Mathematical worked cases are included as editorial models; they do not imply compliance with a specific nation's standard or experimental validation of individual learner mastery.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No national curriculum or Program assigned. The Lesson is standalone and may later be referenced from different Programs without changing the underlying Skill. Grade 3 is an **instructional depth choice**, not a Skill Taxonomy field.
-    
+
     ## Open editorial decisions
-    
+
     - Confirm Grade 3 is appropriate for evaluating magnitude and direction of estimation error, and approve benchmark choice and the nonvisual analog that allows comparison without revealing exact target length beforehand.
     - **Approval gate remains open.** This Brief is Draft. User-authorized same-batch Lesson Content and Scene specifications are **provisional Drafts pending explicit Methodologist approval**, not a claim that Studio's standard approval gate has passed.
-    
+
     ## Methodologist handoff
-    
+
     Editor should validate scope, prerequisites, examples, developmental fit, sources and misconceptions. A Screenwriter may refine the provisional narrative under this batch authorization; only formal approval permits an implemented Lesson design handoff. No React, runtime Lesson data, Question, Quiz, scoring, analytics, Note persistence or user-state event contract is authorized here.
-  purpose: "Develop reasoned, calibrated estimates rather than precision guessing. Learners compare an unknown straight length to a **known benchmark** in the same units, state a justified approximate centimeter value, then measure and explain the discrepancy. This lesson adds the cycle of prediction, check and refinement to previously accurate direct measurement."
-  audience: "Audience, prerequisites and grade-specific boundaries are specified in production.methodology."
+  purpose: 'Develop reasoned, calibrated estimates rather than precision guessing. Learners compare an unknown straight length to a **known benchmark** in the same units, state a justified approximate centimeter value, then measure and explain the discrepancy. This lesson adds the cycle of prediction, check and refinement to previously accurate direct measurement.'
+  audience: 'Audience, prerequisites and grade-specific boundaries are specified in production.methodology.'
   productionNotes: |-
     # Estimate Length, Then Measure — Lesson Content
-    
+
     Status: **Provisional Draft pending Methodologist approval — NOT Approved**
     Target Lesson: `content/playground/Data/Lessons/1/estimatingAndCheckingLengths/`
     Audience: **Grade 3**, approximately 8–9 years; comfortable with whole-number centimeters through 30 and simple differences
@@ -805,26 +805,26 @@ production:
     Target Skills: `estimateLength.data.ts` linked in the Brief; prior centimeter measurement and comparison Skills are prerequisites.
     Program dependence: None
     Implementation state: purely editorial; no working Scene, accuracy score or persistence.
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     **"First make a sensible estimate. Then measure. Learn from the difference."** Many things are awkward to measure immediately, but a known reference helps predict their size. Our fixed **10 cm benchmark strip** acts like one familiar ten-unit piece. We may reasonably say an unknown strip looks a little shorter than twice the reference, then predict a number in centimeters. Only **after** recording the prediction do we use a schematic ruler to reveal the actual whole-centimeter length. A measured result does not make a reasonable estimate "wrong"; it makes it **checkable and improvable**.
-    
+
     A crucial contrast: **estimate** is a justified approximate number, not a random guess; **measurement** is a count of equal standard intervals from correctly aligned zero. Both need the same unit to compare. The model's centimeter intervals are abstract, **not physically calibrated screen pixels**. For a nonvisual learner, pre-reveal descriptions use **coarse comparisons** such as "longer than one benchmark but shorter than two" and never leak the exact measured length.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. Learn the reference comparison with a first, almost-one-reference strip. Record a plausible length estimate **before** any ruler appears.
     2. Check against a ruler and express how far below or above the actual length the estimate was.
     3. Compare different estimates of the **same** measured object, with an explicit unit mismatch trap, and improve a guess after evidence.
     4. Transfer independently to a fresh unknown-length strip and explain the discrepancy without a graded threshold.
-    
+
     No requirement to guess an exact number; the important evidence is a **reasoned estimate**, correct tool measurement and interpretation.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — Use a Known Length as a Clue
-    
+
     - **Purpose:** use a known benchmark to generate an estimate before revealing a measurement.
     - **Current shape:** `LessonSection_Config`, one vertical ordered Resource sequence.
     - **Ordered Resources:**
@@ -833,9 +833,9 @@ production:
       3. **markdown — currently rendered:** "Our reference is **10 cm** long. The mystery strip was a little longer, so a value a little above 10 made sense. The ruler shows **12 cm**. Measuring checks an estimate; it does not turn estimation into a guessing contest."
     - **Explanatory feedback:** For 11: "You estimated 11 cm; the ruler says 12 cm. Your estimate is 1 cm **below** the measurement." For 12: "Your estimate and measurement match." For 15: "You estimated 15 cm, 3 cm **above** the measured length. Look again at how much longer it is than the 10 cm reference." No hidden acceptable-range pass/fail, positive/negative numerical error sign confusion, or premature answer reveal.
     - **Access:** Meaningful nonvisual comparison says "Mystery is a little longer than one ten-centimeter reference and much shorter than two", not "exactly two intervals longer". Learner may request a coarse hint before estimating, with the same benchmark language.
-    
+
     ### Section 2 — Compare the Numbers Using the Same Unit
-    
+
     - **Purpose:** explain measured-versus-estimated differences with consistent centimeter units.
     - **Current shape:** one-column `LessonSection_Config`.
     - **Ordered Resources:**
@@ -845,9 +845,9 @@ production:
     - **Feedback:** If learner says "one too long": "Look at which number is larger: 16 measured is larger than 15 estimated, so our estimate was **below**." If they omit `cm`: "A difference in a measurement needs a unit too. Here it is one **centimeter**." No forced subtraction notation, but give optional 16 − 15 = 1 in readable form.
     - **Access:** Report values in a structured comparison table or verbal sentence, not color-only bars. The bar is fixed while the ruler appears, so measurement never visually changes the mystery length.
     - **Planned Note:** After reveal: "Compare estimate and measurement in the **same unit**."
-    
+
     ### Section 3 — Two Estimates, One Object
-    
+
     - **Purpose:** distinguish a reasoned approximate estimate from an arbitrary number and explain discrepancies in either direction.
     - **Current shape:** one-column `LessonSection_Config`.
     - **Ordered Resources:**
@@ -856,9 +856,9 @@ production:
       3. **markdown — available:** "The 20 cm estimate is **2 cm higher**, and the 25 cm estimate is **7 cm higher** than the same measured length. Both missed the exact number, but the first was closer. Saying only '20' without a unit does not say how long something is."
     - **Feedback:** If child claims strip shrank from 25 to 18: "The strip never changed. **25** was a prediction, not a measured size." If they call 25 a 'wrong measurement': "It was an estimate. We compare it to the later measurement and explain the difference." Clarify that a **wild estimate** can be less useful without assigning points or "good enough" threshold.
     - **Planned Note:** "An estimate can be above or below a measured length; the **difference** tells how far."
-    
+
     ### Section 4 — Make an Estimate You Can Defend
-    
+
     - **Purpose:** independent transfer on an unseen fixed length, with reflection rather than scoring.
     - **Current shape:** one-column `LessonSection_Config`.
     - **Ordered Resources:**
@@ -867,38 +867,38 @@ production:
       3. **markdown — available:** "A checkable estimate has **a reference, a unit and a reason**. The ruler found **23 cm**. If you chose **22 cm**, that is **1 cm below**; if you chose **24 cm**, it is **1 cm above**. We can keep the useful benchmark and adjust our next estimate."
     - **Feedback and recovery:** For 20: "20 cm is 3 cm below 23. You recognized two reference strips; this one was another 3 cm longer." For 28: "28 cm is 5 cm above 23. Compare its size again with two 10 cm references and a partial extra." For 23: "Your estimate matched, but it is still an _estimate_ until checked with a ruler." If no reason chosen, invite reflection before revealing but never lock the learner permanently.
     - **Offline practical transfer:** An optional ruler check on a real book edge may be proposed, but users without a ruler must have exactly the same conceptual estimation and checking interaction in the self-contained Scene.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - `Length Estimate Laboratory` (Scene specification embedded in this YAML) — four independent self-contained prop-free placements, with truthful pre-reveal information, no offscreen answer leak and mathematically exact discrepancy feedback.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. After Section 1 benchmark comparison: "Estimate from a familiar length, then check by measuring."
     2. After Section 2 interval check: "Estimate and measurement must use the same unit."
     3. After Section 3 two estimates: "The difference shows how far above or below the measurement an estimate is."
-    
+
     These are planned brief recall Notes; there are **no verified Note events, IDs, unlocked-state storage or spaced-review scheduler** in this authoring batch.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     The unseen 23 cm case is **unscored**, with descriptive feedback for the chosen prediction and an explicit reference-based explanation. A future Assessment Architect should distinguish quality of justification, instrument reading and interpretation of numeric discrepancies; do not grade an arbitrary proximity threshold without an approved rubric. Practice today is not independently validated mastery; spaced retrieval needs a separate approved system.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Genuine translations for all supported locales, including `cm` unit labels, comparative terms ("above/below", "closer/farther"), alternative reasons, interactive feedback and numerals/plurals. Use semantic LTR/RTL layouts, but never change centimeter order or silently reverse the meaning of 'below' a measurement. Screen readers have a **pre-measurement coarse benchmark description** sufficient for estimating yet not exposing the exact value; after the chosen estimate, they can read a precise ruler interval log and a numerical discrepancy sentence. Keyboard/switch controls choose estimates and reason categories; no pointer measurement, touch-precision, color, audio or timed choice required. Maintain focus/contrast, reduced motion, scalable charts, WCAG 2.2 AA design and equivalence on low-end/offline devices after locale/code downloads. The schematic must never claim that its pixels equal real cm.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Existing generic Lesson Section supports `text`, `markdown`, `scene` blocks. Length Estimate Laboratory is **proposed**, not implemented. Future engineering must verify locale context and build prop-free Scene entry points, unit-valid numeric logic, pre/post-reveal descriptions, tests, mobile and offline packaging. There is no runtime `Lesson`, Question/Quiz, scoring, progress event, analytics or Note persistence in this PR.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - `Draft Methodologist Brief` (source consolidated in this YAML), canonical `estimateLength` Skill and prerequisites linked there.
     - Editor: approve the Grade 3 treatment of difference size and above/below wording, without an unapproved "correct estimate" scoring band.
     - Editor: verify nonvisual pre-reveal comparison does not make the estimate trivial but still provides comparable reasoning affordances.
     - Content/Scenes remain **provisional Drafts** until formal Methodologist review.
-    
+
     ## HANDOFF
-    
+
     Methodologist reviews benchmark, numerical depth and intended reasoning. Screenwriter/editor validates every prompt and feedback example before approval. Coding Agent implements from approved Scene spec; Assessment Architect designs optional future scored tasks separately.

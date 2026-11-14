@@ -1,137 +1,137 @@
 config:
-  id: "c5586734-72da-5f1a-a3d7-a9af45cb3217"
-  slug: "divisionMultiplicationInverse"
-  type: "lesson"
+  id: 'c5586734-72da-5f1a-a3d7-a9af45cb3217'
+  slug: 'divisionMultiplicationInverse'
+  type: 'lesson'
   skills:
-    - "aeda65fb-0667-443b-8842-73cee12965a4"
+    - 'aeda65fb-0667-443b-8842-73cee12965a4'
   params:
     requireQuiz: false
     languages:
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
-      - "en"
-      - "qm"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
-      - "pl"
-      - "uk"
+      - 'lt'
+      - 'lv'
+      - 'et'
+      - 'be'
+      - 'ka'
+      - 'kk'
+      - 'en'
+      - 'qm'
+      - 'zh'
+      - 'hi'
+      - 'es'
+      - 'ar'
+      - 'fr'
+      - 'bn'
+      - 'pt'
+      - 'ur'
+      - 'id'
+      - 'de'
+      - 'ja'
+      - 'ko'
+      - 'tr'
+      - 'vi'
+      - 'ta'
+      - 'te'
+      - 'mr'
+      - 'ms'
+      - 'he'
+      - 'pl'
+      - 'uk'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Check Division with Multiplication"
+      en: 'Check Division with Multiplication'
   section:
     items:
       section1:
         config:
-          id: "c5586734-72da-5f1a-a3d7-000000000004"
-          slug: "section1"
-          type: "content"
+          id: 'c5586734-72da-5f1a-a3d7-000000000004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "From Three Times Four to Twelve"
+              en: 'From Three Times Four to Twelve'
             navigationLabel:
-              en: "From Three Times Four to Twelve"
+              en: 'From Three Times Four to Twelve'
           content:
             items:
               text1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-000000000001"
-                  slug: "text1"
-                  type: "text"
+                  id: 'c5586734-72da-5f1a-a3d7-000000000001'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Three equal groups have four counters in each. What multiplication equation names all twelve?"
+                      en: 'Three equal groups have four counters in each. What multiplication equation names all twelve?'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: - **Text Resource (currently renderable):** “Three equal groups have four counters in each. What multiplication equation names all twelve?”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: - **Text Resource (currently renderable):** “Three equal groups have four counters in each. What multiplication equation names all twelve?”'
               scene1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-000000000002"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'c5586734-72da-5f1a-a3d7-000000000002'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Three equal groups have four counters in each. What multiplication equation names all twelve?"
+                        instruction: 'Three equal groups have four counters in each. What multiplication equation names all twelve?'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Inverse Fact Family Machine — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Check Division with Multiplication Content` (source preserved in config.yaml), Sections 1–4
                     Methodologist source: `Methodologist Brief` (source preserved in config.yaml), currently Draft, not approved
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case.
-                    
+
                     This is a structured mathematical **investigation** with independently operable data views and explicit operand roles, not a pure quiz or image-only drag task.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For exact whole-number division A÷d=q with d>0, d×q=A. With 3 groups of 4 there are 12 counters, so 3×4=12, 12÷3=4, and 12÷4=3 in the appropriate grouping interpretation; both division expressions are exact because 12=3×4. For 20÷5=4, 5×4=20 confirms the proposed quotient. A wrong proposed 20÷5=5 would imply 5×5=25, which does NOT reconstruct twenty. For 12÷3=5, check 3×5=15 and reject. This is not a claim that every possible division yields a whole-number quotient; work only with exact divisions and nonzero divisors. Avoid division by zero, multiplication of negative/fractional factors and automatic interchange of symbolic roles in a story.
-                    
+
                     **Critical invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication.
-                    
+
                     **Known misconceptions:** Confusing the check 3×4=12 with a claim that the quotient itself is twelve; mixing 12÷3=4 and 12÷4=3 without relabeling number of groups versus size; accepting wrong results because the multiplication looks familiar; adding divisor+quotient instead of multiplying; assuming d×q=A verifies a non-exact quotient without remainder. Keep the original dividend prominently visible during every check. Do not present false quotient identities as correct; when a candidate is wrong, label the computation as a trial and show the actual value.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: From Three Times Four to Twelve.** Learner prompt: “Three equal groups have four counters in each. What multiplication equation names all twelve?”. Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12. Show exact equation **3 × 4 = 12** and explain: Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for. For an error: If eleven is chosen, enumerate all three groups of four; if seven, explain three plus four is not how many objects are in all groups. “Show why” and “Reset” are available without a prediction.
-                    
+
                     2. **Section 2: Undo Multiplication by Sharing.** Learner prompt: “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”. Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named. Show exact equation **12 ÷ 3 = 4; 3 × 4 = 12** and explain: Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits. For an error: If a learner proposes five, evaluate 3×5=15 and show it cannot match the original total twelve; the candidate remains a clearly labeled trial, not a true equality. “Show why” and “Reset” are available without a prediction.
-                    
+
                     3. **Section 3: Another Division From the Same Product.** Learner prompt: “What if each group must contain four? How many groups of four can we make from twelve?”. Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels. Show exact equation **12 ÷ 4 = 3; 4 × 3 = 12** and explain: Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully. For an error: If the learner says four groups of four, calculate sixteen needed and explain why that exceeds the twelve counters; reject mistaken 12÷4=4. “Show why” and “Reset” are available without a prediction.
-                    
+
                     4. **Section 4: Check a New Quotient.** Learner prompt: “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”. Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty. Show exact equation **20 ÷ 5 = 4 because 5 × 4 = 20** and explain: The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total. For an error: If the wrong five is chosen, display 5×5=25 and compare with the original dividend 20, rather than changing the original problem. “Show why” and “Reset” are available without a prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four **independent, prop-free** Scene entries; Section entry selection is internal/editorial, not a new React public `mode` prop or Resource_Config discriminator.
                     - **Objects / presentation:** Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. All controls are native focusable role/number selectors, example/reveal/check controls and independent undo/reset.
                     - **State:** Immutable original dividend 12/20, named divisor 3/4/5, candidate quotient 3/4/5, selected example/story, group count and size, product-of-check calculation, comparison verdict, explanation/reset; independent entrypoints.
                     - **Required invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication. Any candidate result must be compared to the ORIGINAL expression, without changing its known operands to manufacture a true statement.
                     - A wrong prediction is an explanatory unscored trial. A learner can reveal the full answer and every step without passing an interaction or speaking. No mastery, ScoreState, Question result, note event or reward.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. Lightweight HTML/SVG for group counts and a readable expression with stable labels; any transformation is user-triggered and can show immediate static states in reduced motion. No remote video/imagery, audio, animation-only meaning, WebGL or extra image asset necessary.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing terms such as dividend/divisor/quotient and the group-count/size units authentically across supported locales, without English fallback. The equation's operand order is semantically stable in RTL, not geometrically reversed. Each action and its updated mathematical result is accessible by an interactive ordered text ledger and screen-reader status, with native keyboard/touch/switch actions, visible focus, 200% zoom, responsive mobile, non-color-only feedback, large hit areas and reduced-motion parity. Fully local after selected-locale download, with no mandatory drag, speech, audio or remote check.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 3×4=12 model has precisely twelve counters.
                     2. 12÷3=4 checked with 3×4=12; candidate five fails because 3×5=15.
                     3. 12÷4=3 checked with 4×3=12 and correctly labeled grouping story.
@@ -139,29 +139,29 @@ config:
                     5. All incorrect candidates receive exact mismatch explanations with no score; every Section offers Reset, Hint and full solution independently.
                     6. Switching context changes only its explicit interpretive model, not the original expression or known numerical values; no counters duplicated.
                     7. Keyboard, screen reader, RTL, zoomed mobile, reduced-motion and downloaded offline operation preserve all numerical facts and logical distinctions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
                   productionNotes: "Unique Scene placement scene1 in From Three Times Four to Twelve. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 1. Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12.. Status: provisional only."
               markdown1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-000000000003"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c5586734-72da-5f1a-a3d7-000000000003'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for."
+                      en: 'Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: - **Markdown Resource (currently renderable):** “Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for.” Mathematical record: **3 × 4 = 12**."
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for.” Mathematical record: **3 × 4 = 12**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "From Three Times Four to Twelve"
+          purpose: 'From Three Times Four to Twelve'
           pedagogicalIntent: |-
             - **Instructional purpose/outcome:** Show that the same twelve-item model supports 3×4=12 and 12÷3=4 when the number of groups is known.
             - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
@@ -175,94 +175,94 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** No new Note in this Section.
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section2:
         config:
-          id: "c5586734-72da-5f1a-a3d7-000000000008"
-          slug: "section2"
-          type: "content"
+          id: 'c5586734-72da-5f1a-a3d7-000000000008'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Undo Multiplication by Sharing"
+              en: 'Undo Multiplication by Sharing'
             navigationLabel:
-              en: "Undo Multiplication by Sharing"
+              en: 'Undo Multiplication by Sharing'
           content:
             items:
               text1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-000000000005"
-                  slug: "text1"
-                  type: "text"
+                  id: 'c5586734-72da-5f1a-a3d7-000000000005'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "If twelve are shared among three groups, how many are in each? Which multiplication checks it?"
+                      en: 'If twelve are shared among three groups, how many are in each? Which multiplication checks it?'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: - **Text Resource (currently renderable):** “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: - **Text Resource (currently renderable):** “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”'
               scene1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-000000000006"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'c5586734-72da-5f1a-a3d7-000000000006'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "If twelve are shared among three groups, how many are in each? Which multiplication checks it?"
+                        instruction: 'If twelve are shared among three groups, how many are in each? Which multiplication checks it?'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Inverse Fact Family Machine — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Check Division with Multiplication Content` (source preserved in config.yaml), Sections 1–4
                     Methodologist source: `Methodologist Brief` (source preserved in config.yaml), currently Draft, not approved
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case.
-                    
+
                     This is a structured mathematical **investigation** with independently operable data views and explicit operand roles, not a pure quiz or image-only drag task.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For exact whole-number division A÷d=q with d>0, d×q=A. With 3 groups of 4 there are 12 counters, so 3×4=12, 12÷3=4, and 12÷4=3 in the appropriate grouping interpretation; both division expressions are exact because 12=3×4. For 20÷5=4, 5×4=20 confirms the proposed quotient. A wrong proposed 20÷5=5 would imply 5×5=25, which does NOT reconstruct twenty. For 12÷3=5, check 3×5=15 and reject. This is not a claim that every possible division yields a whole-number quotient; work only with exact divisions and nonzero divisors. Avoid division by zero, multiplication of negative/fractional factors and automatic interchange of symbolic roles in a story.
-                    
+
                     **Critical invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication.
-                    
+
                     **Known misconceptions:** Confusing the check 3×4=12 with a claim that the quotient itself is twelve; mixing 12÷3=4 and 12÷4=3 without relabeling number of groups versus size; accepting wrong results because the multiplication looks familiar; adding divisor+quotient instead of multiplying; assuming d×q=A verifies a non-exact quotient without remainder. Keep the original dividend prominently visible during every check. Do not present false quotient identities as correct; when a candidate is wrong, label the computation as a trial and show the actual value.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: From Three Times Four to Twelve.** Learner prompt: “Three equal groups have four counters in each. What multiplication equation names all twelve?”. Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12. Show exact equation **3 × 4 = 12** and explain: Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for. For an error: If eleven is chosen, enumerate all three groups of four; if seven, explain three plus four is not how many objects are in all groups. “Show why” and “Reset” are available without a prediction.
-                    
+
                     2. **Section 2: Undo Multiplication by Sharing.** Learner prompt: “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”. Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named. Show exact equation **12 ÷ 3 = 4; 3 × 4 = 12** and explain: Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits. For an error: If a learner proposes five, evaluate 3×5=15 and show it cannot match the original total twelve; the candidate remains a clearly labeled trial, not a true equality. “Show why” and “Reset” are available without a prediction.
-                    
+
                     3. **Section 3: Another Division From the Same Product.** Learner prompt: “What if each group must contain four? How many groups of four can we make from twelve?”. Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels. Show exact equation **12 ÷ 4 = 3; 4 × 3 = 12** and explain: Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully. For an error: If the learner says four groups of four, calculate sixteen needed and explain why that exceeds the twelve counters; reject mistaken 12÷4=4. “Show why” and “Reset” are available without a prediction.
-                    
+
                     4. **Section 4: Check a New Quotient.** Learner prompt: “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”. Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty. Show exact equation **20 ÷ 5 = 4 because 5 × 4 = 20** and explain: The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total. For an error: If the wrong five is chosen, display 5×5=25 and compare with the original dividend 20, rather than changing the original problem. “Show why” and “Reset” are available without a prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four **independent, prop-free** Scene entries; Section entry selection is internal/editorial, not a new React public `mode` prop or Resource_Config discriminator.
                     - **Objects / presentation:** Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. All controls are native focusable role/number selectors, example/reveal/check controls and independent undo/reset.
                     - **State:** Immutable original dividend 12/20, named divisor 3/4/5, candidate quotient 3/4/5, selected example/story, group count and size, product-of-check calculation, comparison verdict, explanation/reset; independent entrypoints.
                     - **Required invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication. Any candidate result must be compared to the ORIGINAL expression, without changing its known operands to manufacture a true statement.
                     - A wrong prediction is an explanatory unscored trial. A learner can reveal the full answer and every step without passing an interaction or speaking. No mastery, ScoreState, Question result, note event or reward.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. Lightweight HTML/SVG for group counts and a readable expression with stable labels; any transformation is user-triggered and can show immediate static states in reduced motion. No remote video/imagery, audio, animation-only meaning, WebGL or extra image asset necessary.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing terms such as dividend/divisor/quotient and the group-count/size units authentically across supported locales, without English fallback. The equation's operand order is semantically stable in RTL, not geometrically reversed. Each action and its updated mathematical result is accessible by an interactive ordered text ledger and screen-reader status, with native keyboard/touch/switch actions, visible focus, 200% zoom, responsive mobile, non-color-only feedback, large hit areas and reduced-motion parity. Fully local after selected-locale download, with no mandatory drag, speech, audio or remote check.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 3×4=12 model has precisely twelve counters.
                     2. 12÷3=4 checked with 3×4=12; candidate five fails because 3×5=15.
                     3. 12÷4=3 checked with 4×3=12 and correctly labeled grouping story.
@@ -270,29 +270,29 @@ config:
                     5. All incorrect candidates receive exact mismatch explanations with no score; every Section offers Reset, Hint and full solution independently.
                     6. Switching context changes only its explicit interpretive model, not the original expression or known numerical values; no counters duplicated.
                     7. Keyboard, screen reader, RTL, zoomed mobile, reduced-motion and downloaded offline operation preserve all numerical facts and logical distinctions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
                   productionNotes: "Unique Scene placement scene1 in Undo Multiplication by Sharing. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 2. Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named.. Status: provisional only."
               markdown1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-000000000007"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c5586734-72da-5f1a-a3d7-000000000007'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits."
+                      en: 'Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: - **Markdown Resource (currently renderable):** “Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits.” Mathematical record: **12 ÷ 3 = 4; 3 × 4 = 12**."
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits.” Mathematical record: **12 ÷ 3 = 4; 3 × 4 = 12**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Undo Multiplication by Sharing"
+          purpose: 'Undo Multiplication by Sharing'
           pedagogicalIntent: |-
             - **Instructional purpose/outcome:** Use 4×3=12 and 12÷4=3 to illustrate a second valid inverse division relationship with explicitly named roles.
             - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
@@ -306,94 +306,94 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “To check an exact division, multiply divisor by quotient to get the dividend.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section3:
         config:
-          id: "c5586734-72da-5f1a-a3d7-00000000000c"
-          slug: "section3"
-          type: "content"
+          id: 'c5586734-72da-5f1a-a3d7-00000000000c'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Another Division From the Same Product"
+              en: 'Another Division From the Same Product'
             navigationLabel:
-              en: "Another Division From the Same Product"
+              en: 'Another Division From the Same Product'
           content:
             items:
               text1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-000000000009"
-                  slug: "text1"
-                  type: "text"
+                  id: 'c5586734-72da-5f1a-a3d7-000000000009'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "What if each group must contain four? How many groups of four can we make from twelve?"
+                      en: 'What if each group must contain four? How many groups of four can we make from twelve?'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: - **Text Resource (currently renderable):** “What if each group must contain four? How many groups of four can we make from twelve?”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: - **Text Resource (currently renderable):** “What if each group must contain four? How many groups of four can we make from twelve?”'
               scene1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-00000000000a"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'c5586734-72da-5f1a-a3d7-00000000000a'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "What if each group must contain four? How many groups of four can we make from twelve?"
+                        instruction: 'What if each group must contain four? How many groups of four can we make from twelve?'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Inverse Fact Family Machine — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Check Division with Multiplication Content` (source preserved in config.yaml), Sections 1–4
                     Methodologist source: `Methodologist Brief` (source preserved in config.yaml), currently Draft, not approved
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case.
-                    
+
                     This is a structured mathematical **investigation** with independently operable data views and explicit operand roles, not a pure quiz or image-only drag task.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For exact whole-number division A÷d=q with d>0, d×q=A. With 3 groups of 4 there are 12 counters, so 3×4=12, 12÷3=4, and 12÷4=3 in the appropriate grouping interpretation; both division expressions are exact because 12=3×4. For 20÷5=4, 5×4=20 confirms the proposed quotient. A wrong proposed 20÷5=5 would imply 5×5=25, which does NOT reconstruct twenty. For 12÷3=5, check 3×5=15 and reject. This is not a claim that every possible division yields a whole-number quotient; work only with exact divisions and nonzero divisors. Avoid division by zero, multiplication of negative/fractional factors and automatic interchange of symbolic roles in a story.
-                    
+
                     **Critical invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication.
-                    
+
                     **Known misconceptions:** Confusing the check 3×4=12 with a claim that the quotient itself is twelve; mixing 12÷3=4 and 12÷4=3 without relabeling number of groups versus size; accepting wrong results because the multiplication looks familiar; adding divisor+quotient instead of multiplying; assuming d×q=A verifies a non-exact quotient without remainder. Keep the original dividend prominently visible during every check. Do not present false quotient identities as correct; when a candidate is wrong, label the computation as a trial and show the actual value.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: From Three Times Four to Twelve.** Learner prompt: “Three equal groups have four counters in each. What multiplication equation names all twelve?”. Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12. Show exact equation **3 × 4 = 12** and explain: Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for. For an error: If eleven is chosen, enumerate all three groups of four; if seven, explain three plus four is not how many objects are in all groups. “Show why” and “Reset” are available without a prediction.
-                    
+
                     2. **Section 2: Undo Multiplication by Sharing.** Learner prompt: “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”. Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named. Show exact equation **12 ÷ 3 = 4; 3 × 4 = 12** and explain: Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits. For an error: If a learner proposes five, evaluate 3×5=15 and show it cannot match the original total twelve; the candidate remains a clearly labeled trial, not a true equality. “Show why” and “Reset” are available without a prediction.
-                    
+
                     3. **Section 3: Another Division From the Same Product.** Learner prompt: “What if each group must contain four? How many groups of four can we make from twelve?”. Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels. Show exact equation **12 ÷ 4 = 3; 4 × 3 = 12** and explain: Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully. For an error: If the learner says four groups of four, calculate sixteen needed and explain why that exceeds the twelve counters; reject mistaken 12÷4=4. “Show why” and “Reset” are available without a prediction.
-                    
+
                     4. **Section 4: Check a New Quotient.** Learner prompt: “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”. Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty. Show exact equation **20 ÷ 5 = 4 because 5 × 4 = 20** and explain: The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total. For an error: If the wrong five is chosen, display 5×5=25 and compare with the original dividend 20, rather than changing the original problem. “Show why” and “Reset” are available without a prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four **independent, prop-free** Scene entries; Section entry selection is internal/editorial, not a new React public `mode` prop or Resource_Config discriminator.
                     - **Objects / presentation:** Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. All controls are native focusable role/number selectors, example/reveal/check controls and independent undo/reset.
                     - **State:** Immutable original dividend 12/20, named divisor 3/4/5, candidate quotient 3/4/5, selected example/story, group count and size, product-of-check calculation, comparison verdict, explanation/reset; independent entrypoints.
                     - **Required invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication. Any candidate result must be compared to the ORIGINAL expression, without changing its known operands to manufacture a true statement.
                     - A wrong prediction is an explanatory unscored trial. A learner can reveal the full answer and every step without passing an interaction or speaking. No mastery, ScoreState, Question result, note event or reward.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. Lightweight HTML/SVG for group counts and a readable expression with stable labels; any transformation is user-triggered and can show immediate static states in reduced motion. No remote video/imagery, audio, animation-only meaning, WebGL or extra image asset necessary.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing terms such as dividend/divisor/quotient and the group-count/size units authentically across supported locales, without English fallback. The equation's operand order is semantically stable in RTL, not geometrically reversed. Each action and its updated mathematical result is accessible by an interactive ordered text ledger and screen-reader status, with native keyboard/touch/switch actions, visible focus, 200% zoom, responsive mobile, non-color-only feedback, large hit areas and reduced-motion parity. Fully local after selected-locale download, with no mandatory drag, speech, audio or remote check.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 3×4=12 model has precisely twelve counters.
                     2. 12÷3=4 checked with 3×4=12; candidate five fails because 3×5=15.
                     3. 12÷4=3 checked with 4×3=12 and correctly labeled grouping story.
@@ -401,29 +401,29 @@ config:
                     5. All incorrect candidates receive exact mismatch explanations with no score; every Section offers Reset, Hint and full solution independently.
                     6. Switching context changes only its explicit interpretive model, not the original expression or known numerical values; no counters duplicated.
                     7. Keyboard, screen reader, RTL, zoomed mobile, reduced-motion and downloaded offline operation preserve all numerical facts and logical distinctions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
                   productionNotes: "Unique Scene placement scene1 in Another Division From the Same Product. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 3. Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels.. Status: provisional only."
               markdown1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-00000000000b"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c5586734-72da-5f1a-a3d7-00000000000b'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully."
+                      en: 'Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: - **Markdown Resource (currently renderable):** “Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully.” Mathematical record: **12 ÷ 4 = 3; 4 × 3 = 12**."
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully.” Mathematical record: **12 ÷ 4 = 3; 4 × 3 = 12**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Another Division From the Same Product"
+          purpose: 'Another Division From the Same Product'
           pedagogicalIntent: |-
             - **Instructional purpose/outcome:** Check a proposed division result by multiplying quotient × divisor and comparing to the original dividend; reject an incorrect candidate.
             - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
@@ -437,94 +437,94 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “One multiplication fact can help us read two connected exact division facts.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section4:
         config:
-          id: "c5586734-72da-5f1a-a3d7-000000000010"
-          slug: "section4"
-          type: "content"
+          id: 'c5586734-72da-5f1a-a3d7-000000000010'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Check a New Quotient"
+              en: 'Check a New Quotient'
             navigationLabel:
-              en: "Check a New Quotient"
+              en: 'Check a New Quotient'
           content:
             items:
               text1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-00000000000d"
-                  slug: "text1"
-                  type: "text"
+                  id: 'c5586734-72da-5f1a-a3d7-00000000000d'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?"
+                      en: 'Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: - **Text Resource (currently renderable):** “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: - **Text Resource (currently renderable):** “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”'
               scene1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-00000000000e"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'c5586734-72da-5f1a-a3d7-00000000000e'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?"
+                        instruction: 'Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Inverse Fact Family Machine — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson: `Check Division with Multiplication Content` (source preserved in config.yaml), Sections 1–4
                     Methodologist source: `Methodologist Brief` (source preserved in config.yaml), currently Draft, not approved
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case.
-                    
+
                     This is a structured mathematical **investigation** with independently operable data views and explicit operand roles, not a pure quiz or image-only drag task.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     For exact whole-number division A÷d=q with d>0, d×q=A. With 3 groups of 4 there are 12 counters, so 3×4=12, 12÷3=4, and 12÷4=3 in the appropriate grouping interpretation; both division expressions are exact because 12=3×4. For 20÷5=4, 5×4=20 confirms the proposed quotient. A wrong proposed 20÷5=5 would imply 5×5=25, which does NOT reconstruct twenty. For 12÷3=5, check 3×5=15 and reject. This is not a claim that every possible division yields a whole-number quotient; work only with exact divisions and nonzero divisors. Avoid division by zero, multiplication of negative/fractional factors and automatic interchange of symbolic roles in a story.
-                    
+
                     **Critical invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication.
-                    
+
                     **Known misconceptions:** Confusing the check 3×4=12 with a claim that the quotient itself is twelve; mixing 12÷3=4 and 12÷4=3 without relabeling number of groups versus size; accepting wrong results because the multiplication looks familiar; adding divisor+quotient instead of multiplying; assuming d×q=A verifies a non-exact quotient without remainder. Keep the original dividend prominently visible during every check. Do not present false quotient identities as correct; when a candidate is wrong, label the computation as a trial and show the actual value.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Section 1: From Three Times Four to Twelve.** Learner prompt: “Three equal groups have four counters in each. What multiplication equation names all twelve?”. Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12. Show exact equation **3 × 4 = 12** and explain: Three groups of four make twelve. We will use this known whole to explore what happens when the group count or group size is asked for. For an error: If eleven is chosen, enumerate all three groups of four; if seven, explain three plus four is not how many objects are in all groups. “Show why” and “Reset” are available without a prediction.
-                    
+
                     2. **Section 2: Undo Multiplication by Sharing.** Learner prompt: “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”. Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named. Show exact equation **12 ÷ 3 = 4; 3 × 4 = 12** and explain: Twelve divided by three gives four in each group. Three groups times four each make the original twelve, so our quotient fits. For an error: If a learner proposes five, evaluate 3×5=15 and show it cannot match the original total twelve; the candidate remains a clearly labeled trial, not a true equality. “Show why” and “Reset” are available without a prediction.
-                    
+
                     3. **Section 3: Another Division From the Same Product.** Learner prompt: “What if each group must contain four? How many groups of four can we make from twelve?”. Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels. Show exact equation **12 ÷ 4 = 3; 4 × 3 = 12** and explain: Twelve contains three complete groups of four. Multiplying four by three returns twelve. The divisor and quotient have different positions now, so we read them carefully. For an error: If the learner says four groups of four, calculate sixteen needed and explain why that exceeds the twelve counters; reject mistaken 12÷4=4. “Show why” and “Reset” are available without a prediction.
-                    
+
                     4. **Section 4: Check a New Quotient.** Learner prompt: “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”. Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty. Show exact equation **20 ÷ 5 = 4 because 5 × 4 = 20** and explain: The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total. For an error: If the wrong five is chosen, display 5×5=25 and compare with the original dividend 20, rather than changing the original problem. “Show why” and “Reset” are available without a prediction.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Four **independent, prop-free** Scene entries; Section entry selection is internal/editorial, not a new React public `mode` prop or Resource_Config discriminator.
                     - **Objects / presentation:** Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. All controls are native focusable role/number selectors, example/reveal/check controls and independent undo/reset.
                     - **State:** Immutable original dividend 12/20, named divisor 3/4/5, candidate quotient 3/4/5, selected example/story, group count and size, product-of-check calculation, comparison verdict, explanation/reset; independent entrypoints.
                     - **Required invariants:** Check value = divisor×candidate quotient. A trial is correct only when this product equals the original dividend and positive divisor is nonzero. 12÷3=4 checks 3×4=12; 12÷4=3 checks 4×3=12; 20÷5=4 checks 5×4=20. Every physical model uses exactly the original number of counters without duplication. Any candidate result must be compared to the ORIGINAL expression, without changing its known operands to manufacture a true statement.
                     - A wrong prediction is an explanatory unscored trial. A learner can reveal the full answer and every step without passing an interaction or speaking. No mastery, ScoreState, Question result, note event or reward.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Fact-family board with permanent original dividend, grouped counters, clearly named dividend/divisor/quotient roles, 'multiply to check' panel and side-by-side exact mathematical identities with a full ordered text alternative. Lightweight HTML/SVG for group counts and a readable expression with stable labels; any transformation is user-triggered and can show immediate static states in reduced motion. No remote video/imagery, audio, animation-only meaning, WebGL or extra image asset necessary.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing terms such as dividend/divisor/quotient and the group-count/size units authentically across supported locales, without English fallback. The equation's operand order is semantically stable in RTL, not geometrically reversed. Each action and its updated mathematical result is accessible by an interactive ordered text ledger and screen-reader status, with native keyboard/touch/switch actions, visible focus, 200% zoom, responsive mobile, non-color-only feedback, large hit areas and reduced-motion parity. Fully local after selected-locale download, with no mandatory drag, speech, audio or remote check.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. 3×4=12 model has precisely twelve counters.
                     2. 12÷3=4 checked with 3×4=12; candidate five fails because 3×5=15.
                     3. 12÷4=3 checked with 4×3=12 and correctly labeled grouping story.
@@ -532,29 +532,29 @@ config:
                     5. All incorrect candidates receive exact mismatch explanations with no score; every Section offers Reset, Hint and full solution independently.
                     6. Switching context changes only its explicit interpretive model, not the original expression or known numerical values; no counters duplicated.
                     7. Keyboard, screen reader, RTL, zoomed mobile, reduced-motion and downloaded offline operation preserve all numerical facts and logical distinctions.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic `scene` Resource rendering exists, but **Inverse Fact Family Machine is only proposed**; it needs editor approval of the Draft Brief, then Content/Scene approval, Scene Designer implementation and own tests. Coding Agent verifies real locale strings, isolated prop-free entries and offline behavior. Assessment Architect independently creates scored Questions. Editorial issue: Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
-                  productionNotes: "Unique Scene placement scene1 in Check a New Quotient. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 4. Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty.. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene1 in Check a New Quotient. Original: - **Scene Resource (generic type renderable; custom component PROPOSED):** `Inverse Fact Family Machine` (specification preserved in config.yaml), independent Section 4. Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty.. Status: provisional only.'
               markdown1:
                 config:
-                  id: "c5586734-72da-5f1a-a3d7-00000000000f"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'c5586734-72da-5f1a-a3d7-00000000000f'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total."
+                      en: 'The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: - **Markdown Resource (currently renderable):** “The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total.” Mathematical record: **20 ÷ 5 = 4 because 5 × 4 = 20**."
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: - **Markdown Resource (currently renderable):** “The proposed quotient is four. Five groups of four use twenty counters, so 20 divided by five equals four. Five groups of five would need twenty-five; it is not the same original total.” Mathematical record: **20 ÷ 5 = 4 because 5 × 4 = 20**.'
             order:
-              - "text1"
-              - "scene1"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
         production:
-          purpose: "Check a New Quotient"
+          purpose: 'Check a New Quotient'
           pedagogicalIntent: |-
             - **Instructional purpose/outcome:** Use multiplication to find/check 20÷5=4 and state exactly why 5×4=20 verifies the division.
             - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
@@ -568,120 +568,120 @@ config:
             - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
             - **Planned Note:** “To check an exact division, multiply divisor by quotient to get the dividend.” once the model and its numerical reasoning are explained (not yet wired).
             - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Check Division with Multiplication — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: divisionMultiplicationInverse
     Methodologist status: Draft
     Primary audience: **Grade 3**, within grades 1–3
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case.
-    
+
     ## Target audience
-    
+
     Grade 3, with the listed concrete prior skills. Learning depth and audience are Lesson-specific; the canonical Skill remains grade-independent. Avoid long reading passages, drill pressure and unsupported mathematical vocabulary.
-    
+
     ## Prerequisites
-    
+
     - Know small equal-group multiplication products such as 3×4=12 and 4×5=20.
     - Interpret exact division with a positive divisor using equal sharing or equal grouping, and read the operand/quotient roles.
     - Use a whole-number equality as a relationship and distinguish checking the original equation from trying an unrelated calculation.
-    
+
     ## Target Skills
-    
+
     - [relationToMultiplication.data.ts](../../../../data/skills/arithmetic/divide/skills/relationToMultiplication.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Show that the same twelve-item model supports 3×4=12 and 12÷3=4 when the number of groups is known.
     - Use 4×3=12 and 12÷4=3 to illustrate a second valid inverse division relationship with explicitly named roles.
     - Check a proposed division result by multiplying quotient × divisor and comparing to the original dividend; reject an incorrect candidate.
     - Use multiplication to find/check 20÷5=4 and state exactly why 5×4=20 verifies the division.
-    
+
     ## Essential subject matter
-    
+
     For exact whole-number division A÷d=q with d>0, d×q=A. With 3 groups of 4 there are 12 counters, so 3×4=12, 12÷3=4, and 12÷4=3 in the appropriate grouping interpretation; both division expressions are exact because 12=3×4. For 20÷5=4, 5×4=20 confirms the proposed quotient. A wrong proposed 20÷5=5 would imply 5×5=25, which does NOT reconstruct twenty. For 12÷3=5, check 3×5=15 and reject. This is not a claim that every possible division yields a whole-number quotient; work only with exact divisions and nonzero divisors. Avoid division by zero, multiplication of negative/fractional factors and automatic interchange of symbolic roles in a story.
-    
+
     ## Conceptual progression and dependencies
-    
+
     1. **From Three Times Four to Twelve:** Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12.
     2. **Undo Multiplication by Sharing:** Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named.
     3. **Another Division From the Same Product:** Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels.
     4. **Check a New Quotient:** Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Confusing the check 3×4=12 with a claim that the quotient itself is twelve; mixing 12÷3=4 and 12÷4=3 without relabeling number of groups versus size; accepting wrong results because the multiplication looks familiar; adding divisor+quotient instead of multiplying; assuming d×q=A verifies a non-exact quotient without remainder. Keep the original dividend prominently visible during every check.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Full genuine translations of the exact numerator/denominator-like arithmetic roles **dividend, divisor, quotient**, group count and group size, with no English fallback. Use a clear token/number-label ledger that remains fully operable to screen-reader and keyboard users and correctly maintains order in RTL. WCAG 2.2 AA, large targets, reduced motion, offline after downloaded local-language content, and equivalent state lists are required. No compulsory speech/drag/timer/sound.
-    
+
     ## Sources and factual verification
-    
+
     - [Canonical Skill source](../../../../data/skills/arithmetic/divide/skills/relationToMultiplication.data.ts), same Mathematics Skill object/UUID/translations, used directly in Playground's Division group.
     - [Generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned output to regenerate after integrating this branch.
     - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/), multiplication and division relationships as comparative context, not guaranteed national curriculum alignment.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No Program dependence. Grade 3 is the selected audience of this particular Lesson, not a limit on the atomic Skill.
-    
+
     ## Open editorial decisions
-    
+
     - Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
     - Verify that short readable operand language and model-unit names transfer naturally to the supported locales before approval.
-    
+
     ## Methodologist handoff
-    
+
     **Draft and unapproved.** An adjoining provisional Screenwriter script and Scene specification may be prepared for review, but they are not approved pedagogical content or runtime code. No scored Questions are implied.
-  purpose: "Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case."
-  audience: "See complete Grade, prerequisite and exclusions in methodology."
+  purpose: 'Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case.'
+  audience: 'See complete Grade, prerequisite and exclusions in methodology.'
   productionNotes: |-
     # Check Division with Multiplication — Content
-    
+
     Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/divisionMultiplicationInverse/
     Primary audience: **Grade 3**. Prerequisites: Know small equal-group multiplication products such as 3×4=12 and 4×5=20. Interpret exact division with a positive divisor using equal sharing or equal grouping, and read the operand/quotient roles. Use a whole-number equality as a relationship and distinguish checking the original equation from trying an unrelated calculation.
     Methodologist source: `Methodologist Brief` (source preserved in config.yaml) (Draft, not approved)
     Target Skill: `relationToMultiplication.data.ts`, linked as the unchanged canonical source in the Methodologist Brief
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     Teach that exact division and multiplication undo one another, so a product and one known nonzero factor determine the remaining factor. A quotient can be FOUND or CHECKED by multiplication, and the verification must reconstruct the ORIGINAL dividend. Children build 3 groups of 4 = 12, see 12 ÷ 3 = 4 and 12 ÷ 4 = 3, then use a new 20 ÷ 5 = 4 case.
-    
+
     For exact whole-number division A÷d=q with d>0, d×q=A. With 3 groups of 4 there are 12 counters, so 3×4=12, 12÷3=4, and 12÷4=3 in the appropriate grouping interpretation; both division expressions are exact because 12=3×4. For 20÷5=4, 5×4=20 confirms the proposed quotient. A wrong proposed 20÷5=5 would imply 5×5=25, which does NOT reconstruct twenty. For 12÷3=5, check 3×5=15 and reject. This is not a claim that every possible division yields a whole-number quotient; work only with exact divisions and nonzero divisors. Avoid division by zero, multiplication of negative/fractional factors and automatic interchange of symbolic roles in a story.
-    
+
     The learner should discover that a numerical result also has a _meaning and unit_. Use explicit models, inspectable symbolic roles, accurate formative counterexamples and transparent check procedures rather than treating division as merely reading characters aloud.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **From Three Times Four to Twelve:** Show 3 labeled groups × 4 each (12 unique counter IDs) and a native 'Build product' action. Display 3×4=12 and label group count 3, group size 4, product 12.
     2. **Undo Multiplication by Sharing:** Re-use the 12-counter group model, not duplicate counters. Present total 12 and three groups, reveal four each; show exact 12÷3=4 then 'Check' 3×4=12, with all numerical roles named.
     3. **Another Division From the Same Product:** Change the story label to 'four in each', revealing three groups; annotate 12÷4=3, and check divisor 4 × quotient 3 = 12. Show both division facts next to 3×4=12 with their story labels.
     4. **Check a New Quotient:** Independent transfer board with 20 counters, target 5 groups. Child checks candidates 4 or 5 by computing 5×candidate (20 vs 25) with optional visual groups, then selects which matches ORIGINAL dividend twenty.
-    
+
     ## SECTION PLAN
-    
+
     ### Section 1 — From Three Times Four to Twelve
-    
+
     - **Instructional purpose/outcome:** Show that the same twelve-item model supports 3×4=12 and 12÷3=4 when the number of groups is known.
     - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
     - **Text Resource (currently renderable):** “Three equal groups have four counters in each. What multiplication equation names all twelve?”
@@ -694,9 +694,9 @@ production:
     - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
     - **Planned Note:** No new Note in this Section.
     - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-    
+
     ### Section 2 — Undo Multiplication by Sharing
-    
+
     - **Instructional purpose/outcome:** Use 4×3=12 and 12÷4=3 to illustrate a second valid inverse division relationship with explicitly named roles.
     - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
     - **Text Resource (currently renderable):** “If twelve are shared among three groups, how many are in each? Which multiplication checks it?”
@@ -709,9 +709,9 @@ production:
     - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
     - **Planned Note:** “To check an exact division, multiply divisor by quotient to get the dividend.” once the model and its numerical reasoning are explained (not yet wired).
     - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-    
+
     ### Section 3 — Another Division From the Same Product
-    
+
     - **Instructional purpose/outcome:** Check a proposed division result by multiplying quotient × divisor and comparing to the original dividend; reject an incorrect candidate.
     - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
     - **Text Resource (currently renderable):** “What if each group must contain four? How many groups of four can we make from twelve?”
@@ -724,9 +724,9 @@ production:
     - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
     - **Planned Note:** “One multiplication fact can help us read two connected exact division facts.” once the model and its numerical reasoning are explained (not yet wired).
     - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-    
+
     ### Section 4 — Check a New Quotient
-    
+
     - **Instructional purpose/outcome:** Use multiplication to find/check 20÷5=4 and state exactly why 5×4=20 verifies the division.
     - **Structure:** One `LessonSection_Config` with vertically ordered text, scene and markdown blocks.
     - **Text Resource (currently renderable):** “Is 20 ÷ 5 = 4 correct? What if someone suggests 20 ÷ 5 = 5?”
@@ -739,38 +739,38 @@ production:
     - **Accessibility and locale:** Screen reader announces full expression with operand and group units, keyboard/touch/switch controls support the same selection/reveal, semantic RTL number order preserved, real translated status and reduced motion.
     - **Planned Note:** “To check an exact division, multiply divisor by quotient to get the dividend.” once the model and its numerical reasoning are explained (not yet wired).
     - **Implementation dependency:** Proposed independent prop-free Scene placement; no invented `mode` prop, runtime Question, Note event, assessment state or private API.
-    
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - `Inverse Fact Family Machine` (specification preserved in config.yaml), self-contained specification for four independently initialized prop-free Scene placements, one per Lesson Section.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “To check an exact division, multiply divisor by quotient to get the dividend.” — proposed after a complete learner-accessible mathematical demonstration, not triggered by correctness alone.
     2. “One multiplication fact can help us read two connected exact division facts.” — proposed after a complete learner-accessible mathematical demonstration, not triggered by correctness alone.
-    
+
     These are **planned**, not implemented Note entities, API events, persistence, review sheets, scheduling or mastery evidence. Do not invent Note or Quiz runtime contracts.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Section 4 is a new numerical context with less default scaffolding and complete optional worked reveal. All learner selections/reasoning are formative instructional activities. Assessment Architect separately validates graded cases, numerical boundaries, answer interpretation and which Skill is assessed. The generic Quiz select-one adapter does not implement this bespoke Scene.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     All learner prompts, operation-role names, unit descriptions, feedback, controls, state labels, aria announcements and Notes need genuine translations for all supported locales, not silent English fallback. The expression and group model must be fully **operable through an accessible ordered state ledger**, with native keyboard/touch/switch controls, complete screen-reader descriptions, child-size targets, high contrast, focus, zoom/mobile and reduced-motion parity. RTL changes text/layout semantically while preserving mathematical operand order and divisor/quotient meaning. No audio/video/drag/speech requirement or remote math service. All selected-locale resources and deterministic interactions must work offline after download.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     The general `LessonSection_Config` renderer supports text, markdown and scene Resources; **Inverse Fact Family Machine is not implemented**. After editor approval, Scene Designer and Coding Agent build prop-free Scene components with own tests, real locale-context integration and offline verification. Generic image/audio/video/code Resource blocks are typed only and YouTube has no configured Resource type; unused here. Notes and spaced review/download/sync are separate work, not claimed implemented. No runtime Lesson, Question, Quiz or scoring code is delivered.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - `Methodologist Brief` (source preserved in config.yaml), newly drafted and requiring explicit approval.
     - [Canonical Skill source](../../../../data/skills/arithmetic/divide/skills/relationToMultiplication.data.ts), byte-identical to Mathematics source.
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Ensure the inverse-check procedure always compares the reconstructed product against the _original dividend_, not against the proposed quotient. One fact family is an example, not a claim to assess full division fluency.
     - Coordinator-owned generated taxonomy is intentionally left unchanged until PR integration.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft Content with a standalone Draft Scene specification, not implementation-ready until Methodologist Brief, Content and Scene have received separate editorial approval. Coding Agent, Scene Designer and Assessment Architect have distinct downstream responsibilities. No preexisting Lesson, Skill ID or Program narrative is changed.

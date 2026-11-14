@@ -1,745 +1,745 @@
 config:
-  id: "e081471b-3246-57dd-b78f-cc2beafac52f"
-  slug: "parenthesesChangeGrouping"
-  type: "lesson"
+  id: 'e081471b-3246-57dd-b78f-cc2beafac52f'
+  slug: 'parenthesesChangeGrouping'
+  type: 'lesson'
   skills:
-    - "18f96b1d-39bc-46fa-a0fc-2c7a5fee8d5c"
+    - '18f96b1d-39bc-46fa-a0fc-2c7a5fee8d5c'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "qm"
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
-      - "pl"
-      - "uk"
+      - 'en'
+      - 'qm'
+      - 'lt'
+      - 'lv'
+      - 'et'
+      - 'be'
+      - 'ka'
+      - 'kk'
+      - 'zh'
+      - 'hi'
+      - 'es'
+      - 'ar'
+      - 'fr'
+      - 'bn'
+      - 'pt'
+      - 'ur'
+      - 'id'
+      - 'de'
+      - 'ja'
+      - 'ko'
+      - 'tr'
+      - 'vi'
+      - 'ta'
+      - 'te'
+      - 'mr'
+      - 'ms'
+      - 'he'
+      - 'pl'
+      - 'uk'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Parentheses Change the Grouping"
+      en: 'Parentheses Change the Grouping'
   section:
     items:
       section1:
         config:
-          id: "e081471b-3246-57dd-b78f-000000000005"
-          slug: "section1"
-          type: "content"
+          id: 'e081471b-3246-57dd-b78f-000000000005'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Same numerals, two different calculations"
+              en: 'Same numerals, two different calculations'
             navigationLabel:
-              en: "Same numerals, two different calculations"
+              en: 'Same numerals, two different calculations'
           content:
             items:
               text1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000001"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-000000000001'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?"
+                      en: 'We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: 1. **`text` Resource:** “We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?” Invite an unscored prediction before showing a result."
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: 1. **`text` Resource:** “We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?” Invite an unscored prediction before showing a result.'
               scene1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000002"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e081471b-3246-57dd-b78f-000000000002'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?"
+                        instruction: 'We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Grouping Workbench — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** `Lesson Content` (source preserved in config.yaml), Sections 1–4; `Draft Brief` (source preserved in config.yaml).
                     **Implementation:** New proposed **prop-free** Scene entries; not React implementations.
-                    
+
                     ## Pedagogical purpose, mathematical contract and scope
-                    
+
                     Parentheses define a subexpression whose result is used by the outer expression. Changing a grouped subexpression **can** change the value but need not. The Workbench shows the exact original mathematical syntax throughout, highlighting the current subexpression but not moving or deleting parentheses invisibly. Operations are performed according to the specified grouping and conventional precedence. Nested groupings and mixed division are deferred beyond the core Grade 3 experience, not removed from the full Skill definition.
-                    
+
                     ## Entry A — two subtraction groupings (Section 1)
-                    
+
                     Display two complete expressions **(10 − 4) − 2** and **10 − (4 − 2)** side by side _within the self-contained Scene_; their outer Section remains vertically ordered. Prompt “Same numbers and signs: same result?” The learner selects the first grouped portion to inspect, then the outer stage. First: evaluate **10 − 4 = 6**, then **6 − 2 = 4**. Second: **4 − 2 = 2**, then **10 − 2 = 8**. Show both full calculations in a structured text ledger. For “same”: “One expression ends at four and the other at eight; the parenthesized group differs.” For “different”: “The brackets change which subtraction happens first.” Preserve minus operand order even if the viewport/layout is RTL.
-                    
+
                     ## Entry B — multiplication plus addition (Section 2)
-                    
+
                     Start with **2 × (3 + 4)**, represented as two equal groups of **seven** counters. Child predicts which operation comes first, reveals inside **3 + 4 = 7**, then outside **2 × 7 = 14**. Now compare the explicitly **unparenthesized** expression **2 × 3 + 4**. Under agreed precedence, it means **(2 × 3) + 4**, so **6 + 4 = 10**. The learner chooses among 10, 14, and an explanation. For 14 as unparenthesized result, reply “That would group three plus four first, but this version has no parentheses; multiplication comes before addition.” For 10: “Two times three makes six; then four more gives ten.” Numerically label each group; never visually imply that adding four occurs twice.
-                    
+
                     ## Entry C — different grouping, same total (Section 3)
-                    
+
                     Display **(2 + 3) + 4** versus **2 + (3 + 4)** with explicit controllable reveal steps. Left: **2+3=5**, **5+4=9**. Right: **3+4=7**, **2+7=9**. Ask whether parentheses _always_ force a different answer. Feedback for “always”: “Both groups were evaluated as written, but both totals are nine.” Feedback for “not always”: “Yes, parentheses still determine a step, even if two arrangements yield the same final value.” A display of nine counted objects can optionally reinforce this but is not the sole evidence.
-                    
+
                     ## Entry D — independent transfer (Section 4)
-                    
+
                     New expression **3 × (2 + 5)** with empty stage ledgers. Learner chooses the parenthesized group **2+5**, enters **7**, then uses 3×7=**21**. Distractor **11** comes from incorrectly treating expression as **3×2+5**; explain explicitly that 3×2+5 would be a _different written expression_. Show “first the group; next the outside multiplication.” Hints “Find what's inside ( )” then “How many groups of seven?” are optional, and “Reveal complete reasoning” is always available without a guess or score.
-                    
+
                     ## Data, interactive controls, and numeric invariants
-                    
+
                     Each entry owns fixed complete expression AST/parsed structure _as an implementation concern_; the editorial spec requires operands/operation/grouping to remain immutable unless a separate comparison expression is explicitly shown. It owns learner's prediction, current focused subexpression, revealed step results, hints and explanation visibility. The nested displayed segment must correspond exactly to the original parentheses; evaluate numeric values consistently. Do not infer “always different” based on the mere presence of parentheses. Never allow a learner choice to silently change the expression while marking it correct. Public Scene has **no props**, no shared state between Sections, no Question/Quiz score, API call or Note persistence.
-                    
+
                     ## Visual/audio, inclusive access and localization
-                    
+
                     The full expression is presented as text with an accessible verbal structure (e.g. “open parenthesis ten minus four close parenthesis, then minus two”), plus a stage ledger (“inside group”, “outside operation”). Highlighting may use shape/outline and labels, never only color. Every “Check inner group,” “Next step,” “Show comparison,” “Hint,” “Reset” control works by keyboard, touch and switches; optional animated grouping has a completely equivalent reduced-motion/static version. Screen readers announce original expression, selected group, computed interim value, next operation and final result. RTL must preserve mathematical formula syntax and operand order with appropriate bidi isolation; do not reverse the minus sign's direction or multiplication group count. Translate full mathematical readings, labels and error feedback genuinely for all supported locales, with accurate localized phrasing and no English fallback. Use visible focus, accessible target sizes, zoom/mobile reflow and offline-equivalent selected locale assets once downloaded; the current PWA implementation is not guaranteed.
-                    
+
                     ## Future acceptance scenarios
-                    
+
                     1. (10−4)−2=4; 10−(4−2)=8; equal numbers/signs but different grouping and values.
                     2. 2×(3+4)=14; 2×3+4=10, not 14, under standard multiplication-before-addition convention.
                     3. (2+3)+4=9 and 2+(3+4)=9; parentheses can preserve the result.
                     4. 3×(2+5)=21; 11 is the result of the different expression 3×2+5.
                     5. Hints, independent resets, accessible text ledgers and exact calculation checks have no score or dependency on previous Section state.
                     6. Keyboard, screen reader, RTL, zoom, reduced motion and offline-downloaded variants preserve the grouping and results.
-                    
+
                     ## Implementation and editorial gate
-                    
+
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
-                  productionNotes: "Unique Scene placement scene1 in Same numerals, two different calculations. Original: 2. **`scene` Resource (proposed):** `Grouping Workbench` (specification preserved in config.yaml), entry A. Highlight **(10 − 4)** as the first subexpression in the first card, evaluate 10−4=6, then show 6−2=**4**. On the second card highlight **(4 − 2)**, evaluate 4−2=2, then show 10−2=**8**. The child controls each reveal; no automatic jump over the grouped stage.. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene1 in Same numerals, two different calculations. Original: 2. **`scene` Resource (proposed):** `Grouping Workbench` (specification preserved in config.yaml), entry A. Highlight **(10 − 4)** as the first subexpression in the first card, evaluate 10−4=6, then show 6−2=**4**. On the second card highlight **(4 − 2)**, evaluate 4−2=2, then show 10−2=**8**. The child controls each reveal; no automatic jump over the grouped stage.. Status: provisional only.'
               text2:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000003"
-                  slug: "text2"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-000000000003'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "same result"
+                      en: 'same result'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: 3. **`text`, feedback:** If “same result”: “The digits match, but the part we work out first is different. Four and eight are not the same.” If “different”: “Yes: parentheses show different groups to calculate first.”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: 3. **`text`, feedback:** If “same result”: “The digits match, but the part we work out first is different. Four and eight are not the same.” If “different”: “Yes: parentheses show different groups to calculate first.”'
               markdown1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000004"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e081471b-3246-57dd-b78f-000000000004'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means."
+                      en: '**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: 4. **`markdown`:** “**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means.”"
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: 4. **`markdown`:** “**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means.”'
             order:
-              - "text1"
-              - "scene1"
-              - "text2"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'text2'
+              - 'markdown1'
         production:
-          purpose: "Same numerals, two different calculations"
+          purpose: 'Same numerals, two different calculations'
           pedagogicalIntent: |-
             _Purpose: reveal why grouping is mathematically significant._
-            
+
             1. **`text` Resource:** “We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?” Invite an unscored prediction before showing a result.
             2. **`scene` Resource (proposed):** `Grouping Workbench` (specification preserved in config.yaml), entry A. Highlight **(10 − 4)** as the first subexpression in the first card, evaluate 10−4=6, then show 6−2=**4**. On the second card highlight **(4 − 2)**, evaluate 4−2=2, then show 10−2=**8**. The child controls each reveal; no automatic jump over the grouped stage.
             3. **`text`, feedback:** If “same result”: “The digits match, but the part we work out first is different. Four and eight are not the same.” If “different”: “Yes: parentheses show different groups to calculate first.”
             4. **`markdown`:** “**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means.”
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section2:
         config:
-          id: "e081471b-3246-57dd-b78f-00000000000b"
-          slug: "section2"
-          type: "content"
+          id: 'e081471b-3246-57dd-b78f-00000000000b'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What happens when multiplication and addition meet?"
+              en: 'What happens when multiplication and addition meet?'
             navigationLabel:
-              en: "What happens when multiplication and addition meet?"
+              en: 'What happens when multiplication and addition meet?'
           content:
             items:
               text1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000006"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-000000000006'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?"
+                      en: 'The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: 1. **`text`:** “The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: 1. **`text`:** “The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?”'
               scene1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000007"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e081471b-3246-57dd-b78f-000000000007'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?"
+                        instruction: 'The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Grouping Workbench — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** `Lesson Content` (source preserved in config.yaml), Sections 1–4; `Draft Brief` (source preserved in config.yaml).
                     **Implementation:** New proposed **prop-free** Scene entries; not React implementations.
-                    
+
                     ## Pedagogical purpose, mathematical contract and scope
-                    
+
                     Parentheses define a subexpression whose result is used by the outer expression. Changing a grouped subexpression **can** change the value but need not. The Workbench shows the exact original mathematical syntax throughout, highlighting the current subexpression but not moving or deleting parentheses invisibly. Operations are performed according to the specified grouping and conventional precedence. Nested groupings and mixed division are deferred beyond the core Grade 3 experience, not removed from the full Skill definition.
-                    
+
                     ## Entry A — two subtraction groupings (Section 1)
-                    
+
                     Display two complete expressions **(10 − 4) − 2** and **10 − (4 − 2)** side by side _within the self-contained Scene_; their outer Section remains vertically ordered. Prompt “Same numbers and signs: same result?” The learner selects the first grouped portion to inspect, then the outer stage. First: evaluate **10 − 4 = 6**, then **6 − 2 = 4**. Second: **4 − 2 = 2**, then **10 − 2 = 8**. Show both full calculations in a structured text ledger. For “same”: “One expression ends at four and the other at eight; the parenthesized group differs.” For “different”: “The brackets change which subtraction happens first.” Preserve minus operand order even if the viewport/layout is RTL.
-                    
+
                     ## Entry B — multiplication plus addition (Section 2)
-                    
+
                     Start with **2 × (3 + 4)**, represented as two equal groups of **seven** counters. Child predicts which operation comes first, reveals inside **3 + 4 = 7**, then outside **2 × 7 = 14**. Now compare the explicitly **unparenthesized** expression **2 × 3 + 4**. Under agreed precedence, it means **(2 × 3) + 4**, so **6 + 4 = 10**. The learner chooses among 10, 14, and an explanation. For 14 as unparenthesized result, reply “That would group three plus four first, but this version has no parentheses; multiplication comes before addition.” For 10: “Two times three makes six; then four more gives ten.” Numerically label each group; never visually imply that adding four occurs twice.
-                    
+
                     ## Entry C — different grouping, same total (Section 3)
-                    
+
                     Display **(2 + 3) + 4** versus **2 + (3 + 4)** with explicit controllable reveal steps. Left: **2+3=5**, **5+4=9**. Right: **3+4=7**, **2+7=9**. Ask whether parentheses _always_ force a different answer. Feedback for “always”: “Both groups were evaluated as written, but both totals are nine.” Feedback for “not always”: “Yes, parentheses still determine a step, even if two arrangements yield the same final value.” A display of nine counted objects can optionally reinforce this but is not the sole evidence.
-                    
+
                     ## Entry D — independent transfer (Section 4)
-                    
+
                     New expression **3 × (2 + 5)** with empty stage ledgers. Learner chooses the parenthesized group **2+5**, enters **7**, then uses 3×7=**21**. Distractor **11** comes from incorrectly treating expression as **3×2+5**; explain explicitly that 3×2+5 would be a _different written expression_. Show “first the group; next the outside multiplication.” Hints “Find what's inside ( )” then “How many groups of seven?” are optional, and “Reveal complete reasoning” is always available without a guess or score.
-                    
+
                     ## Data, interactive controls, and numeric invariants
-                    
+
                     Each entry owns fixed complete expression AST/parsed structure _as an implementation concern_; the editorial spec requires operands/operation/grouping to remain immutable unless a separate comparison expression is explicitly shown. It owns learner's prediction, current focused subexpression, revealed step results, hints and explanation visibility. The nested displayed segment must correspond exactly to the original parentheses; evaluate numeric values consistently. Do not infer “always different” based on the mere presence of parentheses. Never allow a learner choice to silently change the expression while marking it correct. Public Scene has **no props**, no shared state between Sections, no Question/Quiz score, API call or Note persistence.
-                    
+
                     ## Visual/audio, inclusive access and localization
-                    
+
                     The full expression is presented as text with an accessible verbal structure (e.g. “open parenthesis ten minus four close parenthesis, then minus two”), plus a stage ledger (“inside group”, “outside operation”). Highlighting may use shape/outline and labels, never only color. Every “Check inner group,” “Next step,” “Show comparison,” “Hint,” “Reset” control works by keyboard, touch and switches; optional animated grouping has a completely equivalent reduced-motion/static version. Screen readers announce original expression, selected group, computed interim value, next operation and final result. RTL must preserve mathematical formula syntax and operand order with appropriate bidi isolation; do not reverse the minus sign's direction or multiplication group count. Translate full mathematical readings, labels and error feedback genuinely for all supported locales, with accurate localized phrasing and no English fallback. Use visible focus, accessible target sizes, zoom/mobile reflow and offline-equivalent selected locale assets once downloaded; the current PWA implementation is not guaranteed.
-                    
+
                     ## Future acceptance scenarios
-                    
+
                     1. (10−4)−2=4; 10−(4−2)=8; equal numbers/signs but different grouping and values.
                     2. 2×(3+4)=14; 2×3+4=10, not 14, under standard multiplication-before-addition convention.
                     3. (2+3)+4=9 and 2+(3+4)=9; parentheses can preserve the result.
                     4. 3×(2+5)=21; 11 is the result of the different expression 3×2+5.
                     5. Hints, independent resets, accessible text ledgers and exact calculation checks have no score or dependency on previous Section state.
                     6. Keyboard, screen reader, RTL, zoom, reduced motion and offline-downloaded variants preserve the grouping and results.
-                    
+
                     ## Implementation and editorial gate
-                    
+
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
-                  productionNotes: "Unique Scene placement scene1 in What happens when multiplication and addition meet?. Original: 2. **`scene` Resource (proposed):** Grouping Workbench entry B shows two trays of seven unit counters (or two labeled groups with seven each) and a nested stage readout **3 + 4 = 7**, then **2 × 7 = 14**. Learner can choose stage order and request explanation.. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene1 in What happens when multiplication and addition meet?. Original: 2. **`scene` Resource (proposed):** Grouping Workbench entry B shows two trays of seven unit counters (or two labeled groups with seven each) and a nested stage readout **3 + 4 = 7**, then **2 × 7 = 14**. Learner can choose stage order and request explanation.. Status: provisional only.'
               text2:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000008"
-                  slug: "text2"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-000000000008'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen."
+                      en: 'Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen.'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: 3. **`text`:** “Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen.”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: 3. **`text`:** “Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen.”'
               scene2:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000009"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'e081471b-3246-57dd-b78f-000000000009'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen."
+                        instruction: 'Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen.'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Grouping Workbench — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** `Lesson Content` (source preserved in config.yaml), Sections 1–4; `Draft Brief` (source preserved in config.yaml).
                     **Implementation:** New proposed **prop-free** Scene entries; not React implementations.
-                    
+
                     ## Pedagogical purpose, mathematical contract and scope
-                    
+
                     Parentheses define a subexpression whose result is used by the outer expression. Changing a grouped subexpression **can** change the value but need not. The Workbench shows the exact original mathematical syntax throughout, highlighting the current subexpression but not moving or deleting parentheses invisibly. Operations are performed according to the specified grouping and conventional precedence. Nested groupings and mixed division are deferred beyond the core Grade 3 experience, not removed from the full Skill definition.
-                    
+
                     ## Entry A — two subtraction groupings (Section 1)
-                    
+
                     Display two complete expressions **(10 − 4) − 2** and **10 − (4 − 2)** side by side _within the self-contained Scene_; their outer Section remains vertically ordered. Prompt “Same numbers and signs: same result?” The learner selects the first grouped portion to inspect, then the outer stage. First: evaluate **10 − 4 = 6**, then **6 − 2 = 4**. Second: **4 − 2 = 2**, then **10 − 2 = 8**. Show both full calculations in a structured text ledger. For “same”: “One expression ends at four and the other at eight; the parenthesized group differs.” For “different”: “The brackets change which subtraction happens first.” Preserve minus operand order even if the viewport/layout is RTL.
-                    
+
                     ## Entry B — multiplication plus addition (Section 2)
-                    
+
                     Start with **2 × (3 + 4)**, represented as two equal groups of **seven** counters. Child predicts which operation comes first, reveals inside **3 + 4 = 7**, then outside **2 × 7 = 14**. Now compare the explicitly **unparenthesized** expression **2 × 3 + 4**. Under agreed precedence, it means **(2 × 3) + 4**, so **6 + 4 = 10**. The learner chooses among 10, 14, and an explanation. For 14 as unparenthesized result, reply “That would group three plus four first, but this version has no parentheses; multiplication comes before addition.” For 10: “Two times three makes six; then four more gives ten.” Numerically label each group; never visually imply that adding four occurs twice.
-                    
+
                     ## Entry C — different grouping, same total (Section 3)
-                    
+
                     Display **(2 + 3) + 4** versus **2 + (3 + 4)** with explicit controllable reveal steps. Left: **2+3=5**, **5+4=9**. Right: **3+4=7**, **2+7=9**. Ask whether parentheses _always_ force a different answer. Feedback for “always”: “Both groups were evaluated as written, but both totals are nine.” Feedback for “not always”: “Yes, parentheses still determine a step, even if two arrangements yield the same final value.” A display of nine counted objects can optionally reinforce this but is not the sole evidence.
-                    
+
                     ## Entry D — independent transfer (Section 4)
-                    
+
                     New expression **3 × (2 + 5)** with empty stage ledgers. Learner chooses the parenthesized group **2+5**, enters **7**, then uses 3×7=**21**. Distractor **11** comes from incorrectly treating expression as **3×2+5**; explain explicitly that 3×2+5 would be a _different written expression_. Show “first the group; next the outside multiplication.” Hints “Find what's inside ( )” then “How many groups of seven?” are optional, and “Reveal complete reasoning” is always available without a guess or score.
-                    
+
                     ## Data, interactive controls, and numeric invariants
-                    
+
                     Each entry owns fixed complete expression AST/parsed structure _as an implementation concern_; the editorial spec requires operands/operation/grouping to remain immutable unless a separate comparison expression is explicitly shown. It owns learner's prediction, current focused subexpression, revealed step results, hints and explanation visibility. The nested displayed segment must correspond exactly to the original parentheses; evaluate numeric values consistently. Do not infer “always different” based on the mere presence of parentheses. Never allow a learner choice to silently change the expression while marking it correct. Public Scene has **no props**, no shared state between Sections, no Question/Quiz score, API call or Note persistence.
-                    
+
                     ## Visual/audio, inclusive access and localization
-                    
+
                     The full expression is presented as text with an accessible verbal structure (e.g. “open parenthesis ten minus four close parenthesis, then minus two”), plus a stage ledger (“inside group”, “outside operation”). Highlighting may use shape/outline and labels, never only color. Every “Check inner group,” “Next step,” “Show comparison,” “Hint,” “Reset” control works by keyboard, touch and switches; optional animated grouping has a completely equivalent reduced-motion/static version. Screen readers announce original expression, selected group, computed interim value, next operation and final result. RTL must preserve mathematical formula syntax and operand order with appropriate bidi isolation; do not reverse the minus sign's direction or multiplication group count. Translate full mathematical readings, labels and error feedback genuinely for all supported locales, with accurate localized phrasing and no English fallback. Use visible focus, accessible target sizes, zoom/mobile reflow and offline-equivalent selected locale assets once downloaded; the current PWA implementation is not guaranteed.
-                    
+
                     ## Future acceptance scenarios
-                    
+
                     1. (10−4)−2=4; 10−(4−2)=8; equal numbers/signs but different grouping and values.
                     2. 2×(3+4)=14; 2×3+4=10, not 14, under standard multiplication-before-addition convention.
                     3. (2+3)+4=9 and 2+(3+4)=9; parentheses can preserve the result.
                     4. 3×(2+5)=21; 11 is the result of the different expression 3×2+5.
                     5. Hints, independent resets, accessible text ledgers and exact calculation checks have no score or dependency on previous Section state.
                     6. Keyboard, screen reader, RTL, zoom, reduced motion and offline-downloaded variants preserve the grouping and results.
-                    
+
                     ## Implementation and editorial gate
-                    
+
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
-                  productionNotes: "Unique Scene placement scene2 in What happens when multiplication and addition meet?. Original: 4. **`scene` Resource (proposed):** Same entry in separate comparison mode, visibly labels the conventional grouping of **2 × 3 + 4** as **(2 × 3) + 4**; avoid claiming that a child can always choose any order. Feedback for 14 as unparenthesized result: “That would group 3+4 first, but no parentheses instruct us to do that here.”. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene2 in What happens when multiplication and addition meet?. Original: 4. **`scene` Resource (proposed):** Same entry in separate comparison mode, visibly labels the conventional grouping of **2 × 3 + 4** as **(2 × 3) + 4**; avoid claiming that a child can always choose any order. Feedback for 14 as unparenthesized result: “That would group 3+4 first, but no parentheses instruct us to do that here.”. Status: provisional only.'
               markdown1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-00000000000a"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e081471b-3246-57dd-b78f-00000000000a'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game."
+                      en: 'Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: 5. **`markdown`:** “Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game.”"
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: 5. **`markdown`:** “Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game.”'
             order:
-              - "text1"
-              - "scene1"
-              - "text2"
-              - "scene2"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'text2'
+              - 'scene2'
+              - 'markdown1'
         production:
-          purpose: "What happens when multiplication and addition meet?"
+          purpose: 'What happens when multiplication and addition meet?'
           pedagogicalIntent: |-
             _Purpose: make the conventional unparenthesized order explicit rather than implying every expression is left-to-right._
-            
+
             1. **`text`:** “The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?”
             2. **`scene` Resource (proposed):** Grouping Workbench entry B shows two trays of seven unit counters (or two labeled groups with seven each) and a nested stage readout **3 + 4 = 7**, then **2 × 7 = 14**. Learner can choose stage order and request explanation.
             3. **`text`:** “Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen.”
             4. **`scene` Resource (proposed):** Same entry in separate comparison mode, visibly labels the conventional grouping of **2 × 3 + 4** as **(2 × 3) + 4**; avoid claiming that a child can always choose any order. Feedback for 14 as unparenthesized result: “That would group 3+4 first, but no parentheses instruct us to do that here.”
             5. **`markdown`:** “Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game.”
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section3:
         config:
-          id: "e081471b-3246-57dd-b78f-000000000010"
-          slug: "section3"
-          type: "content"
+          id: 'e081471b-3246-57dd-b78f-000000000010'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Parentheses do not always change a value"
+              en: 'Parentheses do not always change a value'
             navigationLabel:
-              en: "Parentheses do not always change a value"
+              en: 'Parentheses do not always change a value'
           content:
             items:
               text1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-00000000000c"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-00000000000c'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "Are **(2 + 3) + 4** and **2 + (3 + 4)** different in value? Let's examine the groups."
                 production:
-                  purpose: "Learner-facing authored text resource"
+                  purpose: 'Learner-facing authored text resource'
                   specification: "Authored resource line: 1. **`text`:** “Are **(2 + 3) + 4** and **2 + (3 + 4)** different in value? Let's examine the groups.”"
               scene1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-00000000000d"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e081471b-3246-57dd-b78f-00000000000d'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
                         instruction: "Are **(2 + 3) + 4** and **2 + (3 + 4)** different in value? Let's examine the groups."
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Grouping Workbench — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** `Lesson Content` (source preserved in config.yaml), Sections 1–4; `Draft Brief` (source preserved in config.yaml).
                     **Implementation:** New proposed **prop-free** Scene entries; not React implementations.
-                    
+
                     ## Pedagogical purpose, mathematical contract and scope
-                    
+
                     Parentheses define a subexpression whose result is used by the outer expression. Changing a grouped subexpression **can** change the value but need not. The Workbench shows the exact original mathematical syntax throughout, highlighting the current subexpression but not moving or deleting parentheses invisibly. Operations are performed according to the specified grouping and conventional precedence. Nested groupings and mixed division are deferred beyond the core Grade 3 experience, not removed from the full Skill definition.
-                    
+
                     ## Entry A — two subtraction groupings (Section 1)
-                    
+
                     Display two complete expressions **(10 − 4) − 2** and **10 − (4 − 2)** side by side _within the self-contained Scene_; their outer Section remains vertically ordered. Prompt “Same numbers and signs: same result?” The learner selects the first grouped portion to inspect, then the outer stage. First: evaluate **10 − 4 = 6**, then **6 − 2 = 4**. Second: **4 − 2 = 2**, then **10 − 2 = 8**. Show both full calculations in a structured text ledger. For “same”: “One expression ends at four and the other at eight; the parenthesized group differs.” For “different”: “The brackets change which subtraction happens first.” Preserve minus operand order even if the viewport/layout is RTL.
-                    
+
                     ## Entry B — multiplication plus addition (Section 2)
-                    
+
                     Start with **2 × (3 + 4)**, represented as two equal groups of **seven** counters. Child predicts which operation comes first, reveals inside **3 + 4 = 7**, then outside **2 × 7 = 14**. Now compare the explicitly **unparenthesized** expression **2 × 3 + 4**. Under agreed precedence, it means **(2 × 3) + 4**, so **6 + 4 = 10**. The learner chooses among 10, 14, and an explanation. For 14 as unparenthesized result, reply “That would group three plus four first, but this version has no parentheses; multiplication comes before addition.” For 10: “Two times three makes six; then four more gives ten.” Numerically label each group; never visually imply that adding four occurs twice.
-                    
+
                     ## Entry C — different grouping, same total (Section 3)
-                    
+
                     Display **(2 + 3) + 4** versus **2 + (3 + 4)** with explicit controllable reveal steps. Left: **2+3=5**, **5+4=9**. Right: **3+4=7**, **2+7=9**. Ask whether parentheses _always_ force a different answer. Feedback for “always”: “Both groups were evaluated as written, but both totals are nine.” Feedback for “not always”: “Yes, parentheses still determine a step, even if two arrangements yield the same final value.” A display of nine counted objects can optionally reinforce this but is not the sole evidence.
-                    
+
                     ## Entry D — independent transfer (Section 4)
-                    
+
                     New expression **3 × (2 + 5)** with empty stage ledgers. Learner chooses the parenthesized group **2+5**, enters **7**, then uses 3×7=**21**. Distractor **11** comes from incorrectly treating expression as **3×2+5**; explain explicitly that 3×2+5 would be a _different written expression_. Show “first the group; next the outside multiplication.” Hints “Find what's inside ( )” then “How many groups of seven?” are optional, and “Reveal complete reasoning” is always available without a guess or score.
-                    
+
                     ## Data, interactive controls, and numeric invariants
-                    
+
                     Each entry owns fixed complete expression AST/parsed structure _as an implementation concern_; the editorial spec requires operands/operation/grouping to remain immutable unless a separate comparison expression is explicitly shown. It owns learner's prediction, current focused subexpression, revealed step results, hints and explanation visibility. The nested displayed segment must correspond exactly to the original parentheses; evaluate numeric values consistently. Do not infer “always different” based on the mere presence of parentheses. Never allow a learner choice to silently change the expression while marking it correct. Public Scene has **no props**, no shared state between Sections, no Question/Quiz score, API call or Note persistence.
-                    
+
                     ## Visual/audio, inclusive access and localization
-                    
+
                     The full expression is presented as text with an accessible verbal structure (e.g. “open parenthesis ten minus four close parenthesis, then minus two”), plus a stage ledger (“inside group”, “outside operation”). Highlighting may use shape/outline and labels, never only color. Every “Check inner group,” “Next step,” “Show comparison,” “Hint,” “Reset” control works by keyboard, touch and switches; optional animated grouping has a completely equivalent reduced-motion/static version. Screen readers announce original expression, selected group, computed interim value, next operation and final result. RTL must preserve mathematical formula syntax and operand order with appropriate bidi isolation; do not reverse the minus sign's direction or multiplication group count. Translate full mathematical readings, labels and error feedback genuinely for all supported locales, with accurate localized phrasing and no English fallback. Use visible focus, accessible target sizes, zoom/mobile reflow and offline-equivalent selected locale assets once downloaded; the current PWA implementation is not guaranteed.
-                    
+
                     ## Future acceptance scenarios
-                    
+
                     1. (10−4)−2=4; 10−(4−2)=8; equal numbers/signs but different grouping and values.
                     2. 2×(3+4)=14; 2×3+4=10, not 14, under standard multiplication-before-addition convention.
                     3. (2+3)+4=9 and 2+(3+4)=9; parentheses can preserve the result.
                     4. 3×(2+5)=21; 11 is the result of the different expression 3×2+5.
                     5. Hints, independent resets, accessible text ledgers and exact calculation checks have no score or dependency on previous Section state.
                     6. Keyboard, screen reader, RTL, zoom, reduced motion and offline-downloaded variants preserve the grouping and results.
-                    
+
                     ## Implementation and editorial gate
-                    
+
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
-                  productionNotes: "Unique Scene placement scene1 in Parentheses do not always change a value. Original: 2. **`scene` Resource (proposed):** Grouping Workbench entry C evaluates left grouping **2+3=5**, then 5+4=**9**. Right grouping **3+4=7**, then 2+7=**9**. Both equal nine. The child still follows the different grouping order and can explain that addition of these nonnegative counts produces the same total.. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene1 in Parentheses do not always change a value. Original: 2. **`scene` Resource (proposed):** Grouping Workbench entry C evaluates left grouping **2+3=5**, then 5+4=**9**. Right grouping **3+4=7**, then 2+7=**9**. Both equal nine. The child still follows the different grouping order and can explain that addition of these nonnegative counts produces the same total.. Status: provisional only.'
               text2:
                 config:
-                  id: "e081471b-3246-57dd-b78f-00000000000e"
-                  slug: "text2"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-00000000000e'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value."
+                      en: 'The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value.'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: 3. **`text`, feedback:** “The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value.”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: 3. **`text`, feedback:** “The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value.”'
               markdown1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-00000000000f"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e081471b-3246-57dd-b78f-00000000000f'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Work out the part inside parentheses first, then continue with the surrounding operation."
+                      en: 'Work out the part inside parentheses first, then continue with the surrounding operation.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: 4. **`markdown`:** Optional compact recognition Note concept: “Work out the part inside parentheses first, then continue with the surrounding operation.”"
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: 4. **`markdown`:** Optional compact recognition Note concept: “Work out the part inside parentheses first, then continue with the surrounding operation.”'
             order:
-              - "text1"
-              - "scene1"
-              - "text2"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'text2'
+              - 'markdown1'
         production:
-          purpose: "Parentheses do not always change a value"
+          purpose: 'Parentheses do not always change a value'
           pedagogicalIntent: |-
             _Purpose: avoid the converse misconception that any brackets force a different answer._
-            
+
             1. **`text`:** “Are **(2 + 3) + 4** and **2 + (3 + 4)** different in value? Let's examine the groups.”
             2. **`scene` Resource (proposed):** Grouping Workbench entry C evaluates left grouping **2+3=5**, then 5+4=**9**. Right grouping **3+4=7**, then 2+7=**9**. Both equal nine. The child still follows the different grouping order and can explain that addition of these nonnegative counts produces the same total.
             3. **`text`, feedback:** “The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value.”
             4. **`markdown`:** Optional compact recognition Note concept: “Work out the part inside parentheses first, then continue with the surrounding operation.”
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
       section4:
         config:
-          id: "e081471b-3246-57dd-b78f-000000000015"
-          slug: "section4"
-          type: "content"
+          id: 'e081471b-3246-57dd-b78f-000000000015'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Independent transfer: explain both stages"
+              en: 'Independent transfer: explain both stages'
             navigationLabel:
-              en: "Independent transfer: explain both stages"
+              en: 'Independent transfer: explain both stages'
           content:
             items:
               text1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000011"
-                  slug: "text1"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-000000000011'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Which answer matches **3 × (2 + 5)**? Explain what happens first."
+                      en: 'Which answer matches **3 × (2 + 5)**? Explain what happens first.'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: 1. **`text`:** “Which answer matches **3 × (2 + 5)**? Explain what happens first.”"
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: 1. **`text`:** “Which answer matches **3 × (2 + 5)**? Explain what happens first.”'
               scene1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000012"
-                  slug: "scene1"
-                  type: "scene"
+                  id: 'e081471b-3246-57dd-b78f-000000000012'
+                  slug: 'scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Which answer matches **3 × (2 + 5)**? Explain what happens first."
+                        instruction: 'Which answer matches **3 × (2 + 5)**? Explain what happens first.'
                 production:
-                  purpose: "Unimplemented proposed interactive Scene"
+                  purpose: 'Unimplemented proposed interactive Scene'
                   specification: |-
                     # Grouping Workbench — Scene Specification
-                    
+
                     **Status:** Provisional Draft awaiting explicit Methodologist/editor approval.
                     **Owner:** Educational Screenwriter.
                     **Parent:** `Lesson Content` (source preserved in config.yaml), Sections 1–4; `Draft Brief` (source preserved in config.yaml).
                     **Implementation:** New proposed **prop-free** Scene entries; not React implementations.
-                    
+
                     ## Pedagogical purpose, mathematical contract and scope
-                    
+
                     Parentheses define a subexpression whose result is used by the outer expression. Changing a grouped subexpression **can** change the value but need not. The Workbench shows the exact original mathematical syntax throughout, highlighting the current subexpression but not moving or deleting parentheses invisibly. Operations are performed according to the specified grouping and conventional precedence. Nested groupings and mixed division are deferred beyond the core Grade 3 experience, not removed from the full Skill definition.
-                    
+
                     ## Entry A — two subtraction groupings (Section 1)
-                    
+
                     Display two complete expressions **(10 − 4) − 2** and **10 − (4 − 2)** side by side _within the self-contained Scene_; their outer Section remains vertically ordered. Prompt “Same numbers and signs: same result?” The learner selects the first grouped portion to inspect, then the outer stage. First: evaluate **10 − 4 = 6**, then **6 − 2 = 4**. Second: **4 − 2 = 2**, then **10 − 2 = 8**. Show both full calculations in a structured text ledger. For “same”: “One expression ends at four and the other at eight; the parenthesized group differs.” For “different”: “The brackets change which subtraction happens first.” Preserve minus operand order even if the viewport/layout is RTL.
-                    
+
                     ## Entry B — multiplication plus addition (Section 2)
-                    
+
                     Start with **2 × (3 + 4)**, represented as two equal groups of **seven** counters. Child predicts which operation comes first, reveals inside **3 + 4 = 7**, then outside **2 × 7 = 14**. Now compare the explicitly **unparenthesized** expression **2 × 3 + 4**. Under agreed precedence, it means **(2 × 3) + 4**, so **6 + 4 = 10**. The learner chooses among 10, 14, and an explanation. For 14 as unparenthesized result, reply “That would group three plus four first, but this version has no parentheses; multiplication comes before addition.” For 10: “Two times three makes six; then four more gives ten.” Numerically label each group; never visually imply that adding four occurs twice.
-                    
+
                     ## Entry C — different grouping, same total (Section 3)
-                    
+
                     Display **(2 + 3) + 4** versus **2 + (3 + 4)** with explicit controllable reveal steps. Left: **2+3=5**, **5+4=9**. Right: **3+4=7**, **2+7=9**. Ask whether parentheses _always_ force a different answer. Feedback for “always”: “Both groups were evaluated as written, but both totals are nine.” Feedback for “not always”: “Yes, parentheses still determine a step, even if two arrangements yield the same final value.” A display of nine counted objects can optionally reinforce this but is not the sole evidence.
-                    
+
                     ## Entry D — independent transfer (Section 4)
-                    
+
                     New expression **3 × (2 + 5)** with empty stage ledgers. Learner chooses the parenthesized group **2+5**, enters **7**, then uses 3×7=**21**. Distractor **11** comes from incorrectly treating expression as **3×2+5**; explain explicitly that 3×2+5 would be a _different written expression_. Show “first the group; next the outside multiplication.” Hints “Find what's inside ( )” then “How many groups of seven?” are optional, and “Reveal complete reasoning” is always available without a guess or score.
-                    
+
                     ## Data, interactive controls, and numeric invariants
-                    
+
                     Each entry owns fixed complete expression AST/parsed structure _as an implementation concern_; the editorial spec requires operands/operation/grouping to remain immutable unless a separate comparison expression is explicitly shown. It owns learner's prediction, current focused subexpression, revealed step results, hints and explanation visibility. The nested displayed segment must correspond exactly to the original parentheses; evaluate numeric values consistently. Do not infer “always different” based on the mere presence of parentheses. Never allow a learner choice to silently change the expression while marking it correct. Public Scene has **no props**, no shared state between Sections, no Question/Quiz score, API call or Note persistence.
-                    
+
                     ## Visual/audio, inclusive access and localization
-                    
+
                     The full expression is presented as text with an accessible verbal structure (e.g. “open parenthesis ten minus four close parenthesis, then minus two”), plus a stage ledger (“inside group”, “outside operation”). Highlighting may use shape/outline and labels, never only color. Every “Check inner group,” “Next step,” “Show comparison,” “Hint,” “Reset” control works by keyboard, touch and switches; optional animated grouping has a completely equivalent reduced-motion/static version. Screen readers announce original expression, selected group, computed interim value, next operation and final result. RTL must preserve mathematical formula syntax and operand order with appropriate bidi isolation; do not reverse the minus sign's direction or multiplication group count. Translate full mathematical readings, labels and error feedback genuinely for all supported locales, with accurate localized phrasing and no English fallback. Use visible focus, accessible target sizes, zoom/mobile reflow and offline-equivalent selected locale assets once downloaded; the current PWA implementation is not guaranteed.
-                    
+
                     ## Future acceptance scenarios
-                    
+
                     1. (10−4)−2=4; 10−(4−2)=8; equal numbers/signs but different grouping and values.
                     2. 2×(3+4)=14; 2×3+4=10, not 14, under standard multiplication-before-addition convention.
                     3. (2+3)+4=9 and 2+(3+4)=9; parentheses can preserve the result.
                     4. 3×(2+5)=21; 11 is the result of the different expression 3×2+5.
                     5. Hints, independent resets, accessible text ledgers and exact calculation checks have no score or dependency on previous Section state.
                     6. Keyboard, screen reader, RTL, zoom, reduced motion and offline-downloaded variants preserve the grouping and results.
-                    
+
                     ## Implementation and editorial gate
-                    
+
                     Only generic Scene resources are known to render; this particular Workbench and its multilingual dictionaries are **proposed**. Coding Agent must verify the current Scene localization context and implement tested, accessible, self-contained no-props components after approvals. No runtime Lesson, Question, Quiz, scoring, backend, progress or Note event is implemented.
-                  productionNotes: "Unique Scene placement scene1 in Independent transfer: explain both stages. Original: 2. **`scene` Resource (proposed):** Workbench entry D starts with the symbolic expression and no grouped counter tray. The child chooses subexpression **2+5=7** and then **3×7=21**. Distractor **11** comes from performing **3×2+5=6+5=11** instead. Optional hints: “Look inside the parentheses” and “How many groups of seven?”. Status: provisional only."
+                  productionNotes: 'Unique Scene placement scene1 in Independent transfer: explain both stages. Original: 2. **`scene` Resource (proposed):** Workbench entry D starts with the symbolic expression and no grouped counter tray. The child chooses subexpression **2+5=7** and then **3×7=21**. Distractor **11** comes from performing **3×2+5=6+5=11** instead. Optional hints: “Look inside the parentheses” and “How many groups of seven?”. Status: provisional only.'
               text2:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000013"
-                  slug: "text2"
-                  type: "text"
+                  id: 'e081471b-3246-57dd-b78f-000000000013'
+                  slug: 'text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "You multiplied three by two before adding five. But this expression first groups two plus five."
+                      en: 'You multiplied three by two before adding five. But this expression first groups two plus five.'
                 production:
-                  purpose: "Learner-facing authored text resource"
-                  specification: "Authored resource line: 3. **`text`, feedback:** For 11: “You multiplied three by two before adding five. But this expression first groups two plus five.” For 21: “Three equal groups of seven make twenty-one.” For an invalid interim number, show the exact inner result before the total."
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line: 3. **`text`, feedback:** For 11: “You multiplied three by two before adding five. But this expression first groups two plus five.” For 21: “Three equal groups of seven make twenty-one.” For an invalid interim number, show the exact inner result before the total.'
               markdown1:
                 config:
-                  id: "e081471b-3246-57dd-b78f-000000000014"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: 'e081471b-3246-57dd-b78f-000000000014'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions."
+                      en: '**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions.'
                 production:
-                  purpose: "Learner-facing authored markdown resource"
-                  specification: "Authored resource line: 4. **`markdown`:** “**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions.”"
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line: 4. **`markdown`:** “**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions.”'
             order:
-              - "text1"
-              - "scene1"
-              - "text2"
-              - "markdown1"
+              - 'text1'
+              - 'scene1'
+              - 'text2'
+              - 'markdown1'
         production:
-          purpose: "Independent transfer: explain both stages"
+          purpose: 'Independent transfer: explain both stages'
           pedagogicalIntent: |-
             _Purpose: apply grouping to a fresh expression and expose an incorrect calculation path._
-            
+
             1. **`text`:** “Which answer matches **3 × (2 + 5)**? Explain what happens first.”
             2. **`scene` Resource (proposed):** Workbench entry D starts with the symbolic expression and no grouped counter tray. The child chooses subexpression **2+5=7** and then **3×7=21**. Distractor **11** comes from performing **3×2+5=6+5=11** instead. Optional hints: “Look inside the parentheses” and “How many groups of seven?”
             3. **`text`, feedback:** For 11: “You multiplied three by two before adding five. But this expression first groups two plus five.” For 21: “Three equal groups of seven make twenty-one.” For an invalid interim number, show the exact inner result before the total.
             4. **`markdown`:** “**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions.”
-          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Parentheses Change the Grouping — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: parenthesesChangeGrouping
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Show that parentheses make grouped operations explicit and may change a numerical expression's value. Start with same-operation subtraction groupings, then contrast multiplication with addition so parentheses are understood as an order rule rather than a decorative bracket.
-    
+
     ## Target audience
-    
+
     Children in **Grades 3** with variable literacy, numeric fluency and communication needs. Grade selection determines the proposed Lesson depth, not a ceiling on the canonical Skill's scope. Use concise language, concrete representations before symbolic abstraction when helpful, learner-controlled pacing, alternative response modes and relevant prerequisite refreshers.
-    
+
     ## Prerequisites
-    
+
     - Read and evaluate short numerical expressions with addition, subtraction and multiplication facts within 5×5.
     - Understand a binary operation's operands, and that 'start with ten, remove four, then remove two' is not necessarily the same as 'start with ten and remove the difference between four and two'.
     - Be introduced to the conventional precedence of multiplication over addition in an unparenthesized expression; if not ready, use the pre-teaching bridge before independent comparison.
-    
+
     ## Target Skills
-    
+
     - [parentheses.data.ts](../../../../data/skills/algebra/expressions/skills/parentheses.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify which part of an expression parentheses group, and evaluate that inside part before combining it with the remaining expression.
     - Calculate (10 − 4) − 2 = 4 and 10 − (4 − 2) = 8 and explain why the results differ.
     - Calculate 2 × (3 + 4) = 14 and compare with 2 × 3 + 4 = 10, explicitly stating the unparenthesized multiplication-before-addition convention.
     - Reject removal or movement of parentheses when it changes operand grouping, and verify by evaluating both expressions.
-    
+
     ## Essential subject matter
-    
+
     Parentheses specify a subexpression to evaluate before applying its result in the outer expression. (10 − 4) − 2 means first find 10−4=6, then 6−2=4. By contrast 10 − (4 − 2) means first find 4−2=2, then 10−2=8. Similarly, 2 × (3+4)=2×7=14, while the conventional unparenthesized 2×3+4 is (2×3)+4=10. Parentheses can be nested in advanced expressions, and valid evaluation must respect nesting and other precedence rules, but nested groups and mixed division are a later depth progression, not an instruction to redefine the canonical Skill. Use no unexplained arbitrary order or claims that all parentheses change a value: (2+3)+4 = 2+(3+4) = 9 is a valid contrast.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Use a two-stage process with labeled grouping, display two subtraction expressions with identical numerals, explain the computation inside the marked region first, then investigate an example involving multiplication and addition. Show a benign grouping with an unchanged result to avoid the misconception that brackets always change answers. End with an independent transfer question.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Always calculate left to right even when parentheses are present; subtract 4 from 10 before computing (4−2) in 10−(4−2); assume parentheses always change the result; treat 2×3+4 as 2×(3+4) in conventional notation. Explicitly defer nested parentheses, division precedence, fractions and variables beyond this introductory Grade 3 Lesson; report that full canonical Skill mastery spans a broader progression.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     The English copy is **editorial source text**, not ready multilingual Lesson content. Before implementation, translate every learner-visible explanation, prompt, accessible description, symbol reading and feedback accurately into all supported locales; no English placeholders, invented translation or silent fallback. RTL adaptations preserve numeric operand order, mathematical relations and temporal dependencies rather than indiscriminate mirroring. All diagram/picture meanings must exist in readable, screen-reader-accessible text. Provide keyboard, switch and touch alternatives to any manipulation; use distinct labels beyond colors, visible focus, zoom/reflow, reduced motion and no timed-only requirements. Offline completeness requires all selected locale strings, resources and interactive feedback after download; this is an implementation target, not a statement about currently working PWA support.
-    
+
     ## Sources and factual verification
-    
+
     - [parentheses.data.ts](../../../../data/skills/algebra/expressions/skills/parentheses.data.ts) — canonical Mathematics Skill Code and methodological scope, copied without changing UUIDs or localization.
     - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — separate Brief/Content/Scene ownership and explicit approval policy.
     - [Internationalization and Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) — locale and inclusive design requirements.
     - [Common Core State Standards for Mathematics](https://corestandards.org/mathematics-standards/) — optional age-sequence reference, not an assertion of Curriculum alignment.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. This standalone Lesson is Program-neutral and does not presume compatibility with an unreviewed Curriculum.
-    
+
     ## Open editorial decisions
-    
+
     - Confirm prerequisites for multiplication-before-addition convention and that advanced nested/combined operation evaluation is intentionally deferred to later lessons rather than claimed taught here.
     - Formal Methodologist/editor approval and required localized content remain outstanding; the `Content` (source preserved in config.yaml) and `Scene specification` (specification preserved in config.yaml) are **provisional Draft** parallel review artifacts, not approved Screenwriter deliverables.
     - The coordinator owns the shared Playground skills index and generated taxonomy. Domain-local copied Code does not itself prove that the generated taxonomy or all external editorial gates have been refreshed.
-    
+
     ## Methodologist handoff
-    
+
     **Draft pending explicit approval.** Following review, the Screenwriter may revise the independently authored Content and Scene specs. Do not infer mastery from a prediction, an on-screen interaction, a completed calculation or a voluntary explanation. No runtime Lesson, Question, Quiz, scoring, progress or Note API is created.
   purpose: "Show that parentheses make grouped operations explicit and may change a numerical expression's value. Start with same-operation subtraction groupings, then contrast multiplication with addition so parentheses are understood as an order rule rather than a decorative bracket."
-  audience: "See complete Grade, prerequisite and exclusions in methodology."
+  audience: 'See complete Grade, prerequisite and exclusions in methodology.'
   productionNotes: |-
     # Parentheses Change the Grouping — Lesson Content
-    
+
     **Screenwriter status:** Provisional Draft, pending explicit Methodologist approval.  
     **Source:** `Draft Methodologist Brief` (source preserved in config.yaml). **Program dependence:** None. **Runtime implementation:** None.  
     **Language:** English editorial source; genuine translations not yet created.
-    
+
     ## Instructional premise
-    
+
     Parentheses are not stickers placed around arbitrary digits: they specify which _subexpression_ is evaluated before another operation uses the result. Begin with subtraction because two visually similar notations can have different values, then investigate multiplication/addition precedence, and finally contrast a grouping that **does not change** the result. The brief intentionally covers introductory depth of a broader canonical Skill, not nested parentheses or the full order-of-operations curriculum.
-    
+
     ### Section 1 — Same numerals, two different calculations
-    
+
     _Purpose: reveal why grouping is mathematically significant._
-    
+
     1. **`text` Resource:** “We have two cards: **(10 − 4) − 2** and **10 − (4 − 2)**. They contain the same numbers and minus signs. Must they give the same answer?” Invite an unscored prediction before showing a result.
     2. **`scene` Resource (proposed):** `Grouping Workbench` (specification preserved in config.yaml), entry A. Highlight **(10 − 4)** as the first subexpression in the first card, evaluate 10−4=6, then show 6−2=**4**. On the second card highlight **(4 − 2)**, evaluate 4−2=2, then show 10−2=**8**. The child controls each reveal; no automatic jump over the grouped stage.
     3. **`text`, feedback:** If “same result”: “The digits match, but the part we work out first is different. Four and eight are not the same.” If “different”: “Yes: parentheses show different groups to calculate first.”
     4. **`markdown`:** “**Parentheses ( ) say: use the value of this whole group before the outer operation.** They can change what a calculation means.”
-    
+
     ### Section 2 — What happens when multiplication and addition meet?
-    
+
     _Purpose: make the conventional unparenthesized order explicit rather than implying every expression is left-to-right._
-    
+
     1. **`text`:** “The expression **2 × (3 + 4)** describes **two groups of seven**. First find three plus four, then multiply the result by two. What is the total?”
     2. **`scene` Resource (proposed):** Grouping Workbench entry B shows two trays of seven unit counters (or two labeled groups with seven each) and a nested stage readout **3 + 4 = 7**, then **2 × 7 = 14**. Learner can choose stage order and request explanation.
     3. **`text`:** “Now compare **2 × 3 + 4** with **no parentheses**. Under the usual convention multiplication is done before addition: **2 × 3 = 6**, then **6 + 4 = 10**. It is not equal to fourteen.”
     4. **`scene` Resource (proposed):** Same entry in separate comparison mode, visibly labels the conventional grouping of **2 × 3 + 4** as **(2 × 3) + 4**; avoid claiming that a child can always choose any order. Feedback for 14 as unparenthesized result: “That would group 3+4 first, but no parentheses instruct us to do that here.”
     5. **`markdown`:** “Parentheses come first. Without them, multiplication ordinarily comes before addition. The calculation rules are agreed mathematical notation, not a guessing game.”
-    
+
     ### Section 3 — Parentheses do not always change a value
-    
+
     _Purpose: avoid the converse misconception that any brackets force a different answer._
-    
+
     1. **`text`:** “Are **(2 + 3) + 4** and **2 + (3 + 4)** different in value? Let's examine the groups.”
     2. **`scene` Resource (proposed):** Grouping Workbench entry C evaluates left grouping **2+3=5**, then 5+4=**9**. Right grouping **3+4=7**, then 2+7=**9**. Both equal nine. The child still follows the different grouping order and can explain that addition of these nonnegative counts produces the same total.
     3. **`text`, feedback:** “The first groups are different, but both expressions total nine. Parentheses specify a grouping; they **may**, not **must**, change the value.”
     4. **`markdown`:** Optional compact recognition Note concept: “Work out the part inside parentheses first, then continue with the surrounding operation.”
-    
+
     ### Section 4 — Independent transfer: explain both stages
-    
+
     _Purpose: apply grouping to a fresh expression and expose an incorrect calculation path._
-    
+
     1. **`text`:** “Which answer matches **3 × (2 + 5)**? Explain what happens first.”
     2. **`scene` Resource (proposed):** Workbench entry D starts with the symbolic expression and no grouped counter tray. The child chooses subexpression **2+5=7** and then **3×7=21**. Distractor **11** comes from performing **3×2+5=6+5=11** instead. Optional hints: “Look inside the parentheses” and “How many groups of seven?”
     3. **`text`, feedback:** For 11: “You multiplied three by two before adding five. But this expression first groups two plus five.” For 21: “Three equal groups of seven make twenty-one.” For an invalid interim number, show the exact inner result before the total.
     4. **`markdown`:** “**Recall:** Parentheses tell you what group to calculate first. Preserve all signs and operands. Compare results only after evaluating the complete expressions.”
-    
+
     ## Coverage limits, accessibility and production
-    
+
     The canonical `parentheses` Skill includes grouping alongside operation precedence and can extend to nesting. This is an introductory **Grade 3 Lesson**; **nested parentheses, division precedence and variable expressions are deferred**, not redefined or declared mastered. Children need the explicit prerequisite that multiplication precedes addition when parentheses do not override it. Each Section is a single vertical ordered set of supported `text`/`markdown` plus **proposed** `scene` Resources. `Grouping Workbench` (specification preserved in config.yaml) is not a runtime component. None of the learner choices is a scored Question or Quiz.
-    
+
     Provide accessible literal expression read-out, explicit identification of the grouped operands, step-by-step numeric ledger and screen-reader equivalence to all highlighted mathematics. RTL must keep subtraction order and grouping location, not invert expressions. Keyboard, switch and touch users select stages and reveal totals without dragging; reduced-motion static steps contain identical facts, no animation-only explanation. Localize every speech/readout, formula label, hint and feedback for all supported languages with no English fallback. Ensure zoom/mobile reflow, visible focus, color-independent highlights, and complete offline operation after a future download—not an assertion of implemented PWA support. Brief is still Draft and Content **provisional**.
