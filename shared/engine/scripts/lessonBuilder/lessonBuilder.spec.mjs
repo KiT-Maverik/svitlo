@@ -498,3 +498,20 @@ test('conflicting previously authored specifications are protected before writin
     assert.equal(fs.readFileSync(spec, 'utf8'), '# Edited by author');
   }));
 
+test('single YAML config.id determines the Lesson UUID output path without checking input folder names', () =>
+  fixture(f => {
+    const staged = path.join(f.root, 'content/playground/staging/config.yaml');
+    const authoring = yaml.parse(fs.readFileSync(path.join(f.lesson, 'config.yaml'), 'utf8'));
+    const ownId = id(65);
+    authoring.config.id = ownId;
+    authoring.config.slug = 'stagedLesson';
+    fs.mkdirSync(path.dirname(staged), { recursive: true });
+    fs.writeFileSync(staged, yaml.stringify(authoring));
+    const expected = path.join(f.root, 'content/playground/data/lessons', ownId.at(-1), ownId);
+    assert.equal(runOne(staged, 'generate', f.root).lessonId, ownId);
+    assert(fs.existsSync(path.join(expected, 'stagedLesson.data.ts')));
+    assert(!fs.existsSync(path.join(path.dirname(staged), 'stagedLesson.data.ts')));
+    assert.equal(runOne(staged, 'generate', f.root).skipped, true);
+    assert.equal(runOne(staged, 'check', f.root).changed, 0);
+  }));
+
