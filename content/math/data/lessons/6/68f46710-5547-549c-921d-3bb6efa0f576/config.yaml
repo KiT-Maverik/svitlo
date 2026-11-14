@@ -1,0 +1,592 @@
+config:
+  id: "68f46710-5547-549c-921d-3bb6efa0f576"
+  slug: "comparingLengths"
+  type: "lesson"
+  skills: ["49a806ae-35f5-4e85-afad-94418ac02e10"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Which Is Longer? Compare Fairly"
+  section:
+    items:
+      section1:
+        config:
+          id: "02fedcdd-e72a-54c2-8dad-5cddc4230f7c"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A Tricky Picture"
+            navigationLabel:
+              en: "A Tricky Picture"
+          content:
+            items:
+              text1:
+                config:
+                  id: "624f0a7c-ddeb-5393-a389-8a7c07638fe1"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Show two straight ribbons: A length 6 equal grid intervals starting at x=2, B length 5 starting at x=5. B's right tip is farther right, but A is longer. Ask for a prediction."
+                production:
+                  purpose: "Source prompt or feedback"
+              scene1:
+                config:
+                  id: "ea868d85-2655-5c4c-999e-0d858a407ab2"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Show two straight ribbons: A length 6 equal grid intervals starting at x=2, B length 5 starting at x=5. B's right tip is farther right, but A is longer. Ask for a prediction."
+                production:
+                  specification: |
+                    # Fair Length Comparator — Scene Specification
+                    
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+                    
+                    ## Pedagogical purpose
+                    
+                    Move the start, not the finish: compare lengths from a shared zero. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+                    
+                    ## Domain model and immutable rules
+                    
+                    Lengths represented by straight segments measured along one horizontal axis. Position and stroke width never alter geometric span. Reference strip is invariant.
+                    
+                    ## Interaction design and state transitions
+                    
+                    - Objects/state: unaligned prediction, starts aligned, thick/thin toggle, equal preset, indirect comparison transfer strip, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+                    
+                    ## Exact acceptance scenarios
+                    
+                    1. A six-unit ribbon starting at x=2 is longer than B five-unit ribbon starting at x=5.
+                    2. Thicker three-unit segment remains shorter than thinner five-unit segment.
+                    3. Common comparison strip retains identical span between objects.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+                    
+                    ## Visual and media specification
+                    
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+                    
+                    ## Localization and inclusive interaction
+                    
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+                    
+                    ## Review and handoff
+                    
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: "A Tricky Picture"
+                  productionNotes: "Source Scene fairLengthComparator.scene-spec.md; independent placement for A Tricky Picture. Variant/feedback retained under parent Section productionNotes."
+              markdown1:
+                config:
+                  id: "c04bb406-bac6-5171-baae-3406206a275b"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Explain that far-right placement alone cannot tell length: A spans six intervals, B five. Align their starting ends."
+                production:
+                  purpose: "Source explanatory copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "A Tricky Picture"
+          productionNotes: |-
+            **Purpose:** Elicit prior intuition and create an intelligible problem.
+            
+            1. **text (existing):** Show two straight ribbons: A length 6 equal grid intervals starting at x=2, B length 5 starting at x=5. B's right tip is farther right, but A is longer. Ask for a prediction.
+            2. **scene (type exists; proposed instance):** Work within Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** Explain that far-right placement alone cannot tell length: A spans six intervals, B five. Align their starting ends.
+            
+            **Explanatory feedback and recovery:** If child chooses B: 'Its tip is farther right because it starts later. Line up the starts first.'
+            
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+      section2:
+        config:
+          id: "fffed824-e62a-532f-8aad-5824c7231435"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Make the Comparison Fair"
+            navigationLabel:
+              en: "Make the Comparison Fair"
+          content:
+            items:
+              text1:
+                config:
+                  id: "3d33a5e9-b32c-5072-be6e-25e9f2390cd4"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "In the comparator, press 'Align starts' to move both ribbons to one origin; change ribbon thickness and vertical position without changing endpoint separation."
+                production:
+                  purpose: "Source prompt or feedback"
+              scene1:
+                config:
+                  id: "95d7f3ca-e843-551b-84ef-73cab616d64d"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "In the comparator, press 'Align starts' to move both ribbons to one origin; change ribbon thickness and vertical position without changing endpoint separation."
+                production:
+                  specification: |
+                    # Fair Length Comparator — Scene Specification
+                    
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+                    
+                    ## Pedagogical purpose
+                    
+                    Move the start, not the finish: compare lengths from a shared zero. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+                    
+                    ## Domain model and immutable rules
+                    
+                    Lengths represented by straight segments measured along one horizontal axis. Position and stroke width never alter geometric span. Reference strip is invariant.
+                    
+                    ## Interaction design and state transitions
+                    
+                    - Objects/state: unaligned prediction, starts aligned, thick/thin toggle, equal preset, indirect comparison transfer strip, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+                    
+                    ## Exact acceptance scenarios
+                    
+                    1. A six-unit ribbon starting at x=2 is longer than B five-unit ribbon starting at x=5.
+                    2. Thicker three-unit segment remains shorter than thinner five-unit segment.
+                    3. Common comparison strip retains identical span between objects.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+                    
+                    ## Visual and media specification
+                    
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+                    
+                    ## Localization and inclusive interaction
+                    
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+                    
+                    ## Review and handoff
+                    
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: "Make the Comparison Fair"
+                  productionNotes: "Source Scene fairLengthComparator.scene-spec.md; independent placement for Make the Comparison Fair. Variant/feedback retained under parent Section productionNotes."
+              markdown1:
+                config:
+                  id: "317570f3-e4ff-5ea0-abd7-f0f3a48f176e"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Reveal A six intervals and B five; A longer by one interval. Add 4 vs 4 equal case, and thick 3 vs thin 5 case."
+                production:
+                  purpose: "Source explanatory copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Make the Comparison Fair"
+          productionNotes: |-
+            **Purpose:** Strengthen the concept by testing a controlled contrast.
+            
+            1. **text (existing):** In the comparator, press 'Align starts' to move both ribbons to one origin; change ribbon thickness and vertical position without changing endpoint separation.
+            2. **scene (type exists; proposed instance):** Work within Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** Reveal A six intervals and B five; A longer by one interval. Add 4 vs 4 equal case, and thick 3 vs thin 5 case.
+            
+            **Explanatory feedback and recovery:** For thick 3 vs thin 5: 'Width is not length. Look from one end to the other.'
+            
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+      section3:
+        config:
+          id: "00fed9b7-e52a-519c-8bad-59b7c62312a2"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Compare Without Moving Objects"
+            navigationLabel:
+              en: "Compare Without Moving Objects"
+          content:
+            items:
+              text1:
+                config:
+                  id: "5965e49a-b1e9-5281-9aa0-649abad6b7f3"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Show fixed book edge and shelf edge in different locations. Learner transfers a single comparison strip from book edge to shelf edge, keeping its length unchanged."
+                production:
+                  purpose: "Source prompt or feedback"
+              scene1:
+                config:
+                  id: "7b0de053-4fe8-5c52-aa25-605360f1d32c"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Show fixed book edge and shelf edge in different locations. Learner transfers a single comparison strip from book edge to shelf edge, keeping its length unchanged."
+                production:
+                  specification: |
+                    # Fair Length Comparator — Scene Specification
+                    
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+                    
+                    ## Pedagogical purpose
+                    
+                    Move the start, not the finish: compare lengths from a shared zero. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+                    
+                    ## Domain model and immutable rules
+                    
+                    Lengths represented by straight segments measured along one horizontal axis. Position and stroke width never alter geometric span. Reference strip is invariant.
+                    
+                    ## Interaction design and state transitions
+                    
+                    - Objects/state: unaligned prediction, starts aligned, thick/thin toggle, equal preset, indirect comparison transfer strip, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+                    
+                    ## Exact acceptance scenarios
+                    
+                    1. A six-unit ribbon starting at x=2 is longer than B five-unit ribbon starting at x=5.
+                    2. Thicker three-unit segment remains shorter than thinner five-unit segment.
+                    3. Common comparison strip retains identical span between objects.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+                    
+                    ## Visual and media specification
+                    
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+                    
+                    ## Localization and inclusive interaction
+                    
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+                    
+                    ## Review and handoff
+                    
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: "Compare Without Moving Objects"
+                  productionNotes: "Source Scene fairLengthComparator.scene-spec.md; independent placement for Compare Without Moving Objects. Variant/feedback retained under parent Section productionNotes."
+              markdown1:
+                config:
+                  id: "b057f378-9098-547b-aaba-7378ae69aa51"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Explain: 'The same strip reaches beyond the shorter object but not the longer one.' Include equal length case."
+                production:
+                  purpose: "Source explanatory copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Compare Without Moving Objects"
+          productionNotes: |-
+            **Purpose:** Strengthen the concept by testing a controlled contrast.
+            
+            1. **text (existing):** Show fixed book edge and shelf edge in different locations. Learner transfers a single comparison strip from book edge to shelf edge, keeping its length unchanged.
+            2. **scene (type exists; proposed instance):** Work within Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** Explain: 'The same strip reaches beyond the shorter object but not the longer one.' Include equal length case.
+            
+            **Explanatory feedback and recovery:** If learner changes strip length: 'Then it is not the same reference. Reset the strip and use it for both.'
+            
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+      section4:
+        config:
+          id: "fdfed4fe-e42a-5009-88ad-54fec1230ac3"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Transfer"
+            navigationLabel:
+              en: "Transfer"
+          content:
+            items:
+              text1:
+                config:
+                  id: "477e278f-22b9-5338-88b8-a78f2cb325c6"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Show two offset drawn paths with endpoints labeled and ask for a reasoned comparison. Child can select align or use reference strip and verbalize why."
+                production:
+                  purpose: "Source prompt or feedback"
+              scene1:
+                config:
+                  id: "6fd73bb0-0acd-5c69-9eee-bbb00daa29d7"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Show two offset drawn paths with endpoints labeled and ask for a reasoned comparison. Child can select align or use reference strip and verbalize why."
+                production:
+                  specification: |
+                    # Fair Length Comparator — Scene Specification
+                    
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (embedded in this Lesson config.yaml); Methodologist Brief (embedded in this Lesson config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+                    
+                    ## Pedagogical purpose
+                    
+                    Move the start, not the finish: compare lengths from a shared zero. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+                    
+                    ## Domain model and immutable rules
+                    
+                    Lengths represented by straight segments measured along one horizontal axis. Position and stroke width never alter geometric span. Reference strip is invariant.
+                    
+                    ## Interaction design and state transitions
+                    
+                    - Objects/state: unaligned prediction, starts aligned, thick/thin toggle, equal preset, indirect comparison transfer strip, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+                    
+                    ## Exact acceptance scenarios
+                    
+                    1. A six-unit ribbon starting at x=2 is longer than B five-unit ribbon starting at x=5.
+                    2. Thicker three-unit segment remains shorter than thinner five-unit segment.
+                    3. Common comparison strip retains identical span between objects.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+                    
+                    ## Visual and media specification
+                    
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+                    
+                    ## Localization and inclusive interaction
+                    
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+                    
+                    ## Review and handoff
+                    
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: "Transfer"
+                  productionNotes: "Source Scene fairLengthComparator.scene-spec.md; independent placement for Transfer. Variant/feedback retained under parent Section productionNotes."
+              markdown1:
+                config:
+                  id: "5040189d-4223-5782-8aa2-989dc77c0534"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Feedback names the method, not only the longer object. Offer an independent 'which is longer and why' reflection."
+                production:
+                  purpose: "Source explanatory copy"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Transfer"
+          productionNotes: |-
+            **Purpose:** Transfer the new reasoning independently.
+            
+            1. **text (existing):** Show two offset drawn paths with endpoints labeled and ask for a reasoned comparison. Child can select align or use reference strip and verbalize why.
+            2. **scene (type exists; proposed instance):** Offer a fresh preset or an accessible textual equivalent in Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** Feedback names the method, not only the longer object. Offer an independent 'which is longer and why' reflection.
+            
+            **Explanatory feedback and recovery:** When the prediction differs, show the comparison and why, allow another attempt, and offer a descriptive hint without score or penalty.
+            
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+    order: ["section1","section2","section3","section4"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Which Is Longer? Compare Fairly — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: comparingLengths
+    Methodologist status: Draft — not approved
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Move the start, not the finish: compare lengths from a shared zero. This Lesson is an autonomous introduction to its assigned canonical competency; it must be valuable without a Program storyline or assessments.
+    
+    ## Target audience and depth
+    
+    **Primary grade: 1** (approximate ages 6–7). Early or mixed readers, multilingual learners, keyboard/switch users, low-vision users and learners who need concrete examples must receive equivalent access. **Instructional depth:** Direct endpoint alignment, equal cases, then indirect comparison with a transferable comparison strip. No ruler markings or metric conversions.
+    
+    ## Prerequisite knowledge and Skills
+    
+    Understand longer/shorter in everyday speech; identify the two ends of a straight object; match objects by a common starting mark.
+    
+    - No formal prerequisite Skill ID is claimed; foundational experiences are described above.
+    
+    ## Target Skills
+    
+    - [compareLength.data.ts](../../../../data/skills/measurement/length/skills/compareLength.data.ts)
+    
+    ## Expected observable learning outcomes
+    
+    - Compare two lengths by placing one endpoint of each at the same starting position.
+    - Identify the longer, shorter or equal length despite vertical offsets and different line thicknesses.
+    - Use one fixed reference strip to compare two objects which cannot be laid side by side.
+    
+    ## Essential mathematical ideas
+    
+    Length is the distance between endpoints along a straight object or segment. For valid direct comparison, align one endpoint; indirect comparison requires the same unchanged reference unit or transferable measure.
+    
+    ## Conceptual progression
+    
+    Start with a plausible misconception, invite a prediction, make the relevant invariant or comparison observable, provide controlled learner manipulation, explain counterexamples, and finish with a fresh independent application. Short formative responses are not proof of mastery.
+    
+    ## Common misconceptions and boundaries
+    
+    Misleading displaced starts; thicker line mistaken for longer; counting visual pixels while ignoring alignment; using different reference strips.
+    
+    Exclude unneeded symbolic formalism and unrelated geometry or measurement topics. Do not change any Skill definition to match these illustrations.
+    
+    ## Localization, accessibility and offline
+    
+    All proposed language must be authentically translated for supported locales, including meaningful viewpoint and spatial-direction semantics in LTR/RTL; numerical or geometric truth must not be mirrored incorrectly. Visual manipulation needs a fully equivalent keyboard and screen-reader path, visible focus, adequate touch targets, no color-only cues, no timers, reduced motion, and WCAG 2.2 AA design verification. All assets and feedback must be available offline after download; these are **requirements, not implementation claims**.
+    
+    ## Sources and verification
+    
+    - Approved canonical Mathematics Skill file(s): linked above; their IDs, translations and methodological meaning must remain unchanged.
+    - [Playground taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) is a generated reference and requires coordinator regeneration after integration.
+    - [Studio Lesson editorial workflow](../../../../../../studio/docs/architecture/lesson-editorial-document.md) (repository-level path should be checked during link validation).
+    - Mathematics follows the exact models described above; there are no national Curriculum alignment claims.
+    
+    ## Editorial decisions
+    
+    - Methodologist approval is pending. Content and Scene below are **provisional Drafts by explicit batch authorization**, not a passed approval gate.
+    - Confirm chosen grade and instructional depth before release.
+    - No runtime Lesson, Question, Quiz, scoring or persistence is authorized.
+    
+    ## Handoff
+    
+    Screenwriter may provisionally prepare the instructional journey subject to Methodologist review. Final content approvals, design and implementation remain separate.
+  productionNotes: |
+    # Which Is Longer? Compare Fairly — Lesson Content
+    
+    **Editorial status: Provisional Draft — pending Methodologist approval.**
+    **Lesson:** `content/playground/Data/Lessons/1/comparingLengths/`. **Audience:** Grade 1 (ages 6–7). **Program dependence:** None.
+    **Methodology:** Draft Methodologist Brief (embedded in this Lesson config.yaml). **Target Skills:** exactly the linked canonical Skill(s) in that Brief; no inferred UUID or runtime registration.
+    
+    ## Instructional premise
+    
+    Move the start, not the finish: compare lengths from a shared zero. Make the learner predict, manipulate an accurate model, inspect what stays constant, articulate the reason, and transfer to new objects. This is explanatory learning, not a graded quiz or a sequence of arbitrary clicks. Progress is self-paced. Proposed custom Scene: Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node).
+    
+    ## Ordered Section plan
+    
+    Each Section is a single-column ordered Resource plan. **`text` and `markdown`** are existing typed blocks; **`scene`** is an existing block type but the Fair Length Comparator component itself is **not implemented**. Actual rendering and all optional audio are subject to coding-agent verification. No unsupported Resource types or APIs are assumed.
+    
+    ### Section 1 — A Tricky Picture
+    
+    **Purpose:** Elicit prior intuition and create an intelligible problem.
+    
+    1. **text (existing):** Show two straight ribbons: A length 6 equal grid intervals starting at x=2, B length 5 starting at x=5. B's right tip is farther right, but A is longer. Ask for a prediction.
+    2. **scene (type exists; proposed instance):** Work within Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+    3. **markdown (existing):** Explain that far-right placement alone cannot tell length: A spans six intervals, B five. Align their starting ends.
+    
+    **Explanatory feedback and recovery:** If child chooses B: 'Its tip is farther right because it starts later. Line up the starts first.'
+    
+    **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+    
+    ### Section 2 — Make the Comparison Fair
+    
+    **Purpose:** Strengthen the concept by testing a controlled contrast.
+    
+    1. **text (existing):** In the comparator, press 'Align starts' to move both ribbons to one origin; change ribbon thickness and vertical position without changing endpoint separation.
+    2. **scene (type exists; proposed instance):** Work within Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+    3. **markdown (existing):** Reveal A six intervals and B five; A longer by one interval. Add 4 vs 4 equal case, and thick 3 vs thin 5 case.
+    
+    **Explanatory feedback and recovery:** For thick 3 vs thin 5: 'Width is not length. Look from one end to the other.'
+    
+    **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+    
+    ### Section 3 — Compare Without Moving Objects
+    
+    **Purpose:** Strengthen the concept by testing a controlled contrast.
+    
+    1. **text (existing):** Show fixed book edge and shelf edge in different locations. Learner transfers a single comparison strip from book edge to shelf edge, keeping its length unchanged.
+    2. **scene (type exists; proposed instance):** Work within Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+    3. **markdown (existing):** Explain: 'The same strip reaches beyond the shorter object but not the longer one.' Include equal length case.
+    
+    **Explanatory feedback and recovery:** If learner changes strip length: 'Then it is not the same reference. Reset the strip and use it for both.'
+    
+    **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+    
+    ### Section 4 — Transfer
+    
+    **Purpose:** Transfer the new reasoning independently.
+    
+    1. **text (existing):** Show two offset drawn paths with endpoints labeled and ask for a reasoned comparison. Child can select align or use reference strip and verbalize why.
+    2. **scene (type exists; proposed instance):** Offer a fresh preset or an accessible textual equivalent in Fair Length Comparator (Scene specification fairLengthComparator embedded in the corresponding Scene node). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+    3. **markdown (existing):** Feedback names the method, not only the longer object. Offer an independent 'which is longer and why' reflection.
+    
+    **Explanatory feedback and recovery:** When the prediction differs, show the comparison and why, allow another attempt, and offer a descriptive hint without score or penalty.
+    
+    **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+    
+    ## Independent application and feedback principles
+    
+    Invite the learner to explain the key reason in a new everyday example, not only repeat the original picture. A plausible wrong answer must receive a _specific mathematical explanation_ rather than a red mark. Avoid asserting mastery from one voluntary interaction. No Question/Quiz/scoring implementation is proposed in this batch.
+    
+    ## Future recall cue (not implemented)
+    
+    “Move the start, not the finish: compare lengths from a shared zero.” Suggested trigger: after the learner observes the decisive contrast in Section 2. This is a **proposed Note cue only**; no persistence, unlock event or runtime Note contract is invented.
+    
+    ## Editorial/implementation boundary
+    
+    All texts, labels, model alternatives, explanations, optional sound transcripts and Scene states require authentic supported-locale translation. Semantic RTL, mobile operation, WCAG 2.2 AA, reduced motion and post-download offline equivalence are acceptance requirements, not verified features. A standalone prop-free Scene must be designed and coded later. The Lesson is independent of Curriculum/Program, has no specified runtime lesson data, scored Questions, or analytics.
