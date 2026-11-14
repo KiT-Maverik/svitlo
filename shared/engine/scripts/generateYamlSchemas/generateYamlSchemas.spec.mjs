@@ -31,7 +31,16 @@ test('all current polymorphic types have a concrete exported define* factory', (
     assert.equal(typeof yamlFactoryByType[type], 'string', 'no factory for ' + type);
     assert.equal(typeof require('../../dist/build.js')[yamlFactoryByType[type]], 'function', type);
   }
-  for (const type of ['lesson', 'course', 'module', 'chapter', 'episode', 'flashcard', 'checkpointItem', 'carouselSlide']) {
+  for (const type of [
+    'lesson',
+    'course',
+    'module',
+    'chapter',
+    'episode',
+    'flashcard',
+    'checkpointItem',
+    'carouselSlide',
+  ]) {
     assert.equal(typeof require('../../dist/build.js')[yamlFactoryByType[type]], 'function', type);
   }
 });

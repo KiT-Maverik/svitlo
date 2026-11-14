@@ -23,7 +23,7 @@ Generated, reviewable JSON Schemas are written to
 `shared/engine/yaml-schemas/{contentBlock,section,question,flashcard,lesson,episode,course,courseOverrides}.schema.json`.
 The `--check` command is read-only and detects stale/absent files.
 
-These schemas describe *authored Config structure*, not published Props and
+These schemas describe _authored Config structure_, not published Props and
 not the role-specific editorial plans in `studio/skills/`. The Studio agents
 can consume them as machine-readable guides for YAML authoring; they do not
 supersede methodology, assessment, screenwriting or review documents.

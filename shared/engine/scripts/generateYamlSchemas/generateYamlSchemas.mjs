@@ -81,16 +81,22 @@ export function courseOverridesSchema(course) {
     type: 'object',
     properties: {
       items: { type: 'object', additionalProperties: { anyOf: [{ const: false }, { $ref: '#/$defs/buildPatch' }] } },
-      additionalItems: { type: 'object', additionalProperties: {
-        type: 'object', properties: { type: { type: 'string', minLength: 1 } }, required: ['type'],
-      } },
+      additionalItems: {
+        type: 'object',
+        additionalProperties: {
+          type: 'object',
+          properties: { type: { type: 'string', minLength: 1 } },
+          required: ['type'],
+        },
+      },
       order: { type: 'array', items: { type: 'string' } },
     },
     additionalProperties: false,
   };
   const courseContent = structuredClone(collection);
-  courseContent.properties.additionalItems.additionalProperties =
-    structuredClone(course.properties.content.properties.items.additionalProperties);
+  courseContent.properties.additionalItems.additionalProperties = structuredClone(
+    course.properties.content.properties.items.additionalProperties,
+  );
   const params = structuredClone(course.properties.params);
   delete params.properties.languages;
   delete params.required;
@@ -102,7 +108,8 @@ export function courseOverridesSchema(course) {
     $schema: 'https://json-schema.org/draft/2020-12/schema',
     $id: 'https://svitlo.dev/engine/yaml-schemas/courseOverrides.schema.json',
     title: 'Svitlo Course Build Overrides YAML draft',
-    description: 'Direct stateless build.overrides patch. Legacy ordered operation lists are unsupported. Configurator-level checks still run when TypeScript is completed.',
+    description:
+      'Direct stateless build.overrides patch. Legacy ordered operation lists are unsupported. Configurator-level checks still run when TypeScript is completed.',
     type: 'object',
     properties: { params, locale, content: courseContent },
     additionalProperties: false,
@@ -131,13 +138,16 @@ export function yamlJsonSchemaDocuments() {
       if (!schema) throw new Error('Missing Engine YAML authoring schema: ' + kind);
       // Do not downgrade z.custom children to {}. All configurator boundaries
       // must be replaced by the concrete schema before JSON Schema conversion.
-      const jsonSchema = draftYamlSchema(kind, z.toJSONSchema(schema, {
-        target: 'draft-2020-12',
-        unrepresentable: 'throw',
-        // Reuse identical Zod child schemas via $defs/$ref instead of
-        // recursively inlining megabytes of repeated Config tree fragments.
-        reused: 'ref',
-      }));
+      const jsonSchema = draftYamlSchema(
+        kind,
+        z.toJSONSchema(schema, {
+          target: 'draft-2020-12',
+          unrepresentable: 'throw',
+          // Reuse identical Zod child schemas via $defs/$ref instead of
+          // recursively inlining megabytes of repeated Config tree fragments.
+          reused: 'ref',
+        }),
+      );
       return [
         kind + '.schema.json',
         JSON.stringify(
@@ -192,7 +202,9 @@ if (invokedFile === fileURLToPath(import.meta.url)) {
     const [mode] = process.argv.slice(2);
     if (process.argv.length !== 3) throw new Error('Usage: generateYamlSchemas.mjs --write|--check');
     const written = generateYamlSchemas(mode);
-    process.stdout.write((mode === '--check' ? 'Checked' : 'Generated') + ' ' + written.length + ' YAML JSON Schemas\n');
+    process.stdout.write(
+      (mode === '--check' ? 'Checked' : 'Generated') + ' ' + written.length + ' YAML JSON Schemas\n',
+    );
   } catch (error) {
     process.stderr.write(String(error?.stack ?? error) + '\n');
     process.exitCode = 1;

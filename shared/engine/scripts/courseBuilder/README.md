@@ -53,13 +53,13 @@ to the owning textbook's `data/lessons/` or the current Course directory**
 (including legitimate `../../../lessons/...` relative paths from its UUID
 folder), the script emits the import without an existence check:
 
-~~~yaml
+```yaml
 type: lesson
 lessonId: d3048d21-8690-5255-b62c-984c69ac272c
 source:
   path: lessons/intro.data.ts
   export: intro_Lesson
-~~~
+```
 
 the draft includes that import. Otherwise it includes a clearly named
 UNRESOLVED_LESSON_N and a TODO recording the original UUID and location.
@@ -109,7 +109,7 @@ Lesson Production work or import resolution.
 
 From the repository root (with npm workspace dependencies installed):
 
-~~~sh
+```sh
 node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --package content/<textbook> \
   --course <course-uuid> \
@@ -123,7 +123,7 @@ node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
   --check
 
 node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
-~~~
+```
 
 --slug is optional when the YAML has its own safe slug. For old TOC input
 without an authored slug, supplying --slug names the output and explicitly
@@ -134,11 +134,11 @@ wins if present, otherwise toc.yaml.
 
 The input directory is fixed at:
 
-~~~text
+```text
 content/<book>/data/courses/<last-uuid-hex-digit>/<course-uuid>/
   course.yaml or toc.yaml
   overrides.yaml  # optional
-~~~
+```
 
 The output is <courseSlug>.data.ts in the same directory, exporting
 <courseSlug>_Course = defineCourse(...) (non-identifier characters in export

@@ -127,8 +127,7 @@ function childContext(parent, key, owner) {
     if (['question', 'hint', 'explanation', 'correctSequence', 'distractors', 'sequence'].includes(key))
       return 'blockCollection';
   }
-  if (parent === 'questionAnswers' && ['correct', 'incorrect', 'distractors'].includes(key))
-    return 'blockCollection';
+  if (parent === 'questionAnswers' && ['correct', 'incorrect', 'distractors'].includes(key)) return 'blockCollection';
   if (parent === 'pair' && ['left', 'right'].includes(key)) return 'block';
   if (parent === 'slot' && key === 'correctAnswer') return 'block';
   return 'plain';
@@ -153,16 +152,21 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
       if (context === 'lesson' && type !== 'lesson')
         fail('content.yaml', field + '.type', 'expected lesson type for the Lesson entrypoint');
       const factory = factories[type];
-      if (!factory)
-        fail('content.yaml', field + '.type', 'unknown type "' + type + '"; no Engine define* factory');
+      if (!factory) fail('content.yaml', field + '.type', 'unknown type "' + type + '"; no Engine define* factory');
       used.add(factory);
       return factory + '(' + renderObject(value, context, field, level) + ')';
     }
     if (Array.isArray(value)) {
       if (!value.length) return '[]';
-      return '[\n' +
-        value.map((item, index) => indent(level + 1) + render(item, 'plain', field + '[' + index + ']', level + 1)).join(',\n') +
-        '\n' + indent(level) + ']';
+      return (
+        '[\n' +
+        value
+          .map((item, index) => indent(level + 1) + render(item, 'plain', field + '[' + index + ']', level + 1))
+          .join(',\n') +
+        '\n' +
+        indent(level) +
+        ']'
+      );
     }
     if (isRecord(value)) return renderObject(value, context, field, level);
     if (value === null || ['string', 'number', 'boolean'].includes(typeof value)) return JSON.stringify(value);
@@ -172,19 +176,34 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
   function renderObject(value, context, field, level) {
     const entries = Object.entries(value);
     if (!entries.length) return '{}';
-    return '{\n' + entries.map(([key, raw]) => {
-      const next = childContext(context, key, value);
-      const child = raw;
-      return indent(level + 1) + JSON.stringify(key) + ': ' +
-        render(child, next, field + '.' + key, level + 1);
-    }).join(',\n') + '\n' + indent(level) + '}';
+    return (
+      '{\n' +
+      entries
+        .map(([key, raw]) => {
+          const next = childContext(context, key, value);
+          const child = raw;
+          return indent(level + 1) + JSON.stringify(key) + ': ' + render(child, next, field + '.' + key, level + 1);
+        })
+        .join(',\n') +
+      '\n' +
+      indent(level) +
+      '}'
+    );
   }
 
   const call = render(sourceAuthoringCopy(lesson, language), 'lesson', '$', 0);
   const imports = [...used].sort((a, b) => a.localeCompare(b));
   const name = lesson.slug + '_Lesson';
-  return 'import { ' + imports.join(', ') + " } from '@svitlo/engine/build';\n\n" +
-    'export const ' + name + ' = ' + call + ';\n';
+  return (
+    'import { ' +
+    imports.join(', ') +
+    " } from '@svitlo/engine/build';\n\n" +
+    'export const ' +
+    name +
+    ' = ' +
+    call +
+    ';\n'
+  );
 }
 
 /** The UUID path is an output-safety boundary, not editorial validation. */
@@ -227,7 +246,12 @@ function writeDraft(file, content, mode) {
     if (split < 0 || !/^[a-f0-9]{64}$/.test(checksum) || digest(original.slice(split + 1)) !== checksum)
       fail(path.basename(file), '$', 'generated file was modified manually');
     if (original === rendered) return 0;
-    if (mode === 'check') fail(path.basename(file), '$', 'stale draft: existing file differs from YAML; generator will skip, so review manually');
+    if (mode === 'check')
+      fail(
+        path.basename(file),
+        '$',
+        'stale draft: existing file differs from YAML; generator will skip, so review manually',
+      );
   }
   if (mode === 'check') fail(path.basename(file), '$', 'missing draft; run content:generate:lessons');
   fs.writeFileSync(file, rendered, { flag: 'wx' });
@@ -239,7 +263,10 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const target = targetFor(source, repo);
   // An existing *.data.ts marks this UUID as already authored. Do not parse
   // or regenerate it: the source YAML may be outdated after AI editing.
-  const existing = fs.readdirSync(target.root).filter(name => name.endsWith('.data.ts')).sort();
+  const existing = fs
+    .readdirSync(target.root)
+    .filter(name => name.endsWith('.data.ts'))
+    .sort();
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
   }
@@ -261,9 +288,13 @@ function discover(repo) {
   for (const entry of fs.readdirSync(content, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
     const folder = path.join(content, entry.name);
-    const workspaces = entry.name === 'languages'
-      ? fs.readdirSync(folder, { withFileTypes: true }).filter(item => item.isDirectory()).map(item => path.join(folder, item.name))
-      : [folder];
+    const workspaces =
+      entry.name === 'languages'
+        ? fs
+            .readdirSync(folder, { withFileTypes: true })
+            .filter(item => item.isDirectory())
+            .map(item => path.join(folder, item.name))
+        : [folder];
     for (const workspace of workspaces) {
       const lessons = path.join(workspace, 'data/lessons');
       if (!fs.existsSync(lessons)) continue;
@@ -283,13 +314,17 @@ function discover(repo) {
 export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, ...rest] = args;
   if (!['generate', 'check'].includes(mode) || (rest.length && !(rest.length === 2 && rest[0] === '--source')))
-    throw new Error('Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>]');
+    throw new Error(
+      'Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>]',
+    );
   const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
   for (const root of roots) {
     const result = runOne(root, mode, repo);
-    console.log(result.skipped
-      ? 'SKIP Lesson ' + result.lessonId + ': existing ' + result.files.join(', ') + '; no files modified'
-      : result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'));
+    console.log(
+      result.skipped
+        ? 'SKIP Lesson ' + result.lessonId + ': existing ' + result.files.join(', ') + '; no files modified'
+        : result.lessonId + ': ' + (mode === 'check' ? 'up to date' : result.changed + ' file(s) written'),
+    );
   }
   console.log('Processed ' + roots.length + ' Lesson draft source(s)');
 }

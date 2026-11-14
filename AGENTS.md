@@ -64,7 +64,7 @@ precedence over assumptions based on names or historical workflows.
 
 For Engine generators and YAML scaffolders, first read the scoped
 [`shared/engine/scripts/AGENTS.md`](shared/engine/scripts/AGENTS.md).
-The named directories include separate YAML-to-TypeScript *draft* scaffolders,
+The named directories include separate YAML-to-TypeScript _draft_ scaffolders,
 JSON Schema editor guidance, and Props publishers; they are not interchangeable.
 Follow the referenced source contracts before making changes.
 
