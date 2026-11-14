@@ -1,0 +1,527 @@
+config:
+  id: "46f2da91-ffab-5f9a-a883-1ebf821daeb4"
+  slug: "recognizeEuroCoinsAndNotes"
+  type: "lesson"
+  skills: ["2086fcee-1737-4cbb-aa46-34cfc4f3fe44"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Read the Value: Euro Coins and Banknotes"
+  section:
+    items:
+      section1:
+        config:
+          id: "7d0e3b06-97e9-57b5-87bc-bb06f4311b6b"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Euro Cash Viewer"
+            navigationLabel:
+              en: "Euro Cash Viewer"
+          content:
+            items:
+              text1:
+                config:
+                  id: "fb43bcf7-b3ad-5454-bc7e-3cf71b81c70e"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Find the €2 coin and the €5 banknote."
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "4f147448-c0ba-54cd-be2b-f4483eafde0f"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Find the €2 coin and the €5 banknote."
+                production:
+                  specification: |
+                    # Euro Cash Viewer — Scene Specification
+                    
+                    Status: **Provisional Draft — pending Methodologist and Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Read the Value: Euro Coins and Banknotes Content (embedded in this Lesson config.yaml), Section 1
+                    Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml)
+                    Implementation status: Proposed prop-free component; not implemented
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Recognize actual denominations in an explicitly named euro currency case study, and distinguish face value from physical size or national-side design. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    Euro coins: 1,2,5,10,20,50 cents, and one/two euros. Europa-series banknotes include five and ten euros. Standard circulating five-euro coin does not exist. Fifty-cent coin diameter 24.25 mm exceeds one-euro coin diameter 23.25 mm, but one euro equals 100 cents and exceeds 50 cents in value.
+                    
+                    **Initial state:** Schematic labelled €1 coin, €2 coin, €5 note, €10 note; two labelled descriptions of different national sides for the same €2 value.
+                    
+                    **Authoritative interactive model:** Selected item, coin or banknote kind, face value, optional national-side description. No amounts are added.
+                    
+                    **Boundaries:** Grade 2 real euro case study; core items one- and two-euro coins plus five- and ten-euro notes; 50-cent contrast supported by explicit conversion reference. No changing currency automatically with UI locale, no purchase or exchange rates, no unlicensed banknote art.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1
+                    
+                    - **Learner-facing prompt:** “Find the €2 coin and the €5 banknote.”
+                    - **Learner action:** Inspect four schematics with readable face value and kind.
+                    - **Visible mathematical conclusion:** €2 is a coin and €5 a note.
+                    - **Specific explanatory feedback:** If a €5 coin selected, show ECB euro coins top out at €2 (as well as smaller cent coins).
+                    - **Verified expected result:** €1/€2 coins; €5/€10 banknotes.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ### Beat 2
+                    
+                    - **Learner-facing prompt:** “Does different artwork change a €2 coin value?”
+                    - **Learner action:** Show two labelled national-side descriptions on the same €2 schematic.
+                    - **Visible mathematical conclusion:** Both are worth €2.
+                    - **Specific explanatory feedback:** If values guessed different, show the unchanged face label €2.
+                    - **Verified expected result:** €2 remains €2 irrespective of national-side artwork.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Choose item; inspect denomination/kind; switch schematic country-side description; Reveal; Reset.
+                    
+                    - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
+                    - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
+                    - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
+                    - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. €1/€2 coins; €5/€10 banknotes. Incorrect case: If a €5 coin selected, show ECB euro coins top out at €2 (as well as smaller cent coins).
+                    2. €2 remains €2 irrespective of national-side artwork. Incorrect case: If values guessed different, show the unchanged face label €2.
+                    3. All illustrated pieces explicitly schematic; euro cash type values correct; no imaginary ordinary €5 coin presented as real.
+                    4. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
+                  purpose: "Euro Cash Viewer: independent placement"
+                  productionNotes: "Original euroCashViewer.scene-spec.md variant belongs to Euro Cash Viewer; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "1477e8b5-fc86-56ee-8eda-68b5d65ec0ec"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "€2 is a coin and €5 a note."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Euro Cash Viewer"
+          productionNotes: |-
+            - **Purpose:** Establish and test the model in a controlled contrast.
+            - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+            - **Ordered blocks:** (1) text (renderable): “Find the €2 coin and the €5 banknote.” (2) scene (generic type renderable; this bespoke component proposed): Euro Cash Viewer (Scene specification euroCashViewer embedded below) (3) markdown (renderable): “€2 is a coin and €5 a note.”
+            - **Experience beats and explanatory feedback:**
+              - **Beat 1:** “Find the €2 coin and the €5 banknote.” Inspect four schematics with readable face value and kind. **Explanation:** €2 is a coin and €5 a note. **Exact worked case:** €1/€2 coins; €5/€10 banknotes. **Error-specific response:** If a €5 coin selected, show ECB euro coins top out at €2 (as well as smaller cent coins).
+              - **Beat 2:** “Does different artwork change a €2 coin value?” Show two labelled national-side descriptions on the same €2 schematic. **Explanation:** Both are worth €2. **Exact worked case:** €2 remains €2 irrespective of national-side artwork. **Error-specific response:** If values guessed different, show the unchanged face label €2.
+            - **Learner control and state:** Choose item; inspect denomination/kind; switch schematic country-side description; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+            - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+            - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+      section2:
+        config:
+          id: "7c0e3973-94e9-52fc-86bc-b973f5311cfe"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Think before revealing the reason"
+            navigationLabel:
+              en: "Think before revealing the reason"
+          content:
+            items:
+              text1:
+                config:
+                  id: "18bd76f6-c8d8-5761-99f7-f6f622de2f8f"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Which is worth more: a wider 50-cent coin or a smaller one-euro coin?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              markdown1:
+                config:
+                  id: "7f7bf6c4-7861-56db-b9de-76c4e398a09d"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "One euro is 100 cents, greater than 50 cents despite diameter. Five euros is a valid banknote denomination, but not a standard circulating euro coin denomination."
+                production:
+                  purpose: "Provisional instructional explanation"
+              text2:
+                config:
+                  id: "17bd7563-c5d8-52a8-98f7-f56323de3122"
+                  slug: "text2"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Can a five-euro banknote be real while an ordinary five-euro coin is not?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+            order: ["text1","markdown1","text2"]
+        production:
+          purpose: "Think before revealing the reason"
+          productionNotes: |-
+            - **Purpose:** Short independent retrieval and misconception contrast.
+            - **Ordered Resource blocks (renderable):**
+              1. text: “Which is worth more: a wider 50-cent coin or a smaller one-euro coin?”
+              2. markdown: “One euro is 100 cents, greater than 50 cents despite diameter. Five euros is a valid banknote denomination, but not a standard circulating euro coin denomination.”
+              3. text: “Can a five-euro banknote be real while an ordinary five-euro coin is not?”
+            - **Pedagogical action:** The learner reflects before reading the explanation, then checks it against the first Scene. An actual hidden-answer widget is **not** inferred from plain text/Markdown support; this is a planned reflective pause, not a scored Question.
+            - **Feedback:** Address the common trap directly: Reading 50 as greater than 1 without converting units; guessing worth from coin size; treating a five-euro banknote as proof a five-euro coin must exist; assuming national-side artwork changes worth.
+            - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
+      section3:
+        config:
+          id: "7b0e37e0-95e9-548f-85bc-b7e0f6311e91"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Cash Value Detective"
+            navigationLabel:
+              en: "Cash Value Detective"
+          content:
+            items:
+              text1:
+                config:
+                  id: "a9527955-5049-57d2-aa8c-f955f1757e60"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The 50-cent coin is wider. Which coin is worth more?"
+                production:
+                  purpose: "Provisional learner prompt/feedback"
+              scene1:
+                config:
+                  id: "1aa529ae-daae-5cfb-89bc-a9ae48f75c61"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "The 50-cent coin is wider. Which coin is worth more?"
+                production:
+                  specification: |
+                    # Cash Value Detective — Scene Specification
+                    
+                    Status: **Provisional Draft — pending Methodologist and Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Read the Value: Euro Coins and Banknotes Content (embedded in this Lesson config.yaml), Section 3
+                    Methodologist objectives: Draft Methodologist Brief (embedded in this Lesson config.yaml)
+                    Implementation status: Proposed prop-free component; not implemented
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Recognize actual denominations in an explicitly named euro currency case study, and distinguish face value from physical size or national-side design. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    Euro coins: 1,2,5,10,20,50 cents, and one/two euros. Europa-series banknotes include five and ten euros. Standard circulating five-euro coin does not exist. Fifty-cent coin diameter 24.25 mm exceeds one-euro coin diameter 23.25 mm, but one euro equals 100 cents and exceeds 50 cents in value.
+                    
+                    **Initial state:** Two schematic coins: 50c (24.25 mm diameter), €1 (23.25 mm); equivalence reference €1=100c. Another case shows valid €5 note and explicitly fictional ordinary €5 coin.
+                    
+                    **Authoritative interactive model:** Selected comparison, shown conversion note, classification of valid/fictional schematic piece, explanation.
+                    
+                    **Boundaries:** Grade 2 real euro case study; core items one- and two-euro coins plus five- and ten-euro notes; 50-cent contrast supported by explicit conversion reference. No changing currency automatically with UI locale, no purchase or exchange rates, no unlicensed banknote art.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1
+                    
+                    - **Learner-facing prompt:** “The 50-cent coin is wider. Which coin is worth more?”
+                    - **Learner action:** Compare 50c to €1 using the reference 100 cents per euro.
+                    - **Visible mathematical conclusion:** €1 is worth more though 50c coin is physically wider.
+                    - **Specific explanatory feedback:** If 50 picked due to numeral or size, normalize to 50 versus 100 cents.
+                    - **Verified expected result:** 50c width 24.25mm>€1 width 23.25mm; monetary 50c<100c.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ### Beat 2
+                    
+                    - **Learner-facing prompt:** “Which is genuine ordinary euro cash: €5 note or a drawing of €5 coin?”
+                    - **Learner action:** Classify valid banknote and explicitly fictional ordinary €5 coin.
+                    - **Visible mathematical conclusion:** Real €5 note; no standard ordinary €5 euro coin.
+                    - **Specific explanatory feedback:** If coin accepted, display verified euro coin list ending at €2.
+                    - **Verified expected result:** €5 banknote exists; standard €5 coin does not.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Predict higher value; show cents conversion; inspect coin diameter and value; mark fictional; Reveal; Reset.
+                    
+                    - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
+                    - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
+                    - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
+                    - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. 50c width 24.25mm>€1 width 23.25mm; monetary 50c<100c. Incorrect case: If 50 picked due to numeral or size, normalize to 50 versus 100 cents.
+                    2. €5 banknote exists; standard €5 coin does not. Incorrect case: If coin accepted, display verified euro coin list ending at €2.
+                    3. Real coin diameters and denomination lists match official sources; units kept consistent; fictional coin clearly identified.
+                    4. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
+                  purpose: "Cash Value Detective: independent placement"
+                  productionNotes: "Original cashValueDetective.scene-spec.md variant belongs to Cash Value Detective; see Section productionNotes. Unique stable Scene ID."
+              markdown1:
+                config:
+                  id: "35802e4f-c843-5e80-afe2-ae4fe995475a"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "€1 is worth more though 50c coin is physically wider."
+                production:
+                  purpose: "Provisional instructional explanation"
+            order: ["text1","scene1","markdown1"]
+        production:
+          purpose: "Cash Value Detective"
+          productionNotes: |-
+            - **Purpose:** Transfer the principle to a changed situation independently.
+            - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+            - **Ordered blocks:** (1) text (renderable): “The 50-cent coin is wider. Which coin is worth more?” (2) scene (generic type renderable; this bespoke component proposed): Cash Value Detective (Scene specification cashValueDetective embedded below) (3) markdown (renderable): “€1 is worth more though 50c coin is physically wider.”
+            - **Experience beats and explanatory feedback:**
+              - **Beat 1:** “The 50-cent coin is wider. Which coin is worth more?” Compare 50c to €1 using the reference 100 cents per euro. **Explanation:** €1 is worth more though 50c coin is physically wider. **Exact worked case:** 50c width 24.25mm>€1 width 23.25mm; monetary 50c<100c. **Error-specific response:** If 50 picked due to numeral or size, normalize to 50 versus 100 cents.
+              - **Beat 2:** “Which is genuine ordinary euro cash: €5 note or a drawing of €5 coin?” Classify valid banknote and explicitly fictional ordinary €5 coin. **Explanation:** Real €5 note; no standard ordinary €5 euro coin. **Exact worked case:** €5 banknote exists; standard €5 coin does not. **Error-specific response:** If coin accepted, display verified euro coin list ending at €2.
+            - **Learner control and state:** Predict higher value; show cents conversion; inspect coin diameter and value; mark fictional; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+            - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+            - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+    order: ["section1","section2","section3"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Read the Value: Euro Coins and Banknotes — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: recognizeEuroCoinsAndNotes
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Recognize actual denominations in an explicitly named euro currency case study, and distinguish face value from physical size or national-side design.
+    
+    ## Target audience
+    
+    **Primary grade: Grade 2.** This selection depends on mathematical complexity, prerequisites and developmental readiness, not a grade label embedded in Skill Taxonomy. Early readers can use short instructions, countable models and ordered text alternatives.
+    
+    ## Prerequisites
+    
+    Recognize numerals up to twenty, basic comparisons, and a supplied bridge that one euro equals 100 cents.
+    
+    ## Target Skills
+    
+    - [recognizeDenominations.data.ts](../../../../data/skills/money/denominations/skills/recognizeDenominations.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - €2 is a coin and €5 a note.
+    - Both are worth €2.
+    - €1 is worth more though 50c coin is physically wider.
+    - Real €5 note; no standard ordinary €5 euro coin.
+    - Explain a changed-context instance using evidence rather than repeating a memorized answer; formative success is not proof of verified mastery.
+    
+    ## Essential subject matter
+    
+    Euro coins: 1,2,5,10,20,50 cents, and one/two euros. Europa-series banknotes include five and ten euros. Standard circulating five-euro coin does not exist. Fifty-cent coin diameter 24.25 mm exceeds one-euro coin diameter 23.25 mm, but one euro equals 100 cents and exceeds 50 cents in value.
+    
+    ## Conceptual progression and dependencies
+    
+    Introduce prerequisite number and object meanings → construct and inspect the first model → explain its contrast → retrieve the mathematical principle → independently apply it in the second Scene with a changed arrangement or representation.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Reading 50 as greater than 1 without converting units; guessing worth from coin size; treating a five-euro banknote as proof a five-euro coin must exist; assuming national-side artwork changes worth.
+    
+    **Instructional depth and hard exclusions:** Grade 2 real euro case study; core items one- and two-euro coins plus five- and ten-euro notes; 50-cent contrast supported by explicit conversion reference. No changing currency automatically with UI locale, no purchase or exchange rates, no unlicensed banknote art.
+    
+    **Verified numerical examples:**
+    
+    - €1/€2 coins; €5/€10 banknotes.
+    - €2 remains €2 irrespective of national-side artwork.
+    - 50c width 24.25mm>€1 width 23.25mm; monetary 50c<100c.
+    - €5 banknote exists; standard €5 coin does not.
+    
+    ## Localization, accessibility and offline intent
+    
+    Complete genuine translations for every Engine-supported language are required; English drafts are not released locale assets. Semantic RTL must preserve object identity, designated START, pairing membership, euro value and numeric order, not reverse the mathematics. WCAG 2.2 AA plan: keyboard, touch and switch operation, ordered nonvisual ledger, meaningful labels, visible focus, zoom/mobile and reduced-motion equivalents. The selected-language content and same learning interactions must function offline after download, which is a required future capability, not implemented by this task.
+    The euro is an explicitly named case-study currency regardless of the learner's UI language. A different currency would require approved source-verified denomination data and editorial adaptation; it must not be silently substituted in translation.
+    
+    ## Sources and factual verification
+    
+    - Approved canonical Mathematics Skill data files directly linked above, copied unchanged in Batch 1.
+    - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) and [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
+    - [Official euro source 1](https://www.ecb.europa.eu/euro/coins/html/index.en.html)
+    - [Official euro source 2](https://www.ecb.europa.eu/euro/banknotes/html/index.en.html)
+    - [Official euro source 3](https://economy-finance.ec.europa.eu/euro/euro-coins-and-notes/euro-coins/common-sides-euro-coins_en)
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone and Program-neutral. No named Curriculum alignment asserted.
+    
+    ## Open editorial decisions
+    
+    - Editor: approve Grade 2, prerequisites, target Skills and scope before formal Content/Scene approval.
+    - Editor and localization team: verify full-locale copy, semantic RTL and nonvisual equivalence.
+    - Editor: approve EUR-specific pedagogy and rights/accuracy review for any later production currency artwork.
+    
+    ## Methodologist handoff
+    
+    **Draft — not Approved.** The accompanying Content and Scene specifications are **Provisional Drafts prepared under the explicit batch authorization**. Normal approval gate has not passed. Do not implement React, runtime Lesson data, Questions, Quizzes, scoring, Note persistence or undocumented APIs.
+  productionNotes: |
+    # Read the Value: Euro Coins and Banknotes — Content
+    
+    Status: **Provisional Draft — pending Methodologist approval**
+    Target Lesson: content/playground/Data/Lessons/1/recognizeEuroCoinsAndNotes/
+    Audience: Primary Grade 2
+    Methodologist source: Draft Methodologist Brief (embedded in this Lesson config.yaml) (not approved)
+    Target Skills: As directly linked in the Draft Brief, unchanged canonical Skill objects
+    Program dependence: None
+    Runtime status: Not implemented
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Recognize actual denominations in an explicitly named euro currency case study, and distinguish face value from physical size or national-side design. The learner can predict, operate the mathematical representation, see an actual explanation and transfer the idea to a changed setting. The experience is not a lecture followed by a token quiz.
+    
+    **Core mathematical truth and boundaries:** Euro coins: 1,2,5,10,20,50 cents, and one/two euros. Europa-series banknotes include five and ten euros. Standard circulating five-euro coin does not exist. Fifty-cent coin diameter 24.25 mm exceeds one-euro coin diameter 23.25 mm, but one euro equals 100 cents and exceeds 50 cents in value. Grade 2 real euro case study; core items one- and two-euro coins plus five- and ten-euro notes; 50-cent contrast supported by explicit conversion reference. No changing currency automatically with UI locale, no purchase or exchange rates, no unlicensed banknote art.
+    
+    ## LEARNER JOURNEY
+    
+    1. Encounter a small concrete instance with Euro Cash Viewer. The child changes the model rather than passively watches; mistakes receive named evidence.
+    2. Compare the first model with a deliberately contrasting condition. Ask what stayed the same and what changed.
+    3. Brief unscored retrieval with a worked counterexample: Which is worth more: a wider 50-cent coin or a smaller one-euro coin?
+    4. Independently try Cash Value Detective, changing the item identities, configuration or currency amounts so the child must apply the general principle.
+    5. State a reason, or reveal and revisit the full model without score, timer, Program narrative or persistence.
+    
+    ## SECTION PLAN
+    
+    ### Section 1 — Euro Cash Viewer
+    
+    - **Purpose:** Establish and test the model in a controlled contrast.
+    - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+    - **Ordered blocks:** (1) text (renderable): “Find the €2 coin and the €5 banknote.” (2) scene (generic type renderable; this bespoke component proposed): Euro Cash Viewer (Scene specification euroCashViewer embedded below) (3) markdown (renderable): “€2 is a coin and €5 a note.”
+    - **Experience beats and explanatory feedback:**
+      - **Beat 1:** “Find the €2 coin and the €5 banknote.” Inspect four schematics with readable face value and kind. **Explanation:** €2 is a coin and €5 a note. **Exact worked case:** €1/€2 coins; €5/€10 banknotes. **Error-specific response:** If a €5 coin selected, show ECB euro coins top out at €2 (as well as smaller cent coins).
+      - **Beat 2:** “Does different artwork change a €2 coin value?” Show two labelled national-side descriptions on the same €2 schematic. **Explanation:** Both are worth €2. **Exact worked case:** €2 remains €2 irrespective of national-side artwork. **Error-specific response:** If values guessed different, show the unchanged face label €2.
+    - **Learner control and state:** Choose item; inspect denomination/kind; switch schematic country-side description; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+    - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+    - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+    
+    ### Section 2 — Think before revealing the reason
+    
+    - **Purpose:** Short independent retrieval and misconception contrast.
+    - **Ordered Resource blocks (renderable):**
+      1. text: “Which is worth more: a wider 50-cent coin or a smaller one-euro coin?”
+      2. markdown: “One euro is 100 cents, greater than 50 cents despite diameter. Five euros is a valid banknote denomination, but not a standard circulating euro coin denomination.”
+      3. text: “Can a five-euro banknote be real while an ordinary five-euro coin is not?”
+    - **Pedagogical action:** The learner reflects before reading the explanation, then checks it against the first Scene. An actual hidden-answer widget is **not** inferred from plain text/Markdown support; this is a planned reflective pause, not a scored Question.
+    - **Feedback:** Address the common trap directly: Reading 50 as greater than 1 without converting units; guessing worth from coin size; treating a five-euro banknote as proof a five-euro coin must exist; assuming national-side artwork changes worth.
+    - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
+    
+    ### Section 3 — Cash Value Detective
+    
+    - **Purpose:** Transfer the principle to a changed situation independently.
+    - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+    - **Ordered blocks:** (1) text (renderable): “The 50-cent coin is wider. Which coin is worth more?” (2) scene (generic type renderable; this bespoke component proposed): Cash Value Detective (Scene specification cashValueDetective embedded below) (3) markdown (renderable): “€1 is worth more though 50c coin is physically wider.”
+    - **Experience beats and explanatory feedback:**
+      - **Beat 1:** “The 50-cent coin is wider. Which coin is worth more?” Compare 50c to €1 using the reference 100 cents per euro. **Explanation:** €1 is worth more though 50c coin is physically wider. **Exact worked case:** 50c width 24.25mm>€1 width 23.25mm; monetary 50c<100c. **Error-specific response:** If 50 picked due to numeral or size, normalize to 50 versus 100 cents.
+      - **Beat 2:** “Which is genuine ordinary euro cash: €5 note or a drawing of €5 coin?” Classify valid banknote and explicitly fictional ordinary €5 coin. **Explanation:** Real €5 note; no standard ordinary €5 euro coin. **Exact worked case:** €5 banknote exists; standard €5 coin does not. **Error-specific response:** If coin accepted, display verified euro coin list ending at €2.
+    - **Learner control and state:** Predict higher value; show cents conversion; inspect coin diameter and value; mark fictional; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+    - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+    - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - Euro Cash Viewer (Scene specification euroCashViewer embedded below) — conceptual model and first contrast.
+    - Cash Value Detective (Scene specification cashValueDetective embedded below) — independent transfer and different actions.
+    
+    Both specific Scenes are **proposed**, self-contained, prop-free and not implemented. Generic text, markdown and scene Resource rendering exists; this does not establish the new components. No new runtime field or mode prop is proposed.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    1. “Denomination means the stated value of a coin or banknote.” — after Section 1 model and explanation (planned, not wired).
+    2. “The printed value, not size, tells how much money is worth.” — after Section 3 transfer and explanation (planned, not wired).
+    
+    These are concise factual recall candidates. Note entities, event contracts, revision sheets and persistence have not been verified implemented.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    The first Scene uses guided formative decisions and worked contrast; Section 2 retrieves the principle verbally; Section 3 changes the setting to elicit transfer. No response implies Skill mastery. Assessment Architect owns any future scored Question, Quiz, evidence validity and retry policy.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    English text here is editorial source, not production locale assets. Complete truthful translation of instructional language, count words, denomination labels, error messages, aria names and Notes is required for every Engine-supported locale with no silent fallback. RTL must preserve number order, identities, explicit START or EUR units and pair semantics. Equivalent keyboard/switch/touch/nonvisual controls, focus, contrast, reduced motion, zoom and mobile experience are WCAG 2.2 AA targets. All lesson assets, selected-language explanations and computation must be usable offline after download; actual PWA completeness is not claimed.
+    The euro is a named case-study currency; localization does not automatically convert its denominations into another currency. Any currency-specific replacement needs verified denominational sources and editorial approval.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    - Existing general Lesson Section contract: ordered vertical nonempty Resource list.
+    - Current generic text, markdown and scene renderer: observed. New bespoke Scenes: **proposed only**.
+    - Full-locale translations, RTL/keyboard accessibility, genuine offline download and Note persistence: required/planned, not demonstrated.
+    - No React code, runtime Lesson data, Questions, Quizzes, scoring or Note event wiring exists in this batch.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Draft Methodologist Brief (embedded in this Lesson config.yaml) and its exact Skill data links.
+    - [Section entity](../../../../../../studio/docs/entities/section.md) and [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md).
+    - [Official euro source 1](https://www.ecb.europa.eu/euro/coins/html/index.en.html)
+    - [Official euro source 2](https://www.ecb.europa.eu/euro/banknotes/html/index.en.html)
+    - [Official euro source 3](https://economy-finance.ec.europa.eu/euro/euro-coins-and-notes/euro-coins/common-sides-euro-coins_en)
+    - Open decisions: explicit Methodologist grade/targets/depth approval; separate Content/Scene review; full locale and offline/accessibility production checks.
+    
+    ## HANDOFF
+    
+    **Provisional Draft.** Content is prepared under batch authorization before Methodologist approval, without claiming formal editorial readiness or implementation permission.
