@@ -268,10 +268,11 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const target = targetFor(source, repo);
   // An existing *.data.ts marks this UUID as already authored. Do not parse
   // or regenerate it: the source YAML may be outdated after AI editing.
-  const existing = fs
-    .readdirSync(target.root)
-    .filter(name => name.endsWith('.data.ts'))
-    .sort();
+  const sourceRelative = path.relative(target.bookRoot, target.root).split(path.sep).join('/');
+  const canonicalSource = /^data\/lessons\/[0-9a-f]\/[0-9a-f-]{36}$/.test(sourceRelative);
+  const existing = canonicalSource
+    ? fs.readdirSync(target.root).filter(name => name.endsWith('.data.ts')).sort()
+    : [];
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
   }
