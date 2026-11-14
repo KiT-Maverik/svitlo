@@ -1,10 +1,17 @@
 import assert from 'node:assert/strict';
 import { describe, test } from 'node:test';
 import { fixture } from './quest.fixture';
+import { defineStage, defineTask } from './index';
+import { defineStage as sectionStage, defineTask as sectionTask } from '../index';
 const languages = { languages: ['uk'] as const };
 const id = (last: string) => 'e5235ac2-2c44-4c10-8c48-3c7bad6490' + last;
 
 describe('Configurators > Sections > defineQuestSection', () => {
+  test('exports nested Stage and Task through the Quest and Sections barrels', () => {
+    assert.equal(defineStage, sectionStage);
+    assert.equal(defineTask, sectionTask);
+  });
+
   test('publishes nested Stage/Task maps without an order array', () => {
     const { quest } = fixture();
     const resource = quest.build.props(languages);

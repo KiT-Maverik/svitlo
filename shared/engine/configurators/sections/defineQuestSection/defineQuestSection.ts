@@ -4,8 +4,8 @@ import { mergeForValidation, onlyLocales, onlyStrings, resolvePublicationLanguag
   selectPublicationLocales, splitLocalizedFields } from '../../_shared__configurators';
 import { questSection_Config_Schema, questSection_Props_Schema, questSection_Override_Metadata_Schema,
   type QuestSection_Config, type QuestSection_Metadata_Overrides } from './defineQuestSection.schemas';
-import type { Stage_Configurator, Stage_Overrides } from '../defineStage';
-import type { Task_Configurator, Task_Overrides } from '../defineTask';
+import type { Stage_Configurator, Stage_Overrides } from './defineStage';
+import type { Task_Configurator, Task_Overrides } from './defineTask';
 import { assertQuestMap, projectQuestTree, nestQuestPublication,
   mergeQuestPatches, validateQuestPublication } from './quest.utils';
 

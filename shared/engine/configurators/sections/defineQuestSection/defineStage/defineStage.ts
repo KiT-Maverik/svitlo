@@ -1,12 +1,12 @@
 import type { LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import type { ContentBlock_Video_Overrides } from '../../contentBlocks/defineVideo/defineVideo.schemas';
-import type { ContentBlock_Audio_Overrides } from '../../contentBlocks/defineAudio/defineAudio.schemas';
-import type { ContentBlock_Image_Overrides } from '../../contentBlocks/defineImage/defineImage.schemas';
-import { resolvePublicationLanguages } from '../../_shared__configurators';
+import type { ContentBlock_Video_Overrides } from '../../../contentBlocks/defineVideo/defineVideo.schemas';
+import type { ContentBlock_Audio_Overrides } from '../../../contentBlocks/defineAudio/defineAudio.schemas';
+import type { ContentBlock_Image_Overrides } from '../../../contentBlocks/defineImage/defineImage.schemas';
+import { resolvePublicationLanguages } from '../../../_shared__configurators';
 import { stage_Config_Schema, stage_Props_Schema, type Stage_Config } from './defineStage.schemas';
-import type { ContentBlock_Subtitles_Overrides } from '../../contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import { assertQuestChild, projectQuestTree, nestQuestPublication, validateQuestPublication } from '../defineQuestSection/quest.utils';
+import type { ContentBlock_Subtitles_Overrides } from '../../../contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import { assertQuestChild, projectQuestTree, nestQuestPublication, validateQuestPublication } from '../quest.utils';
 
 export type Stage_Overrides = {
   content?: {

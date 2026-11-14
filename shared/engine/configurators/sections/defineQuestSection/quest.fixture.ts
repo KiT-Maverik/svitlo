@@ -3,8 +3,8 @@ import { defineAudio } from '../../contentBlocks/defineAudio';
 import { defineImage } from '../../contentBlocks/defineImage';
 import { defineScene } from '../../contentBlocks/defineScene';
 import { defineSubtitles } from '../../contentBlocks/defineSubtitles';
-import { defineStage } from '../defineStage';
-import { defineTask } from '../defineTask';
+import { defineStage } from './defineStage';
+import { defineTask } from './defineTask';
 import { defineQuestSection } from './defineQuestSection';
 const id = (last: string) => 'e5235ac2-2c44-4c10-8c48-3c7bad6490' + last;
 

@@ -1,13 +1,13 @@
 import { z } from 'zod';
-import { identityBase_Schema } from '../../_shared__configurators/common.schemas';
-import { video_Props_Schema } from '../../contentBlocks/defineVideo/defineVideo.schemas';
-import { audio_Props_Schema } from '../../contentBlocks/defineAudio/defineAudio.schemas';
-import { image_Props_Schema } from '../../contentBlocks/defineImage/defineImage.schemas';
-import { subtitles_Props_Schema } from '../../contentBlocks/defineSubtitles/defineSubtitles.schemas';
-import type { ContentBlock_Video_Configurator } from '../../contentBlocks/defineVideo';
-import type { ContentBlock_Audio_Configurator } from '../../contentBlocks/defineAudio';
-import type { ContentBlock_Image_Configurator } from '../../contentBlocks/defineImage';
-import type { ContentBlock_Subtitles_Configurator } from '../../contentBlocks/defineSubtitles';
+import { identityBase_Schema } from '../../../_shared__configurators/common.schemas';
+import { video_Props_Schema } from '../../../contentBlocks/defineVideo/defineVideo.schemas';
+import { audio_Props_Schema } from '../../../contentBlocks/defineAudio/defineAudio.schemas';
+import { image_Props_Schema } from '../../../contentBlocks/defineImage/defineImage.schemas';
+import { subtitles_Props_Schema } from '../../../contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import type { ContentBlock_Video_Configurator } from '../../../contentBlocks/defineVideo';
+import type { ContentBlock_Audio_Configurator } from '../../../contentBlocks/defineAudio';
+import type { ContentBlock_Image_Configurator } from '../../../contentBlocks/defineImage';
+import type { ContentBlock_Subtitles_Configurator } from '../../../contentBlocks/defineSubtitles';
 
 const kind = identityBase_Schema.extend({ type: z.literal('questStage') });
 export const stage_Config_Schema = kind.extend({
