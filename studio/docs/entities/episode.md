@@ -24,7 +24,6 @@ The current Engine [YAML Config composition](../../../shared/engine/configurator
 
 See [Lesson](./lesson.md), [Course](./course.md), and [Section](./section.md).
 
-
 ## Quest Section in Episodes (planned runtime)
 
 An Episode may eventually host a [Quest Section](./quest.md) for Course-owned interactive story beats, media reactions, missions and branching decisions. The Quest is the autonomous **Section**; the Episode remains the Course-level narrative container. The Build-only Quest Config exists separately, but current Episode composition/publication and UI rendering do **not** yet accept or run Quest. Do not embed an unregistered Quest as a content block or claim a runnable story.

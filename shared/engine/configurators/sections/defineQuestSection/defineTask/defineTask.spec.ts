@@ -14,7 +14,9 @@ describe('Configurators > Sections > defineTask', () => {
   });
   test('rejects non-Scene children and invalid patches', () => {
     const { task } = fixture();
-    assert.throws(() => task.validate({ id: task.id, slug: task.slug, type: 'questTask', scene: { type: 'video' } } as never));
+    assert.throws(() =>
+      task.validate({ id: task.id, slug: task.slug, type: 'questTask', scene: { type: 'video' } } as never),
+    );
     assert.throws(() => task.build.overrides({ unknown: 1 } as never, languages), /Invalid QuestTask overrides/);
     const patched = task.build.overrides({ scene: { locale: { value: { uk: 'Спробуй інакше' } } } }, languages);
     assert.equal(JSON.stringify(patched).includes('Спробуй інакше'), true);

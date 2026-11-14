@@ -26,13 +26,20 @@ const buildable = (value: unknown): value is Buildable =>
 
 export function assertQuestChild(value: unknown, kind: string, at: string, key?: string): void {
   if (
-    !buildable(value) || value.type !== kind || typeof value.id !== 'string' ||
-    typeof value.slug !== 'string' || !record(value.config) ||
-    !record(value.config.base) || typeof value.config.locales !== 'function' ||
+    !buildable(value) ||
+    value.type !== kind ||
+    typeof value.id !== 'string' ||
+    typeof value.slug !== 'string' ||
+    !record(value.config) ||
+    !record(value.config.base) ||
+    typeof value.config.locales !== 'function' ||
     typeof value.build.overrides !== 'function' ||
-    value.config.base.id !== value.id || value.config.base.slug !== value.slug ||
-    value.config.base.type !== value.type || (key !== undefined && value.slug !== key)
-  ) throw new Error('Expected ' + kind + ' Build configurator at ' + at);
+    value.config.base.id !== value.id ||
+    value.config.base.slug !== value.slug ||
+    value.config.base.type !== value.type ||
+    (key !== undefined && value.slug !== key)
+  )
+    throw new Error('Expected ' + kind + ' Build configurator at ' + at);
 }
 
 export function assertQuestMap(value: unknown, kind: string, path: string): void {
@@ -46,17 +53,17 @@ export function assertQuestMap(value: unknown, kind: string, path: string): void
 }
 
 /** Compose keyed nested Build resources, preserving sparse per-language leaves and null audio slots. */
-export function projectQuestTree(
-  node: unknown,
-  languages: readonly LanguageCode[],
-  patch?: unknown,
-): QuestPublication {
+export function projectQuestTree(node: unknown, languages: readonly LanguageCode[], patch?: unknown): QuestPublication {
   if (buildable(node)) {
-    const result = patch === undefined
-      ? (node.build.props as (options: { languages: readonly LanguageCode[] }) => QuestPublication)({ languages })
-      : (node.build.overrides as (input: unknown, options: { languages: readonly LanguageCode[] }) => QuestPublication)(
-          patch, { languages },
-        );
+    const result =
+      patch === undefined
+        ? (node.build.props as (options: { languages: readonly LanguageCode[] }) => QuestPublication)({ languages })
+        : (
+            node.build.overrides as (
+              input: unknown,
+              options: { languages: readonly LanguageCode[] },
+            ) => QuestPublication
+          )(patch, { languages });
     return result;
   }
   if (node === null) {

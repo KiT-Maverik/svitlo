@@ -49,7 +49,6 @@ Test LTR and RTL examples, keyboard and screen-reader semantics, localized acces
 
 **Related:** [Learning Philosophy](./learning-experience-philosophy.md), [Offline & Device Support](./offline-first-and-device-compatibility.md), [Lesson Notes](./lesson-notes.md).
 
-
 ## Quest multimodal parity (planned)
 
 [Quest Section](../entities/quest.md) requires parallel media pathways at authoring time: two language-invariant silent video renditions, language-scoped dialogue and narrated visual descriptions, an image, localized timed captions, and meaningful Task Scene alternatives. `audio.dialogue`, `audio.narration` and `audio.background` keys are mandatory, but an audio slot may be `null` where no actual sound exists; absence of a track must not remove necessary information. Mere structural completeness does **not** prove captions explain significant sounds, narration describes important visuals, or Task can be completed without sight/hearing. Accessible defaults must honor voluntary preferences and permit override. Quest playback, mode dispatch and automatic disability-aware preference application are still **unimplemented**.

@@ -25,7 +25,9 @@ export type Stage_Overrides = {
 export const defineStage = <
   const Slug extends string,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: Stage_Config & { slug: Slug }) => {
+>(
+  config: Stage_Config & { slug: Slug },
+) => {
   const validate = (value: Stage_Config): void => {
     stage_Config_Schema.parse(value);
     assertQuestChild(value.content.video.medium, 'video', 'content.video.medium');
@@ -53,14 +55,23 @@ export const defineStage = <
   };
   const overrides = (patch: Stage_Overrides, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
-    if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
-      Object.keys(patch).some(key => key !== 'content')) throw new Error('Invalid QuestStage overrides');
+    if (
+      !patch ||
+      typeof patch !== 'object' ||
+      Array.isArray(patch) ||
+      Object.keys(patch).some(key => key !== 'content')
+    )
+      throw new Error('Invalid QuestStage overrides');
     const output = nestQuestPublication({}, projectQuestTree(content, languages, patch.content ?? {}), 'content');
     validateQuestPublication(stage_Props_Schema, props(options), languages, output);
     return output;
   };
   const result = {
-    id, slug, type, content, validate,
+    id,
+    slug,
+    type,
+    content,
+    validate,
     build: { props, overrides },
     config: {
       base: { id, slug, type },

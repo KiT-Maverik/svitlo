@@ -88,7 +88,6 @@ A Scene may still have pending illustrations, meshes, media, captions, interacti
 
 **Scope guard:** no YAML parser, no builder or generator for Lesson data, no Assessment Architect duties, no unauthorized translations, no new Course narrative, no hidden contracts refactor, and no false completion of incomplete features.
 
-
 ## Quest Task Scene specialization (future runtime integration)
 
 A Quest Task contains exactly one Scene; see [Quest](../../docs/entities/quest.md). An approved Task Scene may eventually use Quest State/Actions contexts to request temporary media reaction playback and imperative transitions. Explicitly specify outcomes, retries, focus/keyboard interaction, nonvisual equivalents, pause/busy behavior and cancellation in the Screenwriter Scene spec. Quest-specific runtime actions are **not available** in the current Scene renderer; do not invent them, ship a mock controller as production, or use a ContentBlock workaround. Record this dependency until platform work adds the Quest controller and Section integration.

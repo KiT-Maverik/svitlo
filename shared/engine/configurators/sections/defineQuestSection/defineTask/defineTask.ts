@@ -11,7 +11,9 @@ export type Task_Overrides = { scene?: ContentBlock_Scene_Overrides };
 export const defineTask = <
   const Slug extends string,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: Task_Config & { slug: Slug }) => {
+>(
+  config: Task_Config & { slug: Slug },
+) => {
   const validate = (value: Task_Config): void => {
     task_Config_Schema.parse(value);
     assertQuestChild(value.scene, 'scene', 'scene');
@@ -21,22 +23,34 @@ export const defineTask = <
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     const output = nestQuestPublication({ id, slug, type }, projectQuestTree({ scene }, languages), 'unused');
-    const normalized = { base: { id, slug, type, scene: (output.base.unused as Record<string, unknown>).scene },
-      locale: output.locale ? Object.fromEntries(Object.entries(output.locale).map(([lang, value]) =>
-        [lang, (value.unused as Record<string, unknown>)])) : undefined };
+    const normalized = {
+      base: { id, slug, type, scene: (output.base.unused as Record<string, unknown>).scene },
+      locale: output.locale
+        ? Object.fromEntries(
+            Object.entries(output.locale).map(([lang, value]) => [lang, value.unused as Record<string, unknown>]),
+          )
+        : undefined,
+    };
     validateQuestPublication(task_Props_Schema, normalized, languages);
     return normalized;
   };
   const overrides = (patch: Task_Overrides, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
-    if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
-      Object.keys(patch).some(key => key !== 'scene')) throw new Error('Invalid QuestTask overrides');
+    if (!patch || typeof patch !== 'object' || Array.isArray(patch) || Object.keys(patch).some(key => key !== 'scene'))
+      throw new Error('Invalid QuestTask overrides');
     const output = projectQuestTree({ scene }, languages, patch);
     validateQuestPublication(task_Props_Schema, props(options), languages, output);
     return output;
   };
-  const result = { id, slug, type, scene, validate, build: { props, overrides },
-    config: { base: { id, slug, type }, locales: () => ({}), validate } } as const;
+  const result = {
+    id,
+    slug,
+    type,
+    scene,
+    validate,
+    build: { props, overrides },
+    config: { base: { id, slug, type }, locales: () => ({}), validate },
+  } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
 export type Task_Configurator = ReturnType<typeof defineTask>;

@@ -5,7 +5,11 @@ export * from './configurators/_shared__configurators/common.schemas';
 export * from './configurators/assessmentMethods/defineAssessmentMethod.schemas';
 export * from './configurators/configurator.schemas';
 export * from './configurators/contentBlocks/_shared__contentBlocks/text.schemas';
-export { createContentBlockBaseSchema, contentBlockResolved_Schema, localizationSwitch as contentBlockLocalizationSwitch } from './configurators/contentBlocks/contentBlock.schemas';
+export {
+  createContentBlockBaseSchema,
+  contentBlockResolved_Schema,
+  localizationSwitch as contentBlockLocalizationSwitch,
+} from './configurators/contentBlocks/contentBlock.schemas';
 export * from './configurators/contentBlocks/defineAudio/defineAudio.schemas';
 export * from './configurators/contentBlocks/defineSubtitles/defineSubtitles.schemas';
 export * from './configurators/contentBlocks/defineCarousel/defineCarousel.schemas';
@@ -58,6 +62,15 @@ export type { ResolveLocale } from './types';
 export { getLanguageCode, getSupportedLanguages, isLocale, getLocaleDirection } from './utils/languages';
 export { resolveEntityPath } from './utils/entityPath/resolveEntityPath.utils';
 export { createLocalizedFileLocations } from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';
-export type { CreateLocalizedFileLocationsOptions, LocalizedFileLocations } from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';
-export { createDynamicQuestion, validateArgument, validateBooleanArgument, validateNumberArgument, validateStringArgument } from './utils/createDynamicQuestion/createDynamicQuestion.utils';
+export type {
+  CreateLocalizedFileLocationsOptions,
+  LocalizedFileLocations,
+} from './utils/createLocalizedFileLocations/createLocalizedFileLocations.utils';
+export {
+  createDynamicQuestion,
+  validateArgument,
+  validateBooleanArgument,
+  validateNumberArgument,
+  validateStringArgument,
+} from './utils/createDynamicQuestion/createDynamicQuestion.utils';
 export type * from './utils/createDynamicQuestion/createDynamicQuestion.types';

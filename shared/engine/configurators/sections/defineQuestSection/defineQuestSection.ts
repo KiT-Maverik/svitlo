@@ -1,13 +1,35 @@
-import type { ConfigWithLanguages, LanguageScope, PublicationLanguageOptions, ChildrenSupporting, DeepPartial } from '#types';
+import type {
+  ConfigWithLanguages,
+  LanguageScope,
+  PublicationLanguageOptions,
+  ChildrenSupporting,
+  DeepPartial,
+} from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
-import { mergeForValidation, onlyLocales, onlyStrings, resolvePublicationLanguages,
-  selectPublicationLocales, splitLocalizedFields } from '../../_shared__configurators';
-import { questSection_Config_Schema, questSection_Props_Schema, questSection_Override_Metadata_Schema,
-  type QuestSection_Config, type QuestSection_Metadata_Overrides } from './defineQuestSection.schemas';
+import {
+  mergeForValidation,
+  onlyLocales,
+  onlyStrings,
+  resolvePublicationLanguages,
+  selectPublicationLocales,
+  splitLocalizedFields,
+} from '../../_shared__configurators';
+import {
+  questSection_Config_Schema,
+  questSection_Props_Schema,
+  questSection_Override_Metadata_Schema,
+  type QuestSection_Config,
+  type QuestSection_Metadata_Overrides,
+} from './defineQuestSection.schemas';
 import type { Stage_Configurator, Stage_Overrides } from './defineStage';
 import type { Task_Configurator, Task_Overrides } from './defineTask';
-import { assertQuestMap, projectQuestTree, nestQuestPublication,
-  mergeQuestPatches, validateQuestPublication } from './quest.utils';
+import {
+  assertQuestMap,
+  projectQuestTree,
+  nestQuestPublication,
+  mergeQuestPatches,
+  validateQuestPublication,
+} from './quest.utils';
 
 export type QuestSection_Overrides<
   Stages extends Record<string, Stage_Configurator>,
@@ -52,19 +74,27 @@ export const defineQuestSection = <
   validate(config);
   const { id, slug, type } = config;
   const metadataSchema = questSection_Config_Schema.omit({ stages: true, tasks: true });
-  const metadata = structuredClone(metadataSchema.parse({
-    id: config.id, slug: config.slug, type: config.type,
-    params: config.params, locale: config.locale,
-  }));
+  const metadata = structuredClone(
+    metadataSchema.parse({
+      id: config.id,
+      slug: config.slug,
+      type: config.type,
+      params: config.params,
+      locale: config.locale,
+    }),
+  );
   const stages = { ...config.stages };
   const tasks = { ...config.tasks };
   const ownLocale = (locale: DeepPartial<QuestSection_Config['locale']>) => {
     const split = splitLocalizedFields(locale);
     return {
       base: Object.keys(split.base).length ? { locale: split.base } : {},
-      locale: split.locale === undefined ? undefined :
-        Object.fromEntries(Object.entries(split.locale).map(([lang, props]) => [lang, { locale: props }])) as
-          Partial<Record<LanguageCode, { locale: unknown }>>,
+      locale:
+        split.locale === undefined
+          ? undefined
+          : (Object.fromEntries(
+              Object.entries(split.locale).map(([lang, props]) => [lang, { locale: props }]),
+            ) as Partial<Record<LanguageCode, { locale: unknown }>>),
     };
   };
   const props = (options: PublicationLanguageOptions<Languages>) => {
@@ -74,17 +104,21 @@ export const defineQuestSection = <
     const withStages = nestQuestPublication(root, projectQuestTree(stages, languages), 'stages');
     const withTasks = nestQuestPublication({}, projectQuestTree(tasks, languages), 'tasks');
     const output = mergeQuestPatches(withStages, withTasks);
-    output.locale = mergeQuestPatches(output, { base: {}, locale: selectPublicationLocales(own.locale, languages) }).locale;
+    output.locale = mergeQuestPatches(output, {
+      base: {},
+      locale: selectPublicationLocales(own.locale, languages),
+    }).locale;
     validateQuestPublication(questSection_Props_Schema, output, languages);
     return output;
   };
-  const overrides = (
-    patch: QuestSection_Overrides<Stages, Tasks>,
-    options: PublicationLanguageOptions<Languages>,
-  ) => {
+  const overrides = (patch: QuestSection_Overrides<Stages, Tasks>, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
-    if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
-        Object.keys(patch).some(key => !['params', 'locale', 'stages', 'tasks'].includes(key))) {
+    if (
+      !patch ||
+      typeof patch !== 'object' ||
+      Array.isArray(patch) ||
+      Object.keys(patch).some(key => !['params', 'locale', 'stages', 'tasks'].includes(key))
+    ) {
       throw new Error('Invalid QuestSection overrides');
     }
     const own = questSection_Override_Metadata_Schema.parse({
@@ -97,16 +131,26 @@ export const defineQuestSection = <
       base: { ...(own.params !== undefined ? { params: own.params } : {}), ...ownPatch.base },
       locale: selectPublicationLocales(ownPatch.locale, languages),
     };
-    const stagePatch = patch.stages === undefined ? { base: {}, locale: undefined } :
-      nestQuestPublication({}, projectQuestTree(stages, languages, patch.stages), 'stages');
-    const taskPatch = patch.tasks === undefined ? { base: {}, locale: undefined } :
-      nestQuestPublication({}, projectQuestTree(tasks, languages, patch.tasks), 'tasks');
+    const stagePatch =
+      patch.stages === undefined
+        ? { base: {}, locale: undefined }
+        : nestQuestPublication({}, projectQuestTree(stages, languages, patch.stages), 'stages');
+    const taskPatch =
+      patch.tasks === undefined
+        ? { base: {}, locale: undefined }
+        : nestQuestPublication({}, projectQuestTree(tasks, languages, patch.tasks), 'tasks');
     const output = mergeQuestPatches(mergeQuestPatches(root, stagePatch), taskPatch);
     validateQuestPublication(questSection_Props_Schema, props(options), languages, output);
     return output;
   };
   const result = {
-    id, slug, type, stages, tasks, validate, build: { props, overrides },
+    id,
+    slug,
+    type,
+    stages,
+    tasks,
+    validate,
+    build: { props, overrides },
     config: {
       base: { id, slug, type, params: structuredClone(metadata.params), locale: onlyStrings(metadata.locale) },
       locales: () => ({ locale: onlyLocales(metadata.locale) }),
