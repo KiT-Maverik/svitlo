@@ -676,8 +676,8 @@ production:
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
     - Methodologist Brief (incorporated in this config.yaml), Draft, needs approval.
-    - [Canonical Skill](../../../data/skills/arithmetic/divide/skills/equalGrouping.data.ts), unchanged.
-    - [Create Lesson Content workflow](../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - [Canonical Skill](../../../../data/skills/arithmetic/divide/skills/equalGrouping.data.ts), unchanged.
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Do not duplicate the earlier fair-sharing exercise: the group size here is specified first and the unknown is the NUMBER of groups. For Grade 2, use leftover observations without requiring formal division-with-remainder notation.
     - Coordinator-owned English taxonomy is deliberately unchanged until integration.
     

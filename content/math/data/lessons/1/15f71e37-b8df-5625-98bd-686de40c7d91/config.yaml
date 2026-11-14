@@ -654,7 +654,7 @@ production:
     
     - Methodologist Brief (incorporated in this config.yaml), Draft.
     - Generated Skill taxonomy (historical generated taxonomy; Skill code remains authoritative), coordinator-owned and not edited.
-    - [Create Lesson Content workflow](../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - The combined lesson must provide separately observable understanding of division by two and the inverse half/double relationship.
     
     ## HANDOFF

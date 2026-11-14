@@ -711,7 +711,7 @@ production:
     
     - Methodologist Brief (incorporated in this config.yaml), awaiting explicit editor approval.
     - Canonical `addZero.data.ts` linked from the Brief; the shared generated taxonomy is coordinated separately.
-    - [Create Lesson Content Skill](../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - [Create Lesson Content Skill](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Keep empty trays perceptible in screen-reader mode: an empty collection needs a real textual description, not invisible graphic content.
     
     ## HANDOFF
