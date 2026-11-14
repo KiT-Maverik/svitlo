@@ -1,6 +1,3 @@
-'use client';
-
-import { useEffect } from 'react';
 import {
   type LessonState,
   type QuizState,
@@ -100,20 +97,5 @@ async function dispatch(command: ControllerCommand): Promise<unknown> {
   }
 }
 
-export default function DbBrowserHarness() {
-  useEffect(() => {
-    window.__svitloDbE2E = dispatch;
-    return () => {
-      delete window.__svitloDbE2E;
-      heldConnection?.close();
-      heldConnection = undefined;
-    };
-  }, []);
-
-  return (
-    <main>
-      <h1>Native IndexedDB controller test harness</h1>
-      <p data-testid="db-harness-ready">Ready</p>
-    </main>
-  );
-}
+// Native browser suite executes real package exports, without mounting a test-only React app.
+window.__svitloDbE2E = dispatch;
