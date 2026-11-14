@@ -14,7 +14,7 @@ Each technical Lesson or Course has one `config.yaml`. The canonical entity dire
   `type` discriminator, `id`, `slug`, `params`, `locale` and
   nested `{ items, order }` collections.
 - `production`: optional, manually specified, **authoring-only**
-  requirements for this *same* entity. It does not duplicate the ID,
+  requirements for this _same_ entity. It does not duplicate the ID,
   does not flow into `define*`, `build.overrides` or published Props,
   and may generate human-readable handoff files.
 
@@ -33,9 +33,9 @@ config:
   id: 92177be3-97a1-5ca4-b21a-07f0dac27f50
   slug: equalityLesson
   type: lesson
-  skills: []                # real Skill UUIDs must be supplied
+  skills: [] # real Skill UUIDs must be supplied
   params:
-    languages: [en, uk]    # planned locales, not completed translations
+    languages: [en, uk] # planned locales, not completed translations
   section:
     items:
       introduction:

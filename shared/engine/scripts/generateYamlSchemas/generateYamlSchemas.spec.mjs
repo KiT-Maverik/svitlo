@@ -182,12 +182,8 @@ test('unified scaffold composes manual production schema beside Engine Config at
   const manuallyOwned = JSON.parse(
     fs.readFileSync(new URL('../../yaml-schemas/production.schema.json', import.meta.url), 'utf8'),
   );
-  assert.deepEqual(
-    JSON.parse(docs['lesson.scaffold.schema.json']).$defs.__production.$defs,
-    manuallyOwned.$defs,
-  );
+  assert.deepEqual(JSON.parse(docs['lesson.scaffold.schema.json']).$defs.__production.$defs, manuallyOwned.$defs);
   assert.deepEqual(manuallyOwned.$defs.scene.required, ['specification']);
   assert.deepEqual(manuallyOwned.$defs.image.required, ['prompt', 'purpose']);
   assert(!docs['lesson.scaffold.schema.json'].includes('"sceneSpecKey"'));
 });
-

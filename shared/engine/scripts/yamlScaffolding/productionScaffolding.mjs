@@ -30,9 +30,7 @@ export function splitScaffoldDocument(document) {
       if (production !== undefined) tasks.push({ id: config.id, type: config.type, production, location });
       return visit(config, location + '.config');
     }
-    return Object.fromEntries(Object.entries(value).map(([key, child]) => [
-      key, visit(child, location + '.' + key),
-    ]));
+    return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, visit(child, location + '.' + key)]));
   }
   const { config, production } = document;
   const normalized = visit({ config, production }, '$');
@@ -55,8 +53,11 @@ function markdownForTask(task) {
   }
   const lines = ['# ' + type + ' production specification', '', 'Entity ID: ' + id, ''];
   for (const [key, label] of [
-    ['purpose', 'Purpose'], ['prompt', 'Generation prompt'], ['script', 'Script'],
-    ['storyboard', 'Storyboard'], ['specification', 'Implementation specification'],
+    ['purpose', 'Purpose'],
+    ['prompt', 'Generation prompt'],
+    ['script', 'Script'],
+    ['storyboard', 'Storyboard'],
+    ['specification', 'Implementation specification'],
     ['productionNotes', 'Production notes'],
   ]) {
     if (text(production[key])) lines.push('## ' + label, '', production[key].trim(), '');
@@ -80,16 +81,21 @@ export function productionFiles(entityFolder, tasks) {
       destination = path.join(entityFolder, 'methodology.md');
       body = production.methodology.trimEnd() + '\n';
     } else if (type === 'scene' && text(production.specification)) {
-      if (!uuid.test(id ?? '')) throw new Error('config.yaml:' + task.location + '.config.id: Scene specification requires UUID');
+      if (!uuid.test(id ?? ''))
+        throw new Error('config.yaml:' + task.location + '.config.id: Scene specification requires UUID');
       destination = path.join(textbookRoot, 'scenes', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
-    } else if (['image', 'audio', 'video'].includes(type) &&
-      [production.prompt, production.specification, production.script, production.storyboard].some(text)) {
-      if (!uuid.test(id ?? '')) throw new Error('config.yaml:' + task.location + '.config.id: media specification requires UUID');
+    } else if (
+      ['image', 'audio', 'video'].includes(type) &&
+      [production.prompt, production.specification, production.script, production.storyboard].some(text)
+    ) {
+      if (!uuid.test(id ?? ''))
+        throw new Error('config.yaml:' + task.location + '.config.id: media specification requires UUID');
       destination = path.join(textbookRoot, 'data/assets', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     } else if (text(production.specification)) {
-      if (!uuid.test(id ?? '')) throw new Error('config.yaml:' + task.location + '.config.id: specification requires UUID');
+      if (!uuid.test(id ?? ''))
+        throw new Error('config.yaml:' + task.location + '.config.id: specification requires UUID');
       destination = path.join(entityFolder, 'specifications', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     }

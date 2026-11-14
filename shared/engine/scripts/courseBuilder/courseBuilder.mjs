@@ -18,7 +18,12 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
-import { splitScaffoldDocument, productionFiles, checkProductionFiles, writeProductionFiles } from '../yamlScaffolding/productionScaffolding.mjs';
+import {
+  splitScaffoldDocument,
+  productionFiles,
+  checkProductionFiles,
+  writeProductionFiles,
+} from '../yamlScaffolding/productionScaffolding.mjs';
 
 const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -403,7 +408,7 @@ export function parseArguments(args) {
   }
   if (
     !PACKAGE.test(packagePath ?? '') ||
-    ((courseId === undefined) === (configFile === undefined)) ||
+    (courseId === undefined) === (configFile === undefined) ||
     (courseId !== undefined && !UUID.test(courseId)) ||
     (slug !== undefined && !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(slug)) ||
     (sourceFilename !== undefined && !['config.yaml', 'toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
@@ -447,8 +452,7 @@ export async function main(args, repo = repoRoot) {
     const existing = existingCourseDrafts(courseFolder);
     if (!existing.length) return false;
     console.log(
-      'SKIP Course ' + courseId + ': existing ' + existing.join(', ') +
-        ' in ' + courseFolder + '; no files modified',
+      'SKIP Course ' + courseId + ': existing ' + existing.join(', ') + ' in ' + courseFolder + '; no files modified',
     );
     return true;
   };

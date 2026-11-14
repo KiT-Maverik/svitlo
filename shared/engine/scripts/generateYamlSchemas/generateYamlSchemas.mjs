@@ -113,8 +113,7 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     if (type === 'lesson' && properties.lessonId) return 'lessonReference';
     if (sectionKinds.has(type)) return 'section';
     if (questionKinds.has(type)) return 'question';
-    if (['lesson', 'course', 'episode', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type))
-      return type;
+    if (['lesson', 'course', 'episode', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type)) return type;
     return 'default';
   };
   function wrap(node) {
@@ -149,13 +148,17 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     function scopeOverrideRefs(node) {
       if (Array.isArray(node)) return node.map(scopeOverrideRefs);
       if (!node || typeof node !== 'object') return node;
-      return Object.fromEntries(Object.entries(node).map(([key, value]) => [
-        key,
-        key === '$ref' && typeof value === 'string' &&
-          value.startsWith('#/$defs/') && !value.startsWith('#/$defs/__production/')
-          ? '#/$defs/__overrides/$defs/' + value.slice('#/$defs/'.length)
-          : scopeOverrideRefs(value),
-      ]));
+      return Object.fromEntries(
+        Object.entries(node).map(([key, value]) => [
+          key,
+          key === '$ref' &&
+          typeof value === 'string' &&
+          value.startsWith('#/$defs/') &&
+          !value.startsWith('#/$defs/__production/')
+            ? '#/$defs/__overrides/$defs/' + value.slice('#/$defs/'.length)
+            : scopeOverrideRefs(value),
+        ]),
+      );
     }
     embeddedOverrides = scopeOverrideRefs(wrap(overrides));
     envelope.properties.overrides = { $ref: '#/$defs/__overrides' };

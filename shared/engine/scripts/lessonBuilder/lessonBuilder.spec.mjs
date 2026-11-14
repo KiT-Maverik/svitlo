@@ -152,9 +152,7 @@ function wrapEntityNodes(value) {
   if (Array.isArray(value)) return value.map(wrapEntityNodes);
   if (!value || typeof value !== 'object') return value;
   const { __production: production, ...fields } = value;
-  const config = Object.fromEntries(Object.entries(fields).map(([key, child]) => [
-    key, wrapEntityNodes(child),
-  ]));
+  const config = Object.fromEntries(Object.entries(fields).map(([key, child]) => [key, wrapEntityNodes(child)]));
   if (typeof value.type === 'string' && typeof value.id === 'string') {
     return { config, ...(production ? { production } : {}) };
   }
@@ -267,7 +265,10 @@ test('preserves partial YAML instead of inventing required fields, locale values
     fs.rmSync(path.join(f.lesson, 'flashcards'), { recursive: true });
     f.save = () => {
       const { documentLanguage, ...config } = f.content;
-      fs.writeFileSync(path.join(f.lesson, 'config.yaml'), yaml.stringify({ config, production: { documentLanguage } }));
+      fs.writeFileSync(
+        path.join(f.lesson, 'config.yaml'),
+        yaml.stringify({ config, production: { documentLanguage } }),
+      );
     };
     f.save();
     runOne(f.lesson, 'generate', f.root);
@@ -468,7 +469,10 @@ test('one YAML source creates ID-addressed Scene/media specs and a methodology w
     assert.match(fs.readFileSync(imageSpec, 'utf8'), /Two groups of five counters/);
     assert.match(fs.readFileSync(path.join(f.lesson, 'methodology.md'), 'utf8'), /Lesson method/);
     const code = fs.readFileSync(f.generated(), 'utf8');
-    assert.deepEqual(calls(code).filter(x => x === 'defineScene'), ['defineScene']);
+    assert.deepEqual(
+      calls(code).filter(x => x === 'defineScene'),
+      ['defineScene'],
+    );
     assert.match(code, /defineImage\(/);
     assert.doesNotMatch(code, /"__production"|"production"|"specification"/);
     assert(!code.includes('Two groups of five counters.'));
@@ -515,7 +519,6 @@ test('single YAML config.id determines the Lesson UUID output path without check
     assert.equal(runOne(staged, 'generate', f.root).skipped, true);
     assert.equal(runOne(staged, 'check', f.root).changed, 0);
   }));
-
 
 test('staged Lesson rejects malformed IDs and symlinked UUID destinations without writing files', () =>
   fixture(f => {

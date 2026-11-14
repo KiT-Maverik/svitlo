@@ -563,10 +563,28 @@ test('Course uses the same canonical Engine registry and prunes explicit source-
 });
 
 const courseNodeTypes = new Set([
-  'course', 'module', 'chapter', 'episode', 'lesson', 'content', 'practice',
-  'codingTask', 'learningFlow', 'flashcards', 'quiz', 'text', 'markdown',
-  'image', 'scene', 'audio', 'video', 'youtube', 'carousel', 'carouselSlide',
-  'checkpoint', 'checkpointItem',
+  'course',
+  'module',
+  'chapter',
+  'episode',
+  'lesson',
+  'content',
+  'practice',
+  'codingTask',
+  'learningFlow',
+  'flashcards',
+  'quiz',
+  'text',
+  'markdown',
+  'image',
+  'scene',
+  'audio',
+  'video',
+  'youtube',
+  'carousel',
+  'carouselSlide',
+  'checkpoint',
+  'checkpointItem',
 ]);
 function wrapCourseNodes(value) {
   if (Array.isArray(value)) return value.map(wrapCourseNodes);
@@ -629,14 +647,22 @@ test('Course --config accepts a single YAML ID and writes into its derived UUID 
     await main([...args, '--write'], root);
     assert.equal(fs.readFileSync(path.join(folder, 'spaceCourse.data.ts'), 'utf8'), code);
     assert.throws(
-      () => parseArguments(['--package', 'content/math', '--course', courseId, '--config', 'content/math/staging/config.yaml', '--write']),
+      () =>
+        parseArguments([
+          '--package',
+          'content/math',
+          '--course',
+          courseId,
+          '--config',
+          'content/math/staging/config.yaml',
+          '--write',
+        ]),
       /Course Scaffolder.*ARGS/,
     );
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }
 });
-
 
 test('Course config.yaml emits Scene/media handoffs without inventing image sources or leaking production', async () => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-media-scaffold-'));
@@ -667,7 +693,12 @@ test('Course config.yaml emits Scene/media handoffs without inventing image sour
                       content: {
                         items: {
                           illustration: {
-                            config: { id: imageId, type: 'image', slug: 'illustration', locale: { alt: { uk: 'Опис' } } },
+                            config: {
+                              id: imageId,
+                              type: 'image',
+                              slug: 'illustration',
+                              locale: { alt: { uk: 'Опис' } },
+                            },
                             production: { purpose: 'Explain the scene', prompt: 'Two balanced groups of counters' },
                           },
                           interactive: {

@@ -23,7 +23,12 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
 import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
-import { splitScaffoldDocument, productionFiles, checkProductionFiles, writeProductionFiles } from '../yamlScaffolding/productionScaffolding.mjs';
+import {
+  splitScaffoldDocument,
+  productionFiles,
+  checkProductionFiles,
+  writeProductionFiles,
+} from '../yamlScaffolding/productionScaffolding.mjs';
 export { loadFactoryRegistry };
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
@@ -271,7 +276,10 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const sourceRelative = path.relative(target.bookRoot, target.root).split(path.sep).join('/');
   const canonicalSource = /^data\/lessons\/[0-9a-f]\/[0-9a-f-]{36}$/.test(sourceRelative);
   const existing = canonicalSource
-    ? fs.readdirSync(target.root).filter(name => name.endsWith('.data.ts')).sort()
+    ? fs
+        .readdirSync(target.root)
+        .filter(name => name.endsWith('.data.ts'))
+        .sort()
     : [];
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
@@ -284,7 +292,10 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   // When source is outside the canonical target, derive the destination from
   // the single authored config.id. Existing data is still never overwritten.
   const destinationData = fs.existsSync(outputFolder)
-    ? fs.readdirSync(outputFolder).filter(name => name.endsWith('.data.ts')).sort()
+    ? fs
+        .readdirSync(outputFolder)
+        .filter(name => name.endsWith('.data.ts'))
+        .sort()
     : [];
   if (mode === 'generate' && destinationData.length) {
     return { changed: 0, skipped: true, files: destinationData, lessonId: lesson.id };

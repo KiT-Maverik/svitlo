@@ -31,9 +31,7 @@
           "minLength": 1
         }
       },
-      "required": [
-        "documentLanguage"
-      ]
+      "required": ["documentLanguage"]
     },
     "course": {
       "type": "object",
@@ -133,9 +131,7 @@
           "minLength": 1
         }
       },
-      "required": [
-        "specification"
-      ]
+      "required": ["specification"]
     },
     "image": {
       "type": "object",
@@ -155,10 +151,7 @@
           "minLength": 1
         }
       },
-      "required": [
-        "prompt",
-        "purpose"
-      ]
+      "required": ["prompt", "purpose"]
     },
     "audio": {
       "type": "object",
