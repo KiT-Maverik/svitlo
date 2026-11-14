@@ -22,7 +22,16 @@ The editorial TOC format is defined by [course-toc.schema.json](./course-toc.sch
 
 ## Approved Course-owned overrides
 
-[Course Lesson Overrides](./course-overrides.md) defines the **separate** `overrides.yaml` editorial format, validated by [course-overrides.schema.json](./course-overrides.schema.json). It is not part of `toc.yaml` and never edits a standalone Lesson. The Course Methodologist can author **pedagogical** overrides during Course Methodology Review, while the future Course Screenwriter can author **scenario** overrides during Course screenwriting; both contribute to **one** approved Course-owned file. A reviewed Course integration author can use it to specify sparse parameter changes, Section/ContentBlock slug modifications, ordering and approved Course-owned TS source references for new Sections/blocks or metadata patches. The Course `overrides.yaml` operation format is **not** the Engine Course Config-shaped YAML tree. Any approved override mapping belongs to a separately verified technical integration step; do not assume the generic Course draft scaffolder applies `createLessonOverrides` or validates the existing editorial operations. Scenario content/asset sources must already exist and be approved; their authorship is not delegated to the scaffolder.
+[Course Build Overrides](./course-overrides.md) defines the **single supported**
+Course-owned override format. `overrides.yaml` contains a direct stateless
+`course.build.overrides(patch, { languages })` patch, guided by the
+[generated Engine Course Overrides Schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json).
+Legacy ordered editorial operations are obsolete and unsupported.
+
+Methodological and scenario review still determines whether each Course-specific
+change is justified and approved; approval is distinct from technical
+scaffolding and from the final Engine Config/Props validation. Override patches
+must not mutate any reusable standalone Lesson.
 
 ## Engine YAML draft handoff
 
