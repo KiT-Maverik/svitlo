@@ -20,3 +20,18 @@ export type Question_Configurator = ConfiguratorChild<
   | Question_FillBlanksWithBlocks_Configurator
   | Question_FillBlanksWithText_Configurator
 >;
+
+/** Resolved Question Props retain each question kind's discriminant and payload. */
+export type Question_Props =
+  | import('./defineSelectOneAnswer').Question_SelectOneAnswer_Props
+  | import('./defineSelectMultipleAnswers').Question_SelectMultipleAnswers_Props
+  | import('./defineMatchBlocks').Question_MatchBlocks_Props
+  | import('./defineAnswerWithText').Question_AnswerWithText_Props
+  | import('./defineAnswerWithNumber').Question_AnswerWithNumber_Props
+  | import('./defineOrderSequence').Question_OrderSequence_Props
+  | import('./defineBuildAnswerWithBlocks').Question_BuildAnswerWithBlocks_Props
+  | import('./defineFillBlanksWithBlocks').Question_FillBlanksWithBlocks_Props
+  | import('./defineFillBlanksWithText').Question_FillBlanksWithText_Props;
+
+/** Base fragments retain Question identity and kind, but omit translated values. */
+export type Question_PropsBase = ReturnType<Question_Configurator['build']['props']>['base'];

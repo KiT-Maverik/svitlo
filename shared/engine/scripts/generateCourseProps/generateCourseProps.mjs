@@ -6,6 +6,7 @@ import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
 import { renderCourseFiles } from '../../generators/courses/publishCourseData.mjs';
+import { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] --write|--check';
@@ -27,10 +28,13 @@ function options(argv) {
   if (!outputDirectory.startsWith(path.join(pkg, 'generated') + path.sep)) {
     throw new Error('Course output must remain in textbook generated/');
   }
+  assertSafeDirectoryPath(pkg);
+  assertSafeDirectoryPath(outputDirectory);
   return { pkg, outputDirectory, action };
 }
 
 export function readCurrent(root, prefix = '', files = new Map()) {
+  assertSafeDirectoryPath(root);
   if (!fs.existsSync(root)) return files;
   if (fs.lstatSync(root).isSymbolicLink()) throw new Error('Symlink in generated Course output: ' + root);
   for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
@@ -66,6 +70,7 @@ async function render(pkg) {
 }
 
 export function publish(root, files) {
+  assertSafeDirectoryPath(root);
   const parent = path.dirname(root);
   fs.mkdirSync(parent, { recursive: true });
   if (fs.existsSync(root) && (!fs.lstatSync(root).isDirectory() || fs.lstatSync(root).isSymbolicLink())) {

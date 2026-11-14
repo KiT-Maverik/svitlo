@@ -8,16 +8,16 @@ import process from 'node:process';
 const root = path.resolve(import.meta.dirname, '../../../..');
 const fixture = fs.mkdtempSync(path.join(root, 'content', '.taxonomy-import-fixture-'));
 const docs = path.join(fixture, 'docs/skills/taxonomy.md');
-const entity = path.join(fixture, 'src/data/skillsTaxonomy/a/a.data.ts');
+const entity = path.join(fixture, 'data/skills/a/a.data.ts');
 const put = (p, value) => {
   fs.mkdirSync(path.dirname(p), { recursive: true });
   fs.writeFileSync(p, value);
 };
 const source =
-  'export const fixture = defineSkillDomain({\n  id: "4e36cc11-d273-44a4-aa6d-a153c4e53701",\n  title: { en: "Example" },\n});\n';
+  'export const fixture = defineSkillDomain({\n  id: "4e36cc11-d273-44a4-aa6d-a153c4e53701",\n  slug: "example",\n  title: { en: "Example" },\n});\n';
 const md = (label = 'Methodological description: Conceptual domain scope in English.') =>
   '# Test\n\n## DOMAINS\n\n### Example\n\nGroups: 0 · Skills: 1\n\n' +
-  '[a.data.ts](../../src/data/skillsTaxonomy/a/a.data.ts)\n\n' +
+  '[a.data.ts](../../data/skills/a/a.data.ts)\n\n' +
   label +
   '\nUser-friendly description: Human-facing working-language draft.\n';
 
