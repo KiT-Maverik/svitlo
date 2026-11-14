@@ -14,8 +14,20 @@ export type PublishedLessonPropsResource = {
   locale?: Partial<Record<LanguageCode, LessonPropsFragment>>;
 };
 
-/** Build-time overrides have no right to replace the Lesson's immutable identity. */
-type LessonOverrideFragment = Omit<LessonPropsFragment, 'id' | 'slug' | 'type'>;
+/**
+ * Published overrides never replace Lesson identity or language scope.
+ * Nested section/flashcard/question arrays are complete atomic Props values,
+ * not recursively partial entries. Avoid recursively expanding all Question
+ * variants through DeepPartial in public assembler contracts.
+ */
+export type LessonOverrideFragment = {
+  params?: DeepPartial<Omit<Lesson_Props['params'], 'languages'>>;
+  locale?: DeepPartial<Lesson_Props['locale']>;
+  section?: Lesson_PropsBase['section'];
+  flashcards?: Lesson_PropsBase['flashcards'];
+  questions?: Lesson_PropsBase['questions'];
+  events?: Lesson_Props['events'];
+};
 
 export type PublishedLessonPropsOverride = {
   base?: LessonOverrideFragment;
