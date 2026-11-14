@@ -1,603 +1,603 @@
 config:
-  id: "d77ea286-32cb-56d5-b8cc-8e8ceb894bd3"
-  slug: "completeMissingEquality"
-  type: "lesson"
+  id: 'd77ea286-32cb-56d5-b8cc-8e8ceb894bd3'
+  slug: 'completeMissingEquality'
+  type: 'lesson'
   skills:
-    - "b10f275e-3774-4e50-8450-b3da6be099af"
+    - 'b10f275e-3774-4e50-8450-b3da6be099af'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "qm"
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
-      - "pl"
-      - "uk"
+      - 'en'
+      - 'qm'
+      - 'lt'
+      - 'lv'
+      - 'et'
+      - 'be'
+      - 'ka'
+      - 'kk'
+      - 'zh'
+      - 'hi'
+      - 'es'
+      - 'ar'
+      - 'fr'
+      - 'bn'
+      - 'pt'
+      - 'ur'
+      - 'id'
+      - 'de'
+      - 'ja'
+      - 'ko'
+      - 'tr'
+      - 'vi'
+      - 'ta'
+      - 'te'
+      - 'mr'
+      - 'ms'
+      - 'he'
+      - 'pl'
+      - 'uk'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Make Both Sides Equal"
+      en: 'Make Both Sides Equal'
   section:
     items:
       section1:
         config:
-          id: "d77ea286-32cb-56d5-b8cc-000000000005"
-          slug: "section1"
-          type: "content"
+          id: 'd77ea286-32cb-56d5-b8cc-000000000005'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "One side is already known (guided exploration)"
+              en: 'One side is already known (guided exploration)'
             navigationLabel:
-              en: "One side is already known (guided exploration)"
+              en: 'One side is already known (guided exploration)'
           content:
             items:
               section1Text1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000001"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000001'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Which side can we work out right now? **6 + □ = 4 + 5**."
+                      en: 'Which side can we work out right now? **6 + □ = 4 + 5**.'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "1. **`text` resource:** “Which side can we work out right now? **6 + □ = 4 + 5**.” Give a moment to predict whether the box should contain 3, 5 or 9, without marking a guess wrong."
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '1. **`text` resource:** “Which side can we work out right now? **6 + □ = 4 + 5**.” Give a moment to predict whether the box should contain 3, 5 or 9, without marking a guess wrong.'
               section1Scene1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000002"
-                  slug: "section1Scene1"
-                  type: "scene"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000002'
+                  slug: 'section1Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Which side can we work out right now? **6 + □ = 4 + 5**."
+                        instruction: 'Which side can we work out right now? **6 + □ = 4 + 5**.'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Expression Match Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: `Lesson Content` (source preserved in this YAML), Sections 1–4; `Draft Methodologist Brief` (source preserved in this YAML)  
                     Implementation: **Proposed** self-contained, prop-free Scene; no existing component is claimed.
-                    
+
                     ## Educational purpose and invariant
-                    
+
                     A child determines an unknown component so that the **whole expressions** on both sides of an equality have the same value. The box is one number, not necessarily the value of its side. Each visualization must preserve equal-sized count units; do not use an ornamental balancing scale as proof of numeric equality. Re-evaluate both side expressions after every change. Constrain inputs to whole numbers 0–20 and examples with nonnegative results.
-                    
+
                     ## Experience beats and feedback
-                    
+
                     **Entry A (Section 1), 6 + □ = 4 + 5:** The right board displays four counters and five counters; the learner may reveal nine total. The left has six fixed counters and a candidate box. Let the learner predict 3 / 5 / 9, then inspect the two results. Candidate 3 → 6+3=9, true; candidate 5 → 11 against 9, false; candidate 9 → 15 against 9, false. For 9 give targeted feedback: “Nine is the value of the entire other side, but the box is only part of this side.” For 3: “Both sides make nine.”
-                    
+
                     **Entry B (Section 2), 7 + 2 = □ − 1:** The left value is nine. Provide an adjustable starting collection, then explicitly remove one unit. Candidate 9 leaves eight, 11 leaves ten; only **10** leaves nine. Read each revealed result aloud through equivalent text (audio optional). Correct feedback: “Ten minus one is nine; both expressions match.” Incorrect: “The box is the starting count, not the count left afterward.”
-                    
+
                     **Entry C (Section 3), 8 + □ = 6 + 5:** Begin with candidate **11** and ask whether the equality is true. Reveal left 8+11=19, right 6+5=11. Give a way to revise the box; candidate **3** yields 11/11. If the learner proposes moving the equals sign, reply: “Changing the symbol's position does not change either value.”
-                    
+
                     **Entry D (Section 4), □ + 4 = 5 + 6:** Fresh independent state with no prefilled number. Enable number entry plus accessible +/- controls. First hint: “Find five plus six.” Second hint: “What plus four makes eleven?” Candidate **7** passes because 7+4=11 and 5+6=11. Candidate 11 fails (15 versus 11); explain why copying the total is wrong. “Show explanation” must be available without any submission or score.
-                    
+
                     ## Objects, local state, action semantics
-                    
+
                     Objects: full readable expression, fixed and editable side counts, optional grouped counters, candidate controls, “Count this side”, “Compare”, “Hint”, “Show reasoning”, “Reset” actions. State: one local scenario, entered integer or unset, separate revealed-total flags, optional tentative prediction and chosen explanation. The verdict is **left expression's evaluated number equals right expression's evaluated number**; never cache correctness based only on the candidate's ID, color or diagram height. An unset box must show “not yet filled,” not “false.” Each Section entry starts from its specified scenario independently; no cross-Section state, prop-based scenario selection or persistence is assumed.
-                    
+
                     ## Accessibility, visuals and offline intent
-                    
+
                     Place each operand near its labeled counter group. Keyboard, switch and touch users must choose and adjust every candidate without drag. Screen readers announce expression, candidate, two computed side values and match/mismatch conclusion, never color alone. Provide text explanation alongside any animation, reduced-motion instant result, zoom/reflow and clearly located focus. RTL adapts interface labels and reading order but does **not** reverse subtraction operands or mathematical equality meaning. Translate all prompts, numerical speech, unit words, accessible labels and feedback faithfully into every supported locale (English only is an editorial source). All math and media should operate offline after a downloaded implementation; offline support is not presently asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. A: 6+3=4+5 true; 6+5=11 versus 9; 6+9=15 versus 9.
                     2. B: 7+2=10−1 true; candidate 9 gives 8, 11 gives 10, both false.
                     3. C: 8+11=19 against 11 false; candidate 3 makes 11 against 11 true.
                     4. D: 7+4=5+6=11 true; candidate 11 makes 15 against 11 false.
                     5. Reset/isolation, explicit hints and user-controlled explanation work without a Question or score.
                     6. Keyboard, screen reader, small-screen zoom, RTL, reduced-motion and fully downloaded offline paths convey identical numerical reasoning.
-                    
+
                     ## Editorial / technical dependencies
-                    
+
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in One side is already known (guided exploration) refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section1Text2:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000003"
-                  slug: "section1Text2"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000003'
+                  slug: 'section1Text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Six and three make nine. Four and five make nine. **Both sides match**."
+                      en: 'Six and three make nine. Four and five make nine. **Both sides match**.'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "3. **`text`:** For 3: “Six and three make nine. Four and five make nine. **Both sides match**.” For 9: “The right side is nine altogether, but six plus nine is fifteen. The box is one part, not the whole.” For 5: “Six plus five is eleven, not nine.”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '3. **`text`:** For 3: “Six and three make nine. Four and five make nine. **Both sides match**.” For 9: “The right side is nine altogether, but six plus nine is fifteen. The box is one part, not the whole.” For 5: “Six plus five is eleven, not nine.”'
               section1Markdown1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000004"
-                  slug: "section1Markdown1"
-                  type: "markdown"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000004'
+                  slug: 'section1Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The side with no box gives us a target. Find a number that makes the other side have that same value. Then check _both_ sides."
+                      en: 'The side with no box gives us a target. Find a number that makes the other side have that same value. Then check _both_ sides.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "4. **`markdown`:** “The side with no box gives us a target. Find a number that makes the other side have that same value. Then check _both_ sides.”"
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '4. **`markdown`:** “The side with no box gives us a target. Find a number that makes the other side have that same value. Then check _both_ sides.”'
             order:
-              - "section1Text1"
-              - "section1Scene1"
-              - "section1Text2"
-              - "section1Markdown1"
+              - 'section1Text1'
+              - 'section1Scene1'
+              - 'section1Text2'
+              - 'section1Markdown1'
         production:
-          purpose: "One side is already known (guided exploration)"
+          purpose: 'One side is already known (guided exploration)'
           pedagogicalIntent: |-
             _Purpose: learn to establish a target value before choosing a missing term._
-            
+
             1. **`text` resource:** “Which side can we work out right now? **6 + □ = 4 + 5**.” Give a moment to predict whether the box should contain 3, 5 or 9, without marking a guess wrong.
             2. **`scene` resource, proposed:** `Expression Match Lab` (former expressionMatchLab.scene-spec.md; specification embedded in this YAML), entry A. A fixed right-hand board shows four counters joined with five; its total is revealed as **9**. The left board shows six visible counters and a space for the box. Children insert one, two, three or more unit counters using plus/minus controls (a keyboard-equivalent to optional manipulation), then inspect the two totals.
             3. **`text`:** For 3: “Six and three make nine. Four and five make nine. **Both sides match**.” For 9: “The right side is nine altogether, but six plus nine is fifteen. The box is one part, not the whole.” For 5: “Six plus five is eleven, not nine.”
             4. **`markdown`:** “The side with no box gives us a target. Find a number that makes the other side have that same value. Then check _both_ sides.”
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section2:
         config:
-          id: "d77ea286-32cb-56d5-b8cc-00000000000a"
-          slug: "section2"
-          type: "content"
+          id: 'd77ea286-32cb-56d5-b8cc-00000000000a'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Move the box, not the rule (guided contrast)"
+              en: 'Move the box, not the rule (guided contrast)'
             navigationLabel:
-              en: "Move the box, not the rule (guided contrast)"
+              en: 'Move the box, not the rule (guided contrast)'
           content:
             items:
               section2Text1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000006"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000006'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?"
+                      en: 'A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "1. **`text`:** “A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '1. **`text`:** “A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?”'
               section2Scene1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000007"
-                  slug: "section2Scene1"
-                  type: "scene"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000007'
+                  slug: 'section2Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?"
+                        instruction: 'A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Expression Match Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: `Lesson Content` (source preserved in this YAML), Sections 1–4; `Draft Methodologist Brief` (source preserved in this YAML)  
                     Implementation: **Proposed** self-contained, prop-free Scene; no existing component is claimed.
-                    
+
                     ## Educational purpose and invariant
-                    
+
                     A child determines an unknown component so that the **whole expressions** on both sides of an equality have the same value. The box is one number, not necessarily the value of its side. Each visualization must preserve equal-sized count units; do not use an ornamental balancing scale as proof of numeric equality. Re-evaluate both side expressions after every change. Constrain inputs to whole numbers 0–20 and examples with nonnegative results.
-                    
+
                     ## Experience beats and feedback
-                    
+
                     **Entry A (Section 1), 6 + □ = 4 + 5:** The right board displays four counters and five counters; the learner may reveal nine total. The left has six fixed counters and a candidate box. Let the learner predict 3 / 5 / 9, then inspect the two results. Candidate 3 → 6+3=9, true; candidate 5 → 11 against 9, false; candidate 9 → 15 against 9, false. For 9 give targeted feedback: “Nine is the value of the entire other side, but the box is only part of this side.” For 3: “Both sides make nine.”
-                    
+
                     **Entry B (Section 2), 7 + 2 = □ − 1:** The left value is nine. Provide an adjustable starting collection, then explicitly remove one unit. Candidate 9 leaves eight, 11 leaves ten; only **10** leaves nine. Read each revealed result aloud through equivalent text (audio optional). Correct feedback: “Ten minus one is nine; both expressions match.” Incorrect: “The box is the starting count, not the count left afterward.”
-                    
+
                     **Entry C (Section 3), 8 + □ = 6 + 5:** Begin with candidate **11** and ask whether the equality is true. Reveal left 8+11=19, right 6+5=11. Give a way to revise the box; candidate **3** yields 11/11. If the learner proposes moving the equals sign, reply: “Changing the symbol's position does not change either value.”
-                    
+
                     **Entry D (Section 4), □ + 4 = 5 + 6:** Fresh independent state with no prefilled number. Enable number entry plus accessible +/- controls. First hint: “Find five plus six.” Second hint: “What plus four makes eleven?” Candidate **7** passes because 7+4=11 and 5+6=11. Candidate 11 fails (15 versus 11); explain why copying the total is wrong. “Show explanation” must be available without any submission or score.
-                    
+
                     ## Objects, local state, action semantics
-                    
+
                     Objects: full readable expression, fixed and editable side counts, optional grouped counters, candidate controls, “Count this side”, “Compare”, “Hint”, “Show reasoning”, “Reset” actions. State: one local scenario, entered integer or unset, separate revealed-total flags, optional tentative prediction and chosen explanation. The verdict is **left expression's evaluated number equals right expression's evaluated number**; never cache correctness based only on the candidate's ID, color or diagram height. An unset box must show “not yet filled,” not “false.” Each Section entry starts from its specified scenario independently; no cross-Section state, prop-based scenario selection or persistence is assumed.
-                    
+
                     ## Accessibility, visuals and offline intent
-                    
+
                     Place each operand near its labeled counter group. Keyboard, switch and touch users must choose and adjust every candidate without drag. Screen readers announce expression, candidate, two computed side values and match/mismatch conclusion, never color alone. Provide text explanation alongside any animation, reduced-motion instant result, zoom/reflow and clearly located focus. RTL adapts interface labels and reading order but does **not** reverse subtraction operands or mathematical equality meaning. Translate all prompts, numerical speech, unit words, accessible labels and feedback faithfully into every supported locale (English only is an editorial source). All math and media should operate offline after a downloaded implementation; offline support is not presently asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. A: 6+3=4+5 true; 6+5=11 versus 9; 6+9=15 versus 9.
                     2. B: 7+2=10−1 true; candidate 9 gives 8, 11 gives 10, both false.
                     3. C: 8+11=19 against 11 false; candidate 3 makes 11 against 11 true.
                     4. D: 7+4=5+6=11 true; candidate 11 makes 15 against 11 false.
                     5. Reset/isolation, explicit hints and user-controlled explanation work without a Question or score.
                     6. Keyboard, screen reader, small-screen zoom, RTL, reduced-motion and fully downloaded offline paths convey identical numerical reasoning.
-                    
+
                     ## Editorial / technical dependencies
-                    
+
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in Move the box, not the rule (guided contrast) refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section2Text2:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000008"
-                  slug: "section2Text2"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000008'
+                  slug: 'section2Text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Nine minus one is eight, so the sides differ."
+                      en: 'Nine minus one is eight, so the sides differ.'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
+                  purpose: 'Original text resource from source Screenwriter draft'
                   specification: "3. **`text`:** If 9: “Nine minus one is eight, so the sides differ.” If 11: “Eleven minus one is ten, too many.” If 10: “Ten minus one is nine. Both sides are nine. The box is **10**, even though the other side's value is **9**.”"
               section2Markdown1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000009"
-                  slug: "section2Markdown1"
-                  type: "markdown"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000009'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The missing number is not always the result. It may be a starting number or part of an expression."
+                      en: 'The missing number is not always the result. It may be a starting number or part of an expression.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "4. **`markdown`:** “The missing number is not always the result. It may be a starting number or part of an expression.”"
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '4. **`markdown`:** “The missing number is not always the result. It may be a starting number or part of an expression.”'
             order:
-              - "section2Text1"
-              - "section2Scene1"
-              - "section2Text2"
-              - "section2Markdown1"
+              - 'section2Text1'
+              - 'section2Scene1'
+              - 'section2Text2'
+              - 'section2Markdown1'
         production:
-          purpose: "Move the box, not the rule (guided contrast)"
+          purpose: 'Move the box, not the rule (guided contrast)'
           pedagogicalIntent: |-
             _Purpose: resist reading the equals sign as a one-way arrow._
-            
+
             1. **`text`:** “A different equality: **7 + 2 = □ − 1**. Seven plus two is nine. What number must we start with if we remove one and still have nine?”
             2. **`scene` resource, proposed:** Expression Match Lab, entry B. Show nine counters for 7 + 2 on one board. The other board is a configurable starting group with one counter visually marked to leave. Try **9**, **10**, **11** in the start box, and reveal the amount after removing one. The learner may change the candidate freely.
             3. **`text`:** If 9: “Nine minus one is eight, so the sides differ.” If 11: “Eleven minus one is ten, too many.” If 10: “Ten minus one is nine. Both sides are nine. The box is **10**, even though the other side's value is **9**.”
             4. **`markdown`:** “The missing number is not always the result. It may be a starting number or part of an expression.”
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section3:
         config:
-          id: "d77ea286-32cb-56d5-b8cc-00000000000e"
-          slug: "section3"
-          type: "content"
+          id: 'd77ea286-32cb-56d5-b8cc-00000000000e'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Fix a mistaken idea (prediction and explanation)"
+              en: 'Fix a mistaken idea (prediction and explanation)'
             navigationLabel:
-              en: "Fix a mistaken idea (prediction and explanation)"
+              en: 'Fix a mistaken idea (prediction and explanation)'
           content:
             items:
               section3Text1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-00000000000b"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-00000000000b'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?"
+                      en: 'A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "1. **`text`:** “A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '1. **`text`:** “A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?”'
               section3Scene1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-00000000000c"
-                  slug: "section3Scene1"
-                  type: "scene"
+                  id: 'd77ea286-32cb-56d5-b8cc-00000000000c'
+                  slug: 'section3Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?"
+                        instruction: 'A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Expression Match Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: `Lesson Content` (source preserved in this YAML), Sections 1–4; `Draft Methodologist Brief` (source preserved in this YAML)  
                     Implementation: **Proposed** self-contained, prop-free Scene; no existing component is claimed.
-                    
+
                     ## Educational purpose and invariant
-                    
+
                     A child determines an unknown component so that the **whole expressions** on both sides of an equality have the same value. The box is one number, not necessarily the value of its side. Each visualization must preserve equal-sized count units; do not use an ornamental balancing scale as proof of numeric equality. Re-evaluate both side expressions after every change. Constrain inputs to whole numbers 0–20 and examples with nonnegative results.
-                    
+
                     ## Experience beats and feedback
-                    
+
                     **Entry A (Section 1), 6 + □ = 4 + 5:** The right board displays four counters and five counters; the learner may reveal nine total. The left has six fixed counters and a candidate box. Let the learner predict 3 / 5 / 9, then inspect the two results. Candidate 3 → 6+3=9, true; candidate 5 → 11 against 9, false; candidate 9 → 15 against 9, false. For 9 give targeted feedback: “Nine is the value of the entire other side, but the box is only part of this side.” For 3: “Both sides make nine.”
-                    
+
                     **Entry B (Section 2), 7 + 2 = □ − 1:** The left value is nine. Provide an adjustable starting collection, then explicitly remove one unit. Candidate 9 leaves eight, 11 leaves ten; only **10** leaves nine. Read each revealed result aloud through equivalent text (audio optional). Correct feedback: “Ten minus one is nine; both expressions match.” Incorrect: “The box is the starting count, not the count left afterward.”
-                    
+
                     **Entry C (Section 3), 8 + □ = 6 + 5:** Begin with candidate **11** and ask whether the equality is true. Reveal left 8+11=19, right 6+5=11. Give a way to revise the box; candidate **3** yields 11/11. If the learner proposes moving the equals sign, reply: “Changing the symbol's position does not change either value.”
-                    
+
                     **Entry D (Section 4), □ + 4 = 5 + 6:** Fresh independent state with no prefilled number. Enable number entry plus accessible +/- controls. First hint: “Find five plus six.” Second hint: “What plus four makes eleven?” Candidate **7** passes because 7+4=11 and 5+6=11. Candidate 11 fails (15 versus 11); explain why copying the total is wrong. “Show explanation” must be available without any submission or score.
-                    
+
                     ## Objects, local state, action semantics
-                    
+
                     Objects: full readable expression, fixed and editable side counts, optional grouped counters, candidate controls, “Count this side”, “Compare”, “Hint”, “Show reasoning”, “Reset” actions. State: one local scenario, entered integer or unset, separate revealed-total flags, optional tentative prediction and chosen explanation. The verdict is **left expression's evaluated number equals right expression's evaluated number**; never cache correctness based only on the candidate's ID, color or diagram height. An unset box must show “not yet filled,” not “false.” Each Section entry starts from its specified scenario independently; no cross-Section state, prop-based scenario selection or persistence is assumed.
-                    
+
                     ## Accessibility, visuals and offline intent
-                    
+
                     Place each operand near its labeled counter group. Keyboard, switch and touch users must choose and adjust every candidate without drag. Screen readers announce expression, candidate, two computed side values and match/mismatch conclusion, never color alone. Provide text explanation alongside any animation, reduced-motion instant result, zoom/reflow and clearly located focus. RTL adapts interface labels and reading order but does **not** reverse subtraction operands or mathematical equality meaning. Translate all prompts, numerical speech, unit words, accessible labels and feedback faithfully into every supported locale (English only is an editorial source). All math and media should operate offline after a downloaded implementation; offline support is not presently asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. A: 6+3=4+5 true; 6+5=11 versus 9; 6+9=15 versus 9.
                     2. B: 7+2=10−1 true; candidate 9 gives 8, 11 gives 10, both false.
                     3. C: 8+11=19 against 11 false; candidate 3 makes 11 against 11 true.
                     4. D: 7+4=5+6=11 true; candidate 11 makes 15 against 11 false.
                     5. Reset/isolation, explicit hints and user-controlled explanation work without a Question or score.
                     6. Keyboard, screen reader, small-screen zoom, RTL, reduced-motion and fully downloaded offline paths convey identical numerical reasoning.
-                    
+
                     ## Editorial / technical dependencies
-                    
+
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in Fix a mistaken idea (prediction and explanation) refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section3Text2:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-00000000000d"
-                  slug: "section3Text2"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-00000000000d'
+                  slug: 'section3Text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A true check: **8 + 3 = 11** and **6 + 5 = 11**. You found what _was needed_, not just the total."
+                      en: 'A true check: **8 + 3 = 11** and **6 + 5 = 11**. You found what _was needed_, not just the total.'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "3. **`text`:** “A true check: **8 + 3 = 11** and **6 + 5 = 11**. You found what _was needed_, not just the total.”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '3. **`text`:** “A true check: **8 + 3 = 11** and **6 + 5 = 11**. You found what _was needed_, not just the total.”'
             order:
-              - "section3Text1"
-              - "section3Scene1"
-              - "section3Text2"
+              - 'section3Text1'
+              - 'section3Scene1'
+              - 'section3Text2'
         production:
-          purpose: "Fix a mistaken idea (prediction and explanation)"
+          purpose: 'Fix a mistaken idea (prediction and explanation)'
           pedagogicalIntent: |-
             _Purpose: make the value-based test explicit._
-            
+
             1. **`text`:** “A friend writes **8 + □ = 6 + 5**, puts **11** in the box and says, ‘The right side is eleven, so the box is eleven.’ Is that enough?”
             2. **`scene` resource, proposed:** Lab entry C begins with candidate 11. Compare 8 + 11 = 19 with 6 + 5 = 11. Ask what is actually missing on the left; replacing with **3** restores 8 + 3 = 11. Learner chooses whether to change the box or the equals sign. If they choose the sign: “The symbol doesn't change eight plus eleven.”
             3. **`text`:** “A true check: **8 + 3 = 11** and **6 + 5 = 11**. You found what _was needed_, not just the total.”
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section4:
         config:
-          id: "d77ea286-32cb-56d5-b8cc-000000000013"
-          slug: "section4"
-          type: "content"
+          id: 'd77ea286-32cb-56d5-b8cc-000000000013'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "New context, independent transfer"
+              en: 'New context, independent transfer'
             navigationLabel:
-              en: "New context, independent transfer"
+              en: 'New context, independent transfer'
           content:
             items:
               section4Text1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-00000000000f"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-00000000000f'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain."
+                      en: 'Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain.'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "1. **`text`:** “Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain.”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '1. **`text`:** “Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain.”'
               section4Scene1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000010"
-                  slug: "section4Scene1"
-                  type: "scene"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000010'
+                  slug: 'section4Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain."
+                        instruction: 'Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain.'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Expression Match Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft — pending Methodologist/editor approval**  
                     Owner: Educational Screenwriter  
                     Parent: `Lesson Content` (source preserved in this YAML), Sections 1–4; `Draft Methodologist Brief` (source preserved in this YAML)  
                     Implementation: **Proposed** self-contained, prop-free Scene; no existing component is claimed.
-                    
+
                     ## Educational purpose and invariant
-                    
+
                     A child determines an unknown component so that the **whole expressions** on both sides of an equality have the same value. The box is one number, not necessarily the value of its side. Each visualization must preserve equal-sized count units; do not use an ornamental balancing scale as proof of numeric equality. Re-evaluate both side expressions after every change. Constrain inputs to whole numbers 0–20 and examples with nonnegative results.
-                    
+
                     ## Experience beats and feedback
-                    
+
                     **Entry A (Section 1), 6 + □ = 4 + 5:** The right board displays four counters and five counters; the learner may reveal nine total. The left has six fixed counters and a candidate box. Let the learner predict 3 / 5 / 9, then inspect the two results. Candidate 3 → 6+3=9, true; candidate 5 → 11 against 9, false; candidate 9 → 15 against 9, false. For 9 give targeted feedback: “Nine is the value of the entire other side, but the box is only part of this side.” For 3: “Both sides make nine.”
-                    
+
                     **Entry B (Section 2), 7 + 2 = □ − 1:** The left value is nine. Provide an adjustable starting collection, then explicitly remove one unit. Candidate 9 leaves eight, 11 leaves ten; only **10** leaves nine. Read each revealed result aloud through equivalent text (audio optional). Correct feedback: “Ten minus one is nine; both expressions match.” Incorrect: “The box is the starting count, not the count left afterward.”
-                    
+
                     **Entry C (Section 3), 8 + □ = 6 + 5:** Begin with candidate **11** and ask whether the equality is true. Reveal left 8+11=19, right 6+5=11. Give a way to revise the box; candidate **3** yields 11/11. If the learner proposes moving the equals sign, reply: “Changing the symbol's position does not change either value.”
-                    
+
                     **Entry D (Section 4), □ + 4 = 5 + 6:** Fresh independent state with no prefilled number. Enable number entry plus accessible +/- controls. First hint: “Find five plus six.” Second hint: “What plus four makes eleven?” Candidate **7** passes because 7+4=11 and 5+6=11. Candidate 11 fails (15 versus 11); explain why copying the total is wrong. “Show explanation” must be available without any submission or score.
-                    
+
                     ## Objects, local state, action semantics
-                    
+
                     Objects: full readable expression, fixed and editable side counts, optional grouped counters, candidate controls, “Count this side”, “Compare”, “Hint”, “Show reasoning”, “Reset” actions. State: one local scenario, entered integer or unset, separate revealed-total flags, optional tentative prediction and chosen explanation. The verdict is **left expression's evaluated number equals right expression's evaluated number**; never cache correctness based only on the candidate's ID, color or diagram height. An unset box must show “not yet filled,” not “false.” Each Section entry starts from its specified scenario independently; no cross-Section state, prop-based scenario selection or persistence is assumed.
-                    
+
                     ## Accessibility, visuals and offline intent
-                    
+
                     Place each operand near its labeled counter group. Keyboard, switch and touch users must choose and adjust every candidate without drag. Screen readers announce expression, candidate, two computed side values and match/mismatch conclusion, never color alone. Provide text explanation alongside any animation, reduced-motion instant result, zoom/reflow and clearly located focus. RTL adapts interface labels and reading order but does **not** reverse subtraction operands or mathematical equality meaning. Translate all prompts, numerical speech, unit words, accessible labels and feedback faithfully into every supported locale (English only is an editorial source). All math and media should operate offline after a downloaded implementation; offline support is not presently asserted.
-                    
+
                     ## Acceptance cases
-                    
+
                     1. A: 6+3=4+5 true; 6+5=11 versus 9; 6+9=15 versus 9.
                     2. B: 7+2=10−1 true; candidate 9 gives 8, 11 gives 10, both false.
                     3. C: 8+11=19 against 11 false; candidate 3 makes 11 against 11 true.
                     4. D: 7+4=5+6=11 true; candidate 11 makes 15 against 11 false.
                     5. Reset/isolation, explicit hints and user-controlled explanation work without a Question or score.
                     6. Keyboard, screen reader, small-screen zoom, RTL, reduced-motion and fully downloaded offline paths convey identical numerical reasoning.
-                    
+
                     ## Editorial / technical dependencies
-                    
+
                     No React, Score, Quiz, Question, Note event or Lesson runtime config is implemented here. Coding Agent must confirm current Scene localization context and renderer, create localized strings, implement prop-free Scene components and tests, and obtain explicit editor approval of both Brief and Scene.
                   productionNotes: "This placement in New context, independent transfer refers to expressionMatchLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section4Text2:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000011"
-                  slug: "section4Text2"
-                  type: "text"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000011'
+                  slug: 'section4Text2'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Eleven is the value of the whole side, but eleven plus four is fifteen."
+                      en: 'Eleven is the value of the whole side, but eleven plus four is fifteen.'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "3. **`text`:** Feedback for 11: “Eleven is the value of the whole side, but eleven plus four is fifteen.” Feedback for 7: “Seven plus four and five plus six both equal eleven.” Ask: “How did you check?” Accept a nonverbal choice of “I worked out both sides.”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '3. **`text`:** Feedback for 11: “Eleven is the value of the whole side, but eleven plus four is fifteen.” Feedback for 7: “Seven plus four and five plus six both equal eleven.” Ask: “How did you check?” Accept a nonverbal choice of “I worked out both sides.”'
               section4Markdown1:
                 config:
-                  id: "d77ea286-32cb-56d5-b8cc-000000000012"
-                  slug: "section4Markdown1"
-                  type: "markdown"
+                  id: 'd77ea286-32cb-56d5-b8cc-000000000012'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**Recall:** Work out a known side; choose a candidate for the blank; **check both sides**. An equality is true only when the values match."
+                      en: '**Recall:** Work out a known side; choose a candidate for the blank; **check both sides**. An equality is true only when the values match.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "4. **`markdown`:** “**Recall:** Work out a known side; choose a candidate for the blank; **check both sides**. An equality is true only when the values match.”"
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '4. **`markdown`:** “**Recall:** Work out a known side; choose a candidate for the blank; **check both sides**. An equality is true only when the values match.”'
             order:
-              - "section4Text1"
-              - "section4Scene1"
-              - "section4Text2"
-              - "section4Markdown1"
+              - 'section4Text1'
+              - 'section4Scene1'
+              - 'section4Text2'
+              - 'section4Markdown1'
         production:
-          purpose: "New context, independent transfer"
+          purpose: 'New context, independent transfer'
           pedagogicalIntent: |-
             _Purpose: apply the same reasoning without a pre-filled candidate._
-            
+
             1. **`text`:** “Make **□ + 4 = 5 + 6** true. First work out the side without the box, then find the missing part and explain.”
             2. **`scene` resource, proposed:** Lab entry D hides the target until the learner elects to reveal a hint, offers an accessible number-entry alternative to tokens, and shows a comparison only after the learner requests Check. Expected: **7 + 4 = 5 + 6 = 11**.
             3. **`text`:** Feedback for 11: “Eleven is the value of the whole side, but eleven plus four is fifteen.” Feedback for 7: “Seven plus four and five plus six both equal eleven.” Ask: “How did you check?” Accept a nonverbal choice of “I worked out both sides.”
             4. **`markdown`:** “**Recall:** Work out a known side; choose a candidate for the blank; **check both sides**. An equality is true only when the values match.”
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Make Both Sides Equal — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: completeMissingEquality
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Move beyond finding one familiar unknown addend to completing equalities in which either side may contain an expression. The learner constructs a value that preserves an equality, not merely a number that feels plausible.
-    
+
     ## Target audience
-    
+
     **Primary audience: Grade 2.** Intended for children with variable reading fluency and prior mathematical experience. The selected classroom depth is a Lesson decision, **not** an age/grade restriction on any Skill. Provide plain-language, optional read-aloud, text alternatives and multiple ways to respond without relying on motor precision or speech.
-    
+
     ## Prerequisites
-    
+
     - Understand '=' as sameness of value; add and subtract within 20; recognize a part-whole relationship and a missing-value box. Learners who do not yet understand '=' need a concrete equal-collections refresher.
-    
+
     ## Target Skills
-    
+
     - [completeEquality.data.ts](../../../../data/skills/algebra/equalities/skills/completeEquality.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Determine the value of a fully known expression before filling a missing position on either side of an equality.
     - Select a missing whole-number value for an expression such as 6 + □ = 4 + 5 or 7 + 2 = □ − 1 while preserving equality.
     - Check the candidate by evaluating both complete sides and explain why an alternative fails.
-    
+
     ## Essential subject matter
-    
+
     An equality is true if its left and right expressions evaluate to the same number. In 6 + □ = 4 + 5, the known right side is 9; therefore □ must be 3 because 6 + 3 = 9. In 7 + 2 = □ − 1, the known left side is 9; □ = 10, since 10 − 1 = 9. A missing entry in an expression is not always the total, and the position of the equals sign does not determine where a result is written. Model with equal-unit counters or a matched-value table; changing a numeral changes the expression and must be followed by rechecking both sides.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin with relational equality already familiar from collections, then compare two equivalent expressions, then conceal a component on one side and derive it from the known value of the opposite side. Contrast a box in an addition with a box in a subtraction, with independent replacement-and-check at the end.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Treat '=' as a right-facing answer arrow; copy the value from the opposite side into the box even when the box is only one term; guess from a memorized fact without checking; interpret 7 + 2 = □ − 1 as □ = 9 (which gives 8, not 9). Stay within nonnegative integers and operations that yield 0–20. No variable notation, negative solutions, symbolic rearrangement, multi-step equation solving or formal algebraic proof.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     The English examples are **canonical editorial source text**, not completed learner-facing translations. Translate all prompts, labels, units, feedback, accessible names and diagram annotations for each supported locale, without invented translations or English fallbacks. Preserve mathematical operation order and causal relationships in RTL, with semantic rather than automatic mirroring. Provide equally informative visible and nonvisual representations, keyboard/switch and touch alternatives, high contrast with no color-only answers, reduced-motion behavior, zoom/reflow and no timed-only tasks. The full experience and instructional feedback must be downloadable for offline learning as an implementation goal; no claim is made that Playground currently implements the required PWA caching or Note persistence.
-    
+
     ## Sources and factual verification
-    
+
     - [completeEquality.data.ts](../../../../data/skills/algebra/equalities/skills/completeEquality.data.ts) — canonical Mathematics Skill object transferred from `main`; UUID and methodological definition must not be altered.
     - [Svitlo Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — separation of Brief, Content and Scene ownership.
     - [Common Core State Standards for Mathematics](https://corestandards.org/mathematics-standards/) — supplementary progression reference; **not** evidence of a named Curriculum's alignment or a substitute for editorial approval.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. This Lesson is independent of any Program or Curriculum.
-    
+
     ## Open editorial decisions
-    
+
     - Editor to confirm that mixed-expression equalities (not isolated unknown-addend drills) appropriately differentiate this Lesson from the existing findingUnknownAddend Lesson.
     - Screenwriter material is authorized as **provisional Draft only**; Methodologist approval has not occurred. Further implementation requires distinct architectural, localization and accessibility review.
-    
+
     ## Methodologist handoff
-    
+
     **Draft pending explicit Methodologist/editor approval.** Proposed `Content` (source preserved in this YAML) and `Scene specification` (former expressionMatchLab.scene-spec.md; specification embedded in this YAML) are parallel review artifacts, not approved implementation instructions. Do not infer mastery, introduce new Skills, or add Questions, Quizzes, scoring, persistence or runtime data from this Brief.
-  purpose: "Move beyond finding one familiar unknown addend to completing equalities in which either side may contain an expression. The learner constructs a value that preserves an equality, not merely a number that feels plausible."
-  audience: "Target grades and prerequisites in the complete methodology."
+  purpose: 'Move beyond finding one familiar unknown addend to completing equalities in which either side may contain an expression. The learner constructs a value that preserves an equality, not merely a number that feels plausible.'
+  audience: 'Target grades and prerequisites in the complete methodology.'
   productionNotes: |-
     # Make Both Sides Equal — Lesson Content
-    
+
     **Screenwriter status:** Provisional Draft — awaiting Methodologist approval of `Brief` (source preserved in this YAML). **Runtime:** not implemented. **Program dependence:** none. **Language:** English editorial source; learner strings require genuine locale translations.
-    
+
     ## Editorial experience
-    
+
     Do not repeat the existing unknown-addend Lesson as a single blank arithmetic fact. The central discovery is that **both sides of the equals sign may be expressions**, and the unknown must make their _values_ match. Use predictable, equal-unit counters first, then let students reason symbolically; every attempt receives a meaningful explanation, without a score.
-    
-    
-    
-    
+
+
+
+
     ## Production / access and editorial dependencies
-    
+
     Each Section contains a **single vertical ordered** list of `text`, `markdown` and proposed `scene` resources; there is no invented `sectionType` or Quiz resource. A renderer for generic `text`, `markdown`, `scene` is available in the inspected Playground, but **Expression Match Lab is not implemented**. Every equation needs semantic math reading in LTR/RTL, nonvisual side values, keyboard/switch alternative to counter movement, text plus visual feedback, non-color-only outcomes, reduced motion and 200% zoom/mobile reflow. All teaching strings, mistakes and accessibility labels must be meaningfully translated for supported locales with no fallbacks. The selected lesson and media must become offline-capable after actual implementation and download; this document asserts neither an existing offline flow nor saved progress.
-    
+
     No Questions, Quizzes, scores, grading, Note APIs or runtime lesson data are authored. This Content is provisional pending explicit `Methodologist approval` (source preserved in this YAML); see the separate `Scene handoff` (former expressionMatchLab.scene-spec.md; specification embedded in this YAML).

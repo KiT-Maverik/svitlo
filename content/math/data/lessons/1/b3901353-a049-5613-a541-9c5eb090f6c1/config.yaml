@@ -1,160 +1,160 @@
 config:
-  id: "b3901353-a049-5613-a541-9c5eb090f6c1"
-  slug: "unknownDivisor"
-  type: "lesson"
+  id: 'b3901353-a049-5613-a541-9c5eb090f6c1'
+  slug: 'unknownDivisor'
+  type: 'lesson'
   skills:
-    - "c820dfa2-a186-4d00-8a53-4b6b4993a76b"
+    - 'c820dfa2-a186-4d00-8a53-4b6b4993a76b'
   params:
     requireQuiz: false
     languages:
-      - "en"
-      - "qm"
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
-      - "pl"
-      - "uk"
+      - 'en'
+      - 'qm'
+      - 'lt'
+      - 'lv'
+      - 'et'
+      - 'be'
+      - 'ka'
+      - 'kk'
+      - 'zh'
+      - 'hi'
+      - 'es'
+      - 'ar'
+      - 'fr'
+      - 'bn'
+      - 'pt'
+      - 'ur'
+      - 'id'
+      - 'de'
+      - 'ja'
+      - 'ko'
+      - 'tr'
+      - 'vi'
+      - 'ta'
+      - 'te'
+      - 'mr'
+      - 'ms'
+      - 'he'
+      - 'pl'
+      - 'uk'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Finding an Unknown Divisor"
+      en: 'Finding an Unknown Divisor'
   section:
     items:
       section1:
         config:
-          id: "b3901353-a049-5613-a541-000000000004"
-          slug: "section1"
-          type: "content"
+          id: 'b3901353-a049-5613-a541-000000000004'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Twelve Shared Fairly"
+              en: 'Twelve Shared Fairly'
             navigationLabel:
-              en: "Twelve Shared Fairly"
+              en: 'Twelve Shared Fairly'
           content:
             items:
               section1Text1:
                 config:
-                  id: "b3901353-a049-5613-a541-000000000001"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: 'b3901353-a049-5613-a541-000000000001'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve counters are shared equally among **3 groups**. Each group has **4**. What does each number tell us?"
+                      en: 'Twelve counters are shared equally among **3 groups**. Each group has **4**. What does each number tell us?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "  1. **text — available:** “Twelve counters are shared equally among **3 groups**. Each group has **4**. What does each number tell us?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  1. **text — available:** “Twelve counters are shared equally among **3 groups**. Each group has **4**. What does each number tell us?”'
               section1Scene1:
                 config:
-                  id: "b3901353-a049-5613-a541-000000000002"
-                  slug: "section1Scene1"
-                  type: "scene"
+                  id: 'b3901353-a049-5613-a541-000000000002'
+                  slug: 'section1Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Twelve counters are shared equally among **3 groups**. Each group has **4**. What does each number tell us?"
+                        instruction: 'Twelve counters are shared equally among **3 groups**. Each group has **4**. What does each number tell us?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Missing Divisor Sharing Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Finding an Unknown Divisor` (source preserved in this YAML), Sections 1–4
                     Methodologist objective(s): Identify a missing divisor, reconstruct it from known total and nonzero quotient using exact equal sharing, verify original equation, reject zero divisor. `Methodologist Brief` (source preserved in this YAML), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The child sees that division's **divisor** is the number of groups in this expressly labeled equal-sharing story. If twelve items are shared and each group receives four, there must be three groups. The child actively constructs those groups, then checks **12 ÷ 3 = 4**. A second story “groups of three give four groups” is mathematically valid but must always be given its different “group size” labels rather than silently substituted.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Complete: 12÷3=4 (total 12, 3 groups, 4 each).
                     - Missing divisor: 12÷□=4 gives d=3 using 12÷4=3; verify 12÷3=4. Candidates 2/3/4 yield actual quotients 6/4/3.
                     - Zero is not a valid divisor: 12÷0 is undefined. Do not invent a result or treat “0 groups” as an exact sharing.
                     - Transfer 20÷□=5 yields d=4; find as 20÷5=4 and check 20÷4=5. Candidates 2/4/5 produce actual quotients 10/5/4. Wrong candidates can be checked arithmetically without fabricating a visual group model outside selected small-factor scope.
                     - Nonzero dividend and quotient, exact whole-number division, small correct factors 1–5, totals ≤25; no fractions, remainders, negative values or zero quotient edge cases in this Lesson.
                     - Invariant in equal sharing: group count G × per-group S = total W, and W÷G=S with G>0. The unknown divisor here is G. The total counters do not appear twice when grouping.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Known division entry:** Show exactly twelve counters divided into three labeled containers with four each. Prompt “How many counters altogether? How many groups? How many in each?” Announce “twelve total, three groups, four in each; 12÷3=4”.
                     2. **Build the groups entry:** Display twelve available counters and a “Make next group of four” control. On each action move exactly four to a numbered group and update “used/available/group count” ledger: after one (4 used,8 left), two (8 used,4 left), three (12 used,0 left). Then display **3 groups** and finding calculation 12÷4=3. Optional “Show all groups” bypasses repeated steps.
                     3. **Trial check entry:** Display original 12÷□=4, candidate 2/3/4/0 buttons. Each positive candidate replaces □ in exactly the original position and shows actual quotient plus explicit fit/mismatch: 2→6, 3→4, 4→3. Zero option instead clearly announces **“not defined; cannot divide by zero”**, with no quotient and no invented group state.
                     4. Keep original equality visible. Explain that the candidate 4 is the known **quotient**, not the unknown divisor; 12÷4=3 does not equal the right-hand four. Offer “Show why” to re-open the three groups of four.
                     5. **Transfer entry:** New independent state 20÷□=5, candidates 2/4/5. Optional group construction produces four groups of five with no remainder. Trial quotients 10/5/4; 20÷4=5 fits. End with “Four groups of five use twenty counters.”
                     6. Every Section entry has independently scoped Reset, Hint, Read groups, Show full solution and non-scored replay; no forced response required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent self-contained **prop-free Scene entries**; do not invent a public React mode prop or typed Resource field. Objects: total counter pool, numbered group containers, per-group target, count ledger, original dividend/divisor/quotient labels, candidate buttons, substitution/result panel, accessibility text log and reset/reveal controls. State is initial story, completed groups, unused counters, trial divisor, evaluated quotient or undefined-zero message, explanation visibility. Group construction consumes objects without duplication. Trial C fits only if C is positive integer and W/C equals stated nonzero quotient exactly. A wrong mathematical trial must be labeled “does not fit”, never rendered as a true equality. No graded state or mastery evidence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple countable HTML/SVG counter containers with integer group headings, large equation display and a persistent total/used/remaining text ledger. Subtle motion optional to show four objects being moved together; reduced motion shows identical state instantly. No external image/video/audio, color-based correctness, game rewards or online evaluation.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing text, terminology, numeric state and aria labels into every supported language, without English fallback. Keep “number of groups” (divisor in this story) distinct from “in each group” (quotient), also in RTL math direction. Screen-reader/keyboard users can operate all group-making and trial controls and inspect “group one four; group two four; group three four; total twelve,” with correct full original equality narration. No drag-only, sound-only, timed or speech-recognition action. Touch targets, visible focus, zoom/mobile, reduced motion, high contrast and offline after a completed download all offer equivalent mathematics and explanations.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Complete 12÷3=4 model has exactly three groups of four, twelve total.
                     2. Building three groups of four uses all twelve once, and 12÷4=3 correctly finds missing divisor.
                     3. Checking candidates for 12÷□=4: 2→6 mismatch, 3→4 match, 4→3 mismatch, 0→undefined/rejected.
                     4. Transfer 20÷□=5: 2→10 mismatch, 4→5 match, 5→4 mismatch, with four groups of five for the correct model.
                     5. No invented quotient for division by zero, no remainder or counter duplication, no score. All hints/reveal/reset work.
                     6. RTL, screen reader, keyboard, reduced motion, mobile/zoom and local offline executions preserve exact group arithmetic and roles.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in Twelve Shared Fairly refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section1Markdown1:
                 config:
-                  id: "b3901353-a049-5613-a541-000000000003"
-                  slug: "section1Markdown1"
-                  type: "markdown"
+                  id: 'b3901353-a049-5613-a541-000000000003'
+                  slug: 'section1Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**12 ÷ 3 = 4**. Twelve was the total. Three was the number of groups. Four was in each group. The number after ÷ is called the divisor."
+                      en: '**12 ÷ 3 = 4**. Twelve was the total. Three was the number of groups. Four was in each group. The number after ÷ is called the divisor.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "  3. **markdown — available:** “**12 ÷ 3 = 4**. Twelve was the total. Three was the number of groups. Four was in each group. The number after ÷ is called the divisor.”"
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — available:** “**12 ÷ 3 = 4**. Twelve was the total. Three was the number of groups. Four was in each group. The number after ÷ is called the divisor.”'
             order:
-              - "section1Text1"
-              - "section1Scene1"
-              - "section1Markdown1"
+              - 'section1Text1'
+              - 'section1Scene1'
+              - 'section1Markdown1'
         production:
-          purpose: "Twelve Shared Fairly"
+          purpose: 'Twelve Shared Fairly'
           pedagogicalIntent: |-
             - Purpose: Identify the three roles in a complete exact-division example before hiding one.
             - Current shape: LessonSection_Config, vertical ordered Resource blocks.
@@ -168,117 +168,117 @@ config:
             - Accessibility/RTL: Ordered group ledger and full mathematical expression; distinct semantic labels not inferred from spatial left/right.
             - Note: No new Note yet; this recalls a prerequisite.
             - Dependencies: Custom Scene proposed.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section2:
         config:
-          id: "b3901353-a049-5613-a541-000000000008"
-          slug: "section2"
-          type: "content"
+          id: 'b3901353-a049-5613-a541-000000000008'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "How Many Groups Could There Be?"
+              en: 'How Many Groups Could There Be?'
             navigationLabel:
-              en: "How Many Groups Could There Be?"
+              en: 'How Many Groups Could There Be?'
           content:
             items:
               section2Text1:
                 config:
-                  id: "b3901353-a049-5613-a541-000000000005"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: 'b3901353-a049-5613-a541-000000000005'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**12 ÷ □ = 4**. We have twelve counters altogether and want **4 in each group**. How many groups can we make?"
+                      en: '**12 ÷ □ = 4**. We have twelve counters altogether and want **4 in each group**. How many groups can we make?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "  1. **text — available:** “**12 ÷ □ = 4**. We have twelve counters altogether and want **4 in each group**. How many groups can we make?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  1. **text — available:** “**12 ÷ □ = 4**. We have twelve counters altogether and want **4 in each group**. How many groups can we make?”'
               section2Scene1:
                 config:
-                  id: "b3901353-a049-5613-a541-000000000006"
-                  slug: "section2Scene1"
-                  type: "scene"
+                  id: 'b3901353-a049-5613-a541-000000000006'
+                  slug: 'section2Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "**12 ÷ □ = 4**. We have twelve counters altogether and want **4 in each group**. How many groups can we make?"
+                        instruction: '**12 ÷ □ = 4**. We have twelve counters altogether and want **4 in each group**. How many groups can we make?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Missing Divisor Sharing Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Finding an Unknown Divisor` (source preserved in this YAML), Sections 1–4
                     Methodologist objective(s): Identify a missing divisor, reconstruct it from known total and nonzero quotient using exact equal sharing, verify original equation, reject zero divisor. `Methodologist Brief` (source preserved in this YAML), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The child sees that division's **divisor** is the number of groups in this expressly labeled equal-sharing story. If twelve items are shared and each group receives four, there must be three groups. The child actively constructs those groups, then checks **12 ÷ 3 = 4**. A second story “groups of three give four groups” is mathematically valid but must always be given its different “group size” labels rather than silently substituted.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Complete: 12÷3=4 (total 12, 3 groups, 4 each).
                     - Missing divisor: 12÷□=4 gives d=3 using 12÷4=3; verify 12÷3=4. Candidates 2/3/4 yield actual quotients 6/4/3.
                     - Zero is not a valid divisor: 12÷0 is undefined. Do not invent a result or treat “0 groups” as an exact sharing.
                     - Transfer 20÷□=5 yields d=4; find as 20÷5=4 and check 20÷4=5. Candidates 2/4/5 produce actual quotients 10/5/4. Wrong candidates can be checked arithmetically without fabricating a visual group model outside selected small-factor scope.
                     - Nonzero dividend and quotient, exact whole-number division, small correct factors 1–5, totals ≤25; no fractions, remainders, negative values or zero quotient edge cases in this Lesson.
                     - Invariant in equal sharing: group count G × per-group S = total W, and W÷G=S with G>0. The unknown divisor here is G. The total counters do not appear twice when grouping.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Known division entry:** Show exactly twelve counters divided into three labeled containers with four each. Prompt “How many counters altogether? How many groups? How many in each?” Announce “twelve total, three groups, four in each; 12÷3=4”.
                     2. **Build the groups entry:** Display twelve available counters and a “Make next group of four” control. On each action move exactly four to a numbered group and update “used/available/group count” ledger: after one (4 used,8 left), two (8 used,4 left), three (12 used,0 left). Then display **3 groups** and finding calculation 12÷4=3. Optional “Show all groups” bypasses repeated steps.
                     3. **Trial check entry:** Display original 12÷□=4, candidate 2/3/4/0 buttons. Each positive candidate replaces □ in exactly the original position and shows actual quotient plus explicit fit/mismatch: 2→6, 3→4, 4→3. Zero option instead clearly announces **“not defined; cannot divide by zero”**, with no quotient and no invented group state.
                     4. Keep original equality visible. Explain that the candidate 4 is the known **quotient**, not the unknown divisor; 12÷4=3 does not equal the right-hand four. Offer “Show why” to re-open the three groups of four.
                     5. **Transfer entry:** New independent state 20÷□=5, candidates 2/4/5. Optional group construction produces four groups of five with no remainder. Trial quotients 10/5/4; 20÷4=5 fits. End with “Four groups of five use twenty counters.”
                     6. Every Section entry has independently scoped Reset, Hint, Read groups, Show full solution and non-scored replay; no forced response required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent self-contained **prop-free Scene entries**; do not invent a public React mode prop or typed Resource field. Objects: total counter pool, numbered group containers, per-group target, count ledger, original dividend/divisor/quotient labels, candidate buttons, substitution/result panel, accessibility text log and reset/reveal controls. State is initial story, completed groups, unused counters, trial divisor, evaluated quotient or undefined-zero message, explanation visibility. Group construction consumes objects without duplication. Trial C fits only if C is positive integer and W/C equals stated nonzero quotient exactly. A wrong mathematical trial must be labeled “does not fit”, never rendered as a true equality. No graded state or mastery evidence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple countable HTML/SVG counter containers with integer group headings, large equation display and a persistent total/used/remaining text ledger. Subtle motion optional to show four objects being moved together; reduced motion shows identical state instantly. No external image/video/audio, color-based correctness, game rewards or online evaluation.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing text, terminology, numeric state and aria labels into every supported language, without English fallback. Keep “number of groups” (divisor in this story) distinct from “in each group” (quotient), also in RTL math direction. Screen-reader/keyboard users can operate all group-making and trial controls and inspect “group one four; group two four; group three four; total twelve,” with correct full original equality narration. No drag-only, sound-only, timed or speech-recognition action. Touch targets, visible focus, zoom/mobile, reduced motion, high contrast and offline after a completed download all offer equivalent mathematics and explanations.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Complete 12÷3=4 model has exactly three groups of four, twelve total.
                     2. Building three groups of four uses all twelve once, and 12÷4=3 correctly finds missing divisor.
                     3. Checking candidates for 12÷□=4: 2→6 mismatch, 3→4 match, 4→3 mismatch, 0→undefined/rejected.
                     4. Transfer 20÷□=5: 2→10 mismatch, 4→5 match, 5→4 mismatch, with four groups of five for the correct model.
                     5. No invented quotient for division by zero, no remainder or counter duplication, no score. All hints/reveal/reset work.
                     6. RTL, screen reader, keyboard, reduced motion, mobile/zoom and local offline executions preserve exact group arithmetic and roles.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in How Many Groups Could There Be? refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section2Markdown1:
                 config:
-                  id: "b3901353-a049-5613-a541-000000000007"
-                  slug: "section2Markdown1"
-                  type: "markdown"
+                  id: 'b3901353-a049-5613-a541-000000000007'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Four, eight, twelve: we made **3 groups** of four. To find the missing divisor we can calculate **12 ÷ 4 = 3**. The original box is **3**."
+                      en: 'Four, eight, twelve: we made **3 groups** of four. To find the missing divisor we can calculate **12 ÷ 4 = 3**. The original box is **3**.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "  3. **markdown — available:** “Four, eight, twelve: we made **3 groups** of four. To find the missing divisor we can calculate **12 ÷ 4 = 3**. The original box is **3**.”"
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — available:** “Four, eight, twelve: we made **3 groups** of four. To find the missing divisor we can calculate **12 ÷ 4 = 3**. The original box is **3**.”'
             order:
-              - "section2Text1"
-              - "section2Scene1"
-              - "section2Markdown1"
+              - 'section2Text1'
+              - 'section2Scene1'
+              - 'section2Markdown1'
         production:
-          purpose: "How Many Groups Could There Be?"
+          purpose: 'How Many Groups Could There Be?'
           pedagogicalIntent: |-
             - Purpose: Recover a missing divisor from the known total and quotient.
             - Shape: LessonSection_Config.
@@ -291,117 +291,117 @@ config:
             - Accessibility: “group one four, group two four, group three four; total twelve,” native step controls, no drag.
             - Note: “Missing divisor = dividend ÷ nonzero quotient (when exact),” after model and exact arithmetic.
             - Dependencies: Bespoke prop-free entry, no automatic graded Question.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section3:
         config:
-          id: "b3901353-a049-5613-a541-00000000000c"
-          slug: "section3"
-          type: "content"
+          id: 'b3901353-a049-5613-a541-00000000000c'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Does the Number Really Work?"
+              en: 'Does the Number Really Work?'
             navigationLabel:
-              en: "Does the Number Really Work?"
+              en: 'Does the Number Really Work?'
           content:
             items:
               section3Markdown1:
                 config:
-                  id: "b3901353-a049-5613-a541-000000000009"
-                  slug: "section3Markdown1"
-                  type: "markdown"
+                  id: 'b3901353-a049-5613-a541-000000000009'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "We found **3** groups. Put it into the box of the **original** division: **12 ÷ 3 = 4**. Let's try other numbers and see why they fail."
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
+                  purpose: 'Original markdown resource from source Screenwriter draft'
                   specification: "  1. **markdown — available:** “We found **3** groups. Put it into the box of the **original** division: **12 ÷ 3 = 4**. Let's try other numbers and see why they fail.”"
               section3Scene1:
                 config:
-                  id: "b3901353-a049-5613-a541-00000000000a"
-                  slug: "section3Scene1"
-                  type: "scene"
+                  id: 'b3901353-a049-5613-a541-00000000000a'
+                  slug: 'section3Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Does the Number Really Work?"
+                        instruction: 'Does the Number Really Work?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Missing Divisor Sharing Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Finding an Unknown Divisor` (source preserved in this YAML), Sections 1–4
                     Methodologist objective(s): Identify a missing divisor, reconstruct it from known total and nonzero quotient using exact equal sharing, verify original equation, reject zero divisor. `Methodologist Brief` (source preserved in this YAML), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The child sees that division's **divisor** is the number of groups in this expressly labeled equal-sharing story. If twelve items are shared and each group receives four, there must be three groups. The child actively constructs those groups, then checks **12 ÷ 3 = 4**. A second story “groups of three give four groups” is mathematically valid but must always be given its different “group size” labels rather than silently substituted.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Complete: 12÷3=4 (total 12, 3 groups, 4 each).
                     - Missing divisor: 12÷□=4 gives d=3 using 12÷4=3; verify 12÷3=4. Candidates 2/3/4 yield actual quotients 6/4/3.
                     - Zero is not a valid divisor: 12÷0 is undefined. Do not invent a result or treat “0 groups” as an exact sharing.
                     - Transfer 20÷□=5 yields d=4; find as 20÷5=4 and check 20÷4=5. Candidates 2/4/5 produce actual quotients 10/5/4. Wrong candidates can be checked arithmetically without fabricating a visual group model outside selected small-factor scope.
                     - Nonzero dividend and quotient, exact whole-number division, small correct factors 1–5, totals ≤25; no fractions, remainders, negative values or zero quotient edge cases in this Lesson.
                     - Invariant in equal sharing: group count G × per-group S = total W, and W÷G=S with G>0. The unknown divisor here is G. The total counters do not appear twice when grouping.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Known division entry:** Show exactly twelve counters divided into three labeled containers with four each. Prompt “How many counters altogether? How many groups? How many in each?” Announce “twelve total, three groups, four in each; 12÷3=4”.
                     2. **Build the groups entry:** Display twelve available counters and a “Make next group of four” control. On each action move exactly four to a numbered group and update “used/available/group count” ledger: after one (4 used,8 left), two (8 used,4 left), three (12 used,0 left). Then display **3 groups** and finding calculation 12÷4=3. Optional “Show all groups” bypasses repeated steps.
                     3. **Trial check entry:** Display original 12÷□=4, candidate 2/3/4/0 buttons. Each positive candidate replaces □ in exactly the original position and shows actual quotient plus explicit fit/mismatch: 2→6, 3→4, 4→3. Zero option instead clearly announces **“not defined; cannot divide by zero”**, with no quotient and no invented group state.
                     4. Keep original equality visible. Explain that the candidate 4 is the known **quotient**, not the unknown divisor; 12÷4=3 does not equal the right-hand four. Offer “Show why” to re-open the three groups of four.
                     5. **Transfer entry:** New independent state 20÷□=5, candidates 2/4/5. Optional group construction produces four groups of five with no remainder. Trial quotients 10/5/4; 20÷4=5 fits. End with “Four groups of five use twenty counters.”
                     6. Every Section entry has independently scoped Reset, Hint, Read groups, Show full solution and non-scored replay; no forced response required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent self-contained **prop-free Scene entries**; do not invent a public React mode prop or typed Resource field. Objects: total counter pool, numbered group containers, per-group target, count ledger, original dividend/divisor/quotient labels, candidate buttons, substitution/result panel, accessibility text log and reset/reveal controls. State is initial story, completed groups, unused counters, trial divisor, evaluated quotient or undefined-zero message, explanation visibility. Group construction consumes objects without duplication. Trial C fits only if C is positive integer and W/C equals stated nonzero quotient exactly. A wrong mathematical trial must be labeled “does not fit”, never rendered as a true equality. No graded state or mastery evidence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple countable HTML/SVG counter containers with integer group headings, large equation display and a persistent total/used/remaining text ledger. Subtle motion optional to show four objects being moved together; reduced motion shows identical state instantly. No external image/video/audio, color-based correctness, game rewards or online evaluation.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing text, terminology, numeric state and aria labels into every supported language, without English fallback. Keep “number of groups” (divisor in this story) distinct from “in each group” (quotient), also in RTL math direction. Screen-reader/keyboard users can operate all group-making and trial controls and inspect “group one four; group two four; group three four; total twelve,” with correct full original equality narration. No drag-only, sound-only, timed or speech-recognition action. Touch targets, visible focus, zoom/mobile, reduced motion, high contrast and offline after a completed download all offer equivalent mathematics and explanations.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Complete 12÷3=4 model has exactly three groups of four, twelve total.
                     2. Building three groups of four uses all twelve once, and 12÷4=3 correctly finds missing divisor.
                     3. Checking candidates for 12÷□=4: 2→6 mismatch, 3→4 match, 4→3 mismatch, 0→undefined/rejected.
                     4. Transfer 20÷□=5: 2→10 mismatch, 4→5 match, 5→4 mismatch, with four groups of five for the correct model.
                     5. No invented quotient for division by zero, no remainder or counter duplication, no score. All hints/reveal/reset work.
                     6. RTL, screen reader, keyboard, reduced motion, mobile/zoom and local offline executions preserve exact group arithmetic and roles.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in Does the Number Really Work? refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section3Text1:
                 config:
-                  id: "b3901353-a049-5613-a541-00000000000b"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: 'b3901353-a049-5613-a541-00000000000b'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**12 ÷ 3 = 4** is true. **12 ÷ 4 = 3**, not four. You must never divide by zero."
+                      en: '**12 ÷ 3 = 4** is true. **12 ÷ 4 = 3**, not four. You must never divide by zero.'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "  3. **text — available:** “**12 ÷ 3 = 4** is true. **12 ÷ 4 = 3**, not four. You must never divide by zero.”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  3. **text — available:** “**12 ÷ 3 = 4** is true. **12 ÷ 4 = 3**, not four. You must never divide by zero.”'
             order:
-              - "section3Markdown1"
-              - "section3Scene1"
-              - "section3Text1"
+              - 'section3Markdown1'
+              - 'section3Scene1'
+              - 'section3Text1'
         production:
-          purpose: "Does the Number Really Work?"
+          purpose: 'Does the Number Really Work?'
           pedagogicalIntent: |-
             - Purpose: Verify by substitution and explicitly distinguish divisor from quotient.
             - Shape: LessonSection_Config.
@@ -414,117 +414,117 @@ config:
             - Accessibility: Trial equality is read with full operand names and whether it fits, not a color-only tick.
             - Note: “Check the divisor in the original division; it must not be zero,” after comparison.
             - Dependencies: Trial choices strictly formative, not validated quiz items.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
       section4:
         config:
-          id: "b3901353-a049-5613-a541-000000000010"
-          slug: "section4"
-          type: "content"
+          id: 'b3901353-a049-5613-a541-000000000010'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A New Missing Divisor"
+              en: 'A New Missing Divisor'
             navigationLabel:
-              en: "A New Missing Divisor"
+              en: 'A New Missing Divisor'
           content:
             items:
               section4Text1:
                 config:
-                  id: "b3901353-a049-5613-a541-00000000000d"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: 'b3901353-a049-5613-a541-00000000000d'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**20 ÷ □ = 5.** Twenty counters shared equally: five in each group. How many groups must there be?"
+                      en: '**20 ÷ □ = 5.** Twenty counters shared equally: five in each group. How many groups must there be?'
                 production:
-                  purpose: "Original text resource from source Screenwriter draft"
-                  specification: "  1. **text — available:** “**20 ÷ □ = 5.** Twenty counters shared equally: five in each group. How many groups must there be?”"
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  1. **text — available:** “**20 ÷ □ = 5.** Twenty counters shared equally: five in each group. How many groups must there be?”'
               section4Scene1:
                 config:
-                  id: "b3901353-a049-5613-a541-00000000000e"
-                  slug: "section4Scene1"
-                  type: "scene"
+                  id: 'b3901353-a049-5613-a541-00000000000e'
+                  slug: 'section4Scene1'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "**20 ÷ □ = 5.** Twenty counters shared equally: five in each group. How many groups must there be?"
+                        instruction: '**20 ÷ □ = 5.** Twenty counters shared equally: five in each group. How many groups must there be?'
                 production:
-                  purpose: "Proposed, unimplemented interactive Scene"
+                  purpose: 'Proposed, unimplemented interactive Scene'
                   specification: |-
                     # Missing Divisor Sharing Lab — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: `Finding an Unknown Divisor` (source preserved in this YAML), Sections 1–4
                     Methodologist objective(s): Identify a missing divisor, reconstruct it from known total and nonzero quotient using exact equal sharing, verify original equation, reject zero divisor. `Methodologist Brief` (source preserved in this YAML), Draft.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     The child sees that division's **divisor** is the number of groups in this expressly labeled equal-sharing story. If twelve items are shared and each group receives four, there must be three groups. The child actively constructs those groups, then checks **12 ÷ 3 = 4**. A second story “groups of three give four groups” is mathematically valid but must always be given its different “group size” labels rather than silently substituted.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Complete: 12÷3=4 (total 12, 3 groups, 4 each).
                     - Missing divisor: 12÷□=4 gives d=3 using 12÷4=3; verify 12÷3=4. Candidates 2/3/4 yield actual quotients 6/4/3.
                     - Zero is not a valid divisor: 12÷0 is undefined. Do not invent a result or treat “0 groups” as an exact sharing.
                     - Transfer 20÷□=5 yields d=4; find as 20÷5=4 and check 20÷4=5. Candidates 2/4/5 produce actual quotients 10/5/4. Wrong candidates can be checked arithmetically without fabricating a visual group model outside selected small-factor scope.
                     - Nonzero dividend and quotient, exact whole-number division, small correct factors 1–5, totals ≤25; no fractions, remainders, negative values or zero quotient edge cases in this Lesson.
                     - Invariant in equal sharing: group count G × per-group S = total W, and W÷G=S with G>0. The unknown divisor here is G. The total counters do not appear twice when grouping.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Known division entry:** Show exactly twelve counters divided into three labeled containers with four each. Prompt “How many counters altogether? How many groups? How many in each?” Announce “twelve total, three groups, four in each; 12÷3=4”.
                     2. **Build the groups entry:** Display twelve available counters and a “Make next group of four” control. On each action move exactly four to a numbered group and update “used/available/group count” ledger: after one (4 used,8 left), two (8 used,4 left), three (12 used,0 left). Then display **3 groups** and finding calculation 12÷4=3. Optional “Show all groups” bypasses repeated steps.
                     3. **Trial check entry:** Display original 12÷□=4, candidate 2/3/4/0 buttons. Each positive candidate replaces □ in exactly the original position and shows actual quotient plus explicit fit/mismatch: 2→6, 3→4, 4→3. Zero option instead clearly announces **“not defined; cannot divide by zero”**, with no quotient and no invented group state.
                     4. Keep original equality visible. Explain that the candidate 4 is the known **quotient**, not the unknown divisor; 12÷4=3 does not equal the right-hand four. Offer “Show why” to re-open the three groups of four.
                     5. **Transfer entry:** New independent state 20÷□=5, candidates 2/4/5. Optional group construction produces four groups of five with no remainder. Trial quotients 10/5/4; 20÷4=5 fits. End with “Four groups of five use twenty counters.”
                     6. Every Section entry has independently scoped Reset, Hint, Read groups, Show full solution and non-scored replay; no forced response required.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     Four independent self-contained **prop-free Scene entries**; do not invent a public React mode prop or typed Resource field. Objects: total counter pool, numbered group containers, per-group target, count ledger, original dividend/divisor/quotient labels, candidate buttons, substitution/result panel, accessibility text log and reset/reveal controls. State is initial story, completed groups, unused counters, trial divisor, evaluated quotient or undefined-zero message, explanation visibility. Group construction consumes objects without duplication. Trial C fits only if C is positive integer and W/C equals stated nonzero quotient exactly. A wrong mathematical trial must be labeled “does not fit”, never rendered as a true equality. No graded state or mastery evidence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use simple countable HTML/SVG counter containers with integer group headings, large equation display and a persistent total/used/remaining text ledger. Subtle motion optional to show four objects being moved together; reduced motion shows identical state instantly. No external image/video/audio, color-based correctness, game rewards or online evaluation.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all child-facing text, terminology, numeric state and aria labels into every supported language, without English fallback. Keep “number of groups” (divisor in this story) distinct from “in each group” (quotient), also in RTL math direction. Screen-reader/keyboard users can operate all group-making and trial controls and inspect “group one four; group two four; group three four; total twelve,” with correct full original equality narration. No drag-only, sound-only, timed or speech-recognition action. Touch targets, visible focus, zoom/mobile, reduced motion, high contrast and offline after a completed download all offer equivalent mathematics and explanations.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Complete 12÷3=4 model has exactly three groups of four, twelve total.
                     2. Building three groups of four uses all twelve once, and 12÷4=3 correctly finds missing divisor.
                     3. Checking candidates for 12÷□=4: 2→6 mismatch, 3→4 match, 4→3 mismatch, 0→undefined/rejected.
                     4. Transfer 20÷□=5: 2→10 mismatch, 4→5 match, 5→4 mismatch, with four groups of five for the correct model.
                     5. No invented quotient for division by zero, no remainder or counter duplication, no score. All hints/reveal/reset work.
                     6. RTL, screen reader, keyboard, reduced motion, mobile/zoom and local offline executions preserve exact group arithmetic and roles.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing generic scene Resource/rendering is available; this particular Scene is proposed and needs editor approval of upstream Draft Brief, separate Scene spec approval and later Design Scene tests. Coding Agent chooses actual prop-free component organization, locale wiring and offline behavior; Assessment Architect validates graded checks if separately authorized. The advanced prerequisite gate remains mandatory.
                   productionNotes: "This placement in A New Missing Divisor refers to missingDivisorSharingLab.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
               section4Markdown1:
                 config:
-                  id: "b3901353-a049-5613-a541-00000000000f"
-                  slug: "section4Markdown1"
-                  type: "markdown"
+                  id: 'b3901353-a049-5613-a541-00000000000f'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**20 ÷ 5 = 4** finds the number of groups. Check the **original** division: **20 ÷ 4 = 5**. Four is the missing divisor."
+                      en: '**20 ÷ 5 = 4** finds the number of groups. Check the **original** division: **20 ÷ 4 = 5**. Four is the missing divisor.'
                 production:
-                  purpose: "Original markdown resource from source Screenwriter draft"
-                  specification: "  3. **markdown — available:** “**20 ÷ 5 = 4** finds the number of groups. Check the **original** division: **20 ÷ 4 = 5**. Four is the missing divisor.”"
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — available:** “**20 ÷ 5 = 4** finds the number of groups. Check the **original** division: **20 ÷ 4 = 5**. Four is the missing divisor.”'
             order:
-              - "section4Text1"
-              - "section4Scene1"
-              - "section4Markdown1"
+              - 'section4Text1'
+              - 'section4Scene1'
+              - 'section4Markdown1'
         production:
-          purpose: "A New Missing Divisor"
+          purpose: 'A New Missing Divisor'
           pedagogicalIntent: |-
             - Purpose: Transfer with the same rule and less guidance.
             - Shape: LessonSection_Config.
@@ -537,93 +537,93 @@ config:
             - Accessibility: Locally available full group list, labeled original numbers, screen-reader and keyboard use, semantic RTL; reduced motion and offline parity.
             - Notes: Revisit missing-divisor and original-check cues.
             - Dependencies: Scene proposed, readiness requirement retained.
-          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
     order:
-      - "section1"
-      - "section2"
-      - "section3"
-      - "section4"
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Finding an Unknown Divisor — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: unknownDivisor
     Methodologist status: Draft
     Code: [Not implemented](#)
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Teach how to recover an unknown **divisor** in an exact division when both the dividend and a **nonzero quotient** are supplied, by dividing the dividend by the quotient. Emphasize that the divisor is the number _after_ the division symbol in the original equality and is never zero; verify by substituting the candidate into the **original division**. In 12 ÷ □ = 4, the missing divisor is 3, not the known quotient 4.
-    
+
     ## Target audience
-    
+
     **Readiness-gated enrichment**, ages roughly 6–8 only for learners who already understand equal sharing and exact division, know multiplication facts for small groups, and can distinguish divisor, dividend and quotient in a concrete example. This is not an assumed grade 1–2 core outcome. Readable short prompts, concrete/text equivalent models and no obligatory speech input.
-    
+
     ## Prerequisites
-    
+
     - Understand 12 ÷ 3 = 4 as sharing 12 equally among 3 groups, giving 4 to each; recognize that the divisor names group count in **that selected story**.
     - Recognize the alternative grouping interpretation 12 objects into groups of size 3 makes 4 groups, with each role named.
     - Multiply small nonzero integers and divide remainder-free nonnegative amounts.
     - Understand □ as one unknown, zero divisors forbidden, equality as a claim to check.
-    
+
     ## Target Skills
-    
+
     - [unknownDivisor.data.ts](../../../../data/skills/algebra/unknowns/skills/unknownDivisor.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify the unknown divisor in 12 ÷ □ = 4 and distinguish its role from dividend 12 and quotient 4.
     - Reconstruct the divisor as 12 ÷ 4 = 3 when dividend and nonzero quotient are known, within exact whole-number cases.
     - Use a model to explain that twelve counters can be shared into three groups of four (or grouped into four sets of three with a specifically stated different interpretation).
     - Check the **original division equality** 12 ÷ 3 = 4, rejecting incorrect and zero divisors.
     - Apply to 20 ÷ □ = 5 with missing divisor 4 and check 20 ÷ 4 = 5.
-    
+
     ## Essential subject matter
-    
+
     For exact whole-number division A ÷ d = q with A and q **nonzero** here, a missing divisor satisfies d = A ÷ q, provided d is a positive integer and the original division is exact. **d = 0 is not permitted**, even when the other values are zero. The quotient is _not_ the missing divisor: in 12 ÷ □ = 4, q=4 and d=3. In an equal-sharing story, the total twelve is shared into an unknown number of groups with four in each; grouping four counters repeatedly produces **three** groups. In an equal-group-size story, the same 12 ÷ 3 = 4 instead means four groups of size three. Both interpretations are valid but their quantity labels must not be swapped mid-explanation. Reconstruct d via 12 ÷ 4 = 3 and validate by 12 ÷ 3 = 4. This contrasts with finding unknown dividend, □ ÷ 3 = 4, which needs multiplication 3 × 4 = 12.
-    
+
     ## Conceptual progression and dependencies
-    
+
     First inspect a complete, accurately labeled known division and matching groups. Then hide only the divisor/group count in one chosen sharing interpretation. Recover it by counting how many groups of quotient-size can be made from the dividend, connect to exact inverse division A÷q, substitute and check. A brief wrong guess clarifies the divisor/quotient distinction; only then transfer to another numerical case.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Common errors: copy the quotient 4 into the box giving 12 ÷ 4 = 3 (not 4); add 12+4 or multiply them; use q÷A; reverse the group-size and group-count meanings without a story label; use 0 as divisor or accept non-integer/remainder results as exact. Correct: 12÷□=4 →3, and 20÷□=5 →4. Counterexamples: candidate 2 gives 12÷2=6; candidate 4 gives 12÷4=3; 12÷0 undefined. Small whole-number products/dividends ≤25, factors 1–5, nonzero dividend and quotient, exact division only. No fractions, negative numbers, general zero-quotient division or long division.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Translate “total/dividend”, “divisor”, “quotient”, “number of groups”, “objects in each” precisely, disambiguating two division stories. RTL preserves division operands and □ position. All grouping and counting steps have keyboard/screen-reader/text representations, large controls and local deterministic calculations after download. No required audio/video, dragging or online evaluator.
-    
+
     ## Sources and factual verification
-    
+
     - [Generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md), the canonical unknownDivisor method and nonzero conditions.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), Grade 3 multiplication/division relationships as **comparative** developmental source, not a universal age certification.
     - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), explicit representations and careful mathematical language.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. **Optional advanced Lesson only** after prerequisites; no asserted grade 1–2 curriculum requirement.
-    
+
     ## Open editorial decisions
-    
+
     - Editor: confirm readiness gate and decide whether to move this advanced Lesson to a later audience.
     - Approve which division model is primary and ensure “three groups of four” does not silently change to “four groups of three”.
     - Confirm excluding zero quotient/dividend is a Lesson-depth choice, not a new global prohibition or Skill change.
-    
+
     ## Methodologist handoff
-    
+
     Draft awaiting explicit editor approval. Screenwriter should offer equal-group reconstruction, a justified inverse calculation and original-equality verification; do not invent assessment scores, runtime code or universally age-appropriate placement.
-  purpose: "Teach how to recover an unknown **divisor** in an exact division when both the dividend and a **nonzero quotient** are supplied, by dividing the dividend by the quotient. Emphasize that the divisor is the number _after_ the division symbol in the original equality and is never zero; verify by substituting the candidate into the **original division**. In 12 ÷ □ = 4, the missing divisor is 3, not the known quotient 4."
-  audience: "Target grades and prerequisites in the complete methodology."
+  purpose: 'Teach how to recover an unknown **divisor** in an exact division when both the dividend and a **nonzero quotient** are supplied, by dividing the dividend by the quotient. Emphasize that the divisor is the number _after_ the division symbol in the original equality and is never zero; verify by substituting the candidate into the **original division**. In 12 ÷ □ = 4, the missing divisor is 3, not the known quotient 4.'
+  audience: 'Target grades and prerequisites in the complete methodology.'
   productionNotes: |-
     # Finding an Unknown Divisor — Content
-    
+
     Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
     Target Lesson: content/playground/Data/Lessons/1/unknownDivisor/
     Audience: Readiness-gated enrichment for 6–8-year-olds who can explain exact division and matching multiplication, NOT universal grade 1–2
@@ -631,55 +631,55 @@ production:
     Learning outcomes: locate missing divisor, reconstruct from known nonzero dividend and quotient, explain using distinct group roles, check original exact division, reject zero divisor.
     Target Skills: Canonical unknownDivisor.data.ts directly linked from Methodologist Brief.
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     In a division, the **starting total** and the **answer per group** may be known while the **number of equal groups** is missing. For the explicit sharing story, “Twelve counters shared evenly into some groups give four counters in each,” ask how many groups can be made. Forming groups of four from twelve gives three, so **12 ÷ 4 = 3** finds the group count. The _original_ statement is **12 ÷ □ = 4**; putting three in the box gives **12 ÷ 3 = 4**. This exact check, not merely the finding calculation, completes the reasoning.
-    
+
     Only exact division with nonzero dividend, nonzero quotient and positive integer divisor in examples ≤25; a divisor of zero is never allowed. For this story the divisor is a **group count**. Another valid division story uses divisor as group **size**, but the lesson must identify that model separately rather than making a secret switch. This is advanced enrichment after multiplication and exact division prerequisites.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. Inspect 12 shared among three known groups, four each; name total, divisor, quotient.
     2. Hide the group-count numeral, leaving twelve total and four per group; build and count three groups.
     3. Insert candidate divisors into 12 ÷ □ = 4, check exactly; contrast quotient 4 with divisor 3 and forbidden divisor zero.
     4. Transfer to 20 ÷ □ = 5: form groups of five, find four groups, and check 20 ÷ 4 = 5.
-    
+
     ## SECTION PLAN
-    
-    
-    
-    
+
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - `Missing Divisor Sharing Lab` (former missingDivisorSharingLab.scene-spec.md; specification embedded in this YAML), four independent prop-free entries for complete model, group construction, candidate checking and transfer.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. “Missing divisor = dividend ÷ quotient, when quotient is nonzero and division is exact.” After Section 2 groups of four are built and counted.
     2. “Divisor cannot be zero; check it in the original division.” After Section 3 verifies 12÷3=4 and rejects zero.
-    
+
     Proposed Note unlocks, not wired. No Note API, learner state, personalized revision sheet, spaced-retrieval scheduler or scored proof of mastery implied.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     Exact grouping, numerical trial feedback and second example are formative teaching; no Question_Config, Quiz or pass criterion authored. Assessment Architect must independently approve how the broad unknownDivisor Skill is evaluated and whether prerequisite readiness is demonstrated, as a child selecting one answer is insufficient. Current Quiz adapter select-one does not implement this Scene's behavior.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Every prompt, group role, numerical readout, hint, error, accessible name and Note must have real supported-language translations without fallback. Distinguish “number of groups” and “items per group” when translating division examples. The math symbols and order remain correct in RTL; no naive reversal of dividend and divisor. Ordered text/list mode is fully operable by keyboard, touch and assistive technology as the visual model; no color-only, drag-only, timed or required speech task. Zoom/mobile/reduced-motion and offline deterministic calculations preserve exact understanding after download; no streaming or external media.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     Existing LessonSection_Config and generic text, markdown and scene rendering are available. New Missing Divisor Sharing Lab and per-Section prop-free entries, complete locales, own tests and offline integration are proposed. Image/audio/video/code blocks are typed-only in current generic Section renderer; YouTube lacks config, none required. Notes/review/download systems are separate product work, not fictitious APIs.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - `Methodologist Brief` (source preserved in this YAML) (Draft, not approved).
     - [Generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editor: confirm advanced age gate and explicitly labeled primary equal-sharing story. No claim of universal grade alignment.
-    
+
     ## HANDOFF
-    
+
     Provisional Draft lesson script and separately reviewable Draft Scene spec. Editor must approve new Methodologist Brief first, then Content and Scene. Scene Designer, Coding Agent and Assessment Architect operate only under separate authorization; no runtime code or graded Questions are created.
