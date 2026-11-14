@@ -223,19 +223,29 @@ test('preserves partial YAML instead of inventing required fields, locale values
     assert.doesNotMatch(code, /"flashcards":/);
   }));
 
-test('is byte-stable on repeated generation and check is read-only', () =>
+test('creation skips existing Lesson data while check remains read-only and strict', () =>
   fixture(f => {
-    runOne(f.lesson, 'generate', f.root);
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
     const first = fs.readFileSync(f.generated(), 'utf8');
-    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 0);
+    assert.deepEqual(runOne(f.lesson, 'generate', f.root), {
+      changed: 0, skipped: true, files: ['lightLesson.data.ts'], lessonId,
+    });
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     assert.equal(fs.readFileSync(f.generated(), 'utf8'), first);
     f.content.section.items.intro.locale.title.uk = 'Змінений вступ';
     f.save();
     assert.throws(() => runOne(f.lesson, 'check', f.root), /stale draft/);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(f.generated(), 'utf8'), first);
-    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
-    assert.notEqual(fs.readFileSync(f.generated(), 'utf8'), first);
+    const logged = [];
+    const previousLog = console.log;
+    try {
+      console.log = message => logged.push(message);
+      main(['generate', '--source', path.relative(f.root, f.lesson)], f.root);
+    } finally {
+      console.log = previousLog;
+    }
+    assert(logged.some(message => /SKIP Lesson .*existing lightLesson.data.ts; no files modified/.test(message)));
   }));
 
 test('missing and unknown polymorphic types produce a local dispatch diagnostic', () =>
@@ -278,19 +288,34 @@ test('source-localization filtering leaves unrelated type metadata intact', () =
   assert.doesNotMatch(source, /"en": "Title"/);
 });
 
-test('manual data sources and modifications are never overwritten', () =>
+test('existing authored and modified data files are skipped without any overwrites', () =>
   fixture(f => {
     const manual = path.join(f.lesson, 'other.data.ts');
     fs.writeFileSync(manual, 'export const keep = true;\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /competing Lesson data entrypoint/);
+    assert.deepEqual(runOne(f.lesson, 'generate', f.root).files, ['other.data.ts']);
     assert.equal(fs.readFileSync(manual, 'utf8'), 'export const keep = true;\n');
+    assert.equal(fs.existsSync(f.generated()), false);
     fs.rmSync(manual);
     fs.writeFileSync(f.generated(), 'export const handwritten = true;\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /manually authored file/);
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), 'export const handwritten = true;\n');
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /manually authored file/);
     fs.rmSync(f.generated());
-    runOne(f.lesson, 'generate', f.root);
+    assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
     fs.appendFileSync(f.generated(), '// human edit\n');
-    assert.throws(() => runOne(f.lesson, 'generate', f.root), /modified manually/);
+    const edited = fs.readFileSync(f.generated(), 'utf8');
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), edited);
+    assert.throws(() => runOne(f.lesson, 'check', f.root), /modified manually/);
+  }));
+
+test('generation skips existing Lesson before parsing a stale YAML projection', () =>
+  fixture(f => {
+    fs.writeFileSync(f.generated(), 'export const alreadyAuthored = true;\n');
+    fs.writeFileSync(path.join(f.lesson, 'lesson.config.yaml'), 'invalid: [\n');
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(f.generated(), 'utf8'), 'export const alreadyAuthored = true;\n');
+    assert.throws(() => runOne(f.lesson, 'check', f.root));
   }));
 
 test('requires only dispatch and output essentials, not methodology, review or assets', () =>
