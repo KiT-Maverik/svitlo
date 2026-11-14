@@ -1,715 +1,715 @@
 config:
-  id: "94d6fb15-af14-5c8f-98e3-09a42dcf54d7"
-  slug: "unknownFactor"
-  type: "lesson"
+  id: '94d6fb15-af14-5c8f-98e3-09a42dcf54d7'
+  slug: 'unknownFactor'
+  type: 'lesson'
   skills:
-    - "86d61e77-3ad4-4d9c-bf1a-5646ffc15f24"
+    - '86d61e77-3ad4-4d9c-bf1a-5646ffc15f24'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Finding an Unknown Factor"
+      en: 'Finding an Unknown Factor'
   section:
     items:
       section1ThreeGroupsTwelveAltogether:
         config:
-          id: "2defde9c-c213-8fdc-88a1-3554c75da414"
-          slug: "section1ThreeGroupsTwelveAltogether"
-          type: "content"
+          id: '2defde9c-c213-8fdc-88a1-3554c75da414'
+          slug: 'section1ThreeGroupsTwelveAltogether'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Three Groups, Twelve Altogether"
+              en: 'Three Groups, Twelve Altogether'
             navigationLabel:
-              en: "Three Groups, Twelve Altogether"
+              en: 'Three Groups, Twelve Altogether'
           content:
             items:
               section1Text1:
                 config:
-                  id: "d1d59fe6-289d-85c3-8f6f-4412b6273e37"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: 'd1d59fe6-289d-85c3-8f6f-4412b6273e37'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "These three groups contain four counters each. How many are there altogether?"
+                      en: 'These three groups contain four counters each. How many are there altogether?'
                 production:
-                  purpose: "Legacy text block of Three Groups, Twelve Altogether; provisional draft."
-                  specification: "  1. **text — available:** “These three groups contain four counters each. How many are there altogether?”"
+                  purpose: 'Legacy text block of Three Groups, Twelve Altogether; provisional draft.'
+                  specification: '  1. **text — available:** “These three groups contain four counters each. How many are there altogether?”'
               scene1Block2:
                 config:
-                  id: "f199e5d9-5894-8f06-8bc1-e04482ccfa9b"
-                  slug: "scene1Block2"
-                  type: "scene"
+                  id: 'f199e5d9-5894-8f06-8bc1-e04482ccfa9b'
+                  slug: 'scene1Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "These three groups contain four counters each. How many are there altogether?"
+                        instruction: 'These three groups contain four counters each. How many are there altogether?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Three Groups, Twelve Altogether. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Three Groups, Twelve Altogether. Not approved or implemented.'
                   specification: |
-                      # Missing Factor Groups — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Complete: 3 groups of 4 → 3×4=12, twelve counters.
-                      - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
-                      - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
-                      - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
-                      - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
-                      - A group-count-first convention is stated whenever a multiplication is mapped to groups.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
-                      2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
-                      3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
-                      4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
-                      5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
-                      2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
-                      3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
-                      4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
-                      5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
-                      6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — generic resource exists, proposed new content:** Missing Factor Groups (preserved in Scene production.specification), complete-model entry showing 3 groups × 4 = 12, with exact labeled group counts and optional counting.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Missing Factor Groups — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Complete: 3 groups of 4 → 3×4=12, twelve counters.
+                    - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
+                    - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
+                    - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
+                    - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
+                    - A group-count-first convention is stated whenever a multiplication is mapped to groups.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
+                    2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
+                    3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
+                    4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
+                    5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
+                    2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
+                    3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
+                    4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
+                    5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
+                    6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
+
+
+                    ## Original placement
+
+                      2. **scene — generic resource exists, proposed new content:** Missing Factor Groups (preserved in Scene production.specification), complete-model entry showing 3 groups × 4 = 12, with exact labeled group counts and optional counting.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section1Markdown3:
                 config:
-                  id: "d02ae79a-b5c4-881f-88bd-67f9ad53f87c"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: 'd02ae79a-b5c4-881f-88bd-67f9ad53f87c'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**3 groups of 4 make 12**. In our example we write **3 × 4 = 12**. Three and four are factors; twelve is the product."
+                      en: '**3 groups of 4 make 12**. In our example we write **3 × 4 = 12**. Three and four are factors; twelve is the product.'
                 production:
-                  purpose: "Legacy markdown block of Three Groups, Twelve Altogether; provisional draft."
-                  specification: "  3. **markdown — available:** “**3 groups of 4 make 12**. In our example we write **3 × 4 = 12**. Three and four are factors; twelve is the product.”"
+                  purpose: 'Legacy markdown block of Three Groups, Twelve Altogether; provisional draft.'
+                  specification: '  3. **markdown — available:** “**3 groups of 4 make 12**. In our example we write **3 × 4 = 12**. Three and four are factors; twelve is the product.”'
             order:
-              - "section1Text1"
-              - "scene1Block2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'scene1Block2'
+              - 'section1Markdown3'
         production:
-          purpose: "Revisit the exact group product before hiding a factor."
-          pedagogicalIntent: "Revisit the exact group product before hiding a factor."
+          purpose: 'Revisit the exact group product before hiding a factor.'
+          pedagogicalIntent: 'Revisit the exact group product before hiding a factor.'
           productionNotes: |
-              ### Section 1 — Three Groups, Twelve Altogether
-              
-              - Purpose / outcome: Revisit the exact group product before hiding a factor.
-              - Shape: LessonSection_Config with one top-to-bottom Resource list.
-              - Ordered blocks:
-                1. **text — available:** “These three groups contain four counters each. How many are there altogether?”
-                2. **scene — generic resource exists, proposed new content:** Missing Factor Groups (preserved in Scene production.specification), complete-model entry showing 3 groups × 4 = 12, with exact labeled group counts and optional counting.
-                3. **markdown — available:** “**3 groups of 4 make 12**. In our example we write **3 × 4 = 12**. Three and four are factors; twelve is the product.”
-              - Core explanation and action: Child inspects each of the three groups and totals; if 3+4=7 is offered, feedback “That adds two labels, not all the counters across three groups.”
-              - Navigation: Hide the group-size number, leaving the product and group count known.
-              - Accessibility: Ordered group list, named factors/product, RTL expression with semantic grouping convention, native controls.
-              - Planned Note: None; this is prerequisite recall, not a new outcome.
-              - Dependencies: Scene proposed, generic renderer available.
-              
+            ### Section 1 — Three Groups, Twelve Altogether
+
+            - Purpose / outcome: Revisit the exact group product before hiding a factor.
+            - Shape: LessonSection_Config with one top-to-bottom Resource list.
+            - Ordered blocks:
+              1. **text — available:** “These three groups contain four counters each. How many are there altogether?”
+              2. **scene — generic resource exists, proposed new content:** Missing Factor Groups (preserved in Scene production.specification), complete-model entry showing 3 groups × 4 = 12, with exact labeled group counts and optional counting.
+              3. **markdown — available:** “**3 groups of 4 make 12**. In our example we write **3 × 4 = 12**. Three and four are factors; twelve is the product.”
+            - Core explanation and action: Child inspects each of the three groups and totals; if 3+4=7 is offered, feedback “That adds two labels, not all the counters across three groups.”
+            - Navigation: Hide the group-size number, leaving the product and group count known.
+            - Accessibility: Ordered group list, named factors/product, RTL expression with semantic grouping convention, native controls.
+            - Planned Note: None; this is prerequisite recall, not a new outcome.
+            - Dependencies: Scene proposed, generic renderer available.
+
       section2HowManyInEachGroup:
         config:
-          id: "305d51e8-e8ff-80ac-83fd-93ea2b5fc2ae"
-          slug: "section2HowManyInEachGroup"
-          type: "content"
+          id: '305d51e8-e8ff-80ac-83fd-93ea2b5fc2ae'
+          slug: 'section2HowManyInEachGroup'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "How Many in Each Group?"
+              en: 'How Many in Each Group?'
             navigationLabel:
-              en: "How Many in Each Group?"
+              en: 'How Many in Each Group?'
           content:
             items:
               section2Text1:
                 config:
-                  id: "962cd225-00a6-82b6-8747-c99bb1cd9908"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: '962cd225-00a6-82b6-8747-c99bb1cd9908'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?"
+                      en: '**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?'
                 production:
-                  purpose: "Legacy text block of How Many in Each Group?; provisional draft."
-                  specification: "  1. **text — available:** “**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?”"
+                  purpose: 'Legacy text block of How Many in Each Group?; provisional draft.'
+                  specification: '  1. **text — available:** “**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?”'
               scene2Block2:
                 config:
-                  id: "35665268-0047-86ff-85fd-af4d60dcabda"
-                  slug: "scene2Block2"
-                  type: "scene"
+                  id: '35665268-0047-86ff-85fd-af4d60dcabda'
+                  slug: 'scene2Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?"
+                        instruction: '**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in How Many in Each Group?. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in How Many in Each Group?. Not approved or implemented.'
                   specification: |
-                      # Missing Factor Groups — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Complete: 3 groups of 4 → 3×4=12, twelve counters.
-                      - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
-                      - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
-                      - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
-                      - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
-                      - A group-count-first convention is stated whenever a multiplication is mapped to groups.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
-                      2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
-                      3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
-                      4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
-                      5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
-                      2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
-                      3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
-                      4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
-                      5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
-                      6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-size entry; three equal group containers, twelve counters distributed equally by user-controlled “Share all” or individual steps; reveal 4 in each.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Missing Factor Groups — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Complete: 3 groups of 4 → 3×4=12, twelve counters.
+                    - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
+                    - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
+                    - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
+                    - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
+                    - A group-count-first convention is stated whenever a multiplication is mapped to groups.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
+                    2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
+                    3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
+                    4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
+                    5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
+                    2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
+                    3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
+                    4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
+                    5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
+                    6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-size entry; three equal group containers, twelve counters distributed equally by user-controlled “Share all” or individual steps; reveal 4 in each.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section2Markdown3:
                 config:
-                  id: "b4814cc0-ebce-8dac-8446-ae771b097f1b"
-                  slug: "section2Markdown3"
-                  type: "markdown"
+                  id: 'b4814cc0-ebce-8dac-8446-ae771b097f1b'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "If twelve are shared equally among three groups, there are **12 ÷ 3 = 4** in each. The missing factor is **4**."
+                      en: 'If twelve are shared equally among three groups, there are **12 ÷ 3 = 4** in each. The missing factor is **4**.'
                 production:
-                  purpose: "Legacy markdown block of How Many in Each Group?; provisional draft."
-                  specification: "  3. **markdown — available:** “If twelve are shared equally among three groups, there are **12 ÷ 3 = 4** in each. The missing factor is **4**.”"
+                  purpose: 'Legacy markdown block of How Many in Each Group?; provisional draft.'
+                  specification: '  3. **markdown — available:** “If twelve are shared equally among three groups, there are **12 ÷ 3 = 4** in each. The missing factor is **4**.”'
             order:
-              - "section2Text1"
-              - "scene2Block2"
-              - "section2Markdown3"
+              - 'section2Text1'
+              - 'scene2Block2'
+              - 'section2Markdown3'
         production:
-          purpose: "Reconstruct unknown group-size factor."
-          pedagogicalIntent: "Reconstruct unknown group-size factor."
+          purpose: 'Reconstruct unknown group-size factor.'
+          pedagogicalIntent: 'Reconstruct unknown group-size factor.'
           productionNotes: |
-              ### Section 2 — How Many in Each Group?
-              
-              - Purpose: Reconstruct unknown group-size factor.
-              - Shape: LessonSection_Config.
-              - Ordered blocks:
-                1. **text — available:** “**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?”
-                2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-size entry; three equal group containers, twelve counters distributed equally by user-controlled “Share all” or individual steps; reveal 4 in each.
-                3. **markdown — available:** “If twelve are shared equally among three groups, there are **12 ÷ 3 = 4** in each. The missing factor is **4**.”
-              - Core explanation: Division works here because the model has equal groups with a nonzero group count and an exact division.
-              - Action and feedback: Prediction 3/4/5 optional. For 3, “Three groups of three make nine, not twelve.” For 5, “Three groups of five make fifteen.” For 4, “Three groups of four make twelve.”
-              - Navigation: Compare with a box that counts groups rather than group size.
-              - Accessibility: Text “group 1 four; group 2 four; group 3 four; total twelve”; keyboard/touch “Distribute / Count / Explain.”
-              - Planned Note: “Unknown factor = product ÷ known nonzero factor,” after exact group evidence (planned, not wired).
-              - Dependencies: Prop-free entry with separate state, no scored quiz.
-              
+            ### Section 2 — How Many in Each Group?
+
+            - Purpose: Reconstruct unknown group-size factor.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **text — available:** “**3 × □ = 12.** We know there are three equal groups and twelve counters in all. How many are in **each** group?”
+              2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-size entry; three equal group containers, twelve counters distributed equally by user-controlled “Share all” or individual steps; reveal 4 in each.
+              3. **markdown — available:** “If twelve are shared equally among three groups, there are **12 ÷ 3 = 4** in each. The missing factor is **4**.”
+            - Core explanation: Division works here because the model has equal groups with a nonzero group count and an exact division.
+            - Action and feedback: Prediction 3/4/5 optional. For 3, “Three groups of three make nine, not twelve.” For 5, “Three groups of five make fifteen.” For 4, “Three groups of four make twelve.”
+            - Navigation: Compare with a box that counts groups rather than group size.
+            - Accessibility: Text “group 1 four; group 2 four; group 3 four; total twelve”; keyboard/touch “Distribute / Count / Explain.”
+            - Planned Note: “Unknown factor = product ÷ known nonzero factor,” after exact group evidence (planned, not wired).
+            - Dependencies: Prop-free entry with separate state, no scored quiz.
+
       section3WhatIfTheBoxIsFirst:
         config:
-          id: "36a7fb2b-7c1a-895b-87f8-dce6ed45be96"
-          slug: "section3WhatIfTheBoxIsFirst"
-          type: "content"
+          id: '36a7fb2b-7c1a-895b-87f8-dce6ed45be96'
+          slug: 'section3WhatIfTheBoxIsFirst'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What If the Box Is First?"
+              en: 'What If the Box Is First?'
             navigationLabel:
-              en: "What If the Box Is First?"
+              en: 'What If the Box Is First?'
           content:
             items:
               section3Markdown1:
                 config:
-                  id: "f2b29d89-9d44-864e-842e-6e5b8bd8c59c"
-                  slug: "section3Markdown1"
-                  type: "markdown"
+                  id: 'f2b29d89-9d44-864e-842e-6e5b8bd8c59c'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?"
+                      en: 'Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?'
                 production:
-                  purpose: "Legacy markdown block of What If the Box Is First?; provisional draft."
-                  specification: "  1. **markdown — available:** “Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?”"
+                  purpose: 'Legacy markdown block of What If the Box Is First?; provisional draft.'
+                  specification: '  1. **markdown — available:** “Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?”'
               scene3Block2:
                 config:
-                  id: "2587a5f8-753d-87c5-8bf2-2d88db487fb5"
-                  slug: "scene3Block2"
-                  type: "scene"
+                  id: '2587a5f8-753d-87c5-8bf2-2d88db487fb5'
+                  slug: 'scene3Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?"
+                        instruction: 'Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in What If the Box Is First?. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in What If the Box Is First?. Not approved or implemented.'
                   specification: |
-                      # Missing Factor Groups — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Complete: 3 groups of 4 → 3×4=12, twelve counters.
-                      - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
-                      - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
-                      - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
-                      - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
-                      - A group-count-first convention is stated whenever a multiplication is mapped to groups.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
-                      2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
-                      3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
-                      4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
-                      5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
-                      2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
-                      3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
-                      4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
-                      5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
-                      6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-count entry, learner assembles groups of four until twelve counters have been used: three groups.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Missing Factor Groups — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Complete: 3 groups of 4 → 3×4=12, twelve counters.
+                    - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
+                    - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
+                    - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
+                    - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
+                    - A group-count-first convention is stated whenever a multiplication is mapped to groups.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
+                    2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
+                    3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
+                    4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
+                    5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
+                    2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
+                    3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
+                    4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
+                    5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
+                    6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-count entry, learner assembles groups of four until twelve counters have been used: three groups.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section3Text3:
                 config:
-                  id: "384ae800-2aac-8b59-8cce-2eb61e28ddef"
-                  slug: "section3Text3"
-                  type: "text"
+                  id: '384ae800-2aac-8b59-8cce-2eb61e28ddef'
+                  slug: 'section3Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**12 ÷ 4 = 3** groups. Replace the box: **3 × 4 = 12**. Both sides show twelve."
+                      en: '**12 ÷ 4 = 3** groups. Replace the box: **3 × 4 = 12**. Both sides show twelve.'
                 production:
-                  purpose: "Legacy text block of What If the Box Is First?; provisional draft."
-                  specification: "  3. **text — available:** “**12 ÷ 4 = 3** groups. Replace the box: **3 × 4 = 12**. Both sides show twelve.”"
+                  purpose: 'Legacy text block of What If the Box Is First?; provisional draft.'
+                  specification: '  3. **text — available:** “**12 ÷ 4 = 3** groups. Replace the box: **3 × 4 = 12**. Both sides show twelve.”'
             order:
-              - "section3Markdown1"
-              - "scene3Block2"
-              - "section3Text3"
+              - 'section3Markdown1'
+              - 'scene3Block2'
+              - 'section3Text3'
         production:
-          purpose: "Interpret the missing first factor and check the result in original expression."
-          pedagogicalIntent: "Interpret the missing first factor and check the result in original expression."
+          purpose: 'Interpret the missing first factor and check the result in original expression.'
+          pedagogicalIntent: 'Interpret the missing first factor and check the result in original expression.'
           productionNotes: |
-              ### Section 3 — What If the Box Is First?
-              
-              - Purpose: Interpret the missing first factor and check the result in original expression.
-              - Shape: LessonSection_Config.
-              - Ordered blocks:
-                1. **markdown — available:** “Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?”
-                2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-count entry, learner assembles groups of four until twelve counters have been used: three groups.
-                3. **text — available:** “**12 ÷ 4 = 3** groups. Replace the box: **3 × 4 = 12**. Both sides show twelve.”
-              - Core explanation: The unknown factor's numerical result depends on the known factor and product, but the **model role** of a particular position follows the explicitly chosen group-count-first convention.
-              - Feedback: A claim □=4 becomes 4×4=16 rather than twelve. Avoid misleading “four and three switched” depiction without a stated reinterpretation.
-              - Navigation: Invite an independent multiplication case with a new total.
-              - Accessibility: Operand roles and full substituted result in text, not color-only group highlights; RTL-safe.
-              - Planned Note: “Check the factor by multiplying in the original equality,” after verified substitution.
-              - Dependencies: Scene-based formative choice only.
-              
+            ### Section 3 — What If the Box Is First?
+
+            - Purpose: Interpret the missing first factor and check the result in original expression.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **markdown — available:** “Now the equation is **□ × 4 = 12**. We know each group contains four. How many groups must there be?”
+              2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), group-count entry, learner assembles groups of four until twelve counters have been used: three groups.
+              3. **text — available:** “**12 ÷ 4 = 3** groups. Replace the box: **3 × 4 = 12**. Both sides show twelve.”
+            - Core explanation: The unknown factor's numerical result depends on the known factor and product, but the **model role** of a particular position follows the explicitly chosen group-count-first convention.
+            - Feedback: A claim □=4 becomes 4×4=16 rather than twelve. Avoid misleading “four and three switched” depiction without a stated reinterpretation.
+            - Navigation: Invite an independent multiplication case with a new total.
+            - Accessibility: Operand roles and full substituted result in text, not color-only group highlights; RTL-safe.
+            - Planned Note: “Check the factor by multiplying in the original equality,” after verified substitution.
+            - Dependencies: Scene-based formative choice only.
+
       section4FindTheMissingGroupSizeYourself:
         config:
-          id: "100170fd-7f91-8081-8739-e8bc98a958c0"
-          slug: "section4FindTheMissingGroupSizeYourself"
-          type: "content"
+          id: '100170fd-7f91-8081-8739-e8bc98a958c0'
+          slug: 'section4FindTheMissingGroupSizeYourself'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Find the Missing Group Size Yourself"
+              en: 'Find the Missing Group Size Yourself'
             navigationLabel:
-              en: "Find the Missing Group Size Yourself"
+              en: 'Find the Missing Group Size Yourself'
           content:
             items:
               section4Text1:
                 config:
-                  id: "9749fc71-6267-8000-8586-546f70a8081e"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: '9749fc71-6267-8000-8586-546f70a8081e'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?"
+                      en: '**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?'
                 production:
-                  purpose: "Legacy text block of Find the Missing Group Size Yourself; provisional draft."
-                  specification: "  1. **text — available:** “**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?”"
+                  purpose: 'Legacy text block of Find the Missing Group Size Yourself; provisional draft.'
+                  specification: '  1. **text — available:** “**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?”'
               scene4Block2:
                 config:
-                  id: "766e4c38-898d-80e3-8bd5-436604368fbd"
-                  slug: "scene4Block2"
-                  type: "scene"
+                  id: '766e4c38-898d-80e3-8bd5-436604368fbd'
+                  slug: 'scene4Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?"
+                        instruction: '**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Find the Missing Group Size Yourself. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Find the Missing Group Size Yourself. Not approved or implemented.'
                   specification: |
-                      # Missing Factor Groups — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      - Complete: 3 groups of 4 → 3×4=12, twelve counters.
-                      - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
-                      - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
-                      - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
-                      - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
-                      - A group-count-first convention is stated whenever a multiplication is mapped to groups.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
-                      2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
-                      3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
-                      4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
-                      5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
-                      2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
-                      3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
-                      4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
-                      5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
-                      6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), transfer entry with candidate 4/5/6, optional twenty counters, divide 20÷4 then substitute in 4×□=20.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Missing Factor Groups — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding an Unknown Factor (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Reconstruct unknown nonzero-known-factor multiplication input by exact division, then verify in the original multiplication. Methodologist Brief (preserved in production.methodology), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A missing factor is a meaningful group count or group size in a chosen concrete model, not a random digit. The child rebuilds equal groups from total and a known factor, then performs multiplication to check the original statement. Group-count-first is an **example convention**, not a mathematical claim that factor position always determines a story's real-world role.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Complete: 3 groups of 4 → 3×4=12, twelve counters.
+                    - Unknown per-group: 3×□=12, 12÷3=4, check 3×4=12. Candidates 3/4/5 lead to products 9/12/15.
+                    - Unknown count: □×4=12, 12÷4=3, check 3×4=12. Candidate 4 would create 16, not twelve.
+                    - Transfer: 4×□=20, 20÷4=5, check 4×5=20; choices 4/5/6 yield products 16/20/24. The fact that a _wrong candidate's product_ may exceed 25 does not authorize a larger group model; use exact textual computation.
+                    - Exact positive whole-number groups, sizes up to five and total ≤25 in correct examples. The given known factor must be nonzero. If known factor were 0 with product 0, missing partner would not be uniquely determined; explicitly outside scope.
+                    - A group-count-first convention is stated whenever a multiplication is mapped to groups.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Complete-model entry:** Three labeled groups with four exact counters each. Learner selects “Count one group” or “Count all”; shows 4+4+4=12, then “3 groups × 4 each = 12” with factors/product roles.
+                    2. **Missing-size entry:** Show twelve countable counters and _three_ labeled equal-group containers. “Share the twelve among three groups” distributes exactly four each, with a learner-paced or one-step control; reveal 12÷3=4 and 3×4=12. Offer candidate 3/4/5 with full product comparison and retry.
+                    3. **Missing-count entry:** Show twelve original counters and the instruction “Make groups of four.” “Make next group” consumes exactly four and increments group count; after three groups, all twelve are used. Display □×4=12 → 3×4=12. A guess of four groups is rejected with 4×4=16, requiring extra objects not provided.
+                    4. **Transfer entry:** Start 4×□=20 and group count 4, hide group size. Candidate 4/5/6 tested in unchanged original; 16/20/24 respectively. “Show groups” reveals 20 shared among four groups giving five each, with 20÷4=5.
+                    5. Every entry offers “Show steps,” “Read groups,” “Explain answer,” “Reset” and non-scored hints; can reveal full explanation without an attempt.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Scene entries with independent initial state, no invented public mode props. Objects: group containers and exact group counts, bounded counter pool, equality with accessible missing-factor position, candidate choices, computed products and an ordered text ledger. Math invariant: if G groups have S each, total=G×S, and correct missing input=product÷known nonzero factor when exact. A wrong trial never creates fictitious counters in the _correct_ model. State: active example, groups completed, counters used, selected candidate, revealed explanations. Reset and switching stories restore original data; no grading or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG groups, number chips with explicit factor/product labels and a steady total. Optional stepped spreading/assembling animation. Reduced motion shows identical before/after and corresponding text. No sound, downloaded video, WebGL, mascot or interactive dragging required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Natural translations for every child-facing phrase including “groups of”, “in each”, “factor”, “product” and hint/result in all supported locales; no fallbacks. RTL keeps multiplication operand identities and chosen group convention semantically stable. Nonvisual interactive list “three groups; four in each; total twelve” and accessible calculator/result statements support entire scene. All controls keyboard/touch/switch accessible, child-sized, visible focus, screen-reader status, responsive/zoomed layout, reduced motion and full local offline logic after download. No dragging, rapid taps or speech recognition requirement.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 3 groups of 4 equals twelve, represented by both 4+4+4=12 and 3×4=12.
+                    2. 3×□=12 finds four by exact sharing, wrong 3/5 show nine/fifteen.
+                    3. □×4=12 finds _three groups_, wrong four groups require sixteen, no group-role ambiguity.
+                    4. 4×□=20 yields five, checked 4×5=20; wrong 4/6 give 16/24.
+                    5. No known zero factor, division remainder or invalid total silently introduced. Explanation accessible without guesses.
+                    6. Reset/isolation, RTL, nonvisual/keyboard, reduced motion, mobile and offline behave equivalently.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic scene Resource exists; this Scene is **proposed** and depends on Brief approval, independent Scene editorial approval, Design Scene implementation and tests. Coding Agent validates prop-free entries and complete locale/offline behavior; Assessment Architect owns graded competence evidence, not these trial choices. Readiness prerequisites are a genuine editorial gate.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), transfer entry with candidate 4/5/6, optional twenty counters, divide 20÷4 then substitute in 4×□=20.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section4Markdown3:
                 config:
-                  id: "5ee733b5-43db-8429-8cc6-ff24b1fa08b8"
-                  slug: "section4Markdown3"
-                  type: "markdown"
+                  id: '5ee733b5-43db-8429-8cc6-ff24b1fa08b8'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "**20 ÷ 4 = 5**, and **4 × 5 = 20**. The box is **5**. The product is unchanged."
+                      en: '**20 ÷ 4 = 5**, and **4 × 5 = 20**. The box is **5**. The product is unchanged.'
                 production:
-                  purpose: "Legacy markdown block of Find the Missing Group Size Yourself; provisional draft."
-                  specification: "  3. **markdown — available:** “**20 ÷ 4 = 5**, and **4 × 5 = 20**. The box is **5**. The product is unchanged.”"
+                  purpose: 'Legacy markdown block of Find the Missing Group Size Yourself; provisional draft.'
+                  specification: '  3. **markdown — available:** “**20 ÷ 4 = 5**, and **4 × 5 = 20**. The box is **5**. The product is unchanged.”'
             order:
-              - "section4Text1"
-              - "scene4Block2"
-              - "section4Markdown3"
+              - 'section4Text1'
+              - 'scene4Block2'
+              - 'section4Markdown3'
         production:
-          purpose: "Transfer to 4 × □ = 20 with less scaffolding."
-          pedagogicalIntent: "Transfer to 4 × □ = 20 with less scaffolding."
+          purpose: 'Transfer to 4 × □ = 20 with less scaffolding.'
+          pedagogicalIntent: 'Transfer to 4 × □ = 20 with less scaffolding.'
           productionNotes: |
-              ### Section 4 — Find the Missing Group Size Yourself
-              
-              - Purpose: Transfer to 4 × □ = 20 with less scaffolding.
-              - Shape: LessonSection_Config.
-              - Ordered blocks:
-                1. **text — available:** “**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?”
-                2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), transfer entry with candidate 4/5/6, optional twenty counters, divide 20÷4 then substitute in 4×□=20.
-                3. **markdown — available:** “**20 ÷ 4 = 5**, and **4 × 5 = 20**. The box is **5**. The product is unchanged.”
-              - Feedback: 4 gives 4×4=16, 6 gives 4×6=24, 5 gives 20. Child may reveal model or full explanation without choosing. Optional reflection “Which operation found it? Which checked it?” via selected/typed/oral response.
-              - Navigation: End with no Quiz or success score.
-              - Accessibility: Countable and nonvisual group model, all choices native accessible controls, full RTL math and offline math.
-              - Notes: Recall two prior concise Notes.
-              - Dependencies: Separate Scene entry; no Assessment Architect work implied.
-              
+            ### Section 4 — Find the Missing Group Size Yourself
+
+            - Purpose: Transfer to 4 × □ = 20 with less scaffolding.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **text — available:** “**4 × □ = 20.** Four equal groups make twenty counters. How many must be in each group?”
+              2. **scene — proposed:** Missing Factor Groups (preserved in Scene production.specification), transfer entry with candidate 4/5/6, optional twenty counters, divide 20÷4 then substitute in 4×□=20.
+              3. **markdown — available:** “**20 ÷ 4 = 5**, and **4 × 5 = 20**. The box is **5**. The product is unchanged.”
+            - Feedback: 4 gives 4×4=16, 6 gives 4×6=24, 5 gives 20. Child may reveal model or full explanation without choosing. Optional reflection “Which operation found it? Which checked it?” via selected/typed/oral response.
+            - Navigation: End with no Quiz or success score.
+            - Accessibility: Countable and nonvisual group model, all choices native accessible controls, full RTL math and offline math.
+            - Notes: Recall two prior concise Notes.
+            - Dependencies: Separate Scene entry; no Assessment Architect work implied.
+
     order:
-      - "section1ThreeGroupsTwelveAltogether"
-      - "section2HowManyInEachGroup"
-      - "section3WhatIfTheBoxIsFirst"
-      - "section4FindTheMissingGroupSizeYourself"
+      - 'section1ThreeGroupsTwelveAltogether'
+      - 'section2HowManyInEachGroup'
+      - 'section3WhatIfTheBoxIsFirst'
+      - 'section4FindTheMissingGroupSizeYourself'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Finding an Unknown Factor — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: unknownFactor
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Teach how a missing factor in a multiplication can be reconstructed by dividing the known product by the known **nonzero factor**, then verified in the original multiplication. The representation should retain the equal-groups meaning and distinguish “number of groups” from “number in each” according to a stated example convention. One selected number is not proof of mastered multiplication or division.
-      
-      ## Target audience
-      
-      Readiness-dependent enrichment for children aged approximately 6–8 who **already understand** equal groups, multiplication expressions, and simple exact division. Not a core expectation of all grade 1–2 learners. Use concrete models and short wording before terms factor/product; offer accessible alternatives to dragging or speech.
-      
-      ## Prerequisites
-      
-      - Read 3 × 4 = 12 as three groups of four under the currently adopted group-count × group-size convention.
-      - Count equal groups, identify a product, and use division as exact equal sharing or grouping.
-      - Understand an unknown □ as a missing value and the equals sign as a true relationship.
-      - Know that the supplied factor is **nonzero** and that candidate numbers must be checked with multiplication.
-      
-      ## Target Skills
-      
-      - [unknownFactor.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/algebra/unknowns/skills/unknownFactor.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Identify missing factor (not product) in 3 × □ = 12 and □ × 4 = 12.
-      - Use the product and known nonzero factor to compute the missing factor: 12 ÷ 3 = 4 or 12 ÷ 4 = 3.
-      - Relate both factor positions to appropriately labeled equal-groups stories, without swapping group roles silently.
-      - Verify the answer in original multiplication (3 × 4 = 12; 3 × 4 = 12 with the corresponding position).
-      - Transfer to 4 × □ = 20, with accessible model support on request.
-      
-      ## Essential subject matter
-      
-      For whole numbers, a known product P and nonzero known factor k yield the missing factor m = P ÷ k **when division is exact in the chosen number domain**. For 3 × □ = 12, think three equal groups making twelve; each group has four, and 12 ÷ 3 = 4. For □ × 4 = 12, consider groups of four: three groups make twelve, and 12 ÷ 4 = 3. Under the example convention (groups × size), position changes the modeled role, not the multiplication product's numerical value. Restore the candidate to the original equality to verify. If the known factor were zero and product zero, its partner would not be uniquely determined; this Lesson excludes that case and does not teach general symbolic equations.
-      
-      ## Conceptual progression and dependencies
-      
-      Activate a complete known multiplication model, then hide one input (either number of groups or size). With a fixed product and known factor, reveal the missing count through equal sharing/grouping. Introduce division as the inverse procedure; perform the original multiplication as a check. Contrast with wrongly adding k+P or using k÷P. Add an independent example only after model roles are clear.
-      
-      ## Misconceptions, examples and boundaries
-      
-      Children may confuse factor and product, calculate 3+12=15 or 3÷12, forget the group convention, or assume changing factor order leaves the picture identical without reinterpreting it. For 3×□=12 choose □=4; inserting 5 yields 15, not 12. For □×4=12 the blank is 3 groups, not 4 items. Factors 1–5 and totals ≤25; exact nonnegative whole-number division, no non-exact factors, negative numbers, fractions, zero as supplied factor or division algorithms.
-      
-      ## Localization, accessibility and offline intent
-      
-      Translate “factor”, “product”, “equal groups”, “group size” and “how many groups” in natural child-friendly language. All arrangements described with precise group count and each size; RTL must preserve operand order/meaning. Keyboard, screen reader and touch-equivalent counting/verification, low-device simple models and full offline data/feedback, without external media or speech recognition.
-      
-      ## Sources and factual verification
-      
-      - [Generated Playground taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), authoritative methodological description from unchanged Skill source.
-      - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), Grade 3 multiplication/division relationships, comparative reference rather than confirmed grade 1–2 alignment.
-      - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), use of explicit models and language.
-      
-      ## Curriculum / Program compatibility
-      
-      Not specified. **Readiness-gated enrichment**, not automatically suitable for all 6–8-year-olds.
-      
-      ## Open editorial decisions
-      
-      - Editor: approve availability for children with verified exact-division prerequisites, or defer the Lesson to a later audience.
-      - Confirm the group-count-first convention is clearly specified for examples, not asserted universal across countries/languages.
-      
-      ## Methodologist handoff
-      
-      **Draft for editor review.** A Screenwriter can develop formative equal-group inversion and full original multiplication checks after approval. Do not treat the planned practice as scored mastery, and do not change the age-neutral Skill to enforce a grade ceiling.
+    # Finding an Unknown Factor — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: unknownFactor
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Teach how a missing factor in a multiplication can be reconstructed by dividing the known product by the known **nonzero factor**, then verified in the original multiplication. The representation should retain the equal-groups meaning and distinguish “number of groups” from “number in each” according to a stated example convention. One selected number is not proof of mastered multiplication or division.
+
+    ## Target audience
+
+    Readiness-dependent enrichment for children aged approximately 6–8 who **already understand** equal groups, multiplication expressions, and simple exact division. Not a core expectation of all grade 1–2 learners. Use concrete models and short wording before terms factor/product; offer accessible alternatives to dragging or speech.
+
+    ## Prerequisites
+
+    - Read 3 × 4 = 12 as three groups of four under the currently adopted group-count × group-size convention.
+    - Count equal groups, identify a product, and use division as exact equal sharing or grouping.
+    - Understand an unknown □ as a missing value and the equals sign as a true relationship.
+    - Know that the supplied factor is **nonzero** and that candidate numbers must be checked with multiplication.
+
+    ## Target Skills
+
+    - [unknownFactor.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/algebra/unknowns/skills/unknownFactor.data.ts)
+
+    ## Expected learning outcomes
+
+    - Identify missing factor (not product) in 3 × □ = 12 and □ × 4 = 12.
+    - Use the product and known nonzero factor to compute the missing factor: 12 ÷ 3 = 4 or 12 ÷ 4 = 3.
+    - Relate both factor positions to appropriately labeled equal-groups stories, without swapping group roles silently.
+    - Verify the answer in original multiplication (3 × 4 = 12; 3 × 4 = 12 with the corresponding position).
+    - Transfer to 4 × □ = 20, with accessible model support on request.
+
+    ## Essential subject matter
+
+    For whole numbers, a known product P and nonzero known factor k yield the missing factor m = P ÷ k **when division is exact in the chosen number domain**. For 3 × □ = 12, think three equal groups making twelve; each group has four, and 12 ÷ 3 = 4. For □ × 4 = 12, consider groups of four: three groups make twelve, and 12 ÷ 4 = 3. Under the example convention (groups × size), position changes the modeled role, not the multiplication product's numerical value. Restore the candidate to the original equality to verify. If the known factor were zero and product zero, its partner would not be uniquely determined; this Lesson excludes that case and does not teach general symbolic equations.
+
+    ## Conceptual progression and dependencies
+
+    Activate a complete known multiplication model, then hide one input (either number of groups or size). With a fixed product and known factor, reveal the missing count through equal sharing/grouping. Introduce division as the inverse procedure; perform the original multiplication as a check. Contrast with wrongly adding k+P or using k÷P. Add an independent example only after model roles are clear.
+
+    ## Misconceptions, examples and boundaries
+
+    Children may confuse factor and product, calculate 3+12=15 or 3÷12, forget the group convention, or assume changing factor order leaves the picture identical without reinterpreting it. For 3×□=12 choose □=4; inserting 5 yields 15, not 12. For □×4=12 the blank is 3 groups, not 4 items. Factors 1–5 and totals ≤25; exact nonnegative whole-number division, no non-exact factors, negative numbers, fractions, zero as supplied factor or division algorithms.
+
+    ## Localization, accessibility and offline intent
+
+    Translate “factor”, “product”, “equal groups”, “group size” and “how many groups” in natural child-friendly language. All arrangements described with precise group count and each size; RTL must preserve operand order/meaning. Keyboard, screen reader and touch-equivalent counting/verification, low-device simple models and full offline data/feedback, without external media or speech recognition.
+
+    ## Sources and factual verification
+
+    - [Generated Playground taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), authoritative methodological description from unchanged Skill source.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), Grade 3 multiplication/division relationships, comparative reference rather than confirmed grade 1–2 alignment.
+    - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), use of explicit models and language.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. **Readiness-gated enrichment**, not automatically suitable for all 6–8-year-olds.
+
+    ## Open editorial decisions
+
+    - Editor: approve availability for children with verified exact-division prerequisites, or defer the Lesson to a later audience.
+    - Confirm the group-count-first convention is clearly specified for examples, not asserted universal across countries/languages.
+
+    ## Methodologist handoff
+
+    **Draft for editor review.** A Screenwriter can develop formative equal-group inversion and full original multiplication checks after approval. Do not treat the planned practice as scored mastery, and do not change the age-neutral Skill to enforce a grade ceiling.
   productionNotes: |
-      Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
-      
-      ## Former Screenwriter introduction
-      
-      # Finding an Unknown Factor — Content
-      
-      Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
-      Target Lesson: content/playground/Data/Lessons/1/unknownFactor/
-      Audience: Optional enrichment for children aged 6–8 who already know equal groups, multiplication and exact division
-      Methodologist source: Methodologist Brief (preserved in production.methodology) (Draft; not approved)
-      Learning outcomes: find a missing factor from exact product and known nonzero factor; interpret either factor role in a given model; verify in original multiplication; transfer.
-      Target Skills: Exact unknownFactor.data.ts directly linked in Methodologist Brief.
-      Program dependence: None
-      
-      ## INSTRUCTIONAL CONCEPT
-      
-      We know the **whole product** and one **factor** but not the other. If three equal groups make twelve, every group must have four: **12 ÷ 3 = 4**. The original statement is **3 × □ = 12**; inserting four and calculating **3 × 4 = 12** verifies the candidate. If a box comes _first_, in **□ × 4 = 12**, the example convention instead asks “how many groups of four?” The missing three has a distinct modeled role. Division discovers the answer; multiplication checks it.
-      
-      This is a readiness-dependent enrichment lesson, not introductory multiplication for everyone. Only exact, small, nonzero-known-factor cases; no zero-factor ambiguity, mixed-ability prerequisite skipping, fractions, long division or rote timed table practice.
-      
-      ## LEARNER JOURNEY
-      
-      1. Review three equal groups of four making twelve.
-      2. Hide the group size; reveal four items in each group from twelve shared in three groups.
-      3. Move the box to the group-count factor and use twelve items in sets of four; verify each original multiplication.
-      4. Transfer to 4 × □ = 20 with optional equal-group model, then check 4 × 5 = 20.
-      
-      ## SECTION PLAN
-      
-      
-      ## Former Screenwriter closing notes
-      
-      ## CUSTOM SCENE SPECIFICATIONS
-      
-      - Missing Factor Groups (preserved in Scene production.specification) — independently initialized complete, group-size, group-count and transfer experiences.
-      
-      ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-      
-      1. “Missing factor = product ÷ known nonzero factor.” After equal sharing and 12÷3=4 are explained.
-      2. “Check the missing factor in the original multiplication.” After 3×4=12 is substituted and confirmed.
-      
-      No Note data type, unlock event, persistence, personalized revision sheet or automatic spaced scheduling is implemented by this plan. A Note is not a validated mastery result.
-      
-      ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-      
-      Children inspect equal-group evidence, choose missing factors and learn from explicit multiplied totals. This is formative, not a scored Question/Quiz. The Assessment Architect must validate prerequisites and scored examples separately; a correct 3×4 does not independently demonstrate the general Skill. Runtime's select-one Quiz adapter is separate from bespoke Scenes; no scoring/threshold policy authored.
-      
-      ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-      
-      Authentic translations for all prompts, buttons, numerical role descriptions, feedback, accessible names and Notes into every supported locale; no English fallback. Meaningful RTL factor/operand direction and group-count × size convention; ordered equivalent nonvisual group lists plus keyboard/touch/switch actions. Visible focus, 200% zoom, mobile, reduced-motion states, no drag or voice-recognition requirement and local deterministic offline operation after complete download. Keep the full pedagogical model on weak devices.
-      
-      ## PRODUCTION / PLATFORM DEPENDENCIES
-      
-      Available: typed LessonSection_Config and general text/markdown/scene renderer. Proposed: Missing Factor Groups, four state-isolated prop-free Scene entries, verified locale wiring and own tests. Media code/image/audio/video generic types are not supported in current generic renderer; YouTube has no config. Notes/review scheduling and package download are product dependencies, not claimed done. No graded Question created.
-      
-      ## EDITORIAL SOURCES AND OPEN QUESTIONS
-      
-      - Methodologist Brief (preserved in production.methodology) (Draft, not approved).
-      - [Generated Skill taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md).
-      - [Create Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md).
-      - Editor must confirm readiness gate, small exact-division factors and explicitly stated model interpretation before implementation; no grade-level mandate claimed.
-      
-      ## HANDOFF
-      
-      Provisional Draft Screenwriter Content plus separate Draft Scene spec, awaiting Methodologist approval and then independent Content/Scene review. Coding Agent, Scene Designer and Assessment Architect work only on separate authorization.
+    Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+
+    ## Former Screenwriter introduction
+
+    # Finding an Unknown Factor — Content
+
+    Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/unknownFactor/
+    Audience: Optional enrichment for children aged 6–8 who already know equal groups, multiplication and exact division
+    Methodologist source: Methodologist Brief (preserved in production.methodology) (Draft; not approved)
+    Learning outcomes: find a missing factor from exact product and known nonzero factor; interpret either factor role in a given model; verify in original multiplication; transfer.
+    Target Skills: Exact unknownFactor.data.ts directly linked in Methodologist Brief.
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    We know the **whole product** and one **factor** but not the other. If three equal groups make twelve, every group must have four: **12 ÷ 3 = 4**. The original statement is **3 × □ = 12**; inserting four and calculating **3 × 4 = 12** verifies the candidate. If a box comes _first_, in **□ × 4 = 12**, the example convention instead asks “how many groups of four?” The missing three has a distinct modeled role. Division discovers the answer; multiplication checks it.
+
+    This is a readiness-dependent enrichment lesson, not introductory multiplication for everyone. Only exact, small, nonzero-known-factor cases; no zero-factor ambiguity, mixed-ability prerequisite skipping, fractions, long division or rote timed table practice.
+
+    ## LEARNER JOURNEY
+
+    1. Review three equal groups of four making twelve.
+    2. Hide the group size; reveal four items in each group from twelve shared in three groups.
+    3. Move the box to the group-count factor and use twelve items in sets of four; verify each original multiplication.
+    4. Transfer to 4 × □ = 20 with optional equal-group model, then check 4 × 5 = 20.
+
+    ## SECTION PLAN
+
+
+    ## Former Screenwriter closing notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Missing Factor Groups (preserved in Scene production.specification) — independently initialized complete, group-size, group-count and transfer experiences.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Missing factor = product ÷ known nonzero factor.” After equal sharing and 12÷3=4 are explained.
+    2. “Check the missing factor in the original multiplication.” After 3×4=12 is substituted and confirmed.
+
+    No Note data type, unlock event, persistence, personalized revision sheet or automatic spaced scheduling is implemented by this plan. A Note is not a validated mastery result.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Children inspect equal-group evidence, choose missing factors and learn from explicit multiplied totals. This is formative, not a scored Question/Quiz. The Assessment Architect must validate prerequisites and scored examples separately; a correct 3×4 does not independently demonstrate the general Skill. Runtime's select-one Quiz adapter is separate from bespoke Scenes; no scoring/threshold policy authored.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Authentic translations for all prompts, buttons, numerical role descriptions, feedback, accessible names and Notes into every supported locale; no English fallback. Meaningful RTL factor/operand direction and group-count × size convention; ordered equivalent nonvisual group lists plus keyboard/touch/switch actions. Visible focus, 200% zoom, mobile, reduced-motion states, no drag or voice-recognition requirement and local deterministic offline operation after complete download. Keep the full pedagogical model on weak devices.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    Available: typed LessonSection_Config and general text/markdown/scene renderer. Proposed: Missing Factor Groups, four state-isolated prop-free Scene entries, verified locale wiring and own tests. Media code/image/audio/video generic types are not supported in current generic renderer; YouTube has no config. Notes/review scheduling and package download are product dependencies, not claimed done. No graded Question created.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (preserved in production.methodology) (Draft, not approved).
+    - [Generated Skill taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md).
+    - [Create Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Editor must confirm readiness gate, small exact-division factors and explicitly stated model interpretation before implementation; no grade-level mandate claimed.
+
+    ## HANDOFF
+
+    Provisional Draft Screenwriter Content plus separate Draft Scene spec, awaiting Methodologist approval and then independent Content/Scene review. Coding Agent, Scene Designer and Assessment Architect work only on separate authorization.

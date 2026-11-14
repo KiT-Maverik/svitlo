@@ -1,825 +1,825 @@
 config:
-  id: "002b07a2-8636-5305-96f5-8e2944cb00f7"
-  slug: "fiveMinuteClockReadings"
-  type: "lesson"
+  id: '002b07a2-8636-5305-96f5-8e2944cb00f7'
+  slug: 'fiveMinuteClockReadings'
+  type: 'lesson'
   skills:
-    - "21d2c77f-39e4-4c54-98fc-b54a8e1568fe"
+    - '21d2c77f-39e4-4c54-98fc-b54a8e1568fe'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Read the Clock in Five-Minute Steps"
+      en: 'Read the Clock in Five-Minute Steps'
   section:
     items:
       section1ANumeralBecomesFiveMinutes:
         config:
-          id: "7c49d4be-d939-88ac-88b0-de6aadc00278"
-          slug: "section1ANumeralBecomesFiveMinutes"
-          type: "content"
+          id: '7c49d4be-d939-88ac-88b0-de6aadc00278'
+          slug: 'section1ANumeralBecomesFiveMinutes'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A numeral becomes five minutes"
+              en: 'A numeral becomes five minutes'
             navigationLabel:
-              en: "A numeral becomes five minutes"
+              en: 'A numeral becomes five minutes'
           content:
             items:
               section1Text1:
                 config:
-                  id: "14ea93bc-66a8-8200-8479-734d563b82f1"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: '14ea93bc-66a8-8200-8479-734d563b82f1'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
                       en: "We know the long hand at 3 means quarter past. How many minutes has it passed? Let's count the jumps from 12 to 3, five minutes each."
                 production:
-                  purpose: "Source text at A numeral becomes five minutes; provisional draft, not implemented."
+                  purpose: 'Source text at A numeral becomes five minutes; provisional draft, not implemented.'
                   specification: "1. **`text` — existing Resource block type.** “We know the long hand at 3 means quarter past. How many minutes has it passed? Let's count the jumps from 12 to 3, five minutes each.”"
               scene1Block2:
                 config:
-                  id: "20e79fa4-423c-8c85-867f-06e374a485c2"
-                  slug: "scene1Block2"
-                  type: "scene"
+                  id: '20e79fa4-423c-8c85-867f-06e374a485c2'
+                  slug: 'scene1Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
                         instruction: "We know the long hand at 3 means quarter past. How many minutes has it passed? Let's count the jumps from 12 to 3, five minutes each."
                 production:
-                  purpose: "Scene instance for A numeral becomes five minutes, independently initialized; source Scene design is provisional."
+                  purpose: 'Scene instance for A numeral becomes five minutes, independently initialized; source Scene design is provisional.'
                   specification: |
-                      # FiveMinuteDial — Interactive Scene Specification
-                      
-                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
-                      **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
-                      **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
-                      **Canonical target Skills:**
-                      
-                      - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
-                      
-                      ## Pedagogical role
-                      
-                      Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
-                      
-                      **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
-                      
-                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                      
-                      ## Model, essential visual states and verifiable answers
-                      
-                      | State / preset   | Concrete representation                | Explanation / correct conclusion    |
-                      | ---------------- | -------------------------------------- | ----------------------------------- |
-                      | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
-                      | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
-                      | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
-                      | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
-                      | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
-                      | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
-                      | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
-                      | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
-                      
-                      **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
-                      
-                      ## Learner controls, transitions and no-penalty recovery
-                      
-                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
-                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
-                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
-                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
-                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
-                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                      
-                      ## Required explanatory feedback and errors
-                      
-                      - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
-                      - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
-                      - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
-                      - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
-                      - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
-                      - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
-                      - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
-                      - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
-                      
-                      **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
-                      
-                      ## Equivalent participation without sight, color, drag or hearing
-                      
-                      For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
-                      
-                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                      
-                      ## Internationalization, access, mobile and offline acceptance
-                      
-                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                      
-                      ## Coding Agent and Assessment Architect handoff
-                      
-                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                      
-                      
-                      ## Placement in this Lesson (from legacy Content draft)
-                      
-                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): FiveMinuteDial preset 'Count the minute steps': mark 12→1 (05), 1→2 (10), 2→3 (15), then continue through 5 (25). Learner advances one jump and predicts the next label.
-                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+                    # FiveMinuteDial — Interactive Scene Specification
+
+                    **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                    **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
+                    **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
+                    **Canonical target Skills:**
+
+                    - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
+
+                    ## Pedagogical role
+
+                    Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
+
+                    **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
+
+                    This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+
+                    ## Model, essential visual states and verifiable answers
+
+                    | State / preset   | Concrete representation                | Explanation / correct conclusion    |
+                    | ---------------- | -------------------------------------- | ----------------------------------- |
+                    | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
+                    | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
+                    | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
+                    | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
+                    | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
+                    | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
+                    | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
+                    | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
+
+                    **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
+
+                    ## Learner controls, transitions and no-penalty recovery
+
+                    1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                    2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                    3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                    4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                    5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                    6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+
+                    ## Required explanatory feedback and errors
+
+                    - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
+                    - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
+                    - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
+                    - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
+                    - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
+                    - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
+                    - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
+                    - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
+
+                    **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
+
+                    ## Equivalent participation without sight, color, drag or hearing
+
+                    For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
+
+                    All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+
+                    ## Internationalization, access, mobile and offline acceptance
+
+                    Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+
+                    ## Coding Agent and Assessment Architect handoff
+
+                    **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+
+
+                    ## Placement in this Lesson (from legacy Content draft)
+
+                    2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): FiveMinuteDial preset 'Count the minute steps': mark 12→1 (05), 1→2 (10), 2→3 (15), then continue through 5 (25). Learner advances one jump and predicts the next label.
+                  productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
               section1Markdown3:
                 config:
-                  id: "9a5a27e7-5b12-8162-863e-071f8776819a"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: '9a5a27e7-5b12-8162-863e-071f8776819a'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "One number jump is five minutes. By the time the long hand reaches 5, five jumps have passed: 5, 10, 15, 20, 25 minutes."
+                      en: 'One number jump is five minutes. By the time the long hand reaches 5, five jumps have passed: 5, 10, 15, 20, 25 minutes.'
                 production:
-                  purpose: "Source markdown at A numeral becomes five minutes; provisional draft, not implemented."
-                  specification: "3. **`markdown` — existing Resource block type.** “One number jump is five minutes. By the time the long hand reaches 5, five jumps have passed: 5, 10, 15, 20, 25 minutes.”"
+                  purpose: 'Source markdown at A numeral becomes five minutes; provisional draft, not implemented.'
+                  specification: '3. **`markdown` — existing Resource block type.** “One number jump is five minutes. By the time the long hand reaches 5, five jumps have passed: 5, 10, 15, 20, 25 minutes.”'
             order:
-              - "section1Text1"
-              - "scene1Block2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'scene1Block2'
+              - 'section1Markdown3'
         production:
-          purpose: "A numeral becomes five minutes"
-          pedagogicalIntent: "A numeral becomes five minutes"
+          purpose: 'A numeral becomes five minutes'
+          pedagogicalIntent: 'A numeral becomes five minutes'
           productionNotes: |
-              ### Section 1 — A numeral becomes five minutes
-              
-              **Purpose / intended outcome:** Connect numeral-to-numeral jumps to a five-minute scale.
-              
-              **Blocks, in the required top-to-bottom order:**
-              
-              1. **`text` — existing Resource block type.** “We know the long hand at 3 means quarter past. How many minutes has it passed? Let's count the jumps from 12 to 3, five minutes each.”
-              
-              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): FiveMinuteDial preset 'Count the minute steps': mark 12→1 (05), 1→2 (10), 2→3 (15), then continue through 5 (25). Learner advances one jump and predicts the next label.
-              
-              3. **`markdown` — existing Resource block type.** “One number jump is five minutes. By the time the long hand reaches 5, five jumps have passed: 5, 10, 15, 20, 25 minutes.”
-              
-              **What the learner actually does:** Advance from 12 to 1 through 5 and identify 25 minutes at the numeral 5.
-              
-              **Specific explanatory feedback:**
-              
-              - _Five minutes at numeral 5_: “Each jump is five minutes. Five jumps make twenty-five, not five.”
-              - _25 minutes_: “Yes: five equal intervals times five minutes each make 25 minutes.”
-              
-              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Expose a numeric transcript 'after 4 jumps: 20 minutes' on each action. The explanation remains available even if the learner chooses not to answer before moving on.
-              
-              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-              
+            ### Section 1 — A numeral becomes five minutes
+
+            **Purpose / intended outcome:** Connect numeral-to-numeral jumps to a five-minute scale.
+
+            **Blocks, in the required top-to-bottom order:**
+
+            1. **`text` — existing Resource block type.** “We know the long hand at 3 means quarter past. How many minutes has it passed? Let's count the jumps from 12 to 3, five minutes each.”
+
+            2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): FiveMinuteDial preset 'Count the minute steps': mark 12→1 (05), 1→2 (10), 2→3 (15), then continue through 5 (25). Learner advances one jump and predicts the next label.
+
+            3. **`markdown` — existing Resource block type.** “One number jump is five minutes. By the time the long hand reaches 5, five jumps have passed: 5, 10, 15, 20, 25 minutes.”
+
+            **What the learner actually does:** Advance from 12 to 1 through 5 and identify 25 minutes at the numeral 5.
+
+            **Specific explanatory feedback:**
+
+            - _Five minutes at numeral 5_: “Each jump is five minutes. Five jumps make twenty-five, not five.”
+            - _25 minutes_: “Yes: five equal intervals times five minutes each make 25 minutes.”
+
+            **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Expose a numeric transcript 'after 4 jumps: 20 minutes' on each action. The explanation remains available even if the learner chooses not to answer before moving on.
+
+            **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+
       section2ReadBothHandsTogether:
         config:
-          id: "abe5e4f8-3514-8551-8ef3-893f40025896"
-          slug: "section2ReadBothHandsTogether"
-          type: "content"
+          id: 'abe5e4f8-3514-8551-8ef3-893f40025896'
+          slug: 'section2ReadBothHandsTogether'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Read both hands together"
+              en: 'Read both hands together'
             navigationLabel:
-              en: "Read both hands together"
+              en: 'Read both hands together'
           content:
             items:
               section2Markdown1:
                 config:
-                  id: "f87dc429-cc88-868b-8bfb-3cd20f0ebe70"
-                  slug: "section2Markdown1"
-                  type: "markdown"
+                  id: 'f87dc429-cc88-868b-8bfb-3cd20f0ebe70'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?"
+                      en: 'The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?'
                 production:
-                  purpose: "Source markdown at Read both hands together; provisional draft, not implemented."
-                  specification: "1. **`markdown` — existing Resource block type.** “The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?”"
+                  purpose: 'Source markdown at Read both hands together; provisional draft, not implemented.'
+                  specification: '1. **`markdown` — existing Resource block type.** “The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?”'
               scene2Block2:
                 config:
-                  id: "70bd89a5-dce4-899d-82f6-81698eafb151"
-                  slug: "scene2Block2"
-                  type: "scene"
+                  id: '70bd89a5-dce4-899d-82f6-81698eafb151'
+                  slug: 'scene2Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?"
+                        instruction: 'The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?'
                 production:
-                  purpose: "Scene instance for Read both hands together, independently initialized; source Scene design is provisional."
+                  purpose: 'Scene instance for Read both hands together, independently initialized; source Scene design is provisional.'
                   specification: |
-                      # FiveMinuteDial — Interactive Scene Specification
-                      
-                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
-                      **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
-                      **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
-                      **Canonical target Skills:**
-                      
-                      - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
-                      
-                      ## Pedagogical role
-                      
-                      Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
-                      
-                      **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
-                      
-                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                      
-                      ## Model, essential visual states and verifiable answers
-                      
-                      | State / preset   | Concrete representation                | Explanation / correct conclusion    |
-                      | ---------------- | -------------------------------------- | ----------------------------------- |
-                      | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
-                      | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
-                      | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
-                      | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
-                      | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
-                      | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
-                      | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
-                      | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
-                      
-                      **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
-                      
-                      ## Learner controls, transitions and no-penalty recovery
-                      
-                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
-                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
-                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
-                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
-                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
-                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                      
-                      ## Required explanatory feedback and errors
-                      
-                      - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
-                      - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
-                      - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
-                      - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
-                      - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
-                      - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
-                      - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
-                      - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
-                      
-                      **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
-                      
-                      ## Equivalent participation without sight, color, drag or hearing
-                      
-                      For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
-                      
-                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                      
-                      ## Internationalization, access, mobile and offline acceptance
-                      
-                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                      
-                      ## Coding Agent and Assessment Architect handoff
-                      
-                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                      
-                      
-                      ## Placement in this Lesson (from legacy Content draft)
-                      
-                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Show 2:25 clock state with long hand at 5 and short hand at 2 + 25/60 of the interval toward 3; learner chooses 2:25, 2:05 or 5:25 before reveal.
-                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+                    # FiveMinuteDial — Interactive Scene Specification
+
+                    **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                    **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
+                    **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
+                    **Canonical target Skills:**
+
+                    - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
+
+                    ## Pedagogical role
+
+                    Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
+
+                    **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
+
+                    This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+
+                    ## Model, essential visual states and verifiable answers
+
+                    | State / preset   | Concrete representation                | Explanation / correct conclusion    |
+                    | ---------------- | -------------------------------------- | ----------------------------------- |
+                    | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
+                    | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
+                    | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
+                    | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
+                    | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
+                    | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
+                    | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
+                    | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
+
+                    **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
+
+                    ## Learner controls, transitions and no-penalty recovery
+
+                    1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                    2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                    3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                    4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                    5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                    6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+
+                    ## Required explanatory feedback and errors
+
+                    - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
+                    - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
+                    - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
+                    - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
+                    - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
+                    - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
+                    - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
+                    - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
+
+                    **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
+
+                    ## Equivalent participation without sight, color, drag or hearing
+
+                    For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
+
+                    All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+
+                    ## Internationalization, access, mobile and offline acceptance
+
+                    Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+
+                    ## Coding Agent and Assessment Architect handoff
+
+                    **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+
+
+                    ## Placement in this Lesson (from legacy Content draft)
+
+                    2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Show 2:25 clock state with long hand at 5 and short hand at 2 + 25/60 of the interval toward 3; learner chooses 2:25, 2:05 or 5:25 before reveal.
+                  productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
               section2Text3:
                 config:
-                  id: "e6365cc8-8c9e-8cc1-894c-759363e4259a"
-                  slug: "section2Text3"
-                  type: "text"
+                  id: 'e6365cc8-8c9e-8cc1-894c-759363e4259a'
+                  slug: 'section2Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "It is 2:25. The long hand tells 25 minutes, and the short hand tells us which hour has already begun: two."
+                      en: 'It is 2:25. The long hand tells 25 minutes, and the short hand tells us which hour has already begun: two.'
                 production:
-                  purpose: "Source text at Read both hands together; provisional draft, not implemented."
-                  specification: "3. **`text` — existing Resource block type.** “It is 2:25. The long hand tells 25 minutes, and the short hand tells us which hour has already begun: two.”"
+                  purpose: 'Source text at Read both hands together; provisional draft, not implemented.'
+                  specification: '3. **`text` — existing Resource block type.** “It is 2:25. The long hand tells 25 minutes, and the short hand tells us which hour has already begun: two.”'
             order:
-              - "section2Markdown1"
-              - "scene2Block2"
-              - "section2Text3"
+              - 'section2Markdown1'
+              - 'scene2Block2'
+              - 'section2Text3'
         production:
-          purpose: "Read both hands together"
-          pedagogicalIntent: "Read both hands together"
+          purpose: 'Read both hands together'
+          pedagogicalIntent: 'Read both hands together'
           productionNotes: |
-              ### Section 2 — Read both hands together
-              
-              **Purpose / intended outcome:** Map a minute position and an in-between hour-hand position to a precise time.
-              
-              **Blocks, in the required top-to-bottom order:**
-              
-              1. **`markdown` — existing Resource block type.** “The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?”
-              
-              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Show 2:25 clock state with long hand at 5 and short hand at 2 + 25/60 of the interval toward 3; learner chooses 2:25, 2:05 or 5:25 before reveal.
-              
-              3. **`text` — existing Resource block type.** “It is 2:25. The long hand tells 25 minutes, and the short hand tells us which hour has already begun: two.”
-              
-              **What the learner actually does:** Read an unseen 2:25 analog dial, then explain each hand.
-              
-              **Specific explanatory feedback:**
-              
-              - _2:05_: “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
-              - _5:25_: “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
-              
-              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Read-out available: 'short hand between 2 and 3, nearer 2; long hand at 5'. The explanation remains available even if the learner chooses not to answer before moving on.
-              
-              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-              
+            ### Section 2 — Read both hands together
+
+            **Purpose / intended outcome:** Map a minute position and an in-between hour-hand position to a precise time.
+
+            **Blocks, in the required top-to-bottom order:**
+
+            1. **`markdown` — existing Resource block type.** “The long hand is at 5. The short hand is a little after 2, not at 5. What time is it?”
+
+            2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Show 2:25 clock state with long hand at 5 and short hand at 2 + 25/60 of the interval toward 3; learner chooses 2:25, 2:05 or 5:25 before reveal.
+
+            3. **`text` — existing Resource block type.** “It is 2:25. The long hand tells 25 minutes, and the short hand tells us which hour has already begun: two.”
+
+            **What the learner actually does:** Read an unseen 2:25 analog dial, then explain each hand.
+
+            **Specific explanatory feedback:**
+
+            - _2:05_: “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
+            - _5:25_: “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
+
+            **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Read-out available: 'short hand between 2 and 3, nearer 2; long hand at 5'. The explanation remains available even if the learner chooses not to answer before moving on.
+
+            **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+
       section3NearTheNextHourIsNotThereYet:
         config:
-          id: "c3b2ccd2-1560-8c31-8473-1fa022a1bf43"
-          slug: "section3NearTheNextHourIsNotThereYet"
-          type: "content"
+          id: 'c3b2ccd2-1560-8c31-8473-1fa022a1bf43'
+          slug: 'section3NearTheNextHourIsNotThereYet'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Near the next hour is not there yet"
+              en: 'Near the next hour is not there yet'
             navigationLabel:
-              en: "Near the next hour is not there yet"
+              en: 'Near the next hour is not there yet'
           content:
             items:
               section3Text1:
                 config:
-                  id: "14ae0119-c3d8-85b5-83f8-7a25448e1e89"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: '14ae0119-c3d8-85b5-83f8-7a25448e1e89'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?"
+                      en: 'The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?'
                 production:
-                  purpose: "Source text at Near the next hour is not there yet; provisional draft, not implemented."
-                  specification: "1. **`text` — existing Resource block type.** “The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?”"
+                  purpose: 'Source text at Near the next hour is not there yet; provisional draft, not implemented.'
+                  specification: '1. **`text` — existing Resource block type.** “The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?”'
               scene3Block2:
                 config:
-                  id: "97c9fd06-d549-8689-847a-fbe716fa4068"
-                  slug: "scene3Block2"
-                  type: "scene"
+                  id: '97c9fd06-d549-8689-847a-fbe716fa4068'
+                  slug: 'scene3Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?"
+                        instruction: 'The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?'
                 production:
-                  purpose: "Scene instance for Near the next hour is not there yet, independently initialized; source Scene design is provisional."
+                  purpose: 'Scene instance for Near the next hour is not there yet, independently initialized; source Scene design is provisional.'
                   specification: |
-                      # FiveMinuteDial — Interactive Scene Specification
-                      
-                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
-                      **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
-                      **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
-                      **Canonical target Skills:**
-                      
-                      - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
-                      
-                      ## Pedagogical role
-                      
-                      Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
-                      
-                      **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
-                      
-                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                      
-                      ## Model, essential visual states and verifiable answers
-                      
-                      | State / preset   | Concrete representation                | Explanation / correct conclusion    |
-                      | ---------------- | -------------------------------------- | ----------------------------------- |
-                      | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
-                      | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
-                      | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
-                      | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
-                      | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
-                      | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
-                      | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
-                      | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
-                      
-                      **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
-                      
-                      ## Learner controls, transitions and no-penalty recovery
-                      
-                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
-                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
-                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
-                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
-                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
-                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                      
-                      ## Required explanatory feedback and errors
-                      
-                      - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
-                      - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
-                      - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
-                      - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
-                      - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
-                      - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
-                      - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
-                      - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
-                      
-                      **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
-                      
-                      ## Equivalent participation without sight, color, drag or hearing
-                      
-                      For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
-                      
-                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                      
-                      ## Internationalization, access, mobile and offline acceptance
-                      
-                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                      
-                      ## Coding Agent and Assessment Architect handoff
-                      
-                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                      
-                      
-                      ## Placement in this Lesson (from legacy Content draft)
-                      
-                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Compare states 6:40 and 7:40 while keeping the minute hand at 8. Highlight how only the short hand's interval changes. Show 11:55 next to a revealed 12:00 boundary snapshot.
-                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+                    # FiveMinuteDial — Interactive Scene Specification
+
+                    **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                    **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
+                    **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
+                    **Canonical target Skills:**
+
+                    - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
+
+                    ## Pedagogical role
+
+                    Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
+
+                    **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
+
+                    This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+
+                    ## Model, essential visual states and verifiable answers
+
+                    | State / preset   | Concrete representation                | Explanation / correct conclusion    |
+                    | ---------------- | -------------------------------------- | ----------------------------------- |
+                    | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
+                    | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
+                    | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
+                    | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
+                    | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
+                    | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
+                    | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
+                    | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
+
+                    **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
+
+                    ## Learner controls, transitions and no-penalty recovery
+
+                    1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                    2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                    3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                    4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                    5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                    6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+
+                    ## Required explanatory feedback and errors
+
+                    - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
+                    - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
+                    - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
+                    - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
+                    - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
+                    - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
+                    - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
+                    - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
+
+                    **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
+
+                    ## Equivalent participation without sight, color, drag or hearing
+
+                    For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
+
+                    All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+
+                    ## Internationalization, access, mobile and offline acceptance
+
+                    Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+
+                    ## Coding Agent and Assessment Architect handoff
+
+                    **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+
+
+                    ## Placement in this Lesson (from legacy Content draft)
+
+                    2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Compare states 6:40 and 7:40 while keeping the minute hand at 8. Highlight how only the short hand's interval changes. Show 11:55 next to a revealed 12:00 boundary snapshot.
+                  productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
               section3Markdown3:
                 config:
-                  id: "4e470d71-420a-8d28-884f-2009e402d050"
-                  slug: "section3Markdown3"
-                  type: "markdown"
+                  id: '4e470d71-420a-8d28-884f-2009e402d050'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The long hand at 8 means 40 minutes. The short hand has passed 6 but not reached 7, so it is 6:40. At 11:55 it has almost reached 12, but is still in the eleven o’clock hour."
+                      en: 'The long hand at 8 means 40 minutes. The short hand has passed 6 but not reached 7, so it is 6:40. At 11:55 it has almost reached 12, but is still in the eleven o’clock hour.'
                 production:
-                  purpose: "Source markdown at Near the next hour is not there yet; provisional draft, not implemented."
-                  specification: "3. **`markdown` — existing Resource block type.** “The long hand at 8 means 40 minutes. The short hand has passed 6 but not reached 7, so it is 6:40. At 11:55 it has almost reached 12, but is still in the eleven o’clock hour.”"
+                  purpose: 'Source markdown at Near the next hour is not there yet; provisional draft, not implemented.'
+                  specification: '3. **`markdown` — existing Resource block type.** “The long hand at 8 means 40 minutes. The short hand has passed 6 but not reached 7, so it is 6:40. At 11:55 it has almost reached 12, but is still in the eleven o’clock hour.”'
             order:
-              - "section3Text1"
-              - "scene3Block2"
-              - "section3Markdown3"
+              - 'section3Text1'
+              - 'scene3Block2'
+              - 'section3Markdown3'
         production:
-          purpose: "Near the next hour is not there yet"
-          pedagogicalIntent: "Near the next hour is not there yet"
+          purpose: 'Near the next hour is not there yet'
+          pedagogicalIntent: 'Near the next hour is not there yet'
           productionNotes: |
-              ### Section 3 — Near the next hour is not there yet
-              
-              **Purpose / intended outcome:** Prevent off-by-one-hour errors when the hour hand is near the upcoming numeral.
-              
-              **Blocks, in the required top-to-bottom order:**
-              
-              1. **`text` — existing Resource block type.** “The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?”
-              
-              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Compare states 6:40 and 7:40 while keeping the minute hand at 8. Highlight how only the short hand's interval changes. Show 11:55 next to a revealed 12:00 boundary snapshot.
-              
-              3. **`markdown` — existing Resource block type.** “The long hand at 8 means 40 minutes. The short hand has passed 6 but not reached 7, so it is 6:40. At 11:55 it has almost reached 12, but is still in the eleven o’clock hour.”
-              
-              **What the learner actually does:** Distinguish 6:40 and 7:40 and predict whether 11:55 has become 12:00.
-              
-              **Specific explanatory feedback:**
-              
-              - _7:40 chosen for 6:40_: “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
-              - _12:55 chosen for 11:55_: “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
-              
-              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Text descriptions include the short hand's interval endpoints so no subtle pointer angle must be perceived. The explanation remains available even if the learner chooses not to answer before moving on.
-              
-              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-              
+            ### Section 3 — Near the next hour is not there yet
+
+            **Purpose / intended outcome:** Prevent off-by-one-hour errors when the hour hand is near the upcoming numeral.
+
+            **Blocks, in the required top-to-bottom order:**
+
+            1. **`text` — existing Resource block type.** “The long hand points to 8. The short hand has moved most of the way from 6 to 7. Is it 6:40 or 7:40?”
+
+            2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Compare states 6:40 and 7:40 while keeping the minute hand at 8. Highlight how only the short hand's interval changes. Show 11:55 next to a revealed 12:00 boundary snapshot.
+
+            3. **`markdown` — existing Resource block type.** “The long hand at 8 means 40 minutes. The short hand has passed 6 but not reached 7, so it is 6:40. At 11:55 it has almost reached 12, but is still in the eleven o’clock hour.”
+
+            **What the learner actually does:** Distinguish 6:40 and 7:40 and predict whether 11:55 has become 12:00.
+
+            **Specific explanatory feedback:**
+
+            - _7:40 chosen for 6:40_: “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
+            - _12:55 chosen for 11:55_: “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
+
+            **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. Text descriptions include the short hand's interval endpoints so no subtle pointer angle must be perceived. The explanation remains available even if the learner chooses not to answer before moving on.
+
+            **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+
       section4YourNewClock:
         config:
-          id: "ab163a05-9041-85f8-8e3d-5693856a896e"
-          slug: "section4YourNewClock"
-          type: "content"
+          id: 'ab163a05-9041-85f8-8e3d-5693856a896e'
+          slug: 'section4YourNewClock'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Your new clock"
+              en: 'Your new clock'
             navigationLabel:
-              en: "Your new clock"
+              en: 'Your new clock'
           content:
             items:
               section4Markdown1:
                 config:
-                  id: "367f4c32-32ef-8907-8461-92e8a0f137dd"
-                  slug: "section4Markdown1"
-                  type: "markdown"
+                  id: '367f4c32-32ef-8907-8461-92e8a0f137dd'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer."
+                      en: 'A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer.'
                 production:
-                  purpose: "Source markdown at Your new clock; provisional draft, not implemented."
-                  specification: "1. **`markdown` — existing Resource block type.** “A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer.”"
+                  purpose: 'Source markdown at Your new clock; provisional draft, not implemented.'
+                  specification: '1. **`markdown` — existing Resource block type.** “A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer.”'
               scene4Block2:
                 config:
-                  id: "20838de8-cfca-80dc-8e6f-df0521268231"
-                  slug: "scene4Block2"
-                  type: "scene"
+                  id: '20838de8-cfca-80dc-8e6f-df0521268231'
+                  slug: 'scene4Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer."
+                        instruction: 'A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer.'
                 production:
-                  purpose: "Scene instance for Your new clock, independently initialized; source Scene design is provisional."
+                  purpose: 'Scene instance for Your new clock, independently initialized; source Scene design is provisional.'
                   specification: |
-                      # FiveMinuteDial — Interactive Scene Specification
-                      
-                      **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
-                      **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
-                      **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
-                      **Canonical target Skills:**
-                      
-                      - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
-                      
-                      ## Pedagogical role
-                      
-                      Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
-                      
-                      **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
-                      
-                      This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
-                      
-                      ## Model, essential visual states and verifiable answers
-                      
-                      | State / preset   | Concrete representation                | Explanation / correct conclusion    |
-                      | ---------------- | -------------------------------------- | ----------------------------------- |
-                      | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
-                      | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
-                      | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
-                      | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
-                      | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
-                      | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
-                      | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
-                      | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
-                      
-                      **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
-                      
-                      ## Learner controls, transitions and no-penalty recovery
-                      
-                      1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
-                      2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
-                      3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
-                      4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
-                      5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
-                      6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
-                      
-                      ## Required explanatory feedback and errors
-                      
-                      - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
-                      - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
-                      - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
-                      - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
-                      - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
-                      - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
-                      - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
-                      - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
-                      
-                      **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
-                      
-                      ## Equivalent participation without sight, color, drag or hearing
-                      
-                      For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
-                      
-                      All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
-                      
-                      ## Internationalization, access, mobile and offline acceptance
-                      
-                      Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
-                      
-                      ## Coding Agent and Assessment Architect handoff
-                      
-                      **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
-                      
-                      
-                      ## Placement in this Lesson (from legacy Content draft)
-                      
-                      2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Transfer preset: exact 9:35 analog state; learner chooses 9:35, 7:09 or 10:35. Hide numerical minute tick values until optional hint; after answer show seven five-minute jumps.
-                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+                    # FiveMinuteDial — Interactive Scene Specification
+
+                    **Editorial status: Provisional Draft — pending Methodologist and separate Scene approvals.**
+                    **Lesson:** Read the Clock in Five-Minute Steps — Content (source preserved in this Lesson's Section production notes)
+                    **Methodologist source:** Draft Brief (source preserved in this Lesson's production.methodology)
+                    **Canonical target Skills:**
+
+                    - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
+
+                    ## Pedagogical role
+
+                    Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
+
+                    **Why a custom interactive Scene is warranted:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings. Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
+
+                    This Scene is a **proposed self-contained, prop-free root**. A renderer for the generic `scene` Resource is not proof that this named Scene exists. All instructional presets are controlled internally, and no invented props, events, answer callbacks, Note persistence or global state are authorized.
+
+                    ## Model, essential visual states and verifiable answers
+
+                    | State / preset   | Concrete representation                | Explanation / correct conclusion    |
+                    | ---------------- | -------------------------------------- | ----------------------------------- |
+                    | At 3:00          | Minute hand at 12, hour hand exactly 3 | 00 minutes                          |
+                    | First step       | Long hand at 1, short hand just past 3 | 3:05; one step × five minutes       |
+                    | Five jumps       | Long hand at 5, hour hand 2 + 25/60    | 2:25; five jumps × five = 25        |
+                    | Late hour        | Long hand at 8, hour hand 6 + 40/60    | 6:40; not 7:40                      |
+                    | Contrast hour    | Long hand at 8, hour hand 7 + 40/60    | 7:40; different short-hand interval |
+                    | Almost next hour | Long hand at 11, short hand 11 + 55/60 | 11:55; not 12:55                    |
+                    | Boundary         | Long hand at 12, short hand 12         | 12:00; exactly at boundary          |
+                    | Transfer         | Long hand at 7, short hand 9 + 35/60   | 9:35; seven five-minute jumps       |
+
+                    **Model scope and limitation:** A clock state represents a time on a twelve-hour dial; morning/evening cannot be inferred from the dial alone. Animated hand movement, if implemented, illustrates continuity but must have equal static access.
+
+                    ## Learner controls, transitions and no-penalty recovery
+
+                    1. Start in a fully described initial preset. Announce all model conditions before a prediction: chosen whole, clock reading scale, table headings or spinner fairness conditions.
+                    2. Make the next mathematical change depend on an explicit labelled learner action. Learner can always inspect numerical, textual and nonvisual descriptions of the same state.
+                    3. Hold back the result label until a prediction or a voluntary reveal, then give a reason citing the governing condition—not only “Correct”.
+                    4. Incorrect choices show the precise mismatch and allow retry, reset or exploration of another preset; no animation-only messages, automatic penalties or fake mastery transitions.
+                    5. Switch between explicitly enumerated presets using controls **inside** this Scene, not through public props or a cross-Section state contract. Reset must restore the full initial conditions.
+                    6. Provide a fresh independent transfer preset with optional hint and learner-triggered full reveal. The Scene remains useful when a learner skips prediction and requests explanation.
+
+                    ## Required explanatory feedback and errors
+
+                    - **A numeral becomes five minutes / Five minutes at numeral 5:** “Each jump is five minutes. Five jumps make twenty-five, not five.”
+                    - **A numeral becomes five minutes / 25 minutes:** “Yes: five equal intervals times five minutes each make 25 minutes.”
+                    - **Read both hands together / 2:05:** “The long hand is at numeral 5, not numeral 1. Count five jumps to 25 minutes.”
+                    - **Read both hands together / 5:25:** “The long hand shows 25 minutes; the short hand is between 2 and 3, so the hour is two.”
+                    - **Near the next hour is not there yet / 7:40 chosen for 6:40:** “The short hand has not passed 7. It is still after 6; the minute hand does not name the hour.”
+                    - **Near the next hour is not there yet / 12:55 chosen for 11:55:** “The short hand is almost at 12, not one hour beyond. It is 11:55 until the minute hand returns to 12.”
+                    - **Your new clock / 10:35:** “The hour hand is still between nine and ten, so nine is the current hour.”
+                    - **Your new clock / 7:09:** “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
+
+                    **Exclude:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
+
+                    ## Equivalent participation without sight, color, drag or hearing
+
+                    For each dial provide 'long minute hand at numeral 7 = 35 minutes; short hour hand between 9 and 10; hour is nine'. Offer keyboard selectable five-minute position labels and digital choices. The learner can inspect and compare without seeing a pointer.
+
+                    All meaningful actions must work with keyboard and touch via clearly labelled semantic controls, with visible focus, coherent traversal and judicious state announcements. Do not require precise drag targets, perception of motion, audio or physical pointing. In a screen-reader mode, every label and explanation must preserve the actual quantitative relationships, not merely read an image title.
+
+                    ## Internationalization, access, mobile and offline acceptance
+
+                    Supply genuine translations for all configured locales (including RTL languages), including control names, state descriptions, worked feedback, captions and any narration. No placeholder English duplicates or silent fallback. Semantic RTL affects reading/layout order but does not invert mathematical signs, fraction units, numeric ordering, clock-hand relationships or spinner probability. Support WCAG 2.2 AA, reduced motion, minimum accessible target sizes, responsive layout and equivalent low-resource/offline functioning once the PWA download infrastructure is implemented; do not assert these are already available.
+
+                    ## Coding Agent and Assessment Architect handoff
+
+                    **Not implemented.** Future work must create the Scene module and its own co-located tests for every required state, reset, feedback, keyboard, focus, screen-reader, RTL, locale, reduced-motion, low-device and offline use case. There is no fabricated Scene API, Question/Quiz configuration, performance score or completion event. Methodologist approval must occur before this provisional specification becomes an approved implementation source.
+
+
+                    ## Placement in this Lesson (from legacy Content draft)
+
+                    2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Transfer preset: exact 9:35 analog state; learner chooses 9:35, 7:09 or 10:35. Hide numerical minute tick values until optional hint; after answer show seven five-minute jumps.
+                  productionNotes: 'Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry.'
               section4Text3:
                 config:
-                  id: "27c93564-e2e4-893e-8b6b-3d1f1e462145"
-                  slug: "section4Text3"
-                  type: "text"
+                  id: '27c93564-e2e4-893e-8b6b-3d1f1e462145'
+                  slug: 'section4Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "It is 9:35. The long hand has crossed seven five-minute intervals. The short hand has moved from nine toward ten, but ten has not started."
+                      en: 'It is 9:35. The long hand has crossed seven five-minute intervals. The short hand has moved from nine toward ten, but ten has not started.'
                 production:
-                  purpose: "Source text at Your new clock; provisional draft, not implemented."
-                  specification: "3. **`text` — existing Resource block type.** “It is 9:35. The long hand has crossed seven five-minute intervals. The short hand has moved from nine toward ten, but ten has not started.”"
+                  purpose: 'Source text at Your new clock; provisional draft, not implemented.'
+                  specification: '3. **`text` — existing Resource block type.** “It is 9:35. The long hand has crossed seven five-minute intervals. The short hand has moved from nine toward ten, but ten has not started.”'
             order:
-              - "section4Markdown1"
-              - "scene4Block2"
-              - "section4Text3"
+              - 'section4Markdown1'
+              - 'scene4Block2'
+              - 'section4Text3'
         production:
-          purpose: "Your new clock"
-          pedagogicalIntent: "Your new clock"
+          purpose: 'Your new clock'
+          pedagogicalIntent: 'Your new clock'
           productionNotes: |
-              ### Section 4 — Your new clock
-              
-              **Purpose / intended outcome:** Transfer independently at a different five-minute mark.
-              
-              **Blocks, in the required top-to-bottom order:**
-              
-              1. **`markdown` — existing Resource block type.** “A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer.”
-              
-              2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Transfer preset: exact 9:35 analog state; learner chooses 9:35, 7:09 or 10:35. Hide numerical minute tick values until optional hint; after answer show seven five-minute jumps.
-              
-              3. **`text` — existing Resource block type.** “It is 9:35. The long hand has crossed seven five-minute intervals. The short hand has moved from nine toward ten, but ten has not started.”
-              
-              **What the learner actually does:** Independently read 9:35 and explain seven jumps and the current hour.
-              
-              **Specific explanatory feedback:**
-              
-              - _10:35_: “The hour hand is still between nine and ten, so nine is the current hour.”
-              - _7:09_: “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
-              
-              **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. All answer choices and reasoning can be selected through labelled buttons with no drag or time pressure. The explanation remains available even if the learner chooses not to answer before moving on.
-              
-              **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
-              
+            ### Section 4 — Your new clock
+
+            **Purpose / intended outcome:** Transfer independently at a different five-minute mark.
+
+            **Blocks, in the required top-to-bottom order:**
+
+            1. **`markdown` — existing Resource block type.** “A new dial shows the long hand at 7 and the short hand between 9 and 10, a little past halfway. Predict the digital time before showing the answer.”
+
+            2. **`scene` — existing Resource block type; bespoke Scene proposed, not coded.** FiveMinuteDial (source preserved in Scene production.specification): Transfer preset: exact 9:35 analog state; learner chooses 9:35, 7:09 or 10:35. Hide numerical minute tick values until optional hint; after answer show seven five-minute jumps.
+
+            3. **`text` — existing Resource block type.** “It is 9:35. The long hand has crossed seven five-minute intervals. The short hand has moved from nine toward ten, but ten has not started.”
+
+            **What the learner actually does:** Independently read 9:35 and explain seven jumps and the current hour.
+
+            **Specific explanatory feedback:**
+
+            - _10:35_: “The hour hand is still between nine and ten, so nine is the current hour.”
+            - _7:09_: “The hand at seven is the minute hand; seven jumps of five minutes make 35.”
+
+            **Guidance, pacing and transition:** Learner-controlled predict/inspect/reveal/retry; no correctness gate, scoring, timed input or fake mastery event. All answer choices and reasoning can be selected through labelled buttons with no drag or time pressure. The explanation remains available even if the learner chooses not to answer before moving on.
+
+            **Locale and inclusive interaction:** The learner-facing source text is drafted in English only; complete real locale versions are required before implementation. Accessible labels must identify the same mathematical facts as the visuals. Distinct states, keyboard controls, logical focus and reduced-motion/textual descriptions preserve participation in both LTR and RTL.
+
     order:
-      - "section1ANumeralBecomesFiveMinutes"
-      - "section2ReadBothHandsTogether"
-      - "section3NearTheNextHourIsNotThereYet"
-      - "section4YourNewClock"
+      - 'section1ANumeralBecomesFiveMinutes'
+      - 'section2ReadBothHandsTogether'
+      - 'section3NearTheNextHourIsNotThereYet'
+      - 'section4YourNewClock'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Read the Clock in Five-Minute Steps — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: fiveMinuteClockReadings
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
-      
-      **Why this Lesson now:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings.
-      
-      ## Target audience
-      
-      **Grade 3, approximately ages 8–9.** Choose this grade independently of the previous Lesson's age: target complexity and prerequisites justify the depth. Learners may have variable reading fluency, numeracy speed, vision, motor control and language proficiency; offer equivalent meaningful visual and nonvisual actions. The Skills themselves remain grade-independent.
-      
-      ## Prerequisites
-      
-      - Read exact-hour analog clocks (`readHour`).
-      - Read half-hour and quarter-hour analog times (`readHalfQuarter`).
-      - Count forward by fives up to sixty with support and compare consecutive whole numbers.
-      
-      No Program completion is required; these are underlying knowledge needs only. Missing prerequisites should trigger scaffold or a separate prior Lesson rather than silently redefining the target Skill.
-      
-      ## Target Skills
-      
-      - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
-      
-      The single Skill is not a Question format; its defined competency is the target of instruction.
-      
-      ## Expected learning outcomes
-      
-      - Associate minute hand at clock numeral 1, 5, 7, 8 and 11 with 05, 25, 35, 40 and 55 minutes after the hour.
-      - Read 2:25 with its hour hand just past two, 6:40 with hour hand past halfway toward seven, and 9:35 independently.
-      - Explain why 6:40 has digital hour 6 even when the hour hand points nearer 7.
-      - Distinguish 11:55 from 12:55 using the hour hand, recognizing that a clockwise minute-hand return to 12 marks the next exact hour.
-      
-      These are instructional opportunities and observable behaviors; one correct selection or a revealed model is not a validated mastery claim.
-      
-      ## Essential subject matter
-      
-      - The long minute hand travels a full circle in 60 minutes; it passes twelve equal numeral-to-numeral intervals, each representing five minutes.
-      - On a standard clock, long hand at 1 means 05, at 5 means 25, at 7 means 35, at 8 means 40, at 11 means 55, and at 12 means 00 after completing a full turn.
-      - The short hour hand moves gradually during the hour; at 6:40 it sits two thirds of the way from six toward seven, but the digital hour is still six.
-      - For 2:25 the long hand points at five, while the short hand lies between two and three, less than halfway toward three.
-      - At 11:55 the long hand points at eleven and the short hand is very near twelve, but the time is still eleven fifty-five until the long hand reaches twelve.
-      
-      **Instructional depth:** Clock face with twelve numbers, each arc between neighboring hour numerals worth five minutes; 5-minute increments 00–55 only. 12-hour digital notation including leading-zero minute labels. No arbitrary minute precision, elapsed-time calculations across hours, AM/PM, 24-hour clock or seconds.
-      
-      ## Conceptual progression and dependencies
-      
-      Activate the prerequisite representation, elicit a prediction before explanation, expose the mathematical condition using an inspectable model, contrast it with a tempting misconception, then let the learner transfer to a new case with optional hints. This progression specifies what must become clear, not a mandated Section-type pattern. The Screenwriter controls delivery and detailed interactions provisionally; no scoring or automatic progress API is assumed.
-      
-      ## Misconceptions, examples and boundaries
-      
-      - At 2:25, the long hand pointing at 5 means 'five minutes' or 'five o’clock'.
-      - At 6:40 the hour is already 7 because the short hand is closer to 7.
-      - All twelve numeral intervals count as one minute each.
-      - At 11:55 the short hand is exactly on 12 and the hour has switched.
-      - At a whole hour the minute hand points at 12 meaning 12 minutes.
-      
-      **Hard exclusions and postponed Skills:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
-      
-      ## Localization, accessibility and offline intent
-      
-      All runtime text, accessible descriptions, controls, feedback and optional audio must eventually be genuinely translated into every supported locale. No fake translations, placeholder dictionaries, missing locales or unauthorized language fallback. Use proper localized mathematical vocabulary and numeric formatting; preserve math and factual diagram relations while adapting semantic LTR/RTL reading order. Ensure full keyboard/touch, nonvisual, reduced-motion and small-screen equivalent experiences and WCAG 2.2 AA targets. Once delivered, the entire lesson, Scene and feedback must work offline on weak devices; this is an engineering requirement, not a claim of current functionality.
-      
-      ## Sources and factual verification
-      
-      - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts) — canonical Mathematics Skill with UUID, names and methodological descriptions preserved.
-      - [Lesson architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md), [Section](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md) and [Program](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/program.md) for editorial and ownership boundaries.
-      - The provisional Scene's worked examples provide explicitly stated values and assumptions for mathematical verification; editorial approval remains pending.
-      
-      ## Curriculum / Program compatibility
-      
-      Standalone and Program-neutral. No national curriculum compatibility is asserted. Grade is an instructional design choice, not taxonomy content.
-      
-      ## Open editorial decisions
-      
-      - **Editor:** approve Grade 3, prerequisite assumptions, target Skills, depth and misconception treatment.
-      - **Editor:** review the proposed transfer case and the separate Scene specification; their status is provisional until the Methodologist Brief is approved.
-      - **Coding Agent / later QA:** review accessibility, localization completeness, offline delivery and Lesson/Scene implementation under their separate workflows; do not infer implementation from this document.
-      
-      ## Methodologist handoff
-      
-      **Draft only.** No formal Methodologist approval gate has passed. The accompanying Content and Scene documents were prepared provisionally under the batch instruction and require independent Screenwriter/Scene approval before engineering. No runtime lesson data, Questions, Quizzes, assessment engine or score is authorized here.
+    # Read the Clock in Five-Minute Steps — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: fiveMinuteClockReadings
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
+
+    **Why this Lesson now:** Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings.
+
+    ## Target audience
+
+    **Grade 3, approximately ages 8–9.** Choose this grade independently of the previous Lesson's age: target complexity and prerequisites justify the depth. Learners may have variable reading fluency, numeracy speed, vision, motor control and language proficiency; offer equivalent meaningful visual and nonvisual actions. The Skills themselves remain grade-independent.
+
+    ## Prerequisites
+
+    - Read exact-hour analog clocks (`readHour`).
+    - Read half-hour and quarter-hour analog times (`readHalfQuarter`).
+    - Count forward by fives up to sixty with support and compare consecutive whole numbers.
+
+    No Program completion is required; these are underlying knowledge needs only. Missing prerequisites should trigger scaffold or a separate prior Lesson rather than silently redefining the target Skill.
+
+    ## Target Skills
+
+    - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
+
+    The single Skill is not a Question format; its defined competency is the target of instruction.
+
+    ## Expected learning outcomes
+
+    - Associate minute hand at clock numeral 1, 5, 7, 8 and 11 with 05, 25, 35, 40 and 55 minutes after the hour.
+    - Read 2:25 with its hour hand just past two, 6:40 with hour hand past halfway toward seven, and 9:35 independently.
+    - Explain why 6:40 has digital hour 6 even when the hour hand points nearer 7.
+    - Distinguish 11:55 from 12:55 using the hour hand, recognizing that a clockwise minute-hand return to 12 marks the next exact hour.
+
+    These are instructional opportunities and observable behaviors; one correct selection or a revealed model is not a validated mastery claim.
+
+    ## Essential subject matter
+
+    - The long minute hand travels a full circle in 60 minutes; it passes twelve equal numeral-to-numeral intervals, each representing five minutes.
+    - On a standard clock, long hand at 1 means 05, at 5 means 25, at 7 means 35, at 8 means 40, at 11 means 55, and at 12 means 00 after completing a full turn.
+    - The short hour hand moves gradually during the hour; at 6:40 it sits two thirds of the way from six toward seven, but the digital hour is still six.
+    - For 2:25 the long hand points at five, while the short hand lies between two and three, less than halfway toward three.
+    - At 11:55 the long hand points at eleven and the short hand is very near twelve, but the time is still eleven fifty-five until the long hand reaches twelve.
+
+    **Instructional depth:** Clock face with twelve numbers, each arc between neighboring hour numerals worth five minutes; 5-minute increments 00–55 only. 12-hour digital notation including leading-zero minute labels. No arbitrary minute precision, elapsed-time calculations across hours, AM/PM, 24-hour clock or seconds.
+
+    ## Conceptual progression and dependencies
+
+    Activate the prerequisite representation, elicit a prediction before explanation, expose the mathematical condition using an inspectable model, contrast it with a tempting misconception, then let the learner transfer to a new case with optional hints. This progression specifies what must become clear, not a mandated Section-type pattern. The Screenwriter controls delivery and detailed interactions provisionally; no scoring or automatic progress API is assumed.
+
+    ## Misconceptions, examples and boundaries
+
+    - At 2:25, the long hand pointing at 5 means 'five minutes' or 'five o’clock'.
+    - At 6:40 the hour is already 7 because the short hand is closer to 7.
+    - All twelve numeral intervals count as one minute each.
+    - At 11:55 the short hand is exactly on 12 and the hour has switched.
+    - At a whole hour the minute hand points at 12 meaning 12 minutes.
+
+    **Hard exclusions and postponed Skills:** Reading arbitrary individual minutes, numerical time intervals, hours–minutes unit conversions, 24-hour conventions and duration word problems are outside this Lesson.
+
+    ## Localization, accessibility and offline intent
+
+    All runtime text, accessible descriptions, controls, feedback and optional audio must eventually be genuinely translated into every supported locale. No fake translations, placeholder dictionaries, missing locales or unauthorized language fallback. Use proper localized mathematical vocabulary and numeric formatting; preserve math and factual diagram relations while adapting semantic LTR/RTL reading order. Ensure full keyboard/touch, nonvisual, reduced-motion and small-screen equivalent experiences and WCAG 2.2 AA targets. Once delivered, the entire lesson, Scene and feedback must work offline on weak devices; this is an engineering requirement, not a claim of current functionality.
+
+    ## Sources and factual verification
+
+    - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts) — canonical Mathematics Skill with UUID, names and methodological descriptions preserved.
+    - [Lesson architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md), [Section](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md) and [Program](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/program.md) for editorial and ownership boundaries.
+    - The provisional Scene's worked examples provide explicitly stated values and assumptions for mathematical verification; editorial approval remains pending.
+
+    ## Curriculum / Program compatibility
+
+    Standalone and Program-neutral. No national curriculum compatibility is asserted. Grade is an instructional design choice, not taxonomy content.
+
+    ## Open editorial decisions
+
+    - **Editor:** approve Grade 3, prerequisite assumptions, target Skills, depth and misconception treatment.
+    - **Editor:** review the proposed transfer case and the separate Scene specification; their status is provisional until the Methodologist Brief is approved.
+    - **Coding Agent / later QA:** review accessibility, localization completeness, offline delivery and Lesson/Scene implementation under their separate workflows; do not infer implementation from this document.
+
+    ## Methodologist handoff
+
+    **Draft only.** No formal Methodologist approval gate has passed. The accompanying Content and Scene documents were prepared provisionally under the batch instruction and require independent Screenwriter/Scene approval before engineering. No runtime lesson data, Questions, Quizzes, assessment engine or score is authorized here.
   productionNotes: |
-      Provisional source only. No Methodologist, Screenwriter, or Scene approval; not implemented, translated, scored, generated, or published. This migration preserves authoring drafts without changing review gates.
-      
-      ## Original Screenwriter introduction
-      
-      # Read the Clock in Five-Minute Steps — Lesson Content
-      
-      **Editorial status: Provisional Draft — pending Methodologist approval (not formally approved).**
-      **Audience:** Grade 3, approximately ages 8–9.
-      **Source brief:** Draft Methodologist Brief (source preserved in this Lesson's production.methodology).
-      **Target Skills:**
-      
-      - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
-        **Lesson:** standalone, Program-neutral; no runtime Lesson, Quiz, Question, score or completed Scene is implemented.
-      
-      ## The learner's experience
-      
-      Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
-      
-      Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings.
-      
-      Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
-      
-      **Teaching boundary:** Clock face with twelve numbers, each arc between neighboring hour numerals worth five minutes; 5-minute increments 00–55 only. 12-hour digital notation including leading-zero minute labels. No arbitrary minute precision, elapsed-time calculations across hours, AM/PM, 24-hour clock or seconds. The activity must explain why an answer fits rather than merely reward a selection. Every comparison uses a specified whole, time scale, unit or random experiment, as appropriate. Wrong answers receive evidence-based feedback and a no-penalty retry.
-      
-      ## Ordered learning journey
-      
-      1. **A numeral becomes five minutes:** Connect numeral-to-numeral jumps to a five-minute scale.
-      2. **Read both hands together:** Map a minute position and an in-between hour-hand position to a precise time.
-      3. **Near the next hour is not there yet:** Prevent off-by-one-hour errors when the hour hand is near the upcoming numeral.
-      4. **Your new clock:** Transfer independently at a different five-minute mark.
-      
-      The general Sections below use a **single vertical top-to-bottom column** of typed Resource blocks. `text`, `markdown` and `scene` are available block types; the named **FiveMinuteDial Scene is proposed and not implemented**. No separate 'Theory' or 'Practice' TypeScript discriminators are invented.
-      
-      ## Section plan and learner-facing copy
-      
-      
-      ## Original Screenwriter closing material
-      
-      ## New custom Scene handoff
-      
-      - FiveMinuteDial (source preserved in Scene production.specification) — Screenwriter's provisional design, not implemented. It is self-contained, local-state and prop-free; any preset switches are internal rather than fake public props.
-      - Every Section points to the same specification because its cases cover the whole conceptual progression; each rendered Scene occurrence must remain an independently initialized instance, not depend on another Section's state.
-      
-      ## Independent transfer
-      
-      Long hand at 7 is 35 minutes, short hand after 9 means 9:35.
-      
-      Give the learner a fresh problem before revealing its answer, allow one useful optional hint, and then offer a worked explanation. A learner may answer verbally to an adult or via equivalent selectable controls; no assumed speech API. Transfer is instructional practice, not proof of validated mastery.
-      
-      ## Proposed unlocked recall Note (not wired)
-      
-      “Count five minutes for each numbered step the long hand takes from 12.”
-      
-      Proposed moment: when Section 3's important contrasting example has been explored and accurately explained. **Note entity, unlock events, persistence, offline Notes sync and spaced review scheduling are planned concepts, not current implemented capabilities.** Do not block the Lesson on Note events.
-      
-      ## Delivery and review readiness
-      
-      - **Existing typed Resources:** `text`, `markdown`, `scene` with single-column Section ordering.
-      - **Proposed:** the named interactive Scene, all its data presets, localized learner-facing text, accessibility alternatives, Scene tests and future offline package.
-      - **Not designed here:** Questions, Quiz, graded response banks, mastery evaluation, score thresholds, new Resource types, API contracts or Program storyline.
-      
-      Complete authentic localization, meaningful RTL, keyboard/touch/screen-reader equivalents, reduced motion, narrow screens, WCAG 2.2 AA and offline/weak-device parity are future implementation gates, not current claims. Methodologist, Screenwriter and Scene review statuses remain Draft until explicit editor approval.
+    Provisional source only. No Methodologist, Screenwriter, or Scene approval; not implemented, translated, scored, generated, or published. This migration preserves authoring drafts without changing review gates.
+
+    ## Original Screenwriter introduction
+
+    # Read the Clock in Five-Minute Steps — Lesson Content
+
+    **Editorial status: Provisional Draft — pending Methodologist approval (not formally approved).**
+    **Audience:** Grade 3, approximately ages 8–9.
+    **Source brief:** Draft Methodologist Brief (source preserved in this Lesson's production.methodology).
+    **Target Skills:**
+
+    - [readFiveMinute.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/time/clock/skills/readFiveMinute.data.ts)
+      **Lesson:** standalone, Program-neutral; no runtime Lesson, Quiz, Question, score or completed Scene is implemented.
+
+    ## The learner's experience
+
+    Connect the twelve numbered clock positions to minute counts in jumps of five while locating the continuously advancing hour hand correctly.
+
+    Whole-hour and quarter-hour readings already establish hand roles; the next prerequisite step is to read five-minute precision before minute-by-minute readings.
+
+    Select one of the named presets or step the minute hand in five-minute increments with labelled Previous/Next controls; the short hand updates proportionally. Hide/reveal the matching digital time and show count-by-five progression. Maintain local state and reset to 3:00. No API, props, persistence, or time-dependent animation.
+
+    **Teaching boundary:** Clock face with twelve numbers, each arc between neighboring hour numerals worth five minutes; 5-minute increments 00–55 only. 12-hour digital notation including leading-zero minute labels. No arbitrary minute precision, elapsed-time calculations across hours, AM/PM, 24-hour clock or seconds. The activity must explain why an answer fits rather than merely reward a selection. Every comparison uses a specified whole, time scale, unit or random experiment, as appropriate. Wrong answers receive evidence-based feedback and a no-penalty retry.
+
+    ## Ordered learning journey
+
+    1. **A numeral becomes five minutes:** Connect numeral-to-numeral jumps to a five-minute scale.
+    2. **Read both hands together:** Map a minute position and an in-between hour-hand position to a precise time.
+    3. **Near the next hour is not there yet:** Prevent off-by-one-hour errors when the hour hand is near the upcoming numeral.
+    4. **Your new clock:** Transfer independently at a different five-minute mark.
+
+    The general Sections below use a **single vertical top-to-bottom column** of typed Resource blocks. `text`, `markdown` and `scene` are available block types; the named **FiveMinuteDial Scene is proposed and not implemented**. No separate 'Theory' or 'Practice' TypeScript discriminators are invented.
+
+    ## Section plan and learner-facing copy
+
+
+    ## Original Screenwriter closing material
+
+    ## New custom Scene handoff
+
+    - FiveMinuteDial (source preserved in Scene production.specification) — Screenwriter's provisional design, not implemented. It is self-contained, local-state and prop-free; any preset switches are internal rather than fake public props.
+    - Every Section points to the same specification because its cases cover the whole conceptual progression; each rendered Scene occurrence must remain an independently initialized instance, not depend on another Section's state.
+
+    ## Independent transfer
+
+    Long hand at 7 is 35 minutes, short hand after 9 means 9:35.
+
+    Give the learner a fresh problem before revealing its answer, allow one useful optional hint, and then offer a worked explanation. A learner may answer verbally to an adult or via equivalent selectable controls; no assumed speech API. Transfer is instructional practice, not proof of validated mastery.
+
+    ## Proposed unlocked recall Note (not wired)
+
+    “Count five minutes for each numbered step the long hand takes from 12.”
+
+    Proposed moment: when Section 3's important contrasting example has been explored and accurately explained. **Note entity, unlock events, persistence, offline Notes sync and spaced review scheduling are planned concepts, not current implemented capabilities.** Do not block the Lesson on Note events.
+
+    ## Delivery and review readiness
+
+    - **Existing typed Resources:** `text`, `markdown`, `scene` with single-column Section ordering.
+    - **Proposed:** the named interactive Scene, all its data presets, localized learner-facing text, accessibility alternatives, Scene tests and future offline package.
+    - **Not designed here:** Questions, Quiz, graded response banks, mastery evaluation, score thresholds, new Resource types, API contracts or Program storyline.
+
+    Complete authentic localization, meaningful RTL, keyboard/touch/screen-reader equivalents, reduced motion, narrow screens, WCAG 2.2 AA and offline/weak-device parity are future implementation gates, not current claims. Methodologist, Screenwriter and Scene review statuses remain Draft until explicit editor approval.

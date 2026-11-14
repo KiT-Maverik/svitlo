@@ -1,689 +1,689 @@
 config:
-  id: "79197bd1-e0b8-5163-a944-76d0993a8d21"
-  slug: "subtractSelf"
-  type: "lesson"
+  id: '79197bd1-e0b8-5163-a944-76d0993a8d21'
+  slug: 'subtractSelf'
+  type: 'lesson'
   skills:
-    - "623f1f12-39d4-4422-8f2b-52053eefa7bc"
+    - '623f1f12-39d4-4422-8f2b-52053eefa7bc'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Subtracting a Number from Itself"
+      en: 'Subtracting a Number from Itself'
   section:
     items:
       section1TakeAwayTheWholeGroup:
         config:
-          id: "ea5400b7-9f0c-81a8-8b6a-e6024e32571d"
-          slug: "section1TakeAwayTheWholeGroup"
-          type: "content"
+          id: 'ea5400b7-9f0c-81a8-8b6a-e6024e32571d'
+          slug: 'section1TakeAwayTheWholeGroup'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Take Away the Whole Group"
+              en: 'Take Away the Whole Group'
             navigationLabel:
-              en: "Take Away the Whole Group"
+              en: 'Take Away the Whole Group'
           content:
             items:
               section1Text1:
                 config:
-                  id: "d6448f8a-e4be-897b-8a12-8947c8e86fb6"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: 'd6448f8a-e4be-897b-8a12-8947c8e86fb6'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "There are **6 counters**. Take away **all 6**. What remains?"
+                      en: 'There are **6 counters**. Take away **all 6**. What remains?'
                 production:
-                  purpose: "Legacy text block of Take Away the Whole Group; provisional draft."
-                  specification: "  1. **text — available:** “There are **6 counters**. Take away **all 6**. What remains?”"
+                  purpose: 'Legacy text block of Take Away the Whole Group; provisional draft.'
+                  specification: '  1. **text — available:** “There are **6 counters**. Take away **all 6**. What remains?”'
               scene1Block2:
                 config:
-                  id: "27a57736-caa2-8843-8516-87b2a811b8c7"
-                  slug: "scene1Block2"
-                  type: "scene"
+                  id: '27a57736-caa2-8843-8516-87b2a811b8c7'
+                  slug: 'scene1Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "There are **6 counters**. Take away **all 6**. What remains?"
+                        instruction: 'There are **6 counters**. Take away **all 6**. What remains?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Take Away the Whole Group. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Take Away the Whole Group. Not approved or implemented.'
                   specification: |
-                      # Whole Removal Workbench — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
-                      2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
-                      3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
-                      4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
-                      5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 6−6 leaves 0, all six in removed group, no hidden extra.
-                      2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
-                      3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
-                      4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
-                      5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
-                      6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — typed/renderer supported, new Scene proposed:** Whole Removal Workbench (preserved in Scene production.specification), complete-removal entry: six countable counters; remove exactly six with learner-paced controls; a labeled removed area and zero left.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Whole Removal Workbench — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
+                    2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
+                    3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
+                    4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
+                    5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 6−6 leaves 0, all six in removed group, no hidden extra.
+                    2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
+                    3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
+                    4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
+                    5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
+                    6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
+
+
+                    ## Original placement
+
+                      2. **scene — typed/renderer supported, new Scene proposed:** Whole Removal Workbench (preserved in Scene production.specification), complete-removal entry: six countable counters; remove exactly six with learner-paced controls; a labeled removed area and zero left.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section1Markdown3:
                 config:
-                  id: "a15de7b7-9167-8d13-8107-959bb13daf3f"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: 'a15de7b7-9167-8d13-8107-959bb13daf3f'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We had six. We took all six. **No counters remain. 6 − 6 = 0.**"
+                      en: 'We had six. We took all six. **No counters remain. 6 − 6 = 0.**'
                 production:
-                  purpose: "Legacy markdown block of Take Away the Whole Group; provisional draft."
-                  specification: "  3. **markdown — available:** “We had six. We took all six. **No counters remain. 6 − 6 = 0.**”"
+                  purpose: 'Legacy markdown block of Take Away the Whole Group; provisional draft.'
+                  specification: '  3. **markdown — available:** “We had six. We took all six. **No counters remain. 6 − 6 = 0.**”'
             order:
-              - "section1Text1"
-              - "scene1Block2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'scene1Block2'
+              - 'section1Markdown3'
         production:
-          purpose: "Experience complete removal as a meaningful result of zero."
-          pedagogicalIntent: "Experience complete removal as a meaningful result of zero."
+          purpose: 'Experience complete removal as a meaningful result of zero.'
+          pedagogicalIntent: 'Experience complete removal as a meaningful result of zero.'
           productionNotes: |
-              ### Section 1 — Take Away the Whole Group
-              
-              - Purpose: Experience complete removal as a meaningful result of zero.
-              - Current shape: LessonSection_Config.
-              - Ordered vertical blocks:
-                1. **text — available:** “There are **6 counters**. Take away **all 6**. What remains?”
-                2. **scene — typed/renderer supported, new Scene proposed:** Whole Removal Workbench (preserved in Scene production.specification), complete-removal entry: six countable counters; remove exactly six with learner-paced controls; a labeled removed area and zero left.
-                3. **markdown — available:** “We had six. We took all six. **No counters remain. 6 − 6 = 0.**”
-              - Learner action and feedback: Prediction 6/0/2 or “Show how.” For six: “Six were here at the start, but all six went into the removed group.” For zero: “Yes. No counters are left.” The result is revealed in text even if learner does not predict.
-              - Model: Original six = removed six + remaining zero; do not disappear without showing where all six went.
-              - Navigation: “How is taking all six different from taking away zero?”
-              - Accessibility/locale/RTL: Detailed count log and equivalent keyboard action, readable status; no disappearing-only information. Mathematical minus sign retains role.
-              - Note: “A number minus itself leaves zero,” proposed after the six-minus-six model (not wired).
-              - Dependencies: Scene proposed, general text and markdown available.
-              
+            ### Section 1 — Take Away the Whole Group
+
+            - Purpose: Experience complete removal as a meaningful result of zero.
+            - Current shape: LessonSection_Config.
+            - Ordered vertical blocks:
+              1. **text — available:** “There are **6 counters**. Take away **all 6**. What remains?”
+              2. **scene — typed/renderer supported, new Scene proposed:** Whole Removal Workbench (preserved in Scene production.specification), complete-removal entry: six countable counters; remove exactly six with learner-paced controls; a labeled removed area and zero left.
+              3. **markdown — available:** “We had six. We took all six. **No counters remain. 6 − 6 = 0.**”
+            - Learner action and feedback: Prediction 6/0/2 or “Show how.” For six: “Six were here at the start, but all six went into the removed group.” For zero: “Yes. No counters are left.” The result is revealed in text even if learner does not predict.
+            - Model: Original six = removed six + remaining zero; do not disappear without showing where all six went.
+            - Navigation: “How is taking all six different from taking away zero?”
+            - Accessibility/locale/RTL: Detailed count log and equivalent keyboard action, readable status; no disappearing-only information. Mathematical minus sign retains role.
+            - Note: “A number minus itself leaves zero,” proposed after the six-minus-six model (not wired).
+            - Dependencies: Scene proposed, general text and markdown available.
+
       section2NoneSomeOrAll:
         config:
-          id: "0f6a3717-1161-8b00-8e11-3b85401ab792"
-          slug: "section2NoneSomeOrAll"
-          type: "content"
+          id: '0f6a3717-1161-8b00-8e11-3b85401ab792'
+          slug: 'section2NoneSomeOrAll'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "None, Some, or All?"
+              en: 'None, Some, or All?'
             navigationLabel:
-              en: "None, Some, or All?"
+              en: 'None, Some, or All?'
           content:
             items:
               section2Text1:
                 config:
-                  id: "d56f77bc-cac2-862f-8101-daad4eac7b3e"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: 'd56f77bc-cac2-862f-8101-daad4eac7b3e'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Start with six each time. What is left if you remove **0**, **2**, or **6**?"
+                      en: 'Start with six each time. What is left if you remove **0**, **2**, or **6**?'
                 production:
-                  purpose: "Legacy text block of None, Some, or All?; provisional draft."
-                  specification: "  1. **text — available:** “Start with six each time. What is left if you remove **0**, **2**, or **6**?”"
+                  purpose: 'Legacy text block of None, Some, or All?; provisional draft.'
+                  specification: '  1. **text — available:** “Start with six each time. What is left if you remove **0**, **2**, or **6**?”'
               scene2Block2:
                 config:
-                  id: "95d40ae0-f98f-803a-8dc1-c33ae19a19e0"
-                  slug: "scene2Block2"
-                  type: "scene"
+                  id: '95d40ae0-f98f-803a-8dc1-c33ae19a19e0'
+                  slug: 'scene2Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Start with six each time. What is left if you remove **0**, **2**, or **6**?"
+                        instruction: 'Start with six each time. What is left if you remove **0**, **2**, or **6**?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in None, Some, or All?. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in None, Some, or All?. Not approved or implemented.'
                   specification: |
-                      # Whole Removal Workbench — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
-                      2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
-                      3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
-                      4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
-                      5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 6−6 leaves 0, all six in removed group, no hidden extra.
-                      2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
-                      3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
-                      4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
-                      5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
-                      6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), three independently reset cases: 6−0=6, 6−2=4, 6−6=0.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Whole Removal Workbench — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
+                    2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
+                    3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
+                    4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
+                    5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 6−6 leaves 0, all six in removed group, no hidden extra.
+                    2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
+                    3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
+                    4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
+                    5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
+                    6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), three independently reset cases: 6−0=6, 6−2=4, 6−6=0.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section2Markdown3:
                 config:
-                  id: "8d263f8b-ebb2-8b59-8f72-18ab79e68c79"
-                  slug: "section2Markdown3"
-                  type: "markdown"
+                  id: '8d263f8b-ebb2-8b59-8f72-18ab79e68c79'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Taking away none leaves **6**. Taking away some leaves **4**. Taking away the whole group leaves **0**. These different questions do not have the same answer."
+                      en: 'Taking away none leaves **6**. Taking away some leaves **4**. Taking away the whole group leaves **0**. These different questions do not have the same answer.'
                 production:
-                  purpose: "Legacy markdown block of None, Some, or All?; provisional draft."
-                  specification: "  3. **markdown — available:** “Taking away none leaves **6**. Taking away some leaves **4**. Taking away the whole group leaves **0**. These different questions do not have the same answer.”"
+                  purpose: 'Legacy markdown block of None, Some, or All?; provisional draft.'
+                  specification: '  3. **markdown — available:** “Taking away none leaves **6**. Taking away some leaves **4**. Taking away the whole group leaves **0**. These different questions do not have the same answer.”'
             order:
-              - "section2Text1"
-              - "scene2Block2"
-              - "section2Markdown3"
+              - 'section2Text1'
+              - 'scene2Block2'
+              - 'section2Markdown3'
         production:
-          purpose: "Discriminate a−a=0 from a−0=a and partial removal."
-          pedagogicalIntent: "Discriminate a−a=0 from a−0=a and partial removal."
+          purpose: 'Discriminate a−a=0 from a−0=a and partial removal.'
+          pedagogicalIntent: 'Discriminate a−a=0 from a−0=a and partial removal.'
           productionNotes: |
-              ### Section 2 — None, Some, or All?
-              
-              - Purpose: Discriminate a−a=0 from a−0=a and partial removal.
-              - Shape: LessonSection_Config.
-              - Ordered blocks:
-                1. **text — available:** “Start with six each time. What is left if you remove **0**, **2**, or **6**?”
-                2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), three independently reset cases: 6−0=6, 6−2=4, 6−6=0.
-                3. **markdown — available:** “Taking away none leaves **6**. Taking away some leaves **4**. Taking away the whole group leaves **0**. These different questions do not have the same answer.”
-              - Explanation and action: A child selects amount to remove, then sees before/removed/remaining. If they choose zero remaining after removing 0, feedback: “We removed nothing. All six are still here.” If they choose six remaining after removing six: “The six are all in the removed group.”
-              - Navigation: Ask whether the same relationship works for a larger collection.
-              - Accessibility: Ordered text/controls for each trial; no color alone indicates result.
-              - Note: “Subtracting all is different from subtracting none,” planned at contrast reveal.
-              - Dependencies: Same bespoke Scene, independent state.
-              
+            ### Section 2 — None, Some, or All?
+
+            - Purpose: Discriminate a−a=0 from a−0=a and partial removal.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **text — available:** “Start with six each time. What is left if you remove **0**, **2**, or **6**?”
+              2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), three independently reset cases: 6−0=6, 6−2=4, 6−6=0.
+              3. **markdown — available:** “Taking away none leaves **6**. Taking away some leaves **4**. Taking away the whole group leaves **0**. These different questions do not have the same answer.”
+            - Explanation and action: A child selects amount to remove, then sees before/removed/remaining. If they choose zero remaining after removing 0, feedback: “We removed nothing. All six are still here.” If they choose six remaining after removing six: “The six are all in the removed group.”
+            - Navigation: Ask whether the same relationship works for a larger collection.
+            - Accessibility: Ordered text/controls for each trial; no color alone indicates result.
+            - Note: “Subtracting all is different from subtracting none,” planned at contrast reveal.
+            - Dependencies: Same bespoke Scene, independent state.
+
       section3ABiggerGroupSameReason:
         config:
-          id: "2d5f5185-3250-80b4-8fba-5f6df0b59e5c"
-          slug: "section3ABiggerGroupSameReason"
-          type: "content"
+          id: '2d5f5185-3250-80b4-8fba-5f6df0b59e5c'
+          slug: 'section3ABiggerGroupSameReason'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A Bigger Group, Same Reason"
+              en: 'A Bigger Group, Same Reason'
             navigationLabel:
-              en: "A Bigger Group, Same Reason"
+              en: 'A Bigger Group, Same Reason'
           content:
             items:
               section3Markdown1:
                 config:
-                  id: "595e3831-8a7b-8118-85af-f637e68aaf1e"
-                  slug: "section3Markdown1"
-                  type: "markdown"
+                  id: '595e3831-8a7b-8118-85af-f637e68aaf1e'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?"
+                      en: 'Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?'
                 production:
-                  purpose: "Legacy markdown block of A Bigger Group, Same Reason; provisional draft."
-                  specification: "  1. **markdown — available:** “Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?”"
+                  purpose: 'Legacy markdown block of A Bigger Group, Same Reason; provisional draft.'
+                  specification: '  1. **markdown — available:** “Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?”'
               scene3Block2:
                 config:
-                  id: "c463540a-94d6-85f5-8208-91f892bde007"
-                  slug: "scene3Block2"
-                  type: "scene"
+                  id: 'c463540a-94d6-85f5-8208-91f892bde007'
+                  slug: 'scene3Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?"
+                        instruction: 'Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in A Bigger Group, Same Reason. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in A Bigger Group, Same Reason. Not approved or implemented.'
                   specification: |
-                      # Whole Removal Workbench — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
-                      2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
-                      3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
-                      4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
-                      5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 6−6 leaves 0, all six in removed group, no hidden extra.
-                      2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
-                      3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
-                      4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
-                      5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
-                      6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), transfer entry with 12−12=0, optional 0−0=0.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Whole Removal Workbench — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
+                    2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
+                    3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
+                    4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
+                    5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 6−6 leaves 0, all six in removed group, no hidden extra.
+                    2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
+                    3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
+                    4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
+                    5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
+                    6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), transfer entry with 12−12=0, optional 0−0=0.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section3Text3:
                 config:
-                  id: "e4df6e30-17a8-8154-8386-af9950f120fd"
-                  slug: "section3Text3"
-                  type: "text"
+                  id: 'e4df6e30-17a8-8154-8386-af9950f120fd'
+                  slug: 'section3Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "**12 − 12 = 0.** The whole group was taken away. **0 − 0 = 0**, because the empty group stays empty when nothing is removed."
+                      en: '**12 − 12 = 0.** The whole group was taken away. **0 − 0 = 0**, because the empty group stays empty when nothing is removed.'
                 production:
-                  purpose: "Legacy text block of A Bigger Group, Same Reason; provisional draft."
-                  specification: "  3. **text — available:** “**12 − 12 = 0.** The whole group was taken away. **0 − 0 = 0**, because the empty group stays empty when nothing is removed.”"
+                  purpose: 'Legacy text block of A Bigger Group, Same Reason; provisional draft.'
+                  specification: '  3. **text — available:** “**12 − 12 = 0.** The whole group was taken away. **0 − 0 = 0**, because the empty group stays empty when nothing is removed.”'
             order:
-              - "section3Markdown1"
-              - "scene3Block2"
-              - "section3Text3"
+              - 'section3Markdown1'
+              - 'scene3Block2'
+              - 'section3Text3'
         production:
-          purpose: "Transfer from concrete counting of six to twelve; include zero boundary."
-          pedagogicalIntent: "Transfer from concrete counting of six to twelve; include zero boundary."
+          purpose: 'Transfer from concrete counting of six to twelve; include zero boundary.'
+          pedagogicalIntent: 'Transfer from concrete counting of six to twelve; include zero boundary.'
           productionNotes: |
-              ### Section 3 — A Bigger Group, Same Reason
-              
-              - Purpose: Transfer from concrete counting of six to twelve; include zero boundary.
-              - Shape: LessonSection_Config.
-              - Ordered blocks:
-                1. **markdown — available:** “Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?”
-                2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), transfer entry with 12−12=0, optional 0−0=0.
-                3. **text — available:** “**12 − 12 = 0.** The whole group was taken away. **0 − 0 = 0**, because the empty group stays empty when nothing is removed.”
-              - Explanation and feedback: Offer a full/empty counter model plus text. Wrong “twelve remain” answer gets a clear removed-twelve vs remaining-zero comparison, not a score.
-              - Navigation: Lead to a concise numerical explanation beyond a specific group.
-              - Accessibility: Full count of twelve is optional; the before/removed/after text shows equivalence without 12 repeated taps.
-              - Note: No new Note needed if original is recalled.
-              - Dependencies: New Scene transfer entry.
-              
+            ### Section 3 — A Bigger Group, Same Reason
+
+            - Purpose: Transfer from concrete counting of six to twelve; include zero boundary.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **markdown — available:** “Twelve counters. Remove twelve. Think before you count: will any remain? How about **0 − 0**?”
+              2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), transfer entry with 12−12=0, optional 0−0=0.
+              3. **text — available:** “**12 − 12 = 0.** The whole group was taken away. **0 − 0 = 0**, because the empty group stays empty when nothing is removed.”
+            - Explanation and feedback: Offer a full/empty counter model plus text. Wrong “twelve remain” answer gets a clear removed-twelve vs remaining-zero comparison, not a score.
+            - Navigation: Lead to a concise numerical explanation beyond a specific group.
+            - Accessibility: Full count of twelve is optional; the before/removed/after text shows equivalence without 12 repeated taps.
+            - Note: No new Note needed if original is recalled.
+            - Dependencies: New Scene transfer entry.
+
       section4ExplainAndCheck:
         config:
-          id: "eddb0772-28d5-806c-85b5-1a9c50bb9d82"
-          slug: "section4ExplainAndCheck"
-          type: "content"
+          id: 'eddb0772-28d5-806c-85b5-1a9c50bb9d82'
+          slug: 'section4ExplainAndCheck'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Explain and Check"
+              en: 'Explain and Check'
             navigationLabel:
-              en: "Explain and Check"
+              en: 'Explain and Check'
           content:
             items:
               section4Text1:
                 config:
-                  id: "56dc31ff-ec88-8663-85fc-d36e6fa8d4f2"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: '56dc31ff-ec88-8663-85fc-d36e6fa8d4f2'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**."
+                      en: 'When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**.'
                 production:
-                  purpose: "Legacy text block of Explain and Check; provisional draft."
-                  specification: "  1. **text — available:** “When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**.”"
+                  purpose: 'Legacy text block of Explain and Check; provisional draft.'
+                  specification: '  1. **text — available:** “When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**.”'
               scene4Block2:
                 config:
-                  id: "c4958634-5f7c-8e95-8fc5-a27db42c5adc"
-                  slug: "scene4Block2"
-                  type: "scene"
+                  id: 'c4958634-5f7c-8e95-8fc5-a27db42c5adc'
+                  slug: 'scene4Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**."
+                        instruction: 'When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**.'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Explain and Check. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Explain and Check. Not approved or implemented.'
                   specification: |
-                      # Whole Removal Workbench — Scene Specification
-                      
-                      Status: Draft
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
-                      Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
-                      2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
-                      3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
-                      4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
-                      5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 6−6 leaves 0, all six in removed group, no hidden extra.
-                      2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
-                      3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
-                      4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
-                      5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
-                      6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), independent entry with a chosen example, before/removed/after values and reversible verification using 0 + a = a.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Whole Removal Workbench — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtracting a Number from Itself (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objective(s): Understand a−a=0, contrast with a−0=a and partial removal, and verify with addition. Methodologist Brief (preserved in production.methodology) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    An equal subtrahend is the **entire** starting group: zero is what remains. The Scene retains a record of removed counters to prevent a vanishing animation from making quantities mysterious. A three-case comparison makes the role of the second operand precise.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Required values: 6−6=0; 6−0=6; 6−2=4; 12−12=0; 0−0=0; optional 9−9=0 and 4−4=0. For nonnegative starting amount a≤20 and removal r with 0≤r≤a, remaining = a−r; removed + remaining = a. For the target Skill r=a. No negative subtraction or arbitrary arithmetic operator reversal. 0−0 is valid and empty both before and after.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Full removal:** Show six counters, prompt “Take all six away.” “Remove all” moves exactly six into a labeled removed area; read “started 6, removed 6, left 0.” Predictions 6/0/2 are optional, explained.
+                    2. **Contrast:** Reset separately before each trial 6−0, 6−2 and 6−6; child selects the amount removed and observes exact remain counts 6,4,0 respectively. Ask “Which action leaves none?”
+                    3. **Transfer:** Twelve counters, remove all twelve with one control instead of twelve compulsory clicks; show zero left. An optional empty case 0−0=0 has a clear accessible empty-group description.
+                    4. **Generalize:** Choose 9−9 or 4−4, predict zero, reveal all-removed evidence and check through 0+a=a. Compare with a−0=a when requested.
+                    5. All stages support “Show model,” “Read counts,” “Try another,” “Undo,” “Reset,” and “Explain” without forced choice or score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Distinct prop-free Section entries; no public mode prop. State per entry includes start amount, removal amount, current/removed counters, optional prediction and explanation status. Invariant removed+remaining=start always; never count a removed counter as remaining. Changing case resets counts, reveals and feedback. Do not present 6−6 as 6 or 6−0 as 0. A response is never a graded result.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Countable counters in source and “removed” areas, with clear textual before/after. Motion optional; reduced motion immediately shows both labeled collections. No animation disappearing without numeric feedback. No external imagery/video/audio/3D assets required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all labels and arithmetic explanations genuinely for every supported locale. “Remove all,” “remove none,” “remaining zero” must be distinct. Accessible text ledger of start/removed/remaining plus every native keyboard/touch control makes the model fully operable without vision or dragging. Semantic LTR/RTL mathematical ordering, large targets, visible focus, screen-reader status, zoom, reduced motion and offline after full download all deliver the same reasoning.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 6−6 leaves 0, all six in removed group, no hidden extra.
+                    2. Three contrast cases have before 6 each and after 6/4/0, never conflated as sequential removal.
+                    3. 12−12 yields zero and 0−0 remains zero; no forced click repetition.
+                    4. 9−9=0 is verified by 0+9=9; 9−0=9 remains correctly different.
+                    5. Wrong predictions trigger accurate count-based feedback, reset and explanation, no scoring.
+                    6. Screen reader, keyboard, RTL, reduced motion, zoomed mobile and offline display all exact values.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Typed Scene and renderer already exist; this implementation is proposed and awaits approvals and its own tests. Coding Agent provides prop-free Scene entries and full supported-language localization; Assessment Architect separately authorizes graded questions. No fabricated Note/score APIs.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), independent entry with a chosen example, before/removed/after values and reversible verification using 0 + a = a.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section4Markdown3:
                 config:
-                  id: "87e3c4d6-da39-8387-867b-ae8b7ba129da"
-                  slug: "section4Markdown3"
-                  type: "markdown"
+                  id: '87e3c4d6-da39-8387-867b-ae8b7ba129da'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The full amount has been removed, so **a − a = 0**. For example **9 − 9 = 0**. Check: **0 + 9 = 9**. If we had taken away zero instead, **9 − 0 = 9**."
+                      en: 'The full amount has been removed, so **a − a = 0**. For example **9 − 9 = 0**. Check: **0 + 9 = 9**. If we had taken away zero instead, **9 − 0 = 9**.'
                 production:
-                  purpose: "Legacy markdown block of Explain and Check; provisional draft."
-                  specification: "  3. **markdown — available:** “The full amount has been removed, so **a − a = 0**. For example **9 − 9 = 0**. Check: **0 + 9 = 9**. If we had taken away zero instead, **9 − 0 = 9**.”"
+                  purpose: 'Legacy markdown block of Explain and Check; provisional draft.'
+                  specification: '  3. **markdown — available:** “The full amount has been removed, so **a − a = 0**. For example **9 − 9 = 0**. Check: **0 + 9 = 9**. If we had taken away zero instead, **9 − 0 = 9**.”'
             order:
-              - "section4Text1"
-              - "scene4Block2"
-              - "section4Markdown3"
+              - 'section4Text1'
+              - 'scene4Block2'
+              - 'section4Markdown3'
         production:
-          purpose: "Generalize a−a=0 and verify by inverse addition."
-          pedagogicalIntent: "Generalize a−a=0 and verify by inverse addition."
+          purpose: 'Generalize a−a=0 and verify by inverse addition.'
+          pedagogicalIntent: 'Generalize a−a=0 and verify by inverse addition.'
           productionNotes: |
-              ### Section 4 — Explain and Check
-              
-              - Purpose: Generalize a−a=0 and verify by inverse addition.
-              - Shape: LessonSection_Config.
-              - Ordered blocks:
-                1. **text — available:** “When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**.”
-                2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), independent entry with a chosen example, before/removed/after values and reversible verification using 0 + a = a.
-                3. **markdown — available:** “The full amount has been removed, so **a − a = 0**. For example **9 − 9 = 0**. Check: **0 + 9 = 9**. If we had taken away zero instead, **9 − 0 = 9**.”
-              - Explanation/feedback: Child selects the result and may explain in speech, selected sentence or optional typing. For 9−9 suggested result 9: “Nine were removed from nine. The remaining amount is zero.” Full explanation is always accessible.
-              - Navigation: Finish without a grade, with an optional recall example for later.
-              - Accessibility: Text and native controls equivalent to model, correct RTL and nonvisual operation.
-              - Notes: revisit general rule; no invented unlock event.
-              - Dependencies: Scene implementation and later separate Assessment Architect review if scored tasks desired.
-              
+            ### Section 4 — Explain and Check
+
+            - Purpose: Generalize a−a=0 and verify by inverse addition.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **text — available:** “When a number is taken away from itself, what remains? Choose one example: **9 − 9**, **4 − 4**, or **0 − 0**.”
+              2. **scene — proposed:** Whole Removal Workbench (preserved in Scene production.specification), independent entry with a chosen example, before/removed/after values and reversible verification using 0 + a = a.
+              3. **markdown — available:** “The full amount has been removed, so **a − a = 0**. For example **9 − 9 = 0**. Check: **0 + 9 = 9**. If we had taken away zero instead, **9 − 0 = 9**.”
+            - Explanation/feedback: Child selects the result and may explain in speech, selected sentence or optional typing. For 9−9 suggested result 9: “Nine were removed from nine. The remaining amount is zero.” Full explanation is always accessible.
+            - Navigation: Finish without a grade, with an optional recall example for later.
+            - Accessibility: Text and native controls equivalent to model, correct RTL and nonvisual operation.
+            - Notes: revisit general rule; no invented unlock event.
+            - Dependencies: Scene implementation and later separate Assessment Architect review if scored tasks desired.
+
     order:
-      - "section1TakeAwayTheWholeGroup"
-      - "section2NoneSomeOrAll"
-      - "section3ABiggerGroupSameReason"
-      - "section4ExplainAndCheck"
+      - 'section1TakeAwayTheWholeGroup'
+      - 'section2NoneSomeOrAll'
+      - 'section3ABiggerGroupSameReason'
+      - 'section4ExplainAndCheck'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Subtracting a Number from Itself — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: subtractSelf
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Teach the independent fact that an amount subtracted from itself leaves zero, a − a = 0, grounded in complete removal, paired matching or inverse addition. It differs from subtracting zero, which leaves the initial amount.
-      
-      ## Target audience
-      
-      Children aged 6–8, grades 1–2, who count whole-number sets within 20 and know that subtraction describes removal or difference. Keep explanations short and models accessible without vision or fine motor dragging.
-      
-      ## Prerequisites
-      
-      - Recognize zero as none, count small nonnegative collections, and relate whole and parts.
-      - Identify what amount is removed and what remains; read simple subtraction equalities.
-      
-      ## Target Skills
-      
-      - [subtractSelf.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/subtraction/skills/subtractSelf.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Demonstrate and explain that 6 − 6 = 0 by removing the entire starting group.
-      - Generalize to a − a = 0 for additional nonnegative examples including 12 − 12 and 0 − 0.
-      - Distinguish the roles of numbers in a−a=0 from a−0=a and from a case of partial removal.
-      - Check an example with inverse addition: 0 + 6 = 6.
-      
-      ## Essential subject matter
-      
-      The first and second operands are equal, so the entire starting amount is removed; no counters remain. In the nonnegative whole-number model, for each a, a−a=0. Boundary a=0 yields 0−0=0. The general algebraic explanation involving additive inverses is unnecessary at ages six to eight; remain faithful to the canonical mathematical fact. This is not the claim that every subtraction yields zero, nor that subtracting zero removes everything.
-      
-      ## Conceptual progression and dependencies
-      
-      Start with six and remove six countable objects; compare with removing only two or removing none; then extend to twelve without requiring counting one by one. Use the inverse addition check to link result zero with the original whole. End with a child-created example.
-      
-      ## Misconceptions, examples and boundaries
-      
-      Confusing 6−6 with 6−0; assuming “numbers look alike” means zero in addition too; believing a zero answer requires starting with zero; double-counting removed objects as remaining; treating subtraction as commutative. Use positive quantities up to 20 and a=0 as a natural boundary. Exclude negative numbers and formal algebra transformations.
-      
-      ## Localization, accessibility and offline intent
-      
-      Provide count ledger before/removed/after and accessible buttons for removing all or none; no color, visual disappearance, audio, timed or drag-only mode. Translate “all,” “none,” “from itself” accurately; RTL-safe arithmetic and fully local offline model.
-      
-      ## Sources and factual verification
-      
-      - [Generated taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), exact subtractSelf definition.
-      - [Common Core Math Standards](https://corestandards.org/mathematics-standards/), foundational subtraction, comparison only.
-      - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), explicit math representation.
-      
-      ## Curriculum / Program compatibility
-      
-      Not specified; Program-neutral introductory subtraction.
-      
-      ## Open editorial decisions
-      
-      - Decide how much time to give the 0−0 boundary without repeating the preceding lesson on subtracting zero.
-      
-      ## Methodologist handoff
-      
-      Draft pending explicit editorial approval. Screenwriter may offer active complete-removal models and comparisons, but no scored Questions or automatic coding are authorized.
+    # Subtracting a Number from Itself — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: subtractSelf
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Teach the independent fact that an amount subtracted from itself leaves zero, a − a = 0, grounded in complete removal, paired matching or inverse addition. It differs from subtracting zero, which leaves the initial amount.
+
+    ## Target audience
+
+    Children aged 6–8, grades 1–2, who count whole-number sets within 20 and know that subtraction describes removal or difference. Keep explanations short and models accessible without vision or fine motor dragging.
+
+    ## Prerequisites
+
+    - Recognize zero as none, count small nonnegative collections, and relate whole and parts.
+    - Identify what amount is removed and what remains; read simple subtraction equalities.
+
+    ## Target Skills
+
+    - [subtractSelf.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/subtraction/skills/subtractSelf.data.ts)
+
+    ## Expected learning outcomes
+
+    - Demonstrate and explain that 6 − 6 = 0 by removing the entire starting group.
+    - Generalize to a − a = 0 for additional nonnegative examples including 12 − 12 and 0 − 0.
+    - Distinguish the roles of numbers in a−a=0 from a−0=a and from a case of partial removal.
+    - Check an example with inverse addition: 0 + 6 = 6.
+
+    ## Essential subject matter
+
+    The first and second operands are equal, so the entire starting amount is removed; no counters remain. In the nonnegative whole-number model, for each a, a−a=0. Boundary a=0 yields 0−0=0. The general algebraic explanation involving additive inverses is unnecessary at ages six to eight; remain faithful to the canonical mathematical fact. This is not the claim that every subtraction yields zero, nor that subtracting zero removes everything.
+
+    ## Conceptual progression and dependencies
+
+    Start with six and remove six countable objects; compare with removing only two or removing none; then extend to twelve without requiring counting one by one. Use the inverse addition check to link result zero with the original whole. End with a child-created example.
+
+    ## Misconceptions, examples and boundaries
+
+    Confusing 6−6 with 6−0; assuming “numbers look alike” means zero in addition too; believing a zero answer requires starting with zero; double-counting removed objects as remaining; treating subtraction as commutative. Use positive quantities up to 20 and a=0 as a natural boundary. Exclude negative numbers and formal algebra transformations.
+
+    ## Localization, accessibility and offline intent
+
+    Provide count ledger before/removed/after and accessible buttons for removing all or none; no color, visual disappearance, audio, timed or drag-only mode. Translate “all,” “none,” “from itself” accurately; RTL-safe arithmetic and fully local offline model.
+
+    ## Sources and factual verification
+
+    - [Generated taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), exact subtractSelf definition.
+    - [Common Core Math Standards](https://corestandards.org/mathematics-standards/), foundational subtraction, comparison only.
+    - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), explicit math representation.
+
+    ## Curriculum / Program compatibility
+
+    Not specified; Program-neutral introductory subtraction.
+
+    ## Open editorial decisions
+
+    - Decide how much time to give the 0−0 boundary without repeating the preceding lesson on subtracting zero.
+
+    ## Methodologist handoff
+
+    Draft pending explicit editorial approval. Screenwriter may offer active complete-removal models and comparisons, but no scored Questions or automatic coding are authorized.
   productionNotes: |
-      Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
-      
-      ## Former Screenwriter introduction
-      
-      # Subtracting a Number from Itself — Content
-      
-      Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
-      Target Lesson: content/playground/Data/Lessons/1/subtractSelf/
-      Audience: Children aged 6–8, grades 1–2, basic subtraction and counting within 20
-      Methodologist source: Methodologist Brief (preserved in production.methodology) (Draft, not represented as approved)
-      Learning outcomes: explain a−a=0; distinguish removal of all from removal of none; apply to 6, 12 and zero, verifying through addition.
-      Target Skills: As directly linked in the Methodologist Brief, unchanged.
-      Program dependence: None
-      
-      ## INSTRUCTIONAL CONCEPT
-      
-      A whole collection can be completely removed. The difference then is **zero because nothing remains**, not because the symbols magically cancel. The same-number subtraction **a − a = 0** is a statement about removing _the full amount_. The previous lesson’s zero subtraction **a − 0 = a** asks something different. A child will examine both on one set so that similar-looking expressions do not become interchangeable chants.
-      
-      ## LEARNER JOURNEY
-      
-      1. Predict what remains if all six counters are taken away.
-      2. Contrast removing zero, some and all of the same six.
-      3. Apply complete removal to twelve and the empty starting case.
-      4. Explain and check the general relationship with inverse addition.
-      
-      ## SECTION PLAN
-      
-      
-      ## Former Screenwriter closing notes
-      
-      ## CUSTOM SCENE SPECIFICATIONS
-      
-      - Whole Removal Workbench (preserved in Scene production.specification) — four independent prop-free placements, comparing complete/partial/zero removal.
-      
-      ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-      
-      - “Subtract a number from itself → zero remains.” Proposed after Section 1 complete removal.
-      - “All removed is not the same as none removed.” Proposed after Section 2 contrast.
-      
-      These are future Notes, not implemented state/events, scoring or a compiled offline review sheet; an unlocked Note is not mastery.
-      
-      ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-      
-      Prediction and comparison are formative teaching in a custom Scene, not graded Quiz items. Assessment Architect must independently design checks for generalization, avoid confusion with the separate subtractZero Skill, and decide validation, scoring and mastery, if requested. Practice can be revisited later through a separately authorized scheduler.
-      
-      ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-      
-      Every label/control, number explanation and future Note requires genuine translation into every supported language without silent English fallback. Present “original, removed, remaining” explicitly via a structured text ledger and keyboard-operable controls, with screen-reader/live-text feedback, RTL-semantic equations, 200% zoom, reduced motion and fully equivalent offline access. No drag-only or visual-disappearance-only clues, mandatory speech or time limit. Simple local HTML/SVG counters suffice; generic image/video/audio/code resources not needed.
-      
-      ## PRODUCTION / PLATFORM DEPENDENCIES
-      
-      Generic LessonSection_Config supports ordered text, markdown and scene blocks. Whole Removal Workbench is proposed, needs editorial Scene spec approval, prop-free implementation, tests, complete locales and offline verification. Quiz/question types are distinct; the current Lesson adapter only handles select-one, not this bespoke Scene. No Notes implementation or mastery/score APIs are assumed.
-      
-      ## EDITORIAL SOURCES AND OPEN QUESTIONS
-      
-      - Methodologist Brief (preserved in production.methodology) (new Draft; approval pending).
-      - [Generated taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), subtractSelf semantics.
-      - [Create Lesson Content Skill](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md).
-      - Editor: approve brief contrast with a−0=a without re-teaching the whole previous Lesson; verify zero-boundary wording.
-      - No claimed externally validated effectiveness or particular national Curriculum placement.
-      
-      ## HANDOFF
-      
-      Provisional Screenwriter Content and one Scene spec supplied for editorial feedback. Do not implement until the Brief and Script/Scene are each approved in their respective workflow stages. No Code/Skills/other Lessons modified by these artifacts.
+    Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+
+    ## Former Screenwriter introduction
+
+    # Subtracting a Number from Itself — Content
+
+    Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/subtractSelf/
+    Audience: Children aged 6–8, grades 1–2, basic subtraction and counting within 20
+    Methodologist source: Methodologist Brief (preserved in production.methodology) (Draft, not represented as approved)
+    Learning outcomes: explain a−a=0; distinguish removal of all from removal of none; apply to 6, 12 and zero, verifying through addition.
+    Target Skills: As directly linked in the Methodologist Brief, unchanged.
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    A whole collection can be completely removed. The difference then is **zero because nothing remains**, not because the symbols magically cancel. The same-number subtraction **a − a = 0** is a statement about removing _the full amount_. The previous lesson’s zero subtraction **a − 0 = a** asks something different. A child will examine both on one set so that similar-looking expressions do not become interchangeable chants.
+
+    ## LEARNER JOURNEY
+
+    1. Predict what remains if all six counters are taken away.
+    2. Contrast removing zero, some and all of the same six.
+    3. Apply complete removal to twelve and the empty starting case.
+    4. Explain and check the general relationship with inverse addition.
+
+    ## SECTION PLAN
+
+
+    ## Former Screenwriter closing notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Whole Removal Workbench (preserved in Scene production.specification) — four independent prop-free placements, comparing complete/partial/zero removal.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    - “Subtract a number from itself → zero remains.” Proposed after Section 1 complete removal.
+    - “All removed is not the same as none removed.” Proposed after Section 2 contrast.
+
+    These are future Notes, not implemented state/events, scoring or a compiled offline review sheet; an unlocked Note is not mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Prediction and comparison are formative teaching in a custom Scene, not graded Quiz items. Assessment Architect must independently design checks for generalization, avoid confusion with the separate subtractZero Skill, and decide validation, scoring and mastery, if requested. Practice can be revisited later through a separately authorized scheduler.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Every label/control, number explanation and future Note requires genuine translation into every supported language without silent English fallback. Present “original, removed, remaining” explicitly via a structured text ledger and keyboard-operable controls, with screen-reader/live-text feedback, RTL-semantic equations, 200% zoom, reduced motion and fully equivalent offline access. No drag-only or visual-disappearance-only clues, mandatory speech or time limit. Simple local HTML/SVG counters suffice; generic image/video/audio/code resources not needed.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    Generic LessonSection_Config supports ordered text, markdown and scene blocks. Whole Removal Workbench is proposed, needs editorial Scene spec approval, prop-free implementation, tests, complete locales and offline verification. Quiz/question types are distinct; the current Lesson adapter only handles select-one, not this bespoke Scene. No Notes implementation or mastery/score APIs are assumed.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (preserved in production.methodology) (new Draft; approval pending).
+    - [Generated taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), subtractSelf semantics.
+    - [Create Lesson Content Skill](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Editor: approve brief contrast with a−0=a without re-teaching the whole previous Lesson; verify zero-boundary wording.
+    - No claimed externally validated effectiveness or particular national Curriculum placement.
+
+    ## HANDOFF
+
+    Provisional Screenwriter Content and one Scene spec supplied for editorial feedback. Do not implement until the Brief and Script/Scene are each approved in their respective workflow stages. No Code/Skills/other Lessons modified by these artifacts.

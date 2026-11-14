@@ -1,841 +1,841 @@
 config:
-  id: "36361d75-1baa-5f3b-be84-2a5f6fb765f5"
-  slug: "modelAndReadUnitFractions"
-  type: "lesson"
+  id: '36361d75-1baa-5f3b-be84-2a5f6fb765f5'
+  slug: 'modelAndReadUnitFractions'
+  type: 'lesson'
   skills:
-    - "f2d8c7d5-68bd-4c23-8d6a-cc3c122ff0c3"
-    - "6d176ee8-9b59-4752-b39d-7cf3127d871f"
+    - 'f2d8c7d5-68bd-4c23-8d6a-cc3c122ff0c3'
+    - '6d176ee8-9b59-4752-b39d-7cf3127d871f'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "One Part Has a Name"
+      en: 'One Part Has a Name'
   section:
     items:
       section1AFairPieceNotJustAPiece:
         config:
-          id: "0e170ac6-ac59-8630-8311-97cac15fdb3c"
-          slug: "section1AFairPieceNotJustAPiece"
-          type: "content"
+          id: '0e170ac6-ac59-8630-8311-97cac15fdb3c'
+          slug: 'section1AFairPieceNotJustAPiece'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "A fair piece, not just a piece"
+              en: 'A fair piece, not just a piece'
             navigationLabel:
-              en: "A fair piece, not just a piece"
+              en: 'A fair piece, not just a piece'
           content:
             items:
               section1Text1:
                 config:
-                  id: "0aed469c-738e-8921-8b13-4f753270c0c8"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: '0aed469c-738e-8921-8b13-4f753270c0c8'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "We can split this strip into three parts. Do the parts all have to be the same size before we name one third?"
+                      en: 'We can split this strip into three parts. Do the parts all have to be the same size before we name one third?'
                 production:
-                  purpose: "Legacy text block of A fair piece, not just a piece; provisional draft."
-                  specification: "1. **`text`** (supported Resource type) — “We can split this strip into three parts. Do the parts all have to be the same size before we name one third?” Ask for a prediction; do not reveal the label yet."
+                  purpose: 'Legacy text block of A fair piece, not just a piece; provisional draft.'
+                  specification: '1. **`text`** (supported Resource type) — “We can split this strip into three parts. Do the parts all have to be the same size before we name one third?” Ask for a prediction; do not reveal the label yet.'
               scene1Block2:
                 config:
-                  id: "c5757655-7664-857c-8cff-12834fee21aa"
-                  slug: "scene1Block2"
-                  type: "scene"
+                  id: 'c5757655-7664-857c-8cff-12834fee21aa'
+                  slug: 'scene1Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "We can split this strip into three parts. Do the parts all have to be the same size before we name one third?"
+                        instruction: 'We can split this strip into three parts. Do the parts all have to be the same size before we name one third?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in A fair piece, not just a piece. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in A fair piece, not just a piece. Not approved or implemented.'
                   specification: |
-                      # UnitFractionWorkshop — Scene Specification
-                      
-                      **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
-                      **Owner:** Educational Screenwriter (specification only)
-                      **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
-                      **Methodologist source:** Draft Brief (preserved in production.methodology)
-                      **Target Skills:**
-                      
-                      - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
-                      - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
-                      
-                      ## Intended learning interaction
-                      
-                      An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
-                      
-                      **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
-                      
-                      The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                      
-                      ## Visual/conceptual model and required states
-                      
-                      | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
-                      | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
-                      | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
-                      | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
-                      | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
-                      | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
-                      | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
-                      | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
-                      | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
-                      
-                      All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                      
-                      ## Learner journey, transitions, and recovery
-                      
-                      1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
-                      2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
-                      3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
-                      4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
-                      5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
-                      6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                      
-                      ## Explanatory messages and failure modes
-                      
-                      - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
-                      - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
-                      - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
-                      - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
-                      - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
-                      - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
-                      - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
-                      - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
-                      
-                      **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
-                      
-                      **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                      
-                      ## Nonvisual / nonmotor-dependent equivalent
-                      
-                      Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
-                      
-                      Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                      
-                      ## RTL, locale, device and offline delivery
-                      
-                      The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                      
-                      ## Implementation and verification handoff
-                      
-                      **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                      
-                      
-                      ## Original placement
-                      
-                      2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset A: one 12-unit strip. Toggle a 4+4+4 split versus a 2+3+7 split; select one part and compare its unit-square count with the others.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # UnitFractionWorkshop — Scene Specification
+
+                    **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
+                    **Owner:** Educational Screenwriter (specification only)
+                    **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
+                    **Methodologist source:** Draft Brief (preserved in production.methodology)
+                    **Target Skills:**
+
+                    - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
+                    - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
+
+                    ## Intended learning interaction
+
+                    An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
+
+                    **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
+
+                    The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
+
+                    ## Visual/conceptual model and required states
+
+                    | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
+                    | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
+                    | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
+                    | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
+                    | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
+                    | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
+                    | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
+                    | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
+                    | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
+
+                    All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
+
+                    ## Learner journey, transitions, and recovery
+
+                    1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
+                    2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
+                    3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
+                    4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
+                    5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
+                    6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
+
+                    ## Explanatory messages and failure modes
+
+                    - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
+                    - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
+                    - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
+                    - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
+                    - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
+                    - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
+                    - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
+                    - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
+
+                    **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
+
+                    **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
+
+                    ## Nonvisual / nonmotor-dependent equivalent
+
+                    Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
+
+                    Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
+
+                    ## RTL, locale, device and offline delivery
+
+                    The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
+
+                    ## Implementation and verification handoff
+
+                    **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
+
+
+                    ## Original placement
+
+                    2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset A: one 12-unit strip. Toggle a 4+4+4 split versus a 2+3+7 split; select one part and compare its unit-square count with the others.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section1Markdown3:
                 config:
-                  id: "e7ed1c4c-be93-84ac-8b73-bc04c20db4e4"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: 'e7ed1c4c-be93-84ac-8b73-bc04c20db4e4'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The three equal 4-unit pieces make thirds of the same whole. Three unequal pieces do not. A fraction needs equal parts of one chosen whole."
+                      en: 'The three equal 4-unit pieces make thirds of the same whole. Three unequal pieces do not. A fraction needs equal parts of one chosen whole.'
                 production:
-                  purpose: "Legacy markdown block of A fair piece, not just a piece; provisional draft."
-                  specification: "3. **`markdown`** (supported Resource type) — “The three equal 4-unit pieces make thirds of the same whole. Three unequal pieces do not. A fraction needs equal parts of one chosen whole.”"
+                  purpose: 'Legacy markdown block of A fair piece, not just a piece; provisional draft.'
+                  specification: '3. **`markdown`** (supported Resource type) — “The three equal 4-unit pieces make thirds of the same whole. Three unequal pieces do not. A fraction needs equal parts of one chosen whole.”'
             order:
-              - "section1Text1"
-              - "scene1Block2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'scene1Block2'
+              - 'section1Markdown3'
         production:
-          purpose: "A fair piece, not just a piece"
-          pedagogicalIntent: "A fair piece, not just a piece"
+          purpose: 'A fair piece, not just a piece'
+          pedagogicalIntent: 'A fair piece, not just a piece'
           productionNotes: |
-              ### Section 1 — A fair piece, not just a piece
-              
-              **Purpose:** Re-activate equal-part reasoning before introducing notation.
-              
-              **Ordered content blocks:**
-              
-              1. **`text`** (supported Resource type) — “We can split this strip into three parts. Do the parts all have to be the same size before we name one third?” Ask for a prediction; do not reveal the label yet.
-              
-              2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset A: one 12-unit strip. Toggle a 4+4+4 split versus a 2+3+7 split; select one part and compare its unit-square count with the others.
-              
-              3. **`markdown`** (supported Resource type) — “The three equal 4-unit pieces make thirds of the same whole. Three unequal pieces do not. A fraction needs equal parts of one chosen whole.”
-              
-              **Meaningful learner action:** Choose which split permits the label and explain what stays equal.
-              
-              **Specific formative feedback, not a scored answer:**
-              
-              - Correct on 4+4+4: “Each part covers four squares, so one part is one of three equal parts of the strip.”
-              - Incorrect on 2+3+7: “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
-              
-              **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Do not preselect a piece; the learner chooses a part and sees the numerical evidence.
-              
-              **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-              
+            ### Section 1 — A fair piece, not just a piece
+
+            **Purpose:** Re-activate equal-part reasoning before introducing notation.
+
+            **Ordered content blocks:**
+
+            1. **`text`** (supported Resource type) — “We can split this strip into three parts. Do the parts all have to be the same size before we name one third?” Ask for a prediction; do not reveal the label yet.
+
+            2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset A: one 12-unit strip. Toggle a 4+4+4 split versus a 2+3+7 split; select one part and compare its unit-square count with the others.
+
+            3. **`markdown`** (supported Resource type) — “The three equal 4-unit pieces make thirds of the same whole. Three unequal pieces do not. A fraction needs equal parts of one chosen whole.”
+
+            **Meaningful learner action:** Choose which split permits the label and explain what stays equal.
+
+            **Specific formative feedback, not a scored answer:**
+
+            - Correct on 4+4+4: “Each part covers four squares, so one part is one of three equal parts of the strip.”
+            - Incorrect on 2+3+7: “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
+
+            **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Do not preselect a piece; the learner chooses a part and sees the numerical evidence.
+
+            **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
+
       section2TheNumberForOneOfTheParts:
         config:
-          id: "151d3467-ee5b-8667-8472-d0689f346268"
-          slug: "section2TheNumberForOneOfTheParts"
-          type: "content"
+          id: '151d3467-ee5b-8667-8472-d0689f346268'
+          slug: 'section2TheNumberForOneOfTheParts'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "The number for one of the parts"
+              en: 'The number for one of the parts'
             navigationLabel:
-              en: "The number for one of the parts"
+              en: 'The number for one of the parts'
           content:
             items:
               section2Text1:
                 config:
-                  id: "6acf02e9-7a16-8a5d-83b5-ab35b36c2381"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: '6acf02e9-7a16-8a5d-83b5-ab35b36c2381'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?"
+                      en: 'One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?'
                 production:
-                  purpose: "Legacy text block of The number for one of the parts; provisional draft."
-                  specification: "1. **`text`** (supported Resource type) — “One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?”"
+                  purpose: 'Legacy text block of The number for one of the parts; provisional draft.'
+                  specification: '1. **`text`** (supported Resource type) — “One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?”'
               scene2Block2:
                 config:
-                  id: "fa6958bf-32c4-84d9-87c8-9ae55f652683"
-                  slug: "scene2Block2"
-                  type: "scene"
+                  id: 'fa6958bf-32c4-84d9-87c8-9ae55f652683'
+                  slug: 'scene2Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?"
+                        instruction: 'One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in The number for one of the parts. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in The number for one of the parts. Not approved or implemented.'
                   specification: |
-                      # UnitFractionWorkshop — Scene Specification
-                      
-                      **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
-                      **Owner:** Educational Screenwriter (specification only)
-                      **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
-                      **Methodologist source:** Draft Brief (preserved in production.methodology)
-                      **Target Skills:**
-                      
-                      - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
-                      - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
-                      
-                      ## Intended learning interaction
-                      
-                      An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
-                      
-                      **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
-                      
-                      The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                      
-                      ## Visual/conceptual model and required states
-                      
-                      | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
-                      | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
-                      | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
-                      | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
-                      | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
-                      | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
-                      | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
-                      | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
-                      | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
-                      
-                      All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                      
-                      ## Learner journey, transitions, and recovery
-                      
-                      1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
-                      2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
-                      3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
-                      4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
-                      5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
-                      6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                      
-                      ## Explanatory messages and failure modes
-                      
-                      - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
-                      - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
-                      - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
-                      - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
-                      - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
-                      - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
-                      - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
-                      - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
-                      
-                      **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
-                      
-                      **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                      
-                      ## Nonvisual / nonmotor-dependent equivalent
-                      
-                      Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
-                      
-                      Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                      
-                      ## RTL, locale, device and offline delivery
-                      
-                      The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                      
-                      ## Implementation and verification handoff
-                      
-                      **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                      
-                      
-                      ## Original placement
-                      
-                      2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset B: choose 2, 3 or 4 equal sections of the same 12-unit strip; reveal a selected single section and a fraction card only after the learner predicts its reading.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # UnitFractionWorkshop — Scene Specification
+
+                    **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
+                    **Owner:** Educational Screenwriter (specification only)
+                    **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
+                    **Methodologist source:** Draft Brief (preserved in production.methodology)
+                    **Target Skills:**
+
+                    - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
+                    - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
+
+                    ## Intended learning interaction
+
+                    An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
+
+                    **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
+
+                    The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
+
+                    ## Visual/conceptual model and required states
+
+                    | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
+                    | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
+                    | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
+                    | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
+                    | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
+                    | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
+                    | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
+                    | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
+                    | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
+
+                    All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
+
+                    ## Learner journey, transitions, and recovery
+
+                    1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
+                    2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
+                    3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
+                    4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
+                    5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
+                    6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
+
+                    ## Explanatory messages and failure modes
+
+                    - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
+                    - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
+                    - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
+                    - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
+                    - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
+                    - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
+                    - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
+                    - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
+
+                    **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
+
+                    **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
+
+                    ## Nonvisual / nonmotor-dependent equivalent
+
+                    Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
+
+                    Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
+
+                    ## RTL, locale, device and offline delivery
+
+                    The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
+
+                    ## Implementation and verification handoff
+
+                    **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
+
+
+                    ## Original placement
+
+                    2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset B: choose 2, 3 or 4 equal sections of the same 12-unit strip; reveal a selected single section and a fraction card only after the learner predicts its reading.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section2Markdown3:
                 config:
-                  id: "aa9ca6ed-6375-8b39-8e0d-66ada7e41b79"
-                  slug: "section2Markdown3"
-                  type: "markdown"
+                  id: 'aa9ca6ed-6375-8b39-8e0d-66ada7e41b79'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "In 1/4, the 4 counts equal parts in the whole. The 1 means we chose one of them. Four equal parts still make one whole."
+                      en: 'In 1/4, the 4 counts equal parts in the whole. The 1 means we chose one of them. Four equal parts still make one whole.'
                 production:
-                  purpose: "Legacy markdown block of The number for one of the parts; provisional draft."
-                  specification: "3. **`markdown`** (supported Resource type) — “In 1/4, the 4 counts equal parts in the whole. The 1 means we chose one of them. Four equal parts still make one whole.”"
+                  purpose: 'Legacy markdown block of The number for one of the parts; provisional draft.'
+                  specification: '3. **`markdown`** (supported Resource type) — “In 1/4, the 4 counts equal parts in the whole. The 1 means we chose one of them. Four equal parts still make one whole.”'
             order:
-              - "section2Text1"
-              - "scene2Block2"
-              - "section2Markdown3"
+              - 'section2Text1'
+              - 'scene2Block2'
+              - 'section2Markdown3'
         production:
-          purpose: "The number for one of the parts"
-          pedagogicalIntent: "The number for one of the parts"
+          purpose: 'The number for one of the parts'
+          pedagogicalIntent: 'The number for one of the parts'
           productionNotes: |
-              ### Section 2 — The number for one of the parts
-              
-              **Purpose:** Map a concrete equal part to written and spoken unit-fraction notation.
-              
-              **Ordered content blocks:**
-              
-              1. **`text`** (supported Resource type) — “One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?”
-              
-              2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset B: choose 2, 3 or 4 equal sections of the same 12-unit strip; reveal a selected single section and a fraction card only after the learner predicts its reading.
-              
-              3. **`markdown`** (supported Resource type) — “In 1/4, the 4 counts equal parts in the whole. The 1 means we chose one of them. Four equal parts still make one whole.”
-              
-              **Meaningful learner action:** Switch a fixed whole from halves to thirds to quarters; match each selected part to 1/2, 1/3 or 1/4.
-              
-              **Specific formative feedback, not a scored answer:**
-              
-              - Confuse 1/3 with 1/4: “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
-              - Confuse 4/1 with 1/4: “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
-              
-              **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Show standard stacked fraction and accessible 'one over four' description; do not rely on tiny text.
-              
-              **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-              
+            ### Section 2 — The number for one of the parts
+
+            **Purpose:** Map a concrete equal part to written and spoken unit-fraction notation.
+
+            **Ordered content blocks:**
+
+            1. **`text`** (supported Resource type) — “One of two equal pieces is one half: 1/2. One of three is one third: 1/3. One of four is one quarter: 1/4. Why does the lower number change?”
+
+            2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset B: choose 2, 3 or 4 equal sections of the same 12-unit strip; reveal a selected single section and a fraction card only after the learner predicts its reading.
+
+            3. **`markdown`** (supported Resource type) — “In 1/4, the 4 counts equal parts in the whole. The 1 means we chose one of them. Four equal parts still make one whole.”
+
+            **Meaningful learner action:** Switch a fixed whole from halves to thirds to quarters; match each selected part to 1/2, 1/3 or 1/4.
+
+            **Specific formative feedback, not a scored answer:**
+
+            - Confuse 1/3 with 1/4: “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
+            - Confuse 4/1 with 1/4: “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
+
+            **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Show standard stacked fraction and accessible 'one over four' description; do not rely on tiny text.
+
+            **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
+
       section3CanOneQuarterContainThreeCounters:
         config:
-          id: "1feb05c1-ae83-8148-8c03-010f2d6b0586"
-          slug: "section3CanOneQuarterContainThreeCounters"
-          type: "content"
+          id: '1feb05c1-ae83-8148-8c03-010f2d6b0586'
+          slug: 'section3CanOneQuarterContainThreeCounters'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Can one quarter contain three counters?"
+              en: 'Can one quarter contain three counters?'
             navigationLabel:
-              en: "Can one quarter contain three counters?"
+              en: 'Can one quarter contain three counters?'
           content:
             items:
               section3Markdown1:
                 config:
-                  id: "ddad0c6b-c136-8805-8fae-a51803358176"
-                  slug: "section3Markdown1"
-                  type: "markdown"
+                  id: 'ddad0c6b-c136-8805-8fae-a51803358176'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group."
+                      en: 'Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group.'
                 production:
-                  purpose: "Legacy markdown block of Can one quarter contain three counters?; provisional draft."
-                  specification: "1. **`markdown`** (supported Resource type) — “Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group.”"
+                  purpose: 'Legacy markdown block of Can one quarter contain three counters?; provisional draft.'
+                  specification: '1. **`markdown`** (supported Resource type) — “Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group.”'
               scene3Block2:
                 config:
-                  id: "3d667e24-da18-8916-84a2-7f6513dca857"
-                  slug: "scene3Block2"
-                  type: "scene"
+                  id: '3d667e24-da18-8916-84a2-7f6513dca857'
+                  slug: 'scene3Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group."
+                        instruction: 'Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group.'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Can one quarter contain three counters?. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Can one quarter contain three counters?. Not approved or implemented.'
                   specification: |
-                      # UnitFractionWorkshop — Scene Specification
-                      
-                      **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
-                      **Owner:** Educational Screenwriter (specification only)
-                      **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
-                      **Methodologist source:** Draft Brief (preserved in production.methodology)
-                      **Target Skills:**
-                      
-                      - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
-                      - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
-                      
-                      ## Intended learning interaction
-                      
-                      An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
-                      
-                      **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
-                      
-                      The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                      
-                      ## Visual/conceptual model and required states
-                      
-                      | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
-                      | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
-                      | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
-                      | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
-                      | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
-                      | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
-                      | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
-                      | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
-                      | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
-                      
-                      All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                      
-                      ## Learner journey, transitions, and recovery
-                      
-                      1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
-                      2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
-                      3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
-                      4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
-                      5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
-                      6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                      
-                      ## Explanatory messages and failure modes
-                      
-                      - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
-                      - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
-                      - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
-                      - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
-                      - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
-                      - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
-                      - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
-                      - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
-                      
-                      **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
-                      
-                      **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                      
-                      ## Nonvisual / nonmotor-dependent equivalent
-                      
-                      Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
-                      
-                      Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                      
-                      ## RTL, locale, device and offline delivery
-                      
-                      The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                      
-                      ## Implementation and verification handoff
-                      
-                      **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                      
-                      
-                      ## Original placement
-                      
-                      2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset C: 12 numbered counters. Choose four grouping trays and put three counters in each; select exactly one group and show the label 1/4 of the 12-counter collection.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # UnitFractionWorkshop — Scene Specification
+
+                    **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
+                    **Owner:** Educational Screenwriter (specification only)
+                    **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
+                    **Methodologist source:** Draft Brief (preserved in production.methodology)
+                    **Target Skills:**
+
+                    - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
+                    - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
+
+                    ## Intended learning interaction
+
+                    An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
+
+                    **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
+
+                    The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
+
+                    ## Visual/conceptual model and required states
+
+                    | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
+                    | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
+                    | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
+                    | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
+                    | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
+                    | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
+                    | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
+                    | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
+                    | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
+
+                    All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
+
+                    ## Learner journey, transitions, and recovery
+
+                    1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
+                    2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
+                    3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
+                    4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
+                    5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
+                    6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
+
+                    ## Explanatory messages and failure modes
+
+                    - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
+                    - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
+                    - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
+                    - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
+                    - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
+                    - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
+                    - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
+                    - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
+
+                    **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
+
+                    **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
+
+                    ## Nonvisual / nonmotor-dependent equivalent
+
+                    Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
+
+                    Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
+
+                    ## RTL, locale, device and offline delivery
+
+                    The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
+
+                    ## Implementation and verification handoff
+
+                    **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
+
+
+                    ## Original placement
+
+                    2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset C: 12 numbered counters. Choose four grouping trays and put three counters in each; select exactly one group and show the label 1/4 of the 12-counter collection.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section3Text3:
                 config:
-                  id: "3fbc3fee-a120-8aca-8d1a-8c96b38659b2"
-                  slug: "section3Text3"
-                  type: "text"
+                  id: '3fbc3fee-a120-8aca-8d1a-8c96b38659b2'
+                  slug: 'section3Text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "One quarter of this collection is one of four equal groups. Each group contains three counters. The whole is twelve counters—not just one counter."
+                      en: 'One quarter of this collection is one of four equal groups. Each group contains three counters. The whole is twelve counters—not just one counter.'
                 production:
-                  purpose: "Legacy text block of Can one quarter contain three counters?; provisional draft."
-                  specification: "3. **`text`** (supported Resource type) — “One quarter of this collection is one of four equal groups. Each group contains three counters. The whole is twelve counters—not just one counter.”"
+                  purpose: 'Legacy text block of Can one quarter contain three counters?; provisional draft.'
+                  specification: '3. **`text`** (supported Resource type) — “One quarter of this collection is one of four equal groups. Each group contains three counters. The whole is twelve counters—not just one counter.”'
             order:
-              - "section3Markdown1"
-              - "scene3Block2"
-              - "section3Text3"
+              - 'section3Markdown1'
+              - 'scene3Block2'
+              - 'section3Text3'
         production:
-          purpose: "Can one quarter contain three counters?"
-          pedagogicalIntent: "Can one quarter contain three counters?"
+          purpose: 'Can one quarter contain three counters?'
+          pedagogicalIntent: 'Can one quarter contain three counters?'
           productionNotes: |
-              ### Section 3 — Can one quarter contain three counters?
-              
-              **Purpose:** Transfer from continuous length/area to a set as the reference whole.
-              
-              **Ordered content blocks:**
-              
-              1. **`markdown`** (supported Resource type) — “Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group.”
-              
-              2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset C: 12 numbered counters. Choose four grouping trays and put three counters in each; select exactly one group and show the label 1/4 of the 12-counter collection.
-              
-              3. **`text`** (supported Resource type) — “One quarter of this collection is one of four equal groups. Each group contains three counters. The whole is twelve counters—not just one counter.”
-              
-              **Meaningful learner action:** Arrange equal groups of three, then select one complete group as 1/4.
-              
-              **Specific formative feedback, not a scored answer:**
-              
-              - Only one counter selected: “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
-              - Groups 4,3,3,2: “We have four groups, but they are not equal. Move counters until every group contains three.”
-              
-              **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Text mode offers four trays with 'add selected counter' and 'move back' buttons; avoid drag-only sorting.
-              
-              **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-              
+            ### Section 3 — Can one quarter contain three counters?
+
+            **Purpose:** Transfer from continuous length/area to a set as the reference whole.
+
+            **Ordered content blocks:**
+
+            1. **`markdown`** (supported Resource type) — “Twelve counters are one whole collection. Put them into four equal groups. You will not get a single counter in each group.”
+
+            2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset C: 12 numbered counters. Choose four grouping trays and put three counters in each; select exactly one group and show the label 1/4 of the 12-counter collection.
+
+            3. **`text`** (supported Resource type) — “One quarter of this collection is one of four equal groups. Each group contains three counters. The whole is twelve counters—not just one counter.”
+
+            **Meaningful learner action:** Arrange equal groups of three, then select one complete group as 1/4.
+
+            **Specific formative feedback, not a scored answer:**
+
+            - Only one counter selected: “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
+            - Groups 4,3,3,2: “We have four groups, but they are not equal. Move counters until every group contains three.”
+
+            **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Text mode offers four trays with 'add selected counter' and 'move back' buttons; avoid drag-only sorting.
+
+            **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
+
       section4NewWholeIndependentExplanation:
         config:
-          id: "06618cae-1a6c-8fe1-8c3c-bc8ff0311fc0"
-          slug: "section4NewWholeIndependentExplanation"
-          type: "content"
+          id: '06618cae-1a6c-8fe1-8c3c-bc8ff0311fc0'
+          slug: 'section4NewWholeIndependentExplanation'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "New whole, independent explanation"
+              en: 'New whole, independent explanation'
             navigationLabel:
-              en: "New whole, independent explanation"
+              en: 'New whole, independent explanation'
           content:
             items:
               section4Text1:
                 config:
-                  id: "f78ba7dd-7df4-8f25-8587-9e985ff88660"
-                  slug: "section4Text1"
-                  type: "text"
+                  id: 'f78ba7dd-7df4-8f25-8587-9e985ff88660'
+                  slug: 'section4Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it."
+                      en: 'A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it.'
                 production:
-                  purpose: "Legacy text block of New whole, independent explanation; provisional draft."
-                  specification: "1. **`text`** (supported Resource type) — “A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it.”"
+                  purpose: 'Legacy text block of New whole, independent explanation; provisional draft.'
+                  specification: '1. **`text`** (supported Resource type) — “A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it.”'
               scene4Block2:
                 config:
-                  id: "f1d9b1b9-083c-8bf6-8a79-aca6139c66e9"
-                  slug: "scene4Block2"
-                  type: "scene"
+                  id: 'f1d9b1b9-083c-8bf6-8a79-aca6139c66e9'
+                  slug: 'scene4Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it."
+                        instruction: 'A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it.'
                 production:
-                  purpose: "Independently initialized Scene occurrence in New whole, independent explanation. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in New whole, independent explanation. Not approved or implemented.'
                   specification: |
-                      # UnitFractionWorkshop — Scene Specification
-                      
-                      **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
-                      **Owner:** Educational Screenwriter (specification only)
-                      **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
-                      **Methodologist source:** Draft Brief (preserved in production.methodology)
-                      **Target Skills:**
-                      
-                      - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
-                      - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
-                      
-                      ## Intended learning interaction
-                      
-                      An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
-                      
-                      **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
-                      
-                      The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                      
-                      ## Visual/conceptual model and required states
-                      
-                      | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
-                      | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
-                      | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
-                      | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
-                      | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
-                      | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
-                      | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
-                      | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
-                      | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
-                      
-                      All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                      
-                      ## Learner journey, transitions, and recovery
-                      
-                      1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
-                      2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
-                      3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
-                      4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
-                      5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
-                      6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                      
-                      ## Explanatory messages and failure modes
-                      
-                      - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
-                      - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
-                      - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
-                      - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
-                      - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
-                      - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
-                      - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
-                      - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
-                      
-                      **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
-                      
-                      **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                      
-                      ## Nonvisual / nonmotor-dependent equivalent
-                      
-                      Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
-                      
-                      Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                      
-                      ## RTL, locale, device and offline delivery
-                      
-                      The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                      
-                      ## Implementation and verification handoff
-                      
-                      **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                      
-                      
-                      ## Original placement
-                      
-                      2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset D: a ribbon of eight congruent squares split into four equal two-square lengths. Choose 1/2, 1/3 or 1/4 and optionally request a hint; do not display the fraction before prediction.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # UnitFractionWorkshop — Scene Specification
+
+                    **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
+                    **Owner:** Educational Screenwriter (specification only)
+                    **Lesson Content:** One Part Has a Name (preserved in this Lesson's production notes)
+                    **Methodologist source:** Draft Brief (preserved in production.methodology)
+                    **Target Skills:**
+
+                    - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
+                    - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
+
+                    ## Intended learning interaction
+
+                    An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
+
+                    **Specific manipulation and learner control:** Choose model (strip or counter collection) and local preset with labelled buttons, select partition, group counters using accessible assign/move controls, pick fraction label, ask for area/group evidence, reset. Same self-contained Scene component owns all presets; no props.
+
+                    The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
+
+                    ## Visual/conceptual model and required states
+
+                    | State / preset | What the learner can inspect                                          | Correct mathematical / logical condition             |
+                    | -------------- | --------------------------------------------------------------------- | ---------------------------------------------------- |
+                    | A equal        | 12-unit rectangular strip; three segments of four squares             | One segment can truthfully be called 1/3.            |
+                    | A unequal      | Same strip; widths 2, 3, 7 units                                      | No segment is 1/3 by equal partition.                |
+                    | B half         | 12-unit strip split 6+6, select one                                   | 1/2, one half; selected length 6 units.              |
+                    | B third        | 12-unit strip split 4+4+4, select one                                 | 1/3, one third; selected length 4 units.             |
+                    | B quarter      | 12-unit strip split 3+3+3+3, select one                               | 1/4, one quarter; selected length 3 units.           |
+                    | C collection   | 12 counters into four labelled groups of three; select group of three | 1/4 of twelve is three counters; one of four groups. |
+                    | D transfer     | Eight-unit ribbon split 2+2+2+2; one group selected                   | 1/4; all four parts equal.                           |
+
+                    All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
+
+                    ## Learner journey, transitions, and recovery
+
+                    1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
+                    2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
+                    3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
+                    4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
+                    5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
+                    6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
+
+                    ## Explanatory messages and failure modes
+
+                    - **A fair piece, not just a piece — Correct on 4+4+4:** “Each part covers four squares, so one part is one of three equal parts of the strip.”
+                    - **A fair piece, not just a piece — Incorrect on 2+3+7:** “There are three pieces, but they cover different amounts. We cannot call any of them one third of this strip.”
+                    - **The number for one of the parts — Confuse 1/3 with 1/4:** “Count the equal sections in the whole, not the unselected sections. There are three, so one section is 1/3.”
+                    - **The number for one of the parts — Confuse 4/1 with 1/4:** “The top 1 says one selected section. The bottom 4 says four equal sections make the whole.”
+                    - **Can one quarter contain three counters? — Only one counter selected:** “One counter is not one of four equal groups of twelve. Each of the four groups needs three counters.”
+                    - **Can one quarter contain three counters? — Groups 4,3,3,2:** “We have four groups, but they are not equal. Move counters until every group contains three.”
+                    - **New whole, independent explanation — 1/2 chosen:** “That would mean two equal pieces make the whole. This ribbon has four.”
+                    - **New whole, independent explanation — 1/3 chosen:** “Three parts would make thirds. Count the four equal lengths here.”
+
+                    **Boundary:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
+
+                    **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
+
+                    ## Nonvisual / nonmotor-dependent equivalent
+
+                    Offer a text grid of exact widths (4+4+4; 2+3+7), an ordered account of group sizes, and a verbal fraction option list, providing exactly the same comparisons to learners using screen readers.
+
+                    Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
+
+                    ## RTL, locale, device and offline delivery
+
+                    The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
+
+                    ## Implementation and verification handoff
+
+                    **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
+
+
+                    ## Original placement
+
+                    2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset D: a ribbon of eight congruent squares split into four equal two-square lengths. Choose 1/2, 1/3 or 1/4 and optionally request a hint; do not display the fraction before prediction.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section4Markdown3:
                 config:
-                  id: "8fa7c1e9-4cc5-855b-87b7-25a244d5a110"
-                  slug: "section4Markdown3"
-                  type: "markdown"
+                  id: '8fa7c1e9-4cc5-855b-87b7-25a244d5a110'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "There are four equal lengths in this ribbon. One is selected. So the shaded part is 1/4, one quarter of this ribbon."
+                      en: 'There are four equal lengths in this ribbon. One is selected. So the shaded part is 1/4, one quarter of this ribbon.'
                 production:
-                  purpose: "Legacy markdown block of New whole, independent explanation; provisional draft."
-                  specification: "3. **`markdown`** (supported Resource type) — “There are four equal lengths in this ribbon. One is selected. So the shaded part is 1/4, one quarter of this ribbon.”"
+                  purpose: 'Legacy markdown block of New whole, independent explanation; provisional draft.'
+                  specification: '3. **`markdown`** (supported Resource type) — “There are four equal lengths in this ribbon. One is selected. So the shaded part is 1/4, one quarter of this ribbon.”'
             order:
-              - "section4Text1"
-              - "scene4Block2"
-              - "section4Markdown3"
+              - 'section4Text1'
+              - 'scene4Block2'
+              - 'section4Markdown3'
         production:
-          purpose: "New whole, independent explanation"
-          pedagogicalIntent: "New whole, independent explanation"
+          purpose: 'New whole, independent explanation'
+          pedagogicalIntent: 'New whole, independent explanation'
           productionNotes: |
-              ### Section 4 — New whole, independent explanation
-              
-              **Purpose:** Use a non-identical picture and independent labeling.
-              
-              **Ordered content blocks:**
-              
-              1. **`text`** (supported Resource type) — “A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it.”
-              
-              2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset D: a ribbon of eight congruent squares split into four equal two-square lengths. Choose 1/2, 1/3 or 1/4 and optionally request a hint; do not display the fraction before prediction.
-              
-              3. **`markdown`** (supported Resource type) — “There are four equal lengths in this ribbon. One is selected. So the shaded part is 1/4, one quarter of this ribbon.”
-              
-              **Meaningful learner action:** Independently choose 1/4 and articulate 'one of four equal parts'.
-              
-              **Specific formative feedback, not a scored answer:**
-              
-              - 1/2 chosen: “That would mean two equal pieces make the whole. This ribbon has four.”
-              - 1/3 chosen: “Three parts would make thirds. Count the four equal lengths here.”
-              
-              **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Optional spoken answer to a teacher is possible, but speech recognition is not required.
-              
-              **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-              
+            ### Section 4 — New whole, independent explanation
+
+            **Purpose:** Use a non-identical picture and independent labeling.
+
+            **Ordered content blocks:**
+
+            1. **`text`** (supported Resource type) — “A new ribbon is divided into four equal lengths. One length is shaded. Write its fraction, then explain how you checked it.”
+
+            2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — UnitFractionWorkshop (preserved in Scene production.specification): Preset D: a ribbon of eight congruent squares split into four equal two-square lengths. Choose 1/2, 1/3 or 1/4 and optionally request a hint; do not display the fraction before prediction.
+
+            3. **`markdown`** (supported Resource type) — “There are four equal lengths in this ribbon. One is selected. So the shaded part is 1/4, one quarter of this ribbon.”
+
+            **Meaningful learner action:** Independently choose 1/4 and articulate 'one of four equal parts'.
+
+            **Specific formative feedback, not a scored answer:**
+
+            - 1/2 chosen: “That would mean two equal pieces make the whole. This ribbon has four.”
+            - 1/3 chosen: “Three parts would make thirds. Count the four equal lengths here.”
+
+            **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Optional spoken answer to a teacher is possible, but speech recognition is not required.
+
+            **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
+
     order:
-      - "section1AFairPieceNotJustAPiece"
-      - "section2TheNumberForOneOfTheParts"
-      - "section3CanOneQuarterContainThreeCounters"
-      - "section4NewWholeIndependentExplanation"
+      - 'section1AFairPieceNotJustAPiece'
+      - 'section2TheNumberForOneOfTheParts'
+      - 'section3CanOneQuarterContainThreeCounters'
+      - 'section4NewWholeIndependentExplanation'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # One Part Has a Name — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: modelAndReadUnitFractions
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Connect the mathematical idea of one of n equal parts to its spoken and written unit-fraction name, across an area, a length and a discrete set, without treating every single object as a fractional part. Grade 3 is appropriate because the learner must coordinate notation, the reference whole and equal grouping in three models. The Grade 2 equal-parts concept is the direct prerequisite; there is no requirement to perform fraction arithmetic.
-      
-      This Lesson intentionally joins 2 independently assessable Skills because a meaningful learning sequence must first build and then communicate the representation; it does not merge Skill identities or claim a new integrative Skill.
-      
-      ## Target audience
-      
-      **Primary: Grade 3**, approximately ages 8–9. Grade 3 is appropriate because the learner must coordinate notation, the reference whole and equal grouping in three models. The Grade 2 equal-parts concept is the direct prerequisite; there is no requirement to perform fraction arithmetic. Mixed reading fluency and language proficiency are expected: use short text, meaningful optional narration, explicit number/category labels, and full keyboard/touch and nonvisual alternatives. The Grade is a teaching-depth decision, not part of the Skill definition.
-      
-      ## Prerequisites
-      
-      - Identify a chosen whole and check whether a partition has equal parts (existing Skill `wholeAndEqualParts`).
-      - Count up to twelve objects, make equal groups and recognize digits 1–4.
-      - Distinguish a piece of a picture from a part of a collection without assuming both contain one object.
-      
-      Relevant previously transferred Playground Skill: `wholeAndEqualParts`. The Lesson is standalone: a learner does not need to complete any named Program or another specific Lesson if equivalent prerequisite knowledge is present.
-      
-      ## Target Skills
-      
+    # One Part Has a Name — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: modelAndReadUnitFractions
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Connect the mathematical idea of one of n equal parts to its spoken and written unit-fraction name, across an area, a length and a discrete set, without treating every single object as a fractional part. Grade 3 is appropriate because the learner must coordinate notation, the reference whole and equal grouping in three models. The Grade 2 equal-parts concept is the direct prerequisite; there is no requirement to perform fraction arithmetic.
+
+    This Lesson intentionally joins 2 independently assessable Skills because a meaningful learning sequence must first build and then communicate the representation; it does not merge Skill identities or claim a new integrative Skill.
+
+    ## Target audience
+
+    **Primary: Grade 3**, approximately ages 8–9. Grade 3 is appropriate because the learner must coordinate notation, the reference whole and equal grouping in three models. The Grade 2 equal-parts concept is the direct prerequisite; there is no requirement to perform fraction arithmetic. Mixed reading fluency and language proficiency are expected: use short text, meaningful optional narration, explicit number/category labels, and full keyboard/touch and nonvisual alternatives. The Grade is a teaching-depth decision, not part of the Skill definition.
+
+    ## Prerequisites
+
+    - Identify a chosen whole and check whether a partition has equal parts (existing Skill `wholeAndEqualParts`).
+    - Count up to twelve objects, make equal groups and recognize digits 1–4.
+    - Distinguish a piece of a picture from a part of a collection without assuming both contain one object.
+
+    Relevant previously transferred Playground Skill: `wholeAndEqualParts`. The Lesson is standalone: a learner does not need to complete any named Program or another specific Lesson if equivalent prerequisite knowledge is present.
+
+    ## Target Skills
+
+    - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
+    - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
+
+    ## Expected learning outcomes
+
+    - In a fixed whole divided into two, three or four equal parts, identify and model exactly one part.
+    - Read and write `1/2`, `1/3` and `1/4` as one half, one third and one quarter of a specified whole.
+    - Explain that the bottom number states how many equal parts compose the whole, while the top `1` names one selected part; no general numerator lesson is claimed.
+    - Represent `1/4` of a twelve-counter collection as one of four equal groups of three, rather than one isolated counter.
+    - Reject a `1/3` label when the proposed three parts have unequal amounts.
+
+    An instructional interaction shows what was taught or practiced, not validated mastery of every linked Skill.
+
+    ## Essential subject matter
+
+    - A unit fraction `1/n` means one of `n` equal-magnitude parts of a specified whole. The `n` is a positive integer, and all `n` parts together form exactly that whole.
+    - The symbols are read one half `1/2`, one third `1/3`, one quarter `1/4`. The slash/fraction bar separates a count of selected parts from a count of equal whole-parts.
+    - A 12-square strip split into three four-square strips yields `1/3` per strip. Split into four three-square strips yields `1/4` per strip.
+    - The same language applies to discrete sets, provided the _set_ is the whole and the members are partitioned into equal groups. One of four equal groups of a 12-counter set contains three counters.
+    - Equal division is an essential condition: a strip with lengths 2, 3 and 7 cannot call any of those pieces `1/3` of the strip.
+
+    **Instructional depth and hard scope:** Positive integer partition counts 2, 3 and 4 only. Unit fractions with exactly one selected equal part; area/length strip models and one discrete-set model with 12 counters. The chosen whole must be shown and held constant for comparisons. Do not introduce non-unit fractions, general numerator mastery, equivalence proofs, operations, number-line arithmetic or fractions beyond one.
+
+    ## Conceptual progression and dependencies
+
+    Begin with the learner's prerequisite mental model, introduce one controlling representation or condition, then have the learner explain both a confirming example and a tempting non-example. Later reduce hints so they apply the concept to a new setup. Grade 3 is appropriate because the learner must coordinate notation, the reference whole and equal grouping in three models. The Grade 2 equal-parts concept is the direct prerequisite; there is no requirement to perform fraction arithmetic. Do not infer that presentation, a correct guess or a revealed explanation certifies independent competence.
+
+    ## Misconceptions, examples and boundaries
+
+    - Calling any of three arbitrary unequal pieces one third.
+    - Reading `1/4` as four selected pieces rather than one of four equal pieces.
+    - Assuming a unit fraction of a twelve-object set must contain one object.
+    - Comparing the size of a `1/2` piece and `1/2` of a different whole without identifying both wholes.
+
+    **Exclusions:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
+
+    ## Localization, accessibility and offline intent
+
+    Learner-facing text, mathematical language, captions, accessible labels and Scene feedback must ultimately have **genuine translations for every supported locale**; no missing keys, English placeholder translations or silent fallback are approved. Use semantically appropriate LTR/RTL layouts; do not mirror mathematics, clock meanings, figures or numeric symbols by default. Design equivalently meaningful touch, keyboard, screen-reader and low-vision paths, reduced-motion static representations, visible focus, adequate target sizes and WCAG 2.2 AA compliance. Preserve full learning functionality in low-resource and offline use once the platform supports packaged Lesson downloads. These are intended acceptance criteria, **not claims of current implementation**.
+
+    ## Sources and factual verification
+
+    - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts) — Mathematics canonical Skill definition/description; transferred to Playground without modification.
+    - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts) — Mathematics canonical Skill definition/description; transferred to Playground without modification.
+    - [Lesson](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md), [Section](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md) and [Program](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/program.md) entity contracts in Studio.
+    - Checked model cases and expected results are enumerated independently in the associated provisional Scene spec; verify them again at implementation.
+
+    ## Curriculum / Program compatibility
+
+    Unspecified. Standalone learning objective only, with no external quest, reward or Program narrative. Grade is determined pedagogically and does not cap the taxonomy Skill.
+
+    ## Open editorial decisions
+
+    - **Editor:** approve this Grade 3 audience, depth, boundary and joint-Skill pedagogical grouping; a Draft Brief does not authorize a later Approved state.
+    - **Methodologist/editor:** confirm any cross-representation scope before development; no Skill taxonomy edits are requested.
+    - **Screenwriter:** the authorized draft Content and Scene spec are **provisional pending this Methodologist decision** and require their own subsequent reviews.
+
+    ## Methodologist handoff
+
+    Ready for editorial review only. The companion `content.md` and Scene specification have been drafted provisionally by explicit batch instruction; **formal Methodologist approval gate has not passed**. No React Scene, runtime Lesson, Question, Quiz or scoring has been authorized or implemented.
+  productionNotes: |
+    Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+
+    ## Former Screenwriter introduction
+
+    # One Part Has a Name — Lesson Content
+
+    **Editorial status: Provisional Draft — pending Methodologist approval; not an Approved Screenwriter artifact.**
+
+    - Lesson directory: `content/playground/Data/Lessons/1/modelAndReadUnitFractions/`
+    - Audience: **Grade 3**, approximately ages 8–9
+    - Methodologist source: Draft Brief (preserved in production.methodology) (**not approved**)
+    - Target Skills:
       - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
       - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - In a fixed whole divided into two, three or four equal parts, identify and model exactly one part.
-      - Read and write `1/2`, `1/3` and `1/4` as one half, one third and one quarter of a specified whole.
-      - Explain that the bottom number states how many equal parts compose the whole, while the top `1` names one selected part; no general numerator lesson is claimed.
-      - Represent `1/4` of a twelve-counter collection as one of four equal groups of three, rather than one isolated counter.
-      - Reject a `1/3` label when the proposed three parts have unequal amounts.
-      
-      An instructional interaction shows what was taught or practiced, not validated mastery of every linked Skill.
-      
-      ## Essential subject matter
-      
-      - A unit fraction `1/n` means one of `n` equal-magnitude parts of a specified whole. The `n` is a positive integer, and all `n` parts together form exactly that whole.
-      - The symbols are read one half `1/2`, one third `1/3`, one quarter `1/4`. The slash/fraction bar separates a count of selected parts from a count of equal whole-parts.
-      - A 12-square strip split into three four-square strips yields `1/3` per strip. Split into four three-square strips yields `1/4` per strip.
-      - The same language applies to discrete sets, provided the _set_ is the whole and the members are partitioned into equal groups. One of four equal groups of a 12-counter set contains three counters.
-      - Equal division is an essential condition: a strip with lengths 2, 3 and 7 cannot call any of those pieces `1/3` of the strip.
-      
-      **Instructional depth and hard scope:** Positive integer partition counts 2, 3 and 4 only. Unit fractions with exactly one selected equal part; area/length strip models and one discrete-set model with 12 counters. The chosen whole must be shown and held constant for comparisons. Do not introduce non-unit fractions, general numerator mastery, equivalence proofs, operations, number-line arithmetic or fractions beyond one.
-      
-      ## Conceptual progression and dependencies
-      
-      Begin with the learner's prerequisite mental model, introduce one controlling representation or condition, then have the learner explain both a confirming example and a tempting non-example. Later reduce hints so they apply the concept to a new setup. Grade 3 is appropriate because the learner must coordinate notation, the reference whole and equal grouping in three models. The Grade 2 equal-parts concept is the direct prerequisite; there is no requirement to perform fraction arithmetic. Do not infer that presentation, a correct guess or a revealed explanation certifies independent competence.
-      
-      ## Misconceptions, examples and boundaries
-      
-      - Calling any of three arbitrary unequal pieces one third.
-      - Reading `1/4` as four selected pieces rather than one of four equal pieces.
-      - Assuming a unit fraction of a twelve-object set must contain one object.
-      - Comparing the size of a `1/2` piece and `1/2` of a different whole without identifying both wholes.
-      
-      **Exclusions:** The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
-      
-      ## Localization, accessibility and offline intent
-      
-      Learner-facing text, mathematical language, captions, accessible labels and Scene feedback must ultimately have **genuine translations for every supported locale**; no missing keys, English placeholder translations or silent fallback are approved. Use semantically appropriate LTR/RTL layouts; do not mirror mathematics, clock meanings, figures or numeric symbols by default. Design equivalently meaningful touch, keyboard, screen-reader and low-vision paths, reduced-motion static representations, visible focus, adequate target sizes and WCAG 2.2 AA compliance. Preserve full learning functionality in low-resource and offline use once the platform supports packaged Lesson downloads. These are intended acceptance criteria, **not claims of current implementation**.
-      
-      ## Sources and factual verification
-      
-      - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts) — Mathematics canonical Skill definition/description; transferred to Playground without modification.
-      - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts) — Mathematics canonical Skill definition/description; transferred to Playground without modification.
-      - [Lesson](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md), [Section](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md) and [Program](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/program.md) entity contracts in Studio.
-      - Checked model cases and expected results are enumerated independently in the associated provisional Scene spec; verify them again at implementation.
-      
-      ## Curriculum / Program compatibility
-      
-      Unspecified. Standalone learning objective only, with no external quest, reward or Program narrative. Grade is determined pedagogically and does not cap the taxonomy Skill.
-      
-      ## Open editorial decisions
-      
-      - **Editor:** approve this Grade 3 audience, depth, boundary and joint-Skill pedagogical grouping; a Draft Brief does not authorize a later Approved state.
-      - **Methodologist/editor:** confirm any cross-representation scope before development; no Skill taxonomy edits are requested.
-      - **Screenwriter:** the authorized draft Content and Scene spec are **provisional pending this Methodologist decision** and require their own subsequent reviews.
-      
-      ## Methodologist handoff
-      
-      Ready for editorial review only. The companion `content.md` and Scene specification have been drafted provisionally by explicit batch instruction; **formal Methodologist approval gate has not passed**. No React Scene, runtime Lesson, Question, Quiz or scoring has been authorized or implemented.
-  productionNotes: |
-      Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
-      
-      ## Former Screenwriter introduction
-      
-      # One Part Has a Name — Lesson Content
-      
-      **Editorial status: Provisional Draft — pending Methodologist approval; not an Approved Screenwriter artifact.**
-      
-      - Lesson directory: `content/playground/Data/Lessons/1/modelAndReadUnitFractions/`
-      - Audience: **Grade 3**, approximately ages 8–9
-      - Methodologist source: Draft Brief (preserved in production.methodology) (**not approved**)
-      - Target Skills:
-        - [unitFractionModel.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionModel.data.ts)
-        - [unitFractionRead.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/unitFractionRead.data.ts)
-      - Program dependence: **None**
-      - Runtime/assessment status: editorial instructions only; no implementation, graded Questions or mastery signal.
-      
-      ## Creative and instructional premise
-      
-      Connect the mathematical idea of one of n equal parts to its spoken and written unit-fraction name, across an area, a length and a discrete set, without treating every single object as a fractional part.
-      
-      An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
-      
-      **Why interactivity matters:** The child can change the relevant mathematical or observational state, inspect evidence rather than accept an answer by authority, receive a reason-specific explanation, and retry without penalty. The final unfamiliar example is not a copy of the original. The experience is a standalone teaching sequence, not a Program plot, mascot activity or points-based game.
-      
-      **Teaching limits:** Positive integer partition counts 2, 3 and 4 only. Unit fractions with exactly one selected equal part; area/length strip models and one discrete-set model with 12 counters. The chosen whole must be shown and held constant for comparisons. Do not introduce non-unit fractions, general numerator mastery, equivalence proofs, operations, number-line arithmetic or fractions beyond one. The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
-      
-      ## Learner journey / planned Sections
-      
-      1. **A fair piece, not just a piece:** Re-activate equal-part reasoning before introducing notation.
-      2. **The number for one of the parts:** Map a concrete equal part to written and spoken unit-fraction notation.
-      3. **Can one quarter contain three counters?:** Transfer from continuous length/area to a set as the reference whole.
-      4. **New whole, independent explanation:** Use a non-identical picture and independent labeling.
-      
-      Each general Section has a **single top-to-bottom column** of typed `text`, `markdown` and `scene` blocks. These Resource types are supported by the current generic renderer, but the **named UnitFractionWorkshop Scene does not exist yet** and is specified for later implementation. No new Section discriminators, Question adapters or scoring contracts are invented.
-      
-      ## Detailed ordered Section plan
-      
-      
-      ## Former Screenwriter closing notes
-      
-      ## Scene handoff
-      
-      - UnitFractionWorkshop (preserved in Scene production.specification) — proposed prop-free, self-contained Scene with explicit state cases, feedback and nonvisual pathway. **The Scene type/renderer is present as a general platform capability; this particular Scene is not implemented.**
-      - Scene instances may use independent local preset selection within each Section, without a public props API or hidden cross-Section state. Section order itself is specified above; no invented Lesson runtime registry is implied.
-      
-      ## Independent transfer and reflection
-      
-      One section of an eight-square ribbon divided into four equal lengths is 1/4; one of four equal groups from twelve counters contains three counters. Explain why these are both called one quarter.
-      
-      Invite the child to describe **why** the result fits the model before revealing the full explanation. One optional hint is available. A non-reading learner can use accessible choice-and-explanation controls or speak to a nearby adult, without a speech-recognition requirement. Do not turn a voluntary reveal, an acknowledgement or a Section completion into a mastery claim.
-      
-      ## Planned short recall Note
-      
-      “A unit fraction is one of equal parts of one chosen whole.”
-      
-      Proposed pedagogical unlock _point_: when the contrast in Section 3 has been examined and explained. **Status planned, not wired**: no Note entity, unlock API, persistence, offline sync or review-sheet scheduler is claimed present. A learner who does not trigger an eventual Note still gets the full teaching content.
-      
-      ## Locale, accessibility, offline and resource readiness
-      
-      All quoted learner text and Scene feedback above are English authoring source, **not implemented locale bundles**. Complete genuine translation for all required languages, contextual terms, numeral conventions, accessible descriptions and RTL-specific meaning is mandatory before runtime delivery. The spec does not create or claim language fallback behavior. Design for WCAG 2.2 AA, keyboard and mobile touch, nonvisual equivalent participation, reduced motion, weak-device parity and complete offline access once the Lesson and Scene are packaged. New assets must be locally available; no network call is essential to these experiences.
-      
-      ## Editorial and engineering dependencies
-      
-      **All Content is provisional Draft pending Methodologist approval.** Subsequent Screenwriter approval and independent Scene review remain required. Coding Agent owns runtime content assembly, Scene registration, tests, locale resources and eventual PWA packaging. Assessment Architect owns all Questions, Quiz behavior, scores, retries and validated evidence. This batch does **not** implement any of those capabilities.
+    - Program dependence: **None**
+    - Runtime/assessment status: editorial instructions only; no implementation, graded Questions or mastery signal.
+
+    ## Creative and instructional premise
+
+    Connect the mathematical idea of one of n equal parts to its spoken and written unit-fraction name, across an area, a length and a discrete set, without treating every single object as a fractional part.
+
+    An accessible strip-and-set exploration with a chosen whole, partition presets, a one-part highlight, true area/group counts and an optional fraction name reveal. Visual modes are representation changes, not different props or separate Scoring stages.
+
+    **Why interactivity matters:** The child can change the relevant mathematical or observational state, inspect evidence rather than accept an answer by authority, receive a reason-specific explanation, and retry without penalty. The final unfamiliar example is not a copy of the original. The experience is a standalone teaching sequence, not a Program plot, mascot activity or points-based game.
+
+    **Teaching limits:** Positive integer partition counts 2, 3 and 4 only. Unit fractions with exactly one selected equal part; area/length strip models and one discrete-set model with 12 counters. The chosen whole must be shown and held constant for comparisons. Do not introduce non-unit fractions, general numerator mastery, equivalence proofs, operations, number-line arithmetic or fractions beyond one. The lesson uses the denominator only as part of reading a unit fraction; a full independent denominator-definition Skill is intentionally reserved for later coverage. The discrete-set example uses groups of identical counters and no claim about their physical area.
+
+    ## Learner journey / planned Sections
+
+    1. **A fair piece, not just a piece:** Re-activate equal-part reasoning before introducing notation.
+    2. **The number for one of the parts:** Map a concrete equal part to written and spoken unit-fraction notation.
+    3. **Can one quarter contain three counters?:** Transfer from continuous length/area to a set as the reference whole.
+    4. **New whole, independent explanation:** Use a non-identical picture and independent labeling.
+
+    Each general Section has a **single top-to-bottom column** of typed `text`, `markdown` and `scene` blocks. These Resource types are supported by the current generic renderer, but the **named UnitFractionWorkshop Scene does not exist yet** and is specified for later implementation. No new Section discriminators, Question adapters or scoring contracts are invented.
+
+    ## Detailed ordered Section plan
+
+
+    ## Former Screenwriter closing notes
+
+    ## Scene handoff
+
+    - UnitFractionWorkshop (preserved in Scene production.specification) — proposed prop-free, self-contained Scene with explicit state cases, feedback and nonvisual pathway. **The Scene type/renderer is present as a general platform capability; this particular Scene is not implemented.**
+    - Scene instances may use independent local preset selection within each Section, without a public props API or hidden cross-Section state. Section order itself is specified above; no invented Lesson runtime registry is implied.
+
+    ## Independent transfer and reflection
+
+    One section of an eight-square ribbon divided into four equal lengths is 1/4; one of four equal groups from twelve counters contains three counters. Explain why these are both called one quarter.
+
+    Invite the child to describe **why** the result fits the model before revealing the full explanation. One optional hint is available. A non-reading learner can use accessible choice-and-explanation controls or speak to a nearby adult, without a speech-recognition requirement. Do not turn a voluntary reveal, an acknowledgement or a Section completion into a mastery claim.
+
+    ## Planned short recall Note
+
+    “A unit fraction is one of equal parts of one chosen whole.”
+
+    Proposed pedagogical unlock _point_: when the contrast in Section 3 has been examined and explained. **Status planned, not wired**: no Note entity, unlock API, persistence, offline sync or review-sheet scheduler is claimed present. A learner who does not trigger an eventual Note still gets the full teaching content.
+
+    ## Locale, accessibility, offline and resource readiness
+
+    All quoted learner text and Scene feedback above are English authoring source, **not implemented locale bundles**. Complete genuine translation for all required languages, contextual terms, numeral conventions, accessible descriptions and RTL-specific meaning is mandatory before runtime delivery. The spec does not create or claim language fallback behavior. Design for WCAG 2.2 AA, keyboard and mobile touch, nonvisual equivalent participation, reduced motion, weak-device parity and complete offline access once the Lesson and Scene are packaged. New assets must be locally available; no network call is essential to these experiences.
+
+    ## Editorial and engineering dependencies
+
+    **All Content is provisional Draft pending Methodologist approval.** Subsequent Screenwriter approval and independent Scene review remain required. Coding Agent owns runtime content assembly, Scene registration, tests, locale resources and eventual PWA packaging. Assessment Architect owns all Questions, Quiz behavior, scores, retries and validated evidence. This batch does **not** implement any of those capabilities.

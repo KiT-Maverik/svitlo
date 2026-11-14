@@ -1,605 +1,605 @@
 config:
-  id: "60134b5f-6010-50ad-b0a6-adedff3f761b"
-  slug: "compareAndOrderTwoDigitNumbers"
-  type: "lesson"
+  id: '60134b5f-6010-50ad-b0a6-adedff3f761b'
+  slug: 'compareAndOrderTwoDigitNumbers'
+  type: 'lesson'
   skills:
-    - "299e8e1c-d426-403f-a73a-9111bcc65939"
+    - '299e8e1c-d426-403f-a73a-9111bcc65939'
   params:
     requireQuiz: false
     languages:
-      - "ar"
-      - "be"
-      - "bn"
-      - "de"
-      - "en"
-      - "es"
-      - "et"
-      - "fr"
-      - "he"
-      - "hi"
-      - "id"
-      - "ja"
-      - "ka"
-      - "kk"
-      - "ko"
-      - "lt"
-      - "lv"
-      - "mr"
-      - "ms"
-      - "pl"
-      - "pt"
-      - "qm"
-      - "ta"
-      - "te"
-      - "tr"
-      - "uk"
-      - "ur"
-      - "vi"
-      - "zh"
+      - 'ar'
+      - 'be'
+      - 'bn'
+      - 'de'
+      - 'en'
+      - 'es'
+      - 'et'
+      - 'fr'
+      - 'he'
+      - 'hi'
+      - 'id'
+      - 'ja'
+      - 'ka'
+      - 'kk'
+      - 'ko'
+      - 'lt'
+      - 'lv'
+      - 'mr'
+      - 'ms'
+      - 'pl'
+      - 'pt'
+      - 'qm'
+      - 'ta'
+      - 'te'
+      - 'tr'
+      - 'uk'
+      - 'ur'
+      - 'vi'
+      - 'zh'
     sections:
       allowNavigation: true
       allowSkipping: true
       showIndexes: true
   locale:
     title:
-      en: "Compare Tens First: Ordering Numbers to 100"
+      en: 'Compare Tens First: Ordering Numbers to 100'
   section:
     items:
       section1TensFirstComparator:
         config:
-          id: "5527a25c-6db7-8185-8091-6a674801a9be"
-          slug: "section1TensFirstComparator"
-          type: "content"
+          id: '5527a25c-6db7-8185-8091-6a674801a9be'
+          slug: 'section1TensFirstComparator'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Tens-First Comparator"
+              en: 'Tens-First Comparator'
             navigationLabel:
-              en: "Tens-First Comparator"
+              en: 'Tens-First Comparator'
           content:
             items:
               section1Text1:
                 config:
-                  id: "d0184bab-f453-8628-856c-df7ec12732fd"
-                  slug: "section1Text1"
-                  type: "text"
+                  id: 'd0184bab-f453-8628-856c-df7ec12732fd'
+                  slug: 'section1Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Compare 47 and 52. Do seven ones make 47 larger?"
+                      en: 'Compare 47 and 52. Do seven ones make 47 larger?'
                 production:
-                  purpose: "Legacy text block of Tens-First Comparator; provisional draft."
-                  specification: "  1. **`text` — existing generic renderer:** “Compare 47 and 52. Do seven ones make 47 larger?”"
+                  purpose: 'Legacy text block of Tens-First Comparator; provisional draft.'
+                  specification: '  1. **`text` — existing generic renderer:** “Compare 47 and 52. Do seven ones make 47 larger?”'
               scene1Block2:
                 config:
-                  id: "ed367365-f52d-8a65-8aee-7932e2f50032"
-                  slug: "scene1Block2"
-                  type: "scene"
+                  id: 'ed367365-f52d-8a65-8aee-7932e2f50032'
+                  slug: 'scene1Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Compare 47 and 52. Do seven ones make 47 larger?"
+                        instruction: 'Compare 47 and 52. Do seven ones make 47 larger?'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Tens-First Comparator. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Tens-First Comparator. Not approved or implemented.'
                   specification: |
-                      # Tens-First Comparator — Scene Specification
-                      
-                      Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Compare Tens First: Ordering Numbers to 100 Content (preserved in this Lesson's production notes), Section 1
-                      Methodologist objectives: Draft Methodologist Brief (preserved in production.methodology), not yet approved
-                      Implementation: **proposed independent, self-contained prop-free Scene**, not built
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      Reveal the causal mathematical principle in an operable first model. Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      **Canonical mathematical rule:** Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
-                      
-                      **Initial state:** Presets A=47,B=52; A=29,B=31; A=63,B=68; equal pair 72/72. Each item has explicit tens bundles and loose one identities.
-                      
-                      **Authoritative model:** Selected pair, immutable operand values, derived tens and ones counts, selected relation and worked comparison ledger. Choosing a relation never changes the source numbers.
-                      
-                      **Instructional boundary:** Do not teach comparing ones before tens when tens differ; 100 is a three-digit endpoint and not a two-digit sort card.
-                      
-                      No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      ### Beat 1 — Compare 47 and 52. Do seven ones make 47 larger?
-                      
-                      - **Exact learner-facing invitation:** “Compare 47 and 52. Do seven ones make 47 larger?”
-                      - **Controllable investigation:** Inspect four complete tens vs five tens, then choose 47<52. A secondary 29/31 counterexample uses nine ones vs one.
-                      - **Observed correct consequence:** 47<52 and 29<31 because the larger tens count wins.
-                      - **Evidence from actual model:** 47=40+7<50+2=52; 29<31.
-                      - **Misconception-sensitive feedback and repair:** For 47>52, show the extra complete ten in 52 is greater than the difference in loose ones.
-                      - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                      
-                      ### Beat 2 — Now compare 63 and 68; then try 72 and 72.
-                      
-                      - **Exact learner-facing invitation:** “Now compare 63 and 68; then try 72 and 72.”
-                      - **Controllable investigation:** Since six tens match, compare three vs eight ones; then inspect identical value 72 in varied arrangements.
-                      - **Observed correct consequence:** 63<68 because 3<8 ones; 72=72 regardless of spacing.
-                      - **Evidence from actual model:** 63<68; 72=72.
-                      - **Misconception-sensitive feedback and repair:** For greater on 63/68, show the five unmatched ones in 68. For not-equal on 72, match all ten-groups and loose ones.
-                      - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Select pair; inspect tens; inspect ones; select <,>,=; show grouping evidence; reveal; reset.
-                      - **Invariants and consistency:** Selected pair, immutable operand values, derived tens and ones counts, selected relation and worked comparison ledger. Choosing a relation never changes the source numbers. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
-                      - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
-                      - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
-                      - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      A/B role and tens/ones ledger are labelled in words; math signs and operands are directionally isolated so RTL cannot invert the comparison accidentally.
-                      
-                      All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 47<52 and 29<31 via tens count.
-                      2. 63<68 via ones after equal tens.
-                      3. 72=72 despite changing layout.
-                      4. Selections never mutate operand values.
-                      5. Beat 1 correct model: 47=40+7<50+2=52; 29<31. Test misconception route: For 47>52, show the extra complete ten in 52 is greater than the difference in loose ones.
-                      6. Beat 2 correct model: 63<68; 72=72. Test misconception route: For greater on 63/68, show the five unmatched ones in 68. For not-equal on 72, match all ten-groups and loose ones.
-                      7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
-                      8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      This is a **proposed** Scene. Generic `scene` Resource rendering exists; Tens-First Comparator does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **`scene` — generic type supported, bespoke implementation proposed:** Tens-First Comparator (preserved in Scene production.specification). Presets A=47,B=52; A=29,B=31; A=63,B=68; equal pair 72/72. Each item has explicit tens bundles and loose one identities.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Tens-First Comparator — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Compare Tens First: Ordering Numbers to 100 Content (preserved in this Lesson's production notes), Section 1
+                    Methodologist objectives: Draft Methodologist Brief (preserved in production.methodology), not yet approved
+                    Implementation: **proposed independent, self-contained prop-free Scene**, not built
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Reveal the causal mathematical principle in an operable first model. Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    **Canonical mathematical rule:** Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
+
+                    **Initial state:** Presets A=47,B=52; A=29,B=31; A=63,B=68; equal pair 72/72. Each item has explicit tens bundles and loose one identities.
+
+                    **Authoritative model:** Selected pair, immutable operand values, derived tens and ones counts, selected relation and worked comparison ledger. Choosing a relation never changes the source numbers.
+
+                    **Instructional boundary:** Do not teach comparing ones before tens when tens differ; 100 is a three-digit endpoint and not a two-digit sort card.
+
+                    No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Beat 1 — Compare 47 and 52. Do seven ones make 47 larger?
+
+                    - **Exact learner-facing invitation:** “Compare 47 and 52. Do seven ones make 47 larger?”
+                    - **Controllable investigation:** Inspect four complete tens vs five tens, then choose 47<52. A secondary 29/31 counterexample uses nine ones vs one.
+                    - **Observed correct consequence:** 47<52 and 29<31 because the larger tens count wins.
+                    - **Evidence from actual model:** 47=40+7<50+2=52; 29<31.
+                    - **Misconception-sensitive feedback and repair:** For 47>52, show the extra complete ten in 52 is greater than the difference in loose ones.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+
+                    ### Beat 2 — Now compare 63 and 68; then try 72 and 72.
+
+                    - **Exact learner-facing invitation:** “Now compare 63 and 68; then try 72 and 72.”
+                    - **Controllable investigation:** Since six tens match, compare three vs eight ones; then inspect identical value 72 in varied arrangements.
+                    - **Observed correct consequence:** 63<68 because 3<8 ones; 72=72 regardless of spacing.
+                    - **Evidence from actual model:** 63<68; 72=72.
+                    - **Misconception-sensitive feedback and repair:** For greater on 63/68, show the five unmatched ones in 68. For not-equal on 72, match all ten-groups and loose ones.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Select pair; inspect tens; inspect ones; select <,>,=; show grouping evidence; reveal; reset.
+                    - **Invariants and consistency:** Selected pair, immutable operand values, derived tens and ones counts, selected relation and worked comparison ledger. Choosing a relation never changes the source numbers. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
+                    - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
+                    - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
+                    - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    A/B role and tens/ones ledger are labelled in words; math signs and operands are directionally isolated so RTL cannot invert the comparison accidentally.
+
+                    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 47<52 and 29<31 via tens count.
+                    2. 63<68 via ones after equal tens.
+                    3. 72=72 despite changing layout.
+                    4. Selections never mutate operand values.
+                    5. Beat 1 correct model: 47=40+7<50+2=52; 29<31. Test misconception route: For 47>52, show the extra complete ten in 52 is greater than the difference in loose ones.
+                    6. Beat 2 correct model: 63<68; 72=72. Test misconception route: For greater on 63/68, show the five unmatched ones in 68. For not-equal on 72, match all ten-groups and loose ones.
+                    7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
+                    8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    This is a **proposed** Scene. Generic `scene` Resource rendering exists; Tens-First Comparator does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
+
+
+                    ## Original placement
+
+                      2. **`scene` — generic type supported, bespoke implementation proposed:** Tens-First Comparator (preserved in Scene production.specification). Presets A=47,B=52; A=29,B=31; A=63,B=68; equal pair 72/72. Each item has explicit tens bundles and loose one identities.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section1Markdown3:
                 config:
-                  id: "8d30712f-c607-8a3b-84d5-b41c7fe23f08"
-                  slug: "section1Markdown3"
-                  type: "markdown"
+                  id: '8d30712f-c607-8a3b-84d5-b41c7fe23f08'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "47<52 and 29<31 because the larger tens count wins. 47=40+7<50+2=52; 29<31."
+                      en: '47<52 and 29<31 because the larger tens count wins. 47=40+7<50+2=52; 29<31.'
                 production:
-                  purpose: "Legacy markdown block of Tens-First Comparator; provisional draft."
-                  specification: "  3. **`markdown` — existing generic renderer:** “47<52 and 29<31 because the larger tens count wins. 47=40+7<50+2=52; 29<31.”"
+                  purpose: 'Legacy markdown block of Tens-First Comparator; provisional draft.'
+                  specification: '  3. **`markdown` — existing generic renderer:** “47<52 and 29<31 because the larger tens count wins. 47=40+7<50+2=52; 29<31.”'
             order:
-              - "section1Text1"
-              - "scene1Block2"
-              - "section1Markdown3"
+              - 'section1Text1'
+              - 'scene1Block2'
+              - 'section1Markdown3'
         production:
-          purpose: "Tens-First Comparator"
-          pedagogicalIntent: "Tens-First Comparator"
+          purpose: 'Tens-First Comparator'
+          pedagogicalIntent: 'Tens-First Comparator'
           productionNotes: |
-              ### Section 1 — Tens-First Comparator
-              
-              - **Purpose:** Develop the principle through a manipulable concrete model and a counterexample.
-              - **Current Section contract:** `LessonSection_Config`, one **vertically ordered nonempty** list of typed resources, not a Quiz.
-              - **Ordered Resource blocks:**
-                1. **`text` — existing generic renderer:** “Compare 47 and 52. Do seven ones make 47 larger?”
-                2. **`scene` — generic type supported, bespoke implementation proposed:** Tens-First Comparator (preserved in Scene production.specification). Presets A=47,B=52; A=29,B=31; A=63,B=68; equal pair 72/72. Each item has explicit tens bundles and loose one identities.
-                3. **`markdown` — existing generic renderer:** “47<52 and 29<31 because the larger tens count wins. 47=40+7<50+2=52; 29<31.”
-              - **Learner-controlled beats, observations and feedback:**
-                - **Beat 1: “Compare 47 and 52. Do seven ones make 47 larger?”** Inspect four complete tens vs five tens, then choose 47<52. A secondary 29/31 counterexample uses nine ones vs one. **Result:** 47<52 and 29<31 because the larger tens count wins. **Why the plausible mistake fails:** For 47>52, show the extra complete ten in 52 is greater than the difference in loose ones. **Verified model:** 47=40+7<50+2=52; 29<31.
-                - **Beat 2: “Now compare 63 and 68; then try 72 and 72.”** Since six tens match, compare three vs eight ones; then inspect identical value 72 in varied arrangements. **Result:** 63<68 because 3<8 ones; 72=72 regardless of spacing. **Why the plausible mistake fails:** For greater on 63/68, show the five unmatched ones in 68. For not-equal on 72, match all ten-groups and loose ones. **Verified model:** 63<68; 72=72.
-              - **Independent controls:** Select pair; inspect tens; inspect ones; select <,>,=; show grouping evidence; reveal; reset. Full worked reveal is always available and Reset applies only to this Scene, without scoring or locks.
-              - **Mathematical state:** Selected pair, immutable operand values, derived tens and ones counts, selected relation and worked comparison ledger. Choosing a relation never changes the source numbers.
-              - **Instructional boundary:** Do not teach comparing ones before tens when tens differ; 100 is a three-digit endpoint and not a two-digit sort card.
-              - **Accessibility and RTL:** A/B role and tens/ones ledger are labelled in words; math signs and operands are directionally isolated so RTL cannot invert the comparison accidentally. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
-              - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Compare tens first; one extra group of ten can outweigh any loose ones.” is planned only, with no event or persistence.
-              
+            ### Section 1 — Tens-First Comparator
+
+            - **Purpose:** Develop the principle through a manipulable concrete model and a counterexample.
+            - **Current Section contract:** `LessonSection_Config`, one **vertically ordered nonempty** list of typed resources, not a Quiz.
+            - **Ordered Resource blocks:**
+              1. **`text` — existing generic renderer:** “Compare 47 and 52. Do seven ones make 47 larger?”
+              2. **`scene` — generic type supported, bespoke implementation proposed:** Tens-First Comparator (preserved in Scene production.specification). Presets A=47,B=52; A=29,B=31; A=63,B=68; equal pair 72/72. Each item has explicit tens bundles and loose one identities.
+              3. **`markdown` — existing generic renderer:** “47<52 and 29<31 because the larger tens count wins. 47=40+7<50+2=52; 29<31.”
+            - **Learner-controlled beats, observations and feedback:**
+              - **Beat 1: “Compare 47 and 52. Do seven ones make 47 larger?”** Inspect four complete tens vs five tens, then choose 47<52. A secondary 29/31 counterexample uses nine ones vs one. **Result:** 47<52 and 29<31 because the larger tens count wins. **Why the plausible mistake fails:** For 47>52, show the extra complete ten in 52 is greater than the difference in loose ones. **Verified model:** 47=40+7<50+2=52; 29<31.
+              - **Beat 2: “Now compare 63 and 68; then try 72 and 72.”** Since six tens match, compare three vs eight ones; then inspect identical value 72 in varied arrangements. **Result:** 63<68 because 3<8 ones; 72=72 regardless of spacing. **Why the plausible mistake fails:** For greater on 63/68, show the five unmatched ones in 68. For not-equal on 72, match all ten-groups and loose ones. **Verified model:** 63<68; 72=72.
+            - **Independent controls:** Select pair; inspect tens; inspect ones; select <,>,=; show grouping evidence; reveal; reset. Full worked reveal is always available and Reset applies only to this Scene, without scoring or locks.
+            - **Mathematical state:** Selected pair, immutable operand values, derived tens and ones counts, selected relation and worked comparison ledger. Choosing a relation never changes the source numbers.
+            - **Instructional boundary:** Do not teach comparing ones before tens when tens differ; 100 is a three-digit endpoint and not a two-digit sort card.
+            - **Accessibility and RTL:** A/B role and tens/ones ledger are labelled in words; math signs and operands are directionally isolated so RTL cannot invert the comparison accidentally. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
+            - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Compare tens first; one extra group of ten can outweigh any loose ones.” is planned only, with no event or persistence.
+
       section2WhichDigitReallyDecides:
         config:
-          id: "2ca54ea2-2df0-81c6-877b-5c8ba62e83ef"
-          slug: "section2WhichDigitReallyDecides"
-          type: "content"
+          id: '2ca54ea2-2df0-81c6-877b-5c8ba62e83ef'
+          slug: 'section2WhichDigitReallyDecides'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Which Digit Really Decides?"
+              en: 'Which Digit Really Decides?'
             navigationLabel:
-              en: "Which Digit Really Decides?"
+              en: 'Which Digit Really Decides?'
           content:
             items:
               section2Text1:
                 config:
-                  id: "1772ed0e-c497-8ecc-8bda-0df0a83f2e32"
-                  slug: "section2Text1"
-                  type: "text"
+                  id: '1772ed0e-c497-8ecc-8bda-0df0a83f2e32'
+                  slug: 'section2Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2?"
+                      en: 'Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2?'
                 production:
-                  purpose: "Legacy text block of Which Digit Really Decides?; provisional draft."
-                  specification: "  1. **`text` (existing renderer):** “Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2?”"
+                  purpose: 'Legacy text block of Which Digit Really Decides?; provisional draft.'
+                  specification: '  1. **`text` (existing renderer):** “Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2?”'
               section2Markdown2:
                 config:
-                  id: "78eb9d91-12e1-8fac-8a3e-23bc80340181"
-                  slug: "section2Markdown2"
-                  type: "markdown"
+                  id: '78eb9d91-12e1-8fac-8a3e-23bc80340181'
+                  slug: 'section2Markdown2'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "No. Fifty-two has five tens, and forty-seven has four. The tens are the larger place and decide which number is bigger."
+                      en: 'No. Fifty-two has five tens, and forty-seven has four. The tens are the larger place and decide which number is bigger.'
                 production:
-                  purpose: "Legacy markdown block of Which Digit Really Decides?; provisional draft."
-                  specification: "  2. **`markdown` (existing renderer):** “No. Fifty-two has five tens, and forty-seven has four. The tens are the larger place and decide which number is bigger.”"
+                  purpose: 'Legacy markdown block of Which Digit Really Decides?; provisional draft.'
+                  specification: '  2. **`markdown` (existing renderer):** “No. Fifty-two has five tens, and forty-seven has four. The tens are the larger place and decide which number is bigger.”'
               section2Markdown3:
                 config:
-                  id: "c2c46213-57f1-8bbc-8b40-1616ae75efb9"
-                  slug: "section2Markdown3"
-                  type: "markdown"
+                  id: 'c2c46213-57f1-8bbc-8b40-1616ae75efb9'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "For 63 and 68, both have six tens, so their ones decide: 3<8."
+                      en: 'For 63 and 68, both have six tens, so their ones decide: 3<8.'
                 production:
-                  purpose: "Legacy markdown block of Which Digit Really Decides?; provisional draft."
-                  specification: "  3. **`markdown` (existing renderer):** “For 63 and 68, both have six tens, so their ones decide: 3<8.”"
+                  purpose: 'Legacy markdown block of Which Digit Really Decides?; provisional draft.'
+                  specification: '  3. **`markdown` (existing renderer):** “For 63 and 68, both have six tens, so their ones decide: 3<8.”'
             order:
-              - "section2Text1"
-              - "section2Markdown2"
-              - "section2Markdown3"
+              - 'section2Text1'
+              - 'section2Markdown2'
+              - 'section2Markdown3'
         production:
-          purpose: "Which Digit Really Decides?"
-          pedagogicalIntent: "Which Digit Really Decides?"
+          purpose: 'Which Digit Really Decides?'
+          pedagogicalIntent: 'Which Digit Really Decides?'
           productionNotes: |
-              ### Section 2 — Which Digit Really Decides?
-              
-              - **Purpose:** Retrieve a numerical invariant and contrast it with a likely mistaken shortcut without score or response validation.
-              - **Current Section shape:** `LessonSection_Config`, one ordered vertical Resource column.
-              - **Ordered content blocks:**
-                1. **`text` (existing renderer):** “Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2?”
-                2. **`markdown` (existing renderer):** “No. Fifty-two has five tens, and forty-seven has four. The tens are the larger place and decide which number is bigger.”
-                3. **`markdown` (existing renderer):** “For 63 and 68, both have six tens, so their ones decide: 3<8.”
-              - **Instructional dialogue:** Invite a child to give a private, spoken or recorded-on-paper answer before reading the explanation. The existing text/Markdown blocks do not implement hidden-answer input or auto-grading, so no such widget, correctness tracking or KnowledgeCheckpoint API is claimed.
-              - **Misconception feedback:** 47>52 because 7>2, 29>31 because 9>1, 63 and 68 assumed equal because both show six tens, confusing 80 and 86 due to zeros, dropping one item during ordering, mirroring <,> under RTL. Use the detailed preceding Scene model if the child remains unsure.
-              - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
-              
+            ### Section 2 — Which Digit Really Decides?
+
+            - **Purpose:** Retrieve a numerical invariant and contrast it with a likely mistaken shortcut without score or response validation.
+            - **Current Section shape:** `LessonSection_Config`, one ordered vertical Resource column.
+            - **Ordered content blocks:**
+              1. **`text` (existing renderer):** “Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2?”
+              2. **`markdown` (existing renderer):** “No. Fifty-two has five tens, and forty-seven has four. The tens are the larger place and decide which number is bigger.”
+              3. **`markdown` (existing renderer):** “For 63 and 68, both have six tens, so their ones decide: 3<8.”
+            - **Instructional dialogue:** Invite a child to give a private, spoken or recorded-on-paper answer before reading the explanation. The existing text/Markdown blocks do not implement hidden-answer input or auto-grading, so no such widget, correctness tracking or KnowledgeCheckpoint API is claimed.
+            - **Misconception feedback:** 47>52 because 7>2, 29>31 because 9>1, 63 and 68 assumed equal because both show six tens, confusing 80 and 86 due to zeros, dropping one item during ordering, mirroring <,> under RTL. Use the detailed preceding Scene model if the child remains unsure.
+            - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
+
       section3OrderTheTensCards:
         config:
-          id: "1ff04e36-8d0e-89dd-8db0-7a51ef4eddba"
-          slug: "section3OrderTheTensCards"
-          type: "content"
+          id: '1ff04e36-8d0e-89dd-8db0-7a51ef4eddba'
+          slug: 'section3OrderTheTensCards'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Order the Tens Cards"
+              en: 'Order the Tens Cards'
             navigationLabel:
-              en: "Order the Tens Cards"
+              en: 'Order the Tens Cards'
           content:
             items:
               section3Text1:
                 config:
-                  id: "0a720df6-4726-81f6-83b8-ef0b8eec130b"
-                  slug: "section3Text1"
-                  type: "text"
+                  id: '0a720df6-4726-81f6-83b8-ef0b8eec130b'
+                  slug: 'section3Text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Arrange 42,29,71,24 from smallest to largest."
+                      en: 'Arrange 42,29,71,24 from smallest to largest.'
                 production:
-                  purpose: "Legacy text block of Order the Tens Cards; provisional draft."
-                  specification: "  1. **`text` — existing generic renderer:** “Arrange 42,29,71,24 from smallest to largest.”"
+                  purpose: 'Legacy text block of Order the Tens Cards; provisional draft.'
+                  specification: '  1. **`text` — existing generic renderer:** “Arrange 42,29,71,24 from smallest to largest.”'
               scene3Block2:
                 config:
-                  id: "5fbf48f4-0753-8d91-8e36-171806daa27d"
-                  slug: "scene3Block2"
-                  type: "scene"
+                  id: '5fbf48f4-0753-8d91-8e36-171806daa27d'
+                  slug: 'scene3Block2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Arrange 42,29,71,24 from smallest to largest."
+                        instruction: 'Arrange 42,29,71,24 from smallest to largest.'
                 production:
-                  purpose: "Independently initialized Scene occurrence in Order the Tens Cards. Not approved or implemented."
+                  purpose: 'Independently initialized Scene occurrence in Order the Tens Cards. Not approved or implemented.'
                   specification: |
-                      # Order the Tens Cards — Scene Specification
-                      
-                      Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
-                      Owner: Educational Screenwriter
-                      Parent Lesson / Section: Compare Tens First: Ordering Numbers to 100 Content (preserved in this Lesson's production notes), Section 3
-                      Methodologist objectives: Draft Methodologist Brief (preserved in production.methodology), not yet approved
-                      Implementation: **proposed independent, self-contained prop-free Scene**, not built
-                      
-                      ## LEARNER PURPOSE AND CONCEPT
-                      
-                      Transfer the rule into a changed number/item context without the first Scene's state or answer. Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
-                      
-                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                      
-                      **Canonical mathematical rule:** Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
-                      
-                      **Initial state:** First task four unique cards with values [42,29,71,24], in unsorted slots; second independent task values [90,86,80,69], with requested largest-to-smallest ordering.
-                      
-                      **Authoritative model:** Card identity list, placement permutation, direction, pairwise comparison hints and reveal. Each original card appears exactly once in output; positions correspond to numerical order not CSS side.
-                      
-                      **Instructional boundary:** Strictly teach numeric sorting of two-digit natural values, not alphabetical sorting of written number words. Equality of identical values remains valid when separately shown.
-                      
-                      No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
-                      
-                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                      
-                      ### Beat 1 — Arrange 42,29,71,24 from smallest to largest.
-                      
-                      - **Exact learner-facing invitation:** “Arrange 42,29,71,24 from smallest to largest.”
-                      - **Controllable investigation:** Build an ordered tray and check 24<29<42<71, explaining why 24 precedes 29 despite sharing two tens.
-                      - **Observed correct consequence:** 24,29,42,71 is the correct ascending row.
-                      - **Evidence from actual model:** 24<29<42<71.
-                      - **Misconception-sensitive feedback and repair:** If 29 before 24, compare equal two tens and ones nine vs four. If 42 before 29, compare four tens vs two.
-                      - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                      
-                      ### Beat 2 — Now arrange 90,86,80,69 from largest to smallest.
-                      
-                      - **Exact learner-facing invitation:** “Now arrange 90,86,80,69 from largest to smallest.”
-                      - **Controllable investigation:** In a new preset, place 90 first, 86 second, 80 third, 69 last; use tens then ones to justify.
-                      - **Observed correct consequence:** 90,86,80,69 is descending and retains all four cards.
-                      - **Evidence from actual model:** 90>86>80>69.
-                      - **Misconception-sensitive feedback and repair:** For 80 before 86, compare equal eight tens and six additional ones in 86. For 69 before 90, compare six vs nine tens.
-                      - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
-                      
-                      ## INTERACTIVE OBJECTS, STATES AND RULES
-                      
-                      - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Choose card; place in ordinal slot; move one slot earlier/later; inspect adjacent tens/ones; reset; switch challenge; reveal.
-                      - **Invariants and consistency:** Card identity list, placement permutation, direction, pairwise comparison hints and reveal. Each original card appears exactly once in output; positions correspond to numerical order not CSS side. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
-                      - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
-                      - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
-                      - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
-                      
-                      ## VISUAL / AUDIO / MEDIA DIRECTION
-                      
-                      Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
-                      
-                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                      
-                      Slots are numbered semantically first/second/third/fourth with 'smallest-first' or 'largest-first' label. Keyboard selection and move actions replace dragging, including under RTL.
-                      
-                      All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-                      
-                      ## ACCEPTANCE SCENARIOS
-                      
-                      1. 42,29,71,24 sorts to 24,29,42,71 ascending.
-                      2. 90,86,80,69 sorts to 90,86,80,69 descending.
-                      3. Card ID set is unchanged throughout both sorting tasks.
-                      4. No reliance on visual right-to-left order.
-                      5. Beat 1 correct model: 24<29<42<71. Test misconception route: If 29 before 24, compare equal two tens and ones nine vs four. If 42 before 29, compare four tens vs two.
-                      6. Beat 2 correct model: 90>86>80>69. Test misconception route: For 80 before 86, compare equal eight tens and six additional ones in 86. For 69 before 90, compare six vs nine tens.
-                      7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
-                      8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
-                      
-                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                      
-                      This is a **proposed** Scene. Generic `scene` Resource rendering exists; Order the Tens Cards does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
-                      
-                      
-                      ## Original placement
-                      
-                        2. **`scene` — generic type supported, bespoke implementation proposed:** Order the Tens Cards (preserved in Scene production.specification). First task four unique cards with values [42,29,71,24], in unsorted slots; second independent task values [90,86,80,69], with requested largest-to-smallest ordering.
-                  productionNotes: "Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval."
+                    # Order the Tens Cards — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Compare Tens First: Ordering Numbers to 100 Content (preserved in this Lesson's production notes), Section 3
+                    Methodologist objectives: Draft Methodologist Brief (preserved in production.methodology), not yet approved
+                    Implementation: **proposed independent, self-contained prop-free Scene**, not built
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Transfer the rule into a changed number/item context without the first Scene's state or answer. Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    **Canonical mathematical rule:** Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
+
+                    **Initial state:** First task four unique cards with values [42,29,71,24], in unsorted slots; second independent task values [90,86,80,69], with requested largest-to-smallest ordering.
+
+                    **Authoritative model:** Card identity list, placement permutation, direction, pairwise comparison hints and reveal. Each original card appears exactly once in output; positions correspond to numerical order not CSS side.
+
+                    **Instructional boundary:** Strictly teach numeric sorting of two-digit natural values, not alphabetical sorting of written number words. Equality of identical values remains valid when separately shown.
+
+                    No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Beat 1 — Arrange 42,29,71,24 from smallest to largest.
+
+                    - **Exact learner-facing invitation:** “Arrange 42,29,71,24 from smallest to largest.”
+                    - **Controllable investigation:** Build an ordered tray and check 24<29<42<71, explaining why 24 precedes 29 despite sharing two tens.
+                    - **Observed correct consequence:** 24,29,42,71 is the correct ascending row.
+                    - **Evidence from actual model:** 24<29<42<71.
+                    - **Misconception-sensitive feedback and repair:** If 29 before 24, compare equal two tens and ones nine vs four. If 42 before 29, compare four tens vs two.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+
+                    ### Beat 2 — Now arrange 90,86,80,69 from largest to smallest.
+
+                    - **Exact learner-facing invitation:** “Now arrange 90,86,80,69 from largest to smallest.”
+                    - **Controllable investigation:** In a new preset, place 90 first, 86 second, 80 third, 69 last; use tens then ones to justify.
+                    - **Observed correct consequence:** 90,86,80,69 is descending and retains all four cards.
+                    - **Evidence from actual model:** 90>86>80>69.
+                    - **Misconception-sensitive feedback and repair:** For 80 before 86, compare equal eight tens and six additional ones in 86. For 69 before 90, compare six vs nine tens.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Choose card; place in ordinal slot; move one slot earlier/later; inspect adjacent tens/ones; reset; switch challenge; reveal.
+                    - **Invariants and consistency:** Card identity list, placement permutation, direction, pairwise comparison hints and reveal. Each original card appears exactly once in output; positions correspond to numerical order not CSS side. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
+                    - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
+                    - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
+                    - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Slots are numbered semantically first/second/third/fourth with 'smallest-first' or 'largest-first' label. Keyboard selection and move actions replace dragging, including under RTL.
+
+                    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 42,29,71,24 sorts to 24,29,42,71 ascending.
+                    2. 90,86,80,69 sorts to 90,86,80,69 descending.
+                    3. Card ID set is unchanged throughout both sorting tasks.
+                    4. No reliance on visual right-to-left order.
+                    5. Beat 1 correct model: 24<29<42<71. Test misconception route: If 29 before 24, compare equal two tens and ones nine vs four. If 42 before 29, compare four tens vs two.
+                    6. Beat 2 correct model: 90>86>80>69. Test misconception route: For 80 before 86, compare equal eight tens and six additional ones in 86. For 69 before 90, compare six vs nine tens.
+                    7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
+                    8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    This is a **proposed** Scene. Generic `scene` Resource rendering exists; Order the Tens Cards does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
+
+
+                    ## Original placement
+
+                      2. **`scene` — generic type supported, bespoke implementation proposed:** Order the Tens Cards (preserved in Scene production.specification). First task four unique cards with values [42,29,71,24], in unsorted slots; second independent task values [90,86,80,69], with requested largest-to-smallest ordering.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
               section3Markdown3:
                 config:
-                  id: "c38ae14e-8861-8a4e-8d5e-a54766b52e47"
-                  slug: "section3Markdown3"
-                  type: "markdown"
+                  id: 'c38ae14e-8861-8a4e-8d5e-a54766b52e47'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "24,29,42,71 is the correct ascending row. 24<29<42<71."
+                      en: '24,29,42,71 is the correct ascending row. 24<29<42<71.'
                 production:
-                  purpose: "Legacy markdown block of Order the Tens Cards; provisional draft."
-                  specification: "  3. **`markdown` — existing generic renderer:** “24,29,42,71 is the correct ascending row. 24<29<42<71.”"
+                  purpose: 'Legacy markdown block of Order the Tens Cards; provisional draft.'
+                  specification: '  3. **`markdown` — existing generic renderer:** “24,29,42,71 is the correct ascending row. 24<29<42<71.”'
             order:
-              - "section3Text1"
-              - "scene3Block2"
-              - "section3Markdown3"
+              - 'section3Text1'
+              - 'scene3Block2'
+              - 'section3Markdown3'
         production:
-          purpose: "Order the Tens Cards"
-          pedagogicalIntent: "Order the Tens Cards"
+          purpose: 'Order the Tens Cards'
+          pedagogicalIntent: 'Order the Tens Cards'
           productionNotes: |
-              ### Section 3 — Order the Tens Cards
-              
-              - **Purpose:** Apply the principle to unfamiliar quantities or representations, not replay the first model.
-              - **Current Section contract:** `LessonSection_Config`, one **vertically ordered nonempty** list of typed resources, not a Quiz.
-              - **Ordered Resource blocks:**
-                1. **`text` — existing generic renderer:** “Arrange 42,29,71,24 from smallest to largest.”
-                2. **`scene` — generic type supported, bespoke implementation proposed:** Order the Tens Cards (preserved in Scene production.specification). First task four unique cards with values [42,29,71,24], in unsorted slots; second independent task values [90,86,80,69], with requested largest-to-smallest ordering.
-                3. **`markdown` — existing generic renderer:** “24,29,42,71 is the correct ascending row. 24<29<42<71.”
-              - **Learner-controlled beats, observations and feedback:**
-                - **Beat 1: “Arrange 42,29,71,24 from smallest to largest.”** Build an ordered tray and check 24<29<42<71, explaining why 24 precedes 29 despite sharing two tens. **Result:** 24,29,42,71 is the correct ascending row. **Why the plausible mistake fails:** If 29 before 24, compare equal two tens and ones nine vs four. If 42 before 29, compare four tens vs two. **Verified model:** 24<29<42<71.
-                - **Beat 2: “Now arrange 90,86,80,69 from largest to smallest.”** In a new preset, place 90 first, 86 second, 80 third, 69 last; use tens then ones to justify. **Result:** 90,86,80,69 is descending and retains all four cards. **Why the plausible mistake fails:** For 80 before 86, compare equal eight tens and six additional ones in 86. For 69 before 90, compare six vs nine tens. **Verified model:** 90>86>80>69.
-              - **Independent controls:** Choose card; place in ordinal slot; move one slot earlier/later; inspect adjacent tens/ones; reset; switch challenge; reveal. Full worked reveal is always available and Reset applies only to this Scene, without scoring or locks.
-              - **Mathematical state:** Card identity list, placement permutation, direction, pairwise comparison hints and reveal. Each original card appears exactly once in output; positions correspond to numerical order not CSS side.
-              - **Instructional boundary:** Strictly teach numeric sorting of two-digit natural values, not alphabetical sorting of written number words. Equality of identical values remains valid when separately shown.
-              - **Accessibility and RTL:** Slots are numbered semantically first/second/third/fourth with 'smallest-first' or 'largest-first' label. Keyboard selection and move actions replace dragging, including under RTL. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
-              - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “If tens are equal, compare ones, then keep the whole row in the required order.” is planned only, with no event or persistence.
-              
+            ### Section 3 — Order the Tens Cards
+
+            - **Purpose:** Apply the principle to unfamiliar quantities or representations, not replay the first model.
+            - **Current Section contract:** `LessonSection_Config`, one **vertically ordered nonempty** list of typed resources, not a Quiz.
+            - **Ordered Resource blocks:**
+              1. **`text` — existing generic renderer:** “Arrange 42,29,71,24 from smallest to largest.”
+              2. **`scene` — generic type supported, bespoke implementation proposed:** Order the Tens Cards (preserved in Scene production.specification). First task four unique cards with values [42,29,71,24], in unsorted slots; second independent task values [90,86,80,69], with requested largest-to-smallest ordering.
+              3. **`markdown` — existing generic renderer:** “24,29,42,71 is the correct ascending row. 24<29<42<71.”
+            - **Learner-controlled beats, observations and feedback:**
+              - **Beat 1: “Arrange 42,29,71,24 from smallest to largest.”** Build an ordered tray and check 24<29<42<71, explaining why 24 precedes 29 despite sharing two tens. **Result:** 24,29,42,71 is the correct ascending row. **Why the plausible mistake fails:** If 29 before 24, compare equal two tens and ones nine vs four. If 42 before 29, compare four tens vs two. **Verified model:** 24<29<42<71.
+              - **Beat 2: “Now arrange 90,86,80,69 from largest to smallest.”** In a new preset, place 90 first, 86 second, 80 third, 69 last; use tens then ones to justify. **Result:** 90,86,80,69 is descending and retains all four cards. **Why the plausible mistake fails:** For 80 before 86, compare equal eight tens and six additional ones in 86. For 69 before 90, compare six vs nine tens. **Verified model:** 90>86>80>69.
+            - **Independent controls:** Choose card; place in ordinal slot; move one slot earlier/later; inspect adjacent tens/ones; reset; switch challenge; reveal. Full worked reveal is always available and Reset applies only to this Scene, without scoring or locks.
+            - **Mathematical state:** Card identity list, placement permutation, direction, pairwise comparison hints and reveal. Each original card appears exactly once in output; positions correspond to numerical order not CSS side.
+            - **Instructional boundary:** Strictly teach numeric sorting of two-digit natural values, not alphabetical sorting of written number words. Equality of identical values remains valid when separately shown.
+            - **Accessibility and RTL:** Slots are numbered semantically first/second/third/fourth with 'smallest-first' or 'largest-first' label. Keyboard selection and move actions replace dragging, including under RTL. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
+            - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “If tens are equal, compare ones, then keep the whole row in the required order.” is planned only, with no event or persistence.
+
     order:
-      - "section1TensFirstComparator"
-      - "section2WhichDigitReallyDecides"
-      - "section3OrderTheTensCards"
+      - 'section1TensFirstComparator'
+      - 'section2WhichDigitReallyDecides'
+      - 'section3OrderTheTensCards'
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |
-      # Compare Tens First: Ordering Numbers to 100 — Methodologist Brief
-      
-      Date: 2026-10-31
-      Slug: compareAndOrderTwoDigitNumbers
-      Methodologist status: Draft
-      Code: [Not implemented](#)
-      Program dependence: None
-      
-      ## Educational purpose
-      
-      Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
-      
-      ## Target audience
-      
-      **Primary audience: Grade 2.** Grade 2 learners who read and model two-digit numbers, know signs <, >, =, and can already sort small values within 20. The new challenge is a place-value priority rule, not an alphabetic sort. This Grade is a pedagogical choice of the Lesson, never a ceiling on the independent canonical Skill.
-      
-      ## Prerequisites
-      
-      Read/compose numbers through 100 (`readWrite100`), make tens and ones (`tensOnes`), use <,>,= (`comparisonSymbols`), and order simple numbers through 20 (`order20`).
-      
-      ## Target Skills
-      
-      - [order100.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/numeration/comparison/skills/order100.data.ts)
-      
-      ## Expected learning outcomes
-      
-      - Justify 47<52 and 29<31 by comparing tens before ones.
-      - Compare 63<68 by examining ones only after matching tens.
-      - Identify 72=72 despite different group spacing.
-      - Sort four cards 42,29,71,24 into 24,29,42,71 and explain at least one adjacent relation.
-      - Independently order 90,86,80,69 from greatest to smallest without deleting any card.
-      
-      The outcomes are intentions for formative explanation, not validated Skill-mastery evidence.
-      
-      ## Essential subject matter
-      
-      Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
-      
-      ## Conceptual progression and dependencies
-      
-      Concrete tens bundles → misleading ones-digits counterexample → equal-tens ones tie-breaker → equality model → ascending sort by true magnitudes → new descending challenge.
-      
-      The pedagogically related Skills remain independently assessable objects with their own original UUIDs. No aggregate Skill definition or invented override is created.
-      
-      ## Misconceptions, examples and boundaries
-      
-      **Common misconceptions:** 47>52 because 7>2, 29>31 because 9>1, 63 and 68 assumed equal because both show six tens, confusing 80 and 86 due to zeros, dropping one item during ordering, mirroring <,> under RTL.
-      
-      **Target depth and exclusions:** Grade 2 values 10–99, small two- to four-card sets, repeated equal values allowed if introduced, actual tens-and-ones evidence. No hundreds-place generalization, decimals, negatives, rounding or speed sorting drills.
-      
-      **Exact examples:**
-      
-      - 47=40+7<50+2=52; 29<31.
-      - 63<68; 72=72.
-      - 24<29<42<71.
-      - 90>86>80>69.
-      
-      ## Localization, accessibility and offline intent
-      
-      All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-      
-      English is editorial source copy, not a completed locale implementation. For the money lesson the euro is an **explicit case-study currency** in all locales, and another real currency would require separate verified denominations, texts and editorial approval.
-      
-      ## Sources and factual verification
-      
-      - Canonical Skill source files in the Target Skills section, preserved byte-for-byte in the earlier migration from Mathematics `main`.
-      - [Lesson Editorial Architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md), [Learning Philosophy](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/learning-experience-philosophy.md).
-      - [Internationalization/Accessibility](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/internationalization-and-accessibility.md) and [Offline Architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/offline-first-and-device-compatibility.md).
-      
-      No named national Curriculum or attainment standards are claimed.
-      
-      ## Curriculum / Program compatibility
-      
-      Standalone, Program-neutral. Lesson sequence derives from prerequisite relationships, not a national course binding.
-      
-      ## Open editorial decisions
-      
-      - Editor to approve Grade 2, canonical targets, numerical boundaries, prerequisite claims and proposed contrasting examples.
-      - Editor to review every Content and proposed Scene separately after the Methodologist Brief; localization and offline/accessibility implementations need QA.
-      - Money cases use fictional classroom prices but real EUR denominations; confirm currency choice for target readers before implementation.
-      
-      ## Methodologist handoff
-      
-      **Draft, not approved.** The accompanying Content and Scene specs are **Provisional Drafts under the explicit batch instruction**, not evidence that the normal Methodologist approval gate has passed. No React, runtime Lesson, Questions, Quiz, scores, mastery evidence, Note storage or undocumented API is authorized.
+    # Compare Tens First: Ordering Numbers to 100 — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: compareAndOrderTwoDigitNumbers
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
+
+    ## Target audience
+
+    **Primary audience: Grade 2.** Grade 2 learners who read and model two-digit numbers, know signs <, >, =, and can already sort small values within 20. The new challenge is a place-value priority rule, not an alphabetic sort. This Grade is a pedagogical choice of the Lesson, never a ceiling on the independent canonical Skill.
+
+    ## Prerequisites
+
+    Read/compose numbers through 100 (`readWrite100`), make tens and ones (`tensOnes`), use <,>,= (`comparisonSymbols`), and order simple numbers through 20 (`order20`).
+
+    ## Target Skills
+
+    - [order100.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/numeration/comparison/skills/order100.data.ts)
+
+    ## Expected learning outcomes
+
+    - Justify 47<52 and 29<31 by comparing tens before ones.
+    - Compare 63<68 by examining ones only after matching tens.
+    - Identify 72=72 despite different group spacing.
+    - Sort four cards 42,29,71,24 into 24,29,42,71 and explain at least one adjacent relation.
+    - Independently order 90,86,80,69 from greatest to smallest without deleting any card.
+
+    The outcomes are intentions for formative explanation, not validated Skill-mastery evidence.
+
+    ## Essential subject matter
+
+    Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
+
+    ## Conceptual progression and dependencies
+
+    Concrete tens bundles → misleading ones-digits counterexample → equal-tens ones tie-breaker → equality model → ascending sort by true magnitudes → new descending challenge.
+
+    The pedagogically related Skills remain independently assessable objects with their own original UUIDs. No aggregate Skill definition or invented override is created.
+
+    ## Misconceptions, examples and boundaries
+
+    **Common misconceptions:** 47>52 because 7>2, 29>31 because 9>1, 63 and 68 assumed equal because both show six tens, confusing 80 and 86 due to zeros, dropping one item during ordering, mirroring <,> under RTL.
+
+    **Target depth and exclusions:** Grade 2 values 10–99, small two- to four-card sets, repeated equal values allowed if introduced, actual tens-and-ones evidence. No hundreds-place generalization, decimals, negatives, rounding or speed sorting drills.
+
+    **Exact examples:**
+
+    - 47=40+7<50+2=52; 29<31.
+    - 63<68; 72=72.
+    - 24<29<42<71.
+    - 90>86>80>69.
+
+    ## Localization, accessibility and offline intent
+
+    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+
+    English is editorial source copy, not a completed locale implementation. For the money lesson the euro is an **explicit case-study currency** in all locales, and another real currency would require separate verified denominations, texts and editorial approval.
+
+    ## Sources and factual verification
+
+    - Canonical Skill source files in the Target Skills section, preserved byte-for-byte in the earlier migration from Mathematics `main`.
+    - [Lesson Editorial Architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md), [Learning Philosophy](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/learning-experience-philosophy.md).
+    - [Internationalization/Accessibility](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/internationalization-and-accessibility.md) and [Offline Architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/offline-first-and-device-compatibility.md).
+
+    No named national Curriculum or attainment standards are claimed.
+
+    ## Curriculum / Program compatibility
+
+    Standalone, Program-neutral. Lesson sequence derives from prerequisite relationships, not a national course binding.
+
+    ## Open editorial decisions
+
+    - Editor to approve Grade 2, canonical targets, numerical boundaries, prerequisite claims and proposed contrasting examples.
+    - Editor to review every Content and proposed Scene separately after the Methodologist Brief; localization and offline/accessibility implementations need QA.
+    - Money cases use fictional classroom prices but real EUR denominations; confirm currency choice for target readers before implementation.
+
+    ## Methodologist handoff
+
+    **Draft, not approved.** The accompanying Content and Scene specs are **Provisional Drafts under the explicit batch instruction**, not evidence that the normal Methodologist approval gate has passed. No React, runtime Lesson, Questions, Quiz, scores, mastery evidence, Note storage or undocumented API is authorized.
   productionNotes: |
-      Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
-      
-      ## Former Screenwriter introduction
-      
-      # Compare Tens First: Ordering Numbers to 100 — Content
-      
-      Status: **Provisional Draft — pending Methodologist approval**
-      Target Lesson: `content/playground/Data/Lessons/1/compareAndOrderTwoDigitNumbers/`
-      Primary audience: Grade 2
-      Methodologist source: Draft Methodologist Brief (preserved in production.methodology) (not yet approved)
-      Target Skills: exactly the canonical linked Skill files in the Brief; no copied UUIDs or alternate taxonomy
-      Program dependence: None
-      Runtime Lesson: **Not implemented**
-      
-      ## INSTRUCTIONAL CONCEPT
-      
-      Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
-      
-      **Exact mathematical foundation and reference model:** Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
-      
-      The learner actively constructs or changes a representation, predicts its effect and explains a discrepancy. The Lesson does **not** consist of a long Markdown lecture plus a token quiz. One Scene provides the guided causal encounter, a short reflection section retrieves the rule and challenges a shortcut, and a **different** second Scene tests the rule with changed numbers and a new context. Correct answers are accompanied by verifiable evidence, not praise alone.
-      
-      ## LEARNER JOURNEY
-      
-      1. **Question and prediction:** “Compare 47 and 52. Do seven ones make 47 larger?” Learner can think or select an outcome before acting, but is not forced to make a guess.
-      2. **Manipulate and notice:** 47=40+7<50+2=52; 29<31. 63<68; 72=72. An object/amount/count ledger connects concrete items with the written numbers.
-      3. **Explain the counterexample:** Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2? Child attempts a reasoning response before the short worked explanation.
-      4. **Independent transfer:** Arrange 42,29,71,24 from smallest to largest. The second Scene has its own state and a new number, item or money configuration; it is not a prop-mode clone.
-      5. **Conclude and retrieve:** The final worked example and the planned Note express the enduring principle without a time limit, score or mastery claim.
-      
-      ## SECTION PLAN
-      
-      
-      ## Former Screenwriter closing notes
-      
-      ## CUSTOM SCENE SPECIFICATIONS
-      
-      - Tens-First Comparator (preserved in Scene production.specification) — distinct concrete exploration.
-      - Order the Tens Cards (preserved in Scene production.specification) — separately initialized changed-context transfer.
-      
-      Both are **proposed prop-free Scene components**, not existing React code. Generic `scene` Resource support alone does not implement the named Scenes, and no new Resource discriminator, Scene mode prop or undocumented app context is assumed.
-      
-      ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-      
-      1. “Compare tens first; one extra group of ten can outweigh any loose ones.” — after the first worked contrast, independently of the answer given.
-      2. “If tens are equal, compare ones, then keep the whole row in the required order.” — after inspecting the transfer case's worked reasoning.
-      
-      Each Note is a concise future recall cue, **not** an implemented unlocked Note entity. Note IDs, unlock events, persistence, synchronization, revision sheets and spaced retrieval schedules require separate architectural review and implementation.
-      
-      ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-      
-      Guided manipulation in Section 1, short verbal retrieval in Section 2 and different-context transfer in Section 3 create varied formative practice. Their completion is not a validated measure of mastery of each target Skill. Any future scored Question, Quiz, correct-answer security, thresholds, retry policy or formal assessment evidence belongs to the Learning Assessment Architect and is deliberately absent.
-      
-      ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-      
-      All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
-      
-      Learner-facing samples in this Markdown are **English editorial source only**. No translation dictionaries or alternative locale content are falsely claimed.
-      
-      ## PRODUCTION / PLATFORM DEPENDENCIES
-      
-      | Feature                                               | Verified / proposed                      | Later responsibility                                 |
-      | ----------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------- |
-      | `LessonSection_Config` with ordered `Resource_Config` | Existing TypeScript contract             | Coding Agent assembles only after editorial approval |
-      | Generic `text`, `markdown`, `scene` renderer          | Observed in Playground                   | Bespoke Scenes remain unimplemented                  |
-      | Tens-First Comparator, Order the Tens Cards           | **Proposed** Screenwriter specifications | Editor approval, Scene Designer, independent tests   |
-      | Genuine locales, RTL and nonvisual controls           | Product requirements, not delivered      | Localization and accessibility QA                    |
-      | Selected-language offline Lesson and asset download   | Product target, unverified               | PWA/integration and offline E2E                      |
-      | Notes, revision sheet, progress, persistent mastery   | Planned or unverified, not wired         | Separate architecture                                |
-      | Questions, Quizzes, grading                           | Not authored                             | Assessment Architect                                 |
-      
-      ## EDITORIAL SOURCES AND OPEN QUESTIONS
-      
-      - Draft Methodologist Brief (preserved in production.methodology), which links directly to canonical Skills.
-      - [Lesson Content entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md), [Section entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md), [Learning Philosophy](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/learning-experience-philosophy.md).
-      - Editor must approve the Brief first, then Content and each Scene separately. Full locale translation and all nonvisual/RTL/offline behavior need implementation-stage tests.
-      
-      ## HANDOFF
-      
-      **Provisional Screenwriter Draft, not Approved.** No React components, runtime Lesson data, scored Questions, Quiz, mastery, Notes persistence or assumed existing offline feature were created.
+    Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+
+    ## Former Screenwriter introduction
+
+    # Compare Tens First: Ordering Numbers to 100 — Content
+
+    Status: **Provisional Draft — pending Methodologist approval**
+    Target Lesson: `content/playground/Data/Lessons/1/compareAndOrderTwoDigitNumbers/`
+    Primary audience: Grade 2
+    Methodologist source: Draft Methodologist Brief (preserved in production.methodology) (not yet approved)
+    Target Skills: exactly the canonical linked Skill files in the Brief; no copied UUIDs or alternate taxonomy
+    Program dependence: None
+    Runtime Lesson: **Not implemented**
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Compare and arrange two-digit numbers by the more significant tens place first and the ones only when tens are equal. Justify order using quantities rather than numeral appearance.
+
+    **Exact mathematical foundation and reference model:** Compare tens first in two-digit decimal numbers: 47<52 because four tens<five tens even though seven ones>two ones; 29<31 because two tens<three. When tens match, compare remaining ones: 63<68 since both have six tens but three ones<eight. Identical values are equal: 72=72 even if counters are rearranged. Sort 42,29,71,24 ascending as 24,29,42,71. Sort 90,86,80,69 descending as 90,86,80,69. The tens-place rule, not the last digit's graphic size, determines magnitude.
+
+    The learner actively constructs or changes a representation, predicts its effect and explains a discrepancy. The Lesson does **not** consist of a long Markdown lecture plus a token quiz. One Scene provides the guided causal encounter, a short reflection section retrieves the rule and challenges a shortcut, and a **different** second Scene tests the rule with changed numbers and a new context. Correct answers are accompanied by verifiable evidence, not praise alone.
+
+    ## LEARNER JOURNEY
+
+    1. **Question and prediction:** “Compare 47 and 52. Do seven ones make 47 larger?” Learner can think or select an outcome before acting, but is not forced to make a guess.
+    2. **Manipulate and notice:** 47=40+7<50+2=52; 29<31. 63<68; 72=72. An object/amount/count ledger connects concrete items with the written numbers.
+    3. **Explain the counterexample:** Forty-seven ends in 7 and fifty-two ends in 2. Is 47 bigger just because 7 is bigger than 2? Child attempts a reasoning response before the short worked explanation.
+    4. **Independent transfer:** Arrange 42,29,71,24 from smallest to largest. The second Scene has its own state and a new number, item or money configuration; it is not a prop-mode clone.
+    5. **Conclude and retrieve:** The final worked example and the planned Note express the enduring principle without a time limit, score or mastery claim.
+
+    ## SECTION PLAN
+
+
+    ## Former Screenwriter closing notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Tens-First Comparator (preserved in Scene production.specification) — distinct concrete exploration.
+    - Order the Tens Cards (preserved in Scene production.specification) — separately initialized changed-context transfer.
+
+    Both are **proposed prop-free Scene components**, not existing React code. Generic `scene` Resource support alone does not implement the named Scenes, and no new Resource discriminator, Scene mode prop or undocumented app context is assumed.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Compare tens first; one extra group of ten can outweigh any loose ones.” — after the first worked contrast, independently of the answer given.
+    2. “If tens are equal, compare ones, then keep the whole row in the required order.” — after inspecting the transfer case's worked reasoning.
+
+    Each Note is a concise future recall cue, **not** an implemented unlocked Note entity. Note IDs, unlock events, persistence, synchronization, revision sheets and spaced retrieval schedules require separate architectural review and implementation.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Guided manipulation in Section 1, short verbal retrieval in Section 2 and different-context transfer in Section 3 create varied formative practice. Their completion is not a validated measure of mastery of each target Skill. Any future scored Question, Quiz, correct-answer security, thresholds, retry policy or formal assessment evidence belongs to the Learning Assessment Architect and is deliberately absent.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+
+    Learner-facing samples in this Markdown are **English editorial source only**. No translation dictionaries or alternative locale content are falsely claimed.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    | Feature                                               | Verified / proposed                      | Later responsibility                                 |
+    | ----------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------- |
+    | `LessonSection_Config` with ordered `Resource_Config` | Existing TypeScript contract             | Coding Agent assembles only after editorial approval |
+    | Generic `text`, `markdown`, `scene` renderer          | Observed in Playground                   | Bespoke Scenes remain unimplemented                  |
+    | Tens-First Comparator, Order the Tens Cards           | **Proposed** Screenwriter specifications | Editor approval, Scene Designer, independent tests   |
+    | Genuine locales, RTL and nonvisual controls           | Product requirements, not delivered      | Localization and accessibility QA                    |
+    | Selected-language offline Lesson and asset download   | Product target, unverified               | PWA/integration and offline E2E                      |
+    | Notes, revision sheet, progress, persistent mastery   | Planned or unverified, not wired         | Separate architecture                                |
+    | Questions, Quizzes, grading                           | Not authored                             | Assessment Architect                                 |
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Draft Methodologist Brief (preserved in production.methodology), which links directly to canonical Skills.
+    - [Lesson Content entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md), [Section entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md), [Learning Philosophy](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/learning-experience-philosophy.md).
+    - Editor must approve the Brief first, then Content and each Scene separately. Full locale translation and all nonvisual/RTL/offline behavior need implementation-stage tests.
+
+    ## HANDOFF
+
+    **Provisional Screenwriter Draft, not Approved.** No React components, runtime Lesson data, scored Questions, Quiz, mastery, Notes persistence or assumed existing offline feature were created.
