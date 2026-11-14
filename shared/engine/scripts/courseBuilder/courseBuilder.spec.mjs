@@ -209,33 +209,47 @@ test('referenced standalone Lessons are reused and missing import coordinates re
   assert(!renderCourseSource(input).includes('from "../elsewhere"'));
 });
 
-test('Course-owned legacy override operations are preserved without claiming sparse conversion', () => {
+test('Course override YAML maps directly to the stateless Build API, without legacy operations', () => {
   const overrides = {
-    kind: 'course-lesson-overrides',
-    courseId,
-    status: 'draft',
-    overrides: [{
-      slotKey: 'lesson-one',
-      lessonId,
-      operations: [
-        { type: 'params', sections: { allowSkipping: false } },
-        { type: 'block-set', sectionSlug: 'intro', slug: 'note',
-          source: { path: 'patches/note.ts', export: 'note_Patch' } },
-      ],
-    }],
+    content: {
+      items: {
+        opening: { params: { sections: { allowSkipping: false } } },
+        basics: { content: { items: {
+          first: { content: { items: { followUp: { locale: { title: { uk: 'Назва у курсі' } } } } } },
+        } } },
+      },
+    },
   };
   const code = renderCourseSource(source, { overrides });
-  assert(code.includes('spaceCourse_OverrideEditorial'));
-  assert(code.includes('build.overrides('));
-  assert(code.includes('course-lesson-overrides'));
-  assert(code.includes(lessonId));
-  assert(code.includes('patches/note.ts'));
-  assert(code.includes('note_Patch'));
-  assert(code.includes('block-set'));
+  assert(code.includes('spaceCourse_Course.build.overrides('));
+  assert(code.includes('spaceCourse_Overrides'));
   assert(code.includes('"allowSkipping": false'));
+  assert(code.includes('"followUp": {'));
+  assert(code.includes('languages: ['));
+  assert(!code.includes('OverrideEditorial'));
   assert(!code.includes('createLessonOverrides('));
-  assert(!renderCourseSource(source).includes('OverrideEditorial'));
   assert.equal(code, renderCourseSource(source, { overrides }));
+  assert(!renderCourseSource(source).includes('spaceCourse_Overrides'));
+  assert.throws(() => renderCourseSource(source, {
+    overrides: { kind: 'course-lesson-overrides', overrides: [{ slotKey: 'opening', operations: [] }] },
+  }), /OVERRIDES.*legacy editorial operations are unsupported/);
+});
+
+test('Course Build overrides render additional configurators and never create standalone Lessons', () => {
+  const overrides = {
+    content: {
+      additionalItems: {
+        second: { type: 'lesson', lessonId },
+      },
+      order: ['opening', 'basics', 'second'],
+    },
+  };
+  const code = renderCourseSource(source, { overrides });
+  assert(code.includes('content: {') || code.includes('"content": {'));
+  assert(code.includes('"additionalItems": {'));
+  assert(code.includes('UNRESOLVED_LESSON_2'));
+  assert(code.includes('.build.overrides('));
+  assert(!code.includes('defineLesson('));
 });
 
 test('safe, idempotent write and --check never overwrite edited drafts', () => {
