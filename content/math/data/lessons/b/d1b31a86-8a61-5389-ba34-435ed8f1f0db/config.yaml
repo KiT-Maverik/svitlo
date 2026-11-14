@@ -1,0 +1,586 @@
+config:
+  id: "d1b31a86-8a61-5389-ba34-435ed8f1f0db"
+  slug: "tenTensMakeAWholeHundred"
+  type: "lesson"
+  skills:
+    - "78bc05cb-9e61-488a-84d6-44b1612a6df9"
+    - "f0669022-6bc5-45fc-acb7-92f03e03cf27"
+  params:
+    requireQuiz: false
+    languages:
+      - "lt"
+      - "lv"
+      - "et"
+      - "be"
+      - "ka"
+      - "kk"
+      - "en"
+      - "qm"
+      - "zh"
+      - "hi"
+      - "es"
+      - "ar"
+      - "fr"
+      - "bn"
+      - "pt"
+      - "ur"
+      - "id"
+      - "de"
+      - "ja"
+      - "ko"
+      - "tr"
+      - "vi"
+      - "ta"
+      - "te"
+      - "mr"
+      - "ms"
+      - "he"
+      - "pl"
+      - "uk"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Ten Tens Become a Hundred"
+  section:
+    items:
+      section1:
+        config:
+          id: "d1b31a86-8a61-5389-ba34-000000000004"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Hundred-Bundle Exchange"
+            navigationLabel:
+              en: "Hundred-Bundle Exchange"
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-000000000001"
+                  slug: "section1Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "If ten bundles each have ten beads, how many beads are there?"
+                production:
+                  purpose: "Original text resource from source Screenwriter draft"
+                  specification: "  1. **`text` — existing generic renderer:** “If ten bundles each have ten beads, how many beads are there?”"
+              section1Scene1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-000000000002"
+                  slug: "section1Scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "If ten bundles each have ten beads, how many beads are there?"
+                production:
+                  purpose: "Proposed, unimplemented interactive Scene"
+                  specification: |-
+                    # Hundred-Bundle Exchange — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `Ten Tens Become a Hundred Content` (source preserved in this YAML), Section 1
+                    Methodologist objectives: `Draft Methodologist Brief` (source preserved in this YAML), not yet approved
+                    Implementation: **proposed independent, self-contained prop-free Scene**, not built
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Reveal the causal mathematical principle in an operable first model. Discover ten tens are exactly one hundred ones and count by repeated additions of a complete ten, including crossing a hundred while keeping remaining ones unchanged.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    **Canonical mathematical rule:** One group of ten has 10 objects. Ten separate ten-groups contain 100 distinct objects, and repacking them into one hundred-block preserves all 100: ten tens = one hundred = one hundred ones. Each count-by-ten move adds exactly one complete ten and keeps any remaining ones fixed. From 75: 75→85→95→105 has five ones throughout; at 105 the ten full tens regroup into one hundred. From 90: 90→100→110 has nine, then ten tens, then one hundred and one ten. +10 is never the addition of just one loose unit.
+                    
+                    **Initial state:** Ten named bundles T1–T10 each with ten separate bead IDs, total 100. No hundred group initially; a specific Exchange action is available only for ten complete ten-bundles.
+                    
+                    **Authoritative model:** 100 stable member IDs, with reversible grouping as ten × ten or one × hundred, group ledger, prediction and Reveal. The same objects exist throughout the exchange.
+                    
+                    **Instructional boundary:** Nine complete bundles are 90 and cannot be traded for 100; Unbundle returns exactly ten complete bundles of ten.
+                    
+                    No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1 — If ten bundles each have ten beads, how many beads are there?
+                    
+                    - **Exact learner-facing invitation:** “If ten bundles each have ten beads, how many beads are there?”
+                    - **Controllable investigation:** Inspect all ten complete bundles and accumulate 10,20,30,…,100; compare bundle count with bead count.
+                    - **Observed correct consequence:** There are ten bundles and one hundred beads.
+                    - **Evidence from actual model:** 10+10+10+10+10+10+10+10+10+10=100.
+                    - **Misconception-sensitive feedback and repair:** For ten beads, show every bundle has its own ten distinct members, not one.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+                    
+                    ### Beat 2 — Exchange ten complete tens for a single hundred-block. What happened to the count?
+                    
+                    - **Exact learner-facing invitation:** “Exchange ten complete tens for a single hundred-block. What happened to the count?”
+                    - **Controllable investigation:** Swap grouping from ten groups to one hundred, inspect the same 100 member IDs, and reverse the operation.
+                    - **Observed correct consequence:** The bead count stays 100 whether written as ten tens, one hundred or one hundred ones.
+                    - **Evidence from actual model:** 10 tens = 1 hundred = 100 ones, with zero added or removed.
+                    - **Misconception-sensitive feedback and repair:** For one bead, expand the hundred-block and show all hundred separate original member IDs.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Inspect member IDs inside a bundle, count cumulative groups of ten, Exchange to hundred, Unbundle hundred into ten tens, Reset.
+                    - **Invariants and consistency:** 100 stable member IDs, with reversible grouping as ten × ten or one × hundred, group ledger, prediction and Reveal. The same objects exist throughout the exchange. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
+                    - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
+                    - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
+                    - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    The object hierarchy is a fully accessible list of ten bundles each naming ten members, also available after conversion under the hundred group. Exchange is a native button rather than precision dragging.
+                    
+                    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Exactly 100 unique bead IDs are present in both groupings.
+                    2. Ten complete tens exchange for one hundred and back, preserving quantity.
+                    3. Nine tens cannot be exchanged for hundred.
+                    4. Reset returns to ten tens and no changes to the second Scene.
+                    5. Beat 1 correct model: 10+10+10+10+10+10+10+10+10+10=100. Test misconception route: For ten beads, show every bundle has its own ten distinct members, not one.
+                    6. Beat 2 correct model: 10 tens = 1 hundred = 100 ones, with zero added or removed. Test misconception route: For one bead, expand the hundred-block and show all hundred separate original member IDs.
+                    7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
+                    8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    This is a **proposed** Scene. Generic `scene` Resource rendering exists; Hundred-Bundle Exchange does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
+                  productionNotes: "This placement in Hundred-Bundle Exchange refers to hundredBundleExchange.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section1Markdown1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-000000000003"
+                  slug: "section1Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "There are ten bundles and one hundred beads. 10+10+10+10+10+10+10+10+10+10=100."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "  3. **`markdown` — existing generic renderer:** “There are ten bundles and one hundred beads. 10+10+10+10+10+10+10+10+10+10=100.”"
+            order:
+              - "section1Text1"
+              - "section1Scene1"
+              - "section1Markdown1"
+        production:
+          purpose: "Hundred-Bundle Exchange"
+          pedagogicalIntent: |-
+            - **Purpose:** Develop the principle through a manipulable concrete model and a counterexample.
+            - **Current Section contract:** `LessonSection_Config`, one **vertically ordered nonempty** list of typed resources, not a Quiz.
+            - **Ordered Resource blocks:**
+              1. **`text` — existing generic renderer:** “If ten bundles each have ten beads, how many beads are there?”
+              2. **`scene` — generic type supported, bespoke implementation proposed:** `Hundred-Bundle Exchange` (former hundredBundleExchange.scene-spec.md; specification embedded in this YAML). Ten named bundles T1–T10 each with ten separate bead IDs, total 100. No hundred group initially; a specific Exchange action is available only for ten complete ten-bundles.
+              3. **`markdown` — existing generic renderer:** “There are ten bundles and one hundred beads. 10+10+10+10+10+10+10+10+10+10=100.”
+            - **Learner-controlled beats, observations and feedback:**
+              - **Beat 1: “If ten bundles each have ten beads, how many beads are there?”** Inspect all ten complete bundles and accumulate 10,20,30,…,100; compare bundle count with bead count. **Result:** There are ten bundles and one hundred beads. **Why the plausible mistake fails:** For ten beads, show every bundle has its own ten distinct members, not one. **Verified model:** 10+10+10+10+10+10+10+10+10+10=100.
+              - **Beat 2: “Exchange ten complete tens for a single hundred-block. What happened to the count?”** Swap grouping from ten groups to one hundred, inspect the same 100 member IDs, and reverse the operation. **Result:** The bead count stays 100 whether written as ten tens, one hundred or one hundred ones. **Why the plausible mistake fails:** For one bead, expand the hundred-block and show all hundred separate original member IDs. **Verified model:** 10 tens = 1 hundred = 100 ones, with zero added or removed.
+            - **Independent controls:** Inspect member IDs inside a bundle, count cumulative groups of ten, Exchange to hundred, Unbundle hundred into ten tens, Reset. Full worked reveal is always available and Reset applies only to this Scene, without scoring or locks.
+            - **Mathematical state:** 100 stable member IDs, with reversible grouping as ten × ten or one × hundred, group ledger, prediction and Reveal. The same objects exist throughout the exchange.
+            - **Instructional boundary:** Nine complete bundles are 90 and cannot be traded for 100; Unbundle returns exactly ten complete bundles of ten.
+            - **Accessibility and RTL:** The object hierarchy is a fully accessible list of ten bundles each naming ten members, also available after conversion under the hundred group. Exchange is a native button rather than precision dragging. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
+            - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Ten tens make one hundred, and changing the bundles does not change the number of objects.” is planned only, with no event or persistence.
+          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+      section2:
+        config:
+          id: "d1b31a86-8a61-5389-ba34-000000000008"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Where Did the Beads Go?"
+            navigationLabel:
+              en: "Where Did the Beads Go?"
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-000000000005"
+                  slug: "section2Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ten groups each hold ten beads. If they become one hundred-block, did beads disappear?"
+                production:
+                  purpose: "Original text resource from source Screenwriter draft"
+                  specification: "  1. **`text` (existing renderer):** “Ten groups each hold ten beads. If they become one hundred-block, did beads disappear?”"
+              section2Markdown1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-000000000006"
+                  slug: "section2Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "No. The hundred-block contains all the same hundred beads. Only their grouping changed."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "  2. **`markdown` (existing renderer):** “No. The hundred-block contains all the same hundred beads. Only their grouping changed.”"
+              section2Markdown2:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-000000000007"
+                  slug: "section2Markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "At 95, adding a group of ten creates 105: the five loose ones stay five, while ten full tens become one hundred."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "  3. **`markdown` (existing renderer):** “At 95, adding a group of ten creates 105: the five loose ones stay five, while ten full tens become one hundred.”"
+            order:
+              - "section2Text1"
+              - "section2Markdown1"
+              - "section2Markdown2"
+        production:
+          purpose: "Where Did the Beads Go?"
+          pedagogicalIntent: |-
+            - **Purpose:** Retrieve a numerical invariant and contrast it with a likely mistaken shortcut without score or response validation.
+            - **Current Section shape:** `LessonSection_Config`, one ordered vertical Resource column.
+            - **Ordered content blocks:**
+              1. **`text` (existing renderer):** “Ten groups each hold ten beads. If they become one hundred-block, did beads disappear?”
+              2. **`markdown` (existing renderer):** “No. The hundred-block contains all the same hundred beads. Only their grouping changed.”
+              3. **`markdown` (existing renderer):** “At 95, adding a group of ten creates 105: the five loose ones stay five, while ten full tens become one hundred.”
+            - **Instructional dialogue:** Invite a child to give a private, spoken or recorded-on-paper answer before reading the explanation. The existing text/Markdown blocks do not implement hidden-answer input or auto-grading, so no such widget, correctness tracking or KnowledgeCheckpoint API is claimed.
+            - **Misconception feedback:** Ten ten-bundles are only ten beads; a hundred-block is only one bead; 95+10=96; 95+10=915; ones digit changes during +10; exchanging a hundred-block loses members. Use the detailed preceding Scene model if the child remains unsure.
+            - **Navigation and access:** The explanation remains legible to a screen reader and does not require a visual page transition, sound or animation.
+          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+      section3:
+        config:
+          id: "d1b31a86-8a61-5389-ba34-00000000000c"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Ten-Step Crossing"
+            navigationLabel:
+              en: "Ten-Step Crossing"
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-000000000009"
+                  slug: "section3Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Start at 75; add a group of ten three times. What happens to the five loose ones?"
+                production:
+                  purpose: "Original text resource from source Screenwriter draft"
+                  specification: "  1. **`text` — existing generic renderer:** “Start at 75; add a group of ten three times. What happens to the five loose ones?”"
+              section3Scene1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-00000000000a"
+                  slug: "section3Scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Start at 75; add a group of ten three times. What happens to the five loose ones?"
+                production:
+                  purpose: "Proposed, unimplemented interactive Scene"
+                  specification: |-
+                    # Ten-Step Crossing — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist and independent Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `Ten Tens Become a Hundred Content` (source preserved in this YAML), Section 3
+                    Methodologist objectives: `Draft Methodologist Brief` (source preserved in this YAML), not yet approved
+                    Implementation: **proposed independent, self-contained prop-free Scene**, not built
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Transfer the rule into a changed number/item context without the first Scene's state or answer. Discover ten tens are exactly one hundred ones and count by repeated additions of a complete ten, including crossing a hundred while keeping remaining ones unchanged.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    **Canonical mathematical rule:** One group of ten has 10 objects. Ten separate ten-groups contain 100 distinct objects, and repacking them into one hundred-block preserves all 100: ten tens = one hundred = one hundred ones. Each count-by-ten move adds exactly one complete ten and keeps any remaining ones fixed. From 75: 75→85→95→105 has five ones throughout; at 105 the ten full tens regroup into one hundred. From 90: 90→100→110 has nine, then ten tens, then one hundred and one ten. +10 is never the addition of just one loose unit.
+                    
+                    **Initial state:** First case 75 as 7 tens+5 ones, second 90 as 9 tens+0 ones. At 100/105/110 hundreds, tens and ones containers are explicitly named and mathematically consistent.
+                    
+                    **Authoritative model:** Selected preset, current total, number of added complete ten-groups, hundreds/tens/ones representation and ordered moves. +10 increments the total by 10; remaining ones are unchanged. At ten tens an explicit regrouping creates one hundred.
+                    
+                    **Instructional boundary:** The three-digit numbers 105/110 are explicitly explained through grouped hundred/tens/ones models and are not treated as mastery of `readWrite1000`.
+                    
+                    No displayed answer, aria readout, animation result or feedback may contradict the object counts, place values, numeric order, exact group membership or real face values in the model.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### Beat 1 — Start at 75; add a group of ten three times. What happens to the five loose ones?
+                    
+                    - **Exact learner-facing invitation:** “Start at 75; add a group of ten three times. What happens to the five loose ones?”
+                    - **Controllable investigation:** Advance 75→85→95→105, keeping five loose ones and regrouping ten complete tens into one hundred at the last step.
+                    - **Observed correct consequence:** 75,85,95,105, with five ones unchanged all along.
+                    - **Evidence from actual model:** 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5.
+                    - **Misconception-sensitive feedback and repair:** For 96, distinguish adding ten complete objects from adding just one. For 915, show the 105 grouping as one hundred and five.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+                    
+                    ### Beat 2 — Start at 90 and add two groups of ten. What new grouping appears at one hundred?
+                    
+                    - **Exact learner-facing invitation:** “Start at 90 and add two groups of ten. What new grouping appears at one hundred?”
+                    - **Controllable investigation:** Advance 90→100→110; show ten tens become one hundred, then another ten sits beside it.
+                    - **Observed correct consequence:** 90,100,110, with each step adding a complete ten.
+                    - **Evidence from actual model:** 90+10=100; 100+10=110.
+                    - **Misconception-sensitive feedback and repair:** For 91, show one entire group of ten. For 910, show ten full ten-groups rather than writing the word 'ten' after the digit nine.
+                    - **Agency:** Prediction optional. Show a complete annotated Reveal without requiring a correct answer; allow Undo/Reset and retry, never lock progress behind timed or scored success.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects and controls:** Stable unique group/counter/card/cash identifiers, explicit numbers and roles, text ledger, prediction and explanations. Choose preset 75 or 90; Add One Ten; Remove Last Ten; Predict next number; Show hundreds/tens/ones ledger; Reveal; Reset.
+                    - **Invariants and consistency:** Selected preset, current total, number of added complete ten-groups, hundreds/tens/ones representation and ordered moves. +10 increments the total by 10; remaining ones are unchanged. At ten tens an explicit regrouping creates one hundred. All derived visual and text values use a single authoritative local state. One object cannot be counted, paired or removed twice unless an action legitimately reverses a previous change.
+                    - **Self-contained:** No props, external mode, new Resource kind, cross-Section mutable state or unverified event API. Each new Scene's pedagogical constants must be defined inside its own future component.
+                    - **Reset and feedback:** Reset restores this Scene's own initial state and does not change another Section. Incorrect or partial states produce a specific cause-and-effect explanation.
+                    - **Assessment boundary:** No timed pass, Question/Quiz, scoring, mastery attribution, persistent Note unlock or fabricated analytics hook.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Lightweight labelled HTML/SVG or semantic native controls are sufficient; maintain exact countable items and visually discoverable relationships at small sizes. If animations help, make them learner-paced with a reduced-motion instantaneous alternative. No mandatory audio, precision drag, externally fetched imagery or 3D asset. Money appears only as clearly schematic euro cards with real denominations; do not imply copyrighted currency images have been provided.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Each move names previous total, increment +10, new value and number of hundreds/tens/ones; in RTL the numerical sequence and digit order remain correct.
+                    
+                    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. 75→85→95→105 preserves five loose ones.
+                    2. 90→100→110 represents a whole ten each step.
+                    3. Undo One Ten reverses ten units, not one.
+                    4. Preset switch resets this Scene's local state.
+                    5. Beat 1 correct model: 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5. Test misconception route: For 96, distinguish adding ten complete objects from adding just one. For 915, show the 105 grouping as one hundred and five.
+                    6. Beat 2 correct model: 90+10=100; 100+10=110. Test misconception route: For 91, show one entire group of ten. For 910, show ten full ten-groups rather than writing the word 'ten' after the digit nine.
+                    7. Complete the same task with keyboard, switch, screen reader, RTL, reduced motion, mobile/high zoom and downloaded selected-language offline resources; the numerical result and instructional explanation are identical.
+                    8. Reset only this Scene and verify no other Section's state changed and no score, mastery or Note event occurred.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    This is a **proposed** Scene. Generic `scene` Resource rendering exists; Ten-Step Crossing does **not**. Editor approval of the Methodologist Brief, Content and this Scene spec is pending. Future implementation must verify the actual localization context and Renderer contracts before authoring any React; QA must test all examples and error branches, translations, semantic RTL, accessibility and real airplane-mode offline delivery.
+                  productionNotes: "This placement in Ten-Step Crossing refers to tenStepCrossing.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section3Markdown1:
+                config:
+                  id: "d1b31a86-8a61-5389-ba34-00000000000b"
+                  slug: "section3Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "75,85,95,105, with five ones unchanged all along. 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "  3. **`markdown` — existing generic renderer:** “75,85,95,105, with five ones unchanged all along. 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5.”"
+            order:
+              - "section3Text1"
+              - "section3Scene1"
+              - "section3Markdown1"
+        production:
+          purpose: "Ten-Step Crossing"
+          pedagogicalIntent: |-
+            - **Purpose:** Apply the principle to unfamiliar quantities or representations, not replay the first model.
+            - **Current Section contract:** `LessonSection_Config`, one **vertically ordered nonempty** list of typed resources, not a Quiz.
+            - **Ordered Resource blocks:**
+              1. **`text` — existing generic renderer:** “Start at 75; add a group of ten three times. What happens to the five loose ones?”
+              2. **`scene` — generic type supported, bespoke implementation proposed:** `Ten-Step Crossing` (former tenStepCrossing.scene-spec.md; specification embedded in this YAML). First case 75 as 7 tens+5 ones, second 90 as 9 tens+0 ones. At 100/105/110 hundreds, tens and ones containers are explicitly named and mathematically consistent.
+              3. **`markdown` — existing generic renderer:** “75,85,95,105, with five ones unchanged all along. 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5.”
+            - **Learner-controlled beats, observations and feedback:**
+              - **Beat 1: “Start at 75; add a group of ten three times. What happens to the five loose ones?”** Advance 75→85→95→105, keeping five loose ones and regrouping ten complete tens into one hundred at the last step. **Result:** 75,85,95,105, with five ones unchanged all along. **Why the plausible mistake fails:** For 96, distinguish adding ten complete objects from adding just one. For 915, show the 105 grouping as one hundred and five. **Verified model:** 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5.
+              - **Beat 2: “Start at 90 and add two groups of ten. What new grouping appears at one hundred?”** Advance 90→100→110; show ten tens become one hundred, then another ten sits beside it. **Result:** 90,100,110, with each step adding a complete ten. **Why the plausible mistake fails:** For 91, show one entire group of ten. For 910, show ten full ten-groups rather than writing the word 'ten' after the digit nine. **Verified model:** 90+10=100; 100+10=110.
+            - **Independent controls:** Choose preset 75 or 90; Add One Ten; Remove Last Ten; Predict next number; Show hundreds/tens/ones ledger; Reveal; Reset. Full worked reveal is always available and Reset applies only to this Scene, without scoring or locks.
+            - **Mathematical state:** Selected preset, current total, number of added complete ten-groups, hundreds/tens/ones representation and ordered moves. +10 increments the total by 10; remaining ones are unchanged. At ten tens an explicit regrouping creates one hundred.
+            - **Instructional boundary:** The three-digit numbers 105/110 are explicitly explained through grouped hundred/tens/ones models and are not treated as mastery of `readWrite1000`.
+            - **Accessibility and RTL:** Each move names previous total, increment +10, new value and number of hundreds/tens/ones; in RTL the numerical sequence and digit order remain correct. Show the same model in an ordered text ledger, with native buttons and no required audio or drag. Error feedback is specific, never just a success badge.
+            - **Transition and Note:** After explanation ask the learner which relationship remains true in the next changed model; proposed recall cue “Every +10 step adds one full ten; any loose ones stay the same.” is planned only, with no event or persistence.
+          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+    order:
+      - "section1"
+      - "section2"
+      - "section3"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Ten Tens Become a Hundred — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: tenTensMakeAWholeHundred
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Discover ten tens are exactly one hundred ones and count by repeated additions of a complete ten, including crossing a hundred while keeping remaining ones unchanged.
+    
+    ## Target audience
+    
+    **Primary audience: Grade 2.** Grade 2 with grouped number models through 100; slight extension to 105/110 is supported by explicit one-hundred-plus-remainder groups rather than requiring unscaffolded reading of three digits. This Grade is a pedagogical choice of the Lesson, never a ceiling on the independent canonical Skill.
+    
+    ## Prerequisites
+    
+    Know one ten contains ten ones (`makeTen`), tens/ones grouping (`tensOnes`), and count/read through 100 from the previous Lesson (`readWrite100`, `forward100`). Understand group count is different from member count.
+    
+    ## Target Skills
+    
+    - [makeHundred.data.ts](../../../../data/skills/numeration/placeValue/skills/makeHundred.data.ts)
+    - [countBy10.data.ts](../../../../data/skills/counting/steps/skills/countBy10.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Build ten different bundles of ten objects, showing exactly one hundred individual items.
+    - Exchange those ten bundles into one hundred and reverse the exchange, preserving identities and total.
+    - Count 75,85,95,105 by +10, keeping five loose ones unchanged.
+    - Count 90,100,110 by +10 and identify the regrouping at 100.
+    - Explain group number versus the quantity of individual objects.
+    
+    The outcomes are intentions for formative explanation, not validated Skill-mastery evidence.
+    
+    ## Essential subject matter
+    
+    One group of ten has 10 objects. Ten separate ten-groups contain 100 distinct objects, and repacking them into one hundred-block preserves all 100: ten tens = one hundred = one hundred ones. Each count-by-ten move adds exactly one complete ten and keeps any remaining ones fixed. From 75: 75→85→95→105 has five ones throughout; at 105 the ten full tens regroup into one hundred. From 90: 90→100→110 has nine, then ten tens, then one hundred and one ten. +10 is never the addition of just one loose unit.
+    
+    ## Conceptual progression and dependencies
+    
+    Ten ones become one ten → collect ten different tens → exchange for hundred and undo → add tens to a number with five loose ones → cross hundred via regrouping → independent zero-loose-one challenge.
+    
+    The pedagogically related Skills remain independently assessable objects with their own original UUIDs. No aggregate Skill definition or invented override is created.
+    
+    ## Misconceptions, examples and boundaries
+    
+    **Common misconceptions:** Ten ten-bundles are only ten beads; a hundred-block is only one bead; 95+10=96; 95+10=915; ones digit changes during +10; exchanging a hundred-block loses members.
+    
+    **Target depth and exclusions:** Ten-tens and one-hundred equivalence plus brief step cases to 105/110. No general three-digit reading curriculum, multiplication algorithm, counting by 100, or calculation beyond demonstrated full ten-bundles.
+    
+    **Exact examples:**
+    
+    - 10+10+10+10+10+10+10+10+10+10=100.
+    - 10 tens = 1 hundred = 100 ones, with zero added or removed.
+    - 75+10=85, 85+10=95, 95+10=105; ones remainder stays 5.
+    - 90+10=100; 100+10=110.
+    
+    ## Localization, accessibility and offline intent
+    
+    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+    
+    English is editorial source copy, not a completed locale implementation. For the money lesson the euro is an **explicit case-study currency** in all locales, and another real currency would require separate verified denominations, texts and editorial approval.
+    
+    ## Sources and factual verification
+    
+    - Canonical Skill source files in the Target Skills section, preserved byte-for-byte in the earlier migration from Mathematics `main`.
+    - [Lesson Editorial Architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md), [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
+    - [Internationalization/Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) and [Offline Architecture](../../../../../../studio/docs/architecture/offline-first-and-device-compatibility.md).
+    
+    No named national Curriculum or attainment standards are claimed.
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone, Program-neutral. Lesson sequence derives from prerequisite relationships, not a national course binding.
+    
+    ## Open editorial decisions
+    
+    - Editor to approve Grade 2, canonical targets, numerical boundaries, prerequisite claims and proposed contrasting examples.
+    - Editor to review every Content and proposed Scene separately after the Methodologist Brief; localization and offline/accessibility implementations need QA.
+    - Money cases use fictional classroom prices but real EUR denominations; confirm currency choice for target readers before implementation.
+    
+    ## Methodologist handoff
+    
+    **Draft, not approved.** The accompanying Content and Scene specs are **Provisional Drafts under the explicit batch instruction**, not evidence that the normal Methodologist approval gate has passed. No React, runtime Lesson, Questions, Quiz, scores, mastery evidence, Note storage or undocumented API is authorized.
+  purpose: "Discover ten tens are exactly one hundred ones and count by repeated additions of a complete ten, including crossing a hundred while keeping remaining ones unchanged."
+  audience: "Target grades and prerequisites in the complete methodology."
+  productionNotes: |-
+    # Ten Tens Become a Hundred — Content
+    
+    Status: **Provisional Draft — pending Methodologist approval**
+    Target Lesson: `content/playground/Data/Lessons/1/tenTensMakeAWholeHundred/`
+    Primary audience: Grade 2
+    Methodologist source: `Draft Methodologist Brief` (source preserved in this YAML) (not yet approved)
+    Target Skills: exactly the canonical linked Skill files in the Brief; no copied UUIDs or alternate taxonomy
+    Program dependence: None
+    Runtime Lesson: **Not implemented**
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Discover ten tens are exactly one hundred ones and count by repeated additions of a complete ten, including crossing a hundred while keeping remaining ones unchanged.
+    
+    **Exact mathematical foundation and reference model:** One group of ten has 10 objects. Ten separate ten-groups contain 100 distinct objects, and repacking them into one hundred-block preserves all 100: ten tens = one hundred = one hundred ones. Each count-by-ten move adds exactly one complete ten and keeps any remaining ones fixed. From 75: 75→85→95→105 has five ones throughout; at 105 the ten full tens regroup into one hundred. From 90: 90→100→110 has nine, then ten tens, then one hundred and one ten. +10 is never the addition of just one loose unit.
+    
+    The learner actively constructs or changes a representation, predicts its effect and explains a discrepancy. The Lesson does **not** consist of a long Markdown lecture plus a token quiz. One Scene provides the guided causal encounter, a short reflection section retrieves the rule and challenges a shortcut, and a **different** second Scene tests the rule with changed numbers and a new context. Correct answers are accompanied by verifiable evidence, not praise alone.
+    
+    ## LEARNER JOURNEY
+    
+    1. **Question and prediction:** “If ten bundles each have ten beads, how many beads are there?” Learner can think or select an outcome before acting, but is not forced to make a guess.
+    2. **Manipulate and notice:** 10+10+10+10+10+10+10+10+10+10=100. 10 tens = 1 hundred = 100 ones, with zero added or removed. An object/amount/count ledger connects concrete items with the written numbers.
+    3. **Explain the counterexample:** Ten groups each hold ten beads. If they become one hundred-block, did beads disappear? Child attempts a reasoning response before the short worked explanation.
+    4. **Independent transfer:** Start at 75; add a group of ten three times. What happens to the five loose ones? The second Scene has its own state and a new number, item or money configuration; it is not a prop-mode clone.
+    5. **Conclude and retrieve:** The final worked example and the planned Note express the enduring principle without a time limit, score or mastery claim.
+    
+    ## SECTION PLAN
+    
+    
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - `Hundred-Bundle Exchange` (former hundredBundleExchange.scene-spec.md; specification embedded in this YAML) — distinct concrete exploration.
+    - `Ten-Step Crossing` (former tenStepCrossing.scene-spec.md; specification embedded in this YAML) — separately initialized changed-context transfer.
+    
+    Both are **proposed prop-free Scene components**, not existing React code. Generic `scene` Resource support alone does not implement the named Scenes, and no new Resource discriminator, Scene mode prop or undocumented app context is assumed.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    1. “Ten tens make one hundred, and changing the bundles does not change the number of objects.” — after the first worked contrast, independently of the answer given.
+    2. “Every +10 step adds one full ten; any loose ones stay the same.” — after inspecting the transfer case's worked reasoning.
+    
+    Each Note is a concise future recall cue, **not** an implemented unlocked Note entity. Note IDs, unlock events, persistence, synchronization, revision sheets and spaced retrieval schedules require separate architectural review and implementation.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    Guided manipulation in Section 1, short verbal retrieval in Section 2 and different-context transfer in Section 3 create varied formative practice. Their completion is not a validated measure of mastery of each target Skill. Any future scored Question, Quiz, correct-answer security, thresholds, retry policy or formal assessment evidence belongs to the Learning Assessment Architect and is deliberately absent.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    All learner-facing prompts, controls, errors, numerals/number words, object identities, accessible state messages and Notes require **genuine translations for every current Engine-supported locale**, with no fallback. Mathematical order, operand identities, currency units and grouping must be preserved in semantic RTL, not flipped mechanically. WCAG 2.2 AA: touch/keyboard/switch controls, visible focus, nonvisual ordered evidence ledger, color-independent status, reduced motion, high zoom and mobile support. Equivalent selected-language instructional data and interaction must remain usable once downloaded offline; these are **requirements, not delivered production features**.
+    
+    Learner-facing samples in this Markdown are **English editorial source only**. No translation dictionaries or alternative locale content are falsely claimed.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    | Feature                                               | Verified / proposed                      | Later responsibility                                 |
+    | ----------------------------------------------------- | ---------------------------------------- | ---------------------------------------------------- |
+    | `LessonSection_Config` with ordered `Resource_Config` | Existing TypeScript contract             | Coding Agent assembles only after editorial approval |
+    | Generic `text`, `markdown`, `scene` renderer          | Observed in Playground                   | Bespoke Scenes remain unimplemented                  |
+    | Hundred-Bundle Exchange, Ten-Step Crossing            | **Proposed** Screenwriter specifications | Editor approval, Scene Designer, independent tests   |
+    | Genuine locales, RTL and nonvisual controls           | Product requirements, not delivered      | Localization and accessibility QA                    |
+    | Selected-language offline Lesson and asset download   | Product target, unverified               | PWA/integration and offline E2E                      |
+    | Notes, revision sheet, progress, persistent mastery   | Planned or unverified, not wired         | Separate architecture                                |
+    | Questions, Quizzes, grading                           | Not authored                             | Assessment Architect                                 |
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - `Draft Methodologist Brief` (source preserved in this YAML), which links directly to canonical Skills.
+    - `Lesson Content entity` (source preserved in this YAML), [Section entity](../../../../../../studio/docs/entities/section.md), [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
+    - Editor must approve the Brief first, then Content and each Scene separately. Full locale translation and all nonvisual/RTL/offline behavior need implementation-stage tests.
+    
+    ## HANDOFF
+    
+    **Provisional Screenwriter Draft, not Approved.** No React components, runtime Lesson data, scored Questions, Quiz, mastery, Notes persistence or assumed existing offline feature were created.

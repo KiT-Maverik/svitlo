@@ -1,0 +1,723 @@
+config:
+  id: "c32467b0-46c1-588a-883f-ab24dc347e0c"
+  slug: "readingWholeHours"
+  type: "lesson"
+  skills:
+    - "587f72d3-5c93-4aa7-9e36-588a1f5483f0"
+  params:
+    requireQuiz: false
+    languages:
+      - "en"
+      - "qm"
+      - "lt"
+      - "lv"
+      - "et"
+      - "be"
+      - "ka"
+      - "kk"
+      - "zh"
+      - "hi"
+      - "es"
+      - "ar"
+      - "fr"
+      - "bn"
+      - "pt"
+      - "ur"
+      - "id"
+      - "de"
+      - "ja"
+      - "ko"
+      - "tr"
+      - "vi"
+      - "ta"
+      - "te"
+      - "mr"
+      - "ms"
+      - "he"
+      - "pl"
+      - "uk"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Reading Whole Hours"
+  section:
+    items:
+      section1:
+        config:
+          id: "c32467b0-46c1-588a-883f-000000000004"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Two hands, different jobs"
+            navigationLabel:
+              en: "Two hands, different jobs"
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-000000000001"
+                  slug: "section1Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "This clock has a short hour hand and a long minute hand. Their jobs are different. Which hand helps you find the hour?"
+                production:
+                  purpose: "Original text resource from source Screenwriter draft"
+                  specification: "1. **`text` (existing type):** “This clock has a short hour hand and a long minute hand. Their jobs are different. Which hand helps you find the hour?”"
+              section1Scene1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-000000000002"
+                  slug: "section1Scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "This clock has a short hour hand and a long minute hand. Their jobs are different. Which hand helps you find the hour?"
+                production:
+                  purpose: "Proposed, unimplemented interactive Scene"
+                  specification: |-
+                    # ClockExplorer — Interactive Scene Specification
+                    
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** `Reading Whole Hours Content` (source preserved in this YAML)
+                    **Methodologist scope:** `Draft Brief` (source preserved in this YAML)
+                    **Canonical target Skill:** [readHour.data.ts](../../../../../data/skills/time/clock/skills/readHour.data.ts)
+                    **Implementation:** Proposed, not implemented
+                    
+                    ## Educational purpose and why a Scene is justified
+                    
+                    Read exact hours on analog clocks using the hands correctly and match those readings to digital time.
+                    
+                    Use twelve labelled hour choices or a controlled previous/next hour control (1–12 cycling only for preset selection), identify each hand, cover/reveal a digital :00 reading and reset to 3:00. No freehand dragging or invented time API.
+                    
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                    
+                    ## Content and visual model
+                    
+                    Display analog and digital clocks together, use a manually controlled clock with labeled hands, and use nonvisual hand-position descriptions rather than color or rotation alone. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                    
+                    ## Required observable states and correct explanations
+                    
+                    | State    | Required representation                                                                       | Mathematical truth                           |
+                    | -------- | --------------------------------------------------------------------------------------------- | -------------------------------------------- |
+                    | Initial  | Static 3:00 clock, short hour hand at 3, long minute hand at 12; labels displayed separately. | Both roles identifiable regardless of color. |
+                    | Hour 4   | 4:00 with short hand at 4 and long hand at 12; digital form hidden until reveal.              | Hour changes, minute condition stays fixed.  |
+                    | Hour 5   | 5:00 same pattern; no claim hour hand teleports in reality.                                   | Exact-hour snapshots only.                   |
+                    | Transfer | 8:00 clock with distractors 8:00, 12:08, 8:30.                                                | Short vs long hand reasoning.                |
+                    
+                    ## Interaction protocol (pedagogical, not an API)
+                    
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                    
+                    ## Specific explanatory feedback and edge cases
+                    
+                    - **Two hands, different jobs:** If minute hand is selected for hour: “That is the longer hand. At whole hours it points to 12, while the shorter hand tells us which hour.”
+                    - **Build three o'clock:** If 12:03 is selected: “The long hand points to 12 to show zero minutes, not the hour 12. The short hand is at 3.”
+                    - **Change the hour, keep the pattern:** If a learner claims both hands should point to 4: “Only the short hour hand points to 4; the minute hand stays at 12 at an exact hour.”
+                    - **Can you read a different clock?:** For 8:30: “At half past eight, the minute hand would point at 6, not 12.”
+                    
+                    **Do not teach outside this boundary:** Read exact 1:00–12:00 analog times and matching digital :00 times. Note that the hour hand moves continuously in real clocks but do not teach intermediate readings. Exclude 24-hour notation, morning/evening inference, elapsed intervals, minute counting and time zones.
+                    
+                    ## Nonvisual and keyboard-equivalent learning path
+                    
+                    Use accessible description 'Short hour hand points to 8; long minute hand points to 12; what whole-hour time is shown?' and present the same answer options. Hand length is expressed semantically.
+                    
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                    
+                    ## Localization, RTL, mobile, offline and performance
+                    
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                    
+                    ## Build and review handoff
+                    
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                  productionNotes: "This placement in Two hands, different jobs refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section1Markdown1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-000000000003"
+                  slug: "section1Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The short hour hand points near the hour number. At an exact hour, the long minute hand points to 12."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "3. **`markdown` (existing type):** “The short hour hand points near the hour number. At an exact hour, the long minute hand points to 12.”"
+            order:
+              - "section1Text1"
+              - "section1Scene1"
+              - "section1Markdown1"
+        production:
+          purpose: "Two hands, different jobs"
+          pedagogicalIntent: |-
+            **Learning purpose:** Identify which hand encodes what.
+            
+            **Vertical Resource sequence:**
+            
+            1. **`text` (existing type):** “This clock has a short hour hand and a long minute hand. Their jobs are different. Which hand helps you find the hour?”
+            
+            2. **`scene` (existing type; new Scene proposed):** `ClockExplorer` (former ClockExplorer.scene-spec.md; specification embedded in this YAML). Clock Explorer shows an analog clock with both hands labelled in a key. Choose 'Hour hand' or 'Minute hand' and see its role explained.
+            
+            3. **`markdown` (existing type):** “The short hour hand points near the hour number. At an exact hour, the long minute hand points to 12.”
+            
+            **Learner action:** Select a hand by its name, not solely by color or clicking its narrow graphic.
+            
+            **Immediate explanatory feedback:** If minute hand is selected for hour: “That is the longer hand. At whole hours it points to 12, while the shorter hand tells us which hour.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+            
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+      section2:
+        config:
+          id: "c32467b0-46c1-588a-883f-000000000008"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Build three o'clock"
+            navigationLabel:
+              en: "Build three o'clock"
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-000000000005"
+                  slug: "section2Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The hour hand is at 3 and the minute hand is at 12. What time is it?"
+                production:
+                  purpose: "Original text resource from source Screenwriter draft"
+                  specification: "1. **`text` (existing type):** “The hour hand is at 3 and the minute hand is at 12. What time is it?”"
+              section2Scene1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-000000000006"
+                  slug: "section2Scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "The hour hand is at 3 and the minute hand is at 12. What time is it?"
+                production:
+                  purpose: "Proposed, unimplemented interactive Scene"
+                  specification: |-
+                    # ClockExplorer — Interactive Scene Specification
+                    
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** `Reading Whole Hours Content` (source preserved in this YAML)
+                    **Methodologist scope:** `Draft Brief` (source preserved in this YAML)
+                    **Canonical target Skill:** [readHour.data.ts](../../../../../data/skills/time/clock/skills/readHour.data.ts)
+                    **Implementation:** Proposed, not implemented
+                    
+                    ## Educational purpose and why a Scene is justified
+                    
+                    Read exact hours on analog clocks using the hands correctly and match those readings to digital time.
+                    
+                    Use twelve labelled hour choices or a controlled previous/next hour control (1–12 cycling only for preset selection), identify each hand, cover/reveal a digital :00 reading and reset to 3:00. No freehand dragging or invented time API.
+                    
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                    
+                    ## Content and visual model
+                    
+                    Display analog and digital clocks together, use a manually controlled clock with labeled hands, and use nonvisual hand-position descriptions rather than color or rotation alone. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                    
+                    ## Required observable states and correct explanations
+                    
+                    | State    | Required representation                                                                       | Mathematical truth                           |
+                    | -------- | --------------------------------------------------------------------------------------------- | -------------------------------------------- |
+                    | Initial  | Static 3:00 clock, short hour hand at 3, long minute hand at 12; labels displayed separately. | Both roles identifiable regardless of color. |
+                    | Hour 4   | 4:00 with short hand at 4 and long hand at 12; digital form hidden until reveal.              | Hour changes, minute condition stays fixed.  |
+                    | Hour 5   | 5:00 same pattern; no claim hour hand teleports in reality.                                   | Exact-hour snapshots only.                   |
+                    | Transfer | 8:00 clock with distractors 8:00, 12:08, 8:30.                                                | Short vs long hand reasoning.                |
+                    
+                    ## Interaction protocol (pedagogical, not an API)
+                    
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                    
+                    ## Specific explanatory feedback and edge cases
+                    
+                    - **Two hands, different jobs:** If minute hand is selected for hour: “That is the longer hand. At whole hours it points to 12, while the shorter hand tells us which hour.”
+                    - **Build three o'clock:** If 12:03 is selected: “The long hand points to 12 to show zero minutes, not the hour 12. The short hand is at 3.”
+                    - **Change the hour, keep the pattern:** If a learner claims both hands should point to 4: “Only the short hour hand points to 4; the minute hand stays at 12 at an exact hour.”
+                    - **Can you read a different clock?:** For 8:30: “At half past eight, the minute hand would point at 6, not 12.”
+                    
+                    **Do not teach outside this boundary:** Read exact 1:00–12:00 analog times and matching digital :00 times. Note that the hour hand moves continuously in real clocks but do not teach intermediate readings. Exclude 24-hour notation, morning/evening inference, elapsed intervals, minute counting and time zones.
+                    
+                    ## Nonvisual and keyboard-equivalent learning path
+                    
+                    Use accessible description 'Short hour hand points to 8; long minute hand points to 12; what whole-hour time is shown?' and present the same answer options. Hand length is expressed semantically.
+                    
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                    
+                    ## Localization, RTL, mobile, offline and performance
+                    
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                    
+                    ## Build and review handoff
+                    
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                  productionNotes: "This placement in Build three o'clock refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section2Markdown1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-000000000007"
+                  slug: "section2Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "It is 3:00, said ‘three o’clock’. The 00 says zero minutes after three."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "3. **`markdown` (existing type):** “It is 3:00, said ‘three o’clock’. The 00 says zero minutes after three.”"
+            order:
+              - "section2Text1"
+              - "section2Scene1"
+              - "section2Markdown1"
+        production:
+          purpose: "Build three o'clock"
+          pedagogicalIntent: |-
+            **Learning purpose:** Connect a whole-hour analog pattern to digital notation.
+            
+            **Vertical Resource sequence:**
+            
+            1. **`text` (existing type):** “The hour hand is at 3 and the minute hand is at 12. What time is it?”
+            
+            2. **`scene` (existing type; new Scene proposed):** `ClockExplorer` (former ClockExplorer.scene-spec.md; specification embedded in this YAML). Choose '3 o’clock' in Clock Explorer; hide the digital display until prediction, then reveal 3:00.
+            
+            3. **`markdown` (existing type):** “It is 3:00, said ‘three o’clock’. The 00 says zero minutes after three.”
+            
+            **Learner action:** Predict digital representation from labelled positions; reveal after prediction or on demand.
+            
+            **Immediate explanatory feedback:** If 12:03 is selected: “The long hand points to 12 to show zero minutes, not the hour 12. The short hand is at 3.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+            
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+      section3:
+        config:
+          id: "c32467b0-46c1-588a-883f-00000000000c"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Change the hour, keep the pattern"
+            navigationLabel:
+              en: "Change the hour, keep the pattern"
+          content:
+            items:
+              section3Markdown1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-000000000009"
+                  slug: "section3Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Now set 4:00. The shorter hand points to 4 while the longer hand is still at 12. Later, the short hand will move smoothly toward 5—not jump suddenly."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "1. **`markdown` (existing type):** “Now set 4:00. The shorter hand points to 4 while the longer hand is still at 12. Later, the short hand will move smoothly toward 5—not jump suddenly.”"
+              section3Scene1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-00000000000a"
+                  slug: "section3Scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Change the hour, keep the pattern"
+                production:
+                  purpose: "Proposed, unimplemented interactive Scene"
+                  specification: |-
+                    # ClockExplorer — Interactive Scene Specification
+                    
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** `Reading Whole Hours Content` (source preserved in this YAML)
+                    **Methodologist scope:** `Draft Brief` (source preserved in this YAML)
+                    **Canonical target Skill:** [readHour.data.ts](../../../../../data/skills/time/clock/skills/readHour.data.ts)
+                    **Implementation:** Proposed, not implemented
+                    
+                    ## Educational purpose and why a Scene is justified
+                    
+                    Read exact hours on analog clocks using the hands correctly and match those readings to digital time.
+                    
+                    Use twelve labelled hour choices or a controlled previous/next hour control (1–12 cycling only for preset selection), identify each hand, cover/reveal a digital :00 reading and reset to 3:00. No freehand dragging or invented time API.
+                    
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                    
+                    ## Content and visual model
+                    
+                    Display analog and digital clocks together, use a manually controlled clock with labeled hands, and use nonvisual hand-position descriptions rather than color or rotation alone. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                    
+                    ## Required observable states and correct explanations
+                    
+                    | State    | Required representation                                                                       | Mathematical truth                           |
+                    | -------- | --------------------------------------------------------------------------------------------- | -------------------------------------------- |
+                    | Initial  | Static 3:00 clock, short hour hand at 3, long minute hand at 12; labels displayed separately. | Both roles identifiable regardless of color. |
+                    | Hour 4   | 4:00 with short hand at 4 and long hand at 12; digital form hidden until reveal.              | Hour changes, minute condition stays fixed.  |
+                    | Hour 5   | 5:00 same pattern; no claim hour hand teleports in reality.                                   | Exact-hour snapshots only.                   |
+                    | Transfer | 8:00 clock with distractors 8:00, 12:08, 8:30.                                                | Short vs long hand reasoning.                |
+                    
+                    ## Interaction protocol (pedagogical, not an API)
+                    
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                    
+                    ## Specific explanatory feedback and edge cases
+                    
+                    - **Two hands, different jobs:** If minute hand is selected for hour: “That is the longer hand. At whole hours it points to 12, while the shorter hand tells us which hour.”
+                    - **Build three o'clock:** If 12:03 is selected: “The long hand points to 12 to show zero minutes, not the hour 12. The short hand is at 3.”
+                    - **Change the hour, keep the pattern:** If a learner claims both hands should point to 4: “Only the short hour hand points to 4; the minute hand stays at 12 at an exact hour.”
+                    - **Can you read a different clock?:** For 8:30: “At half past eight, the minute hand would point at 6, not 12.”
+                    
+                    **Do not teach outside this boundary:** Read exact 1:00–12:00 analog times and matching digital :00 times. Note that the hour hand moves continuously in real clocks but do not teach intermediate readings. Exclude 24-hour notation, morning/evening inference, elapsed intervals, minute counting and time zones.
+                    
+                    ## Nonvisual and keyboard-equivalent learning path
+                    
+                    Use accessible description 'Short hour hand points to 8; long minute hand points to 12; what whole-hour time is shown?' and present the same answer options. Hand length is expressed semantically.
+                    
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                    
+                    ## Localization, RTL, mobile, offline and performance
+                    
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                    
+                    ## Build and review handoff
+                    
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                  productionNotes: "This placement in Change the hour, keep the pattern refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section3Text1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-00000000000b"
+                  slug: "section3Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "At each exact hour, the long hand is at 12. The short hand tells which hour it is."
+                production:
+                  purpose: "Original text resource from source Screenwriter draft"
+                  specification: "3. **`text` (existing type):** “At each exact hour, the long hand is at 12. The short hand tells which hour it is.”"
+            order:
+              - "section3Markdown1"
+              - "section3Scene1"
+              - "section3Text1"
+        production:
+          purpose: "Change the hour, keep the pattern"
+          pedagogicalIntent: |-
+            **Learning purpose:** Generalize the whole-hour rule.
+            
+            **Vertical Resource sequence:**
+            
+            1. **`markdown` (existing type):** “Now set 4:00. The shorter hand points to 4 while the longer hand is still at 12. Later, the short hand will move smoothly toward 5—not jump suddenly.”
+            
+            2. **`scene` (existing type; new Scene proposed):** `ClockExplorer` (former ClockExplorer.scene-spec.md; specification embedded in this YAML). Move through 3:00, 4:00 and 5:00 using hour choice buttons. Narrated text always identifies both hand positions; no continuous motion needed to learn exact hours.
+            
+            3. **`text` (existing type):** “At each exact hour, the long hand is at 12. The short hand tells which hour it is.”
+            
+            **Learner action:** Compare two consecutive exact-hour snapshots.
+            
+            **Immediate explanatory feedback:** If a learner claims both hands should point to 4: “Only the short hour hand points to 4; the minute hand stays at 12 at an exact hour.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+            
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+      section4:
+        config:
+          id: "c32467b0-46c1-588a-883f-000000000010"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Can you read a different clock?"
+            navigationLabel:
+              en: "Can you read a different clock?"
+          content:
+            items:
+              section4Text1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-00000000000d"
+                  slug: "section4Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A new clock has its short hand at 8 and its long hand at 12. Read it first before opening the answer."
+                production:
+                  purpose: "Original text resource from source Screenwriter draft"
+                  specification: "1. **`text` (existing type):** “A new clock has its short hand at 8 and its long hand at 12. Read it first before opening the answer.”"
+              section4Scene1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-00000000000e"
+                  slug: "section4Scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A new clock has its short hand at 8 and its long hand at 12. Read it first before opening the answer."
+                production:
+                  purpose: "Proposed, unimplemented interactive Scene"
+                  specification: |-
+                    # ClockExplorer — Interactive Scene Specification
+                    
+                    **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                    **Lesson:** `Reading Whole Hours Content` (source preserved in this YAML)
+                    **Methodologist scope:** `Draft Brief` (source preserved in this YAML)
+                    **Canonical target Skill:** [readHour.data.ts](../../../../../data/skills/time/clock/skills/readHour.data.ts)
+                    **Implementation:** Proposed, not implemented
+                    
+                    ## Educational purpose and why a Scene is justified
+                    
+                    Read exact hours on analog clocks using the hands correctly and match those readings to digital time.
+                    
+                    Use twelve labelled hour choices or a controlled previous/next hour control (1–12 cycling only for preset selection), identify each hand, cover/reveal a digital :00 reading and reset to 3:00. No freehand dragging or invented time API.
+                    
+                    This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                    
+                    ## Content and visual model
+                    
+                    Display analog and digital clocks together, use a manually controlled clock with labeled hands, and use nonvisual hand-position descriptions rather than color or rotation alone. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                    
+                    ## Required observable states and correct explanations
+                    
+                    | State    | Required representation                                                                       | Mathematical truth                           |
+                    | -------- | --------------------------------------------------------------------------------------------- | -------------------------------------------- |
+                    | Initial  | Static 3:00 clock, short hour hand at 3, long minute hand at 12; labels displayed separately. | Both roles identifiable regardless of color. |
+                    | Hour 4   | 4:00 with short hand at 4 and long hand at 12; digital form hidden until reveal.              | Hour changes, minute condition stays fixed.  |
+                    | Hour 5   | 5:00 same pattern; no claim hour hand teleports in reality.                                   | Exact-hour snapshots only.                   |
+                    | Transfer | 8:00 clock with distractors 8:00, 12:08, 8:30.                                                | Short vs long hand reasoning.                |
+                    
+                    ## Interaction protocol (pedagogical, not an API)
+                    
+                    1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                    2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                    3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                    4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                    5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                    6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                    
+                    ## Specific explanatory feedback and edge cases
+                    
+                    - **Two hands, different jobs:** If minute hand is selected for hour: “That is the longer hand. At whole hours it points to 12, while the shorter hand tells us which hour.”
+                    - **Build three o'clock:** If 12:03 is selected: “The long hand points to 12 to show zero minutes, not the hour 12. The short hand is at 3.”
+                    - **Change the hour, keep the pattern:** If a learner claims both hands should point to 4: “Only the short hour hand points to 4; the minute hand stays at 12 at an exact hour.”
+                    - **Can you read a different clock?:** For 8:30: “At half past eight, the minute hand would point at 6, not 12.”
+                    
+                    **Do not teach outside this boundary:** Read exact 1:00–12:00 analog times and matching digital :00 times. Note that the hour hand moves continuously in real clocks but do not teach intermediate readings. Exclude 24-hour notation, morning/evening inference, elapsed intervals, minute counting and time zones.
+                    
+                    ## Nonvisual and keyboard-equivalent learning path
+                    
+                    Use accessible description 'Short hour hand points to 8; long minute hand points to 12; what whole-hour time is shown?' and present the same answer options. Hand length is expressed semantically.
+                    
+                    Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                    
+                    ## Localization, RTL, mobile, offline and performance
+                    
+                    All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                    
+                    ## Build and review handoff
+                    
+                    This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                  productionNotes: "This placement in Can you read a different clock? refers to ClockExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section4Markdown1:
+                config:
+                  id: "c32467b0-46c1-588a-883f-00000000000f"
+                  slug: "section4Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The short hand at 8 tells us eight; the long hand at 12 means zero minutes. The reading is 8:00."
+                production:
+                  purpose: "Original markdown resource from source Screenwriter draft"
+                  specification: "3. **`markdown` (existing type):** “The short hand at 8 tells us eight; the long hand at 12 means zero minutes. The reading is 8:00.”"
+            order:
+              - "section4Text1"
+              - "section4Scene1"
+              - "section4Markdown1"
+        production:
+          purpose: "Can you read a different clock?"
+          pedagogicalIntent: |-
+            **Learning purpose:** Independent transfer without picture-specific cues.
+            
+            **Vertical Resource sequence:**
+            
+            1. **`text` (existing type):** “A new clock has its short hand at 8 and its long hand at 12. Read it first before opening the answer.”
+            
+            2. **`scene` (existing type; new Scene proposed):** `ClockExplorer` (former ClockExplorer.scene-spec.md; specification embedded in this YAML). Present an unlabeled 8:00 dial with accessible hand names on request; select between 8:00, 12:08 and 8:30. Hide confirmation until choice or learner-triggered reveal.
+            
+            3. **`markdown` (existing type):** “The short hand at 8 tells us eight; the long hand at 12 means zero minutes. The reading is 8:00.”
+            
+            **Learner action:** Explain in words or choose from independently selectable reasons.
+            
+            **Immediate explanatory feedback:** For 8:30: “At half past eight, the minute hand would point at 6, not 12.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+            
+            **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+          productionNotes: "Source Section narrative/feedback/accessibility requirements retained without granting editorial approval."
+    order:
+      - "section1"
+      - "section2"
+      - "section3"
+      - "section4"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Reading Whole Hours — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: readingWholeHours
+    Methodologist status: **Draft — pending editorial approval**
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Read exact hours on analog clocks using the hands correctly and match those readings to digital time. The intended conceptual change is from judging by appearance or one tempting example to checking the specific mathematical condition. This lesson serves one independently assessable canonical Skill without altering its identity.
+    
+    ## Target audience
+    
+    **Primary grade: Grade 1**, approximately ages 6–7. Whole-hour readings suit early primary numeracy when digits 1–12 and clock hands are familiar; exact-minute reading can be deferred. Assume mixed literacy and language fluency: child-facing phrasing must be short and supported by visible and nonvisual equivalents.
+    
+    ## Prerequisites
+    
+    - Identify the numerals 1 through 12.
+    - Distinguish a short hand from a long hand through length or accessible labels.
+    - Recognize that a circular dial has twelve labelled hour positions.
+    
+    Prerequisite competence is a planning assumption, not evidence of mastery. A learner lacking it needs a separate scaffold, not a new definition of the target Skill.
+    
+    ## Target Skills
+    
+    - [readHour.data.ts](../../../../data/skills/time/clock/skills/readHour.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Identify the hour hand and minute hand independently.
+    - Read exact-hour analog displays such as 3:00 and 8:00.
+    - Match an exact-hour analog display to a digital form ending in :00.
+    - Explain why the long hand pointing to 12 is not a reading of twelve minutes.
+    
+    Completing an exploratory interaction is not independent validation of mastery. Any later formal evidence or scoring belongs to an assessment design.
+    
+    ## Essential subject matter and instructional depth
+    
+    Read exact 1:00–12:00 analog times and matching digital :00 times. Note that the hour hand moves continuously in real clocks but do not teach intermediate readings. Exclude 24-hour notation, morning/evening inference, elapsed intervals, minute counting and time zones.
+    
+    Canonical readHour Skill directly relates hour and minute hand positions to matching digital notation and cautions that the hour hand moves continuously.
+    
+    ## Conceptual progression and dependencies
+    
+    Start from the listed prerequisites, identify what information determines the answer, make a prediction, reveal a controlling comparison, and explain it before transfer. Display analog and digital clocks together, use a manually controlled clock with labeled hands, and use nonvisual hand-position descriptions rather than color or rotation alone. Conceptual depth is set for this lesson's grade only; the Skill taxonomy remains grade-independent.
+    
+    ## Misconceptions, examples and boundaries
+    
+    - The long hand indicates the hour.
+    - A long hand at 12 means 12 minutes after the hour.
+    - The short hand jumps instantaneously from one number to the next.
+    - A clock reading alone always identifies morning or evening.
+    
+    Concrete boundaries: Read exact 1:00–12:00 analog times and matching digital :00 times. Note that the hour hand moves continuously in real clocks but do not teach intermediate readings. Exclude 24-hour notation, morning/evening inference, elapsed intervals, minute counting and time zones. Repeated exposure alone must not be presented as mastery.
+    
+    ## Localization, accessibility and offline intent
+    
+    Plan genuine translation of all learner-facing text, controls, accessible descriptions, feedback and any narration into every configured locale. Do not create language fallbacks or substitute English as missing content. For meaningful RTL layout, preserve numbers, logical mathematical direction and shape relations; do not mirror whole diagrams indiscriminately. Include full keyboard/touch and nonvisual equivalent learning actions, visible focus, sufficient targets, contrast, reduced motion, and WCAG 2.2 AA review. After an eventual offline download the complete learning experience, including feedback and Scene assets, must be available without network access; this is a requirement, not an implementation claim.
+    
+    ## Sources and factual verification
+    
+    - Canonical Mathematics source [readHour.data.ts](../../../../data/skills/time/clock/skills/readHour.data.ts) and its methodological description.
+    - Studio [Lesson architecture](../../../../../../studio/docs/entities/lesson.md), [Section architecture](../../../../../../studio/docs/entities/section.md), and `Lesson Content` (source preserved in this YAML) descriptions.
+    - The specific factual examples and edge cases must be reviewed against the canonical Skill, not used to revise it.
+    
+    ## Curriculum / Program compatibility
+    
+    This Lesson is standalone and Program-neutral. No national Curriculum, course order or Program storyline is presumed.
+    
+    ## Open editorial decisions
+    
+    - Editor must approve the Grade 1 learning depth, prerequisites, outcome coverage and target Skill relationship.
+    - Screenwriter Content and Scene specifications are authorized **provisional Drafts** for review only; neither changes this Methodologist status.
+    
+    ## Methodologist handoff
+    
+    Pending explicit approval. Screenwriter content is preparatory under this task's exception to the normal approval gate, not formally approved input. Assessment, runtime Lesson data and implementation are outside this batch.
+  purpose: "Read exact hours on analog clocks using the hands correctly and match those readings to digital time. The intended conceptual change is from judging by appearance or one tempting example to checking the specific mathematical condition. This lesson serves one independently assessable canonical Skill without altering its identity."
+  audience: "Target grades and prerequisites in the complete methodology."
+  productionNotes: |-
+    # Reading Whole Hours — Lesson Content
+    
+    **Status: Provisional Draft — pending Methodologist approval.**
+    **Audience:** Grade 1, approximately ages 6–7.
+    **Methodologist input:** `Draft Methodologist Brief` (source preserved in this YAML) — **not approved**.
+    **Canonical target Skill:** [readHour.data.ts](../../../../data/skills/time/clock/skills/readHour.data.ts)
+    **Program dependence:** None
+    **Implementation:** No Lesson runtime objects, scored assessments or custom Scenes created by this editorial batch.
+    
+    ## Instructional concept
+    
+    Read exact hours on analog clocks using the hands correctly and match those readings to digital time. The learner should not merely name a correct option: the model must make the essential distinction observable. A new situation in the final Section checks whether the learner can use the distinction without remembering the original picture.
+    
+    The Section plans below specify **single-column top-to-bottom** Resource order. `text`, `markdown` and `scene` are verified Resource block types; the **ClockExplorer Scene is proposed**, not currently a registered renderer. No Question, Quiz, scoring, success gate or Program plot is defined.
+    
+    ## Learner journey
+    
+    1. **Two hands, different jobs** — Identify which hand encodes what.
+    2. **Build three o'clock** — Connect a whole-hour analog pattern to digital notation.
+    3. **Change the hour, keep the pattern** — Generalize the whole-hour rule.
+    4. **Can you read a different clock?** — Independent transfer without picture-specific cues.
+    
+    ## Ordered Sections
+    
+    
+    
+    
+    ## Custom Scene specification
+    
+    - `ClockExplorer` (former ClockExplorer.scene-spec.md; specification embedded in this YAML): provides the learner-controlled model and its explanatory feedback. A Scene instance is self-contained and prop-free; repeated presentations must have independent local state. The new Scene needs future code, locale dictionaries and tests before use.
+    
+    ## Independent transfer
+    
+    On a new dial, read the hour hand at 8 and the minute hand at 12, then explain how 8:00 differs from 12:08. Give a first attempt without immediately showing the previous example; provide an optional hint and then a complete worked explanation. This is an instructional transfer opportunity, not a validated assessment.
+    
+    ## Proposed Lesson Note (planned only)
+    
+    **Cue:** “For exact o’clock time, the long hand is at 12; the short hand names the hour.”
+    
+    Proposed editorial unlock moment: after the learner has inspected and explained the contrasting example in Section 3. Note entity/persistence/unlock events/revision schedules are not verified implemented and are **not** wired by this batch. Learners who do not engage the cue still receive the complete Lesson explanation.
+    
+    ## Localization, access and offline handoff
+    
+    This English editorial copy is **not a multilingual runtime bundle**. A later translation workflow must supply genuine complete translations for all supported locales, including Scene explanations, controls, accessible names and model descriptions. Do not silently fall back to English. The planned equivalent nonvisual action, 2D SVG/static-state rendering, semantic RTL, readable small screens, reduced motion and locally packaged offline content are implementation acceptance gates; they are not reported as implemented.
+    
+    ## Editorial gates and assessment boundaries
+    
+    **Provisional Draft, pending Methodologist approval.** Separate Content and Scene editorial reviews are also pending. Assessment Architect owns valid Questions/Quiz, evidence rules, scores, thresholds and analytics. Coding Agent owns Scene/renderer/locale implementation and automated tests. No Section here claims mastery based on a reveal, selection, or Note.
