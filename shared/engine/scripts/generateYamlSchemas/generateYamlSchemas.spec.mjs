@@ -148,7 +148,8 @@ test('unified scaffold composes manual production schema beside Engine Config at
   for (const kind of ['lesson', 'course']) {
     const scaffold = JSON.parse(docs[kind + '.scaffold.schema.json']);
     assert.equal(scaffold.type, 'object');
-    assert.deepEqual(scaffold.required, ['config']);
+    assert.deepEqual(scaffold.required, kind === 'lesson' ? ['config', 'production'] : ['config']);
+    if (kind === 'course') assert.equal(scaffold.properties.overrides.$ref, 'courseOverrides.schema.json');
     assert.equal(scaffold.additionalProperties, false);
     assert.equal(scaffold.properties.config.properties.type.const, kind);
     assert(scaffold.properties.config.required.includes('id'));
