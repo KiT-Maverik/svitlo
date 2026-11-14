@@ -6,6 +6,10 @@ on:
     branches:
       - feature/quest-yaml-authoring
 
+concurrency:
+  group: quest-yaml-refresh-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -34,6 +38,8 @@ jobs:
           git add shared/engine/yaml-schemas/*.schema.json
           if ! git diff --cached --quiet; then
             git commit -m 'Regenerate Quest YAML editor schemas'
+            git fetch origin feature/quest-yaml-authoring
+            git rebase origin/feature/quest-yaml-authoring
             git push origin HEAD:feature/quest-yaml-authoring
           fi
       - name: Test Quest-aware scaffolding and editor schemas
