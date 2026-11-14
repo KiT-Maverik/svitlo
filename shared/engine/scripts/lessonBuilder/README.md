@@ -28,8 +28,8 @@ No unapproved mapping from editorial key/section arrays is inferred here.
 
 The technical file includes one extra **scaffolder provenance field**
 `documentLanguage` at the root. It is **removed** before emitting
-`defineLesson({...})`: it is not part of the Engine Lesson Config or the
-generated editor JSON Schema. The builder uses it only to select authored
+`defineLesson({...})`: it is not part of the Engine Lesson Config, but it
+**is** described in the generated YAML draft editor Schema. The builder uses it only to select authored
 locale dictionaries and localized Flashcard flag values.
 
 Example incomplete `lesson.config.yaml`:
@@ -97,8 +97,7 @@ overwritten silently; symlink traversal is refused.
 ## Boundaries
 
 The separate `scripts/generateLessonProps/` publisher and runtime Engine
-remain unchanged. Studio editorial approval stays in Studio. The seven
-derived Editor JSON Schemas describe **Config fields only**; the
-`documentLanguage` envelope marker is a CLI convention, and no Zod/AJV
-validation runs inside the builder. See
+remain unchanged. Studio editorial approval stays in Studio. The eight derived editor JSON Schemas describe Engine-derived authoring shapes
+and explicit draft-only envelope fields (including `documentLanguage`); no
+Zod/AJV validation runs inside this builder. See
 `studio/docs/architecture/yaml-config-scaffolding.md`.
