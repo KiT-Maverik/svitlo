@@ -1,0 +1,709 @@
+config:
+  id: "720df8f1-b2cb-55bb-ba1c-32b0b59543cf"
+  slug: "rulerZeroAndMarks"
+  type: "lesson"
+  skills: ["02a916c0-937f-41b8-a2d4-c48593b8798a"]
+  params:
+    requireQuiz: false
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Find Zero and Read a Ruler"
+  section:
+    items:
+      section1WhereDoesTheCountingStart:
+        config:
+          id: "413841e7-fd04-4754-9af0-1ef519d09b1a"
+          slug: "section1WhereDoesTheCountingStart"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Where Does the Counting Start?"
+            navigationLabel:
+              en: "Where Does the Counting Start?"
+          content:
+            items:
+              rulerOrientationDesk:
+                config:
+                  id: "7e373a1f-97b7-4366-8162-93997947c438"
+                  slug: "rulerOrientationDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ruler Orientation Desk"
+                production:
+                  specification: |
+                    # Ruler Orientation Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Find Zero and Read a Ruler (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml) — locate ruler's zero mark, read centimeter marks, recognize equal intervals, position ruler parallel and zero-aligned; **do not** teach measurement of an unknown segment.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    A child mistakes an instrument's **physical edge** for its **zero line**, or counts printed marks rather than equal interval spaces. The desk makes the two visible, controllable and explicitly distinguished. It helps the learner position a ruler properly before a later Lesson uses it to measure.
+                    
+                    Core explanation: "**Zero is the scale's start. The space between neighboring marks is one centimeter.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a **schematic** straight ruler with physical body from coordinate −0.4 to 10.4 units along a horizontal axis; its **printed zero line** at coordinate 0. Major centimeter marks at exact model positions 0, 1, …, 10, all equally spaced in the representation.
+                    - Each **adjacent gap** (0→1, 1→2, …) is one **modeled cm interval**. The 0-to-2 region has three marks (0,1,2) but **two** intervals. Units are conceptual marks, not device pixels or real physical centimeters.
+                    - The physical plastic margin at coordinate −0.4 is **not** a part of the numbered scale. A second ruler style has a larger blank margin, e.g. −0.8 to 10.4, but the numerical marks remain unchanged.
+                    - A guide straight segment is used **only to check instrument alignment**. The Scene never reports the unknown guide's length. The subsequent separate measuring Skill owns unknown-length inference.
+                    - Do not infer screen calibration from CSS pixels, SVG viewbox, DPI, zoom or browser geometry. A genuine physical ruler may be used outside the Scene only as an optional learner exercise.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A. Locate 0 Rather Than the Outer Edge (Section 1)
+                    
+                    1. Display ruler body with blank left margin, physical edge, a visible zero tick marked **0**, next tick **1**. Prompt: "Which place starts the marked scale?"
+                    2. Choice controls with accessible names: "Plastic edge", "Mark 0", "Mark 1". On selection, reveal the difference:
+                       - Plastic edge: "The ruler has blank space before zero. Start at the **0 line**."
+                       - Mark 1: "That skips the first centimeter interval. Look one mark earlier."
+                       - 0: "Yes. The zero line starts the numbered scale."
+                    3. Highlight the correct zero line with a **shape/label bracket**, not solely color. Allow reset and replay.
+                    4. An independent textual sequence says: "outer edge → blank margin → zero mark → first interval → one mark".
+                    
+                    ### B. See Intervals as Spaces (Section 2)
+                    
+                    1. Start at zero and reveal labeled brackets **0–1**, **1–2**, **2–3**, **3–4**, each exactly one conceptual ruler unit.
+                    2. Prompt: "There are marks 0, 1, 2. How many _spaces_ from zero to two?" Offer two or three, then explain **two** spaces with 3 marks.
+                    3. Ask "Which mark has printed number 4?" and show exact label-to-tick relationship; this is **mark reading**, not determining the length of an unknown object.
+                    4. Allow "Show interval n" (n from 1…4), "Read all intervals" and "Back"; a nonvisual log states one range at a time.
+                    
+                    ### C. Prepare Ruler Along a Guide Segment (Section 3)
+                    
+                    1. Display an unnumbered straight guide with a named **start dot** and a schematic ruler. Select placement presets:
+                       - **Ready:** mark 0 at start dot, ruler's marked edge parallel and aligned along guide.
+                       - **Wrong edge:** plastic edge at start dot, zero line offset by margin.
+                       - **Wrong start mark:** printed 1 opposite dot, not 0.
+                       - **Tilted scale:** zero at dot but ruler's numbered edge points away from the straight guide.
+                    2. Prompt: "Which setup is ready for a measurement later?" Learner can select a preset, inspect the alignment with an explicit status summary, then choose "Show a careful placement".
+                    3. Ready feedback: "Zero meets the first dot, and the scale follows the line." Wrong edge: "Match the printed zero, not the ruler's edge." Wrong mark 1: "We've already skipped an interval." Tilt: "Keep the numbered scale along the straight line."
+                    4. **Never** display a total length number for the guide; this would blur the intentionally distinct `measureCentimeters` Skill.
+                    
+                    ### D. New Ruler, Familiar Origin (Section 4)
+                    
+                    1. Change to larger-margin ruler style, keep intervals equal. Ask: "Find zero; find the mark labeled 3; place zero at the guide's first endpoint." Independent preset, not copied state from A–C.
+                    2. Reveal three separate explanation stages for origin, label and ruler placement. No answer score and no hidden timeout.
+                    3. If learner wrongly counts visible physical marks from the edge including ornamental printing, say "Look for the number **0** first. The margin is not a centimeter interval."
+                    4. Optional suggestion: check a real ruler's zero and first interval. All on-screen objectives remain independently available without physical supplies.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** scale body, marks 0…10, major equal unit brackets, blank margin, fixed unmeasured guide, labeled start endpoint, choose/reveal/previous/reset and optional preset-switch controls.
+                    - **State per independent placement:** ruler style; selected predicted origin; interval index; selected numeric mark; selected ruler placement; feedback reveal stage. Reset returns to fixed initial state of **that placement**.
+                    - **Invariant:** tick n is spaced one unit from n−1; zero is the printed mark and distinct from physical body edge; changing margin or graphical scale does not change tick intervals or the definition of a centimeter in the schematic; aligning zero does not automatically infer guide length.
+                    - **No props:** define separate Section-specific root exports if needed; each public Scene entry is prop-free and self-contained. Shared presentational internals are allowed but must not require fictional Lesson props.
+                    - **Interactions:** all answers are unscored conceptual predictions with reasoned feedback; no state persistence or simulated physical ruler calibration.
+                    - **Nonvisual ledger:** "physical edge: before zero; zero mark: x=0 of the scale; 1 follows after one equal interval"; placement summaries explicitly distinguish start/tilt.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Large schematic ruler, visible zero tick and printed numerals, separate plastic margin shading/pattern, bracketed **spaces** from tick to tick. Maintain consistent spacing even when responsive; do not stretch the ruler nonuniformly. Use instant switch and optional gentle pointer highlight; no ruler-flinging animation, ornamental ticks that resemble centimeter marks or automatic reading. Optional real ruler photo **not required** and has no approved asset.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    - Real localized translations for every instruction, mark name, interval, hint, preset, explanation, optional audio description and eventual Note. No placeholders or English fallback.
+                    - The mathematical scale has an **explicit orientation** (0→1→…→10 in diagram coordinates). RTL UI can reorder text controls and labels but must not reverse mark values or misalign zero relative to the guide. Consider rendering ruler and numerals in a `dir=ltr` mathematical subregion with adequate contextual text, subject to actual platform verification.
+                    - Keyboard/switch/touch controls replace all pixel-perfect moving; focus, contrast, labels, announced preset changes, logical reading order and reachable targets require WCAG 2.2 AA review. No sound-only condition, motion dependence or tiny tick selection.
+                    - Nonvisual equivalence provides numbered tick list, interval descriptions and ruler-to-guide alignment statuses; learners can decide correct setup from meaningful text independent of the diagram.
+                    - Offline after lesson/locale download, including all feedback and Scene logic; local schematic data only. A low-end device gets the **same reasoning**, not a shortened lesson.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. On ruler with −0.4 margin, selecting physical edge or mark 1 gives specific explanation; selecting mark 0 reveals the correct start.
+                    2. Between 0 and 2 are exactly **2 equal intervals** with **3 labeled marks**.
+                    3. Mark 4 is unambiguously the fourth printed number after 0; do not confuse number labels with number of marks visible.
+                    4. "Ready" placement has mark 0 at first guide dot and scale parallel to guide, but **no unknown length is reported**.
+                    5. "Physical edge at start", "mark 1 at start", and "tilted" are all visibly/textually distinct incorrect preparation states.
+                    6. New ruler margin size does not change its printed mark order or equal interval spacing.
+                    7. Reset and Section placement separation clear prior predictions; no props or cross-Scene state.
+                    8. Keyboard, RTL, screen reader, reduced motion, mobile zoom and fully offline use preserve the same correct ruler semantics.
+                    9. Browser zoom/resizing changes _display size_ only, never asserts that a rendered spacing equals one physical centimeter.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic `scene` resource renderer exists, but this custom ruler model is **proposed**. The Coding Agent must implement each placement as a prop-free Scene root with real locale data, and build automated tests for interval spacing, margin, alignment and accessibility. The editor must approve ruler visual conventions and verify it never asks an unknown-length question. No runtime Lesson registration, Note persistence, scored Question, Quiz or events are part of this specification.
+                  purpose: "Proposed interactive Scene for Where Does the Counting Start?"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["rulerOrientationDesk"]
+        production:
+          purpose: "Where Does the Counting Start?"
+          pedagogicalIntent: |
+            ### Section 1 — Where Does the Counting Start?
+            
+            - **Purpose:** Identify the true origin of a ruler.
+            - **Contract:** `LessonSection_Config` with a single vertical resource sequence.
+            - **Ordered blocks:**
+              1. **text — rendered:** "A line of equal blocks helped us measure. A ruler is like those blocks joined into one strip. But where is its starting mark? At the outside plastic edge—or at the line labeled 0?"
+              2. **scene — existing type; proposed Ruler Orientation Desk (Scene specification embedded in this config.yaml):** stage A, ruler rectangle extends 0.4 schematic unit left of the **printed zero**. Show evenly spaced marks labeled **0, 1, 2, 3, …, 10**. Learner selects "Physical edge", "Line marked 0", "Line marked 1", then "Reveal". The correct origin is the **0 line**, not the extra margin.
+              3. **markdown — rendered:** "Find the **line marked 0**. A ruler often has a little space before the first number. That extra plastic is not part of the numbered centimeters. We begin measuring from the **zero mark**, not from the ruler's edge."
+            - **Feedback:** If learner picks edge: "The edge is outside the numbered scale. Follow the marks to 0." If picks 1: "Then the first interval would be skipped. Look one mark earlier." Correct: "Yes; the 0 line is our starting reference."
+            - **Proposed Note:** "Start at the 0 mark, not the ruler's edge" after reveal.
+            - **Access:** Nonvisual choices are explicit; the ruler is also described as "outer edge, small blank margin, zero line, one line, two line…" so vision is not a prerequisite.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section2MarksAndEqualSpaces:
+        config:
+          id: "8fe6397e-b8d7-45d1-9b1a-9558f98d1a53"
+          slug: "section2MarksAndEqualSpaces"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Marks and Equal Spaces"
+            navigationLabel:
+              en: "Marks and Equal Spaces"
+          content:
+            items:
+              rulerOrientationDesk:
+                config:
+                  id: "c6ff7e1c-52d6-49d5-83f3-aeba0164b6fb"
+                  slug: "rulerOrientationDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ruler Orientation Desk"
+                production:
+                  specification: |
+                    # Ruler Orientation Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Find Zero and Read a Ruler (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml) — locate ruler's zero mark, read centimeter marks, recognize equal intervals, position ruler parallel and zero-aligned; **do not** teach measurement of an unknown segment.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    A child mistakes an instrument's **physical edge** for its **zero line**, or counts printed marks rather than equal interval spaces. The desk makes the two visible, controllable and explicitly distinguished. It helps the learner position a ruler properly before a later Lesson uses it to measure.
+                    
+                    Core explanation: "**Zero is the scale's start. The space between neighboring marks is one centimeter.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a **schematic** straight ruler with physical body from coordinate −0.4 to 10.4 units along a horizontal axis; its **printed zero line** at coordinate 0. Major centimeter marks at exact model positions 0, 1, …, 10, all equally spaced in the representation.
+                    - Each **adjacent gap** (0→1, 1→2, …) is one **modeled cm interval**. The 0-to-2 region has three marks (0,1,2) but **two** intervals. Units are conceptual marks, not device pixels or real physical centimeters.
+                    - The physical plastic margin at coordinate −0.4 is **not** a part of the numbered scale. A second ruler style has a larger blank margin, e.g. −0.8 to 10.4, but the numerical marks remain unchanged.
+                    - A guide straight segment is used **only to check instrument alignment**. The Scene never reports the unknown guide's length. The subsequent separate measuring Skill owns unknown-length inference.
+                    - Do not infer screen calibration from CSS pixels, SVG viewbox, DPI, zoom or browser geometry. A genuine physical ruler may be used outside the Scene only as an optional learner exercise.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A. Locate 0 Rather Than the Outer Edge (Section 1)
+                    
+                    1. Display ruler body with blank left margin, physical edge, a visible zero tick marked **0**, next tick **1**. Prompt: "Which place starts the marked scale?"
+                    2. Choice controls with accessible names: "Plastic edge", "Mark 0", "Mark 1". On selection, reveal the difference:
+                       - Plastic edge: "The ruler has blank space before zero. Start at the **0 line**."
+                       - Mark 1: "That skips the first centimeter interval. Look one mark earlier."
+                       - 0: "Yes. The zero line starts the numbered scale."
+                    3. Highlight the correct zero line with a **shape/label bracket**, not solely color. Allow reset and replay.
+                    4. An independent textual sequence says: "outer edge → blank margin → zero mark → first interval → one mark".
+                    
+                    ### B. See Intervals as Spaces (Section 2)
+                    
+                    1. Start at zero and reveal labeled brackets **0–1**, **1–2**, **2–3**, **3–4**, each exactly one conceptual ruler unit.
+                    2. Prompt: "There are marks 0, 1, 2. How many _spaces_ from zero to two?" Offer two or three, then explain **two** spaces with 3 marks.
+                    3. Ask "Which mark has printed number 4?" and show exact label-to-tick relationship; this is **mark reading**, not determining the length of an unknown object.
+                    4. Allow "Show interval n" (n from 1…4), "Read all intervals" and "Back"; a nonvisual log states one range at a time.
+                    
+                    ### C. Prepare Ruler Along a Guide Segment (Section 3)
+                    
+                    1. Display an unnumbered straight guide with a named **start dot** and a schematic ruler. Select placement presets:
+                       - **Ready:** mark 0 at start dot, ruler's marked edge parallel and aligned along guide.
+                       - **Wrong edge:** plastic edge at start dot, zero line offset by margin.
+                       - **Wrong start mark:** printed 1 opposite dot, not 0.
+                       - **Tilted scale:** zero at dot but ruler's numbered edge points away from the straight guide.
+                    2. Prompt: "Which setup is ready for a measurement later?" Learner can select a preset, inspect the alignment with an explicit status summary, then choose "Show a careful placement".
+                    3. Ready feedback: "Zero meets the first dot, and the scale follows the line." Wrong edge: "Match the printed zero, not the ruler's edge." Wrong mark 1: "We've already skipped an interval." Tilt: "Keep the numbered scale along the straight line."
+                    4. **Never** display a total length number for the guide; this would blur the intentionally distinct `measureCentimeters` Skill.
+                    
+                    ### D. New Ruler, Familiar Origin (Section 4)
+                    
+                    1. Change to larger-margin ruler style, keep intervals equal. Ask: "Find zero; find the mark labeled 3; place zero at the guide's first endpoint." Independent preset, not copied state from A–C.
+                    2. Reveal three separate explanation stages for origin, label and ruler placement. No answer score and no hidden timeout.
+                    3. If learner wrongly counts visible physical marks from the edge including ornamental printing, say "Look for the number **0** first. The margin is not a centimeter interval."
+                    4. Optional suggestion: check a real ruler's zero and first interval. All on-screen objectives remain independently available without physical supplies.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** scale body, marks 0…10, major equal unit brackets, blank margin, fixed unmeasured guide, labeled start endpoint, choose/reveal/previous/reset and optional preset-switch controls.
+                    - **State per independent placement:** ruler style; selected predicted origin; interval index; selected numeric mark; selected ruler placement; feedback reveal stage. Reset returns to fixed initial state of **that placement**.
+                    - **Invariant:** tick n is spaced one unit from n−1; zero is the printed mark and distinct from physical body edge; changing margin or graphical scale does not change tick intervals or the definition of a centimeter in the schematic; aligning zero does not automatically infer guide length.
+                    - **No props:** define separate Section-specific root exports if needed; each public Scene entry is prop-free and self-contained. Shared presentational internals are allowed but must not require fictional Lesson props.
+                    - **Interactions:** all answers are unscored conceptual predictions with reasoned feedback; no state persistence or simulated physical ruler calibration.
+                    - **Nonvisual ledger:** "physical edge: before zero; zero mark: x=0 of the scale; 1 follows after one equal interval"; placement summaries explicitly distinguish start/tilt.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Large schematic ruler, visible zero tick and printed numerals, separate plastic margin shading/pattern, bracketed **spaces** from tick to tick. Maintain consistent spacing even when responsive; do not stretch the ruler nonuniformly. Use instant switch and optional gentle pointer highlight; no ruler-flinging animation, ornamental ticks that resemble centimeter marks or automatic reading. Optional real ruler photo **not required** and has no approved asset.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    - Real localized translations for every instruction, mark name, interval, hint, preset, explanation, optional audio description and eventual Note. No placeholders or English fallback.
+                    - The mathematical scale has an **explicit orientation** (0→1→…→10 in diagram coordinates). RTL UI can reorder text controls and labels but must not reverse mark values or misalign zero relative to the guide. Consider rendering ruler and numerals in a `dir=ltr` mathematical subregion with adequate contextual text, subject to actual platform verification.
+                    - Keyboard/switch/touch controls replace all pixel-perfect moving; focus, contrast, labels, announced preset changes, logical reading order and reachable targets require WCAG 2.2 AA review. No sound-only condition, motion dependence or tiny tick selection.
+                    - Nonvisual equivalence provides numbered tick list, interval descriptions and ruler-to-guide alignment statuses; learners can decide correct setup from meaningful text independent of the diagram.
+                    - Offline after lesson/locale download, including all feedback and Scene logic; local schematic data only. A low-end device gets the **same reasoning**, not a shortened lesson.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. On ruler with −0.4 margin, selecting physical edge or mark 1 gives specific explanation; selecting mark 0 reveals the correct start.
+                    2. Between 0 and 2 are exactly **2 equal intervals** with **3 labeled marks**.
+                    3. Mark 4 is unambiguously the fourth printed number after 0; do not confuse number labels with number of marks visible.
+                    4. "Ready" placement has mark 0 at first guide dot and scale parallel to guide, but **no unknown length is reported**.
+                    5. "Physical edge at start", "mark 1 at start", and "tilted" are all visibly/textually distinct incorrect preparation states.
+                    6. New ruler margin size does not change its printed mark order or equal interval spacing.
+                    7. Reset and Section placement separation clear prior predictions; no props or cross-Scene state.
+                    8. Keyboard, RTL, screen reader, reduced motion, mobile zoom and fully offline use preserve the same correct ruler semantics.
+                    9. Browser zoom/resizing changes _display size_ only, never asserts that a rendered spacing equals one physical centimeter.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic `scene` resource renderer exists, but this custom ruler model is **proposed**. The Coding Agent must implement each placement as a prop-free Scene root with real locale data, and build automated tests for interval spacing, margin, alignment and accessibility. The editor must approve ruler visual conventions and verify it never asks an unknown-length question. No runtime Lesson registration, Note persistence, scored Question, Quiz or events are part of this specification.
+                  purpose: "Proposed interactive Scene for Marks and Equal Spaces"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["rulerOrientationDesk"]
+        production:
+          purpose: "Marks and Equal Spaces"
+          pedagogicalIntent: |
+            ### Section 2 — Marks and Equal Spaces
+            
+            - **Purpose:** Recognize a ruler as repeated equal intervals rather than a collection of numbers to count.
+            - **Contract:** `LessonSection_Config`, vertical.
+            - **Ordered blocks:**
+              1. **text — rendered:** "Point to the space from 0 to 1. Now point to the space from 1 to 2. Are those spaces equal?"
+              2. **scene — proposed Ruler Orientation Desk (Scene specification embedded in this config.yaml):** stage B, reveal one bracket over 0→1 and another 1→2; both exactly one **centimeter interval** in the model. Control "Show next interval" advances through 0→1, 1→2, 2→3, 3→4. The learner can choose a label to inspect: "Which mark says 4?".
+              3. **markdown — rendered:** "The printed numbers are **marks**. The **space between neighboring marks** is one equal centimeter interval. From 0 to 1 is the first interval; from 1 to 2 is the second. The marks themselves have no length."
+            - **Feedback:** If child says there are three intervals from 0 to 2 (counting 0, 1, 2): "Those are three **marks**, with only two **spaces** between them." If says the gap 0→1 is bigger: "The schematic ruler uses exactly equal spacing; check the matching brackets."
+            - **Access:** Use explicit numbered mark list and interval list, with spatial scale measured consistently; no reliance on animation or color.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section3PlaceTheRulerAlongTheLine:
+        config:
+          id: "cc1bf741-2f51-4c16-ab04-1b9364738308"
+          slug: "section3PlaceTheRulerAlongTheLine"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Place the Ruler Along the Line"
+            navigationLabel:
+              en: "Place the Ruler Along the Line"
+          content:
+            items:
+              rulerOrientationDesk:
+                config:
+                  id: "497b52c5-8828-45f4-a25d-8abb2ae7b92a"
+                  slug: "rulerOrientationDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ruler Orientation Desk"
+                production:
+                  specification: |
+                    # Ruler Orientation Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Find Zero and Read a Ruler (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml) — locate ruler's zero mark, read centimeter marks, recognize equal intervals, position ruler parallel and zero-aligned; **do not** teach measurement of an unknown segment.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    A child mistakes an instrument's **physical edge** for its **zero line**, or counts printed marks rather than equal interval spaces. The desk makes the two visible, controllable and explicitly distinguished. It helps the learner position a ruler properly before a later Lesson uses it to measure.
+                    
+                    Core explanation: "**Zero is the scale's start. The space between neighboring marks is one centimeter.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a **schematic** straight ruler with physical body from coordinate −0.4 to 10.4 units along a horizontal axis; its **printed zero line** at coordinate 0. Major centimeter marks at exact model positions 0, 1, …, 10, all equally spaced in the representation.
+                    - Each **adjacent gap** (0→1, 1→2, …) is one **modeled cm interval**. The 0-to-2 region has three marks (0,1,2) but **two** intervals. Units are conceptual marks, not device pixels or real physical centimeters.
+                    - The physical plastic margin at coordinate −0.4 is **not** a part of the numbered scale. A second ruler style has a larger blank margin, e.g. −0.8 to 10.4, but the numerical marks remain unchanged.
+                    - A guide straight segment is used **only to check instrument alignment**. The Scene never reports the unknown guide's length. The subsequent separate measuring Skill owns unknown-length inference.
+                    - Do not infer screen calibration from CSS pixels, SVG viewbox, DPI, zoom or browser geometry. A genuine physical ruler may be used outside the Scene only as an optional learner exercise.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A. Locate 0 Rather Than the Outer Edge (Section 1)
+                    
+                    1. Display ruler body with blank left margin, physical edge, a visible zero tick marked **0**, next tick **1**. Prompt: "Which place starts the marked scale?"
+                    2. Choice controls with accessible names: "Plastic edge", "Mark 0", "Mark 1". On selection, reveal the difference:
+                       - Plastic edge: "The ruler has blank space before zero. Start at the **0 line**."
+                       - Mark 1: "That skips the first centimeter interval. Look one mark earlier."
+                       - 0: "Yes. The zero line starts the numbered scale."
+                    3. Highlight the correct zero line with a **shape/label bracket**, not solely color. Allow reset and replay.
+                    4. An independent textual sequence says: "outer edge → blank margin → zero mark → first interval → one mark".
+                    
+                    ### B. See Intervals as Spaces (Section 2)
+                    
+                    1. Start at zero and reveal labeled brackets **0–1**, **1–2**, **2–3**, **3–4**, each exactly one conceptual ruler unit.
+                    2. Prompt: "There are marks 0, 1, 2. How many _spaces_ from zero to two?" Offer two or three, then explain **two** spaces with 3 marks.
+                    3. Ask "Which mark has printed number 4?" and show exact label-to-tick relationship; this is **mark reading**, not determining the length of an unknown object.
+                    4. Allow "Show interval n" (n from 1…4), "Read all intervals" and "Back"; a nonvisual log states one range at a time.
+                    
+                    ### C. Prepare Ruler Along a Guide Segment (Section 3)
+                    
+                    1. Display an unnumbered straight guide with a named **start dot** and a schematic ruler. Select placement presets:
+                       - **Ready:** mark 0 at start dot, ruler's marked edge parallel and aligned along guide.
+                       - **Wrong edge:** plastic edge at start dot, zero line offset by margin.
+                       - **Wrong start mark:** printed 1 opposite dot, not 0.
+                       - **Tilted scale:** zero at dot but ruler's numbered edge points away from the straight guide.
+                    2. Prompt: "Which setup is ready for a measurement later?" Learner can select a preset, inspect the alignment with an explicit status summary, then choose "Show a careful placement".
+                    3. Ready feedback: "Zero meets the first dot, and the scale follows the line." Wrong edge: "Match the printed zero, not the ruler's edge." Wrong mark 1: "We've already skipped an interval." Tilt: "Keep the numbered scale along the straight line."
+                    4. **Never** display a total length number for the guide; this would blur the intentionally distinct `measureCentimeters` Skill.
+                    
+                    ### D. New Ruler, Familiar Origin (Section 4)
+                    
+                    1. Change to larger-margin ruler style, keep intervals equal. Ask: "Find zero; find the mark labeled 3; place zero at the guide's first endpoint." Independent preset, not copied state from A–C.
+                    2. Reveal three separate explanation stages for origin, label and ruler placement. No answer score and no hidden timeout.
+                    3. If learner wrongly counts visible physical marks from the edge including ornamental printing, say "Look for the number **0** first. The margin is not a centimeter interval."
+                    4. Optional suggestion: check a real ruler's zero and first interval. All on-screen objectives remain independently available without physical supplies.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** scale body, marks 0…10, major equal unit brackets, blank margin, fixed unmeasured guide, labeled start endpoint, choose/reveal/previous/reset and optional preset-switch controls.
+                    - **State per independent placement:** ruler style; selected predicted origin; interval index; selected numeric mark; selected ruler placement; feedback reveal stage. Reset returns to fixed initial state of **that placement**.
+                    - **Invariant:** tick n is spaced one unit from n−1; zero is the printed mark and distinct from physical body edge; changing margin or graphical scale does not change tick intervals or the definition of a centimeter in the schematic; aligning zero does not automatically infer guide length.
+                    - **No props:** define separate Section-specific root exports if needed; each public Scene entry is prop-free and self-contained. Shared presentational internals are allowed but must not require fictional Lesson props.
+                    - **Interactions:** all answers are unscored conceptual predictions with reasoned feedback; no state persistence or simulated physical ruler calibration.
+                    - **Nonvisual ledger:** "physical edge: before zero; zero mark: x=0 of the scale; 1 follows after one equal interval"; placement summaries explicitly distinguish start/tilt.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Large schematic ruler, visible zero tick and printed numerals, separate plastic margin shading/pattern, bracketed **spaces** from tick to tick. Maintain consistent spacing even when responsive; do not stretch the ruler nonuniformly. Use instant switch and optional gentle pointer highlight; no ruler-flinging animation, ornamental ticks that resemble centimeter marks or automatic reading. Optional real ruler photo **not required** and has no approved asset.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    - Real localized translations for every instruction, mark name, interval, hint, preset, explanation, optional audio description and eventual Note. No placeholders or English fallback.
+                    - The mathematical scale has an **explicit orientation** (0→1→…→10 in diagram coordinates). RTL UI can reorder text controls and labels but must not reverse mark values or misalign zero relative to the guide. Consider rendering ruler and numerals in a `dir=ltr` mathematical subregion with adequate contextual text, subject to actual platform verification.
+                    - Keyboard/switch/touch controls replace all pixel-perfect moving; focus, contrast, labels, announced preset changes, logical reading order and reachable targets require WCAG 2.2 AA review. No sound-only condition, motion dependence or tiny tick selection.
+                    - Nonvisual equivalence provides numbered tick list, interval descriptions and ruler-to-guide alignment statuses; learners can decide correct setup from meaningful text independent of the diagram.
+                    - Offline after lesson/locale download, including all feedback and Scene logic; local schematic data only. A low-end device gets the **same reasoning**, not a shortened lesson.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. On ruler with −0.4 margin, selecting physical edge or mark 1 gives specific explanation; selecting mark 0 reveals the correct start.
+                    2. Between 0 and 2 are exactly **2 equal intervals** with **3 labeled marks**.
+                    3. Mark 4 is unambiguously the fourth printed number after 0; do not confuse number labels with number of marks visible.
+                    4. "Ready" placement has mark 0 at first guide dot and scale parallel to guide, but **no unknown length is reported**.
+                    5. "Physical edge at start", "mark 1 at start", and "tilted" are all visibly/textually distinct incorrect preparation states.
+                    6. New ruler margin size does not change its printed mark order or equal interval spacing.
+                    7. Reset and Section placement separation clear prior predictions; no props or cross-Scene state.
+                    8. Keyboard, RTL, screen reader, reduced motion, mobile zoom and fully offline use preserve the same correct ruler semantics.
+                    9. Browser zoom/resizing changes _display size_ only, never asserts that a rendered spacing equals one physical centimeter.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic `scene` resource renderer exists, but this custom ruler model is **proposed**. The Coding Agent must implement each placement as a prop-free Scene root with real locale data, and build automated tests for interval spacing, margin, alignment and accessibility. The editor must approve ruler visual conventions and verify it never asks an unknown-length question. No runtime Lesson registration, Note persistence, scored Question, Quiz or events are part of this specification.
+                  purpose: "Proposed interactive Scene for Place the Ruler Along the Line"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["rulerOrientationDesk"]
+        production:
+          purpose: "Place the Ruler Along the Line"
+          pedagogicalIntent: |
+            ### Section 3 — Place the Ruler Along the Line
+            
+            - **Purpose:** Align ruler zero and direction to a straight segment, without evaluating length.
+            - **Contract:** `LessonSection_Config`, vertical.
+            - **Ordered blocks:**
+              1. **markdown — rendered:** "To prepare a ruler: (1) find the segment's **starting endpoint**; (2) place **0** beside it; (3) keep the straight numbered edge **along** the segment. You are now ready to read it."
+              2. **scene — proposed Ruler Orientation Desk (Scene specification embedded in this config.yaml):** stage C, a straight **unmeasured** guide segment. Ruler presets: "Zero at start, parallel" (correct setup); "Outer edge at start" (incorrect), "Mark 1 at start" (incorrect), "Scale tilted away" (incorrect). The child predicts which setup is ready and activates it. Do not show a numeric segment-length answer or an implicit "measured N cm" badge.
+              3. **text — rendered:** "The zero line needs to meet the starting dot. Then the ruler's scale must follow the line—not point away from it."
+            - **Explanatory feedback:** Wrong edge: "The mark labeled 0 begins later than the segment. Shift the ruler until its 0 line meets the dot." Tilt: "Both straight edges should run in the same direction. Straighten the ruler first." Correct: "Ready to measure. We have lined up 0 and the straight edge." No scored correct/incorrect count.
+            - **Navigation:** Attempt two setups; an explicit "Show careful placement" control always available. Child can explain setup without needing to drag.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+      section4ANewRulerSameRule:
+        config:
+          id: "55a2b6bf-7db0-481c-8da6-b9e1f7a20df6"
+          slug: "section4ANewRulerSameRule"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "A New Ruler, Same Rule"
+            navigationLabel:
+              en: "A New Ruler, Same Rule"
+          content:
+            items:
+              rulerOrientationDesk:
+                config:
+                  id: "9cc98617-c4c3-46ce-9f44-0b655362b054"
+                  slug: "rulerOrientationDesk"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ruler Orientation Desk"
+                production:
+                  specification: |
+                    # Ruler Orientation Desk — Scene Specification
+                    
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Find Zero and Read a Ruler (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (editorial text integrated into this config.yaml) — locate ruler's zero mark, read centimeter marks, recognize equal intervals, position ruler parallel and zero-aligned; **do not** teach measurement of an unknown segment.
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    A child mistakes an instrument's **physical edge** for its **zero line**, or counts printed marks rather than equal interval spaces. The desk makes the two visible, controllable and explicitly distinguished. It helps the learner position a ruler properly before a later Lesson uses it to measure.
+                    
+                    Core explanation: "**Zero is the scale's start. The space between neighboring marks is one centimeter.**"
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    - Use a **schematic** straight ruler with physical body from coordinate −0.4 to 10.4 units along a horizontal axis; its **printed zero line** at coordinate 0. Major centimeter marks at exact model positions 0, 1, …, 10, all equally spaced in the representation.
+                    - Each **adjacent gap** (0→1, 1→2, …) is one **modeled cm interval**. The 0-to-2 region has three marks (0,1,2) but **two** intervals. Units are conceptual marks, not device pixels or real physical centimeters.
+                    - The physical plastic margin at coordinate −0.4 is **not** a part of the numbered scale. A second ruler style has a larger blank margin, e.g. −0.8 to 10.4, but the numerical marks remain unchanged.
+                    - A guide straight segment is used **only to check instrument alignment**. The Scene never reports the unknown guide's length. The subsequent separate measuring Skill owns unknown-length inference.
+                    - Do not infer screen calibration from CSS pixels, SVG viewbox, DPI, zoom or browser geometry. A genuine physical ruler may be used outside the Scene only as an optional learner exercise.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    ### A. Locate 0 Rather Than the Outer Edge (Section 1)
+                    
+                    1. Display ruler body with blank left margin, physical edge, a visible zero tick marked **0**, next tick **1**. Prompt: "Which place starts the marked scale?"
+                    2. Choice controls with accessible names: "Plastic edge", "Mark 0", "Mark 1". On selection, reveal the difference:
+                       - Plastic edge: "The ruler has blank space before zero. Start at the **0 line**."
+                       - Mark 1: "That skips the first centimeter interval. Look one mark earlier."
+                       - 0: "Yes. The zero line starts the numbered scale."
+                    3. Highlight the correct zero line with a **shape/label bracket**, not solely color. Allow reset and replay.
+                    4. An independent textual sequence says: "outer edge → blank margin → zero mark → first interval → one mark".
+                    
+                    ### B. See Intervals as Spaces (Section 2)
+                    
+                    1. Start at zero and reveal labeled brackets **0–1**, **1–2**, **2–3**, **3–4**, each exactly one conceptual ruler unit.
+                    2. Prompt: "There are marks 0, 1, 2. How many _spaces_ from zero to two?" Offer two or three, then explain **two** spaces with 3 marks.
+                    3. Ask "Which mark has printed number 4?" and show exact label-to-tick relationship; this is **mark reading**, not determining the length of an unknown object.
+                    4. Allow "Show interval n" (n from 1…4), "Read all intervals" and "Back"; a nonvisual log states one range at a time.
+                    
+                    ### C. Prepare Ruler Along a Guide Segment (Section 3)
+                    
+                    1. Display an unnumbered straight guide with a named **start dot** and a schematic ruler. Select placement presets:
+                       - **Ready:** mark 0 at start dot, ruler's marked edge parallel and aligned along guide.
+                       - **Wrong edge:** plastic edge at start dot, zero line offset by margin.
+                       - **Wrong start mark:** printed 1 opposite dot, not 0.
+                       - **Tilted scale:** zero at dot but ruler's numbered edge points away from the straight guide.
+                    2. Prompt: "Which setup is ready for a measurement later?" Learner can select a preset, inspect the alignment with an explicit status summary, then choose "Show a careful placement".
+                    3. Ready feedback: "Zero meets the first dot, and the scale follows the line." Wrong edge: "Match the printed zero, not the ruler's edge." Wrong mark 1: "We've already skipped an interval." Tilt: "Keep the numbered scale along the straight line."
+                    4. **Never** display a total length number for the guide; this would blur the intentionally distinct `measureCentimeters` Skill.
+                    
+                    ### D. New Ruler, Familiar Origin (Section 4)
+                    
+                    1. Change to larger-margin ruler style, keep intervals equal. Ask: "Find zero; find the mark labeled 3; place zero at the guide's first endpoint." Independent preset, not copied state from A–C.
+                    2. Reveal three separate explanation stages for origin, label and ruler placement. No answer score and no hidden timeout.
+                    3. If learner wrongly counts visible physical marks from the edge including ornamental printing, say "Look for the number **0** first. The margin is not a centimeter interval."
+                    4. Optional suggestion: check a real ruler's zero and first interval. All on-screen objectives remain independently available without physical supplies.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - **Objects:** scale body, marks 0…10, major equal unit brackets, blank margin, fixed unmeasured guide, labeled start endpoint, choose/reveal/previous/reset and optional preset-switch controls.
+                    - **State per independent placement:** ruler style; selected predicted origin; interval index; selected numeric mark; selected ruler placement; feedback reveal stage. Reset returns to fixed initial state of **that placement**.
+                    - **Invariant:** tick n is spaced one unit from n−1; zero is the printed mark and distinct from physical body edge; changing margin or graphical scale does not change tick intervals or the definition of a centimeter in the schematic; aligning zero does not automatically infer guide length.
+                    - **No props:** define separate Section-specific root exports if needed; each public Scene entry is prop-free and self-contained. Shared presentational internals are allowed but must not require fictional Lesson props.
+                    - **Interactions:** all answers are unscored conceptual predictions with reasoned feedback; no state persistence or simulated physical ruler calibration.
+                    - **Nonvisual ledger:** "physical edge: before zero; zero mark: x=0 of the scale; 1 follows after one equal interval"; placement summaries explicitly distinguish start/tilt.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Large schematic ruler, visible zero tick and printed numerals, separate plastic margin shading/pattern, bracketed **spaces** from tick to tick. Maintain consistent spacing even when responsive; do not stretch the ruler nonuniformly. Use instant switch and optional gentle pointer highlight; no ruler-flinging animation, ornamental ticks that resemble centimeter marks or automatic reading. Optional real ruler photo **not required** and has no approved asset.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    - Real localized translations for every instruction, mark name, interval, hint, preset, explanation, optional audio description and eventual Note. No placeholders or English fallback.
+                    - The mathematical scale has an **explicit orientation** (0→1→…→10 in diagram coordinates). RTL UI can reorder text controls and labels but must not reverse mark values or misalign zero relative to the guide. Consider rendering ruler and numerals in a `dir=ltr` mathematical subregion with adequate contextual text, subject to actual platform verification.
+                    - Keyboard/switch/touch controls replace all pixel-perfect moving; focus, contrast, labels, announced preset changes, logical reading order and reachable targets require WCAG 2.2 AA review. No sound-only condition, motion dependence or tiny tick selection.
+                    - Nonvisual equivalence provides numbered tick list, interval descriptions and ruler-to-guide alignment statuses; learners can decide correct setup from meaningful text independent of the diagram.
+                    - Offline after lesson/locale download, including all feedback and Scene logic; local schematic data only. A low-end device gets the **same reasoning**, not a shortened lesson.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. On ruler with −0.4 margin, selecting physical edge or mark 1 gives specific explanation; selecting mark 0 reveals the correct start.
+                    2. Between 0 and 2 are exactly **2 equal intervals** with **3 labeled marks**.
+                    3. Mark 4 is unambiguously the fourth printed number after 0; do not confuse number labels with number of marks visible.
+                    4. "Ready" placement has mark 0 at first guide dot and scale parallel to guide, but **no unknown length is reported**.
+                    5. "Physical edge at start", "mark 1 at start", and "tilted" are all visibly/textually distinct incorrect preparation states.
+                    6. New ruler margin size does not change its printed mark order or equal interval spacing.
+                    7. Reset and Section placement separation clear prior predictions; no props or cross-Scene state.
+                    8. Keyboard, RTL, screen reader, reduced motion, mobile zoom and fully offline use preserve the same correct ruler semantics.
+                    9. Browser zoom/resizing changes _display size_ only, never asserts that a rendered spacing equals one physical centimeter.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    The generic `scene` resource renderer exists, but this custom ruler model is **proposed**. The Coding Agent must implement each placement as a prop-free Scene root with real locale data, and build automated tests for interval spacing, margin, alignment and accessibility. The editor must approve ruler visual conventions and verify it never asks an unknown-length question. No runtime Lesson registration, Note persistence, scored Question, Quiz or events are part of this specification.
+                  purpose: "Proposed interactive Scene for A New Ruler, Same Rule"
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+            order: ["rulerOrientationDesk"]
+        production:
+          purpose: "A New Ruler, Same Rule"
+          pedagogicalIntent: |
+            ### Section 4 — A New Ruler, Same Rule
+            
+            - **Purpose:** Independent recognition and transfer without adding the next Skill.
+            - **Contract:** `LessonSection_Config`, vertical.
+            - **Ordered blocks:**
+              1. **text — rendered:** "Here is a ruler with a bigger blank space before 0. Can you find the real start and point to the mark labeled 3? Then put 0 next to the first dot of a new straight guide line."
+              2. **scene — proposed Ruler Orientation Desk (Scene specification embedded in this config.yaml):** stage D, a different outline (larger margin, same equal intervals) and a guide line. "Identify zero", "Find mark 3", "Prepare ruler" are three separate no-score prompts; after each, reveal explanations; never ask "How long is the guide?".
+              3. **markdown — rendered:** "The ruler can look different, but **0 still starts the scale**. Every step to the next numbered centimeter mark covers the same distance on the ruler. Careful placement comes before reading a length."
+            - **Feedback:** If a child matches printed 3 to the physical third line from the edge and the blank margin includes extra decoration: "Count from the **printed 0**, not from the plastic edge." The final section does not teach centimetre measurement of unknown lengths.
+            - **Independent practical extension:** If a physical ruler is available, locate its zero mark and the first centimeter space. Do not require this material for full Lesson completion.
+            
+          productionNotes: "Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval."
+    order: ["section1WhereDoesTheCountingStart","section2MarksAndEqualSpaces","section3PlaceTheRulerAlongTheLine","section4ANewRulerSameRule"]
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Find Zero and Read a Ruler — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: rulerZeroAndMarks
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Transition from covering an object with identical nonstandard pieces to reading a **standardized, evenly divided instrument**. This introductory Lesson teaches instrument setup; measuring an unknown existing segment is reserved for the separate next Skill.
+    
+    ## Target audience
+    
+    **Primary audience: Grade 1 (approximately 6–7).** Primary Grade 1 (approximately 6–7 years). Children can count to 10 and have placed equal-sized tiles end-to-end. Use a large high-contrast schematic ruler, short instructions, numbered controls and optional tangible-ruler extension. Never assume a screen image has physical centimeter size.
+    
+    **Instructional depth:** Simple 0–10 centimeter major ticks and a straight segment, no millimeter readings, fractions, nonzero-start subtraction, screen calibration, unknown-length answer, constructing segments or conversions. Instrument use is distinct from subsequent segment measurement.
+    
+    ## Prerequisites
+    
+    [nonstandardLength.data.ts](../../../../data/skills/measurement/length/skills/nonstandardLength.data.ts): equal units must cover a length consecutively without gaps or overlaps; [compareLength.data.ts](../../../../data/skills/measurement/length/skills/compareLength.data.ts): line up starting endpoints. Count 0–10 and identify an object's left or right endpoint in a labeled visual without relying on reading alone.
+    
+    ## Target Skills
+    
+    - [useRuler.data.ts](../../../../data/skills/measurement/length/skills/useRuler.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Find the ruler's **printed zero** rather than the physical plastic edge or printed '1' mark.
+    - Explain that consecutive centimeter marks represent **equal-length intervals** and point to the space between two neighboring marks.
+    - Place a ruler with the **zero mark at a segment's starting endpoint**, along the segment rather than tilted away from it.
+    - Read several printed centimeter mark labels (e.g. 0, 1, 2, 3, 4, 5) in order without mistaking the number for the quantity of marks.
+    
+    ## Essential subject matter
+    
+    A ruler's marked **zero** establishes a measurement origin. The first centimeter interval is from 0 to 1, not from the ruler's outer physical edge to the '1'. The next equal interval is 1 to 2. A ruler positioned with 0 opposite a straight segment's first endpoint and its scale along the segment is ready to be used. In this Lesson, learners identify and **read** scale marks, but the separate Skill `measureCentimeters` will ask them to determine an unknown segment's length. Make explicit that an SVG drawing is schematic: display pixels and arbitrary browser zoom are **not guaranteed real-world centimeters**.
+    
+    ## Conceptual progression and dependencies
+    
+    Reactivate the equal-tile measuring principle by showing four identical 1-unit gaps. Reveal a ruler with the same interval pattern and visible '0'. Contrast the ruler's physical edge with its zero line. Invite the learner to align the zero line and run parallel to a fixed guide segment; ask for labels at specific marks rather than the segment's total measured length. Independent transfer: identify zero and the first two equal intervals on a differently styled ruler.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Starting at ruler's outer edge or printed '1'; counting tick marks instead of intervals; assuming uneven screen tick spacing is acceptable; placing ruler diagonally away from the line; treating an uncalibrated onscreen ruler as a true physical centimeter measure.
+    
+    **Explicit exclusions:** Simple 0–10 centimeter major ticks and a straight segment, no millimeter readings, fractions, nonzero-start subtraction, screen calibration, unknown-length answer, constructing segments or conversions. Instrument use is distinct from subsequent segment measurement.
+    
+    ## Localization, accessibility and offline intent
+    
+    All explanations, controls, Scene cues, alternative descriptions, feedback and eventual Note text require genuine translations in the supported locales with no missing-language fallback. For spatial direction, apply genuine semantic RTL adaptation rather than indiscriminate mirroring of geometry or mathematical order. For measurement, keep scale meaning and cm labels intact regardless of UI direction. Make learner actions possible by keyboard/switch/touch, with semantic equivalents to any visual manipulation, audible content fully captioned, reduced-motion alternatives, visible focus, readable targets and WCAG 2.2 AA review. The complete Lesson and its feedback must work offline after a verified download; this is an intended capability, not an existing implementation claim.
+    
+    ## Sources and factual verification
+    
+    - [useRuler.data.ts](../../../../data/skills/measurement/length/skills/useRuler.data.ts) — immutable canonical Mathematics Skill data copied from `content/math/data/skills/` with its UUID, translations and methodological description preserved.
+    - [Studio Methodologist persona](../../../../../../studio/personas/methodist.persona.md) and [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — editorial scope and workflow.
+    - [Playground taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) — currently stale for these newly migrated domain Skills; coordinator regeneration is required before it can confirm their inclusion.
+    
+    The examples are checked against the precise canonical Skill description, not treated as evidence of compliance with any particular jurisdiction's curriculum.
+    
+    ## Curriculum / Program compatibility
+    
+    No Program or national Curriculum assigned. This standalone Lesson may later be referenced by multiple curricula, but the chosen Grade 1 depth is a Lesson decision only and **does not alter the grade-independent Skill definition**.
+    
+    ## Open editorial decisions
+    
+    - Editor to verify Grade 1 audience appropriateness and that the Scene clearly separates reading tick labels from measuring an unknown length. No physical calibration promises.
+    - **Approval gate:** this Brief has not received explicit Methodologist approval. Accompanying `content.md` and Scene spec are **provisional Drafts under the batch-specific user authorization**, not formally approved Lesson Content.
+    
+    ## Methodologist handoff
+    
+    Review the intended audience, prerequisite chain, bounded mathematical examples and misconceptions before changing this Brief from Draft to Approved. The Educational Screenwriter's proposed Sections and Scene are separate editorial artifacts and may be revised if the Brief changes. No runtime Lesson component, Question, Quiz, scoring, Note persistence or content publication is authorized.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+    
+    # Find Zero and Read a Ruler — Lesson Content
+    
+    Status: **Provisional Draft — pending Methodologist approval, not approved.**
+    Target Lesson: `content/playground/Data/Lessons/1/rulerZeroAndMarks/`
+    Audience: **Grade 1** (approximately 6–7), beginning readers, varied motor/vision access
+    Methodologist source: Draft Methodologist Brief (editorial text integrated into this config.yaml)
+    Target Skills: `useRuler.data.ts` linked in the Brief (with `nonstandardLength` and `compareLength` as prerequisite experiences)
+    Program dependence: None
+    Implementation state: only an editorial Lesson/Scene plan exists.
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    "**The zero mark starts the count.**" Children have placed equal unit pieces end to end. A ruler keeps those equal intervals on one instrument. The physical end of the ruler is **not necessarily zero**; one must find the **printed 0 line**, align it with a starting endpoint, keep the numbered scale along a straight line, and read its labels in order.
+    
+    This Lesson is **instrument orientation and handling**, not determination of an unknown segment's length. Any visible guide segment is of unspecified length and children are not asked to report a measurement for it. An on-screen ruler is a **schematic** ruler: browser zoom, DPI and device size mean an image cannot be assumed to show physically accurate centimeters.
+    
+    ## LEARNER JOURNEY
+    
+    1. Recognize equal gaps and notice that a real-looking ruler can have margin before printed zero.
+    2. Find **0**, then inspect where the first and second centimeter intervals really lie.
+    3. Align the **zero line** with the starting endpoint of an unnumbered guide segment.
+    4. Transfer to another ruler layout with numbers and a larger blank outer margin, without reporting the segment's length.
+    
+    The distinction between **mark** and **interval** is the main insight. Keep copy brief, let the child control pace and replay.
+    
+    ## SECTION PLAN
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - Ruler Orientation Desk (Scene specification embedded in this config.yaml) — prop-free, self-contained virtual setup. Its values are **schematic scale marks**, not a calibrated physical measuring tool.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    1. "Start from the line marked 0, not the ruler's edge." Proposed after Section 1 reveal.
+    2. "Centimeters are the equal spaces between neighboring marks." Proposed after Section 2 interval demonstration.
+    
+    These cues are planned authoring inputs only, without event names, IDs, Note persistence or revision schedule.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    The unseen ruler in Section 4 is an **unscored** independent transfer. Future Assessment Architect work may ask children to position zero or identify equal divisions, and must test the separate `measureCentimeters` outcome **elsewhere** rather than silently reclassify this Lesson's use of the instrument.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    Genuine translations of "mark", "interval", "zero", "along", "start", "centimeter" and all feedback required for every supported locale; do not inject fake fallback labels. RTL presentation order may change the surrounding text, but **ruler values and zero-origin direction must remain explicit**; do not flip numerals or silently reverse measured increasing marks. Provide an accessible ordered list of markings and the relation of each preset to the fixed guide segment. No precision dragging; focus-visible large segmented controls; reduce-motion immediate states; screen reader announces newly chosen preset without announcing every mark redundantly. Make all instructional states and explanations available offline after download.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    - `text`, `markdown`, `scene` types are presently supported in the generic Playground Section renderer.
+    - The ruler Scene and translations are **proposed**; no existing calibrated measurement component or Note mechanism is asserted.
+    - Scene Designer to verify context-based locale dispatch, keyboard mode, tests and low-end mobile fidelity. The full ruler learning objective must remain intact offline and without fine motor precision.
+    - No runtime Lesson config, Question, Quiz, numeric answer checking or scoring.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Draft Methodologist Brief (editorial text integrated into this config.yaml) and linked canonical `useRuler` Skill description.
+    - Editor: verify the larger margin remains perceptible without implying a standard physical distance.
+    - Editor: check lesson boundary: **reading numbered marks / proper setup** but no unknown-length result.
+    
+    ## HANDOFF
+    
+    Methodologist must approve scope before Content becomes editorially approved. Screenwriter reviews language and Scene states; Coding Agent independently verifies renderability and implements a prop-free Scene only after its spec is approved. Assessment Architect authors any later scored use-ruler tasks.
+    
+    
+    Migration status: provisional draft; pending independent approvals, translation and implementation.
