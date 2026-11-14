@@ -89,6 +89,8 @@ expected TypeScript diagnostics. Do not add placeholders, `as any`,
 `@ts-ignore`, invented media paths or fabricated locale strings to make the
 draft compile.
 
+Quest Sections (`type: quest`) use named `stages` and `tasks` slug maps, each with a mandatory `start` entry. `questStage.content` contains two Video configurators (`video.medium`, `video.small`), nullable `audio.dialogue`/`narration`/`background`, one Image and one localized Subtitles configurator; `questTask.scene` contains exactly one Scene configurator. The builder emits `defineQuestSection`, `defineStage`, `defineTask`, and nested `define*` calls, without a Stage/Task `order` array. Missing media paths remain explicit `null` and Quest runtime playback remains **unsupported**; this is an authoring draft only.
+
 The script selects factories only from
 `configurators/yaml/yamlFactoryByType.ts`. It does not evaluate any complete
 Config/Props, check approval or call `build.props()`.
