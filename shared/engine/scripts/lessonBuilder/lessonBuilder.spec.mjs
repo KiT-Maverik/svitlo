@@ -617,7 +617,7 @@ test('Quest draft instantiates Stage, Task, named media, Subtitles and Scene wit
   assert.match(draft, /"narration": null/);
   assert.match(draft, /"background": null/);
   assert(!draft.includes('"en": "Guided practice"'), 'do not invent non-source locale output');
-  assert(!draft.includes('"order": [\n') || draft.includes('"section"'), 'Quest itself has no order');
+  assert(!Object.hasOwn(lesson.section.items.quest, 'order'), 'Quest uses named entry maps, not an internal order');
   assert.deepEqual(
     ts.createSourceFile('quest.data.ts', draft, ts.ScriptTarget.Latest, true).parseDiagnostics,
     [],
