@@ -456,7 +456,8 @@
                             ]
                           },
                           "successThreshold": {
-                            "type": "number"
+                            "type": "number",
+                            "minimum": 0
                           }
                         },
                         "additionalProperties": false

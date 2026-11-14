@@ -279,3 +279,37 @@ test('locale files contain sparse slug-keyed Course changes, not repeated siblin
   assert.equal(Object.hasOwn(uk.content.items.myModule, 'params'), false);
   assert.equal(Object.hasOwn(uk.content.items.myModule.content.items.myChapter, 'content'), false);
 });
+
+test('rejects lossy Course Build output before serialization', () => {
+  const { course } = fixture();
+  const original = course.build.props;
+  course.build.props = options => {
+    const result = original(options);
+    result.base.extra = { dropped: undefined };
+    return result;
+  };
+  assert.throws(() => renderCourseFiles(course), /Non-JSON value/);
+  course.build.props = options => {
+    const result = original(options);
+    result.base.extra = [, 'second'];
+    return result;
+  };
+  assert.throws(() => renderCourseFiles(course), /Sparse publication array/);
+});
+
+test('Course publisher rejects symlink ancestors before creating generated files', () => {
+  const { course } = fixture();
+  const home = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-course-publisher-safe-'));
+  try {
+    const real = path.join(home, 'real');
+    fs.mkdirSync(real);
+    fs.symlinkSync(real, path.join(home, 'alias'), 'dir');
+    assert.throws(
+      () => publishCourse(course, { outputRoot: path.join(home, 'alias/generated/courses') }),
+      /Symlink in generated path/,
+    );
+    assert.equal(fs.existsSync(path.join(real, 'generated')), false);
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});

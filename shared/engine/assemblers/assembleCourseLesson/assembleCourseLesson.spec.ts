@@ -176,6 +176,6 @@ test('rejects dangerous JSON keys and invalid Course JSON trees', () => {
   const invalid = createInput();
   invalid.course.locale = {
     uk: { content: { items: { laboratory: { content: { invalid: true } } } } },
-  };
+  } as never; // Intentionally malformed JSON: exercise runtime rejection, not the TS contract.
   assert.throws(() => assembleCourseLesson(invalid), /Invalid Course content/);
 });

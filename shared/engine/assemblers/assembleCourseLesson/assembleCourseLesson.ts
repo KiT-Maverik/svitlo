@@ -1,4 +1,5 @@
 import type { LanguageCode } from '../../schemas';
+import type { DeepPartial } from '../../types/transformer.types';
 import type { Lesson_Props } from '../../configurators/lessons/defineLesson';
 import {
   assembleLessonProps,
@@ -13,7 +14,7 @@ import {
 export type CourseLessonEntry = {
   type: 'lesson';
   id: string;
-  overrides?: Record<string, unknown>;
+  overrides?: NonNullable<PublishedLessonPropsOverride['base']>;
 };
 
 export type CoursePublishedContent = {
@@ -35,7 +36,7 @@ export type CoursePublishedTree = {
 
 export type PublishedCoursePropsFiles = {
   base: CoursePublishedTree;
-  locale?: Partial<Record<LanguageCode, unknown>>;
+  locale?: Partial<Record<LanguageCode, DeepPartial<CoursePublishedTree>>>;
 };
 
 export type AssembleCourseLessonInput = {
@@ -149,7 +150,10 @@ function findLocalizedLesson(
   return parent;
 }
 
-function getOverride(node: Record<string, unknown> | undefined, label: string): Record<string, unknown> | undefined {
+function getOverride(
+  node: Record<string, unknown> | undefined,
+  label: string,
+): NonNullable<PublishedLessonPropsOverride['base']> | undefined {
   if (!node || node.overrides === undefined) return undefined;
   if (!isRecord(node.overrides)) throw new Error('Invalid ' + label + ' Lesson overrides');
   for (const key of Object.keys(node.overrides)) {
@@ -159,7 +163,7 @@ function getOverride(node: Record<string, unknown> | undefined, label: string): 
     throw new Error('Course Lesson overrides cannot override Lesson supported languages');
   }
   assertJson(node.overrides, label + '/overrides');
-  return node.overrides;
+  return node.overrides as NonNullable<PublishedLessonPropsOverride['base']>;
 }
 
 /**
@@ -208,11 +212,11 @@ export function assembleCourseLesson({
       : ({
           ...(basePatch !== undefined ? { base: basePatch } : {}),
           ...(localePatch !== undefined ? { locale: { [language]: localePatch } } : {}),
-        } as unknown as PublishedLessonPropsOverride);
+        } satisfies PublishedLessonPropsOverride);
 
   // Reuse the canonical Lesson Props validator with the published keyed Course hierarchy.
   try {
-    return assembleLessonProps(lesson, language, overrides as unknown as PublishedLessonPropsOverride | undefined);
+    return assembleLessonProps(lesson, language, overrides);
   } catch (error) {
     throw new Error('Invalid assembled Course Lesson Props for ' + language, { cause: error });
   }

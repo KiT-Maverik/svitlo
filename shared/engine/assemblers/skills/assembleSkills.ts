@@ -4,9 +4,19 @@ import {
 } from '../../configurators/skills/defineSkillDomain/defineSkillDomain.schemas';
 import { languageCode_Schema, type LanguageCode } from '../../schemas/languages.schemas';
 import type { DeepPartial } from '../../types/transformer.types';
+import type { Skill_Props } from '../../configurators/skills/defineSkill/defineSkill.schemas';
+import type { SkillGroup_Props } from '../../configurators/skills/defineSkillGroup/defineSkillGroup.schemas';
 
 /** One published file contains the whole slug-keyed Domain tree. */
 export type Skills_Base = Record<string, DeepPartial<SkillDomain_Props> & Pick<SkillDomain_Props, 'id' | 'slug'>>;
+/** Scalar metadata may be sparse; published child collection arrays are complete Props replacements. */
+export type SkillDomain_PublishedPatch = Omit<DeepPartial<SkillDomain_Props>, 'id' | 'slug' | 'skills' | 'groups'> & {
+  id?: never;
+  slug?: never;
+  skills?: Skill_Props[];
+  groups?: SkillGroup_Props[];
+};
+/** Configurator Build expresses locale output as a sparse DeepPartial; validate identity at runtime. */
 export type Skills_Locale = Record<string, DeepPartial<SkillDomain_Props>>;
 
 export type Skills_Publication = {
@@ -15,8 +25,8 @@ export type Skills_Publication = {
 };
 
 export type Skills_Overrides = {
-  base?: Skills_Locale;
-  locale?: Partial<Record<LanguageCode, Skills_Locale>>;
+  base?: Record<string, SkillDomain_PublishedPatch>;
+  locale?: Partial<Record<LanguageCode, Record<string, SkillDomain_PublishedPatch>>>;
 };
 
 export type Skills_Props = Record<string, SkillDomain_Props>;
@@ -62,6 +72,49 @@ function merge(current: unknown, patch: unknown): unknown {
     result[key] = Object.hasOwn(current, key) ? merge(current[key], value) : value;
   }
   return result;
+}
+
+/** Existing children retain their immutable ID/slug pairing across all publication layers.
+ * Complete array replacement can still remove, add or reorder entries.
+ */
+function checkNestedIdentities(previous: unknown, next: unknown, path: string): void {
+  if (!isRecord(previous) || !isRecord(next)) return;
+  for (const collection of ['skills', 'groups'] as const) {
+    const prior = previous[collection];
+    const current = next[collection];
+    if (!Array.isArray(current)) continue;
+    const bySlug = new Map<string, Record<string, unknown>>();
+    const byId = new Map<string, Record<string, unknown>>();
+    if (Array.isArray(prior)) {
+      for (const item of prior) {
+        if (isRecord(item) && typeof item.slug === 'string' && typeof item.id === 'string') {
+          bySlug.set(item.slug, item);
+          byId.set(item.id, item);
+        }
+      }
+    }
+    const usedSlugs = new Set<string>();
+    const usedIds = new Set<string>();
+    for (const item of current) {
+      if (!isRecord(item) || typeof item.slug !== 'string' || typeof item.id !== 'string') {
+        continue; // The existing SkillDomain Props schema rejects malformed entries.
+      }
+      const at = path + '/' + collection + '/' + item.slug;
+      if (usedSlugs.has(item.slug) || usedIds.has(item.id)) {
+        throw new Error('Duplicate published Skills identity at ' + at);
+      }
+      usedSlugs.add(item.slug);
+      usedIds.add(item.id);
+      const oldSlug = bySlug.get(item.slug);
+      const oldId = byId.get(item.id);
+      if ((oldSlug && oldSlug.id !== item.id) || (oldId && oldId.slug !== item.slug)) {
+        throw new Error('Cannot change published Skills identity at ' + at);
+      }
+      if (collection === 'groups' && oldSlug) {
+        checkNestedIdentities(oldSlug, item, at);
+      }
+    }
+  }
 }
 
 function checkLayerKeys(base: Record<string, unknown>, layer: Record<string, unknown>, path: string): void {
@@ -113,10 +166,18 @@ export function assembleSkills(
   const result: Skills_Props = {};
   for (const [slug, value] of Object.entries(base)) {
     try {
-      const merged = merge(
-        merge(merge(value, resourceLocale[slug] ?? {}), overrideBase[slug] ?? {}),
-        overrideLocale[slug] ?? {},
-      );
+      let merged: unknown = value;
+      for (const [path, layer] of [
+        ['locale/' + language, resourceLocale[slug]],
+        ['overrides/base', overrideBase[slug]],
+        ['overrides/locale/' + language, overrideLocale[slug]],
+      ] as const) {
+        if (layer === undefined) continue;
+        const next = merge(merged, layer);
+        checkNestedIdentities(merged, next, path + '/' + slug);
+        checkNestedIdentities(value, next, 'base/' + slug);
+        merged = next;
+      }
       const props = skillDomain_Props_Schema.parse(merged);
       if (props.slug !== slug) throw new Error('Domain slug does not match its published key');
       result[slug] = props;

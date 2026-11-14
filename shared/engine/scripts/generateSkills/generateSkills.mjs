@@ -12,6 +12,7 @@ import { allLanguageCodes } from '@svitlo/engine/build';
 import { loadAuthoredConfigurators } from '../loadAuthoredConfigurators/loadAuthoredConfigurators.mjs';
 import { prepareSkillPublication } from './prepareSkillsPublication.mjs';
 import { renderSkillTree, writeSkillFiles, checkSkillFiles } from '../../generators/skills/publishSkillTree.mjs';
+import { assertSafeDirectoryPath } from '../../generators/safeGeneratedPath/assertSafeDirectoryPath.mjs';
 
 const repo = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const usage = 'Usage: --package content/<textbook> [--output <generated-dir>] --write|--check';
@@ -34,6 +35,8 @@ function options(argv) {
   if (!directory.startsWith(path.join(pkg, 'generated') + path.sep)) {
     throw new Error('Skills output must remain in textbook generated/');
   }
+  assertSafeDirectoryPath(pkg);
+  assertSafeDirectoryPath(directory);
   return { pkg, directory, action };
 }
 
