@@ -7,7 +7,6 @@ import { defineStage } from '../defineStage';
 import { defineTask } from '../defineTask';
 import { defineQuestSection } from './defineQuestSection';
 const id = (last: string) => 'e5235ac2-2c44-4c10-8c48-3c7bad6490' + last;
-const languages = { languages: ['uk'] as const };
 
 export function fixture() {
   const video = (slug: 'medium' | 'small', suffix: string) => defineVideo<typeof slug, ['uk']>({
