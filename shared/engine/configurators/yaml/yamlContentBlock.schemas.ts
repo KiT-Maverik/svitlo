@@ -9,6 +9,7 @@ import { code_Config_Schema } from '../contentBlocks/defineCode/defineCode.schem
 import { image_Config_Schema } from '../contentBlocks/defineImage/defineImage.schemas';
 import { markdown_Config_Schema } from '../contentBlocks/defineMarkdown/defineMarkdown.schemas';
 import { scene_Config_Schema } from '../contentBlocks/defineScene/defineScene.schemas';
+import { subtitles_Config_Schema } from '../contentBlocks/defineSubtitles/defineSubtitles.schemas';
 import { text_Config_Schema } from '../contentBlocks/defineText/defineText.schemas';
 import { video_Config_Schema } from '../contentBlocks/defineVideo/defineVideo.schemas';
 import { youtube_Config_Schema } from '../contentBlocks/defineYoutube/defineYoutube.schemas';
@@ -44,6 +45,11 @@ export const yamlVideo_Schema = video_Config_Schema.extend({
   }),
 });
 
+/** Pending localized WebVTT files are explicit nulls, not invented paths. */
+export const yamlSubtitles_Schema = subtitles_Config_Schema.extend({
+  locale: subtitles_Config_Schema.shape.locale.extend({ fileLocation: z.literal(null) }),
+});
+
 export const yamlCarouselSlide_Schema = carouselSlide_Config_Schema.extend({
   locale: carouselSlide_Config_Schema.shape.locale.extend({ src: z.literal(null) }),
 });
@@ -62,6 +68,7 @@ export const yamlCheckpointAnswer_Schema = z.discriminatedUnion('type', [
   yamlImage_Schema,
   markdown_Config_Schema,
   scene_Config_Schema,
+  yamlSubtitles_Schema,
   text_Config_Schema,
   yamlVideo_Schema,
   youtube_Config_Schema,
@@ -92,6 +99,7 @@ export const yamlContentBlock_Schema = z.discriminatedUnion('type', [
   yamlImage_Schema,
   markdown_Config_Schema,
   scene_Config_Schema,
+  yamlSubtitles_Schema,
   text_Config_Schema,
   yamlVideo_Schema,
   youtube_Config_Schema,

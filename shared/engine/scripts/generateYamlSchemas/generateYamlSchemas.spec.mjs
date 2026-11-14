@@ -18,10 +18,13 @@ const {
   yamlAudio_Schema,
   yamlImage_Schema,
   yamlVideo_Schema,
+  yamlSubtitles_Schema,
+  yamlQuestSection_Schema,
   yamlCarouselSlide_Schema,
   audio_Config_Schema,
   image_Config_Schema,
   video_Config_Schema,
+  subtitles_Config_Schema,
   carouselSlide_Config_Schema,
 } = require('../../dist/build.js');
 
@@ -48,6 +51,9 @@ test('all current polymorphic types have a concrete exported define* factory', (
     'flashcard',
     'checkpointItem',
     'carouselSlide',
+    'quest',
+    'questStage',
+    'questTask',
   ]) {
     assert.equal(typeof require('../../dist/build.js')[yamlFactoryByType[type]], 'function', type);
   }
@@ -115,6 +121,12 @@ test('YAML media projections require null while Engine Config schemas require re
       },
     },
     {
+      yaml: yamlSubtitles_Schema,
+      engine: subtitles_Config_Schema,
+      fields: ['fileLocation'],
+      config: { id, slug: 'captions', type: 'subtitles', params: {}, locale: { fileLocation: null } },
+    },
+    {
       yaml: yamlCarouselSlide_Schema,
       engine: carouselSlide_Config_Schema,
       fields: ['src'],
@@ -136,7 +148,7 @@ test('YAML media projections require null while Engine Config schemas require re
       assert.equal(yamlContentBlock_Schema.safeParse(config).success, true, config.type + ': nested union');
     }
   }
-  const slide = variants[3].config;
+  const slide = variants[4].config;
   const carousel = {
     id,
     slug: 'gallery',
@@ -172,6 +184,7 @@ test('JSON Schema retains required fields and literal null media even in nested 
       audio: ['fileLocation'],
       video: ['fileLocation', 'poster'],
       carouselSlide: ['src'],
+      subtitles: ['fileLocation'],
     })) {
       if (kind === 'contentBlock' && kindOfMedia === 'carouselSlide') continue;
       const block = media.get(kindOfMedia);
@@ -311,4 +324,98 @@ test('unified scaffold composes manual production schema beside Engine Config at
   assert.deepEqual(manuallyOwned.$defs.scene.required, ['specification']);
   assert.deepEqual(manuallyOwned.$defs.image.required, ['prompt', 'purpose']);
   assert(!docs['lesson.scaffold.schema.json'].includes('"sceneSpecKey"'));
+});
+
+test('Quest editor schema projects every named Stage/Task child while retaining mandatory media fields', () => {
+  const config = (type, slug, suffix, locale = {}, params = {}) => ({
+    id: '00000000-0000-4000-8000-' + String(suffix).padStart(12, '0'),
+    slug,
+    type,
+    params,
+    locale,
+  });
+  const quest = {
+    ...config('quest', 'guidedPractice', 61, {
+      title: { uk: 'Тренування' },
+      navigationLabel: { uk: 'Практика' },
+    }),
+    stages: {
+      start: {
+        id: config('questStage', 'start', 62).id,
+        slug: 'start',
+        type: 'questStage',
+        content: {
+          video: {
+            medium: config('video', 'medium', 63, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Показ дії' },
+            }),
+            small: config('video', 'small', 64, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Показ дії' },
+            }),
+          },
+          audio: {
+            dialogue: config('audio', 'dialogue', 65, {
+              fileLocation: null,
+              title: { uk: 'Діалог' },
+            }),
+            narration: null,
+            background: null,
+          },
+          image: config(
+            'image',
+            'image',
+            66,
+            { src: null, alt: { uk: 'Діаграма' } },
+            {
+              fill: true,
+              aspectRatio: 1.5,
+            },
+          ),
+          subtitles: config('subtitles', 'subtitles', 67, { fileLocation: null }),
+        },
+      },
+    },
+    tasks: {
+      start: {
+        id: config('questTask', 'start', 68).id,
+        slug: 'start',
+        type: 'questTask',
+        scene: config('scene', 'scene', 69, { value: { instruction: { uk: 'Спробуй' } } }),
+      },
+    },
+  };
+  assert.equal(yamlQuestSection_Schema.safeParse(quest).success, true);
+  assert.equal(yamlSection_Schema.safeParse(quest).success, true);
+  assert.equal(sectionTypes.includes('quest'), false, 'authoring-only must not imply runtime support');
+
+  for (const collection of ['stages', 'tasks']) {
+    const missingStart = structuredClone(quest);
+    delete missingStart[collection].start;
+    assert.equal(yamlQuestSection_Schema.safeParse(missingStart).success, false, collection + '.start required');
+  }
+
+  const missingMedium = structuredClone(quest);
+  delete missingMedium.stages.start.content.video.medium;
+  assert.equal(yamlQuestSection_Schema.safeParse(missingMedium).success, false);
+
+  const wrongScene = structuredClone(quest);
+  wrongScene.tasks.start.scene.type = 'text';
+  assert.equal(yamlQuestSection_Schema.safeParse(wrongScene).success, false);
+
+  const wrongSubtitles = structuredClone(quest);
+  wrongSubtitles.stages.start.content.subtitles.locale.fileLocation = '/captions/ready.vtt';
+  assert.equal(yamlQuestSection_Schema.safeParse(wrongSubtitles).success, false);
+
+  const json = JSON.parse(yamlJsonSchemaDocuments()['section.schema.json']);
+  const questType = json.oneOf.find(branch => branch.properties?.type?.const === 'quest');
+  assert(questType, 'JSON Schema must advertise Quest Section');
+  assert(questType.required.includes('stages') && questType.required.includes('tasks'));
+  for (const kind of ['lesson', 'episode', 'course', 'lesson.scaffold', 'course.scaffold']) {
+    const schema = JSON.parse(yamlJsonSchemaDocuments()[kind + '.schema.json']);
+    assert(JSON.stringify(schema).includes('"quest"'), kind + ': missing Quest Config tree');
+  }
 });

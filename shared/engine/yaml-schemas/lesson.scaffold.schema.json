@@ -436,6 +436,104 @@
                           },
                           "type": {
                             "type": "string",
+                            "const": "quest"
+                          },
+                          "params": {
+                            "type": "object",
+                            "properties": {
+                              "disabled": {
+                                "$ref": "#/$defs/__schema2"
+                              },
+                              "skippable": {
+                                "type": "boolean"
+                              }
+                            },
+                            "additionalProperties": false
+                          },
+                          "locale": {
+                            "type": "object",
+                            "properties": {
+                              "title": {
+                                "$ref": "#/$defs/__schema4"
+                              },
+                              "navigationLabel": {
+                                "$ref": "#/$defs/__schema4"
+                              }
+                            },
+                            "required": ["title", "navigationLabel"],
+                            "additionalProperties": false
+                          },
+                          "stages": {
+                            "allOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "start": {
+                                    "$ref": "#/$defs/__schema23"
+                                  }
+                                },
+                                "required": ["start"],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "propertyNames": {
+                                  "$ref": "#/$defs/__schema1"
+                                },
+                                "additionalProperties": {
+                                  "$ref": "#/$defs/__schema23"
+                                }
+                              }
+                            ]
+                          },
+                          "tasks": {
+                            "allOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "start": {
+                                    "$ref": "#/$defs/__schema24"
+                                  }
+                                },
+                                "required": ["start"],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "propertyNames": {
+                                  "$ref": "#/$defs/__schema1"
+                                },
+                                "additionalProperties": {
+                                  "$ref": "#/$defs/__schema24"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        "required": ["id", "slug", "type", "params", "locale", "stages", "tasks"],
+                        "additionalProperties": false
+                      },
+                      "production": {
+                        "$ref": "#/$defs/__production/$defs/section"
+                      }
+                    },
+                    "required": ["config"],
+                    "additionalProperties": false
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "config": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "$ref": "#/$defs/__schema0"
+                          },
+                          "slug": {
+                            "$ref": "#/$defs/__schema1"
+                          },
+                          "type": {
+                            "type": "string",
                             "const": "quiz"
                           },
                           "params": {
@@ -598,19 +696,19 @@
                                 "type": "object",
                                 "properties": {
                                   "starting": {
-                                    "$ref": "#/$defs/__schema21"
+                                    "$ref": "#/$defs/__schema25"
                                   },
                                   "ending": {
                                     "type": "object",
                                     "properties": {
                                       "success": {
-                                        "$ref": "#/$defs/__schema21"
+                                        "$ref": "#/$defs/__schema25"
                                       },
                                       "fail": {
-                                        "$ref": "#/$defs/__schema21"
+                                        "$ref": "#/$defs/__schema25"
                                       },
                                       "retry": {
-                                        "$ref": "#/$defs/__schema21"
+                                        "$ref": "#/$defs/__schema25"
                                       }
                                     },
                                     "required": ["success", "fail"],
@@ -877,13 +975,13 @@
                         "type": "object",
                         "properties": {
                           "front": {
-                            "$ref": "#/$defs/__schema22"
+                            "$ref": "#/$defs/__schema26"
                           },
                           "back": {
-                            "$ref": "#/$defs/__schema22"
+                            "$ref": "#/$defs/__schema26"
                           },
                           "hint": {
-                            "$ref": "#/$defs/__schema22"
+                            "$ref": "#/$defs/__schema26"
                           }
                         },
                         "required": ["front", "back"],
@@ -957,19 +1055,19 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             },
                             "correctAnswers": {
                               "minItems": 1,
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema25"
+                                "$ref": "#/$defs/__schema29"
                               }
                             }
                           },
@@ -990,13 +1088,13 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             }
                           },
                           "required": ["question"],
@@ -1036,12 +1134,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1054,7 +1152,7 @@
                             "correctAnswers": {
                               "type": "object",
                               "propertyNames": {
-                                "$ref": "#/$defs/__schema29"
+                                "$ref": "#/$defs/__schema33"
                               },
                               "additionalProperties": {
                                 "$ref": "#/$defs/__schema4"
@@ -1071,13 +1169,13 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             }
                           },
                           "required": ["question"],
@@ -1117,12 +1215,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1143,19 +1241,19 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             },
                             "correctSequence": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "distractors": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             }
                           },
                           "required": ["question", "correctSequence", "distractors"],
@@ -1195,12 +1293,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1221,13 +1319,13 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             },
                             "slots": {
                               "type": "object",
@@ -1259,7 +1357,7 @@
                               "additionalProperties": false
                             },
                             "distractors": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             }
                           },
                           "required": ["question", "slots", "distractors"],
@@ -1299,12 +1397,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1325,13 +1423,13 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             },
                             "slots": {
                               "type": "object",
@@ -1347,7 +1445,7 @@
                                       "correctAnswers": {
                                         "type": "object",
                                         "propertyNames": {
-                                          "$ref": "#/$defs/__schema30"
+                                          "$ref": "#/$defs/__schema34"
                                         },
                                         "additionalProperties": {
                                           "$ref": "#/$defs/__schema4"
@@ -1406,12 +1504,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1427,13 +1525,13 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             },
                             "pairs": {
                               "type": "object",
@@ -1505,12 +1603,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1526,16 +1624,16 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             },
                             "sequence": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             }
                           },
                           "required": ["question", "sequence"],
@@ -1575,12 +1673,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1596,25 +1694,25 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             },
                             "answers": {
                               "type": "object",
                               "properties": {
                                 "correct": {
-                                  "$ref": "#/$defs/__schema26"
+                                  "$ref": "#/$defs/__schema30"
                                 },
                                 "incorrect": {
-                                  "$ref": "#/$defs/__schema26"
+                                  "$ref": "#/$defs/__schema30"
                                 },
                                 "distractors": {
-                                  "$ref": "#/$defs/__schema26"
+                                  "$ref": "#/$defs/__schema30"
                                 }
                               },
                               "required": ["correct", "incorrect", "distractors"],
@@ -1658,12 +1756,12 @@
                               "$ref": "#/$defs/__schema2"
                             },
                             "assessmentMethod": {
-                              "$ref": "#/$defs/__schema23"
+                              "$ref": "#/$defs/__schema27"
                             },
                             "restrictions": {
                               "type": "array",
                               "items": {
-                                "$ref": "#/$defs/__schema24"
+                                "$ref": "#/$defs/__schema28"
                               }
                             }
                           },
@@ -1679,25 +1777,25 @@
                           "type": "object",
                           "properties": {
                             "question": {
-                              "$ref": "#/$defs/__schema26"
+                              "$ref": "#/$defs/__schema30"
                             },
                             "hint": {
-                              "$ref": "#/$defs/__schema27"
+                              "$ref": "#/$defs/__schema31"
                             },
                             "explanation": {
-                              "$ref": "#/$defs/__schema28"
+                              "$ref": "#/$defs/__schema32"
                             },
                             "answers": {
                               "type": "object",
                               "properties": {
                                 "correct": {
-                                  "$ref": "#/$defs/__schema26"
+                                  "$ref": "#/$defs/__schema30"
                                 },
                                 "incorrect": {
-                                  "$ref": "#/$defs/__schema26"
+                                  "$ref": "#/$defs/__schema30"
                                 },
                                 "distractors": {
-                                  "$ref": "#/$defs/__schema26"
+                                  "$ref": "#/$defs/__schema30"
                                 }
                               },
                               "required": ["correct", "incorrect", "distractors"],
@@ -1728,7 +1826,7 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema31"
+            "$ref": "#/$defs/__schema35"
           }
         }
       },
@@ -1954,16 +2052,19 @@
                                           "$ref": "#/$defs/__schema16"
                                         },
                                         {
-                                          "$ref": "#/$defs/__schema17"
+                                          "$ref": "#/$defs/__schema18"
+                                        },
+                                        {
+                                          "$ref": "#/$defs/__schema20"
                                         },
                                         {
                                           "$ref": "#/$defs/__schema10"
                                         },
                                         {
-                                          "$ref": "#/$defs/__schema19"
+                                          "$ref": "#/$defs/__schema21"
                                         },
                                         {
-                                          "$ref": "#/$defs/__schema20"
+                                          "$ref": "#/$defs/__schema22"
                                         }
                                       ]
                                     }
@@ -2021,16 +2122,19 @@
           "$ref": "#/$defs/__schema16"
         },
         {
-          "$ref": "#/$defs/__schema17"
+          "$ref": "#/$defs/__schema18"
+        },
+        {
+          "$ref": "#/$defs/__schema20"
         },
         {
           "$ref": "#/$defs/__schema10"
         },
         {
-          "$ref": "#/$defs/__schema19"
+          "$ref": "#/$defs/__schema21"
         },
         {
-          "$ref": "#/$defs/__schema20"
+          "$ref": "#/$defs/__schema22"
         }
       ]
     },
@@ -2540,13 +2644,7 @@
               "const": "markdown"
             },
             "params": {
-              "type": "object",
-              "properties": {
-                "disabled": {
-                  "$ref": "#/$defs/__schema2"
-                }
-              },
-              "additionalProperties": false
+              "$ref": "#/$defs/__schema17"
             },
             "locale": {
               "type": "object",
@@ -2582,6 +2680,15 @@
     "__schema17": {
       "type": "object",
       "properties": {
+        "disabled": {
+          "$ref": "#/$defs/__schema2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "__schema18": {
+      "type": "object",
+      "properties": {
         "config": {
           "type": "object",
           "properties": {
@@ -2608,7 +2715,7 @@
               "type": "object",
               "properties": {
                 "value": {
-                  "$ref": "#/$defs/__schema18"
+                  "$ref": "#/$defs/__schema19"
                 }
               },
               "required": ["value"],
@@ -2625,7 +2732,7 @@
       "required": ["config"],
       "additionalProperties": false
     },
-    "__schema18": {
+    "__schema19": {
       "anyOf": [
         {
           "$ref": "#/$defs/__schema4"
@@ -2636,12 +2743,53 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema18"
+            "$ref": "#/$defs/__schema19"
           }
         }
       ]
     },
-    "__schema19": {
+    "__schema20": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "subtitles"
+            },
+            "params": {
+              "$ref": "#/$defs/__schema17"
+            },
+            "locale": {
+              "type": "object",
+              "properties": {
+                "fileLocation": {
+                  "type": "null",
+                  "const": null
+                }
+              },
+              "required": ["fileLocation"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["id", "slug", "type", "params", "locale"],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/subtitles"
+        }
+      },
+      "required": ["config"],
+      "additionalProperties": false
+    },
+    "__schema21": {
       "type": "object",
       "properties": {
         "config": {
@@ -2716,7 +2864,7 @@
       "required": ["config"],
       "additionalProperties": false
     },
-    "__schema20": {
+    "__schema22": {
       "type": "object",
       "properties": {
         "config": {
@@ -2788,7 +2936,127 @@
       "required": ["config"],
       "additionalProperties": false
     },
-    "__schema21": {
+    "__schema23": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "questStage"
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "video": {
+                  "type": "object",
+                  "properties": {
+                    "medium": {
+                      "$ref": "#/$defs/__schema21"
+                    },
+                    "small": {
+                      "$ref": "#/$defs/__schema21"
+                    }
+                  },
+                  "required": ["medium", "small"],
+                  "additionalProperties": false
+                },
+                "audio": {
+                  "type": "object",
+                  "properties": {
+                    "dialogue": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/__schema8"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "narration": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/__schema8"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "background": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/__schema8"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": ["dialogue", "narration", "background"],
+                  "additionalProperties": false
+                },
+                "image": {
+                  "$ref": "#/$defs/__schema15"
+                },
+                "subtitles": {
+                  "$ref": "#/$defs/__schema20"
+                }
+              },
+              "required": ["video", "audio", "image", "subtitles"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["id", "slug", "type", "content"],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/questStage"
+        }
+      },
+      "required": ["config"],
+      "additionalProperties": false
+    },
+    "__schema24": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "questTask"
+            },
+            "scene": {
+              "$ref": "#/$defs/__schema18"
+            }
+          },
+          "required": ["id", "slug", "type", "scene"],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/questTask"
+        }
+      },
+      "required": ["config"],
+      "additionalProperties": false
+    },
+    "__schema25": {
       "type": "object",
       "properties": {
         "showDefaultContent": {
@@ -2802,76 +3070,6 @@
         }
       },
       "additionalProperties": false
-    },
-    "__schema22": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "object",
-          "propertyNames": {
-            "type": "string"
-          },
-          "additionalProperties": {
-            "$ref": "#/$defs/__schema7"
-          }
-        },
-        "order": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      },
-      "required": ["items", "order"],
-      "additionalProperties": false
-    },
-    "__schema23": {
-      "type": "string",
-      "enum": [
-        "retrieval",
-        "interpretation",
-        "application",
-        "classification",
-        "relationshipMapping",
-        "representationTranslation",
-        "missingInformationInference",
-        "structuralAnalysis",
-        "patternGeneralization",
-        "analogicalReasoning",
-        "knowledgeTransfer",
-        "prediction",
-        "errorDiagnosis",
-        "verification",
-        "justification",
-        "knowledgeConstruction"
-      ]
-    },
-    "__schema24": {
-      "type": "string",
-      "enum": [
-        "color-vision-deficiency",
-        "visual-impairment",
-        "blindness",
-        "hearing-impairment",
-        "deafness",
-        "speech-impairment",
-        "motor-impairment",
-        "movement-disorder",
-        "fine-motor-impairment",
-        "cognitive-impairment",
-        "intellectual-disability",
-        "learning-disability",
-        "dyslexia",
-        "dyscalculia",
-        "attention-deficit",
-        "memory-impairment",
-        "photosensitivity",
-        "seizure-susceptibility",
-        "speech-language-disorder"
-      ]
-    },
-    "__schema25": {
-      "type": "number"
     },
     "__schema26": {
       "type": "object",
@@ -2896,18 +3094,88 @@
       "additionalProperties": false
     },
     "__schema27": {
-      "$ref": "#/$defs/__schema26"
+      "type": "string",
+      "enum": [
+        "retrieval",
+        "interpretation",
+        "application",
+        "classification",
+        "relationshipMapping",
+        "representationTranslation",
+        "missingInformationInference",
+        "structuralAnalysis",
+        "patternGeneralization",
+        "analogicalReasoning",
+        "knowledgeTransfer",
+        "prediction",
+        "errorDiagnosis",
+        "verification",
+        "justification",
+        "knowledgeConstruction"
+      ]
     },
     "__schema28": {
-      "$ref": "#/$defs/__schema26"
+      "type": "string",
+      "enum": [
+        "color-vision-deficiency",
+        "visual-impairment",
+        "blindness",
+        "hearing-impairment",
+        "deafness",
+        "speech-impairment",
+        "motor-impairment",
+        "movement-disorder",
+        "fine-motor-impairment",
+        "cognitive-impairment",
+        "intellectual-disability",
+        "learning-disability",
+        "dyslexia",
+        "dyscalculia",
+        "attention-deficit",
+        "memory-impairment",
+        "photosensitivity",
+        "seizure-susceptibility",
+        "speech-language-disorder"
+      ]
     },
     "__schema29": {
-      "type": "string"
+      "type": "number"
     },
     "__schema30": {
-      "type": "string"
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema7"
+          }
+        },
+        "order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["items", "order"],
+      "additionalProperties": false
     },
     "__schema31": {
+      "$ref": "#/$defs/__schema30"
+    },
+    "__schema32": {
+      "$ref": "#/$defs/__schema30"
+    },
+    "__schema33": {
+      "type": "string"
+    },
+    "__schema34": {
+      "type": "string"
+    },
+    "__schema35": {
       "anyOf": [
         {
           "type": "string"
@@ -2924,7 +3192,7 @@
         {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/__schema31"
+            "$ref": "#/$defs/__schema35"
           }
         },
         {
@@ -2933,7 +3201,7 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema31"
+            "$ref": "#/$defs/__schema35"
           }
         }
       ]
@@ -3186,6 +3454,76 @@
             "specification": {
               "type": "string",
               "minLength": 1
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "questStage": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Learning purpose and visual/audio role of this Stage."
+            },
+            "storyboard": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Timeline and playback beats for the silent presentation video."
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Optional detailed Stage production specification."
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "questTask": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Learner action and intended guided-practice outcome."
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Branch, feedback, retry and accessibility expectations for the Task Scene."
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "subtitles": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Speech and meaningful audio events covered in localized captions."
+            },
+            "script": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Source-language WebVTT transcription/caption cues."
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Timing, speaker identification and localization guidance."
             },
             "productionNotes": {
               "type": "string",

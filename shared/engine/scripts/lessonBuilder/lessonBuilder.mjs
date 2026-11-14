@@ -115,6 +115,21 @@ function childContext(parent, key, owner) {
     if (key === 'flashcards') return 'flashcardCollection';
     if (key === 'questions') return 'questionBank';
   }
+  if (parent === 'section' && owner.type === 'quest') {
+    if (key === 'stages') return 'questStages';
+    if (key === 'tasks') return 'questTasks';
+  }
+  if (parent === 'questStages') return 'stage';
+  if (parent === 'questTasks') return 'task';
+  if (parent === 'stage' && key === 'content') return 'questStageContent';
+  if (parent === 'questStageContent') {
+    if (key === 'video') return 'questVideoTracks';
+    if (key === 'audio') return 'questAudioTracks';
+    if (key === 'image' || key === 'subtitles') return 'block';
+  }
+  if (parent === 'questVideoTracks') return 'block';
+  if (parent === 'questAudioTracks') return 'nullableBlock';
+  if (parent === 'task' && key === 'scene') return 'block';
   if (parent === 'section' && key === 'content') return 'blockCollection';
   if (parent === 'block') {
     if (owner.type === 'carousel' && key === 'slides') return 'slideCollection';
@@ -140,7 +155,17 @@ function childContext(parent, key, owner) {
   return 'plain';
 }
 
-const factoryContexts = new Set(['lesson', 'section', 'block', 'slide', 'checkpointItem', 'question', 'flashcard']);
+const factoryContexts = new Set([
+  'lesson',
+  'section',
+  'stage',
+  'task',
+  'block',
+  'slide',
+  'checkpointItem',
+  'question',
+  'flashcard',
+]);
 const indent = level => '  '.repeat(level);
 
 /**
@@ -151,6 +176,10 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
   const used = new Set();
 
   function render(value, context, field, level) {
+    if (context === 'nullableBlock') {
+      if (value === null) return 'null'; // A genuinely silent Quest audio track.
+      return render(value, 'block', field, level);
+    }
     if (factoryContexts.has(context)) {
       if (!isRecord(value)) fail('content.yaml', field, 'expected an object with type for factory dispatch');
       const type = value.type;

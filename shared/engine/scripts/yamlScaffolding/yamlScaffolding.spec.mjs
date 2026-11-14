@@ -7,6 +7,7 @@ import ts from 'typescript';
 import yaml from 'yaml';
 
 import { runOne } from '../lessonBuilder/lessonBuilder.mjs';
+import { productionFiles, splitScaffoldDocument } from './productionScaffolding.mjs';
 import { parseCourseYaml, renderCourseSource, verifyOrWriteGenerated } from '../courseBuilder/courseBuilder.mjs';
 
 const lessonId = '00000000-0000-4000-8000-00000000000c';
@@ -34,6 +35,71 @@ function wrapNode(value) {
   return typeof value.type === 'string' && (typeof value.id === 'string' || typeof value.lessonId === 'string')
     ? { config: fields }
     : fields;
+}
+
+function questNode(slug, offset) {
+  const block = (type, key, index, locale, params = {}) => ({
+    id: id(offset + index),
+    slug: key,
+    type,
+    params,
+    locale,
+  });
+  return {
+    id: id(offset),
+    slug,
+    type: 'quest',
+    params: {},
+    locale: { title: { uk: 'Практика' }, navigationLabel: { uk: 'Завдання' } },
+    stages: {
+      start: {
+        id: id(offset + 1),
+        slug: 'start',
+        type: 'questStage',
+        content: {
+          video: {
+            medium: block('video', 'medium', 2, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Приклад' },
+            }),
+            small: block('video', 'small', 3, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Приклад' },
+            }),
+          },
+          audio: {
+            dialogue: null,
+            narration: block('audio', 'narration', 4, {
+              fileLocation: null,
+              title: { uk: 'Опис' },
+            }),
+            background: null,
+          },
+          image: block(
+            'image',
+            'image',
+            5,
+            { src: null, alt: { uk: 'Схема' } },
+            {
+              fill: true,
+              aspectRatio: 1.5,
+            },
+          ),
+          subtitles: block('subtitles', 'subtitles', 6, { fileLocation: null }),
+        },
+      },
+    },
+    tasks: {
+      start: {
+        id: id(offset + 7),
+        slug: 'start',
+        type: 'questTask',
+        scene: block('scene', 'interaction', 8, { value: { instruction: { uk: 'Спробуй' } } }),
+      },
+    },
+  };
 }
 
 test('Studio editorial YAML remains intact while both builders emit nested TS drafts', () => {
@@ -88,6 +154,8 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         },
       }),
     };
+    lesson.section.items.guided = questNode('guided', 70);
+    lesson.section.order.push('guided');
     const { documentLanguage: lessonLanguage, ...lessonConfig } = lesson;
     fs.writeFileSync(
       path.join(lessonDir, 'config.yaml'),
@@ -110,6 +178,14 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
       'defineCarouselSlide',
       'defineCheckpoint',
       'defineCheckpointItem',
+      'defineQuestSection',
+      'defineStage',
+      'defineTask',
+      'defineVideo',
+      'defineAudio',
+      'defineImage',
+      'defineSubtitles',
+      'defineScene',
     ]) {
       assert(lessonCalls.includes(name), name + ' missing in Lesson draft');
     }
@@ -164,6 +240,9 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
         },
       }),
     };
+    const episodeSections = course.content.items.module.content.items.chapter.content.items.episode.section;
+    episodeSections.items.guided = questNode('guided', 90);
+    episodeSections.order.push('guided');
     const { documentLanguage: courseLanguage, ...courseConfig } = course;
     const courseYaml = yaml.stringify({
       ...wrapNode(courseConfig),
@@ -184,6 +263,14 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
       'defineContentSection',
       'defineCarousel',
       'defineCarouselSlide',
+      'defineQuestSection',
+      'defineStage',
+      'defineTask',
+      'defineVideo',
+      'defineAudio',
+      'defineImage',
+      'defineSubtitles',
+      'defineScene',
     ]) {
       assert(courseCalls.includes(name), name + ' missing in Course draft');
     }
@@ -194,6 +281,65 @@ test('Studio editorial YAML remains intact while both builders emit nested TS dr
     assert.equal(fs.readFileSync(path.join(courseDir, 'config.yaml'), 'utf8'), courseYaml);
     assert(!fs.existsSync(path.join(courseDir, 'generated')));
     assert(!fs.existsSync(path.join(lessonDir, 'generated')));
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Quest Stage caption production creates a UUID-addressed Subtitles handoff', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'quest-subtitles-handoff-'));
+  try {
+    const captionId = id(151);
+    const lessonPath = path.join(root, 'content/math/data/lessons/c', lessonId);
+    const node = {
+      config: {
+        id: lessonId,
+        slug: 'questLesson',
+        type: 'lesson',
+        section: {
+          items: {
+            guided: {
+              config: {
+                id: id(150),
+                slug: 'guided',
+                type: 'quest',
+                stages: {
+                  start: {
+                    config: {
+                      id: id(152),
+                      slug: 'start',
+                      type: 'questStage',
+                      content: {
+                        subtitles: {
+                          config: {
+                            id: captionId,
+                            slug: 'subtitles',
+                            type: 'subtitles',
+                            params: {},
+                            locale: { fileLocation: null },
+                          },
+                          production: { script: 'WEBVTT\n\n00:00:00.000 --> 00:00:02.000\nNarrator: Begin.' },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      production: { documentLanguage: 'en' },
+    };
+    const split = splitScaffoldDocument(node);
+    assert.equal(split.config.section.items.guided.stages.start.content.subtitles.type, 'subtitles');
+    const handoffs = productionFiles(lessonPath, split.tasks);
+    assert.equal(handoffs.length, 1);
+    assert.equal(
+      handoffs[0].file,
+      path.join(root, 'content/math/data/assets', captionId.at(-1), captionId, 'specification.md'),
+    );
+    assert.match(handoffs[0].content, /WEBVTT/);
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

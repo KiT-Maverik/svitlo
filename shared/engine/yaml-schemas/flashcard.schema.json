@@ -392,16 +392,19 @@
                                         "$ref": "#/$defs/__schema15"
                                       },
                                       {
-                                        "$ref": "#/$defs/__schema16"
+                                        "$ref": "#/$defs/__schema17"
+                                      },
+                                      {
+                                        "$ref": "#/$defs/__schema19"
                                       },
                                       {
                                         "$ref": "#/$defs/__schema9"
                                       },
                                       {
-                                        "$ref": "#/$defs/__schema18"
+                                        "$ref": "#/$defs/__schema20"
                                       },
                                       {
-                                        "$ref": "#/$defs/__schema19"
+                                        "$ref": "#/$defs/__schema21"
                                       }
                                     ]
                                   }
@@ -445,16 +448,19 @@
                 "$ref": "#/$defs/__schema15"
               },
               {
-                "$ref": "#/$defs/__schema16"
+                "$ref": "#/$defs/__schema17"
+              },
+              {
+                "$ref": "#/$defs/__schema19"
               },
               {
                 "$ref": "#/$defs/__schema9"
               },
               {
-                "$ref": "#/$defs/__schema18"
+                "$ref": "#/$defs/__schema20"
               },
               {
-                "$ref": "#/$defs/__schema19"
+                "$ref": "#/$defs/__schema21"
               }
             ]
           }
@@ -912,13 +918,7 @@
           "const": "markdown"
         },
         "params": {
-          "type": "object",
-          "properties": {
-            "disabled": {
-              "$ref": "#/$defs/__schema2"
-            }
-          },
-          "additionalProperties": false
+          "$ref": "#/$defs/__schema16"
         },
         "locale": {
           "type": "object",
@@ -947,6 +947,15 @@
     "__schema16": {
       "type": "object",
       "properties": {
+        "disabled": {
+          "$ref": "#/$defs/__schema2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "__schema17": {
+      "type": "object",
+      "properties": {
         "id": {
           "$ref": "#/$defs/__schema0"
         },
@@ -970,7 +979,7 @@
           "type": "object",
           "properties": {
             "value": {
-              "$ref": "#/$defs/__schema17"
+              "$ref": "#/$defs/__schema18"
             }
           },
           "required": ["value"],
@@ -980,7 +989,7 @@
       "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
-    "__schema17": {
+    "__schema18": {
       "anyOf": [
         {
           "$ref": "#/$defs/__schema3"
@@ -991,12 +1000,43 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema17"
+            "$ref": "#/$defs/__schema18"
           }
         }
       ]
     },
-    "__schema18": {
+    "__schema19": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/__schema0"
+        },
+        "slug": {
+          "$ref": "#/$defs/__schema1"
+        },
+        "type": {
+          "type": "string",
+          "const": "subtitles"
+        },
+        "params": {
+          "$ref": "#/$defs/__schema16"
+        },
+        "locale": {
+          "type": "object",
+          "properties": {
+            "fileLocation": {
+              "type": "null",
+              "const": null
+            }
+          },
+          "required": ["fileLocation"],
+          "additionalProperties": false
+        }
+      },
+      "required": ["id", "slug", "type", "params", "locale"],
+      "additionalProperties": false
+    },
+    "__schema20": {
       "type": "object",
       "properties": {
         "id": {
@@ -1061,7 +1101,7 @@
       "required": ["id", "slug", "type", "params", "locale"],
       "additionalProperties": false
     },
-    "__schema19": {
+    "__schema21": {
       "type": "object",
       "properties": {
         "id": {

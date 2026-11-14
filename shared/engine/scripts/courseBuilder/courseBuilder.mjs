@@ -233,6 +233,55 @@ function renderValue(value, state, indent, location, typedItems = false) {
   );
 }
 
+/** Quest Stages own named media configurators, not a positional or items/order list. */
+function renderQuestMediaMap(value, state, indent, location, allowNull = false) {
+  if (!record(value)) return renderValue(value, state, indent, location);
+  const pad = '  '.repeat(indent);
+  const inner = '  '.repeat(indent + 1);
+  const fields = Object.entries(value);
+  if (!fields.length) return '{}';
+  return (
+    '{\n' +
+    fields
+      .map(
+        ([key, child]) =>
+          inner +
+          literal(key) +
+          ': ' +
+          (allowNull && child === null ? 'null' : renderEntity(child, state, indent + 1, location + '.' + key)) +
+          ',',
+      )
+      .join('\n') +
+    '\n' +
+    pad +
+    '}'
+  );
+}
+
+function renderQuestStageContent(value, state, indent, location) {
+  if (!record(value)) return renderValue(value, state, indent, location);
+  const pad = '  '.repeat(indent);
+  const inner = '  '.repeat(indent + 1);
+  return (
+    '{\n' +
+    Object.entries(value)
+      .map(([key, child]) => {
+        const field = location + '.' + key;
+        const expression =
+          key === 'video' || key === 'audio'
+            ? renderQuestMediaMap(child, state, indent + 1, field, key === 'audio')
+            : key === 'image' || key === 'subtitles'
+              ? renderEntity(child, state, indent + 1, field)
+              : renderValue(child, state, indent + 1, field);
+        return inner + literal(key) + ': ' + expression + ',';
+      })
+      .join('\n') +
+    '\n' +
+    pad +
+    '}'
+  );
+}
+
 function renderConfigFields(node, state, indent, location) {
   const space = '  '.repeat(indent);
   const inner = '  '.repeat(indent + 1);
@@ -243,7 +292,13 @@ function renderConfigFields(node, state, indent, location) {
       .map(([key, value]) => {
         const collection = (typedCollections[node.type] ?? []).includes(key);
         let expression;
-        if (node.type === 'checkpointItem' && key === 'question') {
+        if (node.type === 'quest' && (key === 'stages' || key === 'tasks')) {
+          expression = renderValue(value, state, indent + 1, location + '.' + key, true);
+        } else if (node.type === 'questStage' && key === 'content') {
+          expression = renderQuestStageContent(value, state, indent + 1, location + '.content');
+        } else if (node.type === 'questTask' && key === 'scene') {
+          expression = renderEntity(value, state, indent + 1, location + '.scene');
+        } else if (node.type === 'checkpointItem' && key === 'question') {
           expression = renderEntity(value, state, indent + 1, location + '.question');
         } else if (collection && record(value) && record(value.items)) {
           const properties = Object.entries(value).map(([field, child]) => {

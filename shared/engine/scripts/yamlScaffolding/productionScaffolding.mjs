@@ -86,7 +86,7 @@ export function productionFiles(entityFolder, tasks) {
       destination = path.join(textbookRoot, 'scenes', id.at(-1), id, 'specification.md');
       body = markdownForTask(task);
     } else if (
-      ['image', 'audio', 'video'].includes(type) &&
+      ['image', 'audio', 'video', 'subtitles'].includes(type) &&
       [production.prompt, production.specification, production.script, production.storyboard].some(text)
     ) {
       if (!uuid.test(id ?? ''))

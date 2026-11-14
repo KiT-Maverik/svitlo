@@ -540,3 +540,86 @@ test('staged Lesson rejects malformed IDs and symlinked UUID destinations withou
     assert.equal(fs.existsSync(redirected), false);
     assert.equal(fs.existsSync(path.join(path.dirname(staging), 'lightLesson.data.ts')), false);
   }));
+
+test('Quest draft instantiates Stage, Task, named media, Subtitles and Scene without positional order', () => {
+  const lesson = makeLesson();
+  const media = (type, slug, number, locale = {}) => ({
+    id: id(number),
+    slug,
+    type,
+    params: {},
+    locale,
+  });
+  lesson.section.items.quest = {
+    id: id(80),
+    slug: 'quest',
+    type: 'quest',
+    params: { skippable: false },
+    locale: {
+      title: { uk: 'Кероване тренування', en: 'Guided practice' },
+      navigationLabel: { uk: 'Практика', en: 'Practice' },
+    },
+    stages: {
+      start: {
+        id: id(81),
+        slug: 'start',
+        type: 'questStage',
+        content: {
+          video: {
+            medium: media('video', 'medium', 82, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Пояснення', en: 'Explanation' },
+            }),
+            small: media('video', 'small', 83, {
+              fileLocation: null,
+              poster: null,
+              label: { uk: 'Пояснення' },
+            }),
+          },
+          audio: {
+            dialogue: media('audio', 'dialogue', 84, { fileLocation: null, title: { uk: 'Діалог' } }),
+            narration: null,
+            background: null,
+          },
+          image: media('image', 'image', 85, { src: null, alt: { uk: 'Схема' } }),
+          subtitles: media('subtitles', 'subtitles', 86, { fileLocation: null }),
+        },
+      },
+    },
+    tasks: {
+      start: {
+        id: id(87),
+        slug: 'start',
+        type: 'questTask',
+        scene: media('scene', 'taskScene', 88, { value: { uk: { action: 'compare' } } }),
+      },
+    },
+  };
+  lesson.section.order.push('quest');
+
+  const draft = renderLessonDraft(lesson, 'uk');
+  for (const factory of [
+    'defineQuestSection',
+    'defineStage',
+    'defineTask',
+    'defineVideo',
+    'defineAudio',
+    'defineImage',
+    'defineSubtitles',
+    'defineScene',
+  ]) {
+    assert.match(draft, new RegExp(factory + '\\('), factory);
+  }
+  assert.equal((draft.match(/defineStage\(/g) ?? []).length, 1);
+  assert.equal((draft.match(/defineTask\(/g) ?? []).length, 1);
+  assert.match(draft, /"narration": null/);
+  assert.match(draft, /"background": null/);
+  assert(!draft.includes('"en": "Guided practice"'), 'do not invent non-source locale output');
+  assert(!Object.hasOwn(lesson.section.items.quest, 'order'), 'Quest uses named entry maps, not an internal order');
+  assert.deepEqual(ts.createSourceFile('quest.data.ts', draft, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+
+  const broken = structuredClone(lesson);
+  broken.section.items.quest.tasks.start.scene.type = 'unknownTaskScene';
+  assert.throws(() => renderLessonDraft(broken, 'uk'), /unknown type "unknownTaskScene"/);
+});
