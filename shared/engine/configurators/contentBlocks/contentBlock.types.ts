@@ -5,6 +5,7 @@ import type { ContentBlock_Code_Configurator, ContentBlock_Code_Props } from './
 import type { ContentBlock_Image_Configurator, ContentBlock_Image_Props } from './defineImage';
 import type { ContentBlock_Video_Configurator, ContentBlock_Video_Props } from './defineVideo';
 import type { ContentBlock_Audio_Configurator, ContentBlock_Audio_Props } from './defineAudio';
+import type { ContentBlock_Subtitles_Configurator, ContentBlock_Subtitles_Props } from './defineSubtitles';
 import type { ContentBlock_Youtube_Configurator, ContentBlock_Youtube_Props } from './defineYoutube';
 import type { ContentBlock_Carousel_Configurator, ContentBlock_Carousel_Props } from './defineCarousel';
 import type { ContentBlock_Checkpoint_Configurator, ContentBlock_Checkpoint_Props } from './defineCheckpoint';
@@ -17,6 +18,7 @@ export type ContentBlock_Configurator = ConfiguratorChild<
   | ContentBlock_Image_Configurator
   | ContentBlock_Video_Configurator
   | ContentBlock_Audio_Configurator
+  | ContentBlock_Subtitles_Configurator
   | ContentBlock_Youtube_Configurator
   | ContentBlock_Carousel_Configurator
   | ContentBlock_Checkpoint_Configurator
@@ -30,6 +32,7 @@ export type ContentBlock_Props =
   | ContentBlock_Image_Props
   | ContentBlock_Video_Props
   | ContentBlock_Audio_Props
+  | ContentBlock_Subtitles_Props
   | ContentBlock_Youtube_Props
   | ContentBlock_Carousel_Props
   | ContentBlock_Checkpoint_Props

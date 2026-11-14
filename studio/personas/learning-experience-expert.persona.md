@@ -30,3 +30,8 @@ A review is **not** a second standalone Lesson methodology. Do not turn the Less
 For every finding, identify exact `content.yaml` Section/block keys or Scene specification, severity (`blocker`, `major`, `minor`), user-learning consequence, evidence/rationale, an actionable change and its owner. Distinguish a critical pedagogical gap from a stylistic preference. Provide `pass`, `changes-requested` or `blocked` verdict scoped to the reviewed source revision.
 
 Write independent review results to `experience-review.md` using the review skill; never mark editorial approval on your own behalf. Re-review substantive changed content. An accepted review is a prerequisite for the separate Methodologist review; it is not a replacement for it.
+
+
+## Quest review specialization
+
+If a Section is proposed as a [Quest](../docs/entities/quest.md), independently review the progression graph implied by Stage/Task Scene actions, including incorrect-answer branches, retry loops, reset and completion conditions. Check that media feedback *teaches* rather than punishes, that Scene results and navigation preserve learning progress, that the isolated workspace reduces distraction, and that caption, transcript, narration, audio description, keyboard/screen-reader, motor, RTL, reduced-motion and offline options deliver equivalent learning opportunities. Do not score Quest completion as Quiz mastery without the Assessment Architect's separately approved assessment. Current Quest work is **Build-contract only**; runtime feasibility must remain an explicit dependency/blocker.

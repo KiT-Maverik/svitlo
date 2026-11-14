@@ -158,7 +158,7 @@
                                       "$ref": "#/$defs/__schema7"
                                     },
                                     {
-                                      "$ref": "#/$defs/__schema24"
+                                      "$ref": "#/$defs/__schema28"
                                     }
                                   ]
                                 }
@@ -191,7 +191,7 @@
                     "$ref": "#/$defs/__schema7"
                   },
                   {
-                    "$ref": "#/$defs/__schema24"
+                    "$ref": "#/$defs/__schema28"
                   }
                 ]
               }
@@ -340,7 +340,7 @@
                         "$ref": "#/$defs/__schema7"
                       },
                       {
-                        "$ref": "#/$defs/__schema24"
+                        "$ref": "#/$defs/__schema28"
                       }
                     ]
                   }
@@ -773,6 +773,104 @@
                               },
                               "type": {
                                 "type": "string",
+                                "const": "quest"
+                              },
+                              "params": {
+                                "type": "object",
+                                "properties": {
+                                  "disabled": {
+                                    "$ref": "#/$defs/__schema2"
+                                  },
+                                  "skippable": {
+                                    "type": "boolean"
+                                  }
+                                },
+                                "additionalProperties": false
+                              },
+                              "locale": {
+                                "type": "object",
+                                "properties": {
+                                  "title": {
+                                    "$ref": "#/$defs/__schema4"
+                                  },
+                                  "navigationLabel": {
+                                    "$ref": "#/$defs/__schema4"
+                                  }
+                                },
+                                "required": ["title", "navigationLabel"],
+                                "additionalProperties": false
+                              },
+                              "stages": {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "start": {
+                                        "$ref": "#/$defs/__schema24"
+                                      }
+                                    },
+                                    "required": ["start"],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "propertyNames": {
+                                      "$ref": "#/$defs/__schema1"
+                                    },
+                                    "additionalProperties": {
+                                      "$ref": "#/$defs/__schema24"
+                                    }
+                                  }
+                                ]
+                              },
+                              "tasks": {
+                                "allOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "start": {
+                                        "$ref": "#/$defs/__schema25"
+                                      }
+                                    },
+                                    "required": ["start"],
+                                    "additionalProperties": false
+                                  },
+                                  {
+                                    "type": "object",
+                                    "propertyNames": {
+                                      "$ref": "#/$defs/__schema1"
+                                    },
+                                    "additionalProperties": {
+                                      "$ref": "#/$defs/__schema25"
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "required": ["id", "slug", "type", "params", "locale", "stages", "tasks"],
+                            "additionalProperties": false
+                          },
+                          "production": {
+                            "$ref": "#/$defs/__production/$defs/section"
+                          }
+                        },
+                        "required": ["config"],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "config": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "$ref": "#/$defs/__schema0"
+                              },
+                              "slug": {
+                                "$ref": "#/$defs/__schema1"
+                              },
+                              "type": {
+                                "type": "string",
                                 "const": "quiz"
                               },
                               "params": {
@@ -935,19 +1033,19 @@
                                     "type": "object",
                                     "properties": {
                                       "starting": {
-                                        "$ref": "#/$defs/__schema22"
+                                        "$ref": "#/$defs/__schema26"
                                       },
                                       "ending": {
                                         "type": "object",
                                         "properties": {
                                           "success": {
-                                            "$ref": "#/$defs/__schema22"
+                                            "$ref": "#/$defs/__schema26"
                                           },
                                           "fail": {
-                                            "$ref": "#/$defs/__schema22"
+                                            "$ref": "#/$defs/__schema26"
                                           },
                                           "retry": {
-                                            "$ref": "#/$defs/__schema22"
+                                            "$ref": "#/$defs/__schema26"
                                           }
                                         },
                                         "required": ["success", "fail"],
@@ -1019,7 +1117,7 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__schema23"
+                "$ref": "#/$defs/__schema27"
               }
             }
           },
@@ -1173,16 +1271,19 @@
                                             "$ref": "#/$defs/__schema17"
                                           },
                                           {
-                                            "$ref": "#/$defs/__schema18"
+                                            "$ref": "#/$defs/__schema19"
+                                          },
+                                          {
+                                            "$ref": "#/$defs/__schema21"
                                           },
                                           {
                                             "$ref": "#/$defs/__schema11"
                                           },
                                           {
-                                            "$ref": "#/$defs/__schema20"
+                                            "$ref": "#/$defs/__schema22"
                                           },
                                           {
-                                            "$ref": "#/$defs/__schema21"
+                                            "$ref": "#/$defs/__schema23"
                                           }
                                         ]
                                       }
@@ -1240,16 +1341,19 @@
             "$ref": "#/$defs/__schema17"
           },
           {
-            "$ref": "#/$defs/__schema18"
+            "$ref": "#/$defs/__schema19"
+          },
+          {
+            "$ref": "#/$defs/__schema21"
           },
           {
             "$ref": "#/$defs/__schema11"
           },
           {
-            "$ref": "#/$defs/__schema20"
+            "$ref": "#/$defs/__schema22"
           },
           {
-            "$ref": "#/$defs/__schema21"
+            "$ref": "#/$defs/__schema23"
           }
         ]
       }
@@ -1760,13 +1864,7 @@
               "const": "markdown"
             },
             "params": {
-              "type": "object",
-              "properties": {
-                "disabled": {
-                  "$ref": "#/$defs/__schema2"
-                }
-              },
-              "additionalProperties": false
+              "$ref": "#/$defs/__schema18"
             },
             "locale": {
               "type": "object",
@@ -1802,6 +1900,15 @@
     "__schema18": {
       "type": "object",
       "properties": {
+        "disabled": {
+          "$ref": "#/$defs/__schema2"
+        }
+      },
+      "additionalProperties": false
+    },
+    "__schema19": {
+      "type": "object",
+      "properties": {
         "config": {
           "type": "object",
           "properties": {
@@ -1828,7 +1935,7 @@
               "type": "object",
               "properties": {
                 "value": {
-                  "$ref": "#/$defs/__schema19"
+                  "$ref": "#/$defs/__schema20"
                 }
               },
               "required": ["value"],
@@ -1845,7 +1952,7 @@
       "required": ["config"],
       "additionalProperties": false
     },
-    "__schema19": {
+    "__schema20": {
       "anyOf": [
         {
           "$ref": "#/$defs/__schema4"
@@ -1856,12 +1963,53 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema19"
+            "$ref": "#/$defs/__schema20"
           }
         }
       ]
     },
-    "__schema20": {
+    "__schema21": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "subtitles"
+            },
+            "params": {
+              "$ref": "#/$defs/__schema18"
+            },
+            "locale": {
+              "type": "object",
+              "properties": {
+                "fileLocation": {
+                  "type": "null",
+                  "const": null
+                }
+              },
+              "required": ["fileLocation"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["id", "slug", "type", "params", "locale"],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/subtitles"
+        }
+      },
+      "required": ["config"],
+      "additionalProperties": false
+    },
+    "__schema22": {
       "type": "object",
       "properties": {
         "config": {
@@ -1936,7 +2084,7 @@
       "required": ["config"],
       "additionalProperties": false
     },
-    "__schema21": {
+    "__schema23": {
       "type": "object",
       "properties": {
         "config": {
@@ -2008,7 +2156,127 @@
       "required": ["config"],
       "additionalProperties": false
     },
-    "__schema22": {
+    "__schema24": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "questStage"
+            },
+            "content": {
+              "type": "object",
+              "properties": {
+                "video": {
+                  "type": "object",
+                  "properties": {
+                    "medium": {
+                      "$ref": "#/$defs/__schema22"
+                    },
+                    "small": {
+                      "$ref": "#/$defs/__schema22"
+                    }
+                  },
+                  "required": ["medium", "small"],
+                  "additionalProperties": false
+                },
+                "audio": {
+                  "type": "object",
+                  "properties": {
+                    "dialogue": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/__schema9"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "narration": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/__schema9"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "background": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/$defs/__schema9"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  },
+                  "required": ["dialogue", "narration", "background"],
+                  "additionalProperties": false
+                },
+                "image": {
+                  "$ref": "#/$defs/__schema16"
+                },
+                "subtitles": {
+                  "$ref": "#/$defs/__schema21"
+                }
+              },
+              "required": ["video", "audio", "image", "subtitles"],
+              "additionalProperties": false
+            }
+          },
+          "required": ["id", "slug", "type", "content"],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/questStage"
+        }
+      },
+      "required": ["config"],
+      "additionalProperties": false
+    },
+    "__schema25": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/__schema0"
+            },
+            "slug": {
+              "$ref": "#/$defs/__schema1"
+            },
+            "type": {
+              "type": "string",
+              "const": "questTask"
+            },
+            "scene": {
+              "$ref": "#/$defs/__schema19"
+            }
+          },
+          "required": ["id", "slug", "type", "scene"],
+          "additionalProperties": false
+        },
+        "production": {
+          "$ref": "#/$defs/__production/$defs/questTask"
+        }
+      },
+      "required": ["config"],
+      "additionalProperties": false
+    },
+    "__schema26": {
       "type": "object",
       "properties": {
         "showDefaultContent": {
@@ -2023,7 +2291,7 @@
       },
       "additionalProperties": false
     },
-    "__schema23": {
+    "__schema27": {
       "anyOf": [
         {
           "type": "string"
@@ -2040,7 +2308,7 @@
         {
           "type": "array",
           "items": {
-            "$ref": "#/$defs/__schema23"
+            "$ref": "#/$defs/__schema27"
           }
         },
         {
@@ -2049,12 +2317,12 @@
             "type": "string"
           },
           "additionalProperties": {
-            "$ref": "#/$defs/__schema23"
+            "$ref": "#/$defs/__schema27"
           }
         }
       ]
     },
-    "__schema24": {
+    "__schema28": {
       "type": "object",
       "properties": {
         "config": {
@@ -2350,6 +2618,76 @@
               "minLength": 1
             }
           }
+        },
+        "questStage": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Learning purpose and visual/audio role of this Stage."
+            },
+            "storyboard": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Timeline and playback beats for the silent presentation video."
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Optional detailed Stage production specification."
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "questTask": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Learner action and intended guided-practice outcome."
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Branch, feedback, retry and accessibility expectations for the Task Scene."
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "subtitles": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "purpose": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Speech and meaningful audio events covered in localized captions."
+            },
+            "script": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Source-language WebVTT transcription/caption cues."
+            },
+            "specification": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Timing, speaker identification and localization guidance."
+            },
+            "productionNotes": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
         }
       }
     },
@@ -2497,7 +2835,7 @@
                                       "$ref": "#/$defs/__overrides/$defs/__schema7"
                                     },
                                     {
-                                      "$ref": "#/$defs/__overrides/$defs/__schema24"
+                                      "$ref": "#/$defs/__overrides/$defs/__schema28"
                                     }
                                   ]
                                 }
@@ -2530,7 +2868,7 @@
                     "$ref": "#/$defs/__overrides/$defs/__schema7"
                   },
                   {
-                    "$ref": "#/$defs/__overrides/$defs/__schema24"
+                    "$ref": "#/$defs/__overrides/$defs/__schema28"
                   }
                 ]
               }
@@ -2667,7 +3005,7 @@
                             "$ref": "#/$defs/__overrides/$defs/__schema7"
                           },
                           {
-                            "$ref": "#/$defs/__overrides/$defs/__schema24"
+                            "$ref": "#/$defs/__overrides/$defs/__schema28"
                           }
                         ]
                       }
@@ -3100,6 +3438,104 @@
                                   },
                                   "type": {
                                     "type": "string",
+                                    "const": "quest"
+                                  },
+                                  "params": {
+                                    "type": "object",
+                                    "properties": {
+                                      "disabled": {
+                                        "$ref": "#/$defs/__overrides/$defs/__schema2"
+                                      },
+                                      "skippable": {
+                                        "type": "boolean"
+                                      }
+                                    },
+                                    "additionalProperties": false
+                                  },
+                                  "locale": {
+                                    "type": "object",
+                                    "properties": {
+                                      "title": {
+                                        "$ref": "#/$defs/__overrides/$defs/__schema4"
+                                      },
+                                      "navigationLabel": {
+                                        "$ref": "#/$defs/__overrides/$defs/__schema4"
+                                      }
+                                    },
+                                    "required": ["title", "navigationLabel"],
+                                    "additionalProperties": false
+                                  },
+                                  "stages": {
+                                    "allOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "start": {
+                                            "$ref": "#/$defs/__overrides/$defs/__schema24"
+                                          }
+                                        },
+                                        "required": ["start"],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "object",
+                                        "propertyNames": {
+                                          "$ref": "#/$defs/__overrides/$defs/__schema1"
+                                        },
+                                        "additionalProperties": {
+                                          "$ref": "#/$defs/__overrides/$defs/__schema24"
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  "tasks": {
+                                    "allOf": [
+                                      {
+                                        "type": "object",
+                                        "properties": {
+                                          "start": {
+                                            "$ref": "#/$defs/__overrides/$defs/__schema25"
+                                          }
+                                        },
+                                        "required": ["start"],
+                                        "additionalProperties": false
+                                      },
+                                      {
+                                        "type": "object",
+                                        "propertyNames": {
+                                          "$ref": "#/$defs/__overrides/$defs/__schema1"
+                                        },
+                                        "additionalProperties": {
+                                          "$ref": "#/$defs/__overrides/$defs/__schema25"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                },
+                                "required": ["id", "slug", "type", "params", "locale", "stages", "tasks"],
+                                "additionalProperties": false
+                              },
+                              "production": {
+                                "$ref": "#/$defs/__production/$defs/section"
+                              }
+                            },
+                            "required": ["config"],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "config": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "$ref": "#/$defs/__overrides/$defs/__schema0"
+                                  },
+                                  "slug": {
+                                    "$ref": "#/$defs/__overrides/$defs/__schema1"
+                                  },
+                                  "type": {
+                                    "type": "string",
                                     "const": "quiz"
                                   },
                                   "params": {
@@ -3262,19 +3698,19 @@
                                         "type": "object",
                                         "properties": {
                                           "starting": {
-                                            "$ref": "#/$defs/__overrides/$defs/__schema22"
+                                            "$ref": "#/$defs/__overrides/$defs/__schema26"
                                           },
                                           "ending": {
                                             "type": "object",
                                             "properties": {
                                               "success": {
-                                                "$ref": "#/$defs/__overrides/$defs/__schema22"
+                                                "$ref": "#/$defs/__overrides/$defs/__schema26"
                                               },
                                               "fail": {
-                                                "$ref": "#/$defs/__overrides/$defs/__schema22"
+                                                "$ref": "#/$defs/__overrides/$defs/__schema26"
                                               },
                                               "retry": {
-                                                "$ref": "#/$defs/__overrides/$defs/__schema22"
+                                                "$ref": "#/$defs/__overrides/$defs/__schema26"
                                               }
                                             },
                                             "required": ["success", "fail"],
@@ -3346,7 +3782,7 @@
                     "type": "string"
                   },
                   "additionalProperties": {
-                    "$ref": "#/$defs/__overrides/$defs/__schema23"
+                    "$ref": "#/$defs/__overrides/$defs/__schema27"
                   }
                 }
               },
@@ -3500,16 +3936,19 @@
                                                 "$ref": "#/$defs/__overrides/$defs/__schema17"
                                               },
                                               {
-                                                "$ref": "#/$defs/__overrides/$defs/__schema18"
+                                                "$ref": "#/$defs/__overrides/$defs/__schema19"
+                                              },
+                                              {
+                                                "$ref": "#/$defs/__overrides/$defs/__schema21"
                                               },
                                               {
                                                 "$ref": "#/$defs/__overrides/$defs/__schema11"
                                               },
                                               {
-                                                "$ref": "#/$defs/__overrides/$defs/__schema20"
+                                                "$ref": "#/$defs/__overrides/$defs/__schema22"
                                               },
                                               {
-                                                "$ref": "#/$defs/__overrides/$defs/__schema21"
+                                                "$ref": "#/$defs/__overrides/$defs/__schema23"
                                               }
                                             ]
                                           }
@@ -3567,16 +4006,19 @@
                 "$ref": "#/$defs/__overrides/$defs/__schema17"
               },
               {
-                "$ref": "#/$defs/__overrides/$defs/__schema18"
+                "$ref": "#/$defs/__overrides/$defs/__schema19"
+              },
+              {
+                "$ref": "#/$defs/__overrides/$defs/__schema21"
               },
               {
                 "$ref": "#/$defs/__overrides/$defs/__schema11"
               },
               {
-                "$ref": "#/$defs/__overrides/$defs/__schema20"
+                "$ref": "#/$defs/__overrides/$defs/__schema22"
               },
               {
-                "$ref": "#/$defs/__overrides/$defs/__schema21"
+                "$ref": "#/$defs/__overrides/$defs/__schema23"
               }
             ]
           }
@@ -4087,13 +4529,7 @@
                   "const": "markdown"
                 },
                 "params": {
-                  "type": "object",
-                  "properties": {
-                    "disabled": {
-                      "$ref": "#/$defs/__overrides/$defs/__schema2"
-                    }
-                  },
-                  "additionalProperties": false
+                  "$ref": "#/$defs/__overrides/$defs/__schema18"
                 },
                 "locale": {
                   "type": "object",
@@ -4129,6 +4565,15 @@
         "__schema18": {
           "type": "object",
           "properties": {
+            "disabled": {
+              "$ref": "#/$defs/__overrides/$defs/__schema2"
+            }
+          },
+          "additionalProperties": false
+        },
+        "__schema19": {
+          "type": "object",
+          "properties": {
             "config": {
               "type": "object",
               "properties": {
@@ -4155,7 +4600,7 @@
                   "type": "object",
                   "properties": {
                     "value": {
-                      "$ref": "#/$defs/__overrides/$defs/__schema19"
+                      "$ref": "#/$defs/__overrides/$defs/__schema20"
                     }
                   },
                   "required": ["value"],
@@ -4172,7 +4617,7 @@
           "required": ["config"],
           "additionalProperties": false
         },
-        "__schema19": {
+        "__schema20": {
           "anyOf": [
             {
               "$ref": "#/$defs/__overrides/$defs/__schema4"
@@ -4183,12 +4628,53 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__overrides/$defs/__schema19"
+                "$ref": "#/$defs/__overrides/$defs/__schema20"
               }
             }
           ]
         },
-        "__schema20": {
+        "__schema21": {
+          "type": "object",
+          "properties": {
+            "config": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema0"
+                },
+                "slug": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema1"
+                },
+                "type": {
+                  "type": "string",
+                  "const": "subtitles"
+                },
+                "params": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema18"
+                },
+                "locale": {
+                  "type": "object",
+                  "properties": {
+                    "fileLocation": {
+                      "type": "null",
+                      "const": null
+                    }
+                  },
+                  "required": ["fileLocation"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["id", "slug", "type", "params", "locale"],
+              "additionalProperties": false
+            },
+            "production": {
+              "$ref": "#/$defs/__production/$defs/subtitles"
+            }
+          },
+          "required": ["config"],
+          "additionalProperties": false
+        },
+        "__schema22": {
           "type": "object",
           "properties": {
             "config": {
@@ -4263,7 +4749,7 @@
           "required": ["config"],
           "additionalProperties": false
         },
-        "__schema21": {
+        "__schema23": {
           "type": "object",
           "properties": {
             "config": {
@@ -4335,7 +4821,127 @@
           "required": ["config"],
           "additionalProperties": false
         },
-        "__schema22": {
+        "__schema24": {
+          "type": "object",
+          "properties": {
+            "config": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema0"
+                },
+                "slug": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema1"
+                },
+                "type": {
+                  "type": "string",
+                  "const": "questStage"
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "video": {
+                      "type": "object",
+                      "properties": {
+                        "medium": {
+                          "$ref": "#/$defs/__overrides/$defs/__schema22"
+                        },
+                        "small": {
+                          "$ref": "#/$defs/__overrides/$defs/__schema22"
+                        }
+                      },
+                      "required": ["medium", "small"],
+                      "additionalProperties": false
+                    },
+                    "audio": {
+                      "type": "object",
+                      "properties": {
+                        "dialogue": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/$defs/__overrides/$defs/__schema9"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "narration": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/$defs/__overrides/$defs/__schema9"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        },
+                        "background": {
+                          "anyOf": [
+                            {
+                              "$ref": "#/$defs/__overrides/$defs/__schema9"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ]
+                        }
+                      },
+                      "required": ["dialogue", "narration", "background"],
+                      "additionalProperties": false
+                    },
+                    "image": {
+                      "$ref": "#/$defs/__overrides/$defs/__schema16"
+                    },
+                    "subtitles": {
+                      "$ref": "#/$defs/__overrides/$defs/__schema21"
+                    }
+                  },
+                  "required": ["video", "audio", "image", "subtitles"],
+                  "additionalProperties": false
+                }
+              },
+              "required": ["id", "slug", "type", "content"],
+              "additionalProperties": false
+            },
+            "production": {
+              "$ref": "#/$defs/__production/$defs/questStage"
+            }
+          },
+          "required": ["config"],
+          "additionalProperties": false
+        },
+        "__schema25": {
+          "type": "object",
+          "properties": {
+            "config": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema0"
+                },
+                "slug": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema1"
+                },
+                "type": {
+                  "type": "string",
+                  "const": "questTask"
+                },
+                "scene": {
+                  "$ref": "#/$defs/__overrides/$defs/__schema19"
+                }
+              },
+              "required": ["id", "slug", "type", "scene"],
+              "additionalProperties": false
+            },
+            "production": {
+              "$ref": "#/$defs/__production/$defs/questTask"
+            }
+          },
+          "required": ["config"],
+          "additionalProperties": false
+        },
+        "__schema26": {
           "type": "object",
           "properties": {
             "showDefaultContent": {
@@ -4350,7 +4956,7 @@
           },
           "additionalProperties": false
         },
-        "__schema23": {
+        "__schema27": {
           "anyOf": [
             {
               "type": "string"
@@ -4367,7 +4973,7 @@
             {
               "type": "array",
               "items": {
-                "$ref": "#/$defs/__overrides/$defs/__schema23"
+                "$ref": "#/$defs/__overrides/$defs/__schema27"
               }
             },
             {
@@ -4376,12 +4982,12 @@
                 "type": "string"
               },
               "additionalProperties": {
-                "$ref": "#/$defs/__overrides/$defs/__schema23"
+                "$ref": "#/$defs/__overrides/$defs/__schema27"
               }
             }
           ]
         },
-        "__schema24": {
+        "__schema28": {
           "type": "object",
           "properties": {
             "config": {

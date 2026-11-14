@@ -18,7 +18,7 @@ Evaluate **every** Section and its ContentBlocks, not only the introduction:
 
 1. Alignment with goals and learner readiness: coherent concept progression, minimal misconceptions, audience-native explanations and appropriate cognitive load.
 2. Evidence-informed instructional effectiveness: purposeful explanation, worked examples/fading, prediction and exploration, opportunities for feedback/retrieval/application/transfer when warranted, useful learner control and appropriate pacing. Do not impose a universal recipe.
-3. All actual ContentBlock types: `text`, `markdown`, `checkpoint`, `code`, `audio`, `video`, `youtube`, `image`, `carousel`, `scene`. Verify their pedagogical role and actual support, identify better options if justified; a `checkpoint` does not count as a scored Quiz, and a Quiz is a Section, not a block.
+3. All actual ContentBlock types: `text`, `markdown`, `checkpoint`, `code`, `audio`, `video`, `youtube`, `image`, `carousel`, `scene`, `subtitles`. Subtitles is a new Build-only ContentBlock; review production readiness honestly until its renderer and YAML handoff exist. Verify their pedagogical role and actual support, identify better options if justified; a `checkpoint` does not count as a scored Quiz, and a Quiz is a Section, not a block.
 4. Modern and interactive experiences: whether diagrams, simulations, manipulable models, narrative pacing, multimedia or custom Scenes materially improve understanding; distinguish feasible from speculative or missing implementation.
 5. Motivation and gamification: intrinsic engagement and meaningful challenge; flag distracting decoration, reward pressure, overstimulation or artificial clicking quotas.
 6. Accessibility and localization: alternative interaction modes, readable text, keyboard/touch/screen-reader, accessible feedback, semantic LTR/RTL, captions/transcripts, motion control, offline/weak-device equivalence. Check that `documentLanguage` is actual authored copy and other planned locales are not invented.
@@ -44,3 +44,8 @@ When assigned multiple Lessons, process **all independent, ready Lessons in the 
 PR rules: one or more appropriately sized Draft PRs may cover the bounded review batch; follow [GitHub naming and labeling](../../rules/github-labels-and-naming.md), link each PR with `Refs #<issue-number>`, avoid `Closes` until all scoped Lessons are actually complete, and never merge automatically.
 
 **Completion:** all ready Lessons in scope have source-revision-specific, independent review files and a correct Issue handoff. Missing or stale reviews remain pending; no self-approval or undocumented overrides.
+
+
+## Quest plan review
+
+For proposed `type: quest` Sections, consult [Quest](../../docs/entities/quest.md) and inspect each Stage/Task branch, retry and completion path. Verify learning value of interventions, understandable failure feedback, no trap/loop without recovery, meaningful engagement without forced entertainment, and parity for captions, transcripts, narration, nonvisual Task controls, touch/keyboard, RTL, cognitive load, reduced motion and offline. Review Quest proposed media and Scenes as *planned* resources, not working renderer behavior. Flag missing Quest runtime integration as a production dependency; do not conflate Task completion with a graded Quiz.
