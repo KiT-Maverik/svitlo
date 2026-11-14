@@ -227,7 +227,7 @@ function writeDraft(file, content, mode) {
     if (split < 0 || !/^[a-f0-9]{64}$/.test(checksum) || digest(original.slice(split + 1)) !== checksum)
       fail(path.basename(file), '$', 'generated file was modified manually');
     if (original === rendered) return 0;
-    if (mode === 'check') fail(path.basename(file), '$', 'stale draft; run content:generate:lessons');
+    if (mode === 'check') fail(path.basename(file), '$', 'stale draft: existing file differs from YAML; generator will skip, so review manually');
   }
   if (mode === 'check') fail(path.basename(file), '$', 'missing draft; run content:generate:lessons');
   fs.writeFileSync(file, rendered, { flag: 'wx' });
