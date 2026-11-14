@@ -1,0 +1,762 @@
+config:
+  id: "2fa0db7e-edca-5ddf-b1df-371f48895b55"
+  slug: "certainAndImpossible"
+  type: "lesson"
+  skills:
+    - "96ed02b9-b56e-4498-8e3e-195e76eceaf0"
+  params:
+    requireQuiz: false
+    languages:
+      - "ar"
+      - "be"
+      - "bn"
+      - "de"
+      - "en"
+      - "es"
+      - "et"
+      - "fr"
+      - "he"
+      - "hi"
+      - "id"
+      - "ja"
+      - "ka"
+      - "kk"
+      - "ko"
+      - "lt"
+      - "lv"
+      - "mr"
+      - "ms"
+      - "pl"
+      - "pt"
+      - "qm"
+      - "ta"
+      - "te"
+      - "tr"
+      - "uk"
+      - "ur"
+      - "vi"
+      - "zh"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Certain or Impossible?"
+  section:
+    items:
+      section1WhatCouldComeOut:
+        config:
+          id: "723c5b9a-b804-8392-849a-c26b4ea29a63"
+          slug: "section1WhatCouldComeOut"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "What could come out?"
+            navigationLabel:
+              en: "What could come out?"
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: "29416980-5d88-895c-8805-a6e25ccc863e"
+                  slug: "section1Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A bag holds three tokens: blue, blue and red. We take one token without looking. Which colors could come out?"
+                production:
+                  purpose: "Source text at What could come out?; provisional draft, not implemented."
+                  specification: "1. **`text` (existing type):** “A bag holds three tokens: blue, blue and red. We take one token without looking. Which colors could come out?”"
+              scene1Block2:
+                config:
+                  id: "996651fd-7fd0-8c02-8830-0a70be86e78f"
+                  slug: "scene1Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A bag holds three tokens: blue, blue and red. We take one token without looking. Which colors could come out?"
+                production:
+                  purpose: "Scene instance for What could come out?, independently initialized; source Scene design is provisional."
+                  specification: |
+                      # OutcomeBag — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Certain or Impossible? Content (source preserved in this Lesson's Section production notes)
+                      **Methodologist scope:** Draft Brief (source preserved in this Lesson's production.methodology)
+                      **Canonical target Skill:** [certainImpossible.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/probability/events/skills/certainImpossible.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Classify specified events as certain, impossible or possible-but-not-certain using all possible outcomes of a one-token draw.
+                      
+                      Inspect all bag contents; choose one specified event; submit certain/impossible/possible-but-not-certain; reveal matched vs unmatched tokens; switch between two preset bags; reset. No random draw is needed to prove the claims; no pseudo-random streak guarantees.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Use a closed conceptual bag with a completely disclosed inventory before predictions: two blue tokens and one red token. 'Green' is never among the disclosed outcomes. Repeated draws are not required and must not be used to imply guarantees. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State                   | Required representation                                                                       | Mathematical truth                                         |
+                      | ----------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+                      | Bag A inventory         | Exactly three tokens: B1 blue, B2 blue, R1 red. All contents visible before event prediction. | Possible colors are blue and red only.                     |
+                      | Bag A green event       | Zero tokens satisfy green.                                                                    | Impossible.                                                |
+                      | Bag A blue-or-red event | Three of three tokens satisfy the disjunction.                                                | Certain.                                                   |
+                      | Bag A red event         | One of three tokens satisfies red; two do not.                                                | Possible but not certain; no numeric probability teaching. |
+                      | Bag B inventory         | Exactly three blue tokens, no other colors.                                                   | Blue certain; red impossible; blue or red certain.         |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **What could come out?:** If green is included: “Look through all three tokens; there is no green one.”
+                      - **When is something impossible?:** For 'possible': “Nothing green is in the bag, so no draw can produce green.”
+                      - **What must happen?:** For 'red is certain': “Two blue tokens could also be selected. Red is possible, but not guaranteed.”
+                      - **Change the conditions:** If 'blue or red' is called impossible: “Blue is one of the two colors named, so every draw satisfies 'blue or red'.”
+                      
+                      **Do not teach outside this boundary:** Finite one-draw sample spaces with visible, fully specified bag contents; event categories based on all/some/no available outcomes. No percentages, numeric probabilities, independence, streak predictions or fairness assumptions.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Present an ordered textual inventory and, for each event, an accessible list of outcomes satisfying or not satisfying it. Do not require seeing colors: every token has an explicit color word.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Placement in this Lesson (from legacy Content draft)
+                      
+                      2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Outcome Bag opens an inventory view (two labelled blue tokens, one labelled red token). Choose which color labels are present before the next explanation.
+                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+              section1Markdown3:
+                config:
+                  id: "e530df25-85b1-8a9d-8a11-5c89ea90a931"
+                  slug: "section1Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A blue token could come out, and a red token could come out. Those are the possible colors. Nothing else is in this bag."
+                production:
+                  purpose: "Source markdown at What could come out?; provisional draft, not implemented."
+                  specification: "3. **`markdown` (existing type):** “A blue token could come out, and a red token could come out. Those are the possible colors. Nothing else is in this bag.”"
+            order:
+              - "section1Text1"
+              - "scene1Block2"
+              - "section1Markdown3"
+        production:
+          purpose: "What could come out?"
+          pedagogicalIntent: "What could come out?"
+          productionNotes: |
+              ### Section 1 — What could come out?
+              
+              **Learning purpose:** Specify the complete set of outcomes.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`text` (existing type):** “A bag holds three tokens: blue, blue and red. We take one token without looking. Which colors could come out?”
+              
+              2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Outcome Bag opens an inventory view (two labelled blue tokens, one labelled red token). Choose which color labels are present before the next explanation.
+              
+              3. **`markdown` (existing type):** “A blue token could come out, and a red token could come out. Those are the possible colors. Nothing else is in this bag.”
+              
+              **Learner action:** Inspect the full inventory and name the possible color outcomes.
+              
+              **Immediate explanatory feedback:** If green is included: “Look through all three tokens; there is no green one.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+      section2WhenIsSomethingImpossible:
+        config:
+          id: "951d038f-34b2-8308-817c-73fff0d3a378"
+          slug: "section2WhenIsSomethingImpossible"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "When is something impossible?"
+            navigationLabel:
+              en: "When is something impossible?"
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: "5f76225b-3407-8631-8a01-0f772170eb1d"
+                  slug: "section2Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Can the one token we draw be green?"
+                production:
+                  purpose: "Source text at When is something impossible?; provisional draft, not implemented."
+                  specification: "1. **`text` (existing type):** “Can the one token we draw be green?”"
+              scene2Block2:
+                config:
+                  id: "564aab9b-53a6-8006-8b3d-b62d1ed19db0"
+                  slug: "scene2Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Can the one token we draw be green?"
+                production:
+                  purpose: "Scene instance for When is something impossible?, independently initialized; source Scene design is provisional."
+                  specification: |
+                      # OutcomeBag — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Certain or Impossible? Content (source preserved in this Lesson's Section production notes)
+                      **Methodologist scope:** Draft Brief (source preserved in this Lesson's production.methodology)
+                      **Canonical target Skill:** [certainImpossible.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/probability/events/skills/certainImpossible.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Classify specified events as certain, impossible or possible-but-not-certain using all possible outcomes of a one-token draw.
+                      
+                      Inspect all bag contents; choose one specified event; submit certain/impossible/possible-but-not-certain; reveal matched vs unmatched tokens; switch between two preset bags; reset. No random draw is needed to prove the claims; no pseudo-random streak guarantees.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Use a closed conceptual bag with a completely disclosed inventory before predictions: two blue tokens and one red token. 'Green' is never among the disclosed outcomes. Repeated draws are not required and must not be used to imply guarantees. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State                   | Required representation                                                                       | Mathematical truth                                         |
+                      | ----------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+                      | Bag A inventory         | Exactly three tokens: B1 blue, B2 blue, R1 red. All contents visible before event prediction. | Possible colors are blue and red only.                     |
+                      | Bag A green event       | Zero tokens satisfy green.                                                                    | Impossible.                                                |
+                      | Bag A blue-or-red event | Three of three tokens satisfy the disjunction.                                                | Certain.                                                   |
+                      | Bag A red event         | One of three tokens satisfies red; two do not.                                                | Possible but not certain; no numeric probability teaching. |
+                      | Bag B inventory         | Exactly three blue tokens, no other colors.                                                   | Blue certain; red impossible; blue or red certain.         |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **What could come out?:** If green is included: “Look through all three tokens; there is no green one.”
+                      - **When is something impossible?:** For 'possible': “Nothing green is in the bag, so no draw can produce green.”
+                      - **What must happen?:** For 'red is certain': “Two blue tokens could also be selected. Red is possible, but not guaranteed.”
+                      - **Change the conditions:** If 'blue or red' is called impossible: “Blue is one of the two colors named, so every draw satisfies 'blue or red'.”
+                      
+                      **Do not teach outside this boundary:** Finite one-draw sample spaces with visible, fully specified bag contents; event categories based on all/some/no available outcomes. No percentages, numeric probabilities, independence, streak predictions or fairness assumptions.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Present an ordered textual inventory and, for each event, an accessible list of outcomes satisfying or not satisfying it. Do not require seeing colors: every token has an explicit color word.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Placement in this Lesson (from legacy Content draft)
+                      
+                      2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Choose 'possible', 'certain', or 'impossible' for green. Reveal a complete color inventory and an explanation.
+                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+              section2Markdown3:
+                config:
+                  id: "57a07536-a641-86c3-8c4f-406f9daed39a"
+                  slug: "section2Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Green is impossible here: there are no green tokens. Impossible means it cannot happen under the stated conditions."
+                production:
+                  purpose: "Source markdown at When is something impossible?; provisional draft, not implemented."
+                  specification: "3. **`markdown` (existing type):** “Green is impossible here: there are no green tokens. Impossible means it cannot happen under the stated conditions.”"
+            order:
+              - "section2Text1"
+              - "scene2Block2"
+              - "section2Markdown3"
+        production:
+          purpose: "When is something impossible?"
+          pedagogicalIntent: "When is something impossible?"
+          productionNotes: |
+              ### Section 2 — When is something impossible?
+              
+              **Learning purpose:** Explain an event that contains no available outcome.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`text` (existing type):** “Can the one token we draw be green?”
+              
+              2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Choose 'possible', 'certain', or 'impossible' for green. Reveal a complete color inventory and an explanation.
+              
+              3. **`markdown` (existing type):** “Green is impossible here: there are no green tokens. Impossible means it cannot happen under the stated conditions.”
+              
+              **Learner action:** Classify green and inspect evidence.
+              
+              **Immediate explanatory feedback:** For 'possible': “Nothing green is in the bag, so no draw can produce green.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+      section3WhatMustHappen:
+        config:
+          id: "5772db93-070b-87cd-81c6-f5b261bf49ec"
+          slug: "section3WhatMustHappen"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "What must happen?"
+            navigationLabel:
+              en: "What must happen?"
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: "ae02c5b8-d7c1-839f-8642-aa738f81bc54"
+                  slug: "section3Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Will we draw blue OR red? Now a different question: will it definitely be red?"
+                production:
+                  purpose: "Source text at What must happen?; provisional draft, not implemented."
+                  specification: "1. **`text` (existing type):** “Will we draw blue OR red? Now a different question: will it definitely be red?”"
+              scene3Block2:
+                config:
+                  id: "08d31774-6e09-8108-8696-5e06504c487a"
+                  slug: "scene3Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Will we draw blue OR red? Now a different question: will it definitely be red?"
+                production:
+                  purpose: "Scene instance for What must happen?, independently initialized; source Scene design is provisional."
+                  specification: |
+                      # OutcomeBag — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Certain or Impossible? Content (source preserved in this Lesson's Section production notes)
+                      **Methodologist scope:** Draft Brief (source preserved in this Lesson's production.methodology)
+                      **Canonical target Skill:** [certainImpossible.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/probability/events/skills/certainImpossible.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Classify specified events as certain, impossible or possible-but-not-certain using all possible outcomes of a one-token draw.
+                      
+                      Inspect all bag contents; choose one specified event; submit certain/impossible/possible-but-not-certain; reveal matched vs unmatched tokens; switch between two preset bags; reset. No random draw is needed to prove the claims; no pseudo-random streak guarantees.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Use a closed conceptual bag with a completely disclosed inventory before predictions: two blue tokens and one red token. 'Green' is never among the disclosed outcomes. Repeated draws are not required and must not be used to imply guarantees. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State                   | Required representation                                                                       | Mathematical truth                                         |
+                      | ----------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+                      | Bag A inventory         | Exactly three tokens: B1 blue, B2 blue, R1 red. All contents visible before event prediction. | Possible colors are blue and red only.                     |
+                      | Bag A green event       | Zero tokens satisfy green.                                                                    | Impossible.                                                |
+                      | Bag A blue-or-red event | Three of three tokens satisfy the disjunction.                                                | Certain.                                                   |
+                      | Bag A red event         | One of three tokens satisfies red; two do not.                                                | Possible but not certain; no numeric probability teaching. |
+                      | Bag B inventory         | Exactly three blue tokens, no other colors.                                                   | Blue certain; red impossible; blue or red certain.         |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **What could come out?:** If green is included: “Look through all three tokens; there is no green one.”
+                      - **When is something impossible?:** For 'possible': “Nothing green is in the bag, so no draw can produce green.”
+                      - **What must happen?:** For 'red is certain': “Two blue tokens could also be selected. Red is possible, but not guaranteed.”
+                      - **Change the conditions:** If 'blue or red' is called impossible: “Blue is one of the two colors named, so every draw satisfies 'blue or red'.”
+                      
+                      **Do not teach outside this boundary:** Finite one-draw sample spaces with visible, fully specified bag contents; event categories based on all/some/no available outcomes. No percentages, numeric probabilities, independence, streak predictions or fairness assumptions.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Present an ordered textual inventory and, for each event, an accessible list of outcomes satisfying or not satisfying it. Do not require seeing colors: every token has an explicit color word.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Placement in this Lesson (from legacy Content draft)
+                      
+                      2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Compare two event cards against the same bag: 'blue or red' and 'red'. Highlight which inventory tokens satisfy each claim and which do not.
+                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+              section3Markdown3:
+                config:
+                  id: "0c67317e-f04f-82db-88e9-b07024c1a3d5"
+                  slug: "section3Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Blue OR red is certain, because every token is one of those colors. Red alone is possible, not certain: the next token might be blue."
+                production:
+                  purpose: "Source markdown at What must happen?; provisional draft, not implemented."
+                  specification: "3. **`markdown` (existing type):** “Blue OR red is certain, because every token is one of those colors. Red alone is possible, not certain: the next token might be blue.”"
+            order:
+              - "section3Text1"
+              - "scene3Block2"
+              - "section3Markdown3"
+        production:
+          purpose: "What must happen?"
+          pedagogicalIntent: "What must happen?"
+          productionNotes: |
+              ### Section 3 — What must happen?
+              
+              **Learning purpose:** Explain an event that covers every possible outcome and contrast possible red.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`text` (existing type):** “Will we draw blue OR red? Now a different question: will it definitely be red?”
+              
+              2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Compare two event cards against the same bag: 'blue or red' and 'red'. Highlight which inventory tokens satisfy each claim and which do not.
+              
+              3. **`markdown` (existing type):** “Blue OR red is certain, because every token is one of those colors. Red alone is possible, not certain: the next token might be blue.”
+              
+              **Learner action:** First select certain for 'blue or red'; then possible-but-not-certain for 'red'.
+              
+              **Immediate explanatory feedback:** For 'red is certain': “Two blue tokens could also be selected. Red is possible, but not guaranteed.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+      section4ChangeTheConditions:
+        config:
+          id: "b81d4db1-c667-872e-8769-544459133edb"
+          slug: "section4ChangeTheConditions"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Change the conditions"
+            navigationLabel:
+              en: "Change the conditions"
+          content:
+            items:
+              section4Markdown1:
+                config:
+                  id: "0a2b94cb-a8de-8b8a-8d45-5a3f8fb0f57e"
+                  slug: "section4Markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Now the bag contains only blue tokens. Is blue certain? Is red impossible? What about 'blue or red'?"
+                production:
+                  purpose: "Source markdown at Change the conditions; provisional draft, not implemented."
+                  specification: "1. **`markdown` (existing type):** “Now the bag contains only blue tokens. Is blue certain? Is red impossible? What about 'blue or red'?”"
+              scene4Block2:
+                config:
+                  id: "7160c2f0-bb2c-8804-85ca-2ba27f867156"
+                  slug: "scene4Block2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Now the bag contains only blue tokens. Is blue certain? Is red impossible? What about 'blue or red'?"
+                production:
+                  purpose: "Scene instance for Change the conditions, independently initialized; source Scene design is provisional."
+                  specification: |
+                      # OutcomeBag — Interactive Scene Specification
+                      
+                      **Status:** Provisional Draft — pending Methodologist approval and separate Scene review
+                      **Lesson:** Certain or Impossible? Content (source preserved in this Lesson's Section production notes)
+                      **Methodologist scope:** Draft Brief (source preserved in this Lesson's production.methodology)
+                      **Canonical target Skill:** [certainImpossible.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/probability/events/skills/certainImpossible.data.ts)
+                      **Implementation:** Proposed, not implemented
+                      
+                      ## Educational purpose and why a Scene is justified
+                      
+                      Classify specified events as certain, impossible or possible-but-not-certain using all possible outcomes of a one-token draw.
+                      
+                      Inspect all bag contents; choose one specified event; submit certain/impossible/possible-but-not-certain; reveal matched vs unmatched tokens; switch between two preset bags; reset. No random draw is needed to prove the claims; no pseudo-random streak guarantees.
+                      
+                      This is a manipulable conceptual model; it is not a game reward, scored Question, random test or static illustrative decoration. The Scene must function independently, with no props and no external Lesson narrative. If used in more than one Section, reset it as an independent local instance rather than pass a mode prop.
+                      
+                      ## Content and visual model
+                      
+                      Use a closed conceptual bag with a completely disclosed inventory before predictions: two blue tokens and one red token. 'Green' is never among the disclosed outcomes. Repeated draws are not required and must not be used to imply guarantees. Present unambiguous numerically faithful labels; preserve a textual statement of the same model. Never silently substitute different values after a learner responds.
+                      
+                      ## Required observable states and correct explanations
+                      
+                      | State                   | Required representation                                                                       | Mathematical truth                                         |
+                      | ----------------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+                      | Bag A inventory         | Exactly three tokens: B1 blue, B2 blue, R1 red. All contents visible before event prediction. | Possible colors are blue and red only.                     |
+                      | Bag A green event       | Zero tokens satisfy green.                                                                    | Impossible.                                                |
+                      | Bag A blue-or-red event | Three of three tokens satisfy the disjunction.                                                | Certain.                                                   |
+                      | Bag A red event         | One of three tokens satisfies red; two do not.                                                | Possible but not certain; no numeric probability teaching. |
+                      | Bag B inventory         | Exactly three blue tokens, no other colors.                                                   | Blue certain; red impossible; blue or red certain.         |
+                      
+                      ## Interaction protocol (pedagogical, not an API)
+                      
+                      1. Render a complete accessible starting state with clearly named controls and an explanation of the current comparison.
+                      2. Invite a prediction; allow opting directly into exploration without imposing a correctness gate.
+                      3. Apply a learner's selected change and immediately expose the resulting state, including its numerical or categorical ground truth.
+                      4. Offer the corresponding mathematical explanation on request or after a selection. If the learner makes a wrong choice, retain the cause of the mismatch and allow retry or a new case.
+                      5. Provide reset to the known initial state. Keep all state local to this Scene; no cross-Scene props, global progress events, automatic mastery inference, Notes unlock, or invented persistence.
+                      6. On independent transfer, reduce prompts but retain an optional hint and full reveal.
+                      
+                      ## Specific explanatory feedback and edge cases
+                      
+                      - **What could come out?:** If green is included: “Look through all three tokens; there is no green one.”
+                      - **When is something impossible?:** For 'possible': “Nothing green is in the bag, so no draw can produce green.”
+                      - **What must happen?:** For 'red is certain': “Two blue tokens could also be selected. Red is possible, but not guaranteed.”
+                      - **Change the conditions:** If 'blue or red' is called impossible: “Blue is one of the two colors named, so every draw satisfies 'blue or red'.”
+                      
+                      **Do not teach outside this boundary:** Finite one-draw sample spaces with visible, fully specified bag contents; event categories based on all/some/no available outcomes. No percentages, numeric probabilities, independence, streak predictions or fairness assumptions.
+                      
+                      ## Nonvisual and keyboard-equivalent learning path
+                      
+                      Present an ordered textual inventory and, for each event, an accessible list of outcomes satisfying or not satisfying it. Do not require seeing colors: every token has an explicit color word.
+                      
+                      Provide semantic button and selectable option names, visible focus, a logical tab order and clear state/response announcements without noisy live-region repetition. Preserve every essential learner decision in keyboard and screen-reader modes; do not require precise pointer dragging, motion perception, color differentiation, audio or a timer.
+                      
+                      ## Localization, RTL, mobile, offline and performance
+                      
+                      All user-facing strings and accessible descriptions require authentic translations for every supported locale; do not invent an English fallback or assert completion. Mirror layout according to semantic reading order, **not** the meaning of numerals, clock-face relationships, shape geometry or sample-space membership. A constrained mobile viewport must retain the same meaningful choices. Use reduced-motion static states; a low-resource implementation can rely on labelled SVG/HTML rather than heavyweight rendering. The Scene and every explanatory state must work without network calls after offline content installation (planned platform capability).
+                      
+                      ## Build and review handoff
+                      
+                      This spec has no React source, shared API, props, assets, Questions, scoring, test code or registered renderer. Future Scene implementation must provide self-contained tests for each state, feedback path, reset, meaningful RTL, keyboard/touch/screen-reader equivalence, low-end performance and offline behavior. A generic `scene` Resource type exists, but this named Scene is **not** implemented. Editorial acceptance remains pending.
+                      
+                      
+                      ## Placement in this Lesson (from legacy Content draft)
+                      
+                      2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Switch to a fixed all-blue bag. Submit each event classification, then reveal the relevant outcome coverage; allow learner to switch back and compare.
+                  productionNotes: "Legacy Scene design is not implemented or approved. Do not add cross-Section Scene props or invent a registry."
+              section4Text3:
+                config:
+                  id: "05e99f00-bddb-8aaa-803f-2e05380d0baf"
+                  slug: "section4Text3"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Blue is certain and red is impossible in this new bag. 'Blue or red' is still certain because blue is included. The bag's contents decide the answer."
+                production:
+                  purpose: "Source text at Change the conditions; provisional draft, not implemented."
+                  specification: "3. **`text` (existing type):** “Blue is certain and red is impossible in this new bag. 'Blue or red' is still certain because blue is included. The bag's contents decide the answer.”"
+            order:
+              - "section4Markdown1"
+              - "scene4Block2"
+              - "section4Text3"
+        production:
+          purpose: "Change the conditions"
+          pedagogicalIntent: "Change the conditions"
+          productionNotes: |
+              ### Section 4 — Change the conditions
+              
+              **Learning purpose:** Transfer after modifying the complete sample space.
+              
+              **Vertical Resource sequence:**
+              
+              1. **`markdown` (existing type):** “Now the bag contains only blue tokens. Is blue certain? Is red impossible? What about 'blue or red'?”
+              
+              2. **`scene` (existing type; new Scene proposed):** OutcomeBag (source preserved in Scene production.specification). Switch to a fixed all-blue bag. Submit each event classification, then reveal the relevant outcome coverage; allow learner to switch back and compare.
+              
+              3. **`text` (existing type):** “Blue is certain and red is impossible in this new bag. 'Blue or red' is still certain because blue is included. The bag's contents decide the answer.”
+              
+              **Learner action:** Independently classify events in a new bag.
+              
+              **Immediate explanatory feedback:** If 'blue or red' is called impossible: “Blue is one of the two colors named, so every draw satisfies 'blue or red'.” A learner may revise the answer, inspect the concrete model, or request the explanation; no penalty, score or pretend mastery flag. When the child chooses correctly, show the mathematical reason, not merely “Correct.”
+              
+              **Access and pacing:** Full keyboard and touch actions, text-based model inspection and a meaningful nonvisual equivalent; hints, explanations and Next are learner-controlled. Any narration repeats key information with caption/transcript, not as an audio-only requirement. Preserve numeric reading order in RTL.
+              
+    order:
+      - "section1WhatCouldComeOut"
+      - "section2WhenIsSomethingImpossible"
+      - "section3WhatMustHappen"
+      - "section4ChangeTheConditions"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+      # Certain or Impossible? — Methodologist Brief
+      
+      Date: 2026-10-31
+      Slug: certainAndImpossible
+      Methodologist status: **Draft — pending editorial approval**
+      Code: [Not implemented](#)
+      Program dependence: None
+      
+      ## Educational purpose
+      
+      Classify specified events as certain, impossible or possible-but-not-certain using all possible outcomes of a one-token draw. The intended conceptual change is from judging by appearance or one tempting example to checking the specific mathematical condition. This lesson serves one independently assessable canonical Skill without altering its identity.
+      
+      ## Target audience
+      
+      **Primary grade: Grade 2**, approximately ages 7–8. Learners can distinguish must/cannot/might in a fully specified experiment before calculating numerical probabilities; 'possible' is not assumed to mean half-and-half. Assume mixed literacy and language fluency: child-facing phrasing must be short and supported by visible and nonvisual equivalents.
+      
+      ## Prerequisites
+      
+      - Understand selecting one token without seeing it.
+      - Read or identify blue and red object labels.
+      - Differentiate the everyday meanings of 'must', 'cannot' and 'might'.
+      
+      Prerequisite competence is a planning assumption, not evidence of mastery. A learner lacking it needs a separate scaffold, not a new definition of the target Skill.
+      
+      ## Target Skills
+      
+      - [certainImpossible.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/probability/events/skills/certainImpossible.data.ts)
+      
+      ## Expected learning outcomes
+      
+      - State the possible colors for one draw from a completely specified bag.
+      - Identify a green draw as impossible if the bag contains no green tokens.
+      - Identify drawing blue-or-red as certain when those are the only colors present.
+      - Explain why drawing one red token from two blue and one red tokens is possible but not certain.
+      - Reevaluate all claims after changing the bag contents.
+      
+      Completing an exploratory interaction is not independent validation of mastery. Any later formal evidence or scoring belongs to an assessment design.
+      
+      ## Essential subject matter and instructional depth
+      
+      Finite one-draw sample spaces with visible, fully specified bag contents; event categories based on all/some/no available outcomes. No percentages, numeric probabilities, independence, streak predictions or fairness assumptions.
+      
+      Canonical certainImpossible Skill defines certain as including all outcomes and impossible as including none; events that can occur need not have 50% probability.
+      
+      ## Conceptual progression and dependencies
+      
+      Start from the listed prerequisites, identify what information determines the answer, make a prediction, reveal a controlling comparison, and explain it before transfer. Use a closed conceptual bag with a completely disclosed inventory before predictions: two blue tokens and one red token. 'Green' is never among the disclosed outcomes. Repeated draws are not required and must not be used to imply guarantees. Conceptual depth is set for this lesson's grade only; the Skill taxonomy remains grade-independent.
+      
+      ## Misconceptions, examples and boundaries
+      
+      - Anything possible is automatically 50/50.
+      - A rare event cannot happen.
+      - If an event is possible, it must happen on the next draw.
+      - Changing the sample space does not change what is certain or impossible.
+      
+      Concrete boundaries: Finite one-draw sample spaces with visible, fully specified bag contents; event categories based on all/some/no available outcomes. No percentages, numeric probabilities, independence, streak predictions or fairness assumptions. Repeated exposure alone must not be presented as mastery.
+      
+      ## Localization, accessibility and offline intent
+      
+      Plan genuine translation of all learner-facing text, controls, accessible descriptions, feedback and any narration into every configured locale. Do not create language fallbacks or substitute English as missing content. For meaningful RTL layout, preserve numbers, logical mathematical direction and shape relations; do not mirror whole diagrams indiscriminately. Include full keyboard/touch and nonvisual equivalent learning actions, visible focus, sufficient targets, contrast, reduced motion, and WCAG 2.2 AA review. After an eventual offline download the complete learning experience, including feedback and Scene assets, must be available without network access; this is a requirement, not an implementation claim.
+      
+      ## Sources and factual verification
+      
+      - Canonical Mathematics source [certainImpossible.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/probability/events/skills/certainImpossible.data.ts) and its methodological description.
+      - Studio [Lesson architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Section architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md), and [Lesson Content](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md) descriptions.
+      - The specific factual examples and edge cases must be reviewed against the canonical Skill, not used to revise it.
+      
+      ## Curriculum / Program compatibility
+      
+      This Lesson is standalone and Program-neutral. No national Curriculum, course order or Program storyline is presumed.
+      
+      ## Open editorial decisions
+      
+      - Editor must approve the Grade 2 learning depth, prerequisites, outcome coverage and target Skill relationship.
+      - Screenwriter Content and Scene specifications are authorized **provisional Drafts** for review only; neither changes this Methodologist status.
+      
+      ## Methodologist handoff
+      
+      Pending explicit approval. Screenwriter content is preparatory under this task's exception to the normal approval gate, not formally approved input. Assessment, runtime Lesson data and implementation are outside this batch.
+  productionNotes: |
+      Provisional source only. No Methodologist, Screenwriter, or Scene approval; not implemented, translated, scored, generated, or published. This migration preserves authoring drafts without changing review gates.
+      
+      ## Original Screenwriter introduction
+      
+      # Certain or Impossible? — Lesson Content
+      
+      **Status: Provisional Draft — pending Methodologist approval.**
+      **Audience:** Grade 2, approximately ages 7–8.
+      **Methodologist input:** Draft Methodologist Brief (source preserved in this Lesson's production.methodology) — **not approved**.
+      **Canonical target Skill:** [certainImpossible.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/probability/events/skills/certainImpossible.data.ts)
+      **Program dependence:** None
+      **Implementation:** No Lesson runtime objects, scored assessments or custom Scenes created by this editorial batch.
+      
+      ## Instructional concept
+      
+      Classify specified events as certain, impossible or possible-but-not-certain using all possible outcomes of a one-token draw. The learner should not merely name a correct option: the model must make the essential distinction observable. A new situation in the final Section checks whether the learner can use the distinction without remembering the original picture.
+      
+      The Section plans below specify **single-column top-to-bottom** Resource order. `text`, `markdown` and `scene` are verified Resource block types; the **OutcomeBag Scene is proposed**, not currently a registered renderer. No Question, Quiz, scoring, success gate or Program plot is defined.
+      
+      ## Learner journey
+      
+      1. **What could come out?** — Specify the complete set of outcomes.
+      2. **When is something impossible?** — Explain an event that contains no available outcome.
+      3. **What must happen?** — Explain an event that covers every possible outcome and contrast possible red.
+      4. **Change the conditions** — Transfer after modifying the complete sample space.
+      
+      ## Ordered Sections
+      
+      
+      ## Original Screenwriter closing material
+      
+      ## Custom Scene specification
+      
+      - OutcomeBag (source preserved in Scene production.specification): provides the learner-controlled model and its explanatory feedback. A Scene instance is self-contained and prop-free; repeated presentations must have independent local state. The new Scene needs future code, locale dictionaries and tests before use.
+      
+      ## Independent transfer
+      
+      A box has only four triangles and no circles. With one shape drawn, explain why 'triangle' is certain and 'circle' impossible. Give a first attempt without immediately showing the previous example; provide an optional hint and then a complete worked explanation. This is an instructional transfer opportunity, not a validated assessment.
+      
+      ## Proposed Lesson Note (planned only)
+      
+      **Cue:** “Certain means every possible outcome fits; impossible means none fits.”
+      
+      Proposed editorial unlock moment: after the learner has inspected and explained the contrasting example in Section 3. Note entity/persistence/unlock events/revision schedules are not verified implemented and are **not** wired by this batch. Learners who do not engage the cue still receive the complete Lesson explanation.
+      
+      ## Localization, access and offline handoff
+      
+      This English editorial copy is **not a multilingual runtime bundle**. A later translation workflow must supply genuine complete translations for all supported locales, including Scene explanations, controls, accessible names and model descriptions. Do not silently fall back to English. The planned equivalent nonvisual action, 2D SVG/static-state rendering, semantic RTL, readable small screens, reduced motion and locally packaged offline content are implementation acceptance gates; they are not reported as implemented.
+      
+      ## Editorial gates and assessment boundaries
+      
+      **Provisional Draft, pending Methodologist approval.** Separate Content and Scene editorial reviews are also pending. Assessment Architect owns valid Questions/Quiz, evidence rules, scores, thresholds and analytics. Coding Agent owns Scene/renderer/locale implementation and automated tests. No Section here claims mastery based on a reveal, selection, or Note.
