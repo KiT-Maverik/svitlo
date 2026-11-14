@@ -18,7 +18,9 @@ are **manually authored** in
 `generateYamlSchemas.mjs` composes those two contracts into the checked-in
 `lesson.scaffold.schema.json` and `course.scaffold.schema.json`. These
 compositions share the node's single identity in `config.id`, and production
-never reaches `define*`, Overrides or Props. Source language provenance is
+never reaches `define*`, Overrides or Props. The composed editor documents have
+only internal `$ref` pointers, embedding both manual production definitions and
+the Course's direct Build overrides guide. Source language provenance is
 `production.documentLanguage`.
 
 The existing Config-only editor schemas and direct

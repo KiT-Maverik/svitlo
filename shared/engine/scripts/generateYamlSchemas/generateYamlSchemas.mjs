@@ -140,10 +140,25 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
   const envelope = wrap(raw);
   // The Lesson source language is required for deterministic locale pruning.
   if (kind === 'lesson') envelope.required = ['config', 'production'];
-  // Course Build patches are authored once in the same source file, but remain
-  // separate from the defineCourse Config and from authoring-only production.
+  // Embed the separate Course Build patch guide so the editor never needs
+  // another JSON Schema file. Rebase its own $defs, not production pointers.
+  let embeddedOverrides;
   if (kind === 'course') {
-    envelope.properties.overrides = { $ref: 'courseOverrides.schema.json' };
+    const overrides = courseOverridesSchema(original);
+    for (const key of ['$schema', '$id', 'title', 'description']) delete overrides[key];
+    function scopeOverrideRefs(node) {
+      if (Array.isArray(node)) return node.map(scopeOverrideRefs);
+      if (!node || typeof node !== 'object') return node;
+      return Object.fromEntries(Object.entries(node).map(([key, value]) => [
+        key,
+        key === '$ref' && typeof value === 'string' &&
+          value.startsWith('#/$defs/') && !value.startsWith('#/$defs/__production/')
+          ? '#/$defs/__overrides/$defs/' + value.slice('#/$defs/'.length)
+          : scopeOverrideRefs(value),
+      ]));
+    }
+    embeddedOverrides = scopeOverrideRefs(wrap(overrides));
+    envelope.properties.overrides = { $ref: '#/$defs/__overrides' };
   }
   return {
     $schema,
@@ -156,6 +171,7 @@ export function scaffoldYamlSchema(kind, authoredConfig) {
     $defs: {
       ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
       __production: { $defs: structuredClone(production.$defs) },
+      ...(embeddedOverrides ? { __overrides: embeddedOverrides } : {}),
     },
   };
 }

@@ -149,7 +149,26 @@ test('unified scaffold composes manual production schema beside Engine Config at
     const scaffold = JSON.parse(docs[kind + '.scaffold.schema.json']);
     assert.equal(scaffold.type, 'object');
     assert.deepEqual(scaffold.required, kind === 'lesson' ? ['config', 'production'] : ['config']);
-    if (kind === 'course') assert.equal(scaffold.properties.overrides.$ref, 'courseOverrides.schema.json');
+    if (kind === 'course') {
+      assert.equal(scaffold.properties.overrides.$ref, '#/$defs/__overrides');
+      assert.equal(scaffold.$defs.__overrides.type, 'object');
+      assert.equal(scaffold.$defs.__overrides.properties.content.type, 'object');
+    }
+    const refs = [];
+    function collectRefs(value) {
+      if (!value || typeof value !== 'object') return;
+      if (typeof value.$ref === 'string') refs.push(value.$ref);
+      for (const child of Object.values(value)) collectRefs(child);
+    }
+    collectRefs(scaffold);
+    for (const ref of refs) {
+      assert(ref.startsWith('#/'), 'external editor schema reference: ' + ref);
+      let resolved = scaffold;
+      for (const key of ref.slice(2).split('/')) {
+        resolved = resolved?.[key.replace(/~1/g, '/').replace(/~0/g, '~')];
+      }
+      assert.notEqual(resolved, undefined, 'unresolved editor schema reference: ' + ref);
+    }
     assert.equal(scaffold.additionalProperties, false);
     assert.equal(scaffold.properties.config.properties.type.const, kind);
     assert(scaffold.properties.config.required.includes('id'));
@@ -167,7 +186,7 @@ test('unified scaffold composes manual production schema beside Engine Config at
     JSON.parse(docs['lesson.scaffold.schema.json']).$defs.__production.$defs,
     manuallyOwned.$defs,
   );
-    assert.deepEqual(manuallyOwned.$defs.scene.required, ['specification']);
+  assert.deepEqual(manuallyOwned.$defs.scene.required, ['specification']);
   assert.deepEqual(manuallyOwned.$defs.image.required, ['prompt', 'purpose']);
   assert(!docs['lesson.scaffold.schema.json'].includes('"sceneSpecKey"'));
 });
