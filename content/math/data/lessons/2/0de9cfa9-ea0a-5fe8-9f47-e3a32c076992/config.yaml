@@ -7,35 +7,10 @@ config:
   params:
     requireQuiz: false
     languages:
-      - "lt"
-      - "lv"
-      - "et"
-      - "be"
-      - "ka"
-      - "kk"
       - "en"
-      - "qm"
-      - "zh"
-      - "hi"
-      - "es"
-      - "ar"
-      - "fr"
-      - "bn"
-      - "pt"
-      - "ur"
-      - "id"
-      - "de"
-      - "ja"
-      - "ko"
-      - "tr"
-      - "vi"
-      - "ta"
-      - "te"
-      - "mr"
-      - "ms"
-      - "he"
       - "pl"
       - "uk"
+      - "qm"
     sections:
       allowNavigation: true
       allowSkipping: true
