@@ -39,7 +39,7 @@ export const defineSubtitles = <
   const overrides = (patch: QuestSubtitles_Overrides, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     const validated = questSubtitles_Override_Schema.parse(patch);
-    validate(mergeForValidation(authored, validated));
+    validate(mergeForValidation<QuestSubtitles_Config>(authored, validated));
     const resource = files(validated.locale ?? {});
     const output = { base: { ...(validated.params ? { params: validated.params } : {}), ...resource.base },
       locale: selectPublicationLocales(resource.locale, languages) };
