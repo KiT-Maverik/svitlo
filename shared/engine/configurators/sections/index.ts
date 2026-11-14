@@ -6,4 +6,6 @@ export * from './defineLearningFlowSection';
 export * from './defineFlashcardsSection';
 export * from './defineQuizSection';
 export * from './defineQuestSection';
+export * from './defineStage';
+export * from './defineTask';
 export * from './section.constants';

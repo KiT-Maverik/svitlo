@@ -2,18 +2,18 @@ import type { LanguageScope, PublicationLanguageOptions } from '#types';
 import type { AllLanguageCodes, LanguageCode } from '#schemas';
 import { resolvePublicationLanguages } from '../../_shared__configurators';
 import type { ContentBlock_Scene_Overrides } from '../../contentBlocks/defineScene/defineScene.schemas';
-import { questTask_Config_Schema, questTask_Props_Schema, type QuestTask_Config } from './defineQuestSection.schemas';
-import { assertQuestChild, projectQuestTree, nestQuestPublication, validateQuestPublication } from './quest.utils';
+import { task_Config_Schema, task_Props_Schema, type Task_Config } from './defineTask.schemas';
+import { assertQuestChild, projectQuestTree, nestQuestPublication, validateQuestPublication } from '../defineQuestSection/quest.utils';
 
-export type QuestTask_Overrides = { scene?: ContentBlock_Scene_Overrides };
+export type Task_Overrides = { scene?: ContentBlock_Scene_Overrides };
 
 /** A Task owns exactly one Scene; Scene calls Quest Actions for nonlinear progression. */
-export const defineQuestTask = <
+export const defineTask = <
   const Slug extends string,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: QuestTask_Config & { slug: Slug }) => {
-  const validate = (value: QuestTask_Config): void => {
-    questTask_Config_Schema.parse(value);
+>(config: Task_Config & { slug: Slug }) => {
+  const validate = (value: Task_Config): void => {
+    task_Config_Schema.parse(value);
     assertQuestChild(value.scene, 'scene', 'scene');
   };
   validate(config);
@@ -24,19 +24,19 @@ export const defineQuestTask = <
     const normalized = { base: { id, slug, type, scene: (output.base.unused as Record<string, unknown>).scene },
       locale: output.locale ? Object.fromEntries(Object.entries(output.locale).map(([lang, value]) =>
         [lang, (value.unused as Record<string, unknown>)])) : undefined };
-    validateQuestPublication(questTask_Props_Schema, normalized, languages);
+    validateQuestPublication(task_Props_Schema, normalized, languages);
     return normalized;
   };
-  const overrides = (patch: QuestTask_Overrides, options: PublicationLanguageOptions<Languages>) => {
+  const overrides = (patch: Task_Overrides, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
       Object.keys(patch).some(key => key !== 'scene')) throw new Error('Invalid QuestTask overrides');
     const output = projectQuestTree({ scene }, languages, patch);
-    validateQuestPublication(questTask_Props_Schema, props(options), languages, output);
+    validateQuestPublication(task_Props_Schema, props(options), languages, output);
     return output;
   };
   const result = { id, slug, type, scene, validate, build: { props, overrides },
     config: { base: { id, slug, type }, locales: () => ({}), validate } } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
-export type QuestTask_Configurator = ReturnType<typeof defineQuestTask>;
+export type Task_Configurator = ReturnType<typeof defineTask>;

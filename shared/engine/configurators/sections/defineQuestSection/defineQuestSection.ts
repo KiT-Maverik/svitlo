@@ -4,17 +4,17 @@ import { mergeForValidation, onlyLocales, onlyStrings, resolvePublicationLanguag
   selectPublicationLocales, splitLocalizedFields } from '../../_shared__configurators';
 import { questSection_Config_Schema, questSection_Props_Schema, questSection_Override_Metadata_Schema,
   type QuestSection_Config, type QuestSection_Metadata_Overrides } from './defineQuestSection.schemas';
-import type { QuestStage_Configurator, QuestStage_Overrides } from './defineQuestStage';
-import type { QuestTask_Configurator, QuestTask_Overrides } from './defineQuestTask';
+import type { Stage_Configurator, Stage_Overrides } from '../defineStage';
+import type { Task_Configurator, Task_Overrides } from '../defineTask';
 import { assertQuestMap, projectQuestTree, nestQuestPublication,
   mergeQuestPatches, validateQuestPublication } from './quest.utils';
 
 export type QuestSection_Overrides<
-  Stages extends Record<string, QuestStage_Configurator>,
-  Tasks extends Record<string, QuestTask_Configurator>,
+  Stages extends Record<string, Stage_Configurator>,
+  Tasks extends Record<string, Task_Configurator>,
 > = QuestSection_Metadata_Overrides & {
-  stages?: { [Key in keyof Stages]?: QuestStage_Overrides };
-  tasks?: { [Key in keyof Tasks]?: QuestTask_Overrides };
+  stages?: { [Key in keyof Stages]?: Stage_Overrides };
+  tasks?: { [Key in keyof Tasks]?: Task_Overrides };
 };
 
 /**
@@ -34,8 +34,8 @@ export type QuestSection_Overrides<
  */
 export const defineQuestSection = <
   const Slug extends string,
-  const Stages extends Record<string, QuestStage_Configurator> & { start: QuestStage_Configurator },
-  const Tasks extends Record<string, QuestTask_Configurator> & { start: QuestTask_Configurator },
+  const Stages extends Record<string, Stage_Configurator> & { start: Stage_Configurator },
+  const Tasks extends Record<string, Task_Configurator> & { start: Task_Configurator },
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
 >(
   config: Omit<QuestSection_Config, 'slug' | 'stages' | 'tasks'> & {

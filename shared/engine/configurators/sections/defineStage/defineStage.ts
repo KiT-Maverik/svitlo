@@ -4,11 +4,11 @@ import type { ContentBlock_Video_Overrides } from '../../contentBlocks/defineVid
 import type { ContentBlock_Audio_Overrides } from '../../contentBlocks/defineAudio/defineAudio.schemas';
 import type { ContentBlock_Image_Overrides } from '../../contentBlocks/defineImage/defineImage.schemas';
 import { resolvePublicationLanguages } from '../../_shared__configurators';
-import { questStage_Config_Schema, questStage_Props_Schema, type QuestStage_Config } from './defineQuestSection.schemas';
-import type { QuestSubtitles_Overrides } from './defineQuestSection.schemas';
-import { assertQuestChild, projectQuestTree, nestQuestPublication, validateQuestPublication } from './quest.utils';
+import { stage_Config_Schema, stage_Props_Schema, type Stage_Config } from './defineStage.schemas';
+import type { ContentBlock_Subtitles_Overrides } from '../../contentBlocks/defineSubtitles/defineSubtitles.schemas';
+import { assertQuestChild, projectQuestTree, nestQuestPublication, validateQuestPublication } from '../defineQuestSection/quest.utils';
 
-export type QuestStage_Overrides = {
+export type Stage_Overrides = {
   content?: {
     video?: { medium?: ContentBlock_Video_Overrides; small?: ContentBlock_Video_Overrides };
     audio?: {
@@ -17,17 +17,17 @@ export type QuestStage_Overrides = {
       background?: ContentBlock_Audio_Overrides;
     };
     image?: ContentBlock_Image_Overrides;
-    subtitles?: QuestSubtitles_Overrides;
+    subtitles?: ContentBlock_Subtitles_Overrides;
   };
 };
 
 /** A media-only stage. Audio, video, image and captions are separate required delivery paths. */
-export const defineQuestStage = <
+export const defineStage = <
   const Slug extends string,
   const Languages extends readonly LanguageCode[] = AllLanguageCodes,
->(config: QuestStage_Config & { slug: Slug }) => {
-  const validate = (value: QuestStage_Config): void => {
-    questStage_Config_Schema.parse(value);
+>(config: Stage_Config & { slug: Slug }) => {
+  const validate = (value: Stage_Config): void => {
+    stage_Config_Schema.parse(value);
     assertQuestChild(value.content.video.medium, 'video', 'content.video.medium');
     assertQuestChild(value.content.video.small, 'video', 'content.video.small');
     for (const kind of ['dialogue', 'narration', 'background'] as const) {
@@ -48,15 +48,15 @@ export const defineQuestStage = <
   const props = (options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     const output = nestQuestPublication({ id, slug, type }, projectQuestTree(content, languages), 'content');
-    validateQuestPublication(questStage_Props_Schema, output, languages);
+    validateQuestPublication(stage_Props_Schema, output, languages);
     return output;
   };
-  const overrides = (patch: QuestStage_Overrides, options: PublicationLanguageOptions<Languages>) => {
+  const overrides = (patch: Stage_Overrides, options: PublicationLanguageOptions<Languages>) => {
     const languages = resolvePublicationLanguages(options);
     if (!patch || typeof patch !== 'object' || Array.isArray(patch) ||
       Object.keys(patch).some(key => key !== 'content')) throw new Error('Invalid QuestStage overrides');
     const output = nestQuestPublication({}, projectQuestTree(content, languages, patch.content ?? {}), 'content');
-    validateQuestPublication(questStage_Props_Schema, props(options), languages, output);
+    validateQuestPublication(stage_Props_Schema, props(options), languages, output);
     return output;
   };
   const result = {
@@ -70,4 +70,4 @@ export const defineQuestStage = <
   } as const;
   return result as typeof result & LanguageScope<Languages>;
 };
-export type QuestStage_Configurator = ReturnType<typeof defineQuestStage>;
+export type Stage_Configurator = ReturnType<typeof defineStage>;
