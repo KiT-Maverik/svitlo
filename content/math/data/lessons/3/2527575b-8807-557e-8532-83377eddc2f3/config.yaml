@@ -1,0 +1,924 @@
+config:
+  id: "2527575b-8807-557e-8532-83377eddc2f3"
+  slug: "comparingContainerCapacity"
+  type: "lesson"
+  skills:
+    - "a57c2d50-cd76-4614-9e12-f1505ef7f05c"
+  params:
+    requireQuiz: false
+    languages:
+      - "ar"
+      - "be"
+      - "bn"
+      - "de"
+      - "en"
+      - "es"
+      - "et"
+      - "fr"
+      - "he"
+      - "hi"
+      - "id"
+      - "ja"
+      - "ka"
+      - "kk"
+      - "ko"
+      - "lt"
+      - "lv"
+      - "mr"
+      - "ms"
+      - "pl"
+      - "pt"
+      - "qm"
+      - "ta"
+      - "te"
+      - "tr"
+      - "uk"
+      - "ur"
+      - "vi"
+      - "zh"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Which Container Holds More?"
+  section:
+    items:
+      section1EmptyDoesnTMeanNoCapacity:
+        config:
+          id: "6e0463f1-11ea-41b2-823c-1bc90dd2398a"
+          slug: "section1EmptyDoesnTMeanNoCapacity"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Empty Doesn't Mean No Capacity"
+            navigationLabel:
+              en: "Empty Doesn't Mean No Capacity"
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: "b3d0e5b5-1440-4ec9-8422-e33bb3b29847"
+                  slug: "section1Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A tall cup and a short wide cup are both empty. Does that mean they can hold nothing? Which one _could hold more if full_? Can we tell from height alone?"
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "  1. **text — existing renderer:** \"A tall cup and a short wide cup are both empty. Does that mean they can hold nothing? Which one _could hold more if full_? Can we tell from height alone?\""
+              section1Scene2:
+                config:
+                  id: "ea9f9ebb-78fc-4a4e-8e04-330cfc6737f9"
+                  slug: "section1Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A tall cup and a short wide cup are both empty. Does that mean they can hold nothing? Which one _could hold more if full_? Can we tell from height alone?"
+                production:
+                  purpose: "Provisional Scene placement in Empty Doesn't Mean No Capacity, self-contained and not implemented"
+                  specification: |
+                      # Capacity Pouring Bench — Scene Specification
+                      
+                      Status: **Provisional Draft pending Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Parent Lesson / Sections: Which Container Holds More? (full original source: this Lesson's production notes), Sections 1–4
+                      Methodologist objective: Draft Methodologist Brief (full original source: production.methodology) — compare maximum container **capacities** using fair transfer or equal-size repeated scoops, not appearance, current fill or unequal units. Pouring is an instructional representation, **not a separate Skill**.
+                      
+                      ## LEARNER PURPOSE AND CONCEPT
+                      
+                      The learner estimates from appearance, discovers why height alone is uncertain, then fills differently shaped containers with **identical scoop units**, transfers contents without loss and explains **spare capacity versus remainder**. A final equal-capacity pair and two unfair measuring setups let the learner distinguish maximum capacity from current contents. The entire inquiry is possible through discrete named controls and a semantic ledger—there is no need to drag/pour physical or simulated liquid precisely.
+                      
+                      Learner voice: "**To compare capacity, see how much each can hold when full. Use the same scoop or a fair full-to-empty transfer.**"
+                      
+                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                      
+                      - **Capacity** `C` is maximum modeled fill quantity to each designated full mark. **Current contents** `V` satisfy `0 ≤ V ≤ C`; an empty vessel still has `C > 0`. The diagram is a discrete **scoop-count model**, not calibrated fluid volume or a real fluid dynamics simulator.
+                      - **Scoop size** `u` is an identical model volume unit for both containers in a valid comparison. One "Add scoop" increments `V` by **one** unit where `V < C`; otherwise the Scene states "**Already full**" and leaves volume unchanged. Never accept additions over maximum with a silent overflow.
+                      - Distinct container profiles:
+                        - **A:** tall/narrow, `C_A=4u`. The silhouette may look taller but cannot by itself establish mass or capacity.
+                        - **B:** short/wide, `C_B=6u`.
+                        - **C:** different silhouette, `C_C=5u`.
+                        - **D:** contrasting silhouette, `C_D=5u`.
+                      - A filled-container-to-empty-container transfer is non-spill and conserves the combined amount: if source currently has `V_s`, recipient currently has `V_r`, and recipient capacity `C_r`, moved amount `t = min(V_s, C_r − V_r)`; new states `V_s' = V_s − t`, `V_r' = V_r + t`. **No contents vanish or arise.** For the intended fair test, source must first be **full** (`V_s=C_s`) and recipient **empty** (`V_r=0`), otherwise the transfer alone is not an identified maximum-capacity comparison.
+                      - Valid transfer comparisons:
+                        - **A full (4/4)** into **empty B (0/6)** → A 0/4, B **4/6**, so B has **2u free capacity**. Therefore B>A.
+                        - **B full (6/6)** into **empty A (0/4)** → B **2/6 remains**, A **4/4 full**, so B>A. No spilling: 2u stays in B.
+                        - **C and D** each hold **5u** when full, so equal capacity despite different appearance.
+                      - **Invalid count comparison:** one large scoop for C and one small scoop for D; even numbers "3 scoops" vs "5 scoops" are **not comparable** until common scoop size is established. A presented "three large scoops" amount is a separate illustrative invalid report and **not** treated as the known actual C=5u count under common scoop.
+                      - **Invalid current-fill comparison:** C is 2/5 while D is 5/5; current volume differs, but maximum capacities are **equal**.
+                      - No liters, milliliters, density, physical mass inference, geometry-to-volume formulas, real heat/pressure, noninteger scoops or actual household cup calibration. Changing container silhouette for a named model must not accidentally change declared internal capacity.
+                      
+                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                      
+                      ### A — Empty Yet Able to Hold (Section 1)
+                      
+                      1. Display **empty** A (tall/narrow) and B (short/wide) with visible but unnumbered full marks; neither exact capacity nor current maximum ordering is disclosed **before** the fair test in Section 2.
+                      2. Prompt "**Which could hold more if full? Can height alone tell us?**" Learner chooses "A", "B", or "height alone isn't enough"; any choice is recorded only as a provisional **prediction**.
+                      3. "Show definition" reveals "Capacity is how much it can hold **when full**", and "Both have room even while empty." It **does not reveal B>A or the numbers 4 and 6** yet. Explain why a tall/narrow and shorter/wider silhouette alone cannot determine maximum volume.
+                      4. If child claims empty implies capacity zero: "The cup is empty now but has space it could hold when full." If child insists tall must be more: "We need a fair test using the same scoop." The learner can replay and navigate to filling without score.
+                      5. The text description before the comparison gives appearance **only**, not hidden counts or a volume chart that trivially discloses B's capacity.
+                      
+                      ### B — Fill Both With an Identical Scoop (Section 2)
+                      
+                      1. Fresh independent preset: A0/4 and B0/6, same one-scoop unit `u`. Both full marks labeled "capacity endpoint" without numeric counts before reveal.
+                      2. Controls: "Select A/B", "Add one identical scoop", "Undo last addition", "Read current contents", "Check which is full", "Reset". A has four steps 0→1→2→3→4, then stays **4/4 full**. B has six steps to **6/6 full**. Full status is never inferred solely from fill-height pixels.
+                      3. After **both full**, "Compare capacity" reveals **4 scoops versus 6 scoops** and **B can hold 2 more identical scoops**. Before both are full, respond "This measures what is inside now, not necessarily maximum capacity. Fill the other container too."
+                      4. Attempting add at full gives "Already full: it cannot take one more of this scoop", leaves quantity unchanged; neither generates hidden spill nor overflows the model. If a child requests "Try a larger scoop", explain why it would invalidate comparing counts and keep the equal-size scoop fixed here.
+                      5. Accessible ledger after each action lists container and current count, e.g. "A: 3 of 4 scoop spaces filled; B: 1 of 6", but if **pre-full maximum labels** would leak exact `C` to learners, before complete fill provide "A has received 3 scoops, not yet full" and reveal denominators only on completion. For teachers/tests, full numeric state remains deterministic internally.
+                      6. Explanation shows why shorter/wider B is greater capacity **in this model** without implying all short/wide vessels hold more.
+                      
+                      ### C — Two Fair Transfers, No Lost Contents (Section 3)
+                      
+                      1. **Forward preset**: A4/4 full, B0/6 empty. Prompt "**Will a full A fill empty B?**" Choices yes/no/not sure; reveal "Transfer full A to empty B" updates **A0/4, B4/6**, **2u free room in B**.
+                      2. Give text status **before and after**. Key learner explanation: "A was full, but it couldn't fill B. B can hold more."
+                      3. "Start reverse test" resets to **B6/6 full**, **A0/4 empty**. Prompt "Will the full B fit entirely into A?" Reveal "Transfer full B into empty A" moves **4u** and leaves B **2/6**, A **4/4 full**.
+                      4. Explain: "Two scoops' worth is **left in B** after A fills; contents did not disappear or spill. So B has greater capacity." The transfer can be shown as discrete unit moves; no continuous fluid animation needed.
+                      5. **Conservation test:** before and after each test, total current volume remains **4u** (forward) or **6u** (reverse). Child can ask "Where did every scoop go?" and read a paired source/destination table.
+                      6. If a learner tries to infer capacity from an incompletely filled source, label that transfer **not a valid max-capacity comparison** and request a fresh full→empty setup. On a full recipient, moved amount may be zero; explain why, never disappear fluid.
+                      7. "Swap direction" does **not** silently transfer leftovers on top of a partially filled container. It always resets both vessels to the next documented full→empty preset for a fair proof.
+                      
+                      ### D — Equal Capacity and a Tricky Unfair Comparison (Section 4)
+                      
+                      1. Fresh independent models C and D, both with true capacity **5u** but different silhouettes. Ask "Could these different-looking containers hold **the same** amount?"
+                      2. Fair test: fill both with an identical scoop, each reaching **5/5**. Reveal **equal capacity**; "C and D have different shapes, but both hold five of the same scoops."
+                      3. **Invalid scoop example:** one comparison card "C: 3 **large scoops**; D: 5 **small scoops**". Sizes are explicitly **different** and the large-scoop count is _not interpreted as C's capacity in unit `u`_. Prompt "Can we compare 3 with 5?" Feedback "Not until both use the same scoop; numbers alone are misleading." "Use common scoop" resets the fair 5/5 test rather than fabricating an implicit scoop conversion.
+                      4. **Invalid current-fill example:** C has **2 of its 5 equal units** currently filled; D has **5 of 5**. Prompt "Does the fuller D necessarily have greater capacity?" Answer: **No**; C is partly filled even though capacity C=D. "Fill C" adds **three** common units to reach 5/5, confirming equal capacity.
+                      5. Independent transfer prompt: A new tall/narrow and short/wide pair shown without counts asks for a method to **learn** which capacity is greater; valid method "Fill each with the same scoop to full" or "Pour from a full source into an empty recipient". Answers "pick tallest" and "count different scoops" receive specific explanations and do not count as measurements.
+                      6. Reset clears every comparison selection and restores a known starting state. No score, mastery threshold or hidden performance log.
+                      
+                      ## INTERACTIVE OBJECTS, STATES AND RULES
+                      
+                      - **Objects:** four named ideal containers A–D with distinct silhouettes and marked full boundaries; one common model scoop `u`; unit fill status; source/destination choice, "Add one", "Fill", "Transfer", "Read capacities/contents", "Undo", "Reset", prediction and feedback.
+                      - **Local state per Section:** container capacities (immutable), current modeled volumes, identical-scoop selection, phase (prediction, fill, transfer, reveal), current operation/direction, selected justification and feedback.
+                      - **Invariant 1:** every container fill satisfies `0 ≤ V ≤ C` at all times; attempted overfill does not silently create a spill.
+                      - **Invariant 2:** every non-spill transfer preserves `V_source + V_destination` exactly and moves only `min(V_source, C_destination−V_destination)`, leaving any excess **in the source**.
+                      - **Invariant 3:** comparing counts is justified only with **identical** scoop units and complete-to-full containers; a full→empty transfer permits comparison if conditions were checked. Half-full current volume does not directly determine capacity.
+                      - **Invariant 4:** empty does not imply zero capacity; C and D are 5/5 equal capacity despite differing shapes; A4 and B6 do **not** reverse based on visual height or UI reading direction.
+                      - **Reset/state isolation:** each Section placement has an explicit independent default. No step in C inherits a half-full vessel from B; never move between forward/reverse preset without re-establishing full→empty fairness.
+                      - **Prop-free exported roots:** Section-specific Scene components accept **no public props** and fetch localized copy from verified Lesson context, not guessed `capacity`, `locale`, `mode`, `onPour` or `onResult` props. Pure internal helpers may share the conservation model.
+                      - **Equivalent interaction:** all pouring and filling can be done via discrete buttons and named text status. The visual liquid's fill height may be schematic and **must not** act as the only source of numerical facts; a full/empty counter description is primary.
+                      - **Feedback:** explain why a comparison is fair/unfair, what is left or free, and which capacity is greater/equal. No graded Question, score, retry cap, Note event, user storage or assessment.
+                      
+                      ## VISUAL / AUDIO / MEDIA DIRECTION
+                      
+                      Use simple high-contrast SVG container silhouettes and a visibly **constant-sized scoop**; avoid complex animated fluid, real-world measurement illusions and detailed arbitrary-width geometry that contradicts numeric capacities. A tall container can have a shorter filled volume **in this declared conceptual model** due to width/shape. "Pour" may animate one discrete unit at a time, but in reduced-motion it must switch immediately to the same correct ledger; no model change depends on animation. Show numbered scoop tokens or an explicit ordered table after reveal. For reverse transfer, **two scoop tokens remain in B** and should be visible/textual, never rendered as accidental overflow. Do not render physically impossible fill levels as scientifically authoritative: label representation schematic.
+                      
+                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                      
+                      All capacity/full/empty/current content, scoop size, leftover and room-for-more vocabulary, labels, feedback, accessible status and prospective Notes need authentic supported-locale translations; missing locales block release, no silent English fallback. In RTL, presentation and button order may mirror semantically, but the **names A/B/C/D and their state/capacities** must remain correctly mapped to source/destination and the ledger. Nonvisual learner hears "A full with 4 equal scoops; B empty with room for six; after transferring, A empty and B has four of six, two spaces left" only **after** numbers are legitimately revealed; before reveal, offer the same relative clues as sighted learner without leaked hidden counts. Keyboard/switch and touch buttons replace precision fluid gestures; visible focus, large targets, robust zoom 200%, color-independent full markers, reduced motion, captions for any audio and WCAG 2.2 AA verification. Essential interaction uses local rules and assets, complete offline after actual lesson/locale download. These are product release criteria, **not claimed current implementation**.
+                      
+                      ## ACCEPTANCE SCENARIOS
+                      
+                      1. Both empty A0/4 and B0/6 still have **positive capacities**; stage A does not disclose which is greater until a fair test is performed.
+                      2. A fills with **four** identical `u` scoops, B with **six**; when both full, B capacity > A by **2u**. Adding past full does not increase V.
+                      3. A4/4 full → empty B0/6 transfer ends A0/4 and B4/6 with **2u room left in B**; initial and final total current volumes equal **4u**.
+                      4. B6/6 full → empty A0/4 transfer ends **B2/6**, **A4/4**, preserving **6u** total with **2u leftover in B** and no spill.
+                      5. C5/5 and D5/5 hold the same number of **identical** scoops and have equal capacity despite different silhouettes.
+                      6. "C three large scoops versus D five small scoops" is labeled **incomparable without common unit**, not automatically interpreted as C smaller.
+                      7. C2/5 partly filled versus D5/5 full does **not** imply different max capacities; adding three scoops to C confirms 5/5 equality.
+                      8. A full source and an empty recipient are necessary for a simple fair maximum-capacity transfer inference; a half-filled source does not establish comparison by itself.
+                      9. All preset resets, undo, RTL, screen reader, mobile, reduced motion and post-download offline modes preserve no-spill conservation, amounts and equivalent conceptual reasoning without drag/color/sound dependence.
+                      10. All feedback is explanatory and formative, with no Quiz, hidden pass band, persistent unlock/score or invented platform event contract.
+                      
+                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                      
+                      The generic `scene` block type/rendering is available, but **Capacity Pouring Bench is not implemented**. Editor and Methodologist must approve this model and the Content first. Scene Designer/Coding Agent later checks real localization context, makes Section-specific prop-free roots, deterministic state tests, equivalent accessible amount ledger and offline assets. No React, runtime Lesson, actual measuring fluid simulation, Questions, Quiz, Note persistence, analytics or score implementation belongs in this Draft PR. The editor should explicitly approve the **discrete equal-scoop** abstraction as fair for Grade 1 and the no-spill transfer illustration.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                        2. **scene — existing Resource type, proposed custom:** Capacity Pouring Bench (full original source: Scene production.specification), placement A. Present empty tall/narrow A, shorter/wider B, each with a marked full boundary but **no numerical unit ticks**. Before revealing model capacities, offer predictions "A holds more", "B holds more", "Cannot know from height only". After the child responds, reveal only the **capacity definition** and why appearance cannot establish which is greater; do **not** reveal capacity ordering or scoop counts before the fair test in Section 2.
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section1Markdown3:
+                config:
+                  id: "3f383a55-9297-450d-88e6-abce65499496"
+                  slug: "section1Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Even an **empty** cup can hold something. Its **capacity** is the amount it could hold when filled to its full mark. A taller cup is not necessarily the cup with greater capacity: width and shape also matter. We need a fair comparison."
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "  3. **markdown — existing renderer:** \"Even an **empty** cup can hold something. Its **capacity** is the amount it could hold when filled to its full mark. A taller cup is not necessarily the cup with greater capacity: width and shape also matter. We need a fair comparison.\""
+            order:
+              - "section1Text1"
+              - "section1Scene2"
+              - "section1Markdown3"
+        production:
+          purpose: "Empty Doesn't Mean No Capacity"
+          pedagogicalIntent: "Empty Doesn't Mean No Capacity"
+          productionNotes: |
+              ### Section 1 — Empty Doesn't Mean No Capacity
+              
+              - **Purpose:** distinguish a container's maximum capacity from its current content and challenge height-only judgments.
+              - **Current shape:** `LessonSection_Config` with one ordered vertical Resource column.
+              - **Ordered Resources:**
+                1. **text — existing renderer:** "A tall cup and a short wide cup are both empty. Does that mean they can hold nothing? Which one _could hold more if full_? Can we tell from height alone?"
+                2. **scene — existing Resource type, proposed custom:** Capacity Pouring Bench (full original source: Scene production.specification), placement A. Present empty tall/narrow A, shorter/wider B, each with a marked full boundary but **no numerical unit ticks**. Before revealing model capacities, offer predictions "A holds more", "B holds more", "Cannot know from height only". After the child responds, reveal only the **capacity definition** and why appearance cannot establish which is greater; do **not** reveal capacity ordering or scoop counts before the fair test in Section 2.
+                3. **markdown — existing renderer:** "Even an **empty** cup can hold something. Its **capacity** is the amount it could hold when filled to its full mark. A taller cup is not necessarily the cup with greater capacity: width and shape also matter. We need a fair comparison."
+              - **Feedback:** For "empty means no capacity": "It's empty now, but it still has space inside. That's its capacity." For "A because taller": "Height alone doesn't tell us how much it can hold. Let's use the **same scoop** to test." The initial "cannot tell" is a reasoned uncertainty, not a scored correct answer.
+              - **Nonvisual parity:** "A is tall and narrow; B is shorter but wider; both are empty and marked with full lines" is provided before prediction. Children don't need photos or physical objects.
+              - **Future Note:** "Capacity is how much a container can hold when full."
+              
+      section2OneScoopSizeTwoDifferentCounts:
+        config:
+          id: "af5cfa35-2683-4931-8977-d20da0a8c109"
+          slug: "section2OneScoopSizeTwoDifferentCounts"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "One Scoop Size, Two Different Counts"
+            navigationLabel:
+              en: "One Scoop Size, Two Different Counts"
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: "02fc05a1-a1f5-441c-8f28-f6bf8c219702"
+                  slug: "section2Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "We will use the **same little scoop** for both cups. How many of these scoops fill the tall cup? How many fill the short, wide cup?"
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "  1. **text — available:** \"We will use the **same little scoop** for both cups. How many of these scoops fill the tall cup? How many fill the short, wide cup?\""
+              section2Scene2:
+                config:
+                  id: "7be1c918-28f8-4cf4-8871-8833eb68fddf"
+                  slug: "section2Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "We will use the **same little scoop** for both cups. How many of these scoops fill the tall cup? How many fill the short, wide cup?"
+                production:
+                  purpose: "Provisional Scene placement in One Scoop Size, Two Different Counts, self-contained and not implemented"
+                  specification: |
+                      # Capacity Pouring Bench — Scene Specification
+                      
+                      Status: **Provisional Draft pending Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Parent Lesson / Sections: Which Container Holds More? (full original source: this Lesson's production notes), Sections 1–4
+                      Methodologist objective: Draft Methodologist Brief (full original source: production.methodology) — compare maximum container **capacities** using fair transfer or equal-size repeated scoops, not appearance, current fill or unequal units. Pouring is an instructional representation, **not a separate Skill**.
+                      
+                      ## LEARNER PURPOSE AND CONCEPT
+                      
+                      The learner estimates from appearance, discovers why height alone is uncertain, then fills differently shaped containers with **identical scoop units**, transfers contents without loss and explains **spare capacity versus remainder**. A final equal-capacity pair and two unfair measuring setups let the learner distinguish maximum capacity from current contents. The entire inquiry is possible through discrete named controls and a semantic ledger—there is no need to drag/pour physical or simulated liquid precisely.
+                      
+                      Learner voice: "**To compare capacity, see how much each can hold when full. Use the same scoop or a fair full-to-empty transfer.**"
+                      
+                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                      
+                      - **Capacity** `C` is maximum modeled fill quantity to each designated full mark. **Current contents** `V` satisfy `0 ≤ V ≤ C`; an empty vessel still has `C > 0`. The diagram is a discrete **scoop-count model**, not calibrated fluid volume or a real fluid dynamics simulator.
+                      - **Scoop size** `u` is an identical model volume unit for both containers in a valid comparison. One "Add scoop" increments `V` by **one** unit where `V < C`; otherwise the Scene states "**Already full**" and leaves volume unchanged. Never accept additions over maximum with a silent overflow.
+                      - Distinct container profiles:
+                        - **A:** tall/narrow, `C_A=4u`. The silhouette may look taller but cannot by itself establish mass or capacity.
+                        - **B:** short/wide, `C_B=6u`.
+                        - **C:** different silhouette, `C_C=5u`.
+                        - **D:** contrasting silhouette, `C_D=5u`.
+                      - A filled-container-to-empty-container transfer is non-spill and conserves the combined amount: if source currently has `V_s`, recipient currently has `V_r`, and recipient capacity `C_r`, moved amount `t = min(V_s, C_r − V_r)`; new states `V_s' = V_s − t`, `V_r' = V_r + t`. **No contents vanish or arise.** For the intended fair test, source must first be **full** (`V_s=C_s`) and recipient **empty** (`V_r=0`), otherwise the transfer alone is not an identified maximum-capacity comparison.
+                      - Valid transfer comparisons:
+                        - **A full (4/4)** into **empty B (0/6)** → A 0/4, B **4/6**, so B has **2u free capacity**. Therefore B>A.
+                        - **B full (6/6)** into **empty A (0/4)** → B **2/6 remains**, A **4/4 full**, so B>A. No spilling: 2u stays in B.
+                        - **C and D** each hold **5u** when full, so equal capacity despite different appearance.
+                      - **Invalid count comparison:** one large scoop for C and one small scoop for D; even numbers "3 scoops" vs "5 scoops" are **not comparable** until common scoop size is established. A presented "three large scoops" amount is a separate illustrative invalid report and **not** treated as the known actual C=5u count under common scoop.
+                      - **Invalid current-fill comparison:** C is 2/5 while D is 5/5; current volume differs, but maximum capacities are **equal**.
+                      - No liters, milliliters, density, physical mass inference, geometry-to-volume formulas, real heat/pressure, noninteger scoops or actual household cup calibration. Changing container silhouette for a named model must not accidentally change declared internal capacity.
+                      
+                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                      
+                      ### A — Empty Yet Able to Hold (Section 1)
+                      
+                      1. Display **empty** A (tall/narrow) and B (short/wide) with visible but unnumbered full marks; neither exact capacity nor current maximum ordering is disclosed **before** the fair test in Section 2.
+                      2. Prompt "**Which could hold more if full? Can height alone tell us?**" Learner chooses "A", "B", or "height alone isn't enough"; any choice is recorded only as a provisional **prediction**.
+                      3. "Show definition" reveals "Capacity is how much it can hold **when full**", and "Both have room even while empty." It **does not reveal B>A or the numbers 4 and 6** yet. Explain why a tall/narrow and shorter/wider silhouette alone cannot determine maximum volume.
+                      4. If child claims empty implies capacity zero: "The cup is empty now but has space it could hold when full." If child insists tall must be more: "We need a fair test using the same scoop." The learner can replay and navigate to filling without score.
+                      5. The text description before the comparison gives appearance **only**, not hidden counts or a volume chart that trivially discloses B's capacity.
+                      
+                      ### B — Fill Both With an Identical Scoop (Section 2)
+                      
+                      1. Fresh independent preset: A0/4 and B0/6, same one-scoop unit `u`. Both full marks labeled "capacity endpoint" without numeric counts before reveal.
+                      2. Controls: "Select A/B", "Add one identical scoop", "Undo last addition", "Read current contents", "Check which is full", "Reset". A has four steps 0→1→2→3→4, then stays **4/4 full**. B has six steps to **6/6 full**. Full status is never inferred solely from fill-height pixels.
+                      3. After **both full**, "Compare capacity" reveals **4 scoops versus 6 scoops** and **B can hold 2 more identical scoops**. Before both are full, respond "This measures what is inside now, not necessarily maximum capacity. Fill the other container too."
+                      4. Attempting add at full gives "Already full: it cannot take one more of this scoop", leaves quantity unchanged; neither generates hidden spill nor overflows the model. If a child requests "Try a larger scoop", explain why it would invalidate comparing counts and keep the equal-size scoop fixed here.
+                      5. Accessible ledger after each action lists container and current count, e.g. "A: 3 of 4 scoop spaces filled; B: 1 of 6", but if **pre-full maximum labels** would leak exact `C` to learners, before complete fill provide "A has received 3 scoops, not yet full" and reveal denominators only on completion. For teachers/tests, full numeric state remains deterministic internally.
+                      6. Explanation shows why shorter/wider B is greater capacity **in this model** without implying all short/wide vessels hold more.
+                      
+                      ### C — Two Fair Transfers, No Lost Contents (Section 3)
+                      
+                      1. **Forward preset**: A4/4 full, B0/6 empty. Prompt "**Will a full A fill empty B?**" Choices yes/no/not sure; reveal "Transfer full A to empty B" updates **A0/4, B4/6**, **2u free room in B**.
+                      2. Give text status **before and after**. Key learner explanation: "A was full, but it couldn't fill B. B can hold more."
+                      3. "Start reverse test" resets to **B6/6 full**, **A0/4 empty**. Prompt "Will the full B fit entirely into A?" Reveal "Transfer full B into empty A" moves **4u** and leaves B **2/6**, A **4/4 full**.
+                      4. Explain: "Two scoops' worth is **left in B** after A fills; contents did not disappear or spill. So B has greater capacity." The transfer can be shown as discrete unit moves; no continuous fluid animation needed.
+                      5. **Conservation test:** before and after each test, total current volume remains **4u** (forward) or **6u** (reverse). Child can ask "Where did every scoop go?" and read a paired source/destination table.
+                      6. If a learner tries to infer capacity from an incompletely filled source, label that transfer **not a valid max-capacity comparison** and request a fresh full→empty setup. On a full recipient, moved amount may be zero; explain why, never disappear fluid.
+                      7. "Swap direction" does **not** silently transfer leftovers on top of a partially filled container. It always resets both vessels to the next documented full→empty preset for a fair proof.
+                      
+                      ### D — Equal Capacity and a Tricky Unfair Comparison (Section 4)
+                      
+                      1. Fresh independent models C and D, both with true capacity **5u** but different silhouettes. Ask "Could these different-looking containers hold **the same** amount?"
+                      2. Fair test: fill both with an identical scoop, each reaching **5/5**. Reveal **equal capacity**; "C and D have different shapes, but both hold five of the same scoops."
+                      3. **Invalid scoop example:** one comparison card "C: 3 **large scoops**; D: 5 **small scoops**". Sizes are explicitly **different** and the large-scoop count is _not interpreted as C's capacity in unit `u`_. Prompt "Can we compare 3 with 5?" Feedback "Not until both use the same scoop; numbers alone are misleading." "Use common scoop" resets the fair 5/5 test rather than fabricating an implicit scoop conversion.
+                      4. **Invalid current-fill example:** C has **2 of its 5 equal units** currently filled; D has **5 of 5**. Prompt "Does the fuller D necessarily have greater capacity?" Answer: **No**; C is partly filled even though capacity C=D. "Fill C" adds **three** common units to reach 5/5, confirming equal capacity.
+                      5. Independent transfer prompt: A new tall/narrow and short/wide pair shown without counts asks for a method to **learn** which capacity is greater; valid method "Fill each with the same scoop to full" or "Pour from a full source into an empty recipient". Answers "pick tallest" and "count different scoops" receive specific explanations and do not count as measurements.
+                      6. Reset clears every comparison selection and restores a known starting state. No score, mastery threshold or hidden performance log.
+                      
+                      ## INTERACTIVE OBJECTS, STATES AND RULES
+                      
+                      - **Objects:** four named ideal containers A–D with distinct silhouettes and marked full boundaries; one common model scoop `u`; unit fill status; source/destination choice, "Add one", "Fill", "Transfer", "Read capacities/contents", "Undo", "Reset", prediction and feedback.
+                      - **Local state per Section:** container capacities (immutable), current modeled volumes, identical-scoop selection, phase (prediction, fill, transfer, reveal), current operation/direction, selected justification and feedback.
+                      - **Invariant 1:** every container fill satisfies `0 ≤ V ≤ C` at all times; attempted overfill does not silently create a spill.
+                      - **Invariant 2:** every non-spill transfer preserves `V_source + V_destination` exactly and moves only `min(V_source, C_destination−V_destination)`, leaving any excess **in the source**.
+                      - **Invariant 3:** comparing counts is justified only with **identical** scoop units and complete-to-full containers; a full→empty transfer permits comparison if conditions were checked. Half-full current volume does not directly determine capacity.
+                      - **Invariant 4:** empty does not imply zero capacity; C and D are 5/5 equal capacity despite differing shapes; A4 and B6 do **not** reverse based on visual height or UI reading direction.
+                      - **Reset/state isolation:** each Section placement has an explicit independent default. No step in C inherits a half-full vessel from B; never move between forward/reverse preset without re-establishing full→empty fairness.
+                      - **Prop-free exported roots:** Section-specific Scene components accept **no public props** and fetch localized copy from verified Lesson context, not guessed `capacity`, `locale`, `mode`, `onPour` or `onResult` props. Pure internal helpers may share the conservation model.
+                      - **Equivalent interaction:** all pouring and filling can be done via discrete buttons and named text status. The visual liquid's fill height may be schematic and **must not** act as the only source of numerical facts; a full/empty counter description is primary.
+                      - **Feedback:** explain why a comparison is fair/unfair, what is left or free, and which capacity is greater/equal. No graded Question, score, retry cap, Note event, user storage or assessment.
+                      
+                      ## VISUAL / AUDIO / MEDIA DIRECTION
+                      
+                      Use simple high-contrast SVG container silhouettes and a visibly **constant-sized scoop**; avoid complex animated fluid, real-world measurement illusions and detailed arbitrary-width geometry that contradicts numeric capacities. A tall container can have a shorter filled volume **in this declared conceptual model** due to width/shape. "Pour" may animate one discrete unit at a time, but in reduced-motion it must switch immediately to the same correct ledger; no model change depends on animation. Show numbered scoop tokens or an explicit ordered table after reveal. For reverse transfer, **two scoop tokens remain in B** and should be visible/textual, never rendered as accidental overflow. Do not render physically impossible fill levels as scientifically authoritative: label representation schematic.
+                      
+                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                      
+                      All capacity/full/empty/current content, scoop size, leftover and room-for-more vocabulary, labels, feedback, accessible status and prospective Notes need authentic supported-locale translations; missing locales block release, no silent English fallback. In RTL, presentation and button order may mirror semantically, but the **names A/B/C/D and their state/capacities** must remain correctly mapped to source/destination and the ledger. Nonvisual learner hears "A full with 4 equal scoops; B empty with room for six; after transferring, A empty and B has four of six, two spaces left" only **after** numbers are legitimately revealed; before reveal, offer the same relative clues as sighted learner without leaked hidden counts. Keyboard/switch and touch buttons replace precision fluid gestures; visible focus, large targets, robust zoom 200%, color-independent full markers, reduced motion, captions for any audio and WCAG 2.2 AA verification. Essential interaction uses local rules and assets, complete offline after actual lesson/locale download. These are product release criteria, **not claimed current implementation**.
+                      
+                      ## ACCEPTANCE SCENARIOS
+                      
+                      1. Both empty A0/4 and B0/6 still have **positive capacities**; stage A does not disclose which is greater until a fair test is performed.
+                      2. A fills with **four** identical `u` scoops, B with **six**; when both full, B capacity > A by **2u**. Adding past full does not increase V.
+                      3. A4/4 full → empty B0/6 transfer ends A0/4 and B4/6 with **2u room left in B**; initial and final total current volumes equal **4u**.
+                      4. B6/6 full → empty A0/4 transfer ends **B2/6**, **A4/4**, preserving **6u** total with **2u leftover in B** and no spill.
+                      5. C5/5 and D5/5 hold the same number of **identical** scoops and have equal capacity despite different silhouettes.
+                      6. "C three large scoops versus D five small scoops" is labeled **incomparable without common unit**, not automatically interpreted as C smaller.
+                      7. C2/5 partly filled versus D5/5 full does **not** imply different max capacities; adding three scoops to C confirms 5/5 equality.
+                      8. A full source and an empty recipient are necessary for a simple fair maximum-capacity transfer inference; a half-filled source does not establish comparison by itself.
+                      9. All preset resets, undo, RTL, screen reader, mobile, reduced motion and post-download offline modes preserve no-spill conservation, amounts and equivalent conceptual reasoning without drag/color/sound dependence.
+                      10. All feedback is explanatory and formative, with no Quiz, hidden pass band, persistent unlock/score or invented platform event contract.
+                      
+                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                      
+                      The generic `scene` block type/rendering is available, but **Capacity Pouring Bench is not implemented**. Editor and Methodologist must approve this model and the Content first. Scene Designer/Coding Agent later checks real localization context, makes Section-specific prop-free roots, deterministic state tests, equivalent accessible amount ledger and offline assets. No React, runtime Lesson, actual measuring fluid simulation, Questions, Quiz, Note persistence, analytics or score implementation belongs in this Draft PR. The editor should explicitly approve the **discrete equal-scoop** abstraction as fair for Grade 1 and the no-spill transfer illustration.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                        2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement B. Fixed capacity A=**4 identical model scoops**, B=**6 identical model scoops**, initial fill 0/0. Learner selects A or B and presses "Add one scoop" repeatedly; each press adds **one unit** to the selected container without overflow. At 4, A displays "full"; at 6, B displays "full". Before each container is full, the learner-facing ledger shows **scoops added so far** without announcing its unrevealed maximum. Once that container is full, the ledger records A as **4 of 4** or B as **6 of 6**, respectively. "Compare" reveals **B can hold two more scoops than A** under this common scoop size.
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section2Markdown3:
+                config:
+                  id: "a49d8cc2-643e-45ce-8633-c47e26908d72"
+                  slug: "section2Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "The tall cup held **4 of the same scoops**. The short wide cup held **6**. Since both were filled using **one identical scoop**, B has **greater capacity**. Height alone fooled us."
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "  3. **markdown — available:** \"The tall cup held **4 of the same scoops**. The short wide cup held **6**. Since both were filled using **one identical scoop**, B has **greater capacity**. Height alone fooled us.\""
+            order:
+              - "section2Text1"
+              - "section2Scene2"
+              - "section2Markdown3"
+        production:
+          purpose: "One Scoop Size, Two Different Counts"
+          pedagogicalIntent: "One Scoop Size, Two Different Counts"
+          productionNotes: |
+              ### Section 2 — One Scoop Size, Two Different Counts
+              
+              - **Purpose:** introduce equal-sized repeated units as fair comparative measurement.
+              - **Current shape:** general single-column Section.
+              - **Ordered Resources:**
+                1. **text — available:** "We will use the **same little scoop** for both cups. How many of these scoops fill the tall cup? How many fill the short, wide cup?"
+                2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement B. Fixed capacity A=**4 identical model scoops**, B=**6 identical model scoops**, initial fill 0/0. Learner selects A or B and presses "Add one scoop" repeatedly; each press adds **one unit** to the selected container without overflow. At 4, A displays "full"; at 6, B displays "full". Before each container is full, the learner-facing ledger shows **scoops added so far** without announcing its unrevealed maximum. Once that container is full, the ledger records A as **4 of 4** or B as **6 of 6**, respectively. "Compare" reveals **B can hold two more scoops than A** under this common scoop size.
+                3. **markdown — available:** "The tall cup held **4 of the same scoops**. The short wide cup held **6**. Since both were filled using **one identical scoop**, B has **greater capacity**. Height alone fooled us."
+              - **Feedback:** If child compares A4 to B3 before B full: "You counted what is **inside now**, not what B can hold **when full**. Keep adding equal scoops until each reaches its full mark." If different scoops suggested: "Bigger scoops would change the number even if the containers stayed the same. Use the **same size** to compare." No spilled extra scoop; at full, "Add one scoop" explains the container has no room rather than silently accepting an overflow.
+              - **Access and pacing:** Fully local step controls, text ledger and ready-to-inspect full markers; nonvisual mode has unit count/status equally informative. Each action may be undone without score.
+              - **Future Note:** "A fair scoop comparison uses equal scoops and full containers."
+              
+      section3PourIntoADifferentContainer:
+        config:
+          id: "9fb2203e-a734-478d-84dc-28357c5a8f86"
+          slug: "section3PourIntoADifferentContainer"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Pour Into a Different Container"
+            navigationLabel:
+              en: "Pour Into a Different Container"
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: "7bf7701b-361d-4a37-8c02-b70781e8cd2b"
+                  slug: "section3Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "First **fill the tall cup A completely** and leave B empty. Pour A into B. Will B be full? Then reset: fill B completely, leave A empty, and try pouring back."
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "  1. **text — available:** \"First **fill the tall cup A completely** and leave B empty. Pour A into B. Will B be full? Then reset: fill B completely, leave A empty, and try pouring back.\""
+              section3Scene2:
+                config:
+                  id: "e3b422c1-c8c1-4dbd-8f2c-ba251459f559"
+                  slug: "section3Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "First **fill the tall cup A completely** and leave B empty. Pour A into B. Will B be full? Then reset: fill B completely, leave A empty, and try pouring back."
+                production:
+                  purpose: "Provisional Scene placement in Pour Into a Different Container, self-contained and not implemented"
+                  specification: |
+                      # Capacity Pouring Bench — Scene Specification
+                      
+                      Status: **Provisional Draft pending Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Parent Lesson / Sections: Which Container Holds More? (full original source: this Lesson's production notes), Sections 1–4
+                      Methodologist objective: Draft Methodologist Brief (full original source: production.methodology) — compare maximum container **capacities** using fair transfer or equal-size repeated scoops, not appearance, current fill or unequal units. Pouring is an instructional representation, **not a separate Skill**.
+                      
+                      ## LEARNER PURPOSE AND CONCEPT
+                      
+                      The learner estimates from appearance, discovers why height alone is uncertain, then fills differently shaped containers with **identical scoop units**, transfers contents without loss and explains **spare capacity versus remainder**. A final equal-capacity pair and two unfair measuring setups let the learner distinguish maximum capacity from current contents. The entire inquiry is possible through discrete named controls and a semantic ledger—there is no need to drag/pour physical or simulated liquid precisely.
+                      
+                      Learner voice: "**To compare capacity, see how much each can hold when full. Use the same scoop or a fair full-to-empty transfer.**"
+                      
+                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                      
+                      - **Capacity** `C` is maximum modeled fill quantity to each designated full mark. **Current contents** `V` satisfy `0 ≤ V ≤ C`; an empty vessel still has `C > 0`. The diagram is a discrete **scoop-count model**, not calibrated fluid volume or a real fluid dynamics simulator.
+                      - **Scoop size** `u` is an identical model volume unit for both containers in a valid comparison. One "Add scoop" increments `V` by **one** unit where `V < C`; otherwise the Scene states "**Already full**" and leaves volume unchanged. Never accept additions over maximum with a silent overflow.
+                      - Distinct container profiles:
+                        - **A:** tall/narrow, `C_A=4u`. The silhouette may look taller but cannot by itself establish mass or capacity.
+                        - **B:** short/wide, `C_B=6u`.
+                        - **C:** different silhouette, `C_C=5u`.
+                        - **D:** contrasting silhouette, `C_D=5u`.
+                      - A filled-container-to-empty-container transfer is non-spill and conserves the combined amount: if source currently has `V_s`, recipient currently has `V_r`, and recipient capacity `C_r`, moved amount `t = min(V_s, C_r − V_r)`; new states `V_s' = V_s − t`, `V_r' = V_r + t`. **No contents vanish or arise.** For the intended fair test, source must first be **full** (`V_s=C_s`) and recipient **empty** (`V_r=0`), otherwise the transfer alone is not an identified maximum-capacity comparison.
+                      - Valid transfer comparisons:
+                        - **A full (4/4)** into **empty B (0/6)** → A 0/4, B **4/6**, so B has **2u free capacity**. Therefore B>A.
+                        - **B full (6/6)** into **empty A (0/4)** → B **2/6 remains**, A **4/4 full**, so B>A. No spilling: 2u stays in B.
+                        - **C and D** each hold **5u** when full, so equal capacity despite different appearance.
+                      - **Invalid count comparison:** one large scoop for C and one small scoop for D; even numbers "3 scoops" vs "5 scoops" are **not comparable** until common scoop size is established. A presented "three large scoops" amount is a separate illustrative invalid report and **not** treated as the known actual C=5u count under common scoop.
+                      - **Invalid current-fill comparison:** C is 2/5 while D is 5/5; current volume differs, but maximum capacities are **equal**.
+                      - No liters, milliliters, density, physical mass inference, geometry-to-volume formulas, real heat/pressure, noninteger scoops or actual household cup calibration. Changing container silhouette for a named model must not accidentally change declared internal capacity.
+                      
+                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                      
+                      ### A — Empty Yet Able to Hold (Section 1)
+                      
+                      1. Display **empty** A (tall/narrow) and B (short/wide) with visible but unnumbered full marks; neither exact capacity nor current maximum ordering is disclosed **before** the fair test in Section 2.
+                      2. Prompt "**Which could hold more if full? Can height alone tell us?**" Learner chooses "A", "B", or "height alone isn't enough"; any choice is recorded only as a provisional **prediction**.
+                      3. "Show definition" reveals "Capacity is how much it can hold **when full**", and "Both have room even while empty." It **does not reveal B>A or the numbers 4 and 6** yet. Explain why a tall/narrow and shorter/wider silhouette alone cannot determine maximum volume.
+                      4. If child claims empty implies capacity zero: "The cup is empty now but has space it could hold when full." If child insists tall must be more: "We need a fair test using the same scoop." The learner can replay and navigate to filling without score.
+                      5. The text description before the comparison gives appearance **only**, not hidden counts or a volume chart that trivially discloses B's capacity.
+                      
+                      ### B — Fill Both With an Identical Scoop (Section 2)
+                      
+                      1. Fresh independent preset: A0/4 and B0/6, same one-scoop unit `u`. Both full marks labeled "capacity endpoint" without numeric counts before reveal.
+                      2. Controls: "Select A/B", "Add one identical scoop", "Undo last addition", "Read current contents", "Check which is full", "Reset". A has four steps 0→1→2→3→4, then stays **4/4 full**. B has six steps to **6/6 full**. Full status is never inferred solely from fill-height pixels.
+                      3. After **both full**, "Compare capacity" reveals **4 scoops versus 6 scoops** and **B can hold 2 more identical scoops**. Before both are full, respond "This measures what is inside now, not necessarily maximum capacity. Fill the other container too."
+                      4. Attempting add at full gives "Already full: it cannot take one more of this scoop", leaves quantity unchanged; neither generates hidden spill nor overflows the model. If a child requests "Try a larger scoop", explain why it would invalidate comparing counts and keep the equal-size scoop fixed here.
+                      5. Accessible ledger after each action lists container and current count, e.g. "A: 3 of 4 scoop spaces filled; B: 1 of 6", but if **pre-full maximum labels** would leak exact `C` to learners, before complete fill provide "A has received 3 scoops, not yet full" and reveal denominators only on completion. For teachers/tests, full numeric state remains deterministic internally.
+                      6. Explanation shows why shorter/wider B is greater capacity **in this model** without implying all short/wide vessels hold more.
+                      
+                      ### C — Two Fair Transfers, No Lost Contents (Section 3)
+                      
+                      1. **Forward preset**: A4/4 full, B0/6 empty. Prompt "**Will a full A fill empty B?**" Choices yes/no/not sure; reveal "Transfer full A to empty B" updates **A0/4, B4/6**, **2u free room in B**.
+                      2. Give text status **before and after**. Key learner explanation: "A was full, but it couldn't fill B. B can hold more."
+                      3. "Start reverse test" resets to **B6/6 full**, **A0/4 empty**. Prompt "Will the full B fit entirely into A?" Reveal "Transfer full B into empty A" moves **4u** and leaves B **2/6**, A **4/4 full**.
+                      4. Explain: "Two scoops' worth is **left in B** after A fills; contents did not disappear or spill. So B has greater capacity." The transfer can be shown as discrete unit moves; no continuous fluid animation needed.
+                      5. **Conservation test:** before and after each test, total current volume remains **4u** (forward) or **6u** (reverse). Child can ask "Where did every scoop go?" and read a paired source/destination table.
+                      6. If a learner tries to infer capacity from an incompletely filled source, label that transfer **not a valid max-capacity comparison** and request a fresh full→empty setup. On a full recipient, moved amount may be zero; explain why, never disappear fluid.
+                      7. "Swap direction" does **not** silently transfer leftovers on top of a partially filled container. It always resets both vessels to the next documented full→empty preset for a fair proof.
+                      
+                      ### D — Equal Capacity and a Tricky Unfair Comparison (Section 4)
+                      
+                      1. Fresh independent models C and D, both with true capacity **5u** but different silhouettes. Ask "Could these different-looking containers hold **the same** amount?"
+                      2. Fair test: fill both with an identical scoop, each reaching **5/5**. Reveal **equal capacity**; "C and D have different shapes, but both hold five of the same scoops."
+                      3. **Invalid scoop example:** one comparison card "C: 3 **large scoops**; D: 5 **small scoops**". Sizes are explicitly **different** and the large-scoop count is _not interpreted as C's capacity in unit `u`_. Prompt "Can we compare 3 with 5?" Feedback "Not until both use the same scoop; numbers alone are misleading." "Use common scoop" resets the fair 5/5 test rather than fabricating an implicit scoop conversion.
+                      4. **Invalid current-fill example:** C has **2 of its 5 equal units** currently filled; D has **5 of 5**. Prompt "Does the fuller D necessarily have greater capacity?" Answer: **No**; C is partly filled even though capacity C=D. "Fill C" adds **three** common units to reach 5/5, confirming equal capacity.
+                      5. Independent transfer prompt: A new tall/narrow and short/wide pair shown without counts asks for a method to **learn** which capacity is greater; valid method "Fill each with the same scoop to full" or "Pour from a full source into an empty recipient". Answers "pick tallest" and "count different scoops" receive specific explanations and do not count as measurements.
+                      6. Reset clears every comparison selection and restores a known starting state. No score, mastery threshold or hidden performance log.
+                      
+                      ## INTERACTIVE OBJECTS, STATES AND RULES
+                      
+                      - **Objects:** four named ideal containers A–D with distinct silhouettes and marked full boundaries; one common model scoop `u`; unit fill status; source/destination choice, "Add one", "Fill", "Transfer", "Read capacities/contents", "Undo", "Reset", prediction and feedback.
+                      - **Local state per Section:** container capacities (immutable), current modeled volumes, identical-scoop selection, phase (prediction, fill, transfer, reveal), current operation/direction, selected justification and feedback.
+                      - **Invariant 1:** every container fill satisfies `0 ≤ V ≤ C` at all times; attempted overfill does not silently create a spill.
+                      - **Invariant 2:** every non-spill transfer preserves `V_source + V_destination` exactly and moves only `min(V_source, C_destination−V_destination)`, leaving any excess **in the source**.
+                      - **Invariant 3:** comparing counts is justified only with **identical** scoop units and complete-to-full containers; a full→empty transfer permits comparison if conditions were checked. Half-full current volume does not directly determine capacity.
+                      - **Invariant 4:** empty does not imply zero capacity; C and D are 5/5 equal capacity despite differing shapes; A4 and B6 do **not** reverse based on visual height or UI reading direction.
+                      - **Reset/state isolation:** each Section placement has an explicit independent default. No step in C inherits a half-full vessel from B; never move between forward/reverse preset without re-establishing full→empty fairness.
+                      - **Prop-free exported roots:** Section-specific Scene components accept **no public props** and fetch localized copy from verified Lesson context, not guessed `capacity`, `locale`, `mode`, `onPour` or `onResult` props. Pure internal helpers may share the conservation model.
+                      - **Equivalent interaction:** all pouring and filling can be done via discrete buttons and named text status. The visual liquid's fill height may be schematic and **must not** act as the only source of numerical facts; a full/empty counter description is primary.
+                      - **Feedback:** explain why a comparison is fair/unfair, what is left or free, and which capacity is greater/equal. No graded Question, score, retry cap, Note event, user storage or assessment.
+                      
+                      ## VISUAL / AUDIO / MEDIA DIRECTION
+                      
+                      Use simple high-contrast SVG container silhouettes and a visibly **constant-sized scoop**; avoid complex animated fluid, real-world measurement illusions and detailed arbitrary-width geometry that contradicts numeric capacities. A tall container can have a shorter filled volume **in this declared conceptual model** due to width/shape. "Pour" may animate one discrete unit at a time, but in reduced-motion it must switch immediately to the same correct ledger; no model change depends on animation. Show numbered scoop tokens or an explicit ordered table after reveal. For reverse transfer, **two scoop tokens remain in B** and should be visible/textual, never rendered as accidental overflow. Do not render physically impossible fill levels as scientifically authoritative: label representation schematic.
+                      
+                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                      
+                      All capacity/full/empty/current content, scoop size, leftover and room-for-more vocabulary, labels, feedback, accessible status and prospective Notes need authentic supported-locale translations; missing locales block release, no silent English fallback. In RTL, presentation and button order may mirror semantically, but the **names A/B/C/D and their state/capacities** must remain correctly mapped to source/destination and the ledger. Nonvisual learner hears "A full with 4 equal scoops; B empty with room for six; after transferring, A empty and B has four of six, two spaces left" only **after** numbers are legitimately revealed; before reveal, offer the same relative clues as sighted learner without leaked hidden counts. Keyboard/switch and touch buttons replace precision fluid gestures; visible focus, large targets, robust zoom 200%, color-independent full markers, reduced motion, captions for any audio and WCAG 2.2 AA verification. Essential interaction uses local rules and assets, complete offline after actual lesson/locale download. These are product release criteria, **not claimed current implementation**.
+                      
+                      ## ACCEPTANCE SCENARIOS
+                      
+                      1. Both empty A0/4 and B0/6 still have **positive capacities**; stage A does not disclose which is greater until a fair test is performed.
+                      2. A fills with **four** identical `u` scoops, B with **six**; when both full, B capacity > A by **2u**. Adding past full does not increase V.
+                      3. A4/4 full → empty B0/6 transfer ends A0/4 and B4/6 with **2u room left in B**; initial and final total current volumes equal **4u**.
+                      4. B6/6 full → empty A0/4 transfer ends **B2/6**, **A4/4**, preserving **6u** total with **2u leftover in B** and no spill.
+                      5. C5/5 and D5/5 hold the same number of **identical** scoops and have equal capacity despite different silhouettes.
+                      6. "C three large scoops versus D five small scoops" is labeled **incomparable without common unit**, not automatically interpreted as C smaller.
+                      7. C2/5 partly filled versus D5/5 full does **not** imply different max capacities; adding three scoops to C confirms 5/5 equality.
+                      8. A full source and an empty recipient are necessary for a simple fair maximum-capacity transfer inference; a half-filled source does not establish comparison by itself.
+                      9. All preset resets, undo, RTL, screen reader, mobile, reduced motion and post-download offline modes preserve no-spill conservation, amounts and equivalent conceptual reasoning without drag/color/sound dependence.
+                      10. All feedback is explanatory and formative, with no Quiz, hidden pass band, persistent unlock/score or invented platform event contract.
+                      
+                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                      
+                      The generic `scene` block type/rendering is available, but **Capacity Pouring Bench is not implemented**. Editor and Methodologist must approve this model and the Content first. Scene Designer/Coding Agent later checks real localization context, makes Section-specific prop-free roots, deterministic state tests, equivalent accessible amount ledger and offline assets. No React, runtime Lesson, actual measuring fluid simulation, Questions, Quiz, Note persistence, analytics or score implementation belongs in this Draft PR. The editor should explicitly approve the **discrete equal-scoop** abstraction as fair for Grade 1 and the no-spill transfer illustration.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                        2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement C. **Forward transfer:** A starts 4/4 full; B starts 0/6; after transfer, A0/4 and B4/6, with **two-scoop empty room in B**. **Reverse transfer:** from separate reset B6/6 full; A0/4; transfer only as much as A holds, resulting B2/6 remaining and A4/4 full. Do **not** spill or invent extra liquid. Show exact before/after ledgers and a reasoned choice "B has greater capacity".
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section3Markdown3:
+                config:
+                  id: "a02a47e7-a54f-40ee-8640-de1883256911"
+                  slug: "section3Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A full cup A did **not** fill B: B still had room. When B was full, it **filled A and still had some left**. Both fair tests tell us **B can hold more** than A."
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "  3. **markdown — available:** \"A full cup A did **not** fill B: B still had room. When B was full, it **filled A and still had some left**. Both fair tests tell us **B can hold more** than A.\""
+            order:
+              - "section3Text1"
+              - "section3Scene2"
+              - "section3Markdown3"
+        production:
+          purpose: "Pour Into a Different Container"
+          pedagogicalIntent: "Pour Into a Different Container"
+          productionNotes: |
+              ### Section 3 — Pour Into a Different Container
+              
+              - **Purpose:** use conservation of transferred modeled contents to infer relative maximum capacity.
+              - **Current shape:** single-column general Section.
+              - **Ordered Resources:**
+                1. **text — available:** "First **fill the tall cup A completely** and leave B empty. Pour A into B. Will B be full? Then reset: fill B completely, leave A empty, and try pouring back."
+                2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement C. **Forward transfer:** A starts 4/4 full; B starts 0/6; after transfer, A0/4 and B4/6, with **two-scoop empty room in B**. **Reverse transfer:** from separate reset B6/6 full; A0/4; transfer only as much as A holds, resulting B2/6 remaining and A4/4 full. Do **not** spill or invent extra liquid. Show exact before/after ledgers and a reasoned choice "B has greater capacity".
+                3. **markdown — available:** "A full cup A did **not** fill B: B still had room. When B was full, it **filled A and still had some left**. Both fair tests tell us **B can hold more** than A."
+              - **Feedback:** If child says A larger because it starts taller: "We tested their **capacity** by transferring a full amount, not by height." If reverse transfer drops leftover: "We can't make the extra amount disappear. After filling A, **two scoops stay in B**." If source only half full: "That would test current contents, not which container can hold more."
+              - **Safety and accessibility:** Virtual pouring is triggered by named buttons and state text; no real liquid, continuous animation or precision dragging. Reduced motion shows discrete fill/leftover changes instantly. A nonvisual user gets the same capacity comparison from before/after tables.
+              
+      section4SameCapacityNewShapes:
+        config:
+          id: "07f2ab14-d1fe-4d6f-8b41-f372ad4df509"
+          slug: "section4SameCapacityNewShapes"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Same Capacity, New Shapes"
+            navigationLabel:
+              en: "Same Capacity, New Shapes"
+          content:
+            items:
+              section4Text1:
+                config:
+                  id: "cde255cd-ba35-4f4e-8217-ea5215c0f0d1"
+                  slug: "section4Text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Here are two more differently shaped containers. Could they hold the **same amount**? Someone measured one container with a **big scoop** and the other with a **small scoop**. Is that a fair test?"
+                production:
+                  purpose: "Original learner-facing text block, provisional editorial draft"
+                  specification: "  1. **text — available:** \"Here are two more differently shaped containers. Could they hold the **same amount**? Someone measured one container with a **big scoop** and the other with a **small scoop**. Is that a fair test?\""
+              section4Scene2:
+                config:
+                  id: "16ddf8ba-5b1b-46dc-8839-396955ffd70f"
+                  slug: "section4Scene2"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Here are two more differently shaped containers. Could they hold the **same amount**? Someone measured one container with a **big scoop** and the other with a **small scoop**. Is that a fair test?"
+                production:
+                  purpose: "Provisional Scene placement in Same Capacity, New Shapes, self-contained and not implemented"
+                  specification: |
+                      # Capacity Pouring Bench — Scene Specification
+                      
+                      Status: **Provisional Draft pending Methodologist approval**
+                      Owner: Educational Screenwriter
+                      Parent Lesson / Sections: Which Container Holds More? (full original source: this Lesson's production notes), Sections 1–4
+                      Methodologist objective: Draft Methodologist Brief (full original source: production.methodology) — compare maximum container **capacities** using fair transfer or equal-size repeated scoops, not appearance, current fill or unequal units. Pouring is an instructional representation, **not a separate Skill**.
+                      
+                      ## LEARNER PURPOSE AND CONCEPT
+                      
+                      The learner estimates from appearance, discovers why height alone is uncertain, then fills differently shaped containers with **identical scoop units**, transfers contents without loss and explains **spare capacity versus remainder**. A final equal-capacity pair and two unfair measuring setups let the learner distinguish maximum capacity from current contents. The entire inquiry is possible through discrete named controls and a semantic ledger—there is no need to drag/pour physical or simulated liquid precisely.
+                      
+                      Learner voice: "**To compare capacity, see how much each can hold when full. Use the same scoop or a fair full-to-empty transfer.**"
+                      
+                      ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                      
+                      - **Capacity** `C` is maximum modeled fill quantity to each designated full mark. **Current contents** `V` satisfy `0 ≤ V ≤ C`; an empty vessel still has `C > 0`. The diagram is a discrete **scoop-count model**, not calibrated fluid volume or a real fluid dynamics simulator.
+                      - **Scoop size** `u` is an identical model volume unit for both containers in a valid comparison. One "Add scoop" increments `V` by **one** unit where `V < C`; otherwise the Scene states "**Already full**" and leaves volume unchanged. Never accept additions over maximum with a silent overflow.
+                      - Distinct container profiles:
+                        - **A:** tall/narrow, `C_A=4u`. The silhouette may look taller but cannot by itself establish mass or capacity.
+                        - **B:** short/wide, `C_B=6u`.
+                        - **C:** different silhouette, `C_C=5u`.
+                        - **D:** contrasting silhouette, `C_D=5u`.
+                      - A filled-container-to-empty-container transfer is non-spill and conserves the combined amount: if source currently has `V_s`, recipient currently has `V_r`, and recipient capacity `C_r`, moved amount `t = min(V_s, C_r − V_r)`; new states `V_s' = V_s − t`, `V_r' = V_r + t`. **No contents vanish or arise.** For the intended fair test, source must first be **full** (`V_s=C_s`) and recipient **empty** (`V_r=0`), otherwise the transfer alone is not an identified maximum-capacity comparison.
+                      - Valid transfer comparisons:
+                        - **A full (4/4)** into **empty B (0/6)** → A 0/4, B **4/6**, so B has **2u free capacity**. Therefore B>A.
+                        - **B full (6/6)** into **empty A (0/4)** → B **2/6 remains**, A **4/4 full**, so B>A. No spilling: 2u stays in B.
+                        - **C and D** each hold **5u** when full, so equal capacity despite different appearance.
+                      - **Invalid count comparison:** one large scoop for C and one small scoop for D; even numbers "3 scoops" vs "5 scoops" are **not comparable** until common scoop size is established. A presented "three large scoops" amount is a separate illustrative invalid report and **not** treated as the known actual C=5u count under common scoop.
+                      - **Invalid current-fill comparison:** C is 2/5 while D is 5/5; current volume differs, but maximum capacities are **equal**.
+                      - No liters, milliliters, density, physical mass inference, geometry-to-volume formulas, real heat/pressure, noninteger scoops or actual household cup calibration. Changing container silhouette for a named model must not accidentally change declared internal capacity.
+                      
+                      ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                      
+                      ### A — Empty Yet Able to Hold (Section 1)
+                      
+                      1. Display **empty** A (tall/narrow) and B (short/wide) with visible but unnumbered full marks; neither exact capacity nor current maximum ordering is disclosed **before** the fair test in Section 2.
+                      2. Prompt "**Which could hold more if full? Can height alone tell us?**" Learner chooses "A", "B", or "height alone isn't enough"; any choice is recorded only as a provisional **prediction**.
+                      3. "Show definition" reveals "Capacity is how much it can hold **when full**", and "Both have room even while empty." It **does not reveal B>A or the numbers 4 and 6** yet. Explain why a tall/narrow and shorter/wider silhouette alone cannot determine maximum volume.
+                      4. If child claims empty implies capacity zero: "The cup is empty now but has space it could hold when full." If child insists tall must be more: "We need a fair test using the same scoop." The learner can replay and navigate to filling without score.
+                      5. The text description before the comparison gives appearance **only**, not hidden counts or a volume chart that trivially discloses B's capacity.
+                      
+                      ### B — Fill Both With an Identical Scoop (Section 2)
+                      
+                      1. Fresh independent preset: A0/4 and B0/6, same one-scoop unit `u`. Both full marks labeled "capacity endpoint" without numeric counts before reveal.
+                      2. Controls: "Select A/B", "Add one identical scoop", "Undo last addition", "Read current contents", "Check which is full", "Reset". A has four steps 0→1→2→3→4, then stays **4/4 full**. B has six steps to **6/6 full**. Full status is never inferred solely from fill-height pixels.
+                      3. After **both full**, "Compare capacity" reveals **4 scoops versus 6 scoops** and **B can hold 2 more identical scoops**. Before both are full, respond "This measures what is inside now, not necessarily maximum capacity. Fill the other container too."
+                      4. Attempting add at full gives "Already full: it cannot take one more of this scoop", leaves quantity unchanged; neither generates hidden spill nor overflows the model. If a child requests "Try a larger scoop", explain why it would invalidate comparing counts and keep the equal-size scoop fixed here.
+                      5. Accessible ledger after each action lists container and current count, e.g. "A: 3 of 4 scoop spaces filled; B: 1 of 6", but if **pre-full maximum labels** would leak exact `C` to learners, before complete fill provide "A has received 3 scoops, not yet full" and reveal denominators only on completion. For teachers/tests, full numeric state remains deterministic internally.
+                      6. Explanation shows why shorter/wider B is greater capacity **in this model** without implying all short/wide vessels hold more.
+                      
+                      ### C — Two Fair Transfers, No Lost Contents (Section 3)
+                      
+                      1. **Forward preset**: A4/4 full, B0/6 empty. Prompt "**Will a full A fill empty B?**" Choices yes/no/not sure; reveal "Transfer full A to empty B" updates **A0/4, B4/6**, **2u free room in B**.
+                      2. Give text status **before and after**. Key learner explanation: "A was full, but it couldn't fill B. B can hold more."
+                      3. "Start reverse test" resets to **B6/6 full**, **A0/4 empty**. Prompt "Will the full B fit entirely into A?" Reveal "Transfer full B into empty A" moves **4u** and leaves B **2/6**, A **4/4 full**.
+                      4. Explain: "Two scoops' worth is **left in B** after A fills; contents did not disappear or spill. So B has greater capacity." The transfer can be shown as discrete unit moves; no continuous fluid animation needed.
+                      5. **Conservation test:** before and after each test, total current volume remains **4u** (forward) or **6u** (reverse). Child can ask "Where did every scoop go?" and read a paired source/destination table.
+                      6. If a learner tries to infer capacity from an incompletely filled source, label that transfer **not a valid max-capacity comparison** and request a fresh full→empty setup. On a full recipient, moved amount may be zero; explain why, never disappear fluid.
+                      7. "Swap direction" does **not** silently transfer leftovers on top of a partially filled container. It always resets both vessels to the next documented full→empty preset for a fair proof.
+                      
+                      ### D — Equal Capacity and a Tricky Unfair Comparison (Section 4)
+                      
+                      1. Fresh independent models C and D, both with true capacity **5u** but different silhouettes. Ask "Could these different-looking containers hold **the same** amount?"
+                      2. Fair test: fill both with an identical scoop, each reaching **5/5**. Reveal **equal capacity**; "C and D have different shapes, but both hold five of the same scoops."
+                      3. **Invalid scoop example:** one comparison card "C: 3 **large scoops**; D: 5 **small scoops**". Sizes are explicitly **different** and the large-scoop count is _not interpreted as C's capacity in unit `u`_. Prompt "Can we compare 3 with 5?" Feedback "Not until both use the same scoop; numbers alone are misleading." "Use common scoop" resets the fair 5/5 test rather than fabricating an implicit scoop conversion.
+                      4. **Invalid current-fill example:** C has **2 of its 5 equal units** currently filled; D has **5 of 5**. Prompt "Does the fuller D necessarily have greater capacity?" Answer: **No**; C is partly filled even though capacity C=D. "Fill C" adds **three** common units to reach 5/5, confirming equal capacity.
+                      5. Independent transfer prompt: A new tall/narrow and short/wide pair shown without counts asks for a method to **learn** which capacity is greater; valid method "Fill each with the same scoop to full" or "Pour from a full source into an empty recipient". Answers "pick tallest" and "count different scoops" receive specific explanations and do not count as measurements.
+                      6. Reset clears every comparison selection and restores a known starting state. No score, mastery threshold or hidden performance log.
+                      
+                      ## INTERACTIVE OBJECTS, STATES AND RULES
+                      
+                      - **Objects:** four named ideal containers A–D with distinct silhouettes and marked full boundaries; one common model scoop `u`; unit fill status; source/destination choice, "Add one", "Fill", "Transfer", "Read capacities/contents", "Undo", "Reset", prediction and feedback.
+                      - **Local state per Section:** container capacities (immutable), current modeled volumes, identical-scoop selection, phase (prediction, fill, transfer, reveal), current operation/direction, selected justification and feedback.
+                      - **Invariant 1:** every container fill satisfies `0 ≤ V ≤ C` at all times; attempted overfill does not silently create a spill.
+                      - **Invariant 2:** every non-spill transfer preserves `V_source + V_destination` exactly and moves only `min(V_source, C_destination−V_destination)`, leaving any excess **in the source**.
+                      - **Invariant 3:** comparing counts is justified only with **identical** scoop units and complete-to-full containers; a full→empty transfer permits comparison if conditions were checked. Half-full current volume does not directly determine capacity.
+                      - **Invariant 4:** empty does not imply zero capacity; C and D are 5/5 equal capacity despite differing shapes; A4 and B6 do **not** reverse based on visual height or UI reading direction.
+                      - **Reset/state isolation:** each Section placement has an explicit independent default. No step in C inherits a half-full vessel from B; never move between forward/reverse preset without re-establishing full→empty fairness.
+                      - **Prop-free exported roots:** Section-specific Scene components accept **no public props** and fetch localized copy from verified Lesson context, not guessed `capacity`, `locale`, `mode`, `onPour` or `onResult` props. Pure internal helpers may share the conservation model.
+                      - **Equivalent interaction:** all pouring and filling can be done via discrete buttons and named text status. The visual liquid's fill height may be schematic and **must not** act as the only source of numerical facts; a full/empty counter description is primary.
+                      - **Feedback:** explain why a comparison is fair/unfair, what is left or free, and which capacity is greater/equal. No graded Question, score, retry cap, Note event, user storage or assessment.
+                      
+                      ## VISUAL / AUDIO / MEDIA DIRECTION
+                      
+                      Use simple high-contrast SVG container silhouettes and a visibly **constant-sized scoop**; avoid complex animated fluid, real-world measurement illusions and detailed arbitrary-width geometry that contradicts numeric capacities. A tall container can have a shorter filled volume **in this declared conceptual model** due to width/shape. "Pour" may animate one discrete unit at a time, but in reduced-motion it must switch immediately to the same correct ledger; no model change depends on animation. Show numbered scoop tokens or an explicit ordered table after reveal. For reverse transfer, **two scoop tokens remain in B** and should be visible/textual, never rendered as accidental overflow. Do not render physically impossible fill levels as scientifically authoritative: label representation schematic.
+                      
+                      ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                      
+                      All capacity/full/empty/current content, scoop size, leftover and room-for-more vocabulary, labels, feedback, accessible status and prospective Notes need authentic supported-locale translations; missing locales block release, no silent English fallback. In RTL, presentation and button order may mirror semantically, but the **names A/B/C/D and their state/capacities** must remain correctly mapped to source/destination and the ledger. Nonvisual learner hears "A full with 4 equal scoops; B empty with room for six; after transferring, A empty and B has four of six, two spaces left" only **after** numbers are legitimately revealed; before reveal, offer the same relative clues as sighted learner without leaked hidden counts. Keyboard/switch and touch buttons replace precision fluid gestures; visible focus, large targets, robust zoom 200%, color-independent full markers, reduced motion, captions for any audio and WCAG 2.2 AA verification. Essential interaction uses local rules and assets, complete offline after actual lesson/locale download. These are product release criteria, **not claimed current implementation**.
+                      
+                      ## ACCEPTANCE SCENARIOS
+                      
+                      1. Both empty A0/4 and B0/6 still have **positive capacities**; stage A does not disclose which is greater until a fair test is performed.
+                      2. A fills with **four** identical `u` scoops, B with **six**; when both full, B capacity > A by **2u**. Adding past full does not increase V.
+                      3. A4/4 full → empty B0/6 transfer ends A0/4 and B4/6 with **2u room left in B**; initial and final total current volumes equal **4u**.
+                      4. B6/6 full → empty A0/4 transfer ends **B2/6**, **A4/4**, preserving **6u** total with **2u leftover in B** and no spill.
+                      5. C5/5 and D5/5 hold the same number of **identical** scoops and have equal capacity despite different silhouettes.
+                      6. "C three large scoops versus D five small scoops" is labeled **incomparable without common unit**, not automatically interpreted as C smaller.
+                      7. C2/5 partly filled versus D5/5 full does **not** imply different max capacities; adding three scoops to C confirms 5/5 equality.
+                      8. A full source and an empty recipient are necessary for a simple fair maximum-capacity transfer inference; a half-filled source does not establish comparison by itself.
+                      9. All preset resets, undo, RTL, screen reader, mobile, reduced motion and post-download offline modes preserve no-spill conservation, amounts and equivalent conceptual reasoning without drag/color/sound dependence.
+                      10. All feedback is explanatory and formative, with no Quiz, hidden pass band, persistent unlock/score or invented platform event contract.
+                      
+                      ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                      
+                      The generic `scene` block type/rendering is available, but **Capacity Pouring Bench is not implemented**. Editor and Methodologist must approve this model and the Content first. Scene Designer/Coding Agent later checks real localization context, makes Section-specific prop-free roots, deterministic state tests, equivalent accessible amount ledger and offline assets. No React, runtime Lesson, actual measuring fluid simulation, Questions, Quiz, Note persistence, analytics or score implementation belongs in this Draft PR. The editor should explicitly approve the **discrete equal-scoop** abstraction as fair for Grade 1 and the no-spill transfer illustration.
+                      
+                      
+                      ## Scene occurrence in Screenwriter Section
+                      
+                        2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement D. Containers C tallish/narrow and D low/wide each have capacity **5 of one identical model scoop**. A fair comparison fills both with 5 and reports **equal capacity**. An _invalid_ example shows "C: 3 large scoops; D: 5 small scoops" where scoop volumes are **not equivalent** and no numeric comparative conclusion is permitted. Offer "Use identical scoop", "Fill both to the full mark", then reveal 5 versus 5. Another false example uses C only partly filled (2/5) while D is full (5/5); repair it before comparing capacities.
+                  productionNotes: "Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state."
+              section4Markdown3:
+                config:
+                  id: "18d9751e-6a9e-4c77-8c02-24d89e45edb1"
+                  slug: "section4Markdown3"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "C and D have **equal capacity** because each holds **five of the same scoops** when full. Different shapes can hold the same amount. We cannot compare capacities from different scoop sizes or from one cup only partly filled."
+                production:
+                  purpose: "Original learner-facing markdown block, provisional editorial draft"
+                  specification: "  3. **markdown — available:** \"C and D have **equal capacity** because each holds **five of the same scoops** when full. Different shapes can hold the same amount. We cannot compare capacities from different scoop sizes or from one cup only partly filled.\""
+            order:
+              - "section4Text1"
+              - "section4Scene2"
+              - "section4Markdown3"
+        production:
+          purpose: "Same Capacity, New Shapes"
+          pedagogicalIntent: "Same Capacity, New Shapes"
+          productionNotes: |
+              ### Section 4 — Same Capacity, New Shapes
+              
+              - **Purpose:** transfer to equality and diagnose unfair comparisons.
+              - **Current shape:** single-column general Section.
+              - **Ordered Resources:**
+                1. **text — available:** "Here are two more differently shaped containers. Could they hold the **same amount**? Someone measured one container with a **big scoop** and the other with a **small scoop**. Is that a fair test?"
+                2. **scene — proposed:** Capacity Pouring Bench (full original source: Scene production.specification), placement D. Containers C tallish/narrow and D low/wide each have capacity **5 of one identical model scoop**. A fair comparison fills both with 5 and reports **equal capacity**. An _invalid_ example shows "C: 3 large scoops; D: 5 small scoops" where scoop volumes are **not equivalent** and no numeric comparative conclusion is permitted. Offer "Use identical scoop", "Fill both to the full mark", then reveal 5 versus 5. Another false example uses C only partly filled (2/5) while D is full (5/5); repair it before comparing capacities.
+                3. **markdown — available:** "C and D have **equal capacity** because each holds **five of the same scoops** when full. Different shapes can hold the same amount. We cannot compare capacities from different scoop sizes or from one cup only partly filled."
+              - **Feedback:** For "D holds more because five is bigger than three": "Those numbers count **different-sized scoops**, so the comparison isn't fair." For "D holds more because it's fuller right now": "One cup was **not filled to capacity**. Fill both fully with identical scoops." For equality when fair: "Same full count with the same scoop means **equal capacity**." Do not assert that physically equivalent scoop sizes have been measured in liters.
+              - **Independent transfer:** Show unfamiliar empty vessels with very different silhouettes and ask what measurement setup would fairly compare their capacities. Child selects "same scoop, fill to full" instead of guessing taller or wider. No graded Quiz.
+              
+    order:
+      - "section1EmptyDoesnTMeanNoCapacity"
+      - "section2OneScoopSizeTwoDifferentCounts"
+      - "section3PourIntoADifferentContainer"
+      - "section4SameCapacityNewShapes"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |
+      # Which Container Holds More? — Methodologist Brief
+      
+      Date: 2026-10-31
+      Slug: comparingContainerCapacity
+      Methodologist status: Draft
+      Code: [Not implemented](#)
+      Program dependence: None
+      
+      ## Educational purpose
+      
+      Explain **capacity** as the maximum a container can hold, distinct from the amount currently inside. Children investigate why a tall, narrow container may hold less than a shorter, wider one, and compare capacities fairly by transferring contents or repeatedly using the **same** scoop.
+      
+      ## Target audience
+      
+      **Grade 1 (approximately ages 6–7).** Grade 1 children (ages 6–7) familiar with cups/containers and more/less/equal. All operations are virtual and controllable by buttons, with a complete verbal ledger; water play in real life is optional, never required, and does not involve pouring boiling or hazardous liquids.
+      
+      ## Prerequisites
+      
+      Understand full/empty and **more/less/same**, compare small counts to six, and follow a simple cause-and-effect sequence ('fill', 'pour', 'what remains'). No reading liters, milliliters, volume formulas, or familiarity with the physical width-versus-height tradeoff is required; the Lesson establishes it.
+      
+      ## Target Skills
+      
+      - [capacityConcept.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/capacity/skills/capacityConcept.data.ts)
+      
+      ## Expected learning outcomes
+      
+      - Explain **capacity** as the amount a container can hold when filled to its designated **full mark**, not merely its current fill level.
+      - Compare two differently shaped containers using a **fair transfer of a filled amount** or **identical scoop units**, determining which has greater capacity even when heights mislead.
+      - Explain why a short wide container may hold **more** than a taller narrow one, and why height or color alone is not enough evidence.
+      - Recognize and correct invalid comparisons made with partly filled starting containers or scoops of different sizes, and identify an equal-capacity pair with different shapes.
+      
+      ## Essential subject matter
+      
+      **Capacity** is the **maximum** volume a particular container can hold under consistent conditions, here its modeled fill line. An **empty** container still has capacity; current contents are a different quantity. Use a fair virtual comparison with identical scoop size and no spills: tall narrow container A holds **4 model scoops**, short wide B holds **6 of the same scoops**. Fill A to its full mark, then transfer its 4 scoops into **empty B**: B has room for 2 more, so B capacity > A. Conversely, fill B to 6, transfer into empty A without spilling: A becomes full after 4, and **2 scoops remain in B**, so again B has greater capacity. Two other differently shaped containers can each hold **5** identical scoops and therefore have equal capacities. On a transfer comparison the initial container must really be full and the recipient empty; otherwise remaining room/leftover cannot directly establish which **full capacity** is larger. Do not compare count of scoops if scoop sizes differ. This is a discrete explanatory simulation, **not a calibrated fluid-volume solver** or a claim that screen pixels measure physical liters.
+      
+      ## Conceptual progression and dependencies
+      
+      Start with A tall narrow/B short wide, invite height-based prediction but explicitly say it is uncertain. Reveal identical-scoop fill behavior and ask children to update the prediction. Next compare by transferring a full A to empty B and observing B's spare space, then repeat the reverse direction and inspect what remains; explain both as evidence about maximum capacity. Contrasting different-shaped **equal-capacity** containers proves appearance is unreliable. End with a deliberately unfair comparison—one source only half full or two different scoops—and ask for a fair test before giving a capacity claim.
+      
+      ## Misconceptions, examples and boundaries
+      
+      Taller means greater capacity; currently empty means zero capacity; current fill level equals maximum capacity; two cups at different fill levels show which container holds more; using one large scoop for A and one small scoop for B yields comparable numbers; after 6→4 transfer the extra 2 must disappear or 'spill' without being accounted for; equal capacity requires equal shape.
+      
+      **Depth exclusions:** Small virtual containers, discrete complete scoop counts 4–6 of an **identical** modeled volume, virtual fill/transfer with no spill, no fractional scoops, real fluid dynamics or liquid shape prediction, liters/mL conversions, density, heat, pressure, arbitrary uneven container calibration, or actual household handling. Do not equate mass with capacity; this is independent of the mass Lesson. These boundaries govern a **Lesson**, not the grade-independent canonical Skill definition.
+      
+      ## Localization, accessibility and offline intent
+      
+      Authentically localize every future learner-facing prompt, explanation, feedback message, geometry/measurement term, numerical description, accessible name, optional sound transcript, Scene control and recall Note in the supported locale set. No fake translations or English text fallbacks. Adopt meaning-preserving LTR/RTL: changing reading direction must never silently invert geometric surface structure, left/right pan behavior, amount ordering or 3D/2D membership. Use keyboard/switch-operable controls and complete nonvisual text-ledger alternatives; visual rotation or pouring effects are optional enhancements, never the only way to understand. Favor small controllable steps, reduced-motion versions, large mobile targets, visible focus, WCAG 2.2 AA and identical learning outcomes on weak devices. All essential model data, localized copy, Scene assets and explanations must be **downloadable for full offline use**; this is a product goal, not verified runtime support. If a later design cannot supply equivalent nonvisual/low-end modes, surface that as an editorial blocker, not a silent simplification.
+      
+      ## Sources and factual verification
+      
+      - [capacityConcept.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/measurement/capacity/skills/capacityConcept.data.ts) — canonical source migrated verbatim from Mathematics `main`, including UUID, translations and methodological description.
+      - [Methodologist Persona](https://github.com/KiT-Maverik/svitlo/blob/main/studio/personas/methodist.persona.md), [Lesson editorial architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md) and [Lesson entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md) — governing editorial scope, autonomy and approval.
+      - [Playground generated English taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md) — a **coordinator-owned generated view** that has **not been regenerated** to include these pending Skill imports. Canonical `*.data.ts` source files above are the verified sources.
+      
+      The examples are pedagogically simplified as specifically described; they make no national Curriculum alignment or experimental instructional-effectiveness claims.
+      
+      ## Curriculum / Program compatibility
+      
+      No Program or national Curriculum has been assigned. The Lesson is independently coherent and may be referenced by future Programs. Grade 1 is a provisional **lesson-audience choice**, never a change to the taxonomy or new Skill assessment level.
+      
+      ## Open editorial decisions
+      
+      - Editor to approve the discrete equal-scoop model and a no-spill transfer representation, with fairness made explicit. Exact container silhouette may be simplified but must not imply false real-world fluid behavior; capacity labels stay conceptual, not absolute liters.
+      - **Explicit approval still required.** This Methodologist Brief is **Draft**. The accompanying Content and custom Scene specification are **Provisional Drafts** prepared under the user's batch-level authorization, not formally approved under the Studio's standard handoff gate.
+      
+      ## Methodologist handoff
+      
+      Editor/Methodologist reviews learning depth, prerequisite accuracy, conceptual definition, examples and accessibility equivalence. Screenwriter may review and revise provisional Content and Scene documents, but they must not be treated as approved source for Coding Agent implementation before sign-off. Questions, Quizzes, scoring, analytics, full translation production, local persistence, Notes unlocking and runtime Lesson configuration are outside this batch.
+  productionNotes: |
+      All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+      
+      ## Original Screenwriter introduction
+      
+      # Which Container Holds More? — Lesson Content
+      
+      Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation.**
+      Target Lesson: `content/playground/Data/Lessons/1/comparingContainerCapacity/`
+      Audience: **Grade 1**, approximately 6–7 years, all reading/sensory/motor modes, no actual pouring required
+      Methodologist source: Draft Methodologist Brief (full original source: production.methodology)
+      Learning outcomes: explain capacity as _maximum_ fill, compare two containers fairly by complete transfer or same-sized scoop, reject misleading height/current fill, recognize equal capacities, repair unfair measurement.
+      Target Skills: **`capacityConcept.data.ts`** as directly linked in the Brief, not liter/milliliter measurement or density.
+      Program dependence: None
+      Implementation status: editor-authored Lesson/Scene concept only; no runtime Lesson, water-physics engine, Question or Quiz.
+      
+      ## INSTRUCTIONAL CONCEPT
+      
+      **"How much could it hold if it were full?"** A tall, narrow cup can hold less than a shorter, wide cup. Capacity asks about the **most** a container can hold—not just how much is in it right now. The child learns to make a **fair** comparison, either filling each with **the same scoop** or transferring the contents of a **full source** to an **empty recipient**. Capacity is about volume, not the mass of a container or liquid and not its height alone.
+      
+      All demonstrations use discrete internal capacity values in **identical model-scoop units**, not real-world liters or simulated liquid-fluid dynamics. For example: A is tall/narrow and holds **4** model scoops; B is short/wide and holds **6**. The model always accounts for leftover contents without inventing spills or disappearing volume. These internal values become observable only during deliberate filling/reveal; the child's first prediction is about relative appearance, not a leaked scale label.
+      
+      ## LEARNER JOURNEY
+      
+      1. See a **tall narrow** and **short wide** empty container, ask which _could hold_ more, and separate **capacity** from **current fill**.
+      2. Use one equal-sized scoop to fill both to their full marks; discover **4 versus 6** and explain why comparing the counts is fair.
+      3. Transfer from the _full_ smaller container into the _empty_ larger one, then reverse the process; reason from **spare room** versus **leftover volume**, without spills.
+      4. Compare differently shaped **equal-capacity** containers, then diagnose a false comparison caused by starting partly filled or changing scoop size.
+      
+      This is intentional observation–prediction–explanation–controlled manipulation–transfer, not a pouring game for collecting scores. Every interactive action has a verbal/textual equivalent and a reproducible result. No sound, time pressure, graphics-intensive fluid rendering or physical water handling is necessary.
+      
+      ## SECTION PLAN
+      
+      
+      ## Original Screenwriter concluding notes
+      
+      ## CUSTOM SCENE SPECIFICATIONS
+      
+      - Capacity Pouring Bench (full original source: Scene production.specification) — proposed prop-free, deterministic comparison tool with stable fill/transfer states, no-spill rule, same-scoop validity, fully equivalent text ledger and keyboard controls.
+      
+      ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+      
+      1. After Section 1 definition: "Capacity is how much a container can hold when full."
+      2. After Section 2 identical-scoop comparison: "Use the same scoop and fill both to compare."
+      3. After Section 3 transfer: "Room left or contents left over can reveal which capacity is larger."
+      
+      These are **planned** future localized recall Notes, not real runtime events, Note IDs, persistence or a compiled study-sheet feature.
+      
+      ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+      
+      Section 4 tests reasoning informally but **unscored**. A future Assessment Architect can assess capacity definition, comparison fairness and transfer conclusions with alternate container silhouettes and nonvisual representations. Do not require learners to calculate physical liters/mL, density or internal volume formulas or infer mastery from this one demonstration.
+      
+      ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+      
+      All object names, full/empty/current contents, maximum capacity, scoop size, leftovers, hints, feedback, status reports, controls and potential Note cues require real translation for each supported locale without silent English fallback. RTL reading direction may affect UI control position but **must not** change the model's numeric counts, which container is full or the direction of transferred contents in textual explanations. Keyboard/switch buttons "Select container", "Add one", "Fill", "Transfer", "Read amounts", "Undo", "Reset" fully replace any fluid dragging or pouring animation. A screen reader receives full source/destination **before and after** tables, including leftovers and spare capacity, and can reason from the same information. Large targets, WCAG 2.2 AA, visible focus, reduced motion, no colors/sounds as sole cues, mobile/low-end equivalents and completely downloaded offline content are release requirements, **not proven features**.
+      
+      ## PRODUCTION / PLATFORM DEPENDENCIES
+      
+      - Current generic `LessonSection_Config` renderer supports `text`, `markdown`, `scene` Resources.
+      - Proposed: Capacity Pouring Bench, precise discrete no-spill state controller, genuine localization, accessible table/interactive controls, independent prop-free Section roots, tests and offline package integration.
+      - No physical calibrated volume or liter measurement, runtime Lesson config, scored Question/Quiz, Note API, user progress, analytics or invented "pour" platform event. A simple HTML/SVG discrete model is adequate; a costly fluid animation adds no required learning.
+      
+      ## EDITORIAL SOURCES AND OPEN QUESTIONS
+      
+      - Draft Methodologist Brief (full original source: production.methodology) and canonical `capacityConcept.data.ts` linked there.
+      - Editor: verify realism of "no-spill transfer" representation, the distinction between maximum capacity and current fill, and the accessibility of the same-scoop comparison.
+      - Formal approval remains pending; Content and Scene are **Provisional Drafts**.
+      
+      ## HANDOFF
+      
+      Methodologist approves the scope and concrete comparisons. Screenwriter/editor checks each fill/transfer case and localized instructions. Scene Designer/Coding Agent implements only from an **approved** Scene specification with tests and verified locale/Section APIs. Assessment Architect separately defines scoring, if ever requested.
