@@ -1,0 +1,650 @@
+config:
+  id: "ce649c04-655d-558c-afd1-b287421cb697"
+  slug: "divisionWithZero"
+  type: "lesson"
+  skills: ["656c998e-5fd5-412c-b6ba-7ae3f4a38cad","531a8f3a-537c-4e2a-985f-a9b57e7dab9a"]
+  params:
+    languages: ["ar","be","bn","de","en","es","et","fr","he","hi","id","ja","ka","kk","ko","lt","lv","mr","ms","pl","pt","qm","ta","te","tr","uk","ur","vi","zh"]
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Zero as Dividend Is Not Zero as Divisor"
+  flashcards:
+    items: {}
+    order: []
+  section:
+    items:
+      section1ShareNothingIntoFourGroups:
+        config:
+          id: "e672c575-e4de-4800-8c3c-c42ba759a87e"
+          slug: "section1ShareNothingIntoFourGroups"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Share Nothing into Four Groups"
+            navigationLabel:
+              en: "Share Nothing into Four Groups"
+          content:
+            items:
+              text1:
+                config:
+                  id: "00e10f14-74b1-4ff5-bb02-41cedc665f0f"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "There are zero counters and FOUR groups. How many does each receive?"
+              zeroDivisionBoundaryLab:
+                config:
+                  id: "ccbcfa38-39d8-4279-9aaa-3cda10453473"
+                  slug: "zeroDivisionBoundaryLab"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Zero Division Boundary Lab"
+                production:
+                  specification: |
+                    # Zero Division Boundary Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Zero as Dividend Is Not Zero as Divisor (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective(s): Model 0 ÷ 4 = 0 as four empty sharing groups and verify 4 × 0 = 0. Explain why 6 ÷ 0 is undefined: no quotient q could satisfy 0 × q = 6. Explain why 0 ÷ 0 is also undefined: 0 × q = 0 holds for many q and gives no single answer. Classify a fresh set of expressions as defined (0 ÷ 3 = 0, 9 ÷ 3 = 3) or undefined (9 ÷ 0, 0 ÷ 0), citing the divisor position. Methodologist Brief (original now embedded in this config.yaml) (Draft).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Distinguish the defined operation zero divided by a NONZERO divisor, which gives zero, from every attempt to divide BY zero, which cannot produce a unique quotient. Use the inverse multiplication check rather than a rote prohibition, with accessible empty-group and numerical explanations. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For any positive integer d, 0 ÷ d = 0: d equal groups of zero counters use zero total. In particular 0 ÷ 4 = 0 because 4 × 0 = 0; 0 ÷ 3 = 0. For any a, a ÷ 0 is undefined. If a=6, 0 × q = 6 is impossible because 0 × q = 0. If a=0, 0 × q = 0 holds for multiple q, so division does not produce ONE unique answer. 9 ÷ 3 = 3 checks 3 × 3 = 9. The dividend is the first operand, divisor the second: 0 ÷ 4 and 4 ÷ 0 cannot be swapped. These restrictions are mathematical, not only because there are no physical group trays. Work with small whole numbers; no limits on canonical Skill.
+                    
+                    **Misconceptions:** Mistake 0 ÷ 4 = 4 by copying divisor; mistake 4 ÷ 0 = 0 by assuming any zero produces zero; claim 0 ÷ 0 = 1 from the self-division rule; assert zero 'groups' is itself an arithmetic answer. For 0 ÷ 0, distinguish MANY compatible products from one determined quotient. Do not display a fake quotient for an undefined expression.
+                    
+                    **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Share Nothing into Four Groups:** Prompt “There are zero counters and FOUR groups. How many does each receive?”. Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0. Show **0 ÷ 4 = 0; 4 × 0 = 0**. Explanation: Each of four groups gets zero; together they account for zero counters. For a wrong attempt: If four is chosen, four groups of four would require sixteen counters, which we do not have.
+                    
+                    2. **Try Dividing Six by Zero:** Prompt “Can we divide SIX counters into ZERO groups and get one exact quotient?”. Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six. Show **6 ÷ 0 is undefined**. Explanation: Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works. For a wrong attempt: If child picks six or zero, substitute it in 0×q; both give zero, not six.
+                    
+                    3. **What About Zero Divided by Zero?:** Prompt “Is 0 ÷ 0 equal to one, zero, or another number?”. Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined. Show **0 ÷ 0 is undefined**. Explanation: All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero. For a wrong attempt: If learner assumes self-division makes one, note a÷a=1 only applies when a is nonzero.
+                    
+                    4. **Read the Divisor Carefully:** Prompt “Which are defined: 0 ÷ 3, 9 ÷ 3, 9 ÷ 0, 0 ÷ 0?”. Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'. Show **0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined**. Explanation: Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero. For a wrong attempt: If child marks 0÷3 undefined, point out divisor is three, not zero. If 9÷0 is marked zero, demonstrate 0×q can never give nine.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
+                    - **State:** Four independent Section cases, immutable dividend/divisor, zero-group model or multiplication-check candidate, explanation and classification; undefined has no numeric quotient or division output.
+                    - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
+                    - **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result. Never mark a wrong equality as correct or produce a quotient for an undefined case.
+                    - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Share Nothing into Four Groups: 0 ÷ 4 = 0; 4 × 0 = 0. Each of four groups gets zero; together they account for zero counters.
+                    2. Try Dividing Six by Zero: 6 ÷ 0 is undefined. Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works.
+                    3. What About Zero Divided by Zero?: 0 ÷ 0 is undefined. All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero.
+                    4. Read the Divisor Carefully: 0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined. Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero.
+                    5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
+                    6. Independent placements and reset never change the original mathematical problem or duplicate counters.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
+                  purpose: "Proposed interactive Scene for Share Nothing into Four Groups"
+                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+              markdown2:
+                config:
+                  id: "6cf0c81b-dc1d-4b02-8fb1-1065e0544364"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Each of four groups gets zero; together they account for zero counters."
+            order: ["text1","zeroDivisionBoundaryLab","markdown2"]
+        production:
+          purpose: "Share Nothing into Four Groups"
+          pedagogicalIntent: |
+            ### Section 1 — Share Nothing into Four Groups
+            
+            - **Outcome:** Model 0 ÷ 4 = 0 as four empty sharing groups and verify 4 × 0 = 0.
+            - **One ordered LessonSection_Config:** text → scene → markdown.
+            - **Text Resource (supported):** “There are zero counters and FOUR groups. How many does each receive?”
+            - **Scene Resource (generic integration supported; bespoke component proposed):** Zero Division Boundary Lab (Scene specification embedded in this config.yaml), independent entry 1. Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0.
+            - **Markdown Resource (supported):** “Each of four groups gets zero; together they account for zero counters.” Mathematical record: **0 ÷ 4 = 0; 4 × 0 = 0**.
+            - **Learner action and reflection:** Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0. Full model, arithmetic and “Show why” are accessible even without a trial. Predictions are formative, with clear original-operand labels.
+            - **Specific misconception feedback:** If four is chosen, four groups of four would require sixteen counters, which we do not have.
+            - **Exact state model:** Original dividend, divisor, unit role, quotient or expressly undefined state, object/group/step count, multiplication check and a fully operable text ledger.
+            - **Navigation:** Invite the next example after a complete explanation, with independent replay/reset and no success threshold.
+            - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
+            - **Planned unlocked Note:** “Zero divided by a nonzero number is zero.” after the complete evidence and explanation, not a scored answer or wired event.
+            - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
+            
+          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+      section2TryDividingSixByZero:
+        config:
+          id: "f1e8a884-808d-45c9-aaaa-0aceea86999b"
+          slug: "section2TryDividingSixByZero"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Try Dividing Six by Zero"
+            navigationLabel:
+              en: "Try Dividing Six by Zero"
+          content:
+            items:
+              text1:
+                config:
+                  id: "16377849-4400-4af8-af44-b59ff4c9bcfe"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Can we divide SIX counters into ZERO groups and get one exact quotient?"
+              zeroDivisionBoundaryLab:
+                config:
+                  id: "caf8a2bd-9185-479c-b20a-86e30686d9ea"
+                  slug: "zeroDivisionBoundaryLab"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Zero Division Boundary Lab"
+                production:
+                  specification: |
+                    # Zero Division Boundary Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Zero as Dividend Is Not Zero as Divisor (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective(s): Model 0 ÷ 4 = 0 as four empty sharing groups and verify 4 × 0 = 0. Explain why 6 ÷ 0 is undefined: no quotient q could satisfy 0 × q = 6. Explain why 0 ÷ 0 is also undefined: 0 × q = 0 holds for many q and gives no single answer. Classify a fresh set of expressions as defined (0 ÷ 3 = 0, 9 ÷ 3 = 3) or undefined (9 ÷ 0, 0 ÷ 0), citing the divisor position. Methodologist Brief (original now embedded in this config.yaml) (Draft).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Distinguish the defined operation zero divided by a NONZERO divisor, which gives zero, from every attempt to divide BY zero, which cannot produce a unique quotient. Use the inverse multiplication check rather than a rote prohibition, with accessible empty-group and numerical explanations. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For any positive integer d, 0 ÷ d = 0: d equal groups of zero counters use zero total. In particular 0 ÷ 4 = 0 because 4 × 0 = 0; 0 ÷ 3 = 0. For any a, a ÷ 0 is undefined. If a=6, 0 × q = 6 is impossible because 0 × q = 0. If a=0, 0 × q = 0 holds for multiple q, so division does not produce ONE unique answer. 9 ÷ 3 = 3 checks 3 × 3 = 9. The dividend is the first operand, divisor the second: 0 ÷ 4 and 4 ÷ 0 cannot be swapped. These restrictions are mathematical, not only because there are no physical group trays. Work with small whole numbers; no limits on canonical Skill.
+                    
+                    **Misconceptions:** Mistake 0 ÷ 4 = 4 by copying divisor; mistake 4 ÷ 0 = 0 by assuming any zero produces zero; claim 0 ÷ 0 = 1 from the self-division rule; assert zero 'groups' is itself an arithmetic answer. For 0 ÷ 0, distinguish MANY compatible products from one determined quotient. Do not display a fake quotient for an undefined expression.
+                    
+                    **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Share Nothing into Four Groups:** Prompt “There are zero counters and FOUR groups. How many does each receive?”. Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0. Show **0 ÷ 4 = 0; 4 × 0 = 0**. Explanation: Each of four groups gets zero; together they account for zero counters. For a wrong attempt: If four is chosen, four groups of four would require sixteen counters, which we do not have.
+                    
+                    2. **Try Dividing Six by Zero:** Prompt “Can we divide SIX counters into ZERO groups and get one exact quotient?”. Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six. Show **6 ÷ 0 is undefined**. Explanation: Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works. For a wrong attempt: If child picks six or zero, substitute it in 0×q; both give zero, not six.
+                    
+                    3. **What About Zero Divided by Zero?:** Prompt “Is 0 ÷ 0 equal to one, zero, or another number?”. Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined. Show **0 ÷ 0 is undefined**. Explanation: All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero. For a wrong attempt: If learner assumes self-division makes one, note a÷a=1 only applies when a is nonzero.
+                    
+                    4. **Read the Divisor Carefully:** Prompt “Which are defined: 0 ÷ 3, 9 ÷ 3, 9 ÷ 0, 0 ÷ 0?”. Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'. Show **0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined**. Explanation: Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero. For a wrong attempt: If child marks 0÷3 undefined, point out divisor is three, not zero. If 9÷0 is marked zero, demonstrate 0×q can never give nine.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
+                    - **State:** Four independent Section cases, immutable dividend/divisor, zero-group model or multiplication-check candidate, explanation and classification; undefined has no numeric quotient or division output.
+                    - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
+                    - **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result. Never mark a wrong equality as correct or produce a quotient for an undefined case.
+                    - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Share Nothing into Four Groups: 0 ÷ 4 = 0; 4 × 0 = 0. Each of four groups gets zero; together they account for zero counters.
+                    2. Try Dividing Six by Zero: 6 ÷ 0 is undefined. Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works.
+                    3. What About Zero Divided by Zero?: 0 ÷ 0 is undefined. All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero.
+                    4. Read the Divisor Carefully: 0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined. Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero.
+                    5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
+                    6. Independent placements and reset never change the original mathematical problem or duplicate counters.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
+                  purpose: "Proposed interactive Scene for Try Dividing Six by Zero"
+                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+              markdown2:
+                config:
+                  id: "7e469166-205f-47af-88e9-2ed485b9a935"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works."
+            order: ["text1","zeroDivisionBoundaryLab","markdown2"]
+        production:
+          purpose: "Try Dividing Six by Zero"
+          pedagogicalIntent: |
+            ### Section 2 — Try Dividing Six by Zero
+            
+            - **Outcome:** Explain why 6 ÷ 0 is undefined: no quotient q could satisfy 0 × q = 6.
+            - **One ordered LessonSection_Config:** text → scene → markdown.
+            - **Text Resource (supported):** “Can we divide SIX counters into ZERO groups and get one exact quotient?”
+            - **Scene Resource (generic integration supported; bespoke component proposed):** Zero Division Boundary Lab (Scene specification embedded in this config.yaml), independent entry 2. Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six.
+            - **Markdown Resource (supported):** “Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works.” Mathematical record: **6 ÷ 0 is undefined**.
+            - **Learner action and reflection:** Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six. Full model, arithmetic and “Show why” are accessible even without a trial. Predictions are formative, with clear original-operand labels.
+            - **Specific misconception feedback:** If child picks six or zero, substitute it in 0×q; both give zero, not six.
+            - **Exact state model:** Original dividend, divisor, unit role, quotient or expressly undefined state, object/group/step count, multiplication check and a fully operable text ledger.
+            - **Navigation:** Invite the next example after a complete explanation, with independent replay/reset and no success threshold.
+            - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
+            - **Planned unlocked Note:** “We cannot divide by zero, even when the starting number is zero.” after the complete evidence and explanation, not a scored answer or wired event.
+            - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
+            
+          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+      section3WhatAboutZeroDividedByZero:
+        config:
+          id: "1651936e-64d8-41ff-9e00-f3989a5ca651"
+          slug: "section3WhatAboutZeroDividedByZero"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "What About Zero Divided by Zero?"
+            navigationLabel:
+              en: "What About Zero Divided by Zero?"
+          content:
+            items:
+              text1:
+                config:
+                  id: "c93388bf-441d-45c2-a0d8-dc0dbadfcf20"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Is 0 ÷ 0 equal to one, zero, or another number?"
+              zeroDivisionBoundaryLab:
+                config:
+                  id: "70540c43-4ac5-487e-ad4a-cfd10da48324"
+                  slug: "zeroDivisionBoundaryLab"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Zero Division Boundary Lab"
+                production:
+                  specification: |
+                    # Zero Division Boundary Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Zero as Dividend Is Not Zero as Divisor (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective(s): Model 0 ÷ 4 = 0 as four empty sharing groups and verify 4 × 0 = 0. Explain why 6 ÷ 0 is undefined: no quotient q could satisfy 0 × q = 6. Explain why 0 ÷ 0 is also undefined: 0 × q = 0 holds for many q and gives no single answer. Classify a fresh set of expressions as defined (0 ÷ 3 = 0, 9 ÷ 3 = 3) or undefined (9 ÷ 0, 0 ÷ 0), citing the divisor position. Methodologist Brief (original now embedded in this config.yaml) (Draft).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Distinguish the defined operation zero divided by a NONZERO divisor, which gives zero, from every attempt to divide BY zero, which cannot produce a unique quotient. Use the inverse multiplication check rather than a rote prohibition, with accessible empty-group and numerical explanations. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For any positive integer d, 0 ÷ d = 0: d equal groups of zero counters use zero total. In particular 0 ÷ 4 = 0 because 4 × 0 = 0; 0 ÷ 3 = 0. For any a, a ÷ 0 is undefined. If a=6, 0 × q = 6 is impossible because 0 × q = 0. If a=0, 0 × q = 0 holds for multiple q, so division does not produce ONE unique answer. 9 ÷ 3 = 3 checks 3 × 3 = 9. The dividend is the first operand, divisor the second: 0 ÷ 4 and 4 ÷ 0 cannot be swapped. These restrictions are mathematical, not only because there are no physical group trays. Work with small whole numbers; no limits on canonical Skill.
+                    
+                    **Misconceptions:** Mistake 0 ÷ 4 = 4 by copying divisor; mistake 4 ÷ 0 = 0 by assuming any zero produces zero; claim 0 ÷ 0 = 1 from the self-division rule; assert zero 'groups' is itself an arithmetic answer. For 0 ÷ 0, distinguish MANY compatible products from one determined quotient. Do not display a fake quotient for an undefined expression.
+                    
+                    **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Share Nothing into Four Groups:** Prompt “There are zero counters and FOUR groups. How many does each receive?”. Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0. Show **0 ÷ 4 = 0; 4 × 0 = 0**. Explanation: Each of four groups gets zero; together they account for zero counters. For a wrong attempt: If four is chosen, four groups of four would require sixteen counters, which we do not have.
+                    
+                    2. **Try Dividing Six by Zero:** Prompt “Can we divide SIX counters into ZERO groups and get one exact quotient?”. Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six. Show **6 ÷ 0 is undefined**. Explanation: Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works. For a wrong attempt: If child picks six or zero, substitute it in 0×q; both give zero, not six.
+                    
+                    3. **What About Zero Divided by Zero?:** Prompt “Is 0 ÷ 0 equal to one, zero, or another number?”. Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined. Show **0 ÷ 0 is undefined**. Explanation: All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero. For a wrong attempt: If learner assumes self-division makes one, note a÷a=1 only applies when a is nonzero.
+                    
+                    4. **Read the Divisor Carefully:** Prompt “Which are defined: 0 ÷ 3, 9 ÷ 3, 9 ÷ 0, 0 ÷ 0?”. Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'. Show **0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined**. Explanation: Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero. For a wrong attempt: If child marks 0÷3 undefined, point out divisor is three, not zero. If 9÷0 is marked zero, demonstrate 0×q can never give nine.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
+                    - **State:** Four independent Section cases, immutable dividend/divisor, zero-group model or multiplication-check candidate, explanation and classification; undefined has no numeric quotient or division output.
+                    - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
+                    - **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result. Never mark a wrong equality as correct or produce a quotient for an undefined case.
+                    - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Share Nothing into Four Groups: 0 ÷ 4 = 0; 4 × 0 = 0. Each of four groups gets zero; together they account for zero counters.
+                    2. Try Dividing Six by Zero: 6 ÷ 0 is undefined. Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works.
+                    3. What About Zero Divided by Zero?: 0 ÷ 0 is undefined. All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero.
+                    4. Read the Divisor Carefully: 0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined. Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero.
+                    5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
+                    6. Independent placements and reset never change the original mathematical problem or duplicate counters.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
+                  purpose: "Proposed interactive Scene for What About Zero Divided by Zero?"
+                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+              markdown2:
+                config:
+                  id: "46b7f4f4-5026-4a09-825b-186a3f731487"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero."
+            order: ["text1","zeroDivisionBoundaryLab","markdown2"]
+        production:
+          purpose: "What About Zero Divided by Zero?"
+          pedagogicalIntent: |
+            ### Section 3 — What About Zero Divided by Zero?
+            
+            - **Outcome:** Explain why 0 ÷ 0 is also undefined: 0 × q = 0 holds for many q and gives no single answer.
+            - **One ordered LessonSection_Config:** text → scene → markdown.
+            - **Text Resource (supported):** “Is 0 ÷ 0 equal to one, zero, or another number?”
+            - **Scene Resource (generic integration supported; bespoke component proposed):** Zero Division Boundary Lab (Scene specification embedded in this config.yaml), independent entry 3. Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined.
+            - **Markdown Resource (supported):** “All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero.” Mathematical record: **0 ÷ 0 is undefined**.
+            - **Learner action and reflection:** Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined. Full model, arithmetic and “Show why” are accessible even without a trial. Predictions are formative, with clear original-operand labels.
+            - **Specific misconception feedback:** If learner assumes self-division makes one, note a÷a=1 only applies when a is nonzero.
+            - **Exact state model:** Original dividend, divisor, unit role, quotient or expressly undefined state, object/group/step count, multiplication check and a fully operable text ledger.
+            - **Navigation:** Invite the next example after a complete explanation, with independent replay/reset and no success threshold.
+            - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
+            - **Planned unlocked Note:** “We cannot divide by zero, even when the starting number is zero.” after the complete evidence and explanation, not a scored answer or wired event.
+            - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
+            
+          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+      section4ReadTheDivisorCarefully:
+        config:
+          id: "1ba1495e-c58a-4e9d-89ec-b37c2184a3eb"
+          slug: "section4ReadTheDivisorCarefully"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Read the Divisor Carefully"
+            navigationLabel:
+              en: "Read the Divisor Carefully"
+          content:
+            items:
+              text1:
+                config:
+                  id: "b35a6fef-970e-483c-a9c0-13e11cf50b8e"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Which are defined: 0 ÷ 3, 9 ÷ 3, 9 ÷ 0, 0 ÷ 0?"
+              zeroDivisionBoundaryLab:
+                config:
+                  id: "aa6b5793-1701-4000-9f15-05953b80711a"
+                  slug: "zeroDivisionBoundaryLab"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Zero Division Boundary Lab"
+                production:
+                  specification: |
+                    # Zero Division Boundary Lab — Scene Specification
+                    
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Zero as Dividend Is Not Zero as Divisor (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective(s): Model 0 ÷ 4 = 0 as four empty sharing groups and verify 4 × 0 = 0. Explain why 6 ÷ 0 is undefined: no quotient q could satisfy 0 × q = 6. Explain why 0 ÷ 0 is also undefined: 0 × q = 0 holds for many q and gives no single answer. Classify a fresh set of expressions as defined (0 ÷ 3 = 0, 9 ÷ 3 = 3) or undefined (9 ÷ 0, 0 ÷ 0), citing the divisor position. Methodologist Brief (original now embedded in this config.yaml) (Draft).
+                    
+                    ## LEARNER PURPOSE AND CONCEPT
+                    
+                    Distinguish the defined operation zero divided by a NONZERO divisor, which gives zero, from every attempt to divide BY zero, which cannot produce a unique quotient. Use the inverse multiplication check rather than a rote prohibition, with accessible empty-group and numerical explanations. The learner can inspect the complete group/number model and challenge candidate answers, rather than simply reading a rule.
+                    
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+                    
+                    For any positive integer d, 0 ÷ d = 0: d equal groups of zero counters use zero total. In particular 0 ÷ 4 = 0 because 4 × 0 = 0; 0 ÷ 3 = 0. For any a, a ÷ 0 is undefined. If a=6, 0 × q = 6 is impossible because 0 × q = 0. If a=0, 0 × q = 0 holds for multiple q, so division does not produce ONE unique answer. 9 ÷ 3 = 3 checks 3 × 3 = 9. The dividend is the first operand, divisor the second: 0 ÷ 4 and 4 ÷ 0 cannot be swapped. These restrictions are mathematical, not only because there are no physical group trays. Work with small whole numbers; no limits on canonical Skill.
+                    
+                    **Misconceptions:** Mistake 0 ÷ 4 = 4 by copying divisor; mistake 4 ÷ 0 = 0 by assuming any zero produces zero; claim 0 ÷ 0 = 1 from the self-division rule; assert zero 'groups' is itself an arithmetic answer. For 0 ÷ 0, distinguish MANY compatible products from one determined quotient. Do not display a fake quotient for an undefined expression.
+                    
+                    **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result.
+                    
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+                    
+                    1. **Share Nothing into Four Groups:** Prompt “There are zero counters and FOUR groups. How many does each receive?”. Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0. Show **0 ÷ 4 = 0; 4 × 0 = 0**. Explanation: Each of four groups gets zero; together they account for zero counters. For a wrong attempt: If four is chosen, four groups of four would require sixteen counters, which we do not have.
+                    
+                    2. **Try Dividing Six by Zero:** Prompt “Can we divide SIX counters into ZERO groups and get one exact quotient?”. Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six. Show **6 ÷ 0 is undefined**. Explanation: Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works. For a wrong attempt: If child picks six or zero, substitute it in 0×q; both give zero, not six.
+                    
+                    3. **What About Zero Divided by Zero?:** Prompt “Is 0 ÷ 0 equal to one, zero, or another number?”. Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined. Show **0 ÷ 0 is undefined**. Explanation: All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero. For a wrong attempt: If learner assumes self-division makes one, note a÷a=1 only applies when a is nonzero.
+                    
+                    4. **Read the Divisor Carefully:** Prompt “Which are defined: 0 ÷ 3, 9 ÷ 3, 9 ÷ 0, 0 ÷ 0?”. Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'. Show **0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined**. Explanation: Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero. For a wrong attempt: If child marks 0÷3 undefined, point out divisor is three, not zero. If 9÷0 is marked zero, demonstrate 0×q can never give nine.
+                    
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+                    
+                    - Four independent, self-contained **prop-free Scene placements**, one per Section. No public `mode` prop or invented Resource_Config field.
+                    - **State:** Four independent Section cases, immutable dividend/divisor, zero-group model or multiplication-check candidate, explanation and classification; undefined has no numeric quotient or division output.
+                    - **Objects and controls:** Original expression with semantic role labels, countable HTML/SVG group/step models, candidate selectors, numerical check, explanatory text ledger, Show why/Reset/Undo controls.
+                    - **Invariant:** When divisor>0, dividend=divisor×quotient; 0/d=0. For divisor=0, NO q is exposed as uniquely correct, including 0/0. No empty visual should be misread as a result. Never mark a wrong equality as correct or produce a quotient for an undefined case.
+                    - Learner may reveal the complete explanation without guessing. No score, retry limit, mastery record, Note API or persisted Question result.
+                    
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+                    
+                    Low-cost countable groups and large stable numerals; each learner-controlled step produces the correct numerical update. Reduced motion shows same before/after state instantly. No required audio, video, external art, WebGL or dragging.
+                    
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+                    
+                    Translate all instructions, group/step counts, operands, result/undefined notices and feedback completely for every locale without fallback. Semantic RTL math preserves original dividend/divisor positions. Native keyboard/switch/touch actions and an interactive ordered numerical text ledger let screen-reader users execute the same operations; screen-reader status announces exact numerical results. WCAG 2.2 AA, visible focus, large controls, 200% zoom, mobile, reduced motion and full local offline calculations after download.
+                    
+                    ## ACCEPTANCE SCENARIOS
+                    
+                    1. Share Nothing into Four Groups: 0 ÷ 4 = 0; 4 × 0 = 0. Each of four groups gets zero; together they account for zero counters.
+                    2. Try Dividing Six by Zero: 6 ÷ 0 is undefined. Any alleged quotient would need zero multiplied by that quotient to equal six. Zero times any candidate is zero, so none works.
+                    3. What About Zero Divided by Zero?: 0 ÷ 0 is undefined. All three candidates work as a product, so none is selected as the one division answer. Zero as divisor is not allowed even when dividend is zero.
+                    4. Read the Divisor Carefully: 0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined. Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero.
+                    5. Wrong predictions give specific arithmetic feedback; full reveal and retry work without scores.
+                    6. Independent placements and reset never change the original mathematical problem or duplicate counters.
+                    7. Keyboard, screen reader, RTL, reduced motion, zoom/mobile and offline after download preserve the same values and meanings.
+                    
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+                    
+                    Generic Scene Resource rendering exists; Zero Division Boundary Lab is proposed, not implemented. Require approval of Methodologist Brief and separate Content/Scene reviews before Design Scene/Coding Agent creates prop-free components and tests. Assessment Architect separately owns scored Questions. Editorial review: Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
+                  purpose: "Proposed interactive Scene for Read the Divisor Carefully"
+                  productionNotes: "Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent."
+              markdown2:
+                config:
+                  id: "764d0744-85fe-4433-9e0a-ecee15e1d225"
+                  slug: "markdown2"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero."
+            order: ["text1","zeroDivisionBoundaryLab","markdown2"]
+        production:
+          purpose: "Read the Divisor Carefully"
+          pedagogicalIntent: |
+            ### Section 4 — Read the Divisor Carefully
+            
+            - **Outcome:** Classify a fresh set of expressions as defined (0 ÷ 3 = 0, 9 ÷ 3 = 3) or undefined (9 ÷ 0, 0 ÷ 0), citing the divisor position.
+            - **One ordered LessonSection_Config:** text → scene → markdown.
+            - **Text Resource (supported):** “Which are defined: 0 ÷ 3, 9 ÷ 3, 9 ÷ 0, 0 ÷ 0?”
+            - **Scene Resource (generic integration supported; bespoke component proposed):** Zero Division Boundary Lab (Scene specification embedded in this config.yaml), independent entry 4. Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'.
+            - **Markdown Resource (supported):** “Look at the divisor, the number AFTER ÷. If it is zero, division is undefined. A zero FIRST number is fine if divisor is nonzero.” Mathematical record: **0 ÷ 3 = 0; 9 ÷ 3 = 3; 9 ÷ 0 and 0 ÷ 0 undefined**.
+            - **Learner action and reflection:** Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'. Full model, arithmetic and “Show why” are accessible even without a trial. Predictions are formative, with clear original-operand labels.
+            - **Specific misconception feedback:** If child marks 0÷3 undefined, point out divisor is three, not zero. If 9÷0 is marked zero, demonstrate 0×q can never give nine.
+            - **Exact state model:** Original dividend, divisor, unit role, quotient or expressly undefined state, object/group/step count, multiplication check and a fully operable text ledger.
+            - **Navigation:** End with a voluntary explanation of what makes the division true or undefined, not with a scored mastery result.
+            - **Accessibility, localization and RTL:** Child-readable real translated strings, semantically stable equation operand order in RTL, native controls and screen-reader status, mobile/zoom, reduced motion, offline calculation.
+            - **Planned unlocked Note:** “We cannot divide by zero, even when the starting number is zero.” after the complete evidence and explanation, not a scored answer or wired event.
+            - **Dependencies:** Proposed prop-free Scene, own implementation/tests pending approval; no invented Question/Note API or runtime mode property.
+            
+          productionNotes: "Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved."
+    order: ["section1ShareNothingIntoFourGroups","section2TryDividingSixByZero","section3WhatAboutZeroDividedByZero","section4ReadTheDivisorCarefully"]
+production:
+  documentLanguage: "en"
+  methodology: |
+    # Zero as Dividend Is Not Zero as Divisor — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: divisionWithZero
+    Methodologist status: Draft
+    Primary audience: Grade 3
+    Code: Not implemented
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Distinguish the defined operation zero divided by a NONZERO divisor, which gives zero, from every attempt to divide BY zero, which cannot produce a unique quotient. Use the inverse multiplication check rather than a rote prohibition, with accessible empty-group and numerical explanations.
+    
+    ## Target audience
+    
+    Grade 3, based on the stated conceptual prerequisites. The source Skills retain their independent age-neutral taxonomy definitions.
+    
+    ## Prerequisites
+    
+    - Understand exact division A ÷ d = q for positive d, with whole-number models.
+    - Use d × q = A to verify a proposed quotient.
+    - Know zero represents none, and 0 × n = 0 for small nonnegative n.
+    
+    ## Target Skills
+    
+    - [zeroDividend.data.ts](../../../../data/skills/arithmetic/divide/skills/zeroDividend.data.ts)
+    - [noDivisionByZero.data.ts](../../../../data/skills/arithmetic/divide/skills/noDivisionByZero.data.ts)
+    
+    ## Expected learning outcomes
+    
+    - Model 0 ÷ 4 = 0 as four empty sharing groups and verify 4 × 0 = 0.
+    - Explain why 6 ÷ 0 is undefined: no quotient q could satisfy 0 × q = 6.
+    - Explain why 0 ÷ 0 is also undefined: 0 × q = 0 holds for many q and gives no single answer.
+    - Classify a fresh set of expressions as defined (0 ÷ 3 = 0, 9 ÷ 3 = 3) or undefined (9 ÷ 0, 0 ÷ 0), citing the divisor position.
+    
+    ## Essential subject matter
+    
+    For any positive integer d, 0 ÷ d = 0: d equal groups of zero counters use zero total. In particular 0 ÷ 4 = 0 because 4 × 0 = 0; 0 ÷ 3 = 0. For any a, a ÷ 0 is undefined. If a=6, 0 × q = 6 is impossible because 0 × q = 0. If a=0, 0 × q = 0 holds for multiple q, so division does not produce ONE unique answer. 9 ÷ 3 = 3 checks 3 × 3 = 9. The dividend is the first operand, divisor the second: 0 ÷ 4 and 4 ÷ 0 cannot be swapped. These restrictions are mathematical, not only because there are no physical group trays. Work with small whole numbers; no limits on canonical Skill.
+    
+    ## Conceptual progression and dependencies
+    
+    1. **Share Nothing into Four Groups:** Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0.
+    2. **Try Dividing Six by Zero:** Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six.
+    3. **What About Zero Divided by Zero?:** Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined.
+    4. **Read the Divisor Carefully:** Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'.
+    
+    ## Misconceptions, examples and boundaries
+    
+    Mistake 0 ÷ 4 = 4 by copying divisor; mistake 4 ÷ 0 = 0 by assuming any zero produces zero; claim 0 ÷ 0 = 1 from the self-division rule; assert zero 'groups' is itself an arithmetic answer. For 0 ÷ 0, distinguish MANY compatible products from one determined quotient. Do not display a fake quotient for an undefined expression.
+    
+    ## Localization, accessibility and offline intent
+    
+    Every mathematical role, operand label, explanation, control and status translated genuinely into every supported locale, without English fallback. Retain semantic mathematical order in RTL, and provide equivalent fully operable keyboard/touch/switch controls and ordered screen-reader number/quantity records. Large targets, visible focus, WCAG 2.2 AA, zoom/mobile, reduced motion and entirely local deterministic feedback after downloaded language data; no audio-only, dragging or speech-recognition dependency.
+    
+    ## Sources and factual verification
+    
+    - [Playground Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned generated view awaiting regeneration after this agent branch is integrated.
+    - Canonical source Mathematics Skill files linked by exact filenames above, with UUIDs and translations preserved.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), comparative early division context, not guaranteed national Grade alignment.
+    
+    ## Curriculum / Program compatibility
+    
+    No Program dependence. Lesson-specific Grade 3, while atomic Skills remain independent of age/grade.
+    
+    ## Open editorial decisions
+    
+    - Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
+    - Editor to verify mathematical boundaries and clarity of every example, accessibility and translation requirements.
+    
+    ## Methodologist handoff
+    
+    Draft, editorial approval pending. The accompanying Content and Scene specifications are provisional Drafts, not claims of approved methodology or permission to build runtime code.
+  productionNotes: |-
+    All content.md text outside ordered Sections — editorial premise, accessibility, global feedback, production and dependencies:
+    
+    # Zero as Dividend Is Not Zero as Divisor — Content
+    
+    Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/divisionWithZero/
+    Primary audience: Grade 3
+    Methodologist source: Methodologist Brief (original now embedded in this config.yaml) — Draft, not approved
+    Target Skills: zeroDividend, noDivisionByZero; direct canonical links in the Methodologist Brief
+    Program dependence: None
+    
+    ## INSTRUCTIONAL CONCEPT
+    
+    Distinguish the defined operation zero divided by a NONZERO divisor, which gives zero, from every attempt to divide BY zero, which cannot produce a unique quotient. Use the inverse multiplication check rather than a rote prohibition, with accessible empty-group and numerical explanations.
+    
+    For any positive integer d, 0 ÷ d = 0: d equal groups of zero counters use zero total. In particular 0 ÷ 4 = 0 because 4 × 0 = 0; 0 ÷ 3 = 0. For any a, a ÷ 0 is undefined. If a=6, 0 × q = 6 is impossible because 0 × q = 0. If a=0, 0 × q = 0 holds for multiple q, so division does not produce ONE unique answer. 9 ÷ 3 = 3 checks 3 × 3 = 9. The dividend is the first operand, divisor the second: 0 ÷ 4 and 4 ÷ 0 cannot be swapped. These restrictions are mathematical, not only because there are no physical group trays. Work with small whole numbers; no limits on canonical Skill.
+    
+    Learners act on a controlled model or interpret an original equation, test a prediction and receive an exact explanation. The mathematical statement never changes just to make a guess look correct.
+    
+    ## LEARNER JOURNEY
+    
+    1. **Share Nothing into Four Groups:** Show four labeled empty groups, zero original counters, accessible ledger; allow learner to inspect every empty group and check 4×0=0.
+    2. **Try Dividing Six by Zero:** Show the original 6÷0, allow inspection of nonzero six total and zero group-count boundary, and test the equation 0×q=6 with candidate q 0/1/6, all yielding 0, never six.
+    3. **What About Zero Divided by Zero?:** Keep 0÷0 visibly _undefined_, offer candidate q=0,1,2 and compute 0×q=0 for all; point out a division result must be uniquely determined.
+    4. **Read the Divisor Carefully:** Offer four independent expression cards with native labels for first/second operand and explanatory classification. Check 3×0=0 and 3×3=9; for either /0 explicitly show 'undefined'.
+    
+    ## SECTION PLAN
+    
+    
+    ## CUSTOM SCENE SPECIFICATIONS
+    
+    - Zero Division Boundary Lab (Scene specification embedded in this config.yaml), one standalone Draft spec with four independent prop-free Section-specific entries.
+    
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+    
+    - “Zero divided by a nonzero number is zero.” — proposed only after a full worked model is accessible.
+    - “We cannot divide by zero, even when the starting number is zero.” — proposed only after a full worked model is accessible.
+    
+    No Note persistence, unlock event, personal offline sheet, scheduler or mastery state is implemented by the document.
+    
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+    
+    New numerical examples with transparent feedback are formative experiences. Assessment Architect separately approves any graded Questions, Skill coverage, permitted answer formats, thresholds, retries and mastery evidence. A child's one correct answer in a proposed Scene is not a validated score. No runtime Quiz/Question included.
+    
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+    
+    Use real translations in every supported locale (no silent English fallback), including result-check, undefined-operation explanations, object states and aria labels. LTR/RTL adapt semantically, preserving operand roles. An operable ordered count/number ledger plus native keyboard/touch/switch controls must give a nonvisual child every choice and mathematical step; do not rely on color, dragging, animation, sound or time. WCAG 2.2 AA, zoom/mobile, focus, reduced motion and local offline parity after the entire chosen-language package is downloaded.
+    
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+    
+    Text/markdown/scene Resource rendering and LessonSection_Config exist; Zero Division Boundary Lab is **proposed and not implemented**, with prop-free entries, real locale integration and own tests required. Notes/review/sync/download are separate product capabilities, not assumed existing. No Quiz, Question, React Scene, scoring or mastery implementation is part of this editorial batch.
+    
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+    
+    - Methodologist Brief (original now embedded in this config.yaml), Draft, not approved.
+    - [Generated Playground Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md) (coordinator-controlled).
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Grade 3 explanation of 0÷0 should be intuitive, explicit and optional to explore; ensure it does not accidentally suggest a quotient of zero.
+    
+    ## HANDOFF
+    
+    Provisional four-Section Screenwriter Draft plus separate Scene Draft, requiring Methodologist/editor approval before Scene Designer and Coding Agent implementation. Assessment Architect owns graded tasks. No existing Lessons modified.
+    
+    
+    Editorial state: provisional draft; pending independent approval. Locales beyond English are intended but not yet translated.
