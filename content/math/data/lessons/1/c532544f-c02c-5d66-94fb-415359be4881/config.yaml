@@ -574,7 +574,7 @@ production:
     
     ## Sources and factual verification
     
-    - [Code-generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md), approved unknownSubtrahend Skill semantics.
+    - Code-generated Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative), approved unknownSubtrahend Skill semantics.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), early-grade unknown-number equations, comparative reference.
     - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), concrete and symbolic models.
     
@@ -645,7 +645,7 @@ production:
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
     - Methodologist Brief (incorporated in this config.yaml) (Draft, needs explicit approval).
-    - [Generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
+    - Generated Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative).
     - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editor to confirm whether unknown-minuend comparison is short enough not to dilute the atomic Skill; no Program/curriculum alignment claims.
     

@@ -582,7 +582,7 @@ production:
     
     ## Sources and factual verification
     
-    - [Generated Code taxonomy](../../../../docs/generated/skills/taxonomy.en.md) plus the linked Skill Code source, preserving its mathematical domain boundaries.
+    - Generated Code taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative) plus the linked Skill Code source, preserving its mathematical domain boundaries.
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), early multiplication as comparative context only.
     - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), concrete-to-symbolic explanatory support.
     
@@ -655,7 +655,7 @@ production:
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
     - Methodologist Brief (incorporated in this config.yaml), currently Draft and explicitly not approved.
-    - [Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
+    - Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative).
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Editorial: Keep this Skill distinct from arrayModel: the array lesson teaches representation and row/column counting, whereas this Lesson targets the invariant when factor order changes. Whether to show one optional subtraction counterexample is an editorial choice; do not teach negative results.
     - Technical: implement consistent semantic model for supported locales, RTL and offline.

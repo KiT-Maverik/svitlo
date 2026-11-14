@@ -448,7 +448,7 @@ production:
     
     ## Methodologist handoff
     
-    **Draft pending approval.** The companion Content (incorporated in this config.yaml) and any [Scene specifications](./scenes/) are provisional review materials authorized for concurrent preparation, not evidence that the Methodologist approval gate has passed.
+    **Draft pending approval.** The companion Content (incorporated in this config.yaml) and any Scene specifications (Scene specifications incorporated into this config.yaml) are provisional review materials authorized for concurrent preparation, not evidence that the Methodologist approval gate has passed.
   purpose: "What Do We Know? What Must We Find?: preserve existing standalone Lesson plan without new assessments or Scene implementation"
   productionNotes: |-
     Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:

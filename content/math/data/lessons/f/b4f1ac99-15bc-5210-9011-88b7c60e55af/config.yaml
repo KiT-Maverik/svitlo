@@ -582,7 +582,7 @@ production:
     
     ## Sources and factual verification
     
-    - [Generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned; regeneration pending integration of this branch.
+    - Generated Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative), coordinator-owned; regeneration pending integration of this branch.
     - Canonical Mathematics Skill Code linked by full filename in Target Skills.
     - [Common Core Math Standards](https://corestandards.org/mathematics-standards/), comparative mathematical development only.
     
@@ -656,7 +656,7 @@ production:
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
     
     - Methodologist Brief (incorporated in this config.yaml), Draft.
-    - [Generated Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md), coordinator-owned and not edited.
+    - Generated Skill taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative), coordinator-owned and not edited.
     - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
     - Keep 0 ÷ 0 as a short age-appropriate boundary and avoid requiring algebraic proof.
     

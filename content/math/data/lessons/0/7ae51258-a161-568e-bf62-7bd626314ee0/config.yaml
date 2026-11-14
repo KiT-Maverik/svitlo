@@ -726,7 +726,7 @@ production:
     
     - [spatialOrientationPath.data.ts](../../../../data/skills/geometry/orientation/skills/spatialOrientationPath.data.ts) — immutable canonical Mathematics Skill data copied from `content/math/data/skills/` with its UUID, translations and methodological description preserved.
     - [Studio Methodologist persona](../../../../../../studio/personas/methodist.persona.md) and [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — editorial scope and workflow.
-    - [Playground taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) — currently stale for these newly migrated domain Skills; coordinator regeneration is required before it can confirm their inclusion.
+    - Playground taxonomy view (historical generated taxonomy view unavailable; canonical Skill data is authoritative) — currently stale for these newly migrated domain Skills; coordinator regeneration is required before it can confirm their inclusion.
     
     The examples are checked against the precise canonical Skill description, not treated as evidence of compliance with any particular jurisdiction's curriculum.
     

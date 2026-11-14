@@ -761,7 +761,7 @@ production:
     
     - [shapeOnSolidSurface.data.ts](../../../../data/skills/geometry/solids/skills/shapeOnSolidSurface.data.ts) — canonical source migrated verbatim from Mathematics `main`, including UUID, translations and methodological description.
     - [Methodologist Persona](../../../../../../studio/personas/methodist.persona.md), [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) and [Lesson entity](../../../../../../studio/docs/entities/lesson.md) — governing editorial scope, autonomy and approval.
-    - [Playground generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md) — a **coordinator-owned generated view** that has **not been regenerated** to include these pending Skill imports. Canonical `*.data.ts` source files above are the verified sources.
+    - Playground generated English taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative) — a **coordinator-owned generated view** that has **not been regenerated** to include these pending Skill imports. Canonical `*.data.ts` source files above are the verified sources.
     
     The examples are pedagogically simplified as specifically described; they make no national Curriculum alignment or experimental instructional-effectiveness claims.
     
