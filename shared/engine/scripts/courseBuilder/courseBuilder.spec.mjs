@@ -247,7 +247,7 @@ test('Course Build overrides render additional configurators and never create st
   const code = renderCourseSource(source, { overrides });
   assert(code.includes('content: {') || code.includes('"content": {'));
   assert(code.includes('"additionalItems": {'));
-  assert(code.includes('UNRESOLVED_LESSON_2'));
+  assert(code.includes('UNRESOLVED_LESSON_1'));
   assert(code.includes('.build.overrides('));
   assert(!code.includes('defineLesson('));
 });
