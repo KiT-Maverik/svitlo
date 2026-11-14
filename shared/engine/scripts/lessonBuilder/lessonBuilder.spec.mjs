@@ -472,7 +472,8 @@ test('one YAML source creates ID-addressed Scene/media specs and a methodology w
     assert.match(code, /defineImage\(/);
     assert.doesNotMatch(code, /"__production"|"production"|"specification"/);
     assert(!code.includes('Two groups of five counters.'));
-    assert.doesNotMatch(code, /"src"/); // A missing asset remains a real TypeScript diagnostic.
+    const imageDraft = code.slice(code.indexOf('"visualImage": defineImage('));
+    assert.doesNotMatch(imageDraft, /"src"/); // Only this pending image has no src.
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     const before = fs.readFileSync(sceneSpec, 'utf8');
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
