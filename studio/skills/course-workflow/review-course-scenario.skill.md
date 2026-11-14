@@ -14,7 +14,7 @@ For the selected exact Course UUID under `content/<book>/data/courses/<bucket>/<
 
 - Approved Course `methodology.md`, the current `toc.yaml` with resolved Lesson slots and actual Lesson configuration for every affected slot.
 - The current authored Course story/episode/scene specifications and **existing** Course-owned TS sources, plus their editorial approvals. Do not invent a nonexistent Course Screenwriting skill or imply that story authoring is implemented by this review.
-- `overrides.yaml` when present, including the origin/rationale for scenario changes in linked editorial artifacts; inspect applicable Section and ContentBlock slugs and original Lesson Data.
+- The canonical Course sparse Build overrides source (root `config.yaml.overrides` for new technical authoring, or an existing current-format `overrides.yaml`), including the origin/rationale for scenario changes in linked editorial artifacts; inspect applicable Section and ContentBlock slugs and original Lesson Data.
 - Existing independent Lesson reviews or approval links when a Course change would alter their educational content.
 
 If original Lesson Data, an applicable scene specification or a required approval is missing, record a precise blocker. Never assume that `toc.yaml` alone supplies runtime Section slugs or Lesson parameters.
@@ -30,7 +30,7 @@ If original Lesson Data, an applicable scene specification or a required approva
 
 ## Output and review gate
 
-Write or update `scenario-review.md` beside the Course `toc.yaml` with: Course UUID, reviewer role, date, the **exact Git commit/blob revisions** of `methodology.md`, `toc.yaml`, `overrides.yaml` (or explicit absence), and scenario source files; verdict `pass | changes-requested | blocked`; evidence by episode/slot/Section/block; issues with severity, owner and concrete correction; accessibility and narrative continuity findings; required re-review/sign-off.
+Write or update `scenario-review.md` beside the Course `toc.yaml` with: Course UUID, reviewer role, date, the **exact Git commit/blob revisions** of `methodology.md`, `toc.yaml`, the canonical Course overrides source (or explicit absence), and scenario source files; verdict `pass | changes-requested | blocked`; evidence by episode/slot/Section/block; issues with severity, owner and concrete correction; accessibility and narrative continuity findings; required re-review/sign-off.
 
 A `pass` is a recommendation **only**. An authorized editor must sign off against the reviewed source revisions. Return story or Course-owned content edits to their authors rather than independently writing and approving them. A change to the story or any scenario-affecting override after a `pass` invalidates affected review evidence and requires a focused re-review. A subsequent Methodological Review may run independently, but it cannot declare the scenario gate approved or override the scenario author's decisions.
 
