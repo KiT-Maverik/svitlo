@@ -69,8 +69,9 @@ Config nodes.
   coordinates remain explicit unresolved references/TODOs.
 
 All generated TypeScript may be **invalid under TypeScript by design**
-until a later AI agent supplies required fields, real imports, Scene
-implementations, media and translations. The scaffolder must not attempt to
+until a later AI agent resolves explicit `null` media fields, imports,
+Scene implementations and translations. Required YAML Config structure
+must already be complete. The scaffolder must not attempt to
 make it typecheck with placeholders or type suppression.
 
 ## Usage

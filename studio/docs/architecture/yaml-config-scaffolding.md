@@ -36,6 +36,11 @@ config:
   skills: [] # real Skill UUIDs must be supplied
   params:
     languages: [en, uk] # planned locales, not completed translations
+    requireQuiz: false
+    sections: { allowNavigation: true, allowSkipping: true, showIndexes: true }
+  locale:
+    title: { en: Equality }
+  flashcards: { items: {}, order: [] }
   section:
     items:
       introduction:
@@ -43,6 +48,10 @@ config:
           id: 00000000-0000-4000-8000-000000000001
           slug: introduction
           type: content
+          params: {}
+          locale:
+            title: { en: Introduction }
+            navigationLabel: { en: Introduction }
           content:
             items:
               equalityScene:
@@ -63,9 +72,10 @@ config:
                   id: 00000000-0000-4000-8000-000000000003
                   slug: illustration
                   type: image
+                  params: { fill: true, aspectRatio: 1.5 }
                   locale:
                     alt: { en: Two groups of five counters }
-                    # src is absent until the actual image is produced
+                    src: null # Pending asset, deliberately invalid in completed Engine Config
                 production:
                   purpose: Explain equality by visual comparison
                   prompt: Two groups of five counters arranged differently
@@ -78,9 +88,10 @@ production:
     Target learners, prerequisites, outcomes, sources and pedagogy.
 ```
 
-Real inputs must use the correct existing Skill UUIDs, immutable entity UUIDs
-and actual Config fields. This sample deliberately omits mandatory Config
-properties; TypeScript errors after scaffolding are **expected by design**.
+Real inputs must use correct Skill UUIDs, immutable entity UUIDs and all
+required Engine Config fields. Only the explicit pending media `null` values
+violate final Config typing; missing translations and Scene implementations
+are separate downstream work.
 
 ### Course and Build overrides
 
@@ -113,7 +124,7 @@ provided, scaffolders create:
 
 A Scene implementer and media specialist receive those generated files and
 the original `config.yaml`; they supply real components/assets later.
-`image.config.locale.alt` is authored now, but missing `src` is **not**
+`image.config.locale.alt` is authored now, while `src: null` is **not**
 replaced with fake URLs. No generator invents translations or runtime
 capabilities. Existing `*.data.ts` causes a whole-entity SKIP without any write. When the input is an existing canonical UUID directory, it is skipped **before** parsing stale YAML (PR #531); when it is a staged single-ID YAML file, its ID is parsed first to derive the output path. Existing or manually changed specification files cannot
 be clobbered. `check` remains read-only and strict.

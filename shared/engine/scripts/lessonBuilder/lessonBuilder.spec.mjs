@@ -456,7 +456,8 @@ test('one YAML source creates ID-addressed Scene/media specs and a methodology w
       id: imageId,
       slug: 'visualImage',
       type: 'image',
-      locale: { alt: { uk: 'Дві рівні групи' } },
+      params: { fill: true, aspectRatio: 1.5 },
+      locale: { src: null, alt: { uk: 'Дві рівні групи' } },
       __production: { purpose: 'Show equality', prompt: 'Two groups of five counters.' },
     };
     f.save();
@@ -477,7 +478,7 @@ test('one YAML source creates ID-addressed Scene/media specs and a methodology w
     assert.doesNotMatch(code, /"__production"|"production"|"specification"/);
     assert(!code.includes('Two groups of five counters.'));
     const imageDraft = code.slice(code.indexOf('"visualImage": defineImage('));
-    assert.doesNotMatch(imageDraft, /"src"/); // Only this pending image has no src.
+    assert.match(imageDraft, /"src": null/); // Incomplete asset is explicit and will fail the real Config type.
     assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
     const before = fs.readFileSync(sceneSpec, 'utf8');
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);

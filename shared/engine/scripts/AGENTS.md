@@ -31,10 +31,11 @@ Other named workflows have their own contracts. Inspect their entrypoints and te
 - Engine Config schemas are Zod-derived. Production schemas are manual and
   type-specific. A combined `*.scaffold.schema.json` is generated for editing,
   **not validated during scaffolding**.
-- Use `production.documentLanguage` as source locale; incomplete media fields
-  or translations must remain incomplete in generated TypeScript. Missing
-  `image.src`, Scene entrypoints and other dependencies are intentionally
-  actionable downstream TypeScript errors, **not grounds to reject scaffolding**.
+- Use `production.documentLanguage` as source locale; YAML Config must
+  preserve every Engine-required field. Pending media paths are explicit
+  `null` values in the YAML-only Zod projections, never omitted or invented.
+  Scene implementations, imports and untranslated locales remain separate
+  downstream dependencies, not grounds to reject scaffolding.
 - Emit `specification.md` for Scenes in their ID-addressed textbook Scene folder
   and for media under `data/assets/<bucket>/<uuid>/`; emit a Lesson/Course
   `methodology.md` only when authored in production and safe to create.
@@ -54,9 +55,9 @@ Other named workflows have their own contracts. Inspect their entrypoints and te
 
 ## Intentionally failing TypeScript is the expected draft handoff
 
-- **For an incomplete YAML draft, the resulting TypeScript is expected to fail TypeScript checking by design.** Missing mandatory Config properties, unavailable media paths, unfinished Scene implementations/imports, unfilled localization dictionaries, and unresolved references are **work for the next AI agent**, not scaffolder bugs.
+- **Generated TypeScript is expected to fail TypeScript checking until dependencies are resolved.** Required Config structure is complete; literal `null` marks unfinished media. Missing Scene implementations/imports, additional locales and unresolved references are work for the next AI agent, not scaffolder bugs.
 - The scaffolder's job is to emit a deterministic, syntactically well-formed, recognizable `define*` source draft and preserve its unresolved work. **Successful TypeScript compilation, Engine Config validation, Props generation, and publication are explicitly NOT acceptance conditions for a draft scaffolder.** The scaffolder run itself should succeed for otherwise supported incomplete draft inputs; it must not execute or gate on TypeScript checks.
-- **Do not "fix" draft TypeScript diagnostics inside a scaffolder** by inventing `src`, `fileLocation`, import targets, Scene components, other language strings, default educational content, or values that pretend a pending resource exists. Do not silence errors with `as any`, `@ts-ignore`, weakened Config types, or fictitious passing fixtures. Leave unavailable required fields incomplete and make outstanding work clear to the finishing agent.
+- **Do not "fix" draft TypeScript diagnostics inside a scaffolder** by inventing `src`, `fileLocation`, import targets, Scene components, other language strings, default educational content, or values that pretend a pending resource exists. Do not silence errors with `as any`, `@ts-ignore`, weakened Config types, or fictitious passing fixtures. Preserve explicit nulls for unavailable required media resources and make outstanding work clear to the finishing agent.
 - Preserve the distinction between **expected type errors** and **generator defects**. YAML syntax/dispatch failures, incorrectly emitted TypeScript syntax, lost authored data, wrong file placement, unintended overwrites, and incorrect factory selection remain defects. If a completely authored input happens to produce valid TypeScript, do not inject artificial errors merely to make it fail; the deliberate failure applies to incomplete drafts, not every possible input.
 - A later specialist agent completes media/Scene assets, translations and Config fields, then uses TypeScript diagnostics to verify and finish its own work. The separate publication pipeline runs only after those dependencies are actually resolved.
 
