@@ -61,7 +61,7 @@ change `params.languages` or invent translations.
 
 ## Generated handoffs
 
-- `<slug>.data.ts` beside `config.yaml`: recursively nested `define*`
+- `<slug>.data.ts` inside the canonical Lesson UUID directory: recursively nested `define*`
   factory calls containing **only** each node's `config`. The output may be
   missing mandatory Config fields and **fail TypeScript checking by design**.
 - `methodology.md` in the Lesson UUID directory, only when

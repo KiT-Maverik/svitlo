@@ -516,3 +516,23 @@ test('single YAML config.id determines the Lesson UUID output path without check
     assert.equal(runOne(staged, 'check', f.root).changed, 0);
   }));
 
+
+test('staged Lesson rejects malformed IDs and symlinked UUID destinations without writing files', () =>
+  fixture(f => {
+    const staging = path.join(f.root, 'content/playground/staging/config.yaml');
+    const source = yaml.parse(fs.readFileSync(path.join(f.lesson, 'config.yaml'), 'utf8'));
+    fs.mkdirSync(path.dirname(staging), { recursive: true });
+    source.config.id = '../unsafe';
+    fs.writeFileSync(staging, yaml.stringify(source));
+    assert.throws(() => runOne(staging, 'generate', f.root), /Lesson UUID is required/);
+    const newId = id(66);
+    source.config.id = newId;
+    fs.writeFileSync(staging, yaml.stringify(source));
+    const canonical = path.join(f.root, 'content/playground/data/lessons', newId.at(-1), newId);
+    fs.mkdirSync(path.dirname(canonical), { recursive: true });
+    const redirected = path.join(f.root, 'unsafe-output');
+    fs.symlinkSync(redirected, canonical, 'dir');
+    assert.throws(() => runOne(staging, 'generate', f.root), /Refusing symlink/);
+    assert.equal(fs.existsSync(redirected), false);
+    assert.equal(fs.existsSync(path.join(path.dirname(staging), 'lightLesson.data.ts')), false);
+  }));

@@ -637,3 +637,76 @@ test('Course --config accepts a single YAML ID and writes into its derived UUID 
   }
 });
 
+
+test('Course config.yaml emits Scene/media handoffs without inventing image sources or leaking production', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-media-scaffold-'));
+  const sceneId = '00000000-0000-4000-8000-0000000000a1';
+  const imageId = '00000000-0000-4000-8000-0000000000a2';
+  const courseFolder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  const sceneSpec = path.join(root, 'content/math/scenes', sceneId.at(-1), sceneId, 'specification.md');
+  const imageSpec = path.join(root, 'content/math/data/assets', imageId.at(-1), imageId, 'specification.md');
+  const input = {
+    config: {
+      id: courseId,
+      type: 'course',
+      slug: 'draftCourse',
+      content: {
+        items: {
+          demo: {
+            config: {
+              id: '00000000-0000-4000-8000-0000000000a3',
+              type: 'episode',
+              slug: 'demo',
+              section: {
+                items: {
+                  intro: {
+                    config: {
+                      id: '00000000-0000-4000-8000-0000000000a4',
+                      type: 'content',
+                      slug: 'intro',
+                      content: {
+                        items: {
+                          illustration: {
+                            config: { id: imageId, type: 'image', slug: 'illustration', locale: { alt: { uk: 'Опис' } } },
+                            production: { purpose: 'Explain the scene', prompt: 'Two balanced groups of counters' },
+                          },
+                          interactive: {
+                            config: { id: sceneId, type: 'scene', slug: 'interactive' },
+                            production: { specification: '# Interactive equality demonstration' },
+                          },
+                        },
+                        order: ['illustration', 'interactive'],
+                      },
+                    },
+                  },
+                },
+                order: ['intro'],
+              },
+            },
+          },
+        },
+        order: ['demo'],
+      },
+    },
+    production: { documentLanguage: 'uk' },
+  };
+  try {
+    fs.mkdirSync(courseFolder, { recursive: true });
+    fs.writeFileSync(path.join(courseFolder, 'config.yaml'), yaml.stringify(input));
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    const code = fs.readFileSync(path.join(courseFolder, 'draftCourse.data.ts'), 'utf8');
+    assert.match(code, /defineScene\\(/);
+    assert.match(code, /defineImage\\(/);
+    assert.doesNotMatch(code, /"src":|Two balanced groups of counters|Interactive equality demonstration/);
+    assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+    assert.match(fs.readFileSync(sceneSpec, 'utf8'), /Interactive equality demonstration/);
+    assert.match(fs.readFileSync(imageSpec, 'utf8'), /Two balanced groups of counters/);
+    fs.writeFileSync(sceneSpec, '# Independently edited scene specification');
+    fs.writeFileSync(path.join(courseFolder, 'config.yaml'), 'invalid: [\\n');
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    assert.equal(fs.readFileSync(sceneSpec, 'utf8'), '# Independently edited scene specification');
+    assert.equal(fs.readFileSync(path.join(courseFolder, 'draftCourse.data.ts'), 'utf8'), code);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
