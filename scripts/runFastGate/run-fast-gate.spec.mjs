@@ -24,7 +24,10 @@ test('shared Engine changes do not automatically select Math', () => {
 });
 
 test('IndexDB changes select only IndexDB for fast typecheck and unit/integration tests', () => {
-  const p = chooseChecks(['shared/indexdb/controllers/lessonState/createLessonState/createLessonState.utils.ts'], packages);
+  const p = chooseChecks(
+    ['shared/indexdb/controllers/lessonState/createLessonState/createLessonState.utils.ts'],
+    packages,
+  );
   assert.deepEqual([...p.affected], ['@svitlo/indexdb']);
 });
 

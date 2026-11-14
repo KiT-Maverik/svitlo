@@ -95,9 +95,7 @@ function runGate(changed) {
   }
   // Engine build-only filesystem use must be distinguished from runtime leakage.
   // Exercise the canonical package boundary guard when it or Engine changes.
-  if (
-    changed.some(file => file.startsWith('scripts/checkPackageBoundaries/') || file.startsWith('shared/engine/'))
-  ) {
+  if (changed.some(file => file.startsWith('scripts/checkPackageBoundaries/') || file.startsWith('shared/engine/'))) {
     exec('node', ['scripts/checkPackageBoundaries/check-package-boundaries.mjs']);
   }
   // Validate editorial Course composition independently of unrelated workspace
