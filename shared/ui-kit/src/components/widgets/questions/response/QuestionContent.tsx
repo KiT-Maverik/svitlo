@@ -44,9 +44,7 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
     case 'image':
       return block.locale.alt;
     case 'carousel':
-      return (
-        optionalLabelText(block.locale.title, language, 'carousel.title') ?? block.locale.slides[0]?.alt ?? ''
-      );
+      return optionalLabelText(block.locale.title, language, 'carousel.title') ?? block.locale.slides[0]?.alt ?? '';
     case 'audio':
       return labelText(block.locale.title, language, 'audio.title');
     case 'video':
@@ -68,7 +66,10 @@ export function questionBlockLabel(block: QuestionBlock, language?: LanguageCode
   }
 }
 export function questionLabel(blocks: readonly QuestionBlock[], language?: LanguageCode): string {
-  return blocks.map(block => questionBlockLabel(block, language)).filter(Boolean).join(' ');
+  return blocks
+    .map(block => questionBlockLabel(block, language))
+    .filter(Boolean)
+    .join(' ');
 }
 
 export type QuestionItem = { id: string; block: QuestionBlock };
