@@ -1,0 +1,804 @@
+config:
+  id: '4cefc8c8-9469-5871-9964-4e15b90d5ab9'
+  slug: 'measuringSegmentsInCentimeters'
+  type: 'lesson'
+  skills:
+    - 'abb9261a-793e-48fd-8262-7cd2ca8df3d3'
+  params:
+    requireQuiz: false
+    languages:
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Measure Straight Segments in Centimeters'
+  section:
+    items:
+      section1:
+        config:
+          id: '4cefc8c8-9469-5871-9964-000000000004'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Four Spaces, Not Five Marks'
+            navigationLabel:
+              en: 'Four Spaces, Not Five Marks'
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-000000000001'
+                  slug: 'section1Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: "The first dot is beside **0**. The other dot is beside **4**. How many _spaces_ of one centimeter fit between them? Let's count, then say a length with its unit."
+                production:
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  1. **text — existing:** "The first dot is beside **0**. The other dot is beside **4**. How many _spaces_ of one centimeter fit between them? Let''s count, then say a length with its unit."'
+              section1Scene1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-000000000002'
+                  slug: 'section1Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "The first dot is beside **0**. The other dot is beside **4**. How many _spaces_ of one centimeter fit between them? Let's count, then say a length with its unit."
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Centimeter Segment Bench — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: `Measure Straight Segments in Centimeters` (source preserved in this YAML), Sections 1–4
+                    Methodologist objectives: `Draft Brief` (source preserved in this YAML) — find length of **existing straight segments** by aligning a cm ruler at zero and counting equal intervals. Do not implement a construct/draw-segment Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    "**Start from zero, read the far endpoint, count spaces and name the unit.**" The learner predicts, aligns a schematic centimeter scale, counts intervals and repairs a seductive wrong measure caused by ruler misplacement. The Scene makes **endpoints**, **zero mark**, **unit interval** and **reported length** independently inspectable.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A segment is a **fixed straight path** between two endpoint dots; its length in the model is a _positive integer_ number of centimeter intervals, 1…10. Only specified examples 3, 4, 5, 6, 7 cm appear in this Lesson. No drawing or resizing segments by the learner.
+                    - Scale ticks **0…10** form ten equal conceptual 1 cm intervals. The scale has a small unnumbered plastic margin; the zero tick, not the body edge, is used for alignment. A correct reading has start dot at mark **0**, end dot at mark **L**, giving **L cm** for preset L.
+                    - If the ruler is offset, the printed endpoint label alone is **not** the length. Example: segment length **5 cm** starts opposite mark **1** and ends opposite **6**; after shifting the ruler so its zero aligns to the segment's start, the endpoint matches **5**. This Lesson corrects by moving to zero; it does not require subtracting marks.
+                    - Tilt is a distinct incorrect preparation state; aligning a mis-angled scale or trusting its end label is not permitted.
+                    - The **screen is not a calibrated physical ruler**. CSS/SVG lengths are educational model values only; actual centimeter measurements of real objects require a physical ruler. Screen pixel distances, zoom and orientation must not change the model's numeric results.
+                    - A visual ruler moves relative to a **fixed** segment; position adjustments never alter true segment length. One real-world object may have a fractional length; those are outside this introductory model.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A — Count Four Intervals (Section 1)
+
+                    1. Fixed 4 cm segment, scale already parallel with start at 0 and end at 4. Visible marks: **0,1,2,3,4**, but exactly four spaces.
+                    2. Ask: "How many one-centimeter spaces from the first dot to the last?" Prediction choices: **4 cm**, **5 cm**, **4** (unit missing).
+                    3. "Show spaces" highlights **0→1**, **1→2**, **2→3**, **3→4** one at a time, with an ordered text list; after final interval reveal "**4 cm**".
+                    4. 5 cm prediction: "You counted five printed labels, but there are four spaces." Missing unit: "You counted correctly; say the unit **cm**."
+                    5. Allow reveal, reset and retry with no penalty; number of ticks and spaces always distinct.
+
+                    ### Placement B — Move Ruler Until Zero Aligns (Section 2)
+
+                    1. Fixed **7 cm** segment. Ruler initially parallel but shifted **left by two model unit intervals** relative to correct position, so first endpoint is over printed mark **2**, far endpoint over printed mark **9**.
+                    2. Learner may use "Align zero" or **"Move ruler right one mark" twice** (the ruler's zero moves toward the segment's start). At final alignment, dots are over **0 and 7**.
+                    3. Ask learner to read the far mark and report "**7 cm**", optionally reveal a log of intervals 0→1 through 6→7.
+                    4. Reading far mark 9 _before_ alignment triggers: "The ruler's zero does not meet the first dot. Move the scale before reading length."
+                    5. Additional preset **3 cm** starts already aligned 0→3; moving the segment vertically or changing stroke thickness does not change its length or ruler labels.
+
+                    ### Placement C — Detect a False Six (Section 3)
+
+                    1. Fixed segment **5 cm**, ruler parallel with segment spanning mark **1 to mark 6**. Prompt: "It ends at the mark 6. Is this a 6 cm measurement? What should we fix?"
+                    2. Choices: "Move zero to the first dot" (appropriate), "Keep 6", "Count all six printed labels as spaces" (inappropriate).
+                    3. Corrected position: ruler shifts **right by one unit interval**, so segment spans **0 to 5**, exactly **five** equal spaces. Final explanation "5 cm".
+                    4. For wrong 6: "That is the number printed at the far end, but our scale started at 1. The result does not follow from the correct zero method."
+                    5. The child's choice to shift the ruler changes only displayed _instrument placement_, never the segment's true length. Do not teach arithmetic subtraction as the required strategy.
+
+                    ### Placement D — Independent Unseen Segment (Section 4)
+
+                    1. Fixed **6 cm** segment, initially ruler **tilted** and offset. Give separate accessible controls "Straighten the scale", "Align zero", "Read endpoint", "Count interval spaces".
+                    2. After correcting both setup flaws, first dot meets 0 and second dot meets 6. The exact answer with unit is **6 cm**; the scale has **seven printed labels** from 0 to 6 but six spaces.
+                    3. For 7 cm answer: "You counted labels. Count the six spaces between adjacent numbered lines." For a prematurely read number: "First align the zero mark." For correct 6: "The segment covers six unit intervals, so the length is 6 cm."
+                    4. If "Reveal next hint" is selected, show only "Check the direction of the ruler" first, then "Align zero" as needed, **not** an immediate final result.
+                    5. Optional real-ruler extension is external: the editor may suggest checking a physical object, but the Scene must remain fully equivalent without physical supplies.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** fixed endpoint-labeled segment, schematic ruler body and major marks, interval brackets, alignment-status text, placement presets, discrete adjust/reset/reveal/undo controls, written result choices, ordered interval log.
+                    - **State:** fixed preset length `L` per Section, instrument position/tilt, count of revealed intervals, prediction choice, hint level and feedback state. This is **conceptual design**, not an invented runtime type or prop contract.
+                    - **Invariants:** on valid setup, segment start maps to ruler 0; segment end maps to L; number of unit spaces is exactly L; ruler shift/tilt changes reading readiness, not L; dots remain fixed; only full single-cm preset lengths used.
+                    - **Boundary:** If ruler is not straight and zero-aligned, final numeric result control is either unavailable with explanation or any submitted result gives feedback "Fix the setup first"; never accept a printed far-end number as a valid measure without proper setup.
+                    - **Prediction flow:** user can inspect interval log before selecting answer; this is unscored formative reasoning and doesn't trigger any mastery state.
+                    - **Prop-free design:** each Section's Scene must be self-contained with local fixed presets and no incoming React props. Internal shared functions are possible if no external Scene contract is invented.
+                    - **Alternative interaction:** buttons select unit shift/angle correction; no fine drag, pointer pixel distance or voice command needed.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use a spacious high-contrast schematic ruler, clear printed 0…10 numbers and visible endpoint dots. Unit brackets should be exact and equal. Ensure ruler markings stay parallel to the segment when ready; depict tilt as a definite crossing angle rather than microscopic error. The model's apparent size can scale with device width; **do not call one displayed interval a physical centimeter**. Instant before/after modes must be identical in meaning to any optional animation. No recorded sound/video or generated imagery required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Genuine translations across all configured locales: "zero mark", "interval", "centimeter", "align", "straighten", endpoint terms, hints and numeric-with-unit result feedback. Correct grammar for singular/plural and appropriate `cm` label; never invent an English fallback for unfinished locales.
+                    - RTL display/layout may change positioning of explanatory copy, but mathematical ruler labels must remain in a chosen **explicit** ascending order 0→1→…→10 and correct endpoint mapping. Do not mirror an SVG while leaving numeric statements inconsistent.
+                    - Offer screen-reader-friendly list "interval 1: mark 0 to 1" and a ruler-state sentence "segment begins opposite ruler mark 1; ruler zero is one interval to its left." Nonvisual learner must be able to choose alignment and compute the same answer as sighted learner. Announce status once per action.
+                    - Provide keyboard/switch/touch operations, visible focus, targets suitable for younger hands, no color-only correctness cues, no timings and reduced-motion instantaneous changes. Fit phone width/zoom and maintain relationship of endpoints and markings without distorting geometry.
+                    - Full offline use after locale/Scene download; all numeric presets, feedback and logic on device. Accessibility modes cannot omit any conceptual challenge.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. With 0→4 aligned, there are **four** equal spaces and **five** labels; correct result **4 cm**, never 5 cm.
+                    2. Initial 7 cm segment ruler offset maps 2→9; shifting ruler **right two** scale intervals produces correct 0→7 and **7 cm**.
+                    3. Valid 3 cm preset maps 0→3 and yields **3 cm**, independent of line thickness or vertical placement.
+                    4. Wrong setup for 5 cm segment maps 1→6; after zero alignment it maps 0→5, with exact correct result **5 cm**.
+                    5. Tilted/offset 6 cm preset does not allow a valid finished reading until both straight and zero-aligned; then yields **6 cm**, not 7 cm.
+                    6. Reset, undo and independent Scene placements retain deterministic length and alignment; no cross-Section state leakage.
+                    7. A reported length includes `cm`; numeric-only "4" receives an explanatory missing-unit prompt without scoring.
+                    8. Keyboard, screen reader, RTL, reduced motion, large zoom, phone and post-download offline all provide equivalent preparation and interval-count reasoning.
+                    9. Browser zoom changes display scale but cannot change modeled results; no physical measurement calibration is asserted.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
+                  productionNotes: "This placement in Four Spaces, Not Five Marks refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section1Markdown1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-000000000003'
+                  slug: 'section1Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The segment has **4 equal centimeter spaces**. The marks are 0, 1, 2, 3, 4—**five printed labels, but four intervals**. We say **4 centimeters**, written **4 cm**.'
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — existing:** "The segment has **4 equal centimeter spaces**. The marks are 0, 1, 2, 3, 4—**five printed labels, but four intervals**. We say **4 centimeters**, written **4 cm**."'
+            order:
+              - 'section1Text1'
+              - 'section1Scene1'
+              - 'section1Markdown1'
+        production:
+          purpose: 'Four Spaces, Not Five Marks'
+          pedagogicalIntent: |-
+            - **Purpose:** Link standard unit intervals to a correct number-with-unit result.
+            - **Section contract:** `LessonSection_Config`, one vertical sequence.
+            - **Ordered blocks:**
+              1. **text — existing:** "The first dot is beside **0**. The other dot is beside **4**. How many _spaces_ of one centimeter fit between them? Let's count, then say a length with its unit."
+              2. **scene — existing Resource type; custom proposed:** `Centimeter Segment Bench` (former centimeterSegmentBench.scene-spec.md; specification embedded in this YAML), stage A: fixed pre-drawn segment with model length **4 cm**, 0 mark exactly at first endpoint; second endpoint at 4. Learner reveals 0→1, 1→2, 2→3, 3→4 interval brackets separately and selects "4 cm", "5 cm", or "4 (no unit)".
+              3. **markdown — existing:** "The segment has **4 equal centimeter spaces**. The marks are 0, 1, 2, 3, 4—**five printed labels, but four intervals**. We say **4 centimeters**, written **4 cm**."
+            - **Feedback:** For 5 cm: "You counted both end marks. Count the gaps **between** them." For bare 4: "The number is correct, but a measurement also needs its unit." For 4 cm: "Yes: four one-centimeter intervals, from 0 to 4."
+            - **Access:** All intervals described as "interval 1: 0 to 1" etc. Give an auditory-readable and textual equivalent; never require selecting an SVG region.
+            - **Proposed Note:** "A length counts the equal spaces between marks."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+      section2:
+        config:
+          id: '4cefc8c8-9469-5871-9964-000000000008'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Line Up First, Read Second'
+            navigationLabel:
+              en: 'Line Up First, Read Second'
+          content:
+            items:
+              section2Markdown1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-000000000005'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Before reading: find the segment's starting dot, put the ruler's **0** beside it, and follow the straight line with the scale. Then read where the other dot lands."
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  1. **markdown — existing:** "Before reading: find the segment''s starting dot, put the ruler''s **0** beside it, and follow the straight line with the scale. Then read where the other dot lands."'
+              section2Scene1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-000000000006'
+                  slug: 'section2Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Line Up First, Read Second'
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Centimeter Segment Bench — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: `Measure Straight Segments in Centimeters` (source preserved in this YAML), Sections 1–4
+                    Methodologist objectives: `Draft Brief` (source preserved in this YAML) — find length of **existing straight segments** by aligning a cm ruler at zero and counting equal intervals. Do not implement a construct/draw-segment Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    "**Start from zero, read the far endpoint, count spaces and name the unit.**" The learner predicts, aligns a schematic centimeter scale, counts intervals and repairs a seductive wrong measure caused by ruler misplacement. The Scene makes **endpoints**, **zero mark**, **unit interval** and **reported length** independently inspectable.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A segment is a **fixed straight path** between two endpoint dots; its length in the model is a _positive integer_ number of centimeter intervals, 1…10. Only specified examples 3, 4, 5, 6, 7 cm appear in this Lesson. No drawing or resizing segments by the learner.
+                    - Scale ticks **0…10** form ten equal conceptual 1 cm intervals. The scale has a small unnumbered plastic margin; the zero tick, not the body edge, is used for alignment. A correct reading has start dot at mark **0**, end dot at mark **L**, giving **L cm** for preset L.
+                    - If the ruler is offset, the printed endpoint label alone is **not** the length. Example: segment length **5 cm** starts opposite mark **1** and ends opposite **6**; after shifting the ruler so its zero aligns to the segment's start, the endpoint matches **5**. This Lesson corrects by moving to zero; it does not require subtracting marks.
+                    - Tilt is a distinct incorrect preparation state; aligning a mis-angled scale or trusting its end label is not permitted.
+                    - The **screen is not a calibrated physical ruler**. CSS/SVG lengths are educational model values only; actual centimeter measurements of real objects require a physical ruler. Screen pixel distances, zoom and orientation must not change the model's numeric results.
+                    - A visual ruler moves relative to a **fixed** segment; position adjustments never alter true segment length. One real-world object may have a fractional length; those are outside this introductory model.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A — Count Four Intervals (Section 1)
+
+                    1. Fixed 4 cm segment, scale already parallel with start at 0 and end at 4. Visible marks: **0,1,2,3,4**, but exactly four spaces.
+                    2. Ask: "How many one-centimeter spaces from the first dot to the last?" Prediction choices: **4 cm**, **5 cm**, **4** (unit missing).
+                    3. "Show spaces" highlights **0→1**, **1→2**, **2→3**, **3→4** one at a time, with an ordered text list; after final interval reveal "**4 cm**".
+                    4. 5 cm prediction: "You counted five printed labels, but there are four spaces." Missing unit: "You counted correctly; say the unit **cm**."
+                    5. Allow reveal, reset and retry with no penalty; number of ticks and spaces always distinct.
+
+                    ### Placement B — Move Ruler Until Zero Aligns (Section 2)
+
+                    1. Fixed **7 cm** segment. Ruler initially parallel but shifted **left by two model unit intervals** relative to correct position, so first endpoint is over printed mark **2**, far endpoint over printed mark **9**.
+                    2. Learner may use "Align zero" or **"Move ruler right one mark" twice** (the ruler's zero moves toward the segment's start). At final alignment, dots are over **0 and 7**.
+                    3. Ask learner to read the far mark and report "**7 cm**", optionally reveal a log of intervals 0→1 through 6→7.
+                    4. Reading far mark 9 _before_ alignment triggers: "The ruler's zero does not meet the first dot. Move the scale before reading length."
+                    5. Additional preset **3 cm** starts already aligned 0→3; moving the segment vertically or changing stroke thickness does not change its length or ruler labels.
+
+                    ### Placement C — Detect a False Six (Section 3)
+
+                    1. Fixed segment **5 cm**, ruler parallel with segment spanning mark **1 to mark 6**. Prompt: "It ends at the mark 6. Is this a 6 cm measurement? What should we fix?"
+                    2. Choices: "Move zero to the first dot" (appropriate), "Keep 6", "Count all six printed labels as spaces" (inappropriate).
+                    3. Corrected position: ruler shifts **right by one unit interval**, so segment spans **0 to 5**, exactly **five** equal spaces. Final explanation "5 cm".
+                    4. For wrong 6: "That is the number printed at the far end, but our scale started at 1. The result does not follow from the correct zero method."
+                    5. The child's choice to shift the ruler changes only displayed _instrument placement_, never the segment's true length. Do not teach arithmetic subtraction as the required strategy.
+
+                    ### Placement D — Independent Unseen Segment (Section 4)
+
+                    1. Fixed **6 cm** segment, initially ruler **tilted** and offset. Give separate accessible controls "Straighten the scale", "Align zero", "Read endpoint", "Count interval spaces".
+                    2. After correcting both setup flaws, first dot meets 0 and second dot meets 6. The exact answer with unit is **6 cm**; the scale has **seven printed labels** from 0 to 6 but six spaces.
+                    3. For 7 cm answer: "You counted labels. Count the six spaces between adjacent numbered lines." For a prematurely read number: "First align the zero mark." For correct 6: "The segment covers six unit intervals, so the length is 6 cm."
+                    4. If "Reveal next hint" is selected, show only "Check the direction of the ruler" first, then "Align zero" as needed, **not** an immediate final result.
+                    5. Optional real-ruler extension is external: the editor may suggest checking a physical object, but the Scene must remain fully equivalent without physical supplies.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** fixed endpoint-labeled segment, schematic ruler body and major marks, interval brackets, alignment-status text, placement presets, discrete adjust/reset/reveal/undo controls, written result choices, ordered interval log.
+                    - **State:** fixed preset length `L` per Section, instrument position/tilt, count of revealed intervals, prediction choice, hint level and feedback state. This is **conceptual design**, not an invented runtime type or prop contract.
+                    - **Invariants:** on valid setup, segment start maps to ruler 0; segment end maps to L; number of unit spaces is exactly L; ruler shift/tilt changes reading readiness, not L; dots remain fixed; only full single-cm preset lengths used.
+                    - **Boundary:** If ruler is not straight and zero-aligned, final numeric result control is either unavailable with explanation or any submitted result gives feedback "Fix the setup first"; never accept a printed far-end number as a valid measure without proper setup.
+                    - **Prediction flow:** user can inspect interval log before selecting answer; this is unscored formative reasoning and doesn't trigger any mastery state.
+                    - **Prop-free design:** each Section's Scene must be self-contained with local fixed presets and no incoming React props. Internal shared functions are possible if no external Scene contract is invented.
+                    - **Alternative interaction:** buttons select unit shift/angle correction; no fine drag, pointer pixel distance or voice command needed.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use a spacious high-contrast schematic ruler, clear printed 0…10 numbers and visible endpoint dots. Unit brackets should be exact and equal. Ensure ruler markings stay parallel to the segment when ready; depict tilt as a definite crossing angle rather than microscopic error. The model's apparent size can scale with device width; **do not call one displayed interval a physical centimeter**. Instant before/after modes must be identical in meaning to any optional animation. No recorded sound/video or generated imagery required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Genuine translations across all configured locales: "zero mark", "interval", "centimeter", "align", "straighten", endpoint terms, hints and numeric-with-unit result feedback. Correct grammar for singular/plural and appropriate `cm` label; never invent an English fallback for unfinished locales.
+                    - RTL display/layout may change positioning of explanatory copy, but mathematical ruler labels must remain in a chosen **explicit** ascending order 0→1→…→10 and correct endpoint mapping. Do not mirror an SVG while leaving numeric statements inconsistent.
+                    - Offer screen-reader-friendly list "interval 1: mark 0 to 1" and a ruler-state sentence "segment begins opposite ruler mark 1; ruler zero is one interval to its left." Nonvisual learner must be able to choose alignment and compute the same answer as sighted learner. Announce status once per action.
+                    - Provide keyboard/switch/touch operations, visible focus, targets suitable for younger hands, no color-only correctness cues, no timings and reduced-motion instantaneous changes. Fit phone width/zoom and maintain relationship of endpoints and markings without distorting geometry.
+                    - Full offline use after locale/Scene download; all numeric presets, feedback and logic on device. Accessibility modes cannot omit any conceptual challenge.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. With 0→4 aligned, there are **four** equal spaces and **five** labels; correct result **4 cm**, never 5 cm.
+                    2. Initial 7 cm segment ruler offset maps 2→9; shifting ruler **right two** scale intervals produces correct 0→7 and **7 cm**.
+                    3. Valid 3 cm preset maps 0→3 and yields **3 cm**, independent of line thickness or vertical placement.
+                    4. Wrong setup for 5 cm segment maps 1→6; after zero alignment it maps 0→5, with exact correct result **5 cm**.
+                    5. Tilted/offset 6 cm preset does not allow a valid finished reading until both straight and zero-aligned; then yields **6 cm**, not 7 cm.
+                    6. Reset, undo and independent Scene placements retain deterministic length and alignment; no cross-Section state leakage.
+                    7. A reported length includes `cm`; numeric-only "4" receives an explanatory missing-unit prompt without scoring.
+                    8. Keyboard, screen reader, RTL, reduced motion, large zoom, phone and post-download offline all provide equivalent preparation and interval-count reasoning.
+                    9. Browser zoom changes display scale but cannot change modeled results; no physical measurement calibration is asserted.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
+                  productionNotes: "This placement in Line Up First, Read Second refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section2Text1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-000000000007'
+                  slug: 'section2Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'When the **0** met the first dot, the other dot met **7**. That means **7 centimeters** from one endpoint to the other.'
+                production:
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  3. **text — existing:** "When the **0** met the first dot, the other dot met **7**. That means **7 centimeters** from one endpoint to the other."'
+            order:
+              - 'section2Markdown1'
+              - 'section2Scene1'
+              - 'section2Text1'
+        production:
+          purpose: 'Line Up First, Read Second'
+          pedagogicalIntent: |-
+            - **Purpose:** Use a virtual ruler to measure an unfamiliar straight segment of integral centimeter length.
+            - **Section contract:** `LessonSection_Config`, one vertical sequence.
+            - **Ordered blocks:**
+              1. **markdown — existing:** "Before reading: find the segment's starting dot, put the ruler's **0** beside it, and follow the straight line with the scale. Then read where the other dot lands."
+              2. **scene — proposed `Centimeter Segment Bench` (former centimeterSegmentBench.scene-spec.md; specification embedded in this YAML):** stage B; preset segment **7 cm** long, ruler initially shifted so mark 2 is at the first endpoint. Use discrete actions "Move ruler right 1 mark" twice or "Align zero" (equivalent actions); after alignment, second endpoint maps to mark **7**, and learner counts 7 equal unit spaces. Response "7 cm" with optional "Show each space".
+              3. **text — existing:** "When the **0** met the first dot, the other dot met **7**. That means **7 centimeters** from one endpoint to the other."
+            - **Misconception feedback:** If learner selects the number at the far end _before_ alignment: "We haven't started at 0. Move the scale first, then read." Never silently show an answer from a misaligned ruler as if valid.
+            - **Transfer within Section:** A second preset segment **3 cm** long, correct alignment, endpoint mark 3. Length stays constant if the diagram moves vertically or line thickness changes.
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+      section3:
+        config:
+          id: '4cefc8c8-9469-5871-9964-00000000000c'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Spot the False Measure'
+            navigationLabel:
+              en: 'Spot the False Measure'
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-000000000009'
+                  slug: 'section3Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Someone says this segment is **6 cm** because its far dot is by the ruler's 6. But the first dot is by **1**! What should we fix?"
+                production:
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  1. **text — existing:** "Someone says this segment is **6 cm** because its far dot is by the ruler''s 6. But the first dot is by **1**! What should we fix?"'
+              section3Scene1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-00000000000a'
+                  slug: 'section3Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Someone says this segment is **6 cm** because its far dot is by the ruler's 6. But the first dot is by **1**! What should we fix?"
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Centimeter Segment Bench — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: `Measure Straight Segments in Centimeters` (source preserved in this YAML), Sections 1–4
+                    Methodologist objectives: `Draft Brief` (source preserved in this YAML) — find length of **existing straight segments** by aligning a cm ruler at zero and counting equal intervals. Do not implement a construct/draw-segment Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    "**Start from zero, read the far endpoint, count spaces and name the unit.**" The learner predicts, aligns a schematic centimeter scale, counts intervals and repairs a seductive wrong measure caused by ruler misplacement. The Scene makes **endpoints**, **zero mark**, **unit interval** and **reported length** independently inspectable.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A segment is a **fixed straight path** between two endpoint dots; its length in the model is a _positive integer_ number of centimeter intervals, 1…10. Only specified examples 3, 4, 5, 6, 7 cm appear in this Lesson. No drawing or resizing segments by the learner.
+                    - Scale ticks **0…10** form ten equal conceptual 1 cm intervals. The scale has a small unnumbered plastic margin; the zero tick, not the body edge, is used for alignment. A correct reading has start dot at mark **0**, end dot at mark **L**, giving **L cm** for preset L.
+                    - If the ruler is offset, the printed endpoint label alone is **not** the length. Example: segment length **5 cm** starts opposite mark **1** and ends opposite **6**; after shifting the ruler so its zero aligns to the segment's start, the endpoint matches **5**. This Lesson corrects by moving to zero; it does not require subtracting marks.
+                    - Tilt is a distinct incorrect preparation state; aligning a mis-angled scale or trusting its end label is not permitted.
+                    - The **screen is not a calibrated physical ruler**. CSS/SVG lengths are educational model values only; actual centimeter measurements of real objects require a physical ruler. Screen pixel distances, zoom and orientation must not change the model's numeric results.
+                    - A visual ruler moves relative to a **fixed** segment; position adjustments never alter true segment length. One real-world object may have a fractional length; those are outside this introductory model.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A — Count Four Intervals (Section 1)
+
+                    1. Fixed 4 cm segment, scale already parallel with start at 0 and end at 4. Visible marks: **0,1,2,3,4**, but exactly four spaces.
+                    2. Ask: "How many one-centimeter spaces from the first dot to the last?" Prediction choices: **4 cm**, **5 cm**, **4** (unit missing).
+                    3. "Show spaces" highlights **0→1**, **1→2**, **2→3**, **3→4** one at a time, with an ordered text list; after final interval reveal "**4 cm**".
+                    4. 5 cm prediction: "You counted five printed labels, but there are four spaces." Missing unit: "You counted correctly; say the unit **cm**."
+                    5. Allow reveal, reset and retry with no penalty; number of ticks and spaces always distinct.
+
+                    ### Placement B — Move Ruler Until Zero Aligns (Section 2)
+
+                    1. Fixed **7 cm** segment. Ruler initially parallel but shifted **left by two model unit intervals** relative to correct position, so first endpoint is over printed mark **2**, far endpoint over printed mark **9**.
+                    2. Learner may use "Align zero" or **"Move ruler right one mark" twice** (the ruler's zero moves toward the segment's start). At final alignment, dots are over **0 and 7**.
+                    3. Ask learner to read the far mark and report "**7 cm**", optionally reveal a log of intervals 0→1 through 6→7.
+                    4. Reading far mark 9 _before_ alignment triggers: "The ruler's zero does not meet the first dot. Move the scale before reading length."
+                    5. Additional preset **3 cm** starts already aligned 0→3; moving the segment vertically or changing stroke thickness does not change its length or ruler labels.
+
+                    ### Placement C — Detect a False Six (Section 3)
+
+                    1. Fixed segment **5 cm**, ruler parallel with segment spanning mark **1 to mark 6**. Prompt: "It ends at the mark 6. Is this a 6 cm measurement? What should we fix?"
+                    2. Choices: "Move zero to the first dot" (appropriate), "Keep 6", "Count all six printed labels as spaces" (inappropriate).
+                    3. Corrected position: ruler shifts **right by one unit interval**, so segment spans **0 to 5**, exactly **five** equal spaces. Final explanation "5 cm".
+                    4. For wrong 6: "That is the number printed at the far end, but our scale started at 1. The result does not follow from the correct zero method."
+                    5. The child's choice to shift the ruler changes only displayed _instrument placement_, never the segment's true length. Do not teach arithmetic subtraction as the required strategy.
+
+                    ### Placement D — Independent Unseen Segment (Section 4)
+
+                    1. Fixed **6 cm** segment, initially ruler **tilted** and offset. Give separate accessible controls "Straighten the scale", "Align zero", "Read endpoint", "Count interval spaces".
+                    2. After correcting both setup flaws, first dot meets 0 and second dot meets 6. The exact answer with unit is **6 cm**; the scale has **seven printed labels** from 0 to 6 but six spaces.
+                    3. For 7 cm answer: "You counted labels. Count the six spaces between adjacent numbered lines." For a prematurely read number: "First align the zero mark." For correct 6: "The segment covers six unit intervals, so the length is 6 cm."
+                    4. If "Reveal next hint" is selected, show only "Check the direction of the ruler" first, then "Align zero" as needed, **not** an immediate final result.
+                    5. Optional real-ruler extension is external: the editor may suggest checking a physical object, but the Scene must remain fully equivalent without physical supplies.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** fixed endpoint-labeled segment, schematic ruler body and major marks, interval brackets, alignment-status text, placement presets, discrete adjust/reset/reveal/undo controls, written result choices, ordered interval log.
+                    - **State:** fixed preset length `L` per Section, instrument position/tilt, count of revealed intervals, prediction choice, hint level and feedback state. This is **conceptual design**, not an invented runtime type or prop contract.
+                    - **Invariants:** on valid setup, segment start maps to ruler 0; segment end maps to L; number of unit spaces is exactly L; ruler shift/tilt changes reading readiness, not L; dots remain fixed; only full single-cm preset lengths used.
+                    - **Boundary:** If ruler is not straight and zero-aligned, final numeric result control is either unavailable with explanation or any submitted result gives feedback "Fix the setup first"; never accept a printed far-end number as a valid measure without proper setup.
+                    - **Prediction flow:** user can inspect interval log before selecting answer; this is unscored formative reasoning and doesn't trigger any mastery state.
+                    - **Prop-free design:** each Section's Scene must be self-contained with local fixed presets and no incoming React props. Internal shared functions are possible if no external Scene contract is invented.
+                    - **Alternative interaction:** buttons select unit shift/angle correction; no fine drag, pointer pixel distance or voice command needed.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use a spacious high-contrast schematic ruler, clear printed 0…10 numbers and visible endpoint dots. Unit brackets should be exact and equal. Ensure ruler markings stay parallel to the segment when ready; depict tilt as a definite crossing angle rather than microscopic error. The model's apparent size can scale with device width; **do not call one displayed interval a physical centimeter**. Instant before/after modes must be identical in meaning to any optional animation. No recorded sound/video or generated imagery required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Genuine translations across all configured locales: "zero mark", "interval", "centimeter", "align", "straighten", endpoint terms, hints and numeric-with-unit result feedback. Correct grammar for singular/plural and appropriate `cm` label; never invent an English fallback for unfinished locales.
+                    - RTL display/layout may change positioning of explanatory copy, but mathematical ruler labels must remain in a chosen **explicit** ascending order 0→1→…→10 and correct endpoint mapping. Do not mirror an SVG while leaving numeric statements inconsistent.
+                    - Offer screen-reader-friendly list "interval 1: mark 0 to 1" and a ruler-state sentence "segment begins opposite ruler mark 1; ruler zero is one interval to its left." Nonvisual learner must be able to choose alignment and compute the same answer as sighted learner. Announce status once per action.
+                    - Provide keyboard/switch/touch operations, visible focus, targets suitable for younger hands, no color-only correctness cues, no timings and reduced-motion instantaneous changes. Fit phone width/zoom and maintain relationship of endpoints and markings without distorting geometry.
+                    - Full offline use after locale/Scene download; all numeric presets, feedback and logic on device. Accessibility modes cannot omit any conceptual challenge.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. With 0→4 aligned, there are **four** equal spaces and **five** labels; correct result **4 cm**, never 5 cm.
+                    2. Initial 7 cm segment ruler offset maps 2→9; shifting ruler **right two** scale intervals produces correct 0→7 and **7 cm**.
+                    3. Valid 3 cm preset maps 0→3 and yields **3 cm**, independent of line thickness or vertical placement.
+                    4. Wrong setup for 5 cm segment maps 1→6; after zero alignment it maps 0→5, with exact correct result **5 cm**.
+                    5. Tilted/offset 6 cm preset does not allow a valid finished reading until both straight and zero-aligned; then yields **6 cm**, not 7 cm.
+                    6. Reset, undo and independent Scene placements retain deterministic length and alignment; no cross-Section state leakage.
+                    7. A reported length includes `cm`; numeric-only "4" receives an explanatory missing-unit prompt without scoring.
+                    8. Keyboard, screen reader, RTL, reduced motion, large zoom, phone and post-download offline all provide equivalent preparation and interval-count reasoning.
+                    9. Browser zoom changes display scale but cannot change modeled results; no physical measurement calibration is asserted.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
+                  productionNotes: "This placement in Spot the False Measure refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section3Markdown1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-00000000000b'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "The number **6** was a label at the far end, not the segment's length with this ruler placement. We moved the **0** mark to the starting dot. Now the other end is at **5**: the segment is **5 cm**."
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — existing:** "The number **6** was a label at the far end, not the segment''s length with this ruler placement. We moved the **0** mark to the starting dot. Now the other end is at **5**: the segment is **5 cm**."'
+            order:
+              - 'section3Text1'
+              - 'section3Scene1'
+              - 'section3Markdown1'
+        production:
+          purpose: 'Spot the False Measure'
+          pedagogicalIntent: |-
+            - **Purpose:** Diagnose and repair a misleading ruler position; count intervals instead of marks.
+            - **Section contract:** `LessonSection_Config`, one vertical sequence.
+            - **Ordered blocks:**
+              1. **text — existing:** "Someone says this segment is **6 cm** because its far dot is by the ruler's 6. But the first dot is by **1**! What should we fix?"
+              2. **scene — proposed `Centimeter Segment Bench` (former centimeterSegmentBench.scene-spec.md; specification embedded in this YAML):** stage C. Same physical schematic segment spans exactly **five** centimeter intervals, but displayed starting at ruler mark **1**, ending at **6**. Learner chooses "Move 0 to first dot" / "Count 1, 2, 3, 4, 5, 6 as six spaces" / "Keep 6". Selecting the fix repositions the ruler, after which endpoints align to **0 and 5** and result is **5 cm**. The shape does not change when the ruler moves.
+              3. **markdown — existing:** "The number **6** was a label at the far end, not the segment's length with this ruler placement. We moved the **0** mark to the starting dot. Now the other end is at **5**: the segment is **5 cm**."
+            - **Feedback:** For choosing 6: "The ruler began at 1, not 0; the number at the end is misleading." For 5: "Good reasoning, but show your setup: align 0 and count the spaces." Never require arithmetic 6 − 1; this is a **diagnostic example**, not instruction in off-zero subtraction.
+            - **Proposed Note:** "Check that the ruler starts at 0 before reading the number."
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+      section4:
+        config:
+          id: '4cefc8c8-9469-5871-9964-000000000010'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Your Own Measurement'
+            navigationLabel:
+              en: 'Your Own Measurement'
+          content:
+            items:
+              section4Text1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-00000000000d'
+                  slug: 'section4Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Here's a new segment. Its first dot is not at the ruler's zero yet. Without asking for a hint, decide what to move, then tell its length **with units**."
+                production:
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  1. **text — existing:** "Here''s a new segment. Its first dot is not at the ruler''s zero yet. Without asking for a hint, decide what to move, then tell its length **with units**."'
+              section4Scene1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-00000000000e'
+                  slug: 'section4Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Here's a new segment. Its first dot is not at the ruler's zero yet. Without asking for a hint, decide what to move, then tell its length **with units**."
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Centimeter Segment Bench — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: `Measure Straight Segments in Centimeters` (source preserved in this YAML), Sections 1–4
+                    Methodologist objectives: `Draft Brief` (source preserved in this YAML) — find length of **existing straight segments** by aligning a cm ruler at zero and counting equal intervals. Do not implement a construct/draw-segment Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    "**Start from zero, read the far endpoint, count spaces and name the unit.**" The learner predicts, aligns a schematic centimeter scale, counts intervals and repairs a seductive wrong measure caused by ruler misplacement. The Scene makes **endpoints**, **zero mark**, **unit interval** and **reported length** independently inspectable.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A segment is a **fixed straight path** between two endpoint dots; its length in the model is a _positive integer_ number of centimeter intervals, 1…10. Only specified examples 3, 4, 5, 6, 7 cm appear in this Lesson. No drawing or resizing segments by the learner.
+                    - Scale ticks **0…10** form ten equal conceptual 1 cm intervals. The scale has a small unnumbered plastic margin; the zero tick, not the body edge, is used for alignment. A correct reading has start dot at mark **0**, end dot at mark **L**, giving **L cm** for preset L.
+                    - If the ruler is offset, the printed endpoint label alone is **not** the length. Example: segment length **5 cm** starts opposite mark **1** and ends opposite **6**; after shifting the ruler so its zero aligns to the segment's start, the endpoint matches **5**. This Lesson corrects by moving to zero; it does not require subtracting marks.
+                    - Tilt is a distinct incorrect preparation state; aligning a mis-angled scale or trusting its end label is not permitted.
+                    - The **screen is not a calibrated physical ruler**. CSS/SVG lengths are educational model values only; actual centimeter measurements of real objects require a physical ruler. Screen pixel distances, zoom and orientation must not change the model's numeric results.
+                    - A visual ruler moves relative to a **fixed** segment; position adjustments never alter true segment length. One real-world object may have a fractional length; those are outside this introductory model.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A — Count Four Intervals (Section 1)
+
+                    1. Fixed 4 cm segment, scale already parallel with start at 0 and end at 4. Visible marks: **0,1,2,3,4**, but exactly four spaces.
+                    2. Ask: "How many one-centimeter spaces from the first dot to the last?" Prediction choices: **4 cm**, **5 cm**, **4** (unit missing).
+                    3. "Show spaces" highlights **0→1**, **1→2**, **2→3**, **3→4** one at a time, with an ordered text list; after final interval reveal "**4 cm**".
+                    4. 5 cm prediction: "You counted five printed labels, but there are four spaces." Missing unit: "You counted correctly; say the unit **cm**."
+                    5. Allow reveal, reset and retry with no penalty; number of ticks and spaces always distinct.
+
+                    ### Placement B — Move Ruler Until Zero Aligns (Section 2)
+
+                    1. Fixed **7 cm** segment. Ruler initially parallel but shifted **left by two model unit intervals** relative to correct position, so first endpoint is over printed mark **2**, far endpoint over printed mark **9**.
+                    2. Learner may use "Align zero" or **"Move ruler right one mark" twice** (the ruler's zero moves toward the segment's start). At final alignment, dots are over **0 and 7**.
+                    3. Ask learner to read the far mark and report "**7 cm**", optionally reveal a log of intervals 0→1 through 6→7.
+                    4. Reading far mark 9 _before_ alignment triggers: "The ruler's zero does not meet the first dot. Move the scale before reading length."
+                    5. Additional preset **3 cm** starts already aligned 0→3; moving the segment vertically or changing stroke thickness does not change its length or ruler labels.
+
+                    ### Placement C — Detect a False Six (Section 3)
+
+                    1. Fixed segment **5 cm**, ruler parallel with segment spanning mark **1 to mark 6**. Prompt: "It ends at the mark 6. Is this a 6 cm measurement? What should we fix?"
+                    2. Choices: "Move zero to the first dot" (appropriate), "Keep 6", "Count all six printed labels as spaces" (inappropriate).
+                    3. Corrected position: ruler shifts **right by one unit interval**, so segment spans **0 to 5**, exactly **five** equal spaces. Final explanation "5 cm".
+                    4. For wrong 6: "That is the number printed at the far end, but our scale started at 1. The result does not follow from the correct zero method."
+                    5. The child's choice to shift the ruler changes only displayed _instrument placement_, never the segment's true length. Do not teach arithmetic subtraction as the required strategy.
+
+                    ### Placement D — Independent Unseen Segment (Section 4)
+
+                    1. Fixed **6 cm** segment, initially ruler **tilted** and offset. Give separate accessible controls "Straighten the scale", "Align zero", "Read endpoint", "Count interval spaces".
+                    2. After correcting both setup flaws, first dot meets 0 and second dot meets 6. The exact answer with unit is **6 cm**; the scale has **seven printed labels** from 0 to 6 but six spaces.
+                    3. For 7 cm answer: "You counted labels. Count the six spaces between adjacent numbered lines." For a prematurely read number: "First align the zero mark." For correct 6: "The segment covers six unit intervals, so the length is 6 cm."
+                    4. If "Reveal next hint" is selected, show only "Check the direction of the ruler" first, then "Align zero" as needed, **not** an immediate final result.
+                    5. Optional real-ruler extension is external: the editor may suggest checking a physical object, but the Scene must remain fully equivalent without physical supplies.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** fixed endpoint-labeled segment, schematic ruler body and major marks, interval brackets, alignment-status text, placement presets, discrete adjust/reset/reveal/undo controls, written result choices, ordered interval log.
+                    - **State:** fixed preset length `L` per Section, instrument position/tilt, count of revealed intervals, prediction choice, hint level and feedback state. This is **conceptual design**, not an invented runtime type or prop contract.
+                    - **Invariants:** on valid setup, segment start maps to ruler 0; segment end maps to L; number of unit spaces is exactly L; ruler shift/tilt changes reading readiness, not L; dots remain fixed; only full single-cm preset lengths used.
+                    - **Boundary:** If ruler is not straight and zero-aligned, final numeric result control is either unavailable with explanation or any submitted result gives feedback "Fix the setup first"; never accept a printed far-end number as a valid measure without proper setup.
+                    - **Prediction flow:** user can inspect interval log before selecting answer; this is unscored formative reasoning and doesn't trigger any mastery state.
+                    - **Prop-free design:** each Section's Scene must be self-contained with local fixed presets and no incoming React props. Internal shared functions are possible if no external Scene contract is invented.
+                    - **Alternative interaction:** buttons select unit shift/angle correction; no fine drag, pointer pixel distance or voice command needed.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use a spacious high-contrast schematic ruler, clear printed 0…10 numbers and visible endpoint dots. Unit brackets should be exact and equal. Ensure ruler markings stay parallel to the segment when ready; depict tilt as a definite crossing angle rather than microscopic error. The model's apparent size can scale with device width; **do not call one displayed interval a physical centimeter**. Instant before/after modes must be identical in meaning to any optional animation. No recorded sound/video or generated imagery required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Genuine translations across all configured locales: "zero mark", "interval", "centimeter", "align", "straighten", endpoint terms, hints and numeric-with-unit result feedback. Correct grammar for singular/plural and appropriate `cm` label; never invent an English fallback for unfinished locales.
+                    - RTL display/layout may change positioning of explanatory copy, but mathematical ruler labels must remain in a chosen **explicit** ascending order 0→1→…→10 and correct endpoint mapping. Do not mirror an SVG while leaving numeric statements inconsistent.
+                    - Offer screen-reader-friendly list "interval 1: mark 0 to 1" and a ruler-state sentence "segment begins opposite ruler mark 1; ruler zero is one interval to its left." Nonvisual learner must be able to choose alignment and compute the same answer as sighted learner. Announce status once per action.
+                    - Provide keyboard/switch/touch operations, visible focus, targets suitable for younger hands, no color-only correctness cues, no timings and reduced-motion instantaneous changes. Fit phone width/zoom and maintain relationship of endpoints and markings without distorting geometry.
+                    - Full offline use after locale/Scene download; all numeric presets, feedback and logic on device. Accessibility modes cannot omit any conceptual challenge.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. With 0→4 aligned, there are **four** equal spaces and **five** labels; correct result **4 cm**, never 5 cm.
+                    2. Initial 7 cm segment ruler offset maps 2→9; shifting ruler **right two** scale intervals produces correct 0→7 and **7 cm**.
+                    3. Valid 3 cm preset maps 0→3 and yields **3 cm**, independent of line thickness or vertical placement.
+                    4. Wrong setup for 5 cm segment maps 1→6; after zero alignment it maps 0→5, with exact correct result **5 cm**.
+                    5. Tilted/offset 6 cm preset does not allow a valid finished reading until both straight and zero-aligned; then yields **6 cm**, not 7 cm.
+                    6. Reset, undo and independent Scene placements retain deterministic length and alignment; no cross-Section state leakage.
+                    7. A reported length includes `cm`; numeric-only "4" receives an explanatory missing-unit prompt without scoring.
+                    8. Keyboard, screen reader, RTL, reduced motion, large zoom, phone and post-download offline all provide equivalent preparation and interval-count reasoning.
+                    9. Browser zoom changes display scale but cannot change modeled results; no physical measurement calibration is asserted.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Only the general `scene` Resource type/rendering is available today. The Centimeter Segment Bench, translations, tests, Section-specific prop-free Scene entry points and all lesson registration are **future work** requiring approval. The separate drawing-a-segment Skill remains untouched. No Question, Quiz, scoring system, Note persistence, analytics hook or invented platform event field is permitted.
+                  productionNotes: "This placement in Your Own Measurement refers to centimeterSegmentBench.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section4Markdown1:
+                config:
+                  id: '4cefc8c8-9469-5871-9964-00000000000f'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We straightened the ruler, lined **0** with the first dot, and found **6 equal centimeter spaces** to the second dot. Our answer is **6 cm**. If we count marks instead, we would get seven, which is not a length.'
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — existing:** "We straightened the ruler, lined **0** with the first dot, and found **6 equal centimeter spaces** to the second dot. Our answer is **6 cm**. If we count marks instead, we would get seven, which is not a length."'
+            order:
+              - 'section4Text1'
+              - 'section4Scene1'
+              - 'section4Markdown1'
+        production:
+          purpose: 'Your Own Measurement'
+          pedagogicalIntent: |-
+            - **Purpose:** Independent transfer, articulate the method and unit.
+            - **Section contract:** `LessonSection_Config`, one vertical sequence.
+            - **Ordered blocks:**
+              1. **text — existing:** "Here's a new segment. Its first dot is not at the ruler's zero yet. Without asking for a hint, decide what to move, then tell its length **with units**."
+              2. **scene — proposed `Centimeter Segment Bench` (former centimeterSegmentBench.scene-spec.md; specification embedded in this YAML):** stage D; unseen **6 cm** segment, ruler initially angled/offset. Discrete "Straighten scale" then "Align 0", followed by "Read endpoint" or "Count spaces", then select/write "6 cm" using accessible fixed choices; wrong attempts give explanation without scoring. After correct setup, first endpoint at 0, second at 6.
+              3. **markdown — existing:** "We straightened the ruler, lined **0** with the first dot, and found **6 equal centimeter spaces** to the second dot. Our answer is **6 cm**. If we count marks instead, we would get seven, which is not a length."
+            - **Feedback:** If a learner answers 7 cm: "There are seven printed numbers from 0 to 6, but only six spaces." If they read while misaligned: "Move the zero first; then read the other endpoint." If the learner requires hint, reveal only the first correction, not the final answer.
+            - **Real-world extension:** If a real ruler is available, measure a straight-edged object with a whole-centimeter length if possible; say a real object may stop between marks. This extension is **not required for equivalent online/offline learning** and does not introduce fractional measurement.
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+    order:
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |-
+    # Measure Straight Segments in Centimeters — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: measuringSegmentsInCentimeters
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Apply correct ruler placement to a **new quantitative task**: determine the length of a pre-existing straight segment, expressed as a count of centimeter intervals. Keep drawing a segment of given length for a separate future Skill.
+
+    ## Target audience
+
+    **Primary audience: Grade 2 (approximately 7–8).** Primary Grade 2 (approximately 7–8 years). Learners can read major ruler ticks and count a sequence of equal intervals to 10. Use a fixed-scale diagram of a ruler and segment with verbal numerical equivalents, plus practical physical-ruler prompts.
+
+    **Instructional depth:** Already drawn, straight, integral centimeter segments of 1–10 cm only. No freehand drawing, uncertain endpoint fractions, mm/other units, ruler subtraction from a nonzero start as a taught strategy, digital screen calibration or signed measurement.
+
+    ## Prerequisites
+
+    [useRuler.data.ts](../../../../data/skills/measurement/length/skills/useRuler.data.ts): find 0, identify equal centimeter intervals and align scale with a straight segment; [nonstandardLength.data.ts](../../../../data/skills/measurement/length/skills/nonstandardLength.data.ts): repeated equal units cover length without gaps or overlaps; [compareLength.data.ts](../../../../data/skills/measurement/length/skills/compareLength.data.ts): shared origin. No multiplication required.
+
+    ## Target Skills
+
+    - [measureCentimeters.data.ts](../../../../data/skills/measurement/length/skills/measureCentimeters.data.ts)
+
+    ## Expected learning outcomes
+
+    - Align a ruler's zero mark with one endpoint of an existing straight segment and the scale along the segment.
+    - Determine a whole-centimeter segment length by counting the **intervals from 0** to the other endpoint and state a correct number-and-unit result.
+    - Recognize that 0→6 has six intervals and a misleading start at 1 with an endpoint at 6 **does not** establish a 6 cm length.
+    - Identify and repair a common measuring error (wrong starting mark, tilt, off-end placement, or counting ticks) and explain the correction.
+
+    ## Essential subject matter
+
+    For a straight segment with one endpoint at the 0 cm mark and the other at the 6 cm mark, the measured length is **6 cm**, because there are six equal unit intervals 0–1, 1–2, 2–3, 3–4, 4–5, 5–6. A segment that starts at 1 and ends at 6 spans **5** such intervals, but the introductory correct procedure resets the ruler to zero; do not teach subtraction as a substitute for alignment here. Every reported result includes the unit cm. The simulated centimeter spacings are **schematic** and must not claim physical accuracy on a device; real-world transfer requires a physical calibrated ruler.
+
+    ## Conceptual progression and dependencies
+
+    Rehearse zero alignment and labeled tick reading from `useRuler`. Before giving any number, ask 'Which endpoints should meet?' Then demonstrate a 4 cm existing segment with exactly four equal intervals. Let the learner align a virtual ruler to preset segments of 3, 5, 7 cm, count intervals and state the full result. Contrast a ruler shifted to start at 1, then finish with an unseen whole-number segment and one diagnosed measuring error.
+
+    ## Misconceptions, examples and boundaries
+
+    Reporting the number under an endpoint even when the start is not zero; counting both endpoint ticks (7 marks for 6 cm); failing to report 'cm'; treating a thicker/longer-looking screen rendering as calibrated length; believing a tilted ruler gives the correct reading.
+
+    **Explicit exclusions:** Already drawn, straight, integral centimeter segments of 1–10 cm only. No freehand drawing, uncertain endpoint fractions, mm/other units, ruler subtraction from a nonzero start as a taught strategy, digital screen calibration or signed measurement.
+
+    ## Localization, accessibility and offline intent
+
+    All explanations, controls, Scene cues, alternative descriptions, feedback and eventual Note text require genuine translations in the supported locales with no missing-language fallback. For spatial direction, apply genuine semantic RTL adaptation rather than indiscriminate mirroring of geometry or mathematical order. For measurement, keep scale meaning and cm labels intact regardless of UI direction. Make learner actions possible by keyboard/switch/touch, with semantic equivalents to any visual manipulation, audible content fully captioned, reduced-motion alternatives, visible focus, readable targets and WCAG 2.2 AA review. The complete Lesson and its feedback must work offline after a verified download; this is an intended capability, not an existing implementation claim.
+
+    ## Sources and factual verification
+
+    - [measureCentimeters.data.ts](../../../../data/skills/measurement/length/skills/measureCentimeters.data.ts) — immutable canonical Mathematics Skill data copied from `content/math/data/skills/` with its UUID, translations and methodological description preserved.
+    - [Studio Methodologist persona](../../../../../../studio/personas/methodist.persona.md) and [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — editorial scope and workflow.
+    - [Playground taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) — currently stale for these newly migrated domain Skills; coordinator regeneration is required before it can confirm their inclusion.
+
+    The examples are checked against the precise canonical Skill description, not treated as evidence of compliance with any particular jurisdiction's curriculum.
+
+    ## Curriculum / Program compatibility
+
+    No Program or national Curriculum assigned. This standalone Lesson may later be referenced by multiple curricula, but the chosen Grade 2 depth is a Lesson decision only and **does not alter the grade-independent Skill definition**.
+
+    ## Open editorial decisions
+
+    - Editor to confirm explicit physical-ruler practice opportunity, while preserving the fully accessible schematic on-screen method for learners without a ruler.
+    - **Approval gate:** this Brief has not received explicit Methodologist approval. Accompanying `content.md` and Scene spec are **provisional Drafts under the batch-specific user authorization**, not formally approved Lesson Content.
+
+    ## Methodologist handoff
+
+    Review the intended audience, prerequisite chain, bounded mathematical examples and misconceptions before changing this Brief from Draft to Approved. The Educational Screenwriter's proposed Sections and Scene are separate editorial artifacts and may be revised if the Brief changes. No runtime Lesson component, Question, Quiz, scoring, Note persistence or content publication is authorized.
+  purpose: 'Apply correct ruler placement to a **new quantitative task**: determine the length of a pre-existing straight segment, expressed as a count of centimeter intervals. Keep drawing a segment of given length for a separate future Skill.'
+  audience: 'Target grades and prerequisites in the complete methodology.'
+  productionNotes: |-
+    # Measure Straight Segments in Centimeters — Lesson Content
+
+    Status: **Provisional Draft — pending Methodologist approval; not an approved lesson.**
+    Target Lesson: `content/playground/Data/Lessons/1/measuringSegmentsInCentimeters/`
+    Audience: **Grade 2** (approximately 7–8), numerate to ten, mixed access needs
+    Methodologist source: `Draft Methodologist Brief` (source preserved in this YAML)
+    Target Skills: `measureCentimeters.data.ts` linked in the Brief; `useRuler.data.ts` and equal-unit counting prerequisite
+    Program dependence: None
+    Implementation state: editorial proposal; no runtime Lesson, Scene or measuring instrumentation exists.
+
+    ## INSTRUCTIONAL CONCEPT
+
+    "**Count the spaces, start at zero, say the unit.**" The learner now uses the ruler correctly to find the length of an **existing** straight segment. The endpoint labels are not the answer by themselves: they represent a scale with **equal centimeter intervals**. When the ruler's 0 aligns with one endpoint, a segment reaching printed mark 4 spans 0→1, 1→2, 2→3, 3→4, hence **4 cm**.
+
+    Learners must not infer that a 4-unit diagram on a phone measures four _physical_ centimeters; the app is an exact **schematic model** with declared units, not an instrument calibrated to screen size. Physical measurement can be optional transfer with a real ruler.
+
+    ## LEARNER JOURNEY
+
+    1. Predict a 4 cm result from a zero-aligned ruler and verify the four intervals.
+    2. Align a shifted ruler on a new, pre-drawn segment and read its **whole-centimeter** endpoint.
+    3. Diagnose a false "6 cm" report from a ruler that starts at mark 1, and distinguish **ticks** from **intervals**.
+    4. Independently measure a different straight segment, report its number and unit, and justify the method.
+
+    No segment construction; drawing a new segment is the separate Skill `drawSegmentCentimeters`. No counting pixels, scored Quiz, implicit mastery or time pressure.
+
+    ## SECTION PLAN
+
+
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - `Centimeter Segment Bench` (former centimeterSegmentBench.scene-spec.md; specification embedded in this YAML) — proposed deterministic prop-free Scene, with accessible align, count and error-repair interactions.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. "Count centimeter spaces, not printed tick labels." Proposed after Section 1.
+    2. "Match zero to one endpoint before reading the other." Proposed after Section 3 misalignment reveal.
+
+    Future Note content and unlock states are **planned only**; do not invent IDs, events, analytics or persistence.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    The Section 4 transfer is unscored and independently solvable with accessible controls. An Assessment Architect may create later Questions asking for length and reason, including misleading ruler positions, and must validate alternative answer modalities and scoring separately. One completion does not establish mastery.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Translate every number-and-unit phrase, feedback sentence, instruction and accessible label for each configured locale; use genuine plural forms for "centimeter" and correct locale spacing in displayed units. Use semantic RTL that preserves the ruler's **chosen zero-to-increasing-number orientation** and exact interval relationships; not mechanical vector flipping. Every state offers textual endpoint-mark pairs and interval counts, keyboard/switch accessible alignment choices, clear focus and state changes, reduced-motion instant results and large mobile controls. No sound, drag, color distinction, internet request or physically calibrated screen is necessary. Keep the full unit-comparison experience offline once downloaded.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    - Existing Resource types/rendering: `text`, `markdown`, `scene` in generic Section.
+    - Proposed: custom accurate ruler bench, localization dictionaries, prop-free Scene instances, accessible state-ledger controls and later engineering tests.
+    - No real-life ruler calibration, runtime Lesson registration, Question, Quiz, scoring, Note API or state persistence is implemented or claimed.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - `Draft Methodologist Brief` (source preserved in this YAML), canonical `measureCentimeters` code, existing `useRuler` prerequisite and Studio Scene contract.
+    - Editor: verify that the 1→6 nonzero-start diagnostic is clear without encouraging "subtract numbers on the ruler" as the taught beginner method.
+    - The Brief remains **Draft**, so all content is **provisional**.
+
+    ## HANDOFF
+
+    Methodologist confirms outcomes/depth; editor reviews numeric examples, clarity and nonvisual equivalence; Scene Designer builds from approved spec later. Assessment Architect takes scoring separately. No production code or tests are delivered here.

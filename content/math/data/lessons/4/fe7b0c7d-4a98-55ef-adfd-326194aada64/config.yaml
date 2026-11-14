@@ -1,0 +1,809 @@
+config:
+  id: 'fe7b0c7d-4a98-55ef-adfd-326194aada64'
+  slug: 'subtractionAcrossTenAndColumns'
+  type: 'lesson'
+  skills: ['31be8d1e-5c8c-44cb-b8da-bf811b46c4f7', '6d74f20c-3203-4bcc-bad2-f356b480c6c0']
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Subtraction Across Ten and with Place-Value Columns'
+  section:
+    items:
+      section1:
+        config:
+          id: '74be4aea-4fc5-5121-bf6c-caeab3a03c5b'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Open a Ten, Keep the Same Number'
+            navigationLabel:
+              en: 'Open a Ten, Keep the Same Number'
+          content:
+            items:
+              text1:
+                config:
+                  id: '3ce47e5b-bebe-5ef0-be1e-fe5b49acd9be'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Look at thirteen: one bundle of ten and three single ones. If we open the bundle, how many counters will we have altogether?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: '7df81144-8192-5e11-ad0f-9144f429d2df'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Look at thirteen: one bundle of ten and three single ones. If we open the bundle, how many counters will we have altogether?'
+                production:
+                  specification: |
+                    # Ten Exchange Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtraction Across Ten and with Place-Value Columns (embedded in this Lesson config.yaml), Sections 1–2
+                    Methodologist objective(s): Explain crossing-ten subtraction by exchanging one ten for ten ones while preserving the original quantity; show 13−7=6 using exchange and an equivalent 13−3−4 route. Methodologist Brief (embedded in this Lesson config.yaml).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A child must not experience the act of “borrowing” as magically gaining more objects. This Scene displays the same thirteen counters in two forms, then makes it possible to remove seven. Learner controls let children inspect and repeat each actual transformation, alongside a second, “reach ten first” subtraction path.
+
+                    Core copy: “A ten is ten ones. We can open the ten, but thirteen is still thirteen.” Then “We can take away seven and see how many are left.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A bundle contains EXACTLY ten counter units. Initial quantity 13 = 1 ten + 3 ones. After exchange: 0 tens + 13 ones, total still 13.
+                    - Subtraction example: 13 − 7 = 6. Via exchange: from 13 loose ones remove 7, leaving 6. Via decomposition: 7 = 3 + 4, 13 − 3 = 10, 10 − 4 = 6.
+                    - When physically removing counters, distinguish **thirteen at the start** from **six remaining**; removed seven plus remaining six always equals thirteen.
+                    - No negative numbers, phantom extras, duplicating an exchanged bundle and its constituent ten loose ones, or visual animation that temporarily represents 23 as the amount owned.
+                    - Only these approved small-number cases are required; a zero-counter state if extended later must still be mathematically honest. No timed fact memorization or new Skill beyond the Brief.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1: exchange without subtraction**
+
+                    1. Show one labeled ten-bundle and three separate units; text: “One ten and three ones make thirteen.”
+                    2. Ask “If we open the bundle, will there be more, fewer or the same number of counters?” Choices are optional; “Show me” always provides the explanation without judging.
+                    3. “Exchange one ten”: the bundle visibly separates into ten constituent ones. The three original ones remain. Count all thirteen and display “0 tens + 13 ones = 13”.
+                    4. Compare exact before and after ledgers; feedback for a “more” prediction: “We did not bring in any counters. We just opened the ten, so there are still thirteen.” For “fewer”: “The ten did not disappear: it is now ten individual ones.”
+                    5. “Undo exchange” reconstructs the single ten-bundle from precisely ten of those same units; never adds or duplicates. “Reset” restores starting state.
+
+                    **Section 2: crossing-ten subtraction**
+
+                    1. Begin independently at 13, one ten and three ones, with a subtraction request “Take away seven.”
+                    2. Route A “Open the ten”: exchange ten for ten ones. Let learner activate “Remove one” up to seven times or “Remove seven”, with explicit count ledger showing remaining and removed. After seven, six remain; display “13 − 7 = 6”.
+                    3. Route B “Reach ten first”: start a separate 13 representation and remove 3 ones, yielding 10. Then remove 4 from the ten, yielding 6. Show “13 − 3 = 10”, “10 − 4 = 6” and “3 + 4 = 7”. All amounts remain countable, and removing four from ten may visually open the bundle as necessary without representing a different original total.
+                    4. Ask “Did we take away seven in both ways?” Provide “Yes. Three and four make seven. Both ways leave six.”
+                    5. If learner stops after removing only three: “Ten are left, but only three have been removed. We still need to remove four more.”
+                    6. “Show every step”, “Try another way”, “Undo” and “Reset” are accessible, learner-controlled and non-scored.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: countable ten-bundle with ten constituent identifiers, loose ones, removed-count area, a running total/removed/remaining ledger, ordered step labels, prediction/route/step/reset controls.
+                    - Two separate self-contained **prop-free** Scene placements for Sections 1 and 2. Do not invent a React mode prop or a new Resource_Config field; Coding Agent chooses isolated registrations or internal sharing that preserves different initial states.
+                    - Section 1 state: bundled=true/false, predicted conservation optional, count display visibility. Invariant 10×tens + ones = 13 throughout.
+                    - Section 2 state: selected route A/B, currently available or removed counters and their identities, step index, displayed explanation. Invariant available + removed = 13, and when bundled representation is in use its ten must not be counted again as ten loose ones.
+                    - A subtraction action cannot remove more than are currently available; accidental extra activation yields a clear disabled state with text, not negative counters. Undo reverses the most recent action without changing the other Scene placement.
+                    - All incorrect learner predictions are formative and reversible; neither a Quiz result nor Skill mastery is stored.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    A concrete, readable ten-bundle and loose units in simple HTML/SVG, with identical counters represented as bundled or loose. Label quantity with both words and numerals; subdued step-by-step motion directs attention without requiring animation. Removed objects are visibly tracked in a separate area rather than disappearing without explanation. Reduced-motion mode makes the same before/after states and count ledger available instantly. No image asset, sound cue, external video, WebGL or Program story is necessary.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All instructions, counters, state changes, bundle/ones labels, and error explanations must be genuinely localized across the complete locale roster. In RTL, preserve numeral and subtraction order and make “before/after” explicit; do not flip the mathematical meaning of a number-line direction. Offer a keyboard-operable numbered list/table of quantities and individual step controls as an EQUIVALENT route to understanding, not merely a static description. The screen reader can inspect “one ten, three ones, total thirteen” and then “zero tens, thirteen ones, total thirteen” and “removed seven, remaining six”, even with no SVG. Touch targets suitable for young children, visible focus, non-color clues, 200%-zoom/mobile layouts and reduced motion are required. Optional narration never replaces equivalent text; no drag-only, motor-precision, timed or speech-recognition dependency. Offline after download, all math, labels and interactions run locally on low-resource devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Before exchange, 1 ten + 3 ones = 13; after exchange, 0 tens + 13 ones = 13 with no duplicated objects.
+                    2. Incorrect prediction “more” or “fewer” receives the exact conservation explanation and allows replay.
+                    3. Subtraction route A: 13 − 7 = 6, with seven removed and six remaining and total starting thirteen.
+                    4. Route B: 13 − 3 = 10, 10 − 4 = 6; cumulative removal 3 + 4 = 7, same final six.
+                    5. “Undo” restores the previous valid state; premature extra removals are blocked with text.
+                    6. Reset in Section 2 never changes Section 1’s state; no hidden scoring or compulsory answer.
+                    7. LTR/RTL, keyboard, screen reader, touch, reduced motion, 200% zoom and offline delivery expose all numerical states and reasoning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The typed scene Resource and current generic renderer are available; **Ten Exchange Lab is proposed**, not yet implemented. Editorial approval precedes Design Scene implementation and own tests. Coding Agent validates independent prop-free entrypoints, locale context and accessibility state handling; avoid fictional scene props/assessment APIs. If physical counter rearrangement proves insufficiently accessible, an equivalent interactive ordered state ledger is mandatory, not optional.
+                  purpose: 'Open a Ten, Keep the Same Number: independent placement'
+                  productionNotes: 'Original tenExchangeLab.scene-spec.md variant belongs to Open a Ten, Keep the Same Number; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: '053b4609-e5c3-518a-bf9d-c609667d5c3c'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Before, **1 ten + 3 ones = 13**. After, **0 tens + 13 ones = 13**. We have the same thirteen counters. We only changed how they were grouped.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Understand that one ten is exchangeable for ten ones without changing the total.'
+          productionNotes: |-
+            - Purpose / learning outcome: Understand that one ten is exchangeable for ten ones without changing the total.
+            - Current implementation shape: LessonSection_Config, with an ordered, nonempty, single-column array of resources.
+            - Ordered content blocks:
+              1. **text — available in renderer:** “Look at thirteen: one bundle of ten and three single ones. If we open the bundle, how many counters will we have altogether?”
+              2. **scene — Resource block supported, new Scene proposed:** Ten Exchange Lab (Scene specification tenExchangeLab embedded below), exchange-only placement with a stable total 13, visible bundle and singles, learner-controlled “Exchange one ten” and “Undo exchange.”
+              3. **markdown — available in renderer:** “Before, **1 ten + 3 ones = 13**. After, **0 tens + 13 ones = 13**. We have the same thirteen counters. We only changed how they were grouped.”
+            - Core explanation and learner-facing text: One ten and ten ones are different representations of the same quantity; “opening” a ten does not create ten additional objects.
+            - Illustration / model / experiment: A labeled bundle with precisely ten identifiable positions and three separate ones. During exchange the ten bundle ceases to exist **as a bundle** and those very same ten become loose ones; the total remains thirteen.
+            - Learner action, observations and explanatory feedback: Predict whether the total changes; select “Exchange,” inspect the equivalent textual counts, “Count every counter,” and “Undo.” If the learner says 23: “We did not add another ten. The original ten became ten ones. There are still thirteen.”
+            - Navigation and transition: Keep a visual/textual comparison of both representations and ask “Would loose ones help us take away seven?”
+            - Accessibility, locale and RTL requirements: Structured text says “before: one ten, three ones, total thirteen; after: zero tens, thirteen ones, total thirteen.” Keyboard and touch controls, high-contrast outlines plus names, reduced-motion immediate state; no visual-only conservation insight or drag requirement. Number and place-value reading order must remain meaningful in RTL.
+            - Proposed unlocked Note(s): Note 1 “One ten = ten ones,” after the exchange and its unchanged total have been explained (planned, not wired).
+            - Implementation dependencies and review notes: New Scene required; text, markdown and generic scene rendering are verified capabilities.
+      section2:
+        config:
+          id: '73be4957-4cc5-5c68-be6c-c957b4a03dee'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Thirteen Minus Seven'
+            navigationLabel:
+              en: 'Thirteen Minus Seven'
+          content:
+            items:
+              text1:
+                config:
+                  id: '4f76c8ba-e98a-539d-90b1-48ba46b8df3f'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We have **13** and need to take away **7**. There are only three loose ones. What can we do?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: '37a56373-e62c-5c86-a6bc-e373a3c4d000'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'We have **13** and need to take away **7**. There are only three loose ones. What can we do?'
+                production:
+                  specification: |
+                    # Ten Exchange Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtraction Across Ten and with Place-Value Columns (embedded in this Lesson config.yaml), Sections 1–2
+                    Methodologist objective(s): Explain crossing-ten subtraction by exchanging one ten for ten ones while preserving the original quantity; show 13−7=6 using exchange and an equivalent 13−3−4 route. Methodologist Brief (embedded in this Lesson config.yaml).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A child must not experience the act of “borrowing” as magically gaining more objects. This Scene displays the same thirteen counters in two forms, then makes it possible to remove seven. Learner controls let children inspect and repeat each actual transformation, alongside a second, “reach ten first” subtraction path.
+
+                    Core copy: “A ten is ten ones. We can open the ten, but thirteen is still thirteen.” Then “We can take away seven and see how many are left.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A bundle contains EXACTLY ten counter units. Initial quantity 13 = 1 ten + 3 ones. After exchange: 0 tens + 13 ones, total still 13.
+                    - Subtraction example: 13 − 7 = 6. Via exchange: from 13 loose ones remove 7, leaving 6. Via decomposition: 7 = 3 + 4, 13 − 3 = 10, 10 − 4 = 6.
+                    - When physically removing counters, distinguish **thirteen at the start** from **six remaining**; removed seven plus remaining six always equals thirteen.
+                    - No negative numbers, phantom extras, duplicating an exchanged bundle and its constituent ten loose ones, or visual animation that temporarily represents 23 as the amount owned.
+                    - Only these approved small-number cases are required; a zero-counter state if extended later must still be mathematically honest. No timed fact memorization or new Skill beyond the Brief.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1: exchange without subtraction**
+
+                    1. Show one labeled ten-bundle and three separate units; text: “One ten and three ones make thirteen.”
+                    2. Ask “If we open the bundle, will there be more, fewer or the same number of counters?” Choices are optional; “Show me” always provides the explanation without judging.
+                    3. “Exchange one ten”: the bundle visibly separates into ten constituent ones. The three original ones remain. Count all thirteen and display “0 tens + 13 ones = 13”.
+                    4. Compare exact before and after ledgers; feedback for a “more” prediction: “We did not bring in any counters. We just opened the ten, so there are still thirteen.” For “fewer”: “The ten did not disappear: it is now ten individual ones.”
+                    5. “Undo exchange” reconstructs the single ten-bundle from precisely ten of those same units; never adds or duplicates. “Reset” restores starting state.
+
+                    **Section 2: crossing-ten subtraction**
+
+                    1. Begin independently at 13, one ten and three ones, with a subtraction request “Take away seven.”
+                    2. Route A “Open the ten”: exchange ten for ten ones. Let learner activate “Remove one” up to seven times or “Remove seven”, with explicit count ledger showing remaining and removed. After seven, six remain; display “13 − 7 = 6”.
+                    3. Route B “Reach ten first”: start a separate 13 representation and remove 3 ones, yielding 10. Then remove 4 from the ten, yielding 6. Show “13 − 3 = 10”, “10 − 4 = 6” and “3 + 4 = 7”. All amounts remain countable, and removing four from ten may visually open the bundle as necessary without representing a different original total.
+                    4. Ask “Did we take away seven in both ways?” Provide “Yes. Three and four make seven. Both ways leave six.”
+                    5. If learner stops after removing only three: “Ten are left, but only three have been removed. We still need to remove four more.”
+                    6. “Show every step”, “Try another way”, “Undo” and “Reset” are accessible, learner-controlled and non-scored.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: countable ten-bundle with ten constituent identifiers, loose ones, removed-count area, a running total/removed/remaining ledger, ordered step labels, prediction/route/step/reset controls.
+                    - Two separate self-contained **prop-free** Scene placements for Sections 1 and 2. Do not invent a React mode prop or a new Resource_Config field; Coding Agent chooses isolated registrations or internal sharing that preserves different initial states.
+                    - Section 1 state: bundled=true/false, predicted conservation optional, count display visibility. Invariant 10×tens + ones = 13 throughout.
+                    - Section 2 state: selected route A/B, currently available or removed counters and their identities, step index, displayed explanation. Invariant available + removed = 13, and when bundled representation is in use its ten must not be counted again as ten loose ones.
+                    - A subtraction action cannot remove more than are currently available; accidental extra activation yields a clear disabled state with text, not negative counters. Undo reverses the most recent action without changing the other Scene placement.
+                    - All incorrect learner predictions are formative and reversible; neither a Quiz result nor Skill mastery is stored.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    A concrete, readable ten-bundle and loose units in simple HTML/SVG, with identical counters represented as bundled or loose. Label quantity with both words and numerals; subdued step-by-step motion directs attention without requiring animation. Removed objects are visibly tracked in a separate area rather than disappearing without explanation. Reduced-motion mode makes the same before/after states and count ledger available instantly. No image asset, sound cue, external video, WebGL or Program story is necessary.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All instructions, counters, state changes, bundle/ones labels, and error explanations must be genuinely localized across the complete locale roster. In RTL, preserve numeral and subtraction order and make “before/after” explicit; do not flip the mathematical meaning of a number-line direction. Offer a keyboard-operable numbered list/table of quantities and individual step controls as an EQUIVALENT route to understanding, not merely a static description. The screen reader can inspect “one ten, three ones, total thirteen” and then “zero tens, thirteen ones, total thirteen” and “removed seven, remaining six”, even with no SVG. Touch targets suitable for young children, visible focus, non-color clues, 200%-zoom/mobile layouts and reduced motion are required. Optional narration never replaces equivalent text; no drag-only, motor-precision, timed or speech-recognition dependency. Offline after download, all math, labels and interactions run locally on low-resource devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Before exchange, 1 ten + 3 ones = 13; after exchange, 0 tens + 13 ones = 13 with no duplicated objects.
+                    2. Incorrect prediction “more” or “fewer” receives the exact conservation explanation and allows replay.
+                    3. Subtraction route A: 13 − 7 = 6, with seven removed and six remaining and total starting thirteen.
+                    4. Route B: 13 − 3 = 10, 10 − 4 = 6; cumulative removal 3 + 4 = 7, same final six.
+                    5. “Undo” restores the previous valid state; premature extra removals are blocked with text.
+                    6. Reset in Section 2 never changes Section 1’s state; no hidden scoring or compulsory answer.
+                    7. LTR/RTL, keyboard, screen reader, touch, reduced motion, 200% zoom and offline delivery expose all numerical states and reasoning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The typed scene Resource and current generic renderer are available; **Ten Exchange Lab is proposed**, not yet implemented. Editorial approval precedes Design Scene implementation and own tests. Coding Agent validates independent prop-free entrypoints, locale context and accessibility state handling; avoid fictional scene props/assessment APIs. If physical counter rearrangement proves insufficiently accessible, an equivalent interactive ordered state ledger is mandatory, not optional.
+                  purpose: 'Thirteen Minus Seven: independent placement'
+                  productionNotes: 'Original tenExchangeLab.scene-spec.md variant belongs to Thirteen Minus Seven; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: '64788f98-ca0b-57c7-9edb-0f984ddc382d'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'One way: open the bundle so you have thirteen ones, then remove seven: **13 − 7 = 6**. Another way: take away three to reach ten, then four more: **13 − 3 − 4 = 6**. Three and four together are seven, so both methods take away the same number.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Subtract across a ten by exchange or by partitioning the seven being removed.'
+          productionNotes: |-
+            - Purpose / learning outcome: Subtract across a ten by exchange or by partitioning the seven being removed.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks:
+              1. **text — available:** “We have **13** and need to take away **7**. There are only three loose ones. What can we do?”
+              2. **scene — generic Scene rendering available; new interactive component proposed:** Ten Exchange Lab (Scene specification tenExchangeLab embedded below), subtract placement. The child chooses “Open the ten and take away seven” or “Get to ten first,” and may inspect both.
+              3. **markdown — available:** “One way: open the bundle so you have thirteen ones, then remove seven: **13 − 7 = 6**. Another way: take away three to reach ten, then four more: **13 − 3 − 4 = 6**. Three and four together are seven, so both methods take away the same number.”
+            - Core explanation and learner-facing text: Exchange is useful when the ones visible at first are fewer than the ones to subtract. Decomposing seven into three and four offers an equivalent route, not a different answer.
+            - Illustration / model / experiment: The same fixed thirteen counters are shown throughout. On the exchange route, thirteen loose ones minus seven leaves six; on the “reach ten” route, thirteen minus three leaves ten, and ten minus four leaves six. At every state, counters removed + counters remaining = thirteen.
+            - Learner action, observations and explanatory feedback: Each subtraction is explicitly learner-paced; “Count remaining” says six in either route. If a learner stops at ten after removing three, explain “We removed three, but we needed to remove seven. Four more must go.” If a learner thinks opening the ten creates more counters, compare the original and current total.
+            - Navigation and transition: End with a side-by-side mathematical conclusion **inside the Scene**: both routes leave six. Invite “What should we do when there are not enough loose ones?” before written columns.
+            - Accessibility, locale and RTL requirements: Both routes have distinct ordered numerical logs, with subtraction operators in correct order and complete textual counters. Equivalent nonvisual execution, no dragging, timer or compulsory narration; reduced motion presents the same intermediate states immediately.
+            - Proposed unlocked Note(s): Note 2 “Exchange changes the form, not the amount,” after comparing the two methods and the unchanged starting thirteen (planned, not wired).
+            - Implementation dependencies and review notes: This is a formative teaching Scene, not a scored question. A child may inspect either route without being forced to perform both.
+      section3:
+        config:
+          id: '72be47c4-4dc5-5dfb-bd6c-c7c4b5a03f81'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Why the Ones Column Needs an Exchange'
+            navigationLabel:
+              en: 'Why the Ones Column Needs an Exchange'
+          content:
+            items:
+              markdown1:
+                config:
+                  id: '3723f913-ec0b-5d5c-b186-7913640b94ea'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Try **32 − 17**. Thirty-two is **3 tens and 2 ones**. Seventeen is **1 ten and 7 ones**. The ones column asks us to take seven ones from two ones. We cannot do that with the loose ones as they are. Can we exchange one ten?'
+                production:
+                  purpose: 'Provisional instructional explanation'
+              scene1:
+                config:
+                  id: 'd766c4ea-6f51-517f-867e-44ea5cb310f1'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Try **32 − 17**. Thirty-two is **3 tens and 2 ones**. Seventeen is **1 ten and 7 ones**. The ones column asks us to take seven ones from two ones. We cannot do that with the loose ones as they are. Can we exchange one ten?'
+                production:
+                  specification: |
+                    # Place-Value Column Board — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtraction Across Ten and with Place-Value Columns (embedded in this Lesson config.yaml), Sections 3–4
+                    Methodologist objective(s): Align tens with tens and ones with ones, exchange one ten into ten ones without altering 32, solve 32−17 and verify the result with 15+17=32. Methodologist Brief (embedded in this Lesson config.yaml).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The board connects three simultaneous descriptions of **the same thirty-two**: bundles/counters, labeled place values and column marks. The child must understand why the written tens digit changes when the ones count gains ten. The written algorithm becomes a record of a real exchange rather than a mysterious instruction to “borrow”.
+
+                    Child-facing explanation: “Thirty-two has three tens and two ones. We need to take away seven ones. Let's exchange one ten: two tens and twelve ones are still thirty-two.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Starting minuend 32 = 3×10 + 2; subtrahend 17 = 1×10 + 7. Because 2 < 7, a normal ones-column subtraction needs regrouping.
+                    - Single exchange transforms **3 tens + 2 ones → 2 tens + 12 ones**, preserving 32. Do not show 3 tens + 12 ones as equivalent: that equals **42**, not 32.
+                    - Correct operation after exchange: ones 12−7=5, tens 2−1=1, result 1 ten + 5 ones = 15; verify original subtraction via **15+17=32**.
+                    - Written columns must have clear, semantically labeled tens and ones. Visually altered digits must correspond to the physical regrouping; never move a ones digit into the tens column or show “subtract the smaller digit from the larger” as a valid rule.
+                    - The subtrahend's 17 counters are a **quantity to remove from 32**, not additional counters in the original thirty-two collection. Removed 17 + remaining 15 = original 32.
+                    - Optional transfer: 41−16=25. Starting 4 tens+1 one becomes 3 tens+11 ones; 11−6=5 ones, 3−1=2 tens, 25+16=41. Only optional after default example explained.
+                    - Whole-number two-digit nonnegative problems, at most one tens-to-ones exchange. No zeros-across-columns borrow chains, negative values, decimals, freeform larger numbers or unsupported “standard algorithm” generalization.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 3 / notice and exchange**
+
+                    1. Show a labeled tens/ones board with 32 above 17, and a separate model: three ten-bundles and two ones for 32. Label 17 as “we are taking away one ten and seven ones,” clearly separated from the original whole.
+                    2. Ask “Can we take away seven ones from the two loose ones?” Child may predict, then reveal the numerical comparison “2 ones is fewer than 7 ones.”
+                    3. “Exchange one ten” transforms exactly one of the three ten-bundles into ten loose ones. The tens column decrements from three to two; the ones column changes from two to twelve. Display both states and explicit equality: **30+2=20+12=32**.
+                    4. Provide optional incorrect-choice contrast: “What if we keep 3 tens and write 12 ones?” Reveal **30+12=42**, which cannot represent thirty-two. Feedback: “We used one ten to make ten ones, so only two tens remain.”
+                    5. Ask the child to name both new place counts, or select from “2 tens and 12 ones” versus “3 tens and 12 ones”. “Show the numbers” is available without selection.
+                    6. Only after the child can inspect the conserved representation does the Scene display the preview “Now we can subtract 7 from 12 ones.”
+
+                    **Section 4 / subtract and verify**
+
+                    1. A fresh self-contained entry displays **32−17**, aligned tens/ones columns, and the corresponding original 3 ten-bundles+2 ones. The answer and marks are not initially displayed.
+                    2. “Exchange a ten” performs the same conservation-safe update (or “Show me how” reveals the update). Show “2 tens, 12 ones”.
+                    3. “Take away 7 ones” moves/marks seven ones as removed, leaving five. Write **12−7=5** into the ones-column explanation.
+                    4. “Take away 1 ten” marks one of the remaining two tens as removed, leaving one ten. Write **2−1=1 ten**. Final result is **1 ten + 5 ones = 15**.
+                    5. “Check the answer” explicitly displays **15+17=32** and labels it as reverse addition to the _original_ subtraction 32−17; the sum thirty-two matches the initial quantity.
+                    6. Offer a supported mistake inspection (not a fake quiz): If child selects “subtract 7−2=5,” say “We need to take seven ones FROM the two ones in thirty-two. We cannot reverse the numbers to avoid an exchange. Exchange one ten so we can do 12−7.” If child retains three tens after exchange, show **42** and explain missing decrement.
+                    7. Optional new case **41−16** (only upon request), with exchange, subtraction and check **25+16=41**; all steps must reflect the new numbers. “Reset” restores the original case.
+                    8. End with learner reflection “What changed when the ten became ones? What did not change?” Reveal “The number of tens and ones changed. The total before subtracting stayed the same.”
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled Tens/Ones table or stack, source minuend and subtrahend with stable operand descriptions, countable ten-bundles and singles, exchanged loose units, removed items area, “Exchange / Undo / Subtract ones / Subtract tens / Check / Show steps / Reset” native controls, detailed ordered accessible state ledger.
+                    - Two independent, **prop-free** Scene placements with their own initial states; guided exchange in Section 3, full computation in Section 4. This is editorial information, not a new React mode prop or Resource_Config discriminator.
+                    - State: current example (minuend/subtrahend), grouped counters, exchanged=true/false, removed ones, removed tens, numerical step shown, current candidate/misconception explanation if any. Subtraction steps must follow valid dependencies; display why a control is not yet possible.
+                    - Conservation invariant BEFORE subtraction: 10×tens + ones = original minuend (32 or 41). After subtraction, remaining + removed = original minuend. An exchange changes exactly −1 tens and +10 ones, without adding/removing counters.
+                    - Alignment invariant: ones subtraction uses the minuend's ones after exchange minus subtrahend's ones; tens subtraction uses the decreased tens count after exchange minus subtrahend's tens.
+                    - The check calculates the ORIGINAL minuend by adding final difference and original subtrahend; verification text must not misidentify 42 as thirty-two or 7−2 as the prescribed ones subtraction.
+                    - A “trial” response is explicitly temporary. No score, threshold, mastery event or graded QuestionState; complete explanation remains available without a correct guess.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use lightweight SVG/HTML place-value bundle and digit grid with strong labels **Tens** and **Ones** and visible operand meaning. If column marks show an altered tens value and 12 ones, connect each mark to the same concrete exchange. Animation is a small learner-triggered transition rather than a continuous movie; reduced motion immediately shows exact before/after counts. Do not require a color legend, custom image, online media, video, 3D or sound. Counters removed remain countable in a labeled separate area for conservation.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Fully translate all prompts, buttons, place-value names, expanded counts, subtraction/verifications, errors, accessible statuses and Note references into every supported locale, without silent English fallbacks. Avoid a metaphor suggesting a ten has been acquired from outside the number.
+                    - In RTL, surround equation/math with semantically appropriate direction handling; **Tens/Ones columns must be identified by actual place value**, not blindly mirrored screen positions. The accessible ordered list must name minuend, subtrahend, column and resulting count explicitly.
+                    - Equivalent screen-reader ledger: “Thirty-two: three tens and two ones. Exchange one ten. Now thirty-two is two tens and twelve ones. Subtract seven ones: five left. Subtract one ten: one left. Result fifteen. Check fifteen plus seventeen equals thirty-two.”
+                    - All steps keyboard-operable, focus visible, child-sized touch targets, high contrast and distinguishable borders. No drag-only movement, hover-only labels, color-only feedback, compulsory speech recognition or timed completion. 200% zoom and mobile layouts may stack the model and grid vertically while preserving exact arithmetic.
+                    - Offline after full content/language download: calculations, translations and alternatives are local and deterministic; reduced motion and lower-performance devices deliver the same intermediate and final mathematical states, not a simplified wrong algorithm.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Initial state: 32 shown as exactly 3 tens + 2 ones; subtrahend 17 shown as 1 ten + 7 ones, never added into original minuend.
+                    2. After one exchange: exactly 2 tens + 12 ones, still 32. A proposed 3 tens+12 ones is labeled 42 and rejected as a representation of thirty-two.
+                    3. Ones subtraction 12−7 yields 5; tens subtraction 2−1 yields 1 ten; final difference 15.
+                    4. Inverse check 15+17=32 restores original minuend; missing/incorrect exchanges cannot yield a false verified status.
+                    5. Optional 41−16 uses 3 tens+11 ones, 11−6=5, 3−1=2, result 25; 25+16=41.
+                    6. Asking “why not 7−2?” explains subtraction operand order and need to exchange, not just a wrong-label icon.
+                    7. Undo/reset and independent Section entrypoints do not leak previous state; help/reveal always available without grading.
+                    8. Keyboard/screen reader, RTL, high zoom, mobile, reduced motion and downloaded offline execution show the same counts, place-value changes, arithmetic and explanatory messages.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic Scene Resource and renderer are verified; **Place-Value Column Board is new and proposed**, not implemented. Editor approval of this spec precedes Design Scene skill and tests. Coding Agent must choose accurate column rendering, independent prop-free entries and per-locale contextual strings. Preserve the arithmetic/conservation invariants for all access modes. If nonvisual users cannot fully operate the representation, implementation remains blocked until an equivalent step-ledger is provided. Assessment Architect separately authorizes any graded tasks; this spec does not.
+                  purpose: 'Why the Ones Column Needs an Exchange: independent placement'
+                  productionNotes: 'Original placeValueColumnBoard.scene-spec.md variant belongs to Why the Ones Column Needs an Exchange; see Section productionNotes. Unique stable Scene ID.'
+              text1:
+                config:
+                  id: '87064289-32e0-5dde-8840-c28994f6cc50'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We did **not** turn 32 into 42. We changed **3 tens and 2 ones** into **2 tens and 12 ones**. Both are worth thirty-two.'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+            order: ['markdown1', 'scene1', 'text1']
+        production:
+          purpose: 'Link the concrete ten/ones exchange to two-digit place-value columns, preserving both digits’ correct meaning.'
+          productionNotes: |-
+            - Purpose / learning outcome: Link the concrete ten/ones exchange to two-digit place-value columns, preserving both digits’ correct meaning.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks:
+              1. **markdown — available:** “Try **32 − 17**. Thirty-two is **3 tens and 2 ones**. Seventeen is **1 ten and 7 ones**. The ones column asks us to take seven ones from two ones. We cannot do that with the loose ones as they are. Can we exchange one ten?”
+              2. **scene — supported block type; proposed new Scene:** Place-Value Column Board (Scene specification placeValueColumnBoard embedded below), guided exchange placement with labeled “Tens” and “Ones” columns, 32 modeled as 3 ten-bundles and 2 singles, and 17 as a subtracting reference (1 ten, 7 ones), not mistakenly added objects. Exchange one of 32’s tens to display **2 tens and 12 ones**.
+              3. **text — available:** “We did **not** turn 32 into 42. We changed **3 tens and 2 ones** into **2 tens and 12 ones**. Both are worth thirty-two.”
+            - Core explanation and learner-facing text: Place-value marks represent tens/ones, not two independent digits. A digit’s place determines its value. The exchange decreases the tens count by one and increases the ones count by ten.
+            - Illustration / model / experiment: A two-column place-value board and a linked bundle/counter view. The written 3 tens / 2 ones is updated to 2 tens / 12 ones. Show equivalent arithmetic: 30 + 2 = 20 + 12 = 32.
+            - Learner action, observations and explanatory feedback: Predict the new tens/ones counts; exchange; inspect each column. If child proposes **3 tens and 12 ones**, show **30 + 12 = 42**, not 32: “We forgot to use up one ten when making ten new ones.” If child subtracts 7−2, say “We must take the ones of seventeen away from the ones of thirty-two. Exchange before subtracting.”
+            - Navigation and transition: Do not move to subtracting both columns until the learner has access to the conserved 32 explanation; then offer the full worked subtraction in the same board.
+            - Accessibility, locale and RTL requirements: Place-value labels are semantic, not left/right instructions; accessible grid text names the minuend and subtrahend (“thirty-two: three tens, two ones; seventeen: one ten, seven ones”). Math columns and operator order are not naively mirrored in RTL.
+            - Proposed unlocked Note(s): Note 3 “Exchanging one ten adds ten ones and removes one ten,” after conservation is shown (planned, not wired).
+            - Implementation dependencies and review notes: Scene is proposed. The Coding Agent must ensure visually stacked column marks are faithfully described in linear screen-reader text.
+      section4:
+        config:
+          id: '71be4631-52c5-55da-bc6c-c631b6a04114'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Subtract and Check'
+            navigationLabel:
+              en: 'Subtract and Check'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'b270e400-161b-5a4b-b3ab-6400499354d9'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We have **2 tens and 12 ones** for thirty-two. Now take away **1 ten and 7 ones**. What is left? Check with addition.'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: 'a3716c81-167a-5954-9288-ec81c7f2e31a'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'We have **2 tens and 12 ones** for thirty-two. Now take away **1 ten and 7 ones**. What is left? Check with addition.'
+                production:
+                  specification: |
+                    # Place-Value Column Board — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Subtraction Across Ten and with Place-Value Columns (embedded in this Lesson config.yaml), Sections 3–4
+                    Methodologist objective(s): Align tens with tens and ones with ones, exchange one ten into ten ones without altering 32, solve 32−17 and verify the result with 15+17=32. Methodologist Brief (embedded in this Lesson config.yaml).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The board connects three simultaneous descriptions of **the same thirty-two**: bundles/counters, labeled place values and column marks. The child must understand why the written tens digit changes when the ones count gains ten. The written algorithm becomes a record of a real exchange rather than a mysterious instruction to “borrow”.
+
+                    Child-facing explanation: “Thirty-two has three tens and two ones. We need to take away seven ones. Let's exchange one ten: two tens and twelve ones are still thirty-two.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Starting minuend 32 = 3×10 + 2; subtrahend 17 = 1×10 + 7. Because 2 < 7, a normal ones-column subtraction needs regrouping.
+                    - Single exchange transforms **3 tens + 2 ones → 2 tens + 12 ones**, preserving 32. Do not show 3 tens + 12 ones as equivalent: that equals **42**, not 32.
+                    - Correct operation after exchange: ones 12−7=5, tens 2−1=1, result 1 ten + 5 ones = 15; verify original subtraction via **15+17=32**.
+                    - Written columns must have clear, semantically labeled tens and ones. Visually altered digits must correspond to the physical regrouping; never move a ones digit into the tens column or show “subtract the smaller digit from the larger” as a valid rule.
+                    - The subtrahend's 17 counters are a **quantity to remove from 32**, not additional counters in the original thirty-two collection. Removed 17 + remaining 15 = original 32.
+                    - Optional transfer: 41−16=25. Starting 4 tens+1 one becomes 3 tens+11 ones; 11−6=5 ones, 3−1=2 tens, 25+16=41. Only optional after default example explained.
+                    - Whole-number two-digit nonnegative problems, at most one tens-to-ones exchange. No zeros-across-columns borrow chains, negative values, decimals, freeform larger numbers or unsupported “standard algorithm” generalization.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 3 / notice and exchange**
+
+                    1. Show a labeled tens/ones board with 32 above 17, and a separate model: three ten-bundles and two ones for 32. Label 17 as “we are taking away one ten and seven ones,” clearly separated from the original whole.
+                    2. Ask “Can we take away seven ones from the two loose ones?” Child may predict, then reveal the numerical comparison “2 ones is fewer than 7 ones.”
+                    3. “Exchange one ten” transforms exactly one of the three ten-bundles into ten loose ones. The tens column decrements from three to two; the ones column changes from two to twelve. Display both states and explicit equality: **30+2=20+12=32**.
+                    4. Provide optional incorrect-choice contrast: “What if we keep 3 tens and write 12 ones?” Reveal **30+12=42**, which cannot represent thirty-two. Feedback: “We used one ten to make ten ones, so only two tens remain.”
+                    5. Ask the child to name both new place counts, or select from “2 tens and 12 ones” versus “3 tens and 12 ones”. “Show the numbers” is available without selection.
+                    6. Only after the child can inspect the conserved representation does the Scene display the preview “Now we can subtract 7 from 12 ones.”
+
+                    **Section 4 / subtract and verify**
+
+                    1. A fresh self-contained entry displays **32−17**, aligned tens/ones columns, and the corresponding original 3 ten-bundles+2 ones. The answer and marks are not initially displayed.
+                    2. “Exchange a ten” performs the same conservation-safe update (or “Show me how” reveals the update). Show “2 tens, 12 ones”.
+                    3. “Take away 7 ones” moves/marks seven ones as removed, leaving five. Write **12−7=5** into the ones-column explanation.
+                    4. “Take away 1 ten” marks one of the remaining two tens as removed, leaving one ten. Write **2−1=1 ten**. Final result is **1 ten + 5 ones = 15**.
+                    5. “Check the answer” explicitly displays **15+17=32** and labels it as reverse addition to the _original_ subtraction 32−17; the sum thirty-two matches the initial quantity.
+                    6. Offer a supported mistake inspection (not a fake quiz): If child selects “subtract 7−2=5,” say “We need to take seven ones FROM the two ones in thirty-two. We cannot reverse the numbers to avoid an exchange. Exchange one ten so we can do 12−7.” If child retains three tens after exchange, show **42** and explain missing decrement.
+                    7. Optional new case **41−16** (only upon request), with exchange, subtraction and check **25+16=41**; all steps must reflect the new numbers. “Reset” restores the original case.
+                    8. End with learner reflection “What changed when the ten became ones? What did not change?” Reveal “The number of tens and ones changed. The total before subtracting stayed the same.”
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled Tens/Ones table or stack, source minuend and subtrahend with stable operand descriptions, countable ten-bundles and singles, exchanged loose units, removed items area, “Exchange / Undo / Subtract ones / Subtract tens / Check / Show steps / Reset” native controls, detailed ordered accessible state ledger.
+                    - Two independent, **prop-free** Scene placements with their own initial states; guided exchange in Section 3, full computation in Section 4. This is editorial information, not a new React mode prop or Resource_Config discriminator.
+                    - State: current example (minuend/subtrahend), grouped counters, exchanged=true/false, removed ones, removed tens, numerical step shown, current candidate/misconception explanation if any. Subtraction steps must follow valid dependencies; display why a control is not yet possible.
+                    - Conservation invariant BEFORE subtraction: 10×tens + ones = original minuend (32 or 41). After subtraction, remaining + removed = original minuend. An exchange changes exactly −1 tens and +10 ones, without adding/removing counters.
+                    - Alignment invariant: ones subtraction uses the minuend's ones after exchange minus subtrahend's ones; tens subtraction uses the decreased tens count after exchange minus subtrahend's tens.
+                    - The check calculates the ORIGINAL minuend by adding final difference and original subtrahend; verification text must not misidentify 42 as thirty-two or 7−2 as the prescribed ones subtraction.
+                    - A “trial” response is explicitly temporary. No score, threshold, mastery event or graded QuestionState; complete explanation remains available without a correct guess.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use lightweight SVG/HTML place-value bundle and digit grid with strong labels **Tens** and **Ones** and visible operand meaning. If column marks show an altered tens value and 12 ones, connect each mark to the same concrete exchange. Animation is a small learner-triggered transition rather than a continuous movie; reduced motion immediately shows exact before/after counts. Do not require a color legend, custom image, online media, video, 3D or sound. Counters removed remain countable in a labeled separate area for conservation.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Fully translate all prompts, buttons, place-value names, expanded counts, subtraction/verifications, errors, accessible statuses and Note references into every supported locale, without silent English fallbacks. Avoid a metaphor suggesting a ten has been acquired from outside the number.
+                    - In RTL, surround equation/math with semantically appropriate direction handling; **Tens/Ones columns must be identified by actual place value**, not blindly mirrored screen positions. The accessible ordered list must name minuend, subtrahend, column and resulting count explicitly.
+                    - Equivalent screen-reader ledger: “Thirty-two: three tens and two ones. Exchange one ten. Now thirty-two is two tens and twelve ones. Subtract seven ones: five left. Subtract one ten: one left. Result fifteen. Check fifteen plus seventeen equals thirty-two.”
+                    - All steps keyboard-operable, focus visible, child-sized touch targets, high contrast and distinguishable borders. No drag-only movement, hover-only labels, color-only feedback, compulsory speech recognition or timed completion. 200% zoom and mobile layouts may stack the model and grid vertically while preserving exact arithmetic.
+                    - Offline after full content/language download: calculations, translations and alternatives are local and deterministic; reduced motion and lower-performance devices deliver the same intermediate and final mathematical states, not a simplified wrong algorithm.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Initial state: 32 shown as exactly 3 tens + 2 ones; subtrahend 17 shown as 1 ten + 7 ones, never added into original minuend.
+                    2. After one exchange: exactly 2 tens + 12 ones, still 32. A proposed 3 tens+12 ones is labeled 42 and rejected as a representation of thirty-two.
+                    3. Ones subtraction 12−7 yields 5; tens subtraction 2−1 yields 1 ten; final difference 15.
+                    4. Inverse check 15+17=32 restores original minuend; missing/incorrect exchanges cannot yield a false verified status.
+                    5. Optional 41−16 uses 3 tens+11 ones, 11−6=5, 3−1=2, result 25; 25+16=41.
+                    6. Asking “why not 7−2?” explains subtraction operand order and need to exchange, not just a wrong-label icon.
+                    7. Undo/reset and independent Section entrypoints do not leak previous state; help/reveal always available without grading.
+                    8. Keyboard/screen reader, RTL, high zoom, mobile, reduced motion and downloaded offline execution show the same counts, place-value changes, arithmetic and explanatory messages.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic Scene Resource and renderer are verified; **Place-Value Column Board is new and proposed**, not implemented. Editor approval of this spec precedes Design Scene skill and tests. Coding Agent must choose accurate column rendering, independent prop-free entries and per-locale contextual strings. Preserve the arithmetic/conservation invariants for all access modes. If nonvisual users cannot fully operate the representation, implementation remains blocked until an equivalent step-ledger is provided. Assessment Architect separately authorizes any graded tasks; this spec does not.
+                  purpose: 'Subtract and Check: independent placement'
+                  productionNotes: 'Original placeValueColumnBoard.scene-spec.md variant belongs to Subtract and Check; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: 'e065c9fa-3f75-5059-9ac8-49fad50f0543'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'After exchanging, **32 = 2 tens + 12 ones**. Take away seven ones: **12 − 7 = 5**. Take away one ten: **2 − 1 = 1 ten**. The difference is **1 ten + 5 ones = 15**. Check: **15 + 17 = 32**. The sum takes us back to the starting number.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Perform a single-exchange two-digit written subtraction correctly and verify by inverse addition.'
+          productionNotes: |-
+            - Purpose / learning outcome: Perform a single-exchange two-digit written subtraction correctly and verify by inverse addition.
+            - Current implementation shape: LessonSection_Config; the formative Scene is not a Quiz_Config.
+            - Ordered content blocks:
+              1. **text — available:** “We have **2 tens and 12 ones** for thirty-two. Now take away **1 ten and 7 ones**. What is left? Check with addition.”
+              2. **scene — existing Scene resource support, new content proposed:** Place-Value Column Board (Scene specification placeValueColumnBoard embedded below), completion placement. Start from 32 − 17 without the answer; guide exchange on demand, subtract **12 − 7 = 5 ones**, then **2 − 1 = 1 ten**, showing **15**. Offer check **15 + 17 = 32**.
+              3. **markdown — available:** “After exchanging, **32 = 2 tens + 12 ones**. Take away seven ones: **12 − 7 = 5**. Take away one ten: **2 − 1 = 1 ten**. The difference is **1 ten + 5 ones = 15**. Check: **15 + 17 = 32**. The sum takes us back to the starting number.”
+            - Core explanation and learner-facing text: Column alignment prevents subtracting unlike place values; each exchange must alter both adjacent place counts. Subtraction 32−17=15 is correct because reversing with addition restores 32.
+            - Illustration / model / experiment: A stepwise, labeled tens-and-ones board and countable representation. A visible check places fifteen and seventeen back together to give thirty-two, or provides a numerically equivalent textual check if rebuilding objects would overcomplicate.
+            - Learner action, observations and explanatory feedback: Predict ones result then tens result; hints allow checking individual columns. If learner subtracts **7−2 = 5** without exchanging, explain why it is not the approved computation: the minuend has two ones and the subtrahend seven; correct exchange gives twelve ones. If learner keeps three tens after exchanging, explicitly show wrong **3 tens + 12 ones = 42**. If learner finds 15, explain “Five ones and one ten make fifteen; fifteen plus seventeen is thirty-two.” Correct and incorrect paths remain redoable and non-scored.
+            - Navigation and transition: Final voluntary prompt “What changed when you exchanged one ten? What stayed the same?” Let the child answer by selection, typing or speech to an adult; speech recognition not assumed. No grade gate.
+            - Accessibility, locale and RTL requirements: Each phase announces tens and ones in words and numerals with explicit operand identity. Clear keyboard/touch stepping, readable focus, large type and equivalent nonvisual calculations; no answer visible only through animation or color.
+            - Proposed unlocked Note(s): Note 4 “Line up ones with ones and tens with tens,” after the checked column example is explained (planned, not wired).
+            - Implementation dependencies and review notes: Formative subtraction feedback is illustrative teaching, not a validated scored Question; a later Assessment Architect determines any assessment.
+    order: ['section1', 'section2', 'section3', 'section4']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Subtraction Across Ten and with Place-Value Columns — Methodologist Brief
+
+    Date: 2026-10-30
+    Slug: subtractionAcrossTenAndColumns
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Help learners understand **regrouping as preserving quantity** while subtracting, first when crossing a ten boundary and then when organizing tens and ones in aligned written columns. Both Skills are related through one exchange: one ten becomes ten ones. The purpose is a reasoned method, not a rote “borrow a one” instruction.
+
+    ## Target audience
+
+    Children aged 6–8 in grades 1–2, especially learners ready for place-value work with two-digit numbers. Younger or less prepared learners should first revisit decomposition of ten and one-digit subtraction; column notation is not a prerequisite for every learner to understand crossing ten.
+
+    ## Prerequisites
+
+    - Represent a two-digit number as tens and ones, recognizing that one ten equals ten ones.
+    - Subtract within 10 and use part–whole ideas for related facts.
+    - Read a two-digit written numeral correctly; alignment of tens with tens and ones with ones may be new.
+    - Learners who cannot conserve the number when regrouping need concrete place-value modelling before the column algorithm.
+
+    ## Target Skills
+
+    - [crossTenSubtraction.data.ts](../../../../data/skills/arithmetic/subtraction/skills/crossTenSubtraction.data.ts)
+    - [columnSubtraction.data.ts](../../../../data/skills/arithmetic/subtraction/skills/columnSubtraction.data.ts)
+
+    ## Expected learning outcomes
+
+    - Explain an across-ten subtraction (for example, 13 − 7) using decomposition or one ten exchanged for ten ones, with the starting quantity unchanged.
+    - Explain why subtracting the ones digit of 17 from the ones digit of 32 requires regrouping in the standard column setup.
+    - Show that 32 can be re-expressed from 3 tens + 2 ones as 2 tens + 12 ones and then compute 32 − 17 = 15 without changing the difference.
+    - Align tens and ones in a two-digit written subtraction, describe each exchange and check plausibility by counting/composing the result or by inverse addition.
+
+    ## Essential subject matter
+
+    The base-ten system represents 32 as three tens and two ones. The same quantity is two tens and twelve ones because one ten equals ten ones. Hence in 32 − 17, subtract 7 ones from 12 ones and 1 ten from 2 tens, leaving 1 ten and 5 ones = 15. In 13 − 7, exchanging 1 ten to obtain 13 ones is one interpretation; another valid age-appropriate strategy is break seven into three and four: 13 − 3 − 4 = 6. These are **different representations of the same subtraction**, not separate answers. In the written column method align **place values**, not just digit positions by visual guesswork; an exchange decreases the tens count and increases the ones count by ten, preserving total value. Key future recall: ten ones = one ten; exchanging changes form, not value.
+
+    ## Conceptual progression and dependencies
+
+    Review the ten–one equivalence using bundles or place-value blocks. Show crossing ten in small values, including a second equivalent mental decomposition strategy. Build from known two-digit numbers with tens and ones to a correct column alignment. Explain a single explicit exchange with an accompanying value model, then connect the physical exchange to the altered written digits and finally check the difference. The Screenwriter may vary instructional representations but must not introduce an unsupported new algorithm.
+
+    ## Misconceptions, examples and boundaries
+
+    The written mark may be mistaken for arbitrarily changing the original number; learners may subtract the smaller ones digit from the larger irrespective of which number contains it (for 32 − 17, incorrectly doing 7 − 2), omit lowering the tens count after exchange, align digits by left edge, or claim “borrowing” changes the result. Explain with 3 tens + 2 ones = 2 tens + 12 ones and contrast wrong 3 tens + 12 ones. Start with two-digit nonnegative minuends and subtrahends; avoid negative differences, long multicolumn algorithms, decimals and multiple sequential exchanges.
+
+    ## Localization, accessibility and offline intent
+
+    Keep tens and ones terminology distinct and consistent across languages; translate “exchange/regroup” to emphasize quantity preservation, avoiding misleading literal borrowing metaphors. Math columns are place-value structures that should not be reversed mechanically for RTL languages; use labeled tens/ones and explicit reading order. Provide an accessible structured-text description of each column, keyboard-operable alternatives to moving blocks, screen-reader announcement of the exchange, and alternatives to color-only or visual-only marks. Animations are optional and reducible, while reasoning and feedback remain fully available offline and on weak devices.
+
+    ## Sources and factual verification
+
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), 1.OA.C.6 (addition/subtraction within 20), 2.NBT.B.7 (place-value models and written methods) and 2.NBT.B.9 (explain methods); used as comparison references.
+    - [IES/WWC, Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), place-value representations and explicit mathematical language.
+    - [Playground generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md), definitions for crossing ten and column method.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. The two concepts form a coherent independent Lesson for learners with place-value prerequisites; particular grade sequence and depth require later Curriculum review.
+
+    ## Open editorial decisions
+
+    - Editor: confirm combined Lesson scope versus two separate Lessons if the range of learners (age 6 versus age 8) makes column notation a distinct instructional stage. This Draft intentionally covers both requested Skills.
+    - Editor: approve initial two-digit scope only; this Lesson-depth choice does not limit the broader age-neutral Skill definitions.
+
+    ## Methodologist handoff
+
+    Draft for explicit editor approval. After approval, the Screenwriter may plan a concrete and symbolic comparison showing why exchanging tens for ones preserves value, and then link it to a written method. No preordained widget, test score, or formal mastery certification is implied.
+  productionNotes: |
+    # Subtraction Across Ten and with Place-Value Columns — Content
+
+    Status: Draft
+    Target Lesson: content/playground/Data/Lessons/1/subtractionAcrossTenAndColumns/ (Playground)
+    Audience: Children aged 6–8, grades 1–2, ready to interpret tens and ones, subtract within ten and read two-digit numbers. Column notation is a later step here, not presumed prior knowledge.
+    Approved Methodologist source: Methodologist Brief (embedded in this Lesson config.yaml) — editor authorized treating the existing Briefs as approved for workflow testing despite the source file still saying Draft; resolve that metadata separately before publication.
+    Learning outcomes: explain 13 − 7 by exchange or decomposition; explain why 32 − 17 requires exchanging a ten for ten ones in the standard column procedure; represent 32 both as 3 tens + 2 ones and as 2 tens + 12 ones; subtract corresponding place values, preserve quantity and check by inverse addition.
+    Target Skills: Exactly the two canonical Skills linked by filename in the Methodologist Brief: crossing ten and column subtraction. No copied competing Skill definitions or new Skill IDs.
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    **Exchange changes a number's representation, not its value.** A bundle of ten can become ten loose ones. The number 13, represented as 1 ten and 3 ones, can also be represented as 13 ones. Neither representation adds or loses anything. This permits 13 − 7 even though three loose ones alone are fewer than seven. It also explains the written column operation for 32 − 17: from 3 tens and 2 ones, exchange one ten to obtain 2 tens and 12 ones, then take away 1 ten and 7 ones, leaving 1 ten and 5 ones, or 15.
+
+    Children experience a physical/countable exchange, predict its consequences, perform subtraction, and only then see marks in columns. An alternate subtraction strategy (13 − 3 − 4 = 6) shows that “crossing ten” need not mean one compulsory written algorithm. The lesson teaches a conserved quantity rather than a phrase like “borrow one” that might imply gaining or taking an extra number.
+
+    **Boundaries:** Whole-number two-digit arithmetic with nonnegative results, at most one exchange from tens to ones per example, no decimals, negative differences, repeated borrowing across many positions, or long multicolumn algorithms. The column stage is offered when the child understands the concrete exchange. A learner who cannot explain why 1 ten = 10 ones should revisit the model before proceeding; no artificial grade-level proficiency is inferred.
+
+    ## LEARNER JOURNEY
+
+    1. **Hold the amount still:** See 13 as one group of ten plus three individual counters, and exchange the ten for ten individual counters. The before-and-after total is 13.
+    2. **Take away seven:** Starting from thirteen, use exchange, or remove three to reach ten and four more to reach six. Explain why both methods remove seven.
+    3. **Put the exchange into columns:** Start 32 − 17 with tens and ones aligned. Notice only two individual ones are present and seven ones must be subtracted. Exchange one ten and update both tens/ones counts.
+    4. **Finish and check:** Subtract 12 − 7 ones and 2 − 1 tens, read the result 15, then check **15 + 17 = 32**. Explain why incorrectly keeping three tens after the exchange would violate the original quantity.
+
+    There is no required scored Quiz, invented mastery event, mascot or Program narrative. Short instructions, learner-controlled reveals, meaningful actions and precise explanatory feedback carry the experience.
+
+    ## SECTION PLAN
+
+    ### Section 1 — Open a Ten, Keep the Same Number
+
+    - Purpose / learning outcome: Understand that one ten is exchangeable for ten ones without changing the total.
+    - Current implementation shape: LessonSection_Config, with an ordered, nonempty, single-column array of resources.
+    - Ordered content blocks:
+      1. **text — available in renderer:** “Look at thirteen: one bundle of ten and three single ones. If we open the bundle, how many counters will we have altogether?”
+      2. **scene — Resource block supported, new Scene proposed:** Ten Exchange Lab (Scene specification tenExchangeLab embedded below), exchange-only placement with a stable total 13, visible bundle and singles, learner-controlled “Exchange one ten” and “Undo exchange.”
+      3. **markdown — available in renderer:** “Before, **1 ten + 3 ones = 13**. After, **0 tens + 13 ones = 13**. We have the same thirteen counters. We only changed how they were grouped.”
+    - Core explanation and learner-facing text: One ten and ten ones are different representations of the same quantity; “opening” a ten does not create ten additional objects.
+    - Illustration / model / experiment: A labeled bundle with precisely ten identifiable positions and three separate ones. During exchange the ten bundle ceases to exist **as a bundle** and those very same ten become loose ones; the total remains thirteen.
+    - Learner action, observations and explanatory feedback: Predict whether the total changes; select “Exchange,” inspect the equivalent textual counts, “Count every counter,” and “Undo.” If the learner says 23: “We did not add another ten. The original ten became ten ones. There are still thirteen.”
+    - Navigation and transition: Keep a visual/textual comparison of both representations and ask “Would loose ones help us take away seven?”
+    - Accessibility, locale and RTL requirements: Structured text says “before: one ten, three ones, total thirteen; after: zero tens, thirteen ones, total thirteen.” Keyboard and touch controls, high-contrast outlines plus names, reduced-motion immediate state; no visual-only conservation insight or drag requirement. Number and place-value reading order must remain meaningful in RTL.
+    - Proposed unlocked Note(s): Note 1 “One ten = ten ones,” after the exchange and its unchanged total have been explained (planned, not wired).
+    - Implementation dependencies and review notes: New Scene required; text, markdown and generic scene rendering are verified capabilities.
+
+    ### Section 2 — Thirteen Minus Seven
+
+    - Purpose / learning outcome: Subtract across a ten by exchange or by partitioning the seven being removed.
+    - Current implementation shape: LessonSection_Config.
+    - Ordered content blocks:
+      1. **text — available:** “We have **13** and need to take away **7**. There are only three loose ones. What can we do?”
+      2. **scene — generic Scene rendering available; new interactive component proposed:** Ten Exchange Lab (Scene specification tenExchangeLab embedded below), subtract placement. The child chooses “Open the ten and take away seven” or “Get to ten first,” and may inspect both.
+      3. **markdown — available:** “One way: open the bundle so you have thirteen ones, then remove seven: **13 − 7 = 6**. Another way: take away three to reach ten, then four more: **13 − 3 − 4 = 6**. Three and four together are seven, so both methods take away the same number.”
+    - Core explanation and learner-facing text: Exchange is useful when the ones visible at first are fewer than the ones to subtract. Decomposing seven into three and four offers an equivalent route, not a different answer.
+    - Illustration / model / experiment: The same fixed thirteen counters are shown throughout. On the exchange route, thirteen loose ones minus seven leaves six; on the “reach ten” route, thirteen minus three leaves ten, and ten minus four leaves six. At every state, counters removed + counters remaining = thirteen.
+    - Learner action, observations and explanatory feedback: Each subtraction is explicitly learner-paced; “Count remaining” says six in either route. If a learner stops at ten after removing three, explain “We removed three, but we needed to remove seven. Four more must go.” If a learner thinks opening the ten creates more counters, compare the original and current total.
+    - Navigation and transition: End with a side-by-side mathematical conclusion **inside the Scene**: both routes leave six. Invite “What should we do when there are not enough loose ones?” before written columns.
+    - Accessibility, locale and RTL requirements: Both routes have distinct ordered numerical logs, with subtraction operators in correct order and complete textual counters. Equivalent nonvisual execution, no dragging, timer or compulsory narration; reduced motion presents the same intermediate states immediately.
+    - Proposed unlocked Note(s): Note 2 “Exchange changes the form, not the amount,” after comparing the two methods and the unchanged starting thirteen (planned, not wired).
+    - Implementation dependencies and review notes: This is a formative teaching Scene, not a scored question. A child may inspect either route without being forced to perform both.
+
+    ### Section 3 — Why the Ones Column Needs an Exchange
+
+    - Purpose / learning outcome: Link the concrete ten/ones exchange to two-digit place-value columns, preserving both digits’ correct meaning.
+    - Current implementation shape: LessonSection_Config.
+    - Ordered content blocks:
+      1. **markdown — available:** “Try **32 − 17**. Thirty-two is **3 tens and 2 ones**. Seventeen is **1 ten and 7 ones**. The ones column asks us to take seven ones from two ones. We cannot do that with the loose ones as they are. Can we exchange one ten?”
+      2. **scene — supported block type; proposed new Scene:** Place-Value Column Board (Scene specification placeValueColumnBoard embedded below), guided exchange placement with labeled “Tens” and “Ones” columns, 32 modeled as 3 ten-bundles and 2 singles, and 17 as a subtracting reference (1 ten, 7 ones), not mistakenly added objects. Exchange one of 32’s tens to display **2 tens and 12 ones**.
+      3. **text — available:** “We did **not** turn 32 into 42. We changed **3 tens and 2 ones** into **2 tens and 12 ones**. Both are worth thirty-two.”
+    - Core explanation and learner-facing text: Place-value marks represent tens/ones, not two independent digits. A digit’s place determines its value. The exchange decreases the tens count by one and increases the ones count by ten.
+    - Illustration / model / experiment: A two-column place-value board and a linked bundle/counter view. The written 3 tens / 2 ones is updated to 2 tens / 12 ones. Show equivalent arithmetic: 30 + 2 = 20 + 12 = 32.
+    - Learner action, observations and explanatory feedback: Predict the new tens/ones counts; exchange; inspect each column. If child proposes **3 tens and 12 ones**, show **30 + 12 = 42**, not 32: “We forgot to use up one ten when making ten new ones.” If child subtracts 7−2, say “We must take the ones of seventeen away from the ones of thirty-two. Exchange before subtracting.”
+    - Navigation and transition: Do not move to subtracting both columns until the learner has access to the conserved 32 explanation; then offer the full worked subtraction in the same board.
+    - Accessibility, locale and RTL requirements: Place-value labels are semantic, not left/right instructions; accessible grid text names the minuend and subtrahend (“thirty-two: three tens, two ones; seventeen: one ten, seven ones”). Math columns and operator order are not naively mirrored in RTL.
+    - Proposed unlocked Note(s): Note 3 “Exchanging one ten adds ten ones and removes one ten,” after conservation is shown (planned, not wired).
+    - Implementation dependencies and review notes: Scene is proposed. The Coding Agent must ensure visually stacked column marks are faithfully described in linear screen-reader text.
+
+    ### Section 4 — Subtract and Check
+
+    - Purpose / learning outcome: Perform a single-exchange two-digit written subtraction correctly and verify by inverse addition.
+    - Current implementation shape: LessonSection_Config; the formative Scene is not a Quiz_Config.
+    - Ordered content blocks:
+      1. **text — available:** “We have **2 tens and 12 ones** for thirty-two. Now take away **1 ten and 7 ones**. What is left? Check with addition.”
+      2. **scene — existing Scene resource support, new content proposed:** Place-Value Column Board (Scene specification placeValueColumnBoard embedded below), completion placement. Start from 32 − 17 without the answer; guide exchange on demand, subtract **12 − 7 = 5 ones**, then **2 − 1 = 1 ten**, showing **15**. Offer check **15 + 17 = 32**.
+      3. **markdown — available:** “After exchanging, **32 = 2 tens + 12 ones**. Take away seven ones: **12 − 7 = 5**. Take away one ten: **2 − 1 = 1 ten**. The difference is **1 ten + 5 ones = 15**. Check: **15 + 17 = 32**. The sum takes us back to the starting number.”
+    - Core explanation and learner-facing text: Column alignment prevents subtracting unlike place values; each exchange must alter both adjacent place counts. Subtraction 32−17=15 is correct because reversing with addition restores 32.
+    - Illustration / model / experiment: A stepwise, labeled tens-and-ones board and countable representation. A visible check places fifteen and seventeen back together to give thirty-two, or provides a numerically equivalent textual check if rebuilding objects would overcomplicate.
+    - Learner action, observations and explanatory feedback: Predict ones result then tens result; hints allow checking individual columns. If learner subtracts **7−2 = 5** without exchanging, explain why it is not the approved computation: the minuend has two ones and the subtrahend seven; correct exchange gives twelve ones. If learner keeps three tens after exchanging, explicitly show wrong **3 tens + 12 ones = 42**. If learner finds 15, explain “Five ones and one ten make fifteen; fifteen plus seventeen is thirty-two.” Correct and incorrect paths remain redoable and non-scored.
+    - Navigation and transition: Final voluntary prompt “What changed when you exchanged one ten? What stayed the same?” Let the child answer by selection, typing or speech to an adult; speech recognition not assumed. No grade gate.
+    - Accessibility, locale and RTL requirements: Each phase announces tens and ones in words and numerals with explicit operand identity. Clear keyboard/touch stepping, readable focus, large type and equivalent nonvisual calculations; no answer visible only through animation or color.
+    - Proposed unlocked Note(s): Note 4 “Line up ones with ones and tens with tens,” after the checked column example is explained (planned, not wired).
+    - Implementation dependencies and review notes: Formative subtraction feedback is illustrative teaching, not a validated scored Question; a later Assessment Architect determines any assessment.
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Ten Exchange Lab (Scene specification tenExchangeLab embedded below) — new prop-free Scene for Sections 1–2, exchange and two crossing-ten subtraction routes.
+    - Place-Value Column Board (Scene specification placeValueColumnBoard embedded below) — new prop-free Scene for Sections 3–4, conservation-aware written subtraction and inverse-addition check.
+
+    Both are separate **Draft** Scene specifications awaiting editor approval and Design Scene implementation. Generic Scene block rendering already exists in Playground; the specific components do not.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. **“One ten = ten ones.”** Proposed unlock after the Section 1 exchange equivalence has been presented.
+    2. **“Exchange changes the form, not the amount.”** Proposed unlock after Section 2 demonstrates conservation and both ways to get six.
+    3. **“One ten exchanged → one fewer ten, ten more ones.”** Proposed unlock after Section 3 correctly transforms 3 tens + 2 ones into 2 tens + 12 ones.
+    4. **“Ones with ones; tens with tens.”** Proposed unlock after Section 4 presents the full 32−17=15 and inverse addition check.
+
+    Notes are editorially **planned and not wired**. No available Note type, unlock API, learner-specific persistence, revision-sheet renderer or spaced repetition scheduling is assumed. If later implemented, an individual learner’s revision view contains only genuinely unlocked cues in this order. Revealing any Note is not mastery evidence.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    - Section 1: concept demonstration and explanation of conserved quantity; optional before/after prediction.
+    - Section 2: two valid 13−7 routes, with learner-controlled intermediate reveals and respectful error repair.
+    - Section 3: deliberate misconception contrast (3 tens + 12 ones falsely increases 32), linking the model to column notation.
+    - Section 4: reduced support for 32−17 and explicit verification 15+17=32; optional transfer **41 − 16 = 25**, since 4 tens + 1 one becomes 3 tens + 11 ones, remove 1 ten + 6 ones, leaving 2 tens + 5 ones. Any new scored task requires independent assessment review.
+    - **Assessment Architect** determines valid Question instances, Skill attribution (crossing-ten vs column method), distractors, scores, thresholds, retries and mastery evidence. No Quiz_Config or Question bank is authored here. Current Playground Lesson widget adapter supports select-one-answer only despite broader declared Question kinds.
+    - Future spaced review of exchanging ten should be separately implemented; the script does not claim a live scheduler.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    All English teaching copy is **editorial source** for genuine translation into every supported language. Translate “ten”, “ones”, “exchange”, “take away”, “difference”, “minuend” and “subtrahend” with understandable child-facing alternatives, retaining exact mathematical meaning; never silently fall back to English. Mathematical tens/ones columns must remain semantically labeled in LTR and RTL rather than mechanically mirrored; visually spatial claims have accessible ordered text equivalents. Every exchanged bundle, removal, column update and check is accessible as a structured text/state ledger and operable through keyboard, touch and assistive controls, without drag-only manipulation, color coding, audio-only instructions or timed responses. Reduced motion preserves each before/after representation; zoom and mobile layouts retain legible columns and explicit place-value labels. All calculations and feedback must be locally available when the selected language/content/scene is downloaded. Lightweight HTML/SVG suffices; WebGL, streaming video and remote answer checking are unnecessary. An inaccessible “lite” version that silently removes the exchange is not acceptable.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    | Feature                                                        | Readiness / owner                                                                                                  |
+    | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+    | LessonSection_Config and ordered text, markdown, scene blocks  | Verified in current contract/generic renderer; Coding Agent assembles approved content                             |
+    | Ten Exchange Lab and Place-Value Column Board                  | **Proposed custom Scenes**, not implemented; Scene Designer builds each after independent approval, with own tests |
+    | Independent initial state per Section and locale wiring        | Coding Agent verifies prop-free Scene entries and full localization; no invented mode prop                         |
+    | KnowledgeCheckpoint                                            | Existing unscored UI Kit widget through Scene wrapper; not required here                                           |
+    | Quiz_Config / Question data                                    | Type contracts exist; adapter presently supports select-one; Assessment Architect owns assessment                  |
+    | Image/audio/video/code                                         | Typed-only in generic renderer; not required                                                                       |
+    | YouTube                                                        | Resource label only, not in current Resource_Config; not used                                                      |
+    | Planned Notes, spaced review, offline content package download | No implemented API claimed; requires separate engineering review                                                   |
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (embedded in this Lesson config.yaml), both canonical Skills, exchange conservation model, scope and prerequisite gate.
+    - [Generated Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md), English Code-derived Skill descriptions; actual source links are in the Brief.
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md), Section/Resource/Scene authoring and review gates.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) and [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26): comparison references identified by the Brief, not a certification of this lesson’s curriculum placement.
+    - **Editor:** Confirm the two-Skill combined scope is suitable for the specific 6–8-year-old audience, or divide it later through a separate Methodologist decision. Column method must not be forced on children lacking secure tens/ones understanding.
+    - **Editor:** Review the two-digit single-exchange limit as a Lesson-depth choice, not a reduction of age-neutral Skill definitions.
+    - **Metadata:** Original Methodologist Brief still reads Draft despite explicit approval for this test; resolve separately before publication without changing it in the Screenwriter stage.
+    - **Engineering:** Approve prop-free scene placement, mathematically accurate column presentation, localized screen-reader structure and offline equivalence before coding.
+
+    ## HANDOFF
+
+    One Draft four-Section Lesson Content and two Draft Scene specifications, scoped only to this existing Lesson. Editor must approve the Content and each Scene spec separately. Design Scene implements approved scenes, Coding Agent wires typed/localized resources, Assessment Architect separately validates any scored evidence. Do not modify Briefs, Skills, other Lessons, shared runtime, Question banks or the PR base branch.

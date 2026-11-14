@@ -1,0 +1,486 @@
+config:
+  id: '1a18f25b-5867-5e52-8433-e09d6cd7dc01'
+  slug: 'evenOrOddByPairing'
+  type: 'lesson'
+  skills: ['1945f222-d833-4897-b9c1-71f16d81fd74']
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Does Every Object Have a Partner?'
+  section:
+    items:
+      section1PartnerPairLab:
+        config:
+          id: '5a42944f-ccd4-4bfa-9289-374dda985838'
+          slug: 'section1PartnerPairLab'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Partner Pair Lab'
+            navigationLabel:
+              en: 'Partner Pair Lab'
+          content:
+            items:
+              text1:
+                config:
+                  id: '723e2492-9599-4a6b-b38d-88ec6fd3142d'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Can all eight cards find a partner?'
+              partnerPairLab:
+                config:
+                  id: '77d3cf81-6bc0-46f2-a9cb-809bd9e05e64'
+                  slug: 'partnerPairLab'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Can all eight cards find a partner?'
+                production:
+                  specification: |
+                    # Partner Pair Lab — Scene Specification
+
+                    Status: **Provisional Draft — pending Methodologist and Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Does Every Object Have a Partner? Content (editorial text integrated into this config.yaml), Section 1
+                    Methodologist objectives: Draft Methodologist Brief (editorial text integrated into this config.yaml)
+                    Implementation status: Proposed prop-free component; not implemented
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Classify even and odd counts by dividing objects into disjoint pairs, explaining when an item is left without a partner and why arrangement cannot change parity. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Eight objects form four disjoint pairs and no leftover: even. Nine form four pairs and one unmatched object: odd. Twelve form six pairs whether regular or scattered: even. Thirteen form six pairs and one unmatched object: odd. Zero is even mathematically, but introduced only as optional extension.
+
+                    **Initial state:** Eight named cards initially unpaired; the ninth can be added on command.
+
+                    **Authoritative interactive model:** Stable card IDs and disjoint two-card pair list. A card can appear in one pair only. Undo restores two available cards; total and unmatched ledger derived from authoritative state.
+
+                    **Boundaries:** Grade 2 concrete collections of 1–15 items; no negative integers, formal divisibility test, memorized final-digit shortcut or scoring.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Beat 1
+
+                    - **Learner-facing prompt:** “Can all eight cards find a partner?”
+                    - **Learner action:** Make four disjoint pairs, for example 1–2,3–4,5–6,7–8.
+                    - **Visible mathematical conclusion:** Eight is even, zero leftover.
+                    - **Specific explanatory feedback:** If odd because four groups are visible, compare number of objects left alone: zero.
+                    - **Verified expected result:** 8=4 pairs +0 leftover.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+
+                    ### Beat 2
+
+                    - **Learner-facing prompt:** “One ninth card arrives. Is it still even?”
+                    - **Learner action:** Add a ninth card and inspect the four existing pairs and one unmatched card.
+                    - **Visible mathematical conclusion:** Nine is odd, one leftover.
+                    - **Specific explanatory feedback:** If even selected, point to unpaired ninth card and its missing partner.
+                    - **Verified expected result:** 9=4 pairs +1 leftover.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Select two available cards / Pair next two sequentially; Undo; Add ninth; Reveal; Reset.
+
+                    - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
+                    - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
+                    - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
+                    - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 8=4 pairs +0 leftover. Incorrect case: If odd because four groups are visible, compare number of objects left alone: zero.
+                    2. 9=4 pairs +1 leftover. Incorrect case: If even selected, point to unpaired ninth card and its missing partner.
+                    3. No double-membership; 8 has zero leftovers, 9 has one, undo/reset stay local.
+                    4. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
+                  purpose: 'Proposed interactive Scene for Partner Pair Lab'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: '810f3ff9-323e-43c0-bcf9-c4035753680a'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Eight is even, zero leftover.'
+            order: ['text1', 'partnerPairLab', 'markdown2']
+        production:
+          purpose: 'Partner Pair Lab'
+          pedagogicalIntent: |
+            ### Section 1 — Partner Pair Lab
+
+            - **Purpose:** Establish and test the model in a controlled contrast.
+            - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+            - **Ordered blocks:** (1) text (renderable): “Can all eight cards find a partner?” (2) scene (generic type renderable; this bespoke component proposed): Partner Pair Lab (Scene specification embedded in this config.yaml) (3) markdown (renderable): “Eight is even, zero leftover.”
+            - **Experience beats and explanatory feedback:**
+              - **Beat 1:** “Can all eight cards find a partner?” Make four disjoint pairs, for example 1–2,3–4,5–6,7–8. **Explanation:** Eight is even, zero leftover. **Exact worked case:** 8=4 pairs +0 leftover. **Error-specific response:** If odd because four groups are visible, compare number of objects left alone: zero.
+              - **Beat 2:** “One ninth card arrives. Is it still even?” Add a ninth card and inspect the four existing pairs and one unmatched card. **Explanation:** Nine is odd, one leftover. **Exact worked case:** 9=4 pairs +1 leftover. **Error-specific response:** If even selected, point to unpaired ninth card and its missing partner.
+            - **Learner control and state:** Select two available cards / Pair next two sequentially; Undo; Add ninth; Reveal; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+            - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+            - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section2ThinkBeforeRevealingTheReason:
+        config:
+          id: '2f94be94-a1eb-4d6b-9d50-6d862bfd3f85'
+          slug: 'section2ThinkBeforeRevealingTheReason'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Think before revealing the reason'
+            navigationLabel:
+              en: 'Think before revealing the reason'
+          content:
+            items:
+              text1:
+                config:
+                  id: '7ff7e659-92d7-490e-bee0-5b77367edca4'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Four complete pairs plus one leftover: even or odd?'
+              markdown2:
+                config:
+                  id: '348b3056-4892-47a5-97df-ea7c90ae6e8b'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Four pairs and one leftover make nine, an odd count. Scattering twelve does not add/remove objects: six complete pairs remain possible.'
+              text3:
+                config:
+                  id: '7df7e333-90d7-45e8-80e0-5e9d387edfca'
+                  slug: 'text3'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Can scattering twelve objects make an even count odd?'
+            order: ['text1', 'markdown2', 'text3']
+        production:
+          purpose: 'Think before revealing the reason'
+          pedagogicalIntent: |
+            ### Section 2 — Think before revealing the reason
+
+            - **Purpose:** Short independent retrieval and misconception contrast.
+            - **Ordered Resource blocks (renderable):**
+              1. text: “Four complete pairs plus one leftover: even or odd?”
+              2. markdown: “Four pairs and one leftover make nine, an odd count. Scattering twelve does not add/remove objects: six complete pairs remain possible.”
+              3. text: “Can scattering twelve objects make an even count odd?”
+            - **Pedagogical action:** The learner reflects before reading the explanation, then checks it against the first Scene. An actual hidden-answer widget is **not** inferred from plain text/Markdown support; this is a planned reflective pause, not a scored Question.
+            - **Feedback:** Address the common trap directly: Confusing four pairs with four objects; letting the same object belong to two pairs; thinking that an untidy layout must be odd; concluding odd while two unpaired objects could still form another pair.
+            - **Transition:** Apply the same principle to the new Scene, without relying on the original display.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section3PairSurprise:
+        config:
+          id: '145230eb-e268-4b5e-8466-c5edc11bd7e0'
+          slug: 'section3PairSurprise'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Pair Surprise'
+            navigationLabel:
+              en: 'Pair Surprise'
+          content:
+            items:
+              text1:
+                config:
+                  id: '6aee308e-39db-41ef-8f1e-1d8c11f31955'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Does scattering twelve dots turn them odd?'
+              pairSurprise:
+                config:
+                  id: 'a579a9c3-6757-4ac0-8621-57918e5a3c4e'
+                  slug: 'pairSurprise'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Does scattering twelve dots turn them odd?'
+                production:
+                  specification: |
+                    # Pair Surprise — Scene Specification
+
+                    Status: **Provisional Draft — pending Methodologist and Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Does Every Object Have a Partner? Content (editorial text integrated into this config.yaml), Section 3
+                    Methodologist objectives: Draft Methodologist Brief (editorial text integrated into this config.yaml)
+                    Implementation status: Proposed prop-free component; not implemented
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Classify even and odd counts by dividing objects into disjoint pairs, explaining when an item is left without a partner and why arrangement cannot change parity. This Scene's distinct responsibility is its own concrete model, prediction and learner-operated evidence.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Eight objects form four disjoint pairs and no leftover: even. Nine form four pairs and one unmatched object: odd. Twelve form six pairs whether regular or scattered: even. Thirteen form six pairs and one unmatched object: odd. Zero is even mathematically, but introduced only as optional extension.
+
+                    **Initial state:** Twelve named dots shown first as tidy rows and then scattered without changing IDs; new thirteen-shell challenge.
+
+                    **Authoritative interactive model:** Stable IDs, layout variant, disjoint pair list, unpaired summary. Layout change alters position only, not quantity.
+
+                    **Boundaries:** Grade 2 concrete collections of 1–15 items; no negative integers, formal divisibility test, memorized final-digit shortcut or scoring.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Beat 1
+
+                    - **Learner-facing prompt:** “Does scattering twelve dots turn them odd?”
+                    - **Learner action:** Scatter same twelve distinct dots, then make six pairs.
+                    - **Visible mathematical conclusion:** Twelve remains even.
+                    - **Specific explanatory feedback:** If odd due to crooked layout, match each dot before and after and show six complete pairs.
+                    - **Verified expected result:** 12=6 pairs +0 both ways.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+
+                    ### Beat 2
+
+                    - **Learner-facing prompt:** “Prove whether thirteen shells are even or odd.”
+                    - **Learner action:** Independent thirteen-shell case; form six disjoint pairs and count remaining one.
+                    - **Visible mathematical conclusion:** Thirteen is odd.
+                    - **Specific explanatory feedback:** If two shells unmatched, show they can still form one pair before deciding.
+                    - **Verified expected result:** 13=6 pairs +1 leftover.
+                    - **Control:** The child can reveal the worked explanation and retry without a score or automatic pass.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Distinct labelled objects or cash-piece identities, authoritative state, count/rank/value ledger, prediction, reveal and local reset. **Control map:** Scatter/restore; Pair distinct objects; Undo; Show ledger; Reset.
+
+                    - No props, no external mode/configuration contract, no shared state between Scene instances. Scenario constants live inside this standalone Scene when a Coding Agent later implements it.
+                    - Counts, pairs, ordinal ranks and EUR totals are always derived from the exact objects shown; valid actions preserve declared invariants and never silently add or discard identities.
+                    - A rejected/incomplete action explains what is missing and allows correction. Reset restores only this Scene.
+                    - There is no Question/Quiz, scoring, mastery, analytics event or Note persistence hook.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple semantic HTML/SVG schematic objects and labelled values, child-paced transitions, immediate equivalents in reduced-motion mode. No mandatory audio, remote asset, drag or animation. Currency artwork, if later needed, requires rights and face-value verification; these specifications do not provide or claim licensed imagery.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All prompts, counts, roles, numeric utterances, errors and actions need complete genuine translations for every locale (no English fallback). Nonvisual sequential state ledger and native keyboard/switch/touch controls convey exactly the same mathematics; labels never depend only on color or spatial position. RTL preserves explicit task origins, pair IDs and currency units. Plan WCAG 2.2 AA, 200% zoom, mobile and downloaded selected-locale offline functionality; not currently implemented.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 12=6 pairs +0 both ways. Incorrect case: If odd due to crooked layout, match each dot before and after and show six complete pairs.
+                    2. 13=6 pairs +1 leftover. Incorrect case: If two shells unmatched, show they can still form one pair before deciding.
+                    3. Twelve stays even through arrangement changes; thirteen yields exactly one leftover; nonvisual pairing works.
+                    4. Keyboard, screen reader, RTL, reduced motion and offline use produce numerically identical results and explanations; resets do not alter other scenes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic Scene resource exists but this custom Scene does **not**. Explicit editor approval of the Methodologist Brief and each Scene is pending. Later implementation must use verified localization context, self-contained prop-free components, own tests, true WCAG/RTL/offline checks and no invented APIs.
+                  purpose: 'Proposed interactive Scene for Pair Surprise'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: 'ef884725-a8a6-4944-81a9-3123308acfe2'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Twelve remains even.'
+            order: ['text1', 'pairSurprise', 'markdown2']
+        production:
+          purpose: 'Pair Surprise'
+          pedagogicalIntent: |
+            ### Section 3 — Pair Surprise
+
+            - **Purpose:** Transfer the principle to a changed situation independently.
+            - **Current Section shape:** General LessonSection_Config with a single ordered vertical nonempty Resource array, not Quiz_Config.
+            - **Ordered blocks:** (1) text (renderable): “Does scattering twelve dots turn them odd?” (2) scene (generic type renderable; this bespoke component proposed): Pair Surprise (Scene specification embedded in this config.yaml) (3) markdown (renderable): “Twelve remains even.”
+            - **Experience beats and explanatory feedback:**
+              - **Beat 1:** “Does scattering twelve dots turn them odd?” Scatter same twelve distinct dots, then make six pairs. **Explanation:** Twelve remains even. **Exact worked case:** 12=6 pairs +0 both ways. **Error-specific response:** If odd due to crooked layout, match each dot before and after and show six complete pairs.
+              - **Beat 2:** “Prove whether thirteen shells are even or odd.” Independent thirteen-shell case; form six disjoint pairs and count remaining one. **Explanation:** Thirteen is odd. **Exact worked case:** 13=6 pairs +1 leftover. **Error-specific response:** If two shells unmatched, show they can still form one pair before deciding.
+            - **Learner control and state:** Scatter/restore; Pair distinct objects; Undo; Show ledger; Reset. The child may predict first, manipulate the evidence, reveal a worked explanation and retry without correctness locks or scores.
+            - **Accessible alternative:** Fully ordered text state and controls give the exact same numerical evidence with keyboard, switch, screen reader or touch, including meaningful RTL.
+            - **Transition:** The next stage requires an explanation using the mathematical invariant, not a repetition of visual gestures.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order: ['section1PartnerPairLab', 'section2ThinkBeforeRevealingTheReason', 'section3PairSurprise']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Does Every Object Have a Partner? — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: evenOrOddByPairing
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Classify even and odd counts by dividing objects into disjoint pairs, explaining when an item is left without a partner and why arrangement cannot change parity.
+
+    ## Target audience
+
+    **Primary grade: Grade 2.** This selection depends on mathematical complexity, prerequisites and developmental readiness, not a grade label embedded in Skill Taxonomy. Early readers can use short instructions, countable models and ordered text alternatives.
+
+    ## Prerequisites
+
+    Count distinct items to at least fifteen and intentionally pair two distinct objects with each pair member used once.
+
+    ## Target Skills
+
+    - [evenOdd.data.ts](../../../../data/skills/counting/parity/skills/evenOdd.data.ts)
+
+    ## Expected learning outcomes
+
+    - Eight is even, zero leftover.
+    - Nine is odd, one leftover.
+    - Twelve remains even.
+    - Thirteen is odd.
+    - Explain a changed-context instance using evidence rather than repeating a memorized answer; formative success is not proof of verified mastery.
+
+    ## Essential subject matter
+
+    Eight objects form four disjoint pairs and no leftover: even. Nine form four pairs and one unmatched object: odd. Twelve form six pairs whether regular or scattered: even. Thirteen form six pairs and one unmatched object: odd. Zero is even mathematically, but introduced only as optional extension.
+
+    ## Conceptual progression and dependencies
+
+    Introduce prerequisite number and object meanings → construct and inspect the first model → explain its contrast → retrieve the mathematical principle → independently apply it in the second Scene with a changed arrangement or representation.
+
+    ## Misconceptions, examples and boundaries
+
+    Confusing four pairs with four objects; letting the same object belong to two pairs; thinking that an untidy layout must be odd; concluding odd while two unpaired objects could still form another pair.
+
+    **Instructional depth and hard exclusions:** Grade 2 concrete collections of 1–15 items; no negative integers, formal divisibility test, memorized final-digit shortcut or scoring.
+
+    **Verified numerical examples:**
+
+    - 8=4 pairs +0 leftover.
+    - 9=4 pairs +1 leftover.
+    - 12=6 pairs +0 both ways.
+    - 13=6 pairs +1 leftover.
+
+    ## Localization, accessibility and offline intent
+
+    Complete genuine translations for every Engine-supported language are required; English drafts are not released locale assets. Semantic RTL must preserve object identity, designated START, pairing membership, euro value and numeric order, not reverse the mathematics. WCAG 2.2 AA plan: keyboard, touch and switch operation, ordered nonvisual ledger, meaningful labels, visible focus, zoom/mobile and reduced-motion equivalents. The selected-language content and same learning interactions must function offline after download, which is a required future capability, not implemented by this task.
+
+    ## Sources and factual verification
+
+    - Approved canonical Mathematics Skill data files directly linked above, copied unchanged in Batch 1.
+    - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) and [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
+
+    ## Curriculum / Program compatibility
+
+    Standalone and Program-neutral. No named Curriculum alignment asserted.
+
+    ## Open editorial decisions
+
+    - Editor: approve Grade 2, prerequisites, target Skills and scope before formal Content/Scene approval.
+    - Editor and localization team: verify full-locale copy, semantic RTL and nonvisual equivalence.
+
+    ## Methodologist handoff
+
+    **Draft — not Approved.** The accompanying Content and Scene specifications are **Provisional Drafts prepared under the explicit batch authorization**. Normal approval gate has not passed. Do not implement React, runtime Lesson data, Questions, Quizzes, scoring, Note persistence or undocumented APIs.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+
+    # Does Every Object Have a Partner? — Content
+
+    Status: **Provisional Draft — pending Methodologist approval**
+    Target Lesson: content/playground/Data/Lessons/1/evenOrOddByPairing/
+    Audience: Primary Grade 2
+    Methodologist source: Draft Methodologist Brief (editorial text integrated into this config.yaml) (not approved)
+    Target Skills: As directly linked in the Draft Brief, unchanged canonical Skill objects
+    Program dependence: None
+    Runtime status: Not implemented
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Classify even and odd counts by dividing objects into disjoint pairs, explaining when an item is left without a partner and why arrangement cannot change parity. The learner can predict, operate the mathematical representation, see an actual explanation and transfer the idea to a changed setting. The experience is not a lecture followed by a token quiz.
+
+    **Core mathematical truth and boundaries:** Eight objects form four disjoint pairs and no leftover: even. Nine form four pairs and one unmatched object: odd. Twelve form six pairs whether regular or scattered: even. Thirteen form six pairs and one unmatched object: odd. Zero is even mathematically, but introduced only as optional extension. Grade 2 concrete collections of 1–15 items; no negative integers, formal divisibility test, memorized final-digit shortcut or scoring.
+
+    ## LEARNER JOURNEY
+
+    1. Encounter a small concrete instance with Partner Pair Lab. The child changes the model rather than passively watches; mistakes receive named evidence.
+    2. Compare the first model with a deliberately contrasting condition. Ask what stayed the same and what changed.
+    3. Brief unscored retrieval with a worked counterexample: Four complete pairs plus one leftover: even or odd?
+    4. Independently try Pair Surprise, changing the item identities, configuration or currency amounts so the child must apply the general principle.
+    5. State a reason, or reveal and revisit the full model without score, timer, Program narrative or persistence.
+
+    ## SECTION PLAN
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Partner Pair Lab (Scene specification embedded in this config.yaml) — conceptual model and first contrast.
+    - Pair Surprise (Scene specification embedded in this config.yaml) — independent transfer and different actions.
+
+    Both specific Scenes are **proposed**, self-contained, prop-free and not implemented. Generic text, markdown and scene Resource rendering exists; this does not establish the new components. No new runtime field or mode prop is proposed.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Even: all objects form pairs. Odd: one stays unpaired.” — after Section 1 model and explanation (planned, not wired).
+    2. “Rearranging the same items does not change even or odd.” — after Section 3 transfer and explanation (planned, not wired).
+
+    These are concise factual recall candidates. Note entities, event contracts, revision sheets and persistence have not been verified implemented.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    The first Scene uses guided formative decisions and worked contrast; Section 2 retrieves the principle verbally; Section 3 changes the setting to elicit transfer. No response implies Skill mastery. Assessment Architect owns any future scored Question, Quiz, evidence validity and retry policy.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    English text here is editorial source, not production locale assets. Complete truthful translation of instructional language, count words, denomination labels, error messages, aria names and Notes is required for every Engine-supported locale with no silent fallback. RTL must preserve number order, identities, explicit START or EUR units and pair semantics. Equivalent keyboard/switch/touch/nonvisual controls, focus, contrast, reduced motion, zoom and mobile experience are WCAG 2.2 AA targets. All lesson assets, selected-language explanations and computation must be usable offline after download; actual PWA completeness is not claimed.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    - Existing general Lesson Section contract: ordered vertical nonempty Resource list.
+    - Current generic text, markdown and scene renderer: observed. New bespoke Scenes: **proposed only**.
+    - Full-locale translations, RTL/keyboard accessibility, genuine offline download and Note persistence: required/planned, not demonstrated.
+    - No React code, runtime Lesson data, Questions, Quizzes, scoring or Note event wiring exists in this batch.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Draft Methodologist Brief (editorial text integrated into this config.yaml) and its exact Skill data links.
+    - [Section entity](../../../../../../studio/docs/entities/section.md) and [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md).
+
+    - Open decisions: explicit Methodologist grade/targets/depth approval; separate Content/Scene review; full locale and offline/accessibility production checks.
+
+    ## HANDOFF
+
+    **Provisional Draft.** Content is prepared under batch authorization before Methodologist approval, without claiming formal editorial readiness or implementation permission.
+
+
+    Migration status: provisional draft; pending independent approvals, translation and implementation.

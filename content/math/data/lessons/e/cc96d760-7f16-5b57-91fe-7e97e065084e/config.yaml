@@ -1,0 +1,686 @@
+config:
+  id: 'cc96d760-7f16-5b57-91fe-7e97e065084e'
+  slug: 'subtractZero'
+  type: 'lesson'
+  skills:
+    - '8481e65e-c9b4-4ac0-b336-03fe1a17cfcb'
+  params:
+    requireQuiz: false
+    languages:
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Taking Away Zero'
+  section:
+    items:
+      section1:
+        config:
+          id: 'cc96d760-7f16-5b57-91fe-000000000004'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Take Nothing Away'
+            navigationLabel:
+              en: 'Take Nothing Away'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-000000000001'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'There are 7 counters. You must take away ZERO counters. How many stay?'
+                production:
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line:   1. **text — available:** “There are 7 counters. You must take away ZERO counters. How many stay?”'
+              scene1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-000000000002'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'There are 7 counters. You must take away ZERO counters. How many stay?'
+                production:
+                  purpose: 'Unimplemented proposed interactive Scene'
+                  specification: |-
+                    # Zero Removal Explorer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `Taking Away Zero` (source preserved in config.yaml), Sections 1–4
+                    Methodologist objective(s): Explain and predict unchanged quantity in a−0=a, while keeping “zero taken” distinct from “none remain”. `Methodologist Brief` (source preserved in config.yaml) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Make an apparently uneventful action—removing NOTHING—mathematically observable through a precise before/taken/after ledger. A nonzero removal and a zero-length number-line displacement provide purposeful contrasting evidence.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Default 7−0=7, contrast 7−2=5, number-line 7−0=7 and optional 7−2=5, transfer 13−0=13, boundary 0−0=0. For a−0, 0≤a≤20, no counters move or disappear. Reversing a−0 to 0−a is not equivalent for a>0; avoid teaching negative results within the counter model. Start/removed/remaining roles never swap.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Removal:** Show seven countable counters. Ask “Take away zero. How many remain?” A native control “Take away 0” leaves all seven; show before 7 / removed 0 / after 7, with explanation. Optional guesses 0/6/7 and corrective messages.
+                    2. **Contrast:** Two independent trials begin from 7, not an accidental consecutive subtraction. On one, remove zero and show 7; on the other, remove two and show 5; label exactly which trial belongs to which result.
+                    3. **Number line:** Start at 7. “Jump back zero” leaves the point exactly at 7, with audible/text status “start seven, zero moved, still seven.” “Jump back two” lands at 5. A zero-length hop must not vanish without an explicit label.
+                    4. **Transfer:** Start at 13; 13−0=13. Optional 0−0=0 as an empty collection. A reverse-order explanation names 0−13 as an inappropriate remove-thirteen-from-zero counter model, never as “thirteen”.
+                    5. Expose “Show why,” “Reset,” “Try again,” optional help and a clear explanation on all paths. Learner can bypass guess; none of these states records success.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Section-specific entries; presentation variants are editorial and not a React mode prop. Objects include fixed countable counters, removed-counter area, before/after ledger, number-line indicator, zero-sized step marker, prediction controls, reset/reveal feedback. Invariant after = start − removed with removed ∈ [0,start]. For zero removal, after=start. No auto-change of starter counts; reset restores chosen Section entry. No QuizState or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG counters, number line with clear labeled start/end, stable quantity. Intentionally little animation: stationary state emphasized through the numeric ledger, not empty motion. Reduced motion is exactly equivalent. No assets or online calls.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All text, roles, controls, accessible status and arithmetic localized into every supported language; avoid English fallback. Keyboard/touch/switch controls, readable focus, screen-reader model, textual “no change” annunciation, semantic RTL operators and increasing direction, 200% zoom, mobile and reduced motion. Offline after download everything is local deterministic logic. No drag-only, color-only or narration-only route.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 7−0 remains 7 with zero removed; guess “0 remain” corrected.
+                    2. 7−2 remains 5; side-by-side trials do not contaminate each other's starting number.
+                    3. Number-line zero hop starts/ends at 7, with perceivable status even without movement; two-back hop lands at 5.
+                    4. 13−0=13 and 0−0=0 without contradictions; 0−13 never claimed to be 13.
+                    5. Reset, “Show why” and options are fully usable without scores.
+                    6. RTL, screen reader, keyboard, reduced motion, mobile and offline provide identical arithmetic meaning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
+                  productionNotes: 'Unique Scene placement scene1 in Take Nothing Away. Original:   2. **scene — proposed, supported resource:** `Zero Removal Explorer` (specification preserved in config.yaml), seven countable counters and a “Take away 0” action with visibly unchanged quantity.. Status: provisional only.'
+              markdown1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-000000000003'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'You removed none. All seven remain: **7 − 0 = 7**.'
+                production:
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line:   3. **markdown — available:** “You removed none. All seven remain: **7 − 0 = 7**.”'
+            order:
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
+        production:
+          purpose: 'Take Nothing Away'
+          pedagogicalIntent: |-
+            - Purpose: See the meaning of a zero subtrahend.
+            - Shape: LessonSection_Config.
+            - Ordered vertical blocks:
+              1. **text — available:** “There are 7 counters. You must take away ZERO counters. How many stay?”
+              2. **scene — proposed, supported resource:** `Zero Removal Explorer` (specification preserved in config.yaml), seven countable counters and a “Take away 0” action with visibly unchanged quantity.
+              3. **markdown — available:** “You removed none. All seven remain: **7 − 0 = 7**.”
+            - Explanation and learner action: Child predicts 0 / 7 / 6, then reveals unchanged seven. For 0: “Zero tells us how many were removed, not how many remained.” For 6: “No counter was taken away; count seven still here.” Show the full explanation even without a prediction.
+            - Model: Counter array and an accessible before/removed/after list.
+            - Navigation: Ask “What if we really take some counters away?”
+            - Accessibility/RTL: Stable accessible count log, correctly ordered equation, no animation-only event.
+            - Note: “Taking away zero leaves the number unchanged,” planned after visible demonstration.
+            - Dependencies: New custom Scene; text/markdown renderer exists.
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
+      section2:
+        config:
+          id: 'cc96d760-7f16-5b57-91fe-000000000008'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Zero Is Different from Two'
+            navigationLabel:
+              en: 'Zero Is Different from Two'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-000000000005'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Begin with 7. Compare taking away 0 with taking away 2.'
+                production:
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line:   1. **text — available:** “Begin with 7. Compare taking away 0 with taking away 2.”'
+              scene1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-000000000006'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Begin with 7. Compare taking away 0 with taking away 2.'
+                production:
+                  purpose: 'Unimplemented proposed interactive Scene'
+                  specification: |-
+                    # Zero Removal Explorer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `Taking Away Zero` (source preserved in config.yaml), Sections 1–4
+                    Methodologist objective(s): Explain and predict unchanged quantity in a−0=a, while keeping “zero taken” distinct from “none remain”. `Methodologist Brief` (source preserved in config.yaml) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Make an apparently uneventful action—removing NOTHING—mathematically observable through a precise before/taken/after ledger. A nonzero removal and a zero-length number-line displacement provide purposeful contrasting evidence.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Default 7−0=7, contrast 7−2=5, number-line 7−0=7 and optional 7−2=5, transfer 13−0=13, boundary 0−0=0. For a−0, 0≤a≤20, no counters move or disappear. Reversing a−0 to 0−a is not equivalent for a>0; avoid teaching negative results within the counter model. Start/removed/remaining roles never swap.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Removal:** Show seven countable counters. Ask “Take away zero. How many remain?” A native control “Take away 0” leaves all seven; show before 7 / removed 0 / after 7, with explanation. Optional guesses 0/6/7 and corrective messages.
+                    2. **Contrast:** Two independent trials begin from 7, not an accidental consecutive subtraction. On one, remove zero and show 7; on the other, remove two and show 5; label exactly which trial belongs to which result.
+                    3. **Number line:** Start at 7. “Jump back zero” leaves the point exactly at 7, with audible/text status “start seven, zero moved, still seven.” “Jump back two” lands at 5. A zero-length hop must not vanish without an explicit label.
+                    4. **Transfer:** Start at 13; 13−0=13. Optional 0−0=0 as an empty collection. A reverse-order explanation names 0−13 as an inappropriate remove-thirteen-from-zero counter model, never as “thirteen”.
+                    5. Expose “Show why,” “Reset,” “Try again,” optional help and a clear explanation on all paths. Learner can bypass guess; none of these states records success.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Section-specific entries; presentation variants are editorial and not a React mode prop. Objects include fixed countable counters, removed-counter area, before/after ledger, number-line indicator, zero-sized step marker, prediction controls, reset/reveal feedback. Invariant after = start − removed with removed ∈ [0,start]. For zero removal, after=start. No auto-change of starter counts; reset restores chosen Section entry. No QuizState or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG counters, number line with clear labeled start/end, stable quantity. Intentionally little animation: stationary state emphasized through the numeric ledger, not empty motion. Reduced motion is exactly equivalent. No assets or online calls.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All text, roles, controls, accessible status and arithmetic localized into every supported language; avoid English fallback. Keyboard/touch/switch controls, readable focus, screen-reader model, textual “no change” annunciation, semantic RTL operators and increasing direction, 200% zoom, mobile and reduced motion. Offline after download everything is local deterministic logic. No drag-only, color-only or narration-only route.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 7−0 remains 7 with zero removed; guess “0 remain” corrected.
+                    2. 7−2 remains 5; side-by-side trials do not contaminate each other's starting number.
+                    3. Number-line zero hop starts/ends at 7, with perceivable status even without movement; two-back hop lands at 5.
+                    4. 13−0=13 and 0−0=0 without contradictions; 0−13 never claimed to be 13.
+                    5. Reset, “Show why” and options are fully usable without scores.
+                    6. RTL, screen reader, keyboard, reduced motion, mobile and offline provide identical arithmetic meaning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
+                  productionNotes: 'Unique Scene placement scene1 in Zero Is Different from Two. Original:   2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), comparison entry: two independently labeled trials from seven; removing 0 leaves 7; removing 2 leaves 5.. Status: provisional only.'
+              markdown1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-000000000007'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '**7 − 0 = 7**. **7 − 2 = 5**. The first action removes nothing; the second removes two. Zero does not make the whole collection disappear.'
+                production:
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line:   3. **markdown — available:** “**7 − 0 = 7**. **7 − 2 = 5**. The first action removes nothing; the second removes two. Zero does not make the whole collection disappear.”'
+            order:
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
+        production:
+          purpose: 'Zero Is Different from Two'
+          pedagogicalIntent: |-
+            - Purpose: Distinguish “remove none” from actual removal and “none remain”.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **text — available:** “Begin with 7. Compare taking away 0 with taking away 2.”
+              2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), comparison entry: two independently labeled trials from seven; removing 0 leaves 7; removing 2 leaves 5.
+              3. **markdown — available:** “**7 − 0 = 7**. **7 − 2 = 5**. The first action removes nothing; the second removes two. Zero does not make the whole collection disappear.”
+            - Explanation/feedback: Ask whether either example leaves zero. Answer: neither; the first leaves 7, second leaves 5. Confusion gets a countable before/after comparison, no score.
+            - Model: Show separate trials, not 7−0−2 mislabeled as 7−2.
+            - Navigation: Connect to zero-length jumps on a number line.
+            - Accessibility: Read every trial, label removed and remaining counts, use no color-only distinction.
+            - Note: No new Note; invite recall of previous one.
+            - Dependencies: Scene entry with isolated state.
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
+      section3:
+        config:
+          id: 'cc96d760-7f16-5b57-91fe-00000000000c'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'A Jump of Zero'
+            navigationLabel:
+              en: 'A Jump of Zero'
+          content:
+            items:
+              markdown1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-000000000009'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Subtracting means a jump back on a number line. What happens when the jump is **0**?'
+                production:
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line:   1. **markdown — available:** “Subtracting means a jump back on a number line. What happens when the jump is **0**?”'
+              scene1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-00000000000a'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'A Jump of Zero'
+                production:
+                  purpose: 'Unimplemented proposed interactive Scene'
+                  specification: |-
+                    # Zero Removal Explorer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `Taking Away Zero` (source preserved in config.yaml), Sections 1–4
+                    Methodologist objective(s): Explain and predict unchanged quantity in a−0=a, while keeping “zero taken” distinct from “none remain”. `Methodologist Brief` (source preserved in config.yaml) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Make an apparently uneventful action—removing NOTHING—mathematically observable through a precise before/taken/after ledger. A nonzero removal and a zero-length number-line displacement provide purposeful contrasting evidence.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Default 7−0=7, contrast 7−2=5, number-line 7−0=7 and optional 7−2=5, transfer 13−0=13, boundary 0−0=0. For a−0, 0≤a≤20, no counters move or disappear. Reversing a−0 to 0−a is not equivalent for a>0; avoid teaching negative results within the counter model. Start/removed/remaining roles never swap.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Removal:** Show seven countable counters. Ask “Take away zero. How many remain?” A native control “Take away 0” leaves all seven; show before 7 / removed 0 / after 7, with explanation. Optional guesses 0/6/7 and corrective messages.
+                    2. **Contrast:** Two independent trials begin from 7, not an accidental consecutive subtraction. On one, remove zero and show 7; on the other, remove two and show 5; label exactly which trial belongs to which result.
+                    3. **Number line:** Start at 7. “Jump back zero” leaves the point exactly at 7, with audible/text status “start seven, zero moved, still seven.” “Jump back two” lands at 5. A zero-length hop must not vanish without an explicit label.
+                    4. **Transfer:** Start at 13; 13−0=13. Optional 0−0=0 as an empty collection. A reverse-order explanation names 0−13 as an inappropriate remove-thirteen-from-zero counter model, never as “thirteen”.
+                    5. Expose “Show why,” “Reset,” “Try again,” optional help and a clear explanation on all paths. Learner can bypass guess; none of these states records success.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Section-specific entries; presentation variants are editorial and not a React mode prop. Objects include fixed countable counters, removed-counter area, before/after ledger, number-line indicator, zero-sized step marker, prediction controls, reset/reveal feedback. Invariant after = start − removed with removed ∈ [0,start]. For zero removal, after=start. No auto-change of starter counts; reset restores chosen Section entry. No QuizState or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG counters, number line with clear labeled start/end, stable quantity. Intentionally little animation: stationary state emphasized through the numeric ledger, not empty motion. Reduced motion is exactly equivalent. No assets or online calls.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All text, roles, controls, accessible status and arithmetic localized into every supported language; avoid English fallback. Keyboard/touch/switch controls, readable focus, screen-reader model, textual “no change” annunciation, semantic RTL operators and increasing direction, 200% zoom, mobile and reduced motion. Offline after download everything is local deterministic logic. No drag-only, color-only or narration-only route.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 7−0 remains 7 with zero removed; guess “0 remain” corrected.
+                    2. 7−2 remains 5; side-by-side trials do not contaminate each other's starting number.
+                    3. Number-line zero hop starts/ends at 7, with perceivable status even without movement; two-back hop lands at 5.
+                    4. 13−0=13 and 0−0=0 without contradictions; 0−13 never claimed to be 13.
+                    5. Reset, “Show why” and options are fully usable without scores.
+                    6. RTL, screen reader, keyboard, reduced motion, mobile and offline provide identical arithmetic meaning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
+                  productionNotes: 'Unique Scene placement scene1 in A Jump of Zero. Original:   2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), number-line entry at seven; show zero-length displacement (no changed coordinate), and a contrast jump back two to five.. Status: provisional only.'
+              text1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-00000000000b'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A jump of zero leaves us at seven. **7 − 0 = 7**.'
+                production:
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line:   3. **text — available:** “A jump of zero leaves us at seven. **7 − 0 = 7**.”'
+            order:
+              - 'markdown1'
+              - 'scene1'
+              - 'text1'
+        production:
+          purpose: 'A Jump of Zero'
+          pedagogicalIntent: |-
+            - Purpose: Connect the rule to another representation and generalize it.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **markdown — available:** “Subtracting means a jump back on a number line. What happens when the jump is **0**?”
+              2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), number-line entry at seven; show zero-length displacement (no changed coordinate), and a contrast jump back two to five.
+              3. **text — available:** “A jump of zero leaves us at seven. **7 − 0 = 7**.”
+            - Explanation/feedback: If child thinks a jump of zero arrives at zero: “Zero is the **size** of the jump. We did not move from seven.” State explicitly that the number line's direction and start are labeled.
+            - Navigation: New number, same rule.
+            - Accessibility: Text “start 7; move 0; finish 7” is fully operable and equivalent for nonvisual users.
+            - Note: “A zero subtraction is a jump of zero,” optional planned cue, only if editorially distinct enough to merit recall.
+            - Dependencies: Scene visualization, no separate image renderer.
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
+      section4:
+        config:
+          id: 'cc96d760-7f16-5b57-91fe-000000000010'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Does the Starting Number Matter?'
+            navigationLabel:
+              en: 'Does the Starting Number Matter?'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-00000000000d'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'There are **13** counters. Take away **0**. What is 13 − 0?'
+                production:
+                  purpose: 'Learner-facing authored text resource'
+                  specification: 'Authored resource line:   1. **text — available:** “There are **13** counters. Take away **0**. What is 13 − 0?”'
+              scene1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-00000000000e'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'There are **13** counters. Take away **0**. What is 13 − 0?'
+                production:
+                  purpose: 'Unimplemented proposed interactive Scene'
+                  specification: |-
+                    # Zero Removal Explorer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `Taking Away Zero` (source preserved in config.yaml), Sections 1–4
+                    Methodologist objective(s): Explain and predict unchanged quantity in a−0=a, while keeping “zero taken” distinct from “none remain”. `Methodologist Brief` (source preserved in config.yaml) (Draft).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Make an apparently uneventful action—removing NOTHING—mathematically observable through a precise before/taken/after ledger. A nonzero removal and a zero-length number-line displacement provide purposeful contrasting evidence.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Default 7−0=7, contrast 7−2=5, number-line 7−0=7 and optional 7−2=5, transfer 13−0=13, boundary 0−0=0. For a−0, 0≤a≤20, no counters move or disappear. Reversing a−0 to 0−a is not equivalent for a>0; avoid teaching negative results within the counter model. Start/removed/remaining roles never swap.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Removal:** Show seven countable counters. Ask “Take away zero. How many remain?” A native control “Take away 0” leaves all seven; show before 7 / removed 0 / after 7, with explanation. Optional guesses 0/6/7 and corrective messages.
+                    2. **Contrast:** Two independent trials begin from 7, not an accidental consecutive subtraction. On one, remove zero and show 7; on the other, remove two and show 5; label exactly which trial belongs to which result.
+                    3. **Number line:** Start at 7. “Jump back zero” leaves the point exactly at 7, with audible/text status “start seven, zero moved, still seven.” “Jump back two” lands at 5. A zero-length hop must not vanish without an explicit label.
+                    4. **Transfer:** Start at 13; 13−0=13. Optional 0−0=0 as an empty collection. A reverse-order explanation names 0−13 as an inappropriate remove-thirteen-from-zero counter model, never as “thirteen”.
+                    5. Expose “Show why,” “Reset,” “Try again,” optional help and a clear explanation on all paths. Learner can bypass guess; none of these states records success.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four prop-free Section-specific entries; presentation variants are editorial and not a React mode prop. Objects include fixed countable counters, removed-counter area, before/after ledger, number-line indicator, zero-sized step marker, prediction controls, reset/reveal feedback. Invariant after = start − removed with removed ∈ [0,start]. For zero removal, after=start. No auto-change of starter counts; reset restores chosen Section entry. No QuizState or mastery.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Lightweight HTML/SVG counters, number line with clear labeled start/end, stable quantity. Intentionally little animation: stationary state emphasized through the numeric ledger, not empty motion. Reduced motion is exactly equivalent. No assets or online calls.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    All text, roles, controls, accessible status and arithmetic localized into every supported language; avoid English fallback. Keyboard/touch/switch controls, readable focus, screen-reader model, textual “no change” annunciation, semantic RTL operators and increasing direction, 200% zoom, mobile and reduced motion. Offline after download everything is local deterministic logic. No drag-only, color-only or narration-only route.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 7−0 remains 7 with zero removed; guess “0 remain” corrected.
+                    2. 7−2 remains 5; side-by-side trials do not contaminate each other's starting number.
+                    3. Number-line zero hop starts/ends at 7, with perceivable status even without movement; two-back hop lands at 5.
+                    4. 13−0=13 and 0−0=0 without contradictions; 0−13 never claimed to be 13.
+                    5. Reset, “Show why” and options are fully usable without scores.
+                    6. RTL, screen reader, keyboard, reduced motion, mobile and offline provide identical arithmetic meaning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Scene generic renderer exists, Zero Removal Explorer does not. Requires prior Methodologist/editor approval and Scene Designer implementation with own tests and locale data. No invented props, assessment APIs or Note event.
+                  productionNotes: 'Unique Scene placement scene1 in Does the Starting Number Matter?. Original:   2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), transfer entry with 13 counters, 13−0=13, plus optional case 0−0=0.. Status: provisional only.'
+              markdown1:
+                config:
+                  id: 'cc96d760-7f16-5b57-91fe-00000000000f'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Nothing was taken away, so **13 − 0 = 13**. The starting number stays the same. **0 − 13** reverses the order: it does not mean ‘start at thirteen and remove nothing’. We cannot take thirteen objects from an empty collection in this nonnegative counter model.'
+                production:
+                  purpose: 'Learner-facing authored markdown resource'
+                  specification: 'Authored resource line:   3. **markdown — available:** “Nothing was taken away, so **13 − 0 = 13**. The starting number stays the same. **0 − 13** reverses the order: it does not mean ‘start at thirteen and remove nothing’. We cannot take thirteen objects from an empty collection in this nonnegative counter model.”'
+            order:
+              - 'text1'
+              - 'scene1'
+              - 'markdown1'
+        production:
+          purpose: 'Does the Starting Number Matter?'
+          pedagogicalIntent: |-
+            - Purpose: Apply the rule to an unfamiliar starting number and retain operand order.
+            - Shape: LessonSection_Config.
+            - Ordered blocks:
+              1. **text — available:** “There are **13** counters. Take away **0**. What is 13 − 0?”
+              2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), transfer entry with 13 counters, 13−0=13, plus optional case 0−0=0.
+              3. **markdown — available:** “Nothing was taken away, so **13 − 0 = 13**. The starting number stays the same. **0 − 13** reverses the order: it does not mean ‘start at thirteen and remove nothing’. We cannot take thirteen objects from an empty collection in this nonnegative counter model.”
+            - Feedback: For 0: “Thirteen did not disappear”; for 13: “Yes, it remains thirteen because none were removed.” Optional compare and discuss order without requiring negative-number calculation.
+            - Navigation: Conclude with child-generated example of a−0=a, using selection, text or speech to an adult; no forced output.
+            - Accessibility: Native button/keyboard alternative to counters, clear mathematical order in RTL.
+            - Notes: Recall original cue; no fake mastery.
+            - Dependencies: New Scene and teacher/editor review on non-example wording.
+          productionNotes: 'All original feedback, interaction constraints and accessibility requirements remain provisional.'
+    order:
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |-
+    # Taking Away Zero — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: subtractZero
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Build an independently assessable understanding that taking away no amount leaves the starting quantity unchanged: a − 0 = a. Distinguish the order-sensitive meaning of zero as subtrahend; do not teach subtraction as commutative.
+
+    ## Target audience
+
+    Children 6–8, grades 1–2, who count small collections and already know that subtraction removes an amount. Short texts, visual and nonvisual object models, optional child-led manipulation.
+
+    ## Prerequisites
+
+    - Recognize 0 as “none,” count nonnegative quantities to 20, read basic subtraction.
+    - Understand initial amount, amount taken away, and what remains.
+
+    ## Target Skills
+
+    - [subtractZero.data.ts](../../../../data/skills/arithmetic/subtraction/skills/subtractZero.data.ts)
+
+    ## Expected learning outcomes
+
+    - Predict and explain why 7 − 0 = 7 and 13 − 0 = 13 using an unchanged collection or number line.
+    - Interpret zero as the amount removed and identify the unchanged starting number as the difference.
+    - Use a − 0 = a for examples within 20 while explaining the invariance, not only reciting a rule.
+    - Recognize that reversing a subtraction generally changes its meaning, and that 0 − 7 is not equal to 7 or an ordinary take-away action on zero objects in this nonnegative model.
+
+    ## Essential subject matter
+
+    Subtraction by zero leaves the minuend unchanged. A display of seven objects with “remove none” retains seven objects; a number-line jump of length zero stays at seven. Removing zero from zero leaves zero. In contrast, the expression 0 − 7 asks to subtract seven from zero; its integer result is −7, outside the lesson’s nonnegative-number domain. It must not be presented as equal to seven or as a valid removal of seven counters from an empty collection. This Skill does not teach the separate general rule a−a=0.
+
+    ## Conceptual progression and dependencies
+
+    Predict before a zero-removal animation; confirm the count; compare with removing a positive number; transfer to another starting number and check with addition: 7−0=7 and 7+0=7.
+
+    ## Misconceptions, examples and boundaries
+
+    A child may equate subtracting zero with reaching zero, reverse operands, treat zero as a magic eraser, or think a no-motion number-line jump changes quantity. Contrasts: 7−0=7 versus 7−2=5, not 0−7=7. Keep examples nonnegative with initial quantities ≤20; negative results are described only as outside the current model.
+
+    ## Localization, accessibility and offline intent
+
+    “None removed” must remain distinct from “zero remaining”; zero jumps and stationary counters must have full spoken/text alternatives, not rely on animation. Keyboard, RTL-safe notation, readable focus, countable text and offline deterministic feedback mandatory.
+
+    ## Sources and factual verification
+
+    - [Generated taxonomy](../../../../docs/generated/skills/taxonomy.en.md), exact subtractZero semantics.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), addition/subtraction foundations, comparison only.
+    - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), concrete-to-symbolic representations.
+
+    ## Curriculum / Program compatibility
+
+    Not specified; standalone introductory arithmetic.
+
+    ## Open editorial decisions
+
+    - Confirm the brief mention of 0−7 as a non-example does not require teaching negative-number arithmetic to this audience.
+
+    ## Methodologist handoff
+
+    Draft awaiting editor approval. Screenwriter should preserve operand order, create a meaningful contrast and avoid a passive “zero is a rule” lecture.
+  purpose: 'Build an independently assessable understanding that taking away no amount leaves the starting quantity unchanged: a − 0 = a. Distinguish the order-sensitive meaning of zero as subtrahend; do not teach subtraction as commutative.'
+  audience: 'See complete Grade, prerequisite and exclusions in methodology.'
+  productionNotes: |-
+    # Taking Away Zero — Content
+
+    Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/subtractZero/
+    Audience: Children 6–8, grades 1–2, counting and elementary subtraction within 20
+    Methodologist source: `Methodologist Brief` (source preserved in config.yaml) (Draft, not represented as approved)
+    Learning outcomes: explain a−0=a, predict unchanged quantity, distinguish “remove none” from “none left,” keep operand order accurate.
+    Target Skills: As directly linked in the Methodologist Brief.
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    If no counters are taken away, the collection has exactly as many as before. This is the mathematical meaning of **7 − 0 = 7**, not a memorized exception. In a number line, subtracting zero corresponds to a jump of zero, which changes nothing. Contrast it with a real decrease by two and with the misconception “zero makes the answer zero.” Keep operands meaningful and do not suggest subtraction is commutative.
+
+    ## LEARNER JOURNEY
+
+    1. Predict the effect of removing ZERO of seven counters.
+    2. Compare the same starting collection with removing two.
+    3. Connect a zero-sized subtraction jump with the unchanging number.
+    4. Transfer to thirteen and zero, and explain the operand order.
+
+    ## SECTION PLAN
+
+    ### Section 1 — Take Nothing Away
+
+    - Purpose: See the meaning of a zero subtrahend.
+    - Shape: LessonSection_Config.
+    - Ordered vertical blocks:
+      1. **text — available:** “There are 7 counters. You must take away ZERO counters. How many stay?”
+      2. **scene — proposed, supported resource:** `Zero Removal Explorer` (specification preserved in config.yaml), seven countable counters and a “Take away 0” action with visibly unchanged quantity.
+      3. **markdown — available:** “You removed none. All seven remain: **7 − 0 = 7**.”
+    - Explanation and learner action: Child predicts 0 / 7 / 6, then reveals unchanged seven. For 0: “Zero tells us how many were removed, not how many remained.” For 6: “No counter was taken away; count seven still here.” Show the full explanation even without a prediction.
+    - Model: Counter array and an accessible before/removed/after list.
+    - Navigation: Ask “What if we really take some counters away?”
+    - Accessibility/RTL: Stable accessible count log, correctly ordered equation, no animation-only event.
+    - Note: “Taking away zero leaves the number unchanged,” planned after visible demonstration.
+    - Dependencies: New custom Scene; text/markdown renderer exists.
+
+    ### Section 2 — Zero Is Different from Two
+
+    - Purpose: Distinguish “remove none” from actual removal and “none remain”.
+    - Shape: LessonSection_Config.
+    - Ordered blocks:
+      1. **text — available:** “Begin with 7. Compare taking away 0 with taking away 2.”
+      2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), comparison entry: two independently labeled trials from seven; removing 0 leaves 7; removing 2 leaves 5.
+      3. **markdown — available:** “**7 − 0 = 7**. **7 − 2 = 5**. The first action removes nothing; the second removes two. Zero does not make the whole collection disappear.”
+    - Explanation/feedback: Ask whether either example leaves zero. Answer: neither; the first leaves 7, second leaves 5. Confusion gets a countable before/after comparison, no score.
+    - Model: Show separate trials, not 7−0−2 mislabeled as 7−2.
+    - Navigation: Connect to zero-length jumps on a number line.
+    - Accessibility: Read every trial, label removed and remaining counts, use no color-only distinction.
+    - Note: No new Note; invite recall of previous one.
+    - Dependencies: Scene entry with isolated state.
+
+    ### Section 3 — A Jump of Zero
+
+    - Purpose: Connect the rule to another representation and generalize it.
+    - Shape: LessonSection_Config.
+    - Ordered blocks:
+      1. **markdown — available:** “Subtracting means a jump back on a number line. What happens when the jump is **0**?”
+      2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), number-line entry at seven; show zero-length displacement (no changed coordinate), and a contrast jump back two to five.
+      3. **text — available:** “A jump of zero leaves us at seven. **7 − 0 = 7**.”
+    - Explanation/feedback: If child thinks a jump of zero arrives at zero: “Zero is the **size** of the jump. We did not move from seven.” State explicitly that the number line's direction and start are labeled.
+    - Navigation: New number, same rule.
+    - Accessibility: Text “start 7; move 0; finish 7” is fully operable and equivalent for nonvisual users.
+    - Note: “A zero subtraction is a jump of zero,” optional planned cue, only if editorially distinct enough to merit recall.
+    - Dependencies: Scene visualization, no separate image renderer.
+
+    ### Section 4 — Does the Starting Number Matter?
+
+    - Purpose: Apply the rule to an unfamiliar starting number and retain operand order.
+    - Shape: LessonSection_Config.
+    - Ordered blocks:
+      1. **text — available:** “There are **13** counters. Take away **0**. What is 13 − 0?”
+      2. **scene — proposed:** `Zero Removal Explorer` (specification preserved in config.yaml), transfer entry with 13 counters, 13−0=13, plus optional case 0−0=0.
+      3. **markdown — available:** “Nothing was taken away, so **13 − 0 = 13**. The starting number stays the same. **0 − 13** reverses the order: it does not mean ‘start at thirteen and remove nothing’. We cannot take thirteen objects from an empty collection in this nonnegative counter model.”
+    - Feedback: For 0: “Thirteen did not disappear”; for 13: “Yes, it remains thirteen because none were removed.” Optional compare and discuss order without requiring negative-number calculation.
+    - Navigation: Conclude with child-generated example of a−0=a, using selection, text or speech to an adult; no forced output.
+    - Accessibility: Native button/keyboard alternative to counters, clear mathematical order in RTL.
+    - Notes: Recall original cue; no fake mastery.
+    - Dependencies: New Scene and teacher/editor review on non-example wording.
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - `Zero Removal Explorer` (specification preserved in config.yaml) — counter removal, contrast, number line and transfer; distinct prop-free Scene instances by Section.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    - “Take away 0 → the starting amount stays.” Unlock proposal after first unchanged seven-counter model.
+    - Optional “A jump of 0 does not move the number.” After number-line contrast, subject to editor review for redundancy.
+
+    Planned, not wired. No Note type/unlock event/review-sheet persistence. No automatic spaced schedule, and a revealed cue is not mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Predict/removal/contrast/new-number activities are formative instructional interactions, not Quiz_Config items. Assessment Architect validates any later a−0 question and separately prevents 0−a confusion; no scored data or result policy authored. Current Lesson adapter supports select-one in Quiz but Scene interactions are new and require implementation.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    English source strings require real complete locale translations with no silent English fallback. Preserve the difference between “zero taken” and “zero left” in every language. Semantic RTL mathematics, structured text state for stationary visuals, keyboard/touch/screen-reader access, reduced motion, legible zoom/mobile and offline calculations must be equivalent. No image, audio, video, code or YouTube resources needed.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    LessonSection_Config and text/markdown/scene generic rendering are verified. Zero Removal Explorer is **proposed**, requires standalone spec approval, prop-free component implementation and tests. Locale selection and offline downloads need actual engineering verification. Other resource types not in generic renderer. Notes and review schedule planned. No code, Quiz or scoring is implemented by this document.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - `Methodologist Brief` (source preserved in config.yaml) (Draft; editor approval pending).
+    - [Generated taxonomy](../../../../docs/generated/skills/taxonomy.en.md).
+    - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Editor: determine whether a brief reverse-order non-example is helpful for age six without formally introducing negative arithmetic.
+    - Engineering: precise zero-displacement accessible model must not be rendered as invisible animation.
+
+    ## HANDOFF
+
+    Draft Brief, provisional Draft Script and Draft Scene specification for editorial review. Respect the Methodologist gate before promoting Script for coding. Scene Designer builds only after independent approved Scene spec; Coding Agent assembles resources, Assessment Architect owns scored items.

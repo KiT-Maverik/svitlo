@@ -1,0 +1,728 @@
+config:
+  id: '29426f70-208e-5835-999c-4462023fb4ac'
+  slug: 'additionRegroupingAcrossPlaces'
+  type: 'lesson'
+  skills:
+    - 'a1ff147a-bf4c-4cc9-ab9d-ccacd0a5fa47'
+  params:
+    requireQuiz: false
+    languages:
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Regrouping Ones and Tens Into Hundreds'
+  section:
+    items:
+      section1ReadThreePlaces:
+        config:
+          id: '4f3a8e96-25b8-48cc-8aaf-ca77202d9c2d'
+          slug: 'section1ReadThreePlaces'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Read Three Places'
+            navigationLabel:
+              en: 'Read Three Places'
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: 'b8360e64-0942-4fbb-881a-d519d96ee4c6'
+                  slug: 'section1Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'What do 178 and 265 mean in hundreds, tens and ones?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '- **Text Resource (available):** “What do 178 and 265 mean in hundreds, tens and ones?”'
+              section1Scene2:
+                config:
+                  id: 'cfa93e84-69d8-4c90-8916-82f8bf67a0ec'
+                  slug: 'section1Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'What do 178 and 265 mean in hundreds, tens and ones?'
+                production:
+                  purpose: 'Provisional Scene placement in Read Three Places, self-contained and not implemented'
+                  specification: |
+                    # Hundred Exchange Addition Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Regrouping Ones and Tens Into Hundreds Content (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Represent 178 and 265 as hundreds, tens and ones without misplacing a digit. Combine 8+5=13 ones into 1 ten and 3 ones, correctly recording where the ten goes. Combine 7+6+1=14 tens into 1 hundred and 4 tens and obtain 178+265=443. Solve a second example 268+157=425 with consecutive carries and verify both examples through decomposition. Methodologist Brief (full original source: production.methodology) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Develop place-value addition with multiple successive exchanges by grouping ten ones into a ten and ten tens into a hundred. Children control the physical and symbolic steps for 178+265 and verify the conserved sum 443. This Lesson extends the earlier two-digit column method; it does not redefine the canonical Skill's much broader numerical scope.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    178 = 1H7T8O; 265=2H6T5O. Sum in unexchanged units = 3H13T13O = 300+130+13=443. Exchange 13 ones →1T3O, so 3H14T3O; exchange 14 tens →1H4T, obtaining 4H4T3O =443. Column order: ones 8+5=13, carry one ten; tens 7+6+1=14, carry one hundred; hundreds 1+2+1=4. Transfer: 268+157: 8+7=15 ones →5O +1T; 6+5+1=12 tens →2T +1H; 2+1+1=4 hundreds, result 425. These are **two linked carrying steps**; no arbitrary larger values, decimals, negative numbers or full general proof required. Sum remains below 1000.
+
+                    A child can count the carried ten twice, leave the same ten among remaining singles, forget the extra ten in the tens step, or add a hundred without removing ten tens. The initial hundred count is not four until the tens exchange is complete. Do not present raw three hundreds, thirteen tens and thirteen ones as four hundred forty-three without showing how place-value units reconcile. The earlier additionInColumns example contains one exchange; here both levels exchange sequentially.
+
+                    **Conservation invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Read Three Places:** Prompt “What do 178 and 265 mean in hundreds, tens and ones?”. Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral. The written statement is **178 + 265 = 300 + 130 + 13**. Learner-facing explanation: We have three original hundreds, thirteen tens and thirteen ones. To write an ordinary three-digit sum we need to exchange any complete tens of a place. If mistaken: If 178 is described as 1H8T7O, show 187 and correct each place by its value. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Thirteen Ones Become a Ten:** Prompt “Eight ones and five ones make thirteen ones. What do you carry?”. Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O. The written statement is **8 + 5 = 13; 13 ones = 1 ten + 3 ones**. Learner-facing explanation: Thirteen ones contain a ten and three singles. Ten ones were used to make that ten, so there are only three loose ones left. If mistaken: If a learner writes thirteen as the ones digit and also carries one, explain the double count; if they claim four loose ones, recount the original thirteen. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Fourteen Tens Become a Hundred:** Prompt “Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?”. Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O. The written statement is **7 + 6 + 1 = 14 tens = 1 hundred + 4 tens; 178 + 265 = 443**. Learner-facing explanation: Fourteen tens include a hundred and four tens. Three original hundreds plus this new hundred make four hundreds. Four hundreds, four tens, three ones give four hundred forty-three. If mistaken: For 343, identify the missing new hundred. For 453, show that five tens would count one ten twice; trace actual ten-bundles. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Two New Carries:** Prompt “Try 268 + 157. Can the ones and the tens both make a new higher-place unit?”. Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals. The written statement is **268 + 157 = 425**. Learner-facing explanation: The ones make one new ten and five ones. The tens then make one new hundred and two tens. Four hundreds, two tens and five ones make 425. If mistaken: For 415, show the omitted carried ten in tens; for 325, show the missed carried hundred. Verify 200+60+8+100+50+7=425. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per Scene placement: labeled operands, original hundreds/tens/ones arrays, stable block identities, carried ten and carried hundred provenance, raw and normalized place-value states, selected step/trial, explanation and reset.
+                    - **Invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 178 and 265 map to 1H7T8O and 2H6T5O; raw 3H13T13O values 443.
+                    2. Ones exchange converts 13O to 1T3O, giving 3H14T3O still 443.
+                    3. Tens exchange converts 14T to 1H4T, giving 4H4T3O =443.
+                    4. 268+157 yields 425 via 15 ones and 12 tens, and adding original decompositions confirms 425.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Hundred Exchange Addition Lab is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Grade 3 only for learners with reliable three-digit place value and one-carry written addition. The Skill remains unbounded by grade, and these examples do not exhaust its broad definition.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 1 placement: Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section1Markdown3:
+                config:
+                  id: 'cce56bcc-c463-440f-8a3f-889c22b9c75f'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We have three original hundreds, thirteen tens and thirteen ones. To write an ordinary three-digit sum we need to exchange any complete tens of a place.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '- **Markdown Resource (available):** “We have three original hundreds, thirteen tens and thirteen ones. To write an ordinary three-digit sum we need to exchange any complete tens of a place.” Mathematical statement: **178 + 265 = 300 + 130 + 13**.'
+            order:
+              - 'section1Text1'
+              - 'section1Scene2'
+              - 'section1Markdown3'
+        production:
+          purpose: 'Read Three Places'
+          pedagogicalIntent: 'Read Three Places'
+          productionNotes: |
+            ### Section 1 — Read Three Places
+
+            - **Outcome/purpose:** Represent 178 and 265 as hundreds, tens and ones without misplacing a digit.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “What do 178 and 265 mean in hundreds, tens and ones?”
+            - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 1 placement: Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral.
+            - **Markdown Resource (available):** “We have three original hundreds, thirteen tens and thirteen ones. To write an ordinary three-digit sum we need to exchange any complete tens of a place.” Mathematical statement: **178 + 265 = 300 + 130 + 13**.
+            - **Learner action and observation:** Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** If 178 is described as 1H8T7O, show 187 and correct each place by its value. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Invite the next example only after the current place-value statement has been explained; offer Reset and 'Show steps'.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** No Note in this Section.
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+      section2ThirteenOnesBecomeATen:
+        config:
+          id: '0a6de25a-6e1c-44bc-809f-d86b94ee7e8d'
+          slug: 'section2ThirteenOnesBecomeATen'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Thirteen Ones Become a Ten'
+            navigationLabel:
+              en: 'Thirteen Ones Become a Ten'
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: '1dd5c023-10b3-48bb-8ed6-3a2be3b0b2b3'
+                  slug: 'section2Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Eight ones and five ones make thirteen ones. What do you carry?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '- **Text Resource (available):** “Eight ones and five ones make thirteen ones. What do you carry?”'
+              section2Scene2:
+                config:
+                  id: '18b7efcb-7746-49f3-8184-7b305e758d08'
+                  slug: 'section2Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Eight ones and five ones make thirteen ones. What do you carry?'
+                production:
+                  purpose: 'Provisional Scene placement in Thirteen Ones Become a Ten, self-contained and not implemented'
+                  specification: |
+                    # Hundred Exchange Addition Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Regrouping Ones and Tens Into Hundreds Content (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Represent 178 and 265 as hundreds, tens and ones without misplacing a digit. Combine 8+5=13 ones into 1 ten and 3 ones, correctly recording where the ten goes. Combine 7+6+1=14 tens into 1 hundred and 4 tens and obtain 178+265=443. Solve a second example 268+157=425 with consecutive carries and verify both examples through decomposition. Methodologist Brief (full original source: production.methodology) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Develop place-value addition with multiple successive exchanges by grouping ten ones into a ten and ten tens into a hundred. Children control the physical and symbolic steps for 178+265 and verify the conserved sum 443. This Lesson extends the earlier two-digit column method; it does not redefine the canonical Skill's much broader numerical scope.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    178 = 1H7T8O; 265=2H6T5O. Sum in unexchanged units = 3H13T13O = 300+130+13=443. Exchange 13 ones →1T3O, so 3H14T3O; exchange 14 tens →1H4T, obtaining 4H4T3O =443. Column order: ones 8+5=13, carry one ten; tens 7+6+1=14, carry one hundred; hundreds 1+2+1=4. Transfer: 268+157: 8+7=15 ones →5O +1T; 6+5+1=12 tens →2T +1H; 2+1+1=4 hundreds, result 425. These are **two linked carrying steps**; no arbitrary larger values, decimals, negative numbers or full general proof required. Sum remains below 1000.
+
+                    A child can count the carried ten twice, leave the same ten among remaining singles, forget the extra ten in the tens step, or add a hundred without removing ten tens. The initial hundred count is not four until the tens exchange is complete. Do not present raw three hundreds, thirteen tens and thirteen ones as four hundred forty-three without showing how place-value units reconcile. The earlier additionInColumns example contains one exchange; here both levels exchange sequentially.
+
+                    **Conservation invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Read Three Places:** Prompt “What do 178 and 265 mean in hundreds, tens and ones?”. Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral. The written statement is **178 + 265 = 300 + 130 + 13**. Learner-facing explanation: We have three original hundreds, thirteen tens and thirteen ones. To write an ordinary three-digit sum we need to exchange any complete tens of a place. If mistaken: If 178 is described as 1H8T7O, show 187 and correct each place by its value. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Thirteen Ones Become a Ten:** Prompt “Eight ones and five ones make thirteen ones. What do you carry?”. Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O. The written statement is **8 + 5 = 13; 13 ones = 1 ten + 3 ones**. Learner-facing explanation: Thirteen ones contain a ten and three singles. Ten ones were used to make that ten, so there are only three loose ones left. If mistaken: If a learner writes thirteen as the ones digit and also carries one, explain the double count; if they claim four loose ones, recount the original thirteen. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Fourteen Tens Become a Hundred:** Prompt “Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?”. Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O. The written statement is **7 + 6 + 1 = 14 tens = 1 hundred + 4 tens; 178 + 265 = 443**. Learner-facing explanation: Fourteen tens include a hundred and four tens. Three original hundreds plus this new hundred make four hundreds. Four hundreds, four tens, three ones give four hundred forty-three. If mistaken: For 343, identify the missing new hundred. For 453, show that five tens would count one ten twice; trace actual ten-bundles. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Two New Carries:** Prompt “Try 268 + 157. Can the ones and the tens both make a new higher-place unit?”. Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals. The written statement is **268 + 157 = 425**. Learner-facing explanation: The ones make one new ten and five ones. The tens then make one new hundred and two tens. Four hundreds, two tens and five ones make 425. If mistaken: For 415, show the omitted carried ten in tens; for 325, show the missed carried hundred. Verify 200+60+8+100+50+7=425. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per Scene placement: labeled operands, original hundreds/tens/ones arrays, stable block identities, carried ten and carried hundred provenance, raw and normalized place-value states, selected step/trial, explanation and reset.
+                    - **Invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 178 and 265 map to 1H7T8O and 2H6T5O; raw 3H13T13O values 443.
+                    2. Ones exchange converts 13O to 1T3O, giving 3H14T3O still 443.
+                    3. Tens exchange converts 14T to 1H4T, giving 4H4T3O =443.
+                    4. 268+157 yields 425 via 15 ones and 12 tens, and adding original decompositions confirms 425.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Hundred Exchange Addition Lab is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Grade 3 only for learners with reliable three-digit place value and one-carry written addition. The Skill remains unbounded by grade, and these examples do not exhaust its broad definition.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 2 placement: Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section2Markdown3:
+                config:
+                  id: 'ce03cd79-4695-4a7c-86de-c286de486583'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Thirteen ones contain a ten and three singles. Ten ones were used to make that ten, so there are only three loose ones left.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '- **Markdown Resource (available):** “Thirteen ones contain a ten and three singles. Ten ones were used to make that ten, so there are only three loose ones left.” Mathematical statement: **8 + 5 = 13; 13 ones = 1 ten + 3 ones**.'
+            order:
+              - 'section2Text1'
+              - 'section2Scene2'
+              - 'section2Markdown3'
+        production:
+          purpose: 'Thirteen Ones Become a Ten'
+          pedagogicalIntent: 'Thirteen Ones Become a Ten'
+          productionNotes: |
+            ### Section 2 — Thirteen Ones Become a Ten
+
+            - **Outcome/purpose:** Combine 8+5=13 ones into 1 ten and 3 ones, correctly recording where the ten goes.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “Eight ones and five ones make thirteen ones. What do you carry?”
+            - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 2 placement: Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O.
+            - **Markdown Resource (available):** “Thirteen ones contain a ten and three singles. Ten ones were used to make that ten, so there are only three loose ones left.” Mathematical statement: **8 + 5 = 13; 13 ones = 1 ten + 3 ones**.
+            - **Learner action and observation:** Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** If a learner writes thirteen as the ones digit and also carries one, explain the double count; if they claim four loose ones, recount the original thirteen. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Invite the next example only after the current place-value statement has been explained; offer Reset and 'Show steps'.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** “Ten ones exchange for one ten; ten tens exchange for one hundred.”, after the explanation is accessible (planned, not wired).
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+      section3FourteenTensBecomeAHundred:
+        config:
+          id: '17a2ce84-1fe3-4e3a-899b-1a96f1da5a28'
+          slug: 'section3FourteenTensBecomeAHundred'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Fourteen Tens Become a Hundred'
+            navigationLabel:
+              en: 'Fourteen Tens Become a Hundred'
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: '178ed892-be4e-401b-8efc-4889573c8000'
+                  slug: 'section3Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '- **Text Resource (available):** “Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?”'
+              section3Scene2:
+                config:
+                  id: '51961baf-4933-4e34-80b7-d9da88128c41'
+                  slug: 'section3Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?'
+                production:
+                  purpose: 'Provisional Scene placement in Fourteen Tens Become a Hundred, self-contained and not implemented'
+                  specification: |
+                    # Hundred Exchange Addition Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Regrouping Ones and Tens Into Hundreds Content (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Represent 178 and 265 as hundreds, tens and ones without misplacing a digit. Combine 8+5=13 ones into 1 ten and 3 ones, correctly recording where the ten goes. Combine 7+6+1=14 tens into 1 hundred and 4 tens and obtain 178+265=443. Solve a second example 268+157=425 with consecutive carries and verify both examples through decomposition. Methodologist Brief (full original source: production.methodology) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Develop place-value addition with multiple successive exchanges by grouping ten ones into a ten and ten tens into a hundred. Children control the physical and symbolic steps for 178+265 and verify the conserved sum 443. This Lesson extends the earlier two-digit column method; it does not redefine the canonical Skill's much broader numerical scope.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    178 = 1H7T8O; 265=2H6T5O. Sum in unexchanged units = 3H13T13O = 300+130+13=443. Exchange 13 ones →1T3O, so 3H14T3O; exchange 14 tens →1H4T, obtaining 4H4T3O =443. Column order: ones 8+5=13, carry one ten; tens 7+6+1=14, carry one hundred; hundreds 1+2+1=4. Transfer: 268+157: 8+7=15 ones →5O +1T; 6+5+1=12 tens →2T +1H; 2+1+1=4 hundreds, result 425. These are **two linked carrying steps**; no arbitrary larger values, decimals, negative numbers or full general proof required. Sum remains below 1000.
+
+                    A child can count the carried ten twice, leave the same ten among remaining singles, forget the extra ten in the tens step, or add a hundred without removing ten tens. The initial hundred count is not four until the tens exchange is complete. Do not present raw three hundreds, thirteen tens and thirteen ones as four hundred forty-three without showing how place-value units reconcile. The earlier additionInColumns example contains one exchange; here both levels exchange sequentially.
+
+                    **Conservation invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Read Three Places:** Prompt “What do 178 and 265 mean in hundreds, tens and ones?”. Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral. The written statement is **178 + 265 = 300 + 130 + 13**. Learner-facing explanation: We have three original hundreds, thirteen tens and thirteen ones. To write an ordinary three-digit sum we need to exchange any complete tens of a place. If mistaken: If 178 is described as 1H8T7O, show 187 and correct each place by its value. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Thirteen Ones Become a Ten:** Prompt “Eight ones and five ones make thirteen ones. What do you carry?”. Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O. The written statement is **8 + 5 = 13; 13 ones = 1 ten + 3 ones**. Learner-facing explanation: Thirteen ones contain a ten and three singles. Ten ones were used to make that ten, so there are only three loose ones left. If mistaken: If a learner writes thirteen as the ones digit and also carries one, explain the double count; if they claim four loose ones, recount the original thirteen. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Fourteen Tens Become a Hundred:** Prompt “Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?”. Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O. The written statement is **7 + 6 + 1 = 14 tens = 1 hundred + 4 tens; 178 + 265 = 443**. Learner-facing explanation: Fourteen tens include a hundred and four tens. Three original hundreds plus this new hundred make four hundreds. Four hundreds, four tens, three ones give four hundred forty-three. If mistaken: For 343, identify the missing new hundred. For 453, show that five tens would count one ten twice; trace actual ten-bundles. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Two New Carries:** Prompt “Try 268 + 157. Can the ones and the tens both make a new higher-place unit?”. Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals. The written statement is **268 + 157 = 425**. Learner-facing explanation: The ones make one new ten and five ones. The tens then make one new hundred and two tens. Four hundreds, two tens and five ones make 425. If mistaken: For 415, show the omitted carried ten in tens; for 325, show the missed carried hundred. Verify 200+60+8+100+50+7=425. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per Scene placement: labeled operands, original hundreds/tens/ones arrays, stable block identities, carried ten and carried hundred provenance, raw and normalized place-value states, selected step/trial, explanation and reset.
+                    - **Invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 178 and 265 map to 1H7T8O and 2H6T5O; raw 3H13T13O values 443.
+                    2. Ones exchange converts 13O to 1T3O, giving 3H14T3O still 443.
+                    3. Tens exchange converts 14T to 1H4T, giving 4H4T3O =443.
+                    4. 268+157 yields 425 via 15 ones and 12 tens, and adding original decompositions confirms 425.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Hundred Exchange Addition Lab is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Grade 3 only for learners with reliable three-digit place value and one-carry written addition. The Skill remains unbounded by grade, and these examples do not exhaust its broad definition.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 3 placement: Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section3Markdown3:
+                config:
+                  id: 'c9a40d58-e396-4f4a-8e5d-cb90e46f8982'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Fourteen tens include a hundred and four tens. Three original hundreds plus this new hundred make four hundreds. Four hundreds, four tens, three ones give four hundred forty-three.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '- **Markdown Resource (available):** “Fourteen tens include a hundred and four tens. Three original hundreds plus this new hundred make four hundreds. Four hundreds, four tens, three ones give four hundred forty-three.” Mathematical statement: **7 + 6 + 1 = 14 tens = 1 hundred + 4 tens; 178 + 265 = 443**.'
+            order:
+              - 'section3Text1'
+              - 'section3Scene2'
+              - 'section3Markdown3'
+        production:
+          purpose: 'Fourteen Tens Become a Hundred'
+          pedagogicalIntent: 'Fourteen Tens Become a Hundred'
+          productionNotes: |
+            ### Section 3 — Fourteen Tens Become a Hundred
+
+            - **Outcome/purpose:** Combine 7+6+1=14 tens into 1 hundred and 4 tens and obtain 178+265=443.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?”
+            - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 3 placement: Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O.
+            - **Markdown Resource (available):** “Fourteen tens include a hundred and four tens. Three original hundreds plus this new hundred make four hundreds. Four hundreds, four tens, three ones give four hundred forty-three.” Mathematical statement: **7 + 6 + 1 = 14 tens = 1 hundred + 4 tens; 178 + 265 = 443**.
+            - **Learner action and observation:** Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** For 343, identify the missing new hundred. For 453, show that five tens would count one ten twice; trace actual ten-bundles. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Invite the next example only after the current place-value statement has been explained; offer Reset and 'Show steps'.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** “Each carry comes from a completed group of ten and is counted once.”, after the explanation is accessible (planned, not wired).
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+      section4TwoNewCarries:
+        config:
+          id: '30cf834b-794a-4603-8c05-810a4580a442'
+          slug: 'section4TwoNewCarries'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Two New Carries'
+            navigationLabel:
+              en: 'Two New Carries'
+          content:
+            items:
+              section4Text1:
+                config:
+                  id: 'bbc61716-13e3-4cfc-8e66-f2bdd6436957'
+                  slug: 'section4Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Try 268 + 157. Can the ones and the tens both make a new higher-place unit?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '- **Text Resource (available):** “Try 268 + 157. Can the ones and the tens both make a new higher-place unit?”'
+              section4Scene2:
+                config:
+                  id: '37437aa5-6ecf-4f60-814c-b40518c0f1c0'
+                  slug: 'section4Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Try 268 + 157. Can the ones and the tens both make a new higher-place unit?'
+                production:
+                  purpose: 'Provisional Scene placement in Two New Carries, self-contained and not implemented'
+                  specification: |
+                    # Hundred Exchange Addition Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Regrouping Ones and Tens Into Hundreds Content (full original source: this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Represent 178 and 265 as hundreds, tens and ones without misplacing a digit. Combine 8+5=13 ones into 1 ten and 3 ones, correctly recording where the ten goes. Combine 7+6+1=14 tens into 1 hundred and 4 tens and obtain 178+265=443. Solve a second example 268+157=425 with consecutive carries and verify both examples through decomposition. Methodologist Brief (full original source: production.methodology) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Develop place-value addition with multiple successive exchanges by grouping ten ones into a ten and ten tens into a hundred. Children control the physical and symbolic steps for 178+265 and verify the conserved sum 443. This Lesson extends the earlier two-digit column method; it does not redefine the canonical Skill's much broader numerical scope.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    178 = 1H7T8O; 265=2H6T5O. Sum in unexchanged units = 3H13T13O = 300+130+13=443. Exchange 13 ones →1T3O, so 3H14T3O; exchange 14 tens →1H4T, obtaining 4H4T3O =443. Column order: ones 8+5=13, carry one ten; tens 7+6+1=14, carry one hundred; hundreds 1+2+1=4. Transfer: 268+157: 8+7=15 ones →5O +1T; 6+5+1=12 tens →2T +1H; 2+1+1=4 hundreds, result 425. These are **two linked carrying steps**; no arbitrary larger values, decimals, negative numbers or full general proof required. Sum remains below 1000.
+
+                    A child can count the carried ten twice, leave the same ten among remaining singles, forget the extra ten in the tens step, or add a hundred without removing ten tens. The initial hundred count is not four until the tens exchange is complete. Do not present raw three hundreds, thirteen tens and thirteen ones as four hundred forty-three without showing how place-value units reconcile. The earlier additionInColumns example contains one exchange; here both levels exchange sequentially.
+
+                    **Conservation invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Read Three Places:** Prompt “What do 178 and 265 mean in hundreds, tens and ones?”. Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral. The written statement is **178 + 265 = 300 + 130 + 13**. Learner-facing explanation: We have three original hundreds, thirteen tens and thirteen ones. To write an ordinary three-digit sum we need to exchange any complete tens of a place. If mistaken: If 178 is described as 1H8T7O, show 187 and correct each place by its value. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Thirteen Ones Become a Ten:** Prompt “Eight ones and five ones make thirteen ones. What do you carry?”. Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O. The written statement is **8 + 5 = 13; 13 ones = 1 ten + 3 ones**. Learner-facing explanation: Thirteen ones contain a ten and three singles. Ten ones were used to make that ten, so there are only three loose ones left. If mistaken: If a learner writes thirteen as the ones digit and also carries one, explain the double count; if they claim four loose ones, recount the original thirteen. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Fourteen Tens Become a Hundred:** Prompt “Now add 7 tens, 6 tens and the 1 new ten. What happens to fourteen tens?”. Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O. The written statement is **7 + 6 + 1 = 14 tens = 1 hundred + 4 tens; 178 + 265 = 443**. Learner-facing explanation: Fourteen tens include a hundred and four tens. Three original hundreds plus this new hundred make four hundreds. Four hundreds, four tens, three ones give four hundred forty-three. If mistaken: For 343, identify the missing new hundred. For 453, show that five tens would count one ten twice; trace actual ten-bundles. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Two New Carries:** Prompt “Try 268 + 157. Can the ones and the tens both make a new higher-place unit?”. Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals. The written statement is **268 + 157 = 425**. Learner-facing explanation: The ones make one new ten and five ones. The tens then make one new hundred and two tens. Four hundreds, two tens and five ones make 425. If mistaken: For 415, show the omitted carried ten in tens; for 325, show the missed carried hundred. Verify 200+60+8+100+50+7=425. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per Scene placement: labeled operands, original hundreds/tens/ones arrays, stable block identities, carried ten and carried hundred provenance, raw and normalized place-value states, selected step/trial, explanation and reset.
+                    - **Invariant:** Throughout regrouping 100×H+10×T+O always equals original operand sum. For 178+265: raw 3H13T13O=443, after ones 3H14T3O=443, after tens 4H4T3O=443. For 268+157: raw 3H11T15O=425, after ones 3H12T5O=425, after tens 4H2T5O=425. A carry transfers value without adding amount. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 178 and 265 map to 1H7T8O and 2H6T5O; raw 3H13T13O values 443.
+                    2. Ones exchange converts 13O to 1T3O, giving 3H14T3O still 443.
+                    3. Tens exchange converts 14T to 1H4T, giving 4H4T3O =443.
+                    4. 268+157 yields 425 via 15 ones and 12 tens, and adding original decompositions confirms 425.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Hundred Exchange Addition Lab is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Grade 3 only for learners with reliable three-digit place value and one-carry written addition. The Skill remains unbounded by grade, and these examples do not exhaust its broad definition.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 4 placement: Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section4Markdown3:
+                config:
+                  id: 'c4cc50a9-32a2-4feb-89f1-86f18f9f29b3'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The ones make one new ten and five ones. The tens then make one new hundred and two tens. Four hundreds, two tens and five ones make 425.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '- **Markdown Resource (available):** “The ones make one new ten and five ones. The tens then make one new hundred and two tens. Four hundreds, two tens and five ones make 425.” Mathematical statement: **268 + 157 = 425**.'
+            order:
+              - 'section4Text1'
+              - 'section4Scene2'
+              - 'section4Markdown3'
+        production:
+          purpose: 'Two New Carries'
+          pedagogicalIntent: 'Two New Carries'
+          productionNotes: |
+            ### Section 4 — Two New Carries
+
+            - **Outcome/purpose:** Solve a second example 268+157=425 with consecutive carries and verify both examples through decomposition.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “Try 268 + 157. Can the ones and the tens both make a new higher-place unit?”
+            - **Scene Resource (type supported; new component proposed):** Hundred Exchange Addition Lab (full original source: Scene production.specification), independent Section 4 placement: Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals.
+            - **Markdown Resource (available):** “The ones make one new ten and five ones. The tens then make one new hundred and two tens. Four hundreds, two tens and five ones make 425.” Mathematical statement: **268 + 157 = 425**.
+            - **Learner action and observation:** Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** For 415, show the omitted carried ten in tens; for 325, show the missed carried hundred. Verify 200+60+8+100+50+7=425. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Three labeled Hundreds/Tens/Ones columns linked to physical base-ten blocks with low-poly complexity, explicit carried-ten and carried-hundred provenance, and a persistent value-check ledger after EVERY exchange; avoid rendering hundreds as hundreds of separate tiny dots on weak devices. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Reflect on which place changed and which value stayed the same, then end with no grade or mastery badge.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** “Each carry comes from a completed group of ten and is counted once.”, after the explanation is accessible (planned, not wired).
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+    order:
+      - 'section1ReadThreePlaces'
+      - 'section2ThirteenOnesBecomeATen'
+      - 'section3FourteenTensBecomeAHundred'
+      - 'section4TwoNewCarries'
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Regrouping Ones and Tens Into Hundreds — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: additionRegroupingAcrossPlaces
+    Methodologist status: Draft
+    Primary audience: **Grade 3** within grades 1–3
+    Code: Not implemented
+    Program dependence: None
+
+    ## Educational purpose
+
+    Develop place-value addition with multiple successive exchanges by grouping ten ones into a ten and ten tens into a hundred. Children control the physical and symbolic steps for 178+265 and verify the conserved sum 443. This Lesson extends the earlier two-digit column method; it does not redefine the canonical Skill's much broader numerical scope.
+
+    ## Target audience
+
+    Grade 3 as a lesson-specific pedagogical decision. The source Skill remains independent of grade and retains its entire mathematical scope.
+
+    ## Prerequisites
+
+    - Know base-ten numbers to at least 999: 1H=10T, 1T=10O, and each column has a specific value.
+    - Understand the two-digit written column method and one carried ten.
+    - Add ones and tens with totals above ten; track a carry once, and distinguish exchanging representation from changing quantity.
+
+    ## Target Skills
+
+    - [regrouping.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/addition/skills/regrouping.data.ts)
+
+    ## Expected learning outcomes
+
+    - Represent 178 and 265 as hundreds, tens and ones without misplacing a digit.
+    - Combine 8+5=13 ones into 1 ten and 3 ones, correctly recording where the ten goes.
+    - Combine 7+6+1=14 tens into 1 hundred and 4 tens and obtain 178+265=443.
+    - Solve a second example 268+157=425 with consecutive carries and verify both examples through decomposition.
+
+    ## Essential subject matter
+
+    178 = 1H7T8O; 265=2H6T5O. Sum in unexchanged units = 3H13T13O = 300+130+13=443. Exchange 13 ones →1T3O, so 3H14T3O; exchange 14 tens →1H4T, obtaining 4H4T3O =443. Column order: ones 8+5=13, carry one ten; tens 7+6+1=14, carry one hundred; hundreds 1+2+1=4. Transfer: 268+157: 8+7=15 ones →5O +1T; 6+5+1=12 tens →2T +1H; 2+1+1=4 hundreds, result 425. These are **two linked carrying steps**; no arbitrary larger values, decimals, negative numbers or full general proof required. Sum remains below 1000.
+
+    ## Conceptual progression and dependencies
+
+    1. **Read Three Places:** Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral.
+    2. **Thirteen Ones Become a Ten:** Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O.
+    3. **Fourteen Tens Become a Hundred:** Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O.
+    4. **Two New Carries:** Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals.
+
+    ## Misconceptions, examples and boundaries
+
+    A child can count the carried ten twice, leave the same ten among remaining singles, forget the extra ten in the tens step, or add a hundred without removing ten tens. The initial hundred count is not four until the tens exchange is complete. Do not present raw three hundreds, thirteen tens and thirteen ones as four hundred forty-three without showing how place-value units reconcile. The earlier additionInColumns example contains one exchange; here both levels exchange sequentially.
+
+    ## Localization, accessibility and offline intent
+
+    All learner-facing strings/controls and count/value explanations must be genuinely translated across every supported locale with no English fallback. Provide H/T/O state ledger with native keyboard/switch/touch operations, nonvisual before/after and clear provenance for each carry, semantic RTL column labels, large focusable targets, 200% zoom/mobile, reduced-motion and full local offline operation after selected-locale download. No forced dragging, sound, speech recognition or timed response.
+
+    ## Sources and factual verification
+
+    - [Canonical Skill Code](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/addition/skills/regrouping.data.ts), copied byte-for-byte from Mathematics.
+    - [English Playground taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md), generated and coordinator-owned; must be regenerated after integration.
+    - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/) comparative reference only, not nationally approved Curriculum alignment.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. Grade 3 is the selected primary audience, not a grade limit on the Skill.
+
+    ## Open editorial decisions
+
+    - Grade 3 only for learners with reliable three-digit place value and one-carry written addition. The Skill remains unbounded by grade, and these examples do not exhaust its broad definition.
+    - Confirm numeric examples, aligned place-value meaning and equivalent nonvisual/counter operations before production.
+
+    ## Methodologist handoff
+
+    **Draft, not approved.** The adjoining Screenwriter Content is _provisional_, not an official Methodologist sign-off. No React Scene, Question, Quiz, Score or production wiring is authorized by this Draft.
+  productionNotes: |
+    All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+
+    ## Original Screenwriter introduction
+
+    # Regrouping Ones and Tens Into Hundreds — Content
+
+    Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/additionRegroupingAcrossPlaces/
+    Audience: **Grade 3**, with prerequisites Know base-ten numbers to at least 999: 1H=10T, 1T=10O, and each column has a specific value. Understand the two-digit written column method and one carried ten. Add ones and tens with totals above ten; track a carry once, and distinguish exchanging representation from changing quantity.
+    Methodologist source: Methodologist Brief (full original source: production.methodology) (Draft, not approved)
+    Target Skill: Canonical `regrouping.data.ts` from Brief with unchanged identity
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Develop place-value addition with multiple successive exchanges by grouping ten ones into a ten and ten tens into a hundred. Children control the physical and symbolic steps for 178+265 and verify the conserved sum 443. This Lesson extends the earlier two-digit column method; it does not redefine the canonical Skill's much broader numerical scope.
+
+    178 = 1H7T8O; 265=2H6T5O. Sum in unexchanged units = 3H13T13O = 300+130+13=443. Exchange 13 ones →1T3O, so 3H14T3O; exchange 14 tens →1H4T, obtaining 4H4T3O =443. Column order: ones 8+5=13, carry one ten; tens 7+6+1=14, carry one hundred; hundreds 1+2+1=4. Transfer: 268+157: 8+7=15 ones →5O +1T; 6+5+1=12 tens →2T +1H; 2+1+1=4 hundreds, result 425. These are **two linked carrying steps**; no arbitrary larger values, decimals, negative numbers or full general proof required. Sum remains below 1000.
+
+    Learners predict, manipulate and inspect every exchange, identify the physical source of each carried unit, and explain why the total is conserved. We do not replace that understanding with a written-algorithm recital or a graded quiz.
+
+    ## LEARNER JOURNEY
+
+    1. **Read Three Places:** Display a 3-column H/T/O board plus two labeled collections 1H7T8O and 2H6T5O. Learner inspects each place and combines the contributions into raw 3H13T13O without yet calling it the final numeral.
+    2. **Thirteen Ones Become a Ten:** Learner combines unique 8O and 5O, exchanges ten for a ten-bundle, places 3 ones in result and a carried ten above tens, updating the total ledger to 3H14T3O.
+    3. **Fourteen Tens Become a Hundred:** Show 7T+6T+1T=14T, with one ten-bundle from the previous exchange. Learner exchanges ten of fourteen T into 1H, leaving four tens and final total 4H4T3O.
+    4. **Two New Carries:** Fresh H/T/O board. Learner works ones 8+7=15 → carry1T/remain5O; tens 6+5+1=12 → carry1H/remain2T; hundreds 2+1+1=4; check 425 against originals.
+
+    ## SECTION PLAN
+
+
+    ## Original Screenwriter concluding notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Hundred Exchange Addition Lab (full original source: Scene production.specification), four self-contained prop-free Section entries. Generic Scene rendering is supported; this bespoke component does not yet exist.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Ten ones exchange for one ten; ten tens exchange for one hundred.” — editorial proposal only after the corresponding complete mathematical model and explanation.
+    2. “Each carry comes from a completed group of ten and is counted once.” — editorial proposal only after the corresponding complete mathematical model and explanation.
+
+    Notes are **not wired** and do not imply a real Note API, state events, per-child persistence, revision sheet, spaced repetition or evidence of mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Section 4 introduces a fresh case with optional scaffolds and worked feedback, remaining a _formative experience_. Assessment Architect independently validates graded problems, decomposition variants, Skill evidence, retry thresholds, scores and mastery. A correct column total alone does not establish the full canonical Skill; current Quiz select-one adapter is separate from proposed Scenes. No scored Question_Config produced.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Translate all child-facing English prompts, errors, explanations, number-role terms, columns, accessible names and planned Notes into every supported locale, never silently falling back to English. An equivalent ordered accessible numeric ledger offers all exchange/undo/add/check actions for keyboard, touch, switches and screen readers, not merely a static picture label. RTL aligns each digit by _semantic place value_ rather than naive mirroring; mathematical operand order remains true. WCAG 2.2 AA focus, large controls, low-resource mobile, 200% zoom, reduced motion and full downloaded offline calculation/feedback must preserve exactly the same intermediate and final mathematical states. No sound, video, WebGL, drag-only or remote checker required.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    Current `LessonSection_Config` and generic renderer support text, markdown, scene resources. Hundred Exchange Addition Lab is **proposed, not implemented**, and requires approved Scene spec, prop-free entries with real locale context and own tests; no public runtime mode prop is presumed. Generic image/audio/video/code resources are typed only; YouTube is not a supported Resource_Config. Notes, spaced-review scheduler, full PWA download and synchronization remain separate product work. No TS runtime Lesson Config, Question, Quiz or scoring has been created.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (full original source: production.methodology), Draft, not approved.
+    - [Canonical Skill](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/arithmetic/addition/skills/regrouping.data.ts) unchanged from Mathematics.
+    - [Create Lesson Content workflow](https://github.com/KiT-Maverik/svitlo/blob/main/studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Grade 3 only for learners with reliable three-digit place value and one-carry written addition. The Skill remains unbounded by grade, and these examples do not exhaust its broad definition.
+    - Shared generated taxonomy is coordinator-owned and intentionally left unmodified in this branch.
+
+    ## HANDOFF
+
+    One provisional Draft four-Section Content and a separate Draft Scene specification. Editor must approve the Methodologist Brief first, then independently review Content and Scene; Scene Designer/Coding Agent/Assessment Architect proceed only with separate approval. Do not change any previous Lesson or source Skill.

@@ -1,0 +1,845 @@
+config:
+  id: '44a2d0f8-9f33-5612-8bd9-60cb919c442b'
+  slug: 'readingAndDrawingGridMaps'
+  type: 'lesson'
+  skills:
+    - '43b1fdd6-0846-4c0c-a01b-375a6fec3b2f'
+  params:
+    requireQuiz: false
+    languages:
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Read and Draw Simple Grid Maps'
+  section:
+    items:
+      section1WhichSquareIsB2:
+        config:
+          id: '30a742d4-1308-8b1e-84b2-eec8f71da702'
+          slug: 'section1WhichSquareIsB2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Which Square Is B2?'
+            navigationLabel:
+              en: 'Which Square Is B2?'
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: 'b5204641-c24b-8fa5-8a1c-b4c6ad779d22'
+                  slug: 'section1Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Look at our little map. The letters A, B, C, D name the rows. The numbers 1, 2, 3, 4 name the columns. Where is **B2**—the second square of row B, or a line where the labels cross?'
+                production:
+                  purpose: 'Legacy text block of Which Square Is B2?; provisional draft.'
+                  specification: '  1. **text — existing renderer:** "Look at our little map. The letters A, B, C, D name the rows. The numbers 1, 2, 3, 4 name the columns. Where is **B2**—the second square of row B, or a line where the labels cross?"'
+              scene1Block2:
+                config:
+                  id: '2a4f3636-287e-8739-8a71-b401e840a50e'
+                  slug: 'scene1Block2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Look at our little map. The letters A, B, C, D name the rows. The numbers 1, 2, 3, 4 name the columns. Where is **B2**—the second square of row B, or a line where the labels cross?'
+                production:
+                  purpose: 'Independently initialized Scene occurrence in Which Square Is B2?. Not approved or implemented.'
+                  specification: |
+                    # Grid Map Workshop — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Read and Draw Simple Grid Maps (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Brief (preserved in production.methodology): reference cells by stable row/column convention, follow adjacent steps and draw a readable map. Route skills are prerequisites; map design and reading are the central independent competence.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A **grid map** only works when everybody agrees which square a label names, where map top is, what a "step" means and which pictures mark which places. The learner explores a named map, traces one step at a time and **authors** a different map someone else could interpret. The UI should make the map's **coordinate convention** visible rather than treating positions as free pixels.
+
+                    Learner voice: "**First the row, then the column. Each step moves one square, and the map key says what the pictures mean.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A fixed **4×4 array of cells**. Rows **A, B, C, D** order from **top to bottom**; columns **1, 2, 3, 4** order from **left to right**. A cell name is row letter then column numeral: e.g. **B2 is the interior** of row B, column 2.
+                    - The **grid border intersection** is not a cell. Selecting a cell never selects a line crossing. Each cell is a discrete named region with its own contents.
+                    - Absolute **map-right** increases column 1→4; map-left decreases it, map-up decreases row D→A and map-down increases row A→D. This direction convention is independent of **walker facing** and UI text direction.
+                    - One "step" moves between **adjacent cells** up/down/left/right, never diagonally or past the map's edge. If a command would exit, leave the position unchanged and report it explicitly. No wraparound, teleporting or implied diagonal step.
+                    - A map's legend contains unique named **tree**, **park**, **pond** and additional example **garden/market** as described in Content. The exact symbols and text names must agree; do not depend on color/pictogram-only recognition.
+                    - A cell stays the same semantic reference at different display sizes. A **different map** could use a different physical scale and should label that difference; this Scene does not calculate real-world distances. Never assert that reordering independent horizontal/vertical moves in an empty grid necessarily changes the endpoint.
+                    - Model references are schematic and cultural/place neutral. No GPS, real positions, map API, geodetic projection or formal algebra coordinates.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A: Read B2, Not a Corner (Section 1)
+
+                    1. Show fixed labeled 4×4 cells and the convention "letter = row; number = column". Place **tree in B2**, **park in A4**, **pond in C3**, nothing elsewhere.
+                    2. Prompt: "Where is B2? Choose a row and column before revealing the label." Controls "Row A/B/C/D" and "Column 1/2/3/4" must be accessible without clicking grid lines.
+                    3. Correct selection B and 2 maps to the entire cell B2. Text: "Tree at B2. Second column of row B." Selecting C2 reveals "Right column, wrong row" or B3 "Right row, wrong column".
+                    4. "Read row B" lists **B1 empty, B2 tree, B3 empty, B4 empty** in order; "Read map" lists all 16 cells with landmarks.
+                    5. Change only selection, never silently move landmarks. Reset returns to B2 unrevealed.
+
+                    ### Placement B: Trace a Cell-by-Cell Route (Section 2)
+
+                    1. Fixed initial cell **B2** containing a tree. Target **A4** containing park. Command tape (absolute **map** directions): **right one**, **right one**, **up one**.
+                    2. Prompt learner to predict next cell before running each command. Step results exactly **B2→B3→B4→A4**. Show ordered cell log with per-step meaning and the final park.
+                    3. For predicted C4 on last step, explain C is down not up from B; for A3, explain a right move is missing; for B2→B4 in one claimed step, explain one step means _one neighbor_.
+                    4. "Previous step", "Replay", "Reset" allow inspection, deterministic state restoration and hint/reveal with no timed gates. Do not infer the learner's heading from commands.
+                    5. Optional alternative path to A4 can be accepted as a destination match if using the same absolute grid rules, **not** marked wrong because its command list differs. This stage's guided tape nevertheless uses the stated three commands.
+
+                    ### Placement C: Author a Shareable Map (Section 3)
+
+                    1. Start with a blank 4×4 grid and a legend showing symbols/names **tree**, **pond**, **park**. Prompt: "Place tree at B2, pond at C3, park at A4."
+                    2. Controls: choose landmark, choose row (A–D), choose column (1–4), choose "Place / Move landmark". It updates the **one** location for the selected landmark; placing tree again moves its marker rather than cloning it. "Remove marker" and "Reset map" are available.
+                    3. A "Read back map" accessible list exposes every cell's contents and the legend, including empty cells. A separate "Check directions" action compares positions to the three specified cells and gives **per-landmark corrections**, not a score.
+                    4. Examples: tree wrongly at **B3** ⇒ "Tree needs column 2 of row B"; pond wrongly at **B3** ⇒ "Pond is in column 3 but needs row C"; park at **A4** ⇒ "Park is in row A, column 4 as requested".
+                    5. If placing multiple landmarks into a cell, either explicitly allow a clearly labeled **shared cell** and state the consequence, or in this Lesson require one landmark per cell and explain that the chosen cell is occupied; **do not silently remove** a different landmark. This specification adopts **one landmark per cell** for clarity.
+                    6. The learner may optionally provide a route between the placed tree and park, validated by the same map conventions. Doing so is unscored, not a separate Route Skill mastery result.
+
+                    ### Placement D: Unfamiliar Map and Error Diagnosis (Section 4)
+
+                    1. Fresh fixed map (independent of stage C) with **garden in A3**, **market in D2**, all other cells empty. Explorer starts **C2**. Visible instruction list: **up, up, right**, exactly one cell each.
+                    2. Step-by-step results: **C2→B2→A2→A3**, ending at **garden**. Player may predict cell or destination with accessible named choices; no route animation required.
+                    3. Feedback for B3: "We needed a second up step to reach row A"; for A2: "That is after the two up steps, before the final right"; for D3: "That is down, not up".
+                    4. Challenge a convention violation explicitly: one proposed map-label description says "**A3 means row 3, column A**". Let the learner identify the problem: the map defines **letter rows** and **number columns**. Correct text: "A3 means row A, column 3." This is a _map-reading_ error, not a new Language Skill.
+                    5. Optional scale thought experiment: If a different map shows squares twice as wide **on screen**, do not assume each square is twice the real distance; require a declared scale. An accessibility description should state this conceptual point without measuring physical pixels.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** 16 labeled grid cells, row/column selectors, per-cell content labels, fixed map-orientation key, landmark selector and legend, route tape, text log, editable map placement, predict/reveal/undo/reset.
+                    - **Per-placement state:** immutable row/column convention and preset landmark positions, selected row/column, current cell, revealed route index, created landmark map (stage C), feedback/reveal state. Each Section's placement is initialized independently.
+                    - **Invariant:** cell reference is row letter followed by column number; route transitions are always one adjacent cell for one command; landmark list and map are synchronized; stable scale and direction convention; moves outside 4×4 are rejected with explanation.
+                    - **Prop-free integration:** each public Scene entry for a Section must be self-contained with **no incoming props**; share private helpers but never create a public `gridSize`, `locale`, `mode`, `initialCells` or `onChange` prop contract. Get locale from actual Lesson provider context once verified.
+                    - **Interaction alternatives:** no pointer precision required. Named row/column selectors can place markers, keyboard/switch buttons can advance a route. An ordered row-major text table is not optional; it is required for nonvisual equivalent meaning.
+                    - **Reset and hints:** reset local stage to fixed preset, leaving other stages unaffected. Hints reveal only next relevant row/column correction. No score, Quiz, Note unlock or persistent map-state guarantee.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple, large 4×4 SVG/HTML grid with a visible alphabetic row header on **each row** and number header on **each column**. Show a high-contrast outline and text name on active cell; symbols/emoji may be decorative but must not replace legend text or accessible names. A route step should highlight the current and next cells, with a textual announcement; under reduced motion, jump straight to new state. Responsive resizing maintains equal grid cell widths within each map. No external map assets, networking or real-world navigation interface required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all landmark names, instructions, feedback, headings, route narration, cell position words and accessible labels genuinely for supported locales; no placeholders. A–D are **stable illustrative cell identifiers** for this English editorial spec, not proof of how letter labels translate. The eventual localized presentation must explain or safely preserve the mapping to equivalent codes.
+                    - **RTL is not permission to flip the grid math:** map-right still increases column number and map-top still starts row A in this specified 4×4 model. If a localized design intentionally changes map orientation, all identities, route results and text must be transformed consistently and independently tested, with explicit UI explanation; the simpler approved default is a fixed-direction schematic map in RTL text layout.
+                    - A screen reader can ask for "row B" or each cell by name, hear "B2 has tree", execute discrete route steps, and place landmarks by row/column choices. Do not rely on color-only highlights, images, fine motor dragging, audio, time pressure or repeated noisy live announcements.
+                    - Maintain logical focus, touch target size, readable 200% labels, WCAG 2.2 AA, reduced motion and equivalent low-end/offline operation after selected locale/lesson download. Design is **not** evidence of existing PWA caching.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. On A–D rows / 1–4 columns, selecting row B + column 2 identifies **cell B2** with a tree, not the border intersection.
+                    2. B2→B3→B4→A4 by right/right/up ends at the **park in A4** with exactly one neighboring-cell transition per command.
+                    3. C2→B2→A2→A3 by up/up/right ends at the **garden in A3**.
+                    4. Stage C places tree B2, pond C3, park A4 and produces a **matching, unambiguous legend and ordered 16-cell list**.
+                    5. Placing pond at B3 returns row-specific correction; placing tree at B3 returns column-specific correction.
+                    6. A command from A2 to "up one" is blocked, leaving player at A2 with a specific edge explanation.
+                    7. "A3 means row 3 column A" is rejected as incompatible with the agreed convention; correct is "row A column 3".
+                    8. On-screen resize does **not** change cell references or the defined one-cell-step semantics; no fabricated physical-distance calibration.
+                    9. Reset isolates each Scene placement; keyboard, screen reader, RTL, mobile, 200% text, reduced motion and offline after download preserve equivalent location and route reasoning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The current generic Section renderer understands `scene`, but **Grid Map Workshop is not implemented**. Future Scene Designer/Coding Agent must implement verified locale provider use, deterministic grid-state controllers, accessible grid/list interaction, co-located tests, real translations and complete offline assets only after editorial approval. No server map API, database, scoring, Question/Quiz or Note persistence invented. Editor must confirm the fixed lettering convention is comprehensible internationally.
+
+
+                    ## Original placement
+
+                      2. **scene — existing Resource type, custom Scene proposed:** Grid Map Workshop (preserved in Scene production.specification), stage A. Show 4×4 cells with labeled rows/columns. Learner selects a **cell** by row choice and column choice (not precision clicking). Tree at **B2**, park at **A4**, pond at **C3**. "Read chosen cell" reveals "B2: tree"; "Show row B" highlights four cells and names them B1–B4.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
+              section1Markdown3:
+                config:
+                  id: '586b4a91-6bd9-8389-86d9-c1ca256bf8d2'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'First find the **row letter**, then the **column number**. B2 is **one square** in row B and column 2. A square is an area on the map; the grid lines are its borders. Names help two people talk about the same place.'
+                production:
+                  purpose: 'Legacy markdown block of Which Square Is B2?; provisional draft.'
+                  specification: '  3. **markdown — existing renderer:** "First find the **row letter**, then the **column number**. B2 is **one square** in row B and column 2. A square is an area on the map; the grid lines are its borders. Names help two people talk about the same place."'
+            order:
+              - 'section1Text1'
+              - 'scene1Block2'
+              - 'section1Markdown3'
+        production:
+          purpose: 'Which Square Is B2?'
+          pedagogicalIntent: 'Which Square Is B2?'
+          productionNotes: |
+            ### Section 1 — Which Square Is B2?
+
+            - **Purpose:** interpret one cell reference rather than a line crossing or a bare number.
+            - **Current shape:** `LessonSection_Config`; one vertical ordered Resource sequence.
+            - **Ordered blocks:**
+              1. **text — existing renderer:** "Look at our little map. The letters A, B, C, D name the rows. The numbers 1, 2, 3, 4 name the columns. Where is **B2**—the second square of row B, or a line where the labels cross?"
+              2. **scene — existing Resource type, custom Scene proposed:** Grid Map Workshop (preserved in Scene production.specification), stage A. Show 4×4 cells with labeled rows/columns. Learner selects a **cell** by row choice and column choice (not precision clicking). Tree at **B2**, park at **A4**, pond at **C3**. "Read chosen cell" reveals "B2: tree"; "Show row B" highlights four cells and names them B1–B4.
+              3. **markdown — existing renderer:** "First find the **row letter**, then the **column number**. B2 is **one square** in row B and column 2. A square is an area on the map; the grid lines are its borders. Names help two people talk about the same place."
+            - **Feedback:** Selecting C2 for B2: "You kept column 2 but moved one row down. Find the row labeled B." Selecting B3: "You kept row B, but moved to column 3. Check the number 2." If child chooses a line crossing: "We name the _inside of a square_ on this map."
+            - **Access:** Row/column selectors plus a 16-row logical cell list "A1 empty; …; B2 tree …". Use no unstated visual coordinates. Planned Note: "Read the row letter, then the column number."
+
+      section2FromTheTreeToThePark:
+        config:
+          id: '957667a1-8331-81f1-82cf-6b78a4882d28'
+          slug: 'section2FromTheTreeToThePark'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'From the Tree to the Park'
+            navigationLabel:
+              en: 'From the Tree to the Park'
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: '41394951-4673-8ab4-8dd6-4072da9c1397'
+                  slug: 'section2Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Start at the tree in B2. Move **right one**, **right one**, then **up one**. Where do you arrive? Tell us which squares you pass.'
+                production:
+                  purpose: 'Legacy text block of From the Tree to the Park; provisional draft.'
+                  specification: '  1. **text — existing:** "Start at the tree in B2. Move **right one**, **right one**, then **up one**. Where do you arrive? Tell us which squares you pass."'
+              scene2Block2:
+                config:
+                  id: '5b54147b-f2e7-8576-84bf-3547cd0cc44a'
+                  slug: 'scene2Block2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Start at the tree in B2. Move **right one**, **right one**, then **up one**. Where do you arrive? Tell us which squares you pass.'
+                production:
+                  purpose: 'Independently initialized Scene occurrence in From the Tree to the Park. Not approved or implemented.'
+                  specification: |
+                    # Grid Map Workshop — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Read and Draw Simple Grid Maps (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Brief (preserved in production.methodology): reference cells by stable row/column convention, follow adjacent steps and draw a readable map. Route skills are prerequisites; map design and reading are the central independent competence.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A **grid map** only works when everybody agrees which square a label names, where map top is, what a "step" means and which pictures mark which places. The learner explores a named map, traces one step at a time and **authors** a different map someone else could interpret. The UI should make the map's **coordinate convention** visible rather than treating positions as free pixels.
+
+                    Learner voice: "**First the row, then the column. Each step moves one square, and the map key says what the pictures mean.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A fixed **4×4 array of cells**. Rows **A, B, C, D** order from **top to bottom**; columns **1, 2, 3, 4** order from **left to right**. A cell name is row letter then column numeral: e.g. **B2 is the interior** of row B, column 2.
+                    - The **grid border intersection** is not a cell. Selecting a cell never selects a line crossing. Each cell is a discrete named region with its own contents.
+                    - Absolute **map-right** increases column 1→4; map-left decreases it, map-up decreases row D→A and map-down increases row A→D. This direction convention is independent of **walker facing** and UI text direction.
+                    - One "step" moves between **adjacent cells** up/down/left/right, never diagonally or past the map's edge. If a command would exit, leave the position unchanged and report it explicitly. No wraparound, teleporting or implied diagonal step.
+                    - A map's legend contains unique named **tree**, **park**, **pond** and additional example **garden/market** as described in Content. The exact symbols and text names must agree; do not depend on color/pictogram-only recognition.
+                    - A cell stays the same semantic reference at different display sizes. A **different map** could use a different physical scale and should label that difference; this Scene does not calculate real-world distances. Never assert that reordering independent horizontal/vertical moves in an empty grid necessarily changes the endpoint.
+                    - Model references are schematic and cultural/place neutral. No GPS, real positions, map API, geodetic projection or formal algebra coordinates.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A: Read B2, Not a Corner (Section 1)
+
+                    1. Show fixed labeled 4×4 cells and the convention "letter = row; number = column". Place **tree in B2**, **park in A4**, **pond in C3**, nothing elsewhere.
+                    2. Prompt: "Where is B2? Choose a row and column before revealing the label." Controls "Row A/B/C/D" and "Column 1/2/3/4" must be accessible without clicking grid lines.
+                    3. Correct selection B and 2 maps to the entire cell B2. Text: "Tree at B2. Second column of row B." Selecting C2 reveals "Right column, wrong row" or B3 "Right row, wrong column".
+                    4. "Read row B" lists **B1 empty, B2 tree, B3 empty, B4 empty** in order; "Read map" lists all 16 cells with landmarks.
+                    5. Change only selection, never silently move landmarks. Reset returns to B2 unrevealed.
+
+                    ### Placement B: Trace a Cell-by-Cell Route (Section 2)
+
+                    1. Fixed initial cell **B2** containing a tree. Target **A4** containing park. Command tape (absolute **map** directions): **right one**, **right one**, **up one**.
+                    2. Prompt learner to predict next cell before running each command. Step results exactly **B2→B3→B4→A4**. Show ordered cell log with per-step meaning and the final park.
+                    3. For predicted C4 on last step, explain C is down not up from B; for A3, explain a right move is missing; for B2→B4 in one claimed step, explain one step means _one neighbor_.
+                    4. "Previous step", "Replay", "Reset" allow inspection, deterministic state restoration and hint/reveal with no timed gates. Do not infer the learner's heading from commands.
+                    5. Optional alternative path to A4 can be accepted as a destination match if using the same absolute grid rules, **not** marked wrong because its command list differs. This stage's guided tape nevertheless uses the stated three commands.
+
+                    ### Placement C: Author a Shareable Map (Section 3)
+
+                    1. Start with a blank 4×4 grid and a legend showing symbols/names **tree**, **pond**, **park**. Prompt: "Place tree at B2, pond at C3, park at A4."
+                    2. Controls: choose landmark, choose row (A–D), choose column (1–4), choose "Place / Move landmark". It updates the **one** location for the selected landmark; placing tree again moves its marker rather than cloning it. "Remove marker" and "Reset map" are available.
+                    3. A "Read back map" accessible list exposes every cell's contents and the legend, including empty cells. A separate "Check directions" action compares positions to the three specified cells and gives **per-landmark corrections**, not a score.
+                    4. Examples: tree wrongly at **B3** ⇒ "Tree needs column 2 of row B"; pond wrongly at **B3** ⇒ "Pond is in column 3 but needs row C"; park at **A4** ⇒ "Park is in row A, column 4 as requested".
+                    5. If placing multiple landmarks into a cell, either explicitly allow a clearly labeled **shared cell** and state the consequence, or in this Lesson require one landmark per cell and explain that the chosen cell is occupied; **do not silently remove** a different landmark. This specification adopts **one landmark per cell** for clarity.
+                    6. The learner may optionally provide a route between the placed tree and park, validated by the same map conventions. Doing so is unscored, not a separate Route Skill mastery result.
+
+                    ### Placement D: Unfamiliar Map and Error Diagnosis (Section 4)
+
+                    1. Fresh fixed map (independent of stage C) with **garden in A3**, **market in D2**, all other cells empty. Explorer starts **C2**. Visible instruction list: **up, up, right**, exactly one cell each.
+                    2. Step-by-step results: **C2→B2→A2→A3**, ending at **garden**. Player may predict cell or destination with accessible named choices; no route animation required.
+                    3. Feedback for B3: "We needed a second up step to reach row A"; for A2: "That is after the two up steps, before the final right"; for D3: "That is down, not up".
+                    4. Challenge a convention violation explicitly: one proposed map-label description says "**A3 means row 3, column A**". Let the learner identify the problem: the map defines **letter rows** and **number columns**. Correct text: "A3 means row A, column 3." This is a _map-reading_ error, not a new Language Skill.
+                    5. Optional scale thought experiment: If a different map shows squares twice as wide **on screen**, do not assume each square is twice the real distance; require a declared scale. An accessibility description should state this conceptual point without measuring physical pixels.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** 16 labeled grid cells, row/column selectors, per-cell content labels, fixed map-orientation key, landmark selector and legend, route tape, text log, editable map placement, predict/reveal/undo/reset.
+                    - **Per-placement state:** immutable row/column convention and preset landmark positions, selected row/column, current cell, revealed route index, created landmark map (stage C), feedback/reveal state. Each Section's placement is initialized independently.
+                    - **Invariant:** cell reference is row letter followed by column number; route transitions are always one adjacent cell for one command; landmark list and map are synchronized; stable scale and direction convention; moves outside 4×4 are rejected with explanation.
+                    - **Prop-free integration:** each public Scene entry for a Section must be self-contained with **no incoming props**; share private helpers but never create a public `gridSize`, `locale`, `mode`, `initialCells` or `onChange` prop contract. Get locale from actual Lesson provider context once verified.
+                    - **Interaction alternatives:** no pointer precision required. Named row/column selectors can place markers, keyboard/switch buttons can advance a route. An ordered row-major text table is not optional; it is required for nonvisual equivalent meaning.
+                    - **Reset and hints:** reset local stage to fixed preset, leaving other stages unaffected. Hints reveal only next relevant row/column correction. No score, Quiz, Note unlock or persistent map-state guarantee.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple, large 4×4 SVG/HTML grid with a visible alphabetic row header on **each row** and number header on **each column**. Show a high-contrast outline and text name on active cell; symbols/emoji may be decorative but must not replace legend text or accessible names. A route step should highlight the current and next cells, with a textual announcement; under reduced motion, jump straight to new state. Responsive resizing maintains equal grid cell widths within each map. No external map assets, networking or real-world navigation interface required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all landmark names, instructions, feedback, headings, route narration, cell position words and accessible labels genuinely for supported locales; no placeholders. A–D are **stable illustrative cell identifiers** for this English editorial spec, not proof of how letter labels translate. The eventual localized presentation must explain or safely preserve the mapping to equivalent codes.
+                    - **RTL is not permission to flip the grid math:** map-right still increases column number and map-top still starts row A in this specified 4×4 model. If a localized design intentionally changes map orientation, all identities, route results and text must be transformed consistently and independently tested, with explicit UI explanation; the simpler approved default is a fixed-direction schematic map in RTL text layout.
+                    - A screen reader can ask for "row B" or each cell by name, hear "B2 has tree", execute discrete route steps, and place landmarks by row/column choices. Do not rely on color-only highlights, images, fine motor dragging, audio, time pressure or repeated noisy live announcements.
+                    - Maintain logical focus, touch target size, readable 200% labels, WCAG 2.2 AA, reduced motion and equivalent low-end/offline operation after selected locale/lesson download. Design is **not** evidence of existing PWA caching.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. On A–D rows / 1–4 columns, selecting row B + column 2 identifies **cell B2** with a tree, not the border intersection.
+                    2. B2→B3→B4→A4 by right/right/up ends at the **park in A4** with exactly one neighboring-cell transition per command.
+                    3. C2→B2→A2→A3 by up/up/right ends at the **garden in A3**.
+                    4. Stage C places tree B2, pond C3, park A4 and produces a **matching, unambiguous legend and ordered 16-cell list**.
+                    5. Placing pond at B3 returns row-specific correction; placing tree at B3 returns column-specific correction.
+                    6. A command from A2 to "up one" is blocked, leaving player at A2 with a specific edge explanation.
+                    7. "A3 means row 3 column A" is rejected as incompatible with the agreed convention; correct is "row A column 3".
+                    8. On-screen resize does **not** change cell references or the defined one-cell-step semantics; no fabricated physical-distance calibration.
+                    9. Reset isolates each Scene placement; keyboard, screen reader, RTL, mobile, 200% text, reduced motion and offline after download preserve equivalent location and route reasoning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The current generic Section renderer understands `scene`, but **Grid Map Workshop is not implemented**. Future Scene Designer/Coding Agent must implement verified locale provider use, deterministic grid-state controllers, accessible grid/list interaction, co-located tests, real translations and complete offline assets only after editorial approval. No server map API, database, scoring, Question/Quiz or Note persistence invented. Editor must confirm the fixed lettering convention is comprehensible internationally.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage B. Trace B2 → **B3** → **B4** → **A4**. Each reveal includes row/column text and marks exactly one new neighboring cell. Final A4 displays park. No diagonal movement, no map rotation.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
+              section2Markdown3:
+                config:
+                  id: '90712c81-3c14-852d-852d-3961a94880cd'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "First we moved to B3. One more right step reached B4. Up one row took us to **A4**, the park. 'Right' on this map means toward the **larger column number**. 'Up' means toward the **earlier row letter**."
+                production:
+                  purpose: 'Legacy markdown block of From the Tree to the Park; provisional draft.'
+                  specification: '  3. **markdown — existing:** "First we moved to B3. One more right step reached B4. Up one row took us to **A4**, the park. ''Right'' on this map means toward the **larger column number**. ''Up'' means toward the **earlier row letter**."'
+            order:
+              - 'section2Text1'
+              - 'scene2Block2'
+              - 'section2Markdown3'
+        production:
+          purpose: 'From the Tree to the Park'
+          pedagogicalIntent: 'From the Tree to the Park'
+          productionNotes: |
+            ### Section 2 — From the Tree to the Park
+
+            - **Purpose:** apply a consistent map orientation and exactly one cell per move.
+            - **Current shape:** one-column `LessonSection_Config`.
+            - **Ordered blocks:**
+              1. **text — existing:** "Start at the tree in B2. Move **right one**, **right one**, then **up one**. Where do you arrive? Tell us which squares you pass."
+              2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage B. Trace B2 → **B3** → **B4** → **A4**. Each reveal includes row/column text and marks exactly one new neighboring cell. Final A4 displays park. No diagonal movement, no map rotation.
+              3. **markdown — existing:** "First we moved to B3. One more right step reached B4. Up one row took us to **A4**, the park. 'Right' on this map means toward the **larger column number**. 'Up' means toward the **earlier row letter**."
+            - **Feedback:** If learner says C4 after the final step: "C4 is **down** from B4. The instruction said **up**, so we go to A4." For a jump from B2 to B4 in one step: "That crosses **two** neighboring cells; our map uses one square per step." For diagonal B3→A4: "That cuts across a corner, but we are following up/down/left/right moves only."
+            - **Consistency:** This Lesson uses absolute map directions rather than the explorer-facing right-turn controls of the earlier Route Directions Lesson. State this difference in child-friendly copy: "A map arrow stays the same way even if the walker turns."
+
+      section3MakeAMapSomebodyElseCanRead:
+        config:
+          id: '37b2e2cb-2b3e-8213-8f9c-ff07f310efdf'
+          slug: 'section3MakeAMapSomebodyElseCanRead'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Make a Map Somebody Else Can Read'
+            navigationLabel:
+              en: 'Make a Map Somebody Else Can Read'
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: '4da84be8-1d43-8fdd-8d8a-826b3d61765e'
+                  slug: 'section3Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Your friend will see only your map. Place a **tree at B2**, a **pond at C3** and a **park at A4**. How will they know which symbol is which?'
+                production:
+                  purpose: 'Legacy text block of Make a Map Somebody Else Can Read; provisional draft.'
+                  specification: '  1. **text — existing:** "Your friend will see only your map. Place a **tree at B2**, a **pond at C3** and a **park at A4**. How will they know which symbol is which?"'
+              scene3Block2:
+                config:
+                  id: 'e197abdb-75cf-8640-8e2b-5ec9ea73f352'
+                  slug: 'scene3Block2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Your friend will see only your map. Place a **tree at B2**, a **pond at C3** and a **park at A4**. How will they know which symbol is which?'
+                production:
+                  purpose: 'Independently initialized Scene occurrence in Make a Map Somebody Else Can Read. Not approved or implemented.'
+                  specification: |
+                    # Grid Map Workshop — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Read and Draw Simple Grid Maps (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Brief (preserved in production.methodology): reference cells by stable row/column convention, follow adjacent steps and draw a readable map. Route skills are prerequisites; map design and reading are the central independent competence.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A **grid map** only works when everybody agrees which square a label names, where map top is, what a "step" means and which pictures mark which places. The learner explores a named map, traces one step at a time and **authors** a different map someone else could interpret. The UI should make the map's **coordinate convention** visible rather than treating positions as free pixels.
+
+                    Learner voice: "**First the row, then the column. Each step moves one square, and the map key says what the pictures mean.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A fixed **4×4 array of cells**. Rows **A, B, C, D** order from **top to bottom**; columns **1, 2, 3, 4** order from **left to right**. A cell name is row letter then column numeral: e.g. **B2 is the interior** of row B, column 2.
+                    - The **grid border intersection** is not a cell. Selecting a cell never selects a line crossing. Each cell is a discrete named region with its own contents.
+                    - Absolute **map-right** increases column 1→4; map-left decreases it, map-up decreases row D→A and map-down increases row A→D. This direction convention is independent of **walker facing** and UI text direction.
+                    - One "step" moves between **adjacent cells** up/down/left/right, never diagonally or past the map's edge. If a command would exit, leave the position unchanged and report it explicitly. No wraparound, teleporting or implied diagonal step.
+                    - A map's legend contains unique named **tree**, **park**, **pond** and additional example **garden/market** as described in Content. The exact symbols and text names must agree; do not depend on color/pictogram-only recognition.
+                    - A cell stays the same semantic reference at different display sizes. A **different map** could use a different physical scale and should label that difference; this Scene does not calculate real-world distances. Never assert that reordering independent horizontal/vertical moves in an empty grid necessarily changes the endpoint.
+                    - Model references are schematic and cultural/place neutral. No GPS, real positions, map API, geodetic projection or formal algebra coordinates.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A: Read B2, Not a Corner (Section 1)
+
+                    1. Show fixed labeled 4×4 cells and the convention "letter = row; number = column". Place **tree in B2**, **park in A4**, **pond in C3**, nothing elsewhere.
+                    2. Prompt: "Where is B2? Choose a row and column before revealing the label." Controls "Row A/B/C/D" and "Column 1/2/3/4" must be accessible without clicking grid lines.
+                    3. Correct selection B and 2 maps to the entire cell B2. Text: "Tree at B2. Second column of row B." Selecting C2 reveals "Right column, wrong row" or B3 "Right row, wrong column".
+                    4. "Read row B" lists **B1 empty, B2 tree, B3 empty, B4 empty** in order; "Read map" lists all 16 cells with landmarks.
+                    5. Change only selection, never silently move landmarks. Reset returns to B2 unrevealed.
+
+                    ### Placement B: Trace a Cell-by-Cell Route (Section 2)
+
+                    1. Fixed initial cell **B2** containing a tree. Target **A4** containing park. Command tape (absolute **map** directions): **right one**, **right one**, **up one**.
+                    2. Prompt learner to predict next cell before running each command. Step results exactly **B2→B3→B4→A4**. Show ordered cell log with per-step meaning and the final park.
+                    3. For predicted C4 on last step, explain C is down not up from B; for A3, explain a right move is missing; for B2→B4 in one claimed step, explain one step means _one neighbor_.
+                    4. "Previous step", "Replay", "Reset" allow inspection, deterministic state restoration and hint/reveal with no timed gates. Do not infer the learner's heading from commands.
+                    5. Optional alternative path to A4 can be accepted as a destination match if using the same absolute grid rules, **not** marked wrong because its command list differs. This stage's guided tape nevertheless uses the stated three commands.
+
+                    ### Placement C: Author a Shareable Map (Section 3)
+
+                    1. Start with a blank 4×4 grid and a legend showing symbols/names **tree**, **pond**, **park**. Prompt: "Place tree at B2, pond at C3, park at A4."
+                    2. Controls: choose landmark, choose row (A–D), choose column (1–4), choose "Place / Move landmark". It updates the **one** location for the selected landmark; placing tree again moves its marker rather than cloning it. "Remove marker" and "Reset map" are available.
+                    3. A "Read back map" accessible list exposes every cell's contents and the legend, including empty cells. A separate "Check directions" action compares positions to the three specified cells and gives **per-landmark corrections**, not a score.
+                    4. Examples: tree wrongly at **B3** ⇒ "Tree needs column 2 of row B"; pond wrongly at **B3** ⇒ "Pond is in column 3 but needs row C"; park at **A4** ⇒ "Park is in row A, column 4 as requested".
+                    5. If placing multiple landmarks into a cell, either explicitly allow a clearly labeled **shared cell** and state the consequence, or in this Lesson require one landmark per cell and explain that the chosen cell is occupied; **do not silently remove** a different landmark. This specification adopts **one landmark per cell** for clarity.
+                    6. The learner may optionally provide a route between the placed tree and park, validated by the same map conventions. Doing so is unscored, not a separate Route Skill mastery result.
+
+                    ### Placement D: Unfamiliar Map and Error Diagnosis (Section 4)
+
+                    1. Fresh fixed map (independent of stage C) with **garden in A3**, **market in D2**, all other cells empty. Explorer starts **C2**. Visible instruction list: **up, up, right**, exactly one cell each.
+                    2. Step-by-step results: **C2→B2→A2→A3**, ending at **garden**. Player may predict cell or destination with accessible named choices; no route animation required.
+                    3. Feedback for B3: "We needed a second up step to reach row A"; for A2: "That is after the two up steps, before the final right"; for D3: "That is down, not up".
+                    4. Challenge a convention violation explicitly: one proposed map-label description says "**A3 means row 3, column A**". Let the learner identify the problem: the map defines **letter rows** and **number columns**. Correct text: "A3 means row A, column 3." This is a _map-reading_ error, not a new Language Skill.
+                    5. Optional scale thought experiment: If a different map shows squares twice as wide **on screen**, do not assume each square is twice the real distance; require a declared scale. An accessibility description should state this conceptual point without measuring physical pixels.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** 16 labeled grid cells, row/column selectors, per-cell content labels, fixed map-orientation key, landmark selector and legend, route tape, text log, editable map placement, predict/reveal/undo/reset.
+                    - **Per-placement state:** immutable row/column convention and preset landmark positions, selected row/column, current cell, revealed route index, created landmark map (stage C), feedback/reveal state. Each Section's placement is initialized independently.
+                    - **Invariant:** cell reference is row letter followed by column number; route transitions are always one adjacent cell for one command; landmark list and map are synchronized; stable scale and direction convention; moves outside 4×4 are rejected with explanation.
+                    - **Prop-free integration:** each public Scene entry for a Section must be self-contained with **no incoming props**; share private helpers but never create a public `gridSize`, `locale`, `mode`, `initialCells` or `onChange` prop contract. Get locale from actual Lesson provider context once verified.
+                    - **Interaction alternatives:** no pointer precision required. Named row/column selectors can place markers, keyboard/switch buttons can advance a route. An ordered row-major text table is not optional; it is required for nonvisual equivalent meaning.
+                    - **Reset and hints:** reset local stage to fixed preset, leaving other stages unaffected. Hints reveal only next relevant row/column correction. No score, Quiz, Note unlock or persistent map-state guarantee.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple, large 4×4 SVG/HTML grid with a visible alphabetic row header on **each row** and number header on **each column**. Show a high-contrast outline and text name on active cell; symbols/emoji may be decorative but must not replace legend text or accessible names. A route step should highlight the current and next cells, with a textual announcement; under reduced motion, jump straight to new state. Responsive resizing maintains equal grid cell widths within each map. No external map assets, networking or real-world navigation interface required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all landmark names, instructions, feedback, headings, route narration, cell position words and accessible labels genuinely for supported locales; no placeholders. A–D are **stable illustrative cell identifiers** for this English editorial spec, not proof of how letter labels translate. The eventual localized presentation must explain or safely preserve the mapping to equivalent codes.
+                    - **RTL is not permission to flip the grid math:** map-right still increases column number and map-top still starts row A in this specified 4×4 model. If a localized design intentionally changes map orientation, all identities, route results and text must be transformed consistently and independently tested, with explicit UI explanation; the simpler approved default is a fixed-direction schematic map in RTL text layout.
+                    - A screen reader can ask for "row B" or each cell by name, hear "B2 has tree", execute discrete route steps, and place landmarks by row/column choices. Do not rely on color-only highlights, images, fine motor dragging, audio, time pressure or repeated noisy live announcements.
+                    - Maintain logical focus, touch target size, readable 200% labels, WCAG 2.2 AA, reduced motion and equivalent low-end/offline operation after selected locale/lesson download. Design is **not** evidence of existing PWA caching.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. On A–D rows / 1–4 columns, selecting row B + column 2 identifies **cell B2** with a tree, not the border intersection.
+                    2. B2→B3→B4→A4 by right/right/up ends at the **park in A4** with exactly one neighboring-cell transition per command.
+                    3. C2→B2→A2→A3 by up/up/right ends at the **garden in A3**.
+                    4. Stage C places tree B2, pond C3, park A4 and produces a **matching, unambiguous legend and ordered 16-cell list**.
+                    5. Placing pond at B3 returns row-specific correction; placing tree at B3 returns column-specific correction.
+                    6. A command from A2 to "up one" is blocked, leaving player at A2 with a specific edge explanation.
+                    7. "A3 means row 3 column A" is rejected as incompatible with the agreed convention; correct is "row A column 3".
+                    8. On-screen resize does **not** change cell references or the defined one-cell-step semantics; no fabricated physical-distance calibration.
+                    9. Reset isolates each Scene placement; keyboard, screen reader, RTL, mobile, 200% text, reduced motion and offline after download preserve equivalent location and route reasoning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The current generic Section renderer understands `scene`, but **Grid Map Workshop is not implemented**. Future Scene Designer/Coding Agent must implement verified locale provider use, deterministic grid-state controllers, accessible grid/list interaction, co-located tests, real translations and complete offline assets only after editorial approval. No server map API, database, scoring, Question/Quiz or Note persistence invented. Editor must confirm the fixed lettering convention is comprehensible internationally.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage C. Start with empty 4×4 labeled grid. A labeled landmark selector and row/column selectors place unique tree, pond and park symbols, each with visible word label and a legend. "Read back map" lists the three placements; "Check against directions" provides specific guidance, not a score. Child can move/remove a landmark and restore map with Reset.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
+              section3Markdown3:
+                config:
+                  id: 'decb5c08-e9f2-8675-8129-58aa361022d7'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A map needs a **key** to say what its pictures mean. With a named row, column and key, another person can find the exact same square. If you move the pond from C3 to C4, the map tells a **different** story.'
+                production:
+                  purpose: 'Legacy markdown block of Make a Map Somebody Else Can Read; provisional draft.'
+                  specification: '  3. **markdown — existing:** "A map needs a **key** to say what its pictures mean. With a named row, column and key, another person can find the exact same square. If you move the pond from C3 to C4, the map tells a **different** story."'
+            order:
+              - 'section3Text1'
+              - 'scene3Block2'
+              - 'section3Markdown3'
+        production:
+          purpose: 'Make a Map Somebody Else Can Read'
+          pedagogicalIntent: 'Make a Map Somebody Else Can Read'
+          productionNotes: |
+            ### Section 3 — Make a Map Somebody Else Can Read
+
+            - **Purpose:** construct a named grid map, not only use a supplied one.
+            - **Current shape:** one-column `LessonSection_Config`.
+            - **Ordered blocks:**
+              1. **text — existing:** "Your friend will see only your map. Place a **tree at B2**, a **pond at C3** and a **park at A4**. How will they know which symbol is which?"
+              2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage C. Start with empty 4×4 labeled grid. A labeled landmark selector and row/column selectors place unique tree, pond and park symbols, each with visible word label and a legend. "Read back map" lists the three placements; "Check against directions" provides specific guidance, not a score. Child can move/remove a landmark and restore map with Reset.
+              3. **markdown — existing:** "A map needs a **key** to say what its pictures mean. With a named row, column and key, another person can find the exact same square. If you move the pond from C3 to C4, the map tells a **different** story."
+            - **Feedback:** If pond at B3: "Our directions say C3: column 3 is right, but the pond must be in **row C**." If duplicate landmark placed: "We have one pond to place; move its existing marker instead of creating a second pond." Reject dropping outside the 4×4 cells with explanation rather than silently storing out-of-bounds coordinates.
+            - **Reading and mobility:** Show a deterministic text map (each row A–D lists four cell labels and contents). No drag-only placing; keyboard arrow selection may be optional, but explicit row/column buttons remain.
+            - **Planned Note:** "A map key explains the symbols; the cell labels show where they are."
+
+      section4NewPlacesSameGridRules:
+        config:
+          id: 'e2f768e9-ef01-8376-84aa-2d85795c461a'
+          slug: 'section4NewPlacesSameGridRules'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'New Places, Same Grid Rules'
+            navigationLabel:
+              en: 'New Places, Same Grid Rules'
+          content:
+            items:
+              section4Text1:
+                config:
+                  id: '677ff7bb-bf1c-8d3d-85b9-42750dda58f3'
+                  slug: 'section4Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A new map has a **garden in A3** and a **market in D2**. You start in **C2**. Go up two squares, then right one. Which place will you reach? Check the row and column after every step.'
+                production:
+                  purpose: 'Legacy text block of New Places, Same Grid Rules; provisional draft.'
+                  specification: '  1. **text — existing:** "A new map has a **garden in A3** and a **market in D2**. You start in **C2**. Go up two squares, then right one. Which place will you reach? Check the row and column after every step."'
+              scene4Block2:
+                config:
+                  id: 'c1b90844-7957-8e2f-8ca9-e25354479438'
+                  slug: 'scene4Block2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'A new map has a **garden in A3** and a **market in D2**. You start in **C2**. Go up two squares, then right one. Which place will you reach? Check the row and column after every step.'
+                production:
+                  purpose: 'Independently initialized Scene occurrence in New Places, Same Grid Rules. Not approved or implemented.'
+                  specification: |
+                    # Grid Map Workshop — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Read and Draw Simple Grid Maps (preserved in this Lesson's production notes), Sections 1–4
+                    Methodologist objectives: Draft Brief (preserved in production.methodology): reference cells by stable row/column convention, follow adjacent steps and draw a readable map. Route skills are prerequisites; map design and reading are the central independent competence.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A **grid map** only works when everybody agrees which square a label names, where map top is, what a "step" means and which pictures mark which places. The learner explores a named map, traces one step at a time and **authors** a different map someone else could interpret. The UI should make the map's **coordinate convention** visible rather than treating positions as free pixels.
+
+                    Learner voice: "**First the row, then the column. Each step moves one square, and the map key says what the pictures mean.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A fixed **4×4 array of cells**. Rows **A, B, C, D** order from **top to bottom**; columns **1, 2, 3, 4** order from **left to right**. A cell name is row letter then column numeral: e.g. **B2 is the interior** of row B, column 2.
+                    - The **grid border intersection** is not a cell. Selecting a cell never selects a line crossing. Each cell is a discrete named region with its own contents.
+                    - Absolute **map-right** increases column 1→4; map-left decreases it, map-up decreases row D→A and map-down increases row A→D. This direction convention is independent of **walker facing** and UI text direction.
+                    - One "step" moves between **adjacent cells** up/down/left/right, never diagonally or past the map's edge. If a command would exit, leave the position unchanged and report it explicitly. No wraparound, teleporting or implied diagonal step.
+                    - A map's legend contains unique named **tree**, **park**, **pond** and additional example **garden/market** as described in Content. The exact symbols and text names must agree; do not depend on color/pictogram-only recognition.
+                    - A cell stays the same semantic reference at different display sizes. A **different map** could use a different physical scale and should label that difference; this Scene does not calculate real-world distances. Never assert that reordering independent horizontal/vertical moves in an empty grid necessarily changes the endpoint.
+                    - Model references are schematic and cultural/place neutral. No GPS, real positions, map API, geodetic projection or formal algebra coordinates.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Placement A: Read B2, Not a Corner (Section 1)
+
+                    1. Show fixed labeled 4×4 cells and the convention "letter = row; number = column". Place **tree in B2**, **park in A4**, **pond in C3**, nothing elsewhere.
+                    2. Prompt: "Where is B2? Choose a row and column before revealing the label." Controls "Row A/B/C/D" and "Column 1/2/3/4" must be accessible without clicking grid lines.
+                    3. Correct selection B and 2 maps to the entire cell B2. Text: "Tree at B2. Second column of row B." Selecting C2 reveals "Right column, wrong row" or B3 "Right row, wrong column".
+                    4. "Read row B" lists **B1 empty, B2 tree, B3 empty, B4 empty** in order; "Read map" lists all 16 cells with landmarks.
+                    5. Change only selection, never silently move landmarks. Reset returns to B2 unrevealed.
+
+                    ### Placement B: Trace a Cell-by-Cell Route (Section 2)
+
+                    1. Fixed initial cell **B2** containing a tree. Target **A4** containing park. Command tape (absolute **map** directions): **right one**, **right one**, **up one**.
+                    2. Prompt learner to predict next cell before running each command. Step results exactly **B2→B3→B4→A4**. Show ordered cell log with per-step meaning and the final park.
+                    3. For predicted C4 on last step, explain C is down not up from B; for A3, explain a right move is missing; for B2→B4 in one claimed step, explain one step means _one neighbor_.
+                    4. "Previous step", "Replay", "Reset" allow inspection, deterministic state restoration and hint/reveal with no timed gates. Do not infer the learner's heading from commands.
+                    5. Optional alternative path to A4 can be accepted as a destination match if using the same absolute grid rules, **not** marked wrong because its command list differs. This stage's guided tape nevertheless uses the stated three commands.
+
+                    ### Placement C: Author a Shareable Map (Section 3)
+
+                    1. Start with a blank 4×4 grid and a legend showing symbols/names **tree**, **pond**, **park**. Prompt: "Place tree at B2, pond at C3, park at A4."
+                    2. Controls: choose landmark, choose row (A–D), choose column (1–4), choose "Place / Move landmark". It updates the **one** location for the selected landmark; placing tree again moves its marker rather than cloning it. "Remove marker" and "Reset map" are available.
+                    3. A "Read back map" accessible list exposes every cell's contents and the legend, including empty cells. A separate "Check directions" action compares positions to the three specified cells and gives **per-landmark corrections**, not a score.
+                    4. Examples: tree wrongly at **B3** ⇒ "Tree needs column 2 of row B"; pond wrongly at **B3** ⇒ "Pond is in column 3 but needs row C"; park at **A4** ⇒ "Park is in row A, column 4 as requested".
+                    5. If placing multiple landmarks into a cell, either explicitly allow a clearly labeled **shared cell** and state the consequence, or in this Lesson require one landmark per cell and explain that the chosen cell is occupied; **do not silently remove** a different landmark. This specification adopts **one landmark per cell** for clarity.
+                    6. The learner may optionally provide a route between the placed tree and park, validated by the same map conventions. Doing so is unscored, not a separate Route Skill mastery result.
+
+                    ### Placement D: Unfamiliar Map and Error Diagnosis (Section 4)
+
+                    1. Fresh fixed map (independent of stage C) with **garden in A3**, **market in D2**, all other cells empty. Explorer starts **C2**. Visible instruction list: **up, up, right**, exactly one cell each.
+                    2. Step-by-step results: **C2→B2→A2→A3**, ending at **garden**. Player may predict cell or destination with accessible named choices; no route animation required.
+                    3. Feedback for B3: "We needed a second up step to reach row A"; for A2: "That is after the two up steps, before the final right"; for D3: "That is down, not up".
+                    4. Challenge a convention violation explicitly: one proposed map-label description says "**A3 means row 3, column A**". Let the learner identify the problem: the map defines **letter rows** and **number columns**. Correct text: "A3 means row A, column 3." This is a _map-reading_ error, not a new Language Skill.
+                    5. Optional scale thought experiment: If a different map shows squares twice as wide **on screen**, do not assume each square is twice the real distance; require a declared scale. An accessibility description should state this conceptual point without measuring physical pixels.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** 16 labeled grid cells, row/column selectors, per-cell content labels, fixed map-orientation key, landmark selector and legend, route tape, text log, editable map placement, predict/reveal/undo/reset.
+                    - **Per-placement state:** immutable row/column convention and preset landmark positions, selected row/column, current cell, revealed route index, created landmark map (stage C), feedback/reveal state. Each Section's placement is initialized independently.
+                    - **Invariant:** cell reference is row letter followed by column number; route transitions are always one adjacent cell for one command; landmark list and map are synchronized; stable scale and direction convention; moves outside 4×4 are rejected with explanation.
+                    - **Prop-free integration:** each public Scene entry for a Section must be self-contained with **no incoming props**; share private helpers but never create a public `gridSize`, `locale`, `mode`, `initialCells` or `onChange` prop contract. Get locale from actual Lesson provider context once verified.
+                    - **Interaction alternatives:** no pointer precision required. Named row/column selectors can place markers, keyboard/switch buttons can advance a route. An ordered row-major text table is not optional; it is required for nonvisual equivalent meaning.
+                    - **Reset and hints:** reset local stage to fixed preset, leaving other stages unaffected. Hints reveal only next relevant row/column correction. No score, Quiz, Note unlock or persistent map-state guarantee.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple, large 4×4 SVG/HTML grid with a visible alphabetic row header on **each row** and number header on **each column**. Show a high-contrast outline and text name on active cell; symbols/emoji may be decorative but must not replace legend text or accessible names. A route step should highlight the current and next cells, with a textual announcement; under reduced motion, jump straight to new state. Responsive resizing maintains equal grid cell widths within each map. No external map assets, networking or real-world navigation interface required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate all landmark names, instructions, feedback, headings, route narration, cell position words and accessible labels genuinely for supported locales; no placeholders. A–D are **stable illustrative cell identifiers** for this English editorial spec, not proof of how letter labels translate. The eventual localized presentation must explain or safely preserve the mapping to equivalent codes.
+                    - **RTL is not permission to flip the grid math:** map-right still increases column number and map-top still starts row A in this specified 4×4 model. If a localized design intentionally changes map orientation, all identities, route results and text must be transformed consistently and independently tested, with explicit UI explanation; the simpler approved default is a fixed-direction schematic map in RTL text layout.
+                    - A screen reader can ask for "row B" or each cell by name, hear "B2 has tree", execute discrete route steps, and place landmarks by row/column choices. Do not rely on color-only highlights, images, fine motor dragging, audio, time pressure or repeated noisy live announcements.
+                    - Maintain logical focus, touch target size, readable 200% labels, WCAG 2.2 AA, reduced motion and equivalent low-end/offline operation after selected locale/lesson download. Design is **not** evidence of existing PWA caching.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. On A–D rows / 1–4 columns, selecting row B + column 2 identifies **cell B2** with a tree, not the border intersection.
+                    2. B2→B3→B4→A4 by right/right/up ends at the **park in A4** with exactly one neighboring-cell transition per command.
+                    3. C2→B2→A2→A3 by up/up/right ends at the **garden in A3**.
+                    4. Stage C places tree B2, pond C3, park A4 and produces a **matching, unambiguous legend and ordered 16-cell list**.
+                    5. Placing pond at B3 returns row-specific correction; placing tree at B3 returns column-specific correction.
+                    6. A command from A2 to "up one" is blocked, leaving player at A2 with a specific edge explanation.
+                    7. "A3 means row 3 column A" is rejected as incompatible with the agreed convention; correct is "row A column 3".
+                    8. On-screen resize does **not** change cell references or the defined one-cell-step semantics; no fabricated physical-distance calibration.
+                    9. Reset isolates each Scene placement; keyboard, screen reader, RTL, mobile, 200% text, reduced motion and offline after download preserve equivalent location and route reasoning.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The current generic Section renderer understands `scene`, but **Grid Map Workshop is not implemented**. Future Scene Designer/Coding Agent must implement verified locale provider use, deterministic grid-state controllers, accessible grid/list interaction, co-located tests, real translations and complete offline assets only after editorial approval. No server map API, database, scoring, Question/Quiz or Note persistence invented. Editor must confirm the fixed lettering convention is comprehensible internationally.
+
+
+                    ## Original placement
+
+                      2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage D. Start C2 and move **C2 → B2 → A2 → A3**. End at garden. Provide optional "Show previous square" and "Read route as cells". Then show a separate wrong legend "A3 = row 3, column A" and ask whether it follows the agreed map format.
+                  productionNotes: 'Self-contained Scene behavior. No fabricated props, global state, runtime implementation or review approval.'
+              section4Markdown3:
+                config:
+                  id: '4bd5d2bf-1be9-87d3-87c0-26db17fc93b7'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The path ended at **A3**, the garden. We kept the same map orientation, and **one step meant one neighboring square** the whole way. Swapping what letters and numbers mean makes the map unreadable to a friend.'
+                production:
+                  purpose: 'Legacy markdown block of New Places, Same Grid Rules; provisional draft.'
+                  specification: '  3. **markdown — existing:** "The path ended at **A3**, the garden. We kept the same map orientation, and **one step meant one neighboring square** the whole way. Swapping what letters and numbers mean makes the map unreadable to a friend."'
+            order:
+              - 'section4Text1'
+              - 'scene4Block2'
+              - 'section4Markdown3'
+        production:
+          purpose: 'New Places, Same Grid Rules'
+          pedagogicalIntent: 'New Places, Same Grid Rules'
+          productionNotes: |
+            ### Section 4 — New Places, Same Grid Rules
+
+            - **Purpose:** independent transfer to a fresh map with an explicit convention.
+            - **Current shape:** one-column `LessonSection_Config`.
+            - **Ordered blocks:**
+              1. **text — existing:** "A new map has a **garden in A3** and a **market in D2**. You start in **C2**. Go up two squares, then right one. Which place will you reach? Check the row and column after every step."
+              2. **scene — proposed:** Grid Map Workshop (preserved in Scene production.specification), stage D. Start C2 and move **C2 → B2 → A2 → A3**. End at garden. Provide optional "Show previous square" and "Read route as cells". Then show a separate wrong legend "A3 = row 3, column A" and ask whether it follows the agreed map format.
+              3. **markdown — existing:** "The path ended at **A3**, the garden. We kept the same map orientation, and **one step meant one neighboring square** the whole way. Swapping what letters and numbers mean makes the map unreadable to a friend."
+            - **Feedback:** For B3: "You went up only once. We needed two up steps from C2 to A2, **then** right to A3." For A2: "You did the two up steps but forgot the final right step." For a claim that "up-right diagonal" is one step: "Our plan named three adjacent moves, not a diagonal shortcut." Another valid route may lead to the same square; no claim that the exact tape is the only possible one.
+            - **Independent drawing transfer:** Offer a small unscored task: construct a fresh 3-landmark map with row/column and legend from written instructions. A screen reader can inspect the same landmarks as a list.
+
+    order:
+      - 'section1WhichSquareIsB2'
+      - 'section2FromTheTreeToThePark'
+      - 'section3MakeAMapSomebodyElseCanRead'
+      - 'section4NewPlacesSameGridRules'
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Read and Draw Simple Grid Maps — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: readingAndDrawingGridMaps
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Extend previous spatial descriptions and ordered route instructions into **maps** with a stable cell grid, row/column convention, consistent orientation and cell size. Children must be able to locate, read a path, and make a small map that someone else can understand. A grid is a shared reference system rather than a decorative pattern.
+
+    ## Target audience
+
+    **Primary grade: 2 (approximately ages 7–8).** Grade 2 learners who can track rows and columns up to four and follow short ordered route directions. Early readers receive visually paired names and short narrated descriptions; every cell is available as a structured list to screen readers. No timed navigation, small touch targets or drag-only interaction.
+
+    **Instructional depth:** Discrete 4×4 rectangular grid, simple named cells, up/down/left/right adjacent steps, maps with three landmarks and optionally an obstacle. Do not introduce formal Cartesian coordinate planes, geospatial projections, GPS or real-distance scale conversion, graph-search algorithms, or assessed route optimization. All coordinates are map references, not geographic data.
+
+    ## Prerequisites
+
+    [positionWords.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/geometry/orientation/skills/positionWords.data.ts) for relational location and [spatialOrientationPath.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/geometry/orientation/skills/spatialOrientationPath.data.ts) for short ordered routes. Count 1–4 and distinguish map top from viewer-relative facing direction. **No prior formal coordinate-plane skill.**
+
+    ## Target Skills
+
+    - [gridMapNavigation.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/geometry/orientation/skills/gridMapNavigation.data.ts)
+
+    ## Expected learning outcomes
+
+    - Read a location using an unambiguous grid convention: row label first, then column number, for example B2.
+    - Follow a route from a named starting cell, keeping map orientation and one-cell step size constant.
+    - Draw/construct a simple 4×4 grid map by placing distinct landmarks at specified cells and describe a route using those cells.
+    - Explain why changing the labels, north/top convention, or meaning of one grid step **without notice** invalidates a previously communicated plan.
+
+    ## Essential subject matter
+
+    Use a **4×4 grid of cells**; rows A–D run from map top to bottom, columns 1–4 from map left to right. **B2 means row B, column 2**, not the intersection of lines called B and 2. Map north is the direction **toward the top** and east toward the right edge regardless of LTR/RTL UI. One step moves between neighboring cells in the same row or column; no diagonal shortcuts. Example: B2 → B3 → B4 → A4: east twice, north once, destination A4. A map legend binds a symbol to a cell (tree at B2, park at A4, library at C1); relocating a symbol alters the shared information. Within one map all cells represent one consistent step of equal area; map sketches on a different scale may require changed counts and must not be treated as identical by default. Avoid claiming that reordering axis-aligned moves **always** changes a destination on an empty grid.
+
+    ## Conceptual progression and dependencies
+
+    1. Locate a single landmark from fixed row/column labels and compare B2 versus 2B. 2) Trace the B2→A4 route one neighboring cell at a time. 3) Draw a small map by placing three named landmarks into labeled cells, then inspect whether two readers obtain the same placements. 4) Transfer to a new 4×4 map with different landmarks and a route, explaining an intentionally wrong coordinate convention.
+
+    ## Misconceptions, examples and boundaries
+
+    Counting grid **lines** as cells; swapping row and column; reading a corner/intersection instead of the cell interior; assuming map top changes with RTL text; moving diagonally as one step; treating a sketch with double-size cells as same unit step; believing a path has only one order or reordering right/up always changes its endpoint.
+
+    **Explicitly out of scope:** Discrete 4×4 rectangular grid, simple named cells, up/down/left/right adjacent steps, maps with three landmarks and optionally an obstacle. Do not introduce formal Cartesian coordinate planes, geospatial projections, GPS or real-distance scale conversion, graph-search algorithms, or assessed route optimization. All coordinates are map references, not geographic data. Canonical Skill definitions remain grade-independent and are never rewritten to fit these limits.
+
+    ## Localization, accessibility and offline intent
+
+    All proposed learner-facing messages (including SVG descriptions, answer explanations, controls, geometry terms, measurement units, feedback and proposed recall Notes) must eventually receive **genuine supported-locale translations**. Do not invent translation resources, silently fall back to English, or interpret draft English copy as multilingual implementation. Design semantic LTR/RTL layout without changing mathematical order or map/measurement direction. Every meaningful visual manipulation requires a semantically equivalent keyboard/switch and nonvisual path; no forced dragging, color-only answers, precise drawing gestures, audio dependence or timers. WCAG 2.2 AA, large mobile controls, 200% text, reduced motion, correct reading order and complete offline access **after an actual download mechanism exists** are release requirements, not proof of implemented support.
+
+    ## Sources and factual verification
+
+    - [Canonical grid-map Skill](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/geometry/orientation/skills/gridMapNavigation.data.ts) — approved/promoted Mathematics data, copied without changing UUID, slug or translations.
+    - [Studio Methodologist persona](https://github.com/KiT-Maverik/svitlo/blob/main/studio/personas/methodist.persona.md), [Lesson editorial architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md), and [Lesson entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md) define role ownership and independent Program-neutral Lesson scope.
+    - [Playground generated English taxonomy](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/docs/generated/skills/taxonomy.en.md) is **not regenerated in this feature branch**. Coordinator must regenerate after integrating domain-local Skill registration; it cannot currently verify the newly transferred entries.
+
+    Mathematical worked cases are included as editorial models; they do not imply compliance with a specific nation's standard or experimental validation of individual learner mastery.
+
+    ## Curriculum / Program compatibility
+
+    No national curriculum or Program assigned. The Lesson is standalone and may later be referenced from different Programs without changing the underlying Skill. Grade 2 is an **instructional depth choice**, not a Skill Taxonomy field.
+
+    ## Open editorial decisions
+
+    - Confirm row-letter/column-number labeling is a suitable pedagogical convention for first grid maps and that the Lesson remains genuinely accessible to nonvisual users. The separate Route Directions Lesson teaches heading-relative turns; this Lesson focuses on grid conventions and creation of a map.
+    - **Approval gate remains open.** This Brief is Draft. User-authorized same-batch Lesson Content and Scene specifications are **provisional Drafts pending explicit Methodologist approval**, not a claim that Studio's standard approval gate has passed.
+
+    ## Methodologist handoff
+
+    Editor should validate scope, prerequisites, examples, developmental fit, sources and misconceptions. A Screenwriter may refine the provisional narrative under this batch authorization; only formal approval permits an implemented Lesson design handoff. No React, runtime Lesson data, Question, Quiz, scoring, analytics, Note persistence or user-state event contract is authorized here.
+  productionNotes: |
+    Provisional authoring sources only: no Methodologist, Screenwriter, or Scene approval; no generated TS or published Lesson. All intended locales require authentic translations.
+
+    ## Former Screenwriter introduction
+
+    # Read and Draw Simple Grid Maps — Lesson Content
+
+    Status: **Provisional Draft pending Methodologist approval — NOT Approved**
+    Target Lesson: `content/playground/Data/Lessons/1/readingAndDrawingGridMaps/`
+    Audience: **Grade 2**, approximately ages 7–8; early/mixed readers; accessible row/column and no-drag interactions
+    Methodologist source: Draft Methodologist Brief (preserved in production.methodology)
+    Learning outcomes: read named grid cells, follow one-cell routes with consistent orientation, create a legible simple map and explain the importance of shared cell/scale conventions.
+    Target Skills: `gridMapNavigation.data.ts` as linked in the Brief. `positionWords` and `spatialOrientationPath` remain prerequisites, not automatically assessed new outcomes.
+    Program dependence: None
+    Implementation state: editorial plan only; custom Scene is not implemented.
+
+    ## INSTRUCTIONAL CONCEPT
+
+    **"A map is useful only if we agree what its squares and labels mean."** A shared 4×4 cell grid gives repeatable directions: rows A, B, C, D start **at map top**, columns 1–4 start **at map left**. The name **B2 means row B, column 2**, the whole square cell—not a crossing of lines. Each adjacent move on this map is _one cell_. The child uses this fixed convention to locate landmarks, trace a route and build a small map for another person. Display size may vary with device, but the **grid cell-to-cell convention** does not.
+
+    Use a modest map with park, tree and pond icons and corresponding text labels. These are orientation examples, not a Program quest, timed treasure hunt or real geography.
+
+    ## LEARNER JOURNEY
+
+    1. Locate a landmark by reading row and column labels; resolve ambiguous "second square".
+    2. Follow a short cell-by-cell route and verify each move, without switching between heading-relative turns and absolute map directions silently.
+    3. Place three landmarks in specified cells so somebody else can read the same map; validate the legend.
+    4. Transfer to a fresh map with an unseen route and identify one example of a broken grid convention.
+
+    ## SECTION PLAN
+
+
+    ## Former Screenwriter closing notes
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Grid Map Workshop (preserved in Scene production.specification) — editorial standalone custom Scene with four separately initialized, prop-free placements and a complete nonvisual map representation.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. After Section 1 B2 reveal: "Grid cell: read the row letter, then the column number."
+    2. After Section 3 map construction: "A map key gives each symbol a meaning."
+    3. After Section 4 consistency check: "Keep the same direction and cell size throughout one map."
+
+    These are future brief Notes only. No Note IDs, event names, learner revision-sheet storage, synchronization or scheduling is implemented.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    An Assessment Architect may later design independent map-location and map-drawing evidence using varied labels, symbols and directions, plus an equivalent text-list mode. Section 4's practice is **unscored** and never automatically certifies mastery. A future Program may link the Lesson but the Lesson does not depend on a quest character or narrative.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    All labels, landmark names, prompts, route descriptions, feedback and accessible names require genuine translations in every supported locale. **Fixed map convention** (A at top, column 1 at left) must be explicitly described and preserved if locale layout is RTL; never silently mirror the map while leaving the cell names or route outcomes unchanged. Localized alphabet symbols can be displayed alongside stable reference identifiers only with verified, one-to-one mapping; do not invent transliteration rules. Use cell lists by row, numbered controls, sufficient focus, visible labels and text status independent of color/picture. A verbal description of the 4×4 map must let a nonvisual learner locate, navigate and create the same cells. Respect touch sizes, font enlargement, reduced motion and complete offline access after downloaded locale/Scene content is available.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    `text`, `markdown` and `scene` Resource block types are supported by the generic Section renderer; the custom Grid Map Workshop **does not exist**. Future implementation requires independent prop-free roots per Section, actual verified locale context, keyboard/AT alternatives, pure local map data and automated tests. There is no runtime Lesson data, map API, persistence, Question/Quiz/scoring or Note mechanism added by this editorial work.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Draft Methodologist Brief (preserved in production.methodology); the canonical grid-map Skill and prerequisite Skills linked there.
+    - Editor: confirm row/column symbols A–D / 1–4 are universally understandable when genuinely localized or explained; the mathematical relation must remain invariant.
+    - Editor: consider whether a small physical-floor-grid activity is a useful **optional** extension. No materials may be required for completion.
+    - The Methodologist Brief remains **Draft**; these Section/Scene proposals are **provisional**.
+
+    ## HANDOFF
+
+    Methodologist approves audience/criteria. Screenwriter/editor verifies map cell examples and explanatory feedback. Approved Scene spec then passes to Scene Designer for component design and tests. Assessment Architect owns any future scored evidence.

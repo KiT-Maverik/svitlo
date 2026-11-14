@@ -1,0 +1,732 @@
+config:
+  id: 'e54813fd-68c8-5452-ad2d-7f9361460703'
+  slug: 'digitsTellNumbers'
+  type: 'lesson'
+  skills: ['b86b9bc2-f53d-404a-92a3-10de53a83f06']
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Digits Are Number Symbols'
+  section:
+    items:
+      section1:
+        config:
+          id: 'b849185e-cdfb-5af1-82f7-985ecaaa821b'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'One mark for three'
+            navigationLabel:
+              en: 'One mark for three'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'b64bc6ef-f5b3-53c0-b786-46efcf8a617e'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three apples are here. Which one symbol can say how many?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: 'a74e2c90-17ef-5241-9665-ac906ea9519f'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Three apples are here. Which one symbol can say how many?'
+                production:
+                  specification: |
+                    # Digits Are Number Symbols Lab — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: Content (embedded in this Lesson config.yaml); Brief (embedded in this Lesson config.yaml) (Draft)
+
+                    ## Purpose and accurate model
+
+                    Read the ten digits 0–9 as symbols that represent numbers and corresponding quantities. Only single digits and their object models, no positional notation or multidigit arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+
+                    ## Experience beats and acceptance
+
+                    ### Placement 1: One mark for three
+
+                    - Prompt: “Three apples are here. Which one symbol can say how many?”
+                    - Independent initial state and interaction: Count three apples and select a digit card among 2, 3 and 5.
+                    - Correct mathematical rule: The digit 3 represents three apples, though it is one written symbol.
+                    - Expected example: Three apples → 3.
+                    - Error feedback: For 2, compare two marks to the three actual apples.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 2: The empty basket
+
+                    - Prompt: “Which digit represents the empty basket's contents?”
+                    - Independent initial state and interaction: Switch basket contents between zero, one and six balls; choose matching digit.
+                    - Correct mathematical rule: 0 means no balls; 1 one ball; 6 six balls.
+                    - Expected example: Empty basket → 0 balls.
+                    - Error feedback: A choice of 1 for the empty basket counts the basket instead of its contents.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 3: Digit gallery
+
+                    - Prompt: “Can you match each symbol to its number of dots?”
+                    - Independent initial state and interaction: Explore accessible cards 0–9 with spoken and printed number words, ten-frame models.
+                    - Correct mathematical rule: Each digit 0–9 can label its matching set of dots.
+                    - Expected example: 6 dots → 6; 9 dots → 9.
+                    - Error feedback: For 6/9 confusion, show six and nine quantities side by side rather than rotating text.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 4: The shelf label
+
+                    - Prompt: “A shelf is labeled 7. How many blocks should you place?”
+                    - Independent initial state and interaction: Add or remove blocks until a new shelf contains exactly seven blocks.
+                    - Correct mathematical rule: A single 7 labels a complete seven-block collection.
+                    - Expected example: Seven blocks match digit 7.
+                    - Error feedback: Eight blocks reveals one extra, and six reveals one missing.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ## Self-contained interactive state and constraints
+
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+
+                    ## Visual, audio and media direction
+
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+
+                    ## Localization, RTL, WCAG and offline
+
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+
+                    ## Cross-placement acceptance criteria
+
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+
+                    ## Review and dependencies
+
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  purpose: 'One mark for three: independent placement'
+                  productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to One mark for three; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: '03bcd2fd-d72e-5dba-be1f-52fdb80010fc'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '** The digit 3 represents three apples, though it is one written symbol. Example: Three apples → 3.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'One mark for three'
+          productionNotes: |-
+            **text / learner invitation:** “Three apples are here. Which one symbol can say how many?”
+
+            **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 1. Count three apples and select a digit card among 2, 3 and 5. Child may predict, inspect, revise or reveal a full worked model.
+
+            **markdown / explanation:** The digit 3 represents three apples, though it is one written symbol. Example: Three apples → 3.
+
+            **Formative feedback:** For 2, compare two marks to the three actual apples. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+            **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+      section2:
+        config:
+          id: 'b74916cb-cafb-5638-81f7-96cbcbaa83ae'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'The empty basket'
+            navigationLabel:
+              en: 'The empty basket'
+          content:
+            items:
+              text1:
+                config:
+                  id: '132776ee-9b2f-522d-9461-f6eeb969efff'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Which digit represents the empty basket's contents?"
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: 'f4358eef-1ba3-5d36-a34d-0eeff1bf62c0'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Which digit represents the empty basket's contents?"
+                production:
+                  specification: |
+                    # Digits Are Number Symbols Lab — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: Content (embedded in this Lesson config.yaml); Brief (embedded in this Lesson config.yaml) (Draft)
+
+                    ## Purpose and accurate model
+
+                    Read the ten digits 0–9 as symbols that represent numbers and corresponding quantities. Only single digits and their object models, no positional notation or multidigit arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+
+                    ## Experience beats and acceptance
+
+                    ### Placement 1: One mark for three
+
+                    - Prompt: “Three apples are here. Which one symbol can say how many?”
+                    - Independent initial state and interaction: Count three apples and select a digit card among 2, 3 and 5.
+                    - Correct mathematical rule: The digit 3 represents three apples, though it is one written symbol.
+                    - Expected example: Three apples → 3.
+                    - Error feedback: For 2, compare two marks to the three actual apples.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 2: The empty basket
+
+                    - Prompt: “Which digit represents the empty basket's contents?”
+                    - Independent initial state and interaction: Switch basket contents between zero, one and six balls; choose matching digit.
+                    - Correct mathematical rule: 0 means no balls; 1 one ball; 6 six balls.
+                    - Expected example: Empty basket → 0 balls.
+                    - Error feedback: A choice of 1 for the empty basket counts the basket instead of its contents.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 3: Digit gallery
+
+                    - Prompt: “Can you match each symbol to its number of dots?”
+                    - Independent initial state and interaction: Explore accessible cards 0–9 with spoken and printed number words, ten-frame models.
+                    - Correct mathematical rule: Each digit 0–9 can label its matching set of dots.
+                    - Expected example: 6 dots → 6; 9 dots → 9.
+                    - Error feedback: For 6/9 confusion, show six and nine quantities side by side rather than rotating text.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 4: The shelf label
+
+                    - Prompt: “A shelf is labeled 7. How many blocks should you place?”
+                    - Independent initial state and interaction: Add or remove blocks until a new shelf contains exactly seven blocks.
+                    - Correct mathematical rule: A single 7 labels a complete seven-block collection.
+                    - Expected example: Seven blocks match digit 7.
+                    - Error feedback: Eight blocks reveals one extra, and six reveals one missing.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ## Self-contained interactive state and constraints
+
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+
+                    ## Visual, audio and media direction
+
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+
+                    ## Localization, RTL, WCAG and offline
+
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+
+                    ## Cross-placement acceptance criteria
+
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+
+                    ## Review and dependencies
+
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  purpose: 'The empty basket: independent placement'
+                  productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to The empty basket; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: 'f8ff0ecc-762f-5477-b361-8ecc580744ed'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '** 0 means no balls; 1 one ball; 6 six balls. Example: Empty basket → 0 balls.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'The empty basket'
+          productionNotes: |-
+            **text / learner invitation:** “Which digit represents the empty basket's contents?”
+
+            **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 2. Switch basket contents between zero, one and six balls; choose matching digit. Child may predict, inspect, revise or reveal a full worked model.
+
+            **markdown / explanation:** 0 means no balls; 1 one ball; 6 six balls. Example: Empty basket → 0 balls.
+
+            **Formative feedback:** A choice of 1 for the empty basket counts the basket instead of its contents. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+            **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+      section3:
+        config:
+          id: 'b6491538-cbfb-57cb-80f7-9538ccaa8541'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Digit gallery'
+            navigationLabel:
+              en: 'Digit gallery'
+          content:
+            items:
+              text1:
+                config:
+                  id: '6615e92d-4841-5fee-a750-692dd8ee6310'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Can you match each symbol to its number of dots?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: '83c0e236-8c18-59ef-b2d8-6236c17fefb1'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Can you match each symbol to its number of dots?'
+                production:
+                  specification: |
+                    # Digits Are Number Symbols Lab — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: Content (embedded in this Lesson config.yaml); Brief (embedded in this Lesson config.yaml) (Draft)
+
+                    ## Purpose and accurate model
+
+                    Read the ten digits 0–9 as symbols that represent numbers and corresponding quantities. Only single digits and their object models, no positional notation or multidigit arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+
+                    ## Experience beats and acceptance
+
+                    ### Placement 1: One mark for three
+
+                    - Prompt: “Three apples are here. Which one symbol can say how many?”
+                    - Independent initial state and interaction: Count three apples and select a digit card among 2, 3 and 5.
+                    - Correct mathematical rule: The digit 3 represents three apples, though it is one written symbol.
+                    - Expected example: Three apples → 3.
+                    - Error feedback: For 2, compare two marks to the three actual apples.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 2: The empty basket
+
+                    - Prompt: “Which digit represents the empty basket's contents?”
+                    - Independent initial state and interaction: Switch basket contents between zero, one and six balls; choose matching digit.
+                    - Correct mathematical rule: 0 means no balls; 1 one ball; 6 six balls.
+                    - Expected example: Empty basket → 0 balls.
+                    - Error feedback: A choice of 1 for the empty basket counts the basket instead of its contents.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 3: Digit gallery
+
+                    - Prompt: “Can you match each symbol to its number of dots?”
+                    - Independent initial state and interaction: Explore accessible cards 0–9 with spoken and printed number words, ten-frame models.
+                    - Correct mathematical rule: Each digit 0–9 can label its matching set of dots.
+                    - Expected example: 6 dots → 6; 9 dots → 9.
+                    - Error feedback: For 6/9 confusion, show six and nine quantities side by side rather than rotating text.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 4: The shelf label
+
+                    - Prompt: “A shelf is labeled 7. How many blocks should you place?”
+                    - Independent initial state and interaction: Add or remove blocks until a new shelf contains exactly seven blocks.
+                    - Correct mathematical rule: A single 7 labels a complete seven-block collection.
+                    - Expected example: Seven blocks match digit 7.
+                    - Error feedback: Eight blocks reveals one extra, and six reveals one missing.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ## Self-contained interactive state and constraints
+
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+
+                    ## Visual, audio and media direction
+
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+
+                    ## Localization, RTL, WCAG and offline
+
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+
+                    ## Cross-placement acceptance criteria
+
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+
+                    ## Review and dependencies
+
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  purpose: 'Digit gallery: independent placement'
+                  productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to Digit gallery; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: 'bf2e8b77-afff-57cc-b991-0b771c4bd9aa'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '** Each digit 0–9 can label its matching set of dots. Example: 6 dots → 6; 9 dots → 9.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Digit gallery'
+          productionNotes: |-
+            **text / learner invitation:** “Can you match each symbol to its number of dots?”
+
+            **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 3. Explore accessible cards 0–9 with spoken and printed number words, ten-frame models. Child may predict, inspect, revise or reveal a full worked model.
+
+            **markdown / explanation:** Each digit 0–9 can label its matching set of dots. Example: 6 dots → 6; 9 dots → 9.
+
+            **Formative feedback:** For 6/9 confusion, show six and nine quantities side by side rather than rotating text. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+            **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+      section4:
+        config:
+          id: 'bd49203d-d0fb-5faa-87f7-a03dcdaa86d4'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'The shelf label'
+            navigationLabel:
+              en: 'The shelf label'
+          content:
+            items:
+              text1:
+                config:
+                  id: '31a1525c-8027-5e1b-b2db-d25c76b89f99'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A shelf is labeled 7. How many blocks should you place?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: '4fc162e5-4da9-5d04-bed8-e2e55b793bda'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'A shelf is labeled 7. How many blocks should you place?'
+                production:
+                  specification: |
+                    # Digits Are Number Symbols Lab — Scene Specification
+
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: Content (embedded in this Lesson config.yaml); Brief (embedded in this Lesson config.yaml) (Draft)
+
+                    ## Purpose and accurate model
+
+                    Read the ten digits 0–9 as symbols that represent numbers and corresponding quantities. Only single digits and their object models, no positional notation or multidigit arithmetic. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+
+                    ## Experience beats and acceptance
+
+                    ### Placement 1: One mark for three
+
+                    - Prompt: “Three apples are here. Which one symbol can say how many?”
+                    - Independent initial state and interaction: Count three apples and select a digit card among 2, 3 and 5.
+                    - Correct mathematical rule: The digit 3 represents three apples, though it is one written symbol.
+                    - Expected example: Three apples → 3.
+                    - Error feedback: For 2, compare two marks to the three actual apples.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 2: The empty basket
+
+                    - Prompt: “Which digit represents the empty basket's contents?”
+                    - Independent initial state and interaction: Switch basket contents between zero, one and six balls; choose matching digit.
+                    - Correct mathematical rule: 0 means no balls; 1 one ball; 6 six balls.
+                    - Expected example: Empty basket → 0 balls.
+                    - Error feedback: A choice of 1 for the empty basket counts the basket instead of its contents.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 3: Digit gallery
+
+                    - Prompt: “Can you match each symbol to its number of dots?”
+                    - Independent initial state and interaction: Explore accessible cards 0–9 with spoken and printed number words, ten-frame models.
+                    - Correct mathematical rule: Each digit 0–9 can label its matching set of dots.
+                    - Expected example: 6 dots → 6; 9 dots → 9.
+                    - Error feedback: For 6/9 confusion, show six and nine quantities side by side rather than rotating text.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ### Placement 4: The shelf label
+
+                    - Prompt: “A shelf is labeled 7. How many blocks should you place?”
+                    - Independent initial state and interaction: Add or remove blocks until a new shelf contains exactly seven blocks.
+                    - Correct mathematical rule: A single 7 labels a complete seven-block collection.
+                    - Expected example: Seven blocks match digit 7.
+                    - Error feedback: Eight blocks reveals one extra, and six reveals one missing.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+
+                    ## Self-contained interactive state and constraints
+
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+
+                    ## Visual, audio and media direction
+
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+
+                    ## Localization, RTL, WCAG and offline
+
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+
+                    ## Cross-placement acceptance criteria
+
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+
+                    ## Review and dependencies
+
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  purpose: 'The shelf label: independent placement'
+                  productionNotes: 'Original digitsTellNumbersLab.scene-spec.md variant belongs to The shelf label; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: '96af3466-752d-50c9-9111-b466053adc03'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '** A single 7 labels a complete seven-block collection. Example: Seven blocks match digit 7.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'The shelf label'
+          productionNotes: |-
+            **text / learner invitation:** “A shelf is labeled 7. How many blocks should you place?”
+
+            **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 4. Add or remove blocks until a new shelf contains exactly seven blocks. Child may predict, inspect, revise or reveal a full worked model.
+
+            **markdown / explanation:** A single 7 labels a complete seven-block collection. Example: Seven blocks match digit 7.
+
+            **Formative feedback:** Eight blocks reveals one extra, and six reveals one missing. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+            **Transition:** Independent transfer: explain the total or symbol in this unfamiliar context.
+
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+    order: ['section1', 'section2', 'section3', 'section4']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Digits Are Number Symbols — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: digitsTellNumbers
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Read the ten digits 0–9 as symbols that represent numbers and corresponding quantities. Program-neutral and independently teachable.
+
+    ## Target audience
+
+    **Grade 1 (primary audience)**, early readers using short prompts, countable illustrations, and optional narration. No requirement for mouse use, hearing, or fluent reading.
+
+    ## Prerequisites
+
+    Count 0–9 objects and connect spoken number words with quantities. Provide an optional introductory reminder, not an assumption of demonstrated mastery.
+
+    ## Target Skills
+
+    - [digits09.data.ts](../../../../data/skills/numeration/notation/skills/digits09.data.ts)
+
+    ## Expected learning outcomes
+
+    1. The digit 3 represents three apples, though it is one written symbol.
+    2. 0 means no balls; 1 one ball; 6 six balls.
+    3. Each digit 0–9 can label its matching set of dots.
+    4. A single 7 labels a complete seven-block collection.
+
+    - Explain a new instance using the underlying number relationship, not merely identify a familiar arrangement.
+
+    ## Essential subject matter and instructional depth
+
+    Only single digits and their object models, no positional notation or multidigit arithmetic. Verified model examples:
+
+    - Three apples → 3.
+    - Empty basket → 0 balls.
+    - 6 dots → 6; 9 dots → 9.
+    - Seven blocks match digit 7.
+
+    ## Conceptual progression and dependencies
+
+    1. One mark for three: Count three apples and select a digit card among 2, 3 and 5.
+    2. The empty basket: Switch basket contents between zero, one and six balls; choose matching digit.
+    3. Digit gallery: Explore accessible cards 0–9 with spoken and printed number words, ten-frame models.
+    4. The shelf label: Add or remove blocks until a new shelf contains exactly seven blocks.
+
+    ## Misconceptions, examples and boundaries
+
+    Treating the shape of a digit as an amount, confusing 0 with an object, mistaking 6 for 9. Feedback must point to the relevant concrete counting evidence. No score, timed drill, or inference of mastered competence.
+
+    ## Localization, accessibility and offline intent
+
+    English editorial source only. All learner-facing prompts, count words, control text, accessible descriptions and feedback require complete genuine translations across supported locales. Preserve semantic numeric order under RTL. WCAG 2.2 AA: keyboard/switch/touch support, nonvisual ordered ledger, visible focus, sufficient targets, zoom and reduced motion; no drag-only or audio-only tasks. Design for deterministic fully downloaded offline use, without claiming offline capability is implemented.
+
+    ## Sources and factual verification
+
+    - The canonical Skill data files linked above, copied unchanged from Mathematics main; regenerated Playground taxonomy pending coordinator.
+    - Studio Methodologist Persona and Lesson Editorial Artifacts, consulted in this batch; not runtime contracts.
+
+    ## Curriculum / Program compatibility
+
+    Standalone. No Program dependency or specific Curriculum alignment claimed.
+
+    ## Open editorial decisions
+
+    Editor approval required for this Brief, target Skills and numerical boundaries. Confirm genuine locales and accessible Scene interaction before implementation.
+
+    ## Methodologist handoff
+
+    **Draft, not Approved.** Subsequent Content and Scene files are provisional under explicit batch authorization; formal editorial approval gate has not passed.
+  productionNotes: |
+    # Digits Are Number Symbols — Lesson Content
+
+    Status: **Provisional Draft — pending Methodologist approval**
+    Source: Methodologist Brief (embedded in this Lesson config.yaml) (Draft)
+    Program dependence: None
+    Code: Not implemented
+
+    ## Instructional concept
+
+    Read the ten digits 0–9 as symbols that represent numbers and corresponding quantities. Every Section invites prediction or observation, meaningful learner control, explanatory feedback, and a chance to apply the reasoning to a changed representation, not an extended lecture followed by a token quiz.
+
+    ## Learner journey / ordered Section plan
+
+    Each Section is a proposed `LessonSection_Config` with vertically ordered existing Resource types: `text` → proposed new `scene` → `markdown`. The generic scene resource type exists; the custom Scene specified here is **not implemented**. Independent prop-free placements have their own starting states and no external mode prop.
+
+    ### Section 1 — One mark for three
+
+    **text / learner invitation:** “Three apples are here. Which one symbol can say how many?”
+
+    **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 1. Count three apples and select a digit card among 2, 3 and 5. Child may predict, inspect, revise or reveal a full worked model.
+
+    **markdown / explanation:** The digit 3 represents three apples, though it is one written symbol. Example: Three apples → 3.
+
+    **Formative feedback:** For 2, compare two marks to the three actual apples. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+    **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+
+    ### Section 2 — The empty basket
+
+    **text / learner invitation:** “Which digit represents the empty basket's contents?”
+
+    **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 2. Switch basket contents between zero, one and six balls; choose matching digit. Child may predict, inspect, revise or reveal a full worked model.
+
+    **markdown / explanation:** 0 means no balls; 1 one ball; 6 six balls. Example: Empty basket → 0 balls.
+
+    **Formative feedback:** A choice of 1 for the empty basket counts the basket instead of its contents. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+    **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+
+    ### Section 3 — Digit gallery
+
+    **text / learner invitation:** “Can you match each symbol to its number of dots?”
+
+    **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 3. Explore accessible cards 0–9 with spoken and printed number words, ten-frame models. Child may predict, inspect, revise or reveal a full worked model.
+
+    **markdown / explanation:** Each digit 0–9 can label its matching set of dots. Example: 6 dots → 6; 9 dots → 9.
+
+    **Formative feedback:** For 6/9 confusion, show six and nine quantities side by side rather than rotating text. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+    **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+
+    ### Section 4 — The shelf label
+
+    **text / learner invitation:** “A shelf is labeled 7. How many blocks should you place?”
+
+    **scene / learner action:** digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below), placement 4. Add or remove blocks until a new shelf contains exactly seven blocks. Child may predict, inspect, revise or reveal a full worked model.
+
+    **markdown / explanation:** A single 7 labels a complete seven-block collection. Example: Seven blocks match digit 7.
+
+    **Formative feedback:** Eight blocks reveals one extra, and six reveals one missing. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+
+    **Transition:** Independent transfer: explain the total or symbol in this unfamiliar context.
+
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+
+    ## Custom Scene specification
+
+    - digitsTellNumbers Lab (Scene specification digitsTellNumbersLab embedded below) — four independently instantiated prop-free Scenes, proposed only.
+
+    ## Lesson Notes — proposed
+
+    Potential concise later recall cue: “Three apples → 3.” Notes, unlocking, persistence and review scheduling are **not** claimed implemented.
+
+    ## Practice, retrieval, transfer and assessment boundaries
+
+    Section 4 provides independent application in a changed context. Revisit countable evidence if answers differ. No Question, Quiz, scoring, mastery or persistence is designed here.
+
+    ## Localization, accessibility and offline
+
+    Provide complete genuine translation of every caption, feedback, numeral word and accessible label to all supported locales (no English fallback). RTL mirrors semantic layout without reversing mathematical sequence. Provide WCAG 2.2 AA alternatives, reduced motion, screen-reader count ledger, small-screen support and fully selected-locale offline behavior as planned requirements, not implemented claims.
+
+    ## Editorial dependencies
+
+    Provisional only: explicit Methodologist approval, Screenwriter review, Scene implementation, localization, and independent Scene tests remain necessary. Shared Skill index and generated taxonomy are coordinator-owned.

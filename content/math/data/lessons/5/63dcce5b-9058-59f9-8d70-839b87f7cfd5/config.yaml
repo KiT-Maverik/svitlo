@@ -1,0 +1,764 @@
+config:
+  id: '63dcce5b-9058-59f9-8d70-839b87f7cfd5'
+  slug: 'classifyingPolygonAttributes'
+  type: 'lesson'
+  skills: ['91ac826f-9b38-4dee-8e19-bd7883514afe']
+  params:
+    languages: ['en', 'pl', 'uk', 'qm']
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Classify Polygons by Sides and Corners'
+  flashcards:
+    items: {}
+    order: []
+  section:
+    items:
+      section1WhichMarksAreSides:
+        config:
+          id: 'c8d52181-6a62-4984-9bcb-d2dbb06ffd66'
+          slug: 'section1WhichMarksAreSides'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Which Marks Are Sides?'
+            navigationLabel:
+              en: 'Which Marks Are Sides?'
+          content:
+            items:
+              text1:
+                config:
+                  id: '53749e50-13dc-4149-a2c7-bc3edd78e6d7'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'This shape is tilted and its sides are not all the same size. Is it still a four-sided shape? What would you count to find out?'
+              polygonOutlineInvestigator:
+                config:
+                  id: '44414313-b6d3-4ad8-b427-11b505a479a2'
+                  slug: 'polygonOutlineInvestigator'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Polygon Outline Investigator'
+                production:
+                  specification: |
+                    # Polygon Outline Investigator — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Classify Polygons by Sides and Corners (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (original now embedded in this config.yaml) — identify simple polygons, count sides and vertices, classify by count; no invented new Skills.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child should **inspect a boundary rather than trust appearance**. One operation traces straight outer edges, one highlights distinct vertices, and another tests **straight**, **closed** and **non-crossing** conditions. These actions yield an evidence-based polygon classification rather than a guessing game.
+
+                    Learner voice: "**It has to be a closed outline of straight sides. I count each side and corner once.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A **simple polygon** is a non-self-crossing closed chain of at least three straight segments meeting end-to-end. Each vertex is shared by two neighboring sides. Polygon class by count: triangle (3/3), quadrilateral (4/4), pentagon (5/5), hexagon (6/6).
+                    - For any closed simple polygon, distinct side count = distinct vertex count. The initial vertex at the end of a trace is **not** counted again.
+                    - Circle and smooth curved boundary are **not polygons**. An open chain of straight segments is **not a polygon**. An interior dashed divider is not an additional outer side.
+                    - Distinguish non-examples with a violated rule, not blanket "wrong shape" messages. Exclude self-intersecting chains from beginner classification except as a non-target diagnostic if editor approves.
+                    - Geometry uses diagram-local arbitrary units; no measurement or perimeter/area formula is implied. Whole-shape rotation preserves edges, vertices, closure and category. If vertices are moved, the resulting outline must stay non-self-crossing and keep edge count; otherwise reject that edit and explain.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A. Trace an Unusual Quadrilateral (Section 1)
+
+                    1. Draw an irregular four-vertex shape using (1,1),(4,0),(5,3),(2,4), connected in that order and back to (1,1). The entire outline is closed and simple. An optional dashed diagonal from vertex 1 to 3 is labeled **inside decoration / not a boundary edge**.
+                    2. Prompt: "There are lines inside this drawing. Which lines are the **outside sides**? Trace them in order."
+                    3. "Next side" highlights edge 1→2, 2→3, 3→4, 4→1. "Next vertex" marks V1,V2,V3,V4 exactly once; returning to V1 displays "back to the starting corner", not "vertex five".
+                    4. Reveal "**4 sides, 4 vertices**" after tracing. Feedback if selecting dashed divider: "It is inside, not part of the closed outline." If counting return V1 twice: "We came back to the **same** starting corner."
+
+                    ### B. Test the Polygon Rule (Section 2)
+
+                    1. Offer four known items with short descriptive names: (a) closed straight triangle, 3 sides/3 vertices; (b) open zigzag with **two** straight segments and **three** points (not closed); (c) closed circle, one continuous curved boundary (not straight); (d) the closed irregular quadrilateral from A.
+                    2. Prompt: "Which outlines count as polygons? Check **straight**, **closed** and **not crossing**." Provide explicit three-part rule for each, e.g. triangle: yes/yes/yes, circle: no/yes/yes, zigzag: yes/no/yes.
+                    3. Selection/reveal includes reason: circle is not polygon because curved; zigzag not polygon because open; two closed straight shapes are polygons. The circle is not called "one-sided polygon".
+                    4. An accessible text list and binary rule-status controls carry the same evidence as boundary tracing. Reset returns all rule checks to unrevealed.
+
+                    ### C. Invariant Counts and Rotation (Section 3)
+
+                    1. An unfamiliar irregular **pentagon** has exact vertices (1,1),(4,1),(5,3),(3,4),(1,3). Its straight edges are consecutive; no edges cross. Trace 1→2→3→4→5→1 to reveal **5 sides / 5 vertices**.
+                    2. "Turn shape 90°" applies **rigid rotation** to all vertices about their centroid; counts remain 5/5. "Make it bigger" uses uniform scaling only, also keeping count and shape class. These are descriptive modeling operations, not pixel assumptions.
+                    3. Preset gallery: triangle 3/3; quadrilateral 4/4; above pentagon 5/5; non-crossing hexagon vertices (2,0),(4,1),(5,3),(4,5),(2,5),(0,3), 6/6. Each has a plain-language description of boundary segment sequence.
+                    4. Prompt: "Some sides are short and some long. Does that change how many sides there are?" Feedback: "No. Side **length** changed; number of connected straight sides did not."
+                    5. If an exploratory vertex control is offered, use discrete "move selected vertex" and reject crossing/overlap with feedback. No free-drawing mode is required, and **never** permit an invalid polygon while still labeling it simple.
+
+                    ### D. Independent Proof or Counterexample (Section 4)
+
+                    1. Present one new simple closed five-sided polygon (not exactly the pentagon from C; use noncrossing vertices e.g. (0,1),(2,0),(5,2),(4,5),(1,4)) and one closed five-piece outline with one genuinely **curved** boundary edge.
+                    2. Ask: "Which is a polygon with five straight sides? Tell us how you know." Reveal rule-test statuses and numbered outer-side ledger on demand.
+                    3. Valid first: 5 straight edges, closed, no crossing → pentagon. Curved-edge near-miss: closed but **not all straight**, therefore not polygon irrespective of visible corner count.
+                    4. Feedback never depends on a typed paragraph: an accessible sequence of attribute choices "closed", "all straight", "five sides" can express the same reasoning. Provide an explicit hint for first missing condition without leaking a mark/score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** outline path, numbered outside edges, distinct vertex dots, optional internal dashed line, one boundary-type rule ledger, category label only after reveal, rotate/scale/trace/back/reset controls.
+                    - **State:** selected preset shape, trace index within 0…edgeCount, last highlighted edge/vertex, rule checks shown, chosen prediction, optional rotation (0°/90°/180°), optional proportional scale, locally revealed classification.
+                    - **Invariant:** closed path connects last point to first; number of **unique** vertices is n; side count n; trace index cannot count repeated initial point twice; view transforms do not mutate topology.
+                    - **Nonexamples:** open chain stays open despite nearly touching endpoints; curved edge stays curved; don't silently coerce an invalid shape to a polygon.
+                    - **Prop-free roots:** each authored Section placement is an independent Scene entry/state/preset; internal common helpers may be shared, but exported roots take no props. Actual Scene locale values use verified context, never a guessed API.
+                    - **Controls:** numbered buttons offer trace and explanation alternatives to drag; if a touch trace is added it is supplementary. Give immediate reasoned feedback, not penalties or hidden scoring.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Clear single-color stroke geometries with distinct dashed interior line; thin corners should receive big focusable hit targets without pretending those are added vertices. An animated tracing line may help but is pausable and reduced-motion compatible. A rigid rotation retains all boundary geometry. Do not use aesthetically rounded polygon corners if that obscures "straight sides"; use minimal SVG and accompanying descriptions, not decorative illustrations.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Localize "side", "vertex/corner", "closed", "open", "straight", "curved", "polygon", category names, statuses, prompts and all accessible labels. Introduce everyday "corner" then mathematical "vertex" where translations permit.
+                    - **RTL does not reverse topological membership.** Outer edge traversal can be numbered from a clearly marked start and proceed in one documented direction independent of interface reading direction; both are valid if ordered consistently. Textual side logs always match actual diagram.
+                    - Every important shape has a nonvisual structured description: "closed shape with five straight edges, five vertices; edges join without crossing". This description must be sufficient for the same concept checks. Provide independent button controls and predictable focus, avoid color-only yes/no and pointer precision.
+                    - Use responsive diagrams, labels that scale, no tiny edge controls, reading-order clarity, instant reduced-motion changes and fully local/offline assets after download.
+                    - WCAG 2.2 AA testing and screen-reader behavior are release requirements, **not verified implementation**.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. The irregular quadrilateral has exactly **4 outside sides / 4 unique vertices**; a dashed diagonal is not counted as a fifth side.
+                    2. Closing a trace at its first vertex does **not** increase vertex count.
+                    3. The closed triangle satisfies polygon checks; the open zigzag fails closure; the circle fails straight-edge requirement.
+                    4. The pentagon's ordered five vertices and edges remain 5/5 after 90° rotation and uniform scaling.
+                    5. The six provided hexagon vertices connect into a non-self-crossing simple closed polygon with 6/6 counts.
+                    6. Independent five-sided example is a polygon; matching curved-edge near-miss is not, with a specific explanation.
+                    7. If edits would cause edge crossing, reject the edit or leave that mode disabled; never claim invalid geometry meets the simple-polygon rule.
+                    8. Keyboard, switch, screen reader, RTL, mobile, 200% text, reduced-motion and post-download offline alternatives preserve the same property evidence.
+                    9. Reset and revisiting a separate placement do not leak revealed counts/choices across Sections.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
+                  purpose: 'Proposed interactive Scene for Which Marks Are Sides?'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: '18148557-23db-4a66-a003-eb759c16f5dc'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The **sides** are straight pieces of the outside edge. A **corner**, or **vertex**, is where one side meets the next. This outline has **4 sides and 4 vertices**. A line drawn _inside_ it is not an extra outer side.'
+            order: ['text1', 'polygonOutlineInvestigator', 'markdown2']
+        production:
+          purpose: 'Which Marks Are Sides?'
+          pedagogicalIntent: |
+            ### Section 1 — Which Marks Are Sides?
+
+            - **Purpose:** Separate straight outer sides from corners, decorations and placement.
+            - **Section contract:** `LessonSection_Config`, vertical sequence.
+            - **Ordered blocks:**
+              1. **text — existing renderer:** "This shape is tilted and its sides are not all the same size. Is it still a four-sided shape? What would you count to find out?"
+              2. **scene — existing type, proposed Scene:** Polygon Outline Investigator (Scene specification embedded in this config.yaml), stage A: irregular quadrilateral in a clear non-crossing outline. Controls "Trace next straight side" / "Show next corner" reveal exactly four distinct boundary edges and four distinct meeting points; an internal dashed diagonal is **decoration** and can be hidden.
+              3. **markdown — existing renderer:** "The **sides** are straight pieces of the outside edge. A **corner**, or **vertex**, is where one side meets the next. This outline has **4 sides and 4 vertices**. A line drawn _inside_ it is not an extra outer side."
+            - **Action and feedback:** Invite children to name each edge 1–4 as it lights up or appears in a textual list. If they count the dashed diagonal: "That line goes through the inside. We count only the outside outline." If they count five corners: "We came back to the **starting corner**. It does not become a new corner."
+            - **Navigation/access:** Child-controlled reveal, large buttons, read-out vertex list and alternative ordered description. No exact dragging or color-only highlight.
+            - **Planned Note:** "Sides are the straight parts of the outside edge."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section2IsItAPolygon:
+        config:
+          id: '704e9c09-fe1e-4e94-a8fb-3733c26ee806'
+          slug: 'section2IsItAPolygon'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Is It a Polygon?'
+            navigationLabel:
+              en: 'Is It a Polygon?'
+          content:
+            items:
+              markdown1:
+                config:
+                  id: '45f7e382-2f94-4ec3-a9f5-2b84309a7db5'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A **polygon** is closed and made only of straight sides. The sides join end to end without crossing. A shape can be flat and closed without being a polygon.'
+              polygonOutlineInvestigator:
+                config:
+                  id: '043c556b-0d29-4228-9a3b-a97d6847db42'
+                  slug: 'polygonOutlineInvestigator'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Polygon Outline Investigator'
+                production:
+                  specification: |
+                    # Polygon Outline Investigator — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Classify Polygons by Sides and Corners (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (original now embedded in this config.yaml) — identify simple polygons, count sides and vertices, classify by count; no invented new Skills.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child should **inspect a boundary rather than trust appearance**. One operation traces straight outer edges, one highlights distinct vertices, and another tests **straight**, **closed** and **non-crossing** conditions. These actions yield an evidence-based polygon classification rather than a guessing game.
+
+                    Learner voice: "**It has to be a closed outline of straight sides. I count each side and corner once.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A **simple polygon** is a non-self-crossing closed chain of at least three straight segments meeting end-to-end. Each vertex is shared by two neighboring sides. Polygon class by count: triangle (3/3), quadrilateral (4/4), pentagon (5/5), hexagon (6/6).
+                    - For any closed simple polygon, distinct side count = distinct vertex count. The initial vertex at the end of a trace is **not** counted again.
+                    - Circle and smooth curved boundary are **not polygons**. An open chain of straight segments is **not a polygon**. An interior dashed divider is not an additional outer side.
+                    - Distinguish non-examples with a violated rule, not blanket "wrong shape" messages. Exclude self-intersecting chains from beginner classification except as a non-target diagnostic if editor approves.
+                    - Geometry uses diagram-local arbitrary units; no measurement or perimeter/area formula is implied. Whole-shape rotation preserves edges, vertices, closure and category. If vertices are moved, the resulting outline must stay non-self-crossing and keep edge count; otherwise reject that edit and explain.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A. Trace an Unusual Quadrilateral (Section 1)
+
+                    1. Draw an irregular four-vertex shape using (1,1),(4,0),(5,3),(2,4), connected in that order and back to (1,1). The entire outline is closed and simple. An optional dashed diagonal from vertex 1 to 3 is labeled **inside decoration / not a boundary edge**.
+                    2. Prompt: "There are lines inside this drawing. Which lines are the **outside sides**? Trace them in order."
+                    3. "Next side" highlights edge 1→2, 2→3, 3→4, 4→1. "Next vertex" marks V1,V2,V3,V4 exactly once; returning to V1 displays "back to the starting corner", not "vertex five".
+                    4. Reveal "**4 sides, 4 vertices**" after tracing. Feedback if selecting dashed divider: "It is inside, not part of the closed outline." If counting return V1 twice: "We came back to the **same** starting corner."
+
+                    ### B. Test the Polygon Rule (Section 2)
+
+                    1. Offer four known items with short descriptive names: (a) closed straight triangle, 3 sides/3 vertices; (b) open zigzag with **two** straight segments and **three** points (not closed); (c) closed circle, one continuous curved boundary (not straight); (d) the closed irregular quadrilateral from A.
+                    2. Prompt: "Which outlines count as polygons? Check **straight**, **closed** and **not crossing**." Provide explicit three-part rule for each, e.g. triangle: yes/yes/yes, circle: no/yes/yes, zigzag: yes/no/yes.
+                    3. Selection/reveal includes reason: circle is not polygon because curved; zigzag not polygon because open; two closed straight shapes are polygons. The circle is not called "one-sided polygon".
+                    4. An accessible text list and binary rule-status controls carry the same evidence as boundary tracing. Reset returns all rule checks to unrevealed.
+
+                    ### C. Invariant Counts and Rotation (Section 3)
+
+                    1. An unfamiliar irregular **pentagon** has exact vertices (1,1),(4,1),(5,3),(3,4),(1,3). Its straight edges are consecutive; no edges cross. Trace 1→2→3→4→5→1 to reveal **5 sides / 5 vertices**.
+                    2. "Turn shape 90°" applies **rigid rotation** to all vertices about their centroid; counts remain 5/5. "Make it bigger" uses uniform scaling only, also keeping count and shape class. These are descriptive modeling operations, not pixel assumptions.
+                    3. Preset gallery: triangle 3/3; quadrilateral 4/4; above pentagon 5/5; non-crossing hexagon vertices (2,0),(4,1),(5,3),(4,5),(2,5),(0,3), 6/6. Each has a plain-language description of boundary segment sequence.
+                    4. Prompt: "Some sides are short and some long. Does that change how many sides there are?" Feedback: "No. Side **length** changed; number of connected straight sides did not."
+                    5. If an exploratory vertex control is offered, use discrete "move selected vertex" and reject crossing/overlap with feedback. No free-drawing mode is required, and **never** permit an invalid polygon while still labeling it simple.
+
+                    ### D. Independent Proof or Counterexample (Section 4)
+
+                    1. Present one new simple closed five-sided polygon (not exactly the pentagon from C; use noncrossing vertices e.g. (0,1),(2,0),(5,2),(4,5),(1,4)) and one closed five-piece outline with one genuinely **curved** boundary edge.
+                    2. Ask: "Which is a polygon with five straight sides? Tell us how you know." Reveal rule-test statuses and numbered outer-side ledger on demand.
+                    3. Valid first: 5 straight edges, closed, no crossing → pentagon. Curved-edge near-miss: closed but **not all straight**, therefore not polygon irrespective of visible corner count.
+                    4. Feedback never depends on a typed paragraph: an accessible sequence of attribute choices "closed", "all straight", "five sides" can express the same reasoning. Provide an explicit hint for first missing condition without leaking a mark/score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** outline path, numbered outside edges, distinct vertex dots, optional internal dashed line, one boundary-type rule ledger, category label only after reveal, rotate/scale/trace/back/reset controls.
+                    - **State:** selected preset shape, trace index within 0…edgeCount, last highlighted edge/vertex, rule checks shown, chosen prediction, optional rotation (0°/90°/180°), optional proportional scale, locally revealed classification.
+                    - **Invariant:** closed path connects last point to first; number of **unique** vertices is n; side count n; trace index cannot count repeated initial point twice; view transforms do not mutate topology.
+                    - **Nonexamples:** open chain stays open despite nearly touching endpoints; curved edge stays curved; don't silently coerce an invalid shape to a polygon.
+                    - **Prop-free roots:** each authored Section placement is an independent Scene entry/state/preset; internal common helpers may be shared, but exported roots take no props. Actual Scene locale values use verified context, never a guessed API.
+                    - **Controls:** numbered buttons offer trace and explanation alternatives to drag; if a touch trace is added it is supplementary. Give immediate reasoned feedback, not penalties or hidden scoring.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Clear single-color stroke geometries with distinct dashed interior line; thin corners should receive big focusable hit targets without pretending those are added vertices. An animated tracing line may help but is pausable and reduced-motion compatible. A rigid rotation retains all boundary geometry. Do not use aesthetically rounded polygon corners if that obscures "straight sides"; use minimal SVG and accompanying descriptions, not decorative illustrations.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Localize "side", "vertex/corner", "closed", "open", "straight", "curved", "polygon", category names, statuses, prompts and all accessible labels. Introduce everyday "corner" then mathematical "vertex" where translations permit.
+                    - **RTL does not reverse topological membership.** Outer edge traversal can be numbered from a clearly marked start and proceed in one documented direction independent of interface reading direction; both are valid if ordered consistently. Textual side logs always match actual diagram.
+                    - Every important shape has a nonvisual structured description: "closed shape with five straight edges, five vertices; edges join without crossing". This description must be sufficient for the same concept checks. Provide independent button controls and predictable focus, avoid color-only yes/no and pointer precision.
+                    - Use responsive diagrams, labels that scale, no tiny edge controls, reading-order clarity, instant reduced-motion changes and fully local/offline assets after download.
+                    - WCAG 2.2 AA testing and screen-reader behavior are release requirements, **not verified implementation**.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. The irregular quadrilateral has exactly **4 outside sides / 4 unique vertices**; a dashed diagonal is not counted as a fifth side.
+                    2. Closing a trace at its first vertex does **not** increase vertex count.
+                    3. The closed triangle satisfies polygon checks; the open zigzag fails closure; the circle fails straight-edge requirement.
+                    4. The pentagon's ordered five vertices and edges remain 5/5 after 90° rotation and uniform scaling.
+                    5. The six provided hexagon vertices connect into a non-self-crossing simple closed polygon with 6/6 counts.
+                    6. Independent five-sided example is a polygon; matching curved-edge near-miss is not, with a specific explanation.
+                    7. If edits would cause edge crossing, reject the edit or leave that mode disabled; never claim invalid geometry meets the simple-polygon rule.
+                    8. Keyboard, switch, screen reader, RTL, mobile, 200% text, reduced-motion and post-download offline alternatives preserve the same property evidence.
+                    9. Reset and revisiting a separate placement do not leak revealed counts/choices across Sections.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
+                  purpose: 'Proposed interactive Scene for Is It a Polygon?'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              text2:
+                config:
+                  id: 'b65ba3f1-c832-41a0-922e-c9232f37038a'
+                  slug: 'text2'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The circle is a flat shape, but its boundary curves. An open zigzag has straight pieces, but the ends do not join. Both fail the polygon rule.'
+            order: ['markdown1', 'polygonOutlineInvestigator', 'text2']
+        production:
+          purpose: 'Is It a Polygon?'
+          pedagogicalIntent: |
+            ### Section 2 — Is It a Polygon?
+
+            - **Purpose:** Learn the boundary condition before sorting by side count.
+            - **Section contract:** `LessonSection_Config`, vertical sequence.
+            - **Ordered blocks:**
+              1. **markdown — existing:** "A **polygon** is closed and made only of straight sides. The sides join end to end without crossing. A shape can be flat and closed without being a polygon."
+              2. **scene — proposed:** Polygon Outline Investigator (Scene specification embedded in this config.yaml), stage B, side-by-side selection **within one Scene** (the Section itself remains one column): an upright closed triangle, an **open** two-segment path that nearly looks triangular, a circle and a closed irregular quadrilateral. Learner reveals whether each satisfies **straight? closed? no crossing?**
+              3. **text — existing:** "The circle is a flat shape, but its boundary curves. An open zigzag has straight pieces, but the ends do not join. Both fail the polygon rule."
+            - **Predictions and feedback:** For circle chosen as polygon: "It is closed but not made from straight sides." For open path chosen: "Follow the path from its end: it does not return to the start." For valid triangle: "Three straight segments join into one closed outline."
+            - **Boundary:** Never imply any flat/closed shape is a polygon; exclude self-crossing examples at this level rather than silently grading them as ordinary polygons.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section3FourFiveSixTheShapeCanLookDifferent:
+        config:
+          id: 'c520fa4a-da44-4291-bc62-adb441b1b503'
+          slug: 'section3FourFiveSixTheShapeCanLookDifferent'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Four, Five, Six: The Shape Can Look Different'
+            navigationLabel:
+              en: 'Four, Five, Six: The Shape Can Look Different'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'fc5a74bb-4e4a-4260-ae39-9a7999929606'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A pentagon can be very uneven. Can you still find **five** outside sides? Turn it and check what stays the same.'
+              polygonOutlineInvestigator:
+                config:
+                  id: 'e0c27b96-75d6-44e3-9cd3-bc488dc4164d'
+                  slug: 'polygonOutlineInvestigator'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Polygon Outline Investigator'
+                production:
+                  specification: |
+                    # Polygon Outline Investigator — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Classify Polygons by Sides and Corners (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (original now embedded in this config.yaml) — identify simple polygons, count sides and vertices, classify by count; no invented new Skills.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child should **inspect a boundary rather than trust appearance**. One operation traces straight outer edges, one highlights distinct vertices, and another tests **straight**, **closed** and **non-crossing** conditions. These actions yield an evidence-based polygon classification rather than a guessing game.
+
+                    Learner voice: "**It has to be a closed outline of straight sides. I count each side and corner once.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A **simple polygon** is a non-self-crossing closed chain of at least three straight segments meeting end-to-end. Each vertex is shared by two neighboring sides. Polygon class by count: triangle (3/3), quadrilateral (4/4), pentagon (5/5), hexagon (6/6).
+                    - For any closed simple polygon, distinct side count = distinct vertex count. The initial vertex at the end of a trace is **not** counted again.
+                    - Circle and smooth curved boundary are **not polygons**. An open chain of straight segments is **not a polygon**. An interior dashed divider is not an additional outer side.
+                    - Distinguish non-examples with a violated rule, not blanket "wrong shape" messages. Exclude self-intersecting chains from beginner classification except as a non-target diagnostic if editor approves.
+                    - Geometry uses diagram-local arbitrary units; no measurement or perimeter/area formula is implied. Whole-shape rotation preserves edges, vertices, closure and category. If vertices are moved, the resulting outline must stay non-self-crossing and keep edge count; otherwise reject that edit and explain.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A. Trace an Unusual Quadrilateral (Section 1)
+
+                    1. Draw an irregular four-vertex shape using (1,1),(4,0),(5,3),(2,4), connected in that order and back to (1,1). The entire outline is closed and simple. An optional dashed diagonal from vertex 1 to 3 is labeled **inside decoration / not a boundary edge**.
+                    2. Prompt: "There are lines inside this drawing. Which lines are the **outside sides**? Trace them in order."
+                    3. "Next side" highlights edge 1→2, 2→3, 3→4, 4→1. "Next vertex" marks V1,V2,V3,V4 exactly once; returning to V1 displays "back to the starting corner", not "vertex five".
+                    4. Reveal "**4 sides, 4 vertices**" after tracing. Feedback if selecting dashed divider: "It is inside, not part of the closed outline." If counting return V1 twice: "We came back to the **same** starting corner."
+
+                    ### B. Test the Polygon Rule (Section 2)
+
+                    1. Offer four known items with short descriptive names: (a) closed straight triangle, 3 sides/3 vertices; (b) open zigzag with **two** straight segments and **three** points (not closed); (c) closed circle, one continuous curved boundary (not straight); (d) the closed irregular quadrilateral from A.
+                    2. Prompt: "Which outlines count as polygons? Check **straight**, **closed** and **not crossing**." Provide explicit three-part rule for each, e.g. triangle: yes/yes/yes, circle: no/yes/yes, zigzag: yes/no/yes.
+                    3. Selection/reveal includes reason: circle is not polygon because curved; zigzag not polygon because open; two closed straight shapes are polygons. The circle is not called "one-sided polygon".
+                    4. An accessible text list and binary rule-status controls carry the same evidence as boundary tracing. Reset returns all rule checks to unrevealed.
+
+                    ### C. Invariant Counts and Rotation (Section 3)
+
+                    1. An unfamiliar irregular **pentagon** has exact vertices (1,1),(4,1),(5,3),(3,4),(1,3). Its straight edges are consecutive; no edges cross. Trace 1→2→3→4→5→1 to reveal **5 sides / 5 vertices**.
+                    2. "Turn shape 90°" applies **rigid rotation** to all vertices about their centroid; counts remain 5/5. "Make it bigger" uses uniform scaling only, also keeping count and shape class. These are descriptive modeling operations, not pixel assumptions.
+                    3. Preset gallery: triangle 3/3; quadrilateral 4/4; above pentagon 5/5; non-crossing hexagon vertices (2,0),(4,1),(5,3),(4,5),(2,5),(0,3), 6/6. Each has a plain-language description of boundary segment sequence.
+                    4. Prompt: "Some sides are short and some long. Does that change how many sides there are?" Feedback: "No. Side **length** changed; number of connected straight sides did not."
+                    5. If an exploratory vertex control is offered, use discrete "move selected vertex" and reject crossing/overlap with feedback. No free-drawing mode is required, and **never** permit an invalid polygon while still labeling it simple.
+
+                    ### D. Independent Proof or Counterexample (Section 4)
+
+                    1. Present one new simple closed five-sided polygon (not exactly the pentagon from C; use noncrossing vertices e.g. (0,1),(2,0),(5,2),(4,5),(1,4)) and one closed five-piece outline with one genuinely **curved** boundary edge.
+                    2. Ask: "Which is a polygon with five straight sides? Tell us how you know." Reveal rule-test statuses and numbered outer-side ledger on demand.
+                    3. Valid first: 5 straight edges, closed, no crossing → pentagon. Curved-edge near-miss: closed but **not all straight**, therefore not polygon irrespective of visible corner count.
+                    4. Feedback never depends on a typed paragraph: an accessible sequence of attribute choices "closed", "all straight", "five sides" can express the same reasoning. Provide an explicit hint for first missing condition without leaking a mark/score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** outline path, numbered outside edges, distinct vertex dots, optional internal dashed line, one boundary-type rule ledger, category label only after reveal, rotate/scale/trace/back/reset controls.
+                    - **State:** selected preset shape, trace index within 0…edgeCount, last highlighted edge/vertex, rule checks shown, chosen prediction, optional rotation (0°/90°/180°), optional proportional scale, locally revealed classification.
+                    - **Invariant:** closed path connects last point to first; number of **unique** vertices is n; side count n; trace index cannot count repeated initial point twice; view transforms do not mutate topology.
+                    - **Nonexamples:** open chain stays open despite nearly touching endpoints; curved edge stays curved; don't silently coerce an invalid shape to a polygon.
+                    - **Prop-free roots:** each authored Section placement is an independent Scene entry/state/preset; internal common helpers may be shared, but exported roots take no props. Actual Scene locale values use verified context, never a guessed API.
+                    - **Controls:** numbered buttons offer trace and explanation alternatives to drag; if a touch trace is added it is supplementary. Give immediate reasoned feedback, not penalties or hidden scoring.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Clear single-color stroke geometries with distinct dashed interior line; thin corners should receive big focusable hit targets without pretending those are added vertices. An animated tracing line may help but is pausable and reduced-motion compatible. A rigid rotation retains all boundary geometry. Do not use aesthetically rounded polygon corners if that obscures "straight sides"; use minimal SVG and accompanying descriptions, not decorative illustrations.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Localize "side", "vertex/corner", "closed", "open", "straight", "curved", "polygon", category names, statuses, prompts and all accessible labels. Introduce everyday "corner" then mathematical "vertex" where translations permit.
+                    - **RTL does not reverse topological membership.** Outer edge traversal can be numbered from a clearly marked start and proceed in one documented direction independent of interface reading direction; both are valid if ordered consistently. Textual side logs always match actual diagram.
+                    - Every important shape has a nonvisual structured description: "closed shape with five straight edges, five vertices; edges join without crossing". This description must be sufficient for the same concept checks. Provide independent button controls and predictable focus, avoid color-only yes/no and pointer precision.
+                    - Use responsive diagrams, labels that scale, no tiny edge controls, reading-order clarity, instant reduced-motion changes and fully local/offline assets after download.
+                    - WCAG 2.2 AA testing and screen-reader behavior are release requirements, **not verified implementation**.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. The irregular quadrilateral has exactly **4 outside sides / 4 unique vertices**; a dashed diagonal is not counted as a fifth side.
+                    2. Closing a trace at its first vertex does **not** increase vertex count.
+                    3. The closed triangle satisfies polygon checks; the open zigzag fails closure; the circle fails straight-edge requirement.
+                    4. The pentagon's ordered five vertices and edges remain 5/5 after 90° rotation and uniform scaling.
+                    5. The six provided hexagon vertices connect into a non-self-crossing simple closed polygon with 6/6 counts.
+                    6. Independent five-sided example is a polygon; matching curved-edge near-miss is not, with a specific explanation.
+                    7. If edits would cause edge crossing, reject the edit or leave that mode disabled; never claim invalid geometry meets the simple-polygon rule.
+                    8. Keyboard, switch, screen reader, RTL, mobile, 200% text, reduced-motion and post-download offline alternatives preserve the same property evidence.
+                    9. Reset and revisiting a separate placement do not leak revealed counts/choices across Sections.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
+                  purpose: 'Proposed interactive Scene for Four, Five, Six: The Shape Can Look Different'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: 'efd39030-7a89-49c7-ab08-1df61bb5682d'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Turning did not add an edge. The five outside edges still meet at five vertices: that is a **pentagon**. A polygon with three sides is a triangle, with four is a quadrilateral, with six is a hexagon.'
+            order: ['text1', 'polygonOutlineInvestigator', 'markdown2']
+        production:
+          purpose: 'Four, Five, Six: The Shape Can Look Different'
+          pedagogicalIntent: |
+            ### Section 3 — Four, Five, Six: The Shape Can Look Different
+
+            - **Purpose:** Classify by the invariant number of sides and vertices.
+            - **Section contract:** `LessonSection_Config`, vertical sequence.
+            - **Ordered blocks:**
+              1. **text — existing:** "A pentagon can be very uneven. Can you still find **five** outside sides? Turn it and check what stays the same."
+              2. **scene — proposed:** Polygon Outline Investigator (Scene specification embedded in this config.yaml), stage C. Start irregular pentagon with vertices (1,1), (4,1), (5,3), (3,4), (1,3) in _local diagram units_, five distinct straight edges closing to the first. Trace 1→2→3→4→5→1; turn whole outline by a preset 90° and recount. Switch between **triangle 3/3**, **irregular quadrilateral 4/4**, **irregular pentagon 5/5**, **simple hexagon 6/6**. Each result gives count and category; shape names are introduced only _after_ the learner can justify them.
+              3. **markdown — existing:** "Turning did not add an edge. The five outside edges still meet at five vertices: that is a **pentagon**. A polygon with three sides is a triangle, with four is a quadrilateral, with six is a hexagon."
+            - **Feedback and contrast:** If user calls irregular pentagon "not a pentagon" because the sides are unequal: "Pentagon means five straight sides that make a simple closed outline; those sides do **not** have to be equal." If someone chooses "6" from the duplicate start corner, show an ordered ledger of five _unique_ vertices.
+            - **Proposed Note:** "For a simple polygon, sides and vertices come in matching counts."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section4ExplainDonTJustGuess:
+        config:
+          id: '9d65f422-6ffc-43df-b6bd-f4e45c023d61'
+          slug: 'section4ExplainDonTJustGuess'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: "Explain, Don't Just Guess"
+            navigationLabel:
+              en: "Explain, Don't Just Guess"
+          content:
+            items:
+              text1:
+                config:
+                  id: '81f68d73-d2cf-4022-b8fb-c4a974954f30'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Here are two shapes we have not traced yet. One is a closed figure with five straight sides. The other looks almost the same but has one gently curved edge. Which one is a pentagon, and how can you prove it?'
+              polygonOutlineInvestigator:
+                config:
+                  id: '4e6a15be-fe90-46e9-ad77-e3b84a7d65f3'
+                  slug: 'polygonOutlineInvestigator'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Polygon Outline Investigator'
+                production:
+                  specification: |
+                    # Polygon Outline Investigator — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Classify Polygons by Sides and Corners (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Draft Brief (original now embedded in this config.yaml) — identify simple polygons, count sides and vertices, classify by count; no invented new Skills.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child should **inspect a boundary rather than trust appearance**. One operation traces straight outer edges, one highlights distinct vertices, and another tests **straight**, **closed** and **non-crossing** conditions. These actions yield an evidence-based polygon classification rather than a guessing game.
+
+                    Learner voice: "**It has to be a closed outline of straight sides. I count each side and corner once.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A **simple polygon** is a non-self-crossing closed chain of at least three straight segments meeting end-to-end. Each vertex is shared by two neighboring sides. Polygon class by count: triangle (3/3), quadrilateral (4/4), pentagon (5/5), hexagon (6/6).
+                    - For any closed simple polygon, distinct side count = distinct vertex count. The initial vertex at the end of a trace is **not** counted again.
+                    - Circle and smooth curved boundary are **not polygons**. An open chain of straight segments is **not a polygon**. An interior dashed divider is not an additional outer side.
+                    - Distinguish non-examples with a violated rule, not blanket "wrong shape" messages. Exclude self-intersecting chains from beginner classification except as a non-target diagnostic if editor approves.
+                    - Geometry uses diagram-local arbitrary units; no measurement or perimeter/area formula is implied. Whole-shape rotation preserves edges, vertices, closure and category. If vertices are moved, the resulting outline must stay non-self-crossing and keep edge count; otherwise reject that edit and explain.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A. Trace an Unusual Quadrilateral (Section 1)
+
+                    1. Draw an irregular four-vertex shape using (1,1),(4,0),(5,3),(2,4), connected in that order and back to (1,1). The entire outline is closed and simple. An optional dashed diagonal from vertex 1 to 3 is labeled **inside decoration / not a boundary edge**.
+                    2. Prompt: "There are lines inside this drawing. Which lines are the **outside sides**? Trace them in order."
+                    3. "Next side" highlights edge 1→2, 2→3, 3→4, 4→1. "Next vertex" marks V1,V2,V3,V4 exactly once; returning to V1 displays "back to the starting corner", not "vertex five".
+                    4. Reveal "**4 sides, 4 vertices**" after tracing. Feedback if selecting dashed divider: "It is inside, not part of the closed outline." If counting return V1 twice: "We came back to the **same** starting corner."
+
+                    ### B. Test the Polygon Rule (Section 2)
+
+                    1. Offer four known items with short descriptive names: (a) closed straight triangle, 3 sides/3 vertices; (b) open zigzag with **two** straight segments and **three** points (not closed); (c) closed circle, one continuous curved boundary (not straight); (d) the closed irregular quadrilateral from A.
+                    2. Prompt: "Which outlines count as polygons? Check **straight**, **closed** and **not crossing**." Provide explicit three-part rule for each, e.g. triangle: yes/yes/yes, circle: no/yes/yes, zigzag: yes/no/yes.
+                    3. Selection/reveal includes reason: circle is not polygon because curved; zigzag not polygon because open; two closed straight shapes are polygons. The circle is not called "one-sided polygon".
+                    4. An accessible text list and binary rule-status controls carry the same evidence as boundary tracing. Reset returns all rule checks to unrevealed.
+
+                    ### C. Invariant Counts and Rotation (Section 3)
+
+                    1. An unfamiliar irregular **pentagon** has exact vertices (1,1),(4,1),(5,3),(3,4),(1,3). Its straight edges are consecutive; no edges cross. Trace 1→2→3→4→5→1 to reveal **5 sides / 5 vertices**.
+                    2. "Turn shape 90°" applies **rigid rotation** to all vertices about their centroid; counts remain 5/5. "Make it bigger" uses uniform scaling only, also keeping count and shape class. These are descriptive modeling operations, not pixel assumptions.
+                    3. Preset gallery: triangle 3/3; quadrilateral 4/4; above pentagon 5/5; non-crossing hexagon vertices (2,0),(4,1),(5,3),(4,5),(2,5),(0,3), 6/6. Each has a plain-language description of boundary segment sequence.
+                    4. Prompt: "Some sides are short and some long. Does that change how many sides there are?" Feedback: "No. Side **length** changed; number of connected straight sides did not."
+                    5. If an exploratory vertex control is offered, use discrete "move selected vertex" and reject crossing/overlap with feedback. No free-drawing mode is required, and **never** permit an invalid polygon while still labeling it simple.
+
+                    ### D. Independent Proof or Counterexample (Section 4)
+
+                    1. Present one new simple closed five-sided polygon (not exactly the pentagon from C; use noncrossing vertices e.g. (0,1),(2,0),(5,2),(4,5),(1,4)) and one closed five-piece outline with one genuinely **curved** boundary edge.
+                    2. Ask: "Which is a polygon with five straight sides? Tell us how you know." Reveal rule-test statuses and numbered outer-side ledger on demand.
+                    3. Valid first: 5 straight edges, closed, no crossing → pentagon. Curved-edge near-miss: closed but **not all straight**, therefore not polygon irrespective of visible corner count.
+                    4. Feedback never depends on a typed paragraph: an accessible sequence of attribute choices "closed", "all straight", "five sides" can express the same reasoning. Provide an explicit hint for first missing condition without leaking a mark/score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** outline path, numbered outside edges, distinct vertex dots, optional internal dashed line, one boundary-type rule ledger, category label only after reveal, rotate/scale/trace/back/reset controls.
+                    - **State:** selected preset shape, trace index within 0…edgeCount, last highlighted edge/vertex, rule checks shown, chosen prediction, optional rotation (0°/90°/180°), optional proportional scale, locally revealed classification.
+                    - **Invariant:** closed path connects last point to first; number of **unique** vertices is n; side count n; trace index cannot count repeated initial point twice; view transforms do not mutate topology.
+                    - **Nonexamples:** open chain stays open despite nearly touching endpoints; curved edge stays curved; don't silently coerce an invalid shape to a polygon.
+                    - **Prop-free roots:** each authored Section placement is an independent Scene entry/state/preset; internal common helpers may be shared, but exported roots take no props. Actual Scene locale values use verified context, never a guessed API.
+                    - **Controls:** numbered buttons offer trace and explanation alternatives to drag; if a touch trace is added it is supplementary. Give immediate reasoned feedback, not penalties or hidden scoring.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Clear single-color stroke geometries with distinct dashed interior line; thin corners should receive big focusable hit targets without pretending those are added vertices. An animated tracing line may help but is pausable and reduced-motion compatible. A rigid rotation retains all boundary geometry. Do not use aesthetically rounded polygon corners if that obscures "straight sides"; use minimal SVG and accompanying descriptions, not decorative illustrations.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Localize "side", "vertex/corner", "closed", "open", "straight", "curved", "polygon", category names, statuses, prompts and all accessible labels. Introduce everyday "corner" then mathematical "vertex" where translations permit.
+                    - **RTL does not reverse topological membership.** Outer edge traversal can be numbered from a clearly marked start and proceed in one documented direction independent of interface reading direction; both are valid if ordered consistently. Textual side logs always match actual diagram.
+                    - Every important shape has a nonvisual structured description: "closed shape with five straight edges, five vertices; edges join without crossing". This description must be sufficient for the same concept checks. Provide independent button controls and predictable focus, avoid color-only yes/no and pointer precision.
+                    - Use responsive diagrams, labels that scale, no tiny edge controls, reading-order clarity, instant reduced-motion changes and fully local/offline assets after download.
+                    - WCAG 2.2 AA testing and screen-reader behavior are release requirements, **not verified implementation**.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. The irregular quadrilateral has exactly **4 outside sides / 4 unique vertices**; a dashed diagonal is not counted as a fifth side.
+                    2. Closing a trace at its first vertex does **not** increase vertex count.
+                    3. The closed triangle satisfies polygon checks; the open zigzag fails closure; the circle fails straight-edge requirement.
+                    4. The pentagon's ordered five vertices and edges remain 5/5 after 90° rotation and uniform scaling.
+                    5. The six provided hexagon vertices connect into a non-self-crossing simple closed polygon with 6/6 counts.
+                    6. Independent five-sided example is a polygon; matching curved-edge near-miss is not, with a specific explanation.
+                    7. If edits would cause edge crossing, reject the edit or leave that mode disabled; never claim invalid geometry meets the simple-polygon rule.
+                    8. Keyboard, switch, screen reader, RTL, mobile, 200% text, reduced-motion and post-download offline alternatives preserve the same property evidence.
+                    9. Reset and revisiting a separate placement do not leak revealed counts/choices across Sections.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Lesson renderer handles a `scene` block, but this bespoke Scene **does not exist**. Scene Designer must implement and test it only after editorial approval, with real localized strings, no props and explicit nonvisual equivalent. Editor to review irregular five- and six-sided outlines and optional non-crossing vertex controls. No Question/Quiz, mastery, Note persistence or fabricated event contract.
+                  purpose: "Proposed interactive Scene for Explain, Don't Just Guess"
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: '6c115318-a369-4c69-8c56-d74662fc2937'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Check the rule **before** counting. For the first, five straight sides close the shape. In the second, a curved part breaks the rule. Looking almost like a familiar polygon is not enough.'
+            order: ['text1', 'polygonOutlineInvestigator', 'markdown2']
+        production:
+          purpose: "Explain, Don't Just Guess"
+          pedagogicalIntent: |
+            ### Section 4 — Explain, Don't Just Guess
+
+            - **Purpose:** Transfer to an unfamiliar drawing and explain a near-miss.
+            - **Section contract:** `LessonSection_Config`, vertical sequence.
+            - **Ordered blocks:**
+              1. **text — existing:** "Here are two shapes we have not traced yet. One is a closed figure with five straight sides. The other looks almost the same but has one gently curved edge. Which one is a pentagon, and how can you prove it?"
+              2. **scene — proposed:** Polygon Outline Investigator (Scene specification embedded in this config.yaml), stage D. Use a novel five-sided non-self-crossing outline and a same-layout mixed straight/curved boundary. Provide "Trace sides", "Read the outline" and non-scored "Explain" prompts. The clear polygon has 5 sides/5 vertices; the near-miss **is not a polygon**, even if its outline has five visible meeting marks.
+              3. **markdown — existing:** "Check the rule **before** counting. For the first, five straight sides close the shape. In the second, a curved part breaks the rule. Looking almost like a familiar polygon is not enough."
+            - **Feedback:** Wrong choice gets explanatory evidence from boundary segments. Alternative expressive response: select attributes ("closed", "all straight", "five sides") or describe verbally; no typing or speech required.
+            - **Independent transfer:** Find a closed shape in a room or drawing, trace its outline with a finger (optional), or use an accessible described outline. Ask for property evidence rather than an object-name guess.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+    order:
+      [
+        'section1WhichMarksAreSides',
+        'section2IsItAPolygon',
+        'section3FourFiveSixTheShapeCanLookDifferent',
+        'section4ExplainDonTJustGuess',
+      ]
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Classify Polygons by Sides and Corners — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: classifyingPolygonAttributes
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Move from merely naming familiar plane figures to **property-based classification** that remains valid when a polygon turns or changes proportions. A category must be justified with sides and vertices, not remembered from an upright picture.
+
+    ## Target audience
+
+    **Primary audience: Grade 2 (approximately 7–8).** Primary Grade 2 (approximately 7–8 years). Learners recognize triangles, rectangles and squares from multiple orientations. Provide large traceable edges, narrated boundaries, integer side/vertex counts (3–6), nonvisual lists and a non-drag classification method.
+
+    **Instructional depth:** Simple, non-self-intersecting polygons only; 3–6 sides in primary practice, with all straight edges and clear vertices. No curved polygons, self-intersection, proof of Euler's formula, angle-sum formulas, concavity terminology or regular-polygon angle calculations. Square-as-rectangle nesting is acknowledged only when relevant; not a target of this Lesson.
+
+    ## Prerequisites
+
+    [identify2dShapes.data.ts](../../../../data/skills/geometry/figures/skills/identify2dShapes.data.ts): identify basic flat figures despite rotation, color and scale. Count 1–6 reliably and distinguish a straight side from a meeting point. Re-teach the meaning of one 'corner' before introducing 'vertex' as a precise word.
+
+    ## Target Skills
+
+    - [shapeAttributes.data.ts](../../../../data/skills/geometry/figures/skills/shapeAttributes.data.ts)
+
+    ## Expected learning outcomes
+
+    - Recognize a **simple polygon** as a closed shape made from straight segments, distinguishing circles, open paths and shapes with curved edges.
+    - Count **sides** and **vertices** of simple polygons and explain that the totals match for a closed non-self-intersecting polygon.
+    - Classify and justify unfamiliar 3-, 4-, 5- and 6-sided polygons using counts rather than orientation, color or equal-sided appearance.
+    - Explain why a rotated or unequal-sided example can remain in the same side-count class, while a closed curved figure is not a polygon.
+
+    ## Essential subject matter
+
+    A simple polygon is a **closed chain of straight line segments** meeting end-to-end without crossings, with at least three sides. The **sides** are straight edges; **vertices** are endpoints where neighboring sides meet. Each side has a next vertex in the loop: simple triangles have 3/3, quadrilaterals 4/4, pentagons 5/5, hexagons 6/6. The appearance or slant does not change these counts. A circle is a familiar plane figure but not a polygon. A 'wobbly closed loop' whose edges are curved is not a polygon. Do not imply all 4-sided shapes are rectangles, or all 5-sided examples must be regular.
+
+    ## Conceptual progression and dependencies
+
+    Begin with an unfamiliar rotated 4-sided closed outline; invite a name but foreground 'How can we check?' Trace consecutive straight sides, mark each meeting point exactly once, and compare equal counts. Show a circle and open zigzag as deliberate non-examples. Let the learner change vertex positions while preserving a simple closed outline, recount, then independently classify a new irregular pentagon.
+
+    ## Misconceptions, examples and boundaries
+
+    Treating a circle as a 'one-sided polygon'; double-counting the start vertex at closure; mistaking a decorative line inside a polygon for an outer side; assuming only regular/upright shapes qualify; classifying an open zigzag as a polygon; assuming sides and vertices are different totals for a simple closed polygon.
+
+    **Explicit exclusions:** Simple, non-self-intersecting polygons only; 3–6 sides in primary practice, with all straight edges and clear vertices. No curved polygons, self-intersection, proof of Euler's formula, angle-sum formulas, concavity terminology or regular-polygon angle calculations. Square-as-rectangle nesting is acknowledged only when relevant; not a target of this Lesson.
+
+    ## Localization, accessibility and offline intent
+
+    All explanations, controls, Scene cues, alternative descriptions, feedback and eventual Note text require genuine translations in the supported locales with no missing-language fallback. For spatial direction, apply genuine semantic RTL adaptation rather than indiscriminate mirroring of geometry or mathematical order. For measurement, keep scale meaning and cm labels intact regardless of UI direction. Make learner actions possible by keyboard/switch/touch, with semantic equivalents to any visual manipulation, audible content fully captioned, reduced-motion alternatives, visible focus, readable targets and WCAG 2.2 AA review. The complete Lesson and its feedback must work offline after a verified download; this is an intended capability, not an existing implementation claim.
+
+    ## Sources and factual verification
+
+    - [shapeAttributes.data.ts](../../../../data/skills/geometry/figures/skills/shapeAttributes.data.ts) — immutable canonical Mathematics Skill data copied from `content/math/data/skills/` with its UUID, translations and methodological description preserved.
+    - [Studio Methodologist persona](../../../../../../studio/personas/methodist.persona.md) and [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — editorial scope and workflow.
+    - [Playground taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) — currently stale for these newly migrated domain Skills; coordinator regeneration is required before it can confirm their inclusion.
+
+    The examples are checked against the precise canonical Skill description, not treated as evidence of compliance with any particular jurisdiction's curriculum.
+
+    ## Curriculum / Program compatibility
+
+    No Program or national Curriculum assigned. This standalone Lesson may later be referenced by multiple curricula, but the chosen Grade 2 depth is a Lesson decision only and **does not alter the grade-independent Skill definition**.
+
+    ## Open editorial decisions
+
+    - Editor to confirm use of irregular pentagons/hexagons and whether one concave polygon should appear as an optional later example. The Skill remains grade-independent; only this Lesson's depth is bounded.
+    - **Approval gate:** this Brief has not received explicit Methodologist approval. Accompanying `content.md` and Scene spec are **provisional Drafts under the batch-specific user authorization**, not formally approved Lesson Content.
+
+    ## Methodologist handoff
+
+    Review the intended audience, prerequisite chain, bounded mathematical examples and misconceptions before changing this Brief from Draft to Approved. The Educational Screenwriter's proposed Sections and Scene are separate editorial artifacts and may be revised if the Brief changes. No runtime Lesson component, Question, Quiz, scoring, Note persistence or content publication is authorized.
+  productionNotes: |-
+    All content.md text outside ordered Sections — editorial premise, accessibility, global feedback, production and dependencies:
+
+    # Classify Polygons by Sides and Corners — Lesson Content
+
+    Status: **Provisional Draft — pending Methodologist approval; not approved.**
+    Target Lesson: `content/playground/Data/Lessons/1/classifyingPolygonAttributes/`
+    Audience: **Grade 2** (approximately 7–8), mixed readers, accessible trace/count controls
+    Methodologist source: Draft Methodologist Brief (original now embedded in this config.yaml)
+    Target Skills: `shapeAttributes.data.ts` linked in Brief; `identify2dShapes.data.ts` prerequisite only
+    Program dependence: None
+    Implementation state: editorial plan; custom Scene and runtime configuration do not exist.
+
+    ## INSTRUCTIONAL CONCEPT
+
+    "**Count what makes the outline.**" Children already know a triangle and rectangle by sight. Now an unfamiliar slanted or uneven shape should be recognized by its **straight sides** and the **corners (vertices)** where two neighboring sides meet. We first test whether an outline is a polygon, then count, then classify. Deliberate nonexamples make properties visible. A shape may be stretched, recolored or turned without becoming a different _side-count class_, provided the boundary remains a **simple closed polygon** and its number of straight sides remains unchanged.
+
+    A **side** is a straight line segment along the outer boundary. A **vertex** is a joining point between consecutive sides; the final return to the first vertex does **not** create an extra vertex. For simple polygons, side count equals vertex count. All of the Lesson's polygon examples are non-self-crossing; classifications use 3, 4, 5 or 6 sides. Neither every quadrilateral nor every irregular polygon must be a rectangle.
+
+    ## LEARNER JOURNEY
+
+    1. Inspect an unusual, rotated 4-sided shape. Before naming it, trace the boundary.
+    2. Confront open and curved boundaries: what counts as a polygon, and why?
+    3. Classify several unequal, turned outlines by counted attributes with a controllable highlighter.
+    4. Independently describe an unfamiliar five-sided polygon and reject one convincing-looking nonexample.
+
+    Avoid a repetitive shape-matching quiz. The key experience is a **traceable, explainable boundary** whose properties are visible whether visual, tactile or verbal.
+
+    ## SECTION PLAN
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Polygon Outline Investigator (Scene specification embedded in this config.yaml) — editorial definition of a prop-free, stateful trace/classify tool with counterexamples and independent nonvisual modes.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. "Count straight outside edges, not lines inside." Proposed after the Section 1 diagonal challenge.
+    2. "A simple polygon is a closed outline of straight sides." Proposed after Section 2 nonexamples.
+    3. "A simple polygon has as many vertices as sides." Proposed after Section 3 comparison.
+
+    These are future short recall cues; Note IDs, events, learner storage and automated review scheduling are **not** claimed to exist.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Section 4 supplies unscored transfer and explanatory feedback. A future Assessment Architect can vary drawing orientation, irregularity, color and distractor curved/open outlines; the assessment must check reasoned classification rather than memory of showcased shapes. Do not assign points or mastery here.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    All terms ("side", "corner", "vertex", "closed", "straight", "polygon") need authentic age-appropriate translations; when a language uses distinct everyday and technical terms, explain both without untranslatable idioms. RTL changes reading/presentation order but **must not** invert the polygon's topology or the order of its actual boundary vertices. A numbered edge list with lengths/relative directions is a nonvisual equivalent to tracing. Controls offer "next edge", "previous edge" and "read all" instead of requiring precise pointer movement. Use shape/number status rather than hue, announced state changes, reduced motion, focus/contrast/touch accessibility, and offline-resident vector diagrams and content for every locale.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    - `text`, `markdown`, `scene`: supported by the present generic Lesson Section renderer.
+    - Polygon Outline Investigator: **proposed, not implemented**. Requires tested prop-free scene composition and real locale context.
+    - Avoid embedding dynamic textual labels into SVG path data. No invented platform API, Question, Quiz, scoring, replay analytics or publishing pipeline.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Draft Methodologist Brief (original now embedded in this config.yaml) and its canonical Math Skill source.
+    - Editor: confirm whether 5- and 6-sided irregular examples are manageable at Grade 2 with the supplied tracing scaffold.
+    - Editor: confirm that the curved-edge near-miss is pedagogically clear and does not confuse side-counting with category membership.
+    - Content and Scenes **provisional** until Methodologist approval.
+
+    ## HANDOFF
+
+    Methodologist approves scope and grade; Screenwriter/editor validates exact shape outlines and feedback; Scene Designer implements only after Scene specification approval; Assessment Architect separately prepares scored questions if desired.
+
+
+    Editorial state: provisional draft; pending independent approval. Locales beyond English are intended but not yet translated.

@@ -1,0 +1,811 @@
+config:
+  id: '9a923984-2853-5b83-b2d3-50a3d6de90ba'
+  slug: 'numberPatterns'
+  type: 'lesson'
+  skills:
+    - '80600511-51d8-411c-a132-4a17836d680d'
+    - 'ce88fbc1-1607-42c3-8d54-e87e9d368bf6'
+  params:
+    requireQuiz: false
+    languages:
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Finding and Continuing Number Patterns'
+  section:
+    items:
+      section1:
+        config:
+          id: '9a923984-2853-5b83-b2d3-000000000004'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'What Comes Next?'
+            navigationLabel:
+              en: 'What Comes Next?'
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-000000000001'
+                  slug: 'section1Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Look at the numbers: 4, 7, 10, 13, … . What might come next? How do you know?'
+                production:
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  1. **text — available.** Child-facing text: “Look at the numbers: 4, 7, 10, 13, … . What might come next? How do you know?” Optional audio reading must have identical on-screen text.'
+              section1Scene1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-000000000002'
+                  slug: 'section1Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Look at the numbers: 4, 7, 10, 13, … . What might come next? How do you know?'
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Step Explorer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `numberPatterns Lesson Content` (source preserved in this YAML), Sections 1 “What Comes Next?” and 2 “Keep the Jump the Same”
+                    Methodologist objective(s): Recognize a constant additive step, describe it, extend the row and recognize that decreasing rows can also have constant steps; no new Skills. `Methodologist Brief` (source preserved in this YAML)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A visible, controllable **jump of the same size** is more comprehensible to an early reader than a symbol-only rule. The child can predict, watch a jump and repeat it, then change the size or sign and see what remains invariant.
+
+                    Source learner voice: “Each time we jump, the number changes. If the jump stays the same size, we can keep the row going.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Terms form a finite displayed whole-number row with a fixed signed integer step: start, start + step, start + 2×step, etc. All visible terms are between 0 and 30.
+                    - **Section 1 preset:** 4, 7, 10, 13, ?, step +3; reveal differences +3, +3, +3 and next term 16.
+                    - **Section 2 increase preset:** start 2, +4; after three jumps the row is 2, 6, 10, 14.
+                    - **Section 2 decrease preset:** start 12, −2; after three jumps the row is 12, 10, 8, 6. Explain that lower numbers can still have an unchanging step.
+                    - In exploratory mode choose increment magnitudes 1–4, decrement magnitudes 1–3. Step 0 is not part of this beginner experience, not mathematically invalid. A next hop that would leave 0–30 is not allowed. No wrapping, negative values, fractional terms, nth-term formulas or free-form “find any possible rule”.
+                    - Number-line distance must reflect actual numeric distance consistently. A counters view, if added, exactly matches numeric additions/removals. The finite row is continued **under the chosen additive rule**, never claimed to determine a unique next number in all mathematics.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1, prediction placement**
+
+                    1. Display large terms “4 7 10 13 ?” and “What might come next if we make the same jump?” Offer choices **12 / 15 / 16 / 17** and an accessible “Show the jumps” action. Prediction is optional.
+                    2. Reveal the first hop with a labeled difference “4 to 7: 3 more”; repeated actions reveal “7 to 10: 3 more” and “10 to 13: 3 more”. Do not autoplay through the reasoning without a chance to stop/inspect.
+                    3. Ask “What jump could we make now?” Then reveal the matching hop 13 to 16, with “13 + 3 = 16.”
+                    4. For 16: “Yes. We added 3 again.” For 15: “That is 2 more, but the earlier jumps were 3.” For 17: “That is 4 more, not 3.” For 12: “That goes backward. This row went up by 3.” An incorrect choice offers “Try again” and “Show me”; no grading, timer or congratulation screen.
+                    5. The child can review each already visible pair and can ask “Read the row” for an equivalent ordered textual description.
+
+                    **Section 2, exploration placement**
+
+                    1. Begin with a new independent state at 2, +4, with step controls visible. Learner uses “Next jump” three times to get 2, 6, 10, 14. Show each +4 visibly and in text.
+                    2. Offer “Increase” or “Decrease”, then 1/2/3/4 increments (or 1/2/3 decrements). On changing settings, announce that a new row starts and reset the current row to the chosen preset; never retain old differences.
+                    3. A clear preset “Try taking away 2” displays start 12 and step −2. Three advances make 12, 10, 8, 6; the same numeric gap is shown in each transition.
+                    4. Optional “Back one jump”, “Reset” and “Show every change” support self-paced exploration. State transitions are exact and deterministic.
+                    5. End prompt: “What stayed the same—the numbers or the jump?” Answer/reveal: “The jump stayed the same. The numbers changed.”
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** ordered number chips (with semantic first/second labels), number line with labeled units, a jump annotation with +n/−n, accessible pairwise text log, large native buttons for step controls and reveal/reset, optional simple counters.
+                    - **Presentation distinction:** The two placements are independent prop-free Scene entries. Their different starting states are requirements of the narrative, **not** permission to invent a React mode prop or URL query. Coding Agent may share implementation internally while providing separate self-contained Scene instances and locale mappings.
+                    - **Prediction state:** selected choice (or none), reveal count 0…3, final continuation visibility, hints. A selected wrong choice does not disable exploration.
+                    - **Exploration state:** chosen signed step, starting number, displayed term array, count of completed jumps; changing signed step restarts clearly.
+                    - **Invariant:** for every index i, term[i] = start + i×step. Consecutive differences exactly equal step. Never display a result outside 0–30 or an unlabeled visually unequal hop.
+                    - **Boundary:** If an increase would exceed 30 or a decrease would go below 0, “Next jump” is unavailable with visible text: “That jump would leave our 0–30 number line. Choose a different step or reset.”
+                    - **Reset:** restore the default configuration of that placement, with choices and reveals cleared. Back removes the last revealed term, not the initial term. The placements never share state.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use modest SVG/HTML: large numerals, stable number-line scale and discrete labeled hops that remain visible after reveal. Equal numerical changes have equal measured hop lengths. Visual highlights must coexist with exact “3 more / 2 fewer” text; do not encode meaning by hue or movement alone. A slow optional hop animation is useful only to direct attention to the changing interval; under reduced motion, show the same before/after math instantly. No image, video or network service is required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Localize every prompt, control, transition, button accessible name, difference narration and feedback into the complete supported language set, without copied English fallbacks.
+                    - Keep numerical term order and signed differences logically correct in both LTR and RTL. Label which direction increases; never simply mirror an SVG and make a positive hop appear numerically decreasing. Mathematical symbols retain their value/order.
+                    - A nonvisual equivalent must expose a structured list of “term 1: 4”, “from 4 to 7: 3 more”, and so on; pairwise list is interactive through labeled controls, not just descriptive text.
+                    - All actions work with keyboard, switch-style activation and touch, with visible focus and adequate targets. No drag-only or voice-only requirement. Short texts must not be reduced to tiny digits on mobile.
+                    - Reduced motion means direct state changes; no auditory dependency. A learner with dyscalculia can keep earlier hops and counters visible. All translations, state changes, feedback and visual data must be self-contained and available fully offline after download.
+                    - Prevent excessive repetitive screen-reader announcements: announce the new state and changed value once; the full log remains navigable.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. The initial sequence reads 4, 7, 10, 13, ?; choosing 16 yields +3 evidence and 13 + 3 = 16.
+                    2. Choosing 15 yields a comparison of its +2 jump with the earlier +3 jumps, then allows retry and reveal.
+                    3. Without choosing a prediction, “Show the jumps” reveals all three changes and the final 16.
+                    4. Explore +4 from 2: three advances yield exactly 2, 6, 10, 14.
+                    5. Explore −2 from 12: three advances yield exactly 12, 10, 8, 6, without negative outputs.
+                    6. Increasing at the upper boundary or decreasing at the lower boundary never creates an out-of-range value; explanatory message is perceivable.
+                    7. Reset and per-placement state isolation work; revisiting Section 1 does not inherit Section 2 settings.
+                    8. Keyboard, screen reader, RTL, reduced motion, narrow mobile and post-download offline operation show the same terms, transitions, meanings and explanations.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - Generic scene Resource contract and renderer exist in Playground, but **this Scene is proposed and not implemented**; requires editor approval then Design Scene skill, self-contained prop-free component(s), localization and tests.
+                    - Coding Agent must verify locale context, independent Section placement and state initialization. No fabricated app API or runtime field is part of this spec.
+                    - Optional counters are editorially adjustable provided the numeric step/accessible equivalence is not lost.
+                    - Predictions and feedback are _instructional_ and do not create a Quiz, score, a mastered Skill or persistent user analytics.
+                  productionNotes: "This placement in What Comes Next? refers to stepExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section1Markdown1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-000000000003'
+                  slug: 'section1Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The jump from 4 to 7 is 3. From 7 to 10 is 3. From 10 to 13 is 3, too. If we keep that jump, 13 + 3 makes 16.'
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — available.** After reveal: “The jump from 4 to 7 is 3. From 7 to 10 is 3. From 10 to 13 is 3, too. If we keep that jump, 13 + 3 makes 16.”'
+            order:
+              - 'section1Text1'
+              - 'section1Scene1'
+              - 'section1Markdown1'
+        production:
+          purpose: 'What Comes Next?'
+          pedagogicalIntent: |-
+            - Purpose / learning outcome: Notice a repeated numerical change and make a prediction.
+            - Current implementation shape: LessonSection_Config; Section blocks in one vertical column.
+            - Ordered content blocks:
+              1. **text — available.** Child-facing text: “Look at the numbers: 4, 7, 10, 13, … . What might come next? How do you know?” Optional audio reading must have identical on-screen text.
+              2. **scene — existing type and renderer, proposed new content.** `Step Explorer` (former stepExplorer.scene-spec.md; specification embedded in this YAML), prediction phase: four terms, an unknown fifth term, user-controlled reveal of three +3 hops, then 13 + 3 = 16. Guessing is optional.
+              3. **markdown — available.** After reveal: “The jump from 4 to 7 is 3. From 7 to 10 is 3. From 10 to 13 is 3, too. If we keep that jump, 13 + 3 makes 16.”
+            - Core explanation and learner-facing text: The STEP is the change from one number to the next. Here each step adds three.
+            - Illustration / model / experiment: A number line with numerically proportional jumps and an ordered text list of the pairs and differences; optional three-counter additions as an equal representation.
+            - Learner action, observations and explanatory feedback: A learner may select 12, 15, 16 or 17. For 16: “Yes. You added 3 again.” For 15: “That adds 2 to 13, but each earlier jump added 3.” For 17: “That adds 4, not 3.” For 12: “That goes down; the earlier steps went up by 3.” All paths allow a reveal and retry without penalty.
+            - Navigation and transition: Let the learner reveal each gap before optionally moving on; no hard success gate.
+            - Accessibility, locale and RTL: Every mathematical hop has a textual equivalent and meaningful number order; visual arrows must not be mechanically mirrored in RTL. Touch, keyboard and screen-reader alternatives work without dragging or audio.
+            - Proposed unlocked Note(s): After the equal gaps are shown, Note 1 “A step is the change to the next number” (planned, not wired).
+            - Implementation dependencies and review notes: The new Scene must be built; the text/Markdown renderers already exist.
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+      section2:
+        config:
+          id: '9a923984-2853-5b83-b2d3-000000000008'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Keep the Jump the Same'
+            navigationLabel:
+              en: 'Keep the Jump the Same'
+          content:
+            items:
+              section2Markdown1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-000000000005'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Try a bigger jump. Starting at 2, adding 4 each time gives 2, 6, 10, 14. Starting at 12 and taking away 2 each time gives 12, 10, 8, 6. A pattern does not have to go up.'
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  1. **markdown — available.** “Try a bigger jump. Starting at 2, adding 4 each time gives 2, 6, 10, 14. Starting at 12 and taking away 2 each time gives 12, 10, 8, 6. A pattern does not have to go up.”'
+              section2Scene1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-000000000006'
+                  slug: 'section2Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Keep the Jump the Same'
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Step Explorer — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `numberPatterns Lesson Content` (source preserved in this YAML), Sections 1 “What Comes Next?” and 2 “Keep the Jump the Same”
+                    Methodologist objective(s): Recognize a constant additive step, describe it, extend the row and recognize that decreasing rows can also have constant steps; no new Skills. `Methodologist Brief` (source preserved in this YAML)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    A visible, controllable **jump of the same size** is more comprehensible to an early reader than a symbol-only rule. The child can predict, watch a jump and repeat it, then change the size or sign and see what remains invariant.
+
+                    Source learner voice: “Each time we jump, the number changes. If the jump stays the same size, we can keep the row going.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Terms form a finite displayed whole-number row with a fixed signed integer step: start, start + step, start + 2×step, etc. All visible terms are between 0 and 30.
+                    - **Section 1 preset:** 4, 7, 10, 13, ?, step +3; reveal differences +3, +3, +3 and next term 16.
+                    - **Section 2 increase preset:** start 2, +4; after three jumps the row is 2, 6, 10, 14.
+                    - **Section 2 decrease preset:** start 12, −2; after three jumps the row is 12, 10, 8, 6. Explain that lower numbers can still have an unchanging step.
+                    - In exploratory mode choose increment magnitudes 1–4, decrement magnitudes 1–3. Step 0 is not part of this beginner experience, not mathematically invalid. A next hop that would leave 0–30 is not allowed. No wrapping, negative values, fractional terms, nth-term formulas or free-form “find any possible rule”.
+                    - Number-line distance must reflect actual numeric distance consistently. A counters view, if added, exactly matches numeric additions/removals. The finite row is continued **under the chosen additive rule**, never claimed to determine a unique next number in all mathematics.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Section 1, prediction placement**
+
+                    1. Display large terms “4 7 10 13 ?” and “What might come next if we make the same jump?” Offer choices **12 / 15 / 16 / 17** and an accessible “Show the jumps” action. Prediction is optional.
+                    2. Reveal the first hop with a labeled difference “4 to 7: 3 more”; repeated actions reveal “7 to 10: 3 more” and “10 to 13: 3 more”. Do not autoplay through the reasoning without a chance to stop/inspect.
+                    3. Ask “What jump could we make now?” Then reveal the matching hop 13 to 16, with “13 + 3 = 16.”
+                    4. For 16: “Yes. We added 3 again.” For 15: “That is 2 more, but the earlier jumps were 3.” For 17: “That is 4 more, not 3.” For 12: “That goes backward. This row went up by 3.” An incorrect choice offers “Try again” and “Show me”; no grading, timer or congratulation screen.
+                    5. The child can review each already visible pair and can ask “Read the row” for an equivalent ordered textual description.
+
+                    **Section 2, exploration placement**
+
+                    1. Begin with a new independent state at 2, +4, with step controls visible. Learner uses “Next jump” three times to get 2, 6, 10, 14. Show each +4 visibly and in text.
+                    2. Offer “Increase” or “Decrease”, then 1/2/3/4 increments (or 1/2/3 decrements). On changing settings, announce that a new row starts and reset the current row to the chosen preset; never retain old differences.
+                    3. A clear preset “Try taking away 2” displays start 12 and step −2. Three advances make 12, 10, 8, 6; the same numeric gap is shown in each transition.
+                    4. Optional “Back one jump”, “Reset” and “Show every change” support self-paced exploration. State transitions are exact and deterministic.
+                    5. End prompt: “What stayed the same—the numbers or the jump?” Answer/reveal: “The jump stayed the same. The numbers changed.”
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** ordered number chips (with semantic first/second labels), number line with labeled units, a jump annotation with +n/−n, accessible pairwise text log, large native buttons for step controls and reveal/reset, optional simple counters.
+                    - **Presentation distinction:** The two placements are independent prop-free Scene entries. Their different starting states are requirements of the narrative, **not** permission to invent a React mode prop or URL query. Coding Agent may share implementation internally while providing separate self-contained Scene instances and locale mappings.
+                    - **Prediction state:** selected choice (or none), reveal count 0…3, final continuation visibility, hints. A selected wrong choice does not disable exploration.
+                    - **Exploration state:** chosen signed step, starting number, displayed term array, count of completed jumps; changing signed step restarts clearly.
+                    - **Invariant:** for every index i, term[i] = start + i×step. Consecutive differences exactly equal step. Never display a result outside 0–30 or an unlabeled visually unequal hop.
+                    - **Boundary:** If an increase would exceed 30 or a decrease would go below 0, “Next jump” is unavailable with visible text: “That jump would leave our 0–30 number line. Choose a different step or reset.”
+                    - **Reset:** restore the default configuration of that placement, with choices and reveals cleared. Back removes the last revealed term, not the initial term. The placements never share state.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use modest SVG/HTML: large numerals, stable number-line scale and discrete labeled hops that remain visible after reveal. Equal numerical changes have equal measured hop lengths. Visual highlights must coexist with exact “3 more / 2 fewer” text; do not encode meaning by hue or movement alone. A slow optional hop animation is useful only to direct attention to the changing interval; under reduced motion, show the same before/after math instantly. No image, video or network service is required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Localize every prompt, control, transition, button accessible name, difference narration and feedback into the complete supported language set, without copied English fallbacks.
+                    - Keep numerical term order and signed differences logically correct in both LTR and RTL. Label which direction increases; never simply mirror an SVG and make a positive hop appear numerically decreasing. Mathematical symbols retain their value/order.
+                    - A nonvisual equivalent must expose a structured list of “term 1: 4”, “from 4 to 7: 3 more”, and so on; pairwise list is interactive through labeled controls, not just descriptive text.
+                    - All actions work with keyboard, switch-style activation and touch, with visible focus and adequate targets. No drag-only or voice-only requirement. Short texts must not be reduced to tiny digits on mobile.
+                    - Reduced motion means direct state changes; no auditory dependency. A learner with dyscalculia can keep earlier hops and counters visible. All translations, state changes, feedback and visual data must be self-contained and available fully offline after download.
+                    - Prevent excessive repetitive screen-reader announcements: announce the new state and changed value once; the full log remains navigable.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. The initial sequence reads 4, 7, 10, 13, ?; choosing 16 yields +3 evidence and 13 + 3 = 16.
+                    2. Choosing 15 yields a comparison of its +2 jump with the earlier +3 jumps, then allows retry and reveal.
+                    3. Without choosing a prediction, “Show the jumps” reveals all three changes and the final 16.
+                    4. Explore +4 from 2: three advances yield exactly 2, 6, 10, 14.
+                    5. Explore −2 from 12: three advances yield exactly 12, 10, 8, 6, without negative outputs.
+                    6. Increasing at the upper boundary or decreasing at the lower boundary never creates an out-of-range value; explanatory message is perceivable.
+                    7. Reset and per-placement state isolation work; revisiting Section 1 does not inherit Section 2 settings.
+                    8. Keyboard, screen reader, RTL, reduced motion, narrow mobile and post-download offline operation show the same terms, transitions, meanings and explanations.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - Generic scene Resource contract and renderer exist in Playground, but **this Scene is proposed and not implemented**; requires editor approval then Design Scene skill, self-contained prop-free component(s), localization and tests.
+                    - Coding Agent must verify locale context, independent Section placement and state initialization. No fabricated app API or runtime field is part of this spec.
+                    - Optional counters are editorially adjustable provided the numeric step/accessible equivalence is not lost.
+                    - Predictions and feedback are _instructional_ and do not create a Quiz, score, a mastered Skill or persistent user analytics.
+                  productionNotes: "This placement in Keep the Jump the Same refers to stepExplorer.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section2Text1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-000000000007'
+                  slug: 'section2Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'What stayed the same: the numbers, or the size of the jump?'
+                production:
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: '  3. **text — available.** Reflective prompt: “What stayed the same: the numbers, or the size of the jump?” Explanation: “The numbers changed. The size of each jump stayed the same.”'
+            order:
+              - 'section2Markdown1'
+              - 'section2Scene1'
+              - 'section2Text1'
+        production:
+          purpose: 'Keep the Jump the Same'
+          pedagogicalIntent: |-
+            - Purpose / learning outcome: Change and apply a constant step, including a decreasing sequence.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks:
+              1. **markdown — available.** “Try a bigger jump. Starting at 2, adding 4 each time gives 2, 6, 10, 14. Starting at 12 and taking away 2 each time gives 12, 10, 8, 6. A pattern does not have to go up.”
+              2. **scene — supported resource, proposed new content.** `Step Explorer` (former stepExplorer.scene-spec.md; specification embedded in this YAML), exploration phase: choose increase or decrease, choose an allowed step, advance or undo a hop, show exact changes. The increasing starting preset is 2, +4; decreasing preset is 12, −2.
+              3. **text — available.** Reflective prompt: “What stayed the same: the numbers, or the size of the jump?” Explanation: “The numbers changed. The size of each jump stayed the same.”
+            - Core explanation and learner-facing text: Add the fixed step to the previous TERM, not the term itself. Subtracting the same amount each time also makes a regular pattern.
+            - Illustration / model / experiment: The learner controls steps and sees consistent jump lengths. Decreasing terms always remain nonnegative.
+            - Learner action, observations and explanatory feedback: The child selects step +4, advances through 2, 6, 10, 14, then switches to preset 12, 10, 8, 6. Label every pair “four more” or “two fewer”. If the next hop would leave 0–30, explain the number-line limit instead of silently wrapping.
+            - Navigation and transition: Invite the learner to name a step before examining somebody else's proposed rule.
+            - Accessibility, locale and RTL: Fully operable numbered controls, text log of all hops, equivalent immediate states when reduced motion is enabled.
+            - Proposed unlocked Note(s): After increasing and decreasing examples, Note 2 “The same step can add or take away” (planned, not wired).
+            - Implementation dependencies and review notes: Reuse of Scene design in different sections requires independent prop-free instances; scene registration and state isolation are Coding Agent concerns.
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+      section3:
+        config:
+          id: '9a923984-2853-5b83-b2d3-00000000000c'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Check EVERY Jump'
+            navigationLabel:
+              en: 'Check EVERY Jump'
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-000000000009'
+                  slug: 'section3Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Someone says the numbers 2, 5, 9 add 3 every time. Is that true? Let's check both jumps."
+                production:
+                  purpose: 'Original text resource from source Screenwriter draft'
+                  specification: "  1. **text — available.** “Someone says the numbers 2, 5, 9 add 3 every time. Is that true? Let's check both jumps.”"
+              section3Scene1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-00000000000a'
+                  slug: 'section3Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Someone says the numbers 2, 5, 9 add 3 every time. Is that true? Let's check both jumps."
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Rule Inspector — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `numberPatterns Lesson Content` (source preserved in this YAML), Sections 3 “Check EVERY Jump” and 4 “Your Turn to Explain”
+                    Methodologist objective(s): Examine ALL adjacent gaps, check a proposed constant-step rule, identify unequal steps and extend a row consistently with a verified additive rule. `Methodologist Brief` (source preserved in this YAML)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    This Scene deliberately contrasts one seemingly successful jump with a later **mismatch**, teaching the child to check every visible gap instead of guessing from the first two numbers. A second, less-scaffolded mode transfers the same method to a fresh row.
+
+                    Source learner-facing wording: “A rule should fit every jump we can see. Check each jump before you trust it.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A proposed rule of the form “add/subtract the same amount each time” fits **all shown transitions** only when each observed consecutive difference equals the proposed signed step.
+                    - **Opening nonexample:** 2, 5, 9 with candidate +3: 2→5 is +3 (matches), 5→9 is +4 (does not match).
+                    - **True contrast:** 3, 6, 9, 12 with candidate +3: all gaps +3 (matches).
+                    - **Second contrast:** 3, 6, 10, 15 with candidate +3: gaps +3, +4, +5 (does not match); do not say these numbers cannot obey _any_ rule.
+                    - **Optional decrease:** 12, 10, 8, 6 with candidate −2: all gaps −2 (matches).
+                    - **Independent transfer:** 7, 10, 13, 16, ?; gaps +3, +3, +3, proposed continuation 19 if the constant +3 rule is maintained; choices 18 / 19 / 20.
+                    - Limit terms to the age-appropriate 0–30 range. These examples are not evidence that a finite list mathematically determines a uniquely necessary next number. Say “if we keep this step,” not “19 is the only next number possible.”
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Placement A / Section 3 — Check the claim**
+
+                    1. Show large ordered numerals **2, 5, 9** and a card **“Add 3 each time.”** Ask **“Does it fit the whole row? Check both jumps.”**
+                    2. Reveal the first gap by explicit action: **“2 to 5: 3 more. This matches.”** Highlight the pair; let the child predict whether the next gap will also match.
+                    3. Reveal second gap: **“5 to 9: 4 more. This does NOT match +3.”** Keep the first result visible so the contradiction is unmistakable.
+                    4. Offer choices **“Fits every jump”** / **“Does not fit every jump”** at any point. If a child selects “Fits” early, reply **“Let's check the other jump too.”** If still “Fits” after both, explain **“5 to 9 adds 4, so +3 does not fit this whole row.”** The other choice receives **“Yes, the first jump matched but the second did not.”** No penalty and no performance record.
+                    5. Offer an accessible “Compare another row” action. Display **3, 6, 9, 12** with candidate +3, then **3, 6, 10, 15** with candidate +3. Let the child reveal all gaps on each, then decide. For a true match: **“All three jumps add 3.”** For a mismatch: **“3 to 6 adds 3; 6 to 10 adds 4; 10 to 15 adds 5.”**
+                    6. Optional “Try a decreasing row” uses **12, 10, 8, 6** with −2 and explicit “two fewer” changes.
+                    7. Reflection: **“Was checking the first jump enough?”** After thought, reveal **“No. We need to check every jump we can see.”**
+
+                    **Placement B / Section 4 — Independent use**
+
+                    1. Show **7, 10, 13, 16, ?**; no candidate step is revealed. Ask **“Check the changes. Which number would come next if we keep the same jump?”**
+                    2. The learner may inspect the gaps in order: **7→10: +3**, **10→13: +3**, **13→16: +3**; hints do not automatically disclose the final value. Optional hint: **“Compare each pair of neighbors, not only the first two numbers.”**
+                    3. Allow selection from **18 / 19 / 20**. 18: **“16 to 18 adds 2; the earlier gaps were 3.”** 20: **“16 to 20 adds 4; the earlier gaps were 3.”** 19: **“16 to 19 adds 3, just like each earlier gap.”**
+                    4. Provide **“Show the explanation”** without requiring a response. Display **“Each jump we checked added 3. If we keep adding 3, then 16 + 3 = 19.”**
+                    5. Invite a why-explanation in multiple equivalent modes. A child can say it aloud to a trusted adult, type a short sentence if they wish, or select **“Every jump adds 3”** rather than “The first gap was 3, so I didn't check the rest” or “These numbers are close together”. This is formative teaching, NOT a scored Question object.
+                    6. A “Reset” action restores the fresh sequence. Optional alternate example **9, 7, 5, 3** with −2 offers retrieval without extending the graded task.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** ordered, readable number chips; per-pair inspector with “from/to/step” columns; an optional proposed-rule card; clear “Check next” / “Show all gaps” / “Try another row” / “Hint” / “Reset” buttons; explanation and choice regions.
+                    - **Two placements:** Separate self-contained prop-free Scene entries with independent starting scenarios and states. “Guided vs independent” are editorial entry requirements, not invented React props or new Resource_Config attributes. A Coding Agent may share internal logic while preserving the Scene contract.
+                    - **State:** current displayed row, proposed rule if shown, list of revealed neighboring pairs, optional tentative fit verdict or next-number choice, whether explanations have been revealed.
+                    - **Calculation invariant:** for every displayed neighboring pair a,b, the step is exactly b−a. A candidate rule d is consistent iff **every** adjacent difference in that shown row equals d. Showing only one successful gap must never produce an “all gaps verified” claim.
+                    - **Early choices:** An early guess is permitted, but the feedback requests inspection of remaining gaps instead of falsely marking the rule established; a learner may also skip guessing and inspect all gaps.
+                    - **Reset and switch:** Restore all initial hidden differences and choice states; reset is scoped to the current placement and never alters the other Section.
+                    - **Accuracy boundary:** The verdict is always **“fits this entire displayed row under the proposed constant-step interpretation”** or “does not fit this proposed constant step,” never “there can be no mathematical pattern.”
+                    - **No scoring:** These Scene states do not create an Assessment Method, Question correctness persistence, quiz result or mastery evidence.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Put the number row at the top and the ordered “neighboring pair / actual change / does candidate match?” inspector beneath. Highlight each newly checked pair briefly; leave the actual differences visible after revealing them. Use text and symbolic +3 / +4 / −2 labels with any status icons, not just red/green signals. Keep the interface spare, with no Program plot, timers, reward animations or external media. A reduced-motion state instantaneously shows the same numeric facts.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate “step”, “rule”, “fit”, “check every jump”, numeric changes, feedback and aria labels genuinely for every required language; no English fallback or omitted locales.
+                    - In RTL, preserve the mathematical order of a→b and the actual b−a relation; label the order of terms and the increasing number-line direction instead of automatically reversing SVG geometry. Controls follow logical reading order.
+                    - **Full nonvisual equivalent:** each pair is announced by term position and numeric values (“term one 2, term two 5, difference plus 3”), with text-based checked/unchecked and match/mismatch status. A screen-reader user can inspect every pair and choose an explanation without viewing the highlights.
+                    - Keyboard-only, touch and switch-style users must be able to operate every control with visible focus and adequate targets. No drag-only, mouseover-only, color-only, audio-only or timed questions. Number/label expansions fit zoomed and small-screen layouts.
+                    - Reduced motion eliminates only timing, never mathematical information. Every label, example and feedback message must work after a completed local download, without an API call. Readable HTML/text is an equivalent low-device path, not an inferior “lite” mode.
+                    - Helpful feedback does not diagnose learner ability, assign grades or require spoken input.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. For 2, 5, 9 with +3: first revealed gap matches; second gap is +4 and mismatches; overall “Does not fit every jump.”
+                    2. Early selection of “Fits” still prompts examination of the second gap; no score or irreversible failure.
+                    3. For 3, 6, 9, 12 with +3: all gaps +3 and overall fits.
+                    4. For 3, 6, 10, 15 with +3: differences +3/+4/+5 and overall does not fit; do NOT label row “patternless.”
+                    5. For 12, 10, 8, 6 with −2: all differences −2, valid decreasing constant step.
+                    6. For 7, 10, 13, 16, ?: +3 for all observed gaps; 19 follows the chosen constant step. 18 and 20 receive exact +2/+4 explanations.
+                    7. Learner can request hint or explanation without guessing; the complete reasoning remains available.
+                    8. Reset/Section isolation works; the independent example does not inherit the earlier rule claim or responses.
+                    9. LTR, RTL, keyboard, screen reader, reduced motion, zoomed mobile and offline modes expose identical numbers, difference calculations and explanatory outcomes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - **Available:** generic Scene Resource type and current renderer, plus a Scene-localization context to be verified by Coding Agent for each selected locale.
+                    - **Proposed:** this new Rule Inspector Scene, two isolated Scene entries, localized source strings and integration; editor approval, Design Scene implementation, accessibility tests and offline checks still required.
+                    - **Curricular constraint:** The proposed arithmetic rule can fail without proving the row has no other mathematical description; this distinction is mandatory.
+                    - **Assessment handoff:** None of the choices are validated or scored Questions. Only a separate Assessment Architect review could authorize that.
+                  productionNotes: "This placement in Check EVERY Jump refers to ruleInspector.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section3Markdown1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-00000000000b'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The first jump added 3. The next jump added 4. So ‘add 3 every time’ does not fit this whole row. Check all the gaps, not only the first one.'
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — available.** “The first jump added 3. The next jump added 4. So ‘add 3 every time’ does not fit this whole row. Check all the gaps, not only the first one.”'
+            order:
+              - 'section3Text1'
+              - 'section3Scene1'
+              - 'section3Markdown1'
+        production:
+          purpose: 'Check EVERY Jump'
+          pedagogicalIntent: |-
+            - Purpose / learning outcome: Test the proposed step against all adjacent pairs, including a misleading first gap.
+            - Current implementation shape: LessonSection_Config.
+            - Ordered content blocks:
+              1. **text — available.** “Someone says the numbers 2, 5, 9 add 3 every time. Is that true? Let's check both jumps.”
+              2. **scene — supported resource, proposed new content.** `Rule Inspector` (former ruleInspector.scene-spec.md; specification embedded in this YAML), guided mode: inspect 2→5 (+3) and 5→9 (+4), then decide whether +3 fits ALL the observed jumps. Compare with 3, 6, 9, 12 (+3 throughout) and 3, 6, 10, 15 (+3, +4, +5).
+              3. **markdown — available.** “The first jump added 3. The next jump added 4. So ‘add 3 every time’ does not fit this whole row. Check all the gaps, not only the first one.”
+            - Core explanation and learner-facing text: A proposed constant step fits the shown row only if each adjacent pair changes by that same amount. This does NOT mean a row with uneven changes can have no pattern of any kind.
+            - Illustration / model / experiment: One pair at a time receives a numeric difference and “matches/does not match” message. Compare a valid rule with a counterexample.
+            - Learner action, observations and explanatory feedback: “Fits every jump” vs “Doesn't fit every jump” are unscored formative choices. For an erroneous “Fits” answer: “Look at 5 to 9: it adds 4, not 3.” For the valid +3 row: “Every gap adds 3, so that rule fits all the numbers shown.”
+            - Navigation and transition: After seeing a non-example, move to a fresh row without first revealing its answer.
+            - Accessibility, locale and RTL: Explicit pair/difference list with accessible checked statuses; never rely on red/green alone, visual direction, timed taps or reading proficiency.
+            - Proposed unlocked Note(s): After the counterexample is explained, Note 3 “Check every jump before trusting a rule” (planned, not wired).
+            - Implementation dependencies and review notes: New custom Scene; no scored Question_Config, Quiz_Config or mastery inference.
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+      section4:
+        config:
+          id: '9a923984-2853-5b83-b2d3-000000000010'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Your Turn to Explain'
+            navigationLabel:
+              en: 'Your Turn to Explain'
+          content:
+            items:
+              section4Markdown1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-00000000000d'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Try a new row: 7, 10, 13, 16, … . What changes each time? If the same rule continues, what number comes next? Explain why.'
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  1. **markdown — available.** “Try a new row: 7, 10, 13, 16, … . What changes each time? If the same rule continues, what number comes next? Explain why.” Optional hint: “Look at every neighboring pair.”'
+              section4Scene1:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-00000000000e'
+                  slug: 'section4Scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Your Turn to Explain'
+                production:
+                  purpose: 'Proposed, unimplemented interactive Scene'
+                  specification: |-
+                    # Rule Inspector — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: `numberPatterns Lesson Content` (source preserved in this YAML), Sections 3 “Check EVERY Jump” and 4 “Your Turn to Explain”
+                    Methodologist objective(s): Examine ALL adjacent gaps, check a proposed constant-step rule, identify unequal steps and extend a row consistently with a verified additive rule. `Methodologist Brief` (source preserved in this YAML)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    This Scene deliberately contrasts one seemingly successful jump with a later **mismatch**, teaching the child to check every visible gap instead of guessing from the first two numbers. A second, less-scaffolded mode transfers the same method to a fresh row.
+
+                    Source learner-facing wording: “A rule should fit every jump we can see. Check each jump before you trust it.”
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - A proposed rule of the form “add/subtract the same amount each time” fits **all shown transitions** only when each observed consecutive difference equals the proposed signed step.
+                    - **Opening nonexample:** 2, 5, 9 with candidate +3: 2→5 is +3 (matches), 5→9 is +4 (does not match).
+                    - **True contrast:** 3, 6, 9, 12 with candidate +3: all gaps +3 (matches).
+                    - **Second contrast:** 3, 6, 10, 15 with candidate +3: gaps +3, +4, +5 (does not match); do not say these numbers cannot obey _any_ rule.
+                    - **Optional decrease:** 12, 10, 8, 6 with candidate −2: all gaps −2 (matches).
+                    - **Independent transfer:** 7, 10, 13, 16, ?; gaps +3, +3, +3, proposed continuation 19 if the constant +3 rule is maintained; choices 18 / 19 / 20.
+                    - Limit terms to the age-appropriate 0–30 range. These examples are not evidence that a finite list mathematically determines a uniquely necessary next number. Say “if we keep this step,” not “19 is the only next number possible.”
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    **Placement A / Section 3 — Check the claim**
+
+                    1. Show large ordered numerals **2, 5, 9** and a card **“Add 3 each time.”** Ask **“Does it fit the whole row? Check both jumps.”**
+                    2. Reveal the first gap by explicit action: **“2 to 5: 3 more. This matches.”** Highlight the pair; let the child predict whether the next gap will also match.
+                    3. Reveal second gap: **“5 to 9: 4 more. This does NOT match +3.”** Keep the first result visible so the contradiction is unmistakable.
+                    4. Offer choices **“Fits every jump”** / **“Does not fit every jump”** at any point. If a child selects “Fits” early, reply **“Let's check the other jump too.”** If still “Fits” after both, explain **“5 to 9 adds 4, so +3 does not fit this whole row.”** The other choice receives **“Yes, the first jump matched but the second did not.”** No penalty and no performance record.
+                    5. Offer an accessible “Compare another row” action. Display **3, 6, 9, 12** with candidate +3, then **3, 6, 10, 15** with candidate +3. Let the child reveal all gaps on each, then decide. For a true match: **“All three jumps add 3.”** For a mismatch: **“3 to 6 adds 3; 6 to 10 adds 4; 10 to 15 adds 5.”**
+                    6. Optional “Try a decreasing row” uses **12, 10, 8, 6** with −2 and explicit “two fewer” changes.
+                    7. Reflection: **“Was checking the first jump enough?”** After thought, reveal **“No. We need to check every jump we can see.”**
+
+                    **Placement B / Section 4 — Independent use**
+
+                    1. Show **7, 10, 13, 16, ?**; no candidate step is revealed. Ask **“Check the changes. Which number would come next if we keep the same jump?”**
+                    2. The learner may inspect the gaps in order: **7→10: +3**, **10→13: +3**, **13→16: +3**; hints do not automatically disclose the final value. Optional hint: **“Compare each pair of neighbors, not only the first two numbers.”**
+                    3. Allow selection from **18 / 19 / 20**. 18: **“16 to 18 adds 2; the earlier gaps were 3.”** 20: **“16 to 20 adds 4; the earlier gaps were 3.”** 19: **“16 to 19 adds 3, just like each earlier gap.”**
+                    4. Provide **“Show the explanation”** without requiring a response. Display **“Each jump we checked added 3. If we keep adding 3, then 16 + 3 = 19.”**
+                    5. Invite a why-explanation in multiple equivalent modes. A child can say it aloud to a trusted adult, type a short sentence if they wish, or select **“Every jump adds 3”** rather than “The first gap was 3, so I didn't check the rest” or “These numbers are close together”. This is formative teaching, NOT a scored Question object.
+                    6. A “Reset” action restores the fresh sequence. Optional alternate example **9, 7, 5, 3** with −2 offers retrieval without extending the graded task.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** ordered, readable number chips; per-pair inspector with “from/to/step” columns; an optional proposed-rule card; clear “Check next” / “Show all gaps” / “Try another row” / “Hint” / “Reset” buttons; explanation and choice regions.
+                    - **Two placements:** Separate self-contained prop-free Scene entries with independent starting scenarios and states. “Guided vs independent” are editorial entry requirements, not invented React props or new Resource_Config attributes. A Coding Agent may share internal logic while preserving the Scene contract.
+                    - **State:** current displayed row, proposed rule if shown, list of revealed neighboring pairs, optional tentative fit verdict or next-number choice, whether explanations have been revealed.
+                    - **Calculation invariant:** for every displayed neighboring pair a,b, the step is exactly b−a. A candidate rule d is consistent iff **every** adjacent difference in that shown row equals d. Showing only one successful gap must never produce an “all gaps verified” claim.
+                    - **Early choices:** An early guess is permitted, but the feedback requests inspection of remaining gaps instead of falsely marking the rule established; a learner may also skip guessing and inspect all gaps.
+                    - **Reset and switch:** Restore all initial hidden differences and choice states; reset is scoped to the current placement and never alters the other Section.
+                    - **Accuracy boundary:** The verdict is always **“fits this entire displayed row under the proposed constant-step interpretation”** or “does not fit this proposed constant step,” never “there can be no mathematical pattern.”
+                    - **No scoring:** These Scene states do not create an Assessment Method, Question correctness persistence, quiz result or mastery evidence.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Put the number row at the top and the ordered “neighboring pair / actual change / does candidate match?” inspector beneath. Highlight each newly checked pair briefly; leave the actual differences visible after revealing them. Use text and symbolic +3 / +4 / −2 labels with any status icons, not just red/green signals. Keep the interface spare, with no Program plot, timers, reward animations or external media. A reduced-motion state instantaneously shows the same numeric facts.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    - Translate “step”, “rule”, “fit”, “check every jump”, numeric changes, feedback and aria labels genuinely for every required language; no English fallback or omitted locales.
+                    - In RTL, preserve the mathematical order of a→b and the actual b−a relation; label the order of terms and the increasing number-line direction instead of automatically reversing SVG geometry. Controls follow logical reading order.
+                    - **Full nonvisual equivalent:** each pair is announced by term position and numeric values (“term one 2, term two 5, difference plus 3”), with text-based checked/unchecked and match/mismatch status. A screen-reader user can inspect every pair and choose an explanation without viewing the highlights.
+                    - Keyboard-only, touch and switch-style users must be able to operate every control with visible focus and adequate targets. No drag-only, mouseover-only, color-only, audio-only or timed questions. Number/label expansions fit zoomed and small-screen layouts.
+                    - Reduced motion eliminates only timing, never mathematical information. Every label, example and feedback message must work after a completed local download, without an API call. Readable HTML/text is an equivalent low-device path, not an inferior “lite” mode.
+                    - Helpful feedback does not diagnose learner ability, assign grades or require spoken input.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. For 2, 5, 9 with +3: first revealed gap matches; second gap is +4 and mismatches; overall “Does not fit every jump.”
+                    2. Early selection of “Fits” still prompts examination of the second gap; no score or irreversible failure.
+                    3. For 3, 6, 9, 12 with +3: all gaps +3 and overall fits.
+                    4. For 3, 6, 10, 15 with +3: differences +3/+4/+5 and overall does not fit; do NOT label row “patternless.”
+                    5. For 12, 10, 8, 6 with −2: all differences −2, valid decreasing constant step.
+                    6. For 7, 10, 13, 16, ?: +3 for all observed gaps; 19 follows the chosen constant step. 18 and 20 receive exact +2/+4 explanations.
+                    7. Learner can request hint or explanation without guessing; the complete reasoning remains available.
+                    8. Reset/Section isolation works; the independent example does not inherit the earlier rule claim or responses.
+                    9. LTR, RTL, keyboard, screen reader, reduced motion, zoomed mobile and offline modes expose identical numbers, difference calculations and explanatory outcomes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    - **Available:** generic Scene Resource type and current renderer, plus a Scene-localization context to be verified by Coding Agent for each selected locale.
+                    - **Proposed:** this new Rule Inspector Scene, two isolated Scene entries, localized source strings and integration; editor approval, Design Scene implementation, accessibility tests and offline checks still required.
+                    - **Curricular constraint:** The proposed arithmetic rule can fail without proving the row has no other mathematical description; this distinction is mandatory.
+                    - **Assessment handoff:** None of the choices are validated or scored Questions. Only a separate Assessment Architect review could authorize that.
+                  productionNotes: "This placement in Your Turn to Explain refers to ruleInspector.scene-spec.md; preserve the source's named mode/stage and independent reset semantics. Provisional draft; implementation pending."
+              section4Markdown2:
+                config:
+                  id: '9a923984-2853-5b83-b2d3-00000000000f'
+                  slug: 'section4Markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '7 to 10 adds 3; 10 to 13 adds 3; 13 to 16 adds 3. So keeping that same step gives 19 next. We checked the whole row.'
+                production:
+                  purpose: 'Original markdown resource from source Screenwriter draft'
+                  specification: '  3. **markdown — available.** After the independent attempt: “7 to 10 adds 3; 10 to 13 adds 3; 13 to 16 adds 3. So keeping that same step gives 19 next. We checked the whole row.”'
+            order:
+              - 'section4Markdown1'
+              - 'section4Scene1'
+              - 'section4Markdown2'
+        production:
+          purpose: 'Your Turn to Explain'
+          pedagogicalIntent: |-
+            - Purpose / learning outcome: Transfer to an unfamiliar row and articulate the reason rather than guess.
+            - Current implementation shape: LessonSection_Config; no mandatory Quiz section.
+            - Ordered content blocks:
+              1. **markdown — available.** “Try a new row: 7, 10, 13, 16, … . What changes each time? If the same rule continues, what number comes next? Explain why.” Optional hint: “Look at every neighboring pair.”
+              2. **scene — supported resource, proposed new content.** `Rule Inspector` (former ruleInspector.scene-spec.md; specification embedded in this YAML), independent mode: inspect each gap, select next term 18, 19 or 20, review feedback and explanation, reset if desired.
+              3. **markdown — available.** After the independent attempt: “7 to 10 adds 3; 10 to 13 adds 3; 13 to 16 adds 3. So keeping that same step gives 19 next. We checked the whole row.”
+            - Core explanation and learner-facing text: The current row supports a constant +3 step; continuation is conditional on retaining it.
+            - Illustration / model / experiment: Scaffolding is reduced but all differences and accessible models remain available on request. Optional descending transfer 9, 7, 5, 3 uses −2.
+            - Learner action, observations and explanatory feedback: 19 → “16 + 3 is 19, like the earlier jumps.” 18 → “That jumps 2, not 3.” 20 → “That jumps 4, not 3.” A child can choose a verbal, selected or typed reasoning route; speech recognition is not assumed. “Show explanation” is available without answering.
+            - Navigation and transition: Short reflection “How would you tell someone else to check a rule?” Then end, without a fabricated score.
+            - Accessibility, locale and RTL: Explanation may be selected, read, said aloud to an adult or typed voluntarily; no mandatory speech or motor-sensitive drag. Same values and responses in nonvisual and reduced-motion modes.
+            - Proposed unlocked Note(s): No new Note. Revisit Notes 1 and 3 as prompts for recall (planned, not wired).
+            - Implementation dependencies and review notes: The mathematical choices are instructional illustrations for a Scene, not validated assessment questions.
+          productionNotes: 'Source Section narrative/feedback/accessibility requirements retained without granting editorial approval.'
+    order:
+      - 'section1'
+      - 'section2'
+      - 'section3'
+      - 'section4'
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |-
+    # Finding and Continuing Number Patterns — Methodologist Brief
+
+    Date: 2026-10-30
+    Slug: numberPatterns
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Help learners recognize that a predictable numerical sequence can be described by a consistent additive step and then continued. The two Skills are taught together because finding a plausible step and applying it to later terms are connected yet independently meaningful abilities. The focus is reasoning about change, not memorizing a string of answers.
+
+    ## Target audience
+
+    Children aged 6–8 in grades 1–2, with mixed reading fluency and experience of skip-counting. Use short spoken and written directions, visible numerals, optional concrete objects and number lines, and ways to respond without relying on speech, color recognition or precise dragging.
+
+    ## Prerequisites
+
+    - Count forward reliably and compare nearby whole numbers; know that addition increases a quantity and subtraction decreases it in the examples used.
+    - For independent work with steps above one, be able to add a small constant repeatedly; learners who cannot yet do so need concrete counting support.
+
+    ## Target Skills
+
+    - [arithmeticPattern.data.ts](../../../../data/skills/algebra/patterns/skills/arithmeticPattern.data.ts)
+    - [growingPattern.data.ts](../../../../data/skills/algebra/patterns/skills/growingPattern.data.ts)
+
+    ## Expected learning outcomes
+
+    - Recognize a consistent increment or decrement in a short finite number sequence and describe it in everyday language (for example, “three more each time”).
+    - Check the proposed step against **every** adjacent pair in the supplied sequence rather than only the first pair.
+    - Continue a sequence by applying the verified local rule and explain why a proposed next term fits or fails.
+    - Distinguish a simple constant-step sequence from one where successive differences are unequal; avoid claiming that any finite list proves a unique universal rule.
+
+    ## Essential subject matter
+
+    A **term** is one entry in an ordered sequence; a **step** (or difference) is the change from a term to the next. For 4, 7, 10, 13, each consecutive difference is +3, so 16 is a natural continuation under the constant-step interpretation. For 12, 10, 8, 6, each step is −2; the skill includes constant-step decrease when supported by the learner's numeracy. For 2, 5, 9, the differences +3 and +4 are not constant, so “add three each time” does not fit all observed terms. A growing additive sequence can be shown as additional counters, equal jumps on a number line, and symbolic calculations. A finite collection of terms can fit more than one conceivable rule; here the instructional convention is the simplest constant additive step **consistent with all supplied transitions**, not an absolute uniqueness theorem. Worth future recall: a claimed rule needs to agree with every observed change.
+
+    ## Conceptual progression and dependencies
+
+    Start from counting and comparing adjacent quantities. Make each change visible; use the same additive step in at least two transitions; articulate that step before extending the sequence. Shift from objects/number-line jumps to numerals and verbal rules. Contrast a constant-step example with an uneven-change example and explain why a single guessed difference is insufficient. The Screenwriter chooses actual representations and learning interactions, not the Methodologist.
+
+    ## Misconceptions, examples and boundaries
+
+    Learners may copy a familiar counting rhyme without checking the numbers; infer a rule from a single gap; add the previous **term** instead of the fixed **step**; or assume a sequence must increase. Useful contrasts are 3, 6, 9, 12 (add 3) versus 3, 6, 10, 15 (changes are not constant). Keep number ranges small (prefer within 30 initially) and positive, nonnegative examples. Exclude geometric sequences, algebraic nth-term formulas, and ambiguous “guess the pattern” puzzles requiring unstated context.
+
+    ## Localization, accessibility and offline intent
+
+    Use culture-neutral object collections and numerals with explicit verbal alternatives; localize “term”, “step”, “more/less” and directional movement on number lines. In RTL languages, choose a mathematically meaningful number-line direction and label it rather than mechanically mirroring arrow semantics. Provide keyboard and nonvisual alternatives to ordered visual sequences, descriptive text for counters, clear symbols distinct from colors, and reduced-motion options. All selected lessons and representations must be able to function offline once downloaded, including explanatory feedback, without online-only assets. Small-device access must preserve the same mathematical reasoning.
+
+    ## Sources and factual verification
+
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), especially 1.OA.C.5 (counting related to addition/subtraction) and 2.NBT.A.2 (skip-counting); these are comparison references, not a claim of Curriculum alignment.
+    - [IES/WWC, Organizing Instruction and Study](https://ies.ed.gov/ncee/wwc/PracticeGuide/1), recommendations to connect concrete/abstract representations and require explanatory reasoning.
+    - [Playground generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md), source of the two target Skill methodological descriptions.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. The Lesson is standalone and Program-neutral; numerical depth is selected for the audience rather than attributed to an unverified national Curriculum.
+
+    ## Open editorial decisions
+
+    - Editor: confirm that the two related pattern Skills should remain in one independent Lesson; either could later be taught or assessed separately without altering its Skill identity.
+
+    ## Methodologist handoff
+
+    Ready for editor review of scope, prerequisites and both Skill references. Once approved, the Screenwriter may design accessible ways to discover, justify, and continue an additive pattern, including short recall cues. Do not infer Skill mastery from merely extending one sequence.
+  purpose: 'Help learners recognize that a predictable numerical sequence can be described by a consistent additive step and then continued. The two Skills are taught together because finding a plausible step and applying it to later terms are connected yet independently meaningful abilities. The focus is reasoning about change, not memorizing a string of answers.'
+  audience: 'Target grades and prerequisites in the complete methodology.'
+  productionNotes: |-
+    # Finding and Continuing Number Patterns — Content
+
+    Status: Draft
+    Target Lesson: content/playground/Data/Lessons/1/numberPatterns/ (Playground)
+    Audience: Children aged 6–8, grades 1–2; mixed numeracy, reading and language fluency; keyboard and nonvisual participation required
+    Approved Methodologist source: `Methodologist Brief` (source preserved in this YAML) — explicitly treated as editor-approved for this workflow test in the conversation; its existing status field still says Draft and requires separate editorial synchronization
+    Learning outcomes: recognize a consistent additive increase/decrease; test every adjacent gap; extend the verified rule; recognize unequal changes without claiming that a finite list has one mathematically unique explanation
+    Target Skills: The two canonical Skills linked in the Methodologist Brief (no competing copied IDs or definitions)
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    A number row can change by the same amount at every step. The child needs to SEE the changes, REPRODUCE them and CHECK all the gaps before continuing, rather than remembering a familiar counting chant. This Lesson uses concrete number-line hops, a learner-controlled step builder and an inspector for testing a rule. Every prediction receives an explanation, not a score.
+
+    Use whole numbers 0–30, mainly positive short rows. Increasing changes of 1–4 and decreasing changes of 1–3 fit the intended audience. When a row is continued, say explicitly that it is continued UNDER THE PROPOSED CONSTANT-STEP RULE: finite examples cannot determine a unique future by logic alone.
+
+    The first two Sections build the mental model; the third exposes a plausible wrong rule; the fourth transfers the checking habit to unseen numbers. Content must teach with manipulable models, not a wall of Markdown followed by an automatic quiz.
+
+    ## LEARNER JOURNEY
+
+    1. Notice and predict: 4, 7, 10, 13, …; make equal jumps visible.
+    2. Explore: change the jump, advance one term, observe rising or falling numbers.
+    3. Test: check every gap before trusting the statement “add three each time.”
+    4. Transfer: inspect 7, 10, 13, 16, … independently and explain the next term.
+
+    Pace is learner-controlled; hints and retries carry no penalty. No Program mascots, missions, or reward mechanics.
+
+    ## SECTION PLAN
+
+
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - `Step Explorer` (former stepExplorer.scene-spec.md; specification embedded in this YAML) — proposed new prop-free, localized, learner-controlled Scene for Sections 1–2.
+    - `Rule Inspector` (former ruleInspector.scene-spec.md; specification embedded in this YAML) — proposed new prop-free, localized, rule-testing Scene for Sections 3–4.
+
+    Both Scenes need separate editorial approval and implementation via Design Scene. Generic scene block rendering already exists; these Scene components do not.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    - **Note 1:** “A step is the change to the next number.” Proposed unlock after Section 1 reveals and explains the three equal +3 jumps.
+    - **Note 2:** “The same step can add or take away.” Proposed unlock after the increasing AND decreasing example is understood in Section 2.
+    - **Note 3:** “Check every jump before trusting a rule.” Proposed unlock after Section 3's mismatching second gap is explained.
+
+    **Status: planned; not wired.** No Note entity, unlock API/event, persistent state, local revision-sheet generator or spaced-review scheduler is claimed implemented. Future review material would include only a learner's actually unlocked cues, not the whole Lesson. A revealed Note does not prove mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    - Sections 1–2: supported prediction, worked example, manipulation and self-explanation.
+    - Section 3: deliberate contrast of an equal-step pattern and an uneven-step counterexample; check all gaps before judging.
+    - Section 4: independent transfer with optional hints and immediate explanatory feedback.
+    - Assessment Architect, not Screenwriter, decides any later validated Quiz questions, Skill-specific evidence, scoring, pass criteria, retries and misconception analytics. Current question adapter accepts select-one-answer; other Question types may be typed but are not thereby integrated.
+    - Future spaced retrieval is a product dependency, not an implemented feature; revisit new rows in a later Lesson or review flow only when separately specified.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    All learner-facing source text here is English for subsequent genuine translations into **every supported locale**; no silent English fallback, language omission or placeholder copies. Translate prompts, controls, explanations, aria labels and Notes; keep short directions and numeric meanings stable. LTR/RTL need semantic rather than mechanical mirroring: increasing and decreasing number-line directions must be explicit. All jumps have linear text/table equivalents, screen-reader descriptions, keyboard controls, clear focus and child-sized targets. No drag-only, color-only, audio-only or motion-only information. Reduced motion produces the identical mathematical states instantly. Once downloaded, all instructional text, Scenes, feedback and selected-language resources must run fully offline; lightweight HTML/SVG suffices for weak devices. Video, audio, image, code and YouTube resources are **not required**. The generic renderer currently handles text, markdown and scene only; audio/image/video/code are typed-only there, and YouTube is not in Resource_Config.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    | Feature                                                             | Readiness                                   | Owner / required action                                                            |
+    | ------------------------------------------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------- |
+    | LessonSection_Config, ordered single-column text/markdown resources | Available in current contract/renderer      | Coding Agent assembles reviewed localized content                                  |
+    | scene Resource block and React rendering                            | Available integration mechanism             | Coding Agent verifies registration and locale handling                             |
+    | Step Explorer and Rule Inspector                                    | Proposed new components                     | Scene Designer implements separate approved Scene specs with tests                 |
+    | Independent section-specific instances / starting modes             | Requires integration review                 | Coding Agent chooses prop-free entries and isolated state; no invented React props |
+    | KnowledgeCheckpoint                                                 | Existing unscored widget via Scene wrapper  | Not necessary for this Lesson; do not infer assessment from checking               |
+    | Graded Quiz/Question, assessment attribution                        | Contract-only/partially integrated          | Assessment Architect specifies independently, if approved                          |
+    | Notes, persisted unlocks, spaced review, full offline download flow | Planned / not wired                         | Separate later implementation; do not fabricate APIs                               |
+    | Image/audio/video/code blocks                                       | Typed-only in the generic Section renderer  | Not needed                                                                         |
+    | youtube                                                             | Label-only, not a supported Resource_Config | Not used                                                                           |
+
+    The Methodologist Brief still carries status Draft on disk. The editor's explicit authorization to **treat all existing Briefs as approved for this test** permits the Screenwriter's work now; do not rewrite that Methodologist-owned file here. Resolve metadata before publication.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - `Methodologist Brief` (source preserved in this YAML): binding audience, two Skill links, learning goals, examples, scope, and errors to address.
+    - [Generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md): canonical skill descriptions drawn from existing Playground TypeScript entities.
+    - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md): workflow and typed editorial structure.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) and [IES/WWC Organizing Instruction and Study](https://ies.ed.gov/ncee/wwc/PracticeGuide/1): sources already referenced in the Methodologist Brief; no claim of curriculum certification.
+    - Editorial review: confirm pairing of the two approved Skills in one Lesson; review clarity of the English prompts, age range and Scene scope.
+    - Engineering review: confirm prop-free Scene entries with independent initial states and fully localized offline resources; no invented mode prop.
+    - Publication blocker: harmonize verbal Methodologist approval with its still-Draft file metadata through a separately authorized editorial update.
+
+    ## HANDOFF
+
+    One Screenwriter-owned Draft content.md and two separate Draft Scene specifications, linked below this Lesson's existing folder. Stop after these editorial artifacts. Next independent approvals: editor reviews Content and each Scene spec; Scene Designer implements approved Scenes with tests; Coding Agent assembles runtime; Assessment Architect owns any scored evidence. Do not modify other Lessons, Skill taxonomy, Methodologist Brief, application code or PR base branch.

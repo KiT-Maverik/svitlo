@@ -1,0 +1,616 @@
+config:
+  id: '35d6d64d-ec29-541b-a620-6c529d53810f'
+  slug: 'checkEqualitiesAndInequalities'
+  type: 'lesson'
+  skills:
+    [
+      '974af868-5b72-4a5a-a88e-8f7e03e48661',
+      '2429be16-34f7-4857-8144-f2d550931872',
+      '7dca0048-581a-4cff-9fa4-670cb7655505',
+    ]
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'True or False? Compare Both Sides'
+  section:
+    items:
+      section1:
+        config:
+          id: 'f31c7f8a-d717-5aa9-bdca-ff8aa8c48fb3'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Test an equality with two expressions'
+            navigationLabel:
+              en: 'Test an equality with two expressions'
+          content:
+            items:
+              text1:
+                config:
+                  id: '7dafaafb-7f7a-53d8-beea-2afb04e95f36'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Does **3 + 5 = 4 + 4** tell the truth? Look at both sides before you decide.'
+                production:
+                  purpose: 'Source learner prompt/feedback'
+              scene1:
+                config:
+                  id: '0b854ce4-9896-5909-ba9c-cce483cfd7e7'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Does **3 + 5 = 4 + 4** tell the truth? Look at both sides before you decide.'
+                production:
+                  specification: |
+                    # Statement Verifier — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Brief (embedded in this Lesson config.yaml).
+                    **Availability:** Proposed prop-free and self-contained Scene, not an implemented Question or Quiz.
+
+                    ## Mathematical and pedagogical purpose
+
+                    Each complete equality or strict inequality is a mathematical **claim**, true only if the evaluated values of both complete sides satisfy the _specified_ sign. The comparison must be based on the actual numbers, never the orientation of a decorative picture or merely the leftmost numeral. In particular, equal values satisfy = but **not** < or >.
+
+                    ## Experiences, learner actions and feedback
+
+                    ### Entry A — two different expressions, same value (Section 1)
+
+                    Display 3 + 5 = 4 + 4 and two quantity boards, each with its own “Show count” control. Prompt “Is it true?” before revealing totals. Board A totals eight; board B also eight. The original equality is true. If the learner picks false because the arrangements look unlike, respond “Three plus five is eight. Four plus four is also eight. Both values match.” Mark prediction as revisable and do not record success/failure.
+
+                    ### Entry B — compare evaluated values with strict signs (Section 2)
+
+                    First show 7 < 8 and 8 > 7, with text “seven is less than eight” and “eight is greater than seven”; this explains sign meaning rather than teaching a nonmathematical mnemonic. Show 5 + 2 < 4 + 4 with totals concealed. Allow evaluation of left=7 and right=8 in either order, then invite true/false verdict: true because 7<8. Incorrect false feedback: “The first value is seven, the other is eight; seven really is smaller.” Next show 9 − 2 > 3 + 5, left=7, right=8. The claim is false because 7 is not greater than 8. The learner may revise after revealing values.
+
+                    ### Entry C — equal numbers do not satisfy a strict inequality (Section 3)
+
+                    Display 4 + 6 < 8 + 2. After prediction reveal 10 on left and 10 on right; original claim is false. Offer relation-change controls =, < and > while **keeping operands fixed**. Choosing = yields 10=10, true. Retaining < or selecting > gets explicit feedback “Ten is neither less than nor greater than ten; it is equal.” Show both **original** and **edited** forms with labels; never rewrite history to suggest the original was true.
+
+                    ### Entry D — independent transfer (Section 4)
+
+                    Display 5 + 6 > 8 + 2 with no initial arithmetic hint. The learner can explicitly reveal a hint for each side, then select verdict. Values 11 and 10, so the claim is true. Wrong false verdict: “Eleven is greater than ten, so the statement is true.” Optional contrast 8 − 3 > 2 + 4 is 5>6, false; a correct repair is 8 − 3 < 2 + 4. An always-available “Show explanation” action presents these calculations without requiring a guess.
+
+                    ## Objects, initial states and invariants
+
+                    - Complete operand/expression text for each side, original relation operator, independently disclosed numeric values, learner verdict, optional replacement operator in entry C, explanation and hint reveal states, Reset.
+                    - Calculate side values from the expressions shown. For = compare numeric equality; for < compare strictly less; for > compare strictly greater. A chosen answer must **never** determine the result calculation.
+                    - No automatic state transfer between entries; each is a self-contained public no-props Scene with its own initial scenario. Reusing internal math helpers is allowed, inventing external props, learner records or assessment APIs is not.
+                    - A verdict of false is a _teaching decision_, not a score or Skill mastery measurement. Always show why the relationship fails.
+
+                    ## Visual/media and universal access
+
+                    Use a compact expression row with separate optional counted groups. All information must be accessible as text and speech-ready mathematical descriptions; reading a bare sign without its relation meaning is insufficient. Color may emphasize but never encode truth alone. Controls support keyboard/touch/switch; no hover, drag, timer, audio-only or animation-only path. Use explicit left/right semantic labels adapted to locale layout while preserving mathematical operand order and sign meaning in RTL. For example, 7 < 8 cannot become 8 < 7 through blind mirroring. Provide genuine translations for every supported locale including mathematical read-outs, hints, control names and error explanations. Reduced-motion outcomes, readable zoom/mobile layout, visual focus and a locally available offline version after download are implementation acceptance targets only.
+
+                    ## Acceptance scenarios
+
+                    1. 3 + 5 = 4 + 4 is 8=8, true.
+                    2. 7<8 and 8>7 are true; 5+2<4+4 is 7<8 true.
+                    3. 9−2>3+5 is 7>8 false.
+                    4. 4+6<8+2 is 10<10 false; changing only the sign to = yields true.
+                    5. 5+6>8+2 is 11>10 true; 8−3>2+4 is 5>6 false.
+                    6. Misconception feedback names both evaluated values and the relation; no grading.
+                    7. Independent reset and keyboard, screen-reader, RTL, zoom, reduced-motion and downloaded-offline access all preserve numeric outcomes.
+
+                    ## Editorial/technical handoff
+
+                    The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
+                  purpose: 'Test an equality with two expressions: independent scene placement'
+                  productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
+              text2:
+                config:
+                  id: '7eafac8e-827a-5891-bfea-2c8e03e95da3'
+                  slug: 'text2'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Look again: three plus five is eight; four plus four is also eight. A true equality does not require identical writing on each side.'
+                production:
+                  purpose: 'Source learner prompt/feedback'
+            order: ['text1', 'scene1', 'text2']
+        production:
+          purpose: 'Test an equality with two expressions'
+          productionNotes: |-
+            _Purpose: evaluate both entire sides and compare the results._
+
+            1. **`text`:** “Does **3 + 5 = 4 + 4** tell the truth? Look at both sides before you decide.” Invite a prediction without immediately revealing the totals.
+            2. **`scene` Resource (proposed):** Statement Verifier (Scene specification statementVerifier embedded below), entry A, shows two equal-unit trays with groups 3+5 and 4+4, the original equality and separate “Check side” buttons. The learner can decide true/false then inspect **8** and **8**. “Yes, they are arranged differently but each side equals eight.”
+            3. **`text`, misconception feedback:** If false chosen: “Look again: three plus five is eight; four plus four is also eight. A true equality does not require identical writing on each side.” No score, no forced retry.
+      section2:
+        config:
+          id: 'f21c7df7-d417-55f0-bcca-fdf7a9c49146'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Less than, more than, and the values they compare'
+            navigationLabel:
+              en: 'Less than, more than, and the values they compare'
+          content:
+            items:
+              markdown1:
+                config:
+                  id: '551333b8-f6cc-5cff-8f75-b3b81ebc05f5'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The sign **<** says ‘the value on this side is **smaller** than the other value’. The sign **>** says ‘the value on this side is **greater**’. Neither sign is automatically an instruction to find an answer.'
+                production:
+                  purpose: 'Source explanatory learner copy'
+              text1:
+                config:
+                  id: 'e04eaada-aff9-56a5-a189-2ada56fa2e37'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Is **5 + 2 < 4 + 4** true? Work out the left and right values.'
+                production:
+                  purpose: 'Source learner prompt/feedback'
+              scene1:
+                config:
+                  id: 'ee01b193-0604-5ade-9d19-319300fde388'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Is **5 + 2 < 4 + 4** true? Work out the left and right values.'
+                production:
+                  specification: |
+                    # Statement Verifier — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Brief (embedded in this Lesson config.yaml).
+                    **Availability:** Proposed prop-free and self-contained Scene, not an implemented Question or Quiz.
+
+                    ## Mathematical and pedagogical purpose
+
+                    Each complete equality or strict inequality is a mathematical **claim**, true only if the evaluated values of both complete sides satisfy the _specified_ sign. The comparison must be based on the actual numbers, never the orientation of a decorative picture or merely the leftmost numeral. In particular, equal values satisfy = but **not** < or >.
+
+                    ## Experiences, learner actions and feedback
+
+                    ### Entry A — two different expressions, same value (Section 1)
+
+                    Display 3 + 5 = 4 + 4 and two quantity boards, each with its own “Show count” control. Prompt “Is it true?” before revealing totals. Board A totals eight; board B also eight. The original equality is true. If the learner picks false because the arrangements look unlike, respond “Three plus five is eight. Four plus four is also eight. Both values match.” Mark prediction as revisable and do not record success/failure.
+
+                    ### Entry B — compare evaluated values with strict signs (Section 2)
+
+                    First show 7 < 8 and 8 > 7, with text “seven is less than eight” and “eight is greater than seven”; this explains sign meaning rather than teaching a nonmathematical mnemonic. Show 5 + 2 < 4 + 4 with totals concealed. Allow evaluation of left=7 and right=8 in either order, then invite true/false verdict: true because 7<8. Incorrect false feedback: “The first value is seven, the other is eight; seven really is smaller.” Next show 9 − 2 > 3 + 5, left=7, right=8. The claim is false because 7 is not greater than 8. The learner may revise after revealing values.
+
+                    ### Entry C — equal numbers do not satisfy a strict inequality (Section 3)
+
+                    Display 4 + 6 < 8 + 2. After prediction reveal 10 on left and 10 on right; original claim is false. Offer relation-change controls =, < and > while **keeping operands fixed**. Choosing = yields 10=10, true. Retaining < or selecting > gets explicit feedback “Ten is neither less than nor greater than ten; it is equal.” Show both **original** and **edited** forms with labels; never rewrite history to suggest the original was true.
+
+                    ### Entry D — independent transfer (Section 4)
+
+                    Display 5 + 6 > 8 + 2 with no initial arithmetic hint. The learner can explicitly reveal a hint for each side, then select verdict. Values 11 and 10, so the claim is true. Wrong false verdict: “Eleven is greater than ten, so the statement is true.” Optional contrast 8 − 3 > 2 + 4 is 5>6, false; a correct repair is 8 − 3 < 2 + 4. An always-available “Show explanation” action presents these calculations without requiring a guess.
+
+                    ## Objects, initial states and invariants
+
+                    - Complete operand/expression text for each side, original relation operator, independently disclosed numeric values, learner verdict, optional replacement operator in entry C, explanation and hint reveal states, Reset.
+                    - Calculate side values from the expressions shown. For = compare numeric equality; for < compare strictly less; for > compare strictly greater. A chosen answer must **never** determine the result calculation.
+                    - No automatic state transfer between entries; each is a self-contained public no-props Scene with its own initial scenario. Reusing internal math helpers is allowed, inventing external props, learner records or assessment APIs is not.
+                    - A verdict of false is a _teaching decision_, not a score or Skill mastery measurement. Always show why the relationship fails.
+
+                    ## Visual/media and universal access
+
+                    Use a compact expression row with separate optional counted groups. All information must be accessible as text and speech-ready mathematical descriptions; reading a bare sign without its relation meaning is insufficient. Color may emphasize but never encode truth alone. Controls support keyboard/touch/switch; no hover, drag, timer, audio-only or animation-only path. Use explicit left/right semantic labels adapted to locale layout while preserving mathematical operand order and sign meaning in RTL. For example, 7 < 8 cannot become 8 < 7 through blind mirroring. Provide genuine translations for every supported locale including mathematical read-outs, hints, control names and error explanations. Reduced-motion outcomes, readable zoom/mobile layout, visual focus and a locally available offline version after download are implementation acceptance targets only.
+
+                    ## Acceptance scenarios
+
+                    1. 3 + 5 = 4 + 4 is 8=8, true.
+                    2. 7<8 and 8>7 are true; 5+2<4+4 is 7<8 true.
+                    3. 9−2>3+5 is 7>8 false.
+                    4. 4+6<8+2 is 10<10 false; changing only the sign to = yields true.
+                    5. 5+6>8+2 is 11>10 true; 8−3>2+4 is 5>6 false.
+                    6. Misconception feedback names both evaluated values and the relation; no grading.
+                    7. Independent reset and keyboard, screen-reader, RTL, zoom, reduced-motion and downloaded-offline access all preserve numeric outcomes.
+
+                    ## Editorial/technical handoff
+
+                    The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
+                  purpose: 'Less than, more than, and the values they compare: independent scene placement'
+                  productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
+              text2:
+                config:
+                  id: 'df4ea947-acf9-51ec-a089-294757fa2fca'
+                  slug: 'text2'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Try **9 − 2 > 3 + 5**. The left side is seven; the right side is eight. So the claim ‘seven is greater than eight’ is false.'
+                production:
+                  purpose: 'Source learner prompt/feedback'
+            order: ['markdown1', 'text1', 'scene1', 'text2']
+        production:
+          purpose: 'Less than, more than, and the values they compare'
+          productionNotes: |-
+            _Purpose: connect strict order relation to **evaluated** values, not literal first numerals._
+
+            1. **`markdown`:** “The sign **<** says ‘the value on this side is **smaller** than the other value’. The sign **>** says ‘the value on this side is **greater**’. Neither sign is automatically an instruction to find an answer.” Present clear numerical examples **7 < 8** and **8 > 7**; accompanying bars explicitly label seven and eight.
+            2. **`text`:** “Is **5 + 2 < 4 + 4** true? Work out the left and right values.”
+            3. **`scene` Resource (proposed):** Statement Verifier entry B. Reveal left **7**, right **8** separately and show **7 < 8**, true. Ask the learner to explain with “seven is smaller than eight” rather than “the arrow points that way”. For false: “Five plus two is seven; four plus four is eight. Seven really _is less than_ eight.”
+            4. **`text`:** “Try **9 − 2 > 3 + 5**. The left side is seven; the right side is eight. So the claim ‘seven is greater than eight’ is false.” Offer learner-controlled reveal before explaining.
+      section3:
+        config:
+          id: 'f11c7c64-d517-5783-bbca-fc64aac492d9'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'What if the values are equal but the symbol says “less”?'
+            navigationLabel:
+              en: 'What if the values are equal but the symbol says “less”?'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'b12a1029-9834-5486-b264-902940f0c308'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Someone writes **4 + 6 < 8 + 2** and says it is true because both sides make ten. Is that a good reason?'
+                production:
+                  purpose: 'Source learner prompt/feedback'
+              scene1:
+                config:
+                  id: '8dc3130a-dc25-5c97-bcda-930ad1fb8e99'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Someone writes **4 + 6 < 8 + 2** and says it is true because both sides make ten. Is that a good reason?'
+                production:
+                  specification: |
+                    # Statement Verifier — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Brief (embedded in this Lesson config.yaml).
+                    **Availability:** Proposed prop-free and self-contained Scene, not an implemented Question or Quiz.
+
+                    ## Mathematical and pedagogical purpose
+
+                    Each complete equality or strict inequality is a mathematical **claim**, true only if the evaluated values of both complete sides satisfy the _specified_ sign. The comparison must be based on the actual numbers, never the orientation of a decorative picture or merely the leftmost numeral. In particular, equal values satisfy = but **not** < or >.
+
+                    ## Experiences, learner actions and feedback
+
+                    ### Entry A — two different expressions, same value (Section 1)
+
+                    Display 3 + 5 = 4 + 4 and two quantity boards, each with its own “Show count” control. Prompt “Is it true?” before revealing totals. Board A totals eight; board B also eight. The original equality is true. If the learner picks false because the arrangements look unlike, respond “Three plus five is eight. Four plus four is also eight. Both values match.” Mark prediction as revisable and do not record success/failure.
+
+                    ### Entry B — compare evaluated values with strict signs (Section 2)
+
+                    First show 7 < 8 and 8 > 7, with text “seven is less than eight” and “eight is greater than seven”; this explains sign meaning rather than teaching a nonmathematical mnemonic. Show 5 + 2 < 4 + 4 with totals concealed. Allow evaluation of left=7 and right=8 in either order, then invite true/false verdict: true because 7<8. Incorrect false feedback: “The first value is seven, the other is eight; seven really is smaller.” Next show 9 − 2 > 3 + 5, left=7, right=8. The claim is false because 7 is not greater than 8. The learner may revise after revealing values.
+
+                    ### Entry C — equal numbers do not satisfy a strict inequality (Section 3)
+
+                    Display 4 + 6 < 8 + 2. After prediction reveal 10 on left and 10 on right; original claim is false. Offer relation-change controls =, < and > while **keeping operands fixed**. Choosing = yields 10=10, true. Retaining < or selecting > gets explicit feedback “Ten is neither less than nor greater than ten; it is equal.” Show both **original** and **edited** forms with labels; never rewrite history to suggest the original was true.
+
+                    ### Entry D — independent transfer (Section 4)
+
+                    Display 5 + 6 > 8 + 2 with no initial arithmetic hint. The learner can explicitly reveal a hint for each side, then select verdict. Values 11 and 10, so the claim is true. Wrong false verdict: “Eleven is greater than ten, so the statement is true.” Optional contrast 8 − 3 > 2 + 4 is 5>6, false; a correct repair is 8 − 3 < 2 + 4. An always-available “Show explanation” action presents these calculations without requiring a guess.
+
+                    ## Objects, initial states and invariants
+
+                    - Complete operand/expression text for each side, original relation operator, independently disclosed numeric values, learner verdict, optional replacement operator in entry C, explanation and hint reveal states, Reset.
+                    - Calculate side values from the expressions shown. For = compare numeric equality; for < compare strictly less; for > compare strictly greater. A chosen answer must **never** determine the result calculation.
+                    - No automatic state transfer between entries; each is a self-contained public no-props Scene with its own initial scenario. Reusing internal math helpers is allowed, inventing external props, learner records or assessment APIs is not.
+                    - A verdict of false is a _teaching decision_, not a score or Skill mastery measurement. Always show why the relationship fails.
+
+                    ## Visual/media and universal access
+
+                    Use a compact expression row with separate optional counted groups. All information must be accessible as text and speech-ready mathematical descriptions; reading a bare sign without its relation meaning is insufficient. Color may emphasize but never encode truth alone. Controls support keyboard/touch/switch; no hover, drag, timer, audio-only or animation-only path. Use explicit left/right semantic labels adapted to locale layout while preserving mathematical operand order and sign meaning in RTL. For example, 7 < 8 cannot become 8 < 7 through blind mirroring. Provide genuine translations for every supported locale including mathematical read-outs, hints, control names and error explanations. Reduced-motion outcomes, readable zoom/mobile layout, visual focus and a locally available offline version after download are implementation acceptance targets only.
+
+                    ## Acceptance scenarios
+
+                    1. 3 + 5 = 4 + 4 is 8=8, true.
+                    2. 7<8 and 8>7 are true; 5+2<4+4 is 7<8 true.
+                    3. 9−2>3+5 is 7>8 false.
+                    4. 4+6<8+2 is 10<10 false; changing only the sign to = yields true.
+                    5. 5+6>8+2 is 11>10 true; 8−3>2+4 is 5>6 false.
+                    6. Misconception feedback names both evaluated values and the relation; no grading.
+                    7. Independent reset and keyboard, screen-reader, RTL, zoom, reduced-motion and downloaded-offline access all preserve numeric outcomes.
+
+                    ## Editorial/technical handoff
+
+                    The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
+                  purpose: 'What if the values are equal but the symbol says “less”?: independent scene placement'
+                  productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
+              markdown1:
+                config:
+                  id: '24fe5933-7d90-59f4-9f60-d93340ad8bb2'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Equal values satisfy **=**, but not the strict signs **<** or **>**. A false claim may have correctly calculated numbers but the **wrong relation**.'
+                production:
+                  purpose: 'Source explanatory learner copy'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'What if the values are equal but the symbol says “less”?'
+          productionNotes: |-
+            _Purpose: detect the subtle false strict inequality._
+
+            1. **`text`:** “Someone writes **4 + 6 < 8 + 2** and says it is true because both sides make ten. Is that a good reason?” Allow a prediction before showing values.
+            2. **`scene` Resource (proposed):** Statement Verifier entry C compares **10** and **10**. Child must choose the relation to _repair_ the original statement from **<** to **=** while leaving the expressions unchanged. If select **>**, feedback: “Ten is not greater than ten.” If retain **<**, feedback: “Ten is not smaller than ten.” If choose **=**: “Yes. Equal values need equality, not strict less-than.”
+            3. **`markdown`:** “Equal values satisfy **=**, but not the strict signs **<** or **>**. A false claim may have correctly calculated numbers but the **wrong relation**.”
+      section4:
+        config:
+          id: 'f01c7ad1-da17-5f62-baca-fad1abc4946c'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Independent claim check'
+            navigationLabel:
+              en: 'Independent claim check'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'c6fcffa0-a3da-51b3-8837-7fa02fb00d51'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Check **5 + 6 > 8 + 2**. Choose true or false, then explain what each side equals. The symbol is a claim, not a calculator button.'
+                production:
+                  purpose: 'Source learner prompt/feedback'
+              scene1:
+                config:
+                  id: '55cccba1-9ad2-53ec-84e4-4ba1f02bec82'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Check **5 + 6 > 8 + 2**. Choose true or false, then explain what each side equals. The symbol is a claim, not a calculator button.'
+                production:
+                  specification: |
+                    # Statement Verifier — Scene Specification
+
+                    **Status:** Provisional Draft — pending Methodologist/editor approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent:** Lesson Content (embedded in this Lesson config.yaml), Sections 1–4; Draft Brief (embedded in this Lesson config.yaml).
+                    **Availability:** Proposed prop-free and self-contained Scene, not an implemented Question or Quiz.
+
+                    ## Mathematical and pedagogical purpose
+
+                    Each complete equality or strict inequality is a mathematical **claim**, true only if the evaluated values of both complete sides satisfy the _specified_ sign. The comparison must be based on the actual numbers, never the orientation of a decorative picture or merely the leftmost numeral. In particular, equal values satisfy = but **not** < or >.
+
+                    ## Experiences, learner actions and feedback
+
+                    ### Entry A — two different expressions, same value (Section 1)
+
+                    Display 3 + 5 = 4 + 4 and two quantity boards, each with its own “Show count” control. Prompt “Is it true?” before revealing totals. Board A totals eight; board B also eight. The original equality is true. If the learner picks false because the arrangements look unlike, respond “Three plus five is eight. Four plus four is also eight. Both values match.” Mark prediction as revisable and do not record success/failure.
+
+                    ### Entry B — compare evaluated values with strict signs (Section 2)
+
+                    First show 7 < 8 and 8 > 7, with text “seven is less than eight” and “eight is greater than seven”; this explains sign meaning rather than teaching a nonmathematical mnemonic. Show 5 + 2 < 4 + 4 with totals concealed. Allow evaluation of left=7 and right=8 in either order, then invite true/false verdict: true because 7<8. Incorrect false feedback: “The first value is seven, the other is eight; seven really is smaller.” Next show 9 − 2 > 3 + 5, left=7, right=8. The claim is false because 7 is not greater than 8. The learner may revise after revealing values.
+
+                    ### Entry C — equal numbers do not satisfy a strict inequality (Section 3)
+
+                    Display 4 + 6 < 8 + 2. After prediction reveal 10 on left and 10 on right; original claim is false. Offer relation-change controls =, < and > while **keeping operands fixed**. Choosing = yields 10=10, true. Retaining < or selecting > gets explicit feedback “Ten is neither less than nor greater than ten; it is equal.” Show both **original** and **edited** forms with labels; never rewrite history to suggest the original was true.
+
+                    ### Entry D — independent transfer (Section 4)
+
+                    Display 5 + 6 > 8 + 2 with no initial arithmetic hint. The learner can explicitly reveal a hint for each side, then select verdict. Values 11 and 10, so the claim is true. Wrong false verdict: “Eleven is greater than ten, so the statement is true.” Optional contrast 8 − 3 > 2 + 4 is 5>6, false; a correct repair is 8 − 3 < 2 + 4. An always-available “Show explanation” action presents these calculations without requiring a guess.
+
+                    ## Objects, initial states and invariants
+
+                    - Complete operand/expression text for each side, original relation operator, independently disclosed numeric values, learner verdict, optional replacement operator in entry C, explanation and hint reveal states, Reset.
+                    - Calculate side values from the expressions shown. For = compare numeric equality; for < compare strictly less; for > compare strictly greater. A chosen answer must **never** determine the result calculation.
+                    - No automatic state transfer between entries; each is a self-contained public no-props Scene with its own initial scenario. Reusing internal math helpers is allowed, inventing external props, learner records or assessment APIs is not.
+                    - A verdict of false is a _teaching decision_, not a score or Skill mastery measurement. Always show why the relationship fails.
+
+                    ## Visual/media and universal access
+
+                    Use a compact expression row with separate optional counted groups. All information must be accessible as text and speech-ready mathematical descriptions; reading a bare sign without its relation meaning is insufficient. Color may emphasize but never encode truth alone. Controls support keyboard/touch/switch; no hover, drag, timer, audio-only or animation-only path. Use explicit left/right semantic labels adapted to locale layout while preserving mathematical operand order and sign meaning in RTL. For example, 7 < 8 cannot become 8 < 7 through blind mirroring. Provide genuine translations for every supported locale including mathematical read-outs, hints, control names and error explanations. Reduced-motion outcomes, readable zoom/mobile layout, visual focus and a locally available offline version after download are implementation acceptance targets only.
+
+                    ## Acceptance scenarios
+
+                    1. 3 + 5 = 4 + 4 is 8=8, true.
+                    2. 7<8 and 8>7 are true; 5+2<4+4 is 7<8 true.
+                    3. 9−2>3+5 is 7>8 false.
+                    4. 4+6<8+2 is 10<10 false; changing only the sign to = yields true.
+                    5. 5+6>8+2 is 11>10 true; 8−3>2+4 is 5>6 false.
+                    6. Misconception feedback names both evaluated values and the relation; no grading.
+                    7. Independent reset and keyboard, screen-reader, RTL, zoom, reduced-motion and downloaded-offline access all preserve numeric outcomes.
+
+                    ## Editorial/technical handoff
+
+                    The current generic renderer supports a Scene Resource, not this particular design. Coding Agent must verify concrete localization context, build a prop-free Scene and tests, review WCAG 2.2 AA and offline completeness, and seek editor approval. No runtime data, Question/Quiz config, score, persistence or Note event is introduced.
+                  purpose: 'Independent claim check: independent scene placement'
+                  productionNotes: 'Legacy Scene statementVerifier.scene-spec.md; preserve the placement scenario described in Section productionNotes. This placement has a distinct stable ID.'
+              text2:
+                config:
+                  id: 'c9fd0459-a4da-5346-8b37-84592cb00898'
+                  slug: 'text2'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: '**8 − 3 > 2 + 4**'
+                production:
+                  purpose: 'Source learner prompt/feedback'
+              markdown1:
+                config:
+                  id: '9352ce9a-80c5-5611-8db5-4e9af252b66b'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "**Recall:** First find or reason about each side's value. Then check whether the sign **=, <, >** describes the comparison accurately."
+                production:
+                  purpose: 'Source explanatory learner copy'
+            order: ['text1', 'scene1', 'text2', 'markdown1']
+        production:
+          purpose: 'Independent claim check'
+          productionNotes: |-
+            _Purpose: make the learner evaluate without a preselected comparison._
+
+            1. **`text`:** “Check **5 + 6 > 8 + 2**. Choose true or false, then explain what each side equals. The symbol is a claim, not a calculator button.”
+            2. **`scene` Resource (proposed):** Statement Verifier entry D hides totals until inspected and offers optional hints “Compute five plus six” and “Compute eight plus two”. Values **11** and **10**; claim **11 > 10** is true. Incorrect “false” receives “Eleven is one more than ten; the sign says greater, so the claim is true.”
+            3. **`text`:** Optional contrast “**8 − 3 > 2 + 4**” shows **5** versus **6**, so **5 > 6** is false. The corrected relation is **<**. Encourage explanation based on _both_ values.
+            4. **`markdown`:** “**Recall:** First find or reason about each side's value. Then check whether the sign **=, <, >** describes the comparison accurately.”
+    order: ['section1', 'section2', 'section3', 'section4']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # True or False? Compare Both Sides — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: checkEqualitiesAndInequalities
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Progress from understanding the equals sign and constructing matching expressions to evaluating _complete_ mathematical claims. Include the order relations < and > as true/false statements, not only numerical equalities.
+
+    ## Target audience
+
+    **Primary audience: Grade 2.** Select conceptual depth and expected independence according to these prerequisites, not a numerical grade ceiling on the canonical Skill. Plan for developing reading fluency, optional teacher/adult mediation, accessible symbols, working-memory scaffolding and multiple response modes. All examples remain legible and comprehensible without sound, exact pointer control or high-speed interaction.
+
+    ## Prerequisites
+
+    - [equalityMeaning.data.ts](../../../../data/skills/algebra/equalities/skills/equalityMeaning.data.ts): equal sign compares values, not ‘answer follows’.
+    - [readNumericExpressions.data.ts](../../../../data/skills/algebra/expressions/skills/readNumericExpressions.data.ts): interpret simple numeric expressions and operation order inside subtraction.
+    - Count, add and subtract within 20 and compare whole-number magnitudes, including more/less.
+
+    ## Target Skills
+
+    - [trueFalseEquality.data.ts](../../../../data/skills/algebra/equalities/skills/trueFalseEquality.data.ts)
+
+    ## Expected learning outcomes
+
+    - Evaluate each side of a complete numerical claim and judge whether =, < or > describes the actual value relationship.
+    - Justify why `3 + 5 = 4 + 4` and `5 + 2 < 4 + 4` are true with two computed side values.
+    - Identify false claims such as `9 − 2 > 3 + 5` and explain whether the relation sign, not the computations, misdescribes the values.
+    - Correct a false comparison by choosing a mathematically valid relation, leaving values unchanged where instructed.
+
+    ## Essential subject matter
+
+    An equality is true iff the two entire side values match. An inequality `A < B` is true iff A is smaller than B, and `A > B` iff A is greater than B. `3+5=4+4` is 8=8 (true); `5+2 < 4+4` is 7<8 (true); `9−2 > 3+5` compares 7>8 (false); `4+6 < 8+2` compares 10<10 (false because equal values cannot satisfy strict less-than). Do not confuse truth of a stated comparison with the ability to perform only one side's calculation. The statement 7<8 is not interchangeable with 8<7. Use labeled quantity bars and explicit mathematical value comparisons; the relation symbol's tip/arms may be explained only with unambiguous equal-unit models.
+
+    ## Conceptual progression and dependencies
+
+    First inspect two known-number statements, then bring in sides containing expressions, then compare a borderline case where both sides equal but the given symbol says <; finally independently evaluate a mixture of equalities and inequalities with immediate explanatory feedback.
+
+    ## Misconceptions, examples and boundaries
+
+    Treating ‘=’ as a command, interpreting < or > from the physical placement of a drawing, comparing the first numeral of each expression rather than evaluated side totals, or assuming equality satisfies strict < or >. Exclude ≤, ≥, variables, inequalities with an unknown, signed negative numbers, and formal solving of inequalities.
+
+    ## Localization, accessibility and offline intent
+
+    English text is an **editorial source**, not a finished multilingual translation. Before implementation every learner-visible prompt, story, diagram label, mathematical reading, control name, feedback statement and nonvisual alternative needs **genuine, meaning-preserving translation for all current supported locales**, with no silent English fallback. Mathematical operand order, chronological events, and quantitative meaning must remain stable in RTL; adapt layout semantically rather than mirror all graphics. Offer keyboard, touch and switch alternatives to dragging, explicit textual names and values rather than color-only cues, predictable focus, zoom/mobile reflow, reduced motion and equivalent auditory/nonvisual explanations. All lesson-critical resources and feedback should be available after offline download; this is a **target** requiring future implementation checks, not a promise that PWA/Note persistence is implemented.
+
+    ## Sources and factual verification
+
+    - [trueFalseEquality.data.ts](../../../../data/skills/algebra/equalities/skills/trueFalseEquality.data.ts) — directly linked Mathematics canonical Skill data; confirm exact source/UUID and domain-local composition, not a generated Markdown authority.
+    - [Lesson Editorial Artifacts](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — independent Methodologist and Screenwriter artifacts and approval boundaries.
+    - [Internationalization and Accessibility](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) — current inclusive localization design requirements.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) — optional international reference for a broad progression, **not** a claim of Curriculum alignment.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. This Lesson is standalone and Program-neutral.
+
+    ## Open editorial decisions
+
+    - Do not duplicate the earlier equalsMeaning or completeMissingEquality Lessons; this Lesson must emphasize **testing complete claims** including inequalities, not teaching equals sign meaning or filling a missing box.
+    - The generated Playground taxonomy view is a shared coordinator-owned artifact and may not yet include newly migrated SkillGroups; formal taxonomy approval must be independently confirmed. Do not mistake the presence of a canonical source Code object for a new editorial sign-off.
+    - Methodologist/editor must explicitly approve this Draft Brief before Content or Scene specifications become formally approved; current parallel drafts are **provisional**.
+
+    ## Methodologist handoff
+
+    **Draft, pending explicit approval.** The Screenwriter's provisional Content (embedded in this Lesson config.yaml) and proposed Scene (Scene specification statementVerifier embedded below) are independently reviewable, not evidence that the Methodologist gate passed. No runtime Lesson, Question, Quiz, grade, scoring or Note persistence was implemented.
+  productionNotes: |
+    # True or False? Compare Both Sides — Lesson Content
+
+    **Screenwriter status:** Provisional Draft — **pending Methodologist approval**.  
+    **Methodologist source:** Draft Brief (embedded in this Lesson config.yaml). **Program dependence:** None. **Runtime:** Not implemented.  
+    **Editorial language:** English source only, not finished multilingual content.
+
+    ## Learning experience — investigate claims rather than merely calculate
+
+    The child is a “mathematical claim inspector”: a symbol between two complete expressions makes a _claim_ that can be true or false. No rewards or scores; each decision leads to a concrete comparison of the values on both sides. This is not a repeat of the equals-sign concept Lesson or the missing-box equality Lesson.
+
+    ### Section 1 — Test an equality with two expressions
+
+    _Purpose: evaluate both entire sides and compare the results._
+
+    1. **`text`:** “Does **3 + 5 = 4 + 4** tell the truth? Look at both sides before you decide.” Invite a prediction without immediately revealing the totals.
+    2. **`scene` Resource (proposed):** Statement Verifier (Scene specification statementVerifier embedded below), entry A, shows two equal-unit trays with groups 3+5 and 4+4, the original equality and separate “Check side” buttons. The learner can decide true/false then inspect **8** and **8**. “Yes, they are arranged differently but each side equals eight.”
+    3. **`text`, misconception feedback:** If false chosen: “Look again: three plus five is eight; four plus four is also eight. A true equality does not require identical writing on each side.” No score, no forced retry.
+
+    ### Section 2 — Less than, more than, and the values they compare
+
+    _Purpose: connect strict order relation to **evaluated** values, not literal first numerals._
+
+    1. **`markdown`:** “The sign **<** says ‘the value on this side is **smaller** than the other value’. The sign **>** says ‘the value on this side is **greater**’. Neither sign is automatically an instruction to find an answer.” Present clear numerical examples **7 < 8** and **8 > 7**; accompanying bars explicitly label seven and eight.
+    2. **`text`:** “Is **5 + 2 < 4 + 4** true? Work out the left and right values.”
+    3. **`scene` Resource (proposed):** Statement Verifier entry B. Reveal left **7**, right **8** separately and show **7 < 8**, true. Ask the learner to explain with “seven is smaller than eight” rather than “the arrow points that way”. For false: “Five plus two is seven; four plus four is eight. Seven really _is less than_ eight.”
+    4. **`text`:** “Try **9 − 2 > 3 + 5**. The left side is seven; the right side is eight. So the claim ‘seven is greater than eight’ is false.” Offer learner-controlled reveal before explaining.
+
+    ### Section 3 — What if the values are equal but the symbol says “less”?
+
+    _Purpose: detect the subtle false strict inequality._
+
+    1. **`text`:** “Someone writes **4 + 6 < 8 + 2** and says it is true because both sides make ten. Is that a good reason?” Allow a prediction before showing values.
+    2. **`scene` Resource (proposed):** Statement Verifier entry C compares **10** and **10**. Child must choose the relation to _repair_ the original statement from **<** to **=** while leaving the expressions unchanged. If select **>**, feedback: “Ten is not greater than ten.” If retain **<**, feedback: “Ten is not smaller than ten.” If choose **=**: “Yes. Equal values need equality, not strict less-than.”
+    3. **`markdown`:** “Equal values satisfy **=**, but not the strict signs **<** or **>**. A false claim may have correctly calculated numbers but the **wrong relation**.”
+
+    ### Section 4 — Independent claim check
+
+    _Purpose: make the learner evaluate without a preselected comparison._
+
+    1. **`text`:** “Check **5 + 6 > 8 + 2**. Choose true or false, then explain what each side equals. The symbol is a claim, not a calculator button.”
+    2. **`scene` Resource (proposed):** Statement Verifier entry D hides totals until inspected and offers optional hints “Compute five plus six” and “Compute eight plus two”. Values **11** and **10**; claim **11 > 10** is true. Incorrect “false” receives “Eleven is one more than ten; the sign says greater, so the claim is true.”
+    3. **`text`:** Optional contrast “**8 − 3 > 2 + 4**” shows **5** versus **6**, so **5 > 6** is false. The corrected relation is **<**. Encourage explanation based on _both_ values.
+    4. **`markdown`:** “**Recall:** First find or reason about each side's value. Then check whether the sign **=, <, >** describes the comparison accurately.”
+
+    ## Implementation, accessibility and localization handoff
+
+    The Section sequence uses vertically ordered existing `text`, `markdown` and **proposed** `scene` resource blocks. Statement Verifier (Scene specification statementVerifier embedded below) is a new specification, **not a shipped widget**. Do not add Questions, Quizzes, scores, evaluation persistence, Notes or runtime Lesson configs.
+
+    Provide fully equivalent text explanations, mathematical operand order and explicit spoken meanings of < and > for screen readers. Keyboard/touch/switch users must inspect both values and choose relations without drag-only or hover interaction. RTL changes overall reading order appropriately but not relational meaning or numeric operands; treat mixed bidi numerals and signs carefully. Use exact side-value labels, avoid a purely animated “crocodile” or color-only truth signal, offer reduced motion, visible focus, text scaling/mobile reflow and equivalent offline behavior once code and locale assets are downloaded. All strings and aria-like names require genuine translations into every supported locale before runtime implementation. Content remains provisional until formal approval of the Methodologist Brief (embedded in this Lesson config.yaml).

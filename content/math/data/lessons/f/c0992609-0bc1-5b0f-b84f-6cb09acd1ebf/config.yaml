@@ -1,0 +1,552 @@
+config:
+  id: 'c0992609-0bc1-5b0f-b84f-6cb09acd1ebf'
+  slug: 'measuringWithEqualUnits'
+  type: 'lesson'
+  skills: ['8d0cccb9-f078-450a-af0a-b0ab6fbcbb26']
+  params:
+    languages: ['en', 'pl', 'uk', 'qm']
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'How Many Units Long?'
+  flashcards:
+    items: {}
+    order: []
+  section:
+    items:
+      section1TheMissingSpace:
+        config:
+          id: 'de4208d5-fd71-4226-8c31-ae9fd288a280'
+          slug: 'section1TheMissingSpace'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'The Missing Space'
+            navigationLabel:
+              en: 'The Missing Space'
+          content:
+            items:
+              unitTileWorkbench:
+                config:
+                  id: '04bbd435-119a-4e36-b1b9-84eb73ea7474'
+                  slug: 'unitTileWorkbench'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Unit Tile Workbench'
+                production:
+                  specification: |
+                    # Unit Tile Workbench — Scene Specification
+
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (original now embedded in this config.yaml); Methodologist Brief (original now embedded in this config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+
+                    ## Pedagogical purpose
+
+                    Same length, different number: the unit matters. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+
+                    ## Domain model and immutable rules
+
+                    One rigid 12-grid-interval bar; unit size 2 or 3 intervals, repeated without overlap/gap. Visual grid is conceptual scaffolding, not a claim of centimeters.
+
+                    ## Interaction design and state transitions
+
+                    - Objects/state: bar fixed 12, selected tile size 2/3, covered intervals count, hint/reveal, invalid-spacing demo, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+
+                    ## Exact acceptance scenarios
+
+                    1. Six tiles of width two exactly cover twelve intervals.
+                    2. Four tiles of width three exactly cover the same twelve intervals.
+                    3. Gaps/overlaps are explicitly invalid; changing units does not change the object's length.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+
+                    ## Visual and media specification
+
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+
+                    ## Localization and inclusive interaction
+
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+
+                    ## Review and handoff
+
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: 'Proposed interactive Scene for The Missing Space'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              text1:
+                config:
+                  id: '40537174-2aa8-4097-b5a2-a7e2a9b50675'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Show an unchanging bar of 12 grid spaces. A sequence of six identical two-space tiles covers it exactly; then insert a one-space gap while keeping six tiles. Ask if the result is still correct.'
+              markdown2:
+                config:
+                  id: '8cf7817b-26ca-4f9c-bbc4-2329b90ac982'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Explain: 'A good measurement covers the length once—no holes and no overlap.' Count intervals, not tile boundary marks."
+            order: ['text1', 'unitTileWorkbench', 'markdown2']
+        production:
+          purpose: 'The Missing Space'
+          pedagogicalIntent: |
+            ### Section 1 — The Missing Space
+
+            **Purpose:** Elicit prior intuition and create an intelligible problem.
+
+            1. **text (existing):** Show an unchanging bar of 12 grid spaces. A sequence of six identical two-space tiles covers it exactly; then insert a one-space gap while keeping six tiles. Ask if the result is still correct.
+            2. **scene (type exists; proposed instance):** Work within Unit Tile Workbench (Scene specification embedded in this config.yaml). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** Explain: 'A good measurement covers the length once—no holes and no overlap.' Count intervals, not tile boundary marks.
+
+            **Explanatory feedback and recovery:** If they count seven boundary lines: 'Those are the edges between tiles. Count the six spaces covered.'
+
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section2BuildARealMeasure:
+        config:
+          id: '2c380d22-c724-4505-828f-5748f25e6273'
+          slug: 'section2BuildARealMeasure'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Build a Real Measure'
+            navigationLabel:
+              en: 'Build a Real Measure'
+          content:
+            items:
+              unitTileWorkbench:
+                config:
+                  id: '1b70295a-6421-4085-a5d8-d54cf217af97'
+                  slug: 'unitTileWorkbench'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Unit Tile Workbench'
+                production:
+                  specification: |
+                    # Unit Tile Workbench — Scene Specification
+
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (original now embedded in this config.yaml); Methodologist Brief (original now embedded in this config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+
+                    ## Pedagogical purpose
+
+                    Same length, different number: the unit matters. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+
+                    ## Domain model and immutable rules
+
+                    One rigid 12-grid-interval bar; unit size 2 or 3 intervals, repeated without overlap/gap. Visual grid is conceptual scaffolding, not a claim of centimeters.
+
+                    ## Interaction design and state transitions
+
+                    - Objects/state: bar fixed 12, selected tile size 2/3, covered intervals count, hint/reveal, invalid-spacing demo, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+
+                    ## Exact acceptance scenarios
+
+                    1. Six tiles of width two exactly cover twelve intervals.
+                    2. Four tiles of width three exactly cover the same twelve intervals.
+                    3. Gaps/overlaps are explicitly invalid; changing units does not change the object's length.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+
+                    ## Visual and media specification
+
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+
+                    ## Localization and inclusive interaction
+
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+
+                    ## Review and handoff
+
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: 'Proposed interactive Scene for Build a Real Measure'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              text1:
+                config:
+                  id: '6f6fde73-39c2-4624-919c-fc7d214457f6'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: "In the workbench, choose identical two-space tiles, place them consecutively using Next tile and Undo tile, and reveal endpoint progress. Completion at six tiles should show '6 of these tiles long'."
+              markdown2:
+                config:
+                  id: 'f80eb418-f93c-400b-918a-22baf0cfec7d'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "For an overlap attempt, the tile snaps to the next unoccupied position or the app explains why overlap is not allowed; don't silently accept incorrect placement."
+            order: ['text1', 'unitTileWorkbench', 'markdown2']
+        production:
+          purpose: 'Build a Real Measure'
+          pedagogicalIntent: |
+            ### Section 2 — Build a Real Measure
+
+            **Purpose:** Strengthen the concept by testing a controlled contrast.
+
+            1. **text (existing):** In the workbench, choose identical two-space tiles, place them consecutively using Next tile and Undo tile, and reveal endpoint progress. Completion at six tiles should show '6 of these tiles long'.
+            2. **scene (type exists; proposed instance):** Work within Unit Tile Workbench (Scene specification embedded in this config.yaml). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** For an overlap attempt, the tile snaps to the next unoccupied position or the app explains why overlap is not allowed; don't silently accept incorrect placement.
+
+            **Explanatory feedback and recovery:** If a gap remains: 'The bar is still uncovered here. Move the next tile to the previous endpoint.'
+
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section3SwapTheUnitNotTheBar:
+        config:
+          id: '4cc48393-ba82-46ce-8511-f5b9c62410b4'
+          slug: 'section3SwapTheUnitNotTheBar'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Swap the Unit, Not the Bar'
+            navigationLabel:
+              en: 'Swap the Unit, Not the Bar'
+          content:
+            items:
+              unitTileWorkbench:
+                config:
+                  id: 'e2354837-9d15-4c0e-bb15-d18147c00760'
+                  slug: 'unitTileWorkbench'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Unit Tile Workbench'
+                production:
+                  specification: |
+                    # Unit Tile Workbench — Scene Specification
+
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (original now embedded in this config.yaml); Methodologist Brief (original now embedded in this config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+
+                    ## Pedagogical purpose
+
+                    Same length, different number: the unit matters. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+
+                    ## Domain model and immutable rules
+
+                    One rigid 12-grid-interval bar; unit size 2 or 3 intervals, repeated without overlap/gap. Visual grid is conceptual scaffolding, not a claim of centimeters.
+
+                    ## Interaction design and state transitions
+
+                    - Objects/state: bar fixed 12, selected tile size 2/3, covered intervals count, hint/reveal, invalid-spacing demo, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+
+                    ## Exact acceptance scenarios
+
+                    1. Six tiles of width two exactly cover twelve intervals.
+                    2. Four tiles of width three exactly cover the same twelve intervals.
+                    3. Gaps/overlaps are explicitly invalid; changing units does not change the object's length.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+
+                    ## Visual and media specification
+
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+
+                    ## Localization and inclusive interaction
+
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+
+                    ## Review and handoff
+
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: 'Proposed interactive Scene for Swap the Unit, Not the Bar'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              text1:
+                config:
+                  id: '2d3a6196-2176-419f-826c-866860d7e579'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Lock the same twelve-space bar and switch to equal three-space tiles. Ask: 'Will we need more or fewer tiles?' Four now cover the bar exactly."
+              markdown2:
+                config:
+                  id: 'e20bba1d-fb3e-4ad4-b72c-9b7f200018f6'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Explain: 'A bigger tile needs fewer repeats. Six small tiles and four big tiles cover the SAME bar.' Show equivalent boundaries."
+            order: ['text1', 'unitTileWorkbench', 'markdown2']
+        production:
+          purpose: 'Swap the Unit, Not the Bar'
+          pedagogicalIntent: |
+            ### Section 3 — Swap the Unit, Not the Bar
+
+            **Purpose:** Strengthen the concept by testing a controlled contrast.
+
+            1. **text (existing):** Lock the same twelve-space bar and switch to equal three-space tiles. Ask: 'Will we need more or fewer tiles?' Four now cover the bar exactly.
+            2. **scene (type exists; proposed instance):** Work within Unit Tile Workbench (Scene specification embedded in this config.yaml). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** Explain: 'A bigger tile needs fewer repeats. Six small tiles and four big tiles cover the SAME bar.' Show equivalent boundaries.
+
+            **Explanatory feedback and recovery:** For 'bigger number means longer': 'The object stayed the same. What changed was the measuring unit.'
+
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section4MakeAndFixAMeasurement:
+        config:
+          id: '24562698-5dbd-44bd-8acc-a0a6e97d511b'
+          slug: 'section4MakeAndFixAMeasurement'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Make and Fix a Measurement'
+            navigationLabel:
+              en: 'Make and Fix a Measurement'
+          content:
+            items:
+              unitTileWorkbench:
+                config:
+                  id: '74c47d7c-08ed-4ead-a568-a0b672b3beaf'
+                  slug: 'unitTileWorkbench'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Unit Tile Workbench'
+                production:
+                  specification: |
+                    # Unit Tile Workbench — Scene Specification
+
+                    **Status:** Provisional Draft pending Methodologist approval.
+                    **Owner:** Educational Screenwriter.
+                    **Parent Lesson:** Lesson Content (original now embedded in this config.yaml); Methodologist Brief (original now embedded in this config.yaml).
+                    **Implementation:** Proposed only. `scene` Resource type may exist; this bespoke component does not. **Scene interface:** self-contained and prop-free. No invented events, API fields, persistence or scoring.
+
+                    ## Pedagogical purpose
+
+                    Same length, different number: the unit matters. The learner must be able to **predict** a state, **change** a mathematically meaningful property, **observe** a contrast and **explain** its significance. A static animation or decorative drag is insufficient.
+
+                    ## Domain model and immutable rules
+
+                    One rigid 12-grid-interval bar; unit size 2 or 3 intervals, repeated without overlap/gap. Visual grid is conceptual scaffolding, not a claim of centimeters.
+
+                    ## Interaction design and state transitions
+
+                    - Objects/state: bar fixed 12, selected tile size 2/3, covered intervals count, hint/reveal, invalid-spacing demo, reset.
+                    - Show accessible starting information and a predicted outcome before the relevant reveal.
+                    - Controls: labeled **Choose / Change / Compare / Explain / Undo or Reset**, adapted to the specific context of the Lesson. Use discrete accessible controls; any drag or gesture is optional enhancement.
+                    - Every user action updates both the graphical model and a semantic text ledger with the same content. Show one new fact per step; never assume a narrative autoplays.
+                    - A wrong prediction prompts a reasoned comparison, offers a hint and a retry, and does not lock progress or affect scores.
+                    - Reset returns to the documented preset and clears only local presentation state. Each Section placement must stand alone and must not inherit another Section's model state.
+
+                    ## Exact acceptance scenarios
+
+                    1. Six tiles of width two exactly cover twelve intervals.
+                    2. Four tiles of width three exactly cover the same twelve intervals.
+                    3. Gaps/overlaps are explicitly invalid; changing units does not change the object's length.
+                    4. A child can complete the reasoning without drag, color interpretation, sound or timed actions; explanatory feedback is the same.
+                    5. A Section can be reopened and reset with no dependence on a previous Lesson or Program.
+                    6. Mathematical labels and relationships remain correct under RTL and locale-specific presentation, including observer-relative directions.
+                    7. A narrow mobile viewport, 200% text scaling, reduced-motion preference and offline use after download preserve the exact learning content.
+
+                    ## Visual and media specification
+
+                    Use clear, low-complexity SVG/HTML geometric models with visible endpoints/markers where needed. Animation is optional and pausable; prefer instantaneous state change in reduced-motion mode. Do not embed translatable text into artwork. Labels and controls should remain legible on touch devices; geometry must not be distorted by container scaling.
+
+                    ## Localization and inclusive interaction
+
+                    Prepare real translations for all supported locales; missing translation is a release blocker, never a silent English fallback. Use semantic rather than blanket RTL mirroring. Provide explicit narrated/textual descriptions of object relationships, ordered state summaries, keyboard/switch controls, visible focus, WCAG 2.2 AA contrast/target review, and nonvisual equivalent decisions. Optional audio has captions/transcript. All required material must load from offline assets; no cloud computation or media is necessary.
+
+                    ## Review and handoff
+
+                    The Methodologist must approve the Brief before any content is formally approved. The editor then reviews the provisional scene specification. A future Scene Designer/Coding Agent verifies existing contracts, creates a tested prop-free component and real locale resources separately; no React, Question, Quiz or scoring is part of this PR.
+                  purpose: 'Proposed interactive Scene for Make and Fix a Measurement'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              text1:
+                config:
+                  id: '2cec770d-2f4f-42dc-b336-4b17eb4eb87e'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Present two proposed measures: 2-space tiles placed at 0,2,4,6,8,10 vs same tiles with gaps/overlaps. Learner identifies what to repair and predicts the valid count.'
+              markdown2:
+                config:
+                  id: '46cd636a-de3e-4b53-82b0-a21cd872dcb5'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Transfer to measuring a real pencil with equal blocks; advise against asserting whole units when there's an uncovered remainder. No scoring."
+            order: ['text1', 'unitTileWorkbench', 'markdown2']
+        production:
+          purpose: 'Make and Fix a Measurement'
+          pedagogicalIntent: |
+            ### Section 4 — Make and Fix a Measurement
+
+            **Purpose:** Transfer the new reasoning independently.
+
+            1. **text (existing):** Present two proposed measures: 2-space tiles placed at 0,2,4,6,8,10 vs same tiles with gaps/overlaps. Learner identifies what to repair and predicts the valid count.
+            2. **scene (type exists; proposed instance):** Offer a fresh preset or an accessible textual equivalent in Unit Tile Workbench (Scene specification embedded in this config.yaml). The child may inspect the current state, predict an outcome, change exactly one relevant variable, and review a previous state. No gesture-only path.
+            3. **markdown (existing):** Transfer to measuring a real pencil with equal blocks; advise against asserting whole units when there's an uncovered remainder. No scoring.
+
+            **Explanatory feedback and recovery:** When the prediction differs, show the comparison and why, allow another attempt, and offer a descriptive hint without score or penalty.
+
+            **Navigation:** Continue after reflection or explore again; never claim success solely from completion. **Accessibility:** readable semantic text corresponding to each state, localized controls, logical keyboard focus, accessible change announcements and an equivalent no-drag route.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+    order:
+      [
+        'section1TheMissingSpace',
+        'section2BuildARealMeasure',
+        'section3SwapTheUnitNotTheBar',
+        'section4MakeAndFixAMeasurement',
+      ]
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # How Many Units Long? — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: measuringWithEqualUnits
+    Methodologist status: Draft — not approved
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Same length, different number: the unit matters. This Lesson is an autonomous introduction to its assigned canonical competency; it must be valuable without a Program storyline or assessments.
+
+    ## Target audience and depth
+
+    **Primary grade: 2** (approximate ages 7–8). Early or mixed readers, multilingual learners, keyboard/switch users, low-vision users and learners who need concrete examples must receive equivalent access. **Instructional depth:** Whole nonstandard units only, no gaps/overlaps; compare unit-size effect, distinguish numerical unit count from physical length. No fractional measuring or cm conversions.
+
+    ## Prerequisite knowledge and Skills
+
+    Compare lengths by aligned endpoints (compareLength). Count objects reliably to 12 and understand equal-sized copies.
+
+    - [compareLength.data.ts](../../../../data/skills/measurement/length/skills/compareLength.data.ts) (previously developed Skill)
+
+    ## Target Skills
+
+    - [nonstandardLength.data.ts](../../../../data/skills/measurement/length/skills/nonstandardLength.data.ts)
+
+    ## Expected observable learning outcomes
+
+    - Lay identical unit tiles end-to-end to cover a straight length without gaps or overlaps.
+    - Count complete unit intervals accurately and identify misleading measurements.
+    - Explain why a shorter unit produces a larger unit count for the same fixed object.
+
+    ## Essential mathematical ideas
+
+    Measurement iterates one fixed unit to partition a length. A bar of length 12 grid spaces is 6 two-space tiles or 4 three-space tiles long. The physical bar is unchanged despite different numeric counts.
+
+    ## Conceptual progression
+
+    Start with a plausible misconception, invite a prediction, make the relevant invariant or comparison observable, provide controlled learner manipulation, explain counterexamples, and finish with a fresh independent application. Short formative responses are not proof of mastery.
+
+    ## Common misconceptions and boundaries
+
+    Counting boundary ticks rather than intervals; leaving gaps, stacking tiles or changing unit size midway; assuming more units means physically longer.
+
+    Exclude unneeded symbolic formalism and unrelated geometry or measurement topics. Do not change any Skill definition to match these illustrations.
+
+    ## Localization, accessibility and offline
+
+    All proposed language must be authentically translated for supported locales, including meaningful viewpoint and spatial-direction semantics in LTR/RTL; numerical or geometric truth must not be mirrored incorrectly. Visual manipulation needs a fully equivalent keyboard and screen-reader path, visible focus, adequate touch targets, no color-only cues, no timers, reduced motion, and WCAG 2.2 AA design verification. All assets and feedback must be available offline after download; these are **requirements, not implementation claims**.
+
+    ## Sources and verification
+
+    - Approved canonical Mathematics Skill file(s): linked above; their IDs, translations and methodological meaning must remain unchanged.
+    - [Playground taxonomy view](../../../../docs/generated/skills/taxonomy.en.md) is a generated reference and requires coordinator regeneration after integration.
+    - [Studio Lesson editorial workflow](../../../../../../studio/docs/architecture/lesson-editorial-document.md) (repository-level path should be checked during link validation).
+    - Mathematics follows the exact models described above; there are no national Curriculum alignment claims.
+
+    ## Editorial decisions
+
+    - Methodologist approval is pending. Content and Scene below are **provisional Drafts by explicit batch authorization**, not a passed approval gate.
+    - Confirm chosen grade and instructional depth before release.
+    - No runtime Lesson, Question, Quiz, scoring or persistence is authorized.
+
+    ## Handoff
+
+    Screenwriter may provisionally prepare the instructional journey subject to Methodologist review. Final content approvals, design and implementation remain separate.
+  productionNotes: |-
+    All content.md text outside ordered Sections — editorial premise, accessibility, global feedback, production and dependencies:
+
+    # How Many Units Long? — Lesson Content
+
+    **Editorial status: Provisional Draft — pending Methodologist approval.**
+    **Lesson:** `content/playground/Data/Lessons/1/measuringWithEqualUnits/`. **Audience:** Grade 2 (ages 7–8). **Program dependence:** None.
+    **Methodology:** Draft Methodologist Brief (original now embedded in this config.yaml). **Target Skills:** exactly the linked canonical Skill(s) in that Brief; no inferred UUID or runtime registration.
+
+    ## Instructional premise
+
+    Same length, different number: the unit matters. Make the learner predict, manipulate an accurate model, inspect what stays constant, articulate the reason, and transfer to new objects. This is explanatory learning, not a graded quiz or a sequence of arbitrary clicks. Progress is self-paced. Proposed custom Scene: Unit Tile Workbench (Scene specification embedded in this config.yaml).
+
+    ## Ordered Section plan
+
+    Each Section is a single-column ordered Resource plan. **`text` and `markdown`** are existing typed blocks; **`scene`** is an existing block type but the Unit Tile Workbench component itself is **not implemented**. Actual rendering and all optional audio are subject to coding-agent verification. No unsupported Resource types or APIs are assumed.
+
+
+    ## Independent application and feedback principles
+
+    Invite the learner to explain the key reason in a new everyday example, not only repeat the original picture. A plausible wrong answer must receive a _specific mathematical explanation_ rather than a red mark. Avoid asserting mastery from one voluntary interaction. No Question/Quiz/scoring implementation is proposed in this batch.
+
+    ## Future recall cue (not implemented)
+
+    “Same length, different number: the unit matters.” Suggested trigger: after the learner observes the decisive contrast in Section 2. This is a **proposed Note cue only**; no persistence, unlock event or runtime Note contract is invented.
+
+    ## Editorial/implementation boundary
+
+    All texts, labels, model alternatives, explanations, optional sound transcripts and Scene states require authentic supported-locale translation. Semantic RTL, mobile operation, WCAG 2.2 AA, reduced motion and post-download offline equivalence are acceptance requirements, not verified features. A standalone prop-free Scene must be designed and coded later. The Lesson is independent of Curriculum/Program, has no specified runtime lesson data, scored Questions, or analytics.
+
+
+    Editorial state: provisional draft; pending independent approval. Locales beyond English are intended but not yet translated.

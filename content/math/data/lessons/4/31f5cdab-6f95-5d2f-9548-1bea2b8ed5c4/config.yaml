@@ -1,0 +1,629 @@
+config:
+  id: '31f5cdab-6f95-5d2f-9548-1bea2b8ed5c4'
+  slug: 'multiplicationArrayModel'
+  type: 'lesson'
+  skills: ['8405ea12-80bf-41f6-b854-41b396902bed']
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Multiplication with Rows and Columns'
+  section:
+    items:
+      section1AGridWithThreeRows:
+        config:
+          id: '46b5888f-9f96-4f22-84cb-d3e9ece15094'
+          slug: 'section1AGridWithThreeRows'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'A Grid with Three Rows'
+            navigationLabel:
+              en: 'A Grid with Three Rows'
+          content:
+            items:
+              text1:
+                config:
+                  id: '95179bd2-c2cc-4073-aff1-2318fa4fe859'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Look at 3 rows. Each row has 4 dots. How many dots are there?'
+              arrayGridStudio:
+                config:
+                  id: '66d6aee7-b535-478a-b897-b85df79d3000'
+                  slug: 'arrayGridStudio'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Array Grid Studio'
+                production:
+                  specification: |
+                    # Array Grid Studio — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication with Rows and Columns Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify the number of rows and the number of objects in each row in a rectangular array. Construct and read a 3-row, 4-column array as 3 × 4 = 12, supported by an equivalent row-by-row count. Explain why a ragged shape with row sizes 4,3,4 is not a complete 3 × 4 rectangular array. Inspect a 4-row, 2-column new array and determine its total. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish the rectangular array as a multiplication representation with the SAME number of objects in every row, and relate row count, items per row, column count and product. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    An array with R equal rows and C objects in every row has R×C elements. Three rows of four = 12; two rows of five = 10; four rows of two = 8. An incomplete row with only three items invalidates the exact 3×4 rectangular model, although its objects can still be counted. Rows and columns describe mathematical structure, not directions tied to reading order. Confusing 3 rows of 4 with a total of 7, counting an empty grid cell as occupied, mistaking rows for columns, assuming a ragged 4,3,4 model has twelve items, and treating rotation as changing quantity. Avoid early general proof of commutativity; the next Lesson owns that Skill. All proposed examples remain within declared small whole-number boundaries. Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Prompt: “Look at 3 rows. Each row has 4 dots. How many dots are there?” Mathematical explanation: “Three rows of four contain twelve dots. We can write 3 × 4 = 12.” **Feedback:** For seven, explain that 3+4 names two measures but misses other rows; an ordered row count shows 4+4+4=12. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Prompt: “Build a grid with 2 rows and 5 dots in every row. Is each row complete?” Mathematical explanation: “Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.” **Feedback:** If only nine dots are filled, say 'One row has only four. One more dot is needed to make both rows equal.' Recheck and full reveal stay available.
+
+                    3. **Section 3 / Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Prompt: “Three rows should have four dots each. One row has only three. Is the rectangle complete?” Mathematical explanation: “The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.” **Feedback:** A claim that the incomplete grid is 3×4 gets a row-by-row check and a visible empty slot; do not pretend it already contains twelve. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Prompt: “There are 4 rows with 2 dots in each. What product matches the grid?” Mathematical explanation: “Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.” **Feedback:** If 4+2=6, show each row’s two dots; if 2×4=8, acknowledge equal numerical total but explain the present row-count-first reading is 4×2. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Grid dimensions R=2…4 and C=2…5; occupied slots, highlighted row, complete/incomplete example, selected expression, ordered accessible row/column counts and explanation state.
+                    - **Invariant:** Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Check: Three rows of four contain twelve dots. We can write 3 × 4 = 12.
+                    2. **Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Check: Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.
+                    3. **Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Check: The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.
+                    4. **Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Check: Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
+                  purpose: 'Proposed interactive Scene for A Grid with Three Rows'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: '83deb739-80aa-4618-852d-65cf54e15256'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three rows of four contain twelve dots. We can write 3 × 4 = 12.'
+            order: ['text1', 'arrayGridStudio', 'markdown2']
+        production:
+          purpose: 'A Grid with Three Rows'
+          pedagogicalIntent: |
+            ### Section 1 — A Grid with Three Rows
+
+            - **Purpose and learner outcome:** Identify the number of rows and the number of objects in each row in a rectangular array.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “Look at 3 rows. Each row has 4 dots. How many dots are there?”
+              2. **scene (generic type supported, NEW implementation proposed):** Array Grid Studio (Scene specification embedded in this config.yaml), placement 1. Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one.
+              3. **markdown (supported):** “Three rows of four contain twelve dots. We can write 3 × 4 = 12.”
+            - **Learner action, meaningful observations and formative feedback:** For seven, explain that 3+4 names two measures but misses other rows; an ordered row count shows 4+4+4=12. A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Invite a prediction that motivates the next Section while retaining the mathematical model.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** “A rectangular array has the same number of items in every row.” after the model and its explanation are available (planned, not wired).
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section2MakeARectangle:
+        config:
+          id: 'a08cada4-26d0-4eb1-b1b2-412657a8be6b'
+          slug: 'section2MakeARectangle'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Make a Rectangle'
+            navigationLabel:
+              en: 'Make a Rectangle'
+          content:
+            items:
+              text1:
+                config:
+                  id: '23a6cf69-c4aa-4880-a0ea-e7976824520e'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Build a grid with 2 rows and 5 dots in every row. Is each row complete?'
+              arrayGridStudio:
+                config:
+                  id: 'b36e1070-50d7-41f5-8313-e016617839fb'
+                  slug: 'arrayGridStudio'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Array Grid Studio'
+                production:
+                  specification: |
+                    # Array Grid Studio — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication with Rows and Columns Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify the number of rows and the number of objects in each row in a rectangular array. Construct and read a 3-row, 4-column array as 3 × 4 = 12, supported by an equivalent row-by-row count. Explain why a ragged shape with row sizes 4,3,4 is not a complete 3 × 4 rectangular array. Inspect a 4-row, 2-column new array and determine its total. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish the rectangular array as a multiplication representation with the SAME number of objects in every row, and relate row count, items per row, column count and product. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    An array with R equal rows and C objects in every row has R×C elements. Three rows of four = 12; two rows of five = 10; four rows of two = 8. An incomplete row with only three items invalidates the exact 3×4 rectangular model, although its objects can still be counted. Rows and columns describe mathematical structure, not directions tied to reading order. Confusing 3 rows of 4 with a total of 7, counting an empty grid cell as occupied, mistaking rows for columns, assuming a ragged 4,3,4 model has twelve items, and treating rotation as changing quantity. Avoid early general proof of commutativity; the next Lesson owns that Skill. All proposed examples remain within declared small whole-number boundaries. Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Prompt: “Look at 3 rows. Each row has 4 dots. How many dots are there?” Mathematical explanation: “Three rows of four contain twelve dots. We can write 3 × 4 = 12.” **Feedback:** For seven, explain that 3+4 names two measures but misses other rows; an ordered row count shows 4+4+4=12. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Prompt: “Build a grid with 2 rows and 5 dots in every row. Is each row complete?” Mathematical explanation: “Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.” **Feedback:** If only nine dots are filled, say 'One row has only four. One more dot is needed to make both rows equal.' Recheck and full reveal stay available.
+
+                    3. **Section 3 / Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Prompt: “Three rows should have four dots each. One row has only three. Is the rectangle complete?” Mathematical explanation: “The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.” **Feedback:** A claim that the incomplete grid is 3×4 gets a row-by-row check and a visible empty slot; do not pretend it already contains twelve. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Prompt: “There are 4 rows with 2 dots in each. What product matches the grid?” Mathematical explanation: “Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.” **Feedback:** If 4+2=6, show each row’s two dots; if 2×4=8, acknowledge equal numerical total but explain the present row-count-first reading is 4×2. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Grid dimensions R=2…4 and C=2…5; occupied slots, highlighted row, complete/incomplete example, selected expression, ordered accessible row/column counts and explanation state.
+                    - **Invariant:** Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Check: Three rows of four contain twelve dots. We can write 3 × 4 = 12.
+                    2. **Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Check: Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.
+                    3. **Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Check: The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.
+                    4. **Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Check: Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
+                  purpose: 'Proposed interactive Scene for Make a Rectangle'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: 'f951b406-7af0-44e7-a432-869cd45f00a5'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.'
+            order: ['text1', 'arrayGridStudio', 'markdown2']
+        production:
+          purpose: 'Make a Rectangle'
+          pedagogicalIntent: |
+            ### Section 2 — Make a Rectangle
+
+            - **Purpose and learner outcome:** Construct and read a 3-row, 4-column array as 3 × 4 = 12, supported by an equivalent row-by-row count.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “Build a grid with 2 rows and 5 dots in every row. Is each row complete?”
+              2. **scene (generic type supported, NEW implementation proposed):** Array Grid Studio (Scene specification embedded in this config.yaml), placement 2. Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts.
+              3. **markdown (supported):** “Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.”
+            - **Learner action, meaningful observations and formative feedback:** If only nine dots are filled, say 'One row has only four. One more dot is needed to make both rows equal.' A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Invite a prediction that motivates the next Section while retaining the mathematical model.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** “Rows × items in each row tells us how many items are in the array.” after the model and its explanation are available (planned, not wired).
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section3FindTheMissingDot:
+        config:
+          id: 'e0d09caa-b181-4715-996c-1398f2e81e53'
+          slug: 'section3FindTheMissingDot'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Find the Missing Dot'
+            navigationLabel:
+              en: 'Find the Missing Dot'
+          content:
+            items:
+              text1:
+                config:
+                  id: '6368c31b-ae7d-44b4-a7ea-fc0d318bf056'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three rows should have four dots each. One row has only three. Is the rectangle complete?'
+              arrayGridStudio:
+                config:
+                  id: '9caa9da2-0fad-44d1-8e92-6dbca170de53'
+                  slug: 'arrayGridStudio'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Array Grid Studio'
+                production:
+                  specification: |
+                    # Array Grid Studio — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication with Rows and Columns Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify the number of rows and the number of objects in each row in a rectangular array. Construct and read a 3-row, 4-column array as 3 × 4 = 12, supported by an equivalent row-by-row count. Explain why a ragged shape with row sizes 4,3,4 is not a complete 3 × 4 rectangular array. Inspect a 4-row, 2-column new array and determine its total. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish the rectangular array as a multiplication representation with the SAME number of objects in every row, and relate row count, items per row, column count and product. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    An array with R equal rows and C objects in every row has R×C elements. Three rows of four = 12; two rows of five = 10; four rows of two = 8. An incomplete row with only three items invalidates the exact 3×4 rectangular model, although its objects can still be counted. Rows and columns describe mathematical structure, not directions tied to reading order. Confusing 3 rows of 4 with a total of 7, counting an empty grid cell as occupied, mistaking rows for columns, assuming a ragged 4,3,4 model has twelve items, and treating rotation as changing quantity. Avoid early general proof of commutativity; the next Lesson owns that Skill. All proposed examples remain within declared small whole-number boundaries. Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Prompt: “Look at 3 rows. Each row has 4 dots. How many dots are there?” Mathematical explanation: “Three rows of four contain twelve dots. We can write 3 × 4 = 12.” **Feedback:** For seven, explain that 3+4 names two measures but misses other rows; an ordered row count shows 4+4+4=12. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Prompt: “Build a grid with 2 rows and 5 dots in every row. Is each row complete?” Mathematical explanation: “Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.” **Feedback:** If only nine dots are filled, say 'One row has only four. One more dot is needed to make both rows equal.' Recheck and full reveal stay available.
+
+                    3. **Section 3 / Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Prompt: “Three rows should have four dots each. One row has only three. Is the rectangle complete?” Mathematical explanation: “The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.” **Feedback:** A claim that the incomplete grid is 3×4 gets a row-by-row check and a visible empty slot; do not pretend it already contains twelve. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Prompt: “There are 4 rows with 2 dots in each. What product matches the grid?” Mathematical explanation: “Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.” **Feedback:** If 4+2=6, show each row’s two dots; if 2×4=8, acknowledge equal numerical total but explain the present row-count-first reading is 4×2. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Grid dimensions R=2…4 and C=2…5; occupied slots, highlighted row, complete/incomplete example, selected expression, ordered accessible row/column counts and explanation state.
+                    - **Invariant:** Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Check: Three rows of four contain twelve dots. We can write 3 × 4 = 12.
+                    2. **Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Check: Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.
+                    3. **Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Check: The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.
+                    4. **Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Check: Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
+                  purpose: 'Proposed interactive Scene for Find the Missing Dot'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: '4932e110-0434-45bb-b06f-386a2d8f58dd'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.'
+            order: ['text1', 'arrayGridStudio', 'markdown2']
+        production:
+          purpose: 'Find the Missing Dot'
+          pedagogicalIntent: |
+            ### Section 3 — Find the Missing Dot
+
+            - **Purpose and learner outcome:** Explain why a ragged shape with row sizes 4,3,4 is not a complete 3 × 4 rectangular array.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “Three rows should have four dots each. One row has only three. Is the rectangle complete?”
+              2. **scene (generic type supported, NEW implementation proposed):** Array Grid Studio (Scene specification embedded in this config.yaml), placement 3. Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions.
+              3. **markdown (supported):** “The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.”
+            - **Learner action, meaningful observations and formative feedback:** A claim that the incomplete grid is 3×4 gets a row-by-row check and a visible empty slot; do not pretend it already contains twelve. A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Invite a prediction that motivates the next Section while retaining the mathematical model.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** None; revisit the previous rule for contrast.
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section4ReadAFreshArray:
+        config:
+          id: 'ccf9c676-8028-4ef1-997f-e09c8bc83cdf'
+          slug: 'section4ReadAFreshArray'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Read a Fresh Array'
+            navigationLabel:
+              en: 'Read a Fresh Array'
+          content:
+            items:
+              text1:
+                config:
+                  id: '6eb8b327-0658-47c0-a11a-c9819b779122'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'There are 4 rows with 2 dots in each. What product matches the grid?'
+              arrayGridStudio:
+                config:
+                  id: 'f5250186-1944-43b5-b35b-629863eaab97'
+                  slug: 'arrayGridStudio'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Array Grid Studio'
+                production:
+                  specification: |
+                    # Array Grid Studio — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Multiplication with Rows and Columns Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify the number of rows and the number of objects in each row in a rectangular array. Construct and read a 3-row, 4-column array as 3 × 4 = 12, supported by an equivalent row-by-row count. Explain why a ragged shape with row sizes 4,3,4 is not a complete 3 × 4 rectangular array. Inspect a 4-row, 2-column new array and determine its total. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish the rectangular array as a multiplication representation with the SAME number of objects in every row, and relate row count, items per row, column count and product. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    An array with R equal rows and C objects in every row has R×C elements. Three rows of four = 12; two rows of five = 10; four rows of two = 8. An incomplete row with only three items invalidates the exact 3×4 rectangular model, although its objects can still be counted. Rows and columns describe mathematical structure, not directions tied to reading order. Confusing 3 rows of 4 with a total of 7, counting an empty grid cell as occupied, mistaking rows for columns, assuming a ragged 4,3,4 model has twelve items, and treating rotation as changing quantity. Avoid early general proof of commutativity; the next Lesson owns that Skill. All proposed examples remain within declared small whole-number boundaries. Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Prompt: “Look at 3 rows. Each row has 4 dots. How many dots are there?” Mathematical explanation: “Three rows of four contain twelve dots. We can write 3 × 4 = 12.” **Feedback:** For seven, explain that 3+4 names two measures but misses other rows; an ordered row count shows 4+4+4=12. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Prompt: “Build a grid with 2 rows and 5 dots in every row. Is each row complete?” Mathematical explanation: “Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.” **Feedback:** If only nine dots are filled, say 'One row has only four. One more dot is needed to make both rows equal.' Recheck and full reveal stay available.
+
+                    3. **Section 3 / Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Prompt: “Three rows should have four dots each. One row has only three. Is the rectangle complete?” Mathematical explanation: “The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.” **Feedback:** A claim that the incomplete grid is 3×4 gets a row-by-row check and a visible empty slot; do not pretend it already contains twelve. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Prompt: “There are 4 rows with 2 dots in each. What product matches the grid?” Mathematical explanation: “Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.” **Feedback:** If 4+2=6, show each row’s two dots; if 2×4=8, acknowledge equal numerical total but explain the present row-count-first reading is 4×2. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Grid dimensions R=2…4 and C=2…5; occupied slots, highlighted row, complete/incomplete example, selected expression, ordered accessible row/column counts and explanation state.
+                    - **Invariant:** Occupied cell count exactly equals reported total. A complete array contains R×C dots; an incomplete [4,3,4] comparison contains eleven. Every row label and column position is semantically correct in RTL, never dependent on x-axis screen direction.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one. Check: Three rows of four contain twelve dots. We can write 3 × 4 = 12.
+                    2. **Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts. Check: Two complete rows of five contain 10 dots: 2 × 5 = 10. Each row needs five dots.
+                    3. **Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions. Check: The incomplete grid holds eleven dots. Fill the one missing place to make three full rows of four and twelve dots.
+                    4. **Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal. Check: Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Array Grid Studio is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
+                  purpose: 'Proposed interactive Scene for Read a Fresh Array'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: '7c9d628c-b53d-4027-bc84-7d0e5e4a4d69'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.'
+            order: ['text1', 'arrayGridStudio', 'markdown2']
+        production:
+          purpose: 'Read a Fresh Array'
+          pedagogicalIntent: |
+            ### Section 4 — Read a Fresh Array
+
+            - **Purpose and learner outcome:** Inspect a 4-row, 2-column new array and determine its total.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “There are 4 rows with 2 dots in each. What product matches the grid?”
+              2. **scene (generic type supported, NEW implementation proposed):** Array Grid Studio (Scene specification embedded in this config.yaml), placement 4. Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal.
+              3. **markdown (supported):** “Four rows of two contain eight dots: 2+2+2+2=8 and 4×2=8.”
+            - **Learner action, meaningful observations and formative feedback:** If 4+2=6, show each row’s two dots; if 2×4=8, acknowledge equal numerical total but explain the present row-count-first reading is 4×2. A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Short optional reflection naming the mathematical relationship; end without a graded success screen.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** “Rows × items in each row tells us how many items are in the array.” after the model and its explanation are available (planned, not wired).
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order:
+      ['section1AGridWithThreeRows', 'section2MakeARectangle', 'section3FindTheMissingDot', 'section4ReadAFreshArray']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Multiplication with Rows and Columns — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: multiplicationArrayModel
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Establish the rectangular array as a multiplication representation with the SAME number of objects in every row, and relate row count, items per row, column count and product.
+
+    ## Target audience
+
+    Children aged 6–8 who recognize small equal groups and can count objects in rows, up to 25. English is editorial source, not an implementation locale; every learner-facing phrase will need genuine supported-language translation.
+
+    ## Prerequisites
+
+    - Count small sets and identify horizontal rows and vertical columns using explicit labels.
+    - Recognize equal groups and a multiplication expression for group count × group size.
+    - Operate a simple selectable grid without dragging; textual row descriptions available.
+
+    ## Target Skills
+
+    - [arrayModel.data.ts](../../../../data/skills/arithmetic/multiply/skills/arrayModel.data.ts)
+
+    ## Expected learning outcomes
+
+    - Identify the number of rows and the number of objects in each row in a rectangular array.
+    - Construct and read a 3-row, 4-column array as 3 × 4 = 12, supported by an equivalent row-by-row count.
+    - Explain why a ragged shape with row sizes 4,3,4 is not a complete 3 × 4 rectangular array.
+    - Inspect a 4-row, 2-column new array and determine its total.
+
+    ## Essential subject matter
+
+    An array with R equal rows and C objects in every row has R×C elements. Three rows of four = 12; two rows of five = 10; four rows of two = 8. An incomplete row with only three items invalidates the exact 3×4 rectangular model, although its objects can still be counted. Rows and columns describe mathematical structure, not directions tied to reading order.
+
+    ## Conceptual progression and dependencies
+
+    Identify row and column labels → place counters into equal rows → read R×C as a total → contrast ragged row → independently build and count another array.
+
+    ## Misconceptions, examples and boundaries
+
+    Confusing 3 rows of 4 with a total of 7, counting an empty grid cell as occupied, mistaking rows for columns, assuming a ragged 4,3,4 model has twelve items, and treating rotation as changing quantity. Avoid early general proof of commutativity; the next Lesson owns that Skill.
+
+    ## Localization, accessibility and offline intent
+
+    Keep semantic “groups / in each,” or “rows / columns” consistent in each locale. Every quantity and action has an equivalent ordered text representation, keyboard/touch control, non-color-only feedback, RTL-safe mathematical order, readable zoom and reduced motion. All assets and selected-language feedback must work locally after the content package downloads. No audio, video or dragging requirement.
+
+    ## Sources and factual verification
+
+    - [Playground generated taxonomy](../../../../docs/generated/skills/taxonomy.en.md) and the linked canonical Skill source.
+    - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/) as a comparative early-multiplication reference, not verified Curriculum alignment.
+    - [IES/WWC elementary mathematics guidance](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), representation and verbal explanation as general instructional guidance.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. Standalone Lesson, Program-neutral.
+
+    ## Open editorial decisions
+
+    - Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
+    - Confirm the chosen numerical ranges and the model's language/order before release.
+
+    ## Methodologist handoff
+
+    **Draft; explicit editor approval pending.** Screenwriter Content below is **provisional** for review, not an approved implementation source. Do not start scored assessment or scene coding automatically.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+
+    # Multiplication with Rows and Columns — Content
+
+    Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/multiplicationArrayModel/ (Playground)
+    Audience: Children aged 6–8 who recognize small equal groups and can count objects in rows, up to 25
+    Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft; not editor-approved)
+    Target Skill: The existing `arrayModel.data.ts` linked by the Brief, unchanged
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Establish the rectangular array as a multiplication representation with the SAME number of objects in every row, and relate row count, items per row, column count and product. An array with R equal rows and C objects in every row has R×C elements. Three rows of four = 12; two rows of five = 10; four rows of two = 8. An incomplete row with only three items invalidates the exact 3×4 rectangular model, although its objects can still be counted. Rows and columns describe mathematical structure, not directions tied to reading order.
+
+    The learner should see and control the **cause** of each total rather than infer correctness from a colored tick. Countable models, progressively lighter hints, careful contrasts and child-friendly numerical explanations do the teaching. No score, timer, Program story or mandatory Quiz.
+
+    ## LEARNER JOURNEY
+
+    1. **A Grid with Three Rows:** Show a rectangular 3-by-4 dot grid with clearly named rows and columns. Reveal row counts 4,4,4 one by one.
+    2. **Make a Rectangle:** Choose R=2, C=5; add dots with an accessible 'Fill next row' control; show ten occupied cells and their row counts.
+    3. **Find the Missing Dot:** Contrast a complete 3×4 grid with a 4,3,4 ragged grid. Learner identifies an empty cell, fills it, and compares 11 versus 12 occupied positions.
+    4. **Read a Fresh Array:** Construct a 4-by-2 grid, let learner inspect row and column counts, select 4×2=8 or request full reveal.
+
+    ## SECTION PLAN
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Array Grid Studio (Scene specification embedded in this config.yaml) — four self-contained, independent prop-free placement entries; the generic `scene` Resource renderer exists but this Scene does not.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “A rectangular array has the same number of items in every row.” — proposed when the corresponding observed model is explained, not when a prediction happens to be correct.
+    2. “Rows × items in each row tells us how many items are in the array.” — proposed when the corresponding observed model is explained, not when a prediction happens to be correct.
+
+    No Note entity, unlock event, revision sheet, persistence, mastery marker or spaced scheduler is claimed implemented. Any future revision sheet may show only a learner's unlocked Notes.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Prediction, building, comparison and an independent final example are **formative**; Identify row and column labels → place counters into equal rows → read R×C as a total → contrast ragged row → independently build and count another array. Assessment Architect independently validates any scored Question, correct alternatives, Skill attribution, pass criteria and retries. A correct single total never demonstrates broad mastery. The generic Lesson Question adapter's select-one support does not make these custom scenes graded Questions.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    English here is a source for genuine complete-language translation (prompts, feedback, accessible labels, Notes, models). Never silently fall back to English. The relevant group/row model and exact quantities must remain operable through equivalent ordered text/table state, native keyboard/switch/touch controls, visible focus, large targets, 200% zoom, mobile layouts and screen readers. RTL adapts prose/layout semantically while preserving equation operand identities and named group/row counts. Reduced motion removes transitions, not mathematical states. Complete selected-language instructions, scene logic and feedback must work offline on weak devices after download, without media, audio-only meaning, dragging or cloud services.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    Available in current generic Lesson renderer: `LessonSection_Config`, text, markdown and `scene` Resource type. Proposed: Array Grid Studio Scene with four prop-free entries and own unit/accessibility tests. Coding Agent verifies locale context, state isolation, and actual offline delivery; do not invent a React `mode` prop. Generic image/audio/video/code are typed-only in current generic renderer; YouTube not a configured Resource. Notes, review scheduler and full download flow are separate product dependencies. No Lesson runtime config or Quiz is created here.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (editorial text integrated into this config.yaml), pending editor approval.
+    - [Generated taxonomy](../../../../docs/generated/skills/taxonomy.en.md); direct canonical Skill filename/ID is in the Brief.
+    - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - **Editorial:** Array rotation may be previewed as observation but a full rule a×b=b×a belongs to the separate commutative Lesson. Confirm coherent sequencing alongside equalGroups.
+    - **Implementation:** Verify pedagogical equivalent access and full supported-language coverage; no claim of published readiness.
+
+    ## HANDOFF
+
+    One provisional Draft Content and one separate Draft Scene specification. **Gate:** approve the Methodologist Brief first, then Content and Scene independently before Design Scene and Coding Agent implementation. Assessment Architect alone owns evaluated items. Do not modify other Lessons, Skills or Program narratives.
+
+
+    Migration status: provisional draft; pending independent approvals, translation and implementation.

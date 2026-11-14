@@ -1,0 +1,781 @@
+config:
+  id: '3b836ba8-cafa-517e-a34c-d7f341614012'
+  slug: 'additionMeaning'
+  type: 'lesson'
+  skills: ['00b48cb0-13c2-4531-84ac-1b8d44f11055']
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Two Ways Addition Works'
+  section:
+    items:
+      section1:
+        config:
+          id: 'c91cc640-5f69-50b7-93cb-4640b92dbe59'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Two Collections, One Total'
+            navigationLabel:
+              en: 'Two Collections, One Total'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'fcaad635-8943-539a-bde5-56352fb49288'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: 'fdf8058e-d4a3-5d53-ad0f-858e303b3519'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?'
+                production:
+                  specification: |
+                    # Joining and Growing Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Two Ways Addition Works Content (embedded in this Lesson config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether a situation joins two separate collections or grows one existing collection. Represent each story by a correct addition equality and distinguish starting amount, amount added and combined total. Explain with counters that 3+2=5 in both stories without pretending the first story contains a temporal event. Solve a new one-step combine or increase example within ten and check by counting. Methodologist Brief (embedded in this Lesson config.yaml) (Draft, not approved)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish that addition can describe combining two previously separate sets OR increasing an existing quantity. The arithmetic may be identical, while the story and the meaning of each addend differ. Avoid teaching the plus sign exclusively as an instruction to move objects together.
+
+                    Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Whole-number quantities 0–10, nonnegative; two addends only; no need to introduce commutativity, formal set theory, long word problems or carrying. Same sum 3+2=5 in two meanings. Transfer 4+3=7.
+
+                    **Misconceptions and forbidden depictions:** A child may say that the joined-set story must involve a later arrival; may add the group count to the members of one group; may say 3+2=6 by counting the starting 'three' twice. Keep objects trackable and introduce different stories without extra quantities. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Two Collections, One Total:** Prompt “Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?” Initial and learner actions: Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting. For a misconception: If six is chosen, highlight one-to-one counting of all five with no duplicates; if three is chosen, explain that the second bowl is also part of 'both'. Hints and full reveal are available at every step.
+
+                    2. **Section 2 / Now Two More Arrive:** Prompt “Three counters are on the table. Two more arrive. How many are on the table now?” Initial and learner actions: Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story. For a misconception: If the learner labels five as 'arrived', explicitly distinguish the added two from the final five; if the total is guessed as three, ask what happened to the two arrivals. Hints and full reveal are available at every step.
+
+                    3. **Section 3 / Same Numbers, Different Story:** Prompt “Which story joins two groups? Which story makes one group grow?” Initial and learner actions: Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story. For a misconception: If the learner says both stories must involve arriving counters, show untouched bowls and explain the meaning of counting both. Hints and full reveal are available at every step.
+
+                    4. **Section 4 / Make and Explain a New Sum:** Prompt “Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?” Initial and learner actions: Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7. The numerical conclusion is **4 + 3 = 7**. Feedback and explanation: Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall. For a misconception: Six loses one counter, eight double-counts one; show seven individually numbered counters as equivalent accessible text. Hints and full reveal are available at every step.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
+                    - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
+                    - **State:** placement (join, grow, comparison, transfer), initial and extra counters, which controls have been selected, prediction and explanation reveal; each placement is a separate self-contained Scene entry.
+                    - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
+                    - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
+                    - Every action provides a deterministic text readout of before/after, not a visual-only change.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Three plus two counts five distinct counters in two separate bowls with no time-changing story.
+                    2. Three then two arriving produces five, with three initial and two added distinguished.
+                    3. The comparison shows two genuinely different contexts for the same equality.
+                    4. Four then three gives seven and the two-bowl transfer also gives seven.
+                    5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
+                    6. Section placements reset independently and preserve model counts and equation roles.
+                    7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
+                  purpose: 'Two Collections, One Total: independent placement'
+                  productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Two Collections, One Total; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: '7671d8af-705d-5278-b0d4-58aff5bed332'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Two Collections, One Total'
+          productionNotes: |-
+            **Purpose and outcome:** Identify whether a situation joins two separate collections or grows one existing collection.
+
+            **Ordered resource blocks (one vertical LessonSection_Config):**
+
+            1. **text (supported):** “Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?”
+            2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 1 entry. Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence.
+            3. **markdown (supported):** “The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting.” Display the mathematical statement **3 + 2 = 5** as readable symbolic text.
+
+            **Learner action and interaction:** Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+            **Specific misconception response:** If six is chosen, highlight one-to-one counting of all five with no duplicates; if three is chosen, explain that the second bowl is also part of 'both'.
+
+            **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+            **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
+
+            **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+            **Proposed unlocked Note:** “Adding can combine two separate groups.” after the whole demonstration and explanation are available (planned, not wired).
+
+            **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+      section2:
+        config:
+          id: 'cc1ccaf9-6069-524a-96cb-4af9b62db9a0'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Now Two More Arrive'
+            navigationLabel:
+              en: 'Now Two More Arrive'
+          content:
+            items:
+              text1:
+                config:
+                  id: '2e55e7a8-291e-5cbb-af90-67a86ed56c15'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three counters are on the table. Two more arrive. How many are on the table now?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: '00435239-d660-5aa4-af5a-d2395487276e'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Three counters are on the table. Two more arrive. How many are on the table now?'
+                production:
+                  specification: |
+                    # Joining and Growing Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Two Ways Addition Works Content (embedded in this Lesson config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether a situation joins two separate collections or grows one existing collection. Represent each story by a correct addition equality and distinguish starting amount, amount added and combined total. Explain with counters that 3+2=5 in both stories without pretending the first story contains a temporal event. Solve a new one-step combine or increase example within ten and check by counting. Methodologist Brief (embedded in this Lesson config.yaml) (Draft, not approved)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish that addition can describe combining two previously separate sets OR increasing an existing quantity. The arithmetic may be identical, while the story and the meaning of each addend differ. Avoid teaching the plus sign exclusively as an instruction to move objects together.
+
+                    Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Whole-number quantities 0–10, nonnegative; two addends only; no need to introduce commutativity, formal set theory, long word problems or carrying. Same sum 3+2=5 in two meanings. Transfer 4+3=7.
+
+                    **Misconceptions and forbidden depictions:** A child may say that the joined-set story must involve a later arrival; may add the group count to the members of one group; may say 3+2=6 by counting the starting 'three' twice. Keep objects trackable and introduce different stories without extra quantities. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Two Collections, One Total:** Prompt “Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?” Initial and learner actions: Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting. For a misconception: If six is chosen, highlight one-to-one counting of all five with no duplicates; if three is chosen, explain that the second bowl is also part of 'both'. Hints and full reveal are available at every step.
+
+                    2. **Section 2 / Now Two More Arrive:** Prompt “Three counters are on the table. Two more arrive. How many are on the table now?” Initial and learner actions: Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story. For a misconception: If the learner labels five as 'arrived', explicitly distinguish the added two from the final five; if the total is guessed as three, ask what happened to the two arrivals. Hints and full reveal are available at every step.
+
+                    3. **Section 3 / Same Numbers, Different Story:** Prompt “Which story joins two groups? Which story makes one group grow?” Initial and learner actions: Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story. For a misconception: If the learner says both stories must involve arriving counters, show untouched bowls and explain the meaning of counting both. Hints and full reveal are available at every step.
+
+                    4. **Section 4 / Make and Explain a New Sum:** Prompt “Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?” Initial and learner actions: Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7. The numerical conclusion is **4 + 3 = 7**. Feedback and explanation: Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall. For a misconception: Six loses one counter, eight double-counts one; show seven individually numbered counters as equivalent accessible text. Hints and full reveal are available at every step.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
+                    - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
+                    - **State:** placement (join, grow, comparison, transfer), initial and extra counters, which controls have been selected, prediction and explanation reveal; each placement is a separate self-contained Scene entry.
+                    - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
+                    - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
+                    - Every action provides a deterministic text readout of before/after, not a visual-only change.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Three plus two counts five distinct counters in two separate bowls with no time-changing story.
+                    2. Three then two arriving produces five, with three initial and two added distinguished.
+                    3. The comparison shows two genuinely different contexts for the same equality.
+                    4. Four then three gives seven and the two-bowl transfer also gives seven.
+                    5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
+                    6. Section placements reset independently and preserve model counts and equation roles.
+                    7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
+                  purpose: 'Now Two More Arrive: independent placement'
+                  productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Now Two More Arrive; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: '90130052-9994-5ce9-8a75-8052bcac690f'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Now Two More Arrive'
+          productionNotes: |-
+            **Purpose and outcome:** Represent each story by a correct addition equality and distinguish starting amount, amount added and combined total.
+
+            **Ordered resource blocks (one vertical LessonSection_Config):**
+
+            1. **text (supported):** “Three counters are on the table. Two more arrive. How many are on the table now?”
+            2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 2 entry. Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts.
+            3. **markdown (supported):** “Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story.” Display the mathematical statement **3 + 2 = 5** as readable symbolic text.
+
+            **Learner action and interaction:** Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+            **Specific misconception response:** If the learner labels five as 'arrived', explicitly distinguish the added two from the final five; if the total is guessed as three, ask what happened to the two arrivals.
+
+            **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+            **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
+
+            **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+            **Proposed unlocked Note:** “Adding can also show how a group grows.” after the whole demonstration and explanation are available (planned, not wired).
+
+            **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+      section3:
+        config:
+          id: 'cb1cc966-6169-53dd-95cb-4966b72dbb33'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Same Numbers, Different Story'
+            navigationLabel:
+              en: 'Same Numbers, Different Story'
+          content:
+            items:
+              text1:
+                config:
+                  id: '445f52d7-922c-597c-8599-d2d7f3ad2eb6'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Which story joins two groups? Which story makes one group grow?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: 'b1c0d9a8-441c-5a85-a0d8-59a8e20f7e67'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Which story joins two groups? Which story makes one group grow?'
+                production:
+                  specification: |
+                    # Joining and Growing Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Two Ways Addition Works Content (embedded in this Lesson config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether a situation joins two separate collections or grows one existing collection. Represent each story by a correct addition equality and distinguish starting amount, amount added and combined total. Explain with counters that 3+2=5 in both stories without pretending the first story contains a temporal event. Solve a new one-step combine or increase example within ten and check by counting. Methodologist Brief (embedded in this Lesson config.yaml) (Draft, not approved)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish that addition can describe combining two previously separate sets OR increasing an existing quantity. The arithmetic may be identical, while the story and the meaning of each addend differ. Avoid teaching the plus sign exclusively as an instruction to move objects together.
+
+                    Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Whole-number quantities 0–10, nonnegative; two addends only; no need to introduce commutativity, formal set theory, long word problems or carrying. Same sum 3+2=5 in two meanings. Transfer 4+3=7.
+
+                    **Misconceptions and forbidden depictions:** A child may say that the joined-set story must involve a later arrival; may add the group count to the members of one group; may say 3+2=6 by counting the starting 'three' twice. Keep objects trackable and introduce different stories without extra quantities. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Two Collections, One Total:** Prompt “Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?” Initial and learner actions: Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting. For a misconception: If six is chosen, highlight one-to-one counting of all five with no duplicates; if three is chosen, explain that the second bowl is also part of 'both'. Hints and full reveal are available at every step.
+
+                    2. **Section 2 / Now Two More Arrive:** Prompt “Three counters are on the table. Two more arrive. How many are on the table now?” Initial and learner actions: Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story. For a misconception: If the learner labels five as 'arrived', explicitly distinguish the added two from the final five; if the total is guessed as three, ask what happened to the two arrivals. Hints and full reveal are available at every step.
+
+                    3. **Section 3 / Same Numbers, Different Story:** Prompt “Which story joins two groups? Which story makes one group grow?” Initial and learner actions: Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story. For a misconception: If the learner says both stories must involve arriving counters, show untouched bowls and explain the meaning of counting both. Hints and full reveal are available at every step.
+
+                    4. **Section 4 / Make and Explain a New Sum:** Prompt “Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?” Initial and learner actions: Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7. The numerical conclusion is **4 + 3 = 7**. Feedback and explanation: Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall. For a misconception: Six loses one counter, eight double-counts one; show seven individually numbered counters as equivalent accessible text. Hints and full reveal are available at every step.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
+                    - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
+                    - **State:** placement (join, grow, comparison, transfer), initial and extra counters, which controls have been selected, prediction and explanation reveal; each placement is a separate self-contained Scene entry.
+                    - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
+                    - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
+                    - Every action provides a deterministic text readout of before/after, not a visual-only change.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Three plus two counts five distinct counters in two separate bowls with no time-changing story.
+                    2. Three then two arriving produces five, with three initial and two added distinguished.
+                    3. The comparison shows two genuinely different contexts for the same equality.
+                    4. Four then three gives seven and the two-bowl transfer also gives seven.
+                    5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
+                    6. Section placements reset independently and preserve model counts and equation roles.
+                    7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
+                  purpose: 'Same Numbers, Different Story: independent placement'
+                  productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Same Numbers, Different Story; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: 'b8f82695-8051-5306-b35a-a6951cf5cf84'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story."
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Same Numbers, Different Story'
+          productionNotes: |-
+            **Purpose and outcome:** Explain with counters that 3+2=5 in both stories without pretending the first story contains a temporal event.
+
+            **Ordered resource blocks (one vertical LessonSection_Config):**
+
+            1. **text (supported):** “Which story joins two groups? Which story makes one group grow?”
+            2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 3 entry. Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time.
+            3. **markdown (supported):** “Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story.” Display the mathematical statement **3 + 2 = 5** as readable symbolic text.
+
+            **Learner action and interaction:** Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+            **Specific misconception response:** If the learner says both stories must involve arriving counters, show untouched bowls and explain the meaning of counting both.
+
+            **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+            **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
+
+            **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+            **Proposed unlocked Note:** None: connect the two prior concepts.
+
+            **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+      section4:
+        config:
+          id: 'ce1cce1f-5a69-58d8-98cb-4e1fbc2dc312'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Make and Explain a New Sum'
+            navigationLabel:
+              en: 'Make and Explain a New Sum'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'a438cb62-c426-574d-a573-4b6254148063'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?'
+                production:
+                  purpose: 'Provisional learner prompt/feedback'
+              scene1:
+                config:
+                  id: '932defab-781b-59d6-8245-6fab51929e3c'
+                  slug: 'scene1'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?'
+                production:
+                  specification: |
+                    # Joining and Growing Lab — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson: Two Ways Addition Works Content (embedded in this Lesson config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether a situation joins two separate collections or grows one existing collection. Represent each story by a correct addition equality and distinguish starting amount, amount added and combined total. Explain with counters that 3+2=5 in both stories without pretending the first story contains a temporal event. Solve a new one-step combine or increase example within ten and check by counting. Methodologist Brief (embedded in this Lesson config.yaml) (Draft, not approved)
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Establish that addition can describe combining two previously separate sets OR increasing an existing quantity. The arithmetic may be identical, while the story and the meaning of each addend differ. Avoid teaching the plus sign exclusively as an instruction to move objects together.
+
+                    Each learner action must preserve or change quantities exactly as the narrated context requires. The Scene's instructional feedback is not a correct/incorrect mastery engine.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    Whole-number quantities 0–10, nonnegative; two addends only; no need to introduce commutativity, formal set theory, long word problems or carrying. Same sum 3+2=5 in two meanings. Transfer 4+3=7.
+
+                    **Misconceptions and forbidden depictions:** A child may say that the joined-set story must involve a later arrival; may add the group count to the members of one group; may say 3+2=6 by counting the starting 'three' twice. Keep objects trackable and introduce different stories without extra quantities. Never use an arbitrary visual position or color as the only evidence of object roles. Any reported equality must match actual object counts in its own story.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Two Collections, One Total:** Prompt “Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?” Initial and learner actions: Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting. For a misconception: If six is chosen, highlight one-to-one counting of all five with no duplicates; if three is chosen, explain that the second bowl is also part of 'both'. Hints and full reveal are available at every step.
+
+                    2. **Section 2 / Now Two More Arrive:** Prompt “Three counters are on the table. Two more arrive. How many are on the table now?” Initial and learner actions: Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story. For a misconception: If the learner labels five as 'arrived', explicitly distinguish the added two from the final five; if the total is guessed as three, ask what happened to the two arrivals. Hints and full reveal are available at every step.
+
+                    3. **Section 3 / Same Numbers, Different Story:** Prompt “Which story joins two groups? Which story makes one group grow?” Initial and learner actions: Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time. The numerical conclusion is **3 + 2 = 5**. Feedback and explanation: Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story. For a misconception: If the learner says both stories must involve arriving counters, show untouched bowls and explain the meaning of counting both. Hints and full reveal are available at every step.
+
+                    4. **Section 4 / Make and Explain a New Sum:** Prompt “Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?” Initial and learner actions: Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7. The numerical conclusion is **4 + 3 = 7**. Feedback and explanation: Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall. For a misconception: Six loses one counter, eight double-counts one; show seven individually numbered counters as equivalent accessible text. Hints and full reveal are available at every step.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four Section-specific self-contained **prop-free** entries. State does not leak across Section instances. Exact component paths/registration chosen by Coding Agent; editorial placement is not a new public `mode` prop.
+                    - **Objects:** countable counters, semantically named initial and added/combined groups, numeric equations, keyboard-operable action buttons, prediction candidates if useful, readable steps and reset/explanation controls.
+                    - **State:** placement (join, grow, comparison, transfer), initial and extra counters, which controls have been selected, prediction and explanation reveal; each placement is a separate self-contained Scene entry.
+                    - **Invariants:** each described initial group, incoming/other contribution and current whole must be numerically consistent with the declared example. An object belongs to exactly one counted source contribution, and an optional wrong choice cannot silently mutate the true model.
+                    - Reset restores the initial data for that entry, reveal is available without answering; no QuizState, score, mastery event, token reward or persisted assessment.
+                    - Every action provides a deterministic text readout of before/after, not a visual-only change.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use simple high-contrast HTML/SVG counters and labeled bowls/trays, with clear group boundaries and large numbers. Move only the explicitly newly arriving objects in a growth story; do not invent arrivals in a union story. Optional step-by-step transitions are user-controlled. Reduced-motion provides identical before/after count ledger and contextual explanations immediately. No external audio/video/image or WebGL required.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every phrase, group role, action label, status and feedback to all supported locales; no English fallback. An accessible ordered numeric ledger and keyboard/touch/switch controls must let a screen-reader user carry out each operation and inspect totals, without relying on vision, precise dragging, sound or speed. Math expressions keep semantically correct operands and operators in RTL; don't mirror object quantities into incorrect roles. Visible focus, 200% zoom, child-size targets, reduced motion, mobile/weak-device and offline operation after downloaded content package are acceptance requirements.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Three plus two counts five distinct counters in two separate bowls with no time-changing story.
+                    2. Three then two arriving produces five, with three initial and two added distinguished.
+                    3. The comparison shows two genuinely different contexts for the same equality.
+                    4. Four then three gives seven and the two-bowl transfer also gives seven.
+                    5. Prediction mistakes produce exact numerical explanatory feedback and permit retry or complete reveal without score.
+                    6. Section placements reset independently and preserve model counts and equation roles.
+                    7. Keyboard, screen reader, semantic RTL, zoom/mobile, reduced motion and downloaded offline logic provide identical conclusions.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Existing generic `scene` Resource and Lesson rendering are available; **Joining and Growing Lab itself is not implemented**. It requires editor approval of the Methodologist Brief, independent Scene spec approval, prop-free React implementation, accessible tests and genuine locale context integration. Assessment Architect alone authorizes any scored item. Editorial review item: The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
+                  purpose: 'Make and Explain a New Sum: independent placement'
+                  productionNotes: 'Original joiningGrowingLab.scene-spec.md variant belongs to Make and Explain a New Sum; see Section productionNotes. Unique stable Scene ID.'
+              markdown1:
+                config:
+                  id: 'dd78f9f0-7f74-5e17-97db-79f0a1d2a761'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall.'
+                production:
+                  purpose: 'Provisional instructional explanation'
+            order: ['text1', 'scene1', 'markdown1']
+        production:
+          purpose: 'Make and Explain a New Sum'
+          productionNotes: |-
+            **Purpose and outcome:** Solve a new one-step combine or increase example within ten and check by counting.
+
+            **Ordered resource blocks (one vertical LessonSection_Config):**
+
+            1. **text (supported):** “Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?”
+            2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 4 entry. Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7.
+            3. **markdown (supported):** “Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall.” Display the mathematical statement **4 + 3 = 7** as readable symbolic text.
+
+            **Learner action and interaction:** Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+            **Specific misconception response:** Six loses one counter, eight double-counts one; show seven individually numbered counters as equivalent accessible text.
+
+            **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+            **Transition:** Offer a short voluntary explanation of the numerical relationship; end without a scored completion condition.
+
+            **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+            **Proposed unlocked Note:** “Adding can combine two separate groups.” after the whole demonstration and explanation are available (planned, not wired).
+
+            **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+    order: ['section1', 'section2', 'section3', 'section4']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Two Ways Addition Works — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: additionMeaning
+    Methodologist status: Draft
+    Primary audience: **Grade 1** (selected by topic difficulty and prerequisites)
+    Program dependence: None
+    Code: Not implemented
+
+    ## Educational purpose
+
+    Establish that addition can describe combining two previously separate sets OR increasing an existing quantity. The arithmetic may be identical, while the story and the meaning of each addend differ. Avoid teaching the plus sign exclusively as an instruction to move objects together.
+
+    ## Target audience
+
+    Grade 1 learners, typically ages 6–8 within the project's grades 1–3 scope. Audience decisions are **Lesson-specific**; the canonical Skill itself has no grade ceiling.
+
+    ## Prerequisites
+
+    Count objects accurately to 10; distinguish 'already here', 'arrive' and 'altogether'; recognize numbers 0–10. Reading may be emerging; concrete counters and narrated-equivalent text are available.
+
+    ## Target Skills
+
+    - [addMeaning.data.ts](../../../../data/skills/arithmetic/addition/skills/addMeaning.data.ts)
+
+    ## Expected learning outcomes
+
+    - Identify whether a situation joins two separate collections or grows one existing collection.
+    - Represent each story by a correct addition equality and distinguish starting amount, amount added and combined total.
+    - Explain with counters that 3+2=5 in both stories without pretending the first story contains a temporal event.
+    - Solve a new one-step combine or increase example within ten and check by counting.
+
+    ## Essential subject matter
+
+    Whole-number quantities 0–10, nonnegative; two addends only; no need to introduce commutativity, formal set theory, long word problems or carrying. Same sum 3+2=5 in two meanings. Transfer 4+3=7.
+
+    ## Conceptual progression and dependencies
+
+    1. Two Collections, One Total: Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence.
+    2. Now Two More Arrive: Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts.
+    3. Same Numbers, Different Story: Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time.
+    4. Make and Explain a New Sum: Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7.
+
+    ## Misconceptions, examples and boundaries
+
+    A child may say that the joined-set story must involve a later arrival; may add the group count to the members of one group; may say 3+2=6 by counting the starting 'three' twice. Keep objects trackable and introduce different stories without extra quantities.
+
+    ## Localization, accessibility and offline intent
+
+    Every mathematical role and child-facing prompt requires genuine supported-language translations with no English fallback. All interactions have equivalent numeric state lists and native keyboard/touch controls, screen-reader explanations, child-sized targets, RTL-correct operand order, reduced-motion and offline deterministic behavior after selected-locale download. No compulsory drag, audio or speech.
+
+    ## Sources and factual verification
+
+    - [Generated Skill taxonomy](../../../../docs/generated/skills/taxonomy.en.md) for current Playground; this shared generated file must be updated by the coordinator after integration.
+    - The canonical linked Mathematics Skill source, preserving exact UUID and description.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) for general international comparison, not a claim of aligned national Curriculum.
+
+    ## Curriculum / Program compatibility
+
+    Standalone, Program-neutral. Primary teaching audience is Grade 1; no national curriculum mapping presumed.
+
+    ## Open editorial decisions
+
+    - The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
+    - Editorial validation required for the examples, learner readiness and mathematics before runtime build.
+
+    ## Methodologist handoff
+
+    **Draft requiring explicit editor approval.** The accompanying Screenwriter draft is **provisional** and not proof of Methodologist approval or authorization for code/assessment.
+  productionNotes: |
+    # Two Ways Addition Works — Content
+
+    Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/additionMeaning/
+    Primary audience: **Grade 1**, with prior knowledge: Count objects accurately to 10; distinguish 'already here', 'arrive' and 'altogether'; recognize numbers 0–10. Reading may be emerging; concrete counters and narrated-equivalent text are available.
+    Methodologist source: Methodologist Brief (embedded in this Lesson config.yaml) — Draft, not approved
+    Target Skill: `addMeaning.data.ts` directly linked in the Brief, canonical definition unchanged
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Establish that addition can describe combining two previously separate sets OR increasing an existing quantity. The arithmetic may be identical, while the story and the meaning of each addend differ. Avoid teaching the plus sign exclusively as an instruction to move objects together.
+
+    Whole-number quantities 0–10, nonnegative; two addends only; no need to introduce commutativity, formal set theory, long word problems or carrying. Same sum 3+2=5 in two meanings. Transfer 4+3=7.
+
+    Learners build and examine exact numerical relationships before being told a rule. Every incorrect candidate is used to reveal a specific mismatch; hints and the full explanation are never locked by a score.
+
+    ## LEARNER JOURNEY
+
+    1. **Two Collections, One Total.** Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence.
+    2. **Now Two More Arrive.** Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts.
+    3. **Same Numbers, Different Story.** Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time.
+    4. **Make and Explain a New Sum.** Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7.
+
+    ## SECTION PLAN
+
+    ### Section 1 — Two Collections, One Total
+
+    **Purpose and outcome:** Identify whether a situation joins two separate collections or grows one existing collection.
+
+    **Ordered resource blocks (one vertical LessonSection_Config):**
+
+    1. **text (supported):** “Three blue counters are in one bowl and two yellow counters in another. How many counters do both bowls hold?”
+    2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 1 entry. Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence.
+    3. **markdown (supported):** “The first bowl has three and the second has two. Counting both disjoint sets once gives five. Nothing had to arrive later; we joined the quantities in our counting.” Display the mathematical statement **3 + 2 = 5** as readable symbolic text.
+
+    **Learner action and interaction:** Two separate countable bowls with 3 and 2 counters. Learner selects 'Count first bowl', 'Count second bowl', then 'Count all' (or a complete-text explanation). No physical arrival, no time sequence. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+    **Specific misconception response:** If six is chosen, highlight one-to-one counting of all five with no duplicates; if three is chosen, explain that the second bowl is also part of 'both'.
+
+    **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+    **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
+
+    **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+    **Proposed unlocked Note:** “Adding can combine two separate groups.” after the whole demonstration and explanation are available (planned, not wired).
+
+    **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+
+    ### Section 2 — Now Two More Arrive
+
+    **Purpose and outcome:** Represent each story by a correct addition equality and distinguish starting amount, amount added and combined total.
+
+    **Ordered resource blocks (one vertical LessonSection_Config):**
+
+    1. **text (supported):** “Three counters are on the table. Two more arrive. How many are on the table now?”
+    2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 2 entry. Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts.
+    3. **markdown (supported):** “Three were already here, and two arrived; now there are five. This time addition describes a change in one collection, although the numbers match the bowl story.” Display the mathematical statement **3 + 2 = 5** as readable symbolic text.
+
+    **Learner action and interaction:** Show an initial group of 3, then learner-controlled 'Add two' action places exactly two new counters in a labeled 'arrived' area. Preserve both initial and new counts. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+    **Specific misconception response:** If the learner labels five as 'arrived', explicitly distinguish the added two from the final five; if the total is guessed as three, ask what happened to the two arrivals.
+
+    **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+    **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
+
+    **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+    **Proposed unlocked Note:** “Adding can also show how a group grows.” after the whole demonstration and explanation are available (planned, not wired).
+
+    **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+
+    ### Section 3 — Same Numbers, Different Story
+
+    **Purpose and outcome:** Explain with counters that 3+2=5 in both stories without pretending the first story contains a temporal event.
+
+    **Ordered resource blocks (one vertical LessonSection_Config):**
+
+    1. **text (supported):** “Which story joins two groups? Which story makes one group grow?”
+    2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 3 entry. Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time.
+    3. **markdown (supported):** “Both stories have a total of five, but in one we combined separate bowls and in the other two new counters arrived. The equality alone doesn't tell the entire story.” Display the mathematical statement **3 + 2 = 5** as readable symbolic text.
+
+    **Learner action and interaction:** Offer both stories side by side inside the Scene, with semantic labels. Learner selects 'both bowls' or 'two arrive'; display corresponding objects and identical 3+2=5 each time. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+    **Specific misconception response:** If the learner says both stories must involve arriving counters, show untouched bowls and explain the meaning of counting both.
+
+    **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+    **Transition:** Keep the model available and move to the next contrast only after the current example has been fully explained.
+
+    **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+    **Proposed unlocked Note:** None: connect the two prior concepts.
+
+    **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+
+    ### Section 4 — Make and Explain a New Sum
+
+    **Purpose and outcome:** Solve a new one-step combine or increase example within ten and check by counting.
+
+    **Ordered resource blocks (one vertical LessonSection_Config):**
+
+    1. **text (supported):** “Four counters are waiting. Three more arrive. How many now? Can you also make a two-bowl story for those numbers?”
+    2. **scene (generic renderer supported; custom implementation proposed):** Joining and Growing Lab (Scene specification joiningGrowingLab embedded below), Section 4 entry. Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7.
+    3. **markdown (supported):** “Four plus three equals seven. We can grow a group of four by three or count two separate groups of four and three. Both contain seven overall.” Display the mathematical statement **4 + 3 = 7** as readable symbolic text.
+
+    **Learner action and interaction:** Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7. Prediction is optional, with non-scored feedback; "Show each step," "Read the quantities," and "Try again" remain available regardless of prediction.
+
+    **Specific misconception response:** Six loses one counter, eight double-counts one; show seven individually numbered counters as equivalent accessible text.
+
+    **Visible mathematical model:** every original object, added/combined quantity and total is named. The accessible ordered list must carry the same numerical facts as the diagram. The initial state can be revisited without changing other Sections.
+
+    **Transition:** Offer a short voluntary explanation of the numerical relationship; end without a scored completion condition.
+
+    **Accessibility and localization:** Full translated control/feedback strings, accessible labels for each group and numeric state, RTL-safe equations, keyboard/touch/switch controls, visible focus, reduced-motion and offline equivalence.
+
+    **Proposed unlocked Note:** “Adding can combine two separate groups.” after the whole demonstration and explanation are available (planned, not wired).
+
+    **Implementation dependencies:** New prop-free Scene entry remains a proposal; no assessed Question, new Skill or invented runtime event.
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Joining and Growing Lab (Scene specification joiningGrowingLab embedded below): four distinct self-contained prop-free Scene placements, separately initialized in Sections 1–4. No public `mode` prop or additional Resource_Config field is assumed.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Adding can combine two separate groups.” — proposed when the relevant conceptual demonstration has been experienced and explained.
+    2. “Adding can also show how a group grows.” — proposed when the relevant conceptual demonstration has been experienced and explained.
+
+    Notes and unlock events are planned, not wired. Do not claim personal persistence, an offline revision sheet or spaced-repetition scheduling. A Note reveal is not mastery evidence.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Transfer: initial 4, arrival 3, new total 7. Learner predicts 6/7/8, inspects a counter ledger, then toggles to two independent bowls 4 and 3 and explains 4+3=7. Learner predictions are formative; Assessment Architect must independently design valid, scored Question_Config items, Skill attribution, hints/retry thresholds and mastery criteria. These illustrative answer choices are not ready-to-ship Quiz data. The current Question adapter's select-one support is not a substitute for implementing custom Scenes.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Translate all child-facing text, mathematical terminology, status announcements, Notes and accessible controls into the complete supported locale set with no silent English fallback. Equivalent ordered text/tables must let learners inspect and operate each object-count and equation state without sight, drag or sound. Maintain semantic LTR/RTL operand/number order; keyboard/touch/switch control, WCAG 2.2 AA, large targets, focus, reduced motion, zoom/mobile compatibility. Run all deterministic calculations and feedback offline after a full chosen-locale download; do not invent remote services.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    The generic LessonSection renderer supports `text`, `markdown`, `scene`, and its Lesson Section contract orders resources vertically. Joining and Growing Lab is **proposed, not implemented**, with separate Section entry components/localized context and own tests required after approval. No image/audio/video/code generic blocks or YouTube integration used. Notes, review scheduling and download/sync facilities must not be represented as already implemented. No runtime Lesson Config, Quiz, Question or scoring artifacts created.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (embedded in this Lesson config.yaml), awaiting explicit editor approval.
+    - Canonical `addMeaning.data.ts` linked from the Brief; the shared generated taxonomy is coordinated separately.
+    - [Create Lesson Content Skill](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - The two meanings must remain distinct in translations, particularly 'both' versus 'more arrived'; no additional curriculum assignment is assumed.
+
+    ## HANDOFF
+
+    This is one **provisional Draft** Content document with the separately reviewable Draft Scene spec. Editor first approves the Methodologist Brief, then evaluates Content and Scene. Scene Designer, Coding Agent and Assessment Architect proceed only with separate authorization. Do not rewrite canon Skills, create scored Questions, or change unrelated Lessons.

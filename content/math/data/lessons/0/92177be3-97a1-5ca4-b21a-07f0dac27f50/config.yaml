@@ -1,0 +1,509 @@
+config:
+  id: '92177be3-97a1-5ca4-b21a-07f0dac27f50'
+  slug: 'equalsMeansSameValue'
+  type: 'lesson'
+  skills:
+    - '974af868-5b72-4a5a-a88e-8f7e03e48661'
+  params:
+    requireQuiz: false
+    languages:
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'The Equals Sign Means Same Value'
+  section:
+    items:
+      section1PredictWhetherTwoAmountsMatch:
+        config:
+          id: '708bc8c7-044c-4eba-8c99-7bdb285e9da6'
+          slug: 'section1PredictWhetherTwoAmountsMatch'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Predict whether two amounts match'
+            navigationLabel:
+              en: 'Predict whether two amounts match'
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: 'b32df671-84cb-4c85-8139-8bb716dfc143'
+                  slug: 'section1Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'On the first tray, three red counters and two blue counters. On the second, five plain counters. Are the amounts the same?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **text**: “On the first tray, three red counters and two blue counters. On the second, five plain counters. Are the amounts the same?” The color is irrelevant to the total.'
+              section1Scene2:
+                config:
+                  id: '860bbab1-0e09-46d3-876d-5a20df6fd642'
+                  slug: 'section1Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'On the first tray, three red counters and two blue counters. On the second, five plain counters. Are the amounts the same?'
+                production:
+                  purpose: 'Provisional Scene placement in Predict whether two amounts match, self-contained and not implemented'
+                  specification: |
+                    # Equality Workbench — Scene Specification
+
+                    Status: Provisional Draft — pending Methodologist approval
+                    Owner: Educational Screenwriter
+                    Parent: Lesson Content (full original source: this Lesson's production notes), Sections 1–3
+                    Methodologist source: Draft Brief (full original source: production.methodology)
+
+                    ## Learner purpose and mathematical invariant
+
+                    Experience the equals sign as a comparison of two numeric values, independent of the location of an “answer”. The Scene models discrete counted objects. A true equality requires total(left) = total(right), regardless of color, arrangement or relative position. Never identify equality using pixel height or a decorative balance alone.
+
+                    ## Guided experience and learner actions
+
+                    1. Opening: tray A contains 3 red + 2 blue tokens; tray B has 5 neutral tokens. Labels explicitly say “first side” and “second side” and totals initially hidden. Ask “Same amount?” with accessible yes/no choices.
+                    2. A “Count first side” control reveals the individual counts and total 5; “Count second side” reveals 5. Before both are counted, a premature guess receives “Check both amounts.” After reveal, choosing “same” gets “Five equals five”; “different” gets “Both trays have five, even though their colors differ.”
+                    3. Second placement starts independently with 3 + 2 and 4 + 1. Expose one side at a time, then show 3 + 2 = 4 + 1. A reversed example 5 = 2 + 3 must be allowed as equally valid.
+                    4. Third placement starts with 4 + 2 = 4 + 3. Let learner add one token on the first side or remove one token on the second; both yield true but differently written equalities. After any change, update visible expressions and textual totals. If still unequal: “Six and seven do not match.” Do not just alter a visual balance without updating arithmetic.
+                    5. Reset restores the specific placement only. Reveal explanation and skip-ahead remain available without guessing.
+
+                    ## Objects, state and rules
+
+                    Two independently labeled token collections; grouped subcollections for expressions; optional symbolic equality; action choices; count and explanation buttons; current counts; booleans for revealed totals; selected equality judgment. All arithmetic is derived from displayed counts, not a stored correctness flag. Moving a token changes exactly one count. Each placement has independent initial state; no hidden props, persistence or cross-Section state.
+
+                    ## Visual, audio and localization
+
+                    Use restrained motion if enabled, never to communicate truth by itself. Every group has numerals and text count. RTL preserves expression order and relationships, with explicit side labels and logical focus order; the = glyph remains semantically stable. All interaction copy and feedback requires genuine translations for every supported locale. A keyboard/switch user changes counters through add/remove buttons; no mandatory drag. Screen reader announces both groups and totals, plus equality conclusion. High contrast and reduced motion, 200% zoom and small screens preserve information. Full content works offline with no external requests.
+
+                    ## Acceptance scenarios
+
+                    - 3+2 versus 5: both totals five and equality true.
+                    - 3+2 versus 4+1: five/five and equality true.
+                    - 5 = 2+3: true despite reversed orientation.
+                    - 4+2 versus 4+3: six/seven and false; adding one first-side token yields seven/seven.
+                    - Optional removal from second side yields six/six; symbolic expression changes accordingly.
+                    - Correct and mistaken judgments get explanatory feedback, not a score.
+                    - Keyboard-only, nonvisual, RTL, zoom, reduced motion and offline paths expose the same computations.
+
+                    ## Implementation dependencies
+
+                    Proposed new prop-free Scene entry, localized strings and accessible controls. No existing Scene implementation, assessment integration, persistence or Note API is asserted. Coding Agent must verify current renderer/context and test every case after approval.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **scene (proposed)**: Equality Workbench (full original source: Scene production.specification). The learner counts each tray, predicts “same amount” or “different amount”, then reveals the totals.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section1Text3:
+                config:
+                  id: '8b436724-2a86-479e-856f-f96094aa39da'
+                  slug: 'section1Text3'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Both show five. The symbol = means both sides have the same value.'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **text**: “Both show five. The symbol = means both sides have the same value.” Mistake feedback: “Count all the counters on each side, regardless of color.”'
+            order:
+              - 'section1Text1'
+              - 'section1Scene2'
+              - 'section1Text3'
+        production:
+          purpose: 'Predict whether two amounts match'
+          pedagogicalIntent: 'Predict whether two amounts match'
+          productionNotes: |
+            ## Section 1 — Predict whether two amounts match
+
+            1. **text**: “On the first tray, three red counters and two blue counters. On the second, five plain counters. Are the amounts the same?” The color is irrelevant to the total.
+            2. **scene (proposed)**: Equality Workbench (full original source: Scene production.specification). The learner counts each tray, predicts “same amount” or “different amount”, then reveals the totals.
+            3. **text**: “Both show five. The symbol = means both sides have the same value.” Mistake feedback: “Count all the counters on each side, regardless of color.”
+
+      section2EqualityDoesNotJustAnnounceTheAnswer:
+        config:
+          id: '7d878524-7eea-41af-853d-c4ad86502026'
+          slug: 'section2EqualityDoesNotJustAnnounceTheAnswer'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Equality does not just announce the answer'
+            navigationLabel:
+              en: 'Equality does not just announce the answer'
+          content:
+            items:
+              section2Markdown1:
+                config:
+                  id: '31d32f0c-d332-4ed8-8be7-d4a59906e571'
+                  slug: 'section2Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '3 + 2 = 4 + 1 is true: five on each side. 5 = 2 + 3 is also true: the answer need not be on the right.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '1. **markdown**: “3 + 2 = 4 + 1 is true: five on each side. 5 = 2 + 3 is also true: the answer need not be on the right.”'
+              section2Scene2:
+                config:
+                  id: '7f4e090a-3ab2-48c8-8e2b-b0334bd731f1'
+                  slug: 'section2Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: '3 + 2 = 4 + 1 is true: five on each side. 5 = 2 + 3 is also true: the answer need not be on the right.'
+                production:
+                  purpose: 'Provisional Scene placement in Equality does not just announce the answer, self-contained and not implemented'
+                  specification: |
+                    # Equality Workbench — Scene Specification
+
+                    Status: Provisional Draft — pending Methodologist approval
+                    Owner: Educational Screenwriter
+                    Parent: Lesson Content (full original source: this Lesson's production notes), Sections 1–3
+                    Methodologist source: Draft Brief (full original source: production.methodology)
+
+                    ## Learner purpose and mathematical invariant
+
+                    Experience the equals sign as a comparison of two numeric values, independent of the location of an “answer”. The Scene models discrete counted objects. A true equality requires total(left) = total(right), regardless of color, arrangement or relative position. Never identify equality using pixel height or a decorative balance alone.
+
+                    ## Guided experience and learner actions
+
+                    1. Opening: tray A contains 3 red + 2 blue tokens; tray B has 5 neutral tokens. Labels explicitly say “first side” and “second side” and totals initially hidden. Ask “Same amount?” with accessible yes/no choices.
+                    2. A “Count first side” control reveals the individual counts and total 5; “Count second side” reveals 5. Before both are counted, a premature guess receives “Check both amounts.” After reveal, choosing “same” gets “Five equals five”; “different” gets “Both trays have five, even though their colors differ.”
+                    3. Second placement starts independently with 3 + 2 and 4 + 1. Expose one side at a time, then show 3 + 2 = 4 + 1. A reversed example 5 = 2 + 3 must be allowed as equally valid.
+                    4. Third placement starts with 4 + 2 = 4 + 3. Let learner add one token on the first side or remove one token on the second; both yield true but differently written equalities. After any change, update visible expressions and textual totals. If still unequal: “Six and seven do not match.” Do not just alter a visual balance without updating arithmetic.
+                    5. Reset restores the specific placement only. Reveal explanation and skip-ahead remain available without guessing.
+
+                    ## Objects, state and rules
+
+                    Two independently labeled token collections; grouped subcollections for expressions; optional symbolic equality; action choices; count and explanation buttons; current counts; booleans for revealed totals; selected equality judgment. All arithmetic is derived from displayed counts, not a stored correctness flag. Moving a token changes exactly one count. Each placement has independent initial state; no hidden props, persistence or cross-Section state.
+
+                    ## Visual, audio and localization
+
+                    Use restrained motion if enabled, never to communicate truth by itself. Every group has numerals and text count. RTL preserves expression order and relationships, with explicit side labels and logical focus order; the = glyph remains semantically stable. All interaction copy and feedback requires genuine translations for every supported locale. A keyboard/switch user changes counters through add/remove buttons; no mandatory drag. Screen reader announces both groups and totals, plus equality conclusion. High contrast and reduced motion, 200% zoom and small screens preserve information. Full content works offline with no external requests.
+
+                    ## Acceptance scenarios
+
+                    - 3+2 versus 5: both totals five and equality true.
+                    - 3+2 versus 4+1: five/five and equality true.
+                    - 5 = 2+3: true despite reversed orientation.
+                    - 4+2 versus 4+3: six/seven and false; adding one first-side token yields seven/seven.
+                    - Optional removal from second side yields six/six; symbolic expression changes accordingly.
+                    - Correct and mistaken judgments get explanatory feedback, not a score.
+                    - Keyboard-only, nonvisual, RTL, zoom, reduced motion and offline paths expose the same computations.
+
+                    ## Implementation dependencies
+
+                    Proposed new prop-free Scene entry, localized strings and accessible controls. No existing Scene implementation, assessment integration, persistence or Note API is asserted. Coding Agent must verify current renderer/context and test every case after approval.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **scene (proposed)**: Workbench variation compares 3 + 2 with 4 + 1; independently reveal each side’s total. The child may select a verbal explanation. If wrong: “These groups are arranged differently, but both have five.”
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section2Text3:
+                config:
+                  id: '7f87f229-29d2-4d05-8bbc-3ee2bde901ce'
+                  slug: 'section2Text3'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'What does the sign say?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **text**: “What does the sign say?” After choosing, reveal “The values match,” not “Now calculate.”'
+            order:
+              - 'section2Markdown1'
+              - 'section2Scene2'
+              - 'section2Text3'
+        production:
+          purpose: 'Equality does not just announce the answer'
+          pedagogicalIntent: 'Equality does not just announce the answer'
+          productionNotes: |
+            ## Section 2 — Equality does not just announce the answer
+
+            1. **markdown**: “3 + 2 = 4 + 1 is true: five on each side. 5 = 2 + 3 is also true: the answer need not be on the right.”
+            2. **scene (proposed)**: Workbench variation compares 3 + 2 with 4 + 1; independently reveal each side’s total. The child may select a verbal explanation. If wrong: “These groups are arranged differently, but both have five.”
+            3. **text**: “What does the sign say?” After choosing, reveal “The values match,” not “Now calculate.”
+
+      section3RepairAFalseEquality:
+        config:
+          id: '8df044b7-521a-4977-88bd-3599a7573859'
+          slug: 'section3RepairAFalseEquality'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Repair a false equality'
+            navigationLabel:
+              en: 'Repair a false equality'
+          content:
+            items:
+              section3Markdown1:
+                config:
+                  id: '58d47fda-23ac-4786-8e3e-24dbd5460c87'
+                  slug: 'section3Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '4 + 2 = 4 + 3 is not true: six is not seven.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '1. **markdown**: “4 + 2 = 4 + 3 is not true: six is not seven.”'
+              section3Scene2:
+                config:
+                  id: 'b9acf9ed-d7d1-4682-85b7-ea235bcae54c'
+                  slug: 'section3Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: '4 + 2 = 4 + 3 is not true: six is not seven.'
+                production:
+                  purpose: 'Provisional Scene placement in Repair a false equality, self-contained and not implemented'
+                  specification: |
+                    # Equality Workbench — Scene Specification
+
+                    Status: Provisional Draft — pending Methodologist approval
+                    Owner: Educational Screenwriter
+                    Parent: Lesson Content (full original source: this Lesson's production notes), Sections 1–3
+                    Methodologist source: Draft Brief (full original source: production.methodology)
+
+                    ## Learner purpose and mathematical invariant
+
+                    Experience the equals sign as a comparison of two numeric values, independent of the location of an “answer”. The Scene models discrete counted objects. A true equality requires total(left) = total(right), regardless of color, arrangement or relative position. Never identify equality using pixel height or a decorative balance alone.
+
+                    ## Guided experience and learner actions
+
+                    1. Opening: tray A contains 3 red + 2 blue tokens; tray B has 5 neutral tokens. Labels explicitly say “first side” and “second side” and totals initially hidden. Ask “Same amount?” with accessible yes/no choices.
+                    2. A “Count first side” control reveals the individual counts and total 5; “Count second side” reveals 5. Before both are counted, a premature guess receives “Check both amounts.” After reveal, choosing “same” gets “Five equals five”; “different” gets “Both trays have five, even though their colors differ.”
+                    3. Second placement starts independently with 3 + 2 and 4 + 1. Expose one side at a time, then show 3 + 2 = 4 + 1. A reversed example 5 = 2 + 3 must be allowed as equally valid.
+                    4. Third placement starts with 4 + 2 = 4 + 3. Let learner add one token on the first side or remove one token on the second; both yield true but differently written equalities. After any change, update visible expressions and textual totals. If still unequal: “Six and seven do not match.” Do not just alter a visual balance without updating arithmetic.
+                    5. Reset restores the specific placement only. Reveal explanation and skip-ahead remain available without guessing.
+
+                    ## Objects, state and rules
+
+                    Two independently labeled token collections; grouped subcollections for expressions; optional symbolic equality; action choices; count and explanation buttons; current counts; booleans for revealed totals; selected equality judgment. All arithmetic is derived from displayed counts, not a stored correctness flag. Moving a token changes exactly one count. Each placement has independent initial state; no hidden props, persistence or cross-Section state.
+
+                    ## Visual, audio and localization
+
+                    Use restrained motion if enabled, never to communicate truth by itself. Every group has numerals and text count. RTL preserves expression order and relationships, with explicit side labels and logical focus order; the = glyph remains semantically stable. All interaction copy and feedback requires genuine translations for every supported locale. A keyboard/switch user changes counters through add/remove buttons; no mandatory drag. Screen reader announces both groups and totals, plus equality conclusion. High contrast and reduced motion, 200% zoom and small screens preserve information. Full content works offline with no external requests.
+
+                    ## Acceptance scenarios
+
+                    - 3+2 versus 5: both totals five and equality true.
+                    - 3+2 versus 4+1: five/five and equality true.
+                    - 5 = 2+3: true despite reversed orientation.
+                    - 4+2 versus 4+3: six/seven and false; adding one first-side token yields seven/seven.
+                    - Optional removal from second side yields six/six; symbolic expression changes accordingly.
+                    - Correct and mistaken judgments get explanatory feedback, not a score.
+                    - Keyboard-only, nonvisual, RTL, zoom, reduced motion and offline paths expose the same computations.
+
+                    ## Implementation dependencies
+
+                    Proposed new prop-free Scene entry, localized strings and accessible controls. No existing Scene implementation, assessment integration, persistence or Note API is asserted. Coding Agent must verify current renderer/context and test every case after approval.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **scene (proposed)**: Change the number of counters on one side to make it equal. Adding one counter to the first side gives 4 + 3 = 4 + 3. A wrong response gets numeric feedback: “The first side still has six and the second has seven.”
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section3Text3:
+                config:
+                  id: 'cf861e80-9cc0-4203-8cce-af6b2f8803e8'
+                  slug: 'section3Text3'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We changed an amount. The equality is true only after both values match.'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **text**: “We changed an amount. The equality is true only after both values match.”'
+            order:
+              - 'section3Markdown1'
+              - 'section3Scene2'
+              - 'section3Text3'
+        production:
+          purpose: 'Repair a false equality'
+          pedagogicalIntent: 'Repair a false equality'
+          productionNotes: |
+            ## Section 3 — Repair a false equality
+
+            1. **markdown**: “4 + 2 = 4 + 3 is not true: six is not seven.”
+            2. **scene (proposed)**: Change the number of counters on one side to make it equal. Adding one counter to the first side gives 4 + 3 = 4 + 3. A wrong response gets numeric feedback: “The first side still has six and the second has seven.”
+            3. **text**: “We changed an amount. The equality is true only after both values match.”
+
+      section4IndependentTransfer:
+        config:
+          id: '2f4afed8-5ba5-42fb-8ee6-9465aa098846'
+          slug: 'section4IndependentTransfer'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Independent transfer'
+            navigationLabel:
+              en: 'Independent transfer'
+          content:
+            items:
+              section4Text1:
+                config:
+                  id: '00162145-5c3c-42b1-8d10-dbb6713aa842'
+                  slug: 'section4Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Someone says 6 = 1 + 5 is wrong because the answer is on the left. Do you agree? Explain, or choose ‘six on each side’ or ‘the sign needs an answer on the right’.'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **text**: “Someone says 6 = 1 + 5 is wrong because the answer is on the left. Do you agree? Explain, or choose ‘six on each side’ or ‘the sign needs an answer on the right’.”'
+              section4Text2:
+                config:
+                  id: '1fcd6fe8-28b3-4e50-8fd4-374fc8aa36f7'
+                  slug: 'section4Text2'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Six on the left, six on the right. It is true.'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '2. **text**: After response or on-demand reveal: “Six on the left, six on the right. It is true.” A mistaken explanation triggers the same concrete count.'
+              section4Markdown3:
+                config:
+                  id: '83f7c8f0-c532-4b30-8834-2ce5eef1cf25'
+                  slug: 'section4Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Remember: **= means the values on both sides match.**'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '3. **markdown**: “Remember: **= means the values on both sides match.**”'
+            order:
+              - 'section4Text1'
+              - 'section4Text2'
+              - 'section4Markdown3'
+        production:
+          purpose: 'Independent transfer'
+          pedagogicalIntent: 'Independent transfer'
+          productionNotes: |
+            ## Section 4 — Independent transfer
+
+            1. **text**: “Someone says 6 = 1 + 5 is wrong because the answer is on the left. Do you agree? Explain, or choose ‘six on each side’ or ‘the sign needs an answer on the right’.”
+            2. **text**: After response or on-demand reveal: “Six on the left, six on the right. It is true.” A mistaken explanation triggers the same concrete count.
+            3. **markdown**: “Remember: **= means the values on both sides match.**”
+
+    order:
+      - 'section1PredictWhetherTwoAmountsMatch'
+      - 'section2EqualityDoesNotJustAnnounceTheAnswer'
+      - 'section3RepairAFalseEquality'
+      - 'section4IndependentTransfer'
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # The Equals Sign Means Same Value — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: equalsMeansSameValue
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Build the relational meaning of = through matched collections and equivalent arithmetic expressions before treating equality as a sentence to judge.
+
+    ## Target audience
+
+    **Primary audience: Grade 1.** Use short clear instructions, optional audio read-aloud, large touch targets and a nonvisual text representation. This is an instructional depth decision for the Lesson, not a grade restriction on the canonical Skill.
+
+    ## Prerequisites
+
+    - Count collections and calculate small additions within ten; recognize + and numerals.
+
+    ## Target Skills
+
+    - [equalityMeaning.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/algebra/equalities/skills/equalityMeaning.data.ts)
+
+    ## Expected learning outcomes
+
+    - Identify equality as two sides with the same value; explain why 3 + 2 = 4 + 1 is true; detect 4 + 2 = 4 + 3 as false without the convention that an answer must come after =; use a concrete model before symbolic explanations.
+
+    ## Essential subject matter
+
+    The sign = asserts sameness of value, not a request to compute. 3 + 2 and 4 + 1 both equal five; 3 + 2 = 4 + 1 is true. Reversing sides preserves equality. Two unmatched collections do not become equal when a symbol is inserted. Models may have different arrangements but equal counts.
+
+    ## Conceptual progression and dependencies
+
+    Move from arranging equal-sized collections to comparing two quantities; shift to both sides expressed numerically; finally interpret a reversed equality without physical objects.
+
+    ## Misconceptions, examples and boundaries
+
+    Misconception: 'the answer is always to the right' or 'the equals sign means now calculate'. Contrast 2 + 3 = 5, 5 = 2 + 3, 2 + 3 = 4 + 1, and false 2 + 3 = 6. Confine calculations mainly to 0–10; exclude algebraic manipulation and equality of nonnumeric objects.
+
+    ## Localization, accessibility and offline intent
+
+    The English examples are editorial source text; genuine translations must be authored for every supported locale before implementation. All quantities, relationships, labels, hints and feedback must remain available in text and not only color, movement or audio. Preserve mathematical relationship order in RTL; do not blindly mirror a number line. Every action needs keyboard and touch alternatives, visible focus, 200% zoom and screen-reader descriptions. Illustrations must have equivalent descriptions; motion is optional. Deliver complete instructional media for offline use; do not promise Note persistence or scoring.
+
+    ## Sources and factual verification
+
+    - [Canonical Mathematics Skill data](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/algebra/equalities/skills/equalityMeaning.data.ts) — preserve its competency definition and UUID.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/) — consulted only as general age-progression context, not a claim of approved Curriculum alignment.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. This Lesson is autonomous and Program-neutral.
+
+    ## Open editorial decisions
+
+    - Editor must approve target grade, learning boundaries and the mapping to the linked canonical Skills before any formal Content approval.
+
+    ## Methodologist handoff
+
+    **Draft pending approval.** The companion Content (full original source: this Lesson's production notes) and any [Scene specifications](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/lessons/0/92177be3-97a1-5ca4-b21a-07f0dac27f50/scenes) are provisional review materials authorized for concurrent preparation, not evidence that the Methodologist approval gate has passed.
+  productionNotes: |
+    All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+
+    ## Original Screenwriter introduction
+
+    # The Equals Sign Means Same Value — Lesson Content
+
+    Content status: Provisional Draft — pending Methodologist approval
+    Owner: Educational Screenwriter
+    Methodologist input: Draft Brief (full original source: production.methodology)
+    Program dependence: None
+    Implementation: Not implemented
+
+
+    ## Original Screenwriter concluding notes
+
+    ## Access and production constraints
+
+    The Section is a single vertical ordered Resource column. Only text/markdown/scene are specified; bespoke Scenes are proposed and require implementation. Every label and feedback needs real translations in all supported locales, semantic RTL and LTR, keyboard and touch controls, accessible spoken-equivalent tray descriptions, high contrast without color-only meaning, reduced motion, small-screen zoom and locally available offline resources. No Quiz, Question scoring, program narrative, storage or Note API is specified.
+
+    ## Review handoff
+
+    Provisional pending Methodologist Brief (full original source: production.methodology) approval. Scene detail: Equality Workbench (full original source: Scene production.specification).

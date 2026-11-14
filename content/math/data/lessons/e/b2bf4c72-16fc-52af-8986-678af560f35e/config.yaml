@@ -1,0 +1,664 @@
+config:
+  id: 'b2bf4c72-16fc-52af-8986-678af560f35e'
+  slug: 'additionInColumns'
+  type: 'lesson'
+  skills: ['5957ed51-2e99-48b2-b86d-8f50b42af05e']
+  params:
+    languages: ['en', 'pl', 'uk', 'qm']
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Add Tens and Ones in Columns'
+  flashcards:
+    items: {}
+    order: []
+  section:
+    items:
+      section1PutEveryDigitInItsPlace:
+        config:
+          id: '50625b69-4341-42be-b9b0-34e3313514b8'
+          slug: 'section1PutEveryDigitInItsPlace'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Put Every Digit in Its Place'
+            navigationLabel:
+              en: 'Put Every Digit in Its Place'
+          content:
+            items:
+              text1:
+                config:
+                  id: '6f976e98-77a0-444f-804d-c4e67ea5ecad'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'What does 27 mean? What does 35 mean? Put their tens and ones in the correct columns.'
+              placeValueColumnAdder:
+                config:
+                  id: 'b52a9950-e865-44e7-a7c3-380606282e25'
+                  slug: 'placeValueColumnAdder'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Place Value Column Adder'
+                production:
+                  specification: |
+                    # Place Value Column Adder — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Add Tens and Ones in Columns Content (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Place 27 and 35 on a labeled Tens/Ones board with each digit correctly valued. Explain why 7 ones + 5 ones = 12 ones requires recording 2 ones and carrying 1 ten. Compute 27+35=62 in columns and reconcile it with two independent counter totals. Use an aligned two-digit column to calculate 46+28=74 and verify the result with place-value decomposition. Methodologist Brief (original now embedded in this config.yaml) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Explain how written column addition aligns equal place values and uses a carry mark to record a real exchange of ten ones for one ten. Start by reading two-digit place values correctly, then add 27+35=62 with an exact physical model. This lesson focuses on column notation and single ones-to-tens carry, distinct from the age-neutral broader Skill 'Addition with regrouping'.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    27 = 2 tens+7 ones, 35=3 tens+5 ones. Add ones: 7+5=12=1 ten+2 ones, record 2 ones and a carried ten. Tens: 2+3+1=6 tens, sum 62. Unregrouped example 23+14=37 demonstrates aligning tens with tens, ones with ones. Transfer 46+28: 6+8=14 → 4 ones+1 ten; 4+2+1=7 tens →74. Use only nonnegative two-digit operands and sum under 100, one carry at most, no stacked three-digit or multiple-carry work in this Lesson.
+
+                    Writing 27 and 35 without aligning tens and ones can lead to adding mismatched place values. A child may write 7+5=12 as the entire ones digit '12' and then append tens; may record carry 1 but leave 12 ones as well, making 72; may add tens 2+3=5 and forget the carry, making 52. A carry is a named ten, not an arbitrary extra one. No column procedure should be shown before the physical exchange is understood.
+
+                    **Conservation invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Put Every Digit in Its Place:** Prompt “What does 27 mean? What does 35 mean? Put their tens and ones in the correct columns.”. A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast. The written statement is **27 = 2 tens + 7 ones; 35 = 3 tens + 5 ones**. Learner-facing explanation: The tens columns count bundles of ten, and the ones columns count single objects. We add each kind to the same kind. If mistaken: If 27 is entered as 7 tens and 2 ones, calculate 72 and explain how a digit's place changes its value. Never call the two numerals interchangeable. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Twelve Ones Need an Exchange:** Prompt “Seven ones plus five ones give twelve ones. Can twelve fit into the ones column?”. The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens. The written statement is **7 ones + 5 ones = 12 ones = 1 ten + 2 ones**. Learner-facing explanation: We keep two ones and carry one full ten. That ten was made from ten of the twelve singles, not added from outside. If mistaken: If a child writes 12 in the ones digit slot, explain it holds only the remaining two ones; if they claim the sum grew by ten, count physical objects before and after exchange. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Complete Twenty-Seven Plus Thirty-Five:** Prompt “There is one carried ten. Add it with the two tens and three tens. What is the whole sum?”. Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62. The written statement is **27 + 35 = 62**. Learner-facing explanation: Seven plus five gave two ones and one ten. Two original tens plus three original tens plus the carried ten make six tens. Six tens and two ones make sixty-two. If mistaken: For 52, show the missed carried ten, yielding only 5T2O; for 72, show an extra ten was counted twice. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Try a New Column:** Prompt “What is 46 + 28? Where does the new ten go?”. Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available. The written statement is **46 + 28 = 74**. Learner-facing explanation: Four tens and six ones plus two tens and eight ones make seven tens and four ones. Six plus eight gives fourteen, so the carried ten must be included. If mistaken: For 64, point to the omitted carried ten; for 84, show that one ten was counted twice. Confirm with 40+6+20+8=74. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per independent Scene placement: operands and labeled tens/ones digits; unique counters, number of exchanged tens, carry marker and its provenance, column result digits, selected trial and reveal/reset flags.
+                    - **Invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 27 and 35 map to 2T7O and 3T5O; 23+14 gives 37 without carry.
+                    2. 7+5=12 ones converts to 1T2O with ten uniquely consumed counters.
+                    3. 27+35 yields 62, not 52/72, and 20+7+30+5=62.
+                    4. 46+28 yields 74, with six+eight fourteen and four+two+one tens seven.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
+                  purpose: 'Proposed interactive Scene for Put Every Digit in Its Place'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: '25cce94f-20d6-44a4-a62b-530d6c9b488a'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The tens columns count bundles of ten, and the ones columns count single objects. We add each kind to the same kind.'
+            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+        production:
+          purpose: 'Put Every Digit in Its Place'
+          pedagogicalIntent: |
+            ### Section 1 — Put Every Digit in Its Place
+
+            - **Outcome/purpose:** Place 27 and 35 on a labeled Tens/Ones board with each digit correctly valued.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “What does 27 mean? What does 35 mean? Put their tens and ones in the correct columns.”
+            - **Scene Resource (type supported; new component proposed):** Place Value Column Adder (Scene specification embedded in this config.yaml), independent Section 1 placement: A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast.
+            - **Markdown Resource (available):** “The tens columns count bundles of ten, and the ones columns count single objects. We add each kind to the same kind.” Mathematical statement: **27 = 2 tens + 7 ones; 35 = 3 tens + 5 ones**.
+            - **Learner action and observation:** A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** If 27 is entered as 7 tens and 2 ones, calculate 72 and explain how a digit's place changes its value. Never call the two numerals interchangeable. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Invite the next example only after the current place-value statement has been explained; offer Reset and 'Show steps'.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** “Line up ones with ones and tens with tens.”, after the explanation is accessible (planned, not wired).
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section2TwelveOnesNeedAnExchange:
+        config:
+          id: '7cdd6c1d-1fcc-4c14-9209-b0773bdf6d76'
+          slug: 'section2TwelveOnesNeedAnExchange'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Twelve Ones Need an Exchange'
+            navigationLabel:
+              en: 'Twelve Ones Need an Exchange'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'e7dfe9bc-9c88-47d9-8e3e-495a53392227'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Seven ones plus five ones give twelve ones. Can twelve fit into the ones column?'
+              placeValueColumnAdder:
+                config:
+                  id: '32f3bebc-3ad9-4029-bafa-ee922b010aaf'
+                  slug: 'placeValueColumnAdder'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Place Value Column Adder'
+                production:
+                  specification: |
+                    # Place Value Column Adder — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Add Tens and Ones in Columns Content (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Place 27 and 35 on a labeled Tens/Ones board with each digit correctly valued. Explain why 7 ones + 5 ones = 12 ones requires recording 2 ones and carrying 1 ten. Compute 27+35=62 in columns and reconcile it with two independent counter totals. Use an aligned two-digit column to calculate 46+28=74 and verify the result with place-value decomposition. Methodologist Brief (original now embedded in this config.yaml) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Explain how written column addition aligns equal place values and uses a carry mark to record a real exchange of ten ones for one ten. Start by reading two-digit place values correctly, then add 27+35=62 with an exact physical model. This lesson focuses on column notation and single ones-to-tens carry, distinct from the age-neutral broader Skill 'Addition with regrouping'.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    27 = 2 tens+7 ones, 35=3 tens+5 ones. Add ones: 7+5=12=1 ten+2 ones, record 2 ones and a carried ten. Tens: 2+3+1=6 tens, sum 62. Unregrouped example 23+14=37 demonstrates aligning tens with tens, ones with ones. Transfer 46+28: 6+8=14 → 4 ones+1 ten; 4+2+1=7 tens →74. Use only nonnegative two-digit operands and sum under 100, one carry at most, no stacked three-digit or multiple-carry work in this Lesson.
+
+                    Writing 27 and 35 without aligning tens and ones can lead to adding mismatched place values. A child may write 7+5=12 as the entire ones digit '12' and then append tens; may record carry 1 but leave 12 ones as well, making 72; may add tens 2+3=5 and forget the carry, making 52. A carry is a named ten, not an arbitrary extra one. No column procedure should be shown before the physical exchange is understood.
+
+                    **Conservation invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Put Every Digit in Its Place:** Prompt “What does 27 mean? What does 35 mean? Put their tens and ones in the correct columns.”. A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast. The written statement is **27 = 2 tens + 7 ones; 35 = 3 tens + 5 ones**. Learner-facing explanation: The tens columns count bundles of ten, and the ones columns count single objects. We add each kind to the same kind. If mistaken: If 27 is entered as 7 tens and 2 ones, calculate 72 and explain how a digit's place changes its value. Never call the two numerals interchangeable. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Twelve Ones Need an Exchange:** Prompt “Seven ones plus five ones give twelve ones. Can twelve fit into the ones column?”. The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens. The written statement is **7 ones + 5 ones = 12 ones = 1 ten + 2 ones**. Learner-facing explanation: We keep two ones and carry one full ten. That ten was made from ten of the twelve singles, not added from outside. If mistaken: If a child writes 12 in the ones digit slot, explain it holds only the remaining two ones; if they claim the sum grew by ten, count physical objects before and after exchange. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Complete Twenty-Seven Plus Thirty-Five:** Prompt “There is one carried ten. Add it with the two tens and three tens. What is the whole sum?”. Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62. The written statement is **27 + 35 = 62**. Learner-facing explanation: Seven plus five gave two ones and one ten. Two original tens plus three original tens plus the carried ten make six tens. Six tens and two ones make sixty-two. If mistaken: For 52, show the missed carried ten, yielding only 5T2O; for 72, show an extra ten was counted twice. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Try a New Column:** Prompt “What is 46 + 28? Where does the new ten go?”. Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available. The written statement is **46 + 28 = 74**. Learner-facing explanation: Four tens and six ones plus two tens and eight ones make seven tens and four ones. Six plus eight gives fourteen, so the carried ten must be included. If mistaken: For 64, point to the omitted carried ten; for 84, show that one ten was counted twice. Confirm with 40+6+20+8=74. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per independent Scene placement: operands and labeled tens/ones digits; unique counters, number of exchanged tens, carry marker and its provenance, column result digits, selected trial and reveal/reset flags.
+                    - **Invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 27 and 35 map to 2T7O and 3T5O; 23+14 gives 37 without carry.
+                    2. 7+5=12 ones converts to 1T2O with ten uniquely consumed counters.
+                    3. 27+35 yields 62, not 52/72, and 20+7+30+5=62.
+                    4. 46+28 yields 74, with six+eight fourteen and four+two+one tens seven.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
+                  purpose: 'Proposed interactive Scene for Twelve Ones Need an Exchange'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: '00997db3-2811-49d6-9afe-3ef15875c18c'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We keep two ones and carry one full ten. That ten was made from ten of the twelve singles, not added from outside.'
+            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+        production:
+          purpose: 'Twelve Ones Need an Exchange'
+          pedagogicalIntent: |
+            ### Section 2 — Twelve Ones Need an Exchange
+
+            - **Outcome/purpose:** Explain why 7 ones + 5 ones = 12 ones requires recording 2 ones and carrying 1 ten.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “Seven ones plus five ones give twelve ones. Can twelve fit into the ones column?”
+            - **Scene Resource (type supported; new component proposed):** Place Value Column Adder (Scene specification embedded in this config.yaml), independent Section 2 placement: The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens.
+            - **Markdown Resource (available):** “We keep two ones and carry one full ten. That ten was made from ten of the twelve singles, not added from outside.” Mathematical statement: **7 ones + 5 ones = 12 ones = 1 ten + 2 ones**.
+            - **Learner action and observation:** The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** If a child writes 12 in the ones digit slot, explain it holds only the remaining two ones; if they claim the sum grew by ten, count physical objects before and after exchange. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Invite the next example only after the current place-value statement has been explained; offer Reset and 'Show steps'.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** “When twelve ones appear, write two ones and carry one ten.”, after the explanation is accessible (planned, not wired).
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section3CompleteTwentySevenPlusThirtyFive:
+        config:
+          id: '2c19e903-4ea1-4db4-9a7a-26f591fdb196'
+          slug: 'section3CompleteTwentySevenPlusThirtyFive'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Complete Twenty-Seven Plus Thirty-Five'
+            navigationLabel:
+              en: 'Complete Twenty-Seven Plus Thirty-Five'
+          content:
+            items:
+              text1:
+                config:
+                  id: '67192a06-da03-4a79-9aa1-6494cf558647'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'There is one carried ten. Add it with the two tens and three tens. What is the whole sum?'
+              placeValueColumnAdder:
+                config:
+                  id: 'ecfa69e6-e5a8-4609-ab70-6c043fdcff8f'
+                  slug: 'placeValueColumnAdder'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Place Value Column Adder'
+                production:
+                  specification: |
+                    # Place Value Column Adder — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Add Tens and Ones in Columns Content (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Place 27 and 35 on a labeled Tens/Ones board with each digit correctly valued. Explain why 7 ones + 5 ones = 12 ones requires recording 2 ones and carrying 1 ten. Compute 27+35=62 in columns and reconcile it with two independent counter totals. Use an aligned two-digit column to calculate 46+28=74 and verify the result with place-value decomposition. Methodologist Brief (original now embedded in this config.yaml) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Explain how written column addition aligns equal place values and uses a carry mark to record a real exchange of ten ones for one ten. Start by reading two-digit place values correctly, then add 27+35=62 with an exact physical model. This lesson focuses on column notation and single ones-to-tens carry, distinct from the age-neutral broader Skill 'Addition with regrouping'.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    27 = 2 tens+7 ones, 35=3 tens+5 ones. Add ones: 7+5=12=1 ten+2 ones, record 2 ones and a carried ten. Tens: 2+3+1=6 tens, sum 62. Unregrouped example 23+14=37 demonstrates aligning tens with tens, ones with ones. Transfer 46+28: 6+8=14 → 4 ones+1 ten; 4+2+1=7 tens →74. Use only nonnegative two-digit operands and sum under 100, one carry at most, no stacked three-digit or multiple-carry work in this Lesson.
+
+                    Writing 27 and 35 without aligning tens and ones can lead to adding mismatched place values. A child may write 7+5=12 as the entire ones digit '12' and then append tens; may record carry 1 but leave 12 ones as well, making 72; may add tens 2+3=5 and forget the carry, making 52. A carry is a named ten, not an arbitrary extra one. No column procedure should be shown before the physical exchange is understood.
+
+                    **Conservation invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Put Every Digit in Its Place:** Prompt “What does 27 mean? What does 35 mean? Put their tens and ones in the correct columns.”. A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast. The written statement is **27 = 2 tens + 7 ones; 35 = 3 tens + 5 ones**. Learner-facing explanation: The tens columns count bundles of ten, and the ones columns count single objects. We add each kind to the same kind. If mistaken: If 27 is entered as 7 tens and 2 ones, calculate 72 and explain how a digit's place changes its value. Never call the two numerals interchangeable. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Twelve Ones Need an Exchange:** Prompt “Seven ones plus five ones give twelve ones. Can twelve fit into the ones column?”. The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens. The written statement is **7 ones + 5 ones = 12 ones = 1 ten + 2 ones**. Learner-facing explanation: We keep two ones and carry one full ten. That ten was made from ten of the twelve singles, not added from outside. If mistaken: If a child writes 12 in the ones digit slot, explain it holds only the remaining two ones; if they claim the sum grew by ten, count physical objects before and after exchange. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Complete Twenty-Seven Plus Thirty-Five:** Prompt “There is one carried ten. Add it with the two tens and three tens. What is the whole sum?”. Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62. The written statement is **27 + 35 = 62**. Learner-facing explanation: Seven plus five gave two ones and one ten. Two original tens plus three original tens plus the carried ten make six tens. Six tens and two ones make sixty-two. If mistaken: For 52, show the missed carried ten, yielding only 5T2O; for 72, show an extra ten was counted twice. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Try a New Column:** Prompt “What is 46 + 28? Where does the new ten go?”. Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available. The written statement is **46 + 28 = 74**. Learner-facing explanation: Four tens and six ones plus two tens and eight ones make seven tens and four ones. Six plus eight gives fourteen, so the carried ten must be included. If mistaken: For 64, point to the omitted carried ten; for 84, show that one ten was counted twice. Confirm with 40+6+20+8=74. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per independent Scene placement: operands and labeled tens/ones digits; unique counters, number of exchanged tens, carry marker and its provenance, column result digits, selected trial and reveal/reset flags.
+                    - **Invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 27 and 35 map to 2T7O and 3T5O; 23+14 gives 37 without carry.
+                    2. 7+5=12 ones converts to 1T2O with ten uniquely consumed counters.
+                    3. 27+35 yields 62, not 52/72, and 20+7+30+5=62.
+                    4. 46+28 yields 74, with six+eight fourteen and four+two+one tens seven.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
+                  purpose: 'Proposed interactive Scene for Complete Twenty-Seven Plus Thirty-Five'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: '50113c2d-cd63-4df6-a9c0-f59b6cbd55ac'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Seven plus five gave two ones and one ten. Two original tens plus three original tens plus the carried ten make six tens. Six tens and two ones make sixty-two.'
+            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+        production:
+          purpose: 'Complete Twenty-Seven Plus Thirty-Five'
+          pedagogicalIntent: |
+            ### Section 3 — Complete Twenty-Seven Plus Thirty-Five
+
+            - **Outcome/purpose:** Compute 27+35=62 in columns and reconcile it with two independent counter totals.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “There is one carried ten. Add it with the two tens and three tens. What is the whole sum?”
+            - **Scene Resource (type supported; new component proposed):** Place Value Column Adder (Scene specification embedded in this config.yaml), independent Section 3 placement: Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62.
+            - **Markdown Resource (available):** “Seven plus five gave two ones and one ten. Two original tens plus three original tens plus the carried ten make six tens. Six tens and two ones make sixty-two.” Mathematical statement: **27 + 35 = 62**.
+            - **Learner action and observation:** Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** For 52, show the missed carried ten, yielding only 5T2O; for 72, show an extra ten was counted twice. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Invite the next example only after the current place-value statement has been explained; offer Reset and 'Show steps'.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** “Line up ones with ones and tens with tens.”, after the explanation is accessible (planned, not wired).
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section4TryANewColumn:
+        config:
+          id: '5dc21267-7960-43e0-9f5c-3d09a7406d72'
+          slug: 'section4TryANewColumn'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Try a New Column'
+            navigationLabel:
+              en: 'Try a New Column'
+          content:
+            items:
+              text1:
+                config:
+                  id: '015c1d8a-69b1-4555-92f4-3838ecf377c3'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'What is 46 + 28? Where does the new ten go?'
+              placeValueColumnAdder:
+                config:
+                  id: '6e2c7122-268f-4f9d-a5b4-c2b0d1f5d963'
+                  slug: 'placeValueColumnAdder'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Place Value Column Adder'
+                production:
+                  specification: |
+                    # Place Value Column Adder — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Add Tens and Ones in Columns Content (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objectives: Place 27 and 35 on a labeled Tens/Ones board with each digit correctly valued. Explain why 7 ones + 5 ones = 12 ones requires recording 2 ones and carrying 1 ten. Compute 27+35=62 in columns and reconcile it with two independent counter totals. Use an aligned two-digit column to calculate 46+28=74 and verify the result with place-value decomposition. Methodologist Brief (original now embedded in this config.yaml) (Draft, not yet approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Explain how written column addition aligns equal place values and uses a carry mark to record a real exchange of ten ones for one ten. Start by reading two-digit place values correctly, then add 27+35=62 with an exact physical model. This lesson focuses on column notation and single ones-to-tens carry, distinct from the age-neutral broader Skill 'Addition with regrouping'.
+
+                    A meaningful Scene shows the provenance of each carried unit, a consistent physical model, and a live count/value ledger. There is no correctness score, reward or forced performance gate.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    27 = 2 tens+7 ones, 35=3 tens+5 ones. Add ones: 7+5=12=1 ten+2 ones, record 2 ones and a carried ten. Tens: 2+3+1=6 tens, sum 62. Unregrouped example 23+14=37 demonstrates aligning tens with tens, ones with ones. Transfer 46+28: 6+8=14 → 4 ones+1 ten; 4+2+1=7 tens →74. Use only nonnegative two-digit operands and sum under 100, one carry at most, no stacked three-digit or multiple-carry work in this Lesson.
+
+                    Writing 27 and 35 without aligning tens and ones can lead to adding mismatched place values. A child may write 7+5=12 as the entire ones digit '12' and then append tens; may record carry 1 but leave 12 ones as well, making 72; may add tens 2+3=5 and forget the carry, making 52. A carry is a named ten, not an arbitrary extra one. No column procedure should be shown before the physical exchange is understood.
+
+                    **Conservation invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1: Put Every Digit in Its Place:** Prompt “What does 27 mean? What does 35 mean? Put their tens and ones in the correct columns.”. A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast. The written statement is **27 = 2 tens + 7 ones; 35 = 3 tens + 5 ones**. Learner-facing explanation: The tens columns count bundles of ten, and the ones columns count single objects. We add each kind to the same kind. If mistaken: If 27 is entered as 7 tens and 2 ones, calculate 72 and explain how a digit's place changes its value. Never call the two numerals interchangeable. An independent "Show explanation" control is always available.
+
+                    2. **Section 2: Twelve Ones Need an Exchange:** Prompt “Seven ones plus five ones give twelve ones. Can twelve fit into the ones column?”. The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens. The written statement is **7 ones + 5 ones = 12 ones = 1 ten + 2 ones**. Learner-facing explanation: We keep two ones and carry one full ten. That ten was made from ten of the twelve singles, not added from outside. If mistaken: If a child writes 12 in the ones digit slot, explain it holds only the remaining two ones; if they claim the sum grew by ten, count physical objects before and after exchange. An independent "Show explanation" control is always available.
+
+                    3. **Section 3: Complete Twenty-Seven Plus Thirty-Five:** Prompt “There is one carried ten. Add it with the two tens and three tens. What is the whole sum?”. Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62. The written statement is **27 + 35 = 62**. Learner-facing explanation: Seven plus five gave two ones and one ten. Two original tens plus three original tens plus the carried ten make six tens. Six tens and two ones make sixty-two. If mistaken: For 52, show the missed carried ten, yielding only 5T2O; for 72, show an extra ten was counted twice. An independent "Show explanation" control is always available.
+
+                    4. **Section 4: Try a New Column:** Prompt “What is 46 + 28? Where does the new ten go?”. Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available. The written statement is **46 + 28 = 74**. Learner-facing explanation: Four tens and six ones plus two tens and eight ones make seven tens and four ones. Six plus eight gives fourteen, so the carried ten must be included. If mistaken: For 64, point to the omitted carried ten; for 84, show that one ten was counted twice. Confirm with 40+6+20+8=74. An independent "Show explanation" control is always available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Four distinct independent **prop-free Scene placements**, one per Lesson Section. Reusable internal arithmetic is allowed but public React `mode` props or fabricated Resource_Config fields are not.
+                    - **Objects:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Include base-ten object IDs, current place counts, full original addends, carry origin markers, optional prediction, reset/undo, readable calculations and feedback.
+                    - **State:** Per independent Scene placement: operands and labeled tens/ones digits; unique counters, number of exchanged tens, carry marker and its provenance, column result digits, selected trial and reveal/reset flags.
+                    - **Invariant:** Before and after regrouping the total equals the sum of the original two operands. At the ones exchange, ten of the twelve singles are replaced by a single ten-bundle; recorded ones digit is 2 and carry represents 10. Each carry is counted exactly once in tens, not retained as ten loose ones. On any valid action, compute exact integer place value. Wrong trials are clearly named as not matching the original sum, never shown as accepted arithmetic identities.
+                    - Children may reveal the full model without guessing; no persistent answer record, score, Note API, success event or classification as a graded Question.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Use low-overhead SVG/HTML place-value blocks with named H/T/O headings and large digit labels. Animate only the learner-triggered exchange, or skip animation with equivalent numerical state under reduced motion. Avoid hundreds of tiny countable dots, compulsory audio, streamed media, external drawings or WebGL.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Every prompt, error, step, role, place name, label, status, aria text and Note genuinely localized for all supported locales; no English fallback. In RTL, preserve exact operand identities and place values rather than mechanically flipping number order. A fully interactive ordered text ledger mirrors _each exchange and arithmetic step_ via native keyboard/touch/switch buttons and screen reader status, providing full access without vision or dragging. Large child-friendly controls, visible focus, high contrast, zoom/mobile and reduced-motion parity. Entire deterministic operation and locale data must work offline after download on low-end devices.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. 27 and 35 map to 2T7O and 3T5O; 23+14 gives 37 without carry.
+                    2. 7+5=12 ones converts to 1T2O with ten uniquely consumed counters.
+                    3. 27+35 yields 62, not 52/72, and 20+7+30+5=62.
+                    4. 46+28 yields 74, with six+eight fourteen and four+two+one tens seven.
+                    5. Incorrect predictions trigger exact correction, retry and reveal without score or mastery inference.
+                    6. Section placements initialize/reset independently and neither double-count nor silently remove any counter.
+                    7. Screen reader/keyboard/switch, semantic RTL, mobile/200% zoom, reduced motion and downloaded offline modes show identical numerical and conceptual results.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Scene Resource rendering exists; this specific Place Value Column Adder is **proposed** and awaits editorial approval of the Draft Brief, then separate Content/Scene approval, Design Scene coding and own tests. Coding Agent validates state isolation, actual locale coverage and offline delivery. Assessment Architect owns scored Question work. Editorial review: Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
+                  purpose: 'Proposed interactive Scene for Try a New Column'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: '6008f801-70c3-4be2-b7c1-0aef3b7cbe08'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Four tens and six ones plus two tens and eight ones make seven tens and four ones. Six plus eight gives fourteen, so the carried ten must be included.'
+            order: ['text1', 'placeValueColumnAdder', 'markdown2']
+        production:
+          purpose: 'Try a New Column'
+          pedagogicalIntent: |
+            ### Section 4 — Try a New Column
+
+            - **Outcome/purpose:** Use an aligned two-digit column to calculate 46+28=74 and verify the result with place-value decomposition.
+            - **Section type:** `LessonSection_Config`; ordered vertically as text, Scene, markdown.
+            - **Text Resource (available):** “What is 46 + 28? Where does the new ten go?”
+            - **Scene Resource (type supported; new component proposed):** Place Value Column Adder (Scene specification embedded in this config.yaml), independent Section 4 placement: Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available.
+            - **Markdown Resource (available):** “Four tens and six ones plus two tens and eight ones make seven tens and four ones. Six plus eight gives fourteen, so the carried ten must be included.” Mathematical statement: **46 + 28 = 74**.
+            - **Learner action and observation:** Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available. Every updated place count has a text/table equivalent, and the full explanation is available on request without a correct prediction.
+            - **Specific constructive feedback:** For 64, point to the omitted carried ten; for 84, show that one ten was counted twice. Confirm with 40+6+20+8=74. Responses are formative, not assessed.
+            - **Visual/interactive model direction:** Semantically labeled Tens/Ones columns, linked countable counters and ten-bundles, an explicit carried-ten marker with provenance, and a persistent accessible ledger. A carry must visibly correspond to a real bundle formed from ten singles. Counter/block state, written marks and accessible ledger must remain mathematically consistent.
+            - **Navigation/transition:** Reflect on which place changed and which value stayed the same, then end with no grade or mastery badge.
+            - **Accessibility, locale and RTL:** Named place-value columns independently of left/right placement, native accessible controls, full real translation of operands/group labels and errors, correct RTL numerical semantics, zoom/reduced-motion/offline equivalence.
+            - **Planned unlocked Note:** “When twelve ones appear, write two ones and carry one ten.”, after the explanation is accessible (planned, not wired).
+            - **Production status:** Scene proposed, no invented `mode` props, Note events, evaluation IDs, Quiz or new Resource type.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+    order:
+      [
+        'section1PutEveryDigitInItsPlace',
+        'section2TwelveOnesNeedAnExchange',
+        'section3CompleteTwentySevenPlusThirtyFive',
+        'section4TryANewColumn',
+      ]
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Add Tens and Ones in Columns — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: additionInColumns
+    Methodologist status: Draft
+    Primary audience: **Grade 2** within grades 1–3
+    Code: Not implemented
+    Program dependence: None
+
+    ## Educational purpose
+
+    Explain how written column addition aligns equal place values and uses a carry mark to record a real exchange of ten ones for one ten. Start by reading two-digit place values correctly, then add 27+35=62 with an exact physical model. This lesson focuses on column notation and single ones-to-tens carry, distinct from the age-neutral broader Skill 'Addition with regrouping'.
+
+    ## Target audience
+
+    Grade 2 as a lesson-specific pedagogical decision. The source Skill remains independent of grade and retains its entire mathematical scope.
+
+    ## Prerequisites
+
+    - Know two-digit numeration: a tens digit names tens and a ones digit names single units.
+    - Add one-digit quantities through fourteen, and exchange ten ones for one ten without changing amount.
+    - Read addition equality, align numerals by place value rather than by appearance; `additionCrossingTen` offers the relevant concept.
+
+    ## Target Skills
+
+    - [columnAddition.data.ts](../../../../data/skills/arithmetic/addition/skills/columnAddition.data.ts)
+
+    ## Expected learning outcomes
+
+    - Place 27 and 35 on a labeled Tens/Ones board with each digit correctly valued.
+    - Explain why 7 ones + 5 ones = 12 ones requires recording 2 ones and carrying 1 ten.
+    - Compute 27+35=62 in columns and reconcile it with two independent counter totals.
+    - Use an aligned two-digit column to calculate 46+28=74 and verify the result with place-value decomposition.
+
+    ## Essential subject matter
+
+    27 = 2 tens+7 ones, 35=3 tens+5 ones. Add ones: 7+5=12=1 ten+2 ones, record 2 ones and a carried ten. Tens: 2+3+1=6 tens, sum 62. Unregrouped example 23+14=37 demonstrates aligning tens with tens, ones with ones. Transfer 46+28: 6+8=14 → 4 ones+1 ten; 4+2+1=7 tens →74. Use only nonnegative two-digit operands and sum under 100, one carry at most, no stacked three-digit or multiple-carry work in this Lesson.
+
+    ## Conceptual progression and dependencies
+
+    1. **Put Every Digit in Its Place:** A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast.
+    2. **Twelve Ones Need an Exchange:** The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens.
+    3. **Complete Twenty-Seven Plus Thirty-Five:** Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62.
+    4. **Try a New Column:** Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available.
+
+    ## Misconceptions, examples and boundaries
+
+    Writing 27 and 35 without aligning tens and ones can lead to adding mismatched place values. A child may write 7+5=12 as the entire ones digit '12' and then append tens; may record carry 1 but leave 12 ones as well, making 72; may add tens 2+3=5 and forget the carry, making 52. A carry is a named ten, not an arbitrary extra one. No column procedure should be shown before the physical exchange is understood.
+
+    ## Localization, accessibility and offline intent
+
+    All learner-facing strings/controls and count/value explanations must be genuinely translated across every supported locale with no English fallback. Provide H/T/O state ledger with native keyboard/switch/touch operations, nonvisual before/after and clear provenance for each carry, semantic RTL column labels, large focusable targets, 200% zoom/mobile, reduced-motion and full local offline operation after selected-locale download. No forced dragging, sound, speech recognition or timed response.
+
+    ## Sources and factual verification
+
+    - [Canonical Skill Code](../../../../data/skills/arithmetic/addition/skills/columnAddition.data.ts), copied byte-for-byte from Mathematics.
+    - [English Playground taxonomy](../../../../docs/generated/skills/taxonomy.en.md), generated and coordinator-owned; must be regenerated after integration.
+    - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/) comparative reference only, not nationally approved Curriculum alignment.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. Grade 2 is the selected primary audience, not a grade limit on the Skill.
+
+    ## Open editorial decisions
+
+    - Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
+    - Confirm numeric examples, aligned place-value meaning and equivalent nonvisual/counter operations before production.
+
+    ## Methodologist handoff
+
+    **Draft, not approved.** The adjoining Screenwriter Content is _provisional_, not an official Methodologist sign-off. No React Scene, Question, Quiz, Score or production wiring is authorized by this Draft.
+  productionNotes: |-
+    All content.md text outside ordered Sections — editorial premise, accessibility, global feedback, production and dependencies:
+
+    # Add Tens and Ones in Columns — Content
+
+    Status: Draft — provisional Screenwriter content pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/additionInColumns/
+    Audience: **Grade 2**, with prerequisites Know two-digit numeration: a tens digit names tens and a ones digit names single units. Add one-digit quantities through fourteen, and exchange ten ones for one ten without changing amount. Read addition equality, align numerals by place value rather than by appearance; `additionCrossingTen` offers the relevant concept.
+    Methodologist source: Methodologist Brief (original now embedded in this config.yaml) (Draft, not approved)
+    Target Skill: Canonical `columnAddition.data.ts` from Brief with unchanged identity
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Explain how written column addition aligns equal place values and uses a carry mark to record a real exchange of ten ones for one ten. Start by reading two-digit place values correctly, then add 27+35=62 with an exact physical model. This lesson focuses on column notation and single ones-to-tens carry, distinct from the age-neutral broader Skill 'Addition with regrouping'.
+
+    27 = 2 tens+7 ones, 35=3 tens+5 ones. Add ones: 7+5=12=1 ten+2 ones, record 2 ones and a carried ten. Tens: 2+3+1=6 tens, sum 62. Unregrouped example 23+14=37 demonstrates aligning tens with tens, ones with ones. Transfer 46+28: 6+8=14 → 4 ones+1 ten; 4+2+1=7 tens →74. Use only nonnegative two-digit operands and sum under 100, one carry at most, no stacked three-digit or multiple-carry work in this Lesson.
+
+    Learners predict, manipulate and inspect every exchange, identify the physical source of each carried unit, and explain why the total is conserved. We do not replace that understanding with a written-algorithm recital or a graded quiz.
+
+    ## LEARNER JOURNEY
+
+    1. **Put Every Digit in Its Place:** A labeled 'Tens | Ones' board and exact ledger place 27 as 2T7O and 35 as 3T5O. Child selects cells with accessible buttons, checks each named place, and can inspect 23+14=37 without carry as a contrast.
+    2. **Twelve Ones Need an Exchange:** The child combines 7 and 5 uniquely identified singles, then exchanges exactly ten for a bundle of ten. Column ones outcome becomes digit 2, a clearly labeled 'carry 1 ten' marker appears above tens.
+    3. **Complete Twenty-Seven Plus Thirty-Five:** Add tens on the board: 2+3+1=6 tens; append 2 ones. Show the original 27+35 above a resulting 62 and a full invariant 20+7+30+5=62.
+    4. **Try a New Column:** Fresh empty Tens/Ones board with operands 46 and 28 correctly aligned. Learner can place carry, record 6+8=14 as 1T4O, and compute 4+2+1=7 tens. Optional reveal always available.
+
+    ## SECTION PLAN
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Place Value Column Adder (Scene specification embedded in this config.yaml), four self-contained prop-free Section entries. Generic Scene rendering is supported; this bespoke component does not yet exist.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Line up ones with ones and tens with tens.” — editorial proposal only after the corresponding complete mathematical model and explanation.
+    2. “When twelve ones appear, write two ones and carry one ten.” — editorial proposal only after the corresponding complete mathematical model and explanation.
+
+    Notes are **not wired** and do not imply a real Note API, state events, per-child persistence, revision sheet, spaced repetition or evidence of mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Section 4 introduces a fresh case with optional scaffolds and worked feedback, remaining a _formative experience_. Assessment Architect independently validates graded problems, decomposition variants, Skill evidence, retry thresholds, scores and mastery. A correct column total alone does not establish the full canonical Skill; current Quiz select-one adapter is separate from proposed Scenes. No scored Question_Config produced.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Translate all child-facing English prompts, errors, explanations, number-role terms, columns, accessible names and planned Notes into every supported locale, never silently falling back to English. An equivalent ordered accessible numeric ledger offers all exchange/undo/add/check actions for keyboard, touch, switches and screen readers, not merely a static picture label. RTL aligns each digit by _semantic place value_ rather than naive mirroring; mathematical operand order remains true. WCAG 2.2 AA focus, large controls, low-resource mobile, 200% zoom, reduced motion and full downloaded offline calculation/feedback must preserve exactly the same intermediate and final mathematical states. No sound, video, WebGL, drag-only or remote checker required.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    Current `LessonSection_Config` and generic renderer support text, markdown, scene resources. Place Value Column Adder is **proposed, not implemented**, and requires approved Scene spec, prop-free entries with real locale context and own tests; no public runtime mode prop is presumed. Generic image/audio/video/code resources are typed only; YouTube is not a supported Resource_Config. Notes, spaced-review scheduler, full PWA download and synchronization remain separate product work. No TS runtime Lesson Config, Question, Quiz or scoring has been created.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (original now embedded in this config.yaml), Draft, not approved.
+    - [Canonical Skill](../../../../data/skills/arithmetic/addition/skills/columnAddition.data.ts) unchanged from Mathematics.
+    - [Create Lesson Content workflow](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Confirm this Lesson's single-carry Grade 2 depth and separation from `additionRegroupingAcrossPlaces`, which extends the _value-preserving exchange_ across tens and hundreds.
+    - Shared generated taxonomy is coordinator-owned and intentionally left unmodified in this branch.
+
+    ## HANDOFF
+
+    One provisional Draft four-Section Content and a separate Draft Scene specification. Editor must approve the Methodologist Brief first, then independently review Content and Scene; Scene Designer/Coding Agent/Assessment Architect proceed only with separate approval. Do not change any previous Lesson or source Skill.
+
+
+    Editorial state: provisional draft; pending independent approval. Locales beyond English are intended but not yet translated.

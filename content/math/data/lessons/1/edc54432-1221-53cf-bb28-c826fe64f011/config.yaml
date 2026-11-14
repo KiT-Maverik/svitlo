@@ -1,0 +1,629 @@
+config:
+  id: 'edc54432-1221-53cf-bb28-c826fe64f011'
+  slug: 'equalGroupsModel'
+  type: 'lesson'
+  skills: ['a3a6ab42-2285-4d6f-a65e-f2a4d8140a88']
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Finding a Total with Equal Groups'
+  section:
+    items:
+      section1ThreeGroupsOfFour:
+        config:
+          id: 'b67e0257-46b0-4608-acb0-4ef968c794fa'
+          slug: 'section1ThreeGroupsOfFour'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Three Groups of Four'
+            navigationLabel:
+              en: 'Three Groups of Four'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'a470b9ba-43de-4a3d-862d-4ba81f2bcb6b'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Here are 3 groups. Each has 4 counters. What is the total?'
+              equalGroupCounter:
+                config:
+                  id: '7c788f75-9db8-42d6-a3a1-e34705a00f20'
+                  slug: 'equalGroupCounter'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Equal Group Counter'
+                production:
+                  specification: |
+                    # Equal Group Counter — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding a Total with Equal Groups Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether groups are equal in size and state group count and group size separately. Find a total by counting G groups of S objects, explaining G × S = total under the declared groups-first convention. Explain why an unequal arrangement cannot directly use one count × one common group size without regrouping. Vary group count while holding group size fixed, and vice versa, and predict how the total changes. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Use the two independently varying quantities—number of equal groups and objects per group—to determine and justify a product. This focuses the equal-groups structural relationship rather than repeating the existing lesson's focus on translating equal additions into multiplication notation. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    For G equally sized groups each with S objects, the total is G × S. Examples: 3 groups of 4 = 12; 4 groups of 3 = 12; 2 groups of 5 = 10. An unequal picture with group sizes [4,3,4] has total 11 but cannot accurately be described as three groups of four. Group roles are chosen by the narrated model, not fixed globally by the position of factors. All instructional totals ≤25. Adding G+S instead of G×S (3+4=7 instead of twelve); confusing number of groups with counters in each; counting only one group; interpreting [4,3,4] as [4,4,4] without changing the model. Keep nonnegative whole numbers and no division, formal arrays or times-table speed drills. All proposed examples remain within declared small whole-number boundaries. Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Prompt: “Here are 3 groups. Each has 4 counters. What is the total?” Mathematical explanation: “Three groups of four make twelve counters. In this model, 3 × 4 = 12.” **Feedback:** If the learner answers 7, explain that 3 + 4 adds the two labels, not the counters in every group. If 12, show the complete 4 + 4 + 4 count. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Prompt: “Keep 4 in each group. What if we have 2 groups instead of 3? Now try 4 groups.” Mathematical explanation: “When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.” **Feedback:** A prediction of 14 for four groups is met with four counts of four: 4, 8, 12, 16. Distinguish increasing group count from increasing group size. Recheck and full reveal stay available.
+
+                    3. **Section 3 / Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Prompt: “Look at groups with 4, 3 and 4 counters. Is this three equal groups of four?” Mathematical explanation: “The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.” **Feedback:** An incorrect 'equal' response gets the precise difference in the middle tray; do not claim eleven cannot be modeled mathematically. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Prompt: “Make 2 equal groups of 5. How many counters will you need?” Mathematical explanation: “Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.” **Feedback:** Choosing seven receives 'Two plus five is seven, but each of the two groups contains five.' Full worked model available without a guess. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Current group count G=2…4, size S=3…5, ordered count array, inspected groups, prediction and reveal flags; unequal contrast [4,3,4] is a separately labeled fixed example.
+                    - **Invariant:** Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Check: Three groups of four make twelve counters. In this model, 3 × 4 = 12.
+                    2. **Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Check: When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.
+                    3. **Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Check: The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.
+                    4. **Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Check: Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
+                  purpose: 'Proposed interactive Scene for Three Groups of Four'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: 'fa609551-2c3a-437a-95fc-a2bf42e554c0'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three groups of four make twelve counters. In this model, 3 × 4 = 12.'
+            order: ['text1', 'equalGroupCounter', 'markdown2']
+        production:
+          purpose: 'Three Groups of Four'
+          pedagogicalIntent: |
+            ### Section 1 — Three Groups of Four
+
+            - **Purpose and learner outcome:** Identify whether groups are equal in size and state group count and group size separately.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “Here are 3 groups. Each has 4 counters. What is the total?”
+              2. **scene (generic type supported, NEW implementation proposed):** Equal Group Counter (Scene specification embedded in this config.yaml), placement 1. Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve.
+              3. **markdown (supported):** “Three groups of four make twelve counters. In this model, 3 × 4 = 12.”
+            - **Learner action, meaningful observations and formative feedback:** If the learner answers 7, explain that 3 + 4 adds the two labels, not the counters in every group. If 12, show the complete 4 + 4 + 4 count. A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Invite a prediction that motivates the next Section while retaining the mathematical model.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** “Equal groups have the same amount in every group.” after the model and its explanation are available (planned, not wired).
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section2ChangeOneThing:
+        config:
+          id: '5af12ba3-c43b-4e2a-98d0-30594cd7c7d8'
+          slug: 'section2ChangeOneThing'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Change One Thing'
+            navigationLabel:
+              en: 'Change One Thing'
+          content:
+            items:
+              text1:
+                config:
+                  id: '04b03ba6-d26d-489b-8ab3-74883aaa7e4d'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Keep 4 in each group. What if we have 2 groups instead of 3? Now try 4 groups.'
+              equalGroupCounter:
+                config:
+                  id: 'f193fc81-7388-4ed0-a029-27273d6d0d66'
+                  slug: 'equalGroupCounter'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Equal Group Counter'
+                production:
+                  specification: |
+                    # Equal Group Counter — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding a Total with Equal Groups Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether groups are equal in size and state group count and group size separately. Find a total by counting G groups of S objects, explaining G × S = total under the declared groups-first convention. Explain why an unequal arrangement cannot directly use one count × one common group size without regrouping. Vary group count while holding group size fixed, and vice versa, and predict how the total changes. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Use the two independently varying quantities—number of equal groups and objects per group—to determine and justify a product. This focuses the equal-groups structural relationship rather than repeating the existing lesson's focus on translating equal additions into multiplication notation. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    For G equally sized groups each with S objects, the total is G × S. Examples: 3 groups of 4 = 12; 4 groups of 3 = 12; 2 groups of 5 = 10. An unequal picture with group sizes [4,3,4] has total 11 but cannot accurately be described as three groups of four. Group roles are chosen by the narrated model, not fixed globally by the position of factors. All instructional totals ≤25. Adding G+S instead of G×S (3+4=7 instead of twelve); confusing number of groups with counters in each; counting only one group; interpreting [4,3,4] as [4,4,4] without changing the model. Keep nonnegative whole numbers and no division, formal arrays or times-table speed drills. All proposed examples remain within declared small whole-number boundaries. Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Prompt: “Here are 3 groups. Each has 4 counters. What is the total?” Mathematical explanation: “Three groups of four make twelve counters. In this model, 3 × 4 = 12.” **Feedback:** If the learner answers 7, explain that 3 + 4 adds the two labels, not the counters in every group. If 12, show the complete 4 + 4 + 4 count. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Prompt: “Keep 4 in each group. What if we have 2 groups instead of 3? Now try 4 groups.” Mathematical explanation: “When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.” **Feedback:** A prediction of 14 for four groups is met with four counts of four: 4, 8, 12, 16. Distinguish increasing group count from increasing group size. Recheck and full reveal stay available.
+
+                    3. **Section 3 / Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Prompt: “Look at groups with 4, 3 and 4 counters. Is this three equal groups of four?” Mathematical explanation: “The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.” **Feedback:** An incorrect 'equal' response gets the precise difference in the middle tray; do not claim eleven cannot be modeled mathematically. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Prompt: “Make 2 equal groups of 5. How many counters will you need?” Mathematical explanation: “Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.” **Feedback:** Choosing seven receives 'Two plus five is seven, but each of the two groups contains five.' Full worked model available without a guess. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Current group count G=2…4, size S=3…5, ordered count array, inspected groups, prediction and reveal flags; unequal contrast [4,3,4] is a separately labeled fixed example.
+                    - **Invariant:** Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Check: Three groups of four make twelve counters. In this model, 3 × 4 = 12.
+                    2. **Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Check: When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.
+                    3. **Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Check: The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.
+                    4. **Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Check: Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
+                  purpose: 'Proposed interactive Scene for Change One Thing'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: 'c7e3fbcd-22b5-4e90-9149-d39fc51ea6aa'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.'
+            order: ['text1', 'equalGroupCounter', 'markdown2']
+        production:
+          purpose: 'Change One Thing'
+          pedagogicalIntent: |
+            ### Section 2 — Change One Thing
+
+            - **Purpose and learner outcome:** Find a total by counting G groups of S objects, explaining G × S = total under the declared groups-first convention.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “Keep 4 in each group. What if we have 2 groups instead of 3? Now try 4 groups.”
+              2. **scene (generic type supported, NEW implementation proposed):** Equal Group Counter (Scene specification embedded in this config.yaml), placement 2. Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters.
+              3. **markdown (supported):** “When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.”
+            - **Learner action, meaningful observations and formative feedback:** A prediction of 14 for four groups is met with four counts of four: 4, 8, 12, 16. Distinguish increasing group count from increasing group size. A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Invite a prediction that motivates the next Section while retaining the mathematical model.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** “Total = number of equal groups × number in each group.” after the model and its explanation are available (planned, not wired).
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section3DoTheyAllMatch:
+        config:
+          id: 'af2161eb-93f4-417e-8013-f1e58264c458'
+          slug: 'section3DoTheyAllMatch'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Do They All Match?'
+            navigationLabel:
+              en: 'Do They All Match?'
+          content:
+            items:
+              text1:
+                config:
+                  id: '2bbbd98e-b05f-400f-92f4-c1842eeb96cd'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Look at groups with 4, 3 and 4 counters. Is this three equal groups of four?'
+              equalGroupCounter:
+                config:
+                  id: '3a717959-0e9f-4064-a030-ac535e9abde6'
+                  slug: 'equalGroupCounter'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Equal Group Counter'
+                production:
+                  specification: |
+                    # Equal Group Counter — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding a Total with Equal Groups Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether groups are equal in size and state group count and group size separately. Find a total by counting G groups of S objects, explaining G × S = total under the declared groups-first convention. Explain why an unequal arrangement cannot directly use one count × one common group size without regrouping. Vary group count while holding group size fixed, and vice versa, and predict how the total changes. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Use the two independently varying quantities—number of equal groups and objects per group—to determine and justify a product. This focuses the equal-groups structural relationship rather than repeating the existing lesson's focus on translating equal additions into multiplication notation. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    For G equally sized groups each with S objects, the total is G × S. Examples: 3 groups of 4 = 12; 4 groups of 3 = 12; 2 groups of 5 = 10. An unequal picture with group sizes [4,3,4] has total 11 but cannot accurately be described as three groups of four. Group roles are chosen by the narrated model, not fixed globally by the position of factors. All instructional totals ≤25. Adding G+S instead of G×S (3+4=7 instead of twelve); confusing number of groups with counters in each; counting only one group; interpreting [4,3,4] as [4,4,4] without changing the model. Keep nonnegative whole numbers and no division, formal arrays or times-table speed drills. All proposed examples remain within declared small whole-number boundaries. Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Prompt: “Here are 3 groups. Each has 4 counters. What is the total?” Mathematical explanation: “Three groups of four make twelve counters. In this model, 3 × 4 = 12.” **Feedback:** If the learner answers 7, explain that 3 + 4 adds the two labels, not the counters in every group. If 12, show the complete 4 + 4 + 4 count. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Prompt: “Keep 4 in each group. What if we have 2 groups instead of 3? Now try 4 groups.” Mathematical explanation: “When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.” **Feedback:** A prediction of 14 for four groups is met with four counts of four: 4, 8, 12, 16. Distinguish increasing group count from increasing group size. Recheck and full reveal stay available.
+
+                    3. **Section 3 / Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Prompt: “Look at groups with 4, 3 and 4 counters. Is this three equal groups of four?” Mathematical explanation: “The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.” **Feedback:** An incorrect 'equal' response gets the precise difference in the middle tray; do not claim eleven cannot be modeled mathematically. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Prompt: “Make 2 equal groups of 5. How many counters will you need?” Mathematical explanation: “Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.” **Feedback:** Choosing seven receives 'Two plus five is seven, but each of the two groups contains five.' Full worked model available without a guess. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Current group count G=2…4, size S=3…5, ordered count array, inspected groups, prediction and reveal flags; unequal contrast [4,3,4] is a separately labeled fixed example.
+                    - **Invariant:** Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Check: Three groups of four make twelve counters. In this model, 3 × 4 = 12.
+                    2. **Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Check: When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.
+                    3. **Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Check: The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.
+                    4. **Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Check: Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
+                  purpose: 'Proposed interactive Scene for Do They All Match?'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: '65c78025-c2b3-4464-8b09-a9eb3878c72a'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.'
+            order: ['text1', 'equalGroupCounter', 'markdown2']
+        production:
+          purpose: 'Do They All Match?'
+          pedagogicalIntent: |
+            ### Section 3 — Do They All Match?
+
+            - **Purpose and learner outcome:** Explain why an unequal arrangement cannot directly use one count × one common group size without regrouping.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “Look at groups with 4, 3 and 4 counters. Is this three equal groups of four?”
+              2. **scene (generic type supported, NEW implementation proposed):** Equal Group Counter (Scene specification embedded in this config.yaml), placement 3. Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12.
+              3. **markdown (supported):** “The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.”
+            - **Learner action, meaningful observations and formative feedback:** An incorrect 'equal' response gets the precise difference in the middle tray; do not claim eleven cannot be modeled mathematically. A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Invite a prediction that motivates the next Section while retaining the mathematical model.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** None; revisit the previous rule for contrast.
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section4BuildYourOwnTotal:
+        config:
+          id: 'd69a6626-8852-42b9-b9d3-d894f5a44867'
+          slug: 'section4BuildYourOwnTotal'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Build Your Own Total'
+            navigationLabel:
+              en: 'Build Your Own Total'
+          content:
+            items:
+              text1:
+                config:
+                  id: '8b69e497-0641-4b68-bb6e-3059ec7ca38a'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Make 2 equal groups of 5. How many counters will you need?'
+              equalGroupCounter:
+                config:
+                  id: '2e91f7bc-ed9c-4887-8f3f-9272938c2f05'
+                  slug: 'equalGroupCounter'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Equal Group Counter'
+                production:
+                  specification: |
+                    # Equal Group Counter — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Finding a Total with Equal Groups Content (editorial text integrated into this config.yaml), Sections 1–4
+                    Methodologist objectives: Identify whether groups are equal in size and state group count and group size separately. Find a total by counting G groups of S objects, explaining G × S = total under the declared groups-first convention. Explain why an unequal arrangement cannot directly use one count × one common group size without regrouping. Vary group count while holding group size fixed, and vice versa, and predict how the total changes. Methodologist Brief (editorial text integrated into this config.yaml) (Draft, not approved).
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Use the two independently varying quantities—number of equal groups and objects per group—to determine and justify a product. This focuses the equal-groups structural relationship rather than repeating the existing lesson's focus on translating equal additions into multiplication notation. The Scene is an explorable mathematical **representation**, not a fixed animation or a scored response picker. Every change in a count is visible and explained numerically.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    For G equally sized groups each with S objects, the total is G × S. Examples: 3 groups of 4 = 12; 4 groups of 3 = 12; 2 groups of 5 = 10. An unequal picture with group sizes [4,3,4] has total 11 but cannot accurately be described as three groups of four. Group roles are chosen by the narrated model, not fixed globally by the position of factors. All instructional totals ≤25. Adding G+S instead of G×S (3+4=7 instead of twelve); confusing number of groups with counters in each; counting only one group; interpreting [4,3,4] as [4,4,4] without changing the model. Keep nonnegative whole numbers and no division, formal arrays or times-table speed drills. All proposed examples remain within declared small whole-number boundaries. Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Section 1 / Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Prompt: “Here are 3 groups. Each has 4 counters. What is the total?” Mathematical explanation: “Three groups of four make twelve counters. In this model, 3 × 4 = 12.” **Feedback:** If the learner answers 7, explain that 3 + 4 adds the two labels, not the counters in every group. If 12, show the complete 4 + 4 + 4 count. Recheck and full reveal stay available.
+
+                    2. **Section 2 / Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Prompt: “Keep 4 in each group. What if we have 2 groups instead of 3? Now try 4 groups.” Mathematical explanation: “When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.” **Feedback:** A prediction of 14 for four groups is met with four counts of four: 4, 8, 12, 16. Distinguish increasing group count from increasing group size. Recheck and full reveal stay available.
+
+                    3. **Section 3 / Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Prompt: “Look at groups with 4, 3 and 4 counters. Is this three equal groups of four?” Mathematical explanation: “The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.” **Feedback:** An incorrect 'equal' response gets the precise difference in the middle tray; do not claim eleven cannot be modeled mathematically. Recheck and full reveal stay available.
+
+                    4. **Section 4 / Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Prompt: “Make 2 equal groups of 5. How many counters will you need?” Mathematical explanation: “Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.” **Feedback:** Choosing seven receives 'Two plus five is seven, but each of the two groups contains five.' Full worked model available without a guess. Recheck and full reveal stay available.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - Objects: labeled countable counters, row/group containers, original data model, numerical role labels, ordered text ledger, prediction and reveal buttons, explanation panel, independently scoped Reset/Undo.
+                    - Four **independent prop-free Scene placements**, one per Section. “Placement” is editorial; no new React mode prop or Resource field is authorized.
+                    - **State:** Current group count G=2…4, size S=3…5, ordered count array, inspected groups, prediction and reveal flags; unequal contrast [4,3,4] is a separately labeled fixed example.
+                    - **Invariant:** Correct total is the sum of all displayed group counts; for the equal-group example all group sizes equal S and total = G×S. Switching example resets dependent state. Never label unequal [4,3,4] as three equal groups of four.
+                    - All choices are **formative**, not persistent scores, Skill mastery or Question objects. Switching placements restores that placement's exact initial quantities; a child can show all reasoning without guessing.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Simple lightweight HTML/SVG counters and grid/containers, stable number labels, countable groups and subtle user-paced highlights. Avoid decorative animations, cramped tiny digits or external media. In reduced-motion mode present identical state transitions instantly. A low-spec/offline version must preserve interaction and explanation, not become a static answer.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate all prompts, feedback, row/group/total roles, controls, aria labels, Note cues and summaries genuinely into every supported locale with **no English fallback**. Preserve precise mathematical orientation and group/row meanings under RTL; never rely on the visual left side for a role. Provide a **fully operable ordered nonvisual state list**, with announced new counts after each step, native keyboard/touch/switch controls, focus, 200% zoom, adequate targets and no drag/sound/vision/timer requirement. Entire deterministic calculation, accessible model and selected-language messages must run offline after full download.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. **Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve. Check: Three groups of four make twelve counters. In this model, 3 × 4 = 12.
+                    2. **Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters. Check: When group size stays four, changing the number of groups changes the total: two groups make eight, three make twelve and four make sixteen.
+                    3. **Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12. Check: The middle group has three. The groups are not all the same size. Their total is eleven, but the statement 3 × 4 = 12 does not describe this picture.
+                    4. **Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15. Check: Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.
+                    5. Wrong/partial prediction gets the exact explanatory comparison, not a score, and allows retry or full reveal.
+                    6. Each Section starts independently; Reset never leaks an earlier Section's state.
+                    7. Keyboard, screen reader, semantic RTL, reduced motion, zoom/mobile and downloaded offline produce the **same numeric quantities and conclusions**.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Generic Lesson Scene Resource/rendering exists, but **Equal Group Counter is proposed, not implemented**. Requires editor approval of the new Brief, then separate Content/Scene review, Design Scene implementation and own tests. Coding Agent validates prop-free entries and locale/offline integration. Assessment Architect alone may approve scored questions. Editorial scope question: This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
+                  purpose: 'Proposed interactive Scene for Build Your Own Total'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: 'f2e4539c-008c-407f-bb9c-1a56062bde01'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.'
+            order: ['text1', 'equalGroupCounter', 'markdown2']
+        production:
+          purpose: 'Build Your Own Total'
+          pedagogicalIntent: |
+            ### Section 4 — Build Your Own Total
+
+            - **Purpose and learner outcome:** Vary group count while holding group size fixed, and vice versa, and predict how the total changes.
+            - **Section contract:** `LessonSection_Config`, one ordered top-to-bottom resource list.
+            - **Ordered content blocks:**
+              1. **text (supported):** “Make 2 equal groups of 5. How many counters will you need?”
+              2. **scene (generic type supported, NEW implementation proposed):** Equal Group Counter (Scene specification embedded in this config.yaml), placement 4. Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15.
+              3. **markdown (supported):** “Two groups of five make ten: 2 × 5 = 10. Three groups of five make fifteen.”
+            - **Learner action, meaningful observations and formative feedback:** Choosing seven receives 'Two plus five is seven, but each of the two groups contains five.' Full worked model available without a guess. A learner may ask for the full worked solution without submitting a prediction; no score or irreversible failure.
+            - **What remains visible:** Exact quantities, the symbolic equality (when shown), and a navigable text record of the model, including the steps that justify the total.
+            - **Transition:** Short optional reflection naming the mathematical relationship; end without a graded success screen.
+            - **Accessibility / locale / RTL:** Native focusable controls and count-by-count text equivalents; mathematical factor/row/group roles remain correct in RTL, with optional reduced-motion immediate state.
+            - **Proposed unlocked Note:** “Total = number of equal groups × number in each group.” after the model and its explanation are available (planned, not wired).
+            - **Dependencies:** Custom Scene placement is proposed; no new Question type, score event or public React mode prop is authorized.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order:
+      ['section1ThreeGroupsOfFour', 'section2ChangeOneThing', 'section3DoTheyAllMatch', 'section4BuildYourOwnTotal']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Finding a Total with Equal Groups — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: equalGroupsModel
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Use the two independently varying quantities—number of equal groups and objects per group—to determine and justify a product. This focuses the equal-groups structural relationship rather than repeating the existing lesson's focus on translating equal additions into multiplication notation.
+
+    ## Target audience
+
+    Children 6–8 who can count collections to 25 and tell whether groups contain the same number. English is editorial source, not an implementation locale; every learner-facing phrase will need genuine supported-language translation.
+
+    ## Prerequisites
+
+    - Count objects accurately up to 25, including groups of three to five.
+    - Distinguish the number of groups from the number in each group; repeated addition is helpful but not mandatory.
+    - Recognize a multiplication sign with support; no memorized facts required.
+
+    ## Target Skills
+
+    - [equalGroups.data.ts](../../../../data/skills/arithmetic/multiply/skills/equalGroups.data.ts)
+
+    ## Expected learning outcomes
+
+    - Identify whether groups are equal in size and state group count and group size separately.
+    - Find a total by counting G groups of S objects, explaining G × S = total under the declared groups-first convention.
+    - Explain why an unequal arrangement cannot directly use one count × one common group size without regrouping.
+    - Vary group count while holding group size fixed, and vice versa, and predict how the total changes.
+
+    ## Essential subject matter
+
+    For G equally sized groups each with S objects, the total is G × S. Examples: 3 groups of 4 = 12; 4 groups of 3 = 12; 2 groups of 5 = 10. An unequal picture with group sizes [4,3,4] has total 11 but cannot accurately be described as three groups of four. Group roles are chosen by the narrated model, not fixed globally by the position of factors. All instructional totals ≤25.
+
+    ## Conceptual progression and dependencies
+
+    Recognize equal group sizes → count whole group totals → manipulate one structural variable at a time → reject an unequal-group model → build a new model and explain the product.
+
+    ## Misconceptions, examples and boundaries
+
+    Adding G+S instead of G×S (3+4=7 instead of twelve); confusing number of groups with counters in each; counting only one group; interpreting [4,3,4] as [4,4,4] without changing the model. Keep nonnegative whole numbers and no division, formal arrays or times-table speed drills.
+
+    ## Localization, accessibility and offline intent
+
+    Keep semantic “groups / in each,” or “rows / columns” consistent in each locale. Every quantity and action has an equivalent ordered text representation, keyboard/touch control, non-color-only feedback, RTL-safe mathematical order, readable zoom and reduced motion. All assets and selected-language feedback must work locally after the content package downloads. No audio, video or dragging requirement.
+
+    ## Sources and factual verification
+
+    - [Playground generated taxonomy](../../../../docs/generated/skills/taxonomy.en.md) and the linked canonical Skill source.
+    - [Common Core mathematics standards](https://corestandards.org/mathematics-standards/) as a comparative early-multiplication reference, not verified Curriculum alignment.
+    - [IES/WWC elementary mathematics guidance](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), representation and verbal explanation as general instructional guidance.
+
+    ## Curriculum / Program compatibility
+
+    Not specified. Standalone Lesson, Program-neutral.
+
+    ## Open editorial decisions
+
+    - This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
+    - Confirm the chosen numerical ranges and the model's language/order before release.
+
+    ## Methodologist handoff
+
+    **Draft; explicit editor approval pending.** Screenwriter Content below is **provisional** for review, not an approved implementation source. Do not start scored assessment or scene coding automatically.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+
+    # Finding a Total with Equal Groups — Content
+
+    Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/equalGroupsModel/ (Playground)
+    Audience: Children 6–8 who can count collections to 25 and tell whether groups contain the same number
+    Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (Draft; not editor-approved)
+    Target Skill: The existing `equalGroups.data.ts` linked by the Brief, unchanged
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Use the two independently varying quantities—number of equal groups and objects per group—to determine and justify a product. This focuses the equal-groups structural relationship rather than repeating the existing lesson's focus on translating equal additions into multiplication notation. For G equally sized groups each with S objects, the total is G × S. Examples: 3 groups of 4 = 12; 4 groups of 3 = 12; 2 groups of 5 = 10. An unequal picture with group sizes [4,3,4] has total 11 but cannot accurately be described as three groups of four. Group roles are chosen by the narrated model, not fixed globally by the position of factors. All instructional totals ≤25.
+
+    The learner should see and control the **cause** of each total rather than infer correctness from a colored tick. Countable models, progressively lighter hints, careful contrasts and child-friendly numerical explanations do the teaching. No score, timer, Program story or mandatory Quiz.
+
+    ## LEARNER JOURNEY
+
+    1. **Three Groups of Four:** Display three clearly labeled trays of four; the learner inspects each tray and requests a count of all twelve.
+    2. **Change One Thing:** Let the learner vary group count from 2 to 4 at fixed size 4; show totals 8,12,16, preserving countable counters.
+    3. **Do They All Match?:** Inspect three trays [4,3,4], compare group counts with the genuine [4,4,4] arrangement, and reveal totals 11 versus 12.
+    4. **Build Your Own Total:** Learner sets G=2 and S=5, builds two trays or uses text controls, predicts 10, and may change to 3 groups of 5 to observe 15.
+
+    ## SECTION PLAN
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Equal Group Counter (Scene specification embedded in this config.yaml) — four self-contained, independent prop-free placement entries; the generic `scene` Resource renderer exists but this Scene does not.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Equal groups have the same amount in every group.” — proposed when the corresponding observed model is explained, not when a prediction happens to be correct.
+    2. “Total = number of equal groups × number in each group.” — proposed when the corresponding observed model is explained, not when a prediction happens to be correct.
+
+    No Note entity, unlock event, revision sheet, persistence, mastery marker or spaced scheduler is claimed implemented. Any future revision sheet may show only a learner's unlocked Notes.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Prediction, building, comparison and an independent final example are **formative**; Recognize equal group sizes → count whole group totals → manipulate one structural variable at a time → reject an unequal-group model → build a new model and explain the product. Assessment Architect independently validates any scored Question, correct alternatives, Skill attribution, pass criteria and retries. A correct single total never demonstrates broad mastery. The generic Lesson Question adapter's select-one support does not make these custom scenes graded Questions.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    English here is a source for genuine complete-language translation (prompts, feedback, accessible labels, Notes, models). Never silently fall back to English. The relevant group/row model and exact quantities must remain operable through equivalent ordered text/table state, native keyboard/switch/touch controls, visible focus, large targets, 200% zoom, mobile layouts and screen readers. RTL adapts prose/layout semantically while preserving equation operand identities and named group/row counts. Reduced motion removes transitions, not mathematical states. Complete selected-language instructions, scene logic and feedback must work offline on weak devices after download, without media, audio-only meaning, dragging or cloud services.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    Available in current generic Lesson renderer: `LessonSection_Config`, text, markdown and `scene` Resource type. Proposed: Equal Group Counter Scene with four prop-free entries and own unit/accessibility tests. Coding Agent verifies locale context, state isolation, and actual offline delivery; do not invent a React `mode` prop. Generic image/audio/video/code are typed-only in current generic renderer; YouTube not a configured Resource. Notes, review scheduler and full download flow are separate product dependencies. No Lesson runtime config or Quiz is created here.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (editorial text integrated into this config.yaml), pending editor approval.
+    - [Generated taxonomy](../../../../docs/generated/skills/taxonomy.en.md); direct canonical Skill filename/ID is in the Brief.
+    - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - **Editorial:** This overlaps the preexisting multiplicationEqualGroups Lesson only in prerequisite context; that Lesson targets expression reading and repeated addition. Editor should confirm a separate equalGroups-focused manipulable Lesson is useful rather than merge its materials.
+    - **Implementation:** Verify pedagogical equivalent access and full supported-language coverage; no claim of published readiness.
+
+    ## HANDOFF
+
+    One provisional Draft Content and one separate Draft Scene specification. **Gate:** approve the Methodologist Brief first, then Content and Scene independently before Design Scene and Coding Agent implementation. Assessment Architect alone owns evaluated items. Do not modify other Lessons, Skills or Program narratives.
+
+
+    Migration status: provisional draft; pending independent approvals, translation and implementation.

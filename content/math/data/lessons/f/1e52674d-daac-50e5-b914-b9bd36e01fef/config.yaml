@@ -1,0 +1,801 @@
+config:
+  id: '1e52674d-daac-50e5-b914-b9bd36e01fef'
+  slug: 'identifyingSolidFigures'
+  type: 'lesson'
+  skills: ['6aed363a-9049-445d-aa9e-fa35c8018855']
+  params:
+    languages: ['en', 'pl', 'uk', 'qm']
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Recognize Solids by Their Surfaces'
+  flashcards:
+    items: {}
+    order: []
+  section:
+    items:
+      section1AFlatPictureOfASolid:
+        config:
+          id: 'd68403d5-6641-43e0-82b6-bca7d0ecd38a'
+          slug: 'section1AFlatPictureOfASolid'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'A Flat Picture of a Solid'
+            navigationLabel:
+              en: 'A Flat Picture of a Solid'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'b8ad9474-eb8e-4555-a933-b9ca225d5efb'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'This drawing looks like a square. Could the object behind it be a flat square—or the front of a box? What else would we need to see?'
+              solidSurfaceObservatory:
+                config:
+                  id: '6c4f6410-e5c8-41d9-80eb-5f021f823fcb'
+                  slug: 'solidSurfaceObservatory'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Solid Surface Observatory'
+                production:
+                  specification: |
+                    # Solid Surface Observatory — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Recognize Solids by Their Surfaces (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective: Draft Methodologist Brief (original now embedded in this config.yaml) — identify familiar 3D solids by their surface structures and invariant properties, not solely silhouette/color/object category. This Scene is not a new Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The learner predicts what a face-on drawing reveals, examines flat versus curved surfaces, changes a **viewpoint without changing the solid**, and justifies a classification from surface structure. The design must work equally as an accessible **property explorer** with no 3D display. Changing the orientation of a solid must not mutate its actual geometric properties.
+
+                    Learner voice: "**I can look for flat faces, curved parts, bases and corners. Turning an object does not change which solid it is.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Models and properties are ideal mathematical shapes. Every display or real-world object analogy is an **approximation** and not a photographic source of mathematical definitions.
+                    - **Cube:** model side length 2 arbitrary model units, dimensions (2,2,2); **six square flat faces**, equal edge lengths; a cube also satisfies the definition of a **rectangular cuboid** (square is a special rectangle).
+                    - **Non-cubic rectangular cuboid:** model dimensions (4,2,2), six rectangular flat faces, including possible square end faces because two dimensions agree; edge lengths **not all equal**. Do **not** claim every non-cubic cuboid's face must be a nonsquare rectangle.
+                    - **Sphere:** radius fixed; a continuous **curved** exterior with **no planar flat faces** and no polyhedral vertices. A 2D circular silhouette or filled circle-shaped rendering is a **depiction**, not its full geometry.
+                    - **Right circular cylinder:** two parallel congruent flat **disk-shaped bases** and one continuous **curved lateral surface**. The disk is the 2D filled region; its boundary is a circle. Avoid treating the rolled lateral side as a flat rectangular **face**, even if a net could be drawn separately.
+                    - **Right circular cone:** one flat **disk-shaped base**, one curved lateral surface and an **apex tip**. Any perspective projection that obscures the base must offer a side/base view and text property ledger.
+                    - For polyhedral models, **edges** are straight line segments where neighboring flat faces meet, **vertices/corners** are points where edges meet. For curved models, do not force undefined or convention-dependent "number of edges" totals; distinguish circular boundaries and an apex without assessing polyhedral edge-count rules.
+                    - A rigid 90° viewpoint change preserves all model geometry: dimensions, planar face shapes, number of bases, curvature and vertex types. Changing render size/color likewise does not change category.
+                    - No 3D volume/area equations, net unfolding, exact hidden-edge counting or physical size inference from SVG dimensions.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — The Same Face-on Square Can Hide a Solid (Section 1)
+
+                    1. Initial: show a **square-shaped 2D depiction** with an explicitly ambiguous interpretation. Prompt: "**Does this tell us the whole object has no depth?**" Choices "It could be a flat drawing" and "It could show one face of a 3D object". Both interpretations are plausible **until additional information is revealed**; the Scene must avoid marking either wrong.
+                    2. "Reveal chosen 3D model" introduces an **ideal cube** and states that the earlier square was one possible face-on view of its **front face**; text "Cube has depth and six square faces" becomes available.
+                    3. Controls "Front view", "Top view", "Side view" select **predefined camera poses** while keeping the cube static. Each pose gives a text description: front/top/side view sees a square-shaped flat face; the whole cube remains 3D.
+                    4. Before each change, ask whether it will become a different solid; "Reveal unchanged properties" shows six square faces and equal edges remain. Correct explanation is about object invariants, not a timed visual rotation.
+                    5. If the learner says every square image must represent a cube: "A flat square on paper can also just be a square. The picture alone doesn't tell us the whole solid." If they think only the front face exists: "The view hides other faces; the model has depth."
+
+                    ### B — Flat Faces: Cube and Rectangular Box (Section 2)
+
+                    1. Present cube dimensions (2,2,2) and a non-cubic **rectangular cuboid** dimensions (4,2,2); hide abstract numeric dimensions from learner unless descriptive property detail requested. Predict: "Do both have flat faces shaped like rectangles?"
+                    2. Show model property ledger:
+                       - Cube: six flat **square** faces; because squares are rectangles, it is a type of cuboid; all edge lengths equal.
+                       - Elongated box: six flat **rectangular** faces; two opposite end faces may be square; not all edge lengths equal, so it is **not a cube**.
+                    3. "Compare front/top/end" shows distinct dimension pair relationships, not arbitrary picture flattening. The learner can select "Which model has all edges equal?" and receive a reasoned answer.
+                    4. Optional preset rotates the long box to a perspective with a square-looking end. It **must not** be mislabeled a cube merely because its visible front looks square.
+                    5. Feedback: "Cube is a special rectangular box; square faces satisfy the rectangle rule." For "long box became cube": "The length 4 part stayed longer than the 2 parts even though the view changed."
+                    6. Counts of all faces can be shown, but do not turn full edges/vertices counting into a graded goal (a later canonical Skill addresses such attributes).
+
+                    ### C — Compare Sphere, Cylinder and Cone (Section 3)
+
+                    1. Show three **separately selectable** ideal solids of equal-ish _display prominence_ but different geometric properties (display size is irrelevant). Choices "Sphere", "Cylinder", "Cone" remain hidden until learner predicts which is which, if appropriate.
+                    2. Model ledger:
+                       - Sphere: zero flat bases, continuous curved outside, no apex.
+                       - Cylinder: **two** flat disk bases, curved outside between, no apex tip.
+                       - Cone: **one** flat disk base, curved outside, one apex.
+                    3. Ask: "Which has **no flat surface**?" Reveal sphere. "Which has **two** flat circular bases?" Reveal cylinder. "Which has a pointed tip and one base?" Reveal cone.
+                    4. "Look from top" may show a **circular silhouette** for the cylinder and cone; text must explain **a circular top view is not the entire solid**. "Look from side" reveals one curved side/tip distinction.
+                    5. If sphere is selected as cylinder: "A sphere has no flat bases; cylinder has **two**." If cone selected as cylinder: "Cone has one base and an apex, not two bases." If side of cylinder called flat: "It curves around the container; only its bases are flat."
+                    6. Visual rotation optional; a textual list of exact surface categories and count of flat bases provides the full instructional contrast.
+
+                    ### D — Recognize from Another View (Section 4)
+
+                    1. Display an **inclined cylinder** with its top ellipse-looking outline (perspective projection) and one hidden base; a full property hint remains available "two circular disk bases, one curved side".
+                    2. Prompt: "Sphere, cone or cylinder? Name **one property** that rules out another." Learner selects from property choices ("two flat round bases", "one base and tip", "none") and names the solid.
+                    3. Reveal: **cylinder**; the apparent ellipse is a **perspective projection** of a circular base, not proof of an actual elliptical base in the ideal model.
+                    4. Unfamiliar second case: rotated small cube versus long non-cubic cuboid shown from square end. Ask which **has equal edge lengths everywhere**; explain why a square-looking face alone does not prove cube.
+                    5. Feedback is about **surfaces**, with help/no help/retry choices. Avoid accuracy scores or forcing an exact category when only one insufficient face is visible; if insufficient information is intentionally shown, explicitly allow "not enough information yet" and provide another view.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** five ideal solid model definitions, fixed textual property inventory per model, preset face/top/side viewpoint controls, prediction and reveal choices, definition labels, face/base highlighting and selection, reset.
+                    - **Per-placement state:** fixed Section-specific preset A–D, selected model, viewpoint, property currently highlighted, prediction, reveal step. Shared model definitions are immutable; resetting a Section returns _its own_ preset without leaking state into another Section.
+                    - **Rule 1:** changing viewpoint is not morphing; preserve faces/bases/edge relations. A 2D view may be insufficient for identification; never silently force a false unique solution.
+                    - **Rule 2:** cube ⊂ rectangular cuboid; a sphere has zero flat bases, cylinder two, cone one. Rims/curved surfaces are not arbitrary planar faces.
+                    - **Rule 3:** no "physical geometry" via CSS/SVG pixel distances. Dimensions 2 and 4 are schematic relative proportions only.
+                    - **Prop-free contract:** each exported Scene root for the authored Section takes **zero incoming props**. Internal helpers can use private data arguments, but public roots must rely on the verified real context for locale and label strings—not invented `shape`, `locale`, `mode` or callbacks.
+                    - **Equivalent interaction:** independent **buttons and semantic tables** allow property inspection without pointer dragging/3D scene orientation; wrong predictions prompt the specific missing feature and opportunity to inspect again. No score, event API, user progress or persistence.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Favor lightweight SVG or schematic diagrams and exact face lists over graphics-heavy WebGL if learning is equivalent. A visual 3D model may use 90° view presets, but no mandatory 3D drag. Label specific flat faces and curved areas using outlines/patterns and text, not hue alone. A cube must not be "stretched" into a cuboid during an alleged rigid rotation. Optional short flip animations are controlled and replaced with instantaneous views for reduced motion. Avoid depicting a circular cylinder base as mathematically elliptical—make clear projection and actual base shape differ.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Authentic translation for all configured locales of solid names, base/face/edge/vertex words, comparison statements, statuses, controls, hints and SVG descriptions; missing translation is a release blocker. Semantic RTL UI changes reading and focus placement **without** changing geometric surface counts or the identity of the displayed object. Expose structured properties to screen readers, including unseen backs of solids so nonvisual users have enough evidence to reason when the visually hidden feature is deliberately revealed. Do not pre-reveal intended final classification in generic accessibility labels; provide equivalently staged evidence. Keyboard/switch operation, visible focus, 200% text, large mobile targets, reduced motion, contrast, no sound/color dependency and WCAG 2.2 AA need implementation checks. Assets/model logic must be complete offline after verified package/locale download, with no remote geometry engine.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Stage A face-on square is acknowledged as **ambiguous**; revealing a cube then shows a 3D solid with six square faces. Changing camera to top/side does not change category.
+                    2. A (2,2,2) cube has square faces/equal edge lengths; (4,2,2) cuboid has six rectangular faces with some square end faces but is **not** a cube. Both are rectangular cuboids.
+                    3. Stage C sphere has zero flat bases, cylinder **two**, cone **one**; corresponding curved lateral surface and apex distinctions are correct.
+                    4. Cylinder viewed from above does **not** become a plane circle; it remains 3D and a perspective-projected base is a disk of circular actual shape.
+                    5. Inclined cylinder stage D remains identifiable by **two flat circular bases**, even if only one appears directly in the chosen view; an available second view and readable inventory provide proof.
+                    6. A square-looking end of an elongated cuboid must **not** be presented as sufficient evidence for cube classification.
+                    7. Distinct per-Section prop-free placements have independent resets and model state; no false assessment of exact edges/corners of curved solids.
+                    8. Full learning is possible without 3D manipulation through text/property controls and with keyboard, switch, screen reader, RTL, mobile, reduced-motion and complete post-download offline modes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
+                  purpose: 'Proposed interactive Scene for A Flat Picture of a Solid'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: 'bd90d47b-53e8-4be2-a855-ea41f9a82770'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A **square** is a flat shape. A **cube** is a solid: it has depth, and you can describe its flat square-shaped faces. A drawing on paper is still flat even when it helps us picture a solid.'
+            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+        production:
+          purpose: 'A Flat Picture of a Solid'
+          pedagogicalIntent: |
+            ### Section 1 — A Flat Picture of a Solid
+
+            - **Purpose:** distinguish a 2D depiction/face from a 3D solid.
+            - **Current shape:** `LessonSection_Config`, ordered vertical content.
+            - **Ordered Resources:**
+              1. **text — available in generic Section renderer:** "This drawing looks like a square. Could the object behind it be a flat square—or the front of a box? What else would we need to see?"
+              2. **scene — Resource type and generic renderer exist; custom proposed:** Solid Surface Observatory (Scene specification embedded in this config.yaml), placement A. Initially show a face-on square-shaped front without depth cues, then reveal a simplified cube with **six square flat faces** as a rigid model. Controls: "See front", "See top", "See side", "Read its surfaces". The same cube remains the subject; only viewpoint changes.
+              3. **markdown — available in generic renderer:** "A **square** is a flat shape. A **cube** is a solid: it has depth, and you can describe its flat square-shaped faces. A drawing on paper is still flat even when it helps us picture a solid."
+            - **Prediction and feedback:** If child calls the front-view square a complete cube: "The picture shows only one face. A **cube** has more surfaces, including ones hidden from that view." If they say any square picture must be flat: "The _picture_ is flat, but it can stand for a three-dimensional box." Offer a face list for nonvisual participation.
+            - **Accessibility and navigation:** Equally informative text-first face inventory, no required video, viewpoint drag or stereo vision. Slow/fast transitions optional; in reduced-motion mode switch instantly. The child may replay before proceeding.
+            - **Planned future Note:** "A picture may show one face of a 3D solid."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section2CubeOrLongBox:
+        config:
+          id: '0e8f9128-9d51-41e7-9ce8-466200c762c9'
+          slug: 'section2CubeOrLongBox'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Cube or Long Box?'
+            navigationLabel:
+              en: 'Cube or Long Box?'
+          content:
+            items:
+              text1:
+                config:
+                  id: '73c8ca5d-da71-410a-866f-80b3b384bff8'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'These two boxes are turned differently. One has equal edge lengths, and the other is long. Do they both have flat rectangular faces? Is the square-faced cube also a kind of rectangular box?'
+              solidSurfaceObservatory:
+                config:
+                  id: '781f1a71-ae66-42c2-a532-20934a310d54'
+                  slug: 'solidSurfaceObservatory'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Solid Surface Observatory'
+                production:
+                  specification: |
+                    # Solid Surface Observatory — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Recognize Solids by Their Surfaces (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective: Draft Methodologist Brief (original now embedded in this config.yaml) — identify familiar 3D solids by their surface structures and invariant properties, not solely silhouette/color/object category. This Scene is not a new Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The learner predicts what a face-on drawing reveals, examines flat versus curved surfaces, changes a **viewpoint without changing the solid**, and justifies a classification from surface structure. The design must work equally as an accessible **property explorer** with no 3D display. Changing the orientation of a solid must not mutate its actual geometric properties.
+
+                    Learner voice: "**I can look for flat faces, curved parts, bases and corners. Turning an object does not change which solid it is.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Models and properties are ideal mathematical shapes. Every display or real-world object analogy is an **approximation** and not a photographic source of mathematical definitions.
+                    - **Cube:** model side length 2 arbitrary model units, dimensions (2,2,2); **six square flat faces**, equal edge lengths; a cube also satisfies the definition of a **rectangular cuboid** (square is a special rectangle).
+                    - **Non-cubic rectangular cuboid:** model dimensions (4,2,2), six rectangular flat faces, including possible square end faces because two dimensions agree; edge lengths **not all equal**. Do **not** claim every non-cubic cuboid's face must be a nonsquare rectangle.
+                    - **Sphere:** radius fixed; a continuous **curved** exterior with **no planar flat faces** and no polyhedral vertices. A 2D circular silhouette or filled circle-shaped rendering is a **depiction**, not its full geometry.
+                    - **Right circular cylinder:** two parallel congruent flat **disk-shaped bases** and one continuous **curved lateral surface**. The disk is the 2D filled region; its boundary is a circle. Avoid treating the rolled lateral side as a flat rectangular **face**, even if a net could be drawn separately.
+                    - **Right circular cone:** one flat **disk-shaped base**, one curved lateral surface and an **apex tip**. Any perspective projection that obscures the base must offer a side/base view and text property ledger.
+                    - For polyhedral models, **edges** are straight line segments where neighboring flat faces meet, **vertices/corners** are points where edges meet. For curved models, do not force undefined or convention-dependent "number of edges" totals; distinguish circular boundaries and an apex without assessing polyhedral edge-count rules.
+                    - A rigid 90° viewpoint change preserves all model geometry: dimensions, planar face shapes, number of bases, curvature and vertex types. Changing render size/color likewise does not change category.
+                    - No 3D volume/area equations, net unfolding, exact hidden-edge counting or physical size inference from SVG dimensions.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — The Same Face-on Square Can Hide a Solid (Section 1)
+
+                    1. Initial: show a **square-shaped 2D depiction** with an explicitly ambiguous interpretation. Prompt: "**Does this tell us the whole object has no depth?**" Choices "It could be a flat drawing" and "It could show one face of a 3D object". Both interpretations are plausible **until additional information is revealed**; the Scene must avoid marking either wrong.
+                    2. "Reveal chosen 3D model" introduces an **ideal cube** and states that the earlier square was one possible face-on view of its **front face**; text "Cube has depth and six square faces" becomes available.
+                    3. Controls "Front view", "Top view", "Side view" select **predefined camera poses** while keeping the cube static. Each pose gives a text description: front/top/side view sees a square-shaped flat face; the whole cube remains 3D.
+                    4. Before each change, ask whether it will become a different solid; "Reveal unchanged properties" shows six square faces and equal edges remain. Correct explanation is about object invariants, not a timed visual rotation.
+                    5. If the learner says every square image must represent a cube: "A flat square on paper can also just be a square. The picture alone doesn't tell us the whole solid." If they think only the front face exists: "The view hides other faces; the model has depth."
+
+                    ### B — Flat Faces: Cube and Rectangular Box (Section 2)
+
+                    1. Present cube dimensions (2,2,2) and a non-cubic **rectangular cuboid** dimensions (4,2,2); hide abstract numeric dimensions from learner unless descriptive property detail requested. Predict: "Do both have flat faces shaped like rectangles?"
+                    2. Show model property ledger:
+                       - Cube: six flat **square** faces; because squares are rectangles, it is a type of cuboid; all edge lengths equal.
+                       - Elongated box: six flat **rectangular** faces; two opposite end faces may be square; not all edge lengths equal, so it is **not a cube**.
+                    3. "Compare front/top/end" shows distinct dimension pair relationships, not arbitrary picture flattening. The learner can select "Which model has all edges equal?" and receive a reasoned answer.
+                    4. Optional preset rotates the long box to a perspective with a square-looking end. It **must not** be mislabeled a cube merely because its visible front looks square.
+                    5. Feedback: "Cube is a special rectangular box; square faces satisfy the rectangle rule." For "long box became cube": "The length 4 part stayed longer than the 2 parts even though the view changed."
+                    6. Counts of all faces can be shown, but do not turn full edges/vertices counting into a graded goal (a later canonical Skill addresses such attributes).
+
+                    ### C — Compare Sphere, Cylinder and Cone (Section 3)
+
+                    1. Show three **separately selectable** ideal solids of equal-ish _display prominence_ but different geometric properties (display size is irrelevant). Choices "Sphere", "Cylinder", "Cone" remain hidden until learner predicts which is which, if appropriate.
+                    2. Model ledger:
+                       - Sphere: zero flat bases, continuous curved outside, no apex.
+                       - Cylinder: **two** flat disk bases, curved outside between, no apex tip.
+                       - Cone: **one** flat disk base, curved outside, one apex.
+                    3. Ask: "Which has **no flat surface**?" Reveal sphere. "Which has **two** flat circular bases?" Reveal cylinder. "Which has a pointed tip and one base?" Reveal cone.
+                    4. "Look from top" may show a **circular silhouette** for the cylinder and cone; text must explain **a circular top view is not the entire solid**. "Look from side" reveals one curved side/tip distinction.
+                    5. If sphere is selected as cylinder: "A sphere has no flat bases; cylinder has **two**." If cone selected as cylinder: "Cone has one base and an apex, not two bases." If side of cylinder called flat: "It curves around the container; only its bases are flat."
+                    6. Visual rotation optional; a textual list of exact surface categories and count of flat bases provides the full instructional contrast.
+
+                    ### D — Recognize from Another View (Section 4)
+
+                    1. Display an **inclined cylinder** with its top ellipse-looking outline (perspective projection) and one hidden base; a full property hint remains available "two circular disk bases, one curved side".
+                    2. Prompt: "Sphere, cone or cylinder? Name **one property** that rules out another." Learner selects from property choices ("two flat round bases", "one base and tip", "none") and names the solid.
+                    3. Reveal: **cylinder**; the apparent ellipse is a **perspective projection** of a circular base, not proof of an actual elliptical base in the ideal model.
+                    4. Unfamiliar second case: rotated small cube versus long non-cubic cuboid shown from square end. Ask which **has equal edge lengths everywhere**; explain why a square-looking face alone does not prove cube.
+                    5. Feedback is about **surfaces**, with help/no help/retry choices. Avoid accuracy scores or forcing an exact category when only one insufficient face is visible; if insufficient information is intentionally shown, explicitly allow "not enough information yet" and provide another view.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** five ideal solid model definitions, fixed textual property inventory per model, preset face/top/side viewpoint controls, prediction and reveal choices, definition labels, face/base highlighting and selection, reset.
+                    - **Per-placement state:** fixed Section-specific preset A–D, selected model, viewpoint, property currently highlighted, prediction, reveal step. Shared model definitions are immutable; resetting a Section returns _its own_ preset without leaking state into another Section.
+                    - **Rule 1:** changing viewpoint is not morphing; preserve faces/bases/edge relations. A 2D view may be insufficient for identification; never silently force a false unique solution.
+                    - **Rule 2:** cube ⊂ rectangular cuboid; a sphere has zero flat bases, cylinder two, cone one. Rims/curved surfaces are not arbitrary planar faces.
+                    - **Rule 3:** no "physical geometry" via CSS/SVG pixel distances. Dimensions 2 and 4 are schematic relative proportions only.
+                    - **Prop-free contract:** each exported Scene root for the authored Section takes **zero incoming props**. Internal helpers can use private data arguments, but public roots must rely on the verified real context for locale and label strings—not invented `shape`, `locale`, `mode` or callbacks.
+                    - **Equivalent interaction:** independent **buttons and semantic tables** allow property inspection without pointer dragging/3D scene orientation; wrong predictions prompt the specific missing feature and opportunity to inspect again. No score, event API, user progress or persistence.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Favor lightweight SVG or schematic diagrams and exact face lists over graphics-heavy WebGL if learning is equivalent. A visual 3D model may use 90° view presets, but no mandatory 3D drag. Label specific flat faces and curved areas using outlines/patterns and text, not hue alone. A cube must not be "stretched" into a cuboid during an alleged rigid rotation. Optional short flip animations are controlled and replaced with instantaneous views for reduced motion. Avoid depicting a circular cylinder base as mathematically elliptical—make clear projection and actual base shape differ.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Authentic translation for all configured locales of solid names, base/face/edge/vertex words, comparison statements, statuses, controls, hints and SVG descriptions; missing translation is a release blocker. Semantic RTL UI changes reading and focus placement **without** changing geometric surface counts or the identity of the displayed object. Expose structured properties to screen readers, including unseen backs of solids so nonvisual users have enough evidence to reason when the visually hidden feature is deliberately revealed. Do not pre-reveal intended final classification in generic accessibility labels; provide equivalently staged evidence. Keyboard/switch operation, visible focus, 200% text, large mobile targets, reduced motion, contrast, no sound/color dependency and WCAG 2.2 AA need implementation checks. Assets/model logic must be complete offline after verified package/locale download, with no remote geometry engine.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Stage A face-on square is acknowledged as **ambiguous**; revealing a cube then shows a 3D solid with six square faces. Changing camera to top/side does not change category.
+                    2. A (2,2,2) cube has square faces/equal edge lengths; (4,2,2) cuboid has six rectangular faces with some square end faces but is **not** a cube. Both are rectangular cuboids.
+                    3. Stage C sphere has zero flat bases, cylinder **two**, cone **one**; corresponding curved lateral surface and apex distinctions are correct.
+                    4. Cylinder viewed from above does **not** become a plane circle; it remains 3D and a perspective-projected base is a disk of circular actual shape.
+                    5. Inclined cylinder stage D remains identifiable by **two flat circular bases**, even if only one appears directly in the chosen view; an available second view and readable inventory provide proof.
+                    6. A square-looking end of an elongated cuboid must **not** be presented as sufficient evidence for cube classification.
+                    7. Distinct per-Section prop-free placements have independent resets and model state; no false assessment of exact edges/corners of curved solids.
+                    8. Full learning is possible without 3D manipulation through text/property controls and with keyboard, switch, screen reader, RTL, mobile, reduced-motion and complete post-download offline modes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
+                  purpose: 'Proposed interactive Scene for Cube or Long Box?'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: '6910bf1a-0868-4381-b8a7-60584cba5caf'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A **cube** has six square faces and equally long edges. A **rectangular cuboid** has six rectangular faces and may be longer in one direction. A square counts as a rectangle too, so a cube is a special kind of rectangular cuboid. Turning the model does not change its surfaces.'
+            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+        production:
+          purpose: 'Cube or Long Box?'
+          pedagogicalIntent: |
+            ### Section 2 — Cube or Long Box?
+
+            - **Purpose:** classify by surface shape and relation among edge lengths, not orientation.
+            - **Current shape:** one-column general `LessonSection_Config`.
+            - **Ordered Resources:**
+              1. **text — available:** "These two boxes are turned differently. One has equal edge lengths, and the other is long. Do they both have flat rectangular faces? Is the square-faced cube also a kind of rectangular box?"
+              2. **scene — proposed:** Solid Surface Observatory (Scene specification embedded in this config.yaml), placement B. Present an ideal cube with model dimensions **2×2×2** and a non-cubic rectangular cuboid **4×2×2**, using arbitrary _diagram units_ (not centimeters). Each model has six flat faces. Preset "front/top/side" reveals **square faces** of cube; cuboid has a mix of rectangle-shaped faces, including some square-shaped faces because two dimensions equal. "Show properties" reports equal-length edges for cube, not for the elongated box.
+              3. **markdown — available:** "A **cube** has six square faces and equally long edges. A **rectangular cuboid** has six rectangular faces and may be longer in one direction. A square counts as a rectangle too, so a cube is a special kind of rectangular cuboid. Turning the model does not change its surfaces."
+            - **Prediction and feedback:** If child says cube cannot be a rectangular box: "Squares have right angles, so their faces are rectangles as well. A cube follows the rectangular-box rule and adds equal edge lengths." If they expect the long box to become cube on rotation: "Turn it back: its edge lengths never changed." Never claim every face of a noncube cuboid must be nonsquare.
+            - **Contrast:** Make child decide which property rules out a sphere or cylinder. Show "six flat faces" as evidence rather than a memorized silhouette.
+            - **Planned Note:** "The same solid can look different when we turn it."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section3CurvedSidesAndFlatBases:
+        config:
+          id: '71cb9a35-0c02-4782-81e6-d7eb80cadcf0'
+          slug: 'section3CurvedSidesAndFlatBases'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Curved Sides and Flat Bases'
+            navigationLabel:
+              en: 'Curved Sides and Flat Bases'
+          content:
+            items:
+              text1:
+                config:
+                  id: '076d62d4-7c7c-4153-a0a5-9f8e185be5a5'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A ball, a can and a party-hat shape can all look round from some sides. Which ones have a **flat circular bottom**? Which has a tip? Which has **no flat face at all**?'
+              solidSurfaceObservatory:
+                config:
+                  id: '4ebfa170-adfd-4d33-b6f8-2f160b0188a9'
+                  slug: 'solidSurfaceObservatory'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Solid Surface Observatory'
+                production:
+                  specification: |
+                    # Solid Surface Observatory — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Recognize Solids by Their Surfaces (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective: Draft Methodologist Brief (original now embedded in this config.yaml) — identify familiar 3D solids by their surface structures and invariant properties, not solely silhouette/color/object category. This Scene is not a new Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The learner predicts what a face-on drawing reveals, examines flat versus curved surfaces, changes a **viewpoint without changing the solid**, and justifies a classification from surface structure. The design must work equally as an accessible **property explorer** with no 3D display. Changing the orientation of a solid must not mutate its actual geometric properties.
+
+                    Learner voice: "**I can look for flat faces, curved parts, bases and corners. Turning an object does not change which solid it is.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Models and properties are ideal mathematical shapes. Every display or real-world object analogy is an **approximation** and not a photographic source of mathematical definitions.
+                    - **Cube:** model side length 2 arbitrary model units, dimensions (2,2,2); **six square flat faces**, equal edge lengths; a cube also satisfies the definition of a **rectangular cuboid** (square is a special rectangle).
+                    - **Non-cubic rectangular cuboid:** model dimensions (4,2,2), six rectangular flat faces, including possible square end faces because two dimensions agree; edge lengths **not all equal**. Do **not** claim every non-cubic cuboid's face must be a nonsquare rectangle.
+                    - **Sphere:** radius fixed; a continuous **curved** exterior with **no planar flat faces** and no polyhedral vertices. A 2D circular silhouette or filled circle-shaped rendering is a **depiction**, not its full geometry.
+                    - **Right circular cylinder:** two parallel congruent flat **disk-shaped bases** and one continuous **curved lateral surface**. The disk is the 2D filled region; its boundary is a circle. Avoid treating the rolled lateral side as a flat rectangular **face**, even if a net could be drawn separately.
+                    - **Right circular cone:** one flat **disk-shaped base**, one curved lateral surface and an **apex tip**. Any perspective projection that obscures the base must offer a side/base view and text property ledger.
+                    - For polyhedral models, **edges** are straight line segments where neighboring flat faces meet, **vertices/corners** are points where edges meet. For curved models, do not force undefined or convention-dependent "number of edges" totals; distinguish circular boundaries and an apex without assessing polyhedral edge-count rules.
+                    - A rigid 90° viewpoint change preserves all model geometry: dimensions, planar face shapes, number of bases, curvature and vertex types. Changing render size/color likewise does not change category.
+                    - No 3D volume/area equations, net unfolding, exact hidden-edge counting or physical size inference from SVG dimensions.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — The Same Face-on Square Can Hide a Solid (Section 1)
+
+                    1. Initial: show a **square-shaped 2D depiction** with an explicitly ambiguous interpretation. Prompt: "**Does this tell us the whole object has no depth?**" Choices "It could be a flat drawing" and "It could show one face of a 3D object". Both interpretations are plausible **until additional information is revealed**; the Scene must avoid marking either wrong.
+                    2. "Reveal chosen 3D model" introduces an **ideal cube** and states that the earlier square was one possible face-on view of its **front face**; text "Cube has depth and six square faces" becomes available.
+                    3. Controls "Front view", "Top view", "Side view" select **predefined camera poses** while keeping the cube static. Each pose gives a text description: front/top/side view sees a square-shaped flat face; the whole cube remains 3D.
+                    4. Before each change, ask whether it will become a different solid; "Reveal unchanged properties" shows six square faces and equal edges remain. Correct explanation is about object invariants, not a timed visual rotation.
+                    5. If the learner says every square image must represent a cube: "A flat square on paper can also just be a square. The picture alone doesn't tell us the whole solid." If they think only the front face exists: "The view hides other faces; the model has depth."
+
+                    ### B — Flat Faces: Cube and Rectangular Box (Section 2)
+
+                    1. Present cube dimensions (2,2,2) and a non-cubic **rectangular cuboid** dimensions (4,2,2); hide abstract numeric dimensions from learner unless descriptive property detail requested. Predict: "Do both have flat faces shaped like rectangles?"
+                    2. Show model property ledger:
+                       - Cube: six flat **square** faces; because squares are rectangles, it is a type of cuboid; all edge lengths equal.
+                       - Elongated box: six flat **rectangular** faces; two opposite end faces may be square; not all edge lengths equal, so it is **not a cube**.
+                    3. "Compare front/top/end" shows distinct dimension pair relationships, not arbitrary picture flattening. The learner can select "Which model has all edges equal?" and receive a reasoned answer.
+                    4. Optional preset rotates the long box to a perspective with a square-looking end. It **must not** be mislabeled a cube merely because its visible front looks square.
+                    5. Feedback: "Cube is a special rectangular box; square faces satisfy the rectangle rule." For "long box became cube": "The length 4 part stayed longer than the 2 parts even though the view changed."
+                    6. Counts of all faces can be shown, but do not turn full edges/vertices counting into a graded goal (a later canonical Skill addresses such attributes).
+
+                    ### C — Compare Sphere, Cylinder and Cone (Section 3)
+
+                    1. Show three **separately selectable** ideal solids of equal-ish _display prominence_ but different geometric properties (display size is irrelevant). Choices "Sphere", "Cylinder", "Cone" remain hidden until learner predicts which is which, if appropriate.
+                    2. Model ledger:
+                       - Sphere: zero flat bases, continuous curved outside, no apex.
+                       - Cylinder: **two** flat disk bases, curved outside between, no apex tip.
+                       - Cone: **one** flat disk base, curved outside, one apex.
+                    3. Ask: "Which has **no flat surface**?" Reveal sphere. "Which has **two** flat circular bases?" Reveal cylinder. "Which has a pointed tip and one base?" Reveal cone.
+                    4. "Look from top" may show a **circular silhouette** for the cylinder and cone; text must explain **a circular top view is not the entire solid**. "Look from side" reveals one curved side/tip distinction.
+                    5. If sphere is selected as cylinder: "A sphere has no flat bases; cylinder has **two**." If cone selected as cylinder: "Cone has one base and an apex, not two bases." If side of cylinder called flat: "It curves around the container; only its bases are flat."
+                    6. Visual rotation optional; a textual list of exact surface categories and count of flat bases provides the full instructional contrast.
+
+                    ### D — Recognize from Another View (Section 4)
+
+                    1. Display an **inclined cylinder** with its top ellipse-looking outline (perspective projection) and one hidden base; a full property hint remains available "two circular disk bases, one curved side".
+                    2. Prompt: "Sphere, cone or cylinder? Name **one property** that rules out another." Learner selects from property choices ("two flat round bases", "one base and tip", "none") and names the solid.
+                    3. Reveal: **cylinder**; the apparent ellipse is a **perspective projection** of a circular base, not proof of an actual elliptical base in the ideal model.
+                    4. Unfamiliar second case: rotated small cube versus long non-cubic cuboid shown from square end. Ask which **has equal edge lengths everywhere**; explain why a square-looking face alone does not prove cube.
+                    5. Feedback is about **surfaces**, with help/no help/retry choices. Avoid accuracy scores or forcing an exact category when only one insufficient face is visible; if insufficient information is intentionally shown, explicitly allow "not enough information yet" and provide another view.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** five ideal solid model definitions, fixed textual property inventory per model, preset face/top/side viewpoint controls, prediction and reveal choices, definition labels, face/base highlighting and selection, reset.
+                    - **Per-placement state:** fixed Section-specific preset A–D, selected model, viewpoint, property currently highlighted, prediction, reveal step. Shared model definitions are immutable; resetting a Section returns _its own_ preset without leaking state into another Section.
+                    - **Rule 1:** changing viewpoint is not morphing; preserve faces/bases/edge relations. A 2D view may be insufficient for identification; never silently force a false unique solution.
+                    - **Rule 2:** cube ⊂ rectangular cuboid; a sphere has zero flat bases, cylinder two, cone one. Rims/curved surfaces are not arbitrary planar faces.
+                    - **Rule 3:** no "physical geometry" via CSS/SVG pixel distances. Dimensions 2 and 4 are schematic relative proportions only.
+                    - **Prop-free contract:** each exported Scene root for the authored Section takes **zero incoming props**. Internal helpers can use private data arguments, but public roots must rely on the verified real context for locale and label strings—not invented `shape`, `locale`, `mode` or callbacks.
+                    - **Equivalent interaction:** independent **buttons and semantic tables** allow property inspection without pointer dragging/3D scene orientation; wrong predictions prompt the specific missing feature and opportunity to inspect again. No score, event API, user progress or persistence.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Favor lightweight SVG or schematic diagrams and exact face lists over graphics-heavy WebGL if learning is equivalent. A visual 3D model may use 90° view presets, but no mandatory 3D drag. Label specific flat faces and curved areas using outlines/patterns and text, not hue alone. A cube must not be "stretched" into a cuboid during an alleged rigid rotation. Optional short flip animations are controlled and replaced with instantaneous views for reduced motion. Avoid depicting a circular cylinder base as mathematically elliptical—make clear projection and actual base shape differ.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Authentic translation for all configured locales of solid names, base/face/edge/vertex words, comparison statements, statuses, controls, hints and SVG descriptions; missing translation is a release blocker. Semantic RTL UI changes reading and focus placement **without** changing geometric surface counts or the identity of the displayed object. Expose structured properties to screen readers, including unseen backs of solids so nonvisual users have enough evidence to reason when the visually hidden feature is deliberately revealed. Do not pre-reveal intended final classification in generic accessibility labels; provide equivalently staged evidence. Keyboard/switch operation, visible focus, 200% text, large mobile targets, reduced motion, contrast, no sound/color dependency and WCAG 2.2 AA need implementation checks. Assets/model logic must be complete offline after verified package/locale download, with no remote geometry engine.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Stage A face-on square is acknowledged as **ambiguous**; revealing a cube then shows a 3D solid with six square faces. Changing camera to top/side does not change category.
+                    2. A (2,2,2) cube has square faces/equal edge lengths; (4,2,2) cuboid has six rectangular faces with some square end faces but is **not** a cube. Both are rectangular cuboids.
+                    3. Stage C sphere has zero flat bases, cylinder **two**, cone **one**; corresponding curved lateral surface and apex distinctions are correct.
+                    4. Cylinder viewed from above does **not** become a plane circle; it remains 3D and a perspective-projected base is a disk of circular actual shape.
+                    5. Inclined cylinder stage D remains identifiable by **two flat circular bases**, even if only one appears directly in the chosen view; an available second view and readable inventory provide proof.
+                    6. A square-looking end of an elongated cuboid must **not** be presented as sufficient evidence for cube classification.
+                    7. Distinct per-Section prop-free placements have independent resets and model state; no false assessment of exact edges/corners of curved solids.
+                    8. Full learning is possible without 3D manipulation through text/property controls and with keyboard, switch, screen reader, RTL, mobile, reduced-motion and complete post-download offline modes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
+                  purpose: 'Proposed interactive Scene for Curved Sides and Flat Bases'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: 'b532cbdb-cfb4-4178-b907-a6256fb61d92'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'A **sphere** has no flat face. A **cylinder** has two flat circular bases and a curved side. A **cone** has one flat circular base and a curved side meeting at a tip. A round-looking picture does not mean all three solids are the same.'
+            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+        production:
+          purpose: 'Curved Sides and Flat Bases'
+          pedagogicalIntent: |
+            ### Section 3 — Curved Sides and Flat Bases
+
+            - **Purpose:** contrast sphere, cylinder and cone using the **presence/count of flat bases** and the shape of curved surfaces.
+            - **Current shape:** one-column general Section.
+            - **Ordered Resources:**
+              1. **text — available:** "A ball, a can and a party-hat shape can all look round from some sides. Which ones have a **flat circular bottom**? Which has a tip? Which has **no flat face at all**?"
+              2. **scene — proposed:** Solid Surface Observatory (Scene specification embedded in this config.yaml), placement C. Models: **sphere** (curved exterior, zero flat bases), **right circular cylinder** (two flat disk-shaped bases plus curved lateral side), **right circular cone** (one flat disk-shaped base and a pointed apex). Select "Inspect top", "Inspect side", "List flat faces/bases". Do not present a flat rectangular cylinder side as a face; an unwrapped drawing belongs to a different Lesson.
+              3. **markdown — available:** "A **sphere** has no flat face. A **cylinder** has two flat circular bases and a curved side. A **cone** has one flat circular base and a curved side meeting at a tip. A round-looking picture does not mean all three solids are the same."
+            - **Feedback:** If child calls the sphere a circle: "The circle is a **flat boundary**. The ball-shaped object is a **solid sphere**." If they claim a cylinder's side is flat: "Its side curves around; only the two bases are flat." If they confuse cone and cylinder: "Check the **number of flat bases** and whether there is a tip."
+            - **Access:** Surface list available as an ordered text ledger even before visual inspection. It describes _observable_ features, not the target answer before a requested classification unless reveal/hint chosen. No haptic/physical object is required.
+            - **Planned Note:** "Sphere: no flat bases; cylinder: two; cone: one."
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+      section4RecognizeASolidInAnotherView:
+        config:
+          id: '92d3296a-d28f-4f13-b6b0-bb78e13beb39'
+          slug: 'section4RecognizeASolidInAnotherView'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Recognize a Solid in Another View'
+            navigationLabel:
+              en: 'Recognize a Solid in Another View'
+          content:
+            items:
+              text1:
+                config:
+                  id: '825e68db-68d0-4116-8d73-2a6d269acfe8'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Here is a solid you have not seen in this position. It has two equal flat circular bases and a side that curves between them. Which solid is it? What rules out a cone?'
+              solidSurfaceObservatory:
+                config:
+                  id: 'f6aab82b-592a-40ce-8c29-11412ba1dc04'
+                  slug: 'solidSurfaceObservatory'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Solid Surface Observatory'
+                production:
+                  specification: |
+                    # Solid Surface Observatory — Scene Specification
+
+                    Status: **Provisional Draft pending Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Sections: Recognize Solids by Their Surfaces (original now embedded in this config.yaml), Sections 1–4
+                    Methodologist objective: Draft Methodologist Brief (original now embedded in this config.yaml) — identify familiar 3D solids by their surface structures and invariant properties, not solely silhouette/color/object category. This Scene is not a new Skill.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The learner predicts what a face-on drawing reveals, examines flat versus curved surfaces, changes a **viewpoint without changing the solid**, and justifies a classification from surface structure. The design must work equally as an accessible **property explorer** with no 3D display. Changing the orientation of a solid must not mutate its actual geometric properties.
+
+                    Learner voice: "**I can look for flat faces, curved parts, bases and corners. Turning an object does not change which solid it is.**"
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - Models and properties are ideal mathematical shapes. Every display or real-world object analogy is an **approximation** and not a photographic source of mathematical definitions.
+                    - **Cube:** model side length 2 arbitrary model units, dimensions (2,2,2); **six square flat faces**, equal edge lengths; a cube also satisfies the definition of a **rectangular cuboid** (square is a special rectangle).
+                    - **Non-cubic rectangular cuboid:** model dimensions (4,2,2), six rectangular flat faces, including possible square end faces because two dimensions agree; edge lengths **not all equal**. Do **not** claim every non-cubic cuboid's face must be a nonsquare rectangle.
+                    - **Sphere:** radius fixed; a continuous **curved** exterior with **no planar flat faces** and no polyhedral vertices. A 2D circular silhouette or filled circle-shaped rendering is a **depiction**, not its full geometry.
+                    - **Right circular cylinder:** two parallel congruent flat **disk-shaped bases** and one continuous **curved lateral surface**. The disk is the 2D filled region; its boundary is a circle. Avoid treating the rolled lateral side as a flat rectangular **face**, even if a net could be drawn separately.
+                    - **Right circular cone:** one flat **disk-shaped base**, one curved lateral surface and an **apex tip**. Any perspective projection that obscures the base must offer a side/base view and text property ledger.
+                    - For polyhedral models, **edges** are straight line segments where neighboring flat faces meet, **vertices/corners** are points where edges meet. For curved models, do not force undefined or convention-dependent "number of edges" totals; distinguish circular boundaries and an apex without assessing polyhedral edge-count rules.
+                    - A rigid 90° viewpoint change preserves all model geometry: dimensions, planar face shapes, number of bases, curvature and vertex types. Changing render size/color likewise does not change category.
+                    - No 3D volume/area equations, net unfolding, exact hidden-edge counting or physical size inference from SVG dimensions.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### A — The Same Face-on Square Can Hide a Solid (Section 1)
+
+                    1. Initial: show a **square-shaped 2D depiction** with an explicitly ambiguous interpretation. Prompt: "**Does this tell us the whole object has no depth?**" Choices "It could be a flat drawing" and "It could show one face of a 3D object". Both interpretations are plausible **until additional information is revealed**; the Scene must avoid marking either wrong.
+                    2. "Reveal chosen 3D model" introduces an **ideal cube** and states that the earlier square was one possible face-on view of its **front face**; text "Cube has depth and six square faces" becomes available.
+                    3. Controls "Front view", "Top view", "Side view" select **predefined camera poses** while keeping the cube static. Each pose gives a text description: front/top/side view sees a square-shaped flat face; the whole cube remains 3D.
+                    4. Before each change, ask whether it will become a different solid; "Reveal unchanged properties" shows six square faces and equal edges remain. Correct explanation is about object invariants, not a timed visual rotation.
+                    5. If the learner says every square image must represent a cube: "A flat square on paper can also just be a square. The picture alone doesn't tell us the whole solid." If they think only the front face exists: "The view hides other faces; the model has depth."
+
+                    ### B — Flat Faces: Cube and Rectangular Box (Section 2)
+
+                    1. Present cube dimensions (2,2,2) and a non-cubic **rectangular cuboid** dimensions (4,2,2); hide abstract numeric dimensions from learner unless descriptive property detail requested. Predict: "Do both have flat faces shaped like rectangles?"
+                    2. Show model property ledger:
+                       - Cube: six flat **square** faces; because squares are rectangles, it is a type of cuboid; all edge lengths equal.
+                       - Elongated box: six flat **rectangular** faces; two opposite end faces may be square; not all edge lengths equal, so it is **not a cube**.
+                    3. "Compare front/top/end" shows distinct dimension pair relationships, not arbitrary picture flattening. The learner can select "Which model has all edges equal?" and receive a reasoned answer.
+                    4. Optional preset rotates the long box to a perspective with a square-looking end. It **must not** be mislabeled a cube merely because its visible front looks square.
+                    5. Feedback: "Cube is a special rectangular box; square faces satisfy the rectangle rule." For "long box became cube": "The length 4 part stayed longer than the 2 parts even though the view changed."
+                    6. Counts of all faces can be shown, but do not turn full edges/vertices counting into a graded goal (a later canonical Skill addresses such attributes).
+
+                    ### C — Compare Sphere, Cylinder and Cone (Section 3)
+
+                    1. Show three **separately selectable** ideal solids of equal-ish _display prominence_ but different geometric properties (display size is irrelevant). Choices "Sphere", "Cylinder", "Cone" remain hidden until learner predicts which is which, if appropriate.
+                    2. Model ledger:
+                       - Sphere: zero flat bases, continuous curved outside, no apex.
+                       - Cylinder: **two** flat disk bases, curved outside between, no apex tip.
+                       - Cone: **one** flat disk base, curved outside, one apex.
+                    3. Ask: "Which has **no flat surface**?" Reveal sphere. "Which has **two** flat circular bases?" Reveal cylinder. "Which has a pointed tip and one base?" Reveal cone.
+                    4. "Look from top" may show a **circular silhouette** for the cylinder and cone; text must explain **a circular top view is not the entire solid**. "Look from side" reveals one curved side/tip distinction.
+                    5. If sphere is selected as cylinder: "A sphere has no flat bases; cylinder has **two**." If cone selected as cylinder: "Cone has one base and an apex, not two bases." If side of cylinder called flat: "It curves around the container; only its bases are flat."
+                    6. Visual rotation optional; a textual list of exact surface categories and count of flat bases provides the full instructional contrast.
+
+                    ### D — Recognize from Another View (Section 4)
+
+                    1. Display an **inclined cylinder** with its top ellipse-looking outline (perspective projection) and one hidden base; a full property hint remains available "two circular disk bases, one curved side".
+                    2. Prompt: "Sphere, cone or cylinder? Name **one property** that rules out another." Learner selects from property choices ("two flat round bases", "one base and tip", "none") and names the solid.
+                    3. Reveal: **cylinder**; the apparent ellipse is a **perspective projection** of a circular base, not proof of an actual elliptical base in the ideal model.
+                    4. Unfamiliar second case: rotated small cube versus long non-cubic cuboid shown from square end. Ask which **has equal edge lengths everywhere**; explain why a square-looking face alone does not prove cube.
+                    5. Feedback is about **surfaces**, with help/no help/retry choices. Avoid accuracy scores or forcing an exact category when only one insufficient face is visible; if insufficient information is intentionally shown, explicitly allow "not enough information yet" and provide another view.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Objects:** five ideal solid model definitions, fixed textual property inventory per model, preset face/top/side viewpoint controls, prediction and reveal choices, definition labels, face/base highlighting and selection, reset.
+                    - **Per-placement state:** fixed Section-specific preset A–D, selected model, viewpoint, property currently highlighted, prediction, reveal step. Shared model definitions are immutable; resetting a Section returns _its own_ preset without leaking state into another Section.
+                    - **Rule 1:** changing viewpoint is not morphing; preserve faces/bases/edge relations. A 2D view may be insufficient for identification; never silently force a false unique solution.
+                    - **Rule 2:** cube ⊂ rectangular cuboid; a sphere has zero flat bases, cylinder two, cone one. Rims/curved surfaces are not arbitrary planar faces.
+                    - **Rule 3:** no "physical geometry" via CSS/SVG pixel distances. Dimensions 2 and 4 are schematic relative proportions only.
+                    - **Prop-free contract:** each exported Scene root for the authored Section takes **zero incoming props**. Internal helpers can use private data arguments, but public roots must rely on the verified real context for locale and label strings—not invented `shape`, `locale`, `mode` or callbacks.
+                    - **Equivalent interaction:** independent **buttons and semantic tables** allow property inspection without pointer dragging/3D scene orientation; wrong predictions prompt the specific missing feature and opportunity to inspect again. No score, event API, user progress or persistence.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Favor lightweight SVG or schematic diagrams and exact face lists over graphics-heavy WebGL if learning is equivalent. A visual 3D model may use 90° view presets, but no mandatory 3D drag. Label specific flat faces and curved areas using outlines/patterns and text, not hue alone. A cube must not be "stretched" into a cuboid during an alleged rigid rotation. Optional short flip animations are controlled and replaced with instantaneous views for reduced motion. Avoid depicting a circular cylinder base as mathematically elliptical—make clear projection and actual base shape differ.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Authentic translation for all configured locales of solid names, base/face/edge/vertex words, comparison statements, statuses, controls, hints and SVG descriptions; missing translation is a release blocker. Semantic RTL UI changes reading and focus placement **without** changing geometric surface counts or the identity of the displayed object. Expose structured properties to screen readers, including unseen backs of solids so nonvisual users have enough evidence to reason when the visually hidden feature is deliberately revealed. Do not pre-reveal intended final classification in generic accessibility labels; provide equivalently staged evidence. Keyboard/switch operation, visible focus, 200% text, large mobile targets, reduced motion, contrast, no sound/color dependency and WCAG 2.2 AA need implementation checks. Assets/model logic must be complete offline after verified package/locale download, with no remote geometry engine.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Stage A face-on square is acknowledged as **ambiguous**; revealing a cube then shows a 3D solid with six square faces. Changing camera to top/side does not change category.
+                    2. A (2,2,2) cube has square faces/equal edge lengths; (4,2,2) cuboid has six rectangular faces with some square end faces but is **not** a cube. Both are rectangular cuboids.
+                    3. Stage C sphere has zero flat bases, cylinder **two**, cone **one**; corresponding curved lateral surface and apex distinctions are correct.
+                    4. Cylinder viewed from above does **not** become a plane circle; it remains 3D and a perspective-projected base is a disk of circular actual shape.
+                    5. Inclined cylinder stage D remains identifiable by **two flat circular bases**, even if only one appears directly in the chosen view; an available second view and readable inventory provide proof.
+                    6. A square-looking end of an elongated cuboid must **not** be presented as sufficient evidence for cube classification.
+                    7. Distinct per-Section prop-free placements have independent resets and model state; no false assessment of exact edges/corners of curved solids.
+                    8. Full learning is possible without 3D manipulation through text/property controls and with keyboard, switch, screen reader, RTL, mobile, reduced-motion and complete post-download offline modes.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The generic `scene` Resource is supported in Playground, but **Solid Surface Observatory is proposed and not implemented**. Scene Designer/Coding Agent must verify actual Section/locale provider contract, implement component/tested mathematical inventories, render complete nonvisual states and assure offline packaging _after editorial approval_. No runtime Lesson, Question, Quiz, Note unlock API, scoring or invented props. Editor to review technical face/curvature terminology at Grade 2.
+                  purpose: 'Proposed interactive Scene for Recognize a Solid in Another View'
+                  productionNotes: 'Original draft specification; no component implementation or editorial approval. Section-specific variants and placement preserved in Section pedagogicalIntent.'
+              markdown2:
+                config:
+                  id: 'ee0953d0-baa6-419d-974c-574ae455fcff'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: "A **cylinder** still has two flat circular bases when turned. A cone has only one base and a tip. A view can hide part of a surface, but the solid's defining surfaces stay the same."
+            order: ['text1', 'solidSurfaceObservatory', 'markdown2']
+        production:
+          purpose: 'Recognize a Solid in Another View'
+          pedagogicalIntent: |
+            ### Section 4 — Recognize a Solid in Another View
+
+            - **Purpose:** independent transfer from surface properties to new examples without scoring.
+            - **Current shape:** one-column general Section.
+            - **Ordered Resources:**
+              1. **text — available:** "Here is a solid you have not seen in this position. It has two equal flat circular bases and a side that curves between them. Which solid is it? What rules out a cone?"
+              2. **scene — proposed:** Solid Surface Observatory (Scene specification embedded in this config.yaml), placement D. An inclined right circular cylinder shown with fixed perspective presets; property ledger reports **two disk bases + curved side** with a newly chosen surface display, independent of color/size. Offer answer choices **cylinder**, **cone**, **sphere** plus "Show its surfaces". After prediction, reveal a rotation to another viewpoint and one equivalent everyday example. Second comparison: small cube rotated on corner versus elongated box; identifying a cube requires equal edge lengths and square faces, not merely one square silhouette.
+              3. **markdown — available:** "A **cylinder** still has two flat circular bases when turned. A cone has only one base and a tip. A view can hide part of a surface, but the solid's defining surfaces stay the same."
+            - **Feedback:** For cone: "Two bases means this is not the one-base cone." For sphere: "The sphere has **no flat bases**, but this shape has two." For rotated cube versus cuboid: "Check the face shapes and equal edges; rotation changes the drawing, not the object."
+            - **Independent transfer:** Invite the learner to describe a familiar object _or an equivalent property-only model_ and state which geometric solid it approximates, acknowledging real objects are rarely perfect ideal solids. No live photos or external inventory necessary.
+
+          productionNotes: 'Full original ordered lesson Section with learner copy, mathematical facts, misconceptions/feedback, accessible alternatives, RTL/offline and specialist handoff. Provisional, not approved.'
+    order:
+      [
+        'section1AFlatPictureOfASolid',
+        'section2CubeOrLongBox',
+        'section3CurvedSidesAndFlatBases',
+        'section4RecognizeASolidInAnotherView',
+      ]
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Recognize Solids by Their Surfaces — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: identifyingSolidFigures
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Establish the difference between a flat diagram and an object that occupies three-dimensional space. The learner identifies everyday solid shapes by invariant **surface structure**—flat versus curved surfaces, type of flat faces/bases, edges and corners where these apply—rather than by color, familiar object names, size or how a perspective drawing is tilted.
+
+    ## Target audience
+
+    **Grade 2 (approximately ages 7–8).** Children in Grade 2 (approximately ages 7–8), including mixed/early readers, learners unfamiliar with the English technical words for face/edge/vertex, and learners using keyboard/switch or structured text rather than visual rotation. The experience should introduce everyday 'flat part / side / corner' before precise 'face / edge / vertex' and never depend on free rotation gestures.
+
+    ## Prerequisites
+
+    Recognize a square, rectangle, triangle and circle in varying orientations ([identify2dShapes.data.ts](../../../../data/skills/geometry/figures/skills/identify2dShapes.data.ts)). Know the difference between a flat straight edge and a curved outline from earlier figure exploration. Count to six where a count helps but do **not** require counting all hidden edges of a prism. Use two everyday boxes as visible or verbally describable starting objects.
+
+    ## Target Skills
+
+    - [identify3dSolids.data.ts](../../../../data/skills/geometry/solids/skills/identify3dSolids.data.ts)
+
+    ## Expected learning outcomes
+
+    - Distinguish a 3D **solid object** from its 2D picture or silhouette, and identify a cube, non-cubic rectangular box (cuboid), sphere, cylinder and cone using surface features.
+    - State that a cube has square **flat faces** while a rectangular box can have **rectangular faces**; identify that a cube is a special kind of rectangular box without treating an upright picture as the definition.
+    - Recognize that a sphere has a continuous **curved surface without flat faces or corners**, whereas a cylinder has **two flat circular bases plus a curved side** and a cone has **one flat circular base plus a curved surface meeting at a tip**.
+    - Match an unfamiliar or rotated view to its solid class using properties, and describe one property that rules out a plausible wrong class.
+
+    ## Essential subject matter
+
+    A **solid** has length, width and depth; a photograph or screen outline is a **2D representation** of that 3D object, not the solid itself. A **face** of a cube/cuboid is a flat region, not merely its boundary; the edges meet faces and vertices are their meeting corners. A cube has six square faces and equal edge lengths; a cuboid has six rectangular faces and may be elongated; every cube is also a cuboid in this elementary classification. A sphere has no flat planar faces or polyhedral vertices. A right circular cylinder has **two circular disk-shaped flat bases** and a curved lateral surface, with circular boundaries; a right circular cone has **one disk-shaped flat base** and one pointed apex plus curved lateral surface. Flat circular disk versus its circular rim must be distinguished where necessary. In this Lesson, learners use easily observable **qualitative** face/base/curvature clues rather than memorize exact edge/vertex counts, especially for curved solids, where 'edge' counting conventions vary. Rotating a rigid solid changes viewpoint, not its surfaces.
+
+    ## Conceptual progression and dependencies
+
+    Begin with a picture of a cube and a real-world solid description, revealing why a single square-like silhouette cannot define a 3D object. Contrast cube and cuboid by faces and edge lengths; sphere versus cylinder by whether there are flat bases; cylinder versus cone by number of bases and tip. Let learners inspect fixed 90° viewpoint presets and predict which features remain. End with an unfamiliar surface-property description to classify and justify, including a misleading 'looks circular' silhouette.
+
+    ## Misconceptions, examples and boundaries
+
+    Calling a sphere a circle; calling a cylinder a circle merely because its top appears circular; assuming every 'box' is a cube; thinking a different perspective makes a different solid; treating a face as an entire solid; relying on colors, size or 'rolls on table' instead of relevant geometric properties; claiming the curved cylinder side is a rectangular **flat** face. Avoid classifying a cube exclusively against cuboids: the categories nest.
+
+    **Depth exclusions:** Basic geometric solids only (cube, rectangular cuboid, sphere, right circular cylinder, right circular cone) with clear, elementary surface descriptions. No volume/surface-area formula, classification of arbitrary prisms or pyramids, precise perspective geometry, hidden-edge count assessment, unfolded nets, complex cross-sections, edge-convention disputes, or physical experiments requiring equipment. This Lesson names solids; the next Lesson targets 2D faces/sections independently. These boundaries govern a **Lesson**, not the grade-independent canonical Skill definition.
+
+    ## Localization, accessibility and offline intent
+
+    Authentically localize every future learner-facing prompt, explanation, feedback message, geometry/measurement term, numerical description, accessible name, optional sound transcript, Scene control and recall Note in the supported locale set. No fake translations or English text fallbacks. Adopt meaning-preserving LTR/RTL: changing reading direction must never silently invert geometric surface structure, left/right pan behavior, amount ordering or 3D/2D membership. Use keyboard/switch-operable controls and complete nonvisual text-ledger alternatives; visual rotation or pouring effects are optional enhancements, never the only way to understand. Favor small controllable steps, reduced-motion versions, large mobile targets, visible focus, WCAG 2.2 AA and identical learning outcomes on weak devices. All essential model data, localized copy, Scene assets and explanations must be **downloadable for full offline use**; this is a product goal, not verified runtime support. If a later design cannot supply equivalent nonvisual/low-end modes, surface that as an editorial blocker, not a silent simplification.
+
+    ## Sources and factual verification
+
+    - [identify3dSolids.data.ts](../../../../data/skills/geometry/solids/skills/identify3dSolids.data.ts) — canonical source migrated verbatim from Mathematics `main`, including UUID, translations and methodological description.
+    - [Methodologist Persona](../../../../../../studio/personas/methodist.persona.md), [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) and [Lesson entity](../../../../../../studio/docs/entities/lesson.md) — governing editorial scope, autonomy and approval.
+    - [Playground generated English taxonomy](../../../../docs/generated/skills/taxonomy.en.md) — a **coordinator-owned generated view** that has **not been regenerated** to include these pending Skill imports. Canonical `*.data.ts` source files above are the verified sources.
+
+    The examples are pedagogically simplified as specifically described; they make no national Curriculum alignment or experimental instructional-effectiveness claims.
+
+    ## Curriculum / Program compatibility
+
+    No Program or national Curriculum has been assigned. The Lesson is independently coherent and may be referenced by future Programs. Grade 2 is a provisional **lesson-audience choice**, never a change to the taxonomy or new Skill assessment level.
+
+    ## Open editorial decisions
+
+    - Editor should confirm that the cube-as-cuboid inclusion and qualitative curved-surface vocabulary are understandable at Grade 2 without forcing exact polyhedral edge counts. Materialistic objects (box, ball, can, cone) are **representatives**, not literal definitions.
+    - **Explicit approval still required.** This Methodologist Brief is **Draft**. The accompanying Content and custom Scene specification are **Provisional Drafts** prepared under the user's batch-level authorization, not formally approved under the Studio's standard handoff gate.
+
+    ## Methodologist handoff
+
+    Editor/Methodologist reviews learning depth, prerequisite accuracy, conceptual definition, examples and accessibility equivalence. Screenwriter may review and revise provisional Content and Scene documents, but they must not be treated as approved source for Coding Agent implementation before sign-off. Questions, Quizzes, scoring, analytics, full translation production, local persistence, Notes unlocking and runtime Lesson configuration are outside this batch.
+  productionNotes: |-
+    All content.md text outside ordered Sections — editorial premise, accessibility, global feedback, production and dependencies:
+
+    # Recognize Solids by Their Surfaces — Lesson Content
+
+    Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation.**
+    Target Lesson: `content/playground/Data/Lessons/1/identifyingSolidFigures/`
+    Audience: **Grade 2**, approximately 7–8 years, mixed reading and access needs
+    Methodologist source: Draft Methodologist Brief (original now embedded in this config.yaml)
+    Learning outcomes: distinguish 3D objects from 2D depictions; identify basic solids by flat and curved surfaces, bases, faces and corners; recognize cube as a special cuboid; explain classification across viewpoints.
+    Target Skills: **`identify3dSolids.data.ts`** as linked directly in the Brief, not a new observation/rotation Skill.
+    Program dependence: None
+    Technical status: Only this Screenwriter document and an unimplemented custom Scene proposal; no runtime Lesson data, real React components or assessment.
+
+    ## INSTRUCTIONAL CONCEPT
+
+    **"Look for the surfaces, not just the picture."** A ball can look like a circle in a drawing, and a cube's front may look square, but the ball and cube occupy space in three directions: their silhouettes do not tell their complete shape. The learner compares **surface properties**, turns a model between fixed viewpoints and explains the same classification after a rotation. A small glossary gradually introduces **flat face**, **curved surface**, **base**, **edge** and **corner/vertex**.
+
+    For a solid, the outer faces and surfaces matter: a cube has square flat faces, a rectangular box has rectangular flat faces, a sphere has a curved surface without flat faces, a right circular cylinder has two flat disk-shaped bases and a curved side, and a right circular cone has one flat disk-shaped base and a curved side meeting at an apex. Children do **not** need an advanced count of cylinder edges or hidden vertices, nor memorized geometry formulas. The concept of a "cube is also a cuboid" can be taught as nested shape membership, not a false mutually exclusive guessing contest.
+
+    ## LEARNER JOURNEY
+
+    Begin with the misleading appearance of a square-like cube face, reveal that a solid has depth, then compare two boxlike solids by their flat faces. Next use a sphere/cylinder/cone comparison to discover the role of curved surfaces and flat bases. Finally inspect an unfamiliar/rotated view and justify a classification from **properties** instead of a familiar object name.
+
+    Each Section is a **single vertical** sequence of ordered content Resources (current `LessonSection_Config` editorial shape). The custom Scene lives inside one block per Section; it may internally lay out models in a grid. A learner makes a prediction, changes one model aspect, reads feedback and is invited to explain, without scores or a completion-as-mastery claim.
+
+    ## SECTION PLAN
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Solid Surface Observatory (Scene specification embedded in this config.yaml) — unimplemented, self-contained, prop-free Scene concept with independent Section presets and nonvisual surface descriptions.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. After Section 1 2D/3D contrast: "A solid has depth; a picture of it is flat."
+    2. After Section 2 cube/cuboid comparison: "A cube is a rectangular box with equal edges and square faces."
+    3. After Section 3 curved-surface contrast: "Look for flat bases to tell a sphere, cylinder and cone apart."
+
+    These are **planned** short localized recall cues. No verified Note ID, unlock event, personal note state, persistence or revision sheet exists for this Lesson.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Section 4 is independent, **unscored** formative practice. A later Assessment Architect may test property-based identification from unfamiliar orientations and equivalent text descriptions; completion is not evidence of mastery. Exact counts of all polyhedral edges/vertices belong to other dedicated Skills and should not be silently assessed here.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    The Screenwriter must supply authentic translations of shape terms, face/base/edge vocabulary, prompts, controls, feedback, SVG `title`/`desc` and Note text for the supported locale roster before release. In RTL layouts, semantic direction changes text reading and navigation, **not** number of bases, surface curvature or identity of an object. No single fixed drawing may be sole evidence: include descriptive property inventory and predictable preset viewpoints; rotation by touch is optional. Keyboard/switch access, high contrast, no color-only status, focus visibility, large touch targets, instant reduced-motion updates, 200% zoom and offline resources/feedback after download are required but **not yet tested**.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    - **Available:** generic Section Resource `text`, `markdown`, `scene` recognition in current Playground renderer.
+    - **Proposed, not implemented:** Solid Surface Observatory component/3D or schematic models, context-driven authentic locale strings, accessible alternative surface ledger, tests and offline packaging.
+    - A simple lightweight SVG/HTML model is preferred if it conveys the same faces/curvature as a more expensive 3D renderer. Device class may not silently remove essential examples. No Quiz/Question, scoring, randomization, Note APIs, runtime Lesson registration or persistence has been added.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Draft Methodologist Brief (original now embedded in this config.yaml) and its direct canonical `identify3dSolids.data.ts` reference.
+    - Editor: confirm how much geometric terminology (bases versus flat faces; cube nested inside cuboids) is appropriate for Grade 2 and whether a text-based schematic is fully equivalent.
+    - Brief and this Content remain **Draft/Provisional Draft** pending explicit approval.
+
+    ## HANDOFF
+
+    Methodologist confirms purpose and depth before formal Content approval. Screenwriter/editor validates geometric examples, terminology and alternate representations. Scene Designer/Coding Agent later implements only from **approved** Scene specs and verified contracts. Assessment Architect owns any scored Questions and evidence policy.
+
+
+    Editorial state: provisional draft; pending independent approval. Locales beyond English are intended but not yet translated.

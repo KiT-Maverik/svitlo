@@ -1,0 +1,581 @@
+config:
+  id: '531a26a7-98ce-5fa6-8a24-20624657d14a'
+  slug: 'countByFivesWithGroups'
+  type: 'lesson'
+  skills: ['422c0a18-53eb-43fb-a816-ba38a9567894']
+  params:
+    requireQuiz: false
+    languages: ['en', 'pl', 'uk', 'qm']
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Five in Every Pack: Count by Fives'
+  section:
+    items:
+      section1FiveStripBuilder:
+        config:
+          id: '24ddbb32-f956-48df-be86-5ee8fc3dea9d'
+          slug: 'section1FiveStripBuilder'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Five-Strip Builder'
+            navigationLabel:
+              en: 'Five-Strip Builder'
+          content:
+            items:
+              text1:
+                config:
+                  id: '8d983283-4eb0-4d22-80b3-421de748743c'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Add one, two and three strips. How many dots do you have after each?'
+              fiveStripBuilder:
+                config:
+                  id: '34f65e96-37f0-4089-b6fc-f0f4050860b7'
+                  slug: 'fiveStripBuilder'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Five-Strip Builder'
+                production:
+                  specification: |
+                    # Five-Strip Builder — Scene Specification
+
+                    Status: **Provisional Draft — pending Methodologist and independent Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Five in Every Pack: Count by Fives Content (editorial text integrated into this config.yaml), Section 1
+                    Methodologist objectives: Methodologist Brief (editorial text integrated into this config.yaml) (**Draft, not approved**)
+                    Implementation status: Proposed standalone **prop-free Scene**, not implemented
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Make the fixed five-unit increment tangible through complete repeatable strips and two labelled totals.
+
+                    **Underlying number relationship:** Each completed pack contains five **distinct** objects. After k complete packs the number of items is 5k, while there are only k packs. Starting from zero, successive completed packs yield 5,10,15,20,25,30 for one through six packs. Three packs have fifteen items; four packs twenty; six packs thirty. A pack of four is not a complete five-item pack: two complete packs plus one four-item group total 5+5+4=14, not 15, and cannot be called three full packs of five. Numerical increments of five correspond to adding a **whole** five-item group each time. This is a specific counting strategy, not an inference task about an arbitrary number pattern.
+
+                    The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    **Initial state:** Empty table with button Add Complete Strip. Each strip contains exactly five distinguishable dots as a bounded group. Capacity six strips but initial guided steps stop at four. Two ledgers: number of strips and total dots.
+
+                    **Model and invariant:** Complete strip IDs with five uniquely identified dot IDs each, count of complete strips k, total=5×k, ledger of increments, prediction, reveal/reset. No partial strips in this first workbench.
+
+                    **Numerical and pedagogical limits:** Grade 2: one through six complete groups of five (up to 30 items), and one explicitly incomplete group of four to expose the invariant. No multiplication-table drills, fractional groups, large multi-digit jumps or price calculations. We name groups and members separately, and if learner can't read 25/30 yet show tens-and-ones models rather than assuming competence.
+
+                    **Boundary case / nuance:** Adding a full strip always means exactly five new member IDs. No model may create a seventh strip in the bounded activity; explain the displayed range rather than wrapping counter to zero.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Beat 1 — Add one, two and three strips. How many dots do you have after each?
+
+                    1. **Invitation:** “Add one, two and three strips. How many dots do you have after each?”
+                    2. **Controllable investigation:** Add three complete five-dot strips and inspect the ledger 5,10,15.
+                    3. **Correct visible consequence:** Three strips contain fifteen dots, not three dots.
+                    4. **Worked number evidence:** 1 strip=5, 2=10, 3=15 dots.
+                    5. **Mistaken or incomplete route:** For three, show that a strip is a group and display five separate members in each of three groups.
+                    6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
+
+                    ### Beat 2 — Add a fourth strip. What is the new total? Can you continue to six?
+
+                    1. **Invitation:** “Add a fourth strip. What is the new total? Can you continue to six?”
+                    2. **Controllable investigation:** Add strip four to reach 20, then optionally strips five and six to reach 25 and 30, each with a full five-dot group.
+                    3. **Correct visible consequence:** Four full strips have twenty dots, five have twenty-five and six have thirty.
+                    4. **Worked number evidence:** 5,10,15,20,25,30: repeated +5 for complete strips.
+                    5. **Mistaken or incomplete route:** For 21 after the fourth strip, show exactly five additional dots after the previous fifteen: 15+5=20. For 24 on strip five, show 20+5=25.
+                    6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
+                    - **Control map:** Add complete strip; Remove last strip; Inspect each strip's five items; Predict total; Reveal repeated +5 ledger; Reset.
+                    - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
+                    - **Integrity:** Every displayed result, spoken/narrated number, count, step or comparison derives from the same authoritative model. Prevent duplicate membership or phantom items. Do not silently mutate counts when moving viewports, swapping layout direction or resetting.
+                    - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
+                    - **Boundaries:** Adding a full strip always means exactly five new member IDs. No model may create a seventh strip in the bounded activity; explain the displayed range rather than wrapping counter to zero.
+                    - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Each group is a named strip with five listed dot IDs, independent of color or pattern. Two clearly distinct readouts ('strips' and 'dots'); keyboard button adds exactly five and announces the full numeric update.
+
+                    Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Three complete strips total 15 members.
+                    2. Four total 20, five 25, six 30.
+                    3. Every completed Add Strip adds exactly five distinct dots.
+                    4. Removing a strip removes its exact five members and decreases total by five.
+                    5. For Beat 1, verify exact expected result: 1 strip=5, 2=10, 3=15 dots. Test plausible wrong response: For three, show that a strip is a group and display five separate members in each of three groups.
+                    6. For Beat 2, verify exact expected result: 5,10,15,20,25,30: repeated +5 for complete strips. Test plausible wrong response: For 21 after the fourth strip, show exactly five additional dots after the previous fifteen: 15+5=20. For 24 on strip five, show 20+5=25.
+                    7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
+                    8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
+
+                    Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
+                  purpose: 'Proposed interactive Scene for Five-Strip Builder'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: 'f40629c8-1334-4969-a183-5fda7ea03033'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Three strips contain fifteen dots, not three dots. 1 strip=5, 2=10, 3=15 dots.'
+            order: ['text1', 'fiveStripBuilder', 'markdown2']
+        production:
+          purpose: 'Five-Strip Builder'
+          pedagogicalIntent: |
+            ### Section 1 — Five-Strip Builder
+
+            - **Learning purpose:** Make the fixed five-unit increment tangible through complete repeatable strips and two labelled totals.
+            - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
+            - **Ordered content blocks, top to bottom:**
+              1. **`text` — existing generic renderer:** “Add one, two and three strips. How many dots do you have after each?”
+              2. **`scene` — generic type exists, **specific Scene proposed**:** Five-Strip Builder (Scene specification embedded in this config.yaml). Empty table with button Add Complete Strip. Each strip contains exactly five distinguishable dots as a bounded group. Capacity six strips but initial guided steps stop at four. Two ledgers: number of strips and total dots.
+              3. **`markdown` — existing generic renderer:** “Three strips contain fifteen dots, not three dots. 1 strip=5, 2=10, 3=15 dots.”
+            - **Learner action and responsive feedback:**
+
+            **Beat 1 — “Add one, two and three strips. How many dots do you have after each?”** Add three complete five-dot strips and inspect the ledger 5,10,15.
+
+            **Learner-visible result:** Three strips contain fifteen dots, not three dots.
+
+            **Worked numerical evidence:** 1 strip=5, 2=10, 3=15 dots.
+
+            **Feedback for a plausible misconception:** For three, show that a strip is a group and display five separate members in each of three groups.
+
+            Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
+
+            **Beat 2 — “Add a fourth strip. What is the new total? Can you continue to six?”** Add strip four to reach 20, then optionally strips five and six to reach 25 and 30, each with a full five-dot group.
+
+            **Learner-visible result:** Four full strips have twenty dots, five have twenty-five and six have thirty.
+
+            **Worked numerical evidence:** 5,10,15,20,25,30: repeated +5 for complete strips.
+
+            **Feedback for a plausible misconception:** For 21 after the fourth strip, show exactly five additional dots after the previous fifteen: 15+5=20. For 24 on strip five, show 20+5=25.
+
+            Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
+
+            - **Controls and accessibility:** Add complete strip; Remove last strip; Inspect each strip's five items; Predict total; Reveal repeated +5 ledger; Reset. Each group is a named strip with five listed dot IDs, independent of color or pattern. Two clearly distinct readouts ('strips' and 'dots'); keyboard button adds exactly five and announces the full numeric update.
+            - **Cause-and-effect explanation:** Complete strip IDs with five uniquely identified dot IDs each, count of complete strips k, total=5×k, ledger of increments, prediction, reveal/reset. No partial strips in this first workbench. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
+            - **Boundary reasoning:** Adding a full strip always means exactly five new member IDs. No model may create a seventh strip in the bounded activity; explain the displayed range rather than wrapping counter to zero.
+            - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
+            - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section2FourPacksAreNotFourObjects:
+        config:
+          id: 'dc3aef2d-2907-4824-abcd-230b3445c0d2'
+          slug: 'section2FourPacksAreNotFourObjects'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Four Packs Are Not Four Objects'
+            navigationLabel:
+              en: 'Four Packs Are Not Four Objects'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'be66d7cc-3574-45e9-bf03-652eaba44c23'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'There are four strips with five dots on each. How many strips and how many dots?'
+              markdown2:
+                config:
+                  id: 'aace2863-522f-4286-a244-6cc56ff50c68'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Four strips, but twenty dots altogether. Count the five dots added by each strip: 5,10,15,20. The group count (four) is different from the total count (twenty).'
+              markdown3:
+                config:
+                  id: 'a9ce26d0-532f-4419-a144-6b3270f50dfb'
+                  slug: 'markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'If the last strip has just four dots, you must count those four. The total then is 5+5+5+4=19, not 20.'
+            order: ['text1', 'markdown2', 'markdown3']
+        production:
+          purpose: 'Four Packs Are Not Four Objects'
+          pedagogicalIntent: |
+            ### Section 2 — Four Packs Are Not Four Objects
+
+            - **Purpose and expected learner thinking:** Distinguish the mathematical invariant from a familiar but misleading shortcut; retrieve a rule without a score.
+            - **Current implementation shape:** `LessonSection_Config`, a single vertical content column (no Quiz).
+            - **Ordered content blocks:**
+              1. **`text` — existing renderer:** “There are four strips with five dots on each. How many strips and how many dots?”
+              2. **`markdown` — existing renderer:** “Four strips, but twenty dots altogether. Count the five dots added by each strip: 5,10,15,20. The group count (four) is different from the total count (twenty).”
+              3. **`markdown` — existing renderer:** “If the last strip has just four dots, you must count those four. The total then is 5+5+5+4=19, not 20.”
+            - **Meaningful feedback:** The example explicitly contrasts the likely mistaken response with a countable or numeric explanation. Child may reason before reading; current `text`/`markdown` renderers are **not** claimed to provide a delayed-answer or true-response validation widget.
+            - **Accessibility and pacing:** Brief accessible written language, no sensory dependency. The explanatory text remains available to every learner and is never hidden behind a timed action.
+            - **Transition:** Section 3 changes numbers or objects and asks for independent reasoning. The first Scene's state is not carried into the second.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+      section3FivePackTransfer:
+        config:
+          id: 'c275ef5f-6392-49da-b37a-b15dd5e09ba0'
+          slug: 'section3FivePackTransfer'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Five-Pack Transfer'
+            navigationLabel:
+              en: 'Five-Pack Transfer'
+          content:
+            items:
+              text1:
+                config:
+                  id: 'a623afa2-f7e7-4e4b-9348-3afce5e13e15'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Five boxes have five crayons each. How many crayons? What if a sixth box arrives?'
+              fivePackTransfer:
+                config:
+                  id: 'ea667da2-e5ee-4661-9f2e-1974cfaa605b'
+                  slug: 'fivePackTransfer'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Five-Pack Transfer'
+                production:
+                  specification: |
+                    # Five-Pack Transfer — Scene Specification
+
+                    Status: **Provisional Draft — pending Methodologist and independent Scene approval**
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: Five in Every Pack: Count by Fives Content (editorial text integrated into this config.yaml), Section 3
+                    Methodologist objectives: Methodologist Brief (editorial text integrated into this config.yaml) (**Draft, not approved**)
+                    Implementation status: Proposed standalone **prop-free Scene**, not implemented
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    Apply equal-five grouping in a new crayon-box setting, then identify the false shortcut when a group has four instead of five.
+
+                    **Underlying number relationship:** Each completed pack contains five **distinct** objects. After k complete packs the number of items is 5k, while there are only k packs. Starting from zero, successive completed packs yield 5,10,15,20,25,30 for one through six packs. Three packs have fifteen items; four packs twenty; six packs thirty. A pack of four is not a complete five-item pack: two complete packs plus one four-item group total 5+5+4=14, not 15, and cannot be called three full packs of five. Numerical increments of five correspond to adding a **whole** five-item group each time. This is a specific counting strategy, not an inference task about an arbitrary number pattern.
+
+                    The child must be able to change or examine the representation, form a prediction, see the exact model and explain why a plausible wrong shortcut fails.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    **Initial state:** Five sealed crayon boxes with a visible label '5 crayons in each', and a sixth box that can be added. Separate preset has two complete groups of 5 stickers and one intentionally incomplete group of four stickers, all labels and identities visible.
+
+                    **Model and invariant:** Independent preset (six-pack crayon counting or partial-pack contrast); each box has immutable actual member count (5 or 4). Total derived from all individual values; number of complete five packs reported separately from overall groups.
+
+                    **Numerical and pedagogical limits:** Grade 2: one through six complete groups of five (up to 30 items), and one explicitly incomplete group of four to expose the invariant. No multiplication-table drills, fractional groups, large multi-digit jumps or price calculations. We name groups and members separately, and if learner can't read 25/30 yet show tens-and-ones models rather than assuming competence.
+
+                    **Boundary case / nuance:** Empty display slots are not objects. A drawn pack label is never an authority to count five when the actual group has only four. Do not invent virtual/fractional member to complete a short group.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    ### Beat 1 — Five boxes have five crayons each. How many crayons? What if a sixth box arrives?
+
+                    1. **Invitation:** “Five boxes have five crayons each. How many crayons? What if a sixth box arrives?”
+                    2. **Controllable investigation:** Inspect five complete packs and read 5,10,15,20,25; add the sixth complete five-crayon pack to see 30.
+                    3. **Correct visible consequence:** Five boxes contain twenty-five crayons; six boxes contain thirty.
+                    4. **Worked number evidence:** 5 groups of 5=25; 6 groups of 5=30.
+                    5. **Mistaken or incomplete route:** If five or six chosen as the total, distinguish box count from crayon count. For 26 after new pack, show the five additional crayons: 25+5=30.
+                    6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
+
+                    ### Beat 2 — Two boxes have five stickers each, but the third has only four. Is that 15 stickers?
+
+                    1. **Invitation:** “Two boxes have five stickers each, but the third has only four. Is that 15 stickers?”
+                    2. **Controllable investigation:** Count complete first and second groups as 5+5=10 and inspect the third group's four members; total 14, not 15.
+                    3. **Correct visible consequence:** Ten plus four equals fourteen. The short group cannot advance a full +5 step.
+                    4. **Worked number evidence:** 5+5+4=14, whereas 5+5+5=15.
+                    5. **Mistaken or incomplete route:** If 15 selected, display the third group's missing fifth place, but do not count an empty place as a sticker. Explain the incomplete group's actual four items.
+                    6. **Explanatory Reveal and replay:** Permit a full annotated number/object ledger before retry, with no score or time limit. The child can also reset just this Scene without locking other Sections.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    - **Semantic objects:** Named countable group members, ticks, operands or operator controls, each with stable identity, a visible state and an equivalent ordered textual ledger.
+                    - **Control map:** Add sixth full box; Show box contents; Predict item total; Switch to incomplete-pack preset; Reveal summed item ledger; Reset.
+                    - **Deterministic state:** The numbers, chosen preset, group members, selected values, prediction, Reveal state and Reset all come from the self-contained Scene's own constants and actions, not caller props.
+                    - **Integrity:** Every displayed result, spoken/narrated number, count, step or comparison derives from the same authoritative model. Prevent duplicate membership or phantom items. Do not silently mutate counts when moving viewports, swapping layout direction or resetting.
+                    - **Independence:** The proposed component has **no props** and no mutable state shared with a Lesson or another Scene; each Section contains its own independently resettable placement.
+                    - **Boundaries:** Empty display slots are not objects. A drawn pack label is never an authority to count five when the actual group has only four. Do not invent virtual/fractional member to complete a short group.
+                    - **Assessment boundary:** Prediction and feedback are formative only. No Question bank, Quiz, correct-answer security contract, mastery metric, score, persistent Note event, timed completion or invented platform API.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use lightweight HTML/SVG or ordinary semantic controls for individual items and groups, with a concise number ledger. Animation may highlight an interval, pair or new group but may never be the only carrier of information; reduced-motion mode updates state immediately. No required audio, live external service, asset generation or ornamental 3D. If optional sound is added later, localized captions/transcripts and downloaded media must preserve full learning.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    A fully accessible box contents list gives exact item identities; the learner can compare 5 and 4 counts without seeing graphics. Independent controls per preset; RTL does not change numeric sums.
+
+                    Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Five crayon boxes total 25; after sixth, 30.
+                    2. Two five-sticker groups plus one four-sticker group total 14.
+                    3. A missing fifth place is not counted as an object.
+                    4. Reset and switch preserve separate component state and identical nonvisual sums.
+                    5. For Beat 1, verify exact expected result: 5 groups of 5=25; 6 groups of 5=30. Test plausible wrong response: If five or six chosen as the total, distinguish box count from crayon count. For 26 after new pack, show the five additional crayons: 25+5=30.
+                    6. For Beat 2, verify exact expected result: 5+5+4=14, whereas 5+5+5=15. Test plausible wrong response: If 15 selected, display the third group's missing fifth place, but do not count an empty place as a sticker. Explain the incomplete group's actual four items.
+                    7. All interactions work by keyboard, switch and touch with full nonvisual ledger, correct semantic RTL, reduced motion, mobile/high zoom and identical downloaded-offline mathematics.
+                    8. Reset affects this Scene only, not another Section; no scoring or unimplemented Note event is emitted.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    Each custom Scene is independently initialized, self-contained and **prop-free**; no caller supplies mode or numerical props. Scenarios and variables reside in that Scene's own authored module once implemented. The generic `scene` Resource type is supported, but this particular Scene has **not** been implemented. No invented API, registration, event, Note persistence, assessment, score or mastery side effect is assumed.
+
+                    Editor must explicitly approve the Methodologist Brief and each proposed Content/Scene separately. Then the Scene Designer/Coding Agent implements real React code and tests in another authorized stage. QA must test all positive/negative cases, complete locales, RTL, accessibility and offline packaging; this Draft creates none of those features.
+                  purpose: 'Proposed interactive Scene for Five-Pack Transfer'
+                  productionNotes: "Draft Scene, not implemented or approved. This specific Section's requirements and any reuse/variant instructions are preserved in its pedagogicalIntent."
+              markdown2:
+                config:
+                  id: 'ad39d3e9-3c84-4fa0-a8c7-6af3a6235ca2'
+                  slug: 'markdown2'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Five boxes contain twenty-five crayons; six boxes contain thirty. 5 groups of 5=25; 6 groups of 5=30.'
+            order: ['text1', 'fivePackTransfer', 'markdown2']
+        production:
+          purpose: 'Five-Pack Transfer'
+          pedagogicalIntent: |
+            ### Section 3 — Five-Pack Transfer
+
+            - **Learning purpose:** Apply equal-five grouping in a new crayon-box setting, then identify the false shortcut when a group has four instead of five.
+            - **Actual Section shape:** `LessonSection_Config` with one ordered nonempty vertical Resource list. This is not a `Quiz_Config` or a novel specialized discriminator.
+            - **Ordered content blocks, top to bottom:**
+              1. **`text` — existing generic renderer:** “Five boxes have five crayons each. How many crayons? What if a sixth box arrives?”
+              2. **`scene` — generic type exists, **specific Scene proposed**:** Five-Pack Transfer (Scene specification embedded in this config.yaml). Five sealed crayon boxes with a visible label '5 crayons in each', and a sixth box that can be added. Separate preset has two complete groups of 5 stickers and one intentionally incomplete group of four stickers, all labels and identities visible.
+              3. **`markdown` — existing generic renderer:** “Five boxes contain twenty-five crayons; six boxes contain thirty. 5 groups of 5=25; 6 groups of 5=30.”
+            - **Learner action and responsive feedback:**
+
+            **Beat 1 — “Five boxes have five crayons each. How many crayons? What if a sixth box arrives?”** Inspect five complete packs and read 5,10,15,20,25; add the sixth complete five-crayon pack to see 30.
+
+            **Learner-visible result:** Five boxes contain twenty-five crayons; six boxes contain thirty.
+
+            **Worked numerical evidence:** 5 groups of 5=25; 6 groups of 5=30.
+
+            **Feedback for a plausible misconception:** If five or six chosen as the total, distinguish box count from crayon count. For 26 after new pack, show the five additional crayons: 25+5=30.
+
+            Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
+
+            **Beat 2 — “Two boxes have five stickers each, but the third has only four. Is that 15 stickers?”** Count complete first and second groups as 5+5=10 and inspect the third group's four members; total 14, not 15.
+
+            **Learner-visible result:** Ten plus four equals fourteen. The short group cannot advance a full +5 step.
+
+            **Worked numerical evidence:** 5+5+4=14, whereas 5+5+5=15.
+
+            **Feedback for a plausible misconception:** If 15 selected, display the third group's missing fifth place, but do not count an empty place as a sticker. Explain the incomplete group's actual four items.
+
+            Learner may replay this beat, inspect an ordered explanation, and reset without score or correctness lock.
+
+            - **Controls and accessibility:** Add sixth full box; Show box contents; Predict item total; Switch to incomplete-pack preset; Reveal summed item ledger; Reset. A fully accessible box contents list gives exact item identities; the learner can compare 5 and 4 counts without seeing graphics. Independent controls per preset; RTL does not change numeric sums.
+            - **Cause-and-effect explanation:** Independent preset (six-pack crayon counting or partial-pack contrast); each box has immutable actual member count (5 or 4). Total derived from all individual values; number of complete five packs reported separately from overall groups. No passive animation is required to retrieve the answer; every result is accompanied by object, tick, sign or group evidence.
+            - **Boundary reasoning:** Empty display slots are not objects. A drawn pack label is never an authority to count five when the actual group has only four. Do not invent virtual/fractional member to complete a short group.
+            - **Navigation and transition:** After inspecting the principle in this Scene, ask for a prediction about the next, changed-context representation. A child can request a worked model and advance without a mastery gate.
+            - **Implementation feasibility:** new custom Scene is **proposed**, self-contained and prop-free. Existing generic `scene` Resource rendering does not establish this component. No runtime data, Question, Quiz or Note event is supplied here.
+
+          productionNotes: 'Section production and all remaining learner-copy / feedback guidance are provisional, not evidence of implemented interactions or approval.'
+    order: ['section1FiveStripBuilder', 'section2FourPacksAreNotFourObjects', 'section3FivePackTransfer']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Five in Every Pack: Count by Fives — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: countByFivesWithGroups
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Count groups that each contain exactly five objects by repeated addition of five, while distinguishing complete groups, group count and item total. Reject a claim of +5 if a group has only four.
+
+    ## Target audience
+
+    **Primary audience: Grade 2.** Grade 2 after grouped counting by twos and a concrete tens-and-ones representation. Reading two-digit numbers 25 and 30 is supported by the exact number-of-groups and objects; no assumed multiplication fluency.
+
+    The Grade determines this particular Lesson's pedagogical depth; canonical Skills remain grade-neutral.
+
+    ## Prerequisites
+
+    - Count five objects accurately and recognize five as a fixed group size (`oneToOne`, `basicCardinality`).
+    - Recognize repeated addition of equal groups (`countBy2` or concrete equivalent) and number names through thirty with tens/ones support (`tensOnes`).
+    - Recognize that one group can contain multiple objects and its group count is not its member count.
+
+    ## Target Skills
+
+    - [countBy5.data.ts](../../../../data/skills/counting/steps/skills/countBy5.data.ts)
+
+    ## Expected learning outcomes
+
+    - Construct complete five-object packs and explain why each new pack adds exactly five objects.
+    - Count three and four packs as 15 and 20 individual objects, distinguishing pack number from item count.
+    - Continue whole-pack totals 5,10,15,20,25,30 through six packs using an explicit repeated +5 ledger.
+    - Identify that two full five-item packs plus an incomplete four-item pack contain 14 rather than 15 objects.
+    - Independently find the total in six new crayon packs without recounting each single crayon.
+
+    These are intended learning outcomes and observable formative explanations, not guaranteed mastered competencies or validation thresholds.
+
+    ## Essential subject matter
+
+    Each completed pack contains five **distinct** objects. After k complete packs the number of items is 5k, while there are only k packs. Starting from zero, successive completed packs yield 5,10,15,20,25,30 for one through six packs. Three packs have fifteen items; four packs twenty; six packs thirty. A pack of four is not a complete five-item pack: two complete packs plus one four-item group total 5+5+4=14, not 15, and cannot be called three full packs of five. Numerical increments of five correspond to adding a **whole** five-item group each time. This is a specific counting strategy, not an inference task about an arbitrary number pattern.
+
+    **Reference models that must remain correct:** 1 strip=5, 2=10, 3=15 dots. 5,10,15,20,25,30: repeated +5 for complete strips. 5 groups of 5=25; 6 groups of 5=30. 5+5+4=14, whereas 5+5+5=15. Every model needs an equivalent explicit spoken/written number description, not decorative illustration alone.
+
+    ## Conceptual progression and dependencies
+
+    Establish one complete group of five → add more complete groups and record 5,10,15,20 → distinguish count of packs from total items → transfer to six unfamiliar crayon packs 25 and 30 → reveal why a short pack of four breaks the equal-five increment.
+
+    The interdependent target Skills are taught together only where they share an intelligible representation. They retain their own independently assessable taxonomy identities. Do not infer cross-domain Skill mastery from completing one interaction.
+
+    ## Misconceptions, examples and boundaries
+
+    **Likely confusions:** Five groups means five individual objects; adding one instead of five after a new pack; claiming a partly filled pack always adds five; seeing 5+5+4=15; treating five-unit steps as merely a chant with no grouped quantity.
+
+    **Pedagogical depth and exclusions:** Grade 2: one through six complete groups of five (up to 30 items), and one explicitly incomplete group of four to expose the invariant. No multiplication-table drills, fractional groups, large multi-digit jumps or price calculations. We name groups and members separately, and if learner can't read 25/30 yet show tens-and-ones models rather than assuming competence.
+
+    **Boundary and incomplete-case decisions:** Adding a full strip always means exactly five new member IDs. No model may create a seventh strip in the bounded activity; explain the displayed range rather than wrapping counter to zero. Empty display slots are not objects. A drawn pack label is never an authority to count five when the actual group has only four. Do not invent virtual/fractional member to complete a short group.
+
+    ## Localization, accessibility and offline intent
+
+    Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
+
+    English texts below are canonical editorial examples for later localization, not real locale data or implemented runtime. Audio is never required for understanding. An accessible alternative must preserve the **same** learning objective, rather than replace the essential interaction with a weaker 'lite' illustration.
+
+    ## Sources and factual verification
+
+    - Canonical Skill `*.data.ts` files linked directly above, originally copied byte-for-byte from Mathematics `main` without changing UUIDs, definitions or translations.
+    - [Lesson Editorial Architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) — Methodologist/Screenwriter ownership and approval.
+    - [Learning Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md) — explanation, manipulation, contrast and transfer.
+    - [Localization and Inclusive Access](../../../../../../studio/docs/architecture/internationalization-and-accessibility.md) and [Offline-First Product Requirements](../../../../../../studio/docs/architecture/offline-first-and-device-compatibility.md).
+
+    All arithmetic and numerical model cases above were checked by explicit step, group or relation reasoning; no national curriculum coverage is inferred.
+
+    ## Curriculum / Program compatibility
+
+    No specific curriculum specified or claimed. This Lesson is a standalone, Program-neutral educational unit.
+
+    ## Open editorial decisions
+
+    - Editor/Methodologist: explicitly approve Grade 2, target Skill selection, prerequisites, depth and the core contrasts before promoting this Brief.
+    - Editor: review the two proposed Scene models and ensure their nonvisual, RTL and locale versions teach mathematically identical relationships.
+    - Coding/QA roles: confirm all supported locale dictionaries, low-device/offline delivery and accessible input alternatives when authorized. No Scene is implemented at this stage.
+
+    ## Methodologist handoff
+
+    **Draft, not editor-approved.** The corresponding `content.md` and Scene specifications are **Provisional Drafts under the explicit batch instruction**. This exception does not mark the normal Methodologist or Screenwriter approval gates as passed. No React Scene, runtime Lesson, Question, Quiz, score, mastery, persistent Note or fake platform event is authorized.
+  productionNotes: |-
+    Full legacy Screenwriter editorial prologue, global access/production requirements and review handoff (non-Section parts of content.md):
+
+    # Five in Every Pack: Count by Fives — Content
+
+    Status: **Provisional Draft — pending Methodologist approval**
+    Target Lesson: `content/playground/Data/Lessons/1/countByFivesWithGroups/`
+    Audience: Grade 2; Grade 2 after grouped counting by twos and a concrete tens-and-ones representation. Reading two-digit numbers 25 and 30 is supported by the exact number-of-groups and objects; no assumed multiplication fluency.
+    Methodologist source: Methodologist Brief (editorial text integrated into this config.yaml) (**Draft; not approved**)
+    Target Skills: exactly the canonical source-file links in the Brief (not redefined or copied here)
+    Program dependence: None
+    Runtime Lesson / Scene implementation: Not implemented
+
+    ## INSTRUCTIONAL CONCEPT
+
+    Count groups that each contain exactly five objects by repeated addition of five, while distinguishing complete groups, group count and item total. Reject a claim of +5 if a group has only four.
+
+    **What must become clear:** Each completed pack contains five **distinct** objects. After k complete packs the number of items is 5k, while there are only k packs. Starting from zero, successive completed packs yield 5,10,15,20,25,30 for one through six packs. Three packs have fifteen items; four packs twenty; six packs thirty. A pack of four is not a complete five-item pack: two complete packs plus one four-item group total 5+5+4=14, not 15, and cannot be called three full packs of five. Numerical increments of five correspond to adding a **whole** five-item group each time. This is a specific counting strategy, not an inference task about an arbitrary number pattern.
+
+    **Pedagogical premise:** A learner is not merely recognizing a displayed fact. The first interactive Scene gives control over a concrete model and exposes a critical contrast. A compact explanatory/reflection Section invites retrieval and makes errors understandable. The second Scene independently changes the numbers or representation, so successful reasoning requires applying the mathematical rule rather than reproducing the original picture. Every key feedback branch explains _why_ an answer differs from the model.
+
+    ## LEARNER JOURNEY
+
+    1. **Notice and predict:** “Add one, two and three strips. How many dots do you have after each?” The learner selects a possible result and then operates the first model without mandatory score, narration or timer.
+    2. **Manipulate and inspect:** 1 strip=5, 2=10, 3=15 dots. 5,10,15,20,25,30: repeated +5 for complete strips. Both a simple visual model and an accessible item/number ledger show the same mathematics.
+    3. **Explain and retrieve:** There are four strips with five dots on each. How many strips and how many dots? Invite a spoken, private or accessible text-based explanation before reading the worked answer.
+    4. **Transfer independently:** Five boxes have five crayons each. How many crayons? What if a sixth box arrives? A different representation offers a new reasoned problem, with misconception-targeted feedback and an optional full reveal.
+    5. **Summarize for future recall:** a short proposed Note captures the enduring idea without attempting to assess mastery or create a persistent unlocked event.
+
+    ## SECTION PLAN
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Five-Strip Builder (Scene specification embedded in this config.yaml) — independently initialised concrete explanation and contrast.
+    - Five-Pack Transfer (Scene specification embedded in this config.yaml) — independently initialised transfer with new numbers/representation.
+
+    Both Scenes are **proposed**, distinct and prop-free. Each is represented by one typed `scene` Resource in an otherwise single-column Section; no new Section type, imaginary mode prop, generated image, fake API, scoring or React component is authored.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. **after counting complete groups:** “Each new full pack of five adds five objects to the total.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
+    2. **after explaining the incomplete pack:** “A short pack does not count as five: count its actual objects.” — proposed after the model is examined and its explanation is available, without requiring a correct score. **Planned, not wired.**
+
+    These are concise independently useful retrieval anchors, not Lesson summaries. A real Note entity, stable identity, unlock contract, learner state, revision sheet, synchronization and spaced scheduling remain separately unimplemented or unverified.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    Sections 1 and 3 provide learner-operated practice, concrete counterexamples, and explicit formative reasoning. Section 2 offers reflection and retrieval. The final Section's changed representation can show whether the learner used the rule, but one correct selection is **not** evidence of independent Skill mastery. Graded Question/Quiz design, correctness validity, scoring, retry policy and Skill attribution belong to a separate Learning Assessment Architect stage.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    Every learner-facing prompt, number word, accessible description, feedback branch, state announcement and Note requires a complete genuine translation for the current Engine-supported roster, with no silent English fallback. RTL changes reading presentation but not mathematical operand order, number-line increasing direction, counting origin or grouping identity. WCAG 2.2 AA: native keyboard/switch/touch operation, visible focus, nonvisual ordered model ledger, non-color explanations, reduced motion, legible 200% zoom/mobile experience. All selected-language models, scripts, assets and feedback must be locally available after the lesson package is downloaded. These are production requirements, not claims that localization/PWA behavior currently exists.
+
+    These documents include **English editorial source text only**. Full real translations for all supported locales, including Scene dictionaries, alt descriptions and optional Notes, must precede implementation. Do not silently invent fallback translations or new language codes.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    | Capability                                                    | Status                                            | Owner / next work                                                    |
+    | ------------------------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------- |
+    | General `LessonSection_Config` with ordered `Resource_Config` | Existing TypeScript contract                      | Coding Agent builds Lesson later                                     |
+    | Generic `text`, `markdown`, `scene` renderer                  | Observed in Playground `LessonSectionContent.tsx` | New Scene is _not_ provided by generic support                       |
+    | Five-Strip Builder and Five-Pack Transfer                     | **Proposed** Scene specifications only            | Editor approval, separate Scene design, implementation and own tests |
+    | Genuine locale translations and RTL/nonvisual equivalence     | Product requirements, not produced here           | Localization and accessibility QA                                    |
+    | Complete downloaded-offline experience                        | Product target; not verified implemented          | PWA/dependency integration and airplane-mode E2E                     |
+    | Lesson Notes and unlock/storage                               | Planned, unverified runtime                       | Separate architecture and implementation                             |
+    | Scored Questions, Quizzes, mastery and progress claims        | Not authored                                      | Separate Assessment Architect                                        |
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Draft Methodologist Brief (editorial text integrated into this config.yaml) and its actual canonical Skill file links.
+    - [Lesson Content entity](../../../../../../studio/docs/entities/lesson-content.md), [Section entity](../../../../../../studio/docs/entities/section.md), [Learning Experience Philosophy](../../../../../../studio/docs/architecture/learning-experience-philosophy.md).
+    - Open: explicit Methodologist grade and target Skill approval, separate Content and Scene review, genuine complete translations, RTL/nonvisual interaction details, and full offline packaging before coding.
+
+    ## HANDOFF
+
+    **Provisional Screenwriter Draft — Methodologist approval has not occurred.** Implementers may inspect these source-grounded plans but must not treat them as approved React/runtime Lesson data, Question/Quiz items, scores, mastery data, Note events or working offline/locale support.
+
+
+    Migration status: provisional draft; pending independent approvals, translation and implementation.

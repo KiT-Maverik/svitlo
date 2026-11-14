@@ -1,0 +1,656 @@
+# Unified Mathematics Lesson editorial source — provisional; pending independent approval.
+config:
+  id: 'c532544f-c02c-5d66-94fb-415359be4881'
+  slug: 'unknownSubtrahend'
+  type: 'lesson'
+  skills: ['c57e5b0b-8b7d-4e24-a50c-9ee848ebadfd']
+  params:
+    languages: ['en', 'pl', 'uk', 'qm']
+    requireQuiz: false
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Finding an Unknown Subtrahend'
+  section:
+    items:
+      section1:
+        config:
+          id: 'c8f9dab0-5f40-46b7-8927-5a6ad366ab81'
+          slug: 'section1'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'What Went Away?'
+            navigationLabel:
+              en: 'What Went Away?'
+          content:
+            items:
+              text1:
+                config:
+                  id: '4c1a3ae6-51d7-46a9-bdb2-c6e83c65df23'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'There were 11 counters at first. Now 7 are left. How many were taken away?'
+                production:
+                  purpose: 'What Went Away?: text resource at position 1 (source provisional)'
+                  specification: '1. **text — available:** “There were **11** counters at first. Now **7** are left. How many were taken away?”'
+              scene2:
+                config:
+                  id: '31b0f70a-fd3d-4cf7-b934-98c0fa2710b5'
+                  slug: 'scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'What Went Away?'
+                production:
+                  purpose: 'What Went Away?; source Scene missingRemovalInvestigator.scene-spec.md; use 2'
+                  specification: |-
+                    # Missing Removal Investigator — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: [Finding an Unknown Subtrahend](.this config.yaml), Sections 1–4
+                    Methodologist objective(s): Find missing amount removed from known starting total and remainder, check the original equality. [Methodologist Brief](.this config.yaml), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child does not see the removal happen, but can reconstruct its amount from an original set and the part remaining. An explicit counter ledger and substitution check make the unknown **second operand** meaningful. Unlike finding a missing beginning, this task starts with the whole known.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - 11 initial, 7 remaining, 4 removed. Finding formula 11−7=4; checking formula 11−4=7.
+                    - 11−□=7: candidates 3/4/7 yield remainders 8/7/4. A guess of 7 is the observed _remainder_, not the amount taken away.
+                    - □−4=7 as a brief position contrast has missing beginning 11, not a missing removed amount.
+                    - Transfer 14−□=9: 14−9=5; candidates 4/5/6 produce 10/9/8 and checked value five.
+                    - Model only nonnegative whole numbers within 20, with removed ∈ [0, initial]. No negative results, counters silently duplicated or invalid equality presented as accepted.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Before/after entry:** Show a full ordered collection of eleven counters. Mark seven in a “still here” group and four in a “what went away?” group whose numeric label is hidden. Prompt “How many are no longer here?” The four positions remain countable or represented textually.
+                    2. Offer optional choices 4/7/18. For 7, “That is how many stayed; count the other four.” For 18, “We only started with eleven.” “Reveal the missing group” names four and explains the model without requiring guess.
+                    3. **Finding entry:** Display both state groups and activate “Match the seven we still have.” Four unmatched original counters are identified as taken away. Show 11−7=4, then reconstruct 7+4=11. The child can inspect all quantities.
+                    4. **Substitution entry:** Show original 11−□=7 and candidate 3/4/7 controls. Substitute into exactly the second operand and calculate 11−3=8, 11−4=7, 11−7=4. Label mismatches “does not match seven” rather than true equalities.
+                    5. Display side-by-side explanations within this Scene for □−4=7 (missing beginning 11) and 11−□=7 (missing removed 4). Read each missing role aloud as text; do not change the Lesson Skill target.
+                    6. **Transfer entry:** 14−□=9, choices 4/5/6, with before/after counting available on request. Check each candidate by original subtraction; show 14−9=5 to find, then 14−5=9 to verify.
+                    7. All entries have “Show the groups,” “Show explanation,” “Try again” and “Reset”; different entries initialize independently and never persist a score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four distinct prop-free Scene entries for the Sections, with no invented runtime mode prop. Objects: indexed original counters, remaining/removed categories, hidden label, original equation with tagged operand roles, candidate buttons, exact arithmetic feedback, accessible state ledger and reset/reveal controls. Invariant total=removed+remaining for each example. Incorrect candidate C is evaluated as total−C (not as total−remaining) and explicitly labeled a _trial_ when it disagrees. A change of example resets state and explanation; no forced retries, mastery or QuestionState.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use low-cost HTML/SVG countable counter groups with labeled trays “started” and “left”, and unpaired counters. Animations optional, user-paced and not necessary for meaning. Short enough for the age group; no narratives, sound-only correctness cue, assets or network dependence.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every role and control, especially “taken away” vs “still here”, across all required languages. RTL does not swap minuend/subtrahend meanings. Native keyboard/touch/switch controls and navigable text counts enable the same reconstruction without visual grouping or drag. Announce full original equation with blank as “missing amount removed” and full trial arithmetic. Large tap targets, visible focus, 200% zoom, mobile, reduced motion and offline local deterministic arithmetic/accessibility parity required. No voice recognition or color-only status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Eleven original and seven remaining imply four removed; no extra counters.
+                    2. 11−7=4 is shown as finding, 11−4=7 as checking, clearly distinguished.
+                    3. Candidate 3/4/7 for 11−□=7 results in 8/7/4 respectively, with only four satisfying.
+                    4. Brief contrast □−4=7 vs 11−□=7 identifies different missing roles and values.
+                    5. Transfer 14−□=9 finds five; 4 yields ten, 6 yields eight, and candidate five yields nine.
+                    6. Hints, reset, text-only, keyboard, screen-reader, RTL, reduced motion, mobile and offline work with identical math, no score.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Scene Resource integration exists; this Scene is proposed, requiring Brief and spec approval before Design Scene implementation and own tests. Coding Agent must ensure prop-free isolated entrypoints, complete real locales and offline use. Assessment Architect owns any validated scored questions. No new Skill, Question type, API or Notes runtime is introduced.
+
+
+                    ## Section-specific use (provisional source, not implemented)
+
+                    2. **scene — available integration, proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), two observational states with 11 initially and seven remaining; only the removed count hidden, never the evidence of the original eleven.
+                  productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
+              markdown3:
+                config:
+                  id: '06c9277a-4906-4ad9-85b6-626cf4fcd0fb'
+                  slug: 'markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Eleven at first and seven still here. The other **4** counters must have been removed.'
+                production:
+                  purpose: 'What Went Away?: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown — available:** “Eleven at first and seven still here. The other **4** counters must have been removed.”'
+            order: ['text1', 'scene2', 'markdown3']
+        production:
+          purpose: 'Identify the removed part as unknown.'
+          pedagogicalIntent: 'Original Section 1: What Went Away? (provisional draft)'
+          productionNotes: |-
+            - Purpose: Identify the removed part as unknown.
+            - Shape: LessonSection_Config, ordered text/scene/markdown blocks.
+            - Ordered resources:
+              1. **text — available:** “There were **11** counters at first. Now **7** are left. How many were taken away?”
+              2. **scene — available integration, proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), two observational states with 11 initially and seven remaining; only the removed count hidden, never the evidence of the original eleven.
+              3. **markdown — available:** “Eleven at first and seven still here. The other **4** counters must have been removed.”
+            - Core explanation and learner action: Inspect 11 counters, mark seven as remaining and count the other four. Predictions 4/7/18 provide count-based feedback: “Seven were left, not taken away”; “Eighteen is greater than the eleven we started with.”
+            - Navigation: Ask for the number sentence that finds the removed part.
+            - Accessible model: Linear “original 11 / still there 7 / taken away 4”; keyboard/select equivalent, no color-only comparison, semantic RTL.
+            - Planned Note: “Removed part = whole − what remains” after the contrast, not wired.
+            - Dependencies: New Scene proposed.
+      section2:
+        config:
+          id: 'cbf9df69-6040-484a-8827-58d7d066a6c8'
+          slug: 'section2'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Subtract What Is Left'
+            navigationLabel:
+              en: 'Subtract What Is Left'
+          content:
+            items:
+              markdown1:
+                config:
+                  id: '1b0833b9-9349-43f2-bb72-bfd3ac46997c'
+                  slug: 'markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'If we begin with **11** and still have **7**, compare them: **11 − 7 = 4**. Four were taken away.'
+                production:
+                  purpose: 'Subtract What Is Left: markdown resource at position 1 (source provisional)'
+                  specification: '1. **markdown — available:** “If we begin with **11** and still have **7**, compare them: **11 − 7 = 4**. Four were taken away.”'
+              scene2:
+                config:
+                  id: '94b9cb6d-35a6-4920-b2d0-e817cabf1cb2'
+                  slug: 'scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Subtract What Is Left'
+                production:
+                  purpose: 'Subtract What Is Left; source Scene missingRemovalInvestigator.scene-spec.md; use 2'
+                  specification: |-
+                    # Missing Removal Investigator — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: [Finding an Unknown Subtrahend](.this config.yaml), Sections 1–4
+                    Methodologist objective(s): Find missing amount removed from known starting total and remainder, check the original equality. [Methodologist Brief](.this config.yaml), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child does not see the removal happen, but can reconstruct its amount from an original set and the part remaining. An explicit counter ledger and substitution check make the unknown **second operand** meaningful. Unlike finding a missing beginning, this task starts with the whole known.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - 11 initial, 7 remaining, 4 removed. Finding formula 11−7=4; checking formula 11−4=7.
+                    - 11−□=7: candidates 3/4/7 yield remainders 8/7/4. A guess of 7 is the observed _remainder_, not the amount taken away.
+                    - □−4=7 as a brief position contrast has missing beginning 11, not a missing removed amount.
+                    - Transfer 14−□=9: 14−9=5; candidates 4/5/6 produce 10/9/8 and checked value five.
+                    - Model only nonnegative whole numbers within 20, with removed ∈ [0, initial]. No negative results, counters silently duplicated or invalid equality presented as accepted.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Before/after entry:** Show a full ordered collection of eleven counters. Mark seven in a “still here” group and four in a “what went away?” group whose numeric label is hidden. Prompt “How many are no longer here?” The four positions remain countable or represented textually.
+                    2. Offer optional choices 4/7/18. For 7, “That is how many stayed; count the other four.” For 18, “We only started with eleven.” “Reveal the missing group” names four and explains the model without requiring guess.
+                    3. **Finding entry:** Display both state groups and activate “Match the seven we still have.” Four unmatched original counters are identified as taken away. Show 11−7=4, then reconstruct 7+4=11. The child can inspect all quantities.
+                    4. **Substitution entry:** Show original 11−□=7 and candidate 3/4/7 controls. Substitute into exactly the second operand and calculate 11−3=8, 11−4=7, 11−7=4. Label mismatches “does not match seven” rather than true equalities.
+                    5. Display side-by-side explanations within this Scene for □−4=7 (missing beginning 11) and 11−□=7 (missing removed 4). Read each missing role aloud as text; do not change the Lesson Skill target.
+                    6. **Transfer entry:** 14−□=9, choices 4/5/6, with before/after counting available on request. Check each candidate by original subtraction; show 14−9=5 to find, then 14−5=9 to verify.
+                    7. All entries have “Show the groups,” “Show explanation,” “Try again” and “Reset”; different entries initialize independently and never persist a score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four distinct prop-free Scene entries for the Sections, with no invented runtime mode prop. Objects: indexed original counters, remaining/removed categories, hidden label, original equation with tagged operand roles, candidate buttons, exact arithmetic feedback, accessible state ledger and reset/reveal controls. Invariant total=removed+remaining for each example. Incorrect candidate C is evaluated as total−C (not as total−remaining) and explicitly labeled a _trial_ when it disagrees. A change of example resets state and explanation; no forced retries, mastery or QuestionState.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use low-cost HTML/SVG countable counter groups with labeled trays “started” and “left”, and unpaired counters. Animations optional, user-paced and not necessary for meaning. Short enough for the age group; no narratives, sound-only correctness cue, assets or network dependence.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every role and control, especially “taken away” vs “still here”, across all required languages. RTL does not swap minuend/subtrahend meanings. Native keyboard/touch/switch controls and navigable text counts enable the same reconstruction without visual grouping or drag. Announce full original equation with blank as “missing amount removed” and full trial arithmetic. Large tap targets, visible focus, 200% zoom, mobile, reduced motion and offline local deterministic arithmetic/accessibility parity required. No voice recognition or color-only status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Eleven original and seven remaining imply four removed; no extra counters.
+                    2. 11−7=4 is shown as finding, 11−4=7 as checking, clearly distinguished.
+                    3. Candidate 3/4/7 for 11−□=7 results in 8/7/4 respectively, with only four satisfying.
+                    4. Brief contrast □−4=7 vs 11−□=7 identifies different missing roles and values.
+                    5. Transfer 14−□=9 finds five; 4 yields ten, 6 yields eight, and candidate five yields nine.
+                    6. Hints, reset, text-only, keyboard, screen-reader, RTL, reduced motion, mobile and offline work with identical math, no score.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Scene Resource integration exists; this Scene is proposed, requiring Brief and spec approval before Design Scene implementation and own tests. Coding Agent must ensure prop-free isolated entrypoints, complete real locales and offline use. Assessment Architect owns any validated scored questions. No new Skill, Question type, API or Notes runtime is introduced.
+
+
+                    ## Section-specific use (provisional source, not implemented)
+
+                    2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), difference entry: match seven of the eleven as retained, highlight four unpaired objects and reveal 11−7=4.
+                  productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
+              text3:
+                config:
+                  id: 'a8540ad1-d8c8-496e-a300-a52307415ed8'
+                  slug: 'text3'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'We subtracted the amount that remains from the amount we started with. That gave the amount removed.'
+                production:
+                  purpose: 'Subtract What Is Left: text resource at position 3 (source provisional)'
+                  specification: '3. **text — available:** “We subtracted the amount that **remains** from the amount we **started with**. That gave the amount removed.”'
+            order: ['markdown1', 'scene2', 'text3']
+        production:
+          purpose: 'Connect part–whole difference to calculating the missing removed amount.'
+          pedagogicalIntent: 'Original Section 2: Subtract What Is Left (provisional draft)'
+          productionNotes: |-
+            - Purpose: Connect part–whole difference to calculating the missing removed amount.
+            - Shape: LessonSection_Config.
+            - Ordered resources:
+              1. **markdown — available:** “If we begin with **11** and still have **7**, compare them: **11 − 7 = 4**. Four were taken away.”
+              2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), difference entry: match seven of the eleven as retained, highlight four unpaired objects and reveal 11−7=4.
+              3. **text — available:** “We subtracted the amount that **remains** from the amount we **started with**. That gave the amount removed.”
+            - Learner feedback: If child proposes 11+7=18: “We are not joining two new groups. Seven are part of the original eleven.” If 7−11, explain original whole is eleven; the removed group cannot exceed that.
+            - Navigation: Now the child must verify in original subtraction, not just the finding calculation.
+            - Accessibility: All seven matched counters and four unmatched can be explored through an ordered text ledger and native controls.
+            - Planned Note: No new Note; reuse one.
+            - Dependencies: Additional isolated Scene entry.
+      section3:
+        config:
+          id: 'caf9ddd6-6140-49dd-8727-5744d166a85b'
+          slug: 'section3'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Put the Missing Amount in the Middle'
+            navigationLabel:
+              en: 'Put the Missing Amount in the Middle'
+          content:
+            items:
+              text1:
+                config:
+                  id: '0ca68aa4-c5c1-4f5f-8d4a-327a33d3ec3d'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Here is the original equality: 11 − □ = 7. Which number goes inside the box? Check it by subtracting.'
+                production:
+                  purpose: 'Put the Missing Amount in the Middle: text resource at position 1 (source provisional)'
+                  specification: '1. **text — available:** “Here is the original equality: **11 − □ = 7**. Which number goes inside the box? Check it by subtracting.”'
+              scene2:
+                config:
+                  id: '1a6d1804-1a0e-40d9-8db2-12c6382b4e93'
+                  slug: 'scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Put the Missing Amount in the Middle'
+                production:
+                  purpose: 'Put the Missing Amount in the Middle; source Scene missingRemovalInvestigator.scene-spec.md; use 2'
+                  specification: |-
+                    # Missing Removal Investigator — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: [Finding an Unknown Subtrahend](.this config.yaml), Sections 1–4
+                    Methodologist objective(s): Find missing amount removed from known starting total and remainder, check the original equality. [Methodologist Brief](.this config.yaml), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child does not see the removal happen, but can reconstruct its amount from an original set and the part remaining. An explicit counter ledger and substitution check make the unknown **second operand** meaningful. Unlike finding a missing beginning, this task starts with the whole known.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - 11 initial, 7 remaining, 4 removed. Finding formula 11−7=4; checking formula 11−4=7.
+                    - 11−□=7: candidates 3/4/7 yield remainders 8/7/4. A guess of 7 is the observed _remainder_, not the amount taken away.
+                    - □−4=7 as a brief position contrast has missing beginning 11, not a missing removed amount.
+                    - Transfer 14−□=9: 14−9=5; candidates 4/5/6 produce 10/9/8 and checked value five.
+                    - Model only nonnegative whole numbers within 20, with removed ∈ [0, initial]. No negative results, counters silently duplicated or invalid equality presented as accepted.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Before/after entry:** Show a full ordered collection of eleven counters. Mark seven in a “still here” group and four in a “what went away?” group whose numeric label is hidden. Prompt “How many are no longer here?” The four positions remain countable or represented textually.
+                    2. Offer optional choices 4/7/18. For 7, “That is how many stayed; count the other four.” For 18, “We only started with eleven.” “Reveal the missing group” names four and explains the model without requiring guess.
+                    3. **Finding entry:** Display both state groups and activate “Match the seven we still have.” Four unmatched original counters are identified as taken away. Show 11−7=4, then reconstruct 7+4=11. The child can inspect all quantities.
+                    4. **Substitution entry:** Show original 11−□=7 and candidate 3/4/7 controls. Substitute into exactly the second operand and calculate 11−3=8, 11−4=7, 11−7=4. Label mismatches “does not match seven” rather than true equalities.
+                    5. Display side-by-side explanations within this Scene for □−4=7 (missing beginning 11) and 11−□=7 (missing removed 4). Read each missing role aloud as text; do not change the Lesson Skill target.
+                    6. **Transfer entry:** 14−□=9, choices 4/5/6, with before/after counting available on request. Check each candidate by original subtraction; show 14−9=5 to find, then 14−5=9 to verify.
+                    7. All entries have “Show the groups,” “Show explanation,” “Try again” and “Reset”; different entries initialize independently and never persist a score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four distinct prop-free Scene entries for the Sections, with no invented runtime mode prop. Objects: indexed original counters, remaining/removed categories, hidden label, original equation with tagged operand roles, candidate buttons, exact arithmetic feedback, accessible state ledger and reset/reveal controls. Invariant total=removed+remaining for each example. Incorrect candidate C is evaluated as total−C (not as total−remaining) and explicitly labeled a _trial_ when it disagrees. A change of example resets state and explanation; no forced retries, mastery or QuestionState.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use low-cost HTML/SVG countable counter groups with labeled trays “started” and “left”, and unpaired counters. Animations optional, user-paced and not necessary for meaning. Short enough for the age group; no narratives, sound-only correctness cue, assets or network dependence.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every role and control, especially “taken away” vs “still here”, across all required languages. RTL does not swap minuend/subtrahend meanings. Native keyboard/touch/switch controls and navigable text counts enable the same reconstruction without visual grouping or drag. Announce full original equation with blank as “missing amount removed” and full trial arithmetic. Large tap targets, visible focus, 200% zoom, mobile, reduced motion and offline local deterministic arithmetic/accessibility parity required. No voice recognition or color-only status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Eleven original and seven remaining imply four removed; no extra counters.
+                    2. 11−7=4 is shown as finding, 11−4=7 as checking, clearly distinguished.
+                    3. Candidate 3/4/7 for 11−□=7 results in 8/7/4 respectively, with only four satisfying.
+                    4. Brief contrast □−4=7 vs 11−□=7 identifies different missing roles and values.
+                    5. Transfer 14−□=9 finds five; 4 yields ten, 6 yields eight, and candidate five yields nine.
+                    6. Hints, reset, text-only, keyboard, screen-reader, RTL, reduced motion, mobile and offline work with identical math, no score.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Scene Resource integration exists; this Scene is proposed, requiring Brief and spec approval before Design Scene implementation and own tests. Coding Agent must ensure prop-free isolated entrypoints, complete real locales and offline use. Assessment Architect owns any validated scored questions. No new Skill, Question type, API or Notes runtime is introduced.
+
+
+                    ## Section-specific use (provisional source, not implemented)
+
+                    2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), candidate entry with 3/4/7 and complete evaluated original expression for each.
+                  productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
+              markdown3:
+                config:
+                  id: '7422faf8-19f8-4527-a5ab-237e83eea70d'
+                  slug: 'markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '**11 − 4 = 7**. Four is the missing removed part. The calculation **11 − 7 = 4** helped us find it; the calculation **11 − 4 = 7** checked it.'
+                production:
+                  purpose: 'Put the Missing Amount in the Middle: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown — available:** “**11 − 4 = 7**. Four is the missing removed part. The calculation **11 − 7 = 4** helped us find it; the calculation **11 − 4 = 7** checked it.”'
+            order: ['text1', 'scene2', 'markdown3']
+        production:
+          purpose: 'Distinguish the box in the subtrahend position and verify candidate.'
+          pedagogicalIntent: 'Original Section 3: Put the Missing Amount in the Middle (provisional draft)'
+          productionNotes: |-
+            - Purpose: Distinguish the box in the subtrahend position and verify candidate.
+            - Shape: LessonSection_Config.
+            - Ordered resources:
+              1. **text — available:** “Here is the original equality: **11 − □ = 7**. Which number goes inside the box? Check it by subtracting.”
+              2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), candidate entry with 3/4/7 and complete evaluated original expression for each.
+              3. **markdown — available:** “**11 − 4 = 7**. Four is the missing removed part. The calculation **11 − 7 = 4** helped us find it; the calculation **11 − 4 = 7** checked it.”
+            - Learner action and feedback: Candidate 3 → 11−3=8, not seven. Candidate 7 → 11−7=4, not seven. Candidate 4 → 11−4=7. Contrast briefly with □−4=7: “There the starting amount is missing; here the removed amount is missing.”
+            - Navigation: Shift to independent problem with different values.
+            - Accessibility: Missing box explicitly named “amount taken away”; exact substituted expressions and verdict in text/screen-reader output. No graded scoring.
+            - Planned Note: “Check the answer in the original subtraction” after the candidate comparison.
+            - Dependencies: Scene implementation/translation later.
+      section4:
+        config:
+          id: 'cdf9e28f-5a40-4ed8-8627-55b1d666b03a'
+          slug: 'section4'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Find the Lost Part Yourself'
+            navigationLabel:
+              en: 'Find the Lost Part Yourself'
+          content:
+            items:
+              text1:
+                config:
+                  id: '52d383c1-d8fd-44ae-a23a-143330d11b98'
+                  slug: 'text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: '14 − □ = 9. Fourteen at first, nine remain. How many did we take away?'
+                production:
+                  purpose: 'Find the Lost Part Yourself: text resource at position 1 (source provisional)'
+                  specification: '1. **text — available:** “**14 − □ = 9.** Fourteen at first, nine remain. How many did we take away?”'
+              scene2:
+                config:
+                  id: '8507b0ff-3cd7-4642-8de1-0825ead69c10'
+                  slug: 'scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Show how.'
+                production:
+                  purpose: 'Find the Lost Part Yourself; source Scene missingRemovalInvestigator.scene-spec.md; use 2'
+                  specification: |-
+                    # Missing Removal Investigator — Scene Specification
+
+                    Status: Draft
+                    Owner: Educational Screenwriter
+                    Parent Lesson / Section: [Finding an Unknown Subtrahend](.this config.yaml), Sections 1–4
+                    Methodologist objective(s): Find missing amount removed from known starting total and remainder, check the original equality. [Methodologist Brief](.this config.yaml), Draft.
+
+                    ## LEARNER PURPOSE AND CONCEPT
+
+                    The child does not see the removal happen, but can reconstruct its amount from an original set and the part remaining. An explicit counter ledger and substitution check make the unknown **second operand** meaningful. Unlike finding a missing beginning, this task starts with the whole known.
+
+                    ## ACCURATE CONTENT AND MODEL LIMITATIONS
+
+                    - 11 initial, 7 remaining, 4 removed. Finding formula 11−7=4; checking formula 11−4=7.
+                    - 11−□=7: candidates 3/4/7 yield remainders 8/7/4. A guess of 7 is the observed _remainder_, not the amount taken away.
+                    - □−4=7 as a brief position contrast has missing beginning 11, not a missing removed amount.
+                    - Transfer 14−□=9: 14−9=5; candidates 4/5/6 produce 10/9/8 and checked value five.
+                    - Model only nonnegative whole numbers within 20, with removed ∈ [0, initial]. No negative results, counters silently duplicated or invalid equality presented as accepted.
+
+                    ## EXPERIENCE BEATS AND LEARNER ACTIONS
+
+                    1. **Before/after entry:** Show a full ordered collection of eleven counters. Mark seven in a “still here” group and four in a “what went away?” group whose numeric label is hidden. Prompt “How many are no longer here?” The four positions remain countable or represented textually.
+                    2. Offer optional choices 4/7/18. For 7, “That is how many stayed; count the other four.” For 18, “We only started with eleven.” “Reveal the missing group” names four and explains the model without requiring guess.
+                    3. **Finding entry:** Display both state groups and activate “Match the seven we still have.” Four unmatched original counters are identified as taken away. Show 11−7=4, then reconstruct 7+4=11. The child can inspect all quantities.
+                    4. **Substitution entry:** Show original 11−□=7 and candidate 3/4/7 controls. Substitute into exactly the second operand and calculate 11−3=8, 11−4=7, 11−7=4. Label mismatches “does not match seven” rather than true equalities.
+                    5. Display side-by-side explanations within this Scene for □−4=7 (missing beginning 11) and 11−□=7 (missing removed 4). Read each missing role aloud as text; do not change the Lesson Skill target.
+                    6. **Transfer entry:** 14−□=9, choices 4/5/6, with before/after counting available on request. Check each candidate by original subtraction; show 14−9=5 to find, then 14−5=9 to verify.
+                    7. All entries have “Show the groups,” “Show explanation,” “Try again” and “Reset”; different entries initialize independently and never persist a score.
+
+                    ## INTERACTIVE OBJECTS, STATES AND RULES
+
+                    Four distinct prop-free Scene entries for the Sections, with no invented runtime mode prop. Objects: indexed original counters, remaining/removed categories, hidden label, original equation with tagged operand roles, candidate buttons, exact arithmetic feedback, accessible state ledger and reset/reveal controls. Invariant total=removed+remaining for each example. Incorrect candidate C is evaluated as total−C (not as total−remaining) and explicitly labeled a _trial_ when it disagrees. A change of example resets state and explanation; no forced retries, mastery or QuestionState.
+
+                    ## VISUAL / AUDIO / MEDIA DIRECTION
+
+                    Use low-cost HTML/SVG countable counter groups with labeled trays “started” and “left”, and unpaired counters. Animations optional, user-paced and not necessary for meaning. Short enough for the age group; no narratives, sound-only correctness cue, assets or network dependence.
+
+                    ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
+
+                    Translate every role and control, especially “taken away” vs “still here”, across all required languages. RTL does not swap minuend/subtrahend meanings. Native keyboard/touch/switch controls and navigable text counts enable the same reconstruction without visual grouping or drag. Announce full original equation with blank as “missing amount removed” and full trial arithmetic. Large tap targets, visible focus, 200% zoom, mobile, reduced motion and offline local deterministic arithmetic/accessibility parity required. No voice recognition or color-only status.
+
+                    ## ACCEPTANCE SCENARIOS
+
+                    1. Eleven original and seven remaining imply four removed; no extra counters.
+                    2. 11−7=4 is shown as finding, 11−4=7 as checking, clearly distinguished.
+                    3. Candidate 3/4/7 for 11−□=7 results in 8/7/4 respectively, with only four satisfying.
+                    4. Brief contrast □−4=7 vs 11−□=7 identifies different missing roles and values.
+                    5. Transfer 14−□=9 finds five; 4 yields ten, 6 yields eight, and candidate five yields nine.
+                    6. Hints, reset, text-only, keyboard, screen-reader, RTL, reduced motion, mobile and offline work with identical math, no score.
+
+                    ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
+
+                    The Scene Resource integration exists; this Scene is proposed, requiring Brief and spec approval before Design Scene implementation and own tests. Coding Agent must ensure prop-free isolated entrypoints, complete real locales and offline use. Assessment Architect owns any validated scored questions. No new Skill, Question type, API or Notes runtime is introduced.
+
+
+                    ## Section-specific use (provisional source, not implemented)
+
+                    2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), transfer entry; optional text/counter model, candidate 4/5/6 and “Show how.”
+                  productionNotes: 'Scene missingRemovalInvestigator.scene-spec.md is reused via this independently identified Section resource. Preserve the applicable mode, controls, feedback, nonvisual alternatives, RTL and offline requirements from the specification.'
+              markdown3:
+                config:
+                  id: 'bea0d7e1-82dc-42b2-8667-ad6be73464bc'
+                  slug: 'markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '**14 − 9 = 5** finds what was taken away. Check the **original** statement: **14 − 5 = 9**.'
+                production:
+                  purpose: 'Find the Lost Part Yourself: markdown resource at position 3 (source provisional)'
+                  specification: '3. **markdown — available:** “**14 − 9 = 5** finds what was taken away. Check the **original** statement: **14 − 5 = 9**.”'
+            order: ['text1', 'scene2', 'markdown3']
+        production:
+          purpose: 'Transfer to a different whole and remainder.'
+          pedagogicalIntent: 'Original Section 4: Find the Lost Part Yourself (provisional draft)'
+          productionNotes: |-
+            - Purpose: Transfer to a different whole and remainder.
+            - Shape: LessonSection_Config.
+            - Ordered resources:
+              1. **text — available:** “**14 − □ = 9.** Fourteen at first, nine remain. How many did we take away?”
+              2. **scene — proposed:** Missing Removal Investigator (full Scene specification embedded in this config.yaml), transfer entry; optional text/counter model, candidate 4/5/6 and “Show how.”
+              3. **markdown — available:** “**14 − 9 = 5** finds what was taken away. Check the **original** statement: **14 − 5 = 9**.”
+            - Feedback: Choosing 4 shows 14−4=10, not 9; 6 yields 14−6=8, not 9; 5 yields nine. Show explanations even without a submitted choice. Reflection “Why did we subtract nine to find the missing number?” by optional oral, selected or typed answer.
+            - Navigation: End with a role summary rather than a victory animation.
+            - Accessibility: Full text log, RTL-safe math, adequate focus/touch targets, no drag or speech requirement.
+            - Notes: Recall removed-part rule; no additional cue.
+            - Dependencies: New Scene; no validated Quiz.
+    order: ['section1', 'section2', 'section3', 'section4']
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |-
+    # Finding an Unknown Subtrahend — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: unknownSubtrahend
+    Methodologist status: Draft
+    Code: Not implemented
+    Program dependence: None
+
+    ## Educational purpose
+
+    Develop the understanding that when a subtraction's starting whole and remainder are known, the _amount taken away_ can be found by subtracting the remainder from the original whole. In 11 − □ = 7, the unknown is 4 because 11 − 7 = 4, verified by 11 − 4 = 7. This is distinct from finding the minuend, where the starting amount itself is missing.
+
+    ## Target audience
+
+    Children aged 6–8 in grades 1–2 with counting, taking-away and part–whole knowledge within 20. Offer countable and nonvisual models to children with mixed reading proficiency, no mandatory typing or spoken response.
+
+    ## Prerequisites
+
+    - Understand initial whole, removed part and remaining part as distinct story quantities.
+    - Subtract and add small nonnegative numbers (with counters if needed).
+    - Recognize □ as an unknown, read the equals sign as comparison, and check an arithmetic statement.
+
+    ## Target Skills
+
+    - [unknownSubtrahend.data.ts](../../../../data/skills/algebra/unknowns/skills/unknownSubtrahend.data.ts)
+
+    ## Expected learning outcomes
+
+    - Point to or name □ in 11 − □ = 7 as the _removed_ amount rather than the starting whole or remainder.
+    - Use a known whole of 11 and leftover of 7 to find four removed: 11 − 7 = 4.
+    - Describe the relationship using a model with precisely eleven initial counters, seven remaining and four removed.
+    - Verify by substituting 4 into **11 − 4 = 7**, and distinguish the method from □ − 4 = 7.
+
+    ## Essential subject matter
+
+    In a − □ = c for nonnegative whole-number quantities with 0 ≤ c ≤ a, the removed quantity is a − c. The difference is the remainder, and it must not be subtracted from itself to find the unknown. For 11 − □ = 7, 11 − 7 = 4, then 11 − 4 = 7. When instead □ − 4 = 7, finding the unknown _starting_ number uses 7 + 4 = 11. Both examples share the same quantities but assign them different known/unknown roles. This distinction must be made explicit in each explanation.
+
+    ## Conceptual progression and dependencies
+
+    Start with a full collection of eleven and a fixed display of seven remaining; determine how many left the collection. Link the visible difference to 11−7=4. Then show 11−□=7 and replace the box with the found amount to verify. Compare the placement of the unknown with the previously introduced unknown-minuend case. End with a transfer example 14−□=9, within 20.
+
+    ## Misconceptions, examples and boundaries
+
+    Errors include subtracting 7−11, assuming □=7 because it is the number after equals, calculating 11+7=18 as the removed amount, confusing 11−□=7 with □−11=7 or □−4=7, and checking only 11−7 instead of 11−4=7. Use 11−□=7 → 4 and 14−□=9 → 5. Exclude negative unknowns, remainders beyond whole, symbolic equation transformations and multiple unknowns.
+
+    ## Localization, accessibility and offline intent
+
+    Distinguish “was taken away” from “is left” and “started with” in every locale; describe the blank as missing removed quantity. Show number order correctly in RTL. Whole/removed/remaining counters must have equivalent accessible ordered text and keyboard-operated reveal/restore controls. All required feedback and translations locally available after download.
+
+    ## Sources and factual verification
+
+    - Code-generated Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative), approved unknownSubtrahend Skill semantics.
+    - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), early-grade unknown-number equations, comparative reference.
+    - [IES/WWC Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), concrete and symbolic models.
+
+    ## Curriculum / Program compatibility
+
+    Not specified; independent Lesson.
+
+    ## Open editorial decisions
+
+    - Editor: verify that children understand the role contrast with unknown minuend without turning it into a second lesson.
+    - Confirm nonnegative whole-number range through 20 and accessible story language.
+
+    ## Methodologist handoff
+
+    Draft pending editor approval. Screenwriter should teach locating the removed part and checking the **original** subtraction; no automatic assessed mastery or runtime authoring follows.
+  purpose: 'Finding an Unknown Subtrahend: preserve existing standalone Lesson plan without new assessments or Scene implementation'
+  productionNotes: |-
+    Provisional Screenwriter source (not approved), originally content.md; all introductory, global and review material:
+
+    # Finding an Unknown Subtrahend — Content
+
+    Status: Draft — provisional Screenwriter draft pending Methodologist Brief approval
+    Target Lesson: content/playground/Data/Lessons/1/unknownSubtrahend/
+    Audience: Children 6–8 with counting, subtraction and part–whole reasoning within 20
+    Methodologist source: Methodologist Brief (incorporated in this config.yaml) (Draft, not approved)
+    Learning outcomes: distinguish removed amount from initial and remaining, reconstruct it as whole minus remainder, verify original subtraction, transfer.
+    Target Skills: One canonical unknownSubtrahend.data.ts linked in the Brief.
+    Program dependence: None
+
+    ## INSTRUCTIONAL CONCEPT
+
+    We can find what was **taken away** even if we did not see it being removed: compare how much there was at first with what remains. A starting eleven and remaining seven mean exactly four were removed. The calculation 11−7=4 _finds_ this missing part, but the original statement **11−□=7** is only verified when the learner puts **4** into the box and checks **11−4=7**. The same numbers appeared in the unknown-minuend Lesson, but the missing role is different.
+
+    ## LEARNER JOURNEY
+
+    1. Observe eleven before and seven afterward; infer the missing removed amount.
+    2. Separate seven retained objects from eleven and count four removed; translate to 11−7=4.
+    3. Test candidates in the exact original 11−□=7 and contrast with □−4=7.
+    4. Apply to 14−□=9 and explain why five is the missing removal.
+
+    ## SECTION PLAN
+
+
+
+    ## CUSTOM SCENE SPECIFICATIONS
+
+    - Missing Removal Investigator (full Scene specification embedded in this config.yaml) — four independent prop-free entries covering comparison of before/after, subtraction finding, substitution and transfer.
+
+    ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
+
+    1. “Removed amount = starting whole − what remains.” After Section 1–2’s known/remaining model.
+    2. “Verify the removed amount in the original subtraction.” After a complete checked 11−4=7.
+
+    Planned, not wired. No Note data type, unlock/persistence, review sheet or spaced-retrieval scheduling is asserted. A revealed Note is not Skill mastery.
+
+    ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
+
+    These are explanatory and formative learner interactions, not scored Questions. Assessment Architect later validates any items distinguishing unknown subtrahend from unknown minuend and establishes scores, retries and evidence. Repeated correct selection alone does not establish both Skills. Current generic renderer supports text/markdown/scene; bespoke Scene is not built.
+
+    ## GLOBAL ACCESSIBILITY AND LOCALIZATION
+
+    All strings must be genuinely translated into required locales, not copied from English. “Started with”, “left over” and “removed” are separate linguistic roles. A child must be able to operate the model through ordered text, keyboard, touch and assistive technology; large text and controls, semantic RTL operator order, reduced motion and offline deterministic computation after package download. No media dependency, drag-only task or compulsory speech input.
+
+    ## PRODUCTION / PLATFORM DEPENDENCIES
+
+    Existing LessonSection_Config and general text/markdown/scene resources are available; Missing Removal Investigator is **proposed** and needs approved spec, prop-free Scene implementation, own tests and locale wiring. Image/audio/video/code generic renderer unsupported, YouTube label not configured; not used. Notes, offline sync and spaced scheduler are planned, not claimed implemented.
+
+    ## EDITORIAL SOURCES AND OPEN QUESTIONS
+
+    - Methodologist Brief (incorporated in this config.yaml) (Draft, needs explicit approval).
+    - Generated Playground taxonomy (historical generated taxonomy view unavailable; canonical Skill data is authoritative).
+    - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md).
+    - Editor to confirm whether unknown-minuend comparison is short enough not to dilute the atomic Skill; no Program/curriculum alignment claims.
+
+    ## HANDOFF
+
+    A provisional Draft Screenwriter script and a separate Draft Scene spec. Approval order: editor reviews Brief, then Content/Scene; Coding Agent/Scene Designer and Assessment Architect work only after their separately authorized stages. No code or scored Questions.
+
+    Source-language-only English draft; intended locale list follows the current Engine supported language set (ar, be, bn, de, en, es, et, fr, he, hi, id, ja, ka, kk, ko, lt, lv, mr, ms, pl, pt, qm, ta, te, tr, uk, ur, vi, zh), with genuine translations required before implementation. No formal independent approval is implied.

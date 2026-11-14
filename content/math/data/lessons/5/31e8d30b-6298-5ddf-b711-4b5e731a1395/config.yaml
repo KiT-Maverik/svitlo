@@ -1,0 +1,761 @@
+config:
+  id: '31e8d30b-6298-5ddf-b711-4b5e731a1395'
+  slug: 'equalFractionsDifferentPieces'
+  type: 'lesson'
+  skills:
+    - 'fbe8f4a0-92e8-4c98-83c0-3a0d6888bd38'
+  params:
+    requireQuiz: false
+    languages:
+      - 'en'
+      - 'pl'
+      - 'uk'
+      - 'qm'
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: 'Equal Fractions, Different Pieces'
+  section:
+    items:
+      section1OneWholeDifferentCuts:
+        config:
+          id: '44cf406e-9a35-4bca-8021-6f575edb94f3'
+          slug: 'section1OneWholeDifferentCuts'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'One whole, different cuts'
+            navigationLabel:
+              en: 'One whole, different cuts'
+          content:
+            items:
+              section1Text1:
+                config:
+                  id: '2ad62883-b2c2-46f3-88b5-6d0c90a1137c'
+                  slug: 'section1Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Here are two strips the same length. Shade one of two equal parts on the first. Shade two of four equal parts on the second. Will the shaded lengths match?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text` (existing Resource type).** “Here are two strips the same length. Shade one of two equal parts on the first. Shade two of four equal parts on the second. Will the shaded lengths match?”'
+              section1Scene2:
+                config:
+                  id: '61d3c18a-5051-40e9-8695-6a743717fb17'
+                  slug: 'section1Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Here are two strips the same length. Shade one of two equal parts on the first. Shade two of four equal parts on the second. Will the shaded lengths match?'
+                production:
+                  purpose: 'Provisional Scene placement in One whole, different cuts, self-contained and not implemented'
+                  specification: |
+                    # EquivalentFractionStudio — Screenwriter Scene Specification
+
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Equal Fractions, Different Pieces Content (full original source: this Lesson's production notes)
+                    **Brief:** Methodologist Draft (full original source: production.methodology)
+                    **Target Skill:** [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts)
+                    **Implementation:** Not built or registered
+
+                    ## Why this Scene needs to be interactive
+
+                    Use aligned visual representations of the same-sized whole to demonstrate that different numerator/denominator pairs can cover the same fraction of a whole, especially 1/2 = 2/4 and 1/3 = 2/6.
+
+                    Two parallel, same-start bars with independently selectable partitions of one reference length (12 units) and shading presets 1/2, 2/4, 1/3, 2/6; all comparisons expose the shaded length and the selected-part count. A clearly labelled alternative 24-unit whole appears only for whole-dependence transfer.
+
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+
+                    ## Mathematical content and source-of-truth conditions
+
+                    With the identical 12-unit reference strip: 1/2 = 6 units, 2/4 = 6 units, 1/3 = 4 units, 2/6 = 4 units; 2/6 ≠ 1/2. Splits are equal size within each model. Side-by-side aligned strips have a common starting edge. Use counted lengths and accessible textual numeric comparisons as a full alternative to graphics.
+
+                    **Hard limits:** Defer simplification algorithms, multiplying numerator and denominator symbolically, all fraction arithmetic, common-denominator comparison and values above one. Describe the preserving relation conceptually; do not assume equivalence is established by looking at different-sized wholes.
+
+                    ## Required observable states
+
+                    | State              | Data or model facts                                      | Correct interpretation                                           |
+                    | ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------- |
+                    | Halves vs quarters | Two 12-unit strips: 1/2 shades 6 units, 2/4 shades 6.    | Equivalent fractions, same whole.                                |
+                    | Thirds vs sixths   | Two 12-unit strips: 1/3 shades 4 units, 2/6 shades 4.    | Equivalent fractions, same whole.                                |
+                    | Near miss          | 12-unit strips: 1/2 shades 6 units, 2/6 shades 4.        | Not equivalent.                                                  |
+                    | Different wholes   | 12-unit strip 1/2 shades 6; 24-unit strip 2/4 shades 12. | Fractions remain equivalent, but absolute shaded lengths differ. |
+
+                    ## Required learning interaction
+
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+
+                    ## Exact misconception and explanation cases
+
+                    - **One whole, different cuts:** For ‘2/4 must be bigger because two parts’: “Each quarter is smaller than each half. Two quarters together cover the same 6 of 12 units as one half.”
+                    - **What stays equal when parts change?:** For ‘the whole got larger’: “The strip is still 12 units long. Only the cuts and how many cut pieces are shaded changed.”
+                    - **A second pair—and a near miss:** For ‘1/2 = 2/6’: “Keep both wholes the same size: half reaches 6 units and two sixths reach only 4.”
+                    - **Why the whole must be clear:** For ‘the fractions stopped being equal’: “The fraction 1/2 is still equal to 2/4. Their drawn shaded lengths differ only because the wholes are different sizes.”
+
+                    ## Nonvisual, motor and cognitive equivalence
+
+                    Represent each bar as twelve numbered unit cells in an accessible selectable list. Speak/print ‘12-unit whole; 6 shaded’ versus ‘12-unit whole; 4 shaded’ and the exact fraction. Include same/different reasoning, not a picture-only equivalence judgement.
+
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+
+                    ## Localization / RTL / offline / performance handoff
+
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+
+                    ## Engineer-facing constraints and test coverage (not implementation)
+
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+
+                    ## Approval boundary
+
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Two 12-unit aligned strips; top split 2×6 with 1 shaded, bottom split 4×3 with 2 shaded. Predict same/different, then place a movable but controlled alignment marker and reveal matched shaded length 6 units.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section1Markdown3:
+                config:
+                  id: 'c4054e58-3c93-4662-8e89-daa0661fe29a'
+                  slug: 'section1Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Yes. One of two equal parts covers the same amount as two of four equal parts. We write 1/2 = 2/4.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '3. **`markdown` (existing Resource type).** “Yes. One of two equal parts covers the same amount as two of four equal parts. We write 1/2 = 2/4.”'
+            order:
+              - 'section1Text1'
+              - 'section1Scene2'
+              - 'section1Markdown3'
+        production:
+          purpose: 'One whole, different cuts'
+          pedagogicalIntent: 'One whole, different cuts'
+          productionNotes: |
+            ### Section 1: One whole, different cuts
+
+            **Purpose:** Show that equal absolute shaded length in equal-sized strips is conserved.
+
+            **Block sequence — a single column:**
+
+            1. **`text` (existing Resource type).** “Here are two strips the same length. Shade one of two equal parts on the first. Shade two of four equal parts on the second. Will the shaded lengths match?”
+
+            2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Two 12-unit aligned strips; top split 2×6 with 1 shaded, bottom split 4×3 with 2 shaded. Predict same/different, then place a movable but controlled alignment marker and reveal matched shaded length 6 units.
+
+            3. **`markdown` (existing Resource type).** “Yes. One of two equal parts covers the same amount as two of four equal parts. We write 1/2 = 2/4.”
+
+            **Learner's actual move:** Predict, shade by selecting preset fractional partitions, and inspect the matched shaded endpoints.
+
+            **Misconception-specific explanation:** For ‘2/4 must be bigger because two parts’: “Each quarter is smaller than each half. Two quarters together cover the same 6 of 12 units as one half.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+
+      section2WhatStaysEqualWhenPartsChange:
+        config:
+          id: 'f98b4fae-dd24-4b9e-813e-e3b2f591b782'
+          slug: 'section2WhatStaysEqualWhenPartsChange'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'What stays equal when parts change?'
+            navigationLabel:
+              en: 'What stays equal when parts change?'
+          content:
+            items:
+              section2Text1:
+                config:
+                  id: '5d057ff9-81e2-4719-883a-63cc54dd0b2c'
+                  slug: 'section2Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The same 12-unit strip can be cut into more, smaller equal pieces. Count the shaded units, not just the shaded pieces.'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text` (existing Resource type).** “The same 12-unit strip can be cut into more, smaller equal pieces. Count the shaded units, not just the shaded pieces.”'
+              section2Scene2:
+                config:
+                  id: 'cb3db87a-19d8-49f4-8bde-dc6f793b7de1'
+                  slug: 'section2Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'The same 12-unit strip can be cut into more, smaller equal pieces. Count the shaded units, not just the shaded pieces.'
+                production:
+                  purpose: 'Provisional Scene placement in What stays equal when parts change?, self-contained and not implemented'
+                  specification: |
+                    # EquivalentFractionStudio — Screenwriter Scene Specification
+
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Equal Fractions, Different Pieces Content (full original source: this Lesson's production notes)
+                    **Brief:** Methodologist Draft (full original source: production.methodology)
+                    **Target Skill:** [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts)
+                    **Implementation:** Not built or registered
+
+                    ## Why this Scene needs to be interactive
+
+                    Use aligned visual representations of the same-sized whole to demonstrate that different numerator/denominator pairs can cover the same fraction of a whole, especially 1/2 = 2/4 and 1/3 = 2/6.
+
+                    Two parallel, same-start bars with independently selectable partitions of one reference length (12 units) and shading presets 1/2, 2/4, 1/3, 2/6; all comparisons expose the shaded length and the selected-part count. A clearly labelled alternative 24-unit whole appears only for whole-dependence transfer.
+
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+
+                    ## Mathematical content and source-of-truth conditions
+
+                    With the identical 12-unit reference strip: 1/2 = 6 units, 2/4 = 6 units, 1/3 = 4 units, 2/6 = 4 units; 2/6 ≠ 1/2. Splits are equal size within each model. Side-by-side aligned strips have a common starting edge. Use counted lengths and accessible textual numeric comparisons as a full alternative to graphics.
+
+                    **Hard limits:** Defer simplification algorithms, multiplying numerator and denominator symbolically, all fraction arithmetic, common-denominator comparison and values above one. Describe the preserving relation conceptually; do not assume equivalence is established by looking at different-sized wholes.
+
+                    ## Required observable states
+
+                    | State              | Data or model facts                                      | Correct interpretation                                           |
+                    | ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------- |
+                    | Halves vs quarters | Two 12-unit strips: 1/2 shades 6 units, 2/4 shades 6.    | Equivalent fractions, same whole.                                |
+                    | Thirds vs sixths   | Two 12-unit strips: 1/3 shades 4 units, 2/6 shades 4.    | Equivalent fractions, same whole.                                |
+                    | Near miss          | 12-unit strips: 1/2 shades 6 units, 2/6 shades 4.        | Not equivalent.                                                  |
+                    | Different wholes   | 12-unit strip 1/2 shades 6; 24-unit strip 2/4 shades 12. | Fractions remain equivalent, but absolute shaded lengths differ. |
+
+                    ## Required learning interaction
+
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+
+                    ## Exact misconception and explanation cases
+
+                    - **One whole, different cuts:** For ‘2/4 must be bigger because two parts’: “Each quarter is smaller than each half. Two quarters together cover the same 6 of 12 units as one half.”
+                    - **What stays equal when parts change?:** For ‘the whole got larger’: “The strip is still 12 units long. Only the cuts and how many cut pieces are shaded changed.”
+                    - **A second pair—and a near miss:** For ‘1/2 = 2/6’: “Keep both wholes the same size: half reaches 6 units and two sixths reach only 4.”
+                    - **Why the whole must be clear:** For ‘the fractions stopped being equal’: “The fraction 1/2 is still equal to 2/4. Their drawn shaded lengths differ only because the wholes are different sizes.”
+
+                    ## Nonvisual, motor and cognitive equivalence
+
+                    Represent each bar as twelve numbered unit cells in an accessible selectable list. Speak/print ‘12-unit whole; 6 shaded’ versus ‘12-unit whole; 4 shaded’ and the exact fraction. Include same/different reasoning, not a picture-only equivalence judgement.
+
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+
+                    ## Localization / RTL / offline / performance handoff
+
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+
+                    ## Engineer-facing constraints and test coverage (not implementation)
+
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+
+                    ## Approval boundary
+
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Toggle between 1/2 and 2/4 partition presets while keeping the same whole and the same 6-unit shaded segment. Display selected parts and total equal parts.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section2Markdown3:
+                config:
+                  id: '2c64a299-6c39-41c1-8ab3-0eb45aeefdec'
+                  slug: 'section2Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'The piece count changes, but the portion of the whole does not. The denominator tells the number of equal pieces; the numerator tells how many are selected.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '3. **`markdown` (existing Resource type).** “The piece count changes, but the portion of the whole does not. The denominator tells the number of equal pieces; the numerator tells how many are selected.”'
+            order:
+              - 'section2Text1'
+              - 'section2Scene2'
+              - 'section2Markdown3'
+        production:
+          purpose: 'What stays equal when parts change?'
+          pedagogicalIntent: 'What stays equal when parts change?'
+          productionNotes: |
+            ### Section 2: What stays equal when parts change?
+
+            **Purpose:** Connect both numerator/denominator changes to the constant covered amount.
+
+            **Block sequence — a single column:**
+
+            1. **`text` (existing Resource type).** “The same 12-unit strip can be cut into more, smaller equal pieces. Count the shaded units, not just the shaded pieces.”
+
+            2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Toggle between 1/2 and 2/4 partition presets while keeping the same whole and the same 6-unit shaded segment. Display selected parts and total equal parts.
+
+            3. **`markdown` (existing Resource type).** “The piece count changes, but the portion of the whole does not. The denominator tells the number of equal pieces; the numerator tells how many are selected.”
+
+            **Learner's actual move:** Identify which quantities change and which remain constant; explain without using a new algorithm.
+
+            **Misconception-specific explanation:** For ‘the whole got larger’: “The strip is still 12 units long. Only the cuts and how many cut pieces are shaded changed.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+
+      section3ASecondPairAndANearMiss:
+        config:
+          id: '14dcae3f-5504-4e46-8ce4-4b011d3c3b78'
+          slug: 'section3ASecondPairAndANearMiss'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'A second pair—and a near miss'
+            navigationLabel:
+              en: 'A second pair—and a near miss'
+          content:
+            items:
+              section3Text1:
+                config:
+                  id: 'e84ead4a-85b5-4144-854d-ad9458b6819a'
+                  slug: 'section3Text1'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Try thirds and sixths. Is 1/3 equal to 2/6? Is 1/2 also equal to 2/6?'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '1. **`text` (existing Resource type).** “Try thirds and sixths. Is 1/3 equal to 2/6? Is 1/2 also equal to 2/6?”'
+              section3Scene2:
+                config:
+                  id: '17e5ea8b-7b52-4baa-8e21-e9d4b296b8f5'
+                  slug: 'section3Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'Try thirds and sixths. Is 1/3 equal to 2/6? Is 1/2 also equal to 2/6?'
+                production:
+                  purpose: 'Provisional Scene placement in A second pair—and a near miss, self-contained and not implemented'
+                  specification: |
+                    # EquivalentFractionStudio — Screenwriter Scene Specification
+
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Equal Fractions, Different Pieces Content (full original source: this Lesson's production notes)
+                    **Brief:** Methodologist Draft (full original source: production.methodology)
+                    **Target Skill:** [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts)
+                    **Implementation:** Not built or registered
+
+                    ## Why this Scene needs to be interactive
+
+                    Use aligned visual representations of the same-sized whole to demonstrate that different numerator/denominator pairs can cover the same fraction of a whole, especially 1/2 = 2/4 and 1/3 = 2/6.
+
+                    Two parallel, same-start bars with independently selectable partitions of one reference length (12 units) and shading presets 1/2, 2/4, 1/3, 2/6; all comparisons expose the shaded length and the selected-part count. A clearly labelled alternative 24-unit whole appears only for whole-dependence transfer.
+
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+
+                    ## Mathematical content and source-of-truth conditions
+
+                    With the identical 12-unit reference strip: 1/2 = 6 units, 2/4 = 6 units, 1/3 = 4 units, 2/6 = 4 units; 2/6 ≠ 1/2. Splits are equal size within each model. Side-by-side aligned strips have a common starting edge. Use counted lengths and accessible textual numeric comparisons as a full alternative to graphics.
+
+                    **Hard limits:** Defer simplification algorithms, multiplying numerator and denominator symbolically, all fraction arithmetic, common-denominator comparison and values above one. Describe the preserving relation conceptually; do not assume equivalence is established by looking at different-sized wholes.
+
+                    ## Required observable states
+
+                    | State              | Data or model facts                                      | Correct interpretation                                           |
+                    | ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------- |
+                    | Halves vs quarters | Two 12-unit strips: 1/2 shades 6 units, 2/4 shades 6.    | Equivalent fractions, same whole.                                |
+                    | Thirds vs sixths   | Two 12-unit strips: 1/3 shades 4 units, 2/6 shades 4.    | Equivalent fractions, same whole.                                |
+                    | Near miss          | 12-unit strips: 1/2 shades 6 units, 2/6 shades 4.        | Not equivalent.                                                  |
+                    | Different wholes   | 12-unit strip 1/2 shades 6; 24-unit strip 2/4 shades 12. | Fractions remain equivalent, but absolute shaded lengths differ. |
+
+                    ## Required learning interaction
+
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+
+                    ## Exact misconception and explanation cases
+
+                    - **One whole, different cuts:** For ‘2/4 must be bigger because two parts’: “Each quarter is smaller than each half. Two quarters together cover the same 6 of 12 units as one half.”
+                    - **What stays equal when parts change?:** For ‘the whole got larger’: “The strip is still 12 units long. Only the cuts and how many cut pieces are shaded changed.”
+                    - **A second pair—and a near miss:** For ‘1/2 = 2/6’: “Keep both wholes the same size: half reaches 6 units and two sixths reach only 4.”
+                    - **Why the whole must be clear:** For ‘the fractions stopped being equal’: “The fraction 1/2 is still equal to 2/4. Their drawn shaded lengths differ only because the wholes are different sizes.”
+
+                    ## Nonvisual, motor and cognitive equivalence
+
+                    Represent each bar as twelve numbered unit cells in an accessible selectable list. Speak/print ‘12-unit whole; 6 shaded’ versus ‘12-unit whole; 4 shaded’ and the exact fraction. Include same/different reasoning, not a picture-only equivalence judgement.
+
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+
+                    ## Localization / RTL / offline / performance handoff
+
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+
+                    ## Engineer-facing constraints and test coverage (not implementation)
+
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+
+                    ## Approval boundary
+
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Same 12-unit reference: 1/3 shades 4 units; 2/6 shades 4; 1/2 shades 6. Choose pairs, compare aligned endpoints, reveal matched and unmatched numerical lengths.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section3Markdown3:
+                config:
+                  id: 'c7764b9e-51af-4e6b-80a8-f25d9671b7a8'
+                  slug: 'section3Markdown3'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: '1/3 = 2/6, because both cover 4 of 12 units. But 1/2 does not equal 2/6: it covers 6 units rather than 4.'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '3. **`markdown` (existing Resource type).** “1/3 = 2/6, because both cover 4 of 12 units. But 1/2 does not equal 2/6: it covers 6 units rather than 4.”'
+            order:
+              - 'section3Text1'
+              - 'section3Scene2'
+              - 'section3Markdown3'
+        production:
+          purpose: 'A second pair—and a near miss'
+          pedagogicalIntent: 'A second pair—and a near miss'
+          productionNotes: |
+            ### Section 3: A second pair—and a near miss
+
+            **Purpose:** Generalize to thirds/sixths while ruling out look-alike numerators.
+
+            **Block sequence — a single column:**
+
+            1. **`text` (existing Resource type).** “Try thirds and sixths. Is 1/3 equal to 2/6? Is 1/2 also equal to 2/6?”
+
+            2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Same 12-unit reference: 1/3 shades 4 units; 2/6 shades 4; 1/2 shades 6. Choose pairs, compare aligned endpoints, reveal matched and unmatched numerical lengths.
+
+            3. **`markdown` (existing Resource type).** “1/3 = 2/6, because both cover 4 of 12 units. But 1/2 does not equal 2/6: it covers 6 units rather than 4.”
+
+            **Learner's actual move:** State one valid equivalence and one non-equivalence with evidence.
+
+            **Misconception-specific explanation:** For ‘1/2 = 2/6’: “Keep both wholes the same size: half reaches 6 units and two sixths reach only 4.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+
+      section4WhyTheWholeMustBeClear:
+        config:
+          id: 'ec5da05c-4dca-4406-8a24-ec57fbb3180d'
+          slug: 'section4WhyTheWholeMustBeClear'
+          type: 'content'
+          params: {}
+          locale:
+            title:
+              en: 'Why the whole must be clear'
+            navigationLabel:
+              en: 'Why the whole must be clear'
+          content:
+            items:
+              section4Markdown1:
+                config:
+                  id: '8b4d2bf5-16f9-4244-8728-26b4aa9caf05'
+                  slug: 'section4Markdown1'
+                  type: 'markdown'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'What if one strip is 12 units and another is 24? Half of each is still one half—but the shaded lengths are 6 and 12. Are the fractions different?'
+                production:
+                  purpose: 'Original learner-facing markdown block, provisional editorial draft'
+                  specification: '1. **`markdown` (existing Resource type).** “What if one strip is 12 units and another is 24? Half of each is still one half—but the shaded lengths are 6 and 12. Are the fractions different?”'
+              section4Scene2:
+                config:
+                  id: 'bee8a520-124d-4cf9-879b-4c4c0b3e0595'
+                  slug: 'section4Scene2'
+                  type: 'scene'
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: 'What if one strip is 12 units and another is 24? Half of each is still one half—but the shaded lengths are 6 and 12. Are the fractions different?'
+                production:
+                  purpose: 'Provisional Scene placement in Why the whole must be clear, self-contained and not implemented'
+                  specification: |
+                    # EquivalentFractionStudio — Screenwriter Scene Specification
+
+                    **Status: Provisional Draft — Methodologist has not approved the Brief; Scene editorial review remains pending.**
+                    **Lesson:** Equal Fractions, Different Pieces Content (full original source: this Lesson's production notes)
+                    **Brief:** Methodologist Draft (full original source: production.methodology)
+                    **Target Skill:** [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts)
+                    **Implementation:** Not built or registered
+
+                    ## Why this Scene needs to be interactive
+
+                    Use aligned visual representations of the same-sized whole to demonstrate that different numerator/denominator pairs can cover the same fraction of a whole, especially 1/2 = 2/4 and 1/3 = 2/6.
+
+                    Two parallel, same-start bars with independently selectable partitions of one reference length (12 units) and shading presets 1/2, 2/4, 1/3, 2/6; all comparisons expose the shaded length and the selected-part count. A clearly labelled alternative 24-unit whole appears only for whole-dependence transfer.
+
+                    This is a pedagogical model whose learner-controlled state makes a mathematical or logical contrast visible. A static picture cannot equally expose prediction, changed conditions and the conceptual explanation. Do not turn it into reward/score mechanics or a mandatory graded Question.
+
+                    ## Mathematical content and source-of-truth conditions
+
+                    With the identical 12-unit reference strip: 1/2 = 6 units, 2/4 = 6 units, 1/3 = 4 units, 2/6 = 4 units; 2/6 ≠ 1/2. Splits are equal size within each model. Side-by-side aligned strips have a common starting edge. Use counted lengths and accessible textual numeric comparisons as a full alternative to graphics.
+
+                    **Hard limits:** Defer simplification algorithms, multiplying numerator and denominator symbolically, all fraction arithmetic, common-denominator comparison and values above one. Describe the preserving relation conceptually; do not assume equivalence is established by looking at different-sized wholes.
+
+                    ## Required observable states
+
+                    | State              | Data or model facts                                      | Correct interpretation                                           |
+                    | ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------- |
+                    | Halves vs quarters | Two 12-unit strips: 1/2 shades 6 units, 2/4 shades 6.    | Equivalent fractions, same whole.                                |
+                    | Thirds vs sixths   | Two 12-unit strips: 1/3 shades 4 units, 2/6 shades 4.    | Equivalent fractions, same whole.                                |
+                    | Near miss          | 12-unit strips: 1/2 shades 6 units, 2/6 shades 4.        | Not equivalent.                                                  |
+                    | Different wholes   | 12-unit strip 1/2 shades 6; 24-unit strip 2/4 shades 12. | Fractions remain equivalent, but absolute shaded lengths differ. |
+
+                    ## Required learning interaction
+
+                    1. Present a fully specified initial state and ask a prediction in short child-facing copy; make the initial assumptions and labels inspectable before a decision.
+                    2. Offer named, keyboard-operable controls that select a preset, a label or an explanatory reveal, matching the Section contexts without inventing new narrative or formal assessment.
+                    3. Apply the action to a **deterministic**, locally owned, verifiable model. Announce the changed state with both an accessible text model and meaningful visual indication.
+                    4. Show why the response matches or differs from the mathematical condition, including a counterexample; allow independent revisits, learner-controlled explanations, reveal and retry without scoring.
+                    5. Expose Reset to the initial state. Keep all state local. The Scene root accepts **no props**; if separate Lesson Sections use it, state is fresh by instance, with no parent-provided chapter/mode/solution.
+                    6. Provide an accessible independent-transfer route that hides the explanation initially but never makes it inaccessible.
+
+                    ## Exact misconception and explanation cases
+
+                    - **One whole, different cuts:** For ‘2/4 must be bigger because two parts’: “Each quarter is smaller than each half. Two quarters together cover the same 6 of 12 units as one half.”
+                    - **What stays equal when parts change?:** For ‘the whole got larger’: “The strip is still 12 units long. Only the cuts and how many cut pieces are shaded changed.”
+                    - **A second pair—and a near miss:** For ‘1/2 = 2/6’: “Keep both wholes the same size: half reaches 6 units and two sixths reach only 4.”
+                    - **Why the whole must be clear:** For ‘the fractions stopped being equal’: “The fraction 1/2 is still equal to 2/4. Their drawn shaded lengths differ only because the wholes are different sizes.”
+
+                    ## Nonvisual, motor and cognitive equivalence
+
+                    Represent each bar as twelve numbered unit cells in an accessible selectable list. Speak/print ‘12-unit whole; 6 shaded’ versus ‘12-unit whole; 4 shaded’ and the exact fraction. Include same/different reasoning, not a picture-only equivalence judgement.
+
+                    Do not rely on sound, color alone, animation, detailed drawing, drag precision, long reading, limited response time or knowledge of an English-only label. Give labels for all decision buttons; preserve focus and announce state without excessive live-region noise. Permit responsive larger text and clear logical navigation.
+
+                    ## Localization / RTL / offline / performance handoff
+
+                    Every instruction, control, unit, category, event, counter and error explanation needs **genuine** translations for all required textbook locales; English here is source-only editorial text, not a real translation bundle. Preserve numerical mathematics and chronological relations when adapting layout and RTL reading order. Avoid mirroring data values, fraction wholes or abstract cycle meaning. After future PWA content installation, the full interaction including all variants, explanations and assistive alternatives must function offline; prefer static/local lightweight assets and static alternatives for motion-sensitive learners.
+
+                    ## Engineer-facing constraints and test coverage (not implementation)
+
+                    The coding specialist will own a self-contained component with no props, localized context data, co-located Scene-specific unit tests, appropriate deterministic fixtures, keyboard/screen-reader tests, RTL review and offline-device verification. Those files are not generated in this batch, and current availability of a generic `scene` Resource type does not imply this named Scene is registered.
+
+                    ## Approval boundary
+
+                    This text is **provisional**. The Methodologist's Brief must be explicitly reviewed, and any scenario-level changes must be authorized by the Screenwriter before Scene engineering. No Question correctness engine, reward, assessment score, Note unlock, Program plot or runtime Lesson is created.
+
+
+                    ## Scene occurrence in Screenwriter Section
+
+                    2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Switch one display between same-sized and larger strips. The labels 1/2 and 2/4 remain equivalent as numbers; the shaded physical lengths no longer match if wholes differ. Require the model to name both reference wholes.
+                  productionNotes: 'Scene component not implemented; independently initialize this occurrence; no undocumented props/events or persisted state.'
+              section4Text3:
+                config:
+                  id: '93f8fdc7-299f-4de9-873e-1b836d593bad'
+                  slug: 'section4Text3'
+                  type: 'text'
+                  params: {}
+                  locale:
+                    value:
+                      en: 'Equal fractions describe equal portions of their own wholes. To compare shaded lengths directly, choose the same-sized whole. A bigger whole can have a bigger half.'
+                production:
+                  purpose: 'Original learner-facing text block, provisional editorial draft'
+                  specification: '3. **`text` (existing Resource type).** “Equal fractions describe equal portions of their own wholes. To compare shaded lengths directly, choose the same-sized whole. A bigger whole can have a bigger half.”'
+            order:
+              - 'section4Markdown1'
+              - 'section4Scene2'
+              - 'section4Text3'
+        production:
+          purpose: 'Why the whole must be clear'
+          pedagogicalIntent: 'Why the whole must be clear'
+          productionNotes: |
+            ### Section 4: Why the whole must be clear
+
+            **Purpose:** Distinguish fraction equality from the area drawn on differently sized wholes.
+
+            **Block sequence — a single column:**
+
+            1. **`markdown` (existing Resource type).** “What if one strip is 12 units and another is 24? Half of each is still one half—but the shaded lengths are 6 and 12. Are the fractions different?”
+
+            2. **`scene` (existing Resource type; Scene proposed).** EquivalentFractionStudio (full original source: Scene production.specification). Switch one display between same-sized and larger strips. The labels 1/2 and 2/4 remain equivalent as numbers; the shaded physical lengths no longer match if wholes differ. Require the model to name both reference wholes.
+
+            3. **`text` (existing Resource type).** “Equal fractions describe equal portions of their own wholes. To compare shaded lengths directly, choose the same-sized whole. A bigger whole can have a bigger half.”
+
+            **Learner's actual move:** Explain both fraction equivalence and the visual model's reference-whole condition without conflating them.
+
+            **Misconception-specific explanation:** For ‘the fractions stopped being equal’: “The fraction 1/2 is still equal to 2/4. Their drawn shaded lengths differ only because the wholes are different sizes.” Even after a correct choice, the mathematical reason must be visible or obtainable with a labelled 'Why?' control. The learner can revisit the model, use a hint, reveal the result or retry without penalty.
+
+            **Accessibility and pacing:** Short localized instructions; keyboard/touch controls, equivalent nonvisual decision, labels not solely by color or position, screen-reader count/state announcements, reduced motion, no hidden timing threshold. The next Section does not demand a simulated mastery result.
+
+    order:
+      - 'section1OneWholeDifferentCuts'
+      - 'section2WhatStaysEqualWhenPartsChange'
+      - 'section3ASecondPairAndANearMiss'
+      - 'section4WhyTheWholeMustBeClear'
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: 'en'
+  methodology: |
+    # Equal Fractions, Different Pieces — Methodologist Brief
+
+    Date: 2026-10-31
+    Slug: equalFractionsDifferentPieces
+    Methodologist status: **Draft — pending explicit approval**
+    Code: [Not implemented](#)
+    Program dependence: None
+
+    ## Educational purpose
+
+    Use aligned visual representations of the same-sized whole to demonstrate that different numerator/denominator pairs can cover the same fraction of a whole, especially 1/2 = 2/4 and 1/3 = 2/6.
+
+    **Why this lesson now:** Earlier Lessons established a reference whole, unit fractions, multiple equal parts and how the numerator/denominator are read. The visual conservation of amount follows directly before symbolic comparison or fraction arithmetic. The canonical Skill remains an independently assessable unit even though this Lesson structures examples and models around it.
+
+    ## Target audience
+
+    **Primary grade: Grade 3**, approximately ages 8–9. Grade 3: known fractional notation, shaded unit parts, numerator/denominator meaning and a fixed reference whole permit an equivalence model. The grade and learning depth are editorial decisions and do not redefine the Skill's cross-grade identity. Use short child-native language and meaningful equivalent interactions for visual, nonvisual, mobile and multilingual learners.
+
+    ## Prerequisites
+
+    - Recognize equal-sized pieces of a single fixed whole.
+    - Read and construct 1/2, 2/4, 1/3 and 2/6 using the correct numerators and denominators.
+    - Explain that numerator counts selected parts while denominator names how many equal parts partition the same whole.
+
+    These are assumed competencies, not claims that a preceding Playground Lesson proves mastery. Missing prerequisites require separate support.
+
+    ## Target Skills
+
+    - [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts) — original canonical Mathematics Skill retained with exact UUID, names, multilingual metadata and methodological description.
+
+    ## Expected learning outcomes
+
+    - Build two equal-length bar models showing 1/2 and 2/4 shaded, aligned with the same reference whole.
+    - State why 1/2 and 2/4 name the same proportion despite different-looking part divisions.
+    - Identify 2/6 as equal to 1/3 when drawn using the same whole.
+    - Reject 1/2 = 2/6 using a same-whole model.
+    - Explain that equal fractions can shade different absolute-sized areas if displayed on different-sized wholes, so a same-whole visual comparison is needed.
+
+    Observe explanations and transfer behaviors, not mere clicks or answer reveals. Formal assessment and scores are outside this editorial batch.
+
+    ## Essential subject matter and depth
+
+    Compare models only when the reference wholes have identical lengths/areas. A 12-unit bar split into 2 equal chunks of 6, one shaded, covers 6/12. The same 12-unit bar split into 4 chunks of 3, two shaded, also covers 6/12: 1/2 = 2/4. Another 12-unit bar split into 3 chunks of 4, one shaded, and into 6 chunks of 2, two shaded, each cover 4/12: 1/3 = 2/6. Contrast 1/2 versus 2/6 on the same 12-unit bar: 6/12 versus 4/12, not equal. Fractions as numbers are still equivalent independent of how large the physical whole is; only direct shaded-area comparison requires identical wholes.
+
+    **Verified model cases:** With the identical 12-unit reference strip: 1/2 = 6 units, 2/4 = 6 units, 1/3 = 4 units, 2/6 = 4 units; 2/6 ≠ 1/2. Splits are equal size within each model. Side-by-side aligned strips have a common starting edge. Use counted lengths and accessible textual numeric comparisons as a full alternative to graphics.
+
+    ## Conceptual progression and dependencies
+
+    Recall the relevant earlier model, ask a precise prediction, allow an active inspection, reveal a mathematically justified counterexample, then offer a new transfer condition. Two parallel, same-start bars with independently selectable partitions of one reference length (12 units) and shading presets 1/2, 2/4, 1/3, 2/6; all comparisons expose the shaded length and the selected-part count. A clearly labelled alternative 24-unit whole appears only for whole-dependence transfer. The Screenwriter can adjust pacing within this conceptual boundary after Methodologist approval.
+
+    ## Misconceptions, examples and boundaries
+
+    - Bigger numerator and denominator always mean more of the whole.
+    - Fractions are equal only when their symbols match.
+    - The number of shaded pieces alone decides the amount.
+    - One half of a short bar and two quarters of a long bar should have the same absolute shaded length.
+    - 1/2 and 2/6 are equal because both examples show two numbers.
+
+    **Explicit exclusions:** Defer simplification algorithms, multiplying numerator and denominator symbolically, all fraction arithmetic, common-denominator comparison and values above one. Describe the preserving relation conceptually; do not assume equivalence is established by looking at different-sized wholes.
+
+    ## Localization, accessibility and offline intent
+
+    All future client-facing text, controls, feedback, Scene state descriptions, labels and any narration need **real** meaning-preserving translations for every supported locale. No silent English fallback, placeholder locale or missing dictionary key is acceptable. RTL adapts semantic reading and control order without changing mathematical quantities, fraction values, bar scale, data category labels or chronological meaning. Provide complete keyboard, touch and assistive-technology routes; equivalent alternatives for essential visual information; visible focus, contrast, reduced motion, readable small screens and WCAG 2.2 AA review. Once packaged for PWA download, all educational states must work offline and on weak devices; these are future implementation gates, not shipped functionality.
+
+    ## Sources and factual verification
+
+    - Canonical Skill [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts), including preserved methodological definition and names.
+    - [Lesson editorial architecture](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/architecture/lesson-editorial-document.md), [Lesson entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson.md), [Section entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/section.md) and [Lesson Content entity](https://github.com/KiT-Maverik/svitlo/blob/main/studio/docs/entities/lesson-content.md).
+    - Worked factual example model: With the identical 12-unit reference strip: 1/2 = 6 units, 2/4 = 6 units, 1/3 = 4 units, 2/6 = 4 units; 2/6 ≠ 1/2. Splits are equal size within each model. Side-by-side aligned strips have a common starting edge. Use counted lengths and accessible textual numeric comparisons as a full alternative to graphics.
+
+    ## Curriculum / Program compatibility
+
+    Standalone and Program-neutral: no presumed national curriculum endorsement, story, mascot, external participant, grade-lock or previous account state. Links to prerequisite math ideas are conceptual only.
+
+    ## Open editorial decisions
+
+    - **Methodologist:** Review the distinction between equivalence of fraction numbers and differing absolute shaded areas when the wholes differ; avoid making larger-whole diagrams appear to disprove equivalence.
+    - **Methodologist:** accept the Grade 3 audience, prerequisites and observable learning outcomes.
+    - **Screenwriter / Scene reviewer:** review the separate provisional documents after explicit Methodologist sign-off.
+    - **Coding Agent / QA:** eventually verify true locale completeness, LTR/RTL, nonvisual parity, offline delivery, tests and weak-device behavior. No implementation is claimed.
+
+    ## Methodologist handoff
+
+    **Draft, not approved.** The accompanying Content and Scene spec are explicitly **provisional**, prepared as a batch deliverable without treating Methodologist approval as granted. There is no Lesson runtime config, Questions, Quiz, assessment, scoring, Notes entity or Scene React code in this batch.
+  productionNotes: |
+    All original editorial statuses remain Draft / provisional. No Methodologist, Screenwriter, or Scene approval is implied. No Lesson TypeScript, translation, Scene implementation, Question, Quiz or Note is generated.
+
+    ## Original Screenwriter introduction
+
+    # Equal Fractions, Different Pieces — Lesson Content
+
+    **Editorial status: Provisional Draft — pending Methodologist approval; not formally approved.**
+    **Audience:** Grade 3 (approximately 8–9).
+    **Methodologist input:** Draft Methodologist Brief (full original source: production.methodology).
+    **Target Skill:** [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts).
+    **Standalone:** No Program story, imported Quiz, scored Question, progress gate, runtime Lesson code or assembled locale bundle is created.
+
+    ## Learner experience and teaching logic
+
+    Use aligned visual representations of the same-sized whole to demonstrate that different numerator/denominator pairs can cover the same fraction of a whole, especially 1/2 = 2/4 and 1/3 = 2/6.
+
+    Earlier Lessons established a reference whole, unit fractions, multiple equal parts and how the numerator/denominator are read. The visual conservation of amount follows directly before symbolic comparison or fraction arithmetic. The activity builds toward an explanation by the learner, not automatic mastery from making a choice. Two parallel, same-start bars with independently selectable partitions of one reference length (12 units) and shading presets 1/2, 2/4, 1/3, 2/6; all comparisons expose the shaded length and the selected-part count. A clearly labelled alternative 24-unit whole appears only for whole-dependence transfer.
+
+    **Scope boundary:** Defer simplification algorithms, multiplying numerator and denominator symbolically, all fraction arithmetic, common-denominator comparison and values above one. Describe the preserving relation conceptually; do not assume equivalence is established by looking at different-sized wholes.
+
+    The Sections below use the existing block types `text`, `markdown` and `scene`, arranged in one **vertical top-to-bottom column**. `EquivalentFractionStudio` is **proposed** and is not a registered/implemented Scene. There are no invented custom Resource discriminators or server APIs.
+
+    ## Learning journey
+
+    1. **One whole, different cuts.** Show that equal absolute shaded length in equal-sized strips is conserved.
+    2. **What stays equal when parts change?.** Connect both numerator/denominator changes to the constant covered amount.
+    3. **A second pair—and a near miss.** Generalize to thirds/sixths while ruling out look-alike numerators.
+    4. **Why the whole must be clear.** Distinguish fraction equality from the area drawn on differently sized wholes.
+
+    ## Section scripts (ordered Resources)
+
+
+    ## Original Screenwriter concluding notes
+
+    ## Bespoke interactive Scene — provisional
+
+    - EquivalentFractionStudio (full original source: Scene production.specification) is a proposed **self-contained, prop-free** Scene. It owns only its local learning model and explanation state. It has no runtime implementation yet; if reused by multiple sections, each instance should maintain independent state.
+
+    ## Independent transfer prompt
+
+    On two same-sized strips, show 1/3 and 2/6. State why these names are equal, and contrast 1/2 with 2/6 without relying on the symbols alone.
+
+    Learners should first predict or justify their thinking without copying the original example. Reveal a correct worked explanation only on request or after an attempt. This remains instruction, **not scored mastery assessment**.
+
+    ## Proposed Lesson Note — product concept only
+
+    “Equivalent fractions cover the same part of a chosen whole: 1/2 = 2/4 and 1/3 = 2/6.”
+
+    **Editorial unlock proposal:** Make this cue available after the learner inspects the explicit misconception contrast in Section 3 and explains it. The Note entity, unlock API, offline notes persistence and automatic spaced review are not implemented by this content plan; the explanation stays available regardless.
+
+    ## Source verification and content constraints
+
+    The canonical [equivalentVisual.data.ts](https://github.com/KiT-Maverik/svitlo/blob/main/content/math/data/skills/fractions/representation/skills/equivalentVisual.data.ts) governs Skill meaning; its UUID, definition and multilingual translations are unchanged. With the identical 12-unit reference strip: 1/2 = 6 units, 2/4 = 6 units, 1/3 = 4 units, 2/6 = 4 units; 2/6 ≠ 1/2. Splits are equal size within each model. Side-by-side aligned strips have a common starting edge. Use counted lengths and accessible textual numeric comparisons as a full alternative to graphics.
+
+    All runtime copy requires complete, authentic translation into every configured locale; this English editorial script is _not_ runtime locale coverage. The proposed Scene's essential functions need nonvisual equivalence, mobile usability, semantic RTL, and offline availability. These are requirements for implementation review, not a declaration that they pass.
+
+    ## Approvals and implementation boundary
+
+    **Methodologist approval pending. Screenwriter and Scene editorial approval pending.** Assessment Architect owns any Questions/Quiz, scoring and competency evidence. Coding Agent owns runtime Lesson/Scene, provider-free public Scene interface, localizations, tests and offline support. No scoring, Program content or runtime configuration is added.
