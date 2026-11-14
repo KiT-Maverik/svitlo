@@ -1,8 +1,8 @@
 import { defineContentSection, defineMarkdown, defineScene, defineText } from '@svitlo/engine/build';
 
-export const section2EqualityDoesNotJustAnnounceTheAnswer_Section = defineContentSection({
+export const equalityDoesNotJustAnnounceTheAnswer = defineContentSection({
   id: "7d878524-7eea-41af-853d-c4ad86502026",
-  slug: "section2EqualityDoesNotJustAnnounceTheAnswer",
+  slug: "equalityDoesNotJustAnnounceTheAnswer",
   type: "content",
   params: {},
   locale: {

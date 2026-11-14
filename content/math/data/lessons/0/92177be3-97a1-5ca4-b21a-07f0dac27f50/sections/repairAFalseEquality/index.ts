@@ -1,8 +1,8 @@
 import { defineContentSection, defineMarkdown, defineScene, defineText } from '@svitlo/engine/build';
 
-export const section3RepairAFalseEquality_Section = defineContentSection({
+export const repairAFalseEquality = defineContentSection({
   id: "8df044b7-521a-4977-88bd-3599a7573859",
-  slug: "section3RepairAFalseEquality",
+  slug: "repairAFalseEquality",
   type: "content",
   params: {},
   locale: {

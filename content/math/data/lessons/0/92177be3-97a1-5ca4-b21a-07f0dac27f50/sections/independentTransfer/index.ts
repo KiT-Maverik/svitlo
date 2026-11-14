@@ -1,8 +1,8 @@
 import { defineContentSection, defineMarkdown, defineText } from '@svitlo/engine/build';
 
-export const section4IndependentTransfer_Section = defineContentSection({
+export const independentTransfer = defineContentSection({
   id: "2f4afed8-5ba5-42fb-8ee6-9465aa098846",
-  slug: "section4IndependentTransfer",
+  slug: "independentTransfer",
   type: "content",
   params: {},
   locale: {

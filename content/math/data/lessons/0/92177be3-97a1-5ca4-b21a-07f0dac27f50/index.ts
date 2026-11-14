@@ -1,10 +1,8 @@
 // Scaffolded by shared/engine/scripts/lessonBuilder/lessonBuilder.mjs; DRAFT FOR AI EDITING.
 // Draft content sha256: d552c695dfb4a8ef0b98d56390c434b5224c76bb762c464ccaa8655f8bcd0472
 import { defineLesson } from '@svitlo/engine/build';
-import { predictWhetherTwoAmountsMatch } from './sections/section1PredictWhetherTwoAmountsMatch';
-import { section2EqualityDoesNotJustAnnounceTheAnswer_Section } from './sections/section2EqualityDoesNotJustAnnounceTheAnswer';
-import { section3RepairAFalseEquality_Section } from './sections/section3RepairAFalseEquality';
-import { section4IndependentTransfer_Section } from './sections/section4IndependentTransfer';
+
+import {section} from "./sections";
 
 export const equalsMeansSameValue_Lesson = defineLesson({
   id: "92177be3-97a1-5ca4-b21a-07f0dac27f50",
@@ -32,20 +30,7 @@ export const equalsMeansSameValue_Lesson = defineLesson({
       en: "The Equals Sign Means Same Value"
     }
   },
-  section: {
-    items: {
-      predictWhetherTwoAmountsMatch,
-      section2EqualityDoesNotJustAnnounceTheAnswer: section2EqualityDoesNotJustAnnounceTheAnswer_Section,
-      section3RepairAFalseEquality: section3RepairAFalseEquality_Section,
-      section4IndependentTransfer: section4IndependentTransfer_Section
-    },
-    order: [
-      "predictWhetherTwoAmountsMatch",
-      "section2EqualityDoesNotJustAnnounceTheAnswer",
-      "section3RepairAFalseEquality",
-      "section4IndependentTransfer"
-    ]
-  },
+  section,
   flashcards: {
     items: {},
     order: []
