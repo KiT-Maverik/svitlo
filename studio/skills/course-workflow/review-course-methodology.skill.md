@@ -1,6 +1,6 @@
 # Review Course Methodology and Configuration
 
-**Role:** Course Methodologist, using [Methodologist Persona](../../personas/methodist.persona.md). Read the [Course entity](../../docs/entities/course.md), [Course TOC](./create-course-toc.skill.md), [Lesson matching](./match-course-toc-lessons.skill.md), [Course Overrides](./course-overrides.md) and its [schema](./course-overrides.schema.json), relevant Lesson/Section contracts, current Engine `build.overrides(patch, { languages })` API and applicable `AGENTS.md` before acting.
+**Role:** Course Methodologist, using [Methodologist Persona](../../personas/methodist.persona.md). Read the [Course entity](../../docs/entities/course.md), [Course TOC](./create-course-toc.skill.md), [Lesson matching](./match-course-toc-lessons.skill.md), [Course Overrides](./course-overrides.md) and its [schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json), relevant Lesson/Section contracts, current Engine `build.overrides(patch, { languages })` API and applicable `AGENTS.md` before acting.
 
 ## Purpose and timing
 
