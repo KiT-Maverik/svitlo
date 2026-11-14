@@ -248,6 +248,18 @@ describe('accessible Question labels', () => {
     expect(() => questionBlockLabel(block, 'ar')).toThrow('Missing localized content at video.title for ar');
   });
 
+  it('rejects subtitles as question labels until a synchronized media renderer exists', () => {
+    expect(() =>
+      questionBlockLabel({
+        id: uuid(102),
+        slug: 'captions',
+        type: 'subtitles',
+        params: {},
+        locale: { fileLocation: '/captions.en.vtt' },
+      }),
+    ).toThrow('Subtitles cannot be used as standalone question labels');
+  });
+
   it('strips Markdown syntax from a choice label using canonical locale Props', () => {
     expect(
       questionBlockLabel({
