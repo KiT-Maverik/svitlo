@@ -75,6 +75,110 @@ export function draftYamlSchema(kind, configSchema) {
   return schema;
 }
 
+/**
+ * Compose the checked-in hand-authored production.schema.json with the
+ * Engine-derived Config schema. Each entity node receives exactly one
+ * config (single identity) and an optional production handoff.
+ *
+ * The original *.schema.json remains a Config-only editor guide.
+ * This separate *.scaffold.schema.json is the actual config.yaml editor guide.
+ * No Zod/AJV validation is performed inside either TypeScript scaffolder.
+ */
+export function scaffoldYamlSchema(kind, authoredConfig) {
+  // Production definitions remain manually authored. Embed a snapshot into
+  // the composed editor schema so nested $refs work without network access.
+  const productionPath = path.join(yamlSchemaOutputRoot, 'production.schema.json');
+  const production = JSON.parse(fs.readFileSync(productionPath, 'utf8'));
+  if (!production.$defs || typeof production.$defs !== 'object') {
+    throw new Error('Missing manual production schema definitions: ' + productionPath);
+  }
+  const original = structuredClone(authoredConfig);
+  const { $schema, $defs = {}, ...raw } = original;
+  delete raw.$id;
+  delete raw.title;
+  // A source-language marker belongs in production, never defineLesson/defineCourse.
+  if (raw.properties) delete raw.properties.documentLanguage;
+  if (Array.isArray(raw.required)) raw.required = raw.required.filter(key => key !== 'documentLanguage');
+
+  const sectionKinds = new Set(engine.sectionTypes ?? []);
+  const questionKinds = new Set(engine.questionTypes ?? []);
+  const resolveType = schema => {
+    if (typeof schema?.const === 'string') return schema.const;
+    if (typeof schema?.$ref === 'string' && schema.$ref.startsWith('#/$defs/')) {
+      return $defs[schema.$ref.slice('#/$defs/'.length)]?.const;
+    }
+    return undefined;
+  };
+  const productionName = (type, properties) => {
+    if (type === 'lesson' && properties.lessonId) return 'lessonReference';
+    if (sectionKinds.has(type)) return 'section';
+    if (questionKinds.has(type)) return 'question';
+    if (['lesson', 'course', 'episode', 'image', 'audio', 'video', 'scene', 'flashcard'].includes(type)) return type;
+    return 'default';
+  };
+  function wrap(node) {
+    if (Array.isArray(node)) return node.map(wrap);
+    if (!node || typeof node !== 'object') return node;
+    const properties = node.properties;
+    const type = resolveType(properties?.type);
+    const entity = type && (properties?.id || properties?.lessonId);
+    const config = Object.fromEntries(Object.entries(node).map(([key, value]) => [key, wrap(value)]));
+    if (!entity) return config;
+    const identity = properties?.lessonId ? 'lessonId' : 'id';
+    config.required = [...new Set([...(config.required ?? []), identity, 'type'])];
+    return {
+      type: 'object',
+      properties: {
+        config,
+        production: { $ref: '#/$defs/__production/$defs/' + productionName(type, properties) },
+      },
+      required: ['config'],
+      additionalProperties: false,
+    };
+  }
+  const envelope = wrap(raw);
+  // The Lesson source language is required for deterministic locale pruning.
+  if (kind === 'lesson') envelope.required = ['config', 'production'];
+  // Embed the separate Course Build patch guide so the editor never needs
+  // another JSON Schema file. Rebase its own $defs, not production pointers.
+  let embeddedOverrides;
+  if (kind === 'course') {
+    const overrides = courseOverridesSchema(original);
+    for (const key of ['$schema', '$id', 'title', 'description']) delete overrides[key];
+    function scopeOverrideRefs(node) {
+      if (Array.isArray(node)) return node.map(scopeOverrideRefs);
+      if (!node || typeof node !== 'object') return node;
+      return Object.fromEntries(
+        Object.entries(node).map(([key, value]) => [
+          key,
+          key === '$ref' &&
+          typeof value === 'string' &&
+          value.startsWith('#/$defs/') &&
+          !value.startsWith('#/$defs/__production/')
+            ? '#/$defs/__overrides/$defs/' + value.slice('#/$defs/'.length)
+            : scopeOverrideRefs(value),
+        ]),
+      );
+    }
+    embeddedOverrides = scopeOverrideRefs(wrap(overrides));
+    envelope.properties.overrides = { $ref: '#/$defs/__overrides' };
+  }
+  return {
+    $schema,
+    $id: 'https://svitlo.dev/engine/yaml-schemas/' + kind + '.scaffold.schema.json',
+    title: 'Svitlo ' + kind + ' unified config.yaml authoring draft',
+    description:
+      'Config is derived from Engine Zod; production references manually owned production.schema.json. ' +
+      'Intentionally incomplete Config may generate TypeScript that fails typechecking by design.',
+    ...envelope,
+    $defs: {
+      ...Object.fromEntries(Object.entries($defs).map(([name, schema]) => [name, wrap(schema)])),
+      __production: { $defs: structuredClone(production.$defs) },
+      ...(embeddedOverrides ? { __overrides: embeddedOverrides } : {}),
+    },
+  };
+}
+
 /** Derive a guide to the direct Course Build API patch, not legacy operations. */
 export function courseOverridesSchema(course) {
   const collection = {
@@ -164,6 +268,10 @@ export function yamlJsonSchemaDocuments() {
   );
   const course = JSON.parse(documents['course.schema.json']);
   documents['courseOverrides.schema.json'] = JSON.stringify(courseOverridesSchema(course), null, 2) + '\n';
+  for (const kind of ['lesson', 'course']) {
+    documents[kind + '.scaffold.schema.json'] =
+      JSON.stringify(scaffoldYamlSchema(kind, JSON.parse(documents[kind + '.schema.json'])), null, 2) + '\n';
+  }
   return documents;
 }
 

@@ -8,6 +8,31 @@ The source files live in `configurators/yaml/`. Each polymorphic nested
 node retains its required `type` literal, and the build-time factory name
 registry `yamlFactoryByType` provides explicit `type -> define*` dispatch.
 
+## Unified Config + production editor contract
+
+For the new single-file `config.yaml` source, each entity node is
+`{ config: <Engine Config>, production?: <authoring-only needs> }`. Technical
+configuration is generated from existing Engine Zod; production requirements
+are **manually authored** in
+`shared/engine/yaml-schemas/production.schema.json` (per entity kind).
+`generateYamlSchemas.mjs` composes those two contracts into the checked-in
+`lesson.scaffold.schema.json` and `course.scaffold.schema.json`. These
+compositions share the node's single identity in `config.id`, and production
+never reaches `define*`, Overrides or Props. The composed editor documents have
+only internal `$ref` pointers, embedding both manual production definitions and
+the Course's direct Build overrides guide. Source language provenance is
+`production.documentLanguage`.
+
+The existing Config-only editor schemas and direct
+`courseOverrides.schema.json` remain separately generated. This is
+**editor guidance only**: neither TypeScript scaffolder validates full inputs
+or tries to make generated source compile. Incomplete TS **fails typecheck by
+design** where a media asset/Scene/import/translation is pending.
+
+Production schema changes are edited by hand, not overwritten by the JSON
+schema generator. A subsequent specialist implements missing resources from
+generated UUID-addressed `specification.md` and resolves TypeScript errors.
+
 ## Generate
 
 From the monorepo root:
@@ -20,7 +45,7 @@ node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.m
 ```
 
 Generated, reviewable JSON Schemas are written to
-`shared/engine/yaml-schemas/{contentBlock,section,question,flashcard,lesson,episode,course,courseOverrides}.schema.json`.
+`shared/engine/yaml-schemas/{contentBlock,section,question,flashcard,lesson,episode,course,courseOverrides}.schema.json` plus `lesson.scaffold.schema.json` and `course.scaffold.schema.json`. Manual `production.schema.json` is not generated.
 The `--check` command is read-only and detects stale/absent files.
 
 These schemas describe _authored Config structure_, not published Props and

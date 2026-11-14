@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import ts from 'typescript';
+import yaml from 'yaml';
 import {
   normalizeCourseSource,
   parseArguments,
@@ -559,4 +560,184 @@ test('Course uses the same canonical Engine registry and prunes explicit source-
   assert(!code.includes('DROP_ME'));
   assert(!code.includes('"documentLanguage"'));
   assert(code.includes('"languages": ['));
+});
+
+const courseNodeTypes = new Set([
+  'course',
+  'module',
+  'chapter',
+  'episode',
+  'lesson',
+  'content',
+  'practice',
+  'codingTask',
+  'learningFlow',
+  'flashcards',
+  'quiz',
+  'text',
+  'markdown',
+  'image',
+  'scene',
+  'audio',
+  'video',
+  'youtube',
+  'carousel',
+  'carouselSlide',
+  'checkpoint',
+  'checkpointItem',
+]);
+function wrapCourseNodes(value) {
+  if (Array.isArray(value)) return value.map(wrapCourseNodes);
+  if (!value || typeof value !== 'object') return value;
+  const fields = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, wrapCourseNodes(child)]));
+  return courseNodeTypes.has(value.type) ? { config: fields } : fields;
+}
+
+test('single Course config.yaml emits TypeScript, methodology and direct Build overrides', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-unified-yaml-'));
+  const folder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  fs.mkdirSync(folder, { recursive: true });
+  try {
+    const input = {
+      config: wrapCourseNodes(source).config,
+      production: {
+        documentLanguage: 'uk',
+        methodology: '# Course methodology\\n\\nTeach astronomy in ordered steps.',
+      },
+      overrides: { content: { items: { opening: { params: { sections: { allowSkipping: false } } } } } },
+    };
+    fs.writeFileSync(path.join(folder, 'config.yaml'), yaml.stringify(input));
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    const file = path.join(folder, 'spaceCourse.data.ts');
+    const code = fs.readFileSync(file, 'utf8');
+    assert(code.includes('defineCourse('));
+    assert(code.includes('defineModule('));
+    assert(code.includes('spaceCourse_Course.build.overrides('));
+    assert(!code.includes('"production"') && !code.includes('"methodology"'));
+    assert(!code.includes('"documentLanguage"'));
+    assert.match(fs.readFileSync(path.join(folder, 'methodology.md'), 'utf8'), /Teach astronomy/);
+    assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+    await main(['--package', 'content/math', '--course', courseId, '--check'], root);
+    fs.writeFileSync(path.join(folder, 'config.yaml'), 'invalid: [\n');
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    assert.equal(fs.readFileSync(file, 'utf8'), code);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Course --config accepts a single YAML ID and writes into its derived UUID directory', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-id-addressed-'));
+  const input = path.join(root, 'content/math/staging/config.yaml');
+  const folder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  const authored = {
+    ...wrapCourseNodes(source),
+    production: { documentLanguage: 'uk', methodology: '# Canonical Course methodology' },
+  };
+  try {
+    fs.mkdirSync(path.dirname(input), { recursive: true });
+    fs.writeFileSync(input, yaml.stringify(authored));
+    const args = ['--package', 'content/math', '--config', 'content/math/staging/config.yaml'];
+    await main([...args, '--write'], root);
+    assert(fs.existsSync(path.join(folder, 'spaceCourse.data.ts')));
+    assert(fs.existsSync(path.join(folder, 'methodology.md')));
+    assert.equal(fs.existsSync(path.join(path.dirname(input), 'spaceCourse.data.ts')), false);
+    await main([...args, '--check'], root);
+    const code = fs.readFileSync(path.join(folder, 'spaceCourse.data.ts'), 'utf8');
+    await main([...args, '--write'], root);
+    assert.equal(fs.readFileSync(path.join(folder, 'spaceCourse.data.ts'), 'utf8'), code);
+    assert.throws(
+      () =>
+        parseArguments([
+          '--package',
+          'content/math',
+          '--course',
+          courseId,
+          '--config',
+          'content/math/staging/config.yaml',
+          '--write',
+        ]),
+      /Course Scaffolder.*ARGS/,
+    );
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('Course config.yaml emits Scene/media handoffs without inventing image sources or leaking production', async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'course-media-scaffold-'));
+  const sceneId = '00000000-0000-4000-8000-0000000000a1';
+  const imageId = '00000000-0000-4000-8000-0000000000a2';
+  const courseFolder = path.join(root, 'content/math/data/courses', courseId.at(-1), courseId);
+  const sceneSpec = path.join(root, 'content/math/scenes', sceneId.at(-1), sceneId, 'specification.md');
+  const imageSpec = path.join(root, 'content/math/data/assets', imageId.at(-1), imageId, 'specification.md');
+  const input = {
+    config: {
+      id: courseId,
+      type: 'course',
+      slug: 'draftCourse',
+      content: {
+        items: {
+          demo: {
+            config: {
+              id: '00000000-0000-4000-8000-0000000000a3',
+              type: 'episode',
+              slug: 'demo',
+              section: {
+                items: {
+                  intro: {
+                    config: {
+                      id: '00000000-0000-4000-8000-0000000000a4',
+                      type: 'content',
+                      slug: 'intro',
+                      content: {
+                        items: {
+                          illustration: {
+                            config: {
+                              id: imageId,
+                              type: 'image',
+                              slug: 'illustration',
+                              locale: { alt: { uk: 'Опис' } },
+                            },
+                            production: { purpose: 'Explain the scene', prompt: 'Two balanced groups of counters' },
+                          },
+                          interactive: {
+                            config: { id: sceneId, type: 'scene', slug: 'interactive' },
+                            production: { specification: '# Interactive equality demonstration' },
+                          },
+                        },
+                        order: ['illustration', 'interactive'],
+                      },
+                    },
+                  },
+                },
+                order: ['intro'],
+              },
+            },
+          },
+        },
+        order: ['demo'],
+      },
+    },
+    production: { documentLanguage: 'uk' },
+  };
+  try {
+    fs.mkdirSync(courseFolder, { recursive: true });
+    fs.writeFileSync(path.join(courseFolder, 'config.yaml'), yaml.stringify(input));
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    const code = fs.readFileSync(path.join(courseFolder, 'draftCourse.data.ts'), 'utf8');
+    assert.match(code, /defineScene\(/);
+    assert.match(code, /defineImage\(/);
+    assert.doesNotMatch(code, /"src":|Two balanced groups of counters|Interactive equality demonstration/);
+    assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
+    assert.match(fs.readFileSync(sceneSpec, 'utf8'), /Interactive equality demonstration/);
+    assert.match(fs.readFileSync(imageSpec, 'utf8'), /Two balanced groups of counters/);
+    fs.writeFileSync(sceneSpec, '# Independently edited scene specification');
+    fs.writeFileSync(path.join(courseFolder, 'config.yaml'), 'invalid: [\\n');
+    await main(['--package', 'content/math', '--course', courseId, '--write'], root);
+    assert.equal(fs.readFileSync(sceneSpec, 'utf8'), '# Independently edited scene specification');
+    assert.equal(fs.readFileSync(path.join(courseFolder, 'draftCourse.data.ts'), 'utf8'), code);
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });

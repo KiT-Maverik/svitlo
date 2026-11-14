@@ -9,15 +9,21 @@
  * sparse overrides are read directly in the single stateless Engine Build API
  * shape; obsolete ordered editorial override operations are unsupported.
  *
- * Studio's older skill-based toc.yaml is accepted as a partial editorial
- * source. The Engine Config format (type: course, content.items/order) is also
- * accepted directly. Editorial data not mapped to Config remains in YAML.
+ * The single config.yaml supports paired { config, production } nodes plus
+ * an optional root Build API overrides patch. Legacy editorial TOC inputs
+ * remain a distinct upstream authoring utility, not a publication source.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import YAML from 'yaml';
 import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import {
+  splitScaffoldDocument,
+  productionFiles,
+  checkProductionFiles,
+  writeProductionFiles,
+} from '../yamlScaffolding/productionScaffolding.mjs';
 
 const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
 const UUID = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -273,7 +279,14 @@ function exportIdentifier(slug) {
 }
 
 export function renderCourseSource(source, { slug, outputSlug, overrides } = {}) {
-  const course = normalizeCourseSource(source, slug);
+  // The new authoring envelope is deliberately unwrapped before factory dispatch.
+  // A separate editor schema, not this builder, describes production metadata.
+  const scaffold = record(source.config) ? splitScaffoldDocument(source) : undefined;
+  const input = scaffold
+    ? { ...scaffold.config, ...(scaffold.documentLanguage ? { documentLanguage: scaffold.documentLanguage } : {}) }
+    : source;
+  if (scaffold && overrides === undefined) overrides = scaffold.overrides;
+  const course = normalizeCourseSource(input, slug);
   const fileSlug =
     outputSlug ??
     slug ??
@@ -291,7 +304,7 @@ export function renderCourseSource(source, { slug, outputSlug, overrides } = {})
       'overrides.yaml must be a direct Course build.overrides patch; legacy editorial operations are unsupported',
     );
   }
-  const authoredPatch = overrides === undefined ? undefined : sourceAuthoringCopy(overrides, source.documentLanguage);
+  const authoredPatch = overrides === undefined ? undefined : sourceAuthoringCopy(overrides, input.documentLanguage);
   const patchExpression = authoredPatch === undefined ? undefined : renderValue(authoredPatch, state, 0, 'overrides');
   const imports = [...state.imports].sort();
   const lines = [
@@ -380,13 +393,14 @@ export function verifyOrWriteGenerated(filename, rendered, action) {
 }
 
 export function parseArguments(args) {
-  let packagePath, courseId, slug, sourceFilename, action;
+  let packagePath, courseId, slug, sourceFilename, configFile, action;
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--package') packagePath = args[++i];
     else if (arg === '--course') courseId = args[++i];
     else if (arg === '--slug') slug = args[++i];
     else if (arg === '--source') sourceFilename = args[++i];
+    else if (arg === '--config') configFile = args[++i];
     else if (arg === '--write' || arg === '--check') {
       if (action) fail('ARGS', 'choose exactly one action');
       action = arg;
@@ -394,51 +408,86 @@ export function parseArguments(args) {
   }
   if (
     !PACKAGE.test(packagePath ?? '') ||
-    !UUID.test(courseId ?? '') ||
+    (courseId === undefined) === (configFile === undefined) ||
+    (courseId !== undefined && !UUID.test(courseId)) ||
     (slug !== undefined && !/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(slug)) ||
-    (sourceFilename !== undefined && !['toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
+    (sourceFilename !== undefined && !['config.yaml', 'toc.yaml', 'course.yaml'].includes(sourceFilename)) ||
+    (configFile !== undefined && (sourceFilename !== undefined || !configFile.endsWith('/config.yaml'))) ||
     !action
   ) {
     fail(
       'ARGS',
       'usage: --package content/<book> --course <uuid> [--slug <slug>] ' +
-        '[--source toc.yaml|course.yaml] --write|--check',
+        '[--source config.yaml|toc.yaml|course.yaml] --write|--check OR --package content/<book> --config <path>/config.yaml --write|--check',
     );
   }
-  return { packagePath, courseId, slug, sourceFilename, action };
+  return { packagePath, courseId, slug, sourceFilename, ...(configFile !== undefined ? { configFile } : {}), action };
 }
 
 export async function main(args, repo = repoRoot) {
   const options = parseArguments(args);
-  const courseFolder = path.join(repo, options.packagePath, 'data/courses', options.courseId.at(-1), options.courseId);
-  noSymlinkComponents(courseFolder);
-  if (options.action === '--write') {
-    const existing = existingCourseDrafts(courseFolder);
-    if (existing.length) {
-      console.log(
-        'SKIP Course ' +
-          options.courseId +
-          ': existing ' +
-          existing.join(', ') +
-          ' in ' +
-          courseFolder +
-          '; no files modified',
-      );
-      return;
-    }
+  let courseId = options.courseId;
+  let courseFolder;
+  let sourceFilename;
+  let input;
+  let source;
+  if (options.configFile) {
+    // Direct source mode: the only authored Course ID is inside config.yaml.
+    input = path.resolve(repo, options.configFile);
+    const textbookRoot = path.resolve(repo, options.packagePath);
+    const relative = path.relative(textbookRoot, input);
+    if (relative.startsWith('..' + path.sep) || relative === '..' || path.isAbsolute(relative))
+      fail('PATH', 'config.yaml source must be inside its textbook: ' + input);
+    noSymlinkComponents(input);
+    if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
+    sourceFilename = 'config.yaml';
+    source = parseCourseYaml(fs.readFileSync(input, 'utf8'), sourceFilename);
+    courseId = source.config?.id;
+    if (!UUID.test(courseId ?? '') || source.config?.type !== 'course')
+      fail('INPUT', 'config.yaml must contain one Course config.id UUID and config.type');
   }
-  const sourceFilename =
-    options.sourceFilename ?? (fs.existsSync(path.join(courseFolder, 'course.yaml')) ? 'course.yaml' : 'toc.yaml');
-  const input = path.join(courseFolder, sourceFilename);
-  noSymlinkComponents(input);
-  if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
-  const source = parseCourseYaml(fs.readFileSync(input, 'utf8'), sourceFilename);
+  courseFolder = path.join(repo, options.packagePath, 'data/courses', courseId.at(-1), courseId);
+  noSymlinkComponents(courseFolder);
+  const skipExisting = () => {
+    const existing = existingCourseDrafts(courseFolder);
+    if (!existing.length) return false;
+    console.log(
+      'SKIP Course ' + courseId + ': existing ' + existing.join(', ') + ' in ' + courseFolder + '; no files modified',
+    );
+    return true;
+  };
+  if (options.action === '--write' && skipExisting()) return;
+  if (!options.configFile) {
+    sourceFilename =
+      options.sourceFilename ??
+      (fs.existsSync(path.join(courseFolder, 'config.yaml'))
+        ? 'config.yaml'
+        : fs.existsSync(path.join(courseFolder, 'course.yaml'))
+          ? 'course.yaml'
+          : 'toc.yaml');
+    input = path.join(courseFolder, sourceFilename);
+    noSymlinkComponents(input);
+    if (!fs.existsSync(input)) fail('INPUT', 'missing Course YAML: ' + input);
+    source = parseCourseYaml(fs.readFileSync(input, 'utf8'), sourceFilename);
+  }
+  const scaffold = sourceFilename === 'config.yaml' ? splitScaffoldDocument(source) : undefined;
+  const artifacts = scaffold ? productionFiles(courseFolder, scaffold.tasks) : [];
+  checkProductionFiles(artifacts, options.action === '--write' ? 'generate' : 'check');
+  // Legacy editorial TOC remains a separate authoring input. New config.yaml
+  // contains the complete technical draft AND its optional sparse Build patch.
   const overridesFilename = path.join(courseFolder, 'overrides.yaml');
-  noSymlinkComponents(overridesFilename);
-  const overrides = fs.existsSync(overridesFilename)
-    ? parseCourseYaml(fs.readFileSync(overridesFilename, 'utf8'), 'overrides.yaml')
-    : undefined;
-  const normalized = normalizeCourseSource(source, options.slug);
+  if (!scaffold) noSymlinkComponents(overridesFilename);
+  const overrides = scaffold
+    ? scaffold.overrides
+    : fs.existsSync(overridesFilename)
+      ? parseCourseYaml(fs.readFileSync(overridesFilename, 'utf8'), 'overrides.yaml')
+      : undefined;
+  const normalized = normalizeCourseSource(
+    scaffold
+      ? { ...scaffold.config, ...(scaffold.documentLanguage ? { documentLanguage: scaffold.documentLanguage } : {}) }
+      : source,
+    options.slug,
+  );
   const fileSlug =
     options.slug ??
     normalized.slug ??
@@ -446,10 +495,12 @@ export async function main(args, repo = repoRoot) {
   if (!/^[a-zA-Z][a-zA-Z0-9_-]*$/.test(fileSlug)) fail('SLUG', 'unsafe output slug: ' + fileSlug);
   const filename = path.join(courseFolder, fileSlug + '.data.ts');
   const content = renderCourseSource(source, { slug: options.slug, outputSlug: fileSlug, overrides });
+  if (options.action === '--write') fs.mkdirSync(courseFolder, { recursive: true });
   const changed = verifyOrWriteGenerated(filename, content, options.action);
+  const specs = options.action === '--write' && changed ? writeProductionFiles(artifacts) : 0;
   console.log(
     options.action === '--write' && !changed
-      ? 'SKIP Course ' + options.courseId + ': existing ' + path.basename(filename) + '; no files modified'
+      ? 'SKIP Course ' + courseId + ': existing ' + path.basename(filename) + '; no files modified'
       : (changed ? 'Scaffolded ' : 'Checked ') +
           filename +
           '; draft requires AI completion (no schema/TS/publication checks)',

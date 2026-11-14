@@ -12,7 +12,8 @@
  * table is Engine's yamlFactoryByType.ts (read as TypeScript syntax, not
  * executed or validated). Output contains only the source documentLanguage's
  * authored locale values; other languages are never invented.
- * Reads lesson.config.yaml, not Screenwriter-owned editorial content.yaml.
+ * Reads one config.yaml with { config, production } at each entity node.
+ * Production is authoring-only; TypeScript is intentionally incomplete.
  *
  * The separate generateLessonProps publisher is not invoked by this script.
  */
@@ -22,6 +23,12 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
 import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import {
+  splitScaffoldDocument,
+  productionFiles,
+  checkProductionFiles,
+  writeProductionFiles,
+} from '../yamlScaffolding/productionScaffolding.mjs';
 export { loadFactoryRegistry };
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
@@ -208,26 +215,29 @@ export function renderLessonDraft(lesson, language, factories = loadFactoryRegis
 
 /** The UUID path is an output-safety boundary, not editorial validation. */
 function targetFor(source, repo) {
-  const root = path.resolve(source);
-  noSymlinks(root);
+  const location = path.resolve(source);
+  noSymlinks(location);
+  const root = fs.statSync(location).isDirectory() ? location : path.dirname(location);
+  if (fs.statSync(location).isFile() && path.basename(location) !== 'config.yaml')
+    throw new Error('Expected config.yaml source: ' + location);
   const relative = path.relative(path.resolve(repo), root).split(path.sep).join('/');
-  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/data\/lessons\/([0-9a-f])\/([0-9a-f-]{36})$/.exec(relative);
-  if (!match || !uuidPattern.test(match[3]) || match[3].slice(-1) !== match[2])
-    throw new Error('Expected content/<book>/data/lessons/<last-uuid-hex>/<uuid>: ' + relative);
-  if (!fs.existsSync(path.join(repo, 'content', match[1], 'package.json')))
+  const match = /^content\/((?:languages\/)?[a-z][a-z-]*)\/(.+)$/.exec(relative);
+  if (!match) throw new Error('Expected source inside a textbook workspace: ' + relative);
+  const bookRoot = path.join(repo, 'content', match[1]);
+  if (!fs.existsSync(path.join(bookRoot, 'package.json')))
     throw new Error('Expected a textbook workspace for ' + relative);
-  return { root, lessonId: match[3] };
+  return { root, bookRoot, lessonId: uuidPattern.test(path.basename(root)) ? path.basename(root) : 'unresolved' };
 }
 
-/** Technical Config is a separate projection of Studio editorial plans. */
+/** The single YAML tree separates Engine Config from production guidance at every node. */
 function combineSources(root) {
-  const config = parseYaml(path.join(root, 'lesson.config.yaml'), 'lesson.config.yaml');
-  const { documentLanguage, ...lesson } = config;
+  const document = parseYaml(path.join(root, 'config.yaml'), 'config.yaml');
+  const { config: lesson, documentLanguage, tasks } = splitScaffoldDocument(document);
   if (typeof documentLanguage !== 'string' || !documentLanguage)
-    fail('lesson.config.yaml', 'documentLanguage', 'required source-language provenance');
+    fail('config.yaml', 'production.documentLanguage', 'required source-language provenance');
   if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
-    fail('lesson.config.yaml', 'slug', 'a safe camelCase slug is required for the output filename');
-  return { lesson, language: documentLanguage };
+    fail('config.yaml', 'config.slug', 'a safe camelCase slug is required for the output filename');
+  return { lesson, language: documentLanguage, tasks };
 }
 
 function writeDraft(file, content, mode) {
@@ -263,22 +273,51 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   const target = targetFor(source, repo);
   // An existing *.data.ts marks this UUID as already authored. Do not parse
   // or regenerate it: the source YAML may be outdated after AI editing.
-  const existing = fs
-    .readdirSync(target.root)
-    .filter(name => name.endsWith('.data.ts'))
-    .sort();
+  const sourceRelative = path.relative(target.bookRoot, target.root).split(path.sep).join('/');
+  const canonicalSource = /^data\/lessons\/[0-9a-f]\/[0-9a-f-]{36}$/.test(sourceRelative);
+  const existing = canonicalSource
+    ? fs
+        .readdirSync(target.root)
+        .filter(name => name.endsWith('.data.ts'))
+        .sort()
+    : [];
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
   }
-  const { lesson, language } = combineSources(target.root);
+  const { lesson, language, tasks } = combineSources(target.root);
+  if (typeof lesson.id !== 'string' || !uuidPattern.test(lesson.id))
+    fail('config.yaml', 'config.id', 'a Lesson UUID is required for ID-addressed output');
+  const outputFolder = path.join(target.bookRoot, 'data/lessons', lesson.id.at(-1), lesson.id);
+  noSymlinks(outputFolder);
+  // When source is outside the canonical target, derive the destination from
+  // the single authored config.id. Existing data is still never overwritten.
+  const destinationData = fs.existsSync(outputFolder)
+    ? fs
+        .readdirSync(outputFolder)
+        .filter(name => name.endsWith('.data.ts'))
+        .sort()
+    : [];
+  if (mode === 'generate' && destinationData.length) {
+    return { changed: 0, skipped: true, files: destinationData, lessonId: lesson.id };
+  }
+  const artifacts = productionFiles(outputFolder, tasks);
+  // Verify all authored production destinations before creating TS or Markdown.
+  checkProductionFiles(artifacts, mode);
   const draft = renderLessonDraft(lesson, language);
   const entryName = lesson.slug + '.data.ts';
-  for (const name of fs.readdirSync(target.root)) {
-    if (name.endsWith('.data.ts') && name !== entryName)
+  for (const name of destinationData) {
+    if (name !== entryName) {
       fail(name, '$', 'competing Lesson data entrypoint; refusing to create another');
+    }
   }
-  const changed = writeDraft(path.join(target.root, entryName), draft, mode);
-  return { changed, files: [entryName], lessonId: target.lessonId };
+  if (mode === 'generate') fs.mkdirSync(outputFolder, { recursive: true });
+  const changed = writeDraft(path.join(outputFolder, entryName), draft, mode);
+  const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
+  return {
+    changed: changed + specs,
+    files: [entryName, ...artifacts.map(item => item.file)],
+    lessonId: lesson.id,
+  };
 }
 
 function discover(repo) {
@@ -303,7 +342,7 @@ function discover(repo) {
         for (const entry of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
           if (!entry.isDirectory()) continue;
           const location = path.join(lessons, bucket.name, entry.name);
-          if (fs.existsSync(path.join(location, 'lesson.config.yaml'))) roots.push(location);
+          if (fs.existsSync(path.join(location, 'config.yaml'))) roots.push(location);
         }
       }
     }
@@ -315,7 +354,7 @@ export function main(args = process.argv.slice(2), repo = repoRoot) {
   const [mode, ...rest] = args;
   if (!['generate', 'check'].includes(mode) || (rest.length && !(rest.length === 2 && rest[0] === '--source')))
     throw new Error(
-      'Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/data/lessons/<bucket>/<uuid>]',
+      'Usage: node shared/engine/scripts/lessonBuilder/lessonBuilder.mjs generate|check [--source content/<book>/.../config.yaml|<canonical-lesson-folder>]',
     );
   const roots = rest.length ? [path.resolve(repo, rest[1])] : discover(repo);
   for (const root of roots) {

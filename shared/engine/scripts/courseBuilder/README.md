@@ -1,165 +1,108 @@
 # Course YAML → TypeScript draft scaffolder
 
-This Engine-owned script mechanically converts a **partly authored Course YAML**
-into a named TypeScript Config draft. It saves repetitive AI authoring work.
-It is **not** a validator, approval check, translator, Lesson resolver,
-typechecker, runtime component, or Props generator.
+The Course Builder creates **draft TypeScript**, not a completed Course,
+working Lesson, validation result or runtime resource. Its new primary input
+is one `content/<book>/data/courses/<bucket>/<uuid>/config.yaml` with paired
+`config` (Engine Config) and `production` (authoring-only) at each nested
+entity. It inherits the non-destructive output and draft-only rules from
+`../AGENTS.md` and PR #531.
 
-The output is a draft for an AI/editor to complete. Missing mandatory Config
-fields and missing translations are intentional and may produce TypeScript
-diagnostics **after** an editor begins completing the draft. Do not typecheck
-generated drafts as an acceptance criterion for this script.
-
-## Source shapes
-
-The script accepts either. The Config form can include an optional
-top-level `documentLanguage` provenance marker; it is removed from the
-emitted `defineCourse` Config and used to keep only source-language localized
-values (including nested values). Without this marker, already-authored
-localization maps are preserved rather than guessing an authoring locale.
-
-The script accepts either:
-
-- A direct Config-shaped course.yaml with type: course, slug,
-  params.languages, locale, and content: { items, order } when authored;
-  recursively nested Module/Chapter/Episode/Section items are converted to
-  matching define* calls.
-- The existing Studio toc.yaml editorial Course plan (kind:
-  course-toc-plan, with content arrays and children). Its courseId
-  becomes Config id, supportedLanguages becomes params.languages,
-  key becomes slug, and ordered arrays become items/order. Group titles
-  are copied **only** under locale.title[documentLanguage], except for
-  explicitly invariant titles. No group ID, scenario, Course title or
-  description is fabricated. Planning-only fields (skills, objectives, etc.)
-  stay in the original YAML for the subsequent editor to consult.
-
-Every polymorphic node is dispatched via the **single canonical Engine
-`shared/engine/configurators/yaml/yamlFactoryByType.ts` registry**. Nested
-Carousel slides, Checkpoint items, their mandatory Text questions and answer
-collections also become `define*` calls, not plain child objects.
-
-All polymorphic children must provide type. Unknown or absent discriminators
-fail with a path-specific diagnostic. No schema/semantic, approval or Lesson
-existence checks run here. The current Engine authoring schemas are defined in
-shared/engine/configurators/yaml/, and Engine authoring factories are
-imported from @svitlo/engine/build.
-
-### Existing standalone Lessons
-
-A type: lesson Course child is a **reference** to a previously authored,
-reusable Lesson, identified by lessonId. It does not become defineLesson.
-When YAML supplies safe, explicit relative import coordinates **bounded
-to the owning textbook's `data/lessons/` or the current Course directory**
-(including legitimate `../../../lessons/...` relative paths from its UUID
-folder), the script emits the import without an existence check:
+## Single-file Course authoring
 
 ```yaml
-type: lesson
-lessonId: d3048d21-8690-5255-b62c-984c69ac272c
-source:
-  path: lessons/intro.data.ts
-  export: intro_Lesson
+config:
+  id: 30ecbde1-97fd-5fe7-a353-ea89b9ef4a67
+  slug: spaceCourse
+  type: course
+  params:
+    languages: [en, uk]
+    prerequisites:
+      skills: []
+  locale:
+    title: { en: Space }
+    description: { en: Foundations of astronomy }
+  content:
+    items:
+      firstLesson:
+        config:
+          type: lesson
+          lessonId: d3048d21-8690-5255-b62c-984c69ac272c
+          # Optional source: { path: "../../../lessons/.../lesson.data.ts", export: lesson_Lesson }
+        production:
+          placementReason: Introduces the initial concept
+    order: [firstLesson]
+production:
+  documentLanguage: en
+  methodology: |
+    # Course methodology
+    Explain the goals, audience and teaching approach.
+overrides:
+  content:
+    items:
+      firstLesson:
+        params:
+          sections:
+            allowSkipping: false
 ```
 
-the draft includes that import. Otherwise it includes a clearly named
-UNRESOLVED_LESSON_N and a TODO recording the original UUID and location.
-The editor must resolve the actual import; no Lesson is fabricated and no
-implementation lookup is performed. Such unfinished drafts may not typecheck.
+The optional **root `overrides`** is an exact direct sparse patch for
+`course.build.overrides(patch, { languages })`, not the obsolete ordered
+editorial operations DSL. It shares the same YAML source and has no duplicate
+Course identity; new nested `additionalItems` may use the same wrapped
+Config nodes.
 
-### Optional Course-owned Build API overrides
+- `config` is derived from current Engine Config schemas, including
+  existing `params.languages` and `params.prerequisites`.
+- `production` is described by the manually owned
+  `shared/engine/yaml-schemas/production.schema.json`.
+- `course.scaffold.schema.json` composes both for editor guidance.
+  `course.schema.json` remains Config-only; `courseOverrides.schema.json`
+  describes the Build API patch.
+- `production.documentLanguage` selects the authored source locale and
+  is removed before `defineCourse`.
+- `production.methodology` may create a new `methodology.md` in the Course
+  UUID folder, with no overwrite of a pre-existing independent document.
+- Scene and media specifications in nested Episode/Section/ContentBlock
+  nodes use their own Config IDs for deterministic specification paths.
+- Existing `type: lesson` Course children refer to **standalone Lessons**.
+  They never instantiate new `defineLesson` objects. Missing import
+  coordinates remain explicit unresolved references/TODOs.
 
-The optional Course-local `overrides.yaml` is **the exact declarative patch
-argument** for the current stateless `course.build.overrides(patch, { languages })`
-API. There is **no** separate editorial operations format. The old
-`kind: course-lesson-overrides`, ordered `operations` lists, and
-`createLessonOverrides` API are unsupported and must not be consumed or
-silently converted.
+All generated TypeScript may be **invalid under TypeScript by design**
+until a later AI agent supplies required fields, real imports, Scene
+implementations, media and translations. The scaffolder must not attempt to
+make it typecheck with placeholders or type suppression.
 
-For example, given a Course whose `content.items.opening` is an imported
-standalone Lesson:
-
-```yaml
-content:
-  items:
-    opening:
-      params:
-        sections:
-          allowSkipping: false
-```
-
-The scaffolder emits `spaceCourse_Course.build.overrides(..., { languages: ... })`
-and exports the result as `spaceCourse_Overrides`. Nested Module and Chapter
-patches use `content.items.<slug>` at each level, exactly as in the current
-Build API. Additions use `additionalItems` with typed Config nodes; existing
-Lesson additions remain **references to imported standalone Lesson
-configurators**, never new Lesson definitions.
-
-The script emits an **authoring draft**; it does not evaluate or validate the
-Build API patch. An AI editor completes missing imports, translations and
-typed patches before normal TypeScript checks and publication. No Course
-operation may write to a standalone Lesson folder.
-
-`source.path` and `source.export` on a Course `type: lesson` node are optional
-TypeScript import coordinates, **not** an existence marker or an instruction
-to generate a Lesson. The Lesson is always owned by its independent UUID.
-If coordinates are missing, emit an unresolved reference and require explicit
-Lesson Production work or import resolution.
-
-## Run
-
-From the repository root (with npm workspace dependencies installed):
+## Usage
 
 ```sh
 node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
-  --package content/<textbook> \
-  --course <course-uuid> \
-  --slug <courseSlug> \
-  --write
+  --package content/<book> --course <course-uuid> --write
 
 node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
-  --package content/<textbook> \
-  --course <course-uuid> \
-  --slug <courseSlug> \
-  --check
+  --package content/<book> --course <course-uuid> --check
 
 node --test shared/engine/scripts/courseBuilder/courseBuilder.spec.mjs
 ```
 
---slug is optional when the YAML has its own safe slug. For old TOC input
-without an authored slug, supplying --slug names the output and explicitly
-provides the draft Config slug. Otherwise an ID-derived **filename only** is
-used and the required Config slug stays unfilled. An optional
---source course.yaml|toc.yaml selects the source; by default course.yaml
-wins if present, otherwise toc.yaml.
+A new single-ID invocation is also supported:
 
-The input directory is fixed at:
-
-```text
-content/<book>/data/courses/<last-uuid-hex-digit>/<course-uuid>/
-  course.yaml or toc.yaml
-  overrides.yaml  # optional
+```sh
+node shared/engine/scripts/courseBuilder/courseBuilder.mjs \
+  --package content/<book> --config content/<book>/staging/config.yaml --write
 ```
 
-The output is <courseSlug>.data.ts in the same directory, exporting
-<courseSlug>_Course = defineCourse(...) (non-identifier characters in export
-names become underscores).
+The `config.id` determines the Course UUID directory; no separate `--course` ID is supplied. For that mode the generator must read the source ID **before** checking the destination for existing `*.data.ts`, then SKIPs without modifying anything. For the older `--course` command, it still skips before parsing YAML.
 
-**Safe writes:** `--write` is creation-only. If **any `*.data.ts`** is
-already present in the Course UUID directory, the CLI prints
-`SKIP Course <uuid>: existing <file>; no files modified` and exits
-successfully, without parsing the YAML or changing source files. An individual
-output file is also protected by exclusive (`wx`) creation. `--check` is
-read-only and still reports missing or stale drafts; it never treats skipped
-files as fresh. To regenerate intentionally, review and manually remove/move
-the old data file first. Other files (`course.yaml`, `toc.yaml`, methodology,
-`overrides.yaml`) do not trigger skipping. Existing standalone Lesson files
-are never written or changed by the Course Builder.
+The builder chooses `config.yaml` when present. Its previously supported
+`course.yaml` and editorial `toc.yaml` sources remain available as distinct
+upstream draft inputs; they are not the new single-file contract. Legacy
+`overrides.yaml` is only read with those older source formats, never when
+`config.yaml` is selected.
 
-## Work that remains outside this script
-
-The following requires deliberate editorial/coordination work, not generator
-heuristics: completing Course/Module/Chapter identity fields; resolving
-existing Lesson imports; translating Course/group/episode copy; authoring
-Episode and Section content; completing direct Build API patches; validating Config types and
-publishing Course Props. Coordinate source-format changes with the Studio/schema
-workstream; do not silently alter the Engine schemas to accommodate a draft.
+**Creation-only:** if any `*.data.ts` already exists in the destination
+Course UUID folder, `--write` logs `SKIP` **before parsing YAML**, and writes
+nothing. Files are created exclusively and never overwritten. Divergent
+pre-existing `specification.md` / `methodology.md` handoffs are protected.
+`--check` remains strict and read-only; no Zod, AJV, full TS validation,
+content approvals, localization or Props publishing is performed.

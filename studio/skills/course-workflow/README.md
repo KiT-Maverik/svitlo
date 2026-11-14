@@ -20,10 +20,12 @@ The two reviews have distinct criteria and revision-specific sign-offs. They can
 
 The editorial TOC format is defined by [course-toc.schema.json](./course-toc.schema.json). Narrative, UX and production are independent optional operations.
 
+**New single-file technical handoff:** after independent editorial approvals, author `data/courses/<bucket>/<uuid>/config.yaml` with nested `config` and `production` nodes, one ID per entity, and optional root `overrides`. The Course Builder emits draft TypeScript and ID-addressed specifications; missing resource TypeScript errors are intentional. Legacy `toc.yaml` and methodology remain specialist inputs until explicitly migrated. See [Unified YAML handoff](../../docs/architecture/yaml-config-scaffolding.md).
+
 ## Approved Course-owned overrides
 
 [Course Build Overrides](./course-overrides.md) defines the **single supported**
-Course-owned override format. `overrides.yaml` contains a direct stateless
+Course-owned override format. `overrides.yaml` with older editorial inputs, or root `overrides` in the new `config.yaml`, contains a direct stateless
 `course.build.overrides(patch, { languages })` patch, guided by the
 [generated Engine Course Overrides Schema](../../../shared/engine/yaml-schemas/courseOverrides.schema.json).
 Legacy ordered editorial operations are obsolete and unsupported.
@@ -35,7 +37,7 @@ must not mutate any reusable standalone Lesson.
 
 ## Engine YAML draft handoff
 
-The editorial `toc.yaml` uses ordered arrays of skill-based slots; it is **not** a Config-shaped `defineCourse` YAML input. After Lesson matching and applicable approvals, a separate handoff converts verified Course/Module/Chapter/Episode nodes to typed `content: { items, order }` collections with explicit nested `type`, and each `type: lesson` item to an existing standalone `lessonId` reference. This handoff and [nested Course example](../../docs/architecture/yaml-config-scaffolding.md#partial-course-config-shaped-yaml-example) are governed by the actual [Engine YAML schemas](../../../shared/engine/scripts/generateYamlSchemas/README.md). They do not replace the Methodologist's plan or the Course's optional `overrides.yaml`.
+The editorial `toc.yaml` uses ordered arrays of skill-based slots; it is **not** a Config-shaped `defineCourse` YAML input. After Lesson matching and applicable approvals, a separate handoff converts verified Course/Module/Chapter/Episode nodes to typed `content: { items, order }` collections with explicit nested `type`, and each `type: lesson` item to an existing standalone `lessonId` reference. This handoff uses [the composed Course scaffold editor schema](../../../shared/engine/yaml-schemas/course.scaffold.schema.json) plus the manually defined [Production schema](../../../shared/engine/yaml-schemas/production.schema.json). It does not automatically approve or replace editorial Methodology/TOC; for new technical sources, the sparse Build patch is embedded as root `overrides` in `config.yaml`.
 
 ## Localization convention
 

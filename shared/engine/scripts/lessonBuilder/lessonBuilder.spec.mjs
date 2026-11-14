@@ -147,6 +147,18 @@ function makeFlashcards() {
   };
 }
 
+/** Model the author's single YAML file without changing existing Config fixtures. */
+function wrapEntityNodes(value) {
+  if (Array.isArray(value)) return value.map(wrapEntityNodes);
+  if (!value || typeof value !== 'object') return value;
+  const { __production: production, ...fields } = value;
+  const config = Object.fromEntries(Object.entries(fields).map(([key, child]) => [key, wrapEntityNodes(child)]));
+  if (typeof value.type === 'string' && typeof value.id === 'string') {
+    return { config, ...(production ? { production } : {}) };
+  }
+  return config;
+}
+
 function fixture(callback) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'svitlo-lesson-scaffolder-'));
   const workspace = path.join(root, 'content/playground');
@@ -158,14 +170,14 @@ function fixture(callback) {
   const questions = makeQuestions();
   const flashcards = makeFlashcards();
   const save = () => {
-    fs.writeFileSync(
-      path.join(lesson, 'lesson.config.yaml'),
-      yaml.stringify({
-        ...content,
-        questions: questions.questions,
-        flashcards: flashcards.flashcards,
-      }),
-    );
+    const { documentLanguage, __production, ...authored } = content;
+    const wrapped = wrapEntityNodes({
+      ...authored,
+      questions: questions.questions,
+      flashcards: flashcards.flashcards,
+      __production: { documentLanguage, ...__production },
+    });
+    fs.writeFileSync(path.join(lesson, 'config.yaml'), yaml.stringify(wrapped));
     // Specialist-owned editorial files are a different contract and remain
     // untouched by this technical draft scaffolder.
     fs.writeFileSync(path.join(lesson, 'content.yaml'), 'kind: lesson-content-plan\nstatus: draft\n');
@@ -251,7 +263,13 @@ test('preserves partial YAML instead of inventing required fields, locale values
     delete f.content.flashcards;
     fs.rmSync(path.join(f.lesson, 'questions'), { recursive: true });
     fs.rmSync(path.join(f.lesson, 'flashcards'), { recursive: true });
-    f.save = () => fs.writeFileSync(path.join(f.lesson, 'lesson.config.yaml'), yaml.stringify(f.content));
+    f.save = () => {
+      const { documentLanguage, ...config } = f.content;
+      fs.writeFileSync(
+        path.join(f.lesson, 'config.yaml'),
+        yaml.stringify({ config, production: { documentLanguage } }),
+      );
+    };
     f.save();
     runOne(f.lesson, 'generate', f.root);
     const code = fs.readFileSync(f.generated(), 'utf8');
@@ -359,7 +377,7 @@ test('existing authored and modified data files are skipped without any overwrit
 test('generation skips existing Lesson before parsing a stale YAML projection', () =>
   fixture(f => {
     fs.writeFileSync(f.generated(), 'export const alreadyAuthored = true;\n');
-    fs.writeFileSync(path.join(f.lesson, 'lesson.config.yaml'), 'invalid: [\n');
+    fs.writeFileSync(path.join(f.lesson, 'config.yaml'), 'invalid: [\n');
     assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
     assert.equal(fs.readFileSync(f.generated(), 'utf8'), 'export const alreadyAuthored = true;\n');
     assert.throws(() => runOne(f.lesson, 'check', f.root));
@@ -372,7 +390,7 @@ test('requires only dispatch and output essentials, not methodology, review or a
       id: id(99),
       slug: 'photo',
       type: 'image',
-      locale: { src: 'missing.png', alt: 'Опис' },
+      locale: { alt: 'Опис' }, // Intentionally missing src: TS must report this later.
     };
     f.save();
     assert.doesNotThrow(() => runOne(f.lesson, 'generate', f.root));
@@ -418,4 +436,106 @@ test('Lesson Config is independently discovered without repurposing editorial co
     assert.equal(runOne(f.lesson, 'generate', f.root).changed, 1);
     assert.match(fs.readFileSync(path.join(f.lesson, 'content.yaml'), 'utf8'), /lesson-content-plan/);
     assert.match(fs.readFileSync(f.generated(), 'utf8'), /defineLesson\(/);
+  }));
+
+test('one YAML source creates ID-addressed Scene/media specs and a methodology without inventing assets', () =>
+  fixture(f => {
+    const sceneId = id(51);
+    const imageId = id(52);
+    f.content.__production = { methodology: '# Lesson method\\n\\nExplain equality with counters.' };
+    f.content.section.items.intro.content.items.visualScene = {
+      id: sceneId,
+      slug: 'visualScene',
+      type: 'scene',
+      locale: { value: { uk: { button: 'Показати' } } },
+      __production: {
+        specification: '# Scene specification\\n\\nLearner compares equal groups.',
+      },
+    };
+    f.content.section.items.intro.content.items.visualImage = {
+      id: imageId,
+      slug: 'visualImage',
+      type: 'image',
+      locale: { alt: { uk: 'Дві рівні групи' } },
+      __production: { purpose: 'Show equality', prompt: 'Two groups of five counters.' },
+    };
+    f.save();
+    const result = runOne(f.lesson, 'generate', f.root);
+    assert.equal(result.changed, 4);
+    const workspace = path.join(f.root, 'content/playground');
+    const sceneSpec = path.join(workspace, 'scenes', sceneId.at(-1), sceneId, 'specification.md');
+    const imageSpec = path.join(workspace, 'data/assets', imageId.at(-1), imageId, 'specification.md');
+    assert.match(fs.readFileSync(sceneSpec, 'utf8'), /Learner compares equal groups/);
+    assert.match(fs.readFileSync(imageSpec, 'utf8'), /Two groups of five counters/);
+    assert.match(fs.readFileSync(path.join(f.lesson, 'methodology.md'), 'utf8'), /Lesson method/);
+    const code = fs.readFileSync(f.generated(), 'utf8');
+    assert.deepEqual(
+      calls(code).filter(x => x === 'defineScene'),
+      ['defineScene'],
+    );
+    assert.match(code, /defineImage\(/);
+    assert.doesNotMatch(code, /"__production"|"production"|"specification"/);
+    assert(!code.includes('Two groups of five counters.'));
+    const imageDraft = code.slice(code.indexOf('"visualImage": defineImage('));
+    assert.doesNotMatch(imageDraft, /"src"/); // Only this pending image has no src.
+    assert.equal(runOne(f.lesson, 'check', f.root).changed, 0);
+    const before = fs.readFileSync(sceneSpec, 'utf8');
+    assert.equal(runOne(f.lesson, 'generate', f.root).skipped, true);
+    assert.equal(fs.readFileSync(sceneSpec, 'utf8'), before);
+  }));
+
+test('conflicting previously authored specifications are protected before writing any TS', () =>
+  fixture(f => {
+    const sceneId = id(53);
+    f.content.section.items.intro.content.items.visualScene = {
+      id: sceneId,
+      slug: 'visualScene',
+      type: 'scene',
+      __production: { specification: '# Expected spec' },
+    };
+    f.save();
+    const spec = path.join(f.root, 'content/playground/scenes', sceneId.at(-1), sceneId, 'specification.md');
+    fs.mkdirSync(path.dirname(spec), { recursive: true });
+    fs.writeFileSync(spec, '# Edited by author');
+    assert.throws(() => runOne(f.lesson, 'generate', f.root), /refusing to overwrite/);
+    assert.equal(fs.existsSync(f.generated()), false);
+    assert.equal(fs.readFileSync(spec, 'utf8'), '# Edited by author');
+  }));
+
+test('single YAML config.id determines the Lesson UUID output path without checking input folder names', () =>
+  fixture(f => {
+    const staged = path.join(f.root, 'content/playground/staging/config.yaml');
+    const authoring = yaml.parse(fs.readFileSync(path.join(f.lesson, 'config.yaml'), 'utf8'));
+    const ownId = id(65);
+    authoring.config.id = ownId;
+    authoring.config.slug = 'stagedLesson';
+    fs.mkdirSync(path.dirname(staged), { recursive: true });
+    fs.writeFileSync(staged, yaml.stringify(authoring));
+    fs.writeFileSync(path.join(path.dirname(staged), 'unrelated.data.ts'), 'export const unrelated = true;\n');
+    const expected = path.join(f.root, 'content/playground/data/lessons', ownId.at(-1), ownId);
+    assert.equal(runOne(staged, 'generate', f.root).lessonId, ownId);
+    assert(fs.existsSync(path.join(expected, 'stagedLesson.data.ts')));
+    assert(!fs.existsSync(path.join(path.dirname(staged), 'stagedLesson.data.ts')));
+    assert.equal(runOne(staged, 'generate', f.root).skipped, true);
+    assert.equal(runOne(staged, 'check', f.root).changed, 0);
+  }));
+
+test('staged Lesson rejects malformed IDs and symlinked UUID destinations without writing files', () =>
+  fixture(f => {
+    const staging = path.join(f.root, 'content/playground/staging/config.yaml');
+    const source = yaml.parse(fs.readFileSync(path.join(f.lesson, 'config.yaml'), 'utf8'));
+    fs.mkdirSync(path.dirname(staging), { recursive: true });
+    source.config.id = '../unsafe';
+    fs.writeFileSync(staging, yaml.stringify(source));
+    assert.throws(() => runOne(staging, 'generate', f.root), /Lesson UUID is required/);
+    const newId = id(66);
+    source.config.id = newId;
+    fs.writeFileSync(staging, yaml.stringify(source));
+    const canonical = path.join(f.root, 'content/playground/data/lessons', newId.at(-1), newId);
+    fs.mkdirSync(path.dirname(canonical), { recursive: true });
+    const redirected = path.join(f.root, 'unsafe-output');
+    fs.symlinkSync(redirected, canonical, 'dir');
+    assert.throws(() => runOne(staging, 'generate', f.root), /Refusing symlink/);
+    assert.equal(fs.existsSync(redirected), false);
+    assert.equal(fs.existsSync(path.join(path.dirname(staging), 'lightLesson.data.ts')), false);
   }));

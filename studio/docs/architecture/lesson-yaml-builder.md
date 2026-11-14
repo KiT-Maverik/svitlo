@@ -1,50 +1,64 @@
 # Deterministic Lesson YAML → TypeScript draft scaffolder
 
-**Purpose:** Reduce repetitive authoring of `define*` TypeScript Config trees. This is build-time code scaffolding, **not** a Studio approval Skill, a completed Lesson generator, a YAML validator or a publisher.
+**Current input:** one `config.yaml` per Lesson UUID directory, with
+`{ config, production? }` at every nested entity node. See the
+[unified YAML authoring handoff](./yaml-config-scaffolding.md) and
+[actual Lesson Builder README](../../../shared/engine/scripts/lessonBuilder/README.md).
 
-The canonical authored YAML structure is defined by Engine's [composed Zod schemas](../../../shared/engine/configurators/yaml/) and the [generated editor JSON Schemas](../../../shared/engine/scripts/generateYamlSchemas/README.md). See the [Studio editorial-to-Config handoff](./yaml-config-scaffolding.md) for a concrete, nested Lesson sample and the source-language-only rule. Engine `yamlFactoryByType` resolves each explicit node `type` to its `define*` factory; **no** type can be inferred from an editorial plan's array position or block `key`.
+## Role and input
 
-## Inputs and distinct ownership
+The Engine-owned `shared/engine/scripts/lessonBuilder/lessonBuilder.mjs`
+selects `define*` factories through
+`shared/engine/configurators/yaml/yamlFactoryByType.ts`, unwraps only
+`config`, and mechanically emits a named `<slug>.data.ts` draft.
 
-Specialists own separate, independently reviewed editorial sources beneath the immutable Lesson UUID directory:
+`production` is a **separate typed authoring concern inside the same YAML
+file**. Its source language and production specifications may create
+UUID-addressed `specification.md` files for Scenes/media, plus a
+`methodology.md` handoff when explicitly supplied. The Scene itself,
+image/audio/video files, and translations are **not generated**.
+One identity comes from each node's `config.id`; no `sceneSpecKey`.
 
-- `methodology.md` (or existing legacy `methodologist-brief.md`): Methodologist scope, Skill links, audience, language plan and `assessmentPlan`.
-- `content.yaml`: Screenwriter's ordered learner experience and optional `scenes/*.scene-spec.md`.
-- `questions/questions.yaml`: Assessment Architect's complete Question bank and curated Quiz selections.
-- `flashcards/flashcards.yaml`: optional, separately approved recall bank, downstream of the approved Questions.
+The technical `config.yaml` is created from independently reviewed
+Methodologist/Screenwriter/Assessment/Flashcard sources when applicable.
+Migrating legacy `content.md` and `methodologist-brief.md` is explicitly
+authorized editorial work, never an automatic side effect of this builder.
+For new authoring, methodology text can live once in the YAML production
+section and be materialized as read-only derived Markdown.
 
-These files have their **own editorial schemas** and are **not** direct `defineLesson` Config YAML. An authorized technical handoff projects their relevant, independently reviewed data into **Config-shaped YAML** with permanent IDs, camelCase slugs, `type` at each polymorphic level, nested `{items,order}` collections, type-specific Question content, and explicitly resolved Question references. In particular, approved Quiz selections must be deliberately transferred into their Quiz Section `params.selection`; the scaffolder does not discover or approve that selection. Unresolved authoring and identity decisions remain explicit handoff blockers.
+## Two schema responsibilities
 
-The generated JSON Schemas are derived from **current Engine** Zod Config compositions; they must not be independently recreated in Studio or invoked as runtime validation by the scaffolder.
+- Existing `shared/engine/yaml-schemas/lesson.schema.json`: automatically
+  generated **Engine Config-only** guide from Zod, with typed child objects.
+- `shared/engine/yaml-schemas/production.schema.json`: manually maintained
+  production requirements by type.
+- `shared/engine/yaml-schemas/lesson.scaffold.schema.json`: automatically
+  composed editor schema for the single file's paired nodes.
 
-## Output and non-goals
+None of these is executed by the draft scaffolder as validation.
+`production.documentLanguage` selects source text, while
+`config.params.languages` retains the intended publication locales.
+Other language values are not fabricated.
 
-The Lesson scaffolder's output is **draft TypeScript source** calling the current build-time `defineLesson`, `define*` Section/ContentBlock/Question/Flashcard factories, where the Config-shaped input supports them. It may contain deliberately incomplete fields or only the editorial source locale; later Coding Agent completion remains necessary. Generated TS is **not promised to typecheck**, nor does it attest that a Lesson is pedagogically correct, reviewed, complete, localized or publishable. Actual supported CLI flags, input paths and output file naming must be read from the **current `shared/engine/scripts/lessonBuilder/` implementation and tests**, not inferred from the historical generator commands formerly listed in this document.
+## TypeScript failure is intentional
 
-The draft scaffolder must **not**:
+If a Lesson lacks `image.src`, localized strings, required Config fields,
+a Scene implementation, or referenced Question data, the scaffolded TypeScript
+**is expected to fail typechecking by design**. The next coding/media agent
+owns those errors and follows the recorded specifications. The scaffolder
+must not inject placeholders or suppress types to make CI green.
 
-- Check YAML with AJV or Zod, run whole-repository TypeScript validation, enforce editorial approvals, inspect Issue/PR sign-offs, or manufacture missing material.
-- Convert `content.yaml`, `questions/questions.yaml` or `flashcards/flashcards.yaml` directly as if the editorial schemas were Config schemas without the explicit handoff.
-- Fill missing languages, fake accessibility/media resources, silently invent Quiz parameters or change stable Lesson identity.
-- Generate publishable Props, invoke `generateLessonProps`, write localized published JSON, or run the Course Props pipeline. These are separate Engine tools and later stages.
+The scaffolder must not run Zod/AJV, TS checks, editorial approvals,
+`build.props()`, Props generation or publication. It is a code-shaping
+convenience, **not an acceptance or completion gate**.
 
-**Current Lesson CLI reads `lesson.config.yaml`**, a technical projection in the same UUID directory containing a top-level `documentLanguage` provenance marker alongside the Config-shaped fields. It does **not** read the Screenwriter's separate editorial `content.yaml` or raw specialist Question/Flashcard plans; their review and explicit projection happen upstream. The provenance marker is removed before emitting `defineLesson` and is not part of the Engine Config JSON Schema.
+## Creation-only write policy
 
-**Editor schema generation is a different command** (run against a built Engine workspace):
+`generate` skips the Lesson before parsing YAML when its destination UUID
+directory contains any `*.data.ts`. New drafts and requested handoff Markdown
+are created without overwriting unrelated or edited files; `check` is
+read-only and strict. Unsafe symlink paths remain rejected.
 
-```sh
-npm run package:build --workspace @svitlo/engine
-npm run content:generate:yaml-schemas --workspace @svitlo/engine
-npm run content:check:yaml-schemas --workspace @svitlo/engine
-node --test shared/engine/scripts/generateYamlSchemas/generateYamlSchemas.spec.mjs
-```
-
-The checked-in `shared/engine/yaml-schemas/` files are editor references. The write command must be run whenever the underlying Engine Config schemas change; the check command detects stale outputs.
-
-## Locales and later completion
-
-`documentLanguage` is an editorial provenance field and may be `uk`, `en`, or another approved source language. It is **not** an extra field inside the Engine Lesson Config; the projection places learner text in e.g. `locale.title.uk`, `locale.value.uk` and retains the intended `params.languages` (which may contain more locales). Other locales remain absent until actual translations exist. A genuinely invariant string is different from a missing translation.
-
-**Editorial review/approval stays with Studio** and must be source-revision-specific; a valid-looking draft or successful scaffolder command never closes any review gate. After the scaffolder, a Coding Agent resolves missing Config inputs, tests, Scenes, accessibility, assets and typed references. Translation, ordinary package typechecking, real `generateLessonProps` generation and publication are subsequent, separately verified tasks. No stage automatically approves or publishes a Lesson.
-
-The legacy Builder design described YAML approval checks, automatic Question-bank assembly, complete generated outputs and manifest publication as if those features were guaranteed. They are **not** the contract for the new Issue #507 draft-scaffolding path. Any such behavior in existing legacy scripts must be established from their actual current implementation and is outside this scaffolder's acceptance criteria.
+Use the current README and test file for invocation flags. Do not trust
+historical Creator API names or draft generator examples instead of
+the actual script.
