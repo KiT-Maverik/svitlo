@@ -52,6 +52,22 @@ the instructions and resources relevant to that task. **Do not assume that
   proposals, and generator requirements. Consult them when directly relevant
   to the task.
 
+## Script workflow instructions
+
+Permanent scripts live in named workflow directories, both under the repository-wide
+[`scripts/`](scripts/README.md) and inside owning packages (for example,
+[`shared/engine/scripts/`](shared/engine/scripts/README.md)).
+**Before changing any script, generator, YAML contract or its callers, open the
+relevant named directory and read the actual entrypoint JSDoc, any local README
+and its adjacent tests.** An entrypoint's stated purpose and non-goals take
+precedence over assumptions based on names or historical workflows.
+
+For Engine generators and YAML scaffolders, first read the scoped
+[`shared/engine/scripts/AGENTS.md`](shared/engine/scripts/AGENTS.md).
+The named directories include separate YAML-to-TypeScript *draft* scaffolders,
+JSON Schema editor guidance, and Props publishers; they are not interchangeable.
+Follow the referenced source contracts before making changes.
+
 ## Repository-wide GitHub rules
 
 Before creating or updating GitHub Issues, pull requests, or branches, read and follow [GitHub labels and naming conventions](studio/rules/github-labels-and-naming.md). Use [the canonical label catalog](.github/labels.json) for exact names. Apply appropriate labels to Issues and PRs in GitHub, rather than only describing them in text. Keep entity names short, specific, and free of category information already carried by labels. Preserve any workflow-required branch identifiers.
