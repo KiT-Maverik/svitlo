@@ -1,11 +1,42 @@
 # Draft editorial migration, not approved; no runtime Scene implementation.
 config:
-  id: "772102e5-c606-56ed-9c0e-9c2fbe7a7559"
-  slug: "listPossibleOutcomes"
-  type: "lesson"
-  skills: ["97f45a5a-d5bb-4618-89e5-11be5fb4f02c"]
+  id: '772102e5-c606-56ed-9c0e-9c2fbe7a7559'
+  slug: 'listPossibleOutcomes'
+  type: 'lesson'
+  skills: ['97f45a5a-d5bb-4618-89e5-11be5fb4f02c']
   params:
-    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,67 +44,67 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "What Could the Result Be?"
+      en: 'What Could the Result Be?'
   section:
     items:
       section1:
         config:
-          id: "b27b3ea6-8845-4909-a10f-3224a92795ff"
-          slug: "section1"
-          type: "content"
+          id: 'b27b3ea6-8845-4909-a10f-3224a92795ff'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What counts as a result?"
+              en: 'What counts as a result?'
             navigationLabel:
-              en: "What counts as a result?"
+              en: 'What counts as a result?'
           content:
             items:
               text1:
                 config:
-                  id: "3c7ff917-51b2-4438-8ef1-2fe9685619c2"
-                  slug: "text1"
-                  type: "text"
+                  id: '3c7ff917-51b2-4438-8ef1-2fe9685619c2'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "We spin this numbered spinner once and write down the number where the pointer stops. It has sectors 1, 2, 3 and 4. What might we write?"
+                      en: 'We spin this numbered spinner once and write down the number where the pointer stops. It has sectors 1, 2, 3 and 4. What might we write?'
                 production:
-                  purpose: "What counts as a result?; authored text block 1"
-                  specification: "1. **`text`** (supported Resource type) — “We spin this numbered spinner once and write down the number where the pointer stops. It has sectors 1, 2, 3 and 4. What might we write?”"
+                  purpose: 'What counts as a result?; authored text block 1'
+                  specification: '1. **`text`** (supported Resource type) — “We spin this numbered spinner once and write down the number where the pointer stops. It has sectors 1, 2, 3 and 4. What might we write?”'
               scene2:
                 config:
-                  id: "62aa4fa1-f9c9-4ab0-8238-3037ebd64e1e"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '62aa4fa1-f9c9-4ab0-8238-3037ebd64e1e'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "What counts as a result?"
+                        instruction: 'What counts as a result?'
                 production:
-                  purpose: "What counts as a result?; authored scene block 2"
+                  purpose: 'What counts as a result?; authored scene block 2'
                   specification: |-
                     # OutcomeExplorer — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** [What Could the Result Be?](.this config.yaml)
                     **Methodologist source:** [Draft Brief](.this config.yaml)
                     **Target Skills:**
-                    
+
                     - [listOutcomes.data.ts](../../../../data/skills/probability/events/skills/listOutcomes.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A set-builder inspector for a clearly stated one-step experiment. Learner changes which reported values appear in an outcome list and receives immediate evidence linked to the actual spinner or bag. No random draw is required; the list is justified from possible results, not a finite sample of spins.
-                    
+
                     **Specific manipulation and learner control:** Choose experiment preset, inspect the agreed report criterion, toggle candidate result cards, compare set to physical sectors or named tokens, request a corrective hint, reset. All states are local, and multiple section uses have independent initial state; no props, network or invented result hooks.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset                              | What the learner can inspect                                              | Correct mathematical / logical condition                                                              |
                     | ------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
                     | Spinner A                                   | Four equally sized sectors numbered 1,2,3,4; report 'one number'          | Possible outcomes {1,2,3,4}; exactly one numeral per spin.                                            |
@@ -82,20 +113,20 @@ config:
                     | Bag B alternate identity thought experiment | Same three tokens, report token label instead                             | Possible token identity labels {red A,red B,blue C}; different reporting criterion.                   |
                     | Spinner C transfer                          | Three sectors numbered 2,4,6; report number                               | Possible outcomes {2,4,6}, no 3.                                                                      |
                     | Empty candidate set                         | No choices selected despite available sectors                             | Incomplete; explain any one missing matching sector.                                                  |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **What counts as a result? — 5 included:** “A spin always stops on one of the numbered sectors. This spinner has no sector numbered 5.”
                     - **What counts as a result? — 2 omitted:** “The sector labelled 2 is on the spinner, so 2 must be in our list even if we have not spun it yet.”
                     - **Find the missing and extra item — 1 marked missing:** “We can already see 1 in the list. Look for a number on the spinner that is absent.”
@@ -105,124 +136,124 @@ config:
                     - **Three tokens, but how many possible colors? — Equal chance inferred:** “Seeing two color names does not mean those colors are equally likely. This lesson lists possibilities, not their chances.”
                     - **Your experiment, your complete list — 3 included:** “The numeral 3 is not on any sector. An impossible result is not part of this list.”
                     - **Your experiment, your complete list — 6 omitted:** “The spinner includes a sector numbered 6. That makes 6 a possible result even before any spin.”
-                    
+
                     **Boundary:** The experiment is one independent spin or draw with fully disclosed contents; the learner lists outcomes at the specified observation level only. Comparing likelihood, calculating ratios and repeated-run variation are reserved for their own Skills.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Present the complete numbered sector inventory or labelled bag inventory as a text list and a separate checkable list of distinct reported values. Voice-independent keyboard controls give the same ability to add, remove and inspect a candidate.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                    
+
                     ## Placement 1: What counts as a result?
-                    
+
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Numbered-spinner preset shows four equal sectors labeled 1–4 and a fixed result slot. Learner selects which numbers belong in a 'possible results' tray; no actual random spin is necessary.
-                  productionNotes: "Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "ab6731af-d1eb-455c-be01-9e1932dd1c76"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: 'ab6731af-d1eb-455c-be01-9e1932dd1c76'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "A result is one number recorded after one spin. Any of 1, 2, 3 or 4 could be recorded. There is no 5 on this spinner."
+                      en: 'A result is one number recorded after one spin. Any of 1, 2, 3 or 4 could be recorded. There is no 5 on this spinner.'
                 production:
-                  purpose: "What counts as a result?; authored markdown block 3"
-                  specification: "3. **`markdown`** (supported Resource type) — “A result is one number recorded after one spin. Any of 1, 2, 3 or 4 could be recorded. There is no 5 on this spinner.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'What counts as a result?; authored markdown block 3'
+                  specification: '3. **`markdown`** (supported Resource type) — “A result is one number recorded after one spin. Any of 1, 2, 3 or 4 could be recorded. There is no 5 on this spinner.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Define both the experiment and what gets recorded before listing."
-          pedagogicalIntent: "Original Section 1 — What counts as a result?; authoring draft only"
+          purpose: 'Define both the experiment and what gets recorded before listing.'
+          pedagogicalIntent: 'Original Section 1 — What counts as a result?; authoring draft only'
           productionNotes: |-
             **Purpose:** Define both the experiment and what gets recorded before listing.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`text`** (supported Resource type) — “We spin this numbered spinner once and write down the number where the pointer stops. It has sectors 1, 2, 3 and 4. What might we write?”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Numbered-spinner preset shows four equal sectors labeled 1–4 and a fixed result slot. Learner selects which numbers belong in a 'possible results' tray; no actual random spin is necessary.
-            
+
             3. **`markdown`** (supported Resource type) — “A result is one number recorded after one spin. Any of 1, 2, 3 or 4 could be recorded. There is no 5 on this spinner.”
-            
+
             **Meaningful learner action:** Inspect the spinner and list candidate reported numbers.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - 5 included: “A spin always stops on one of the numbered sectors. This spinner has no sector numbered 5.”
             - 2 omitted: “The sector labelled 2 is on the spinner, so 2 must be in our list even if we have not spun it yet.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. All four sectors equally sized in this model, but do not teach equal likelihood as part of the outcome-listing Skill.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
       section2:
         config:
-          id: "b17b3d13-8545-4450-a40f-36ddaa279792"
-          slug: "section2"
-          type: "content"
+          id: 'b17b3d13-8545-4450-a40f-36ddaa279792'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Find the missing and extra item"
+              en: 'Find the missing and extra item'
             navigationLabel:
-              en: "Find the missing and extra item"
+              en: 'Find the missing and extra item'
           content:
             items:
               text1:
                 config:
-                  id: "076f4f16-5ae8-4a85-b40c-947c669bb0e3"
-                  slug: "text1"
-                  type: "text"
+                  id: '076f4f16-5ae8-4a85-b40c-947c669bb0e3'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Someone wrote 1, 3, 4, 5. They forgot one possible number and added one impossible number. Which?"
+                      en: 'Someone wrote 1, 3, 4, 5. They forgot one possible number and added one impossible number. Which?'
                 production:
-                  purpose: "Find the missing and extra item; authored text block 1"
-                  specification: "1. **`text`** (supported Resource type) — “Someone wrote 1, 3, 4, 5. They forgot one possible number and added one impossible number. Which?”"
+                  purpose: 'Find the missing and extra item; authored text block 1'
+                  specification: '1. **`text`** (supported Resource type) — “Someone wrote 1, 3, 4, 5. They forgot one possible number and added one impossible number. Which?”'
               scene2:
                 config:
-                  id: "c8aab85a-bd02-42ab-94e6-c6ccff63fc75"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'c8aab85a-bd02-42ab-94e6-c6ccff63fc75'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Find the missing and extra item"
+                        instruction: 'Find the missing and extra item'
                 production:
-                  purpose: "Find the missing and extra item; authored scene block 2"
+                  purpose: 'Find the missing and extra item; authored scene block 2'
                   specification: |-
                     # OutcomeExplorer — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** [What Could the Result Be?](.this config.yaml)
                     **Methodologist source:** [Draft Brief](.this config.yaml)
                     **Target Skills:**
-                    
+
                     - [listOutcomes.data.ts](../../../../data/skills/probability/events/skills/listOutcomes.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A set-builder inspector for a clearly stated one-step experiment. Learner changes which reported values appear in an outcome list and receives immediate evidence linked to the actual spinner or bag. No random draw is required; the list is justified from possible results, not a finite sample of spins.
-                    
+
                     **Specific manipulation and learner control:** Choose experiment preset, inspect the agreed report criterion, toggle candidate result cards, compare set to physical sectors or named tokens, request a corrective hint, reset. All states are local, and multiple section uses have independent initial state; no props, network or invented result hooks.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset                              | What the learner can inspect                                              | Correct mathematical / logical condition                                                              |
                     | ------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
                     | Spinner A                                   | Four equally sized sectors numbered 1,2,3,4; report 'one number'          | Possible outcomes {1,2,3,4}; exactly one numeral per spin.                                            |
@@ -231,20 +262,20 @@ config:
                     | Bag B alternate identity thought experiment | Same three tokens, report token label instead                             | Possible token identity labels {red A,red B,blue C}; different reporting criterion.                   |
                     | Spinner C transfer                          | Three sectors numbered 2,4,6; report number                               | Possible outcomes {2,4,6}, no 3.                                                                      |
                     | Empty candidate set                         | No choices selected despite available sectors                             | Incomplete; explain any one missing matching sector.                                                  |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **What counts as a result? — 5 included:** “A spin always stops on one of the numbered sectors. This spinner has no sector numbered 5.”
                     - **What counts as a result? — 2 omitted:** “The sector labelled 2 is on the spinner, so 2 must be in our list even if we have not spun it yet.”
                     - **Find the missing and extra item — 1 marked missing:** “We can already see 1 in the list. Look for a number on the spinner that is absent.”
@@ -254,124 +285,124 @@ config:
                     - **Three tokens, but how many possible colors? — Equal chance inferred:** “Seeing two color names does not mean those colors are equally likely. This lesson lists possibilities, not their chances.”
                     - **Your experiment, your complete list — 3 included:** “The numeral 3 is not on any sector. An impossible result is not part of this list.”
                     - **Your experiment, your complete list — 6 omitted:** “The spinner includes a sector numbered 6. That makes 6 a possible result even before any spin.”
-                    
+
                     **Boundary:** The experiment is one independent spin or draw with fully disclosed contents; the learner lists outcomes at the specified observation level only. Comparing likelihood, calculating ratios and repeated-run variation are reserved for their own Skills.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Present the complete numbered sector inventory or labelled bag inventory as a text list and a separate checkable list of distinct reported values. Voice-independent keyboard controls give the same ability to add, remove and inspect a candidate.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                    
+
                     ## Placement 2: Find the missing and extra item
-                    
+
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Inspector preset overlays the spinner's true set {1,2,3,4} with the proposed list {1,3,4,5}. Select the missing label and the extra label separately; reveal explanations one at a time.
-                  productionNotes: "Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "3701fe0a-fbd4-4005-88d7-dae075bc5cbb"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '3701fe0a-fbd4-4005-88d7-dae075bc5cbb'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "2 is missing, because there is a 2 sector. 5 is extra, because there is no 5 sector. The complete list is 1, 2, 3, 4."
+                      en: '2 is missing, because there is a 2 sector. 5 is extra, because there is no 5 sector. The complete list is 1, 2, 3, 4.'
                 production:
-                  purpose: "Find the missing and extra item; authored markdown block 3"
-                  specification: "3. **`markdown`** (supported Resource type) — “2 is missing, because there is a 2 sector. 5 is extra, because there is no 5 sector. The complete list is 1, 2, 3, 4.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Find the missing and extra item; authored markdown block 3'
+                  specification: '3. **`markdown`** (supported Resource type) — “2 is missing, because there is a 2 sector. 5 is extra, because there is no 5 sector. The complete list is 1, 2, 3, 4.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Check whether a proposed list is exhaustive and has no impossibilities."
-          pedagogicalIntent: "Original Section 2 — Find the missing and extra item; authoring draft only"
+          purpose: 'Check whether a proposed list is exhaustive and has no impossibilities.'
+          pedagogicalIntent: 'Original Section 2 — Find the missing and extra item; authoring draft only'
           productionNotes: |-
             **Purpose:** Check whether a proposed list is exhaustive and has no impossibilities.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`text`** (supported Resource type) — “Someone wrote 1, 3, 4, 5. They forgot one possible number and added one impossible number. Which?”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Inspector preset overlays the spinner's true set {1,2,3,4} with the proposed list {1,3,4,5}. Select the missing label and the extra label separately; reveal explanations one at a time.
-            
+
             3. **`markdown`** (supported Resource type) — “2 is missing, because there is a 2 sector. 5 is extra, because there is no 5 sector. The complete list is 1, 2, 3, 4.”
-            
+
             **Meaningful learner action:** Identify both kinds of error independently, then repair the proposed list.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - 1 marked missing: “We can already see 1 in the list. Look for a number on the spinner that is absent.”
             - 4 marked extra: “4 appears on the spinner, so it belongs. 5 has no matching sector.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. The learner must explain a mismatch against the experiment, not memorize an answer key.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
       section3:
         config:
-          id: "b07b3b80-8645-45e3-a30f-354aab279925"
-          slug: "section3"
-          type: "content"
+          id: 'b07b3b80-8645-45e3-a30f-354aab279925'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Three tokens, but how many possible colors?"
+              en: 'Three tokens, but how many possible colors?'
             navigationLabel:
-              en: "Three tokens, but how many possible colors?"
+              en: 'Three tokens, but how many possible colors?'
           content:
             items:
               markdown1:
                 config:
-                  id: "3b6ca8ef-241a-4754-a41b-27e9acf9c5be"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '3b6ca8ef-241a-4754-a41b-27e9acf9c5be'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Here is a bag with three labelled tokens: red A, red B and blue C. We draw one token and write only its color. How many different color words could we write?"
+                      en: 'Here is a bag with three labelled tokens: red A, red B and blue C. We draw one token and write only its color. How many different color words could we write?'
                 production:
-                  purpose: "Three tokens, but how many possible colors?; authored markdown block 1"
-                  specification: "1. **`markdown`** (supported Resource type) — “Here is a bag with three labelled tokens: red A, red B and blue C. We draw one token and write only its color. How many different color words could we write?”"
+                  purpose: 'Three tokens, but how many possible colors?; authored markdown block 1'
+                  specification: '1. **`markdown`** (supported Resource type) — “Here is a bag with three labelled tokens: red A, red B and blue C. We draw one token and write only its color. How many different color words could we write?”'
               scene2:
                 config:
-                  id: "54e97c3b-1925-400a-ad2a-a05daf821524"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '54e97c3b-1925-400a-ad2a-a05daf821524'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Three tokens, but how many possible colors?"
+                        instruction: 'Three tokens, but how many possible colors?'
                 production:
-                  purpose: "Three tokens, but how many possible colors?; authored scene block 2"
+                  purpose: 'Three tokens, but how many possible colors?; authored scene block 2'
                   specification: |-
                     # OutcomeExplorer — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** [What Could the Result Be?](.this config.yaml)
                     **Methodologist source:** [Draft Brief](.this config.yaml)
                     **Target Skills:**
-                    
+
                     - [listOutcomes.data.ts](../../../../data/skills/probability/events/skills/listOutcomes.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A set-builder inspector for a clearly stated one-step experiment. Learner changes which reported values appear in an outcome list and receives immediate evidence linked to the actual spinner or bag. No random draw is required; the list is justified from possible results, not a finite sample of spins.
-                    
+
                     **Specific manipulation and learner control:** Choose experiment preset, inspect the agreed report criterion, toggle candidate result cards, compare set to physical sectors or named tokens, request a corrective hint, reset. All states are local, and multiple section uses have independent initial state; no props, network or invented result hooks.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset                              | What the learner can inspect                                              | Correct mathematical / logical condition                                                              |
                     | ------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
                     | Spinner A                                   | Four equally sized sectors numbered 1,2,3,4; report 'one number'          | Possible outcomes {1,2,3,4}; exactly one numeral per spin.                                            |
@@ -380,20 +411,20 @@ config:
                     | Bag B alternate identity thought experiment | Same three tokens, report token label instead                             | Possible token identity labels {red A,red B,blue C}; different reporting criterion.                   |
                     | Spinner C transfer                          | Three sectors numbered 2,4,6; report number                               | Possible outcomes {2,4,6}, no 3.                                                                      |
                     | Empty candidate set                         | No choices selected despite available sectors                             | Incomplete; explain any one missing matching sector.                                                  |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **What counts as a result? — 5 included:** “A spin always stops on one of the numbered sectors. This spinner has no sector numbered 5.”
                     - **What counts as a result? — 2 omitted:** “The sector labelled 2 is on the spinner, so 2 must be in our list even if we have not spun it yet.”
                     - **Find the missing and extra item — 1 marked missing:** “We can already see 1 in the list. Look for a number on the spinner that is absent.”
@@ -403,125 +434,125 @@ config:
                     - **Three tokens, but how many possible colors? — Equal chance inferred:** “Seeing two color names does not mean those colors are equally likely. This lesson lists possibilities, not their chances.”
                     - **Your experiment, your complete list — 3 included:** “The numeral 3 is not on any sector. An impossible result is not part of this list.”
                     - **Your experiment, your complete list — 6 omitted:** “The spinner includes a sector numbered 6. That makes 6 a possible result even before any spin.”
-                    
+
                     **Boundary:** The experiment is one independent spin or draw with fully disclosed contents; the learner lists outcomes at the specified observation level only. Comparing likelihood, calculating ratios and repeated-run variation are reserved for their own Skills.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Present the complete numbered sector inventory or labelled bag inventory as a text list and a separate checkable list of distinct reported values. Voice-independent keyboard controls give the same ability to add, remove and inspect a candidate.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                    
+
                     ## Placement 3: Three tokens, but how many possible colors?
-                    
+
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Bag-color preset shows all three token labels and a separate report field 'record color'. The learner builds a list of different possible colors, with a count of distinct labels rather than physical objects.
-                  productionNotes: "Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               text3:
                 config:
-                  id: "674ad44f-9130-4ac0-8cfe-dae12951fbea"
-                  slug: "text3"
-                  type: "text"
+                  id: '674ad44f-9130-4ac0-8cfe-dae12951fbea'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "We could write red or blue. The list of possible colors is red, blue. Red does not need two entries: the report says the color, not which red token it was."
+                      en: 'We could write red or blue. The list of possible colors is red, blue. Red does not need two entries: the report says the color, not which red token it was.'
                 production:
-                  purpose: "Three tokens, but how many possible colors?; authored text block 3"
-                  specification: "3. **`text`** (supported Resource type) — “We could write red or blue. The list of possible colors is red, blue. Red does not need two entries: the report says the color, not which red token it was.”"
-            order: ["markdown1", "scene2", "text3"]
+                  purpose: 'Three tokens, but how many possible colors?; authored text block 3'
+                  specification: '3. **`text`** (supported Resource type) — “We could write red or blue. The list of possible colors is red, blue. Red does not need two entries: the report says the color, not which red token it was.”'
+            order: ['markdown1', 'scene2', 'text3']
         production:
-          purpose: "Distinguish physical items from distinct reported outcomes."
-          pedagogicalIntent: "Original Section 3 — Three tokens, but how many possible colors?; authoring draft only"
+          purpose: 'Distinguish physical items from distinct reported outcomes.'
+          pedagogicalIntent: 'Original Section 3 — Three tokens, but how many possible colors?; authoring draft only'
           productionNotes: |-
             **Purpose:** Distinguish physical items from distinct reported outcomes.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`markdown`** (supported Resource type) — “Here is a bag with three labelled tokens: red A, red B and blue C. We draw one token and write only its color. How many different color words could we write?”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Bag-color preset shows all three token labels and a separate report field 'record color'. The learner builds a list of different possible colors, with a count of distinct labels rather than physical objects.
-            
+
             3. **`text`** (supported Resource type) — “We could write red or blue. The list of possible colors is red, blue. Red does not need two entries: the report says the color, not which red token it was.”
-            
+
             **Meaningful learner action:** Build the distinct color list and explain why green is impossible and red is not written twice.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - Two red entries: “There are two red tokens but only one reported color word, red. A list of different color results has red once.”
             - Green included: “No token in the bag is green, so green cannot be recorded.”
             - Equal chance inferred: “Seeing two color names does not mean those colors are equally likely. This lesson lists possibilities, not their chances.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. A color list must not be used as a claim of 50–50 chances.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
       section4:
         config:
-          id: "b77b4685-8b45-4dc2-9e0f-2d6ba4278e20"
-          slug: "section4"
-          type: "content"
+          id: 'b77b4685-8b45-4dc2-9e0f-2d6ba4278e20'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Your experiment, your complete list"
+              en: 'Your experiment, your complete list'
             navigationLabel:
-              en: "Your experiment, your complete list"
+              en: 'Your experiment, your complete list'
           content:
             items:
               text1:
                 config:
-                  id: "cfd4aba4-0ce4-4493-91df-490e815c9c95"
-                  slug: "text1"
-                  type: "text"
+                  id: 'cfd4aba4-0ce4-4493-91df-490e815c9c95'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A new spinner has exactly three sectors, numbered 2, 4 and 6. We spin once and record the number. Make a complete list of possible numbers."
+                      en: 'A new spinner has exactly three sectors, numbered 2, 4 and 6. We spin once and record the number. Make a complete list of possible numbers.'
                 production:
-                  purpose: "Your experiment, your complete list; authored text block 1"
-                  specification: "1. **`text`** (supported Resource type) — “A new spinner has exactly three sectors, numbered 2, 4 and 6. We spin once and record the number. Make a complete list of possible numbers.”"
+                  purpose: 'Your experiment, your complete list; authored text block 1'
+                  specification: '1. **`text`** (supported Resource type) — “A new spinner has exactly three sectors, numbered 2, 4 and 6. We spin once and record the number. Make a complete list of possible numbers.”'
               scene2:
                 config:
-                  id: "5c0b0b04-1b52-4405-94e3-85a2fe587f5b"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '5c0b0b04-1b52-4405-94e3-85a2fe587f5b'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Your experiment, your complete list"
+                        instruction: 'Your experiment, your complete list'
                 production:
-                  purpose: "Your experiment, your complete list; authored scene block 2"
+                  purpose: 'Your experiment, your complete list; authored scene block 2'
                   specification: |-
                     # OutcomeExplorer — Scene Specification
-                    
+
                     **Status:** Provisional Draft, pending Methodologist approval and separate Scene review
                     **Owner:** Educational Screenwriter (specification only)
                     **Lesson Content:** [What Could the Result Be?](.this config.yaml)
                     **Methodologist source:** [Draft Brief](.this config.yaml)
                     **Target Skills:**
-                    
+
                     - [listOutcomes.data.ts](../../../../data/skills/probability/events/skills/listOutcomes.data.ts)
-                    
+
                     ## Intended learning interaction
-                    
+
                     A set-builder inspector for a clearly stated one-step experiment. Learner changes which reported values appear in an outcome list and receives immediate evidence linked to the actual spinner or bag. No random draw is required; the list is justified from possible results, not a finite sample of spins.
-                    
+
                     **Specific manipulation and learner control:** Choose experiment preset, inspect the agreed report criterion, toggle candidate result cards, compare set to physical sectors or named tokens, request a corrective hint, reset. All states are local, and multiple section uses have independent initial state; no props, network or invented result hooks.
-                    
+
                     The root Scene is proposed as a self-contained **prop-free component** with local state and no external data dependencies. Selectable instructional presets are held internally; the Lesson supplies no props, scores, correct answers or fabricated events. The Scene is not implemented.
-                    
+
                     ## Visual/conceptual model and required states
-                    
+
                     | State / preset                              | What the learner can inspect                                              | Correct mathematical / logical condition                                                              |
                     | ------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
                     | Spinner A                                   | Four equally sized sectors numbered 1,2,3,4; report 'one number'          | Possible outcomes {1,2,3,4}; exactly one numeral per spin.                                            |
@@ -530,20 +561,20 @@ config:
                     | Bag B alternate identity thought experiment | Same three tokens, report token label instead                             | Possible token identity labels {red A,red B,blue C}; different reporting criterion.                   |
                     | Spinner C transfer                          | Three sectors numbered 2,4,6; report number                               | Possible outcomes {2,4,6}, no 3.                                                                      |
                     | Empty candidate set                         | No choices selected despite available sectors                             | Incomplete; explain any one missing matching sector.                                                  |
-                    
+
                     All representations preserve the chosen whole, complete inventory, reference clock or observed tokens as appropriate. Do not silently change model conditions while an answer is being explained.
-                    
+
                     ## Learner journey, transitions, and recovery
-                    
+
                     1. Initialize one internally selected preset in a predictable and fully described state. Text lists give the relevant inventory/values, and essential terms are explained before manipulation.
                     2. Invite a prediction. It may be chosen, typed from a constrained option set or skipped in favor of an accessible "Show model" explanation without penalty.
                     3. Change the model in response to the learner's chosen labelled control, not an unseen randomized event. Present the new mathematical values and context.
                     4. On an incorrect choice, display **why the inspected state contradicts it**, preserve evidence, and allow a revised choice. Correct choices receive a reason, not only approval.
                     5. On a new preset, reset or isolate its local state; do not carry hidden results from another Section. A reset restores the complete initial inventory and clear labels.
                     6. On the Section's transfer preset, initially hide the worked conclusion, not the underlying evidence. A hint and worked answer remain available independently of correctness.
-                    
+
                     ## Explanatory messages and failure modes
-                    
+
                     - **What counts as a result? — 5 included:** “A spin always stops on one of the numbered sectors. This spinner has no sector numbered 5.”
                     - **What counts as a result? — 2 omitted:** “The sector labelled 2 is on the spinner, so 2 must be in our list even if we have not spun it yet.”
                     - **Find the missing and extra item — 1 marked missing:** “We can already see 1 in the list. Look for a number on the spinner that is absent.”
@@ -553,168 +584,168 @@ config:
                     - **Three tokens, but how many possible colors? — Equal chance inferred:** “Seeing two color names does not mean those colors are equally likely. This lesson lists possibilities, not their chances.”
                     - **Your experiment, your complete list — 3 included:** “The numeral 3 is not on any sector. An impossible result is not part of this list.”
                     - **Your experiment, your complete list — 6 omitted:** “The spinner includes a sector numbered 6. That makes 6 a possible result even before any spin.”
-                    
+
                     **Boundary:** The experiment is one independent spin or draw with fully disclosed contents; the learner lists outcomes at the specified observation level only. Comparing likelihood, calculating ratios and repeated-run variation are reserved for their own Skills.
-                    
+
                     **Reasoning over mechanics:** Every meaningful transition must reveal exactly which mathematical condition changed; clicking, sorting, revealing, or matching on its own is not evidence of mastery.
-                    
+
                     ## Nonvisual / nonmotor-dependent equivalent
-                    
+
                     Present the complete numbered sector inventory or labelled bag inventory as a text list and a separate checkable list of distinct reported values. Voice-independent keyboard controls give the same ability to add, remove and inspect a candidate.
-                    
+
                     Present individual choices as clear localized native controls with discernible accessible names, visible focus and ordered traversal. Ensure all necessary exploration, comparison, answer revision, reset, hint and worked-reason actions are possible without spatial dragging, a mouse, visual color discrimination or hearing. Dynamic announcements should convey meaningful changed counts/hand positions/outcome membership without overwhelming assistive technology.
-                    
+
                     ## RTL, locale, device and offline delivery
-                    
+
                     The eventual Scene requires real localized labels, explanations and audio descriptions for **every supported locale**, without fake translations, silent gaps or author-invented fallback. RTL means semantically chosen placement and reading order, not reversing numeral sequences, clock-hand geometry, tally quantities or logical outcome membership. On narrow screens, keep all values and controls discoverable without horizontal precision gestures. Respect reduced-motion and avoid expensive animation when identical evidence can be shown as a static state. Package the entire Scene and feedback locally for offline PWA use when implemented; do not imply a working offline system now.
-                    
+
                     ## Implementation and verification handoff
-                    
+
                     **Status is a specification only.** A Coding Agent must later implement the prop-free component and its co-located automated Scene tests covering every defined state, boundary, reset, feedback path, supported locale, RTL, keyboard/screen-reader equivalent, reduced-motion behavior, mobile and offline readiness. Verify `scene` Resource integration against actual Code; do not invent event APIs, Note persistence, scored Questions, or Scene props. Any accessibility shortfall must be reported explicitly at implementation time under Studio Design Scene instructions.
-                    
+
                     ## Placement 4: Your experiment, your complete list
-                    
+
                     2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Transfer preset displays three distinct sectors 2, 4, 6 and candidate cards 2, 3, 4, 6. Build the set and explain why 3 should stay out; optional hint points to the sector labels.
-                  productionNotes: "Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from OutcomeExplorer.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "70522bf8-4a8e-4f4b-8f92-6612949624b5"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '70522bf8-4a8e-4f4b-8f92-6612949624b5'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The complete list is 2, 4, 6. Every number on the spinner is included, and 3 is not included because there is no 3 sector."
+                      en: 'The complete list is 2, 4, 6. Every number on the spinner is included, and 3 is not included because there is no 3 sector.'
                 production:
-                  purpose: "Your experiment, your complete list; authored markdown block 3"
-                  specification: "3. **`markdown`** (supported Resource type) — “The complete list is 2, 4, 6. Every number on the spinner is included, and 3 is not included because there is no 3 sector.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Your experiment, your complete list; authored markdown block 3'
+                  specification: '3. **`markdown`** (supported Resource type) — “The complete list is 2, 4, 6. Every number on the spinner is included, and 3 is not included because there is no 3 sector.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Independent transfer to a new spinner without shown answer."
-          pedagogicalIntent: "Original Section 4 — Your experiment, your complete list; authoring draft only"
+          purpose: 'Independent transfer to a new spinner without shown answer.'
+          pedagogicalIntent: 'Original Section 4 — Your experiment, your complete list; authoring draft only'
           productionNotes: |-
             **Purpose:** Independent transfer to a new spinner without shown answer.
-            
+
             **Ordered content blocks:**
-            
+
             1. **`text`** (supported Resource type) — “A new spinner has exactly three sectors, numbered 2, 4 and 6. We spin once and record the number. Make a complete list of possible numbers.”
-            
+
             2. **`scene`** (typed Resource supported; named Scene **proposed**, not implemented) — OutcomeExplorer (Scene specification embedded in this config.yaml): Transfer preset displays three distinct sectors 2, 4, 6 and candidate cards 2, 3, 4, 6. Build the set and explain why 3 should stay out; optional hint points to the sector labels.
-            
+
             3. **`markdown`** (supported Resource type) — “The complete list is 2, 4, 6. Every number on the spinner is included, and 3 is not included because there is no 3 sector.”
-            
+
             **Meaningful learner action:** Independently choose 2,4,6 and reject 3; check each against the pictured experiment.
-            
+
             **Specific formative feedback, not a scored answer:**
-            
+
             - 3 included: “The numeral 3 is not on any sector. An impossible result is not part of this list.”
             - 6 omitted: “The spinner includes a sector numbered 6. That makes 6 a possible result even before any spin.”
-            
+
             **Progression:** The learner can inspect a concrete counterexample, choose "Show why", and revise independently. The next Section follows the explanation, not an invented pass threshold. Reveal the full reason on demand, with no scored outcome.
-            
+
             **Accessibility and localization:** Every visual/gesture has a text-first and keyboard-operated equivalent based on the same values, with translated accessible names and explanatory feedback. Allow reduced motion; avoid color-only or audio-only meaning. Numerals and directional/clock mathematics retain their semantics when layout is adapted for RTL.
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # What Could the Result Be? — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: listPossibleOutcomes
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     List every possible and only possible result of a clearly defined one-step random experiment, without mistaking outcomes for predictions or silently changing what is observed. After distinguishing certain and impossible events, a Grade 2 learner can practice complete and nonoverlapping lists using a four-sector numbered spinner before confronting outcomes with repeated colors.
-    
+
     The single target Skill is preserved in its canonical taxonomy; supporting activities are not new Skills.
-    
+
     ## Target audience
-    
+
     **Primary: Grade 2**, approximately ages 7–8. After distinguishing certain and impossible events, a Grade 2 learner can practice complete and nonoverlapping lists using a four-sector numbered spinner before confronting outcomes with repeated colors. Mixed reading fluency and language proficiency are expected: use short text, meaningful optional narration, explicit number/category labels, and full keyboard/touch and nonvisual alternatives. The Grade is a teaching-depth decision, not part of the Skill definition.
-    
+
     ## Prerequisites
-    
+
     - Classify events as possible, impossible or certain for explicitly specified contents (existing Skill `certainImpossible`).
     - Recognize numerals 1 through 4 and compare sets of a few labels.
     - Understand that one spin gives one reported value, not several values at once.
-    
+
     Relevant previously transferred Playground Skill: `certainImpossible`. The Lesson is standalone: a learner does not need to complete any named Program or another specific Lesson if equivalent prerequisite knowledge is present.
-    
+
     ## Target Skills
-    
+
     - [listOutcomes.data.ts](../../../../data/skills/probability/events/skills/listOutcomes.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - State an experiment and what will be recorded before listing its outcomes.
     - For a spinner with four sectors numbered 1, 2, 3, 4, list exactly 1, 2, 3, 4 as possible reported results.
     - Identify missing and impossible entries in an outcome list, explaining why 5 is not a result on this spinner.
     - Distinguish individual spinner sectors or tokens from the reported number/color when labels repeat.
     - For a bag holding two red tokens and one blue token, list the possible _colors_ as red and blue once each, not red/red/blue or green.
-    
+
     An instructional interaction shows what was taught or practiced, not validated mastery of every linked Skill.
-    
+
     ## Essential subject matter
-    
+
     - A random experiment has defined conditions. An outcome is the one value recorded when it is performed once.
     - If a four-sector spinner is labeled 1, 2, 3, 4 and the recorded value is the number shown, the possible outcomes are exactly {1, 2, 3, 4}. Every spin reports one of these, never a 5.
     - The possible-outcome list includes each distinct reported value. A missing possible value makes the list incomplete; an impossible value makes it inaccurate.
     - If we draw exactly one token from a bag with two red and one blue and record its **color**, the possible color outcomes are {red, blue}. There are three physical tokens but two distinct reported color values.
     - A list of _possible colors_ is not a tally of how many physical tokens carry those colors and does not imply equal likelihood. If token identity were recorded instead, it would be a different experiment description.
-    
+
     **Instructional depth and hard scope:** One draw or one spin; finite sample spaces, at most four visibly specified sectors or three tokens. Outcomes are mutually exclusive and exhaustive at the _chosen description level_. No probability arithmetic, numerical odds, equal-likelihood assumptions, replacement protocols or predictions of the next actual result.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin with the learner's prerequisite mental model, introduce one controlling representation or condition, then have the learner explain both a confirming example and a tempting non-example. Later reduce hints so they apply the concept to a new setup. After distinguishing certain and impossible events, a Grade 2 learner can practice complete and nonoverlapping lists using a four-sector numbered spinner before confronting outcomes with repeated colors. Do not infer that presentation, a correct guess or a revealed explanation certifies independent competence.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     - Inventing a result not present in the specified spinner or bag.
     - Leaving out a possible result because it seems unlikely or has not appeared in a previous try.
     - Listing 'red' twice when asked for distinct **reported colors** from two red tokens and one blue token.
     - Assuming that a list of two possible colors makes them equally likely.
     - Changing from recording a color to recording token identity without noticing the changed question.
-    
+
     **Exclusions:** The experiment is one independent spin or draw with fully disclosed contents; the learner lists outcomes at the specified observation level only. Comparing likelihood, calculating ratios and repeated-run variation are reserved for their own Skills.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Learner-facing text, mathematical language, captions, accessible labels and Scene feedback must ultimately have **genuine translations for every supported locale**; no missing keys, English placeholder translations or silent fallback are approved. Use semantically appropriate LTR/RTL layouts; do not mirror mathematics, clock meanings, figures or numeric symbols by default. Design equivalently meaningful touch, keyboard, screen-reader and low-vision paths, reduced-motion static representations, visible focus, adequate target sizes and WCAG 2.2 AA compliance. Preserve full learning functionality in low-resource and offline use once the platform supports packaged Lesson downloads. These are intended acceptance criteria, **not claims of current implementation**.
-    
+
     ## Sources and factual verification
-    
+
     - [listOutcomes.data.ts](../../../../data/skills/probability/events/skills/listOutcomes.data.ts) — Mathematics canonical Skill definition/description; transferred to Playground without modification.
     - [Lesson](../../../../../../studio/docs/entities/lesson.md), [Lesson Content](../../../../../../studio/docs/entities/lesson-content.md), [Section](../../../../../../studio/docs/entities/section.md) and [Program](../../../../../../studio/docs/entities/program.md) entity contracts in Studio.
     - Checked model cases and expected results are enumerated independently in the associated provisional Scene spec; verify them again at implementation.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Unspecified. Standalone learning objective only, with no external quest, reward or Program narrative. Grade is determined pedagogically and does not cap the taxonomy Skill.
-    
+
     ## Open editorial decisions
-    
+
     - **Editor:** approve this Grade 2 audience, depth, boundary and Skill coverage; a Draft Brief does not authorize a later Approved state.
     - **Methodologist/editor:** confirm any cross-representation scope before development; no Skill taxonomy edits are requested.
     - **Screenwriter:** the authorized draft Content and Scene spec are **provisional pending this Methodologist decision** and require their own subsequent reviews.
-    
+
     ## Methodologist handoff
-    
+
     Ready for editorial review only. The companion `content.md` and Scene specification have been drafted provisionally by explicit batch instruction; **formal Methodologist approval gate has not passed**. No React Scene, runtime Lesson, Question, Quiz or scoring has been authorized or implemented.
-  purpose: "What Could the Result Be?"
+  purpose: 'What Could the Result Be?'
   productionNotes: |-
     Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
-    
+
     # What Could the Result Be? — Lesson Content
-    
+
     **Editorial status: Provisional Draft — pending Methodologist approval; not an Approved Screenwriter artifact.**
-    
+
     - Lesson directory: `content/playground/Data/Lessons/1/listPossibleOutcomes/`
     - Audience: **Grade 2**, approximately ages 7–8
     - Methodologist source: Draft Brief (incorporated in this config.yaml) (**not approved**)
@@ -722,53 +753,53 @@ production:
       - [listOutcomes.data.ts](../../../../data/skills/probability/events/skills/listOutcomes.data.ts)
     - Program dependence: **None**
     - Runtime/assessment status: editorial instructions only; no implementation, graded Questions or mastery signal.
-    
+
     ## Creative and instructional premise
-    
+
     List every possible and only possible result of a clearly defined one-step random experiment, without mistaking outcomes for predictions or silently changing what is observed.
-    
+
     A set-builder inspector for a clearly stated one-step experiment. Learner changes which reported values appear in an outcome list and receives immediate evidence linked to the actual spinner or bag. No random draw is required; the list is justified from possible results, not a finite sample of spins.
-    
+
     **Why interactivity matters:** The child can change the relevant mathematical or observational state, inspect evidence rather than accept an answer by authority, receive a reason-specific explanation, and retry without penalty. The final unfamiliar example is not a copy of the original. The experience is a standalone teaching sequence, not a Program plot, mascot activity or points-based game.
-    
+
     **Teaching limits:** One draw or one spin; finite sample spaces, at most four visibly specified sectors or three tokens. Outcomes are mutually exclusive and exhaustive at the _chosen description level_. No probability arithmetic, numerical odds, equal-likelihood assumptions, replacement protocols or predictions of the next actual result. The experiment is one independent spin or draw with fully disclosed contents; the learner lists outcomes at the specified observation level only. Comparing likelihood, calculating ratios and repeated-run variation are reserved for their own Skills.
-    
+
     ## Learner journey / planned Sections
-    
+
     1. **What counts as a result?:** Define both the experiment and what gets recorded before listing.
     2. **Find the missing and extra item:** Check whether a proposed list is exhaustive and has no impossibilities.
     3. **Three tokens, but how many possible colors?:** Distinguish physical items from distinct reported outcomes.
     4. **Your experiment, your complete list:** Independent transfer to a new spinner without shown answer.
-    
+
     Each general Section has a **single top-to-bottom column** of typed `text`, `markdown` and `scene` blocks. These Resource types are supported by the current generic renderer, but the **named OutcomeExplorer Scene does not exist yet** and is specified for later implementation. No new Section discriminators, Question adapters or scoring contracts are invented.
-    
+
     ## Detailed ordered Section plan
-    
-    
-    
+
+
+
     ## Scene handoff
-    
+
     - OutcomeExplorer (Scene specification embedded in this config.yaml) — proposed prop-free, self-contained Scene with explicit state cases, feedback and nonvisual pathway. **The Scene type/renderer is present as a general platform capability; this particular Scene is not implemented.**
     - Scene instances may use independent local preset selection within each Section, without a public props API or hidden cross-Section state. Section order itself is specified above; no invented Lesson runtime registry is implied.
-    
+
     ## Independent transfer and reflection
-    
+
     With a new spinner numbered 2, 4, 6, the full result list is {2,4,6}; including 3 or leaving out 6 contradicts the spinner.
-    
+
     Invite the child to describe **why** the result fits the model before revealing the full explanation. One optional hint is available. A non-reading learner can use accessible choice-and-explanation controls or speak to a nearby adult, without a speech-recognition requirement. Do not turn a voluntary reveal, an acknowledgement or a Section completion into a mastery claim.
-    
+
     ## Planned short recall Note
-    
+
     “First say what gets recorded; a complete outcome list contains every possible reported result and nothing impossible.”
-    
+
     Proposed pedagogical unlock _point_: when the contrast in Section 3 has been examined and explained. **Status planned, not wired**: no Note entity, unlock API, persistence, offline sync or review-sheet scheduler is claimed present. A learner who does not trigger an eventual Note still gets the full teaching content.
-    
+
     ## Locale, accessibility, offline and resource readiness
-    
+
     All quoted learner text and Scene feedback above are English authoring source, **not implemented locale bundles**. Complete genuine translation for all required languages, contextual terms, numeral conventions, accessible descriptions and RTL-specific meaning is mandatory before runtime delivery. The spec does not create or claim language fallback behavior. Design for WCAG 2.2 AA, keyboard and mobile touch, nonvisual equivalent participation, reduced motion, weak-device parity and complete offline access once the Lesson and Scene are packaged. New assets must be locally available; no network call is essential to these experiences.
-    
+
     ## Editorial and engineering dependencies
-    
+
     **All Content is provisional Draft pending Methodologist approval.** Subsequent Screenwriter approval and independent Scene review remain required. Coding Agent owns runtime content assembly, Scene registration, tests, locale resources and eventual PWA packaging. Assessment Architect owns all Questions, Quiz behavior, scores, retries and validated evidence. This batch does **not** implement any of those capabilities.
-    
+
     Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.

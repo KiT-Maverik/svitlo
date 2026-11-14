@@ -1,11 +1,42 @@
 # Draft editorial migration, not approved; no runtime Scene implementation.
 config:
-  id: "a448f370-6b8b-5ba5-a309-99ba8926d804"
-  slug: "comparingMassOnBalance"
-  type: "lesson"
-  skills: ["c2be8e28-ceb6-45c8-8c45-e8c39181c044"]
+  id: 'a448f370-6b8b-5ba5-a309-99ba8926d804'
+  slug: 'comparingMassOnBalance'
+  type: 'lesson'
+  skills: ['c2be8e28-ceb6-45c8-8c45-e8c39181c044']
   params:
-    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,62 +44,62 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Which Object Has More Mass?"
+      en: 'Which Object Has More Mass?'
   section:
     items:
       section1:
         config:
-          id: "086d6825-deb3-43ba-91ac-bef3a93f34e0"
-          slug: "section1"
-          type: "content"
+          id: '086d6825-deb3-43ba-91ac-bef3a93f34e0'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Big Object, Small Object"
+              en: 'Big Object, Small Object'
             navigationLabel:
-              en: "Big Object, Small Object"
+              en: 'Big Object, Small Object'
           content:
             items:
               text1:
                 config:
-                  id: "f5f14fc4-fc9f-482b-a63b-d076dc138e55"
-                  slug: "text1"
-                  type: "text"
+                  id: 'f5f14fc4-fc9f-482b-a63b-d076dc138e55'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "This foam block looks big, and this small metal-like token looks tiny. Which one has more mass? Make your prediction. Then place one object on each pan of our balance."
+                      en: 'This foam block looks big, and this small metal-like token looks tiny. Which one has more mass? Make your prediction. Then place one object on each pan of our balance.'
                 production:
-                  purpose: "Big Object, Small Object; authored text block 1"
-                  specification: "1. **text — available renderer:** \"This foam block looks big, and this small metal-like token looks tiny. Which one has **more mass**? Make your prediction. Then place one object on each pan of our balance.\""
+                  purpose: 'Big Object, Small Object; authored text block 1'
+                  specification: '1. **text — available renderer:** "This foam block looks big, and this small metal-like token looks tiny. Which one has **more mass**? Make your prediction. Then place one object on each pan of our balance."'
               scene2:
                 config:
-                  id: "f4580a24-edae-44ed-9f0e-37baff99371b"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'f4580a24-edae-44ed-9f0e-37baff99371b'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Release balance"
+                        instruction: 'Release balance'
                 production:
-                  purpose: "Big Object, Small Object; authored scene block 2"
+                  purpose: 'Big Object, Small Object; authored scene block 2'
                   specification: |-
                     # Equal-Arm Balance Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Which Object Has More Mass?](.this config.yaml), Sections 1–4
                     Methodologist objective: [Draft Brief](.this config.yaml) — compare **mass** qualitatively using a fair equal-arm balance, interpret greater/less/equal, and reject appearance/unfair-setup inferences. A comparison exercise is not an extra Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A learner first predicts from appearances, then observes a controlled, scientifically consistent equal-arm balance. They must learn which object has more mass by interpreting **pan position** (or an accessible equivalent) rather than from object size or which side happens to be drawn on the left. Swapping pans without changing objects tests conservation of object mass. Equal masses and a deliberately unfair extra object make the definition of a **fair comparison** explicit.
-                    
+
                     Learner voice: "**On this fair balance, the pan with the object of greater mass goes lower. Level pans can mean the two masses are equal.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The model is an **ideal, calibrated equal-arm balance** on level support, under uniform gravity. Equal arms and identical pan assemblies are assumed, no friction or external force. Left pan and right pan are equidistant from central pivot. One selected test object **per pan** is required for a fair object-to-object comparison.
                     - Let `mass(L)` and `mass(R)` be the **sum** of all internal model masses of objects currently in each pan. If both pans are loaded with the intended comparison objects:
                       - `mass(L) > mass(R)` → **left pan goes down, right pan goes up**.
@@ -86,20 +117,20 @@ config:
                       - **G:** unfamiliar differently shaped object, model mass **6**.
                     - Internals must not be described as actual densities/material measurements. When an object is switched from one pan to another, its mass is invariant; the direction of tilt switches if imbalance reverses. When artwork enlarges but model mass does not change, the balance **must** remain level if it was level.
                     - No numerical reading, unit conversion, beam torque equation, density computation or ordinary physical lifting task. Temperature, fluid displacement and gravity variation are outside scope.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Big Foam, Small Dense Token (Section 1)
-                    
+
                     1. Show a small solid-looking **token A** and a large airy-looking **block B**, with neither internal mass number visible to child. Prompt: "**Which might have more mass?**" Choices "small token", "large foam block", "can't know from size alone". The third is a sensible uncertainty, not a wrong prediction.
                     2. Present a stationary **empty equal-arm balance** clearly marked LEFT and RIGHT in its graphical/textual description. Controls "Place A on left", "Place B on right", "Compare" (and inverse positioning if child explores), with a paired or stepwise placement alternative that prevents inference before both target objects are present.
                     3. Canonical stage configuration: A5 **left** / B2 **right**. When "Release balance" or "Compare" is activated, **left pan lower**. The status ledger says "Left: token A; down. Right: foam block B; up. Token A has greater mass."
                     4. Feedback for height/size-based choice B: "The foam looks bigger, but its pan is **higher**. The smaller token's side is lower, so it has more mass." For A: "Your prediction matches the balance." For uncertainty: "Good question—size cannot decide it. The balance provides evidence."
                     5. "Read reasoning" explains why an equal-arm balanced device compares masses with the same arm lengths. "Reset" restores empty pans, unrevealed result and prediction control.
                     6. The visual animation may tilt gently; the semantic state is immediate/available on reduced-motion path and does not rely on color or sound.
-                    
+
                     ### B — Switch the Objects, Not Their Masses (Section 2)
-                    
+
                     1. Start A **left** and B **right** in a previously revealed A5/B2 comparison. Left pan lower.
                     2. Prompt: "After swapping A and B between pans, **which pan should be lower**? Will A still have greater mass?"
                     3. "Swap pan contents" atomically updates to **B2 left / A5 right** and reveals **right pan lower**. No intermediate one-pan result may be falsely described as a finished comparison.
@@ -108,27 +139,27 @@ config:
                        - After: "B left, A right; right pan down; **A heavier than B**."
                     5. If child chooses "A became lighter": "We moved A, but its mass did not change. The lower _side_ moved with A." Provide "Swap again" to replay; no reward.
                     6. Clear, separately named left/right pan state in any RTL locale: if visual positions mirror, the same swap and text log must be remapped consistently rather than reversing which object is heavier.
-                    
+
                     ### C — Equal Mass, Different Shapes (Section 3)
-                    
+
                     1. Two objects **C3 left** and **D3 right** have different-looking shapes and surface area in the picture, but equal model masses.
                     2. Prediction: "The shapes look different. Could the balance still be level?" Reveal **level beam**, both pans same height.
                     3. "Make D picture larger" changes **only rendered appearance** of D, not model mass. Beam must stay level, and no extra invisible object should appear. "Restore picture" returns previous size.
                     4. Explanation: "**Their masses match**, even though their shapes do not." If the learner thinks the larger picture should make D heavy: "Picture size is not the balance's measured mass."
                     5. "Swap positions" (optional) keeps level; equality is symmetric. If C and D are accidentally absent from pans, Scene reports "place both objects before comparing", not "level means equal" for empty pans.
                     6. Structured text: "C left, D right; each one object; pan heights equal; comparison: same mass."
-                    
+
                     ### D — Repair an Unfair Setup, Then Infer a New Comparison (Section 4)
-                    
+
                     1. Initial: C3 and extra E2 **on the left pan** (two objects), D3 **on the right** (one object). Actual total left 5, right 3 → **left pan lower**. Both the visibly distinguishable extra object and the textual inventory explicitly say "Left has C and E; right has D". Do **not** conceal E from assistive technologies.
                     2. Ask "Does left-down prove **C alone** has greater mass than D? Why not?" Correct conceptual response: **no**, because there are two things left. Feedback identifies the extra E.
                     3. "Remove extra E" updates pan inventory to C3 left/D3 right → **level**. Now C and D compare fairly and have equal mass. "Add back E" (optional) again lowers the left by the additional load, making the mechanism reviewable.
                     4. Fresh independent pair: **F4 left / G6 right**, exactly one object per pan. Child predicts which side will lower; "Compare" reveals **right pan lower** and **G greater mass than F**. Use a different picture size ordering from mass to prevent appearance guessing.
                     5. If child says F heavier from artwork: "The right pan with G is lower; the balance compares mass, not picture size." For wrong unfair inference C>D: "The balance responded to **C + E**, not to C alone."
                     6. Make "Reset fair test" and "Read all pan contents" available; no timed reveal, number-based score or hidden performance tracking.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** one equal-arm beam/pivot/pan pair, seven independent object profiles A–G, pan inventory, clear LEFT/RIGHT labels, prediction/reveal/hint/undo/reset controls, status text ledger.
                     - **State per independent placement:** local initial inventory, selected objects, optional appearance-only size preset, current predicted direction, reveal/compare status, current pan total relation, feedback. All model test masses immutable within one instance.
                     - **Rule:** totals determine beam state, **but** a comparison of designated single objects is flagged valid only when each designated object is alone on its pan and balance hardware is in the same fair configuration.
@@ -137,17 +168,17 @@ config:
                     - **Prop-free Scene root:** each Section's authored placement has no public incoming React props; internal helpers can share deterministic model but must obtain locale from real verified context. Do **not** invent `leftMass`, `rightMass`, `locale`, `onCompare` or `mode` Scene API.
                     - **Access:** named buttons "Place", "Remove", "Swap", "Read pan states" and discrete predictions are equivalent to all optional drag/tilt animation. Every reveal provides words **left higher/lower, right higher/lower, balanced** and object identity. All comparisons are **formative**, not a scored Question or mastery event.
                     - **Reset:** each independent Section instance returns to its documented starting inventory/prediction/reveal state; one Section cannot inherit previous user answers.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a very simple labeled horizontal beam with **equal arms** about a stable center pivot and two pan holders. Do not draw a physically misleading beam where the left end moves down while the object is on right heavier. For an imbalance, move lower pan down and higher pan up (or switch instantly for reduced motion), keep object/pan labels readable and anchored. Equal masses produce level beam. Decorative object scale differences intentionally challenge appearance but cannot alter the numeric physical model. A simple HTML/SVG state model is preferable to physics dynamics; sound unnecessary. Use shape/arrow/text status in addition to any colors.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every left/right, heavier/lighter/equal, pan inventory, compare/reveal action, feedback and accessible name into every supported locale with real translations; no English fallback. **RTL must not break the mapping between displayed pan, object, status and direction**; if UI is reflowed, list which physical pan each object occupies. Screen readers can inspect a table "left pan: object A, lower; right pan: object B, higher" before being asked which has greater mass **after the reveal**; before reveal do not leak mass token numbers. Use a keyboard/switch-operable button instead of precise pan drag or waiting for tilt; visible focus, large mobile targets, 200% scaling, WCAG 2.2 AA, no color/sound-only information and instant reduced-motion updates. All content, model logic and selected locale must work offline after verified package download; this is a future implementation requirement, not current tested behavior.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A, A5 left/B2 right → **left lower** and A greater mass despite smaller-looking token. Equal-arm condition explicit.
                     2. Stage B, same A5/B2 swapped to B2 left/A5 right → **right lower**; identity "A greater mass" unchanged.
                     3. Stage C, C3/D3 → **level**, even when visual size of D changes without mass change. Empty pans are not mistaken for successful object-to-object equality.
@@ -157,31 +188,31 @@ config:
                     7. All states preserve object mass and are deterministic after reset/swap; all interface labels and underlying pan identities agree in LTR and RTL.
                     8. Keyboard/screen-reader/text ledger, reduced motion, mobile 200% text and post-download offline operation preserve full comparison and fairness reasoning without a physical balance.
                     9. Every wrong prediction gives a mathematically specific explanation, **not** points/grades/retry penalties or an invented platform event.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource kind is available, but **Equal-Arm Balance Lab is not implemented**. After editor and Methodologist approval, Scene Designer/Coding Agent must implement locale-aware **prop-free** Section roots, deterministic pan-state tests, nonvisual interaction and offline packaging. Do not create runtime Lesson/Question/Quiz data, scoring, Note event APIs or persistent learner records in this editorial batch. Editor to verify balance-dynamics simplification is clearly labeled as an ideal equal-arm model.
-                    
+
                     ## Placement 1: Big Object, Small Object
-                    
+
                     2. **scene — Resource type/rendering exists, specific Scene proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement A. Model: **large foam block B**, mass **2 internal units**, on **right pan**; **small dense token A**, mass **5 internal units**, on **left pan**. Both pans start empty. The child chooses a prediction, places one on each side using labeled controls, and presses "Release balance" to reveal **left pan lower, right pan higher**. Internal mass numbers are only test labels, not visible pre-reveal.
-                  productionNotes: "Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "8df78998-429c-4913-a0e6-6b6ab67d9675"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '8df78998-429c-4913-a0e6-6b6ab67d9675'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
                       en: "The **small token's pan goes down**. On this fair balance, that means the small token has **more mass**. The large block takes more space, but being larger does not necessarily make something heavier."
                 production:
-                  purpose: "Big Object, Small Object; authored markdown block 3"
-                  specification: "3. **markdown — available renderer:** \"The **small token's pan goes down**. On this fair balance, that means the small token has **more mass**. The large block takes more space, but being larger does not necessarily make something heavier.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Big Object, Small Object; authored markdown block 3'
+                  specification: '3. **markdown — available renderer:** "The **small token''s pan goes down**. On this fair balance, that means the small token has **more mass**. The large block takes more space, but being larger does not necessarily make something heavier."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "elicit and test the misconception that bigger volume always means more mass."
-          pedagogicalIntent: "Original Section 1 — Big Object, Small Object; authoring draft only"
+          purpose: 'elicit and test the misconception that bigger volume always means more mass.'
+          pedagogicalIntent: 'Original Section 1 — Big Object, Small Object; authoring draft only'
           productionNotes: |-
             - **Purpose:** elicit and test the misconception that bigger volume always means more mass.
             - **Current shape:** `LessonSection_Config` with an ordered single-column Resource list.
@@ -194,57 +225,57 @@ config:
             - **Future Note:** "On an equal-arm balance, the pan with greater mass goes down."
       section2:
         config:
-          id: "056d636c-ddb3-4227-92ac-c086ac3f3999"
-          slug: "section2"
-          type: "content"
+          id: '056d636c-ddb3-4227-92ac-c086ac3f3999'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Swap Sides, Same Objects"
+              en: 'Swap Sides, Same Objects'
             navigationLabel:
-              en: "Swap Sides, Same Objects"
+              en: 'Swap Sides, Same Objects'
           content:
             items:
               text1:
                 config:
-                  id: "ff9a6451-c2a1-434a-88c2-167731481bc8"
-                  slug: "text1"
-                  type: "text"
+                  id: 'ff9a6451-c2a1-434a-88c2-167731481bc8'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "The little token made the left pan go down. If we move the token to the right pan and the foam to the left, does the token become lighter? Which pan should go down?"
+                      en: 'The little token made the left pan go down. If we move the token to the right pan and the foam to the left, does the token become lighter? Which pan should go down?'
                 production:
-                  purpose: "Swap Sides, Same Objects; authored text block 1"
-                  specification: "1. **text — available:** \"The little token made the **left** pan go down. If we move the token to the **right** pan and the foam to the **left**, does the token become lighter? Which pan should go down?\""
+                  purpose: 'Swap Sides, Same Objects; authored text block 1'
+                  specification: '1. **text — available:** "The little token made the **left** pan go down. If we move the token to the **right** pan and the foam to the **left**, does the token become lighter? Which pan should go down?"'
               scene2:
                 config:
-                  id: "3d12dfef-cfd6-4636-8ffb-5d812ccad1a0"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '3d12dfef-cfd6-4636-8ffb-5d812ccad1a0'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Swap pan contents"
+                        instruction: 'Swap pan contents'
                 production:
-                  purpose: "Swap Sides, Same Objects; authored scene block 2"
+                  purpose: 'Swap Sides, Same Objects; authored scene block 2'
                   specification: |-
                     # Equal-Arm Balance Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Which Object Has More Mass?](.this config.yaml), Sections 1–4
                     Methodologist objective: [Draft Brief](.this config.yaml) — compare **mass** qualitatively using a fair equal-arm balance, interpret greater/less/equal, and reject appearance/unfair-setup inferences. A comparison exercise is not an extra Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A learner first predicts from appearances, then observes a controlled, scientifically consistent equal-arm balance. They must learn which object has more mass by interpreting **pan position** (or an accessible equivalent) rather than from object size or which side happens to be drawn on the left. Swapping pans without changing objects tests conservation of object mass. Equal masses and a deliberately unfair extra object make the definition of a **fair comparison** explicit.
-                    
+
                     Learner voice: "**On this fair balance, the pan with the object of greater mass goes lower. Level pans can mean the two masses are equal.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The model is an **ideal, calibrated equal-arm balance** on level support, under uniform gravity. Equal arms and identical pan assemblies are assumed, no friction or external force. Left pan and right pan are equidistant from central pivot. One selected test object **per pan** is required for a fair object-to-object comparison.
                     - Let `mass(L)` and `mass(R)` be the **sum** of all internal model masses of objects currently in each pan. If both pans are loaded with the intended comparison objects:
                       - `mass(L) > mass(R)` → **left pan goes down, right pan goes up**.
@@ -262,20 +293,20 @@ config:
                       - **G:** unfamiliar differently shaped object, model mass **6**.
                     - Internals must not be described as actual densities/material measurements. When an object is switched from one pan to another, its mass is invariant; the direction of tilt switches if imbalance reverses. When artwork enlarges but model mass does not change, the balance **must** remain level if it was level.
                     - No numerical reading, unit conversion, beam torque equation, density computation or ordinary physical lifting task. Temperature, fluid displacement and gravity variation are outside scope.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Big Foam, Small Dense Token (Section 1)
-                    
+
                     1. Show a small solid-looking **token A** and a large airy-looking **block B**, with neither internal mass number visible to child. Prompt: "**Which might have more mass?**" Choices "small token", "large foam block", "can't know from size alone". The third is a sensible uncertainty, not a wrong prediction.
                     2. Present a stationary **empty equal-arm balance** clearly marked LEFT and RIGHT in its graphical/textual description. Controls "Place A on left", "Place B on right", "Compare" (and inverse positioning if child explores), with a paired or stepwise placement alternative that prevents inference before both target objects are present.
                     3. Canonical stage configuration: A5 **left** / B2 **right**. When "Release balance" or "Compare" is activated, **left pan lower**. The status ledger says "Left: token A; down. Right: foam block B; up. Token A has greater mass."
                     4. Feedback for height/size-based choice B: "The foam looks bigger, but its pan is **higher**. The smaller token's side is lower, so it has more mass." For A: "Your prediction matches the balance." For uncertainty: "Good question—size cannot decide it. The balance provides evidence."
                     5. "Read reasoning" explains why an equal-arm balanced device compares masses with the same arm lengths. "Reset" restores empty pans, unrevealed result and prediction control.
                     6. The visual animation may tilt gently; the semantic state is immediate/available on reduced-motion path and does not rely on color or sound.
-                    
+
                     ### B — Switch the Objects, Not Their Masses (Section 2)
-                    
+
                     1. Start A **left** and B **right** in a previously revealed A5/B2 comparison. Left pan lower.
                     2. Prompt: "After swapping A and B between pans, **which pan should be lower**? Will A still have greater mass?"
                     3. "Swap pan contents" atomically updates to **B2 left / A5 right** and reveals **right pan lower**. No intermediate one-pan result may be falsely described as a finished comparison.
@@ -284,27 +315,27 @@ config:
                        - After: "B left, A right; right pan down; **A heavier than B**."
                     5. If child chooses "A became lighter": "We moved A, but its mass did not change. The lower _side_ moved with A." Provide "Swap again" to replay; no reward.
                     6. Clear, separately named left/right pan state in any RTL locale: if visual positions mirror, the same swap and text log must be remapped consistently rather than reversing which object is heavier.
-                    
+
                     ### C — Equal Mass, Different Shapes (Section 3)
-                    
+
                     1. Two objects **C3 left** and **D3 right** have different-looking shapes and surface area in the picture, but equal model masses.
                     2. Prediction: "The shapes look different. Could the balance still be level?" Reveal **level beam**, both pans same height.
                     3. "Make D picture larger" changes **only rendered appearance** of D, not model mass. Beam must stay level, and no extra invisible object should appear. "Restore picture" returns previous size.
                     4. Explanation: "**Their masses match**, even though their shapes do not." If the learner thinks the larger picture should make D heavy: "Picture size is not the balance's measured mass."
                     5. "Swap positions" (optional) keeps level; equality is symmetric. If C and D are accidentally absent from pans, Scene reports "place both objects before comparing", not "level means equal" for empty pans.
                     6. Structured text: "C left, D right; each one object; pan heights equal; comparison: same mass."
-                    
+
                     ### D — Repair an Unfair Setup, Then Infer a New Comparison (Section 4)
-                    
+
                     1. Initial: C3 and extra E2 **on the left pan** (two objects), D3 **on the right** (one object). Actual total left 5, right 3 → **left pan lower**. Both the visibly distinguishable extra object and the textual inventory explicitly say "Left has C and E; right has D". Do **not** conceal E from assistive technologies.
                     2. Ask "Does left-down prove **C alone** has greater mass than D? Why not?" Correct conceptual response: **no**, because there are two things left. Feedback identifies the extra E.
                     3. "Remove extra E" updates pan inventory to C3 left/D3 right → **level**. Now C and D compare fairly and have equal mass. "Add back E" (optional) again lowers the left by the additional load, making the mechanism reviewable.
                     4. Fresh independent pair: **F4 left / G6 right**, exactly one object per pan. Child predicts which side will lower; "Compare" reveals **right pan lower** and **G greater mass than F**. Use a different picture size ordering from mass to prevent appearance guessing.
                     5. If child says F heavier from artwork: "The right pan with G is lower; the balance compares mass, not picture size." For wrong unfair inference C>D: "The balance responded to **C + E**, not to C alone."
                     6. Make "Reset fair test" and "Read all pan contents" available; no timed reveal, number-based score or hidden performance tracking.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** one equal-arm beam/pivot/pan pair, seven independent object profiles A–G, pan inventory, clear LEFT/RIGHT labels, prediction/reveal/hint/undo/reset controls, status text ledger.
                     - **State per independent placement:** local initial inventory, selected objects, optional appearance-only size preset, current predicted direction, reveal/compare status, current pan total relation, feedback. All model test masses immutable within one instance.
                     - **Rule:** totals determine beam state, **but** a comparison of designated single objects is flagged valid only when each designated object is alone on its pan and balance hardware is in the same fair configuration.
@@ -313,17 +344,17 @@ config:
                     - **Prop-free Scene root:** each Section's authored placement has no public incoming React props; internal helpers can share deterministic model but must obtain locale from real verified context. Do **not** invent `leftMass`, `rightMass`, `locale`, `onCompare` or `mode` Scene API.
                     - **Access:** named buttons "Place", "Remove", "Swap", "Read pan states" and discrete predictions are equivalent to all optional drag/tilt animation. Every reveal provides words **left higher/lower, right higher/lower, balanced** and object identity. All comparisons are **formative**, not a scored Question or mastery event.
                     - **Reset:** each independent Section instance returns to its documented starting inventory/prediction/reveal state; one Section cannot inherit previous user answers.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a very simple labeled horizontal beam with **equal arms** about a stable center pivot and two pan holders. Do not draw a physically misleading beam where the left end moves down while the object is on right heavier. For an imbalance, move lower pan down and higher pan up (or switch instantly for reduced motion), keep object/pan labels readable and anchored. Equal masses produce level beam. Decorative object scale differences intentionally challenge appearance but cannot alter the numeric physical model. A simple HTML/SVG state model is preferable to physics dynamics; sound unnecessary. Use shape/arrow/text status in addition to any colors.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every left/right, heavier/lighter/equal, pan inventory, compare/reveal action, feedback and accessible name into every supported locale with real translations; no English fallback. **RTL must not break the mapping between displayed pan, object, status and direction**; if UI is reflowed, list which physical pan each object occupies. Screen readers can inspect a table "left pan: object A, lower; right pan: object B, higher" before being asked which has greater mass **after the reveal**; before reveal do not leak mass token numbers. Use a keyboard/switch-operable button instead of precise pan drag or waiting for tilt; visible focus, large mobile targets, 200% scaling, WCAG 2.2 AA, no color/sound-only information and instant reduced-motion updates. All content, model logic and selected locale must work offline after verified package download; this is a future implementation requirement, not current tested behavior.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A, A5 left/B2 right → **left lower** and A greater mass despite smaller-looking token. Equal-arm condition explicit.
                     2. Stage B, same A5/B2 swapped to B2 left/A5 right → **right lower**; identity "A greater mass" unchanged.
                     3. Stage C, C3/D3 → **level**, even when visual size of D changes without mass change. Empty pans are not mistaken for successful object-to-object equality.
@@ -333,31 +364,31 @@ config:
                     7. All states preserve object mass and are deterministic after reset/swap; all interface labels and underlying pan identities agree in LTR and RTL.
                     8. Keyboard/screen-reader/text ledger, reduced motion, mobile 200% text and post-download offline operation preserve full comparison and fairness reasoning without a physical balance.
                     9. Every wrong prediction gives a mathematically specific explanation, **not** points/grades/retry penalties or an invented platform event.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource kind is available, but **Equal-Arm Balance Lab is not implemented**. After editor and Methodologist approval, Scene Designer/Coding Agent must implement locale-aware **prop-free** Section roots, deterministic pan-state tests, nonvisual interaction and offline packaging. Do not create runtime Lesson/Question/Quiz data, scoring, Note event APIs or persistent learner records in this editorial batch. Editor to verify balance-dynamics simplification is clearly labeled as an ideal equal-arm model.
-                    
+
                     ## Placement 2: Swap Sides, Same Objects
-                    
+
                     2. **scene — proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement B. Reset to the same pair A mass 5 and B mass 2. Start **A left/B right** with left lower, then use "Swap pan contents" (or two-step accessible replacement that never shows a valid result while only one pan occupied). After swap **A right/B left**, right lower. "Read comparison" states in both arrangements **A > B** in mass. Control "Return to original" restores state.
-                  productionNotes: "Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "624b8091-3654-4a2e-b1e2-570ff75fce4c"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '624b8091-3654-4a2e-b1e2-570ff75fce4c'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The lower **pan** changed because the heavier object moved. The **small token still has more mass**. Moving an object to the other pan does not change its mass."
+                      en: 'The lower **pan** changed because the heavier object moved. The **small token still has more mass**. Moving an object to the other pan does not change its mass.'
                 production:
-                  purpose: "Swap Sides, Same Objects; authored markdown block 3"
-                  specification: "3. **markdown — available:** \"The lower **pan** changed because the heavier object moved. The **small token still has more mass**. Moving an object to the other pan does not change its mass.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Swap Sides, Same Objects; authored markdown block 3'
+                  specification: '3. **markdown — available:** "The lower **pan** changed because the heavier object moved. The **small token still has more mass**. Moving an object to the other pan does not change its mass."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "show that side position changes but relative mass does not."
-          pedagogicalIntent: "Original Section 2 — Swap Sides, Same Objects; authoring draft only"
+          purpose: 'show that side position changes but relative mass does not.'
+          pedagogicalIntent: 'Original Section 2 — Swap Sides, Same Objects; authoring draft only'
           productionNotes: |-
             - **Purpose:** show that side position changes but relative mass does not.
             - **Current shape:** general Section with ordered blocks.
@@ -369,57 +400,57 @@ config:
             - **Access:** Use literal status sentences for each pan and object, and a pressable "Swap contents"; never require dragging over a moving beam.
       section3:
         config:
-          id: "066d64ff-dcb3-4094-93ac-c219ab3f3806"
-          slug: "section3"
-          type: "content"
+          id: '066d64ff-dcb3-4094-93ac-c219ab3f3806'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Different Shapes, Equal Mass"
+              en: 'Different Shapes, Equal Mass'
             navigationLabel:
-              en: "Different Shapes, Equal Mass"
+              en: 'Different Shapes, Equal Mass'
           content:
             items:
               text1:
                 config:
-                  id: "36f570c2-5d93-4859-8c05-60482e04d1f7"
-                  slug: "text1"
-                  type: "text"
+                  id: '36f570c2-5d93-4859-8c05-60482e04d1f7'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "A round stone-like object and a wide smooth block look different. Could they have the same mass? What would the balance look like?"
+                      en: 'A round stone-like object and a wide smooth block look different. Could they have the same mass? What would the balance look like?'
                 production:
-                  purpose: "Different Shapes, Equal Mass; authored text block 1"
-                  specification: "1. **text — available:** \"A round stone-like object and a wide smooth block look different. Could they have the **same mass**? What would the balance look like?\""
+                  purpose: 'Different Shapes, Equal Mass; authored text block 1'
+                  specification: '1. **text — available:** "A round stone-like object and a wide smooth block look different. Could they have the **same mass**? What would the balance look like?"'
               scene2:
                 config:
-                  id: "30ac431e-c376-4407-84bd-a72038088801"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '30ac431e-c376-4407-84bd-a72038088801'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Change their picture size, not their mass"
+                        instruction: 'Change their picture size, not their mass'
                 production:
-                  purpose: "Different Shapes, Equal Mass; authored scene block 2"
+                  purpose: 'Different Shapes, Equal Mass; authored scene block 2'
                   specification: |-
                     # Equal-Arm Balance Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Which Object Has More Mass?](.this config.yaml), Sections 1–4
                     Methodologist objective: [Draft Brief](.this config.yaml) — compare **mass** qualitatively using a fair equal-arm balance, interpret greater/less/equal, and reject appearance/unfair-setup inferences. A comparison exercise is not an extra Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A learner first predicts from appearances, then observes a controlled, scientifically consistent equal-arm balance. They must learn which object has more mass by interpreting **pan position** (or an accessible equivalent) rather than from object size or which side happens to be drawn on the left. Swapping pans without changing objects tests conservation of object mass. Equal masses and a deliberately unfair extra object make the definition of a **fair comparison** explicit.
-                    
+
                     Learner voice: "**On this fair balance, the pan with the object of greater mass goes lower. Level pans can mean the two masses are equal.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The model is an **ideal, calibrated equal-arm balance** on level support, under uniform gravity. Equal arms and identical pan assemblies are assumed, no friction or external force. Left pan and right pan are equidistant from central pivot. One selected test object **per pan** is required for a fair object-to-object comparison.
                     - Let `mass(L)` and `mass(R)` be the **sum** of all internal model masses of objects currently in each pan. If both pans are loaded with the intended comparison objects:
                       - `mass(L) > mass(R)` → **left pan goes down, right pan goes up**.
@@ -437,20 +468,20 @@ config:
                       - **G:** unfamiliar differently shaped object, model mass **6**.
                     - Internals must not be described as actual densities/material measurements. When an object is switched from one pan to another, its mass is invariant; the direction of tilt switches if imbalance reverses. When artwork enlarges but model mass does not change, the balance **must** remain level if it was level.
                     - No numerical reading, unit conversion, beam torque equation, density computation or ordinary physical lifting task. Temperature, fluid displacement and gravity variation are outside scope.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Big Foam, Small Dense Token (Section 1)
-                    
+
                     1. Show a small solid-looking **token A** and a large airy-looking **block B**, with neither internal mass number visible to child. Prompt: "**Which might have more mass?**" Choices "small token", "large foam block", "can't know from size alone". The third is a sensible uncertainty, not a wrong prediction.
                     2. Present a stationary **empty equal-arm balance** clearly marked LEFT and RIGHT in its graphical/textual description. Controls "Place A on left", "Place B on right", "Compare" (and inverse positioning if child explores), with a paired or stepwise placement alternative that prevents inference before both target objects are present.
                     3. Canonical stage configuration: A5 **left** / B2 **right**. When "Release balance" or "Compare" is activated, **left pan lower**. The status ledger says "Left: token A; down. Right: foam block B; up. Token A has greater mass."
                     4. Feedback for height/size-based choice B: "The foam looks bigger, but its pan is **higher**. The smaller token's side is lower, so it has more mass." For A: "Your prediction matches the balance." For uncertainty: "Good question—size cannot decide it. The balance provides evidence."
                     5. "Read reasoning" explains why an equal-arm balanced device compares masses with the same arm lengths. "Reset" restores empty pans, unrevealed result and prediction control.
                     6. The visual animation may tilt gently; the semantic state is immediate/available on reduced-motion path and does not rely on color or sound.
-                    
+
                     ### B — Switch the Objects, Not Their Masses (Section 2)
-                    
+
                     1. Start A **left** and B **right** in a previously revealed A5/B2 comparison. Left pan lower.
                     2. Prompt: "After swapping A and B between pans, **which pan should be lower**? Will A still have greater mass?"
                     3. "Swap pan contents" atomically updates to **B2 left / A5 right** and reveals **right pan lower**. No intermediate one-pan result may be falsely described as a finished comparison.
@@ -459,27 +490,27 @@ config:
                        - After: "B left, A right; right pan down; **A heavier than B**."
                     5. If child chooses "A became lighter": "We moved A, but its mass did not change. The lower _side_ moved with A." Provide "Swap again" to replay; no reward.
                     6. Clear, separately named left/right pan state in any RTL locale: if visual positions mirror, the same swap and text log must be remapped consistently rather than reversing which object is heavier.
-                    
+
                     ### C — Equal Mass, Different Shapes (Section 3)
-                    
+
                     1. Two objects **C3 left** and **D3 right** have different-looking shapes and surface area in the picture, but equal model masses.
                     2. Prediction: "The shapes look different. Could the balance still be level?" Reveal **level beam**, both pans same height.
                     3. "Make D picture larger" changes **only rendered appearance** of D, not model mass. Beam must stay level, and no extra invisible object should appear. "Restore picture" returns previous size.
                     4. Explanation: "**Their masses match**, even though their shapes do not." If the learner thinks the larger picture should make D heavy: "Picture size is not the balance's measured mass."
                     5. "Swap positions" (optional) keeps level; equality is symmetric. If C and D are accidentally absent from pans, Scene reports "place both objects before comparing", not "level means equal" for empty pans.
                     6. Structured text: "C left, D right; each one object; pan heights equal; comparison: same mass."
-                    
+
                     ### D — Repair an Unfair Setup, Then Infer a New Comparison (Section 4)
-                    
+
                     1. Initial: C3 and extra E2 **on the left pan** (two objects), D3 **on the right** (one object). Actual total left 5, right 3 → **left pan lower**. Both the visibly distinguishable extra object and the textual inventory explicitly say "Left has C and E; right has D". Do **not** conceal E from assistive technologies.
                     2. Ask "Does left-down prove **C alone** has greater mass than D? Why not?" Correct conceptual response: **no**, because there are two things left. Feedback identifies the extra E.
                     3. "Remove extra E" updates pan inventory to C3 left/D3 right → **level**. Now C and D compare fairly and have equal mass. "Add back E" (optional) again lowers the left by the additional load, making the mechanism reviewable.
                     4. Fresh independent pair: **F4 left / G6 right**, exactly one object per pan. Child predicts which side will lower; "Compare" reveals **right pan lower** and **G greater mass than F**. Use a different picture size ordering from mass to prevent appearance guessing.
                     5. If child says F heavier from artwork: "The right pan with G is lower; the balance compares mass, not picture size." For wrong unfair inference C>D: "The balance responded to **C + E**, not to C alone."
                     6. Make "Reset fair test" and "Read all pan contents" available; no timed reveal, number-based score or hidden performance tracking.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** one equal-arm beam/pivot/pan pair, seven independent object profiles A–G, pan inventory, clear LEFT/RIGHT labels, prediction/reveal/hint/undo/reset controls, status text ledger.
                     - **State per independent placement:** local initial inventory, selected objects, optional appearance-only size preset, current predicted direction, reveal/compare status, current pan total relation, feedback. All model test masses immutable within one instance.
                     - **Rule:** totals determine beam state, **but** a comparison of designated single objects is flagged valid only when each designated object is alone on its pan and balance hardware is in the same fair configuration.
@@ -488,17 +519,17 @@ config:
                     - **Prop-free Scene root:** each Section's authored placement has no public incoming React props; internal helpers can share deterministic model but must obtain locale from real verified context. Do **not** invent `leftMass`, `rightMass`, `locale`, `onCompare` or `mode` Scene API.
                     - **Access:** named buttons "Place", "Remove", "Swap", "Read pan states" and discrete predictions are equivalent to all optional drag/tilt animation. Every reveal provides words **left higher/lower, right higher/lower, balanced** and object identity. All comparisons are **formative**, not a scored Question or mastery event.
                     - **Reset:** each independent Section instance returns to its documented starting inventory/prediction/reveal state; one Section cannot inherit previous user answers.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a very simple labeled horizontal beam with **equal arms** about a stable center pivot and two pan holders. Do not draw a physically misleading beam where the left end moves down while the object is on right heavier. For an imbalance, move lower pan down and higher pan up (or switch instantly for reduced motion), keep object/pan labels readable and anchored. Equal masses produce level beam. Decorative object scale differences intentionally challenge appearance but cannot alter the numeric physical model. A simple HTML/SVG state model is preferable to physics dynamics; sound unnecessary. Use shape/arrow/text status in addition to any colors.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every left/right, heavier/lighter/equal, pan inventory, compare/reveal action, feedback and accessible name into every supported locale with real translations; no English fallback. **RTL must not break the mapping between displayed pan, object, status and direction**; if UI is reflowed, list which physical pan each object occupies. Screen readers can inspect a table "left pan: object A, lower; right pan: object B, higher" before being asked which has greater mass **after the reveal**; before reveal do not leak mass token numbers. Use a keyboard/switch-operable button instead of precise pan drag or waiting for tilt; visible focus, large mobile targets, 200% scaling, WCAG 2.2 AA, no color/sound-only information and instant reduced-motion updates. All content, model logic and selected locale must work offline after verified package download; this is a future implementation requirement, not current tested behavior.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A, A5 left/B2 right → **left lower** and A greater mass despite smaller-looking token. Equal-arm condition explicit.
                     2. Stage B, same A5/B2 swapped to B2 left/A5 right → **right lower**; identity "A greater mass" unchanged.
                     3. Stage C, C3/D3 → **level**, even when visual size of D changes without mass change. Empty pans are not mistaken for successful object-to-object equality.
@@ -508,31 +539,31 @@ config:
                     7. All states preserve object mass and are deterministic after reset/swap; all interface labels and underlying pan identities agree in LTR and RTL.
                     8. Keyboard/screen-reader/text ledger, reduced motion, mobile 200% text and post-download offline operation preserve full comparison and fairness reasoning without a physical balance.
                     9. Every wrong prediction gives a mathematically specific explanation, **not** points/grades/retry penalties or an invented platform event.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource kind is available, but **Equal-Arm Balance Lab is not implemented**. After editor and Methodologist approval, Scene Designer/Coding Agent must implement locale-aware **prop-free** Section roots, deterministic pan-state tests, nonvisual interaction and offline packaging. Do not create runtime Lesson/Question/Quiz data, scoring, Note event APIs or persistent learner records in this editorial batch. Editor to verify balance-dynamics simplification is clearly labeled as an ideal equal-arm model.
-                    
+
                     ## Placement 3: Different Shapes, Equal Mass
-                    
+
                     2. **scene — proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement C. Objects **C** and **D** have equal **3 internal mass units**, visually distinct shapes. Place C left/D right; after reveal, **both pans at equal height**. Toggle "Change their picture size, not their mass" to compare a larger-looking D with unchanged masses: pans remain level.
-                  productionNotes: "Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "15dae376-99a1-43e9-97cc-dacc91754a8f"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '15dae376-99a1-43e9-97cc-dacc91754a8f'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "The pans are **level**. With one object on each side and a fair equal-arm balance, their **masses are equal**. Objects can have different shapes and still have the same mass."
+                      en: 'The pans are **level**. With one object on each side and a fair equal-arm balance, their **masses are equal**. Objects can have different shapes and still have the same mass.'
                 production:
-                  purpose: "Different Shapes, Equal Mass; authored markdown block 3"
-                  specification: "3. **markdown — available:** \"The pans are **level**. With one object on each side and a fair equal-arm balance, their **masses are equal**. Objects can have different shapes and still have the same mass.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Different Shapes, Equal Mass; authored markdown block 3'
+                  specification: '3. **markdown — available:** "The pans are **level**. With one object on each side and a fair equal-arm balance, their **masses are equal**. Objects can have different shapes and still have the same mass."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "demonstrate that a level calibrated equal-arm balance represents equality, not lack of information."
-          pedagogicalIntent: "Original Section 3 — Different Shapes, Equal Mass; authoring draft only"
+          purpose: 'demonstrate that a level calibrated equal-arm balance represents equality, not lack of information.'
+          pedagogicalIntent: 'Original Section 3 — Different Shapes, Equal Mass; authoring draft only'
           productionNotes: |-
             - **Purpose:** demonstrate that a level calibrated equal-arm balance represents equality, not lack of information.
             - **Current shape:** one-column general Section.
@@ -545,57 +576,57 @@ config:
             - **Future Note:** "Level pans on a fair equal-arm balance mean equal mass."
       section4:
         config:
-          id: "036d6046-dbb3-4f01-94ac-c3acae3f3cbf"
-          slug: "section4"
-          type: "content"
+          id: '036d6046-dbb3-4f01-94ac-c3acae3f3cbf'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Make the Comparison Fair"
+              en: 'Make the Comparison Fair'
             navigationLabel:
-              en: "Make the Comparison Fair"
+              en: 'Make the Comparison Fair'
           content:
             items:
               text1:
                 config:
-                  id: "26e48537-a8f7-4fd0-8db7-069181271a82"
-                  slug: "text1"
-                  type: "text"
+                  id: '26e48537-a8f7-4fd0-8db7-069181271a82'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Two objects C and D have balanced before. Now the left pan has a second small object hiding beside C, and the beam tilts down on that side. Does this prove C is heavier? What should we fix?"
+                      en: 'Two objects C and D have balanced before. Now the left pan has a second small object hiding beside C, and the beam tilts down on that side. Does this prove C is heavier? What should we fix?'
                 production:
-                  purpose: "Make the Comparison Fair; authored text block 1"
-                  specification: "1. **text — available:** \"Two objects C and D have balanced before. Now the left pan has a **second small object** hiding beside C, and the beam tilts down on that side. Does this prove C is heavier? What should we fix?\""
+                  purpose: 'Make the Comparison Fair; authored text block 1'
+                  specification: '1. **text — available:** "Two objects C and D have balanced before. Now the left pan has a **second small object** hiding beside C, and the beam tilts down on that side. Does this prove C is heavier? What should we fix?"'
               scene2:
                 config:
-                  id: "51e4dd41-5636-4eb8-a768-712f16cfedde"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '51e4dd41-5636-4eb8-a768-712f16cfedde'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "**two objects left, one object right — not the requested one-to-one comparison**."
+                        instruction: '**two objects left, one object right — not the requested one-to-one comparison**.'
                 production:
-                  purpose: "Make the Comparison Fair; authored scene block 2"
+                  purpose: 'Make the Comparison Fair; authored scene block 2'
                   specification: |-
                     # Equal-Arm Balance Lab — Scene Specification
-                    
+
                     Status: **Provisional Draft pending Methodologist approval**
                     Owner: Educational Screenwriter
                     Parent Lesson / Sections: [Which Object Has More Mass?](.this config.yaml), Sections 1–4
                     Methodologist objective: [Draft Brief](.this config.yaml) — compare **mass** qualitatively using a fair equal-arm balance, interpret greater/less/equal, and reject appearance/unfair-setup inferences. A comparison exercise is not an extra Skill.
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A learner first predicts from appearances, then observes a controlled, scientifically consistent equal-arm balance. They must learn which object has more mass by interpreting **pan position** (or an accessible equivalent) rather than from object size or which side happens to be drawn on the left. Swapping pans without changing objects tests conservation of object mass. Equal masses and a deliberately unfair extra object make the definition of a **fair comparison** explicit.
-                    
+
                     Learner voice: "**On this fair balance, the pan with the object of greater mass goes lower. Level pans can mean the two masses are equal.**"
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - The model is an **ideal, calibrated equal-arm balance** on level support, under uniform gravity. Equal arms and identical pan assemblies are assumed, no friction or external force. Left pan and right pan are equidistant from central pivot. One selected test object **per pan** is required for a fair object-to-object comparison.
                     - Let `mass(L)` and `mass(R)` be the **sum** of all internal model masses of objects currently in each pan. If both pans are loaded with the intended comparison objects:
                       - `mass(L) > mass(R)` → **left pan goes down, right pan goes up**.
@@ -613,20 +644,20 @@ config:
                       - **G:** unfamiliar differently shaped object, model mass **6**.
                     - Internals must not be described as actual densities/material measurements. When an object is switched from one pan to another, its mass is invariant; the direction of tilt switches if imbalance reverses. When artwork enlarges but model mass does not change, the balance **must** remain level if it was level.
                     - No numerical reading, unit conversion, beam torque equation, density computation or ordinary physical lifting task. Temperature, fluid displacement and gravity variation are outside scope.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     ### A — Big Foam, Small Dense Token (Section 1)
-                    
+
                     1. Show a small solid-looking **token A** and a large airy-looking **block B**, with neither internal mass number visible to child. Prompt: "**Which might have more mass?**" Choices "small token", "large foam block", "can't know from size alone". The third is a sensible uncertainty, not a wrong prediction.
                     2. Present a stationary **empty equal-arm balance** clearly marked LEFT and RIGHT in its graphical/textual description. Controls "Place A on left", "Place B on right", "Compare" (and inverse positioning if child explores), with a paired or stepwise placement alternative that prevents inference before both target objects are present.
                     3. Canonical stage configuration: A5 **left** / B2 **right**. When "Release balance" or "Compare" is activated, **left pan lower**. The status ledger says "Left: token A; down. Right: foam block B; up. Token A has greater mass."
                     4. Feedback for height/size-based choice B: "The foam looks bigger, but its pan is **higher**. The smaller token's side is lower, so it has more mass." For A: "Your prediction matches the balance." For uncertainty: "Good question—size cannot decide it. The balance provides evidence."
                     5. "Read reasoning" explains why an equal-arm balanced device compares masses with the same arm lengths. "Reset" restores empty pans, unrevealed result and prediction control.
                     6. The visual animation may tilt gently; the semantic state is immediate/available on reduced-motion path and does not rely on color or sound.
-                    
+
                     ### B — Switch the Objects, Not Their Masses (Section 2)
-                    
+
                     1. Start A **left** and B **right** in a previously revealed A5/B2 comparison. Left pan lower.
                     2. Prompt: "After swapping A and B between pans, **which pan should be lower**? Will A still have greater mass?"
                     3. "Swap pan contents" atomically updates to **B2 left / A5 right** and reveals **right pan lower**. No intermediate one-pan result may be falsely described as a finished comparison.
@@ -635,27 +666,27 @@ config:
                        - After: "B left, A right; right pan down; **A heavier than B**."
                     5. If child chooses "A became lighter": "We moved A, but its mass did not change. The lower _side_ moved with A." Provide "Swap again" to replay; no reward.
                     6. Clear, separately named left/right pan state in any RTL locale: if visual positions mirror, the same swap and text log must be remapped consistently rather than reversing which object is heavier.
-                    
+
                     ### C — Equal Mass, Different Shapes (Section 3)
-                    
+
                     1. Two objects **C3 left** and **D3 right** have different-looking shapes and surface area in the picture, but equal model masses.
                     2. Prediction: "The shapes look different. Could the balance still be level?" Reveal **level beam**, both pans same height.
                     3. "Make D picture larger" changes **only rendered appearance** of D, not model mass. Beam must stay level, and no extra invisible object should appear. "Restore picture" returns previous size.
                     4. Explanation: "**Their masses match**, even though their shapes do not." If the learner thinks the larger picture should make D heavy: "Picture size is not the balance's measured mass."
                     5. "Swap positions" (optional) keeps level; equality is symmetric. If C and D are accidentally absent from pans, Scene reports "place both objects before comparing", not "level means equal" for empty pans.
                     6. Structured text: "C left, D right; each one object; pan heights equal; comparison: same mass."
-                    
+
                     ### D — Repair an Unfair Setup, Then Infer a New Comparison (Section 4)
-                    
+
                     1. Initial: C3 and extra E2 **on the left pan** (two objects), D3 **on the right** (one object). Actual total left 5, right 3 → **left pan lower**. Both the visibly distinguishable extra object and the textual inventory explicitly say "Left has C and E; right has D". Do **not** conceal E from assistive technologies.
                     2. Ask "Does left-down prove **C alone** has greater mass than D? Why not?" Correct conceptual response: **no**, because there are two things left. Feedback identifies the extra E.
                     3. "Remove extra E" updates pan inventory to C3 left/D3 right → **level**. Now C and D compare fairly and have equal mass. "Add back E" (optional) again lowers the left by the additional load, making the mechanism reviewable.
                     4. Fresh independent pair: **F4 left / G6 right**, exactly one object per pan. Child predicts which side will lower; "Compare" reveals **right pan lower** and **G greater mass than F**. Use a different picture size ordering from mass to prevent appearance guessing.
                     5. If child says F heavier from artwork: "The right pan with G is lower; the balance compares mass, not picture size." For wrong unfair inference C>D: "The balance responded to **C + E**, not to C alone."
                     6. Make "Reset fair test" and "Read all pan contents" available; no timed reveal, number-based score or hidden performance tracking.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - **Objects:** one equal-arm beam/pivot/pan pair, seven independent object profiles A–G, pan inventory, clear LEFT/RIGHT labels, prediction/reveal/hint/undo/reset controls, status text ledger.
                     - **State per independent placement:** local initial inventory, selected objects, optional appearance-only size preset, current predicted direction, reveal/compare status, current pan total relation, feedback. All model test masses immutable within one instance.
                     - **Rule:** totals determine beam state, **but** a comparison of designated single objects is flagged valid only when each designated object is alone on its pan and balance hardware is in the same fair configuration.
@@ -664,17 +695,17 @@ config:
                     - **Prop-free Scene root:** each Section's authored placement has no public incoming React props; internal helpers can share deterministic model but must obtain locale from real verified context. Do **not** invent `leftMass`, `rightMass`, `locale`, `onCompare` or `mode` Scene API.
                     - **Access:** named buttons "Place", "Remove", "Swap", "Read pan states" and discrete predictions are equivalent to all optional drag/tilt animation. Every reveal provides words **left higher/lower, right higher/lower, balanced** and object identity. All comparisons are **formative**, not a scored Question or mastery event.
                     - **Reset:** each independent Section instance returns to its documented starting inventory/prediction/reveal state; one Section cannot inherit previous user answers.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Use a very simple labeled horizontal beam with **equal arms** about a stable center pivot and two pan holders. Do not draw a physically misleading beam where the left end moves down while the object is on right heavier. For an imbalance, move lower pan down and higher pan up (or switch instantly for reduced motion), keep object/pan labels readable and anchored. Equal masses produce level beam. Decorative object scale differences intentionally challenge appearance but cannot alter the numeric physical model. A simple HTML/SVG state model is preferable to physics dynamics; sound unnecessary. Use shape/arrow/text status in addition to any colors.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate every left/right, heavier/lighter/equal, pan inventory, compare/reveal action, feedback and accessible name into every supported locale with real translations; no English fallback. **RTL must not break the mapping between displayed pan, object, status and direction**; if UI is reflowed, list which physical pan each object occupies. Screen readers can inspect a table "left pan: object A, lower; right pan: object B, higher" before being asked which has greater mass **after the reveal**; before reveal do not leak mass token numbers. Use a keyboard/switch-operable button instead of precise pan drag or waiting for tilt; visible focus, large mobile targets, 200% scaling, WCAG 2.2 AA, no color/sound-only information and instant reduced-motion updates. All content, model logic and selected locale must work offline after verified package download; this is a future implementation requirement, not current tested behavior.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Stage A, A5 left/B2 right → **left lower** and A greater mass despite smaller-looking token. Equal-arm condition explicit.
                     2. Stage B, same A5/B2 swapped to B2 left/A5 right → **right lower**; identity "A greater mass" unchanged.
                     3. Stage C, C3/D3 → **level**, even when visual size of D changes without mass change. Empty pans are not mistaken for successful object-to-object equality.
@@ -684,31 +715,31 @@ config:
                     7. All states preserve object mass and are deterministic after reset/swap; all interface labels and underlying pan identities agree in LTR and RTL.
                     8. Keyboard/screen-reader/text ledger, reduced motion, mobile 200% text and post-download offline operation preserve full comparison and fairness reasoning without a physical balance.
                     9. Every wrong prediction gives a mathematically specific explanation, **not** points/grades/retry penalties or an invented platform event.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     The generic `scene` Resource kind is available, but **Equal-Arm Balance Lab is not implemented**. After editor and Methodologist approval, Scene Designer/Coding Agent must implement locale-aware **prop-free** Section roots, deterministic pan-state tests, nonvisual interaction and offline packaging. Do not create runtime Lesson/Question/Quiz data, scoring, Note event APIs or persistent learner records in this editorial batch. Editor to verify balance-dynamics simplification is clearly labeled as an ideal equal-arm model.
-                    
+
                     ## Placement 4: Make the Comparison Fair
-                    
+
                     2. **scene — proposed:** Equal-Arm Balance Lab (Scene specification embedded in this config.yaml), placement D. Start C mass **3** left, D mass **3** right, **extra E mass 2** left; left total mass 5 versus right 3. Show visibly and textually "**two objects left, one object right — not the requested one-to-one comparison**." Choose "Remove extra E" to leave C vs D, producing level pans. Then show unseen pair **F mass 4** left / **G mass 6** right, one per pan, and ask for conclusion after release: **right pan lower, G has greater mass**.
-                  productionNotes: "Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from equalArmBalanceLab.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "8ab4c9cf-249d-4d44-bc22-41d1921e5936"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '8ab4c9cf-249d-4d44-bc22-41d1921e5936'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "First make a **fair comparison**: one chosen object on each side, the same calibrated balance, no extra things in a pan. After removing the extra, C and D balance. In the new fair pair, the **right** pan goes down: G has greater mass."
+                      en: 'First make a **fair comparison**: one chosen object on each side, the same calibrated balance, no extra things in a pan. After removing the extra, C and D balance. In the new fair pair, the **right** pan goes down: G has greater mass.'
                 production:
-                  purpose: "Make the Comparison Fair; authored markdown block 3"
-                  specification: "3. **markdown — available:** \"First make a **fair comparison**: one chosen object on each side, the same calibrated balance, no extra things in a pan. After removing the extra, C and D balance. In the new fair pair, the **right** pan goes down: G has greater mass.\""
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Make the Comparison Fair; authored markdown block 3'
+                  specification: '3. **markdown — available:** "First make a **fair comparison**: one chosen object on each side, the same calibrated balance, no extra things in a pan. After removing the extra, C and D balance. In the new fair pair, the **right** pan goes down: G has greater mass."'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "independent transfer including a deliberately invalid setup and correction."
-          pedagogicalIntent: "Original Section 4 — Make the Comparison Fair; authoring draft only"
+          purpose: 'independent transfer including a deliberately invalid setup and correction.'
+          pedagogicalIntent: 'Original Section 4 — Make the Comparison Fair; authoring draft only'
           productionNotes: |-
             - **Purpose:** independent transfer including a deliberately invalid setup and correction.
             - **Current shape:** general Section.
@@ -718,88 +749,88 @@ config:
               3. **markdown — available:** "First make a **fair comparison**: one chosen object on each side, the same calibrated balance, no extra things in a pan. After removing the extra, C and D balance. In the new fair pair, the **right** pan goes down: G has greater mass."
             - **Feedback:** For "C is heavier" based on unfair setup: "The left pan had **two objects**. That comparison cannot tell us that C alone is heavier." For new pair assuming bigger picture wins: "Read the tilt: the pan holding G is lower, regardless of the drawings' sizes." No penalty, scoring or inferred mastery.
             - **Transfer and extension:** Learner may optionally examine an actual balance with safe lightweight items under adult supervision, but the virtual equivalent supplies every observation and conclusion; no physical setup is required.
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Which Object Has More Mass? — Methodologist Brief
-    
+
     Date: 2026-10-31
     Slug: comparingMassOnBalance
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Replace an unreliable visual guess ('larger-looking means heavier') with a **fair equal-arm balance comparison**. Children learn that the lower pan holds the greater mass, equal pan height indicates equal masses under comparable conditions, and physical size or container appearance alone cannot determine which mass is greater.
-    
+
     ## Target audience
-    
+
     **Grade 1 (approximately ages 6–7).** Grade 1 (about ages 6–7) learners with intuitive heavy/light language, optional counting to five, early reading or nonvisual and motor access needs. A labeled symbolic pan-height and text-ledger alternative is required; no real weights, kitchen scales, physical lifting, precise timing or adult assistance may be assumed.
-    
+
     ## Prerequisites
-    
+
     Understand words **more/less/equal** through everyday sets and comparisons, recognize two labeled objects A and B, follow a single controlled 'place one object on each side' observation. No standard grams/kilograms, counting of mass units, lever theory or prior reading of a numerical scale needed.
-    
+
     ## Target Skills
-    
+
     - [compareMass.data.ts](../../../../data/skills/measurement/mass/skills/compareMass.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Use an equal-arm balance with one object on each pan to identify which has **greater mass**, which has less, or whether their masses are equal.
     - Explain that the **lower pan** indicates the heavier object's side on an ideal fair balance, while level pans show equal mass (with the equipment set up comparably).
     - Reject apparent volume, height, shape or color as sufficient evidence of which object is more massive when two unknown objects look very different.
     - Recognize an **unfair comparison** (an extra object already on one pan or different balance setup) and restore fair equal conditions before interpreting.
-    
+
     ## Essential subject matter
-    
+
     **Mass** concerns how much matter an object contains and is operationally compared by an ideal **equal-arm balance** under the same gravitational conditions. If a pair of unequal masses is placed on the two equal arms, the **heavier side goes down**, and the lighter side rises; if masses are equal, the beam stays level (assuming a calibrated, unburdened balance). A larger-looking item **may** have smaller mass than a smaller dense item. For a deterministic teaching simulation, label two abstract object masses internally (e.g. small metal token mass 5 model units versus large foam block mass 2; equal pair 3 and 3). Do **not** introduce numerical grams or claim the token values are calibrated weight. No scale reading or unit selection is part of this Skill. Control for tare: compare **one** selected object on each pan, with identical pan hardware and no hidden add-ons; otherwise the display may be unfair. The difference between weight as a force and mass as a quantity is outside Grade 1 treatment.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Begin with a large light-looking foam block and small dense-looking token, ask for prediction before showing any result. Place them on a fair equal-arm balance and observe the **small token's side lowering**. In an adjacent contrast, two differently shaped objects produce level pans when their masses are equal. Allow learners to swap sides to check the result reverses pan orientation but not which object is heavier; deliberately show an extra object on one pan and ask how to make the comparison fair. Transfer to an unfamiliar pair with reasoning from balanced state, not appearance alone.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Bigger object always has more mass; higher pan is heavier because it is 'up'; a tilted scale means a larger-looking object won; color signals heaviness; identical-looking boxes must have equal mass; two unequal arm lengths can be interpreted as an equal-arm balance; placing a hidden extra object on one side produces a valid comparison. Weight versus mass words need age-appropriate translation without asserting physical equivalence in all contexts.
-    
+
     **Depth exclusions:** Only comparative mass on a schematic calibrated **equal-arm** balance, one object per pan, and equality. No grams/kilograms, digital scale readings, balancing three masses with arithmetic, buoyancy, density computation, torque equations, gravity differences, or real heavy-object handling. The qualitative balance behavior is a pedagogical ideal model, not a claim about particular household hardware. These boundaries govern a **Lesson**, not the grade-independent canonical Skill definition.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Authentically localize every future learner-facing prompt, explanation, feedback message, geometry/measurement term, numerical description, accessible name, optional sound transcript, Scene control and recall Note in the supported locale set. No fake translations or English text fallbacks. Adopt meaning-preserving LTR/RTL: changing reading direction must never silently invert geometric surface structure, left/right pan behavior, amount ordering or 3D/2D membership. Use keyboard/switch-operable controls and complete nonvisual text-ledger alternatives; visual rotation or pouring effects are optional enhancements, never the only way to understand. Favor small controllable steps, reduced-motion versions, large mobile targets, visible focus, WCAG 2.2 AA and identical learning outcomes on weak devices. All essential model data, localized copy, Scene assets and explanations must be **downloadable for full offline use**; this is a product goal, not verified runtime support. If a later design cannot supply equivalent nonvisual/low-end modes, surface that as an editorial blocker, not a silent simplification.
-    
+
     ## Sources and factual verification
-    
+
     - [compareMass.data.ts](../../../../data/skills/measurement/mass/skills/compareMass.data.ts) — canonical source migrated verbatim from Mathematics `main`, including UUID, translations and methodological description.
     - [Methodologist Persona](../../../../../../studio/personas/methodist.persona.md), [Lesson editorial architecture](../../../../../../studio/docs/architecture/lesson-editorial-document.md) and [Lesson entity](../../../../../../studio/docs/entities/lesson.md) — governing editorial scope, autonomy and approval.
     - Playground generated English taxonomy (historical generated taxonomy; Skill code remains authoritative) — a **coordinator-owned generated view** that has **not been regenerated** to include these pending Skill imports. Canonical `*.data.ts` source files above are the verified sources.
-    
+
     The examples are pedagogically simplified as specifically described; they make no national Curriculum alignment or experimental instructional-effectiveness claims.
-    
+
     ## Curriculum / Program compatibility
-    
+
     No Program or national Curriculum has been assigned. The Lesson is independently coherent and may be referenced by future Programs. Grade 1 is a provisional **lesson-audience choice**, never a change to the taxonomy or new Skill assessment level.
-    
+
     ## Open editorial decisions
-    
+
     - Editor should verify that 'heavy/light' language is tied explicitly to **mass comparison** and that equal-arm balance and pan direction are correctly represented nonvisually. This does not teach weighing with standard units (separate Skill `weighObject`).
     - **Explicit approval still required.** This Methodologist Brief is **Draft**. The accompanying Content and custom Scene specification are **Provisional Drafts** prepared under the user's batch-level authorization, not formally approved under the Studio's standard handoff gate.
-    
+
     ## Methodologist handoff
-    
+
     Editor/Methodologist reviews learning depth, prerequisite accuracy, conceptual definition, examples and accessibility equivalence. Screenwriter may review and revise provisional Content and Scene documents, but they must not be treated as approved source for Coding Agent implementation before sign-off. Questions, Quizzes, scoring, analytics, full translation production, local persistence, Notes unlocking and runtime Lesson configuration are outside this batch.
-  purpose: "Which Object Has More Mass?"
+  purpose: 'Which Object Has More Mass?'
   productionNotes: |-
     Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
-    
+
     # Which Object Has More Mass? — Lesson Content
-    
+
     Status: **Provisional Draft — Methodologist approval pending; NOT approved for implementation.**
     Target Lesson: `content/playground/Data/Lessons/1/comparingMassOnBalance/`
     Audience: **Grade 1**, approximately 6–7 years, beginning readers and learners with varied sensory/motor access
@@ -808,60 +839,60 @@ production:
     Target Skills: **`compareMass.data.ts`** as directly linked in the Brief; `weighObject` is a later distinct Skill, not silently taught here.
     Program dependence: None
     Implementation status: complete **editorial proposal** only; there is no built Balance Scene, Lesson data, scored Question or Quiz.
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     **"Do not guess the mass from the picture. Compare fairly."** A large foam block may have less mass than a small dense metal-like token. A simple **equal-arm balance** helps compare two objects **under the same conditions**: the pan with greater total mass goes **down**, the pan with less goes **up**, and two equal masses leave the beam level on a calibrated ideal balance. Children must learn to identify which object is heavier and **why the comparison is reliable**, not simply memorize the direction of tilt.
-    
+
     The Lesson uses a lightweight **schematic** simulation, not an authentic hardware or gram measurement. For unambiguous expected behavior, internal model mass tokens are positive whole numbers, but the child sees only object descriptions and balance behavior. No new measurements, external weights or supplies are required. Natural-language labels "more mass", "less mass" and "same mass" are paired with "heavier/lighter" in child-friendly language without claiming mass is measured in an unspecified standard unit.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. Compare a **large-looking foam block** and **small dense token** without the balance, and predict which has more mass. Reveal a surprising but physically possible result.
     2. Swap exactly those objects between pans. Observe which **pan** goes down now, and confirm that **object mass** didn't change.
     3. Meet differently shaped objects with equal masses; see the balance stay **level** despite different appearances.
     4. Inspect an invalid comparison with an extra hidden object, make it fair, then interpret an unfamiliar final pair.
-    
+
     Section content is ordered **vertically** as typed resources; a custom Scene can lay out the two pans internally. No performance labels, rewards, confidence scores, arbitrary retries or mastery judgments.
-    
+
     ## SECTION PLAN
-    
-    
-    
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Equal-Arm Balance Lab (Scene specification embedded in this config.yaml) — proposed self-contained, prop-free Scene specification for four independent Section placements, with textual pan readings, fair-comparison rules and deterministic outcomes.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. After Section 1 reveal: "The lower pan has more mass on a fair equal-arm balance."
     2. After Section 3 equal pans: "Equal pan height means equal mass."
     3. After Section 4 repair: "Check that the comparison is fair before deciding."
-    
+
     These are short _future_ localized Note suggestions only. No existing Note unlock API, stable Note ID, persistence, user profile or spaced schedule is asserted.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     The new pair F/G is **unscored** independent transfer. A future Assessment Architect should separately assess qualitative comparison, equal case, swapping sides and fair-setup reasoning. No gram/kilogram readings or weight arithmetic Questions belong to this lesson without an explicit distinct Skill. One correct choice is not proof of sustained mastery.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Translate every object label, pan state, mass comparison, feedback, lever description, navigation control and Note cue genuinely for the configured languages; do not invent English fallbacks. In RTL a rendered page may mirror layout, but the **actual pan on the displayed left/right must agree with the textual pan state and logical model**; swap controls must track the same objects. Low-vision/nonvisual users receive a named pan-status table ("left: token A, down; right: foam B, up") and can place/remove/swap by ordinary buttons. No reliance on animation of a beam, color, exact clicking on a moving object or sound cues. Include focus, large targets, reduced-motion instant tilt changes, 200% text, WCAG 2.2 AA and full offline model/feedback after verified download. This is a specification, **not tested runtime**.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     - **Available renderer:** general `text`, `markdown` and `scene` Resource blocks.
     - **Proposed:** Equal-Arm Balance Lab, numeric invariant model (not physical calibration), genuine locale/context strings, per-placement prop-free root components, independent keyboard/text mode, tests and offline packaging. No reusable prop API invented.
     - Avoid full dynamics simulation if a simple static two-pan state + optional tilt animation preserves learning. No React, runtime Lesson data, scored Questions, Quiz, Note persistence or analytics are added here.
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Draft Methodologist Brief (incorporated in this config.yaml) and direct `compareMass.data.ts` canonical source linked there.
     - Editor: verify Grade 1 terms "more mass / heavier" and that the equal-arm balance behavior is described with no contradictory or hidden pan changes.
     - All Content and Scene material **provisional** pending explicit approval.
-    
+
     ## HANDOFF
-    
+
     Methodologist approves conceptual boundaries; Screenwriter/editor reviews fairness scenarios and age-friendly explanations; Scene Designer/Coding Agent implements only an approved Scene after verification of actual contracts. Assessment Architect defines any later scored evidence.
-    
+
     Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.

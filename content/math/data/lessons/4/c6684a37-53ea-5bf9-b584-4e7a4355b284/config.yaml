@@ -1,11 +1,42 @@
 # Draft editorial migration, not approved; no runtime Scene implementation.
 config:
-  id: "c6684a37-53ea-5bf9-b584-4e7a4355b284"
-  slug: "findingUnknownDividend"
-  type: "lesson"
-  skills: ["2da1164d-37e3-4135-914c-3206a1276cda"]
+  id: 'c6684a37-53ea-5bf9-b584-4e7a4355b284'
+  slug: 'findingUnknownDividend'
+  type: 'lesson'
+  skills: ['2da1164d-37e3-4135-914c-3206a1276cda']
   params:
-    languages: ["ar", "be", "bn", "de", "en", "es", "et", "fr", "he", "hi", "id", "ja", "ka", "kk", "ko", "lt", "lv", "mr", "ms", "pl", "pt", "qm", "ta", "te", "tr", "uk", "ur", "vi", "zh"]
+    languages:
+      [
+        'ar',
+        'be',
+        'bn',
+        'de',
+        'en',
+        'es',
+        'et',
+        'fr',
+        'he',
+        'hi',
+        'id',
+        'ja',
+        'ka',
+        'kk',
+        'ko',
+        'lt',
+        'lv',
+        'mr',
+        'ms',
+        'pl',
+        'pt',
+        'qm',
+        'ta',
+        'te',
+        'tr',
+        'uk',
+        'ur',
+        'vi',
+        'zh',
+      ]
     requireQuiz: false
     sections:
       allowNavigation: true
@@ -13,94 +44,94 @@ config:
       showIndexes: true
   locale:
     title:
-      en: "Finding an Unknown Dividend in Exact Division"
+      en: 'Finding an Unknown Dividend in Exact Division'
   section:
     items:
       section1:
         config:
-          id: "9be7dd87-594d-4048-86e8-948d89321816"
-          slug: "section1"
-          type: "content"
+          id: '9be7dd87-594d-4048-86e8-948d89321816'
+          slug: 'section1'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Three Equal Groups"
+              en: 'Three Equal Groups'
             navigationLabel:
-              en: "Three Equal Groups"
+              en: 'Three Equal Groups'
           content:
             items:
               text1:
                 config:
-                  id: "29bf1baa-e9a4-4d7d-a675-7b2cd8b2b8c7"
-                  slug: "text1"
-                  type: "text"
+                  id: '29bf1baa-e9a4-4d7d-a675-7b2cd8b2b8c7'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Twelve counters are shared equally among three groups. How many will each group get?"
+                      en: 'Twelve counters are shared equally among three groups. How many will each group get?'
                 production:
-                  purpose: "Three Equal Groups; authored text block 1"
-                  specification: "1. **text — available:** “Twelve counters are shared equally among three groups. How many will each group get?”"
+                  purpose: 'Three Equal Groups; authored text block 1'
+                  specification: '1. **text — available:** “Twelve counters are shared equally among three groups. How many will each group get?”'
               scene2:
                 config:
-                  id: "d19ace96-064a-4ed3-a589-211c6223f371"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'd19ace96-064a-4ed3-a589-211c6223f371'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Three Equal Groups"
+                        instruction: 'Three Equal Groups'
                 production:
-                  purpose: "Three Equal Groups; authored scene block 2"
+                  purpose: 'Three Equal Groups; authored scene block 2'
                   specification: |-
                     # Equal Groups Builder — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Finding an Unknown Dividend](.this config.yaml), Sections 1–2
                     Methodologist objective(s): Interpret exact division as equal groups and reconstruct a missing whole from divisor and quotient, with the selected sharing interpretation. [Methodologist Brief](.this config.yaml).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Learners use a _countable_ collection rather than guessing a symbol. When sharing among three groups gives four in each, the whole is the sum of all group counts. The Scene makes 3 groups of 4 into 4 + 4 + 4 and 3 × 4; it must never equate “3 groups” with “3 items in each” without explaining the chosen story.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Exact grouping data: group count G, size S, whole W = G × S, with 2 ≤ G,S ≤ 5 and W ≤ 20; zero divisors prohibited, no remainders or negative counters.
                     - Section 1: W=12, G=3, S=4, visible whole and known grouped model; the correct original equality 12 ÷ 3 = 4 is read “share 12 among 3 groups; 4 each”.
                     - Section 2: same groups remain visible, but the **numeric name of the whole** is hidden; reveal 4 + 4 + 4 = 12, then 3 × 4 = 12. Never hide the counters required to calculate.
                     - Optional model contrast: group objects in sets of 3, yielding 4 groups; explain that this is the **group-size** interpretation of division by three. Do not change the numerical conclusion or mix interpretations within a single explanation.
                     - W is conserved; moving counters changes representation, not quantity. The finite small-factor model excludes division with a remainder, long division and a generic mathematical proof.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Known whole (Section 1):** Display 12 distinct counters and 3 empty, clearly named group containers. “Can we share these equally among three groups?” Permit a learner-paced “Place next counter” or “Show equal sharing” operation. Each counter is assigned to a group deterministically; groups fill to 4 each, no leftovers. Announce: “Group one has four. Group two has four. Group three has four.”
                     2. Display “12 altogether ÷ 3 groups = 4 in each group.” Offer text-only review of the same three group counts; compare the total with the visible twelve. Optional “Try again” resets the counters to the ungrouped whole.
                     3. **Hidden whole (Section 2):** Display 3 groups already holding 4 counters each. Replace only the total numeral with “?”. Prompt: “How many counters in all three groups?” Offer “Count one group”, “Count all”, and candidate 7 / 12 / 14 buttons. A child may request the explanation without picking.
                     4. For 7: “Three plus four only names two things; we must count the four in every group: 4 + 4 + 4.” For 14: “Four, then eight, then twelve—there are twelve counters here.” For 12: “Yes. There are three equal groups of four, so twelve altogether.” The feedback is explanatory and unscored.
                     5. On reveal display 4 + 4 + 4 = 12 followed by 3 × 4 = 12; animate only to align each +4 with a specific group, not as a compulsory timed movie. Let the child review the link between groups and multiplication.
                     6. End with “If the total is missing, can the groups help you find it?” Provide “Yes. Count all equal groups” in text, not a score.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Objects: group containers indexed 1–G, countable counters (W total), separate labels for groups count G and per-group amount S, current whole label (known or hidden), ordered text ledger, “Share,” “Count,” “Reveal total,” “Reset,” and choice buttons.
                     - Placements are **two independent prop-free self-contained Scene entries**, not a new React mode prop. Coding Agent chooses composition and locale wiring without leaking state between Sections.
                     - Known-whole state: counters assigned or unassigned, group counts, revealed division relationship. Assignment must preserve count W; an “automatic share” button completes a mathematically equal distribution.
                     - Hidden-whole state: candidate, reveal state, equal-group representation; value W computed from G×S. A wrong candidate can appear as a tentative label but never as a verified total.
                     - Boundaries: no selected G=0, no unequal “exact sharing,” no disappearing counters or simulated remainder presented as valid; Reset returns to the placement’s initial state.
                     - Instructional state is not QuizState, grading, performance analytics or a permanent Skills record.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple lightweight HTML/SVG 2D containers with large countable counters and numerals. Group borders, textual captions and ordinal labels distinguish groups independently of color. Optional one-at-a-time placement animation follows learner control; reduced-motion instantly presents the same grouping. No asset generation, streamed video, narration requirement, 3D or reward mechanics.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All verbal prompts, “in each”, group-number descriptions, total, count, multiplication and feedback must be localized genuinely for every supported language. In RTL, adapt prose and control layout semantically while preserving mathematical order and the relationship among G, S and W. Equivalently usable nonvisual ordered table lists each group’s index/count and the total; keyboard/switch users can operate “assign next counter”, “show group”, “reset” and response choices. Voice recognition and precise dragging are never required; all counts are shown as text. Screen reader announces each changed group count once. Use 200%-zoom-friendly responsive arrangements and reduced-motion equivalence. Offline after a complete content download, all math/state/feedback work locally even on weak devices.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Known W=12 and three groups: exactly four objects in each and zero unassigned; 12 ÷ 3 = 4, not 3 ÷ 4.
                     2. Hidden total: three groups of four yield 4 + 4 + 4 = 12 and 3 × 4 = 12, with all twelve counters always countable.
                     3. Wrong guess 7/14 receives numeric explanation; show solution without selecting is permitted; no score.
@@ -108,31 +139,31 @@ config:
                     5. Alternative “groups of three” is expressly labeled and yields 4 groups rather than silently recasting “three groups”.
                     6. No invalid zero-divisor or remainder scenario; no counter or group count is lost.
                     7. Keyboard, screen reader, touch, RTL, reduced motion, narrow mobile and offline models produce exactly the same group totals and feedback.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing Scene Resource and renderer are available; this specific Scene is **proposed** and requires separate editor approval, Design Scene implementation, own tests, full locale context and accessible count-list equivalence. The readiness prerequisite is the Methodologist/editor's decision, not a widget-detected diagnostic. Coding Agent must implement prop-free Scene entrypoints, may share internal logic and must avoid invented assessment/Note APIs.
-                    
+
                     ## Placement 1: Three Equal Groups
-                    
+
                     2. **scene — available type/renderer, new implementation proposed:** Equal Groups Builder (Scene specification embedded in this config.yaml), known-whole entry: start with 12 counters and three labeled group containers; show four counters per group, one counted at a time on demand.
-                  productionNotes: "Proposed unimplemented Scene, sourced from equalGroupsBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from equalGroupsBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "4ce0388e-d431-454d-8c01-4fb0aa5b31bf"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '4ce0388e-d431-454d-8c01-4fb0aa5b31bf'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We made 3 equal groups. Each group has 4. That means **12 ÷ 3 = 4**. Twelve is the whole; three is the number of groups; four is how many are in each group."
+                      en: 'We made 3 equal groups. Each group has 4. That means **12 ÷ 3 = 4**. Twelve is the whole; three is the number of groups; four is how many are in each group.'
                 production:
-                  purpose: "Three Equal Groups; authored markdown block 3"
-                  specification: "3. **markdown — available:** “We made 3 equal groups. Each group has 4. That means **12 ÷ 3 = 4**. Twelve is the whole; three is the number of groups; four is how many are in each group.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Three Equal Groups; authored markdown block 3'
+                  specification: '3. **markdown — available:** “We made 3 equal groups. Each group has 4. That means **12 ÷ 3 = 4**. Twelve is the whole; three is the number of groups; four is how many are in each group.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Three Equal Groups"
-          pedagogicalIntent: "Original Section 1 — Three Equal Groups; authoring draft only"
+          purpose: 'Three Equal Groups'
+          pedagogicalIntent: 'Original Section 1 — Three Equal Groups; authoring draft only'
           productionNotes: |-
             - Purpose / learning outcome: Reconnect division to an already familiar exact equal-sharing model and verify prerequisite understanding.
             - Current implementation shape: LessonSection_Config; ordered general-section resources, not a Quiz.
@@ -149,89 +180,89 @@ config:
             - Implementation dependencies and review notes: New Scene needed; children missing this mental model should be directed to foundational teaching, not forced through an “advanced” Lesson with a token hint.
       section2:
         config:
-          id: "9ce7df1a-5c4d-4501-83e8-8fd488321683"
-          slug: "section2"
-          type: "content"
+          id: '9ce7df1a-5c4d-4501-83e8-8fd488321683'
+          slug: 'section2'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "What Was the Total?"
+              en: 'What Was the Total?'
             navigationLabel:
-              en: "What Was the Total?"
+              en: 'What Was the Total?'
           content:
             items:
               text1:
                 config:
-                  id: "a949168b-1790-45d0-90be-60996a03eb86"
-                  slug: "text1"
-                  type: "text"
+                  id: 'a949168b-1790-45d0-90be-60996a03eb86'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "Now the total is hidden. There are still 3 groups, with 4 counters in each. How many counters were there altogether?"
+                      en: 'Now the total is hidden. There are still 3 groups, with 4 counters in each. How many counters were there altogether?'
                 production:
-                  purpose: "What Was the Total?; authored text block 1"
-                  specification: "1. **text — available:** “Now the total is hidden. There are still 3 groups, with 4 counters in each. How many counters were there altogether?”"
+                  purpose: 'What Was the Total?; authored text block 1'
+                  specification: '1. **text — available:** “Now the total is hidden. There are still 3 groups, with 4 counters in each. How many counters were there altogether?”'
               scene2:
                 config:
-                  id: "ef722d4d-7101-40b8-9188-0d472755332a"
-                  slug: "scene2"
-                  type: "scene"
+                  id: 'ef722d4d-7101-40b8-9188-0d472755332a'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "What Was the Total?"
+                        instruction: 'What Was the Total?'
                 production:
-                  purpose: "What Was the Total?; authored scene block 2"
+                  purpose: 'What Was the Total?; authored scene block 2'
                   specification: |-
                     # Equal Groups Builder — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Finding an Unknown Dividend](.this config.yaml), Sections 1–2
                     Methodologist objective(s): Interpret exact division as equal groups and reconstruct a missing whole from divisor and quotient, with the selected sharing interpretation. [Methodologist Brief](.this config.yaml).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     Learners use a _countable_ collection rather than guessing a symbol. When sharing among three groups gives four in each, the whole is the sum of all group counts. The Scene makes 3 groups of 4 into 4 + 4 + 4 and 3 × 4; it must never equate “3 groups” with “3 items in each” without explaining the chosen story.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Exact grouping data: group count G, size S, whole W = G × S, with 2 ≤ G,S ≤ 5 and W ≤ 20; zero divisors prohibited, no remainders or negative counters.
                     - Section 1: W=12, G=3, S=4, visible whole and known grouped model; the correct original equality 12 ÷ 3 = 4 is read “share 12 among 3 groups; 4 each”.
                     - Section 2: same groups remain visible, but the **numeric name of the whole** is hidden; reveal 4 + 4 + 4 = 12, then 3 × 4 = 12. Never hide the counters required to calculate.
                     - Optional model contrast: group objects in sets of 3, yielding 4 groups; explain that this is the **group-size** interpretation of division by three. Do not change the numerical conclusion or mix interpretations within a single explanation.
                     - W is conserved; moving counters changes representation, not quantity. The finite small-factor model excludes division with a remainder, long division and a generic mathematical proof.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     1. **Known whole (Section 1):** Display 12 distinct counters and 3 empty, clearly named group containers. “Can we share these equally among three groups?” Permit a learner-paced “Place next counter” or “Show equal sharing” operation. Each counter is assigned to a group deterministically; groups fill to 4 each, no leftovers. Announce: “Group one has four. Group two has four. Group three has four.”
                     2. Display “12 altogether ÷ 3 groups = 4 in each group.” Offer text-only review of the same three group counts; compare the total with the visible twelve. Optional “Try again” resets the counters to the ungrouped whole.
                     3. **Hidden whole (Section 2):** Display 3 groups already holding 4 counters each. Replace only the total numeral with “?”. Prompt: “How many counters in all three groups?” Offer “Count one group”, “Count all”, and candidate 7 / 12 / 14 buttons. A child may request the explanation without picking.
                     4. For 7: “Three plus four only names two things; we must count the four in every group: 4 + 4 + 4.” For 14: “Four, then eight, then twelve—there are twelve counters here.” For 12: “Yes. There are three equal groups of four, so twelve altogether.” The feedback is explanatory and unscored.
                     5. On reveal display 4 + 4 + 4 = 12 followed by 3 × 4 = 12; animate only to align each +4 with a specific group, not as a compulsory timed movie. Let the child review the link between groups and multiplication.
                     6. End with “If the total is missing, can the groups help you find it?” Provide “Yes. Count all equal groups” in text, not a score.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Objects: group containers indexed 1–G, countable counters (W total), separate labels for groups count G and per-group amount S, current whole label (known or hidden), ordered text ledger, “Share,” “Count,” “Reveal total,” “Reset,” and choice buttons.
                     - Placements are **two independent prop-free self-contained Scene entries**, not a new React mode prop. Coding Agent chooses composition and locale wiring without leaking state between Sections.
                     - Known-whole state: counters assigned or unassigned, group counts, revealed division relationship. Assignment must preserve count W; an “automatic share” button completes a mathematically equal distribution.
                     - Hidden-whole state: candidate, reveal state, equal-group representation; value W computed from G×S. A wrong candidate can appear as a tentative label but never as a verified total.
                     - Boundaries: no selected G=0, no unequal “exact sharing,” no disappearing counters or simulated remainder presented as valid; Reset returns to the placement’s initial state.
                     - Instructional state is not QuizState, grading, performance analytics or a permanent Skills record.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Simple lightweight HTML/SVG 2D containers with large countable counters and numerals. Group borders, textual captions and ordinal labels distinguish groups independently of color. Optional one-at-a-time placement animation follows learner control; reduced-motion instantly presents the same grouping. No asset generation, streamed video, narration requirement, 3D or reward mechanics.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     All verbal prompts, “in each”, group-number descriptions, total, count, multiplication and feedback must be localized genuinely for every supported language. In RTL, adapt prose and control layout semantically while preserving mathematical order and the relationship among G, S and W. Equivalently usable nonvisual ordered table lists each group’s index/count and the total; keyboard/switch users can operate “assign next counter”, “show group”, “reset” and response choices. Voice recognition and precise dragging are never required; all counts are shown as text. Screen reader announces each changed group count once. Use 200%-zoom-friendly responsive arrangements and reduced-motion equivalence. Offline after a complete content download, all math/state/feedback work locally even on weak devices.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Known W=12 and three groups: exactly four objects in each and zero unassigned; 12 ÷ 3 = 4, not 3 ÷ 4.
                     2. Hidden total: three groups of four yield 4 + 4 + 4 = 12 and 3 × 4 = 12, with all twelve counters always countable.
                     3. Wrong guess 7/14 receives numeric explanation; show solution without selecting is permitted; no score.
@@ -239,31 +270,31 @@ config:
                     5. Alternative “groups of three” is expressly labeled and yields 4 groups rather than silently recasting “three groups”.
                     6. No invalid zero-divisor or remainder scenario; no counter or group count is lost.
                     7. Keyboard, screen reader, touch, RTL, reduced motion, narrow mobile and offline models produce exactly the same group totals and feedback.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Existing Scene Resource and renderer are available; this specific Scene is **proposed** and requires separate editor approval, Design Scene implementation, own tests, full locale context and accessible count-list equivalence. The readiness prerequisite is the Methodologist/editor's decision, not a widget-detected diagnostic. Coding Agent must implement prop-free Scene entrypoints, may share internal logic and must avoid invented assessment/Note APIs.
-                    
+
                     ## Placement 2: What Was the Total?
-                    
+
                     2. **scene — renderer available, proposed new content:** Equal Groups Builder (Scene specification embedded in this config.yaml), hidden-whole entry: three groups of four, optional count-one-at-a-time; reveal **4 + 4 + 4 = 12**, then **3 × 4 = 12**.
-                  productionNotes: "Proposed unimplemented Scene, sourced from equalGroupsBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from equalGroupsBuilder.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "5927d773-694f-4344-981b-b0298846941a"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '5927d773-694f-4344-981b-b0298846941a'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "We counted four three times: **4 + 4 + 4 = 12**. Multiplication says the same thing: **3 × 4 = 12**. The missing total is 12."
+                      en: 'We counted four three times: **4 + 4 + 4 = 12**. Multiplication says the same thing: **3 × 4 = 12**. The missing total is 12.'
                 production:
-                  purpose: "What Was the Total?; authored markdown block 3"
-                  specification: "3. **markdown — available:** “We counted four three times: **4 + 4 + 4 = 12**. Multiplication says the same thing: **3 × 4 = 12**. The missing total is 12.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'What Was the Total?; authored markdown block 3'
+                  specification: '3. **markdown — available:** “We counted four three times: **4 + 4 + 4 = 12**. Multiplication says the same thing: **3 × 4 = 12**. The missing total is 12.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "What Was the Total?"
-          pedagogicalIntent: "Original Section 2 — What Was the Total?; authoring draft only"
+          purpose: 'What Was the Total?'
+          pedagogicalIntent: 'Original Section 2 — What Was the Total?; authoring draft only'
           productionNotes: |-
             - Purpose / learning outcome: Find the hidden dividend by restoring the total from known group count and group size.
             - Current implementation shape: LessonSection_Config.
@@ -280,81 +311,81 @@ config:
             - Implementation dependencies and review notes: Same proposed Scene family in an isolated entry state; no public mode prop is presumed.
       section3:
         config:
-          id: "9de7e0ad-5b4d-436e-84e8-9167873214f0"
-          slug: "section3"
-          type: "content"
+          id: '9de7e0ad-5b4d-436e-84e8-9167873214f0'
+          slug: 'section3'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Put Twelve Back"
+              en: 'Put Twelve Back'
             navigationLabel:
-              en: "Put Twelve Back"
+              en: 'Put Twelve Back'
           content:
             items:
               markdown1:
                 config:
-                  id: "07186776-5520-49ad-9be4-ea48ff8313ff"
-                  slug: "markdown1"
-                  type: "markdown"
+                  id: '07186776-5520-49ad-9be4-ea48ff8313ff'
+                  slug: 'markdown1'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Our original equality was **□ ÷ 3 = 4**. We think the box is 12. Let’s put 12 in the box and check."
+                      en: 'Our original equality was **□ ÷ 3 = 4**. We think the box is 12. Let’s put 12 in the box and check.'
                 production:
-                  purpose: "Put Twelve Back; authored markdown block 1"
-                  specification: "1. **markdown — available:** “Our original equality was **□ ÷ 3 = 4**. We think the box is 12. Let’s put 12 in the box and check.”"
+                  purpose: 'Put Twelve Back; authored markdown block 1'
+                  specification: '1. **markdown — available:** “Our original equality was **□ ÷ 3 = 4**. We think the box is 12. Let’s put 12 in the box and check.”'
               scene2:
                 config:
-                  id: "9dd180bc-be13-4939-aea3-f1764f33be4b"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '9dd180bc-be13-4939-aea3-f1764f33be4b'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Put Twelve Back"
+                        instruction: 'Put Twelve Back'
                 production:
-                  purpose: "Put Twelve Back; authored scene block 2"
+                  purpose: 'Put Twelve Back; authored scene block 2'
                   specification: |-
                     # Division Equality Checker — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Finding an Unknown Dividend](.this config.yaml), Sections 3–4
                     Methodologist objective(s): Identify a missing dividend and verify its recovered value **in the original exact division**, distinguishing multiplication for finding from division for checking. [Methodologist Brief](.this config.yaml).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A child substitutes a proposed total into the very expression that had the box, then compares the actual quotient with the stated quotient. The Scene must make clear the different jobs of operations: multiplication discovers a total from equal groups; exact division verifies that total in the original equality.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Only exact division among G nonzero equal groups of S with whole W=G×S; groups and sizes 2–5, W≤20. In the **sharing model**, □ ÷ G = S means the number in each of G groups is S.
                     - Guided original: □ ÷ 3 = 4; candidate 9 yields 9 ÷ 3 = 3, **not** 4; 12 yields 12 ÷ 3 = 4, equal; 15 yields 15 ÷ 3 = 5, **not** 4.
                     - Independent original: □ ÷ 4 = 3; candidates 8→8 ÷ 4 = 2 (mismatch), 12→12 ÷ 4 = 3 (match), 16→16 ÷ 4 = 4 (mismatch).
                     - Each candidate has an exact quotient in the selected set. Do not generalize these choices to any candidate; division with a remainder is excluded from this Lesson, not assumed impossible in general.
                     - Multiplication retrievals: 3×4=12 and 4×3=12; keep the **chosen group-count/group-size story** attached to each example. The equals sign compares computed numeric values.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     **Guided entry / Section 3**
-                    
+
                     1. Display “□ ÷ 3 = 4”. Ask “What number could go into the box?” A child can first select “Show 3 groups of 4”, revealing the equal-group drawing/list, before choosing.
                     2. Choices 9, 12, 15 are native controls; picking one replaces only □ in the original displayed equality. Show evaluated left side and fixed right side in words and numerals.
                     3. 9: “Nine shared among three groups makes three in each. Our equality says four. This candidate does not fit.” 12: “Twelve shared among three gives four in each. Both sides say four.” 15: “Fifteen shared among three makes five in each, not four.”
                     4. After a wrong guess, preserve it as a **trial** rather than claiming the displayed unequal statement is true. Allow “Try another total” or “Show why”. Provide “Count 4 + 4 + 4 = 12” without requiring a guess.
                     5. Reveal “3 groups × 4 each = 12” and then **“12 ÷ 3 = 4”**. Optionally show the second exact grouping interpretation, twelve arranged into groups of three yields four groups, with a verbal label explaining how the story changes.
-                    
+
                     **Independent entry / Section 4**
-                    
+
                     1. New state: “□ ÷ 4 = 3” and prompt “If there are four equal groups with three in each, how many objects altogether?” Initially no answer or illustrated result.
                     2. Choices 8, 12, 16 and “Show groups”/“Hint”/“Show explanation”. Hint: “Count three once for each of the four groups.”
                     3. 8 produces “8 ÷ 4 = 2, not 3”. 12 produces “12 ÷ 4 = 3. Both sides equal three”. 16 produces “16 ÷ 4 = 4, not 3”. Reconstruct as 3 + 3 + 3 + 3 = 12; 4×3=12.
                     4. Prompt “What was missing—number of groups, objects in a group, or the total?” The learner may choose **the total**, speak to an adult or simply inspect the explanation. No automatic speech evaluation.
                     5. “Reset” clears a placement’s tentative choices without affecting the other Section. No score or mastery message.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Objects: original equality with an accessible “missing dividend” label, fixed divisor and quotient, candidate buttons, temporary substitution view, computed quotient, model of G groups, group-count/per-group labels, comparison text, hint and reset.
                     - Two separate prop-free Scene instances must start from their own examples; **do not invent a React mode prop**. Coding Agent may share mathematical utilities without sharing presentation state.
                     - State: source equality data W unknown, G/S fixed, candidate selected, show/hide equal-group explanation, placement-specific hints. Candidate C can be declared “fits” iff C/G=S with remainder 0.
@@ -362,17 +393,17 @@ config:
                     - A counter visualization must have precisely C or G×S objects as labeled; avoid silently showing twelve while testing a wrong candidate nine.
                     - Incorrect equality is visibly “trial does not fit”, not misrepresented as a mathematical identity.
                     - A user can see full explanation without answering; no timer, forced tries, fixed threshold or hidden assessment persistence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Keep the original equality at eye level, large enough to read; show substitution exactly in the missing position and put “actual result” / “expected result” as two labeled values. Countable small equal-group display is optional until requested, with deterministic SVG/HTML. Animated grouping can be stepped through or skipped; no audio/video or image file is essential. No gamification or automatic success animation.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all source strings into the full supported locale roster; provide plain-language alternatives to dividend/divisor/quotient. Preserve operand meaning/order in RTL (never mirror ÷ into a different equality). Read complete statements as “unknown whole divided by three equals four” and, after choosing twelve, “twelve divided by three equals four; left equals right.” All comparisons have accessible text and group lists, not color-only cues. Keyboard/touch/switch input, visible focus, 200% zoom, reduced motion and screen-reader status announcements support the same investigative steps; no dragging or spoken response requirement. Entire model and feedback must function locally offline after package download on weak devices.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Guided □ ÷ 3 = 4: 9 gives 3 ≠ 4; 12 gives 4 = 4; 15 gives 5 ≠ 4.
                     2. Show groups before answer: three groups of four visibly/textually yield twelve with no leaked grade.
                     3. Independent □ ÷ 4 = 3: 8 gives 2 ≠ 3; 12 gives 3 = 3; 16 gives 4 ≠ 3; reconstruction 4×3=12.
@@ -380,31 +411,31 @@ config:
                     5. Neither Section’s choices leak to the other; hints/reveal/reset always work.
                     6. No remainder, divisor-zero or larger-scope examples are silently added.
                     7. Keyboard, screen reader, RTL, reduced motion, mobile and locally downloaded offline modes show identical calculations and explanatory meaning.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene rendering exists; this Scene and per-placement entries are **proposed** pending approval and later Design Scene/tests. The editor must preserve the **readiness-gated enrichment** restriction for grades 1–2. Coding Agent owns technical integration and genuine localization, Assessment Architect owns any future validated graded questions; none are created here.
-                    
+
                     ## Placement 3: Put Twelve Back
-                    
+
                     2. **scene — supported block type, proposed Scene:** Division Equality Checker (Scene specification embedded in this config.yaml), guided substitution entry; show 12 ÷ 3 = 4 as a countable three-groups-of-four verification, with a wrong candidate contrast.
-                  productionNotes: "Proposed unimplemented Scene, sourced from divisionEqualityChecker.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from divisionEqualityChecker.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               text3:
                 config:
-                  id: "2e204072-cb52-4be5-a356-a1647fc95a7f"
-                  slug: "text3"
-                  type: "text"
+                  id: '2e204072-cb52-4be5-a356-a1647fc95a7f'
+                  slug: 'text3'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "12 ÷ 3 = 4, so twelve fits the missing place. If we tried another number, it would not share into three groups of four without something changing."
+                      en: '12 ÷ 3 = 4, so twelve fits the missing place. If we tried another number, it would not share into three groups of four without something changing.'
                 production:
-                  purpose: "Put Twelve Back; authored text block 3"
-                  specification: "3. **text — available:** “**12 ÷ 3 = 4**, so twelve fits the missing place. If we tried another number, it would not share into three groups of four without something changing.”"
-            order: ["markdown1", "scene2", "text3"]
+                  purpose: 'Put Twelve Back; authored text block 3'
+                  specification: '3. **text — available:** “**12 ÷ 3 = 4**, so twelve fits the missing place. If we tried another number, it would not share into three groups of four without something changing.”'
+            order: ['markdown1', 'scene2', 'text3']
         production:
-          purpose: "Put Twelve Back"
-          pedagogicalIntent: "Original Section 3 — Put Twelve Back; authoring draft only"
+          purpose: 'Put Twelve Back'
+          pedagogicalIntent: 'Original Section 3 — Put Twelve Back; authoring draft only'
           productionNotes: |-
             - Purpose / learning outcome: Substitute the candidate in the original division and decide whether it satisfies the exact-division relationship.
             - Current implementation shape: LessonSection_Config.
@@ -421,81 +452,81 @@ config:
             - Implementation dependencies and review notes: New proposed checker Scene, not Quiz_Config or an Assessment Architect-owned Question.
       section4:
         config:
-          id: "96e7d5a8-5e4d-4827-81e8-8cae8e321ff5"
-          slug: "section4"
-          type: "content"
+          id: '96e7d5a8-5e4d-4827-81e8-8cae8e321ff5'
+          slug: 'section4'
+          type: 'content'
           params: {}
           locale:
             title:
-              en: "Find a New Whole"
+              en: 'Find a New Whole'
             navigationLabel:
-              en: "Find a New Whole"
+              en: 'Find a New Whole'
           content:
             items:
               text1:
                 config:
-                  id: "fa3aeadd-313a-494a-936f-b0ffd6d19594"
-                  slug: "text1"
-                  type: "text"
+                  id: 'fa3aeadd-313a-494a-936f-b0ffd6d19594'
+                  slug: 'text1'
+                  type: 'text'
                   params: {}
                   locale:
                     value:
-                      en: "□ ÷ 4 = 3. Imagine sharing equally among 4 groups. Each group gets 3. What was the whole?"
+                      en: '□ ÷ 4 = 3. Imagine sharing equally among 4 groups. Each group gets 3. What was the whole?'
                 production:
-                  purpose: "Find a New Whole; authored text block 1"
-                  specification: "1. **text — available:** “**□ ÷ 4 = 3.** Imagine sharing equally among 4 groups. Each group gets 3. What was the whole?”"
+                  purpose: 'Find a New Whole; authored text block 1'
+                  specification: '1. **text — available:** “**□ ÷ 4 = 3.** Imagine sharing equally among 4 groups. Each group gets 3. What was the whole?”'
               scene2:
                 config:
-                  id: "6c4e8933-eaa2-4836-abce-3a7961255a54"
-                  slug: "scene2"
-                  type: "scene"
+                  id: '6c4e8933-eaa2-4836-abce-3a7961255a54'
+                  slug: 'scene2'
+                  type: 'scene'
                   params: {}
                   locale:
                     value:
                       en:
-                        instruction: "Find a New Whole"
+                        instruction: 'Find a New Whole'
                 production:
-                  purpose: "Find a New Whole; authored scene block 2"
+                  purpose: 'Find a New Whole; authored scene block 2'
                   specification: |-
                     # Division Equality Checker — Scene Specification
-                    
+
                     Status: Draft
                     Owner: Educational Screenwriter
                     Parent Lesson / Section: [Finding an Unknown Dividend](.this config.yaml), Sections 3–4
                     Methodologist objective(s): Identify a missing dividend and verify its recovered value **in the original exact division**, distinguishing multiplication for finding from division for checking. [Methodologist Brief](.this config.yaml).
-                    
+
                     ## LEARNER PURPOSE AND CONCEPT
-                    
+
                     A child substitutes a proposed total into the very expression that had the box, then compares the actual quotient with the stated quotient. The Scene must make clear the different jobs of operations: multiplication discovers a total from equal groups; exact division verifies that total in the original equality.
-                    
+
                     ## ACCURATE CONTENT AND MODEL LIMITATIONS
-                    
+
                     - Only exact division among G nonzero equal groups of S with whole W=G×S; groups and sizes 2–5, W≤20. In the **sharing model**, □ ÷ G = S means the number in each of G groups is S.
                     - Guided original: □ ÷ 3 = 4; candidate 9 yields 9 ÷ 3 = 3, **not** 4; 12 yields 12 ÷ 3 = 4, equal; 15 yields 15 ÷ 3 = 5, **not** 4.
                     - Independent original: □ ÷ 4 = 3; candidates 8→8 ÷ 4 = 2 (mismatch), 12→12 ÷ 4 = 3 (match), 16→16 ÷ 4 = 4 (mismatch).
                     - Each candidate has an exact quotient in the selected set. Do not generalize these choices to any candidate; division with a remainder is excluded from this Lesson, not assumed impossible in general.
                     - Multiplication retrievals: 3×4=12 and 4×3=12; keep the **chosen group-count/group-size story** attached to each example. The equals sign compares computed numeric values.
-                    
+
                     ## EXPERIENCE BEATS AND LEARNER ACTIONS
-                    
+
                     **Guided entry / Section 3**
-                    
+
                     1. Display “□ ÷ 3 = 4”. Ask “What number could go into the box?” A child can first select “Show 3 groups of 4”, revealing the equal-group drawing/list, before choosing.
                     2. Choices 9, 12, 15 are native controls; picking one replaces only □ in the original displayed equality. Show evaluated left side and fixed right side in words and numerals.
                     3. 9: “Nine shared among three groups makes three in each. Our equality says four. This candidate does not fit.” 12: “Twelve shared among three gives four in each. Both sides say four.” 15: “Fifteen shared among three makes five in each, not four.”
                     4. After a wrong guess, preserve it as a **trial** rather than claiming the displayed unequal statement is true. Allow “Try another total” or “Show why”. Provide “Count 4 + 4 + 4 = 12” without requiring a guess.
                     5. Reveal “3 groups × 4 each = 12” and then **“12 ÷ 3 = 4”**. Optionally show the second exact grouping interpretation, twelve arranged into groups of three yields four groups, with a verbal label explaining how the story changes.
-                    
+
                     **Independent entry / Section 4**
-                    
+
                     1. New state: “□ ÷ 4 = 3” and prompt “If there are four equal groups with three in each, how many objects altogether?” Initially no answer or illustrated result.
                     2. Choices 8, 12, 16 and “Show groups”/“Hint”/“Show explanation”. Hint: “Count three once for each of the four groups.”
                     3. 8 produces “8 ÷ 4 = 2, not 3”. 12 produces “12 ÷ 4 = 3. Both sides equal three”. 16 produces “16 ÷ 4 = 4, not 3”. Reconstruct as 3 + 3 + 3 + 3 = 12; 4×3=12.
                     4. Prompt “What was missing—number of groups, objects in a group, or the total?” The learner may choose **the total**, speak to an adult or simply inspect the explanation. No automatic speech evaluation.
                     5. “Reset” clears a placement’s tentative choices without affecting the other Section. No score or mastery message.
-                    
+
                     ## INTERACTIVE OBJECTS, STATES AND RULES
-                    
+
                     - Objects: original equality with an accessible “missing dividend” label, fixed divisor and quotient, candidate buttons, temporary substitution view, computed quotient, model of G groups, group-count/per-group labels, comparison text, hint and reset.
                     - Two separate prop-free Scene instances must start from their own examples; **do not invent a React mode prop**. Coding Agent may share mathematical utilities without sharing presentation state.
                     - State: source equality data W unknown, G/S fixed, candidate selected, show/hide equal-group explanation, placement-specific hints. Candidate C can be declared “fits” iff C/G=S with remainder 0.
@@ -503,17 +534,17 @@ config:
                     - A counter visualization must have precisely C or G×S objects as labeled; avoid silently showing twelve while testing a wrong candidate nine.
                     - Incorrect equality is visibly “trial does not fit”, not misrepresented as a mathematical identity.
                     - A user can see full explanation without answering; no timer, forced tries, fixed threshold or hidden assessment persistence.
-                    
+
                     ## VISUAL / AUDIO / MEDIA DIRECTION
-                    
+
                     Keep the original equality at eye level, large enough to read; show substitution exactly in the missing position and put “actual result” / “expected result” as two labeled values. Countable small equal-group display is optional until requested, with deterministic SVG/HTML. Animated grouping can be stepped through or skipped; no audio/video or image file is essential. No gamification or automatic success animation.
-                    
+
                     ## LOCALIZATION, DIRECTION AND ACCESSIBILITY
-                    
+
                     Translate all source strings into the full supported locale roster; provide plain-language alternatives to dividend/divisor/quotient. Preserve operand meaning/order in RTL (never mirror ÷ into a different equality). Read complete statements as “unknown whole divided by three equals four” and, after choosing twelve, “twelve divided by three equals four; left equals right.” All comparisons have accessible text and group lists, not color-only cues. Keyboard/touch/switch input, visible focus, 200% zoom, reduced motion and screen-reader status announcements support the same investigative steps; no dragging or spoken response requirement. Entire model and feedback must function locally offline after package download on weak devices.
-                    
+
                     ## ACCEPTANCE SCENARIOS
-                    
+
                     1. Guided □ ÷ 3 = 4: 9 gives 3 ≠ 4; 12 gives 4 = 4; 15 gives 5 ≠ 4.
                     2. Show groups before answer: three groups of four visibly/textually yield twelve with no leaked grade.
                     3. Independent □ ÷ 4 = 3: 8 gives 2 ≠ 3; 12 gives 3 = 3; 16 gives 4 ≠ 3; reconstruction 4×3=12.
@@ -521,31 +552,31 @@ config:
                     5. Neither Section’s choices leak to the other; hints/reveal/reset always work.
                     6. No remainder, divisor-zero or larger-scope examples are silently added.
                     7. Keyboard, screen reader, RTL, reduced motion, mobile and locally downloaded offline modes show identical calculations and explanatory meaning.
-                    
+
                     ## IMPLEMENTATION DEPENDENCIES AND OPEN QUESTIONS
-                    
+
                     Generic Scene rendering exists; this Scene and per-placement entries are **proposed** pending approval and later Design Scene/tests. The editor must preserve the **readiness-gated enrichment** restriction for grades 1–2. Coding Agent owns technical integration and genuine localization, Assessment Architect owns any future validated graded questions; none are created here.
-                    
+
                     ## Placement 4: Find a New Whole
-                    
+
                     2. **scene — supported block, proposed new content:** Division Equality Checker (Scene specification embedded in this config.yaml), independent entry: initially show the equality alone; on request display four groups of three; allow a candidate and show its substituted original division.
-                  productionNotes: "Proposed unimplemented Scene, sourced from divisionEqualityChecker.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements."
+                  productionNotes: 'Proposed unimplemented Scene, sourced from divisionEqualityChecker.scene-spec.md; separate node ID for this placement. Source content is provisional; verify independent approval, accessibility, RTL, performance and offline requirements.'
               markdown3:
                 config:
-                  id: "03a4692d-7b07-402e-a6e8-12c7f0033508"
-                  slug: "markdown3"
-                  type: "markdown"
+                  id: '03a4692d-7b07-402e-a6e8-12c7f0033508'
+                  slug: 'markdown3'
+                  type: 'markdown'
                   params: {}
                   locale:
                     value:
-                      en: "Four groups of three make **3 + 3 + 3 + 3 = 12**, or **4 × 3 = 12**. Check **12 ÷ 4 = 3**. The missing dividend is 12."
+                      en: 'Four groups of three make **3 + 3 + 3 + 3 = 12**, or **4 × 3 = 12**. Check **12 ÷ 4 = 3**. The missing dividend is 12.'
                 production:
-                  purpose: "Find a New Whole; authored markdown block 3"
-                  specification: "3. **markdown — available:** “Four groups of three make **3 + 3 + 3 + 3 = 12**, or **4 × 3 = 12**. Check **12 ÷ 4 = 3**. The missing dividend is 12.”"
-            order: ["text1", "scene2", "markdown3"]
+                  purpose: 'Find a New Whole; authored markdown block 3'
+                  specification: '3. **markdown — available:** “Four groups of three make **3 + 3 + 3 + 3 = 12**, or **4 × 3 = 12**. Check **12 ÷ 4 = 3**. The missing dividend is 12.”'
+            order: ['text1', 'scene2', 'markdown3']
         production:
-          purpose: "Find a New Whole"
-          pedagogicalIntent: "Original Section 4 — Find a New Whole; authoring draft only"
+          purpose: 'Find a New Whole'
+          pedagogicalIntent: 'Original Section 4 — Find a New Whole; authoring draft only'
           productionNotes: |-
             - Purpose / learning outcome: Transfer to a fresh exact division with reduced scaffolding.
             - Current implementation shape: LessonSection_Config.
@@ -560,87 +591,87 @@ config:
             - Accessibility, locale and RTL: Text explanation and group counts match the visual; all controls operable via keyboard/touch and assistive technologies, with localized labels. Reduced motion shows equivalent end states.
             - Proposed unlocked Note(s): Revisit Notes 1 and 2; no additional Note required.
             - Implementation dependencies and review notes: Formative example only. Any scored assessment, attribution or readiness diagnostic belongs to Assessment Architect.
-    order: ["section1", "section2", "section3", "section4"]
+    order: ['section1', 'section2', 'section3', 'section4']
   flashcards:
     items: {}
     order: []
 production:
-  documentLanguage: "en"
+  documentLanguage: 'en'
   methodology: |-
     # Finding an Unknown Dividend in Exact Division — Methodologist Brief
-    
+
     Date: 2026-10-30
     Slug: findingUnknownDividend
     Methodologist status: Draft
     Code: Not implemented
     Program dependence: None
-    
+
     ## Educational purpose
-    
+
     Show how a missing starting quantity in exact division can be reconstructed by combining equal groups. The central insight is the inverse relationship between multiplication and exact division: dividend = divisor × quotient. This is a **readiness-dependent enrichment Lesson**, not assumed core learning for all 6–8-year-olds.
-    
+
     ## Target audience
-    
+
     Children aged 6–8 in grades 1–2 **only if they already understand equal groups, simple exact division and matching multiplication facts**. Learners without these prerequisites should not be given a nominally grade-level lesson that expects multiplication or division fluency. Use plain language before formal terms and preserve nonverbal response options.
-    
+
     ## Prerequisites
-    
+
     - Count equal groups and determine a total by repeated addition or familiar multiplication facts.
     - Understand exact sharing or grouping situations with a nonzero divisor and no remainder.
     - Recognize quotient (the number of equal groups or items per group in the stated model) and divisor in a concrete exact-division relationship.
     - If these capabilities are absent, teach foundational equal-groups or sharing Lessons first; a single warm-up does not repair the missing conceptual foundation.
-    
+
     ## Target Skills
-    
+
     - [unknownDividend.data.ts](../../../../data/skills/algebra/unknowns/skills/unknownDividend.data.ts)
-    
+
     ## Expected learning outcomes
-    
+
     - Identify the missing **dividend** (starting total) rather than the divisor or quotient in a stated exact division.
     - Use the quotient and nonzero divisor to reconstruct the total through equal groups and multiplication.
     - Explain with a visual or verbal equal-groups model why □ ÷ 3 = 4 corresponds to 3 × 4 = 12 in the chosen grouping interpretation.
     - Verify the value by substituting it in the original exact division; explain why a wrong total is inconsistent with the given groups.
-    
+
     ## Essential subject matter
-    
+
     In exact division of nonnegative whole numbers, **dividend ÷ divisor = quotient** and hence **dividend = divisor × quotient** for a nonzero divisor. For □ ÷ 3 = 4, 12 is the missing dividend because 12 ÷ 3 = 4 and 3 × 4 = 12. Distinguish two situations: “twelve objects shared among three groups gives four per group” and “twelve objects grouped in threes yields four groups.” Both can express the same exact numerical relationship, but the role of each quantity must be named for the scenario. Begin with physically or pictorially groupable small totals and unit counts, not abstract division algorithms. The conceptual recall candidate is the inverse multiplication/division relationship; formal technical vocabulary is introduced only after meaning.
-    
+
     ## Conceptual progression and dependencies
-    
+
     Establish equal groups and the two interpretations of exact division with complete known totals. Hide only the total and reconstruct it by counting all groups; connect the resulting equal-group sum to multiplication. Finally read and verify the corresponding numerical equality. Delay symbol manipulation until learners can explain what the quantities denote; distinguish finding the total from finding an unknown group size.
-    
+
     ## Misconceptions, examples and boundaries
-    
+
     Mistakes include adding divisor and quotient (3 + 4 = 7), dividing the known numbers again (4 ÷ 3), reversing roles without interpreting the model, and applying the exact-division rule to a situation with a remainder. Explain that division by zero is undefined and exclude it. Use nonnegative whole numbers, small factors and **remainder-free** examples; do not introduce long division, negative factors, fractions, algebraic transformations or unsupported generalizations.
-    
+
     ## Localization, accessibility and offline intent
-    
+
     Use unambiguous language for “dividend”, “divisor”, “quotient”, “equal sharing” and “equal grouping”; provide the terms with concrete labels such as “total,” “groups,” and “in each group.” Explain which model a given equality represents. The spatial arrangement of groups must be verbally describable and accessible without color or drag gestures; keyboard, screen-reader and low-bandwidth equivalents must support reconstructing totals. Respect RTL math notation and reading direction without changing arithmetic operand meanings. Complete offline delivery requires all explanations, models and feedback to be local.
-    
+
     ## Sources and factual verification
-    
+
     - [Common Core Mathematics Standards](https://corestandards.org/mathematics-standards/), Grade 3 Operations and Algebraic Thinking (3.OA.A.2–3) places substantial multiplication/division instruction in a later grade than the requested core audience; used to motivate an **enrichment and readiness gate**, not to claim exact global age thresholds.
     - [IES/WWC, Elementary Mathematics Intervention](https://ies.ed.gov/ncee/wwc/PracticeGuide/26), clear mathematical language and linked models for concept development.
     - Playground generated English taxonomy (historical generated taxonomy; Skill code remains authoritative), methodological scope and inverse relation for unknownDividend.
-    
+
     ## Curriculum / Program compatibility
-    
+
     Not specified. This is **not assumed compatible with standard grade 1–2 coverage**: a typical Grade 3 comparison benchmark introduces formal multiplication/division later. Offer only as optional advanced material after verifying prerequisite understanding.
-    
+
     ## Open editorial decisions
-    
+
     - **Editor decision required before final approval:** retain this Lesson as an advanced/readiness-gated option for a subset of 6–8-year-olds, or defer it to a later audience. The chosen audience and Curriculum coverage must not be misrepresented.
     - Editor: confirm that the small-factors exact-division restriction is an appropriate Lesson-depth choice, not a change to the canonical age-neutral Skill.
-    
+
     ## Methodologist handoff
-    
+
     Draft for editor review; **do not present as approved or universally age-appropriate**. After explicit approval of the readiness gate and scope, the Screenwriter may design accessible equal-group representations and inverse-relation explanations.
-  purpose: "Finding an Unknown Dividend in Exact Division"
+  purpose: 'Finding an Unknown Dividend in Exact Division'
   productionNotes: |-
     Provisional English-only Screenwriter source. Full original introduction, lesson-wide requirements, dependencies and review handoff:
-    
+
     # Finding an Unknown Dividend in Exact Division — Content
-    
+
     Status: Draft
     Target Lesson: content/playground/Data/Lessons/1/findingUnknownDividend/ (Playground)
     Audience: Readiness-gated enrichment for children aged 6–8, grades 1–2, who already understand equal groups, exact division and matching multiplication; NOT required core instruction for all children of that age
@@ -648,52 +679,52 @@ production:
     Learning outcomes: identify the missing dividend; rebuild the total from divisor and quotient via equal groups and multiplication; explain □ ÷ 3 = 4 in a specific grouping model; substitute the total back into the original exact division
     Target Skills: As selected and linked in the Methodologist Brief; no substitute Skill list or new UUIDs
     Program dependence: None
-    
+
     ## INSTRUCTIONAL CONCEPT
-    
+
     An exact division describes a _whole_, a _number of groups_ and _a quantity in each group_. In the initial model, “share equally among three groups” means the divisor 3 is the **group count** and quotient 4 is the **number in each group**. If the whole is hidden, rebuild it: three groups with four counters each contain 4 + 4 + 4 = 12 counters, or 3 × 4 = 12. Check the actual division: 12 ÷ 3 = 4.
-    
+
     Keep the inverse relation concrete before introducing names: dividend = divisor × quotient for exact division with nonzero divisor. This relation has another valid grouping interpretation: □ ÷ 3 = 4 can mean making groups _of three_, which gives four groups. Never claim the 3 always counts groups in all models; the verbal story selects that interpretation. The underlying arithmetic gives the same total.
-    
+
     Only nonnegative whole numbers, small factors (2–5), remainder-free examples and totals up to 20. No division by zero, long division, fractions, remainder cases or formal algebra transformations. This Lesson is not a substitute for prior understanding of division and multiplication. A readiness notice belongs to the Lesson metadata/entry experience; the Screenwriter cannot falsely certify that every 6–8-year-old is prepared.
-    
+
     ## LEARNER JOURNEY
-    
+
     1. **Recall known division:** Twelve counters shared among three groups give four in each; the child can inspect the model and justify it.
     2. **Hide the whole:** Keep three groups with four in each but hide the number naming the total. The child reconstructs the whole by counting groups, repeated addition or multiplication.
     3. **Reverse and verify:** Put the candidate into □ ÷ 3 = 4 and check that sharing really gives four in each group. Contrast a wrong guess and a different grouping story.
     4. **Transfer with less help:** Work from □ ÷ 4 = 3, reconstruct 12 using four groups of three and explain the original equality, not just a matching product.
-    
+
     Navigation, visual reveals and number choices are self-paced, unscored instruction, not a quiz or mastery claim.
-    
+
     ## SECTION PLAN
-    
-    
-    
+
+
+
     ## CUSTOM SCENE SPECIFICATIONS
-    
+
     - Equal Groups Builder (Scene specification embedded in this config.yaml) — Sections 1–2, countable equal-sharing and reconstructing a hidden whole.
     - Division Equality Checker (Scene specification embedded in this config.yaml) — Sections 3–4, substitution and comparison to the original exact division.
-    
+
     Each is a separate Draft specification for a **proposed** prop-free Scene, not already implemented.
-    
+
     ## LESSON NOTES — UNLOCKED RECALL CUES (PLANNED)
-    
+
     1. **“Missing whole = number of groups × size of each group.”** Trigger: the child encounters and can inspect the full 3 × 4 = 12 explanation in Section 2.
     2. **“Check the whole in the original division.”** Trigger: the original 12 ÷ 3 = 4 substitution is presented and explained in Section 3.
-    
+
     Both are editorially proposed, not wired. Actual Notes IDs, per-learner unlock state, local persistence, offline revision sheets and spaced retrieval remain separate engineering work. An unlocked Note does not demonstrate mastery.
-    
+
     ## PRACTICE, RETRIEVAL AND ASSESSMENT HANDOFF
-    
+
     The scenes invite prediction, concrete counting, repeated addition, inverse multiplication and verification in the original equality. The optional independent □ ÷ 4 = 3 example is a _formative teaching prompt_, not a validated scored Question. Assessment Architect decides whether and how to assess the target Skill, its prerequisites, the effects of hints, permissible problem variants, scoring and any readiness check; current Playground Lesson adapter supports select-one-answer only despite broader QuestionType contracts. A program may revisit inverse operations later; there is no implied spaced scheduler or guaranteed grade-level suitability.
-    
+
     ## GLOBAL ACCESSIBILITY AND LOCALIZATION
-    
+
     Source teaching copy is English, requiring genuine localization to every supported language before release—including “dividend”, “divisor”, “quotient”, “total”, “groups”, “each” and exact vs remainder-free division. Do not silently fall back to English. Read all numbers, operators and group roles precisely in LTR and RTL; geometric arrangement may adapt but mathematical operand identity must not be mirrored away. Every group is equivalently represented in an ordered textual model and usable without vision, color, sound, dragging, speech recognition or timed controls. Short texts, large focusable choices, captioned optional audio, reduced-motion equivalence and mobile/low-resource access preserve all mathematical reasoning. Once the selected package/locales are downloaded, all model logic, feedback and resources must work offline without remote calculation; real PWA/download implementation is a separate gate.
-    
+
     ## PRODUCTION / PLATFORM DEPENDENCIES
-    
+
     | Feature                                                              | Readiness and owner                                                                                              |
     | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
     | LessonSection_Config with ordered text, markdown and scene resources | Verified in contract and current generic renderer; Coding Agent wires reviewed resources                         |
@@ -703,9 +734,9 @@ production:
     | Image, video, audio and code generic blocks                          | Typed-only in current generic renderer; not needed here                                                          |
     | YouTube                                                              | Label only, no supported Resource_Config; not used                                                               |
     | Notes, spaced repetition, complete offline delivery                  | Product intentions, not claimed implemented; engineering dependency                                              |
-    
+
     ## EDITORIAL SOURCES AND OPEN QUESTIONS
-    
+
     - Methodologist Brief (incorporated in this config.yaml), including the age/readiness gate and small exact-division boundaries.
     - Generated Playground Skill taxonomy (historical generated taxonomy; Skill code remains authoritative), a read-only Code view of the approved Skill semantics.
     - [Create Lesson Content](../../../../../../studio/skills/lesson-workflow/create-lesson-content.skill.md), authoring workflow and Scene handoff.
@@ -713,11 +744,11 @@ production:
     - **Editor choice preserved:** Must remain optional enrichment for children with demonstrated prerequisites or be deferred to older learners; treating the Brief as approved for _this test_ does not make advanced division universally age-appropriate. Approve the audience gate before publication.
     - Current Methodologist Brief still says Draft on disk despite conversational authorization for this experiment. Do not alter the Methodologist-owned file in this Screenwriter stage.
     - Editorial review of exact language, two interpretations of division and small-factors scope; technical review of isolation, accessibility and offline readiness.
-    
+
     ## HANDOFF
-    
+
     Draft Content plus two separate Draft Scene specifications, only in the existing findingUnknownDividend directory. They await editorial review; subsequent Scene Design, assessment design and coding are NOT authorized by this output. Do not modify the Brief, taxonomy, other Lessons or runtime code.
-    
+
     Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.
-    
+
     Editorial status conflict: Content refers to Methodologist approval for a workflow test, but the actual Methodologist Brief is marked Draft. No independent approval can be inferred; preserve pending approval as the effective status.
