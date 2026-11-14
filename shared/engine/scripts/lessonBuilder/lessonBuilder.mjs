@@ -12,7 +12,8 @@
  * table is Engine's yamlFactoryByType.ts (read as TypeScript syntax, not
  * executed or validated). Output contains only the source documentLanguage's
  * authored locale values; other languages are never invented.
- * Reads lesson.config.yaml, not Screenwriter-owned editorial content.yaml.
+ * Reads one config.yaml with { config, production } at each entity node.
+ * Production is authoring-only; TypeScript is intentionally incomplete.
  *
  * The separate generateLessonProps publisher is not invoked by this script.
  */
@@ -22,6 +23,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
 import { loadFactoryRegistry, sourceAuthoringCopy } from '../yamlScaffolding/yamlScaffolding.mjs';
+import { splitScaffoldDocument, productionFiles, checkProductionFiles, writeProductionFiles } from '../yamlScaffolding/productionScaffolding.mjs';
 export { loadFactoryRegistry };
 
 export const repoRoot = path.resolve(fileURLToPath(new URL('../../../..', import.meta.url)));
@@ -219,15 +221,15 @@ function targetFor(source, repo) {
   return { root, lessonId: match[3] };
 }
 
-/** Technical Config is a separate projection of Studio editorial plans. */
+/** The single YAML tree separates Engine Config from production guidance at every node. */
 function combineSources(root) {
-  const config = parseYaml(path.join(root, 'lesson.config.yaml'), 'lesson.config.yaml');
-  const { documentLanguage, ...lesson } = config;
+  const document = parseYaml(path.join(root, 'config.yaml'), 'config.yaml');
+  const { config: lesson, documentLanguage, tasks } = splitScaffoldDocument(document);
   if (typeof documentLanguage !== 'string' || !documentLanguage)
-    fail('lesson.config.yaml', 'documentLanguage', 'required source-language provenance');
+    fail('config.yaml', 'production.documentLanguage', 'required source-language provenance');
   if (typeof lesson.slug !== 'string' || !/^[a-zA-Z][a-zA-Z0-9]*$/.test(lesson.slug))
-    fail('lesson.config.yaml', 'slug', 'a safe camelCase slug is required for the output filename');
-  return { lesson, language: documentLanguage };
+    fail('config.yaml', 'config.slug', 'a safe camelCase slug is required for the output filename');
+  return { lesson, language: documentLanguage, tasks };
 }
 
 function writeDraft(file, content, mode) {
@@ -270,7 +272,10 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
   if (mode === 'generate' && existing.length) {
     return { changed: 0, skipped: true, files: existing, lessonId: target.lessonId };
   }
-  const { lesson, language } = combineSources(target.root);
+  const { lesson, language, tasks } = combineSources(target.root);
+  const artifacts = productionFiles(target.root, tasks);
+  // Verify all authored production destinations before creating TS or Markdown.
+  checkProductionFiles(artifacts, mode);
   const draft = renderLessonDraft(lesson, language);
   const entryName = lesson.slug + '.data.ts';
   for (const name of fs.readdirSync(target.root)) {
@@ -278,7 +283,8 @@ export function runOne(source, mode = 'check', repo = repoRoot) {
       fail(name, '$', 'competing Lesson data entrypoint; refusing to create another');
   }
   const changed = writeDraft(path.join(target.root, entryName), draft, mode);
-  return { changed, files: [entryName], lessonId: target.lessonId };
+  const specs = mode === 'generate' ? writeProductionFiles(artifacts) : 0;
+  return { changed: changed + specs, files: [entryName, ...artifacts.map(item => item.file)], lessonId: target.lessonId };
 }
 
 function discover(repo) {
@@ -303,7 +309,7 @@ function discover(repo) {
         for (const entry of fs.readdirSync(path.join(lessons, bucket.name), { withFileTypes: true })) {
           if (!entry.isDirectory()) continue;
           const location = path.join(lessons, bucket.name, entry.name);
-          if (fs.existsSync(path.join(location, 'lesson.config.yaml'))) roots.push(location);
+          if (fs.existsSync(path.join(location, 'config.yaml'))) roots.push(location);
         }
       }
     }
