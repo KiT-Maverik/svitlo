@@ -720,4 +720,3 @@ production:
     
     Source locale is English. Planned supported languages follow the 29 currently defined Engine locales; verify exact lesson-specific locale scope editorially. No translations, scored Quiz, Question Bank, Flashcard Bank, assets, or Scene implementations were produced. Methodology/Screenwriter approval remains pending.
     
-    Editorial status conflict: Content refers to Methodologist approval for a workflow test, but the actual Methodologist Brief is marked Draft. No independent approval can be inferred; preserve pending approval as the effective status.
