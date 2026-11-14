@@ -153,18 +153,18 @@ test('unified scaffold composes manual production schema beside Engine Config at
     assert.equal(scaffold.additionalProperties, false);
     assert.equal(scaffold.properties.config.properties.type.const, kind);
     assert(scaffold.properties.config.required.includes('id'));
-    assert.equal(scaffold.properties.production.$ref, '#/$defs/__production/' + kind);
+    assert.equal(scaffold.properties.production.$ref, '#/$defs/__production/$defs/' + kind);
     assert(!Object.hasOwn(scaffold.properties.config.properties, 'documentLanguage'));
     const text = JSON.stringify(scaffold);
-    assert(text.includes('#/$defs/__production/scene'));
-    assert(text.includes('#/$defs/__production/image'));
-    assert(text.includes('#/$defs/__production/section'));
+    assert(text.includes('#/$defs/__production/$defs/scene'));
+    assert(text.includes('#/$defs/__production/$defs/image'));
+    assert(text.includes('#/$defs/__production/$defs/section'));
   }
   const manuallyOwned = JSON.parse(
     fs.readFileSync(new URL('../../yaml-schemas/production.schema.json', import.meta.url), 'utf8'),
   );
   assert.deepEqual(
-    JSON.parse(docs['lesson.scaffold.schema.json']).$defs.__production,
+    JSON.parse(docs['lesson.scaffold.schema.json']).$defs.__production.$defs,
     manuallyOwned.$defs,
   );
     assert.deepEqual(manuallyOwned.$defs.scene.required, ['specification']);
