@@ -697,7 +697,8 @@ test('Course config.yaml emits Scene/media handoffs without inventing image sour
                               id: imageId,
                               type: 'image',
                               slug: 'illustration',
-                              locale: { alt: { uk: 'Опис' } },
+                              params: { fill: true, aspectRatio: 1.5 },
+                              locale: { src: null, alt: { uk: 'Опис' } },
                             },
                             production: { purpose: 'Explain the scene', prompt: 'Two balanced groups of counters' },
                           },
@@ -728,7 +729,8 @@ test('Course config.yaml emits Scene/media handoffs without inventing image sour
     const code = fs.readFileSync(path.join(courseFolder, 'draftCourse.data.ts'), 'utf8');
     assert.match(code, /defineScene\(/);
     assert.match(code, /defineImage\(/);
-    assert.doesNotMatch(code, /"src":|Two balanced groups of counters|Interactive equality demonstration/);
+    assert.match(code, /"src": null/);
+    assert.doesNotMatch(code, /Two balanced groups of counters|Interactive equality demonstration/);
     assert.deepEqual(ts.createSourceFile('draft.ts', code, ts.ScriptTarget.Latest, true).parseDiagnostics, []);
     assert.match(fs.readFileSync(sceneSpec, 'utf8'), /Interactive equality demonstration/);
     assert.match(fs.readFileSync(imageSpec, 'utf8'), /Two balanced groups of counters/);

@@ -20,6 +20,11 @@ config:
   skills: []
   params:
     languages: [en, uk]
+    requireQuiz: false
+    sections: { allowNavigation: true, allowSkipping: true, showIndexes: true }
+  locale:
+    title: { en: Equality }
+  flashcards: { items: {}, order: [] }
   section:
     items:
       introduction:
@@ -27,6 +32,10 @@ config:
           id: 00000000-0000-4000-8000-000000000001
           slug: introduction
           type: content
+          params: {}
+          locale:
+            title: { en: Introduction }
+            navigationLabel: { en: Introduction }
           content:
             items:
               visual:
@@ -34,9 +43,10 @@ config:
                   id: 00000000-0000-4000-8000-000000000002
                   slug: visual
                   type: image
+                  params: { fill: true, aspectRatio: 1.5 }
                   locale:
                     alt: { en: Two equal groups }
-                  # src deliberately missing: later asset production must supply it
+                    src: null # Required pending asset; actual TS later needs the real path
                 production:
                   purpose: Show that equal quantities can look different
                   prompt: Two groups of five counters arranged differently
@@ -62,15 +72,16 @@ change `params.languages` or invent translations.
 ## Generated handoffs
 
 - `<slug>.data.ts` inside the canonical Lesson UUID directory: recursively nested `define*`
-  factory calls containing **only** each node's `config`. The output may be
-  missing mandatory Config fields and **fail TypeScript checking by design**.
+  factory calls containing **only** each node's `config`. Required Config
+  structure is complete. Pending `src: null` deliberately **fails TypeScript
+  checking** until a media specialist provides the real asset.
 - `methodology.md` in the Lesson UUID directory, only when
   `production.methodology` is authored and the destination is safe to create.
 - `content/<book>/scenes/<bucket>/<scene-id>/specification.md` from each
   `scene.production.specification`. No `sceneSpecKey` or duplicate Scene ID.
 - `content/<book>/data/assets/<bucket>/<asset-id>/specification.md` for
   requested image/audio/video production. Image `alt` belongs in `config.locale.alt`;
-  its pending `src` stays unfilled until a real asset exists.
+  its pending `src: null` stays unresolved until a real asset exists.
 
 Generated specifications are **handoffs, not implemented Scenes, images or
 audio/video files**. An AI specialist performs those later and resolves the

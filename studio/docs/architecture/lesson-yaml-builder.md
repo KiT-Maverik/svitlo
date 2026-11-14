@@ -42,9 +42,10 @@ Other language values are not fabricated.
 
 ## TypeScript failure is intentional
 
-If a Lesson lacks `image.src`, localized strings, required Config fields,
-a Scene implementation, or referenced Question data, the scaffolded TypeScript
-**is expected to fail typechecking by design**. The next coding/media agent
+If a Lesson contains explicit pending media `null` values, untranslated
+locales, an unfinished Scene implementation or unresolved Question references,
+the scaffolded TypeScript **is expected to fail typechecking by design**.
+Required YAML Config fields must not be omitted. The next coding/media agent
 owns those errors and follows the recorded specifications. The scaffolder
 must not inject placeholders or suppress types to make CI green.
 

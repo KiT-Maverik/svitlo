@@ -25,22 +25,45 @@ import { youtube_Config_Schema } from '../contentBlocks/defineYoutube/defineYout
  * Each variant retains the concrete Engine Config schema's params, locale,
  * identity and discriminating type; only the opaque child fields are replaced.
  */
+/** YAML only: required pending local assets are explicit null until produced. */
+export const yamlAudio_Schema = audio_Config_Schema.extend({
+  locale: audio_Config_Schema.shape.locale.extend({ fileLocation: z.literal(null) }),
+});
+
+// Image Config has a cross-field refinement: project the existing structural
+// shape without redefining or weakening the real Config schema.
+export const yamlImage_Schema = z.object({
+  ...image_Config_Schema.shape,
+  locale: image_Config_Schema.shape.locale.extend({ src: z.literal(null) }),
+});
+
+export const yamlVideo_Schema = video_Config_Schema.extend({
+  locale: video_Config_Schema.shape.locale.extend({
+    fileLocation: z.literal(null),
+    poster: z.literal(null),
+  }),
+});
+
+export const yamlCarouselSlide_Schema = carouselSlide_Config_Schema.extend({
+  locale: carouselSlide_Config_Schema.shape.locale.extend({ src: z.literal(null) }),
+});
+
 export const yamlCarousel_Schema = carousel_Config_Schema.extend({
   slides: carousel_Config_Schema.shape.slides.extend({
-    items: z.record(z.string(), carouselSlide_Config_Schema),
+    items: z.record(z.string(), yamlCarouselSlide_Schema),
   }),
 });
 
 /** Checkpoint answers cannot contain Checkpoints or CheckpointItems. */
 export const yamlCheckpointAnswer_Schema = z.discriminatedUnion('type', [
-  audio_Config_Schema,
+  yamlAudio_Schema,
   yamlCarousel_Schema,
   code_Config_Schema,
-  image_Config_Schema,
+  yamlImage_Schema,
   markdown_Config_Schema,
   scene_Config_Schema,
   text_Config_Schema,
-  video_Config_Schema,
+  yamlVideo_Schema,
   youtube_Config_Schema,
 ]);
 
@@ -62,14 +85,14 @@ export const yamlCheckpoint_Schema = checkpoint_Config_Schema.extend({
  * New ContentBlock kinds must be explicitly added here and to the factory map.
  */
 export const yamlContentBlock_Schema = z.discriminatedUnion('type', [
-  audio_Config_Schema,
+  yamlAudio_Schema,
   yamlCarousel_Schema,
   yamlCheckpoint_Schema,
   code_Config_Schema,
-  image_Config_Schema,
+  yamlImage_Schema,
   markdown_Config_Schema,
   scene_Config_Schema,
   text_Config_Schema,
-  video_Config_Schema,
+  yamlVideo_Schema,
   youtube_Config_Schema,
 ]);

@@ -23,11 +23,18 @@ only internal `$ref` pointers, embedding both manual production definitions and
 the Course's direct Build overrides guide. Source language provenance is
 `production.documentLanguage`.
 
+YAML Zod projections preserve all Engine-required Config fields; the only
+intentional type differences for pending local assets are `z.literal(null)`
+for `image.src`, `audio.fileLocation`, `video.fileLocation`,
+`video.poster` and `carouselSlide.src`. Existing Config/Props schemas are
+unchanged. The YAML editor schema requires these keys to exist and be null;
+the TypeScript draft remains invalid until real asset paths are supplied.
+
 The existing Config-only editor schemas and direct
 `courseOverrides.schema.json` remain separately generated. This is
 **editor guidance only**: neither TypeScript scaffolder validates full inputs
 or tries to make generated source compile. Incomplete TS **fails typecheck by
-design** where a media asset/Scene/import/translation is pending.
+design** where an explicit null media asset/Scene/import/translation is pending.
 
 Production schema changes are edited by hand, not overwritten by the JSON
 schema generator. A subsequent specialist implements missing resources from
@@ -58,7 +65,7 @@ supersede methodology, assessment, screenwriting or review documents.
 - **Schema generator:** derives editor-facing JSON Schema from current Engine Zod Config
   compositions. Lesson/Course editor schemas include a small **draft YAML
   envelope**: `documentLanguage` (required for Lesson, optional for Course),
-  intentionally incomplete authored fields, and optional Course Lesson
+  complete required Config fields, literal null for pending media, and optional Course Lesson
   `source` import coordinates. These are **not** additions to Engine Config.
 - **`courseOverrides.schema.json`:** guides the sole supported Course-owned
   overrides document: the direct `course.build.overrides(patch, { languages })`
