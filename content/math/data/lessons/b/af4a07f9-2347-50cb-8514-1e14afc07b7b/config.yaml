@@ -1,0 +1,794 @@
+config:
+  id: "af4a07f9-2347-50cb-8514-1e14afc07b7b"
+  slug: "numbersFromTenToTwenty"
+  type: "lesson"
+  skills:
+    - "0fef6118-fa2e-4ffa-a31f-42f26ef94177"
+    - "77344ce3-a3dc-4f48-8a4f-369d520b77d4"
+  params:
+    requireQuiz: false
+    languages:
+      - "en"
+      - "qm"
+      - "lt"
+      - "lv"
+      - "et"
+      - "be"
+      - "ka"
+      - "kk"
+      - "zh"
+      - "hi"
+      - "es"
+      - "ar"
+      - "fr"
+      - "bn"
+      - "pt"
+      - "ur"
+      - "id"
+      - "de"
+      - "ja"
+      - "ko"
+      - "tr"
+      - "vi"
+      - "ta"
+      - "te"
+      - "mr"
+      - "ms"
+      - "he"
+      - "pl"
+      - "uk"
+    sections:
+      allowNavigation: true
+      allowSkipping: true
+      showIndexes: true
+  locale:
+    title:
+      en: "Beyond Ten: Count and Read to Twenty"
+  section:
+    items:
+      section1:
+        config:
+          id: "af4a07f9-2347-50cb-8514-000000000004"
+          slug: "section1"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "After nine"
+            navigationLabel:
+              en: "After nine"
+          content:
+            items:
+              text1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-000000000001"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Nine buttons are on the frame. What if we add one more?"
+                production:
+                  purpose: "Learner-facing authored text resource"
+                  specification: "Authored resource line: **text / learner invitation:** “Nine buttons are on the frame. What if we add one more?”"
+              scene1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-000000000002"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Nine buttons are on the frame. What if we add one more?"
+                production:
+                  purpose: "Unimplemented proposed interactive Scene"
+                  specification: |-
+                    # Beyond Ten: Count and Read to Twenty Lab — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: `Content` (source preserved in config.yaml); `Brief` (source preserved in config.yaml) (Draft)
+                    
+                    ## Purpose and accurate model
+                    
+                    Count forward from a chosen start within 20, including ten transitions, and read/write numerals connected to quantities 0–20. Concrete full ten-frame and extra units; no generalized place-value algorithms or carrying. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                    
+                    ## Experience beats and acceptance
+                    
+                    ### Placement 1: After nine
+                    
+                    - Prompt: “Nine buttons are on the frame. What if we add one more?”
+                    - Independent initial state and interaction: Fill tenth cell of a ten-frame and reveal the numeral 10.
+                    - Correct mathematical rule: Nine then one more makes ten, written 10.
+                    - Expected example: 9, 10.
+                    - Error feedback: If nine is chosen, show the tenth button; 1 denotes one, not ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 2: Ten and some more
+                    
+                    - Prompt: “Ten beads and three extra beads make how many?”
+                    - Independent initial state and interaction: Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger.
+                    - Correct mathematical rule: 10+3 = 13; 10+7 = 17; 10+0 = 10.
+                    - Expected example: Ten and three → 13.
+                    - Error feedback: For 103, show that thirteen is the single numeral 13, not the concatenation of spoken parts.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 3: Beyond nineteen
+                    
+                    - Prompt: “Start at seventeen. What comes after nineteen?”
+                    - Independent initial state and interaction: Continue 17,18,19,20 on a 0–20 number strip, one step per activation.
+                    - Correct mathematical rule: Each forward count adds one; 19 is followed by 20.
+                    - Expected example: 17, 18, 19, 20.
+                    - Error feedback: For 110, show two full sets of ten rather than a hundred and ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 4: Crayon label
+                    
+                    - Prompt: “A box contains fourteen crayons. Which label belongs on it?”
+                    - Independent initial state and interaction: Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21.
+                    - Correct mathematical rule: 14 labels fourteen crayons; 10+4 is fourteen.
+                    - Expected example: Ten plus four → 14.
+                    - Error feedback: For 12 point to the extra two crayons; 21 is not fourteen.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ## Self-contained interactive state and constraints
+                    
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                    
+                    ## Visual, audio and media direction
+                    
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                    
+                    ## Localization, RTL, WCAG and offline
+                    
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                    
+                    ## Cross-placement acceptance criteria
+                    
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                    
+                    ## Review and dependencies
+                    
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  productionNotes: "Unique Scene placement scene1 in After nine. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 1. Fill tenth cell of a ten-frame and reveal the numeral 10. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only."
+              markdown1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-000000000003"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Nine then one more makes ten, written 10. Example: 9, 10."
+                production:
+                  purpose: "Learner-facing authored markdown resource"
+                  specification: "Authored resource line: **markdown / explanation:** Nine then one more makes ten, written 10. Example: 9, 10."
+            order:
+              - "text1"
+              - "scene1"
+              - "markdown1"
+        production:
+          purpose: "After nine"
+          pedagogicalIntent: |-
+            **text / learner invitation:** “Nine buttons are on the frame. What if we add one more?”
+            
+            **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 1. Fill tenth cell of a ten-frame and reveal the numeral 10. Child may predict, inspect, revise or reveal a full worked model.
+            
+            **markdown / explanation:** Nine then one more makes ten, written 10. Example: 9, 10.
+            
+            **Formative feedback:** If nine is chosen, show the tenth button; 1 denotes one, not ten. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+            
+            **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+            
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+      section2:
+        config:
+          id: "af4a07f9-2347-50cb-8514-000000000008"
+          slug: "section2"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Ten and some more"
+            navigationLabel:
+              en: "Ten and some more"
+          content:
+            items:
+              text1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-000000000005"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Ten beads and three extra beads make how many?"
+                production:
+                  purpose: "Learner-facing authored text resource"
+                  specification: "Authored resource line: **text / learner invitation:** “Ten beads and three extra beads make how many?”"
+              scene1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-000000000006"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Ten beads and three extra beads make how many?"
+                production:
+                  purpose: "Unimplemented proposed interactive Scene"
+                  specification: |-
+                    # Beyond Ten: Count and Read to Twenty Lab — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: `Content` (source preserved in config.yaml); `Brief` (source preserved in config.yaml) (Draft)
+                    
+                    ## Purpose and accurate model
+                    
+                    Count forward from a chosen start within 20, including ten transitions, and read/write numerals connected to quantities 0–20. Concrete full ten-frame and extra units; no generalized place-value algorithms or carrying. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                    
+                    ## Experience beats and acceptance
+                    
+                    ### Placement 1: After nine
+                    
+                    - Prompt: “Nine buttons are on the frame. What if we add one more?”
+                    - Independent initial state and interaction: Fill tenth cell of a ten-frame and reveal the numeral 10.
+                    - Correct mathematical rule: Nine then one more makes ten, written 10.
+                    - Expected example: 9, 10.
+                    - Error feedback: If nine is chosen, show the tenth button; 1 denotes one, not ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 2: Ten and some more
+                    
+                    - Prompt: “Ten beads and three extra beads make how many?”
+                    - Independent initial state and interaction: Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger.
+                    - Correct mathematical rule: 10+3 = 13; 10+7 = 17; 10+0 = 10.
+                    - Expected example: Ten and three → 13.
+                    - Error feedback: For 103, show that thirteen is the single numeral 13, not the concatenation of spoken parts.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 3: Beyond nineteen
+                    
+                    - Prompt: “Start at seventeen. What comes after nineteen?”
+                    - Independent initial state and interaction: Continue 17,18,19,20 on a 0–20 number strip, one step per activation.
+                    - Correct mathematical rule: Each forward count adds one; 19 is followed by 20.
+                    - Expected example: 17, 18, 19, 20.
+                    - Error feedback: For 110, show two full sets of ten rather than a hundred and ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 4: Crayon label
+                    
+                    - Prompt: “A box contains fourteen crayons. Which label belongs on it?”
+                    - Independent initial state and interaction: Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21.
+                    - Correct mathematical rule: 14 labels fourteen crayons; 10+4 is fourteen.
+                    - Expected example: Ten plus four → 14.
+                    - Error feedback: For 12 point to the extra two crayons; 21 is not fourteen.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ## Self-contained interactive state and constraints
+                    
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                    
+                    ## Visual, audio and media direction
+                    
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                    
+                    ## Localization, RTL, WCAG and offline
+                    
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                    
+                    ## Cross-placement acceptance criteria
+                    
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                    
+                    ## Review and dependencies
+                    
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  productionNotes: "Unique Scene placement scene1 in Ten and some more. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 2. Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only."
+              markdown1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-000000000007"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "10+3 = 13; 10+7 = 17; 10+0 = 10. Example: Ten and three → 13."
+                production:
+                  purpose: "Learner-facing authored markdown resource"
+                  specification: "Authored resource line: **markdown / explanation:** 10+3 = 13; 10+7 = 17; 10+0 = 10. Example: Ten and three → 13."
+            order:
+              - "text1"
+              - "scene1"
+              - "markdown1"
+        production:
+          purpose: "Ten and some more"
+          pedagogicalIntent: |-
+            **text / learner invitation:** “Ten beads and three extra beads make how many?”
+            
+            **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 2. Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger. Child may predict, inspect, revise or reveal a full worked model.
+            
+            **markdown / explanation:** 10+3 = 13; 10+7 = 17; 10+0 = 10. Example: Ten and three → 13.
+            
+            **Formative feedback:** For 103, show that thirteen is the single numeral 13, not the concatenation of spoken parts. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+            
+            **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+            
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+      section3:
+        config:
+          id: "af4a07f9-2347-50cb-8514-00000000000c"
+          slug: "section3"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Beyond nineteen"
+            navigationLabel:
+              en: "Beyond nineteen"
+          content:
+            items:
+              text1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-000000000009"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Start at seventeen. What comes after nineteen?"
+                production:
+                  purpose: "Learner-facing authored text resource"
+                  specification: "Authored resource line: **text / learner invitation:** “Start at seventeen. What comes after nineteen?”"
+              scene1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-00000000000a"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "Start at seventeen. What comes after nineteen?"
+                production:
+                  purpose: "Unimplemented proposed interactive Scene"
+                  specification: |-
+                    # Beyond Ten: Count and Read to Twenty Lab — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: `Content` (source preserved in config.yaml); `Brief` (source preserved in config.yaml) (Draft)
+                    
+                    ## Purpose and accurate model
+                    
+                    Count forward from a chosen start within 20, including ten transitions, and read/write numerals connected to quantities 0–20. Concrete full ten-frame and extra units; no generalized place-value algorithms or carrying. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                    
+                    ## Experience beats and acceptance
+                    
+                    ### Placement 1: After nine
+                    
+                    - Prompt: “Nine buttons are on the frame. What if we add one more?”
+                    - Independent initial state and interaction: Fill tenth cell of a ten-frame and reveal the numeral 10.
+                    - Correct mathematical rule: Nine then one more makes ten, written 10.
+                    - Expected example: 9, 10.
+                    - Error feedback: If nine is chosen, show the tenth button; 1 denotes one, not ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 2: Ten and some more
+                    
+                    - Prompt: “Ten beads and three extra beads make how many?”
+                    - Independent initial state and interaction: Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger.
+                    - Correct mathematical rule: 10+3 = 13; 10+7 = 17; 10+0 = 10.
+                    - Expected example: Ten and three → 13.
+                    - Error feedback: For 103, show that thirteen is the single numeral 13, not the concatenation of spoken parts.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 3: Beyond nineteen
+                    
+                    - Prompt: “Start at seventeen. What comes after nineteen?”
+                    - Independent initial state and interaction: Continue 17,18,19,20 on a 0–20 number strip, one step per activation.
+                    - Correct mathematical rule: Each forward count adds one; 19 is followed by 20.
+                    - Expected example: 17, 18, 19, 20.
+                    - Error feedback: For 110, show two full sets of ten rather than a hundred and ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 4: Crayon label
+                    
+                    - Prompt: “A box contains fourteen crayons. Which label belongs on it?”
+                    - Independent initial state and interaction: Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21.
+                    - Correct mathematical rule: 14 labels fourteen crayons; 10+4 is fourteen.
+                    - Expected example: Ten plus four → 14.
+                    - Error feedback: For 12 point to the extra two crayons; 21 is not fourteen.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ## Self-contained interactive state and constraints
+                    
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                    
+                    ## Visual, audio and media direction
+                    
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                    
+                    ## Localization, RTL, WCAG and offline
+                    
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                    
+                    ## Cross-placement acceptance criteria
+                    
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                    
+                    ## Review and dependencies
+                    
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  productionNotes: "Unique Scene placement scene1 in Beyond nineteen. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 3. Continue 17,18,19,20 on a 0–20 number strip, one step per activation. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only."
+              markdown1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-00000000000b"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "Each forward count adds one; 19 is followed by 20. Example: 17, 18, 19, 20."
+                production:
+                  purpose: "Learner-facing authored markdown resource"
+                  specification: "Authored resource line: **markdown / explanation:** Each forward count adds one; 19 is followed by 20. Example: 17, 18, 19, 20."
+            order:
+              - "text1"
+              - "scene1"
+              - "markdown1"
+        production:
+          purpose: "Beyond nineteen"
+          pedagogicalIntent: |-
+            **text / learner invitation:** “Start at seventeen. What comes after nineteen?”
+            
+            **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 3. Continue 17,18,19,20 on a 0–20 number strip, one step per activation. Child may predict, inspect, revise or reveal a full worked model.
+            
+            **markdown / explanation:** Each forward count adds one; 19 is followed by 20. Example: 17, 18, 19, 20.
+            
+            **Formative feedback:** For 110, show two full sets of ten rather than a hundred and ten. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+            
+            **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+            
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+      section4:
+        config:
+          id: "af4a07f9-2347-50cb-8514-000000000010"
+          slug: "section4"
+          type: "content"
+          params: {}
+          locale:
+            title:
+              en: "Crayon label"
+            navigationLabel:
+              en: "Crayon label"
+          content:
+            items:
+              text1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-00000000000d"
+                  slug: "text1"
+                  type: "text"
+                  params: {}
+                  locale:
+                    value:
+                      en: "A box contains fourteen crayons. Which label belongs on it?"
+                production:
+                  purpose: "Learner-facing authored text resource"
+                  specification: "Authored resource line: **text / learner invitation:** “A box contains fourteen crayons. Which label belongs on it?”"
+              scene1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-00000000000e"
+                  slug: "scene1"
+                  type: "scene"
+                  params: {}
+                  locale:
+                    value:
+                      en:
+                        instruction: "A box contains fourteen crayons. Which label belongs on it?"
+                production:
+                  purpose: "Unimplemented proposed interactive Scene"
+                  specification: |-
+                    # Beyond Ten: Count and Read to Twenty Lab — Scene Specification
+                    
+                    Status: **Provisional Draft — awaiting Methodologist approval**
+                    Owner: Educational Screenwriter
+                    Sources: `Content` (source preserved in config.yaml); `Brief` (source preserved in config.yaml) (Draft)
+                    
+                    ## Purpose and accurate model
+                    
+                    Count forward from a chosen start within 20, including ten transitions, and read/write numerals connected to quantities 0–20. Concrete full ten-frame and extra units; no generalized place-value algorithms or carrying. Every rendered count, accessible ledger and explanation must match the actual collection. No hidden additions, skipped count words, or inconsistent symbols.
+                    
+                    ## Experience beats and acceptance
+                    
+                    ### Placement 1: After nine
+                    
+                    - Prompt: “Nine buttons are on the frame. What if we add one more?”
+                    - Independent initial state and interaction: Fill tenth cell of a ten-frame and reveal the numeral 10.
+                    - Correct mathematical rule: Nine then one more makes ten, written 10.
+                    - Expected example: 9, 10.
+                    - Error feedback: If nine is chosen, show the tenth button; 1 denotes one, not ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 2: Ten and some more
+                    
+                    - Prompt: “Ten beads and three extra beads make how many?”
+                    - Independent initial state and interaction: Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger.
+                    - Correct mathematical rule: 10+3 = 13; 10+7 = 17; 10+0 = 10.
+                    - Expected example: Ten and three → 13.
+                    - Error feedback: For 103, show that thirteen is the single numeral 13, not the concatenation of spoken parts.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 3: Beyond nineteen
+                    
+                    - Prompt: “Start at seventeen. What comes after nineteen?”
+                    - Independent initial state and interaction: Continue 17,18,19,20 on a 0–20 number strip, one step per activation.
+                    - Correct mathematical rule: Each forward count adds one; 19 is followed by 20.
+                    - Expected example: 17, 18, 19, 20.
+                    - Error feedback: For 110, show two full sets of ten rather than a hundred and ten.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ### Placement 4: Crayon label
+                    
+                    - Prompt: “A box contains fourteen crayons. Which label belongs on it?”
+                    - Independent initial state and interaction: Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21.
+                    - Correct mathematical rule: 14 labels fourteen crayons; 10+4 is fourteen.
+                    - Expected example: Ten plus four → 14.
+                    - Error feedback: For 12 point to the extra two crayons; 21 is not fourteen.
+                    - Reset clears the local placement only; Reveal displays the item-to-number reasoning, not merely correctness.
+                    
+                    ## Self-contained interactive state and constraints
+                    
+                    Each new Scene is **prop-free** and self-contained; scenario constants belong inside its module. Use ordered focusable items, counted flags, prediction state, reveal state and Reset. Prevent recounting one item as two; when arrangement changes, preserve item identity and quantity unless an explicit add/remove is shown. No external events, invented APIs, score, Note persistence or cross-Section state.
+                    
+                    ## Visual, audio and media direction
+                    
+                    Lightweight semantic HTML/SVG objects, distinct countable positions, legible numerals and optional locally available narration. No forced animation, sound, precision drag or reliance on colors. Reduced motion shows the same values immediately.
+                    
+                    ## Localization, RTL, WCAG and offline
+                    
+                    Complete real translations for every supported locale; logical count direction and object order remain intact under RTL. Keyboard, switch, screen-reader ledger, focus, zoom, touch and reduced motion provide equivalent interaction. Deterministic count model, content and selected-language explanations must be downloadable offline. Offline/PWA behavior is not asserted implemented.
+                    
+                    ## Cross-placement acceptance criteria
+                    
+                    - Each of four initial states is reproducible and mathematically accurate.
+                    - Every error path offers specific reasoning and a recoverable action.
+                    - Repeated selection cannot increase counted quantity twice; no phantom objects appear.
+                    - Reset in one placement never changes another.
+                    - Nonvisual, RTL, reduced-motion, mobile and offline test paths yield identical counts and conclusions.
+                    - Custom Scene is proposed; generic `scene` blockType alone is not its implementation.
+                    
+                    ## Review and dependencies
+                    
+                    Editor must approve Methodologist Brief first; then Content and Scene review, localization, accessibility implementation and Scene tests. No scored Question, Quiz or runtime Lesson code is authorized.
+                  productionNotes: "Unique Scene placement scene1 in Crayon label. Original: **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 4. Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21. Child may predict, inspect, revise or reveal a full worked model.. Status: provisional only."
+              markdown1:
+                config:
+                  id: "af4a07f9-2347-50cb-8514-00000000000f"
+                  slug: "markdown1"
+                  type: "markdown"
+                  params: {}
+                  locale:
+                    value:
+                      en: "14 labels fourteen crayons; 10+4 is fourteen. Example: Ten plus four → 14."
+                production:
+                  purpose: "Learner-facing authored markdown resource"
+                  specification: "Authored resource line: **markdown / explanation:** 14 labels fourteen crayons; 10+4 is fourteen. Example: Ten plus four → 14."
+            order:
+              - "text1"
+              - "scene1"
+              - "markdown1"
+        production:
+          purpose: "Crayon label"
+          pedagogicalIntent: |-
+            **text / learner invitation:** “A box contains fourteen crayons. Which label belongs on it?”
+            
+            **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 4. Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21. Child may predict, inspect, revise or reveal a full worked model.
+            
+            **markdown / explanation:** 14 labels fourteen crayons; 10+4 is fourteen. Example: Ten plus four → 14.
+            
+            **Formative feedback:** For 12 point to the extra two crayons; 21 is not fourteen. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+            
+            **Transition:** Independent transfer: explain the total or symbol in this unfamiliar context.
+            
+            **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+          productionNotes: "All original feedback, interaction constraints and accessibility requirements remain provisional."
+    order:
+      - "section1"
+      - "section2"
+      - "section3"
+      - "section4"
+  flashcards:
+    items: {}
+    order: []
+production:
+  documentLanguage: "en"
+  methodology: |-
+    # Beyond Ten: Count and Read to Twenty — Methodologist Brief
+    
+    Date: 2026-10-31
+    Slug: numbersFromTenToTwenty
+    Methodologist status: Draft
+    Code: [Not implemented](#)
+    Program dependence: None
+    
+    ## Educational purpose
+    
+    Count forward from a chosen start within 20, including ten transitions, and read/write numerals connected to quantities 0–20. Program-neutral and independently teachable.
+    
+    ## Target audience
+    
+    **Grade 1 (primary audience)**, early readers using short prompts, countable illustrations, and optional narration. No requirement for mouse use, hearing, or fluent reading.
+    
+    ## Prerequisites
+    
+    Identify digits 0–9, one-to-one count through ten and understand cardinality. Provide an optional introductory reminder, not an assumption of demonstrated mastery.
+    
+    ## Target Skills
+    
+    - [forward20.data.ts](../../../../data/skills/counting/sequence/skills/forward20.data.ts)
+    - [readWrite20.data.ts](../../../../data/skills/numeration/notation/skills/readWrite20.data.ts)
+    
+    ## Expected learning outcomes
+    
+    1. Nine then one more makes ten, written 10.
+    2. 10+3 = 13; 10+7 = 17; 10+0 = 10.
+    3. Each forward count adds one; 19 is followed by 20.
+    4. 14 labels fourteen crayons; 10+4 is fourteen.
+    
+    - Explain a new instance using the underlying number relationship, not merely identify a familiar arrangement.
+    
+    ## Essential subject matter and instructional depth
+    
+    Concrete full ten-frame and extra units; no generalized place-value algorithms or carrying. Verified model examples:
+    
+    - 9, 10.
+    - Ten and three → 13.
+    - 17, 18, 19, 20.
+    - Ten plus four → 14.
+    
+    ## Conceptual progression and dependencies
+    
+    1. After nine: Fill tenth cell of a ten-frame and reveal the numeral 10.
+    2. Ten and some more: Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger.
+    3. Beyond nineteen: Continue 17,18,19,20 on a 0–20 number strip, one step per activation.
+    4. Crayon label: Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21.
+    
+    ## Misconceptions, examples and boundaries
+    
+    After 19 comes 110, thirteen is written 103, reversed two-digit numerals are equivalent, all counting must restart at one. Feedback must point to the relevant concrete counting evidence. No score, timed drill, or inference of mastered competence.
+    
+    ## Localization, accessibility and offline intent
+    
+    English editorial source only. All learner-facing prompts, count words, control text, accessible descriptions and feedback require complete genuine translations across supported locales. Preserve semantic numeric order under RTL. WCAG 2.2 AA: keyboard/switch/touch support, nonvisual ordered ledger, visible focus, sufficient targets, zoom and reduced motion; no drag-only or audio-only tasks. Design for deterministic fully downloaded offline use, without claiming offline capability is implemented.
+    
+    ## Sources and factual verification
+    
+    - The canonical Skill data files linked above, copied unchanged from Mathematics main; regenerated Playground taxonomy pending coordinator.
+    - Studio Methodologist Persona and Lesson Editorial Artifacts, consulted in this batch; not runtime contracts.
+    
+    ## Curriculum / Program compatibility
+    
+    Standalone. No Program dependency or specific Curriculum alignment claimed.
+    
+    ## Open editorial decisions
+    
+    Editor approval required for this Brief, target Skills and numerical boundaries. Confirm genuine locales and accessible Scene interaction before implementation.
+    
+    ## Methodologist handoff
+    
+    **Draft, not Approved.** Subsequent Content and Scene files are provisional under explicit batch authorization; formal editorial approval gate has not passed.
+  purpose: "Count forward from a chosen start within 20, including ten transitions, and read/write numerals connected to quantities 0–20. Program-neutral and independently teachable."
+  audience: "See complete Grade, prerequisite and exclusions in methodology."
+  productionNotes: |-
+    # Beyond Ten: Count and Read to Twenty — Lesson Content
+    
+    Status: **Provisional Draft — pending Methodologist approval**
+    Source: `Methodologist Brief` (source preserved in config.yaml) (Draft)
+    Program dependence: None
+    Code: Not implemented
+    
+    ## Instructional concept
+    
+    Count forward from a chosen start within 20, including ten transitions, and read/write numerals connected to quantities 0–20. Every Section invites prediction or observation, meaningful learner control, explanatory feedback, and a chance to apply the reasoning to a changed representation, not an extended lecture followed by a token quiz.
+    
+    ## Learner journey / ordered Section plan
+    
+    Each Section is a proposed `LessonSection_Config` with vertically ordered existing Resource types: `text` → proposed new `scene` → `markdown`. The generic scene resource type exists; the custom Scene specified here is **not implemented**. Independent prop-free placements have their own starting states and no external mode prop.
+    
+    ### Section 1 — After nine
+    
+    **text / learner invitation:** “Nine buttons are on the frame. What if we add one more?”
+    
+    **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 1. Fill tenth cell of a ten-frame and reveal the numeral 10. Child may predict, inspect, revise or reveal a full worked model.
+    
+    **markdown / explanation:** Nine then one more makes ten, written 10. Example: 9, 10.
+    
+    **Formative feedback:** If nine is chosen, show the tenth button; 1 denotes one, not ten. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+    
+    **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+    
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+    
+    ### Section 2 — Ten and some more
+    
+    **text / learner invitation:** “Ten beads and three extra beads make how many?”
+    
+    **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 2. Explore a full ten-frame plus 3, 7 or zero loose beads; select numeral and count aloud or via ordered ledger. Child may predict, inspect, revise or reveal a full worked model.
+    
+    **markdown / explanation:** 10+3 = 13; 10+7 = 17; 10+0 = 10. Example: Ten and three → 13.
+    
+    **Formative feedback:** For 103, show that thirteen is the single numeral 13, not the concatenation of spoken parts. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+    
+    **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+    
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+    
+    ### Section 3 — Beyond nineteen
+    
+    **text / learner invitation:** “Start at seventeen. What comes after nineteen?”
+    
+    **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 3. Continue 17,18,19,20 on a 0–20 number strip, one step per activation. Child may predict, inspect, revise or reveal a full worked model.
+    
+    **markdown / explanation:** Each forward count adds one; 19 is followed by 20. Example: 17, 18, 19, 20.
+    
+    **Formative feedback:** For 110, show two full sets of ten rather than a hundred and ten. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+    
+    **Transition:** Predict what changes in the next representation while retaining the mathematical principle.
+    
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+    
+    ### Section 4 — Crayon label
+    
+    **text / learner invitation:** “A box contains fourteen crayons. Which label belongs on it?”
+    
+    **scene / learner action:** `numbersFromTenToTwenty Lab` (specification preserved in config.yaml), placement 4. Match an unfamiliar full-ten-plus-four crayon set to 14, contrasting 12 and 21. Child may predict, inspect, revise or reveal a full worked model.
+    
+    **markdown / explanation:** 14 labels fourteen crayons; 10+4 is fourteen. Example: Ten plus four → 14.
+    
+    **Formative feedback:** For 12 point to the extra two crayons; 21 is not fourteen. Allow retry, Reset and fully explained Reveal. No scored results or forced success.
+    
+    **Transition:** Independent transfer: explain the total or symbol in this unfamiliar context.
+    
+    **Accessibility:** Ordered object list with clearly announced count/status changes and keyboard/touch controls gives identical mathematical information.
+    
+    ## Custom Scene specification
+    
+    - `numbersFromTenToTwenty Lab` (specification preserved in config.yaml) — four independently instantiated prop-free Scenes, proposed only.
+    
+    ## Lesson Notes — proposed
+    
+    Potential concise later recall cue: “9, 10.” Notes, unlocking, persistence and review scheduling are **not** claimed implemented.
+    
+    ## Practice, retrieval, transfer and assessment boundaries
+    
+    Section 4 provides independent application in a changed context. Revisit countable evidence if answers differ. No Question, Quiz, scoring, mastery or persistence is designed here.
+    
+    ## Localization, accessibility and offline
+    
+    Provide complete genuine translation of every caption, feedback, numeral word and accessible label to all supported locales (no English fallback). RTL mirrors semantic layout without reversing mathematical sequence. Provide WCAG 2.2 AA alternatives, reduced motion, screen-reader count ledger, small-screen support and fully selected-locale offline behavior as planned requirements, not implemented claims.
+    
+    ## Editorial dependencies
+    
+    Provisional only: explicit Methodologist approval, Screenwriter review, Scene implementation, localization, and independent Scene tests remain necessary. Shared Skill index and generated taxonomy are coordinator-owned.
