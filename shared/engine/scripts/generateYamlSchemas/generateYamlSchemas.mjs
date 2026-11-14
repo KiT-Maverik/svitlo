@@ -34,19 +34,60 @@ const schemas = {
   course: engine.yamlCourse_Schema,
 };
 
+/* Draft source envelopes are distinct from the complete Engine Config. */
+export function draftYamlSchema(kind, configSchema) {
+  if (kind !== 'lesson' && kind !== 'course') return configSchema;
+  const schema = structuredClone(configSchema);
+  // Factory dispatch is mandatory; the rest can be deliberately incomplete.
+  function relax(node) {
+    if (Array.isArray(node)) return void node.forEach(relax);
+    if (!node || typeof node !== 'object') return;
+    if (node.properties && Array.isArray(node.required)) {
+      const must = node.required.filter(name => name === 'type' || name === 'lessonId');
+      if (must.length) node.required = must;
+      else delete node.required;
+    }
+    for (const value of Object.values(node)) relax(value);
+  }
+  schema.properties.documentLanguage = { type: 'string', minLength: 2 };
+  if (kind === 'course') {
+    const importSource = {
+      type: 'object',
+      properties: {
+        path: { type: 'string', minLength: 1 },
+        export: { type: 'string', minLength: 1 },
+      },
+      required: ['path', 'export'],
+      additionalProperties: false,
+    };
+    function addImportSource(node) {
+      if (Array.isArray(node)) return void node.forEach(addImportSource);
+      if (!node || typeof node !== 'object') return;
+      if (node.properties?.type?.const === 'lesson' && node.properties.lessonId) {
+        node.properties.source = structuredClone(importSource);
+      }
+      for (const value of Object.values(node)) addImportSource(value);
+    }
+    addImportSource(schema);
+  }
+  relax(schema);
+  if (kind === 'lesson') schema.required = ['type', 'slug', 'documentLanguage'];
+  return schema;
+}
+
 export function yamlJsonSchemaDocuments() {
   return Object.fromEntries(
     Object.entries(schemas).map(([kind, schema]) => {
       if (!schema) throw new Error('Missing Engine YAML authoring schema: ' + kind);
       // Do not downgrade z.custom children to {}. All configurator boundaries
       // must be replaced by the concrete schema before JSON Schema conversion.
-      const jsonSchema = z.toJSONSchema(schema, {
+      const jsonSchema = draftYamlSchema(kind, z.toJSONSchema(schema, {
         target: 'draft-2020-12',
         unrepresentable: 'throw',
         // Reuse identical Zod child schemas via $defs/$ref instead of
         // recursively inlining megabytes of repeated Config tree fragments.
         reused: 'ref',
-      });
+      }));
       return [
         kind + '.schema.json',
         JSON.stringify(
